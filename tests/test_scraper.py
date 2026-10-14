@@ -18,6 +18,33 @@ class ExtractionTests(unittest.TestCase):
     def test_no_cross_row_guessing(self):
         self.assertEqual(self.offers('Lager\n0.5 l\n7.50'),[])
 
+    def test_pdf_adjacent_second_size(self):
+        text='Feldschlösschen Original (Lager) 3 dl 4.50\n5 dl 6.80\nCola\n5 dl 4.00'
+        offers=extract_offers(text,'https://example.com/menu.pdf','2026-10-14',continuations=True)
+        self.assertEqual([(o['volumeMl'],o['priceChf']) for o in offers],[(300,4.5),(500,6.8)])
+        self.assertIn('3 dl 4.50 / 5 dl 6.80',offers[1]['evidence'])
+        self.assertEqual(len(self.offers(text)),1)
+
+    def test_pdf_continuation_keeps_alcohol_metadata(self):
+        offers=extract_offers('Lager 0.5% 3dl 5.00\n5dl 7.00','https://example.com/menu.pdf','2026-10-14',continuations=True)
+        self.assertEqual(len(offers),2)
+        self.assertTrue(all(o['alcoholFree'] for o in offers))
+
+    def test_parallel_sizes_and_prices(self):
+        offers=self.offers('Adler Lager 4.8% Vol. 2dl / 3dl / 5dl 4.00 / 5.00 / 7.50')
+        self.assertEqual([(o['volumeMl'],o['priceChf']) for o in offers],[(200,4),(300,5),(500,7.5)])
+        self.assertEqual(self.offers('Lager 3dl / 5dl 5.00 / 7.00 / 9.00'),[])
+
+    def test_beer_heading_for_generic_serving_names(self):
+        text,_=html_content('<h5>Appenzeller-Bier fliessend</h5><div>Grosses 5 dl 8.50</div><h5>Softdrinks</h5><div>Grosses 5 dl 4.00</div>'.encode(),'https://example.com')
+        offers=self.offers(text)
+        self.assertEqual(len(offers),1)
+        self.assertEqual(offers[0]['priceChf'],8.5)
+
+    def test_beer_hostname_does_not_turn_every_link_into_menu(self):
+        _,links=html_content(b'<a href="/about">Team</a><a href="/drinks.pdf">Karte</a>','https://bier.example')
+        self.assertEqual(links,['https://bier.example/drinks.pdf'])
+
     def test_merged_menu_rows_and_ginger_beer_rejected(self):
         for text in ['Ginger Beer 3 dl 5.00','Goba Citro 3dl 5.00 Lager 5dl 7.00','Lager 3dl 5.00 Cola 5dl 7.00','Appenzeller 29% 2cl 5.50 Wein 1dl 8.00','MOSCOW MULE 17.5 BROOKLYN IPA 3.3dl 9.0','Mythos, Suisse, 13% 9 | 58 Rekord Amber, 5% 3.3 dl 7.5']:
             self.assertEqual(self.offers(text),[],text)

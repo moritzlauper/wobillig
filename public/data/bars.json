@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-14T20:20:33.592045+00:00",
-  "discoveredAt": "2026-10-14T20:02:21.827828+00:00",
+  "generatedAt": "2026-10-14T20:36:58.969146+00:00",
+  "discoveredAt": "2026-10-14T20:34:18.309225+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -16,7 +16,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:02:42.902222+00:00"
+      "checkedAt": "2026-10-14T20:34:25.871336+00:00"
     },
     {
       "id": "node/10045296143",
@@ -31,7 +31,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:42.902575+00:00"
+      "checkedAt": "2026-10-14T20:34:27.372891+00:00"
     },
     {
       "id": "node/317023457",
@@ -46,7 +46,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:42.902499+00:00"
+      "checkedAt": "2026-10-14T20:34:25.871350+00:00"
     },
     {
       "id": "node/283689479",
@@ -61,7 +61,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:02:42.902672+00:00"
+      "checkedAt": "2026-10-14T20:34:27.842494+00:00"
     },
     {
       "id": "node/370835059",
@@ -76,7 +76,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:42.902731+00:00"
+      "checkedAt": "2026-10-14T20:34:27.849457+00:00"
     },
     {
       "id": "node/10948858492",
@@ -91,7 +91,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:42.902782+00:00"
+      "checkedAt": "2026-10-14T20:34:28.562451+00:00"
     },
     {
       "id": "node/955271658",
@@ -106,7 +106,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:02:42.902855+00:00"
+      "checkedAt": "2026-10-14T20:34:29.021481+00:00"
     },
     {
       "id": "node/920508290",
@@ -121,7 +121,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:02:42.902938+00:00"
+      "checkedAt": "2026-10-14T20:34:29.924815+00:00"
     },
     {
       "id": "node/411069901",
@@ -134,9 +134,20 @@
       "website": "http://alea-spielbar.ch",
       "openingHours": "Tu, Th-Fr 16:00-23:00; We, Sa 13:00-23:00; Su 13:00-20:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:42.902916+00:00"
+      "offers": [
+        {
+          "name": "Bier Paul Weizen,",
+          "volumeMl": 500,
+          "priceChf": 11.0,
+          "sourceUrl": "https://alea-spielbar.ch/wp-content/uploads/2026/02/Alea_Menu.pdf",
+          "observedAt": "2026-10-14T20:34:29.021496+00:00",
+          "confidence": "automatic",
+          "evidence": "Bier Paul Weizen, 5.2% 5 dl 11",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:34:29.021496+00:00"
     },
     {
       "id": "node/656327571",
@@ -151,7 +162,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:02:42.903009+00:00"
+      "checkedAt": "2026-10-14T20:34:29.938223+00:00"
     },
     {
       "id": "node/297710735",
@@ -166,7 +177,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:42.906159+00:00"
+      "checkedAt": "2026-10-14T20:34:29.938235+00:00"
     },
     {
       "id": "node/11777908596",
@@ -181,7 +192,83 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:42.920021+00:00"
+      "checkedAt": "2026-10-14T20:34:30.356363+00:00"
+    },
+    {
+      "id": "node/289669794",
+      "name": "Amara",
+      "lat": 47.3635082,
+      "lon": 8.5323081,
+      "type": "restaurant",
+      "address": "General-Wille-Strasse 21",
+      "postcode": "",
+      "website": "https://amara-zurich.ch",
+      "openingHours": "Mo-Sa 09:00-22:00; Su off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Grosses Bier",
+          "volumeMl": 500,
+          "priceChf": 6.8,
+          "sourceUrl": "https://amara-zurich.ch/02_Amara_Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403228+00:00",
+          "confidence": "automatic",
+          "evidence": "Grosses Bier 50cl 6.80",
+          "alcoholFree": false
+        },
+        {
+          "name": "Klosterbräu, Original Amber Naturtrüb",
+          "volumeMl": 330,
+          "priceChf": 6.3,
+          "sourceUrl": "https://amara-zurich.ch/02_Amara_Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403228+00:00",
+          "confidence": "automatic",
+          "evidence": "Klosterbräu, Original Amber Naturtrüb 33cl 6.30",
+          "alcoholFree": false
+        },
+        {
+          "name": "India Pale Ale",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "sourceUrl": "https://amara-zurich.ch/02_Amara_Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403228+00:00",
+          "confidence": "automatic",
+          "evidence": "India Pale Ale 33cl 6.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Weissbier, Weisser Engel",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "sourceUrl": "https://amara-zurich.ch/02_Amara_Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403228+00:00",
+          "confidence": "automatic",
+          "evidence": "Weissbier, Weisser Engel 50cl 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Erdinger-Dunkel",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "sourceUrl": "https://amara-zurich.ch/02_Amara_Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403228+00:00",
+          "confidence": "automatic",
+          "evidence": "Erdinger-Dunkel 50cl 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Bio Amber Alkoholfrei",
+          "volumeMl": 330,
+          "priceChf": 5.5,
+          "sourceUrl": "https://amara-zurich.ch/02_Amara_Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403228+00:00",
+          "confidence": "automatic",
+          "evidence": "Bio Amber Alkoholfrei 33cl 5.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:34:22.403228+00:00"
     },
     {
       "id": "node/656535507",
@@ -196,7 +283,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:02:42.934881+00:00"
+      "checkedAt": "2026-10-14T20:34:31.658601+00:00"
     },
     {
       "id": "node/1245160899",
@@ -211,7 +298,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:02:42.952275+00:00"
+      "checkedAt": "2026-10-14T20:34:31.673750+00:00"
     },
     {
       "id": "node/3085740534",
@@ -226,7 +313,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:44.100761+00:00"
+      "checkedAt": "2026-10-14T20:34:31.770844+00:00"
     },
     {
       "id": "node/3500516467",
@@ -241,11 +328,21 @@
       "outdoor": true,
       "offers": [
         {
+          "name": "Poretti",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "sourceUrl": "https://armandos.ch/menu",
+          "observedAt": "2026-10-14T20:34:32.775047+00:00",
+          "confidence": "automatic",
+          "evidence": "Poretti 33 cl 6.50",
+          "alcoholFree": false
+        },
+        {
           "name": "Valaisanne Original",
           "volumeMl": 330,
           "priceChf": 6.0,
           "sourceUrl": "https://armandos.ch/menu",
-          "observedAt": "2026-10-14T20:02:44.215348+00:00",
+          "observedAt": "2026-10-14T20:34:32.775047+00:00",
           "confidence": "automatic",
           "evidence": "Valaisanne Original 33 cl 6.00",
           "alcoholFree": false
@@ -255,7 +352,7 @@
           "volumeMl": 330,
           "priceChf": 7.0,
           "sourceUrl": "https://armandos.ch/menu",
-          "observedAt": "2026-10-14T20:02:44.215348+00:00",
+          "observedAt": "2026-10-14T20:34:32.775047+00:00",
           "confidence": "automatic",
           "evidence": "Pale Ale · Zwickel 33 cl 7.00",
           "alcoholFree": false
@@ -265,14 +362,14 @@
           "volumeMl": 330,
           "priceChf": 7.0,
           "sourceUrl": "https://armandos.ch/menu",
-          "observedAt": "2026-10-14T20:02:44.215348+00:00",
+          "observedAt": "2026-10-14T20:34:32.775047+00:00",
           "confidence": "automatic",
           "evidence": "Valaisanne Senza alkoholfrei, 33 cl 7.00",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:02:44.215348+00:00"
+      "checkedAt": "2026-10-14T20:34:32.775047+00:00"
     },
     {
       "id": "node/936942732",
@@ -287,7 +384,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:02:44.251322+00:00"
+      "checkedAt": "2026-10-14T20:34:34.838091+00:00"
     },
     {
       "id": "node/2447923884",
@@ -302,7 +399,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:02:44.251333+00:00"
+      "checkedAt": "2026-10-14T20:34:34.838108+00:00"
     },
     {
       "id": "node/4895551237",
@@ -317,7 +414,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:47.102745+00:00"
+      "checkedAt": "2026-10-14T20:34:35.571965+00:00"
     },
     {
       "id": "node/871794824",
@@ -332,7 +429,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:02:48.615043+00:00"
+      "checkedAt": "2026-10-14T20:34:36.555376+00:00"
     },
     {
       "id": "node/1016012582",
@@ -347,7 +444,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:48.615057+00:00"
+      "checkedAt": "2026-10-14T20:34:36.555389+00:00"
     },
     {
       "id": "node/4479056690",
@@ -362,7 +459,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:49.731895+00:00"
+      "checkedAt": "2026-10-14T20:34:38.438166+00:00"
     },
     {
       "id": "node/11901870909",
@@ -377,7 +474,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:49.906717+00:00"
+      "checkedAt": "2026-10-14T20:34:39.350753+00:00"
     },
     {
       "id": "node/10718529590",
@@ -390,9 +487,50 @@
       "website": "https://bar45.ch/",
       "openingHours": null,
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:50.128611+00:00"
+      "offers": [
+        {
+          "name": "Bier Paul Lager offen",
+          "volumeMl": 300,
+          "priceChf": 7.0,
+          "sourceUrl": "https://bar45.ch/wp-content/uploads/sites/5/2026/06/45_2026_05.pdf",
+          "observedAt": "2026-10-14T20:34:39.669413+00:00",
+          "confidence": "automatic",
+          "evidence": "Bier Paul Lager offen 3 dl / 5 dl 7/9",
+          "alcoholFree": false
+        },
+        {
+          "name": "Bier Paul Lager offen",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://bar45.ch/wp-content/uploads/sites/5/2026/06/45_2026_05.pdf",
+          "observedAt": "2026-10-14T20:34:39.669413+00:00",
+          "confidence": "automatic",
+          "evidence": "Bier Paul Lager offen 3 dl / 5 dl 7/9",
+          "alcoholFree": false
+        },
+        {
+          "name": "Paul IPA offen",
+          "volumeMl": 300,
+          "priceChf": 7.0,
+          "sourceUrl": "https://bar45.ch/wp-content/uploads/sites/5/2026/06/45_2026_05.pdf",
+          "observedAt": "2026-10-14T20:34:39.669413+00:00",
+          "confidence": "automatic",
+          "evidence": "Paul IPA offen 3 dl / 5 dl 7/9",
+          "alcoholFree": false
+        },
+        {
+          "name": "Paul IPA offen",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://bar45.ch/wp-content/uploads/sites/5/2026/06/45_2026_05.pdf",
+          "observedAt": "2026-10-14T20:34:39.669413+00:00",
+          "confidence": "automatic",
+          "evidence": "Paul IPA offen 3 dl / 5 dl 7/9",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:34:39.669413+00:00"
     },
     {
       "id": "node/1235083734",
@@ -407,7 +545,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:51.350080+00:00"
+      "checkedAt": "2026-10-14T20:34:39.808493+00:00"
     },
     {
       "id": "node/2352498668",
@@ -422,7 +560,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:51.525629+00:00"
+      "checkedAt": "2026-10-14T20:34:40.188415+00:00"
     },
     {
       "id": "node/9172909572",
@@ -437,7 +575,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:51.755675+00:00"
+      "checkedAt": "2026-10-14T20:34:40.451592+00:00"
     },
     {
       "id": "node/5342971869",
@@ -452,7 +590,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:02:52.019448+00:00"
+      "checkedAt": "2026-10-14T20:34:41.861743+00:00"
     },
     {
       "id": "node/1520228530",
@@ -467,7 +605,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:52.019471+00:00"
+      "checkedAt": "2026-10-14T20:34:41.861763+00:00"
     },
     {
       "id": "node/11795048716",
@@ -482,7 +620,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:02:53.178968+00:00"
+      "checkedAt": "2026-10-14T20:34:42.239556+00:00"
     },
     {
       "id": "node/10560490884",
@@ -497,7 +635,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:02:53.178994+00:00"
+      "checkedAt": "2026-10-14T20:34:42.239571+00:00"
     },
     {
       "id": "node/13608171594",
@@ -512,7 +650,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:53.729745+00:00"
+      "checkedAt": "2026-10-14T20:34:43.461024+00:00"
     },
     {
       "id": "node/3242600651",
@@ -527,7 +665,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:53.781104+00:00"
+      "checkedAt": "2026-10-14T20:34:44.252885+00:00"
     },
     {
       "id": "node/5803645580",
@@ -546,7 +684,7 @@
           "volumeMl": 500,
           "priceChf": 8.0,
           "sourceUrl": "https://www.bar-rossi.ch/menue/",
-          "observedAt": "2026-10-14T20:20:31.063913+00:00",
+          "observedAt": "2026-10-14T20:36:15.188569+00:00",
           "confidence": "automatic",
           "evidence": "FELDSCHLÖSSCHEN 0.5L CHF 8",
           "alcoholFree": false
@@ -556,7 +694,7 @@
           "volumeMl": 500,
           "priceChf": 8.0,
           "sourceUrl": "https://www.bar-rossi.ch/menue/",
-          "observedAt": "2026-10-14T20:20:31.063913+00:00",
+          "observedAt": "2026-10-14T20:36:15.188569+00:00",
           "confidence": "automatic",
           "evidence": "HEINEKEN 0.5L CHF 8",
           "alcoholFree": false
@@ -566,14 +704,14 @@
           "volumeMl": 300,
           "priceChf": 10.0,
           "sourceUrl": "https://www.bar-rossi.ch/menue/",
-          "observedAt": "2026-10-14T20:20:31.063913+00:00",
+          "observedAt": "2026-10-14T20:36:15.188569+00:00",
           "confidence": "automatic",
           "evidence": "CORONA 0.3L CHF 10",
           "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:20:31.063913+00:00"
+      "checkedAt": "2026-10-14T20:36:15.188569+00:00"
     },
     {
       "id": "node/5250341383",
@@ -588,7 +726,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:55.983244+00:00"
+      "checkedAt": "2026-10-14T20:34:44.818088+00:00"
     },
     {
       "id": "node/315864627",
@@ -603,7 +741,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:02:56.426516+00:00"
+      "checkedAt": "2026-10-14T20:34:45.519023+00:00"
     },
     {
       "id": "node/694152201",
@@ -622,9 +760,19 @@
           "volumeMl": 300,
           "priceChf": 8.0,
           "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
-          "observedAt": "2026-10-14T20:02:56.426532+00:00",
+          "observedAt": "2026-10-14T20:34:45.519039+00:00",
           "confidence": "automatic",
           "evidence": "Schützengarten vom Fass 30cl 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Schützengarten vom Fass",
+          "volumeMl": 500,
+          "priceChf": 11.0,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
+          "observedAt": "2026-10-14T20:34:45.519039+00:00",
+          "confidence": "automatic",
+          "evidence": "Schützengarten vom Fass 30cl 8.00 / 50cl 11.00",
           "alcoholFree": false
         },
         {
@@ -632,9 +780,19 @@
           "volumeMl": 300,
           "priceChf": 8.0,
           "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
-          "observedAt": "2026-10-14T20:02:56.426532+00:00",
+          "observedAt": "2026-10-14T20:34:45.519039+00:00",
           "confidence": "automatic",
           "evidence": "Panaché Schützengarten 30cl 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Panaché Schützengarten",
+          "volumeMl": 500,
+          "priceChf": 11.0,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
+          "observedAt": "2026-10-14T20:34:45.519039+00:00",
+          "confidence": "automatic",
+          "evidence": "Panaché Schützengarten 30cl 8.00 / 50cl 11.00",
           "alcoholFree": false
         },
         {
@@ -642,7 +800,7 @@
           "volumeMl": 330,
           "priceChf": 8.0,
           "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
-          "observedAt": "2026-10-14T20:02:56.426532+00:00",
+          "observedAt": "2026-10-14T20:34:45.519039+00:00",
           "confidence": "automatic",
           "evidence": "Chopfab Freibier -alkoholfrei- 33cl 8.00",
           "alcoholFree": true
@@ -652,7 +810,7 @@
           "volumeMl": 330,
           "priceChf": 8.0,
           "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
-          "observedAt": "2026-10-14T20:02:56.426532+00:00",
+          "observedAt": "2026-10-14T20:34:45.519039+00:00",
           "confidence": "automatic",
           "evidence": "Chopfab Lager 33cl 8.00",
           "alcoholFree": false
@@ -662,7 +820,7 @@
           "volumeMl": 330,
           "priceChf": 8.0,
           "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
-          "observedAt": "2026-10-14T20:02:56.426532+00:00",
+          "observedAt": "2026-10-14T20:34:45.519039+00:00",
           "confidence": "automatic",
           "evidence": "Chopfab Amber 33cl 8.00",
           "alcoholFree": false
@@ -672,14 +830,14 @@
           "volumeMl": 500,
           "priceChf": 10.0,
           "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
-          "observedAt": "2026-10-14T20:02:56.426532+00:00",
+          "observedAt": "2026-10-14T20:34:45.519039+00:00",
           "confidence": "automatic",
           "evidence": "Weisser Engel - Weissbier 50cl 10.00",
           "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:02:56.426532+00:00"
+      "checkedAt": "2026-10-14T20:34:45.519039+00:00"
     },
     {
       "id": "node/4935627393",
@@ -694,7 +852,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:57.800856+00:00"
+      "checkedAt": "2026-10-14T20:34:45.977399+00:00"
     },
     {
       "id": "node/297710736",
@@ -709,7 +867,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:58.071645+00:00"
+      "checkedAt": "2026-10-14T20:34:46.197870+00:00"
     },
     {
       "id": "node/5736598489",
@@ -724,7 +882,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:02:58.907760+00:00"
+      "checkedAt": "2026-10-14T20:34:46.526903+00:00"
     },
     {
       "id": "node/3926102925",
@@ -739,7 +897,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:00.077922+00:00"
+      "checkedAt": "2026-10-14T20:34:48.929896+00:00"
     },
     {
       "id": "node/370843225",
@@ -754,7 +912,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:00.077952+00:00"
+      "checkedAt": "2026-10-14T20:34:48.929913+00:00"
     },
     {
       "id": "node/10946818680",
@@ -769,7 +927,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:00.077962+00:00"
+      "checkedAt": "2026-10-14T20:34:48.929917+00:00"
     },
     {
       "id": "node/283458332",
@@ -784,7 +942,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:00.077970+00:00"
+      "checkedAt": "2026-10-14T20:34:48.929922+00:00"
     },
     {
       "id": "node/4413895695",
@@ -799,7 +957,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:00.077978+00:00"
+      "checkedAt": "2026-10-14T20:34:48.929926+00:00"
     },
     {
       "id": "way/38098976",
@@ -814,7 +972,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:00.077986+00:00"
+      "checkedAt": "2026-10-14T20:34:48.929929+00:00"
     },
     {
       "id": "node/1491966832",
@@ -829,7 +987,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:00.077994+00:00"
+      "checkedAt": "2026-10-14T20:34:48.929933+00:00"
     },
     {
       "id": "node/906856274",
@@ -844,7 +1002,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:00.093105+00:00"
+      "checkedAt": "2026-10-14T20:34:49.967011+00:00"
     },
     {
       "id": "node/6236201160",
@@ -859,7 +1017,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:00.145079+00:00"
+      "checkedAt": "2026-10-14T20:34:50.129797+00:00"
     },
     {
       "id": "node/8912884300",
@@ -874,7 +1032,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:01.929959+00:00"
+      "checkedAt": "2026-10-14T20:34:50.265174+00:00"
     },
     {
       "id": "node/370835901",
@@ -889,7 +1047,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:01.957922+00:00"
+      "checkedAt": "2026-10-14T20:34:50.626970+00:00"
     },
     {
       "id": "node/267345323",
@@ -904,7 +1062,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:02.373689+00:00"
+      "checkedAt": "2026-10-14T20:34:50.643837+00:00"
     },
     {
       "id": "node/7248235271",
@@ -919,7 +1077,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:03.047930+00:00"
+      "checkedAt": "2026-10-14T20:34:51.296842+00:00"
     },
     {
       "id": "node/267345815",
@@ -934,7 +1092,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:03.197925+00:00"
+      "checkedAt": "2026-10-14T20:34:51.415389+00:00"
     },
     {
       "id": "node/9291427952",
@@ -949,7 +1107,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:03.225414+00:00"
+      "checkedAt": "2026-10-14T20:34:52.229871+00:00"
     },
     {
       "id": "way/219544171",
@@ -964,7 +1122,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:04.308608+00:00"
+      "checkedAt": "2026-10-14T20:34:52.532538+00:00"
     },
     {
       "id": "node/8607396461",
@@ -979,7 +1137,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:04.308630+00:00"
+      "checkedAt": "2026-10-14T20:34:52.532553+00:00"
     },
     {
       "id": "node/317454772",
@@ -994,7 +1152,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:04.716493+00:00"
+      "checkedAt": "2026-10-14T20:34:52.781908+00:00"
     },
     {
       "id": "node/10596153317",
@@ -1009,7 +1167,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:06.011132+00:00"
+      "checkedAt": "2026-10-14T20:34:54.065564+00:00"
     },
     {
       "id": "node/6896222370",
@@ -1024,7 +1182,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:06.011154+00:00"
+      "checkedAt": "2026-10-14T20:34:54.065585+00:00"
     },
     {
       "id": "node/370836904",
@@ -1039,7 +1197,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:06.011161+00:00"
+      "checkedAt": "2026-10-14T20:34:54.065590+00:00"
     },
     {
       "id": "node/12612390224",
@@ -1054,7 +1212,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:06.011167+00:00"
+      "checkedAt": "2026-10-14T20:34:54.065594+00:00"
     },
     {
       "id": "node/9893260543",
@@ -1069,7 +1227,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:06.387468+00:00"
+      "checkedAt": "2026-10-14T20:34:55.144245+00:00"
     },
     {
       "id": "node/582219350",
@@ -1084,7 +1242,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-14T20:03:06.387481+00:00"
+      "checkedAt": "2026-10-14T20:34:55.144263+00:00"
     },
     {
       "id": "node/616972764",
@@ -1099,7 +1257,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:06.439650+00:00"
+      "checkedAt": "2026-10-14T20:34:55.176602+00:00"
     },
     {
       "id": "node/4408534201",
@@ -1114,7 +1272,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:06.452729+00:00"
+      "checkedAt": "2026-10-14T20:34:55.177304+00:00"
     },
     {
       "id": "node/12050011843",
@@ -1129,7 +1287,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:06.452738+00:00"
+      "checkedAt": "2026-10-14T20:34:55.177313+00:00"
     },
     {
       "id": "node/7273882085",
@@ -1144,7 +1302,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:06.751098+00:00"
+      "checkedAt": "2026-10-14T20:34:55.190475+00:00"
     },
     {
       "id": "node/1596052317",
@@ -1159,7 +1317,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:06.751127+00:00"
+      "checkedAt": "2026-10-14T20:34:55.190481+00:00"
     },
     {
       "id": "node/3250908468",
@@ -1174,7 +1332,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:06.884169+00:00"
+      "checkedAt": "2026-10-14T20:34:55.488955+00:00"
     },
     {
       "id": "node/1240044545",
@@ -1189,7 +1347,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:06.884181+00:00"
+      "checkedAt": "2026-10-14T20:34:55.488992+00:00"
     },
     {
       "id": "node/1864187711",
@@ -1204,7 +1362,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:06.947721+00:00"
+      "checkedAt": "2026-10-14T20:34:55.554907+00:00"
     },
     {
       "id": "node/343347643",
@@ -1219,7 +1377,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:07.268683+00:00"
+      "checkedAt": "2026-10-14T20:34:56.390261+00:00"
     },
     {
       "id": "node/693318631",
@@ -1234,7 +1392,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:03:07.329628+00:00"
+      "checkedAt": "2026-10-14T20:34:57.472599+00:00"
     },
     {
       "id": "node/1728845231",
@@ -1249,7 +1407,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:03:07.762009+00:00"
+      "checkedAt": "2026-10-14T20:34:57.478751+00:00"
     },
     {
       "id": "node/315863116",
@@ -1264,7 +1422,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:08.835785+00:00"
+      "checkedAt": "2026-10-14T20:34:59.142368+00:00"
     },
     {
       "id": "node/3393151844",
@@ -1279,7 +1437,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:10.874466+00:00"
+      "checkedAt": "2026-10-14T20:34:59.998912+00:00"
     },
     {
       "id": "node/914703164",
@@ -1294,7 +1452,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:10.874488+00:00"
+      "checkedAt": "2026-10-14T20:34:59.998927+00:00"
     },
     {
       "id": "node/4833061574",
@@ -1309,7 +1467,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:11.268646+00:00"
+      "checkedAt": "2026-10-14T20:35:01.004803+00:00"
     },
     {
       "id": "node/1967357669",
@@ -1324,7 +1482,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:11.285110+00:00"
+      "checkedAt": "2026-10-14T20:35:01.021701+00:00"
     },
     {
       "id": "node/1320113401",
@@ -1339,7 +1497,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:11.285119+00:00"
+      "checkedAt": "2026-10-14T20:35:01.021790+00:00"
     },
     {
       "id": "node/5833437957",
@@ -1354,7 +1512,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:11.285123+00:00"
+      "checkedAt": "2026-10-14T20:35:01.021815+00:00"
     },
     {
       "id": "node/560519073",
@@ -1369,7 +1527,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:11.679093+00:00"
+      "checkedAt": "2026-10-14T20:35:01.190977+00:00"
     },
     {
       "id": "node/8891189379",
@@ -1384,7 +1542,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:11.679106+00:00"
+      "checkedAt": "2026-10-14T20:35:01.190989+00:00"
     },
     {
       "id": "node/10967856738",
@@ -1399,7 +1557,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:11.679110+00:00"
+      "checkedAt": "2026-10-14T20:35:01.190994+00:00"
     },
     {
       "id": "node/268474472",
@@ -1418,9 +1576,19 @@
           "volumeMl": 330,
           "priceChf": 9.0,
           "sourceUrl": "https://drinxbar.ch/karten/01_DRINX_Ganze-Karte.pdf",
-          "observedAt": "2026-10-14T20:03:11.882333+00:00",
+          "observedAt": "2026-10-14T20:35:01.328163+00:00",
           "confidence": "automatic",
           "evidence": "BROOKLYN STONEWALL INN IPA (4.6%) 3.3dl 9.0",
+          "alcoholFree": false
+        },
+        {
+          "name": "CORONA",
+          "volumeMl": 330,
+          "priceChf": 8.5,
+          "sourceUrl": "https://drinxbar.ch/karten/01_DRINX_Ganze-Karte.pdf",
+          "observedAt": "2026-10-14T20:35:01.328163+00:00",
+          "confidence": "automatic",
+          "evidence": "CORONA (4.7%) 3.3dl 8.5",
           "alcoholFree": false
         },
         {
@@ -1428,14 +1596,24 @@
           "volumeMl": 330,
           "priceChf": 7.5,
           "sourceUrl": "https://drinxbar.ch/karten/01_DRINX_Ganze-Karte.pdf",
-          "observedAt": "2026-10-14T20:03:11.882333+00:00",
+          "observedAt": "2026-10-14T20:35:01.328163+00:00",
           "confidence": "automatic",
           "evidence": "SUPER BOCK STOUT glutenfrei (5.2%) 3.3dl 7.5",
+          "alcoholFree": false
+        },
+        {
+          "name": "SCHNEIDER WEISSE",
+          "volumeMl": 500,
+          "priceChf": 9.5,
+          "sourceUrl": "https://drinxbar.ch/karten/01_DRINX_Ganze-Karte.pdf",
+          "observedAt": "2026-10-14T20:35:01.328163+00:00",
+          "confidence": "automatic",
+          "evidence": "SCHNEIDER WEISSE (5.4%) 5.0dl 9.5",
           "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:03:11.882333+00:00"
+      "checkedAt": "2026-10-14T20:35:01.328163+00:00"
     },
     {
       "id": "node/1377247222",
@@ -1450,7 +1628,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:12.273586+00:00"
+      "checkedAt": "2026-10-14T20:35:05.018339+00:00"
     },
     {
       "id": "node/914703104",
@@ -1465,7 +1643,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:14.623632+00:00"
+      "checkedAt": "2026-10-14T20:35:05.294289+00:00"
     },
     {
       "id": "node/1927442517",
@@ -1480,7 +1658,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:15.363882+00:00"
+      "checkedAt": "2026-10-14T20:35:07.914441+00:00"
     },
     {
       "id": "node/370840986",
@@ -1495,7 +1673,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:15.363913+00:00"
+      "checkedAt": "2026-10-14T20:35:07.914457+00:00"
     },
     {
       "id": "node/362911612",
@@ -1510,11 +1688,41 @@
       "outdoor": false,
       "offers": [
         {
+          "name": "Appenzeller-Bier fliessend – Herrgöttli",
+          "volumeMl": 200,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller-Bier fliessend – Herrgöttli 2dl 4.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller-Bier fliessend – Stange",
+          "volumeMl": 300,
+          "priceChf": 5.9,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller-Bier fliessend – Stange 3dl 5.90",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller-Bier fliessend – Grosses",
+          "volumeMl": 500,
+          "priceChf": 8.5,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller-Bier fliessend – Grosses 5dl 8.50",
+          "alcoholFree": false
+        },
+        {
           "name": "Appenzeller Weizen (BIO)",
           "volumeMl": 300,
           "priceChf": 7.0,
           "sourceUrl": "https://www.ellokal.ch/getraenke",
-          "observedAt": "2026-10-14T20:03:15.363919+00:00",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
           "confidence": "automatic",
           "evidence": "Appenzeller Weizen (BIO) 3dl 7.00",
           "alcoholFree": false
@@ -1524,7 +1732,7 @@
           "volumeMl": 500,
           "priceChf": 9.0,
           "sourceUrl": "https://www.ellokal.ch/getraenke",
-          "observedAt": "2026-10-14T20:03:15.363919+00:00",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
           "confidence": "automatic",
           "evidence": "Appenzeller Weizen (BIO) 5dl 9.00",
           "alcoholFree": false
@@ -1534,7 +1742,7 @@
           "volumeMl": 200,
           "priceChf": 5.7,
           "sourceUrl": "https://www.ellokal.ch/getraenke",
-          "observedAt": "2026-10-14T20:03:15.363919+00:00",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
           "confidence": "automatic",
           "evidence": "Schwarzer Kristall Swiss Alpine Stout 2dl 5.70",
           "alcoholFree": false
@@ -1544,9 +1752,59 @@
           "volumeMl": 400,
           "priceChf": 9.0,
           "sourceUrl": "https://www.ellokal.ch/getraenke",
-          "observedAt": "2026-10-14T20:03:15.363919+00:00",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
           "confidence": "automatic",
           "evidence": "Schwarzer Kristall Swiss Alpine Stout 4dl 9.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Herrgöttli Amboss",
+          "volumeMl": 200,
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Herrgöttli Amboss 2dl 4.90",
+          "alcoholFree": false
+        },
+        {
+          "name": "Amboss (Amberbier aus dem Chreis 5)",
+          "volumeMl": 300,
+          "priceChf": 7.0,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss (Amberbier aus dem Chreis 5) 3dl 7.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Amboss (Amberbier aus dem Chreis 5)",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss (Amberbier aus dem Chreis 5) 5dl 9.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Schiffbrau Goldschatz hell",
+          "volumeMl": 500,
+          "priceChf": 8.8,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Schiffbrau Goldschatz hell 5dl 8.80",
+          "alcoholFree": false
+        },
+        {
+          "name": "Lokalbier Bio (Original Vollmond)",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Lokalbier Bio (Original Vollmond) 3.3dl 6.00",
           "alcoholFree": false
         },
         {
@@ -1554,9 +1812,19 @@
           "volumeMl": 330,
           "priceChf": 7.0,
           "sourceUrl": "https://www.ellokal.ch/getraenke",
-          "observedAt": "2026-10-14T20:03:15.363919+00:00",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
           "confidence": "automatic",
           "evidence": "el Lokal India Pale Ale IPA 3.3dl 7.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Rothaus Tannenzäpfle Pils",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Rothaus Tannenzäpfle Pils 3.3dl 7.00",
           "alcoholFree": false
         },
         {
@@ -1564,19 +1832,39 @@
           "volumeMl": 500,
           "priceChf": 9.0,
           "sourceUrl": "https://www.ellokal.ch/getraenke",
-          "observedAt": "2026-10-14T20:03:15.363919+00:00",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
           "confidence": "automatic",
           "evidence": "Störtebeker Übersee-Pils 5dl 9.00",
           "alcoholFree": false
+        },
+        {
+          "name": "Sonnwendlig mit ohne Alk",
+          "volumeMl": 330,
+          "priceChf": 5.9,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Sonnwendlig mit ohne Alk 3.3dl 5.90",
+          "alcoholFree": true
         },
         {
           "name": "Appenzeller Birra da Ris (Glutenfrei)",
           "volumeMl": 330,
           "priceChf": 7.0,
           "sourceUrl": "https://www.ellokal.ch/getraenke",
-          "observedAt": "2026-10-14T20:03:15.363919+00:00",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
           "confidence": "automatic",
           "evidence": "Appenzeller Birra da Ris (Glutenfrei) 3.3dl 7.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Adler Panix Perle hell",
+          "volumeMl": 290,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.ellokal.ch/getraenke",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
+          "confidence": "automatic",
+          "evidence": "Adler Panix Perle hell 2.9dl 6.50",
           "alcoholFree": false
         },
         {
@@ -1584,14 +1872,14 @@
           "volumeMl": 330,
           "priceChf": 7.0,
           "sourceUrl": "https://www.ellokal.ch/getraenke",
-          "observedAt": "2026-10-14T20:03:15.363919+00:00",
+          "observedAt": "2026-10-14T20:36:50.259344+00:00",
           "confidence": "automatic",
           "evidence": "Lola IPA mit ohne Alk 3.3dl 7.00",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:03:15.363919+00:00"
+      "checkedAt": "2026-10-14T20:36:50.259344+00:00"
     },
     {
       "id": "node/2904967414",
@@ -1606,7 +1894,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:16.237695+00:00"
+      "checkedAt": "2026-10-14T20:35:08.977837+00:00"
     },
     {
       "id": "node/313218499",
@@ -1621,7 +1909,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:17.105166+00:00"
+      "checkedAt": "2026-10-14T20:35:12.593260+00:00"
     },
     {
       "id": "node/1178929599",
@@ -1636,7 +1924,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:17.263515+00:00"
+      "checkedAt": "2026-10-14T20:35:13.537324+00:00"
     },
     {
       "id": "node/7996050275",
@@ -1651,7 +1939,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:18.425279+00:00"
+      "checkedAt": "2026-10-14T20:35:14.602203+00:00"
     },
     {
       "id": "node/11793952807",
@@ -1666,7 +1954,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:18.439760+00:00"
+      "checkedAt": "2026-10-14T20:35:14.617062+00:00"
     },
     {
       "id": "node/10826848169",
@@ -1681,7 +1969,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:18.439775+00:00"
+      "checkedAt": "2026-10-14T20:35:14.617079+00:00"
     },
     {
       "id": "node/6223031358",
@@ -1696,7 +1984,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:18.439784+00:00"
+      "checkedAt": "2026-10-14T20:35:14.617086+00:00"
     },
     {
       "id": "node/3024205607",
@@ -1711,7 +1999,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:18.439791+00:00"
+      "checkedAt": "2026-10-14T20:35:14.617093+00:00"
     },
     {
       "id": "node/5535868990",
@@ -1726,7 +2014,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:19.867639+00:00"
+      "checkedAt": "2026-10-14T20:35:14.670266+00:00"
     },
     {
       "id": "node/656327700",
@@ -1741,7 +2029,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:21.577195+00:00"
+      "checkedAt": "2026-10-14T20:35:15.245181+00:00"
     },
     {
       "id": "node/5431084536",
@@ -1760,7 +2048,7 @@
           "volumeMl": 330,
           "priceChf": 8.0,
           "sourceUrl": "https://www.gainsbourg.ch/drinks-and-food",
-          "observedAt": "2026-10-14T20:03:21.577209+00:00",
+          "observedAt": "2026-10-14T20:35:15.245218+00:00",
           "confidence": "automatic",
           "evidence": "Amboss Amber 33cl 8.00",
           "alcoholFree": false
@@ -1770,14 +2058,14 @@
           "volumeMl": 500,
           "priceChf": 9.0,
           "sourceUrl": "https://www.gainsbourg.ch/drinks-and-food",
-          "observedAt": "2026-10-14T20:03:21.577209+00:00",
+          "observedAt": "2026-10-14T20:35:15.245218+00:00",
           "confidence": "automatic",
           "evidence": "Augustiner Weizen 50cl 9.00",
           "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:03:21.577209+00:00"
+      "checkedAt": "2026-10-14T20:35:15.245218+00:00"
     },
     {
       "id": "node/799639752",
@@ -1792,7 +2080,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:22.325396+00:00"
+      "checkedAt": "2026-10-14T20:35:15.625628+00:00"
     },
     {
       "id": "node/1232849946",
@@ -1807,7 +2095,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:22.438149+00:00"
+      "checkedAt": "2026-10-14T20:35:16.231305+00:00"
     },
     {
       "id": "node/313199597",
@@ -1822,7 +2110,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:03:22.438160+00:00"
+      "checkedAt": "2026-10-14T20:35:16.231342+00:00"
     },
     {
       "id": "node/4778167221",
@@ -1837,7 +2125,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:22.490561+00:00"
+      "checkedAt": "2026-10-14T20:35:17.095509+00:00"
     },
     {
       "id": "node/5083782849",
@@ -1852,7 +2140,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:22.490572+00:00"
+      "checkedAt": "2026-10-14T20:35:17.095530+00:00"
     },
     {
       "id": "node/8816407017",
@@ -1867,7 +2155,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:22.589991+00:00"
+      "checkedAt": "2026-10-14T20:35:17.182408+00:00"
     },
     {
       "id": "node/1740683819",
@@ -1882,7 +2170,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:23.108186+00:00"
+      "checkedAt": "2026-10-14T20:35:17.631250+00:00"
     },
     {
       "id": "node/1235083841",
@@ -1897,7 +2185,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:23.218569+00:00"
+      "checkedAt": "2026-10-14T20:35:18.457841+00:00"
     },
     {
       "id": "node/560524517",
@@ -1912,7 +2200,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:23.231390+00:00"
+      "checkedAt": "2026-10-14T20:35:18.472577+00:00"
     },
     {
       "id": "node/317768690",
@@ -1927,7 +2215,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:24.010230+00:00"
+      "checkedAt": "2026-10-14T20:35:19.385961+00:00"
     },
     {
       "id": "node/582820194",
@@ -1942,7 +2230,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:25.743425+00:00"
+      "checkedAt": "2026-10-14T20:35:21.605824+00:00"
     },
     {
       "id": "node/11091863725",
@@ -1957,7 +2245,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:26.367142+00:00"
+      "checkedAt": "2026-10-14T20:35:22.801705+00:00"
     },
     {
       "id": "node/5624735722",
@@ -1972,7 +2260,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:03:27.035892+00:00"
+      "checkedAt": "2026-10-14T20:35:22.946025+00:00"
     },
     {
       "id": "node/6872101830",
@@ -1987,7 +2275,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:28.639737+00:00"
+      "checkedAt": "2026-10-14T20:35:23.762977+00:00"
     },
     {
       "id": "node/13878894291",
@@ -2000,9 +2288,20 @@
       "website": "https://hiltl.ch/",
       "openingHours": "Mo-Th 07:00-22:00; Fr 07:00-23:00; Sa 08:00-23:00; Su 10:00-22:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:28.639781+00:00"
+      "offers": [
+        {
+          "name": "Weissbier Weihenstephan,",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://hiltl.ch/wp-content/uploads/food-drinks-sihlpost.pdf",
+          "observedAt": "2026-10-14T20:35:23.762990+00:00",
+          "confidence": "automatic",
+          "evidence": "Weissbier Weihenstephan, 50cl 9.–",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:35:23.762990+00:00"
     },
     {
       "id": "node/1232849956",
@@ -2017,7 +2316,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:29.948177+00:00"
+      "checkedAt": "2026-10-14T20:35:23.905027+00:00"
     },
     {
       "id": "node/270799850",
@@ -2032,7 +2331,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:29.948213+00:00"
+      "checkedAt": "2026-10-14T20:35:23.905045+00:00"
     },
     {
       "id": "node/1937429081",
@@ -2047,7 +2346,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:29.948221+00:00"
+      "checkedAt": "2026-10-14T20:35:23.905051+00:00"
     },
     {
       "id": "node/370838635",
@@ -2062,7 +2361,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:30.296972+00:00"
+      "checkedAt": "2026-10-14T20:35:26.097901+00:00"
     },
     {
       "id": "node/2953822534",
@@ -2077,7 +2376,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:30.296984+00:00"
+      "checkedAt": "2026-10-14T20:35:26.097914+00:00"
     },
     {
       "id": "node/1997226794",
@@ -2092,7 +2391,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:30.633442+00:00"
+      "checkedAt": "2026-10-14T20:35:26.293035+00:00"
     },
     {
       "id": "node/10952175946",
@@ -2107,7 +2406,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:30.633475+00:00"
+      "checkedAt": "2026-10-14T20:35:26.293050+00:00"
     },
     {
       "id": "node/4833061584",
@@ -2122,7 +2421,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:30.711866+00:00"
+      "checkedAt": "2026-10-14T20:35:26.399657+00:00"
     },
     {
       "id": "node/808643294",
@@ -2137,7 +2436,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:30.750482+00:00"
+      "checkedAt": "2026-10-14T20:35:26.564464+00:00"
     },
     {
       "id": "node/4364350625",
@@ -2152,7 +2451,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:30.750499+00:00"
+      "checkedAt": "2026-10-14T20:35:26.564479+00:00"
     },
     {
       "id": "node/14277803199",
@@ -2167,7 +2466,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:30.763187+00:00"
+      "checkedAt": "2026-10-14T20:35:26.587045+00:00"
     },
     {
       "id": "node/4906342670",
@@ -2182,7 +2481,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:30.763198+00:00"
+      "checkedAt": "2026-10-14T20:35:26.587053+00:00"
     },
     {
       "id": "node/5335832644",
@@ -2197,7 +2496,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:30.763205+00:00"
+      "checkedAt": "2026-10-14T20:35:26.587058+00:00"
     },
     {
       "id": "node/12754797447",
@@ -2212,7 +2511,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:33.806916+00:00"
+      "checkedAt": "2026-10-14T20:35:27.872933+00:00"
     },
     {
       "id": "node/11793936878",
@@ -2227,7 +2526,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:33.806928+00:00"
+      "checkedAt": "2026-10-14T20:35:27.872946+00:00"
     },
     {
       "id": "node/415719035",
@@ -2242,7 +2541,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:33.806933+00:00"
+      "checkedAt": "2026-10-14T20:35:27.872951+00:00"
     },
     {
       "id": "node/5665111623",
@@ -2257,7 +2556,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:33.806937+00:00"
+      "checkedAt": "2026-10-14T20:35:27.872955+00:00"
     },
     {
       "id": "node/10048648151",
@@ -2272,7 +2571,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:33.968654+00:00"
+      "checkedAt": "2026-10-14T20:35:29.081144+00:00"
     },
     {
       "id": "node/1240044684",
@@ -2287,7 +2586,103 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-14T20:03:34.163690+00:00"
+      "checkedAt": "2026-10-14T20:35:30.438131+00:00"
+    },
+    {
+      "id": "node/387909747",
+      "name": "Kafischnaps",
+      "lat": 47.3912249,
+      "lon": 8.5359972,
+      "type": "cafe",
+      "address": "Kornhausstrasse 57",
+      "postcode": "8037",
+      "website": "https://www.kafischnaps.ch/",
+      "openingHours": "Mo-Th 08:00-24:00; Fr 08:00-25:00; Sa 09:00-25:00; Su 09:00-24:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Adler Lager Lagerbier hell",
+          "volumeMl": 200,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.kafischnaps.ch/files/KafiSchnaps_Karte_Abend.pdf",
+          "observedAt": "2026-10-14T20:36:50.259710+00:00",
+          "confidence": "automatic",
+          "evidence": "Adler Lager Lagerbier hell 4.8% Vol. 2 dl / 3 dl / 5 dl 4.00 / 5.00 / 7.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Adler Lager Lagerbier hell",
+          "volumeMl": 300,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.kafischnaps.ch/files/KafiSchnaps_Karte_Abend.pdf",
+          "observedAt": "2026-10-14T20:36:50.259710+00:00",
+          "confidence": "automatic",
+          "evidence": "Adler Lager Lagerbier hell 4.8% Vol. 2 dl / 3 dl / 5 dl 4.00 / 5.00 / 7.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Adler Lager Lagerbier hell",
+          "volumeMl": 500,
+          "priceChf": 7.5,
+          "sourceUrl": "https://www.kafischnaps.ch/files/KafiSchnaps_Karte_Abend.pdf",
+          "observedAt": "2026-10-14T20:36:50.259710+00:00",
+          "confidence": "automatic",
+          "evidence": "Adler Lager Lagerbier hell 4.8% Vol. 2 dl / 3 dl / 5 dl 4.00 / 5.00 / 7.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Augustiner Lager Hell Lagerbier hell",
+          "volumeMl": 500,
+          "priceChf": 8.5,
+          "sourceUrl": "https://www.kafischnaps.ch/files/KafiSchnaps_Karte_Abend.pdf",
+          "observedAt": "2026-10-14T20:36:50.259710+00:00",
+          "confidence": "automatic",
+          "evidence": "Augustiner Lager Hell Lagerbier hell 5.2% Vol. 5 dl 8.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Jever Pilsner",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.kafischnaps.ch/files/KafiSchnaps_Karte_Abend.pdf",
+          "observedAt": "2026-10-14T20:36:50.259710+00:00",
+          "confidence": "automatic",
+          "evidence": "Jever Pilsner 4.9% Vol. 3.3 dl 6.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Weihenstephaner Weizen Weizenbier",
+          "volumeMl": 500,
+          "priceChf": 8.5,
+          "sourceUrl": "https://www.kafischnaps.ch/files/KafiSchnaps_Karte_Abend.pdf",
+          "observedAt": "2026-10-14T20:36:50.259710+00:00",
+          "confidence": "automatic",
+          "evidence": "Weihenstephaner Weizen Weizenbier 5,6% Vol. 5 dl 8.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Tannenzäpﬂe alkoholfrei alkoholfreies Pils",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.kafischnaps.ch/files/KafiSchnaps_Karte_Abend.pdf",
+          "observedAt": "2026-10-14T20:36:50.259710+00:00",
+          "confidence": "automatic",
+          "evidence": "Tannenzäpﬂe alkoholfrei alkoholfreies Pils < 0.5% Vol. 3.3 dl 6.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Bierwerk Rainbow IPA IPA",
+          "volumeMl": 440,
+          "priceChf": 9.5,
+          "sourceUrl": "https://www.kafischnaps.ch/files/KafiSchnaps_Karte_Abend.pdf",
+          "observedAt": "2026-10-14T20:36:50.259710+00:00",
+          "confidence": "automatic",
+          "evidence": "Bierwerk Rainbow IPA IPA 6.0% Vol. 4.4 dl 9.50",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:36:50.259710+00:00"
     },
     {
       "id": "node/656327737",
@@ -2302,7 +2697,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:36.083678+00:00"
+      "checkedAt": "2026-10-14T20:35:31.324231+00:00"
     },
     {
       "id": "node/869269170",
@@ -2317,7 +2712,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:36.098911+00:00"
+      "checkedAt": "2026-10-14T20:35:31.338723+00:00"
     },
     {
       "id": "node/598560604",
@@ -2332,7 +2727,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:03:36.098929+00:00"
+      "checkedAt": "2026-10-14T20:35:31.338732+00:00"
     },
     {
       "id": "node/362915349",
@@ -2347,7 +2742,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:36.183034+00:00"
+      "checkedAt": "2026-10-14T20:35:32.225371+00:00"
     },
     {
       "id": "node/2112530380",
@@ -2362,7 +2757,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:36.349308+00:00"
+      "checkedAt": "2026-10-14T20:35:32.386233+00:00"
     },
     {
       "id": "node/317773504",
@@ -2377,7 +2772,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:36.550234+00:00"
+      "checkedAt": "2026-10-14T20:35:32.918534+00:00"
     },
     {
       "id": "node/2615979187",
@@ -2392,11 +2787,41 @@
       "outdoor": true,
       "offers": [
         {
+          "name": "Amboss blond",
+          "volumeMl": 300,
+          "priceChf": 6.5,
+          "sourceUrl": "https://konrad.bar/wp-content/uploads/2024/07/240717_Koni_WEB.pdf",
+          "observedAt": "2026-10-14T20:35:34.198405+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss blond 30cl 6.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Amboss blond",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://konrad.bar/wp-content/uploads/2024/07/240717_Koni_WEB.pdf",
+          "observedAt": "2026-10-14T20:35:34.198405+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss blond 50cl 9",
+          "alcoholFree": false
+        },
+        {
+          "name": "Amboss amber",
+          "volumeMl": 300,
+          "priceChf": 7.0,
+          "sourceUrl": "https://konrad.bar/wp-content/uploads/2024/07/240717_Koni_WEB.pdf",
+          "observedAt": "2026-10-14T20:35:34.198405+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss amber 30cl 7",
+          "alcoholFree": false
+        },
+        {
           "name": "Amboss amber",
           "volumeMl": 500,
           "priceChf": 9.5,
           "sourceUrl": "https://konrad.bar/wp-content/uploads/2024/07/240717_Koni_WEB.pdf",
-          "observedAt": "2026-10-14T20:03:38.136936+00:00",
+          "observedAt": "2026-10-14T20:35:34.198405+00:00",
           "confidence": "automatic",
           "evidence": "Amboss amber 50cl 9.50",
           "alcoholFree": false
@@ -2406,14 +2831,34 @@
           "volumeMl": 330,
           "priceChf": 9.5,
           "sourceUrl": "https://konrad.bar/wp-content/uploads/2024/07/240717_Koni_WEB.pdf",
-          "observedAt": "2026-10-14T20:03:38.136936+00:00",
+          "observedAt": "2026-10-14T20:35:34.198405+00:00",
           "confidence": "automatic",
           "evidence": "Dr. Gab’s IPA 33cl 9.5",
           "alcoholFree": false
+        },
+        {
+          "name": "Love Beer Weizen",
+          "volumeMl": 500,
+          "priceChf": 10.0,
+          "sourceUrl": "https://konrad.bar/wp-content/uploads/2024/07/240717_Koni_WEB.pdf",
+          "observedAt": "2026-10-14T20:35:34.198405+00:00",
+          "confidence": "automatic",
+          "evidence": "Love Beer Weizen 50cl 10",
+          "alcoholFree": false
+        },
+        {
+          "name": "Valaisanne alkoholfrei",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "sourceUrl": "https://konrad.bar/wp-content/uploads/2024/07/240717_Koni_WEB.pdf",
+          "observedAt": "2026-10-14T20:35:34.198405+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne alkoholfrei 33cl 8",
+          "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:03:38.136936+00:00"
+      "checkedAt": "2026-10-14T20:35:34.198405+00:00"
     },
     {
       "id": "node/2133810173",
@@ -2428,7 +2873,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:38.638506+00:00"
+      "checkedAt": "2026-10-14T20:35:34.761735+00:00"
     },
     {
       "id": "node/11901870908",
@@ -2443,7 +2888,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:39.677709+00:00"
+      "checkedAt": "2026-10-14T20:35:34.896305+00:00"
     },
     {
       "id": "node/9201875603",
@@ -2458,7 +2903,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:39.677728+00:00"
+      "checkedAt": "2026-10-14T20:35:34.896323+00:00"
     },
     {
       "id": "node/300697122",
@@ -2473,7 +2918,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:39.677733+00:00"
+      "checkedAt": "2026-10-14T20:35:34.896329+00:00"
     },
     {
       "id": "node/320526598",
@@ -2488,7 +2933,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:03:40.001989+00:00"
+      "checkedAt": "2026-10-14T20:35:34.954822+00:00"
     },
     {
       "id": "node/9811018969",
@@ -2503,7 +2948,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:40.753061+00:00"
+      "checkedAt": "2026-10-14T20:35:36.237486+00:00"
     },
     {
       "id": "node/3393123621",
@@ -2518,7 +2963,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:41.008329+00:00"
+      "checkedAt": "2026-10-14T20:35:36.669071+00:00"
     },
     {
       "id": "node/648956175",
@@ -2533,7 +2978,63 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:41.008341+00:00"
+      "checkedAt": "2026-10-14T20:35:36.669085+00:00"
+    },
+    {
+      "id": "node/2635576908",
+      "name": "La Stazione",
+      "lat": 47.411255,
+      "lon": 8.545482,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "8050",
+      "website": "https://www.restaurantlastazione.ch/",
+      "openingHours": "Mo-Sa 11:00-22:00; Su 13:00-21:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Feldschlösschen",
+          "volumeMl": 500,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.restaurantlastazione.ch/getraenke.php",
+          "observedAt": "2026-10-14T20:34:22.403635+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen 5dl CHF 5.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Heineken",
+          "volumeMl": 500,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.restaurantlastazione.ch/getraenke.php",
+          "observedAt": "2026-10-14T20:34:22.403635+00:00",
+          "confidence": "automatic",
+          "evidence": "Heineken 5dl CHF 5.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Quöllfrisch",
+          "volumeMl": 500,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.restaurantlastazione.ch/getraenke.php",
+          "observedAt": "2026-10-14T20:34:22.403635+00:00",
+          "confidence": "automatic",
+          "evidence": "Quöllfrisch 5dl CHF 5.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Moretti",
+          "volumeMl": 500,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.restaurantlastazione.ch/getraenke.php",
+          "observedAt": "2026-10-14T20:34:22.403635+00:00",
+          "confidence": "automatic",
+          "evidence": "Moretti 5dl CHF 5.50",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:34:22.403635+00:00"
     },
     {
       "id": "node/1232849945",
@@ -2548,7 +3049,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:41.048185+00:00"
+      "checkedAt": "2026-10-14T20:35:36.917436+00:00"
     },
     {
       "id": "node/5629311368",
@@ -2563,7 +3064,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:41.048195+00:00"
+      "checkedAt": "2026-10-14T20:35:36.917451+00:00"
     },
     {
       "id": "node/1828352896",
@@ -2578,7 +3079,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:41.048199+00:00"
+      "checkedAt": "2026-10-14T20:35:36.917456+00:00"
     },
     {
       "id": "node/656616749",
@@ -2593,7 +3094,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:41.048203+00:00"
+      "checkedAt": "2026-10-14T20:35:36.917461+00:00"
     },
     {
       "id": "node/2603237450",
@@ -2608,7 +3109,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:41.048207+00:00"
+      "checkedAt": "2026-10-14T20:35:36.917466+00:00"
     },
     {
       "id": "node/12974074101",
@@ -2623,7 +3124,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:41.048211+00:00"
+      "checkedAt": "2026-10-14T20:35:36.917470+00:00"
     },
     {
       "id": "node/3010412639",
@@ -2638,7 +3139,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:41.078079+00:00"
+      "checkedAt": "2026-10-14T20:35:37.169706+00:00"
     },
     {
       "id": "node/4869996374",
@@ -2653,7 +3154,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:42.092014+00:00"
+      "checkedAt": "2026-10-14T20:35:38.473651+00:00"
     },
     {
       "id": "node/4239902751",
@@ -2668,7 +3169,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:42.092027+00:00"
+      "checkedAt": "2026-10-14T20:35:38.473684+00:00"
     },
     {
       "id": "node/920508508",
@@ -2683,7 +3184,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:42.187327+00:00"
+      "checkedAt": "2026-10-14T20:35:38.493051+00:00"
     },
     {
       "id": "node/4013495028",
@@ -2698,7 +3199,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:42.187340+00:00"
+      "checkedAt": "2026-10-14T20:35:38.493064+00:00"
     },
     {
       "id": "node/4889986285",
@@ -2713,7 +3214,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:42.308053+00:00"
+      "checkedAt": "2026-10-14T20:35:38.564370+00:00"
     },
     {
       "id": "node/4556376490",
@@ -2728,7 +3229,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:42.308064+00:00"
+      "checkedAt": "2026-10-14T20:35:38.564384+00:00"
     },
     {
       "id": "node/656623537",
@@ -2743,7 +3244,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:43.225982+00:00"
+      "checkedAt": "2026-10-14T20:35:39.247453+00:00"
     },
     {
       "id": "node/936942901",
@@ -2758,7 +3259,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:43.225994+00:00"
+      "checkedAt": "2026-10-14T20:35:39.247473+00:00"
     },
     {
       "id": "node/1967357695",
@@ -2772,8 +3273,8 @@
       "openingHours": "Su-Th 09:00-00:00; Fr-Sa 09:00-02:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:03:43.226000+00:00"
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-14T20:35:39.247478+00:00"
     },
     {
       "id": "node/656810963",
@@ -2788,7 +3289,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:44.254924+00:00"
+      "checkedAt": "2026-10-14T20:35:39.589377+00:00"
     },
     {
       "id": "node/266630294",
@@ -2803,7 +3304,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:44.254952+00:00"
+      "checkedAt": "2026-10-14T20:35:39.589407+00:00"
     },
     {
       "id": "node/310134153",
@@ -2818,7 +3319,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:44.480718+00:00"
+      "checkedAt": "2026-10-14T20:35:40.310549+00:00"
     },
     {
       "id": "node/1241219838",
@@ -2833,7 +3334,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:44.480747+00:00"
+      "checkedAt": "2026-10-14T20:35:40.310573+00:00"
     },
     {
       "id": "node/12792177148",
@@ -2848,7 +3349,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:44.480757+00:00"
+      "checkedAt": "2026-10-14T20:35:40.310581+00:00"
     },
     {
       "id": "node/1828352891",
@@ -2863,7 +3364,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:44.480765+00:00"
+      "checkedAt": "2026-10-14T20:35:40.310587+00:00"
     },
     {
       "id": "node/6812373252",
@@ -2878,7 +3379,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:44.480775+00:00"
+      "checkedAt": "2026-10-14T20:35:40.310593+00:00"
     },
     {
       "id": "node/9343491802",
@@ -2893,7 +3394,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:03:44.559379+00:00"
+      "checkedAt": "2026-10-14T20:35:40.748734+00:00"
     },
     {
       "id": "node/582264861",
@@ -2908,7 +3409,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:44.868129+00:00"
+      "checkedAt": "2026-10-14T20:35:40.923309+00:00"
     },
     {
       "id": "node/444463631",
@@ -2923,7 +3424,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:45.356108+00:00"
+      "checkedAt": "2026-10-14T20:35:41.571872+00:00"
     },
     {
       "id": "node/3132183395",
@@ -2938,7 +3439,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:45.897938+00:00"
+      "checkedAt": "2026-10-14T20:35:41.619172+00:00"
     },
     {
       "id": "node/73677373",
@@ -2953,7 +3454,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:45.965509+00:00"
+      "checkedAt": "2026-10-14T20:35:41.636860+00:00"
     },
     {
       "id": "node/4833061573",
@@ -2968,7 +3469,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:45.965519+00:00"
+      "checkedAt": "2026-10-14T20:35:41.636872+00:00"
     },
     {
       "id": "node/582224476",
@@ -2983,7 +3484,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:46.151449+00:00"
+      "checkedAt": "2026-10-14T20:35:41.767763+00:00"
     },
     {
       "id": "way/1285497396",
@@ -2998,7 +3499,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:46.722204+00:00"
+      "checkedAt": "2026-10-14T20:35:42.014846+00:00"
     },
     {
       "id": "node/1235083770",
@@ -3013,7 +3514,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:46.722226+00:00"
+      "checkedAt": "2026-10-14T20:35:42.014873+00:00"
     },
     {
       "id": "node/3070528634",
@@ -3028,7 +3529,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:46.722233+00:00"
+      "checkedAt": "2026-10-14T20:35:42.014881+00:00"
     },
     {
       "id": "node/5077193368",
@@ -3043,7 +3544,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:46.790540+00:00"
+      "checkedAt": "2026-10-14T20:35:42.163445+00:00"
     },
     {
       "id": "node/279180966",
@@ -3058,7 +3559,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:47.155474+00:00"
+      "checkedAt": "2026-10-14T20:35:42.905537+00:00"
     },
     {
       "id": "node/12117103039",
@@ -3073,7 +3574,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:48.026720+00:00"
+      "checkedAt": "2026-10-14T20:35:43.103655+00:00"
     },
     {
       "id": "node/656719956",
@@ -3088,7 +3589,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:48.026745+00:00"
+      "checkedAt": "2026-10-14T20:35:43.103678+00:00"
     },
     {
       "id": "node/12735386894",
@@ -3103,7 +3604,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:48.140778+00:00"
+      "checkedAt": "2026-10-14T20:35:43.282907+00:00"
     },
     {
       "id": "node/9234454006",
@@ -3118,7 +3619,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:48.140800+00:00"
+      "checkedAt": "2026-10-14T20:35:43.282927+00:00"
     },
     {
       "id": "node/5201535172",
@@ -3133,11 +3634,21 @@
       "outdoor": false,
       "offers": [
         {
+          "name": "Amboss Spezial Hell",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "sourceUrl": "https://www.moevenpick-wein.com/media/subsidiary/pch-NU/1__WB_Speise-_Getr_nkekarte_Herbst_2026a.pdf",
+          "observedAt": "2026-10-14T20:35:43.467452+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss Spezial Hell 33 cl 8.00",
+          "alcoholFree": false
+        },
+        {
           "name": "Amboss Amber Trüb",
           "volumeMl": 330,
           "priceChf": 8.0,
           "sourceUrl": "https://www.moevenpick-wein.com/media/subsidiary/pch-NU/1__WB_Speise-_Getr_nkekarte_Herbst_2026a.pdf",
-          "observedAt": "2026-10-14T20:03:48.706262+00:00",
+          "observedAt": "2026-10-14T20:35:43.467452+00:00",
           "confidence": "automatic",
           "evidence": "Amboss Amber Trüb 33 cl 8.00",
           "alcoholFree": false
@@ -3147,7 +3658,7 @@
           "volumeMl": 330,
           "priceChf": 7.5,
           "sourceUrl": "https://www.moevenpick-wein.com/media/subsidiary/pch-NU/1__WB_Speise-_Getr_nkekarte_Herbst_2026a.pdf",
-          "observedAt": "2026-10-14T20:03:48.706262+00:00",
+          "observedAt": "2026-10-14T20:35:43.467452+00:00",
           "confidence": "automatic",
           "evidence": "Appenzeller Quöllfrisch Panaché 33 cl 7.50",
           "alcoholFree": false
@@ -3157,14 +3668,24 @@
           "volumeMl": 330,
           "priceChf": 7.5,
           "sourceUrl": "https://www.moevenpick-wein.com/media/subsidiary/pch-NU/1__WB_Speise-_Getr_nkekarte_Herbst_2026a.pdf",
-          "observedAt": "2026-10-14T20:03:48.706262+00:00",
+          "observedAt": "2026-10-14T20:35:43.467452+00:00",
           "confidence": "automatic",
           "evidence": "Appenzeller Quöllfrisch alkoholfrei / non-alcoholic 33 cl 7.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Schneider Weisse",
+          "volumeMl": 500,
+          "priceChf": 9.5,
+          "sourceUrl": "https://www.moevenpick-wein.com/media/subsidiary/pch-NU/1__WB_Speise-_Getr_nkekarte_Herbst_2026a.pdf",
+          "observedAt": "2026-10-14T20:35:43.467452+00:00",
+          "confidence": "automatic",
+          "evidence": "Schneider Weisse 50 cl 9.50",
+          "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:03:48.706262+00:00"
+      "checkedAt": "2026-10-14T20:35:43.467452+00:00"
     },
     {
       "id": "node/10830014318",
@@ -3179,7 +3700,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:48.985245+00:00"
+      "checkedAt": "2026-10-14T20:35:44.285429+00:00"
     },
     {
       "id": "node/273371550",
@@ -3194,7 +3715,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:48.985291+00:00"
+      "checkedAt": "2026-10-14T20:35:44.285469+00:00"
     },
     {
       "id": "node/1485787292",
@@ -3209,7 +3730,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:49.226128+00:00"
+      "checkedAt": "2026-10-14T20:35:44.476265+00:00"
     },
     {
       "id": "node/11821458384",
@@ -3224,7 +3745,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:49.226182+00:00"
+      "checkedAt": "2026-10-14T20:35:44.476307+00:00"
     },
     {
       "id": "node/1241219845",
@@ -3239,7 +3760,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:49.569328+00:00"
+      "checkedAt": "2026-10-14T20:35:44.692910+00:00"
     },
     {
       "id": "node/279180955",
@@ -3254,7 +3775,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:49.569346+00:00"
+      "checkedAt": "2026-10-14T20:35:44.692923+00:00"
     },
     {
       "id": "node/13190890703",
@@ -3269,7 +3790,63 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:49.569352+00:00"
+      "checkedAt": "2026-10-14T20:35:44.692927+00:00"
+    },
+    {
+      "id": "node/1964156339",
+      "name": "New Bombay",
+      "lat": 47.3736181,
+      "lon": 8.5456942,
+      "type": "restaurant",
+      "address": "Predigerplatz 34",
+      "postcode": "8001",
+      "website": "https://newbombay-zurich.ch/",
+      "openingHours": "Mo-Fr 11:30-14:30,17:00-21:30; Sa 16:00-21:30; Su 17:00-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Erdinger Weissbier",
+          "volumeMl": 500,
+          "priceChf": 6.9,
+          "sourceUrl": "https://newbombay-zurich.ch/drinks/",
+          "observedAt": "2026-10-14T20:34:22.403693+00:00",
+          "confidence": "automatic",
+          "evidence": "Erdinger Weissbier 5 dl CHF 6.90",
+          "alcoholFree": false
+        },
+        {
+          "name": "Eichhof",
+          "volumeMl": 330,
+          "priceChf": 5.5,
+          "sourceUrl": "https://newbombay-zurich.ch/drinks/",
+          "observedAt": "2026-10-14T20:34:22.403693+00:00",
+          "confidence": "automatic",
+          "evidence": "Eichhof 3.3 dl CHF 5.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Erdinger Alkoholfrei",
+          "volumeMl": 500,
+          "priceChf": 6.9,
+          "sourceUrl": "https://newbombay-zurich.ch/drinks/",
+          "observedAt": "2026-10-14T20:34:22.403693+00:00",
+          "confidence": "automatic",
+          "evidence": "Erdinger Alkoholfrei 5 dl CHF 6.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Eichhof Hubertus dunkel",
+          "volumeMl": 330,
+          "priceChf": 5.5,
+          "sourceUrl": "https://newbombay-zurich.ch/drinks/",
+          "observedAt": "2026-10-14T20:34:22.403693+00:00",
+          "confidence": "automatic",
+          "evidence": "Eichhof Hubertus dunkel 3.3 dl CHF 5.50",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:34:22.403693+00:00"
     },
     {
       "id": "node/11793927023",
@@ -3284,7 +3861,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:49.569357+00:00"
+      "checkedAt": "2026-10-14T20:35:44.692931+00:00"
     },
     {
       "id": "node/656664543",
@@ -3299,7 +3876,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:49.569362+00:00"
+      "checkedAt": "2026-10-14T20:35:44.692935+00:00"
     },
     {
       "id": "node/3297129089",
@@ -3314,7 +3891,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:49.728808+00:00"
+      "checkedAt": "2026-10-14T20:35:44.866733+00:00"
     },
     {
       "id": "node/73670930",
@@ -3329,7 +3906,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:49.728822+00:00"
+      "checkedAt": "2026-10-14T20:35:44.866746+00:00"
     },
     {
       "id": "node/274986987",
@@ -3344,7 +3921,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:49.740853+00:00"
+      "checkedAt": "2026-10-14T20:35:44.881277+00:00"
     },
     {
       "id": "node/5358256221",
@@ -3359,7 +3936,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:49.740861+00:00"
+      "checkedAt": "2026-10-14T20:35:44.881284+00:00"
     },
     {
       "id": "node/270938826",
@@ -3372,9 +3949,20 @@
       "website": "https://old-fashion-bar.ch/",
       "openingHours": "Mo 11:30-24:00; Tu 11:30-01:00; We-Sa 11:30-02:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:51.044803+00:00"
+      "offers": [
+        {
+          "name": "Pilsner Urquell Draft",
+          "volumeMl": 300,
+          "priceChf": 9.0,
+          "sourceUrl": "https://oldfashionbar.ch/assets/pdf/Barkarte.pdf",
+          "observedAt": "2026-10-14T20:35:45.493928+00:00",
+          "confidence": "automatic",
+          "evidence": "Pilsner Urquell Draft 30 cl 9",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:35:45.493928+00:00"
     },
     {
       "id": "node/1235083455",
@@ -3389,7 +3977,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:52.108311+00:00"
+      "checkedAt": "2026-10-14T20:35:46.430040+00:00"
     },
     {
       "id": "node/639029571",
@@ -3404,7 +3992,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:52.416545+00:00"
+      "checkedAt": "2026-10-14T20:35:47.175376+00:00"
     },
     {
       "id": "node/4424003110",
@@ -3419,7 +4007,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:52.416558+00:00"
+      "checkedAt": "2026-10-14T20:35:47.175389+00:00"
     },
     {
       "id": "node/345591601",
@@ -3434,7 +4022,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:52.698758+00:00"
+      "checkedAt": "2026-10-14T20:35:48.138263+00:00"
     },
     {
       "id": "node/5363744621",
@@ -3449,7 +4037,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-14T20:03:52.741042+00:00"
+      "checkedAt": "2026-10-14T20:35:48.489117+00:00"
     },
     {
       "id": "node/5829856430",
@@ -3464,7 +4052,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:52.790008+00:00"
+      "checkedAt": "2026-10-14T20:35:48.534974+00:00"
     },
     {
       "id": "node/13307980101",
@@ -3479,7 +4067,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:52.790023+00:00"
+      "checkedAt": "2026-10-14T20:35:48.534993+00:00"
     },
     {
       "id": "node/358146590",
@@ -3494,7 +4082,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:54.232033+00:00"
+      "checkedAt": "2026-10-14T20:35:48.807022+00:00"
     },
     {
       "id": "node/3163049861",
@@ -3509,7 +4097,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:54.530434+00:00"
+      "checkedAt": "2026-10-14T20:35:49.937464+00:00"
     },
     {
       "id": "node/1586370703",
@@ -3524,7 +4112,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:54.530468+00:00"
+      "checkedAt": "2026-10-14T20:35:49.937482+00:00"
     },
     {
       "id": "node/683372653",
@@ -3539,7 +4127,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:55.238750+00:00"
+      "checkedAt": "2026-10-14T20:35:50.246390+00:00"
     },
     {
       "id": "node/318132779",
@@ -3554,7 +4142,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:55.238777+00:00"
+      "checkedAt": "2026-10-14T20:35:50.246428+00:00"
     },
     {
       "id": "node/298172595",
@@ -3569,7 +4157,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:55.549146+00:00"
+      "checkedAt": "2026-10-14T20:35:50.271103+00:00"
     },
     {
       "id": "node/3514833394",
@@ -3584,7 +4172,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:55.966316+00:00"
+      "checkedAt": "2026-10-14T20:35:50.308965+00:00"
     },
     {
       "id": "node/637840706",
@@ -3599,7 +4187,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:56.599595+00:00"
+      "checkedAt": "2026-10-14T20:35:51.198125+00:00"
     },
     {
       "id": "node/656518918",
@@ -3614,7 +4202,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:58.157562+00:00"
+      "checkedAt": "2026-10-14T20:35:52.656667+00:00"
     },
     {
       "id": "node/656629799",
@@ -3629,7 +4217,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:58.157625+00:00"
+      "checkedAt": "2026-10-14T20:35:52.656711+00:00"
     },
     {
       "id": "node/9893261276",
@@ -3644,7 +4232,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:58.601959+00:00"
+      "checkedAt": "2026-10-14T20:35:53.047102+00:00"
     },
     {
       "id": "node/5128008062",
@@ -3659,7 +4247,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:58.601973+00:00"
+      "checkedAt": "2026-10-14T20:35:53.047119+00:00"
     },
     {
       "id": "node/316831490",
@@ -3678,9 +4266,19 @@
           "volumeMl": 330,
           "priceChf": 8.5,
           "sourceUrl": "https://raygrodski-bar.ch/media/pages/home/be159d7afa-1791378076/ray_menu_2026_10.pdf",
-          "observedAt": "2026-10-14T20:03:59.037498+00:00",
+          "observedAt": "2026-10-14T20:35:53.442280+00:00",
           "confidence": "automatic",
           "evidence": "DR. GAB’S PALE ALE 3.3 dl 8.5",
+          "alcoholFree": false
+        },
+        {
+          "name": "HOFBRÄU WEIZENBIER",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://raygrodski-bar.ch/media/pages/home/be159d7afa-1791378076/ray_menu_2026_10.pdf",
+          "observedAt": "2026-10-14T20:35:53.442280+00:00",
+          "confidence": "automatic",
+          "evidence": "HOFBRÄU WEIZENBIER 5 dl 9",
           "alcoholFree": false
         },
         {
@@ -3688,14 +4286,34 @@
           "volumeMl": 330,
           "priceChf": 6.5,
           "sourceUrl": "https://raygrodski-bar.ch/media/pages/home/be159d7afa-1791378076/ray_menu_2026_10.pdf",
-          "observedAt": "2026-10-14T20:03:59.037498+00:00",
+          "observedAt": "2026-10-14T20:35:53.442280+00:00",
           "confidence": "automatic",
           "evidence": "APPENZELLER ALKOHOLFREI 3.3 dl 6.5",
           "alcoholFree": true
+        },
+        {
+          "name": "APPENZELLER HELL",
+          "volumeMl": 300,
+          "priceChf": 6.5,
+          "sourceUrl": "https://raygrodski-bar.ch/media/pages/home/611aeb3bca-1782982805/cocktails_new.pdf",
+          "observedAt": "2026-10-14T20:35:53.442280+00:00",
+          "confidence": "automatic",
+          "evidence": "APPENZELLER HELL 3 dl 6.5",
+          "alcoholFree": false
+        },
+        {
+          "name": "APPENZELLER HELL",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://raygrodski-bar.ch/media/pages/home/611aeb3bca-1782982805/cocktails_new.pdf",
+          "observedAt": "2026-10-14T20:35:53.442280+00:00",
+          "confidence": "automatic",
+          "evidence": "APPENZELLER HELL 5 dl 9",
+          "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:03:59.037498+00:00"
+      "checkedAt": "2026-10-14T20:35:53.442280+00:00"
     },
     {
       "id": "node/5922544703",
@@ -3710,7 +4328,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:03:59.094917+00:00"
+      "checkedAt": "2026-10-14T20:35:53.702365+00:00"
     },
     {
       "id": "node/656711884",
@@ -3725,7 +4343,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:59.157872+00:00"
+      "checkedAt": "2026-10-14T20:35:53.947515+00:00"
     },
     {
       "id": "node/638984406",
@@ -3740,7 +4358,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:59.157883+00:00"
+      "checkedAt": "2026-10-14T20:35:53.947531+00:00"
     },
     {
       "id": "node/12063831465",
@@ -3755,7 +4373,218 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:03:59.157888+00:00"
+      "checkedAt": "2026-10-14T20:35:53.947537+00:00"
+    },
+    {
+      "id": "node/317769175",
+      "name": "Rheinfelder Bierhalle",
+      "lat": 47.3759081,
+      "lon": 8.5441559,
+      "type": "restaurant",
+      "address": "Niederdorfstrasse 76",
+      "postcode": "8001",
+      "website": "https://www.rheinfelderbierhalle.com/",
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Feldschlösschen Original (Lager)",
+          "volumeMl": 300,
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen Original (Lager) 3 dl CHF 4.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Feldschlösschen Original (Lager)",
+          "volumeMl": 500,
+          "priceChf": 6.8,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen Original (Lager) 3 dl CHF 4.50 / 5 dl CHF 6.80",
+          "alcoholFree": false
+        },
+        {
+          "name": "Feldschlösschen Hopfenperle",
+          "volumeMl": 300,
+          "priceChf": 4.6,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen Hopfenperle 3 dl CHF 4.60",
+          "alcoholFree": false
+        },
+        {
+          "name": "Feldschlösschen Hopfenperle",
+          "volumeMl": 500,
+          "priceChf": 7.4,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen Hopfenperle 3 dl CHF 4.60 / (Pilsener) 5 dl CHF 7.40",
+          "alcoholFree": false
+        },
+        {
+          "name": "Feldschlösschen Dunkel",
+          "volumeMl": 300,
+          "priceChf": 4.6,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen Dunkel 3 dl CHF 4.60",
+          "alcoholFree": false
+        },
+        {
+          "name": "Feldschlösschen Dunkel",
+          "volumeMl": 500,
+          "priceChf": 7.4,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen Dunkel 3 dl CHF 4.60 / (Dunkles Pilsener / Dark Pilsener) 5 dl CHF 7.40",
+          "alcoholFree": false
+        },
+        {
+          "name": "Feldschlösschen Amber",
+          "volumeMl": 300,
+          "priceChf": 4.6,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen Amber 3 dl CHF 4.60",
+          "alcoholFree": false
+        },
+        {
+          "name": "Feldschlösschen Amber",
+          "volumeMl": 500,
+          "priceChf": 7.4,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen Amber 3 dl CHF 4.60 / (Holzgereift / Barrel-aged) 5 dl CHF 7.40",
+          "alcoholFree": false
+        },
+        {
+          "name": "Münchner Schneider Weisse Original",
+          "volumeMl": 300,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Münchner Schneider Weisse Original 3 dl CHF 5.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Münchner Schneider Weisse Original",
+          "volumeMl": 500,
+          "priceChf": 8.5,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Münchner Schneider Weisse Original 3 dl CHF 5.00 / (Weizenbier / Wheat Beer) 5 dl CHF 8.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller Säntis Kristall (Pilsener)",
+          "volumeMl": 250,
+          "priceChf": 3.5,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller Säntis Kristall (Pilsener) 2.5 dl CHF 3.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller Säntis Kristall (Pilsener)",
+          "volumeMl": 400,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller Säntis Kristall (Pilsener) 2.5 dl CHF 3.50 / 4 dl CHF 5.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller Naturperle",
+          "volumeMl": 250,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller Naturperle 2.5 dl CHF 4.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller Naturperle",
+          "volumeMl": 400,
+          "priceChf": 6.4,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller Naturperle 2.5 dl CHF 4.00 / (Naturtrübes Pilsener / Unfiltered Hazy Pilsener) 4 dl CHF 6.40",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller India Pale Ale (IPA, obergärig)",
+          "volumeMl": 333,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller India Pale Ale (IPA, obergärig) 3.33 dl CHF 5.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Feldschlösschen alkoholfreies Lager",
+          "volumeMl": 333,
+          "priceChf": 4.7,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen alkoholfreies Lager 3.33dl CHF 4.70",
+          "alcoholFree": true
+        },
+        {
+          "name": "Appenzeller alkoholfreies Weizen",
+          "volumeMl": 500,
+          "priceChf": 8.5,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller alkoholfreies Weizen 5 dl CHF 8.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Appenzeller Quöllfrisch naturtrüb",
+          "volumeMl": 500,
+          "priceChf": 7.1,
+          "sourceUrl": "https://www.rheinfelderbierhalle.com/downloads/speisekarte.pdf",
+          "observedAt": "2026-10-14T20:34:22.403784+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller Quöllfrisch naturtrüb 5 dl CHF 7.10",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:34:22.403784+00:00"
+    },
+    {
+      "id": "node/370841763",
+      "name": "Rheinfelder Bierhaus",
+      "lat": 47.3721304,
+      "lon": 8.5437352,
+      "type": "restaurant",
+      "address": "Marktgasse 19",
+      "postcode": "8001",
+      "website": "https://restaurant-rheinfelderbierhaus.ch/",
+      "openingHours": "Mo-Su 09:00-24:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-14T20:34:22.403855+00:00"
     },
     {
       "id": "node/794022952",
@@ -3770,7 +4599,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:59.157892+00:00"
+      "checkedAt": "2026-10-14T20:35:53.947541+00:00"
     },
     {
       "id": "way/107080965",
@@ -3785,7 +4614,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:03:59.433957+00:00"
+      "checkedAt": "2026-10-14T20:35:54.455461+00:00"
     },
     {
       "id": "node/11673680758",
@@ -3800,7 +4629,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:00.303193+00:00"
+      "checkedAt": "2026-10-14T20:35:54.669989+00:00"
     },
     {
       "id": "node/11709381774",
@@ -3815,7 +4644,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:00.303204+00:00"
+      "checkedAt": "2026-10-14T20:35:54.670057+00:00"
     },
     {
       "id": "node/656541296",
@@ -3830,7 +4659,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:00.348707+00:00"
+      "checkedAt": "2026-10-14T20:35:54.895832+00:00"
     },
     {
       "id": "node/7038861915",
@@ -3845,7 +4674,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:00.465320+00:00"
+      "checkedAt": "2026-10-14T20:35:55.018455+00:00"
     },
     {
       "id": "node/370522868",
@@ -3860,7 +4689,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:00.465335+00:00"
+      "checkedAt": "2026-10-14T20:35:55.018474+00:00"
     },
     {
       "id": "node/639144244",
@@ -3879,7 +4708,7 @@
           "volumeMl": 250,
           "priceChf": 4.5,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Lager 25cl 4.50",
           "alcoholFree": false
@@ -3889,9 +4718,39 @@
           "volumeMl": 400,
           "priceChf": 6.0,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Lager 40cl 6.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Grimbergen / Dunkle Perle / Monatsbier",
+          "volumeMl": 250,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
+          "confidence": "automatic",
+          "evidence": "Grimbergen / Dunkle Perle / Monatsbier 25cl 5.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Grimbergen / Dunkle Perle / Monatsbier",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
+          "confidence": "automatic",
+          "evidence": "Grimbergen / Dunkle Perle / Monatsbier 50cl 9.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Schneider Weisse hell",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
+          "confidence": "automatic",
+          "evidence": "Schneider Weisse hell 50cl 9.00",
           "alcoholFree": false
         },
         {
@@ -3899,9 +4758,19 @@
           "volumeMl": 500,
           "priceChf": 7.0,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Bügel 50cl 7.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Schneider Weisse Original",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
+          "confidence": "automatic",
+          "evidence": "Schneider Weisse Original 50cl 9.00",
           "alcoholFree": false
         },
         {
@@ -3909,9 +4778,19 @@
           "volumeMl": 330,
           "priceChf": 9.0,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Guinness Draught 33cl 9.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Corona Extra",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
+          "confidence": "automatic",
+          "evidence": "Corona Extra 33cl 7.00",
           "alcoholFree": false
         },
         {
@@ -3919,7 +4798,7 @@
           "volumeMl": 330,
           "priceChf": 5.5,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen alkoholfrei 33cl 5.50",
           "alcoholFree": true
@@ -3929,7 +4808,7 @@
           "volumeMl": 500,
           "priceChf": 6.5,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen alkoholfrei 50cl 6.50",
           "alcoholFree": true
@@ -3939,7 +4818,7 @@
           "volumeMl": 500,
           "priceChf": 6.5,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Hürlimann Lager 50cl 6.50",
           "alcoholFree": false
@@ -3949,7 +4828,7 @@
           "volumeMl": 250,
           "priceChf": 4.5,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Heineken 25cl 4.50",
           "alcoholFree": false
@@ -3959,7 +4838,7 @@
           "volumeMl": 330,
           "priceChf": 6.0,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Heineken 33cl 6.00",
           "alcoholFree": false
@@ -3969,14 +4848,14 @@
           "volumeMl": 500,
           "priceChf": 6.5,
           "sourceUrl": "https://www.saatlen-pub.ch/menu.php",
-          "observedAt": "2026-10-14T20:04:00.632718+00:00",
+          "observedAt": "2026-10-14T20:35:56.077606+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Original Dose 50cl 6.50",
           "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:04:00.632718+00:00"
+      "checkedAt": "2026-10-14T20:35:56.077606+00:00"
     },
     {
       "id": "node/656327716",
@@ -3991,7 +4870,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.066265+00:00"
+      "checkedAt": "2026-10-14T20:35:56.459099+00:00"
     },
     {
       "id": "node/614443208",
@@ -4006,7 +4885,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.066296+00:00"
+      "checkedAt": "2026-10-14T20:35:56.459113+00:00"
     },
     {
       "id": "node/1235083500",
@@ -4021,7 +4900,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-14T20:04:01.066305+00:00"
+      "checkedAt": "2026-10-14T20:35:56.459118+00:00"
     },
     {
       "id": "node/279180952",
@@ -4036,7 +4915,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.198189+00:00"
+      "checkedAt": "2026-10-14T20:35:56.674719+00:00"
     },
     {
       "id": "node/297747293",
@@ -4051,7 +4930,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.198212+00:00"
+      "checkedAt": "2026-10-14T20:35:56.674733+00:00"
     },
     {
       "id": "node/3554644444",
@@ -4066,7 +4945,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.198223+00:00"
+      "checkedAt": "2026-10-14T20:35:56.674737+00:00"
     },
     {
       "id": "node/13664261360",
@@ -4081,7 +4960,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.198232+00:00"
+      "checkedAt": "2026-10-14T20:35:56.674741+00:00"
     },
     {
       "id": "node/914812542",
@@ -4096,7 +4975,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.198242+00:00"
+      "checkedAt": "2026-10-14T20:35:56.674746+00:00"
     },
     {
       "id": "node/1828352914",
@@ -4111,7 +4990,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.198253+00:00"
+      "checkedAt": "2026-10-14T20:35:56.674753+00:00"
     },
     {
       "id": "node/582255607",
@@ -4126,18 +5005,38 @@
       "outdoor": false,
       "offers": [
         {
+          "name": "SCHNEIDER WEISSE 5.",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "sourceUrl": "https://siono.ch/wp-content/uploads/2025/06/SIONO_GETRAENKEKARTE_APRIL25.pdf",
+          "observedAt": "2026-10-14T20:35:56.674757+00:00",
+          "confidence": "automatic",
+          "evidence": "SCHNEIDER WEISSE 5. 4 % 5 DL 9.00",
+          "alcoholFree": false
+        },
+        {
           "name": "GUINNESS",
           "volumeMl": 500,
           "priceChf": 8.5,
           "sourceUrl": "https://siono.ch/wp-content/uploads/2025/06/SIONO_GETRAENKEKARTE_APRIL25.pdf",
-          "observedAt": "2026-10-14T20:04:01.198262+00:00",
+          "observedAt": "2026-10-14T20:35:56.674757+00:00",
           "confidence": "automatic",
           "evidence": "GUINNESS 0.0% 5 DL 8.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "MINERAL OFFEN ST. LAURENTIUS IPA 6.",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "sourceUrl": "https://siono.ch/wp-content/uploads/2023/12/SIONO_ANGGEBOTSKARTE_WEB.pdf",
+          "observedAt": "2026-10-14T20:35:56.674757+00:00",
+          "confidence": "automatic",
+          "evidence": "MINERAL OFFEN ST. LAURENTIUS IPA 6. 0 % 3.3 DL 7.50",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:04:01.198262+00:00"
+      "checkedAt": "2026-10-14T20:35:56.674757+00:00"
     },
     {
       "id": "node/2528376409",
@@ -4152,7 +5051,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.860838+00:00"
+      "checkedAt": "2026-10-14T20:35:56.684837+00:00"
     },
     {
       "id": "node/638984397",
@@ -4167,7 +5066,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.860850+00:00"
+      "checkedAt": "2026-10-14T20:35:56.684846+00:00"
     },
     {
       "id": "node/270794627",
@@ -4182,7 +5081,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:01.860855+00:00"
+      "checkedAt": "2026-10-14T20:35:56.684851+00:00"
     },
     {
       "id": "node/305586752",
@@ -4201,7 +5100,7 @@
           "volumeMl": 300,
           "priceChf": 5.2,
           "sourceUrl": "https://cms.spheres.cc/uploads/images/20260803_Angebotskarte-spheres.pdf",
-          "observedAt": "2026-10-14T20:04:01.860859+00:00",
+          "observedAt": "2026-10-14T20:35:56.684855+00:00",
           "confidence": "automatic",
           "evidence": "Gold Sprint Lager – Turbinenbräu offen 3 dl 5.20",
           "alcoholFree": false
@@ -4211,7 +5110,7 @@
           "volumeMl": 300,
           "priceChf": 5.7,
           "sourceUrl": "https://cms.spheres.cc/uploads/images/20260803_Angebotskarte-spheres.pdf",
-          "observedAt": "2026-10-14T20:04:01.860859+00:00",
+          "observedAt": "2026-10-14T20:35:56.684855+00:00",
           "confidence": "automatic",
           "evidence": "Amber – Amboss offen 3 dl 5.70",
           "alcoholFree": false
@@ -4221,7 +5120,7 @@
           "volumeMl": 300,
           "priceChf": 6.5,
           "sourceUrl": "https://cms.spheres.cc/uploads/images/20260803_Angebotskarte-spheres.pdf",
-          "observedAt": "2026-10-14T20:04:01.860859+00:00",
+          "observedAt": "2026-10-14T20:35:56.684855+00:00",
           "confidence": "automatic",
           "evidence": "Pale Ale – AhoiHill offen 3 dl 6.50",
           "alcoholFree": false
@@ -4231,7 +5130,7 @@
           "volumeMl": 500,
           "priceChf": 8.5,
           "sourceUrl": "https://cms.spheres.cc/uploads/images/20260803_Angebotskarte-spheres.pdf",
-          "observedAt": "2026-10-14T20:04:01.860859+00:00",
+          "observedAt": "2026-10-14T20:35:56.684855+00:00",
           "confidence": "automatic",
           "evidence": "Quöllfrisch, naturtrüb FL 5 dl 8.50",
           "alcoholFree": false
@@ -4241,7 +5140,7 @@
           "volumeMl": 500,
           "priceChf": 8.5,
           "sourceUrl": "https://cms.spheres.cc/uploads/images/20260803_Angebotskarte-spheres.pdf",
-          "observedAt": "2026-10-14T20:04:01.860859+00:00",
+          "observedAt": "2026-10-14T20:35:56.684855+00:00",
           "confidence": "automatic",
           "evidence": "Weisser Hase, Weissbier FL 5 dl 8.50",
           "alcoholFree": false
@@ -4251,7 +5150,7 @@
           "volumeMl": 300,
           "priceChf": 8.5,
           "sourceUrl": "https://cms.spheres.cc/uploads/images/20260803_Angebotskarte-spheres.pdf",
-          "observedAt": "2026-10-14T20:04:01.860859+00:00",
+          "observedAt": "2026-10-14T20:35:56.684855+00:00",
           "confidence": "automatic",
           "evidence": "IPA, St. Laurentius, 6% FL 3 dl 8.50",
           "alcoholFree": false
@@ -4261,14 +5160,14 @@
           "volumeMl": 300,
           "priceChf": 6.0,
           "sourceUrl": "https://cms.spheres.cc/uploads/images/20260803_Angebotskarte-spheres.pdf",
-          "observedAt": "2026-10-14T20:04:01.860859+00:00",
+          "observedAt": "2026-10-14T20:35:56.684855+00:00",
           "confidence": "automatic",
           "evidence": "Appenzeller, IPA < 0,5% vol FL 3 dl 6.00",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:04:01.860859+00:00"
+      "checkedAt": "2026-10-14T20:35:56.684855+00:00"
     },
     {
       "id": "node/310788830",
@@ -4283,7 +5182,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:02.190329+00:00"
+      "checkedAt": "2026-10-14T20:35:56.929266+00:00"
     },
     {
       "id": "node/4716784458",
@@ -4298,7 +5197,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-14T20:04:02.903504+00:00"
+      "checkedAt": "2026-10-14T20:35:57.007716+00:00"
     },
     {
       "id": "node/362911166",
@@ -4313,7 +5212,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:03.504841+00:00"
+      "checkedAt": "2026-10-14T20:35:57.076676+00:00"
     },
     {
       "id": "node/1240044636",
@@ -4328,7 +5227,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:03.561521+00:00"
+      "checkedAt": "2026-10-14T20:35:58.228918+00:00"
     },
     {
       "id": "node/1240044507",
@@ -4343,7 +5242,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:03.635915+00:00"
+      "checkedAt": "2026-10-14T20:35:58.342801+00:00"
     },
     {
       "id": "node/4364350621",
@@ -4358,7 +5257,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:03.635936+00:00"
+      "checkedAt": "2026-10-14T20:35:58.342817+00:00"
     },
     {
       "id": "node/4364350631",
@@ -4371,9 +5270,60 @@
       "website": "https://www.tales-bar.ch/",
       "openingHours": "Tu-Sa 20:00-03:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:05.264020+00:00"
+      "offers": [
+        {
+          "name": "Bier Paul 01 | Swiss Lager",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "sourceUrl": "https://www.tales-bar.ch/wp-content/uploads/2026/05/cocktailkarte2026.pdf",
+          "observedAt": "2026-10-14T20:35:59.964598+00:00",
+          "confidence": "automatic",
+          "evidence": "Bier Paul 01 | Swiss Lager 0.33 l 7.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Bier Paul 10 | IPA",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "sourceUrl": "https://www.tales-bar.ch/wp-content/uploads/2026/05/cocktailkarte2026.pdf",
+          "observedAt": "2026-10-14T20:35:59.964598+00:00",
+          "confidence": "automatic",
+          "evidence": "Bier Paul 10 | IPA 0.33 l 7.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Tegernseer Hell | Bavarian Lager",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "sourceUrl": "https://www.tales-bar.ch/wp-content/uploads/2026/05/cocktailkarte2026.pdf",
+          "observedAt": "2026-10-14T20:35:59.964598+00:00",
+          "confidence": "automatic",
+          "evidence": "Tegernseer Hell | Bavarian Lager 0.33 l 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Bellavista Weizenbier, Engadiner Bier | Swiss Wheat Beer",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "sourceUrl": "https://www.tales-bar.ch/wp-content/uploads/2026/05/cocktailkarte2026.pdf",
+          "observedAt": "2026-10-14T20:35:59.964598+00:00",
+          "confidence": "automatic",
+          "evidence": "Bellavista Weizenbier, Engadiner Bier | Swiss Wheat Beer 0.33 l 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Free Style, Kitchen Brew Non-Alcoholic Beer",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "sourceUrl": "https://www.tales-bar.ch/wp-content/uploads/2026/05/cocktailkarte2026.pdf",
+          "observedAt": "2026-10-14T20:35:59.964598+00:00",
+          "confidence": "automatic",
+          "evidence": "Free Style, Kitchen Brew Non-Alcoholic Beer 0.33 l 7.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:35:59.964598+00:00"
     },
     {
       "id": "node/4833061579",
@@ -4388,7 +5338,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:04:05.773874+00:00"
+      "checkedAt": "2026-10-14T20:36:00.339194+00:00"
     },
     {
       "id": "node/10081841586",
@@ -4403,7 +5353,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:07.135751+00:00"
+      "checkedAt": "2026-10-14T20:36:01.569966+00:00"
     },
     {
       "id": "node/1241219989",
@@ -4418,7 +5368,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:09.447070+00:00"
+      "checkedAt": "2026-10-14T20:36:02.884652+00:00"
     },
     {
       "id": "node/633584200",
@@ -4433,7 +5383,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:09.447084+00:00"
+      "checkedAt": "2026-10-14T20:36:02.884665+00:00"
     },
     {
       "id": "node/13839573096",
@@ -4448,7 +5398,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:09.787027+00:00"
+      "checkedAt": "2026-10-14T20:36:04.126438+00:00"
     },
     {
       "id": "node/13839583905",
@@ -4463,7 +5413,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:09.820325+00:00"
+      "checkedAt": "2026-10-14T20:36:04.626676+00:00"
     },
     {
       "id": "node/3250908463",
@@ -4478,7 +5428,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:10.388990+00:00"
+      "checkedAt": "2026-10-14T20:36:04.762714+00:00"
     },
     {
       "id": "node/3854227063",
@@ -4493,7 +5443,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:10.389004+00:00"
+      "checkedAt": "2026-10-14T20:36:04.762729+00:00"
     },
     {
       "id": "node/271411937",
@@ -4506,9 +5456,20 @@
       "website": "https://thelion.ch/",
       "openingHours": "Tu-Th 11:45-23:00; Fr,Sa 11:45-24:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:12.059708+00:00"
+      "offers": [
+        {
+          "name": "BOTTLED BEER MA.TEE",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "sourceUrl": "https://thelion.ch//wp-content/uploads/2026/10/The_Lion_Pub_Food-Drinks_1026.pdf",
+          "observedAt": "2026-10-14T20:36:06.508053+00:00",
+          "confidence": "automatic",
+          "evidence": "BOTTLED BEER MA.TEE 33cl 7",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:36:06.508053+00:00"
     },
     {
       "id": "node/1567061990",
@@ -4523,7 +5484,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:12.813817+00:00"
+      "checkedAt": "2026-10-14T20:36:07.250025+00:00"
     },
     {
       "id": "node/1235083514",
@@ -4538,7 +5499,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-14T20:04:12.813829+00:00"
+      "checkedAt": "2026-10-14T20:36:07.250039+00:00"
     },
     {
       "id": "node/13839573100",
@@ -4553,7 +5514,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:13.289749+00:00"
+      "checkedAt": "2026-10-14T20:36:07.671580+00:00"
     },
     {
       "id": "node/4833061572",
@@ -4568,7 +5529,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:14.864205+00:00"
+      "checkedAt": "2026-10-14T20:36:09.514330+00:00"
     },
     {
       "id": "node/1235083798",
@@ -4583,7 +5544,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:15.493776+00:00"
+      "checkedAt": "2026-10-14T20:36:09.822851+00:00"
     },
     {
       "id": "node/1235083674",
@@ -4602,7 +5563,7 @@
           "volumeMl": 300,
           "priceChf": 6.0,
           "sourceUrl": "https://www.torobar.com/_files/ugd/3e6a91_37a3f5d50e274d27abd6f21e69599876.pdf",
-          "observedAt": "2026-10-14T20:04:15.514439+00:00",
+          "observedAt": "2026-10-14T20:36:10.035167+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Hopfenperle 5.2% 0.3 l 6.00 Fr.",
           "alcoholFree": false
@@ -4612,14 +5573,14 @@
           "volumeMl": 300,
           "priceChf": 7.5,
           "sourceUrl": "https://www.torobar.com/_files/ugd/3e6a91_37a3f5d50e274d27abd6f21e69599876.pdf",
-          "observedAt": "2026-10-14T20:04:15.514439+00:00",
+          "observedAt": "2026-10-14T20:36:10.035167+00:00",
           "confidence": "automatic",
           "evidence": "Brooklyng Lager 5.2% 0.3 l 7.50 Fr.",
           "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-14T20:04:15.514439+00:00"
+      "checkedAt": "2026-10-14T20:36:10.035167+00:00"
     },
     {
       "id": "node/12925905033",
@@ -4634,7 +5595,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-14T20:04:16.006178+00:00"
+      "checkedAt": "2026-10-14T20:36:10.391065+00:00"
     },
     {
       "id": "node/582263740",
@@ -4649,7 +5610,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:16.637575+00:00"
+      "checkedAt": "2026-10-14T20:36:11.387716+00:00"
     },
     {
       "id": "node/315566479",
@@ -4664,7 +5625,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:18.145979+00:00"
+      "checkedAt": "2026-10-14T20:36:12.566144+00:00"
     },
     {
       "id": "node/10316382317",
@@ -4679,7 +5640,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:18.342628+00:00"
+      "checkedAt": "2026-10-14T20:36:12.759940+00:00"
     },
     {
       "id": "node/345591780",
@@ -4694,7 +5655,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:04:18.780659+00:00"
+      "checkedAt": "2026-10-14T20:36:12.886675+00:00"
     },
     {
       "id": "node/914812502",
@@ -4709,7 +5670,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:18.847684+00:00"
+      "checkedAt": "2026-10-14T20:36:13.163750+00:00"
     },
     {
       "id": "node/4908978306",
@@ -4724,7 +5685,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:18.847693+00:00"
+      "checkedAt": "2026-10-14T20:36:13.163785+00:00"
     },
     {
       "id": "node/4509024289",
@@ -4739,7 +5700,22 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:18.847698+00:00"
+      "checkedAt": "2026-10-14T20:36:13.163798+00:00"
+    },
+    {
+      "id": "node/656516103",
+      "name": "Volkshaus",
+      "lat": 47.3755766,
+      "lon": 8.5271252,
+      "type": "restaurant",
+      "address": "Stauffacherstrasse 60",
+      "postcode": "8004",
+      "website": "https://www.restaurantvolkshaus.ch/",
+      "openingHours": "Mo-We 08:00-23:30; Th,Fr 08:00-01:00, Sa 09:00-01:00, Su 10:00-23:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-14T20:34:22.404039+00:00"
     },
     {
       "id": "node/3424588040",
@@ -4754,7 +5730,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:19.853667+00:00"
+      "checkedAt": "2026-10-14T20:36:14.218054+00:00"
     },
     {
       "id": "node/7273885585",
@@ -4769,7 +5745,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:19.853688+00:00"
+      "checkedAt": "2026-10-14T20:36:14.218069+00:00"
     },
     {
       "id": "node/3024205606",
@@ -4784,7 +5760,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:19.853697+00:00"
+      "checkedAt": "2026-10-14T20:36:14.218074+00:00"
     },
     {
       "id": "node/9676271554",
@@ -4799,7 +5775,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-14T20:04:19.869336+00:00"
+      "checkedAt": "2026-10-14T20:36:14.462803+00:00"
     },
     {
       "id": "node/343391110",
@@ -4814,7 +5790,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-14T20:04:19.887566+00:00"
+      "checkedAt": "2026-10-14T20:36:14.481410+00:00"
     },
     {
       "id": "node/916945115",
@@ -4829,7 +5805,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:20.174158+00:00"
+      "checkedAt": "2026-10-14T20:36:14.551039+00:00"
     },
     {
       "id": "node/495576109",
@@ -4844,7 +5820,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:20.174223+00:00"
+      "checkedAt": "2026-10-14T20:36:14.551062+00:00"
     },
     {
       "id": "node/7005684355",
@@ -4859,7 +5835,22 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:20.174242+00:00"
+      "checkedAt": "2026-10-14T20:36:14.551068+00:00"
+    },
+    {
+      "id": "node/105459350",
+      "name": "Zeughauskeller",
+      "lat": 47.3703727,
+      "lon": 8.5399233,
+      "type": "restaurant",
+      "address": "Bahnhofstrasse 28a",
+      "postcode": "8001",
+      "website": "https://www.zeughauskeller.ch/",
+      "openingHours": "Mo-Su 11:30-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-14T20:34:22.404145+00:00"
     },
     {
       "id": "node/6864953385",
@@ -4874,7 +5865,93 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:20.174257+00:00"
+      "checkedAt": "2026-10-14T20:36:14.551073+00:00"
+    },
+    {
+      "id": "node/495578681",
+      "name": "Zum Guten Glück",
+      "lat": 47.372707,
+      "lon": 8.519818,
+      "type": "restaurant",
+      "address": "Stationsstrasse 7",
+      "postcode": "8003",
+      "website": "http://www.zumgutenglueck.ch/",
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Grosses Lager Hell (Adler Bräu, CH)",
+          "volumeMl": 500,
+          "priceChf": 6.8,
+          "sourceUrl": "https://www.zumgutenglueck.ch/files/Menukarten-PDF/Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:36:50.259793+00:00",
+          "confidence": "automatic",
+          "evidence": "Grosses Lager Hell (Adler Bräu, CH) alc 4.8% 5dl 6.80",
+          "alcoholFree": false
+        },
+        {
+          "name": "Grosses Pale Ale (Adler Bräu, CH)",
+          "volumeMl": 500,
+          "priceChf": 7.8,
+          "sourceUrl": "https://www.zumgutenglueck.ch/files/Menukarten-PDF/Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:36:50.259793+00:00",
+          "confidence": "automatic",
+          "evidence": "Grosses Pale Ale (Adler Bräu, CH) alc 5.4% 5dl 7.80",
+          "alcoholFree": false
+        },
+        {
+          "name": "Panache / grosses Panache Lager Hell (Adler Bräu, CH)",
+          "volumeMl": 300,
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.zumgutenglueck.ch/files/Menukarten-PDF/Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:36:50.259793+00:00",
+          "confidence": "automatic",
+          "evidence": "Panache / grosses Panache Lager Hell (Adler Bräu, CH) 3dl/5dl 4.80/6.80",
+          "alcoholFree": false
+        },
+        {
+          "name": "Panache / grosses Panache Lager Hell (Adler Bräu, CH)",
+          "volumeMl": 500,
+          "priceChf": 6.8,
+          "sourceUrl": "https://www.zumgutenglueck.ch/files/Menukarten-PDF/Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:36:50.259793+00:00",
+          "confidence": "automatic",
+          "evidence": "Panache / grosses Panache Lager Hell (Adler Bräu, CH) 3dl/5dl 4.80/6.80",
+          "alcoholFree": false
+        },
+        {
+          "name": "Hell (Bier Paul 01 Spezial hell, CH)",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.zumgutenglueck.ch/files/Menukarten-PDF/Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:36:50.259793+00:00",
+          "confidence": "automatic",
+          "evidence": "Hell (Bier Paul 01 Spezial hell, CH) alc 5.2% 3.3dl 6.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Weizen(Bier Paul 08 Weizen, CH)",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "sourceUrl": "https://www.zumgutenglueck.ch/files/Menukarten-PDF/Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:36:50.259793+00:00",
+          "confidence": "automatic",
+          "evidence": "Weizen(Bier Paul 08 Weizen, CH) alc 5.2% 5dl 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "IPA (Brausyndikat, CH)",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "sourceUrl": "https://www.zumgutenglueck.ch/files/Menukarten-PDF/Getraenkekarte.pdf",
+          "observedAt": "2026-10-14T20:36:50.259793+00:00",
+          "confidence": "automatic",
+          "evidence": "IPA (Brausyndikat, CH) alc 6.5% 3.3dl 8.00",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-14T20:36:50.259793+00:00"
     },
     {
       "id": "node/11216070996",
@@ -4889,7 +5966,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:20.174274+00:00"
+      "checkedAt": "2026-10-14T20:36:14.551081+00:00"
     },
     {
       "id": "node/370838542",
@@ -4904,7 +5981,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-14T20:04:20.174288+00:00"
+      "checkedAt": "2026-10-14T20:36:14.551086+00:00"
     },
     {
       "id": "node/9082101640",
@@ -4919,7 +5996,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-14T20:04:20.174308+00:00"
+      "checkedAt": "2026-10-14T20:36:14.551091+00:00"
     }
   ]
 }

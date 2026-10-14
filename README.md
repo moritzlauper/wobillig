@@ -5,7 +5,8 @@
 ## Was drin ist
 
 - Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.
-- Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten, Terrasse und alkoholfreies Bier.
+- Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten/Restaurant/Café, Terrasse und alkoholfreies Bier.
+- Startansicht mit **tatsächlich angebotenen 5-dl-Portionen**. Andere Grössen sind über den Filter verfügbar.
 - Standardvergleich nach **rechnerischem Preis pro 5 dl**, optional nach Glaspreis. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal.
 - Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.
 - Quellenlink, Portionsgrösse und Abrufdatum für jedes gefundene Angebot.
@@ -15,11 +16,13 @@
 
 ## Ehrlicher Datenstand
 
-Der erste Import vom **14. Oktober 2026** enthält **293 Locations** in der administrativen Stadt Zürich, davon **178 mit Website in OpenStreetMap**. Nach konservativer Bereinigung gibt es **51 Preisangebote bei 13 Locations**. Dies sind echte Quellendaten, keine Demo-Preise. Die Zahlen ändern sich bei späteren Läufen.
+Der Datenstand vom **14. Oktober 2026** enthält **302 Locations** in der administrativen Stadt Zürich. Nach Erweiterung des Scrapers gibt es **144 Preisangebote bei 25 Locations** (zuvor 51 bei 13). Bei 20 Locations ist mindestens ein alkoholhaltiges 5-dl-Angebot erfasst. Dies sind Quellendaten, keine Demo-Preise. Die Zahlen ändern sich bei späteren Läufen.
 
-„Möglichst jede Bar“ bedeutet hier: alle benannten OSM-Objekte mit `amenity=bar`, `pub` oder `biergarten` innerhalb der Stadtgrenze. Restaurants, Cafés und Nachtclubs, die in OSM nicht zusätzlich als Bar erfasst sind, gehören nicht zur Abfrage. OSM ist unvollständig; ein Standort kann veraltet oder falsch klassifiziert sein. Preise sind nur für einen Teil der Bars öffentlich maschinenlesbar. **Vollständigkeit und aktuelle Ausschankpreise sind nicht garantiert.**
+Beispiele für echte 5-dl-Portionen aus den Originalkarten: Rheinfelder Bierhalle CHF 6.80, New Bombay (Erdinger) CHF 6.90, Amara CHF 6.80, Zum Guten Glück (Adler Lager) CHF 6.80 und La Stazione in Oerlikon CHF 5.50. Im El Lokal erkennt der Parser jetzt auch das Appenzeller vom Fass für CHF 8.50. Die Quellen sind direkt beim jeweiligen Angebot verlinkt.
 
-Der Parser lässt mehrdeutige Tabellen, Bilder, reine JavaScript-Menüs, fehlende Grössen, Ginger Beer, Catering-Karten und bedingte Angebote aus. Automatisch erkannte Preise sind ausdrücklich als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %.
+„Möglichst jede Bar“ umfasst alle benannten OSM-Objekte mit `amenity=bar`, `pub` oder `biergarten` innerhalb der Stadtgrenze. Ergänzend werden ausgewählte Bierhallen, Restaurants und Cafés aus `scraper/additional_venues.json` bei jedem OSM-Import berücksichtigt. Koordinaten und Typ kommen weiterhin aus OSM; optional ergänzte Websites sind in dieser Datei erkennbar. Andere Restaurants, Cafés und Nachtclubs werden nicht flächendeckend erfasst. OSM ist unvollständig; ein Standort kann veraltet oder falsch klassifiziert sein. Preise sind nur für einen Teil öffentlich maschinenlesbar. **Vollständigkeit und aktuelle Ausschankpreise sind nicht garantiert.**
+
+Der Parser liest auch explizite parallele Grössen-/Preislisten und unmittelbar folgende Grössenzeilen desselben Biers in PDFs. HTML-Zeilen wie „Grosses“ erhalten nur bei einer vorangehenden Bierüberschrift diesen Kontext. Er lässt mehrdeutige Tabellen, Bilder, reine JavaScript-Menüs, fehlende Grössen, Ginger Beer, Catering-Karten und bedingte Angebote aus. Automatisch erkannte Preise sind ausdrücklich als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %.
 
 ## Lokal starten
 
@@ -96,6 +99,7 @@ public/data/bars.json        Versionierter Datenbestand
 scraper/scrape.py            Standortimport, höflicher Crawler, PDF/HTML
 scraper/extract.py           Konservative Preisextraktion
 scraper/menu_urls.json       Zusätzliche Original-Menülinks pro OSM-ID
+scraper/additional_venues.json Ausgewählte weitere OSM-Locations und Websites
 tests/                      Preis-, Filter- und Parser-Regressionstests
 .github/workflows/          CI, Wochenimport, optionales Deployment
 ```

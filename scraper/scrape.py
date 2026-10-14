@@ -20,12 +20,15 @@ from urllib.robotparser import RobotFileParser
 from bs4 import BeautifulSoup
 from pypdf import PdfReader
 import requests
-from scraper.extract import extract_offers
+from scraper.extract import extract_offers, BEER
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'public/data/bars.json'
 UA = 'WoguenstigBot/1.0 (+https://github.com/moritzlauper/woguenstig)'
-QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);out center tags;'
+EXTRA_VENUES = json.loads((ROOT / 'scraper/additional_venues.json').read_text())
+# Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
+EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
+QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + EXTRA_QUERY + ');out center tags;'
 MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card', re.I)
 MAX_BYTES = 8 * 1024 * 1024
 
@@ -146,7 +149,7 @@ def discover(previous, path=None):
         if not tags.get('name') or 'lat' not in center:
             continue
         id=f"{el['type']}/{el['id']}"
-        website=tags.get('website') or tags.get('contact:website')
+        website=tags.get('website') or tags.get('contact:website') or EXTRA_VENUES.get(id,{}).get('website')
         if website and not website.startswith(('http://','https://')):
             website='https://'+website
         bars.append({'id':id,'name':tags['name'],'lat':center['lat'],'lon':center['lon'],
@@ -169,7 +172,8 @@ def html_content(body,url):
     links=[]
     for a in soup.select('a[href]'):
         target=urljoin(url,a['href']).split('#')[0]
-        link_label=a.get_text(' ',strip=True)+' '+target
+        # A hostname containing "bier" must not make every site link a menu.
+        link_label=a.get_text(' ',strip=True)+' '+urlparse(target).path
         if MENU.search(link_label) and not re.search(r'catering|bankett|ap[eé]rokarte|event.?menu',link_label,re.I) and urlparse(target).scheme in ('http','https'):
             # Only same-origin navigation; external PDFs are allowed as direct menu links.
             if urlparse(target).netloc==urlparse(url).netloc or urlparse(target).path.lower().endswith('.pdf'):
@@ -181,6 +185,11 @@ def html_content(body,url):
         content=row.get_text(' ',strip=True)
         if len(content)<=350:
             rows.append(content)
+            heading=row.find_previous(re.compile(r'^h[1-6]$'))
+            if heading and not BEER.search(content) and re.match(r'^(Herrg[oö]ttli|Herg[oö]ttli|Stange|Grosses|Großes|Panach[eé])\b',content,re.I):
+                context=heading.get_text(' ',strip=True)
+                if len(context)<70 and BEER.search(context):
+                    rows.append(context+' – '+content)
     rows.extend(soup.get_text('\n',strip=True).splitlines())
     return '\n'.join(rows),list(dict.fromkeys(links))
 
@@ -208,7 +217,7 @@ def scrape_bar(bar, fetcher, hints, max_pages):
             else:
                 continue
             success+=1
-            offers.extend(extract_offers(text,final,stamp))
+            offers.extend(extract_offers(text,final,stamp,continuations='pdf' in kind or urlparse(final).path.lower().endswith('.pdf')))
         except Exception as exc:
             # One malformed PDF or offline site must not abort the city import.
             errors.append(str(exc) if isinstance(exc,ValueError) else type(exc).__name__)
