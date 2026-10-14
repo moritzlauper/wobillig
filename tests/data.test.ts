@@ -60,6 +60,15 @@ describe("bar discovery", () => {
     expect(bestOffer(b, { ...f, mode: "half" })?.priceChf).toBe(7);
     expect(cost(b.offers[0], "half")).toBeCloseTo(8.333);
   });
+  it("does not present a 2 dl glass as a cheaper half litre", () => {
+    const small = { ...b.offers[0], volumeMl: 200, priceChf: 5.7 };
+    const bar = { ...b, offers: [small, b.offers[1]] };
+    expect(cost(small, "half")).toBe(14.25);
+    expect(bestOffer(bar, { ...f, mode: "half" })?.volumeMl).toBe(500);
+    expect(
+      filterBars([{ ...bar, offers: [small] }], { ...f, mode: "half", max: 6 }),
+    ).toHaveLength(0);
+  });
   it("keeps unknown venues visible by choice", () => {
     const unknown = { ...b, id: "node/2", offers: [] };
     expect(filterBars([unknown, b], f).map((b) => b.id)).toEqual([

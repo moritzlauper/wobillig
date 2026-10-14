@@ -954,3 +954,45 @@ dialog .attribution {
 .leaflet-tile-pane {
   opacity: 0.72;
 }
+
+/* Unit labels remain visible on every price, including individual glasses. */
+.price-marker:not(.unknown) {
+  width: 62px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+}
+.price-marker small {
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.map-legend {
+  flex-wrap: wrap;
+  row-gap: 8px;
+  max-width: 340px;
+}
+.map-legend > strong {
+  width: 100%;
+  font-size: 10px;
+  font-weight: 600;
+}
+.offer-price {
+  text-align: right;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.offer-price small {
+  font-size: 9px;
+  font-weight: 500;
+  color: #6c785e;
+}
+#detail .comparison-note {
+  padding: 11px;
+  border-radius: 6px;
+  background: #eff4e4;
+  color: #5f6f4d;
+  font-size: 10px;
+}

@@ -1,5 +1,6 @@
 node_modules/
 dist/
+.vercel/
 .venv/
 __pycache__/
 *.pyc
@@ -8,3 +9,4 @@ __pycache__/
 !.env.example
 scraper/cache/
 test-results/
+.vercel

@@ -6,7 +6,7 @@
 
 - Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.
 - Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten, Terrasse und alkoholfreies Bier.
-- Vergleich nach Glaspreis oder **rechnerischem Preis pro 5 dl**. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal.
+- Standardvergleich nach **rechnerischem Preis pro 5 dl**, optional nach Glaspreis. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal.
 - Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.
 - Quellenlink, Portionsgrösse und Abrufdatum für jedes gefundene Angebot.
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
@@ -105,3 +105,14 @@ tests/                      Preis-, Filter- und Parser-Regressionstests
 Standorte: [© OpenStreetMap-Mitwirkende](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Die OSM-abgeleiteten Standortdaten bleiben unter dieser Datenbanklizenz. Basiskarte: [OpenStreetMap](https://operations.osmfoundation.org/policies/tiles/). Bierpreise stammen aus den im Datensatz verlinkten Originalkarten. Gespeichert werden strukturierte Preisfakten und kurze Belegzeilen, keine vollständigen Speisekarten. Schriften werden von Google Fonts geladen.
 
 Vor öffentlichem Betrieb die Nutzungsbedingungen und Kapazitätsgrenzen der Kartenanbieter sowie die Anforderungen der eigenen Bereitstellung prüfen. Der Code steht unter MIT; Rechte an den Quelldaten und fremden Inhalten bleiben separat.
+
+## Vercel
+
+Deployment mit der Vercel CLI:
+
+```sh
+vercel link --project woguenstig
+vercel --prod
+```
+
+`vercel.json` konfiguriert den Vite-Build. Der Scraper läuft weiterhin in GitHub Actions; Vercel liefert den eingecheckten Datenbestand statisch aus. Nach Datenupdates erneut deployen oder die GitHub-Integration in Vercel verbinden. `.vercelignore` hält die lokale Python-Umgebung und den Scraper aus dem Deployment-Upload.
