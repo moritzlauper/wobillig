@@ -104,14 +104,20 @@ jobs:
           name: claude-scan-report
           path: scraper/cache/ai-report.json
           if-no-files-found: ignore
-      - name: Save refreshed dataset
+      - name: Snapshot refreshed dataset
+        id: snapshot
         if: ${{ !cancelled() && (success() || steps.ai.outcome == 'failure') }}
+        run: python -m scraper.publish --snapshot "$RUNNER_TEMP/refresh-snapshot.json"
+      - name: Back up refreshed dataset
+        if: ${{ always() && steps.snapshot.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: refreshed-dataset
+          path: ${{ runner.temp }}/refresh-snapshot.json
+          if-no-files-found: error
+      - name: Save refreshed dataset
+        if: ${{ !cancelled() && steps.snapshot.outcome == 'success' }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/data/bars.json public/data/coffee.json public/data/pizza.json scraper/discovery_checks.json scraper/coffee_checks.json scraper/pizza_checks.json scraper/ai_checks.json
-          if ! git diff --cached --quiet; then
-            git commit -m "data: refresh Zurich beer, coffee and pizza prices"
-            git pull --rebase origin "$GITHUB_REF_NAME"
-            git push origin "HEAD:$GITHUB_REF_NAME"
-          fi
+          python -m scraper.publish --snapshot "$RUNNER_TEMP/refresh-snapshot.json" --branch "$GITHUB_REF_NAME"
