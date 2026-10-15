@@ -1,344 +1,258 @@
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import "./style.css";
-import {
-  bestOffer,
-  matchingOffers,
-  selectBeerSize,
-  coffeeLabels,
-  portion,
-  cost,
-  distance,
-  escapeHtml as e,
-  filterBars,
-  safeUrl,
-  type Bar,
-  type Dataset,
-  type Filters,
-} from "./data";
-const icon = (name: string) =>
-  ({ search: "⌕", arrow: "↗", location: "◎", close: "×", beer: "▥" })[name] ||
-  name;
-const venueLabel = (type: string) =>
-  ({bar: "Bar", pub: "Pub", biergarten: "Biergarten", restaurant: "Restaurant", cafe: "Café"})[type] || "Location";
-const money = (v: number) => v.toFixed(2);
-const date = (s: string) =>
-  new Intl.DateTimeFormat("de-CH").format(new Date(s));
-type Drink = "beer" | "coffee";
-const initialDrink: Drink = new URLSearchParams(location.search).get("drink") === "coffee" ? "coffee" : "beer";
-const initialStange = new URLSearchParams(location.search).get("size") === "stange";
-const f: Filters = {
-  drink: initialDrink,
-  coffeeType: "creme",
-  query: "",
-  max: 15,
-  volume: "500",
-  type: "",
-  unknown: true,
-  outdoor: false,
-  alcoholFree: false,
-  mode: "half",
-  sort: "price",
-};
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import './style.css';
+import { bestOffer, matchingOffers, coffeeLabels, portion, cost, escapeHtml as e, filterBars, safeUrl, type Bar, type Dataset, type Filters, type Offer } from './data';
+import { allVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
+
+const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+const money = (n: number) => n.toFixed(2);
+const options = (values: Record<string, string>) => Object.entries(values).map(([value, label]) => `<option value="${value}">${e(label)}</option>`).join('');
+const coffeeOptions = options(coffeeLabels);
+const initial = new URLSearchParams(location.search);
+const f: Filters = { drink: initial.get('drink') === 'coffee' ? 'coffee' : 'beer', coffeeType: 'creme', query: '', max: 15, volume: initial.get('size') === 'stange' ? 'stange' : '500', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
 const datasets: Partial<Record<Drink, Dataset>> = {};
-const isCoffee = () => f.drink === "coffee";
-const cheapLimit = () => isCoffee() ? 4.5 : f.volume === "stange" || f.volume === "300" ? 5 : 6;
-const offerUnit = (o: import("./data").Offer) => o.coffeeType ? "Getränk" : f.mode === "half" ? `5 dl${o.volumeMl === 500 ? "" : "*"}` : o.volumeMl ? portion(o) : "Stange";
-let data: Dataset | undefined,
-  position: [number, number] | undefined,
-  selected: string | undefined;
-const app = document.querySelector<HTMLDivElement>("#app")!;
-app.innerHTML = `<header><a class="brand" href="./" aria-label="wogünstig Startseite"><span class="brandmark">w.</span>wogünstig</a><span class="city"><span></span>ZÜRICH EDITION</span><button class="about-button" id="about">Die Idee <span>↗</span></button></header>
-<main><aside class="sidebar"><section class="intro"><div class="drink-switch" role="group" aria-label="Getränk auswählen"><button id="drink-beer" aria-pressed="true">Bier</button><button id="drink-coffee" aria-pressed="false">Kaffee</button></div><div class="eyebrow">WENIGER ZAHLEN. MEHR ZÜRICH.</div><h1><span id="drink-title" class="plain-title">Gutes Bier.</span><br>Guter <span>Preis.</span><svg viewBox="0 0 100 40" aria-hidden="true"><path d="M3 30 Q40 2 88 20 M72 5 L91 20 L72 35"/></svg></h1><p id="intro-copy">Dein nächstes Lieblingsbier ist gleich um die Ecke.<br>Finde heraus, wo Zürich günstig anstösst.</p></section>
-<div class="search"><span aria-hidden="true">${icon("search")}</span><input id="search" type="search" placeholder="Bar, Strasse oder Postleitzahl" aria-label="Locations durchsuchen"><kbd>⌘ K</kbd></div>
-<section class="filters" aria-label="Filter"><div class="filter-heading"><span id="filter-title">DEIN BIER. DEINE REGELN.</span><button id="reset">Zurücksetzen</button></div><div id="beer-sizes" class="beer-sizes" role="group" aria-label="Bierportion wählen"><button id="size-stange" aria-pressed="false">Stange / 3 dl</button><button id="size-large" aria-pressed="true">Grosses / 5 dl</button></div><div class="price-label"><label for="price">Max. Bierpreis</label><strong id="price-value">CHF 15.00</strong></div><input id="price" type="range" min="3" max="15" step="0.5" value="15"><div class="range-labels"><span>CHF 3</span><span>CHF 15</span></div><div class="select-row"><label id="volume-label">Grösse<select id="volume"><option value="stange">Stange / 3 dl</option><option value="all">Alle Grössen</option><option value="300">Genau 3 dl</option><option value="330">3.3 dl</option><option value="400">4 dl</option><option value="500" selected>5 dl (Fass & Flasche)</option></select></label><label id="coffee-label" hidden>Kaffeesorte<select id="coffeeType"><option value="all">Alle Sorten</option>${Object.entries(coffeeLabels).map(([key,label]) => `<option value="${key}">${label}</option>`).join("")}</select></label><label>Location<select id="type"><option value="">Alle Locations</option><option value="bar">Bar</option><option value="pub">Pub</option><option value="biergarten">Biergarten</option><option value="restaurant">Restaurant</option><option value="cafe">Café</option></select></label></div><div class="chips"><button id="outdoor" aria-pressed="false">☀ Draussen sitzen</button><button id="alcohol-free" aria-pressed="false">Alkoholfrei</button></div><label class="check"><input id="unknown" type="checkbox" checked>Auch Locations ohne passenden Preis</label><p id="stange-note" class="filter-note" hidden>Glaspreise für 3 dl und ausdrücklich als Stange bezeichnete kleine Portionen. Fehlende Mengenangaben bleiben offen.</p><p id="coffee-note" class="filter-note" hidden>Preis pro Getränk. Wähle eine Sorte, um gleiche Kaffees zu vergleichen. „Kaffee“ und Café crème sind zusammengefasst.</p><label id="normalize-label" class="check"><input id="normalize" type="checkbox" checked>Fair vergleichen: Preis pro 5 dl</label></section>
-<div id="coverage-strip" class="coverage-strip"></div><div class="results-top"><span><strong id="count">…</strong> <span id="count-label">Spots entdeckt</span></span><select id="sort" aria-label="Sortierung"><option value="price">Günstigste zuerst</option><option value="name">Name A–Z</option><option value="distance">In deiner Nähe</option></select></div><div id="results" aria-live="polite"><div class="empty">Zürich wird geladen …</div></div><footer><span id="footer-copy">Mit Liebe zu Zürich. Und zum Feierabend.</span><br><button id="data-info">Daten & Transparenz ↗</button></footer></aside>
-<section class="map-panel" aria-label="Karte der Locations in Zürich"><div id="map"></div><div class="map-caption"><span class="live-dot"></span><strong>Zürich, Schweiz</strong><span class="caption-sub">Ein guter Abend beginnt hier.</span></div><div class="map-actions"><button id="locate" aria-label="Meinen Standort verwenden" title="Meinen Standort verwenden">◎</button><button id="fit" aria-label="Alle Treffer auf Karte anzeigen" title="Alle Treffer anzeigen">⤢</button></div><div class="map-legend"><strong id="map-unit">CHF / 5 dl · berechnet</strong><span><i class="lime"></i><span id="legend-cheap">bis CHF 6</span></span><span><i class="dark"></i><span id="legend-expensive">über CHF 6</span></span><span><i class="grey"></i>Preis offen</span></div><div id="detail" hidden></div><div class="map-bottom"><span>DEIN FEIERABEND, DEIN VIERTEL.</span><strong>Prost, Züri. ↗</strong></div></section></main><button id="mobile-view">Karte anzeigen ↗</button><div id="toast" role="status"></div>
-<dialog id="info"><button id="close-info" class="close" aria-label="Schliessen">×</button><div class="eyebrow">TRANSPARENT BIS ZUM LETZTEN SCHLUCK</div><h2>Gute Daten.<br>Mehr Zürich.</h2><p>wogünstig macht öffentlich auffindbare Bier- und Kaffeepreise vergleichbar. Die Karte umfasst OSM-Bars und Pubs sowie Restaurants und Cafés mit gefundenen Getränkepreisen. Kaffee wird pro Getränk und nach Sorte verglichen. Die Kaffeeansicht enthält Locations mit gefundenen Kaffeepreisen; fehlende Sorten können optional als „Preis offen“ angezeigt werden. Eine zusätzliche Suche prüft Gastronomie-Websites innerhalb der Stadtgrenze und erweitert den Datenbestand laufend.</p><p>Automatisch erkannte Preise sind Hinweise, keine Preisgarantie. Quelle, Portionsgrösse und Prüfdatum stehen bei jedem Angebot. Preise können sich ändern. Beim Bier ist ein Preis pro 5 dl ein rechnerischer Vergleich, kein bestellbares Angebot. Kaffee wird nie auf eine erfundene Tassengrösse umgerechnet. Die Stangen-Auswahl zeigt den tatsächlichen Glaspreis: 3-dl-Angebote und explizit als Stange bezeichnete kleine Portionen. Wenn die Karte keine Menge nennt, bleibt sie offen; solche Angebote werden beim Vergleich pro 5 dl ausgeschlossen.</p><p>Nicht jede Bar ist in OpenStreetMap eingetragen. Nicht jede Getränkekarte ist online lesbar. Fehlende Preise werden deshalb offen angezeigt. Öffnungszeiten aus OSM werden unverändert angegeben; wir behaupten keinen Live-Öffnungsstatus.</p><div id="coverage"></div><p class="attribution">Standorte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende · ODbL</a>. Basiskarte: © OpenStreetMap. Preisangaben: verlinkte Originalquellen.</p></dialog>`;
-const $ = <T extends HTMLElement = HTMLElement>(id: string) =>
-  document.getElementById(id) as T;
-const map = L.map("map", { zoomControl: false }).setView([47.378, 8.535], 13);
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  maxZoom: 19,
-}).addTo(map);
-L.control.zoom({ position: "bottomright" }).addTo(map);
-new ResizeObserver(() => map.invalidateSize()).observe(
-  document.getElementById("map")!,
-);
-const layer = L.layerGroup().addTo(map);
-let current: Bar[] = [];
+let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
+let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
+let communityReady = false, saving = false;
 let userMarker: L.CircleMarker | undefined;
-function toast(message: string) {
-  $("toast").textContent = message;
-  $("toast").classList.add("show");
-  setTimeout(() => $("toast").classList.remove("show"), 4500);
+const coffee = () => f.drink === 'coffee';
+const unit = (o: Offer) => o.coffeeType ? portion(o) : f.mode === 'half' ? `5 dl${o.volumeMl === 500 ? '' : ' · umgerechnet'}` : portion(o);
+
+$('app').innerHTML = `
+<div class="toolbar">
+  <div class="switch" role="group" aria-label="Getränk"><button id="drink-beer">Bier</button><button id="drink-coffee">Kaffee</button></div>
+  <input id="search" type="search" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen">
+  <select id="volume" aria-label="Biergrösse">${options({ '500': '5 dl', stange: 'Stange / 3 dl', '300': 'Genau 3 dl', '330': '3.3 dl', '400': '4 dl', all: 'Alle Grössen' })}</select>
+  <select id="coffeeType" aria-label="Kaffeesorte" hidden><option value="all">Alle Kaffees</option>${coffeeOptions}</select>
+  <label class="budget">Bis CHF <input id="price" aria-label="Höchstpreis in CHF" type="number" min="0.5" max="50" step="0.5" value="15"></label>
+  <button id="filters-toggle" aria-expanded="false" aria-controls="filters">Filter</button>
+  <button id="new-price" class="primary" disabled>Preis eintragen</button>
+</div>
+<div id="filters" hidden>
+  <label>Lokal <select id="type">${options({ '': 'Alle', bar: 'Bar', pub: 'Pub', biergarten: 'Biergarten', restaurant: 'Restaurant', cafe: 'Café' })}</select></label>
+  <label><input id="unknown" type="checkbox" checked> Ohne passenden Preis anzeigen</label>
+  <label><input id="outdoor" type="checkbox"> Draussen sitzen</label>
+  <label id="alcohol-label"><input id="alcohol-free" type="checkbox"> Alkoholfrei</label>
+  <label id="normalize-label"><input id="normalize" type="checkbox"> Auf 5 dl umrechnen</label>
+  <button id="reset">Zurücksetzen</button>
+</div>
+<div class="status-row"><span id="count" role="status">Laden …</span><div class="mobile-switch" role="group" aria-label="Ansicht"><button id="view-map" aria-pressed="true">Karte</button><button id="view-list" aria-pressed="false">Liste</button></div><button id="data-info" class="text-button">Daten</button></div>
+<div id="load-error" role="status" hidden></div>
+<main>
+  <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
+  <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="fit">Alle anzeigen</button></div><div id="map-unit" class="map-unit"></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section></section>
+</main>
+<div id="toast" role="status" hidden></div>
+<dialog id="price-dialog" aria-label="Preis eintragen"><form id="price-form">
+  <div class="dialog-top"><strong id="form-title">Preis eintragen</strong><button id="cancel-price" type="button">Schliessen</button></div>
+  <label>Lokal<select id="entry-bar" required></select></label>
+  <div class="form-row"><label>Getränk<select id="entry-drink"><option value="beer">Bier</option><option value="coffee">Kaffee</option></select></label><label id="entry-coffee-label" hidden>Sorte<select id="entry-coffee">${coffeeOptions}</select></label></div>
+  <label>Bezeichnung<input id="entry-name" maxlength="100" placeholder="z. B. Lager oder Espresso" required></label>
+  <div id="entry-beer-fields"><div class="form-row"><label>Menge in dl<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label class="check"><input id="entry-size-unknown" type="checkbox"> Menge nicht angegeben (nur Stange)</label><label class="check"><input id="entry-alcohol" type="checkbox"> Alkoholfrei</label></div>
+  <div class="form-row"><label>Preis in CHF<input id="entry-price" type="number" min="0.5" max="50" step="0.01" inputmode="decimal" required></label><label>Preis gesehen am<input id="entry-date" type="date" min="2020-01-01" required></label></div>
+  <label>Link zur Karte (optional)<input id="entry-source" type="url" maxlength="1500" placeholder="https://…"></label>
+  <p class="muted">Wird für alle sichtbar. Bitte den tatsächlichen Preis dieser Portion eintragen.</p>
+  <p id="form-error" role="alert" hidden></p><button id="save-price" class="primary" type="submit">Speichern</button>
+</form></dialog>
+<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><p id="coverage"></p><p>Preise stammen aus verlinkten Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
+
+const map = L.map('map', { zoomControl: false }).setView([47.378, 8.535], 14);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
+L.control.zoom({ position: 'bottomright' }).addTo(map);
+new ResizeObserver(() => map.invalidateSize()).observe($('map'));
+const layer = L.layerGroup().addTo(map);
+let toastTimer: ReturnType<typeof setTimeout>;
+function toast(message: string) { $('toast').textContent = message; $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').hidden = true, 5000); }
+function showView(list: boolean) {
+  document.body.classList.toggle('show-list', list);
+  $('view-map').setAttribute('aria-pressed', String(!list)); $('view-list').setAttribute('aria-pressed', String(list));
+  map.invalidateSize();
 }
-function offerLabel(b: Bar) {
-  const o = bestOffer(b, f);
-  return o ? `${money(cost(o, f.mode))}` : "–";
+function rebuild() {
+  const base = datasets[f.drink!];
+  bars = base ? applyEntries(base, entries, venues, f.drink!).bars : [];
+  render();
+}
+function syncControls() {
+  $('volume').hidden = coffee(); $('coffeeType').hidden = !coffee();
+  $('alcohol-label').hidden = coffee(); $('normalize-label').hidden = coffee() || ['stange', '300'].includes(f.volume);
+  $<HTMLSelectElement>('volume').value = f.volume;
+  $<HTMLSelectElement>('coffeeType').value = f.coffeeType!;
+  $<HTMLInputElement>('normalize').checked = f.mode === 'half';
+  for (const drink of ['beer', 'coffee']) $('drink-' + drink).setAttribute('aria-pressed', String(f.drink === drink));
+  const url = new URL(location.href);
+  if (coffee()) url.searchParams.set('drink', 'coffee'); else url.searchParams.delete('drink');
+  if (!coffee() && f.volume === 'stange') url.searchParams.set('size', 'stange'); else url.searchParams.delete('size');
+  history.replaceState(null, '', url);
 }
 function render() {
-  if (!data) return;
-  current = filterBars(data.bars, f, position);
-  $("size-stange").setAttribute("aria-pressed", String(f.volume === "stange" || f.volume === "300"));
-  $("size-large").setAttribute("aria-pressed", String(f.volume === "500"));
-  $("beer-sizes").hidden = isCoffee();
-  $("stange-note").hidden = isCoffee() || f.volume !== "stange";
-  $("normalize-label").hidden = isCoffee() || f.volume === "stange";
-  $("legend-cheap").textContent = `bis CHF ${money(cheapLimit())}`;
-  $("legend-expensive").textContent = `über CHF ${money(cheapLimit())}`;
-  const url = new URL(location.href);
-  if (!isCoffee() && f.volume === "stange") url.searchParams.set("size", "stange");
-  else url.searchParams.delete("size");
-  history.replaceState(null, "", url);
-  $("count").textContent = String(current.length);
-  $("price-value").textContent = `CHF ${money(f.max)}`;
-  $("count-label").textContent = `Locations · ${current.filter((b) => bestOffer(b, f)).length} mit passendem Preis`;
-  $("coverage-strip").textContent =
-    `${data.bars.reduce((n, b) => n + b.offers.length, 0)} ${isCoffee() ? "Kaffeeangebote" : "Bierangebote"} bei ${data.bars.filter((b) => b.offers.length).length} von ${data.bars.length} Locations · vor deinen Filtern`;
-  document.querySelector("label[for=price]")!.textContent =
-    isCoffee() ? "Max. Preis pro Getränk" : f.volume === "stange" ? "Max. Preis pro Stange" : f.mode === "half" ? "Max. Preis pro 5 dl" : "Max. Bierpreis";
-  $("map-unit").textContent =
-    isCoffee() ? `CHF / Getränk · ${f.coffeeType === "all" ? "alle Sorten" : coffeeLabels[f.coffeeType!]}` : f.mode === "half" ? `CHF / 5 dl${f.volume === "500" ? "" : " · berechnet"}` : f.volume === "stange" ? "CHF / Stange · Glaspreis" : "CHF / Glas";
+  syncControls();
+  current = filterBars(bars, f, position);
+  $('count').textContent = `${current.length} Lokale · ${current.filter(b => bestOffer(b, f)).length} mit Preis`;
+  $('map-unit').textContent = coffee() ? `CHF · ${f.coffeeType === 'all' ? 'pro Getränk' : coffeeLabels[f.coffeeType!]}` : f.mode === 'half' ? 'CHF / 5 dl · umgerechnet' : f.volume === 'all' ? 'CHF / Portion · Menge beachten' : f.volume === 'stange' ? 'CHF / Stange' : `CHF / ${Number(f.volume) / 100} dl`;
+  $('results').innerHTML = current.length ? current.map(b => {
+    const o = bestOffer(b, f);
+    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || 'Zürich')}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : '<small>Kein Preis</small>'}</span></button>`;
+  }).join('') : '<p class="empty">Keine passenden Lokale.</p>';
   layer.clearLayers();
-  $("results").innerHTML = current.length
-    ? current
-        .map((b, i) => {
-          const o = bestOffer(b, f);
-          return `<button class="bar-card ${selected === b.id ? "selected" : ""}" data-id="${e(b.id)}"><span class="bar-number">${String(i + 1).padStart(2, "0")}</span><span class="bar-content"><strong>${e(b.name)}</strong><span>${e(b.address || b.postcode || "Zürich")} ${position ? ` · ${distance(position, [b.lat, b.lon]).toFixed(1)} km` : ""}</span><span class="bar-tags">${e(venueLabel(b.type))}${b.outdoor ? " · Terrasse" : ""}${o ? ` · ${portion(o)}${f.mode === "half" && o.volumeMl !== 500 ? " · auf 5 dl gerechnet" : ""}` : " · Noch kein passender Preis"}</span></span><span class="bar-price ${o && cost(o, f.mode) <= cheapLimit() ? "cheap" : ""}">${o ? `<small>CHF / ${offerUnit(o)}</small>${offerLabel(b)}` : '<span class="unknown-price">Preis offen</span>'}<span class="card-arrow">↗</span></span></button>`;
-        })
-        .join("")
-    : `<div class="empty"><span>◌</span><h3>Hier ist noch Durststrecke.</h3><p>Erhöhe dein Budget oder lockere die Filter.</p><button id="empty-reset">Filter zurücksetzen</button></div>`;
   for (const b of current) {
-    const o = bestOffer(b, f),
-      cheap = o && cost(o, f.mode) <= cheapLimit();
-    const marker = L.marker([b.lat, b.lon], {
-      icon: L.divIcon({
-        className: "marker-wrapper",
-        html: `<span class="price-marker ${o ? (cheap ? "cheap" : "known") : "unknown"} ${selected === b.id ? "active" : ""}">${o ? `${offerLabel(b)}<small>/ ${offerUnit(o)}</small>` : "•"}</span>`,
-        iconSize: o ? [62, 40] : [22, 22],
-        iconAnchor: o ? [31, 20] : [11, 11],
-      }),
-      title: `${b.name}: ${o ? `CHF ${offerLabel(b)} pro ${offerUnit(o)}${o.coffeeType ? ` (${portion(o)})` : ""}` : "Preis offen"}`,
-      keyboard: true,
-      zIndexOffset: selected === b.id ? 2000 : o ? 1000 : 0,
-    }).on("click", () => showBar(b));
-    layer.addLayer(marker);
+    const o = bestOffer(b, f);
+    const label = `${b.name}: ${o ? `CHF ${money(cost(o, f.mode))} / ${unit(o)}` : 'kein passender Preis'}`;
+    L.marker([b.lat, b.lon], {
+      icon: L.divIcon({ className: 'marker-wrap', html: `<span class="price-marker ${o ? '' : 'unknown'} ${b.id === selected ? 'active' : ''}">${o ? money(cost(o, f.mode)) : '·'}</span>`, iconSize: o ? [50, 26] : [14, 14], iconAnchor: o ? [25, 13] : [7, 7] }),
+      title: label, alt: label, zIndexOffset: b.id === selected ? 2000 : o ? 1000 : 0,
+    }).addTo(layer).on('click', () => showBar(b));
   }
-  document
-    .querySelectorAll<HTMLButtonElement>("[data-id]")
-    .forEach(
-      (el) =>
-        (el.onclick = () =>
-          showBar(data!.bars.find((b) => b.id === el.dataset.id)!)),
-    );
-  $("empty-reset")?.addEventListener("click", reset);
-  if (selected) {
-    const b = current.find((b) => b.id === selected);
-    if (b) detail(b);
-    else {
-      $("detail").hidden = true;
-      selected = undefined;
-    }
-  }
+  $('results').querySelectorAll<HTMLButtonElement>('[data-bar]').forEach(button => button.onclick = () => showBar(bars.find(b => b.id === button.dataset.bar)!));
+  const selectedBar = bars.find(b => b.id === selected);
+  if (selectedBar) detail(selectedBar); else $('detail').hidden = true;
 }
 function detail(b: Bar) {
-  const offers = matchingOffers(b, f);
-  $("detail").innerHTML =
-    `<button class="close" id="close-detail" aria-label="Details schliessen">×</button><div class="eyebrow">${e(venueLabel(b.type).toUpperCase())} ${b.outdoor ? " · MIT TERRASSE" : ""}</div><h2>${e(b.name)}</h2><p>${e(b.address || "Adresse in OpenStreetMap ergänzen")} ${e(b.postcode)}</p>${f.mode === "half" && offers.some((o) => o.volumeMl !== 500) ? `<p class="comparison-note">*Auf 5 dl umgerechnet. Bestellbare Portion und tatsächlicher Preis stehen bei jedem Bier.</p>` : ""}${offers.length ? offers.map((o) => `<div class="offer"><div><strong>${e(o.name)}</strong><span>${portion(o)} · ${o.confidence === "reviewed" ? "Manuell geprüft" : "Automatisch erkannt"}</span></div><div class="offer-price"><strong>CHF ${money(o.priceChf)}</strong><span>${o.coffeeType ? "pro Getränk" : o.volumeMl ? `für ${portion(o)}` : "pro Stange"}</span>${f.mode === "half" && o.volumeMl !== 500 ? `<small>CHF ${money(cost(o, "half"))} / 5 dl*</small>` : ""}</div></div><div class="source-line"><a target="_blank" rel="noopener noreferrer" href="${safeUrl(o.sourceUrl)}">Originalkarte ↗</a><span>Gelesen ${date(o.observedAt)}</span></div>`).join("") : `<div class="no-price">Noch kein passender ${isCoffee() ? "Kaffeepreis" : "Bierpreis"}.<br><span>${b.scrapeStatus === "no_website" ? "Keine Website in OpenStreetMap hinterlegt." : "Die Karte konnte noch keinen passenden Preis liefern."}</span></div>`}${b.openingHours ? `<p class="hours">Öffnungszeiten laut OSM<br><strong>${e(b.openingHours)}</strong></p>` : ""}<div class="detail-links">${safeUrl(b.website) ? `<a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website ↗</a>` : ""}<a href="https://www.google.com/maps/dir/?api=1&destination=${b.lat},${b.lon}&travelmode=walking" target="_blank" rel="noopener noreferrer">Route planen ↗</a><a href="https://www.openstreetmap.org/${e(b.id)}" target="_blank" rel="noopener noreferrer">OSM ↗</a></div>`;
-  $("detail").hidden = false;
-  $("close-detail").onclick = () => {
-    selected = undefined;
-    $("detail").hidden = true;
-    render();
-  };
+  const matches = matchingOffers(b, f);
+  const other = b.offers.filter(o => !matches.includes(o));
+  const offers = [...matches, ...other];
+  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">Schliessen</button></div><p class="muted">${e([b.address, b.postcode].filter(Boolean).join(' '))}</p><button id="add-here">Preis hinzufügen</button>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${!o.coffeeType && o.alcoholFree ? ' · alkoholfrei' : ''}${!matches.includes(o) ? ' · ausserhalb Filter' : ''}</div><div class="offer-meta"><span>${o.confidence === 'community' ? 'Eingetragen · nicht geprüft' : o.confidence === 'reviewed' ? 'Manuell geprüft' : 'Automatisch erkannt'} · ${e(new Date(o.observedAt).toLocaleDateString('de-CH'))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">Quelle</a>` : ''}<button data-edit="${i}">Ändern</button></div></div>`).join('') : '<p>Noch kein Preis eingetragen.</p>'}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
+  $('detail').hidden = false;
+  $('close-detail').onclick = () => { selected = undefined; render(); };
+  $('add-here').onclick = () => openPrice(b);
+  $('detail').querySelectorAll<HTMLButtonElement>('[data-edit]').forEach(button => button.onclick = () => openPrice(b, offers[Number(button.dataset.edit)]));
 }
-function showBar(b: Bar) {
-  selected = b.id;
-  document.body.classList.add("show-map");
-  $("mobile-view").textContent = "Liste anzeigen ↙";
-  map.invalidateSize();
-  map.flyTo([b.lat, b.lon], 16, { duration: 0.6 });
-  render();
-  detail(b);
-}
-function reset() {
-  Object.assign(f, {
-    query: "",
-    max: isCoffee() ? 12 : 15,
-    volume: isCoffee() ? "all" : "500",
-    coffeeType: "creme",
-    type: "",
-    unknown: true,
-    outdoor: false,
-    alcoholFree: false,
-    mode: isCoffee() ? "glass" : "half",
-    sort: "price",
-  });
-  $<HTMLInputElement>("search").value = "";
-  $<HTMLInputElement>("price").value = String(f.max);
-  $<HTMLSelectElement>("volume").value = f.volume;
-  $<HTMLSelectElement>("coffeeType").value = f.coffeeType!;
-  $<HTMLSelectElement>("type").value = "";
-  $<HTMLSelectElement>("sort").value = "price";
-  $<HTMLInputElement>("unknown").checked = true;
-  $<HTMLInputElement>("normalize").checked = !isCoffee();
-  for (const id of ["outdoor", "alcohol-free"])
-    $(id).setAttribute("aria-pressed", "false");
-  render();
-}
-function chooseBeerSize(volume: string) {
-  selectBeerSize(f, volume);
-  if (volume === "500") f.mode = "glass";
-  $<HTMLSelectElement>("volume").value = f.volume;
-  $<HTMLInputElement>("normalize").checked = f.mode === "half";
-  render();
-}
-$("size-stange").onclick = () => chooseBeerSize("stange");
-$("size-large").onclick = () => chooseBeerSize("500");
-$("reset").onclick = reset;
-$("search").oninput = () => {
-  f.query = $<HTMLInputElement>("search").value;
+function showBar(b: Bar) { selected = b.id; showView(false); map.setView([b.lat, b.lon], Math.max(map.getZoom(), 15)); render(); $('detail').focus({ preventScroll: true }); }
+function chooseDrink(drink: Drink) { f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
+$('drink-beer').onclick = () => chooseDrink('beer'); $('drink-coffee').onclick = () => chooseDrink('coffee');
+$('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
+$('search').oninput = () => { f.query = $<HTMLInputElement>('search').value; render(); };
+$('price').oninput = () => { const n = $<HTMLInputElement>('price').valueAsNumber; f.max = Number.isFinite(n) ? n : Infinity; render(); };
+$('volume').onchange = () => { f.volume = $<HTMLSelectElement>('volume').value; if (['stange', '300'].includes(f.volume)) f.mode = 'glass'; render(); };
+$('coffeeType').onchange = () => { f.coffeeType = $<HTMLSelectElement>('coffeeType').value; render(); };
+$('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render(); };
+$('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position) locate(); else render(); };
+for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree']] as const) $(id).onchange = () => { f[key] = $<HTMLInputElement>(id).checked; render(); };
+$('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
+$('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
+$('reset').onclick = () => {
+  Object.assign(f, { query: '', max: 15, volume: '500', coffeeType: 'creme', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = '15';
+  $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
+  for (const id of ['unknown', 'outdoor', 'alcohol-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
   render();
 };
-$("price").oninput = () => {
-  f.max = Number($<HTMLInputElement>("price").value);
-  render();
-};
-for (const key of ["volume", "coffeeType", "type", "sort"] as const)
-  $(key).onchange = () => {
-    if (key === "volume") {
-      selectBeerSize(f, $<HTMLSelectElement>(key).value);
-      $<HTMLInputElement>("normalize").checked = f.mode === "half";
-    } else f[key] = $<HTMLSelectElement>(key).value;
-    if (key === "sort" && f.sort === "distance" && !position) {
-      toast("Standort freigeben, um nach Nähe zu sortieren.");
-      locate();
-    }
-    render();
-  };
-$("unknown").onchange = () => {
-  f.unknown = $<HTMLInputElement>("unknown").checked;
-  render();
-};
-$("normalize").onchange = () => {
-  f.mode = $<HTMLInputElement>("normalize").checked ? "half" : "glass";
-  render();
-};
-for (const [id, key] of [
-  ["outdoor", "outdoor"],
-  ["alcohol-free", "alcoholFree"],
-] as const)
-  $(id).onclick = () => {
-    f[key] = !f[key];
-    $(id).setAttribute("aria-pressed", String(f[key]));
-    render();
-  };
 function locate() {
-  if (!navigator.geolocation) {
-    toast("Dieser Browser unterstützt keinen Standort.");
-    return;
-  }
-  navigator.geolocation.getCurrentPosition(
-    (p) => {
-      position = [p.coords.latitude, p.coords.longitude];
-      userMarker?.remove();
-      userMarker = L.circleMarker(position, {
-        radius: 8,
-        color: "#fff",
-        weight: 3,
-        fillColor: "#3e6ae1",
-        fillOpacity: 1,
-      }).addTo(map);
-      map.setView(position, 15);
-      render();
-    },
-    () => {
-      toast("Standort nicht verfügbar. Du kannst weiter auf der Karte suchen.");
-      if (f.sort === "distance") {
-        f.sort = "price";
-        $<HTMLSelectElement>("sort").value = "price";
-        render();
-      }
-    },
-    { timeout: 10000 },
-  );
+  if (!navigator.geolocation) return toast('Standort wird von diesem Browser nicht unterstützt.');
+  navigator.geolocation.getCurrentPosition(p => {
+    position = [p.coords.latitude, p.coords.longitude];
+    userMarker?.remove(); userMarker = L.circleMarker(position, { radius: 7, color: '#fff', fillColor: '#1766c2', fillOpacity: 1, weight: 2 }).addTo(map);
+    map.setView(position, 15); render();
+  }, () => { if (f.sort === 'distance') { f.sort = 'price'; $<HTMLSelectElement>('sort').value = 'price'; } toast('Standort nicht verfügbar.'); }, { timeout: 10000 });
 }
-$("locate").onclick = locate;
-$("fit").onclick = () => {
-  if (current.length)
-    map.fitBounds(L.latLngBounds(current.map((b) => [b.lat, b.lon])), {
-      padding: [45, 60],
-      maxZoom: 15,
-    });
-  else toast("Keine Treffer für diese Filter.");
+$('locate').onclick = locate;
+$('fit').onclick = () => { if (current.length) map.fitBounds(L.latLngBounds(current.map(b => [b.lat, b.lon])), { padding: [35, 35], maxZoom: 16 }); };
+$('data-info').onclick = () => {
+  $('coverage').textContent = Object.entries(datasets).map(([drink, data]) => `${drink === 'beer' ? 'Bier' : 'Kaffee'}: ${data.bars.reduce((n, b) => n + b.offers.length, 0)} Angebote aus Karten bei ${data.bars.filter(b => b.offers.length).length} Lokalen`).join('. ') + `. ${entries.length} gemeinsame Einträge/Korrekturen.`;
+  $<HTMLDialogElement>('info').showModal();
 };
-for (const id of ["about", "data-info"])
-  $(id).onclick = () => $<HTMLDialogElement>("info").showModal();
-$("close-info").onclick = () => $<HTMLDialogElement>("info").close();
-$("mobile-view").onclick = () => {
-  const shown = document.body.classList.toggle("show-map");
-  $("mobile-view").textContent = shown
-    ? "Liste anzeigen ↙"
-    : "Karte anzeigen ↗";
-  map.invalidateSize();
-};
-document.addEventListener("keydown", (event) => {
-  if ((event.metaKey || event.ctrlKey) && event.key === "k") {
-    event.preventDefault();
-    $("search").focus();
-  }
-});
-function setDrink(drink: Drink) {
-  f.drink = drink;
-  data = datasets[drink];
-  selected = undefined;
-  $("detail").hidden = true;
-  document.body.classList.toggle("coffee-mode", isCoffee());
-  for (const value of ["beer", "coffee"])
-    $(`drink-${value}`).setAttribute("aria-pressed", String(drink === value));
-  $("drink-title").textContent = isCoffee() ? "Guter Kaffee." : "Gutes Bier.";
-  $("intro-copy").innerHTML = isCoffee()
-    ? "Deine nächste Kaffeepause ist gleich um die Ecke.<br>Finde deinen Lieblingskaffee zum guten Preis."
-    : "Dein nächstes Lieblingsbier ist gleich um die Ecke.<br>Finde heraus, wo Zürich günstig anstösst.";
-  $("filter-title").textContent = isCoffee() ? "DEIN KAFFEE. DEINE PAUSE." : "DEIN BIER. DEINE REGELN.";
-  $<HTMLInputElement>("search").placeholder = "Location, Strasse oder Postleitzahl";
-  for (const id of ["volume-label", "normalize-label", "alcohol-free"]) $(id).hidden = isCoffee();
-  for (const id of ["coffee-label", "coffee-note"]) $(id).hidden = !isCoffee();
-  $<HTMLInputElement>("price").min = isCoffee() ? "2" : "3";
-  $<HTMLInputElement>("price").max = isCoffee() ? "12" : "15";
-  document.querySelector(".range-labels")!.innerHTML = `<span>CHF ${isCoffee() ? 2 : 3}</span><span>CHF ${isCoffee() ? 12 : 15}</span>`;
-  $("legend-cheap").textContent = `bis CHF ${money(cheapLimit())}`;
-  $("legend-expensive").textContent = `über CHF ${money(cheapLimit())}`;
-  document.querySelector(".caption-sub")!.textContent = isCoffee() ? "Eine gute Pause beginnt hier." : "Ein guter Abend beginnt hier.";
-  document.querySelector(".map-bottom > span")!.textContent = isCoffee() ? "DEINE PAUSE, DEIN VIERTEL." : "DEIN FEIERABEND, DEIN VIERTEL.";
-  document.querySelector(".map-bottom > strong")!.textContent = isCoffee() ? "Hoi, Kafi. ↗" : "Prost, Züri. ↗";
-  $("footer-copy").textContent = isCoffee() ? "Mit Liebe zu Zürich. Und zur Kaffeepause." : "Mit Liebe zu Zürich. Und zum Feierabend.";
-  const url = new URL(location.href);
-  if (isCoffee()) url.searchParams.set("drink", "coffee");
-  else url.searchParams.delete("drink");
-  history.replaceState(null, "", url);
-  reset();
-  if (data) {
-    $("coverage").innerHTML = `<strong>${data.bars.length} Locations · ${data.bars.filter((b) => b.offers.length).length} mit ${isCoffee() ? "Kaffee" : "Bier"}preisen</strong><p>Standorte abgerufen: ${date(data.discoveredAt)}<br>Daten aktualisiert: ${date(data.generatedAt)}</p>`;
-  } else {
-    layer.clearLayers();
-    current = [];
-    $("count").textContent = "0";
-    $("coverage-strip").textContent = "";
-    $("coverage").textContent = "Daten nicht verfügbar.";
-    $("results").innerHTML = '<div class="empty"><h3>Die Daten machen kurz Pause.</h3><p>Bitte lade die Seite erneut.</p><button onclick="location.reload()">Erneut versuchen</button></div>';
-  }
+$('close-info').onclick = () => $<HTMLDialogElement>('info').close();
+
+function entryFields() {
+  const isCoffee = $<HTMLSelectElement>('entry-drink').value === 'coffee';
+  const unknown = $<HTMLInputElement>('entry-size-unknown').checked;
+  $('entry-coffee-label').hidden = !isCoffee; $('entry-beer-fields').hidden = isCoffee;
+  $<HTMLInputElement>('entry-volume').disabled = isCoffee || unknown;
+  $<HTMLInputElement>('entry-volume').required = !isCoffee && !unknown;
+  if (unknown) $<HTMLInputElement>('entry-stange').checked = true;
+  $<HTMLInputElement>('entry-stange').disabled = unknown;
 }
-for (const drink of ["beer", "coffee"] as const)
-  $(`drink-${drink}`).onclick = () => setDrink(drink);
-Promise.allSettled((["beer", "coffee"] as const).map(async (drink) => {
-  const r = await fetch(`${import.meta.env.BASE_URL}data/${drink === "beer" ? "bars" : "coffee"}.json`);
-  if (!r.ok) throw Error("Datenabruf fehlgeschlagen");
-  datasets[drink] = await r.json();
-})).then(() => {
-  setDrink(f.drink || initialDrink);
-  if (initialStange && !isCoffee()) chooseBeerSize("stange");
-});
+function openPrice(bar?: Bar, offer?: Offer) {
+  if (!communityReady) return toast('Gemeinsame Preise sind gerade nicht verfügbar. Bitte neu laden.');
+  editing = offer;
+  $<HTMLFormElement>('price-form').reset();
+  $('form-title').textContent = offer ? 'Preis ändern' : 'Preis eintragen';
+  const select = $<HTMLSelectElement>('entry-bar');
+  select.innerHTML = '<option value="">Lokal wählen</option>' + venues.map(b => `<option value="${e(b.id)}">${e(b.name)}${b.address ? ` · ${e(b.address)}` : ''}</option>`).join('');
+  select.value = bar?.id || ''; select.disabled = Boolean(offer);
+  $<HTMLSelectElement>('entry-drink').value = offer ? offer.coffeeType ? 'coffee' : 'beer' : f.drink!;
+  $<HTMLSelectElement>('entry-drink').disabled = Boolean(offer);
+  $<HTMLSelectElement>('entry-coffee').value = offer?.coffeeType || (f.coffeeType === 'all' ? 'creme' : f.coffeeType!);
+  $<HTMLInputElement>('entry-name').value = offer?.name || '';
+  $<HTMLInputElement>('entry-price').value = offer ? String(offer.priceChf) : '';
+  $<HTMLInputElement>('entry-volume').value = String(offer?.volumeMl ? offer.volumeMl / 100 : f.volume === 'stange' ? 3 : f.volume === 'all' ? 5 : Number(f.volume) / 100);
+  $<HTMLInputElement>('entry-stange').checked = offer?.serving === 'stange' || (!offer && f.volume === 'stange');
+  $<HTMLInputElement>('entry-size-unknown').checked = Boolean(offer && !offer.coffeeType && offer.volumeMl === null);
+  $<HTMLInputElement>('entry-alcohol').checked = offer?.alcoholFree ?? f.alcoholFree;
+  $<HTMLInputElement>('entry-date').value = zurichToday(); $<HTMLInputElement>('entry-date').max = zurichToday();
+  $<HTMLInputElement>('entry-source').value = offer?.sourceUrl || '';
+  $('form-error').hidden = true;
+  entryFields();
+  $<HTMLDialogElement>('price-dialog').showModal();
+  if (offer) $<HTMLInputElement>('entry-price').focus();
+}
+$('new-price').onclick = () => openPrice();
+$('entry-drink').onchange = entryFields; $('entry-size-unknown').onchange = entryFields;
+$('cancel-price').onclick = () => { if (!saving) $<HTMLDialogElement>('price-dialog').close(); };
+$('price-dialog').addEventListener('cancel', event => { if (saving) event.preventDefault(); });
+$('price-form').onsubmit = async event => {
+  event.preventDefault(); if (saving) return;
+  $('form-error').hidden = true;
+  try {
+    const drink = $<HTMLSelectElement>('entry-drink').value as Drink;
+    const input = validateInput({
+      id: editing?.communityId, revision: editing?.revision || 0, targetKey: editing ? editing.originalKey || offerKey(editing) : undefined,
+      barId: $<HTMLSelectElement>('entry-bar').value, drink,
+      name: $<HTMLInputElement>('entry-name').value, priceChf: $<HTMLInputElement>('entry-price').valueAsNumber,
+      volumeMl: drink === 'coffee' || $<HTMLInputElement>('entry-size-unknown').checked ? null : $<HTMLInputElement>('entry-volume').valueAsNumber * 100,
+      coffeeType: drink === 'coffee' ? $<HTMLSelectElement>('entry-coffee').value : undefined,
+      serving: drink === 'beer' && $<HTMLInputElement>('entry-stange').checked ? 'stange' : undefined,
+      alcoholFree: drink === 'coffee' || $<HTMLInputElement>('entry-alcohol').checked,
+      observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
+    } satisfies PriceInput, venues);
+    saving = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = 'Speichern …';
+    const response = await fetch('/api/prices', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
+    const result = await response.json().catch(() => { throw new Error('Speichern gerade nicht möglich. Bitte erneut versuchen.'); });
+    if (!response.ok) {
+      if (response.status === 409 && await loadCommunity()) rebuild();
+      throw new Error(result.error || 'Speichern fehlgeschlagen.');
+    }
+    const entry = result.entry as PriceEntry;
+    entries = [...entries.filter(x => x.id !== entry.id), entry];
+    f.drink = drink; selected = input.barId;
+    // Keep the saved portion visible even if it differs from the current filter.
+    f.mode = 'glass'; f.alcoholFree = input.alcoholFree;
+    if (drink === 'coffee') f.coffeeType = input.coffeeType;
+    else f.volume = input.serving === 'stange' ? 'stange' : String(input.volumeMl);
+    if (!Array.from($<HTMLSelectElement>('volume').options).some(x => x.value === f.volume)) f.volume = 'all';
+    f.max = Math.max(f.max, input.priceChf); $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
+    $<HTMLInputElement>('alcohol-free').checked = f.alcoholFree;
+    $<HTMLDialogElement>('price-dialog').close(); rebuild(); showView(false);
+    const bar = bars.find(b => b.id === input.barId); if (bar) map.setView([bar.lat, bar.lon], 16);
+    toast('Gespeichert. Für alle sichtbar.');
+  } catch (error) {
+    $('form-error').textContent = error instanceof Error && !['TypeError', 'TimeoutError', 'AbortError'].includes(error.name) ? error.message : 'Speichern fehlgeschlagen. Bitte Verbindung prüfen und erneut versuchen.';
+    $('form-error').hidden = false;
+  } finally { saving = false; $<HTMLButtonElement>('save-price').disabled = false; $<HTMLButtonElement>('cancel-price').disabled = false; $('save-price').textContent = 'Speichern'; }
+};
+async function loadCommunity() {
+  try {
+    const response = await fetch('/api/prices', { cache: 'no-store', signal: AbortSignal.timeout(20000) });
+    if (!response.ok) throw new Error();
+    const result = await response.json();
+    if (!Array.isArray(result.entries)) throw new Error();
+    entries = result.entries; communityReady = true;
+    $<HTMLButtonElement>('new-price').disabled = !venues.length;
+    return true;
+  } catch { communityReady = false; $<HTMLButtonElement>('new-price').disabled = true; return false; }
+}
+async function init() {
+  const [beerResult, coffeeResult, loadedCommunity] = await Promise.all([
+    fetch(`${import.meta.env.BASE_URL}data/bars.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    fetch(`${import.meta.env.BASE_URL}data/coffee.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    loadCommunity(),
+  ]);
+  if (beerResult) datasets.beer = beerResult;
+  if (coffeeResult) datasets.coffee = coffeeResult;
+  venues = allVenues(datasets);
+  $<HTMLButtonElement>('new-price').disabled = !communityReady || !venues.length;
+  const errors = [!beerResult ? 'Bierdaten konnten nicht geladen werden.' : '', !coffeeResult ? 'Kaffeedaten konnten nicht geladen werden.' : '', !loadedCommunity ? 'Gemeinsame Einträge nicht verfügbar. Zum Eintragen bitte später neu laden.' : ''].filter(Boolean);
+  if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
+  rebuild();
+}
+void init();

@@ -1,6 +1,6 @@
 # wogünstig 🍻 ☕
 
-**Gutes Bier. Guter Kaffee. Guter Preis.** Eine schlichte, responsive Zürich-Karte für den Feierabend und die Kaffeepause. TypeScript, Leaflet und ein Python-Scraper – ohne API-Key, Benutzerkonto oder eigenes Backend.
+Eine einfache Zürich-Karte für Bier- und Kaffeepreise. TypeScript, Leaflet, Python-Scraper und eine Vercel-API für gemeinsam gespeicherte Preise. Keine Registrierung erforderlich.
 
 ## Was drin ist
 
@@ -8,13 +8,14 @@
 - Kaffee nach Sorte vergleichen: Café crème/Kaffee, Espresso, doppelter Espresso, Ristretto, Cappuccino, Latte macchiato, Milchkaffee/Caffè latte, Flat White, Americano und Filterkaffee. Preise gelten **pro Getränk**, ohne erfundene Tassengrössen oder 5-dl-Umrechnung.
 - Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.
 - Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten/Restaurant/Café, Terrasse und alkoholfreies Bier.
-- Direktwahl **Stange / 3 dl** und **Grosses / 5 dl**. Die Stangen-Auswahl zeigt den tatsächlichen Glaspreis und ist unter `?size=stange` direkt verlinkbar. Sie enthält 3-dl-Angebote sowie ausdrücklich als Stange bezeichnete 3–3.3-dl-Portionen oder Angebote ohne Mengenangabe. Bekannte 2-dl-Portionen und gewöhnliche 3.3-dl-Flaschen gehören nicht dazu.
+- Grössenfilter **Stange / 3 dl** und **5 dl**. Die Stangen-Auswahl zeigt den tatsächlichen Glaspreis und ist unter `?size=stange` direkt verlinkbar. Sie enthält 3-dl-Angebote sowie ausdrücklich als Stange bezeichnete 3–3.3-dl-Portionen oder Angebote ohne Mengenangabe. Bekannte 2-dl-Portionen und gewöhnliche 3.3-dl-Flaschen gehören nicht dazu.
 - Startansicht mit **tatsächlich angebotenen 5-dl-Portionen**. Über „Genau 3 dl“ lässt sich die Stangen-Suche zusätzlich auf belegte 3 dl beschränken.
-- Standardvergleich nach **rechnerischem Preis pro 5 dl**, optional nach Glaspreis. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal. Die Stangen-Direktwahl und der 3-dl-Filter wechseln automatisch zum Glaspreis. Stangen ohne Mengenangabe zeigen „Grösse nicht angegeben“ und werden aus dem rechnerischen 5-dl-Vergleich ausgeschlossen.
+- Standardvergleich nach **tatsächlichem Glaspreis**, optional auf 5 dl umgerechnet. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal. Die Stangen-Direktwahl und der 3-dl-Filter wechseln automatisch zum Glaspreis. Stangen ohne Mengenangabe zeigen „Grösse nicht angegeben“ und werden aus dem rechnerischen 5-dl-Vergleich ausgeschlossen.
 - Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.
 - Quellenlink, Portionsgrösse und Abrufdatum für jedes gefundene Angebot.
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
-- Mobile Karten-/Listenansicht, Tastaturbedienung und transparente Datenabdeckung.
+- Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.
+- **Preis eintragen**, **Preis hinzufügen** und **Ändern**: Bier und Kaffee bei bekannten Lokalen ergänzen oder korrigieren. Alle Besucher sehen die gespeicherten Preise. Änderungen werden getrennt vom Scraper gespeichert und als ungeprüfte Einträge gekennzeichnet.
 - Wöchentlicher Scraping-Workflow, CI und optionaler GitHub-Pages-Workflow.
 
 ## Ehrlicher Datenstand
@@ -50,7 +51,7 @@ npm ci
 npm run dev
 ```
 
-Die App läuft unter `http://127.0.0.1:5173`. Der eingecheckte Datenbestand funktioniert ohne laufenden Scraper. Kartenkacheln und Schriftarten brauchen eine Internetverbindung.
+Die App läuft unter `http://127.0.0.1:5173`. Der eingecheckte Datenbestand funktioniert ohne laufenden Scraper. Kartenkacheln brauchen eine Internetverbindung. Die Oberfläche verwendet Systemschriften. Gemeinsame Einträge benötigen die Vercel-API; ohne sie bleibt der statische Datenbestand nutzbar, das Speichern ist deaktiviert.
 
 ```sh
 npm test
@@ -58,7 +59,7 @@ npm run build
 npm run preview
 ```
 
-`dist/` ist eine statische Website. Für einen Unterpfad: `npm run build -- --base=/woguenstig/`.
+`dist/` enthält das statische Frontend. Die vollständige App benötigt zusätzlich `api/prices.ts`. Für einen Unterpfad: `npm run build -- --base=/woguenstig/`.
 
 ## Scraper starten
 
@@ -144,7 +145,7 @@ tests/                      Preis-, Filter- und Parser-Regressionstests
 
 ## Quellen und Nutzung
 
-Standorte: [© OpenStreetMap-Mitwirkende](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Die OSM-abgeleiteten Standortdaten bleiben unter dieser Datenbanklizenz. Basiskarte: [OpenStreetMap](https://operations.osmfoundation.org/policies/tiles/). Getränkepreise stammen aus den im Datensatz verlinkten Originalkarten. Gespeichert werden strukturierte Preisfakten und kurze Belegzeilen, keine vollständigen Speisekarten. Schriften werden von Google Fonts geladen.
+Standorte: [© OpenStreetMap-Mitwirkende](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Die OSM-abgeleiteten Standortdaten bleiben unter dieser Datenbanklizenz. Basiskarte: [OpenStreetMap](https://operations.osmfoundation.org/policies/tiles/). Getränkepreise stammen aus den im Datensatz verlinkten Originalkarten. Gespeichert werden strukturierte Preisfakten und kurze Belegzeilen, keine vollständigen Speisekarten. Es werden keine externen Schriften geladen.
 
 Vor öffentlichem Betrieb die Nutzungsbedingungen und Kapazitätsgrenzen der Kartenanbieter sowie die Anforderungen der eigenen Bereitstellung prüfen. Der Code steht unter MIT; Rechte an den Quelldaten und fremden Inhalten bleiben separat.
 
@@ -158,3 +159,32 @@ vercel --prod
 ```
 
 `vercel.json` konfiguriert den Vite-Build. Der Scraper läuft weiterhin in GitHub Actions; Vercel liefert den eingecheckten Datenbestand statisch aus. Nach Datenupdates erneut deployen oder die GitHub-Integration in Vercel verbinden. `.vercelignore` hält die lokale Python-Umgebung und den Scraper aus dem Deployment-Upload.
+
+## Gemeinsame Preise
+
+Die API unter `/api/prices` liest und schreibt in einem privaten Vercel-Blob-Store. Ausschliesslich der Server erhält `BLOB_READ_WRITE_TOKEN`; es gibt keinen öffentlichen Upload-Token. Die veröffentlichte API gibt nur Preise zurück, keine internen Rate-Limit-Daten oder Historie.
+
+- Produktion: `prices/production.json`; Entwicklung und Vorschau: `prices/development.json`.
+- Korrekturen ersetzen das passende Angebot in der Anzeige, ohne die ursprünglichen JSON-Dateien zu verändern. Die Zuordnung hängt nicht am bisherigen Preis oder Quellenlink. Ein erneuter Scraper-Lauf überschreibt diese Korrekturen deshalb nicht.
+- Validierung: bekanntes Lokal, gültige Sorte/Menge, CHF 0.50–50, echtes Datum bis heute und optionale HTTP(S)-Quelle. Keine Umrechnung beim Eintragen.
+- Gleichzeitige Schreibvorgänge verwenden ETags; überholte Formularversionen erhalten HTTP 409 statt Änderungen zu überschreiben. Frühere Versionen bleiben intern in `history` erhalten.
+- 20 Schreibvorgänge pro Stunde und Besucherkennung. Kennungen sind mit dem Speichergeheimnis und Tagesdatum abgeleitete IP-Hashes; keine IP-Adressen im gespeicherten JSON. Abgelaufene Kennungen werden beim nächsten Schreiben entfernt.
+- Kein Login und keine Vorabmoderation. Öffentliche Einträge sind als „Eingetragen · nicht geprüft“ sichtbar.
+
+Lokale Entwicklung mit API:
+
+```sh
+vercel env pull .env.local
+vercel dev
+```
+
+Speicher für eine neue Installation verbinden:
+
+```sh
+vercel blob create-store woguenstig-prices --access private --region fra1 --yes
+vercel deploy --prod --yes
+```
+
+`.env.local` bleibt ignoriert. GitHub Pages kann nur den statischen Datenbestand darstellen; für öffentlich gespeicherte Einträge ist das Vercel-Deployment erforderlich.
+
+`npm run test:storage` prüft den verbundenen Blob-Store mit temporären, anschliessend gelöschten Testobjekten. Dazu muss `.env.local` vorhanden sein. Der Test prüft aufeinanderfolgende und gleichzeitige Schreibvorgänge inklusive Versionskonflikten und wachsender Historie. Im normalen Testlauf wird dieser Integrationstest übersprungen.

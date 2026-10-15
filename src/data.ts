@@ -6,7 +6,10 @@ export type Offer = {
   priceChf: number;
   sourceUrl: string;
   observedAt: string;
-  confidence: "automatic" | "reviewed";
+  confidence: "automatic" | "reviewed" | "community";
+  communityId?: string;
+  revision?: number;
+  originalKey?: string;
   evidence: string;
   alcoholFree: boolean;
 };
