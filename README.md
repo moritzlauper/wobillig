@@ -8,8 +8,9 @@
 - Kaffee nach Sorte vergleichen: Café crème/Kaffee, Espresso, doppelter Espresso, Ristretto, Cappuccino, Latte macchiato, Milchkaffee/Caffè latte, Flat White, Americano und Filterkaffee. Preise gelten **pro Getränk**, ohne erfundene Tassengrössen oder 5-dl-Umrechnung.
 - Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.
 - Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten/Restaurant/Café, Terrasse und alkoholfreies Bier.
-- Startansicht mit **tatsächlich angebotenen 5-dl-Portionen**. Andere Grössen sind über den Filter verfügbar.
-- Standardvergleich nach **rechnerischem Preis pro 5 dl**, optional nach Glaspreis. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal.
+- Direktwahl **Stange / 3 dl** und **Grosses / 5 dl**. Die Stangen-Auswahl zeigt den tatsächlichen Glaspreis und ist unter `?size=stange` direkt verlinkbar. Sie enthält 3-dl-Angebote sowie ausdrücklich als Stange bezeichnete 3–3.3-dl-Portionen oder Angebote ohne Mengenangabe. Bekannte 2-dl-Portionen und gewöhnliche 3.3-dl-Flaschen gehören nicht dazu.
+- Startansicht mit **tatsächlich angebotenen 5-dl-Portionen**. Über „Genau 3 dl“ lässt sich die Stangen-Suche zusätzlich auf belegte 3 dl beschränken.
+- Standardvergleich nach **rechnerischem Preis pro 5 dl**, optional nach Glaspreis. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal. Die Stangen-Direktwahl und der 3-dl-Filter wechseln automatisch zum Glaspreis. Stangen ohne Mengenangabe zeigen „Grösse nicht angegeben“ und werden aus dem rechnerischen 5-dl-Vergleich ausgeschlossen.
 - Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.
 - Quellenlink, Portionsgrösse und Abrufdatum für jedes gefundene Angebot.
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
@@ -18,7 +19,7 @@
 
 ## Ehrlicher Datenstand
 
-Der Datenstand vom **15. Oktober 2026** enthält **404 Locations** in der administrativen Stadt Zürich, **861 Preisangebote bei 146 Locations** und **95 Locations mit alkoholhaltigen 5-dl-Angeboten** (zuvor 34). Die erweiterte Suche hat 1’536 Restaurants/Cafés aus OSM betrachtet und 849 zusätzliche, eindeutig zuordenbare Websites geprüft. Neue Restaurants/Cafés werden nur mit gefundenen Bierpreisen veröffentlicht. Dies sind Quellendaten, keine Demo-Preise. Die Zahlen ändern sich bei späteren Läufen.
+Der Datenstand vom **15. Oktober 2026** enthält **405 Locations** in der administrativen Stadt Zürich, **878 Preisangebote bei 149 Locations** und **95 Locations mit alkoholhaltigen 5-dl-Angeboten** (zuvor 34). Die erweiterte Suche hat 1’536 Restaurants/Cafés aus OSM betrachtet und 849 zusätzliche, eindeutig zuordenbare Websites geprüft. Neue Restaurants/Cafés werden nur mit gefundenen Bierpreisen veröffentlicht. Dies sind Quellendaten, keine Demo-Preise. Die Zahlen ändern sich bei späteren Läufen.
 
 Beispiele für echte 5-dl-Portionen aus den Originalkarten: Rheinfelder Bierhalle CHF 6.80, New Bombay (Erdinger) CHF 6.90, Amara CHF 6.80, Zum Guten Glück (Adler Lager) CHF 6.80 und La Stazione in Oerlikon CHF 5.50. Im El Lokal erkennt der Parser jetzt auch das Appenzeller vom Fass für CHF 8.50. Die Quellen sind direkt beim jeweiligen Angebot verlinkt.
 
@@ -28,7 +29,11 @@ Der Scraper folgt auch eingebetteten PDFs, PDF-Inhaltsverzeichnissen und verlink
 
 Fünf grafische oder mehrdeutige Originalkarten sind zusätzlich in `scraper/reviewed_menus.json` visuell geprüft hinterlegt. Diese Angebote erscheinen als **manuell geprüft** und werden nur bei identischer SHA-256-Prüfsumme der erneut abgerufenen Quelle übernommen. Bei als exklusiv markierten Prüfungen ersetzen diese Einträge die automatische Erkennung für dieselbe Karte. Eine geänderte Datei verlangt eine erneute Prüfung; alte geprüfte Preise daraus werden nicht blind übernommen. `source_scopes.json` verhindert bei bekannten gemeinsamen Websites, dass Karten anderer Filialen oder archivierte Menüs zugeordnet werden.
 
-Mehrdeutige Tabellen, nicht geprüfte Bilder, reine JavaScript-Menüs, fehlende Grössen, Ginger Beer, Mineralwasser gleicher Marken, Catering-Karten, erkannte Liefer-/Bestellseiten, Take-away-Abschnitte und bedingte Angebote werden ausgelassen. 5 dl umfasst Fass- und Flaschenbier; die Ausschankart ist nicht flächendeckend klassifiziert. Automatisch erkannte Preise sind als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %. Die Oberfläche trennt Gesamtangebote von den Locations mit einem zu den aktuellen Filtern passenden Preis.
+Mehrdeutige Tabellen, nicht geprüfte Bilder, reine JavaScript-Menüs, fehlende Grössen (ausser ausdrücklich als Stange bepreiste Portionen), Ginger Beer, Mineralwasser gleicher Marken, Catering-Karten, erkannte Liefer-/Bestellseiten, Take-away-Abschnitte und bedingte Angebote werden ausgelassen. 5 dl umfasst Fass- und Flaschenbier; die Ausschankart ist nicht flächendeckend klassifiziert. Automatisch erkannte Preise sind als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %. Die Oberfläche trennt Gesamtangebote von den Locations mit einem zu den aktuellen Filtern passenden Preis.
+
+### Stangenpreise
+
+Die Stangen-Auswahl umfasst **146 Angebote**; **73 Locations** haben einen passenden alkoholhaltigen Preis. Die gezielte Nachsuche ergänzt 17 Angebote aus Originalkarten, etwa bei Gabbiano, Hot Pasta und Tramblu (je 3 dl für CHF 4.80), Handelshof (3 dl für CHF 5.50) und La Stazione (Stange für CHF 4.50, Menge nicht angegeben). Die Abrufdaten der wiederverwendeten Originaldokumente bleiben erhalten. Der reguläre Scraper erkennt diese Formate bei künftigen Läufen ebenfalls.
 
 ### Kaffee
 
@@ -95,7 +100,7 @@ Beim Kaffee ergänzt `scraper/coffee_menu_urls.json` die allgemeinen Menühinwei
 2. Hinterlegte Website und zusätzliche Original-Menülinks aus `scraper/menu_urls.json` verwenden.
 3. `robots.txt` lesen und respektieren. Bei Fehlern oder unklarer Erlaubnis wird die Website ausgelassen. Crawl-Delay und Request-Rate werden berücksichtigt, mindestens eine Sekunde Pause pro Host. Keine Login-, CAPTCHA- oder Zugriffsschutz-Umgehung.
 4. Begrenzt HTML-Menüseiten, eingebettete PDFs und in PDFs verlinkte Unterkarten lesen. Externe Navigation nur für direkt verlinkte PDF-Dateien und den ausdrücklich verlinkten Menüanbieter `api2.lunchgate.ch`; jeder Redirect wird erneut geprüft. Private/Loopback-Adressen und ungewöhnliche Ports werden abgewiesen.
-5. Nur Bierzeilen mit expliziter Grösse und zuordenbarem Preis übernehmen. CHF 2–25 und 100–1000 ml sind Plausibilitätsgrenzen. Fehlende Preise werden nie geschätzt.
+5. Nur Bierzeilen mit expliziter Grösse und zuordenbarem Preis übernehmen; bei ausdrücklich als Stange bepreisten Portionen darf die Grösse fehlen. Dann wird `volumeMl: null` mit `serving: "stange"` gespeichert, niemals eine Menge ergänzt. CHF 2–25 und 100–1000 ml sind Plausibilitätsgrenzen. Fehlende Preise werden nie geschätzt.
 6. `public/data/bars.json` atomar schreiben. Ein fehlgeschlagener Abruf erhält den letzten bekannten Preis samt ursprünglichem Datum; erfolgreich gelesene, aber preislose Karten können alte Angebote entfernen. Bei teilweise fehlgeschlagenen Crawls können einzelne Angebote fehlen.
 
 `scraper/discovery_checks.json` speichert den Prüfstand der zusätzlichen Kandidaten, damit begrenzte Läufe rotieren. Bereits aufgenommene Restaurants bleiben beim nächsten Standortimport erhalten. `website_overrides.json` ergänzt geprüfte offizielle Websites, wenn OSM keine oder eine veraltete URL enthält. `--audit-dir /tmp/beer-audit --review-only` archiviert die abgerufenen Originaldokumente und speichert neue Treffer zur Prüfung, ohne die veröffentlichte Karte zu verändern.

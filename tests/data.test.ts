@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import {
   filterBars,
   bestOffer,
+  isStange,
+  selectBeerSize,
   cost,
   safeUrl,
   type Bar,
@@ -116,5 +118,32 @@ describe("coffee comparisons", () => {
     const noMatch = { ...cafe, id: "node/3", offers: [espresso] };
     expect(filterBars([cafe, noMatch, cheaper], coffee).map(x => x.id)).toEqual(["node/2", "node/1", "node/3"]);
     expect(filterBars([noMatch], { ...coffee, unknown: false })).toHaveLength(0);
+  });
+});
+
+
+describe("Stange prices", () => {
+  const unknownSize = { ...b.offers[0], name: "Stange", serving: "stange" as const, volumeMl: null, priceChf: 4.5 };
+  const named330 = { ...unknownSize, volumeMl: 330, priceChf: 5.3 };
+  const bar = { ...b, offers: [...b.offers, unknownSize, named330] };
+  it("switches from normalized half litres to the actual serving price", () => {
+    const filters = { ...f, mode: "half" as const } as Filters;
+    selectBeerSize(filters, "stange");
+    expect(filters.mode).toBe("glass");
+    expect(bestOffer(bar, filters)).toBe(unknownSize);
+    selectBeerSize(filters, "300");
+    expect(bestOffer(bar, filters)?.priceChf).toBe(5);
+  });
+  it("includes 3 dl and explicitly named small Stangen, not arbitrary bottles or large servings", () => {
+    expect(isStange(b.offers[0])).toBe(true);
+    expect(isStange(named330)).toBe(true);
+    expect(isStange({ ...b.offers[0], volumeMl: 330 })).toBe(false);
+    expect(isStange({ ...named330, volumeMl: 500 })).toBe(false);
+    expect(isStange({ ...named330, volumeMl: 200 })).toBe(false);
+  });
+  it("never normalizes a serving whose volume is unknown", () => {
+    expect(cost(unknownSize, "half")).toBe(Infinity);
+    expect(bestOffer({ ...bar, offers: [unknownSize] }, { ...f, mode: "half" })).toBeUndefined();
+    expect(filterBars([{ ...bar, offers: [unknownSize] }], { ...f, mode: "half", unknown: false })).toHaveLength(0);
   });
 });

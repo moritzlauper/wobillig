@@ -2,7 +2,7 @@
 from io import BytesIO
 import re
 import pdfplumber
-from scraper.extract import BEER, SIZE, extract_offers
+from scraper.extract import BEER, SIZE, extract_offers, extract_stange_prefix
 
 BEER_HEADING = re.compile(r'\b(?:biere?|beers?|flaschenbier[e]?|offenbier[e]?|draught|draft|bottled|vom fass)\b', re.I)
 STOP_HEADING = re.compile(r'\b(?:wein[e]?|wine[s]?|soft|getränke|cocktails?|spirituosen|shots|aperitif|kaffee|coffee|tee|cider|most|säfte|spritz|gin|whisk\w*)\b', re.I)
@@ -162,6 +162,10 @@ def extract_pdf(body, url, stamp):
                 lines = region.extract_text_lines(x_tolerance=2, y_tolerance=3)
                 text = '\n'.join(row['text'] for row in lines)
                 direct = extract_offers(text, url, stamp, continuations=True)
+                for row in lines:
+                    for offer in extract_stange_prefix(row['text'],url,stamp):
+                        offer['evidence']=f'PDF S. {number}: '+offer['evidence']
+                        direct.append(offer)
                 alcohol_free = False
                 for row in lines:
                     if re.fullmatch(r'(?:BIER\s+)?ALKOHOLFREI(?:ES BIER)?',row['text'],re.I):
@@ -170,7 +174,7 @@ def extract_pdf(body, url, stamp):
                         alcohol_free = False
                     if alcohol_free:
                         for offer in direct:
-                            if offer['evidence'] == row['text']:
+                            if offer['evidence'] in (row['text'],f'PDF S. {number}: '+row['text']):
                                 offer['alcoholFree'] = True
                 offers.extend(direct)
                 header_sizes=[]

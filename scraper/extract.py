@@ -1,4 +1,5 @@
-"""Conservative price extraction: require a named beer, explicit size and price.
+"""Conservative price extraction: named beers with size and price, or explicitly
+priced Stangen whose missing capacity remains unknown.
 
 Ambiguous tables are intentionally skipped rather than inventing prices. This
 extractor does not OCR images or infer column alignment in broken PDF text.
@@ -8,6 +9,30 @@ import re
 BEER = re.compile(r'\b(biere?|beers?|lager(?:bier)?|pils(?:e?ner)?|ipa|pale ale|stout|porter|weizen|weissbier|weißbier|helles|quöllfrisch|feldschlösschen|calanda|turbinenbräu|chopfab|heineken|guinness|erdinger|schützengarten|appenzeller|valaisanne|braufrisch|eichhof|amber|hofbräu|amboss|moretti|poretti|corona|schneider|grimbergen|sonnwendlig|lokalbier|schiffbrau|adler panix|hürlimann|augustiner|san miguel|super bock|1664 blanc|peroni|asahi|sapporo|red stripe|singha|chang|tiger|brooklyn|paulaner|falken|warsteiner|hoegaarden|franziskaner|budweiser|bitburger|jever|brew.?dog|tegernseer?|maisel|kilkenny|fullers|five lamps|hop house|1664)\b', re.I)
 SIZE = re.compile(r'(?<![\d.])(\d+(?:[.,]\d+)?)\s*(ml|cl|dl|l)\b', re.I)
 PRICE = re.compile(r'(?:CHF\s*)?(\d{1,2}[.,]\d{1,2}|\d{1,2}\.\s*[–—-])(?:\s*(?:CHF|Fr\.?))?', re.I)
+STANGE = re.compile(r'\bstange\b', re.I)
+# A named beer serving is also an explicit product, even without a brand.
+BEER = re.compile(BEER.pattern + r'|\bstange\b', re.I)
+
+def extract_stange_prefix(text, source_url, observed_at):
+    """A complete, explicitly sized Stange may precede a second PDF column.
+
+    Never cross a product or missing price: the first size must be immediately
+    followed by its own price, and the prefix still passes normal validation.
+    """
+    size=SIZE.search(text)
+    if not size:
+        return []
+    tail=text[size.end():]
+    price=re.match(r'\s*(?:«Stange»\s*)?(?:CHF\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?(?:\s*CHF)?(?=\s+[A-Za-zÄÖÜäöü]|$)',tail,re.I)
+    if not price:
+        return []
+    prefix=text[:size.end()+price.end()]
+    if not STANGE.search(prefix):
+        return []
+    offers=extract_offers(prefix,source_url,observed_at)
+    for offer in offers:
+        offer['evidence']=text[:350]
+    return offers
 
 def extract_offers(text, source_url, observed_at, *, continuations=False):
     offers = []
@@ -28,6 +53,8 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         # Printed brackets/leader dots are layout, not additional product data.
         line = re.sub(r'\((\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l))\)', r'\1', line, flags=re.I)
         line = re.sub(r'((?:ml|cl|dl|l)\b)\s*\((?:flasche|stange|offen|bottle)\)', r'\1', line, flags=re.I)
+        line = re.sub(r'((?:ml|cl|dl|l)\b)\s*«(?:stange|herrgöttli|es grosses)»', r'\1', line, flags=re.I)
+        line = re.sub(r'((?:ml|cl|dl|l)\b)\s+offen\b', r'\1', line, flags=re.I)
         line = re.sub(r'(?:\.\s*){3,}', ' ', line)
         # Explicit alternate notations, never infer a missing unit or ABV.
         line = re.sub(r'(\d+[.,])\s+(\d+)\s*%', r'\1\2%', line)
@@ -57,6 +84,17 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             continue
         sizes = list(SIZE.finditer(line))
         if not sizes:
+            # A menu can price a "Stange" without specifying its capacity.
+            # Reuse the normal product/price validation with a parsing-only
+            # sentinel, then discard that volume: never publish an assumed 3 dl.
+            match=re.fullmatch(r'(.*?\bstange\b.*?)\s+((?:CHF\s*)?\d{1,2}(?:[.,]\d{1,2}|\.\s*[–—-])?(?:\s*(?:CHF|Fr\.?))?)',line,re.I)
+            if (match and not re.search(r'\bgross\w*|\blarge\b|\bbig\b',match[1],re.I) and
+                (BEER.search(STANGE.sub('',match[1])) or re.fullmatch(r'stange(?:\s*[/|]\s*(?:stange\s*)?panach[eé])?',match[1],re.I))):
+                for offer in extract_offers(match[1]+' 100ml '+match[2],source_url,observed_at):
+                    key=(offer['name'].casefold(),None,offer['priceChf'])
+                    if key not in seen:
+                        seen.add(key)
+                        offers.append({**offer,'volumeMl':None,'serving':'stange','evidence':evidence[:350]})
             continue
         name = line[:sizes[0].start()].strip(' |:–—-')
         if re.search(r'\bappenzeller\b.*\b(?:laut|still)\b',name,re.I):
@@ -111,6 +149,8 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
                 'sourceUrl':source_url, 'observedAt':observed_at,
                 'confidence':'automatic', 'evidence':evidence[:350],
                 'alcoholFree':bool(re.search(r'alkoholfrei|alcohol.?free|non[ .-]*alcoholic|sans alcool|ohne alk|\bzero\b|\b0[.,]0\b',name,re.I)) or bool(abvs and all(float(v.replace(',','.'))<=.5 for v in abvs))})
+            if STANGE.search(clean_name) and not re.search(r'\bgross\w*|\blarge\b|\bbig\b',clean_name,re.I):
+                offers[-1]['serving']='stange'
             if len(sizes)==1:
                 # Keep ABV metadata for the next portion's alcohol-free flag.
                 previous_name=name

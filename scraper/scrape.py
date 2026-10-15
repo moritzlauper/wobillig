@@ -19,7 +19,7 @@ from urllib.robotparser import RobotFileParser
 
 from bs4 import BeautifulSoup
 import requests
-from scraper.extract import extract_offers, BEER, SIZE
+from scraper.extract import extract_offers, BEER, SIZE, STANGE
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 from scraper.coffee import extract_coffees, coffee_pdf, coffee_types
 
@@ -217,7 +217,7 @@ def html_content(body,url):
         name=cell.get_text(' ',strip=True)
         if len(name)>160 or not (BEER.search(name) or coffee_types(name)):
             continue
-        if not SIZE.search(name) and not coffee_types(name):
+        if not SIZE.search(name) and not STANGE.search(name) and not coffee_types(name):
             continue
         sibling=cell.find_next_sibling()
         if sibling:

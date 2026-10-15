@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T08:29:11.711307+00:00",
+  "generatedAt": "2026-10-15T09:36:31.195143+00:00",
   "discoveredAt": "2026-10-14T20:34:18.309225+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -870,10 +870,32 @@
           "confidence": "automatic",
           "evidence": "Bio Amber Alkoholfrei 33cl 5.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Stange",
+          "volumeMl": 330,
+          "priceChf": 5.3,
+          "sourceUrl": "https://amara-zurich.ch/02_Amara_Getraenkekarte.pdf",
+          "observedAt": "2026-10-15T06:52:02.816462+00:00",
+          "confidence": "automatic",
+          "evidence": "Stange 33cl 5.30",
+          "alcoholFree": false,
+          "serving": "stange"
+        },
+        {
+          "name": "Stange Panache",
+          "volumeMl": 330,
+          "priceChf": 5.3,
+          "sourceUrl": "https://amara-zurich.ch/02_Amara_Getraenkekarte.pdf",
+          "observedAt": "2026-10-15T06:52:02.816462+00:00",
+          "confidence": "automatic",
+          "evidence": "Stange Panache 33cl 5.30",
+          "alcoholFree": false,
+          "serving": "stange"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T07:12:20.179998+00:00"
+      "checkedAt": "2026-10-15T09:36:23.134521+00:00"
     },
     {
       "id": "node/656535507",
@@ -3538,10 +3560,21 @@
           "confidence": "automatic",
           "evidence": "Feldschlösschen Alkoholfrei 0% / 3.3 dl / 5.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Stange Hopfenperle/",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "sourceUrl": "https://handelshof.ch/menue/",
+          "observedAt": "2026-10-15T07:31:03.449624+00:00",
+          "confidence": "automatic",
+          "evidence": "Stange Hopfenperle 4.8% / 3.0 dl / 5.50",
+          "alcoholFree": false,
+          "serving": "stange"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T08:18:03.184189+00:00"
+      "checkedAt": "2026-10-15T09:36:25.515966+00:00"
     },
     {
       "id": "node/268468109",
@@ -4722,12 +4755,35 @@
       "type": "bar",
       "address": "Hönggerstrasse 3",
       "postcode": "8037",
-      "website": null,
+      "website": "https://www.fuerdich.ch/damm/kontakt",
       "openingHours": "Mo-Fr 17:00-23:00; Sa 15:00-23:59",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-15T07:08:43.381427+00:00"
+      "offers": [
+        {
+          "name": "Stange",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.fuerdich.ch/damm-drinks",
+          "observedAt": "2026-10-15T07:33:55.452783+00:00",
+          "confidence": "automatic",
+          "evidence": "Stange 6.-",
+          "alcoholFree": false,
+          "serving": "stange"
+        },
+        {
+          "name": "Stange",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.fuerdich.ch/damm-drinks",
+          "observedAt": "2026-10-15T07:33:55.452783+00:00",
+          "confidence": "automatic",
+          "evidence": "Stange 6.5",
+          "alcoholFree": false,
+          "serving": "stange"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T09:36:25.249839+00:00"
     },
     {
       "id": "node/914703164",
@@ -4952,9 +5008,32 @@
       "website": "https://donweber.ch/",
       "openingHours": null,
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T07:08:44.275444+00:00"
+      "offers": [
+        {
+          "name": "Stange",
+          "volumeMl": 300,
+          "priceChf": 5.8,
+          "sourceUrl": "https://donweber.ch/karten/01_DON_Getraenke.pdf",
+          "observedAt": "2026-10-15T06:52:37.188377+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 4: Stange 3 dl 5.8 Grosses Bier 5 dl 8.6",
+          "alcoholFree": false,
+          "serving": "stange"
+        },
+        {
+          "name": "Stange",
+          "volumeMl": 300,
+          "priceChf": 6.5,
+          "sourceUrl": "https://donweber.ch/karten/01_DON_Getraenke.pdf",
+          "observedAt": "2026-10-15T06:52:37.188377+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 4: Stange 3 dl 6.5 Grosses Bier 5 dl 9.8",
+          "alcoholFree": false,
+          "serving": "stange"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T09:36:27.527299+00:00"
     },
     {
       "id": "node/560519073",
@@ -5274,7 +5353,8 @@
           "observedAt": "2026-10-15T07:12:36.877453+00:00",
           "confidence": "automatic",
           "evidence": "Appenzeller-Bier fliessend – Stange 3dl 5.90",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "serving": "stange"
         },
         {
           "name": "Appenzeller-Bier fliessend – Grosses",
@@ -5448,7 +5528,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T07:12:36.877453+00:00"
+      "checkedAt": "2026-10-15T09:36:25.524496+00:00"
     },
     {
       "id": "node/2904967414",
@@ -5698,10 +5778,21 @@
           "confidence": "automatic",
           "evidence": "Erdinger Weissbier 5dl 6.50",
           "alcoholFree": false
+        },
+        {
+          "name": "Stange/Panasche",
+          "volumeMl": 300,
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.gabbiano-exp.ch/menus/getraenke.pdf",
+          "observedAt": "2026-10-15T07:32:31.403760+00:00",
+          "confidence": "automatic",
+          "evidence": "Stange/Panasche 3dl 4.80",
+          "alcoholFree": false,
+          "serving": "stange"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T08:18:47.020519+00:00"
+      "checkedAt": "2026-10-15T09:36:21.994274+00:00"
     },
     {
       "id": "node/5431084536",
@@ -6796,10 +6887,20 @@
           "confidence": "automatic",
           "evidence": "Sonnwendlig ohne Alkohol 33cl 6.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Quöllfrisch offen",
+          "volumeMl": 300,
+          "priceChf": 4.8,
+          "sourceUrl": "https://hotpasta.ch/wp-content/uploads/2023/01/HotPasta-Getraenke.pdf",
+          "observedAt": "2026-10-15T07:33:24.784659+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Quöllfrisch offen 30cl «Stange» 4.80 Martini Bianco alc.%15vol. 4cl 8.50",
+          "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T08:18:59.245413+00:00"
+      "checkedAt": "2026-10-15T09:36:27.847508+00:00"
     },
     {
       "id": "node/1232849956",
@@ -7532,7 +7633,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T07:12:48.493221+00:00"
+      "checkedAt": "2026-10-15T09:36:26.078214+00:00"
     },
     {
       "id": "node/656327737",
@@ -8009,10 +8110,32 @@
           "confidence": "automatic",
           "evidence": "«Chöpfler» Amber Flasche, 5.3% vol 33 cl | 7",
           "alcoholFree": false
+        },
+        {
+          "name": "«Fräche Siech» vom Fass – hell Stange / Panaché",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.kornsilo.ch/menu",
+          "observedAt": "2026-10-15T07:34:28.075955+00:00",
+          "confidence": "automatic",
+          "evidence": "«Fräche Siech» vom Fass – hell Stange / Panaché 30 cl | 5.5",
+          "alcoholFree": false,
+          "serving": "stange"
+        },
+        {
+          "name": "«Vollgas» vom Fass – alkoholfrei Stange / Panaché",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.kornsilo.ch/menu",
+          "observedAt": "2026-10-15T07:34:28.075955+00:00",
+          "confidence": "automatic",
+          "evidence": "«Vollgas» vom Fass – alkoholfrei Stange / Panaché 30 cl | 5.5",
+          "alcoholFree": true,
+          "serving": "stange"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T08:19:25.115908+00:00"
+      "checkedAt": "2026-10-15T09:36:27.018540+00:00"
     },
     {
       "id": "node/2133810173",
@@ -8354,10 +8477,21 @@
           "confidence": "automatic",
           "evidence": "Moretti 5dl CHF 5.50",
           "alcoholFree": false
+        },
+        {
+          "name": "Schützengarten Stange",
+          "volumeMl": null,
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.restaurantlastazione.ch/getraenke.php",
+          "observedAt": "2026-10-15T06:53:07.442348+00:00",
+          "confidence": "automatic",
+          "evidence": "Schützengarten Stange CHF 4.50",
+          "alcoholFree": false,
+          "serving": "stange"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T07:12:52.926397+00:00"
+      "checkedAt": "2026-10-15T09:36:21.994613+00:00"
     },
     {
       "id": "node/1232849945",
@@ -9314,6 +9448,33 @@
       "checkedAt": "2026-10-15T07:09:34.760646+00:00"
     },
     {
+      "id": "node/5924367485",
+      "name": "Mythos",
+      "lat": 47.3737799,
+      "lon": 8.5285146,
+      "type": "restaurant",
+      "address": "Stauffacherstrasse 35",
+      "postcode": "",
+      "website": "https://mymythos.ch/de/zuerich/home",
+      "openingHours": "Mo-Th 11:00-22:00; Fr-Sa 11:00-22:30; Su 12:00-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "STANGE",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "sourceUrl": "https://mymythos.ch/sites/default/files/2024-07/speisekarte-zuerich.pdf",
+          "observedAt": "2026-10-15T08:16:42.484919+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: STANGE 3dl 5.5 die hauptsächlich bei langjährigen, regionalen Lieferanten eingekauft werden.",
+          "alcoholFree": false,
+          "serving": "stange"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T09:36:27.638613+00:00"
+    },
+    {
       "id": "node/9234454006",
       "name": "Mäx Club",
       "lat": 47.3867082,
@@ -9983,10 +10144,21 @@
           "confidence": "automatic",
           "evidence": "Eichhof Hubertus dunkel 3.3 dl CHF 5.50",
           "alcoholFree": false
+        },
+        {
+          "name": "Stange / Stange Panaché",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "sourceUrl": "https://newbombay-zurich.ch/drinks/",
+          "observedAt": "2026-10-15T06:53:22.197920+00:00",
+          "confidence": "automatic",
+          "evidence": "Stange / Stange Panaché 3 dl CHF 5.50",
+          "alcoholFree": false,
+          "serving": "stange"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T07:12:56.664401+00:00"
+      "checkedAt": "2026-10-15T09:36:21.994382+00:00"
     },
     {
       "id": "node/11793927023",
@@ -10973,10 +11145,21 @@
           "confidence": "automatic",
           "evidence": "Bier Paul 10 India Pale Ale 5.0% 33 cl 6.70",
           "alcoholFree": false
+        },
+        {
+          "name": "auch Erusbacher Urtyp genannt Stange",
+          "volumeMl": 300,
+          "priceChf": 5.7,
+          "sourceUrl": "https://www.gertrudhof.ch/ws/media-library/584a7ca78935ffc23ca55f5ab0804b32/speisekarte_gertrudhof.pdf",
+          "observedAt": "2026-10-15T08:19:42.221514+00:00",
+          "confidence": "automatic",
+          "evidence": "auch Erusbacher Urtyp genannt Stange 30 cl 5.70",
+          "alcoholFree": false,
+          "serving": "stange"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T08:19:35.960037+00:00"
+      "checkedAt": "2026-10-15T09:36:21.994482+00:00"
     },
     {
       "id": "node/632553574",
@@ -14017,10 +14200,21 @@
           "confidence": "automatic",
           "evidence": "Feldschlösschen Flasche 5 dl 6.50",
           "alcoholFree": false
+        },
+        {
+          "name": "Stange medium vom Fass",
+          "volumeMl": 300,
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.tramblu.ch/wp-content/uploads/2023/01/Getraenkekarte.pdf",
+          "observedAt": "2026-10-15T08:22:48.181087+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Stange medium vom Fass 3 dl 4.80 Cognac und Brandy",
+          "alcoholFree": false,
+          "serving": "stange"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T08:22:41.654090+00:00"
+      "checkedAt": "2026-10-15T09:36:22.549249+00:00"
     },
     {
       "id": "node/315566479",
@@ -14506,7 +14700,8 @@
           "observedAt": "2026-10-15T06:53:51.572529+00:00",
           "confidence": "automatic",
           "evidence": "Stange Lager Hell (Adler Bräu, CH) alc 4.8% 3dl 4.80",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "serving": "stange"
         },
         {
           "name": "Stange Pale Ale (Adler Bräu, CH)",
@@ -14516,7 +14711,8 @@
           "observedAt": "2026-10-15T06:53:51.572529+00:00",
           "confidence": "automatic",
           "evidence": "Stange Pale Ale (Adler Bräu, CH) alc 5.4% 3dl 5.80",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "serving": "stange"
         },
         {
           "name": "Grosses Lager Hell (Adler Bräu, CH)",
@@ -14597,10 +14793,21 @@
           "confidence": "automatic",
           "evidence": "Alkoholfrei (Peroni Nastro Azzurrom IT)) alc 0.0% 3.3dl 6.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Stange Saison (Adler Bräu, CH)",
+          "volumeMl": 300,
+          "priceChf": 5.8,
+          "sourceUrl": "https://www.zumgutenglueck.ch/files/Menukarten-PDF/Getraenkekarte.pdf",
+          "observedAt": "2026-10-15T06:53:51.572529+00:00",
+          "confidence": "automatic",
+          "evidence": "Stange Saison (Adler Bräu, CH) alc 5.4% 3dl 5.80",
+          "alcoholFree": false,
+          "serving": "stange"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T07:13:08.898876+00:00"
+      "checkedAt": "2026-10-15T09:36:26.616943+00:00"
     },
     {
       "id": "node/4732388222",
