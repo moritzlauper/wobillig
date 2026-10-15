@@ -64,9 +64,13 @@ class Claude:
                 # Never log request objects/headers or exception representations.
                 raise APIUnavailable('Anthropic-Netzwerkfehler') from None
             if response.status_code == 200: return response.json()
-            if response.status_code in (401, 403, 404) or response.status_code == 400:
-                self.disabled = True
-                raise APIUnavailable(f'Anthropic HTTP {response.status_code}; Schlüssel, Guthaben oder Modellzugriff prüfen')
+            if response.status_code in (400, 401, 403, 404, 413):
+                try: message = str(response.json().get('error', {}).get('message', ''))
+                except (ValueError, TypeError): message = ''
+                message = message.replace(self.key, '[redacted]')[:240]
+                # A rejected PDF/image must not disable scans of all other venues.
+                self.disabled = response.status_code in (401, 403, 404) or bool(re.search(r'credit balance|insufficient.*credit|billing|model.*not found', message, re.I))
+                raise APIUnavailable(f'Anthropic HTTP {response.status_code}: {message}')
             if response.status_code not in (429, 500, 502, 503, 529) or attempt == 2:
                 raise APIUnavailable(f'Anthropic HTTP {response.status_code}')
             time.sleep(2 ** (attempt + 1))
@@ -109,7 +113,12 @@ def documents(body, kind):
     if 'pdf' in kind:
         reader = PdfReader(io.BytesIO(body))
         if reader.is_encrypted or len(reader.pages) > 100: return
-        for start in range(0, len(reader.pages), 4):
+        starts = list(range(0, len(reader.pages), 4))
+        def priority(start):
+            text = '\n'.join(page.extract_text() or '' for page in reader.pages[start:start + 4])
+            return 0 if not text.strip() or re.search(r'bier|beer|kaffee|coffee|café|espresso|cappuccino', text, re.I) else 1
+        starts.sort(key=priority)
+        for start in starts:
             writer = PdfWriter()
             pages = reader.pages[start:start + 4]
             for page in pages: writer.add_page(page)

@@ -19,9 +19,8 @@ def estimate_types(bars):
             if offer.get('beerType', 'unknown') != 'unknown':
                 offer.pop('beerTypeEstimate', None)
                 continue
-            if offer.get('beerTypeEstimate', {}).get('method') == 'ai':
-                continue
-            offer.pop('beerTypeEstimate', None)
+            ai = offer.get('beerTypeEstimate', {}).get('method') == 'ai'
+            if not ai: offer.pop('beerTypeEstimate', None)
             name, volume = offer['name'], offer['volumeMl']
             peers = [o for o in beer if name_key(o['name']) == name_key(name)
                      and o['sourceUrl'] == offer['sourceUrl'] and o['alcoholFree'] == offer['alcoholFree']]
@@ -33,6 +32,8 @@ def estimate_types(bars):
             elif {o['volumeMl'] for o in peers} >= {300, 500} or {o['volumeMl'] for o in peers} >= {250, 500} or {o['volumeMl'] for o in peers} >= {200, 400}:
                 if not any(o.get('beerType') in ('bottle', 'can') for o in peers):
                     kind, reason = 'draft', 'Dasselbe Bier auf derselben Karte in mehreren Glasgrössen'
+            if not kind and ai:
+                continue
             if not kind and volume:
                 counts = sizes[volume]
                 if counts:

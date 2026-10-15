@@ -82,3 +82,27 @@ class AITests(unittest.TestCase):
             self.assertEqual(c.hits,1)
             with patch.object(c,'post',side_effect=[{'input_tokens':100},{'stop_reason':'max_tokens','usage':{}}]):
                 with self.assertRaises(APIUnavailable):c.ask([{'type':'text','text':'different'}])
+
+class APIErrorTests(unittest.TestCase):
+    @patch.dict(os.environ,{'ANTHROPIC_API_KEY':'test-secret'})
+    def test_bad_document_does_not_disable_other_scans_or_reveal_key(self):
+        from unittest.mock import Mock
+        with tempfile.TemporaryDirectory() as tmp:
+            c=Claude(cache=Path(tmp))
+            response=Mock(status_code=400)
+            response.json.return_value={'error':{'message':'PDF could not be processed test-secret'}}
+            with patch('scraper.ai.requests.post',return_value=response):
+                with self.assertRaises(APIUnavailable) as caught:c.post('messages',{})
+            self.assertFalse(c.disabled)
+            self.assertNotIn('test-secret',str(caught.exception))
+            response.json.return_value={'error':{'message':'Your credit balance is too low'}}
+            with patch('scraper.ai.requests.post',return_value=response):
+                with self.assertRaises(APIUnavailable):c.post('messages',{})
+            self.assertTrue(c.disabled)
+
+    def test_glass_size_variants_override_an_inconsistent_ai_guess(self):
+        a=offer(); b=offer();b['volumeMl']=300
+        for o in [a,b]:o['beerTypeEstimate']={'type':'bottle','reason':'guess','method':'ai'}
+        estimate_types([{'offers':[a,b]}])
+        self.assertEqual(a['beerTypeEstimate']['type'],'draft')
+        self.assertEqual(b['beerTypeEstimate']['type'],'draft')

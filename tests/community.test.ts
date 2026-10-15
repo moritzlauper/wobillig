@@ -107,3 +107,15 @@ describe('shared Ausschankart', () => {
     expect(ambiguous.filter(o => o.confidence === 'automatic')).toHaveLength(2);
   });
 });
+
+it('preserves an estimate for legacy edits but lets a visitor override it', async () => {
+  const estimated: Offer = { ...offer, beerType: 'unknown', beerTypeEstimate: { type: 'draft', reason: 'Glasgrössen', method: 'ai' } };
+  expect(offerKey(estimated)).toBe(offerKey(offer));
+  const dataset = { ...beer, bars: [{ ...bar, offers: [estimated] }] };
+  const legacy = await savePrice(memoryStore(), input, data, 'a');
+  expect(applyEntries(dataset, [legacy], [bar], 'beer').bars[0].offers[0].beerTypeEstimate?.type).toBe('draft');
+  const correction = await savePrice(memoryStore(), { ...input, beerType: 'bottle' }, data, 'b');
+  const corrected = applyEntries(dataset, [correction], [bar], 'beer').bars[0].offers[0];
+  expect(corrected.beerType).toBe('bottle');
+  expect(corrected.beerTypeEstimate).toBeUndefined();
+});

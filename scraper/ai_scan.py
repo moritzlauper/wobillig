@@ -12,7 +12,8 @@ import os
 from pathlib import Path
 import re
 import time
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
+from bs4 import BeautifulSoup
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, clean_offers, ESTIMATE_SCHEMA, KINDS
 from scraper.estimates import estimate_types, name_key
 from scraper.scrape import ROOT, Fetcher, now, html_content, prioritize_links, source_allowed, discover, pdf_links, SKIP_MENU, WEBSITES
@@ -25,7 +26,7 @@ CHECKS = ROOT / 'scraper/ai_checks.json'
 def merge_offers(existing, found):
     result = [dict(o) for o in existing]
     for offer in found:
-        matches = [o for o in result if name_key(o['name']) == name_key(offer['name'])
+        matches = [o for o in result if (offer.get('coffeeType') or name_key(o['name']) == name_key(offer['name']))
                    and o['volumeMl'] == offer['volumeMl'] and o.get('coffeeType') == offer.get('coffeeType')
                    and o['alcoholFree'] == offer['alcoholFree']]
         # Explicitly different serving formats can coexist.
@@ -45,7 +46,7 @@ def merge_offers(existing, found):
 
 
 def classify_existing(client, bars):
-    unknown = [(b, o) for b in bars for o in b['offers'] if not o.get('coffeeType') and o.get('beerType', 'unknown') == 'unknown']
+    unknown = [(b, o) for b in bars for o in b['offers'] if not o.get('coffeeType') and o.get('beerType', 'unknown') == 'unknown' and not o.get('beerTypeEstimate')]
     for start in range(0, len(unknown), 35):
         batch = unknown[start:start + 35]
         rows = [{'id': i, 'venue': b['name'], 'name': o['name'], 'volumeMl': o['volumeMl'],
@@ -61,7 +62,7 @@ def classify_existing(client, bars):
             if type(i) is not int or not 0 <= i < len(batch) or i in seen: continue
             seen.add(i)
             if row.get('type') in KINDS[:-1] and isinstance(row.get('reason'), str) and row['reason'].strip():
-                batch[i][1]['beerTypeEstimate'] = {'type': row['type'], 'reason': row['reason'][:350], 'method': 'ai'}
+                batch[i][1]['beerTypeEstimate'] = {'type': row['type'], 'reason': 'KI-Schätzung aus Bezeichnung, Menge und Menü-Kontext; nicht belegt.', 'method': 'ai'}
         print(f'Estimated serving formats {min(start + 35, len(unknown))}/{len(unknown)}', flush=True)
 
 
@@ -84,6 +85,12 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
                 content = body
             elif 'html' in kind:
                 content, links = html_content(body, final)
+                # Menu images often live on a CDN rather than the venue's host.
+                for image in BeautifulSoup(body, 'html.parser').select('img[src], a[href]'):
+                    target = urljoin(final, image.get('src') or image.get('href')).split('#')[0]
+                    label = ' '.join([image.get('alt', ''), image.get('title', ''), image.get_text(' ', strip=True), urlparse(target).path])
+                    if re.search(r'\.(?:png|jpe?g|webp)(?:$|[?])', target, re.I) and re.search(r'menu|karte|getr|drink|beverage', label, re.I) and not SKIP_MENU.search(label):
+                        links.append(target)
                 if not re.search(r'\d', content) or not re.search(r'bier|beer|kaffee|coffee|espresso|cappuccino|café', content, re.I): content = ''
             elif kind.startswith('image/'):
                 links, content = [], body
@@ -95,13 +102,15 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
                 if time.monotonic() >= deadline: break
                 prompt = {'type': 'text', 'text': f'Venue: {bar["name"]}, {bar.get("address", "")}, Zürich. Source: {final}. Extract every beer and coffee price for this venue. PDF chunk begins at original page {offset + 1}.'}
                 result = client.ask(blocks + [prompt])
-                for o in clean_offers(result, final, stamp, offset, pages, text):
+                cleaned = clean_offers(result, final, stamp, offset, pages, text)
+                print(f'  {bar["name"]}: {len(result.get("offers", []))} extracted / {len(cleaned)} validated, document page {offset + 1}', flush=True)
+                for o in cleaned:
                     if source_allowed(bar['id'], final, 'coffee' if o.get('coffeeType') else 'beer'):
                         found.append({**o, 'sourceSha256': digest})
         except BudgetExhausted:
             return found, 'budget_limit', failures
         except APIUnavailable as exc:
-            failures.append(str(exc))
+            failures.append(urlparse(url).hostname + ': ' + str(exc))
             if client.disabled: return found, 'api_error', failures
         except Exception as exc:
             # Only exception type, never request representations or response bodies.
@@ -149,7 +158,7 @@ def main():
         if not args.estimates_only:
             deadline = time.monotonic() + max(1, args.minutes) * 60
             selected = [dict(b, website=WEBSITES.get(b['id'], b.get('website'))) for b in merged.values() if b.get('website') or hints.get(b['id']) or b['offers']]
-            selected.sort(key=lambda b: (checks.get(b['id'], {}).get('checkedAt', ''), bool(b['offers']), b['name'].casefold()))
+            selected.sort(key=lambda b: (checks.get(b['id'], {}).get('checkedAt', ''), not bool(hints.get(b['id']) or b['offers']), b['name'].casefold()))
             if args.limit: selected = selected[:args.limit]
             fetcher = Fetcher()
             # Submit only a small window; hitting budget/time limits doesn't leave hundreds of pending fetches.

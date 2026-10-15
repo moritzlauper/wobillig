@@ -56,7 +56,7 @@ export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Ba
       bars.set(bar.id, bar);
     }
     const original = bar.offers.find(o => matchesOfferKey(o, entry.targetKey, bar!.offers));
-    const replacement = { ...entry.offer, beerType: entry.offer.beerType ?? original?.beerType, confidence: 'community' as const, communityId: entry.id, revision: entry.revision, originalKey: entry.targetKey };
+    const replacement = { ...entry.offer, beerType: entry.offer.beerType ?? original?.beerType, beerTypeEstimate: entry.offer.beerType === undefined ? original?.beerTypeEstimate : undefined, confidence: 'community' as const, communityId: entry.id, revision: entry.revision, originalKey: entry.targetKey };
     bar.offers = bar.offers.filter(o => !matchesOfferKey(o, entry.targetKey, bar.offers) && offerKey(o) !== offerKey(entry.offer) && o.communityId !== entry.id);
     bar.offers.push(replacement);
   }
