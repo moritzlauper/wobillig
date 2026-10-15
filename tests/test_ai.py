@@ -160,6 +160,22 @@ class DocumentSelectionTests(unittest.TestCase):
         self.assertTrue(drink_page(food + ' Stange 5.50'))
 
 class ScanReuseTests(unittest.TestCase):
+    def test_lazy_loaded_menu_image_is_fetched_from_official_page(self):
+        import time
+        from unittest.mock import Mock
+        from scraper.ai_scan import scan_venue
+        home='https://example.com/drinks-menu'
+        menu='https://cdn.example/Getrankekarte_01.jpg'
+        pages={home:('text/html',('<img src="/placeholder.gif" data-src="'+menu+'"><img data-src="https://cdn.example/logo.jpg">').encode()),
+               menu:('image/jpeg',b'menu image')}
+        fetcher=Mock();fetcher.get.side_effect=lambda url:(url,*pages[url])
+        client=Mock()
+        bar={'id':'test','name':'Cafe','type':'cafe','address':'Zurich','website':home,'offers':[]}
+        with patch('scraper.ai_scan.documents',return_value=[]):
+            scan_venue(bar,client,fetcher,{},3,time.monotonic()+30)
+        self.assertEqual([call.args[0] for call in fetcher.get.call_args_list],[home,menu])
+        client.ask.assert_not_called()
+
     def test_identical_menu_under_two_urls_only_uses_model_once(self):
         import time
         from unittest.mock import Mock

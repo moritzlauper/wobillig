@@ -1,8 +1,79 @@
 {
-  "generatedAt": "2026-10-15T15:23:34.367683+00:00",
+  "generatedAt": "2026-10-15T17:56:46.802206+00:00",
   "discoveredAt": "2026-10-15T14:55:17.430562+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
+    {
+      "id": "node/639048686",
+      "name": "01bar",
+      "lat": 47.373723,
+      "lon": 8.5430379,
+      "type": "bar",
+      "address": "",
+      "postcode": "",
+      "website": "https://01bar.ch/",
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Café Crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T17:51:29.754696+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 9: Café Crème 6.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.5,
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T17:51:29.754696+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 9: Espresso 4.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso doppio",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T17:51:29.754696+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 9: Espresso doppio 6.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 7.0,
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T17:51:29.754696+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 9: Latte Macchiato 7.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T17:51:29.754696+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 9: Cappuccino 6.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:51:29.754696+00:00"
+    },
     {
       "id": "node/5652355504",
       "name": "169 West",
@@ -258,7 +329,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:18.054984+00:00",
+      "checkedAt": "2026-10-15T17:49:14.588586+00:00",
       "aiCheckedAt": "2026-10-15T14:25:50.126079+00:00"
     },
     {
@@ -394,9 +465,65 @@
       "website": "https://www.ahoi-ladencafe.ch/",
       "openingHours": "Mo-Fr 10:00-18:00; Sa 09:00-16:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:37.023384+00:00"
+      "offers": [
+        {
+          "name": "Kaffee crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.ahoi-ladencafe.ch/wp-content/uploads/2025/12/Ahoi_Karte-Cafe_aktuell.pdf",
+          "observedAt": "2026-10-15T17:49:14.589012+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Kaffee crème 4.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.ahoi-ladencafe.ch/wp-content/uploads/2025/12/Ahoi_Karte-Cafe_aktuell.pdf",
+          "observedAt": "2026-10-15T17:49:14.589012+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Cappuccino / Flat White 5.00 / 6.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Flat White",
+          "coffeeType": "flat_white",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.ahoi-ladencafe.ch/wp-content/uploads/2025/12/Ahoi_Karte-Cafe_aktuell.pdf",
+          "observedAt": "2026-10-15T17:49:14.589012+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Cappuccino / Flat White 5.00 / 6.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Milchkaffee",
+          "coffeeType": "milk",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.ahoi-ladencafe.ch/wp-content/uploads/2025/12/Ahoi_Karte-Cafe_aktuell.pdf",
+          "observedAt": "2026-10-15T17:49:14.589012+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Milchkaffee 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.ahoi-ladencafe.ch/wp-content/uploads/2025/12/Ahoi_Karte-Cafe_aktuell.pdf",
+          "observedAt": "2026-10-15T17:49:14.589012+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Latte macchiato 6.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:49:14.589012+00:00"
     },
     {
       "id": "node/914812684",
@@ -482,7 +609,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:38.013124+00:00"
+      "checkedAt": "2026-10-15T17:49:14.589101+00:00"
     },
     {
       "id": "node/4244051791",
@@ -497,7 +624,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:38.430443+00:00"
+      "checkedAt": "2026-10-15T17:49:14.589164+00:00"
     },
     {
       "id": "node/411069901",
@@ -570,6 +697,55 @@
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-15T12:25:15.885903+00:00",
       "aiCheckedAt": "2026-10-15T14:25:53.994457+00:00"
+    },
+    {
+      "id": "node/656327571",
+      "name": "Alexis Bar",
+      "lat": 47.3746263,
+      "lon": 8.5439159,
+      "type": "bar",
+      "address": "",
+      "postcode": "",
+      "website": "https://alexis-cana.ch/getraenkekarte/",
+      "openingHours": "Mo-Th 11:00-24:00, Fr,Sa 11:00-02:00, Su 16:00-24:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.6,
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T17:51:32.071047+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: Cappuccino 5.60",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 7.2,
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T17:51:32.071047+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: Latte Macchiato 7.20",
+          "alcoholFree": true
+        },
+        {
+          "name": "Schale Milchkaffee",
+          "coffeeType": "milk",
+          "volumeMl": null,
+          "priceChf": 5.3,
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T17:51:32.071047+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: Schale Milchkaffee 5.30",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:51:32.071047+00:00"
     },
     {
       "id": "node/297710735",
@@ -797,7 +973,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:39.655124+00:00"
+      "checkedAt": "2026-10-15T17:49:14.589229+00:00"
     },
     {
       "id": "node/289669794",
@@ -1059,7 +1235,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:20.564823+00:00",
+      "checkedAt": "2026-10-15T17:49:14.589318+00:00",
       "aiCheckedAt": "2026-10-15T14:28:46.409252+00:00"
     },
     {
@@ -1212,7 +1388,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:39.655445+00:00"
+      "checkedAt": "2026-10-15T17:49:14.589451+00:00"
     },
     {
       "id": "node/4035706224",
@@ -1227,7 +1403,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:39.697109+00:00",
+      "checkedAt": "2026-10-15T17:49:14.589551+00:00",
       "aiCheckedAt": "2026-10-15T14:59:15.587005+00:00"
     },
     {
@@ -1258,7 +1434,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:40.492578+00:00"
+      "checkedAt": "2026-10-15T17:49:16.963023+00:00"
     },
     {
       "id": "node/3060545386",
@@ -1273,7 +1449,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:41.261562+00:00"
+      "checkedAt": "2026-10-15T17:49:18.482671+00:00"
     },
     {
       "id": "node/13665204352",
@@ -1473,7 +1649,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:42.428759+00:00"
+      "checkedAt": "2026-10-15T17:49:19.847417+00:00"
     },
     {
       "id": "node/10162798340",
@@ -1652,9 +1828,65 @@
       "website": "https://babus.ch/",
       "openingHours": "Mo-Fr 07:00-18:00, Sa 08:00-18:00, Su 09:00-17:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.5,
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/0639/4069/0140/files/MENU_TS_DE_Web_27.06.2025.pdf?v=1751008090",
+          "observedAt": "2026-10-15T17:50:34.682216+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Espresso 4.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Doppio",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/0639/4069/0140/files/MENU_TS_DE_Web_27.06.2025.pdf?v=1751008090",
+          "observedAt": "2026-10-15T17:50:34.682216+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Doppio 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Kaffee Americano",
+          "coffeeType": "americano",
+          "volumeMl": null,
+          "priceChf": 5.9,
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/0639/4069/0140/files/MENU_TS_DE_Web_27.06.2025.pdf?v=1751008090",
+          "observedAt": "2026-10-15T17:50:34.682216+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Kaffee Americano 5.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 6.4,
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/0639/4069/0140/files/MENU_TS_DE_Web_27.06.2025.pdf?v=1751008090",
+          "observedAt": "2026-10-15T17:50:34.682216+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Latte Macchiato 6.40",
+          "alcoholFree": true
+        },
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 6.9,
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/0639/4069/0140/files/MENU_TS_DE_Web_27.06.2025.pdf?v=1751008090",
+          "observedAt": "2026-10-15T17:50:34.682216+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Matcha Latte 6.90",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:56:45.403386+00:00"
     },
     {
       "id": "node/693318643",
@@ -1669,7 +1901,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:43.693588+00:00"
+      "checkedAt": "2026-10-15T17:49:21.027132+00:00"
     },
     {
       "id": "node/9931314114",
@@ -1699,7 +1931,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:45.235059+00:00"
+      "checkedAt": "2026-10-15T17:49:21.472071+00:00"
     },
     {
       "id": "node/866538630",
@@ -1714,7 +1946,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T14:57:45.257628+00:00"
+      "checkedAt": "2026-10-15T17:49:24.727052+00:00"
     },
     {
       "id": "node/11775729223",
@@ -1729,7 +1961,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:46.765647+00:00"
+      "checkedAt": "2026-10-15T17:49:24.785717+00:00"
     },
     {
       "id": "node/4070417589",
@@ -2221,7 +2453,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:46.975704+00:00"
+      "checkedAt": "2026-10-15T17:49:25.076971+00:00"
     },
     {
       "id": "way/38098975",
@@ -2365,7 +2597,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:48.960933+00:00"
+      "checkedAt": "2026-10-15T17:49:26.457495+00:00"
     },
     {
       "id": "node/1528759075",
@@ -2395,7 +2627,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:57:49.490461+00:00"
+      "checkedAt": "2026-10-15T17:49:27.705695+00:00"
     },
     {
       "id": "node/906856274",
@@ -2582,6 +2814,77 @@
       "checkedAt": null
     },
     {
+      "id": "node/267345323",
+      "name": "Big Ben Westside Pub",
+      "lat": 47.3872345,
+      "lon": 8.519462,
+      "type": "pub",
+      "address": "Hardstrasse 234",
+      "postcode": "8005",
+      "website": "https://www.bigbenwestside.ch/",
+      "openingHours": "Tu,We 17:00-24:00, Th 17:00-01:00, Fr 16:00-02:00, Sa 15:00-02:00, Mo 17:00-22:00, Mo-Fr 11:00-14:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.8,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/956/menu/5fe765adb414.pdf",
+          "observedAt": "2026-10-15T17:52:40.803390+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Coffee/Espresso/Tea 4.80",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.8,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/956/menu/5fe765adb414.pdf",
+          "observedAt": "2026-10-15T17:52:40.803390+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Coffee/Espresso/Tea 4.80",
+          "alcoholFree": true
+        },
+        {
+          "name": "Double Espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.8,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/956/menu/5fe765adb414.pdf",
+          "observedAt": "2026-10-15T17:52:40.803390+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Double Espresso 6.80",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 6.8,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/956/menu/5fe765adb414.pdf",
+          "observedAt": "2026-10-15T17:52:40.803390+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Latte macchiato 6.80",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.8,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/956/menu/5fe765adb414.pdf",
+          "observedAt": "2026-10-15T17:52:40.803390+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Cappuccino 6.80",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:52:40.803390+00:00"
+    },
+    {
       "id": "node/5414612344",
       "name": "Billiard Golden 8",
       "lat": 47.409223,
@@ -2594,7 +2897,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:50.222895+00:00"
+      "checkedAt": "2026-10-15T17:49:29.110658+00:00"
     },
     {
       "id": "node/4956927758",
@@ -2831,7 +3134,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:32.222061+00:00"
+      "checkedAt": "2026-10-15T17:49:29.112378+00:00"
     },
     {
       "id": "node/9909005887",
@@ -3000,7 +3303,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:50.594691+00:00"
+      "checkedAt": "2026-10-15T17:49:29.629790+00:00"
     },
     {
       "id": "node/5759001721",
@@ -3015,7 +3318,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:50.922775+00:00"
+      "checkedAt": "2026-10-15T17:49:30.438268+00:00"
     },
     {
       "id": "node/656628375",
@@ -3152,7 +3455,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:51.587289+00:00"
+      "checkedAt": "2026-10-15T17:49:32.103987+00:00"
     },
     {
       "id": "node/1346146716",
@@ -3303,7 +3606,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:51.788642+00:00"
+      "checkedAt": "2026-10-15T17:49:34.070247+00:00"
     },
     {
       "id": "node/5688147987",
@@ -3318,7 +3621,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:54.009749+00:00"
+      "checkedAt": "2026-10-15T17:49:35.329054+00:00"
     },
     {
       "id": "node/2028881211",
@@ -3453,7 +3756,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:55.796620+00:00"
+      "checkedAt": "2026-10-15T17:49:36.248917+00:00"
     },
     {
       "id": "node/2100498784",
@@ -3467,8 +3770,8 @@
       "openingHours": "Mo-Fr 06:30-18:30; Sa 07:00-17:00; Su 08:00-17:00",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:59.060839+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-15T17:49:40.883283+00:00"
     },
     {
       "id": "node/4892315255",
@@ -3498,7 +3801,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:00.790156+00:00"
+      "checkedAt": "2026-10-15T17:49:41.567184+00:00"
     },
     {
       "id": "way/75803849",
@@ -3607,7 +3910,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:00.884596+00:00"
+      "checkedAt": "2026-10-15T17:49:44.307675+00:00"
     },
     {
       "id": "node/268488025",
@@ -3622,7 +3925,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T14:58:02.250998+00:00"
+      "checkedAt": "2026-10-15T17:49:45.608253+00:00"
     },
     {
       "id": "node/4004729489",
@@ -3682,7 +3985,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:04.665858+00:00"
+      "checkedAt": "2026-10-15T17:49:46.198400+00:00"
     },
     {
       "id": "node/893293243",
@@ -3697,7 +4000,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:58:04.793710+00:00"
+      "checkedAt": "2026-10-15T17:49:46.539052+00:00"
     },
     {
       "id": "node/4424600900",
@@ -3820,8 +4123,8 @@
       "openingHours": "Mo-Fr 09:30-17:00; Sa off; Su 14:00-17:00 \"1x im Monat Sonntagsbruch, Daten siehe www.qth.ch\"",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:04.944246+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-15T17:49:46.616378+00:00"
     },
     {
       "id": "node/5653960458",
@@ -4128,7 +4431,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:05.458224+00:00"
+      "checkedAt": "2026-10-15T17:49:47.934995+00:00"
     },
     {
       "id": "node/649339443",
@@ -4432,7 +4735,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:07.219016+00:00"
+      "checkedAt": "2026-10-15T17:49:48.054086+00:00"
     },
     {
       "id": "node/10650748517",
@@ -4447,7 +4750,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:08.303063+00:00"
+      "checkedAt": "2026-10-15T17:49:50.227910+00:00"
     },
     {
       "id": "node/268468109",
@@ -4592,7 +4895,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:58:09.165103+00:00"
+      "checkedAt": "2026-10-15T17:49:51.790438+00:00"
     },
     {
       "id": "node/1895863272",
@@ -4695,8 +4998,8 @@
       "openingHours": "Mo-Th 09:00-15:00; Fr 09:00-16:00; Sa-Su 09:00-16:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-15T14:58:09.182021+00:00"
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T17:49:51.806120+00:00"
     },
     {
       "id": "node/283458329",
@@ -4924,7 +5227,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:09.253035+00:00"
+      "checkedAt": "2026-10-15T17:49:52.611961+00:00"
     },
     {
       "id": "node/370657577",
@@ -5073,7 +5376,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:09.406254+00:00"
+      "checkedAt": "2026-10-15T17:49:53.296653+00:00"
     },
     {
       "id": "node/1760802114",
@@ -5118,7 +5421,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:09.705778+00:00"
+      "checkedAt": "2026-10-15T17:49:53.738375+00:00"
     },
     {
       "id": "node/11755283869",
@@ -5134,6 +5437,44 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/6896222370",
+      "name": "Campo",
+      "lat": 47.3762866,
+      "lon": 8.5270834,
+      "type": "bar",
+      "address": "",
+      "postcode": "",
+      "website": "https://barcampo.com/",
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://barcampo.com/wp-content/uploads/sites/7/2026/06/Campo_2026_05.pdf",
+          "observedAt": "2026-10-15T17:51:35.330868+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 4: Espresso 4",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino*",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://barcampo.com/wp-content/uploads/sites/7/2026/06/Campo_2026_05.pdf",
+          "observedAt": "2026-10-15T17:51:35.330868+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 4: Cappuccino* 6",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:51:35.330868+00:00"
     },
     {
       "id": "node/3840736347",
@@ -5343,7 +5684,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:10.013993+00:00"
+      "checkedAt": "2026-10-15T17:49:54.107975+00:00"
     },
     {
       "id": "node/725764771",
@@ -5482,7 +5823,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:10.122526+00:00"
+      "checkedAt": "2026-10-15T17:49:55.362778+00:00"
     },
     {
       "id": "node/4364145825",
@@ -5605,7 +5946,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:57:32.222516+00:00"
+      "checkedAt": "2026-10-15T17:49:55.412942+00:00"
     },
     {
       "id": "node/9861025948",
@@ -5620,7 +5961,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:10.347600+00:00"
+      "checkedAt": "2026-10-15T17:49:56.663063+00:00"
     },
     {
       "id": "node/13742986144",
@@ -5765,8 +6106,8 @@
       "openingHours": "Mo-Fr 06:30-18:30; Sa 06:30-17:00",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:11.517642+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-15T17:49:57.356101+00:00"
     },
     {
       "id": "node/271411939",
@@ -5867,7 +6208,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:12.300466+00:00"
+      "checkedAt": "2026-10-15T17:49:57.875908+00:00"
     },
     {
       "id": "node/4845976786",
@@ -5897,7 +6238,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:12.702124+00:00"
+      "checkedAt": "2026-10-15T17:49:59.784588+00:00"
     },
     {
       "id": "node/14203277409",
@@ -5912,7 +6253,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:13.175403+00:00"
+      "checkedAt": "2026-10-15T17:50:00.998307+00:00"
     },
     {
       "id": "node/448855246",
@@ -6499,7 +6840,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:13.486752+00:00"
+      "checkedAt": "2026-10-15T17:50:01.075865+00:00"
     },
     {
       "id": "node/460432599",
@@ -6541,7 +6882,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:58:15.248090+00:00"
+      "checkedAt": "2026-10-15T17:50:02.954837+00:00"
     },
     {
       "id": "node/4408499942",
@@ -6571,7 +6912,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:15.772665+00:00"
+      "checkedAt": "2026-10-15T17:50:02.991085+00:00"
     },
     {
       "id": "node/4945857131",
@@ -6601,7 +6942,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-15T14:58:16.417312+00:00"
+      "checkedAt": "2026-10-15T17:50:03.634433+00:00"
     },
     {
       "id": "node/10967856738",
@@ -6665,7 +7006,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:16.576144+00:00"
+      "checkedAt": "2026-10-15T17:50:03.808603+00:00"
     },
     {
       "id": "node/1069585320",
@@ -6680,7 +7021,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:17.523124+00:00"
+      "checkedAt": "2026-10-15T17:50:05.190119+00:00"
     },
     {
       "id": "node/279180951",
@@ -6901,7 +7242,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:17.952901+00:00"
+      "checkedAt": "2026-10-15T17:50:05.906019+00:00"
     },
     {
       "id": "node/3608740031",
@@ -6916,7 +7257,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:18.832973+00:00"
+      "checkedAt": "2026-10-15T17:50:06.251307+00:00"
     },
     {
       "id": "node/4838594367",
@@ -6946,7 +7287,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:19.631220+00:00"
+      "checkedAt": "2026-10-15T17:50:06.495991+00:00"
     },
     {
       "id": "node/1569509638",
@@ -7021,7 +7362,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:21.926492+00:00"
+      "checkedAt": "2026-10-15T17:50:07.220014+00:00"
     },
     {
       "id": "node/13846474215",
@@ -7398,6 +7739,66 @@
       "checkedAt": null
     },
     {
+      "id": "node/4778167221",
+      "name": "George Bar & Grill",
+      "lat": 47.3733124,
+      "lon": 8.5326645,
+      "type": "bar",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.george-grill.ch/",
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.george-grill.ch/wp-content/uploads/2026/10/Barkarte_August-2026_DE.pdf",
+          "observedAt": "2026-10-15T17:51:40.570859+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 13: Kaffee / Espresso 5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.george-grill.ch/wp-content/uploads/2026/10/Barkarte_August-2026_DE.pdf",
+          "observedAt": "2026-10-15T17:51:40.570859+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 13: Kaffee / Espresso 5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.george-grill.ch/wp-content/uploads/2026/10/Barkarte_August-2026_DE.pdf",
+          "observedAt": "2026-10-15T17:51:40.570859+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 13: Cappuccino 6.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 7.5,
+          "sourceUrl": "https://www.george-grill.ch/wp-content/uploads/2026/10/Barkarte_August-2026_DE.pdf",
+          "observedAt": "2026-10-15T17:51:40.570859+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 13: Latte Macchiato 7.5",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:51:40.570859+00:00"
+    },
+    {
       "id": "node/3799099678",
       "name": "Gerold Chuchi",
       "lat": 47.3850255,
@@ -7543,9 +7944,147 @@
       "website": "https://xn--glckbar-o2a.ch/",
       "openingHours": "Tu-We 07:00-18:00; Th-Fr 07:00-20:00; Sa 08:00-20:00; Su 08:00-17:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:22.302677+00:00"
+      "offers": [
+        {
+          "name": "Americano",
+          "coffeeType": "americano",
+          "volumeMl": null,
+          "priceChf": 4.9,
+          "sourceUrl": "https://xn--glckbar-o2a.ch/wp-content/uploads/2026/02/Menue-Getraenke-ab-02.26.pdf",
+          "observedAt": "2026-10-15T17:50:07.278842+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Americano 4.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 5.7,
+          "sourceUrl": "https://xn--glckbar-o2a.ch/wp-content/uploads/2026/02/Menue-Getraenke-ab-02.26.pdf",
+          "observedAt": "2026-10-15T17:50:07.278842+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Latte Macchiato 5.70",
+          "alcoholFree": true
+        },
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 7.0,
+          "sourceUrl": "https://xn--glckbar-o2a.ch/wp-content/uploads/2026/02/Menue-Getraenke-ab-02.26.pdf",
+          "observedAt": "2026-10-15T17:50:07.278842+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Matcha Latte 7.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:50:07.278842+00:00"
+    },
+    {
+      "id": "node/1740683819",
+      "name": "Goethe Bar",
+      "lat": 47.3655117,
+      "lon": 8.5473418,
+      "type": "bar",
+      "address": "Sechseläutenplatz 10",
+      "postcode": "8001",
+      "website": "https://www.brasserie-schiller.ch/",
+      "openingHours": "Mo-Th 08:00-23:00, Fr 08:00-01:00, Sa 09:00-01:00, Su 10:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.brasserie-schiller.ch/wp-content/uploads/2025/06/Goethe_fruehstueck_DE-EN_0625.pdf",
+          "observedAt": "2026-10-15T17:51:44.671159+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Kaffee/Espresso/Ristretto..........................................................5.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.brasserie-schiller.ch/wp-content/uploads/2025/06/Goethe_fruehstueck_DE-EN_0625.pdf",
+          "observedAt": "2026-10-15T17:51:44.671159+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Kaffee/Espresso/Ristretto..........................................................5.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.brasserie-schiller.ch/wp-content/uploads/2025/06/Goethe_fruehstueck_DE-EN_0625.pdf",
+          "observedAt": "2026-10-15T17:51:44.671159+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Kaffee/Espresso/Ristretto..........................................................5.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Doppio",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 7.0,
+          "sourceUrl": "https://www.brasserie-schiller.ch/wp-content/uploads/2025/06/Goethe_fruehstueck_DE-EN_0625.pdf",
+          "observedAt": "2026-10-15T17:51:44.671159+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Doppio .............................................................................................7",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.2,
+          "sourceUrl": "https://www.brasserie-schiller.ch/wp-content/uploads/2025/06/Goethe_fruehstueck_DE-EN_0625.pdf",
+          "observedAt": "2026-10-15T17:51:44.671159+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Cappuccino....................................................................................6.2",
+          "alcoholFree": true
+        },
+        {
+          "name": "CaffèLatte",
+          "coffeeType": "milk",
+          "volumeMl": null,
+          "priceChf": 6.2,
+          "sourceUrl": "https://www.brasserie-schiller.ch/wp-content/uploads/2025/06/Goethe_fruehstueck_DE-EN_0625.pdf",
+          "observedAt": "2026-10-15T17:51:44.671159+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: CaffèLatte.....................................................................................6.2",
+          "alcoholFree": true
+        },
+        {
+          "name": "LatteMacchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 7.0,
+          "sourceUrl": "https://www.brasserie-schiller.ch/wp-content/uploads/2025/06/Goethe_fruehstueck_DE-EN_0625.pdf",
+          "observedAt": "2026-10-15T17:51:44.671159+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: LatteMacchiato................................................................................7",
+          "alcoholFree": true
+        },
+        {
+          "name": "FlatWhite",
+          "coffeeType": "flat_white",
+          "volumeMl": null,
+          "priceChf": 7.5,
+          "sourceUrl": "https://www.brasserie-schiller.ch/wp-content/uploads/2025/06/Goethe_fruehstueck_DE-EN_0625.pdf",
+          "observedAt": "2026-10-15T17:51:44.671159+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: FlatWhite .....................................................................................7.5",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:51:44.671159+00:00"
     },
     {
       "id": "node/343347885",
@@ -7842,7 +8381,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:22.987553+00:00"
+      "checkedAt": "2026-10-15T17:50:08.311278+00:00"
     },
     {
       "id": "node/633601362",
@@ -8090,7 +8629,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:23.120097+00:00"
+      "checkedAt": "2026-10-15T17:50:08.528428+00:00"
     },
     {
       "id": "node/3761820407",
@@ -8105,7 +8644,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:23.399085+00:00"
+      "checkedAt": "2026-10-15T17:50:08.646956+00:00"
     },
     {
       "id": "node/13208196401",
@@ -8120,7 +8659,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:58:24.399082+00:00"
+      "checkedAt": "2026-10-15T17:50:09.258020+00:00"
     },
     {
       "id": "node/6845226406",
@@ -8150,7 +8689,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:24.613408+00:00"
+      "checkedAt": "2026-10-15T17:50:10.017499+00:00"
     },
     {
       "id": "node/1937429081",
@@ -8246,8 +8785,8 @@
       "openingHours": "Mo-Fr 06:30-18:30; Sa 06:30-16:30; Su 08:00-12:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:24.818532+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-15T17:50:10.192308+00:00"
     },
     {
       "id": "node/268963180",
@@ -8588,7 +9127,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:25.264099+00:00"
+      "checkedAt": "2026-10-15T17:50:10.843960+00:00"
     },
     {
       "id": "node/10126613538",
@@ -8678,7 +9217,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:25.927467+00:00"
+      "checkedAt": "2026-10-15T17:50:11.071485+00:00"
     },
     {
       "id": "node/4915582731",
@@ -8753,7 +9292,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:26.519203+00:00"
+      "checkedAt": "2026-10-15T17:50:15.247740+00:00"
     },
     {
       "id": "node/10884168277",
@@ -8768,7 +9307,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:27.478105+00:00"
+      "checkedAt": "2026-10-15T17:50:18.185476+00:00"
     },
     {
       "id": "node/306480499",
@@ -8783,7 +9322,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:28.263204+00:00"
+      "checkedAt": "2026-10-15T17:50:18.565642+00:00"
     },
     {
       "id": "node/11216071018",
@@ -8813,7 +9352,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:28.967289+00:00"
+      "checkedAt": "2026-10-15T17:50:19.276242+00:00"
     },
     {
       "id": "node/582227558",
@@ -8828,7 +9367,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:29.731889+00:00"
+      "checkedAt": "2026-10-15T17:50:19.454026+00:00"
     },
     {
       "id": "node/1521606720",
@@ -8843,7 +9382,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:29.870072+00:00"
+      "checkedAt": "2026-10-15T17:50:19.650087+00:00"
     },
     {
       "id": "node/3250788311",
@@ -9072,9 +9611,65 @@
       "website": "https://muehlehalde.ch",
       "openingHours": "Mo-Su 09:00-17:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:30.209156+00:00"
+      "offers": [
+        {
+          "name": "Kaffee Creme",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 3.0,
+          "sourceUrl": "https://muehlehalde.ch/fileadmin/customer/menuplan/stiftung_muehlehalde_angebote_kafi-muehli_speisekarte_230929.pdf",
+          "observedAt": "2026-10-15T17:50:20.460613+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: Kaffee Creme 3.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 3.0,
+          "sourceUrl": "https://muehlehalde.ch/fileadmin/customer/menuplan/stiftung_muehlehalde_angebote_kafi-muehli_speisekarte_230929.pdf",
+          "observedAt": "2026-10-15T17:50:20.460613+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: Espresso 3.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Doppio",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://muehlehalde.ch/fileadmin/customer/menuplan/stiftung_muehlehalde_angebote_kafi-muehli_speisekarte_230929.pdf",
+          "observedAt": "2026-10-15T17:50:20.460613+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: Doppio 5.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 3.0,
+          "sourceUrl": "https://muehlehalde.ch/fileadmin/customer/menuplan/stiftung_muehlehalde_angebote_kafi-muehli_speisekarte_230929.pdf",
+          "observedAt": "2026-10-15T17:50:20.460613+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: Cappuccino 3.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 3.0,
+          "sourceUrl": "https://muehlehalde.ch/fileadmin/customer/menuplan/stiftung_muehlehalde_angebote_kafi-muehli_speisekarte_230929.pdf",
+          "observedAt": "2026-10-15T17:50:20.460613+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: Latte Macchiato 3.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:50:20.460613+00:00"
     },
     {
       "id": "node/2121176772",
@@ -9089,7 +9684,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:31.671568+00:00"
+      "checkedAt": "2026-10-15T17:50:20.598716+00:00"
     },
     {
       "id": "node/6602377278",
@@ -9281,6 +9876,66 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/598560604",
+      "name": "Kasheme",
+      "lat": 47.3827935,
+      "lon": 8.5295411,
+      "type": "bar",
+      "address": "Neugasse 56",
+      "postcode": "8005",
+      "website": "https://kasheme.com",
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Americano",
+          "coffeeType": "americano",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://kasheme.com/wp-content/uploads/2026/05/260427_Kasheme_Menu_booklet.pdf",
+          "observedAt": "2026-10-15T17:53:29.734212+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: Espresso / Americano 4",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://kasheme.com/wp-content/uploads/2026/05/260427_Kasheme_Menu_booklet.pdf",
+          "observedAt": "2026-10-15T17:53:29.734212+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: Espresso / Americano 4",
+          "alcoholFree": true
+        },
+        {
+          "name": "Americano",
+          "coffeeType": "americano",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://kasheme.com/wp-content/uploads/2026/05/260427_Kasheme_Menu_booklet.pdf",
+          "observedAt": "2026-10-15T17:53:29.734212+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: Americano 5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://kasheme.com/wp-content/uploads/2026/05/260427_Kasheme_Menu_booklet.pdf",
+          "observedAt": "2026-10-15T17:53:29.734212+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: Cappuccino 6",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:53:29.734212+00:00"
     },
     {
       "id": "node/1760802115",
@@ -9556,9 +10211,87 @@
       "website": "https://www.klaraskitchen.ch",
       "openingHours": "Mo-Fr 07:30-15:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:31.738316+00:00"
+      "offers": [
+        {
+          "name": "Americano",
+          "coffeeType": "americano",
+          "volumeMl": null,
+          "priceChf": 4.2,
+          "sourceUrl": "https://www.klaraskitchen.ch/restaurant/",
+          "observedAt": "2026-10-15T17:50:22.207236+00:00",
+          "confidence": "automatic",
+          "evidence": "Americano 4.20",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.klaraskitchen.ch/restaurant/",
+          "observedAt": "2026-10-15T17:50:22.207236+00:00",
+          "confidence": "automatic",
+          "evidence": "Cappuccino 5.20",
+          "alcoholFree": true
+        },
+        {
+          "name": "Flat White",
+          "coffeeType": "flat_white",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.klaraskitchen.ch/restaurant/",
+          "observedAt": "2026-10-15T17:50:22.207236+00:00",
+          "confidence": "automatic",
+          "evidence": "Flat White 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 5.9,
+          "sourceUrl": "https://www.klaraskitchen.ch/restaurant/",
+          "observedAt": "2026-10-15T17:50:22.207236+00:00",
+          "confidence": "automatic",
+          "evidence": "Latte Macchiato 5.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 6.2,
+          "sourceUrl": "https://www.klaraskitchen.ch/restaurant/",
+          "observedAt": "2026-10-15T17:50:22.207236+00:00",
+          "confidence": "automatic",
+          "evidence": "Matcha Latte 6.20",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.klaraskitchen.ch/restaurant/",
+          "observedAt": "2026-10-15T17:50:22.207236+00:00",
+          "confidence": "automatic",
+          "evidence": "Espresso / Doppio 4.00/5.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Doppio",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.klaraskitchen.ch/restaurant/",
+          "observedAt": "2026-10-15T17:50:22.207236+00:00",
+          "confidence": "automatic",
+          "evidence": "Espresso / Doppio 4.00/5.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:50:22.207236+00:00"
     },
     {
       "id": "node/2392657620",
@@ -9573,7 +10306,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:32.757161+00:00"
+      "checkedAt": "2026-10-15T17:50:22.229422+00:00"
     },
     {
       "id": "node/12250520342",
@@ -9588,7 +10321,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:32.939962+00:00"
+      "checkedAt": "2026-10-15T17:50:22.265906+00:00"
     },
     {
       "id": "node/4604638576",
@@ -9787,7 +10520,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:33.222618+00:00"
+      "checkedAt": "2026-10-15T17:50:23.194622+00:00"
     },
     {
       "id": "node/13184311165",
@@ -9802,7 +10535,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:33.632243+00:00"
+      "checkedAt": "2026-10-15T17:50:23.793819+00:00"
     },
     {
       "id": "node/7964618532",
@@ -9896,6 +10629,104 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-15T12:26:46.847306+00:00"
+    },
+    {
+      "id": "node/9201875603",
+      "name": "Kunsthaus Bar",
+      "lat": 47.3707857,
+      "lon": 8.549135,
+      "type": "bar",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.kunsthausbar.ch/",
+      "openingHours": "Tu-Fr 07:30-24:00; Sa 09:00-24:00; Su 09:00-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "AMERICANO",
+          "coffeeType": "americano",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.kunsthausbar.ch/",
+          "observedAt": "2026-10-15T17:51:52.514213+00:00",
+          "confidence": "automatic",
+          "evidence": "AMERICANO 5.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAPPUCCINO",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.2,
+          "sourceUrl": "https://www.kunsthausbar.ch/",
+          "observedAt": "2026-10-15T17:51:52.514213+00:00",
+          "confidence": "automatic",
+          "evidence": "CAPPUCCINO 6.2",
+          "alcoholFree": true
+        },
+        {
+          "name": "LATTE MACCHIATO",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 6.2,
+          "sourceUrl": "https://www.kunsthausbar.ch/",
+          "observedAt": "2026-10-15T17:51:52.514213+00:00",
+          "confidence": "automatic",
+          "evidence": "LATTE MACCHIATO 6.2",
+          "alcoholFree": true
+        },
+        {
+          "name": "FLAT WHITE",
+          "coffeeType": "flat_white",
+          "volumeMl": null,
+          "priceChf": 6.8,
+          "sourceUrl": "https://www.kunsthausbar.ch/",
+          "observedAt": "2026-10-15T17:51:52.514213+00:00",
+          "confidence": "automatic",
+          "evidence": "FLAT WHITE 6.8",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:51:52.514213+00:00"
+    },
+    {
+      "id": "node/320526598",
+      "name": "La Catedral",
+      "lat": 47.3707577,
+      "lon": 8.5238038,
+      "type": "bar",
+      "address": "Birmensdorferstrasse 83",
+      "postcode": "8003",
+      "website": "https://www.lacatedral.ch/",
+      "openingHours": "Tu-Th 16:00-23:00, Fr-Sa 16:00-24:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Doppio",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.lacatedral.ch/_files/ugd/f728f6_6ddf3619ab57459fab7019c0c3e973f3.pdf",
+          "observedAt": "2026-10-15T17:53:36.617610+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 19: Doppio 5.-",
+          "alcoholFree": true
+        },
+        {
+          "name": "Kaffee Crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.lacatedral.ch/_files/ugd/f728f6_6ddf3619ab57459fab7019c0c3e973f3.pdf",
+          "observedAt": "2026-10-15T17:53:36.617610+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 19: Kaffee Crème 4.80",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:53:36.617610+00:00"
     },
     {
       "id": "node/906855932",
@@ -10337,7 +11168,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:58:33.784602+00:00"
+      "checkedAt": "2026-10-15T17:50:25.847695+00:00"
     },
     {
       "id": "node/4848816881",
@@ -10352,7 +11183,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:57:32.222636+00:00"
+      "checkedAt": "2026-10-15T17:50:26.305894+00:00"
     },
     {
       "id": "node/4838594379",
@@ -10382,7 +11213,67 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:34.016697+00:00"
+      "checkedAt": "2026-10-15T17:50:27.524799+00:00"
+    },
+    {
+      "id": "node/4869996374",
+      "name": "Le Philosophe",
+      "lat": 47.3708011,
+      "lon": 8.5437753,
+      "type": "bar",
+      "address": "Nägelihof 3",
+      "postcode": "8001",
+      "website": "https://www.bar-lephilosophe.ch/",
+      "openingHours": "Mo-Su 11:00-24:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.bar-lephilosophe.ch/_files/ugd/9201a1_48327b57890c43eca2a6b6e6515eeb59.pdf?index=true",
+          "observedAt": "2026-10-15T17:51:57.461482+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 12: Café, Espresso 5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.bar-lephilosophe.ch/_files/ugd/9201a1_48327b57890c43eca2a6b6e6515eeb59.pdf?index=true",
+          "observedAt": "2026-10-15T17:51:57.461482+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 12: Café, Espresso 5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Doppelter Espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.bar-lephilosophe.ch/_files/ugd/9201a1_48327b57890c43eca2a6b6e6515eeb59.pdf?index=true",
+          "observedAt": "2026-10-15T17:51:57.461482+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 12: Espresso doppio | Cappuccino 6.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.bar-lephilosophe.ch/_files/ugd/9201a1_48327b57890c43eca2a6b6e6515eeb59.pdf?index=true",
+          "observedAt": "2026-10-15T17:51:57.461482+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 12: Espresso doppio | Cappuccino 6.5",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:51:57.461482+00:00"
     },
     {
       "id": "node/659662958",
@@ -10632,7 +11523,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:34.333096+00:00"
+      "checkedAt": "2026-10-15T17:50:27.757792+00:00"
     },
     {
       "id": "node/268602010",
@@ -10733,7 +11624,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:35.536971+00:00"
+      "checkedAt": "2026-10-15T17:50:29.158052+00:00"
     },
     {
       "id": "node/4364350632",
@@ -10748,7 +11639,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:35.537025+00:00"
+      "checkedAt": "2026-10-15T17:50:30.028327+00:00"
     },
     {
       "id": "node/11579521243",
@@ -10939,7 +11830,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:57:36.649588+00:00"
+      "checkedAt": "2026-10-15T17:50:30.439004+00:00"
     },
     {
       "id": "node/560519078",
@@ -10954,7 +11845,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:35.800740+00:00"
+      "checkedAt": "2026-10-15T17:50:31.365681+00:00"
     },
     {
       "id": "node/11966073409",
@@ -10969,7 +11860,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:36.637587+00:00"
+      "checkedAt": "2026-10-15T17:50:31.797133+00:00"
     },
     {
       "id": "node/14270484052",
@@ -11044,7 +11935,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:36.819133+00:00"
+      "checkedAt": "2026-10-15T17:50:33.008345+00:00"
     },
     {
       "id": "node/10965918728",
@@ -11059,7 +11950,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:58:37.789359+00:00"
+      "checkedAt": "2026-10-15T17:50:33.297180+00:00"
     },
     {
       "id": "node/9301039367",
@@ -11074,7 +11965,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-15T14:58:38.348096+00:00"
+      "checkedAt": "2026-10-15T17:50:34.460386+00:00"
     },
     {
       "id": "node/4598760587",
@@ -11090,6 +11981,88 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/4833061573",
+      "name": "Metropol",
+      "lat": 47.3682497,
+      "lon": 8.5412613,
+      "type": "bar",
+      "address": "Fraumünsterstrasse 12",
+      "postcode": "8001",
+      "website": "https://metropol-restaurant.ch/",
+      "openingHours": "Mo-Fr 07:00-24:00; Sa 08:00-24:00; Su 10:00-18:00; PH 10:00-18:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 5.9,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/1382/menu/24271f0fca15.pdf",
+          "observedAt": "2026-10-15T17:51:57.908992+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 14: ESPRESSO | RISTRETTO 5.9",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 5.9,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/1382/menu/24271f0fca15.pdf",
+          "observedAt": "2026-10-15T17:51:57.908992+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 14: ESPRESSO | RISTRETTO 5.9",
+          "alcoholFree": true
+        },
+        {
+          "name": "DOPPELTER ESPRESSO | double espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.9,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/1382/menu/24271f0fca15.pdf",
+          "observedAt": "2026-10-15T17:51:57.908992+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 14: DOPPELTER ESPRESSO | double espresso 6.9",
+          "alcoholFree": true
+        },
+        {
+          "name": "KAFFEE | coffee",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 5.9,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/1382/menu/24271f0fca15.pdf",
+          "observedAt": "2026-10-15T17:51:57.908992+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 14: KAFFEE | coffee 5.9",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAPPUCCINO",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 7.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/1382/menu/24271f0fca15.pdf",
+          "observedAt": "2026-10-15T17:51:57.908992+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 14: CAPPUCCINO 7.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "LATTE MACCHIATO",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 7.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/1382/menu/24271f0fca15.pdf",
+          "observedAt": "2026-10-15T17:51:57.908992+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 14: LATTE MACCHIATO 7.5",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:51:57.908992+00:00"
     },
     {
       "id": "node/310139071",
@@ -11571,7 +12544,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:38.601695+00:00"
+      "checkedAt": "2026-10-15T17:50:34.574361+00:00"
     },
     {
       "id": "node/9752219318",
@@ -11586,7 +12559,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:38.889469+00:00"
+      "checkedAt": "2026-10-15T17:50:35.884881+00:00"
     },
     {
       "id": "node/2205041339",
@@ -11599,9 +12572,65 @@
       "website": "https://lemontmartre.ch/",
       "openingHours": "Tu-Sa 09:00-23:00; Su 09:00-17:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:39.710911+00:00"
+      "offers": [
+        {
+          "name": "espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.8,
+          "sourceUrl": "http://lemontmartre.ch/wp-content/uploads/2026/10/Bonjour.pdf",
+          "observedAt": "2026-10-15T17:50:50.844352+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: espresso 4.80",
+          "alcoholFree": true
+        },
+        {
+          "name": "café",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "http://lemontmartre.ch/wp-content/uploads/2026/10/Bonjour.pdf",
+          "observedAt": "2026-10-15T17:50:50.844352+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: café 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Milchkaffee",
+          "coffeeType": "milk",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "http://lemontmartre.ch/wp-content/uploads/2026/10/Bonjour.pdf",
+          "observedAt": "2026-10-15T17:50:50.844352+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: café au lait, cappuccino 6.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "http://lemontmartre.ch/wp-content/uploads/2026/10/Bonjour.pdf",
+          "observedAt": "2026-10-15T17:50:50.844352+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: café au lait, cappuccino 6.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "latte macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 7.0,
+          "sourceUrl": "http://lemontmartre.ch/wp-content/uploads/2026/10/Bonjour.pdf",
+          "observedAt": "2026-10-15T17:50:50.844352+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: latte macchiato 7.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:56:45.403681+00:00"
     },
     {
       "id": "node/358919273",
@@ -11646,7 +12675,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:40.251213+00:00"
+      "checkedAt": "2026-10-15T17:50:37.260399+00:00"
     },
     {
       "id": "node/5924367485",
@@ -11699,7 +12728,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:58:40.915211+00:00"
+      "checkedAt": "2026-10-15T17:50:38.698821+00:00"
     },
     {
       "id": "node/5201535172",
@@ -11816,7 +12845,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:40.937028+00:00"
+      "checkedAt": "2026-10-15T17:50:39.961804+00:00"
     },
     {
       "id": "node/1083769431",
@@ -11869,7 +12898,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:41.526973+00:00"
+      "checkedAt": "2026-10-15T17:50:40.436530+00:00"
     },
     {
       "id": "node/12427097218",
@@ -12058,7 +13087,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:42.252210+00:00"
+      "checkedAt": "2026-10-15T17:50:41.792151+00:00"
     },
     {
       "id": "node/648956176",
@@ -12159,7 +13188,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:42.770297+00:00"
+      "checkedAt": "2026-10-15T17:50:42.546247+00:00"
     },
     {
       "id": "node/11708347423",
@@ -12174,7 +13203,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:43.311009+00:00"
+      "checkedAt": "2026-10-15T17:50:43.162635+00:00"
     },
     {
       "id": "node/3926121798",
@@ -12189,7 +13218,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T14:57:32.222919+00:00"
+      "checkedAt": "2026-10-15T17:50:43.178380+00:00"
     },
     {
       "id": "node/3250050361",
@@ -12319,6 +13348,55 @@
       "checkedAt": "2026-10-15T12:27:28.951837+00:00"
     },
     {
+      "id": "node/1235083455",
+      "name": "Old Gregory Pub",
+      "lat": 47.3799256,
+      "lon": 8.5274015,
+      "type": "pub",
+      "address": "Schöneggstrasse 6",
+      "postcode": "8004",
+      "website": "https://www.oldgregorypub.ch/",
+      "openingHours": "Su-We 12:00-24:00; Th 12:00-02:00; Fr-Sa 12:00-06:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://oldgregorypub.ch/uploads/images/Getränkekarte/Getraenkekarte_OGP_2024.pdf",
+          "observedAt": "2026-10-15T17:53:58.694557+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: Kaffee, Espresso 5.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://oldgregorypub.ch/uploads/images/Getränkekarte/Getraenkekarte_OGP_2024.pdf",
+          "observedAt": "2026-10-15T17:53:58.694557+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: Kaffee, Espresso 5.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Doppelter Espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://oldgregorypub.ch/uploads/images/Getränkekarte/Getraenkekarte_OGP_2024.pdf",
+          "observedAt": "2026-10-15T17:53:58.694557+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: Doppelter Espresso 6.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:53:58.694557+00:00"
+    },
+    {
       "id": "node/6652974153",
       "name": "Olive",
       "lat": 47.3389108,
@@ -12331,7 +13409,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:43.455311+00:00"
+      "checkedAt": "2026-10-15T17:50:43.896163+00:00"
     },
     {
       "id": "node/8785595317",
@@ -12346,7 +13424,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:43.522848+00:00"
+      "checkedAt": "2026-10-15T17:50:45.123548+00:00"
     },
     {
       "id": "node/104300787",
@@ -12361,7 +13439,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T14:58:43.652167+00:00"
+      "checkedAt": "2026-10-15T17:50:46.081635+00:00"
     },
     {
       "id": "node/4447297097",
@@ -12605,7 +13683,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:44.175380+00:00"
+      "checkedAt": "2026-10-15T17:50:48.381053+00:00"
     },
     {
       "id": "way/1208458736",
@@ -12620,7 +13698,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:44.849748+00:00"
+      "checkedAt": "2026-10-15T17:50:48.480185+00:00"
     },
     {
       "id": "node/2136057722",
@@ -12635,7 +13713,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:45.451101+00:00"
+      "checkedAt": "2026-10-15T17:50:48.526074+00:00"
     },
     {
       "id": "way/1383743333",
@@ -12650,7 +13728,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:45.653320+00:00"
+      "checkedAt": "2026-10-15T17:50:49.977826+00:00"
     },
     {
       "id": "node/1920641564",
@@ -12718,7 +13796,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:46.744514+00:00"
+      "checkedAt": "2026-10-15T17:50:50.148166+00:00"
     },
     {
       "id": "node/283458330",
@@ -12775,7 +13853,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:46.917857+00:00"
+      "checkedAt": "2026-10-15T17:50:51.239172+00:00"
     },
     {
       "id": "node/11820198201",
@@ -12835,7 +13913,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T14:58:48.225684+00:00"
+      "checkedAt": "2026-10-15T17:50:52.317350+00:00"
     },
     {
       "id": "node/4424654345",
@@ -12850,7 +13928,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:48.270428+00:00"
+      "checkedAt": "2026-10-15T17:50:52.569913+00:00"
     },
     {
       "id": "node/9553599374",
@@ -12947,7 +14025,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:58:49.093206+00:00"
+      "checkedAt": "2026-10-15T17:50:52.945187+00:00"
     },
     {
       "id": "node/638389142",
@@ -12962,7 +14040,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:58:49.488775+00:00"
+      "checkedAt": "2026-10-15T17:50:53.196398+00:00"
     },
     {
       "id": "node/13674792080",
@@ -13007,7 +14085,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:49.501749+00:00"
+      "checkedAt": "2026-10-15T17:50:53.208848+00:00"
     },
     {
       "id": "node/5113284019",
@@ -13022,7 +14100,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:50.148316+00:00"
+      "checkedAt": "2026-10-15T17:50:53.392621+00:00"
     },
     {
       "id": "node/11235345732",
@@ -13037,7 +14115,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:50.571382+00:00"
+      "checkedAt": "2026-10-15T17:50:54.374119+00:00"
     },
     {
       "id": "node/2330404759",
@@ -13765,7 +14843,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:50.841597+00:00"
+      "checkedAt": "2026-10-15T17:50:55.113285+00:00"
     },
     {
       "id": "node/7439589787",
@@ -13847,6 +14925,66 @@
       "checkedAt": "2026-10-15T12:29:26.125186+00:00"
     },
     {
+      "id": "node/469984901",
+      "name": "Saigon",
+      "lat": 47.3729919,
+      "lon": 8.5327533,
+      "type": "restaurant",
+      "address": "Sihlstrasse 97",
+      "postcode": "8001",
+      "website": "https://www.saigon.ch/web/saigon/",
+      "openingHours": "Mo-Fr 11:00-23:00; Sa 11:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.saigon.ch/media/saigon_30.06.2026_deutsch.pdf",
+          "observedAt": "2026-10-15T17:54:29.017939+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 24: Café Crème, Espresso 5.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.saigon.ch/media/saigon_30.06.2026_deutsch.pdf",
+          "observedAt": "2026-10-15T17:54:29.017939+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 24: Café Crème, Espresso 5.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Doppelter Espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.saigon.ch/media/saigon_30.06.2026_deutsch.pdf",
+          "observedAt": "2026-10-15T17:54:29.017939+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 24: Cappuccino, Doppelter Espresso 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.saigon.ch/media/saigon_30.06.2026_deutsch.pdf",
+          "observedAt": "2026-10-15T17:54:29.017939+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 24: Cappuccino, Doppelter Espresso 5.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:54:29.017939+00:00"
+    },
+    {
       "id": "node/5335198461",
       "name": "Salotto",
       "lat": 47.3934647,
@@ -13859,7 +14997,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:50.910584+00:00"
+      "checkedAt": "2026-10-15T17:50:58.303027+00:00"
     },
     {
       "id": "node/4891858473",
@@ -13998,7 +15136,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:52.756424+00:00"
+      "checkedAt": "2026-10-15T17:51:00.374658+00:00"
     },
     {
       "id": "node/283458339",
@@ -14198,7 +15336,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-15T14:58:54.157645+00:00"
+      "checkedAt": "2026-10-15T17:51:00.652671+00:00"
     },
     {
       "id": "node/582255607",
@@ -14277,7 +15415,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:54.236494+00:00"
+      "checkedAt": "2026-10-15T17:51:00.917629+00:00"
     },
     {
       "id": "node/848938990",
@@ -14390,7 +15528,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T14:58:56.484114+00:00"
+      "checkedAt": "2026-10-15T17:51:03.129827+00:00"
     },
     {
       "id": "node/1376486718",
@@ -14405,7 +15543,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:57.864516+00:00"
+      "checkedAt": "2026-10-15T17:51:04.416321+00:00"
     },
     {
       "id": "node/305586752",
@@ -14719,7 +15857,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:58:59.898822+00:00"
+      "checkedAt": "2026-10-15T17:51:08.157085+00:00"
     },
     {
       "id": "node/8081932103",
@@ -14839,7 +15977,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T14:59:00.658814+00:00"
+      "checkedAt": "2026-10-15T17:51:12.064252+00:00"
     },
     {
       "id": "node/1805850104",
@@ -15075,7 +16213,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:01.040773+00:00"
+      "checkedAt": "2026-10-15T17:51:14.720652+00:00"
     },
     {
       "id": "node/1360776653",
@@ -15154,7 +16292,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:57:35.048456+00:00"
+      "checkedAt": "2026-10-15T17:51:18.434933+00:00"
     },
     {
       "id": "node/10979033357",
@@ -15345,7 +16483,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:59:04.336697+00:00"
+      "checkedAt": "2026-10-15T17:51:18.952606+00:00"
     },
     {
       "id": "way/172301756",
@@ -15360,7 +16498,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:05.064928+00:00"
+      "checkedAt": "2026-10-15T17:51:19.002439+00:00"
     },
     {
       "id": "node/5201535170",
@@ -15375,7 +16513,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:05.258394+00:00"
+      "checkedAt": "2026-10-15T17:51:19.037946+00:00"
     },
     {
       "id": "node/656508776",
@@ -15521,6 +16659,77 @@
       "checkedAt": null
     },
     {
+      "id": "node/1567061990",
+      "name": "The Mixt",
+      "lat": 47.3755383,
+      "lon": 8.529159,
+      "type": "bar",
+      "address": "Müllerstrasse 55",
+      "postcode": "8004",
+      "website": "https://www.themixt.ch/menu",
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Café Crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.themixt.ch/menu",
+          "observedAt": "2026-10-15T17:52:06.505170+00:00",
+          "confidence": "automatic",
+          "evidence": "Café Crème CHF 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.themixt.ch/menu",
+          "observedAt": "2026-10-15T17:52:06.505170+00:00",
+          "confidence": "automatic",
+          "evidence": "Espresso CHF 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 7.0,
+          "sourceUrl": "https://www.themixt.ch/menu",
+          "observedAt": "2026-10-15T17:52:06.505170+00:00",
+          "confidence": "automatic",
+          "evidence": "Latte Macchiato CHF 7",
+          "alcoholFree": true
+        },
+        {
+          "name": "Doppelter Espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.themixt.ch/menu",
+          "observedAt": "2026-10-15T17:52:06.505170+00:00",
+          "confidence": "automatic",
+          "evidence": "Doppelter Espresso CHF 6.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.themixt.ch/menu",
+          "observedAt": "2026-10-15T17:52:06.505170+00:00",
+          "confidence": "automatic",
+          "evidence": "Cappuccino CHF 6.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T17:52:06.505170+00:00"
+    },
+    {
       "id": "node/10152314163",
       "name": "The Studio",
       "lat": 47.3638328,
@@ -15623,7 +16832,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:05.457437+00:00"
+      "checkedAt": "2026-10-15T17:51:19.625517+00:00"
     },
     {
       "id": "node/2279144887",
@@ -15813,8 +17022,8 @@
       "openingHours": "Mo-Th 14:30-18:00; Fr,Su 14:30-18:30",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:06.059029+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-15T17:51:20.095968+00:00"
     },
     {
       "id": "node/2274216672",
@@ -15889,7 +17098,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:08.667725+00:00"
+      "checkedAt": "2026-10-15T17:51:22.556539+00:00"
     },
     {
       "id": "node/10955852823",
@@ -15904,7 +17113,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:10.219785+00:00"
+      "checkedAt": "2026-10-15T17:51:22.699068+00:00"
     },
     {
       "id": "node/273502894",
@@ -15919,7 +17128,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T14:59:10.790275+00:00"
+      "checkedAt": "2026-10-15T17:51:23.158451+00:00"
     },
     {
       "id": "node/9518963186",
@@ -15934,7 +17143,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T14:59:11.451501+00:00"
+      "checkedAt": "2026-10-15T17:51:24.555427+00:00"
     },
     {
       "id": "node/693318633",
@@ -16099,7 +17308,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T14:59:12.184511+00:00"
+      "checkedAt": "2026-10-15T17:51:24.774604+00:00"
     },
     {
       "id": "node/1360843969",
@@ -16369,7 +17578,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:15.086117+00:00"
+      "checkedAt": "2026-10-15T17:51:25.415343+00:00"
     },
     {
       "id": "node/80087517",
@@ -16444,7 +17653,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:15.678502+00:00"
+      "checkedAt": "2026-10-15T17:51:25.645662+00:00"
     },
     {
       "id": "node/313212546",
@@ -16624,7 +17833,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T14:59:17.143473+00:00"
+      "checkedAt": "2026-10-15T17:51:27.191790+00:00"
     },
     {
       "id": "node/792594129",

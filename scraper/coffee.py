@@ -114,9 +114,13 @@ def coffee_row_columns(row):
             if i and char['x0']-chars[i-1]['x1']>2:
                 text+=' '
             text+=char['text']
-        digits=''.join(c['text'] for c in chars)
-        if digits.isdigit() and 3<=len(chars)<=4:
-            whole=chars[:-2];cents=chars[-2:]
+        # Some embedded fonts map a narrow spacing glyph to '!'. Only ignore
+        # that glyph inside a numeric cell with geometrically raised cents.
+        numeric=[c for c in chars if c['text'].isdigit()]
+        spacing=all(c['text'].isdigit() or c['text'].isspace() or
+                    (c['text']=='!' and c['x1']-c['x0']<=c['size']*.2) for c in chars)
+        if spacing and 3<=len(numeric)<=4:
+            whole=numeric[:-2];cents=numeric[-2:]
             if (all(c['size'] < whole[-1]['size']*.8 for c in cents) and
                 max(c['bottom'] for c in cents) < whole[-1]['bottom']-2 and
                 cents[0]['x0']-whole[-1]['x1']<6):
@@ -134,7 +138,7 @@ def coffee_pdf(body,url,stamp):
     with pdfplumber.open(BytesIO(body)) as document:
         for number,page in enumerate(document.pages[:25],1):
             # Skip wine/food pages before the more expensive layout analysis.
-            if not re.search(r'kaffee|kafi|caff?[eèé]|espresso|cappuccino|flat white|matcha',page.extract_text() or '',re.I):
+            if not re.search(r'kaffee|kafi|caff?[eèé]|coffee|espresso|cappuccino|flat white|matcha|latte|americano|ristretto',page.extract_text() or '',re.I):
                 continue
             for region in column_regions(page):
                 rows=region.extract_text_lines(x_tolerance=2,y_tolerance=3)
@@ -147,11 +151,13 @@ def coffee_pdf(body,url,stamp):
                         found.extend(extract_coffees(candidate,url,stamp))
                     if not found and coffee_types(text) and index+1<len(rows):
                         following=rows[index+1]
-                        if (following['top'] < page.height * .92 and
-                            following['top']-row['top']<=28 and
-                            abs(following['x0']-row['x0'])<=25 and
-                            re.fullmatch(PRICE,following['text'],re.I)):
-                            found=extract_coffees(text+' '+following['text'],url,stamp)
+                        price_cells=coffee_row_columns(following)
+                        amount=price_cells[0] if len(price_cells)==1 else following['text']
+                        below=(0<=following['top']-row['top']<=28 and abs(following['x0']-row['x0'])<=25)
+                        beside=(abs(following['top']-row['top'])<=6 and following['x0']>row['x1']+16)
+                        if (following['top'] < page.height * .92 and (below or beside) and
+                            re.fullmatch(PRICE,amount,re.I)):
+                            found=extract_coffees(text+' '+amount,url,stamp)
                     found=list({(o['coffeeType'],o['priceChf']):o for o in found}.values())
                     for o in found:
                         o['evidence']=f'PDF S. {number}: '+o['evidence']

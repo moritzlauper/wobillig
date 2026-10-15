@@ -8,10 +8,11 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from datetime import datetime,timezone
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlparse
-from scraper.scrape import ROOT,Fetcher,discover,scrape_bar,now
-from scraper.enrich import QUERY,candidates,host
+from scraper.scrape import ROOT,discover,scrape_bar,now
+from scraper.enrich import QUERY,candidates,host,AuditFetcher
 
 DATA=ROOT/'public/data/coffee.json'
 CHECKS=ROOT/'scraper/coffee_checks.json'
@@ -62,6 +63,21 @@ def include_cafes(output, discovered):
             output[bar['id']] = {**bar, **previous, 'offers': previous.get('offers', [])}
 
 
+def select_venues(bars, old, hints, checks, limit=200, only=None, missing_only=False):
+    """Refresh priced venues; rotate the bounded discovery queue, cafes first."""
+    by_id={b['id']:b for b in bars}
+    known=[by_id.get(id,b) for id,b in old.items() if b.get('offers')]
+    unpriced=[b for b in candidates(bars,[],hints,checks) if not old.get(b['id'],{}).get('offers')]
+    unpriced.sort(key=lambda b:(b.get('type')!='cafe',checks.get(b['id'],{}).get('checkedAt',''),b['name'].casefold()))
+    if only:
+        pattern=re.compile(only,re.I)
+        known=[b for b in known if pattern.search(b['name'])]
+        unpriced=[b for b in unpriced if pattern.search(b['name'])]
+    if missing_only: known=[]
+    if limit: unpriced=unpriced[:limit]
+    return [{**b,'offers':old.get(b['id'],{}).get('offers',[])} for b in known+unpriced]
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--discover',action='store_true')
@@ -70,6 +86,9 @@ def main():
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--max-pages',type=int,default=10,help='Maximum linked documents per venue')
     parser.add_argument('--archive-dir',action='append',default=[])
+    parser.add_argument('--audit-dir',help='Archive fetched source documents for inspection and offline replay')
+    parser.add_argument('--only',help='Only venue names matching this regular expression')
+    parser.add_argument('--missing-only',action='store_true',help='Only venues without any coffee prices')
     args=parser.parse_args()
     beer=json.loads((ROOT/'public/data/bars.json').read_text())
     previous=json.loads(DATA.read_text()) if DATA.exists() else {'bars':[]}
@@ -79,13 +98,8 @@ def main():
     hints.update(json.loads((ROOT/'scraper/coffee_menu_urls.json').read_text()))
     discovered=discover(previous,args.osm_file,query=QUERY) if args.discover or args.osm_file or not old else previous
     all_bars={b['id']:b for b in beer['bars']+discovered['bars']}
-    eligible=candidates(list(all_bars.values()),[],hints,checks)
-    eligible_ids={b['id'] for b in eligible}
-    known=[all_bars.get(id,b) for id,b in old.items() if b['offers'] or id in eligible_ids]
-    fresh=[b for b in eligible if b['id'] not in old]
-    if args.limit:fresh=fresh[:args.limit]
-    selected=[{**b,'offers':old.get(b['id'],{}).get('offers',[])} for b in known+fresh]
-    fetcher=ArchiveFetcher(args.archive_dir) if args.archive_dir else Fetcher()
+    selected=select_venues(list(all_bars.values()),old,hints,checks,args.limit,args.only,args.missing_only)
+    fetcher=ArchiveFetcher(args.archive_dir) if args.archive_dir else AuditFetcher(args.audit_dir)
     output=dict(old)
     include_cafes(output, discovered['bars'])
     def flush():

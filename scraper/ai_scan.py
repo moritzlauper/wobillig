@@ -95,6 +95,7 @@ def classify_existing(client, bars):
 
 def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
     found, failures, visited, seen_documents = [], [], set(), set()
+    link_labels={}
     urls = list(dict.fromkeys(hints.get(bar['id'], []) + [o['sourceUrl'] for o in bar['offers'] if not o.get('photoSource')] + ([bar['website']] if bar.get('website') else [])))
     while urls and len(visited) < max_pages and time.monotonic() < deadline:
         url = urls.pop(0)
@@ -114,11 +115,11 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
                 links = [u for u in pdf_links(body) if urlparse(u).scheme in ('http', 'https') and urlparse(u).path.lower().endswith('.pdf') and not SKIP_MENU.search(u)]
                 content = body
             elif 'html' in kind:
-                content, links = html_content(body, final)
+                content, links = html_content(body, final, 'coffee' if bar.get('type')=='cafe' else 'beer', link_labels)
                 images = product_images(body, final)
                 # Menu images often live on a CDN rather than the venue's host.
-                for image in BeautifulSoup(body, 'html.parser').select('img[src], a[href]'):
-                    target = urljoin(final, image.get('src') or image.get('href')).split('#')[0]
+                for image in BeautifulSoup(body, 'html.parser').select('img[src], img[data-src], a[href]'):
+                    target = urljoin(final, image.get('data-src') or image.get('src') or image.get('href')).split('#')[0]
                     label = ' '.join([image.get('alt', ''), image.get('title', ''), image.get_text(' ', strip=True), urlparse(target).path])
                     if re.search(r'\.(?:png|jpe?g|webp)(?:$|[?])', target, re.I) and re.search(r'menu|karte|getr|drink|beverage', label, re.I) and not SKIP_MENU.search(label):
                         links.append(target)
@@ -126,7 +127,7 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
             elif kind.startswith('image/'):
                 links, content = [], body
             else: continue
-            urls = prioritize_links([u for u in links if u not in visited] + urls)
+            urls = prioritize_links([u for u in links if u not in visited] + urls, 'coffee' if bar.get('type')=='cafe' else 'beer', link_labels)
             if not content: continue
             digest = hashlib.sha256(body).hexdigest()
             if digest in seen_documents: continue

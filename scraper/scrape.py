@@ -14,7 +14,7 @@ import re
 import socket
 import threading
 import time
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, unquote
 from urllib.robotparser import RobotFileParser
 
 from bs4 import BeautifulSoup
@@ -39,7 +39,7 @@ WEBSITES = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
 QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + EXTRA_QUERY + ');out center tags;'
 MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card|coffee|kaffee|cocktail|beverage|angebot', re.I)
-SKIP_MENU = re.compile(r'catering|bankett|ap[eé]ro.?vorschl|event.?menu|gruppen|anlass|checkliste|vision|mission|geschichte|datenschutz|impressum|zeitung|newspaper|(?:^|[/_. -])press(?:e)?(?:[/_. -]|$)', re.I)
+SKIP_MENU = re.compile(r'catering|bankett|sitzung|seminar|tagung|meeting|conference|ap[eé]ro.?vorschl|event.?menu|gruppen|anlass|checkliste|vision|mission|geschichte|datenschutz|impressum|zeitung|newspaper|(?:^|[/_. -])press(?:e)?(?:[/_. -]|$)', re.I)
 ORDER_MENU = re.compile(r'/(?:bestellen|online-bestellen|online-order|delivery|takeaway|take-away|shop|order)(?:/|\?|$)', re.I)
 MAX_BYTES = 8 * 1024 * 1024
 MAX_PDF_BYTES = 24 * 1024 * 1024
@@ -185,7 +185,7 @@ def discover(previous, path=None, query=QUERY):
         raise RuntimeError('Refusing to overwrite data with an empty discovery')
     return {'generatedAt':now(),'discoveredAt':now(),'attribution':'© OpenStreetMap contributors, ODbL 1.0','bars':sorted(unique,key=lambda b:b['name'].casefold())}
 
-def html_content(body,url):
+def html_content(body,url,beverage='beer',link_labels=None):
     soup=BeautifulSoup(body,'html.parser')
     title=soup.title.get_text(' ',strip=True) if soup.title else ''
     if re.search(r'online\s+bestellen|essen\s+bestellen|order\s+(?:food\s+)?online|food\s+delivery',title,re.I):
@@ -205,6 +205,7 @@ def html_content(body,url):
             node.extract()
         heading.decompose()
     links=[]
+    if link_labels is None: link_labels={}
     # DearFlip stores the actual PDF in JSON inside its viewer script, not an
     # anchor. Read only the source string; never execute website JavaScript.
     for script in soup.select('script.df-shortcode-script'):
@@ -220,10 +221,14 @@ def html_content(body,url):
         # A hostname containing "bier" must not make every site link a menu.
         link_label=a.get_text(' ',strip=True)+' '+a.get('aria-label','')+' '+a.get('title','')+' '+a.get('alt','')+' '+urlparse(target).path
         pdf=urlparse(target).path.lower().endswith('.pdf')
-        if (MENU.search(link_label) or pdf) and not SKIP_MENU.search(link_label) and urlparse(target).scheme in ('http','https'):
+        cafe_page = beverage=='coffee' and re.search(r'\b(?:caf[eé]|cafeteria|bistro|restaurant|essen|trinken|food)\b', unquote(link_label), re.I)
+        if (MENU.search(link_label) or pdf or cafe_page) and not SKIP_MENU.search(link_label) and urlparse(target).scheme in ('http','https'):
             # Only same-origin navigation; external PDFs are allowed as direct menu links.
             if (urlparse(target).hostname or '').removeprefix('www.')==(urlparse(url).hostname or '').removeprefix('www.') or pdf or urlparse(target).hostname=='api2.lunchgate.ch':
+                if beverage=='coffee' and re.search(r'\.(?:jpe?g|png|webp|svg|gif)$',urlparse(target).path,re.I):
+                    continue
                 links.append(target)
+                link_labels[target]=a.get_text(' ',strip=True)+' '+a.get('aria-label','')+' '+a.get('title','')
     for node in soup(['script','style','nav','footer','header']):
         node.decompose()
     rows=parallel_menu_rows(soup)
@@ -286,7 +291,7 @@ def html_content(body,url):
                 if len(context)<70 and BEER.search(context):
                     rows.append(context+' – '+content)
     rows.extend(soup.get_text('\n',strip=True).splitlines())
-    return '\n'.join(rows),prioritize_links(links)
+    return '\n'.join(rows),prioritize_links(links,beverage,link_labels)
 
 
 def parallel_menu_rows(soup):
@@ -309,7 +314,20 @@ def parallel_menu_rows(soup):
     return rows
 
 
-def prioritize_links(links):
+def prioritize_links(links, beverage='beer', labels=None):
+    if beverage=='coffee':
+        def priority(url):
+            path=unquote(urlparse(url).path)
+            text=path+' '+(labels or {}).get(url,'')
+            # A coffee shop's catalogue or a wine PDF must not exhaust the
+            # document budget before the cafe page and its drinks menu.
+            irrelevant=bool(re.search(r'shop|product|bohnen|beans|r[oö]st|kurs|course|accessor|gutschein|gift|kund(en)?karte|weinkarte|wine.?list|cocktail',text,re.I))
+            if re.search(r'kaffee.?karte|coffee.?menu|getr[aä]nke|getraenke|drinks|beverage|heissgetr|hot.?drinks',text,re.I): rank=0
+            elif re.search(r'men[uüù]|speisekarte|barkarte',text,re.I): rank=1
+            elif re.search(r'caf[eé]|cafeteria|bistro|restaurant|essen|trinken|food',text,re.I): rank=2
+            else: rank=3
+            return irrelevant,rank,not path.lower().endswith('.pdf')
+        return sorted(dict.fromkeys(links),key=priority)
     # Combined wine/drinks lists can contain all the beers. Keep wine-only
     # documents as a lower priority fallback instead of discarding them.
     return sorted(dict.fromkeys(links),key=lambda u:(not bool(re.search(r'bier|beer|getr|drink|barkarte|beverage',urlparse(u).path,re.I)),bool(re.search(r'weinkarte|wine.?list',urlparse(u).path,re.I)),not urlparse(u).path.lower().endswith('.pdf')))
@@ -317,6 +335,8 @@ def prioritize_links(links):
 
 def source_allowed(bar_id, url, beverage='beer'):
     # Shared restaurant websites must not mix menus from different branches.
+    if beverage=='coffee' and SKIP_MENU.search(unquote(urlparse(url).path)):
+        return False
     if beverage=='coffee' and re.search(r'wochenmen|tagesmen|mittags|lunchkarte|lunchmenu',url,re.I):
         return False
     allowed = COFFEE_SOURCE_SCOPES.get(bar_id, SOURCE_SCOPES.get(bar_id)) if beverage=='coffee' else SOURCE_SCOPES.get(bar_id)
@@ -333,7 +353,7 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     if not urls:
         return {**bar,'scrapeStatus':'no_website','checkedAt':stamp}
     urls=list(dict.fromkeys(urls))
-    visited=set();offers=[];errors=[];success=0;changed_reviews=set();read_sources=set();attempts=0
+    visited=set();offers=[];errors=[];success=0;changed_reviews=set();read_sources=set();attempts=0;link_labels={}
     while urls and attempts<max_pages:
         url=urls.pop(0)
         if url in visited:
@@ -354,12 +374,12 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
                     offers.extend((coffee_pdf if beverage=='coffee' else extract_pdf)(body,final,stamp))
                 links=[link for link in pdf_links(body) if urlparse(link).scheme in ('https','http') and urlparse(link).path.lower().endswith('.pdf') and not SKIP_MENU.search(link)]
             elif 'html' in kind:
-                text,links=html_content(body,final)
+                text,links=html_content(body,final,beverage,link_labels)
                 if source_allowed(bar['id'],final,beverage):
                     offers.extend((extract_coffees if beverage=='coffee' else extract_offers)(text,final,stamp))
             else:
                 continue
-            urls=prioritize_links([link for link in links if link not in visited and (not urlparse(link).path.lower().endswith('.pdf') or source_allowed(bar['id'],link,beverage))]+urls)
+            urls=prioritize_links([link for link in links if link not in visited and (not urlparse(link).path.lower().endswith('.pdf') or source_allowed(bar['id'],link,beverage))]+urls,beverage,link_labels)
             read_sources.update((url,final))
             success+=1
         except Exception as exc:
