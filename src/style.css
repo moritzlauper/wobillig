@@ -50,6 +50,10 @@ main { display: flex; flex: 1; min-height: 0; }
 .detail-top > button, .dialog-top > button { font-size: 12px; flex-shrink: 0; }
 p { line-height: 1.5; }
 .muted { color: #666; font-size: 12px; }
+.estimate { margin-top: 4px; }
+.estimate summary { width: fit-content; cursor: pointer; text-decoration: underline; list-style: none; }
+.estimate summary::-webkit-details-marker { display: none; }
+.estimate p { margin: 6px 0 0; }
 .offer { border-top: 1px solid #ddd; padding-top: 14px; margin-top: 14px; }
 .offer-top { display: flex; justify-content: space-between; gap: 15px; margin-bottom: 6px; }
 .offer-top strong { font-size: 14px; font-weight: 600; }
