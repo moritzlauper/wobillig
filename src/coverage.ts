@@ -11,5 +11,5 @@ export function missingPriceLabel(bar: Bar, f: Filters): string {
 export function coverageLabel(bars: Bar[], f: Filters): string {
   const recorded = bars.filter(b => hasDrinkPrice(b, f)).length;
   const matching = bars.filter(b => bestOffer(b, f)).length;
-  return `${bars.length} Lokale · ${recorded} mit ${f.drink === 'pizza' ? 'Margherita-Preis' : f.drink === 'coffee' ? 'Kaffeepreis' : 'Bierpreis'} · ${matching} passend zum Filter`;
+  return `${bars.length} Lokale · ${recorded} mit ${f.drink === 'coffee' ? 'Kaffeepreis' : 'Bierpreis'} · ${matching} passend zum Filter`;
 }

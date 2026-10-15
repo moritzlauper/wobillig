@@ -11,7 +11,7 @@ def name_key(value):
 def estimate_types(bars):
     for bar in bars:
         bar['offers'] = [o for o in bar['offers'] if eligible_offer(o)]
-        beer = [o for o in bar['offers'] if not o.get('coffeeType') and not o.get('pizzaType')]
+        beer = [o for o in bar['offers'] if not o.get('coffeeType')]
         for offer in beer:
             if offer.get('beerType', 'unknown') != 'unknown':
                 offer.pop('beerTypeEstimate', None)

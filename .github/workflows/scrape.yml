@@ -72,8 +72,6 @@ jobs:
         run: python -m scraper.enrich --limit 0 --max-pages 10
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
         run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages 10
-      - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
-        run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages 6
       - name: Claude menu and serving-format scan
         id: ai
         env:

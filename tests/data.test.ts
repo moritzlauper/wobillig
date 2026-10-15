@@ -93,7 +93,7 @@ describe("bar discovery", () => {
     ).toHaveLength(1);
     expect(filterBars([b], { ...f, query: "Basel" })).toHaveLength(0);
   });
-  it.each(["beer", "coffee", "pizza"] as const)("groups bars and pubs in the %s venue filter", drink => {
+  it.each(["beer", "coffee"] as const)("groups bars and pubs in the %s venue filter", drink => {
     const venues = ["bar", "pub", "restaurant", "cafe", "fast_food"].map(type => ({ ...b, id: type, type, offers: [] }));
     expect(filterBars(venues, { ...f, drink, type: "bar" }).map(venue => venue.id)).toEqual(["bar", "pub"]);
   });
@@ -138,14 +138,13 @@ describe("coffee comparisons", () => {
       expect(filterBars([venue], { ...coffee, unknown: false })).toHaveLength(offers.includes(cappuccino) ? 1 : 0);
     }
   });
-  it("keeps other coffee venues and bars/takeaways in beer and pizza", () => {
+  it("keeps other coffee venues and bars/takeaways in beer", () => {
     for (const type of ["cafe", "restaurant", "bar", "pub"]) {
       expect(filterBars([{ ...cafe, type }], coffee)).toHaveLength(1);
     }
     for (const type of ["bar", "pub", "fast_food"]) {
       const venue = { ...b, type };
       expect(filterBars([venue], f)).toHaveLength(1);
-      expect(filterBars([venue], { ...f, drink: "pizza" })).toHaveLength(1);
     }
   });
   it("never converts coffee prices into a fictional volume", () => {
@@ -284,10 +283,9 @@ describe("cafés in the beer view", () => {
     expect(filterBars([cafe], { ...f, beerType: "bottle" })).toHaveLength(1);
     expect(filterBars([cafe], { ...f, beerType: "bottle", unknown: false })).toHaveLength(0);
   });
-  it("keeps coffee, pizza and other venue types unaffected", () => {
+  it("keeps coffee and other venue types unaffected", () => {
     const daytime = { ...cafe, openingHours: "08:00-17:00", offers: [] };
     expect(filterBars([daytime], { ...f, drink: "coffee" })).toHaveLength(1);
-    expect(filterBars([daytime], { ...f, drink: "pizza" })).toHaveLength(1);
     expect(filterBars([{ ...daytime, type: "bar" }], f)).toHaveLength(1);
   });
   it("accepts newly contributed beer but ignores expired photo evidence", () => {
