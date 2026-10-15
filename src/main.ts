@@ -39,7 +39,7 @@ $('app').innerHTML = `
 <div class="status-row"><span id="count" role="status">Laden …</span><div class="mobile-switch" role="group" aria-label="Ansicht"><button id="view-map" aria-pressed="true">Karte</button><button id="view-list" aria-pressed="false">Liste</button></div><button id="data-info" class="text-button">Daten</button></div>
 <div id="load-error" role="status" hidden></div>
 <main>
-  <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
+  <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', price_desc: 'Preis absteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
   <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="fit">Alle anzeigen</button></div><div id="map-unit" class="map-unit"></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section></section>
 </main>
 <div id="toast" role="status" hidden></div>

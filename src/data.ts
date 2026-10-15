@@ -115,8 +115,10 @@ export function filterBars(
         );
       const x = bestOffer(a, f),
         y = bestOffer(b, f);
+      if (!x && y) return 1;
+      if (x && !y) return -1;
       return (
-        (x ? cost(x, f.mode) : Infinity) - (y ? cost(y, f.mode) : Infinity) ||
+        (x && y ? (cost(x, f.mode) - cost(y, f.mode)) * (f.sort === "price_desc" ? -1 : 1) : 0) ||
         a.name.localeCompare(b.name, "de")
       );
     });
