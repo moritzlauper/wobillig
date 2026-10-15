@@ -87,7 +87,7 @@ function rebuild() {
   render();
 }
 function syncControls() {
-  $<HTMLSelectElement>('type').innerHTML = options({ ...venueTypes, '': coffee() ? 'Ohne Bars, Pubs / Imbisse' : 'Alle' });
+  $<HTMLSelectElement>('type').innerHTML = options({ ...venueTypes, '': coffee() ? 'Ohne Imbisse' : 'Alle' });
   $<HTMLSelectElement>('type').value = f.type;
   $('beer-controls').hidden = !beer(); $('coffeeType').hidden = !coffee();
   $<HTMLSelectElement>('volume').querySelector<HTMLOptionElement>('[value=stange]')!.disabled = ['bottle', 'can'].includes(f.beerType!);

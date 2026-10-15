@@ -158,8 +158,7 @@ function venueCategory(type: string): string {
 }
 
 export function isVenueEligible(bar: Bar, f: Filters): boolean {
-  const category = venueCategory(bar.type);
-  if (f.drink === "coffee" && ["bar", "fast_food"].includes(category)) return f.type === category;
+  if (f.drink === "coffee" && bar.type === "fast_food") return f.type === "fast_food";
   if ((f.drink || "beer") !== "beer" || bar.type !== "cafe") return true;
   // A missing price for the selected size/format is different from no beer
   // evidence at all. Community beer entries count after applyEntries merges them.
