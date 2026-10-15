@@ -1,9 +1,11 @@
-# wogünstig 🍻
+# wogünstig 🍻 ☕
 
-**Gutes Bier. Guter Preis.** Eine schlichte, responsive Zürich-Karte für den nächsten Feierabend. TypeScript, Leaflet und ein Python-Scraper – ohne API-Key, Benutzerkonto oder eigenes Backend.
+**Gutes Bier. Guter Kaffee. Guter Preis.** Eine schlichte, responsive Zürich-Karte für den Feierabend und die Kaffeepause. TypeScript, Leaflet und ein Python-Scraper – ohne API-Key, Benutzerkonto oder eigenes Backend.
 
 ## Was drin ist
 
+- Umschalter **Bier / Kaffee**, mit direkt verlinkbarer Kaffeeansicht unter `?drink=coffee`.
+- Kaffee nach Sorte vergleichen: Café crème/Kaffee, Espresso, doppelter Espresso, Ristretto, Cappuccino, Latte macchiato, Milchkaffee/Caffè latte, Flat White, Americano und Filterkaffee. Preise gelten **pro Getränk**, ohne erfundene Tassengrössen oder 5-dl-Umrechnung.
 - Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.
 - Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten/Restaurant/Café, Terrasse und alkoholfreies Bier.
 - Startansicht mit **tatsächlich angebotenen 5-dl-Portionen**. Andere Grössen sind über den Filter verfügbar.
@@ -27,6 +29,12 @@ Der Scraper folgt auch eingebetteten PDFs, PDF-Inhaltsverzeichnissen und verlink
 Fünf grafische oder mehrdeutige Originalkarten sind zusätzlich in `scraper/reviewed_menus.json` visuell geprüft hinterlegt. Diese Angebote erscheinen als **manuell geprüft** und werden nur bei identischer SHA-256-Prüfsumme der erneut abgerufenen Quelle übernommen. Bei als exklusiv markierten Prüfungen ersetzen diese Einträge die automatische Erkennung für dieselbe Karte. Eine geänderte Datei verlangt eine erneute Prüfung; alte geprüfte Preise daraus werden nicht blind übernommen. `source_scopes.json` verhindert bei bekannten gemeinsamen Websites, dass Karten anderer Filialen oder archivierte Menüs zugeordnet werden.
 
 Mehrdeutige Tabellen, nicht geprüfte Bilder, reine JavaScript-Menüs, fehlende Grössen, Ginger Beer, Mineralwasser gleicher Marken, Catering-Karten, erkannte Liefer-/Bestellseiten, Take-away-Abschnitte und bedingte Angebote werden ausgelassen. 5 dl umfasst Fass- und Flaschenbier; die Ausschankart ist nicht flächendeckend klassifiziert. Automatisch erkannte Preise sind als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %. Die Oberfläche trennt Gesamtangebote von den Locations mit einem zu den aktuellen Filtern passenden Preis.
+
+### Kaffee
+
+`public/data/coffee.json` enthält am **15. Oktober 2026** **431 Kaffeeangebote bei 105 Locations**. Der Erstlauf hat 1’014 eindeutig zuordenbare Websites anhand archivierter Originaldokumente geprüft. Die Anzahl bezieht sich auf alle Sorten; der aktuelle Sortenfilter zeigt die dazu passenden Preise. Der Kaffee-Scraper prüft neben Bars auch Restaurants und Cafés innerhalb der Zürcher Stadtgrenze. Er übernimmt nur vollständig erkannte Kaffeenamen mit eindeutigem Preis (CHF 2–12). Einfache und doppelte Espressi bleiben getrennt; Caffè latte wird als Milchkaffee klassifiziert. Allgemein als „Kaffee“ bezeichnete Angebote sind mit Café crème gruppiert; der Originalname bleibt sichtbar. Eisgetränke, alkoholische Kaffees, Aufpreise und Kombiangebote werden nicht als Standardkaffee aufgenommen. Fehlende Sorten können als „Preis offen“ angezeigt werden. Die Kaffeeansicht veröffentlicht nur Locations mit gefundenen Kaffeepreisen.
+
+Der Parser liest HTML und PDF-Text mit Positionen, erkennt gemeinsame Preise und eindeutige parallele Alternativen (`Espresso / Doppio 4.70 / 5.70`). Er schützt vor Seitenzahlen als Preisen, trennt bekannte Filialkarten über `coffee_source_scopes.json` und lässt Wochen-/Mittagsmenüs aus. Bilder, JavaScript-Karten und unklare Zuordnungen benötigen weiterhin gesonderte Erfassung; die Karte beansprucht keine vollständige Abdeckung.
 
 ## Lokal starten
 
@@ -67,12 +75,19 @@ python -m scraper.enrich --limit 200
 python -m scraper.enrich --limit 0
 python -m scraper.enrich --retry-failed --limit 200
 
+# Kaffee: bekannte Locations aktualisieren und bis zu 200 neue Kandidaten prüfen
+python -m scraper.scrape_coffee --discover --limit 200
+# Alle zusätzlichen Kaffee-Kandidaten prüfen
+python -m scraper.scrape_coffee --discover --limit 0
+
 # Bestehende Standorte, begrenzter Durchlauf / einzelne Bar
 python -m scraper.scrape --limit 20 --workers 4
 python -m scraper.scrape --name 'Bar Rossi'
 ```
 
 `--max-pages 8` (Standard) begrenzt die Dokumente pro Bar, `--workers` die Parallelität (maximal 8). Begrenzte Läufe beginnen mit den am längsten nicht geprüften Bars. `OVERPASS_URL` überschreibt den primären Overpass-Endpunkt. Standard ist `overpass.osm.ch`, Fallback `overpass-api.de`. `--osm-file /path/response.json` importiert eine gespeicherte vollständige Overpass-Antwort.
+
+Beim Kaffee ergänzt `scraper/coffee_menu_urls.json` die allgemeinen Menühinweise. `scraper/coffee_checks.json` sorgt für rotierende Kandidaten. `--archive-dir /pfad/archiv` kann wiederholt angegeben werden, um zuvor mit dem Crawler abgerufene Dokumente offline neu auszuwerten; die ursprünglichen Abrufdaten bleiben erhalten. Der veröffentlichte Erstbestand nutzt auch diese Originaldokumente.
 
 ### Ablauf und Rücksichtnahme
 
@@ -98,7 +113,7 @@ Der Schlüssel ist die bestehende OSM-ID. Preise oder Koordinaten müssen dafür
 ## GitHub Actions
 
 - **Checks:** Frontend-Tests, TypeScript/Produktionsbuild und Python-Tests bei Push und Pull Request.
-- **Refresh Zurich beer prices:** montags um 04:23 UTC und manuell unter Actions. Aktualisiert Standorte und Preise, prüft anschliessend bis zu 200 zusätzliche Gastronomie-Websites und committet den Datenbestand samt Prüfstand. Benötigt die im Workflow deklarierte Schreibberechtigung für Repository-Inhalte. Private Repositories verwenden das Actions-Kontingent des Accounts.
+- **Refresh Zurich drink prices:** montags um 04:23 UTC und manuell unter Actions. Aktualisiert Standorte und Preise, prüft anschliessend bis zu 200 zusätzliche Gastronomie-Websites aktualisiert die bekannten Kaffee-Locations plus bis zu 200 zusätzliche Kandidaten und committet beide Datenbestände samt Prüfstand. Benötigt die im Workflow deklarierte Schreibberechtigung für Repository-Inhalte. Private Repositories verwenden das Actions-Kontingent des Accounts.
 - **Deploy to GitHub Pages (manual):** optional. Zuerst unter Settings → Pages die Quelle „GitHub Actions“ aktivieren, dann den Workflow starten. Für Pages aus privaten Repositories ist ein passender GitHub-Tarif erforderlich; das Repository wird nicht automatisch öffentlich gemacht. Nach Datenupdates muss dieser manuelle Deployment-Workflow erneut gestartet werden.
 
 ## Aufbau
@@ -107,7 +122,10 @@ Der Schlüssel ist die bestehende OSM-ID. Preise oder Koordinaten müssen dafür
 src/main.ts                  Oberfläche, Karte und Interaktionen
 src/data.ts                  Filter, Preisnormalisierung, sichere Links
 src/style.css                Responsive Gestaltung
-public/data/bars.json        Versionierter Datenbestand
+public/data/bars.json        Versionierte Bierpreise
+public/data/coffee.json      Versionierte Kaffeepreise
+scraper/coffee.py            Erkennung von Kaffeesorten und Einzelpreisen
+scraper/scrape_coffee.py     Kaffee-Import und optionale Offline-Auswertung
 scraper/scrape.py            Standortimport, höflicher Crawler, PDF/HTML
 scraper/extract.py           Konservative Preisextraktion
 scraper/pdf_extract.py       PDF-Spalten, Grössenüberschriften und Textpositionen
@@ -121,7 +139,7 @@ tests/                      Preis-, Filter- und Parser-Regressionstests
 
 ## Quellen und Nutzung
 
-Standorte: [© OpenStreetMap-Mitwirkende](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Die OSM-abgeleiteten Standortdaten bleiben unter dieser Datenbanklizenz. Basiskarte: [OpenStreetMap](https://operations.osmfoundation.org/policies/tiles/). Bierpreise stammen aus den im Datensatz verlinkten Originalkarten. Gespeichert werden strukturierte Preisfakten und kurze Belegzeilen, keine vollständigen Speisekarten. Schriften werden von Google Fonts geladen.
+Standorte: [© OpenStreetMap-Mitwirkende](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Die OSM-abgeleiteten Standortdaten bleiben unter dieser Datenbanklizenz. Basiskarte: [OpenStreetMap](https://operations.osmfoundation.org/policies/tiles/). Getränkepreise stammen aus den im Datensatz verlinkten Originalkarten. Gespeichert werden strukturierte Preisfakten und kurze Belegzeilen, keine vollständigen Speisekarten. Schriften werden von Google Fonts geladen.
 
 Vor öffentlichem Betrieb die Nutzungsbedingungen und Kapazitätsgrenzen der Kartenanbieter sowie die Anforderungen der eigenen Bereitstellung prüfen. Der Code steht unter MIT; Rechte an den Quelldaten und fremden Inhalten bleiben separat.
 

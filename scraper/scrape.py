@@ -21,18 +21,20 @@ from bs4 import BeautifulSoup
 import requests
 from scraper.extract import extract_offers, BEER, SIZE
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
+from scraper.coffee import extract_coffees, coffee_pdf, coffee_types
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'public/data/bars.json'
 UA = 'WoguenstigBot/1.0 (+https://github.com/moritzlauper/woguenstig)'
 EXTRA_VENUES = json.loads((ROOT / 'scraper/additional_venues.json').read_text())
 SOURCE_SCOPES = json.loads((ROOT / 'scraper/source_scopes.json').read_text())
+COFFEE_SOURCE_SCOPES = json.loads((ROOT / 'scraper/coffee_source_scopes.json').read_text())
 REVIEWED_MENUS = json.loads((ROOT / 'scraper/reviewed_menus.json').read_text())
 WEBSITES = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
 QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + EXTRA_QUERY + ');out center tags;'
-MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card', re.I)
+MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card|coffee|kaffee', re.I)
 SKIP_MENU = re.compile(r'catering|bankett|ap[eé]ro.?karte|ap[eé]ro.?vorschl|event.?menu|gruppen|anlass|checkliste|vision|mission|geschichte|weinkarte|wine.?list|datenschutz|impressum', re.I)
 ORDER_MENU = re.compile(r'/(?:bestellen|online-bestellen|online-order|delivery|takeaway|take-away|shop|order)(?:/|\?|$)', re.I)
 MAX_BYTES = 8 * 1024 * 1024
@@ -213,9 +215,9 @@ def html_content(body,url):
     # Pair a named, sized product only with its immediately adjacent price cell.
     for cell in soup.select('div, p, li, dt'):
         name=cell.get_text(' ',strip=True)
-        if len(name)>160 or not BEER.search(name):
+        if len(name)>160 or not (BEER.search(name) or coffee_types(name)):
             continue
-        if not SIZE.search(name):
+        if not SIZE.search(name) and not coffee_types(name):
             continue
         sibling=cell.find_next_sibling()
         if sibling:
@@ -243,12 +245,14 @@ def prioritize_links(links):
     return sorted(dict.fromkeys(links),key=lambda u:(not bool(re.search(r'bier|beer|getr|drink|barkarte|beverage',urlparse(u).path,re.I)),not urlparse(u).path.lower().endswith('.pdf')))
 
 
-def source_allowed(bar_id, url):
+def source_allowed(bar_id, url, beverage='beer'):
     # Shared restaurant websites must not mix menus from different branches.
-    allowed = SOURCE_SCOPES.get(bar_id)
+    if beverage=='coffee' and re.search(r'wochenmen|tagesmen|mittags|lunchkarte|lunchmenu',url,re.I):
+        return False
+    allowed = COFFEE_SOURCE_SCOPES.get(bar_id, SOURCE_SCOPES.get(bar_id)) if beverage=='coffee' else SOURCE_SCOPES.get(bar_id)
     return not ORDER_MENU.search(url) and (not allowed or any(part.casefold() in url.casefold() for part in allowed))
 
-def scrape_bar(bar, fetcher, hints, max_pages):
+def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     if bar['id'] in WEBSITES:
         bar={**bar,'website':WEBSITES[bar['id']]}
     stamp=now()
@@ -265,30 +269,30 @@ def scrape_bar(bar, fetcher, hints, max_pages):
         visited.add(url)
         try:
             final,kind,body=fetcher.get(url)
-            review=REVIEWED_MENUS.get(final)
+            review=REVIEWED_MENUS.get(final) if beverage=='beer' else None
             if review and review['barId']==bar['id']:
                 if hashlib.sha256(body).hexdigest()==review['sha256']:
                     offers.extend({**o,'sourceUrl':final,'observedAt':stamp,'confidence':'reviewed'} for o in review['offers'])
                 else:
                     changed_reviews.add(final)
             if 'pdf' in kind or urlparse(final).path.lower().endswith('.pdf'):
-                if source_allowed(bar['id'],final) and not (review and review['barId']==bar['id'] and review.get('exclusive')):
-                    offers.extend(extract_pdf(body,final,stamp))
+                if source_allowed(bar['id'],final,beverage) and not (review and review['barId']==bar['id'] and review.get('exclusive')):
+                    offers.extend((coffee_pdf if beverage=='coffee' else extract_pdf)(body,final,stamp))
                 links=[link for link in pdf_links(body) if urlparse(link).scheme in ('https','http') and urlparse(link).path.lower().endswith('.pdf') and not SKIP_MENU.search(link)]
             elif 'html' in kind:
                 text,links=html_content(body,final)
-                if source_allowed(bar['id'],final):
-                    offers.extend(extract_offers(text,final,stamp))
+                if source_allowed(bar['id'],final,beverage):
+                    offers.extend((extract_coffees if beverage=='coffee' else extract_offers)(text,final,stamp))
             else:
                 continue
-            urls=prioritize_links([link for link in links if link not in visited and (not urlparse(link).path.lower().endswith('.pdf') or source_allowed(bar['id'],link))]+urls)
+            urls=prioritize_links([link for link in links if link not in visited and (not urlparse(link).path.lower().endswith('.pdf') or source_allowed(bar['id'],link,beverage))]+urls)
             success+=1
         except Exception as exc:
             # One malformed PDF or offline site must not abort the city import.
             errors.append(str(exc) if isinstance(exc,ValueError) else type(exc).__name__)
     dedup={}
     for o in offers:
-        dedup.setdefault((o['name'].casefold(),o['volumeMl'],o['priceChf']),o)
+        dedup.setdefault((o.get('coffeeType',o['name'].casefold()),o['volumeMl'],o['priceChf']),o)
     # Preserve the last known offers (with their original date) when a crawl fails.
     if offers:
         result=list(dedup.values())

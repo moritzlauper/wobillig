@@ -1,6 +1,7 @@
 export type Offer = {
   name: string;
-  volumeMl: number;
+  volumeMl: number | null;
+  coffeeType?: string;
   priceChf: number;
   sourceUrl: string;
   observedAt: string;
@@ -30,6 +31,8 @@ export type Dataset = {
   bars: Bar[];
 };
 export type Filters = {
+  drink?: "beer" | "coffee";
+  coffeeType?: string;
   query: string;
   max: number;
   volume: string;
@@ -40,17 +43,30 @@ export type Filters = {
   mode: "glass" | "half";
   sort: string;
 };
-export function bestOffer(bar: Bar, f: Filters): Offer | undefined {
+export const coffeeLabels: Record<string, string> = {
+  creme: "Café crème / Kaffee", espresso: "Espresso", double: "Doppelter Espresso",
+  ristretto: "Ristretto", cappuccino: "Cappuccino", latte: "Latte macchiato",
+  milk: "Milchkaffee", flat_white: "Flat White", americano: "Americano", filter: "Filterkaffee",
+};
+export function portion(o: Offer) {
+  return o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : `${(o.volumeMl || 0) / 100} dl`;
+}
+export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return bar.offers
     .filter(
       (o) =>
-        o.alcoholFree === f.alcoholFree &&
+        f.drink === "coffee" ? Boolean(o.coffeeType) &&
+          (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
+        !o.coffeeType && o.alcoholFree === f.alcoholFree &&
         (f.volume === "all" || o.volumeMl === Number(f.volume)),
     )
-    .sort((a, b) => cost(a, f.mode) - cost(b, f.mode))[0];
+    .sort((a, b) => cost(a, f.mode) - cost(b, f.mode));
+}
+export function bestOffer(bar: Bar, f: Filters): Offer | undefined {
+  return matchingOffers(bar, f)[0];
 }
 export function cost(o: Offer, mode: Filters["mode"]) {
-  return mode === "half" ? (o.priceChf * 500) / o.volumeMl : o.priceChf;
+  return !o.coffeeType && mode === "half" && o.volumeMl ? (o.priceChf * 500) / o.volumeMl : o.priceChf;
 }
 export function distance(a: [number, number], b: [number, number]) {
   const r = Math.PI / 180;

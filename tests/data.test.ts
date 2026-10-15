@@ -93,3 +93,28 @@ describe("bar discovery", () => {
     );
   });
 });
+
+describe("coffee comparisons", () => {
+  const espresso = { ...b.offers[0], name: "Espresso", coffeeType: "espresso", volumeMl: null, priceChf: 4, alcoholFree: true };
+  const cappuccino = { ...espresso, name: "Cappuccino", coffeeType: "cappuccino", priceChf: 5.5 };
+  const cafe = { ...b, offers: [espresso, cappuccino, ...b.offers] };
+  const coffee: Filters = { ...f, drink: "coffee", coffeeType: "cappuccino", volume: "500", mode: "half" };
+  it("compares only the selected coffee, without a beer-size or alcohol filter", () => {
+    expect(bestOffer(cafe, coffee)).toBe(cappuccino);
+    expect(bestOffer(cafe, { ...coffee, coffeeType: "espresso" })).toBe(espresso);
+    expect(bestOffer(cafe, { ...coffee, coffeeType: "latte" })).toBeUndefined();
+    expect(bestOffer(cafe, { ...coffee, coffeeType: "all" })).toBe(espresso);
+    expect(bestOffer(cafe, f)?.name).toBe("Lager");
+  });
+  it("never converts coffee prices into a fictional volume", () => {
+    expect(cost(cappuccino, "half")).toBe(5.5);
+    expect(cost({ ...cappuccino, volumeMl: 150 }, "half")).toBe(5.5);
+    expect(filterBars([cafe], { ...coffee, max: 5 })).toHaveLength(0);
+  });
+  it("sorts matching coffees and optionally shows missing varieties", () => {
+    const cheaper = { ...cafe, id: "node/2", offers: [{ ...cappuccino, priceChf: 4.5 }] };
+    const noMatch = { ...cafe, id: "node/3", offers: [espresso] };
+    expect(filterBars([cafe, noMatch, cheaper], coffee).map(x => x.id)).toEqual(["node/2", "node/1", "node/3"]);
+    expect(filterBars([noMatch], { ...coffee, unknown: false })).toHaveLength(0);
+  });
+});

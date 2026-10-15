@@ -15,6 +15,45 @@
 body {
   margin: 0;
 }
+[hidden] {
+  display: none !important;
+}
+body.coffee-mode {
+  --lime: #edc69f;
+}
+.drink-switch {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 25px;
+  background: #f0f2eb;
+  border-radius: 30px;
+  width: fit-content;
+}
+.drink-switch button {
+  padding: 9px 27px;
+  border-radius: 24px;
+  font-size: 12px;
+  font-weight: 650;
+}
+.drink-switch button[aria-pressed="true"] {
+  background: var(--lime);
+}
+.intro h1 .plain-title:after {
+  display: none;
+}
+.filter-note {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #727b67;
+  margin: 12px 0 0;
+}
+.coffee-mode .bar-price.cheap {
+  color: #805333;
+}
+.coffee-mode .lime {
+  background: var(--lime);
+}
 button,
 input,
 select {
