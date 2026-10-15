@@ -22,7 +22,9 @@ Eine einfache Zürich-Karte für Bier- und Kaffeepreise. TypeScript, Leaflet, Py
 
 ## Ehrlicher Datenstand
 
-Der Datenstand vom **15. Oktober 2026** enthält **430 Locations** in der administrativen Stadt Zürich und **1’172 Bierangebote bei 172 Locations**. Die Nachsuche prüft zusätzlich Restaurants und Cafés aus OpenStreetMap. Mehrdeutige Mengen-/Preistabellen und doppelte Produktvarianten wurden bereinigt; die Vorbahnhof-Karte wurde anhand des PDF-Layouts geprüft. Dies sind Quellendaten, keine Demo-Preise. Die Zahlen ändern sich bei späteren Läufen.
+Der Datenstand vom **15. Oktober 2026** enthält **430 Locations** in der administrativen Stadt Zürich und **1’385 Bierangebote bei 194 Locations**. Unter den **229 als Bar erfassten Lokalen haben 44 einen Bierpreis** (vor der gezielten Bar-Nachsuche: 28); 32 davon haben einen alkoholhaltigen 5-dl-Preis bis CHF 15. Dazu kommen 18 von 61 Pubs mit Preisen. Die Nachsuche prüft zusätzlich Restaurants und Cafés aus OpenStreetMap. Mehrdeutige Mengen-/Preistabellen und doppelte Produktvarianten wurden bereinigt; grafische Karten wurden anhand des PDF-Layouts geprüft. Dies sind Quellendaten, keine Demo-Preise. Die Zahlen ändern sich bei späteren Läufen.
+
+Die Bar-Nachsuche ergänzt 181 Angebote bei 16 Bars und drei Pubs, unter anderem Bar 63, Cinchona, Kasheme, Kunsthaus Bar, Widder, Metropol und Terrasse. Fehlende oder veraltete Website-Adressen und direkte Menülinks sind für folgende Läufe hinterlegt. Kombinierte Wein-/Getränkekarten, Cocktail-Unterseiten, www-Weiterleitungen, grössere PDFs bis 24 MiB und zusätzliche HTML-/Tabellenformate werden berücksichtigt. Bekannte Quellen werden erneut geprüft; bei nicht erreichbaren oder im begrenzten Lauf nicht besuchten Quellen bleiben ihre bisherigen Preise mit dem ursprünglichen Abrufdatum erhalten. Die verbleibenden 185 Bars ohne Preis werden nicht mit Schätzpreisen aufgefüllt.
 
 Beispiele für echte 5-dl-Portionen aus den Originalkarten: Rheinfelder Bierhalle CHF 6.80, New Bombay (Erdinger) CHF 6.90, Amara CHF 6.80, Zum Guten Glück (Adler Lager) CHF 6.80 und La Stazione in Oerlikon CHF 5.50. Im El Lokal erkennt der Parser jetzt auch das Appenzeller vom Fass für CHF 8.50. Die Quellen sind direkt beim jeweiligen Angebot verlinkt.
 
@@ -36,7 +38,7 @@ Mehrdeutige Tabellen, nicht geprüfte Bilder, reine JavaScript-Menüs, fehlende 
 
 ### Stangenpreise
 
-Die Stangen-Auswahl umfasst **174 Angebote**; **83 Locations** haben einen passenden alkoholhaltigen Preis. Die gezielte Nachsuche ergänzt 17 Angebote aus Originalkarten, etwa bei Gabbiano, Hot Pasta und Tramblu (je 3 dl für CHF 4.80), Handelshof (3 dl für CHF 5.50) und La Stazione (Stange für CHF 4.50, Menge nicht angegeben). Die Abrufdaten der wiederverwendeten Originaldokumente bleiben erhalten. Der reguläre Scraper erkennt diese Formate bei künftigen Läufen ebenfalls.
+Die Stangen-Auswahl umfasst **204 Angebote**; **97 Locations** haben einen passenden alkoholhaltigen Preis. Die gezielte Stangen-Nachsuche ergänzte 17 Angebote aus Originalkarten, etwa bei Gabbiano, Hot Pasta und Tramblu (je 3 dl für CHF 4.80), Handelshof (3 dl für CHF 5.50) und La Stazione (Stange für CHF 4.50, Menge nicht angegeben). Weitere Stangenpreise stammen aus der Bar-Nachsuche. Die Abrufdaten der wiederverwendeten Originaldokumente bleiben erhalten. Der reguläre Scraper erkennt diese Formate bei künftigen Läufen ebenfalls.
 
 ### Kaffee
 
@@ -73,6 +75,9 @@ python -m unittest discover -s tests -p 'test_*.py'
 
 # Standorte neu aus OSM laden und alle verlinkten Menüs prüfen
 python -m scraper.scrape --discover
+
+# Vertiefte Nachsuche für Bars/Pubs ohne Preise (auch im regulären Workflow)
+python -m scraper.scrape --type bar --type pub --type biergarten --missing-prices --max-pages 20
 
 # Nur Standortimport
 python -m scraper.scrape --discover --discover-only

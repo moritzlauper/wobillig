@@ -37,10 +37,11 @@ WEBSITES = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
 QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + EXTRA_QUERY + ');out center tags;'
-MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card|coffee|kaffee', re.I)
-SKIP_MENU = re.compile(r'catering|bankett|ap[eé]ro.?karte|ap[eé]ro.?vorschl|event.?menu|gruppen|anlass|checkliste|vision|mission|geschichte|weinkarte|wine.?list|datenschutz|impressum|zeitung|newspaper|(?:^|[/_. -])press(?:e)?(?:[/_. -]|$)', re.I)
+MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card|coffee|kaffee|cocktail|beverage|angebot', re.I)
+SKIP_MENU = re.compile(r'catering|bankett|ap[eé]ro.?vorschl|event.?menu|gruppen|anlass|checkliste|vision|mission|geschichte|datenschutz|impressum|zeitung|newspaper|(?:^|[/_. -])press(?:e)?(?:[/_. -]|$)', re.I)
 ORDER_MENU = re.compile(r'/(?:bestellen|online-bestellen|online-order|delivery|takeaway|take-away|shop|order)(?:/|\?|$)', re.I)
 MAX_BYTES = 8 * 1024 * 1024
+MAX_PDF_BYTES = 24 * 1024 * 1024
 
 def now():
     return datetime.now(timezone.utc).isoformat()
@@ -74,10 +75,11 @@ class Fetcher:
                 with requests.get(url, headers={'User-Agent':UA}, timeout=(8,15), allow_redirects=False, stream=True) as r:
                     if r.is_redirect:
                         return r.status_code, r.headers, b''
+                    limit = MAX_PDF_BYTES if 'application/pdf' in r.headers.get('Content-Type', '').lower() else MAX_BYTES
                     chunks = bytearray()
                     for chunk in r.iter_content(65536):
                         chunks.extend(chunk)
-                        if len(chunks) > MAX_BYTES:
+                        if len(chunks) > limit:
                             raise ValueError('response_too_large')
                     return r.status_code, r.headers, bytes(chunks)
             finally:
@@ -219,11 +221,29 @@ def html_content(body,url):
         pdf=urlparse(target).path.lower().endswith('.pdf')
         if (MENU.search(link_label) or pdf) and not SKIP_MENU.search(link_label) and urlparse(target).scheme in ('http','https'):
             # Only same-origin navigation; external PDFs are allowed as direct menu links.
-            if urlparse(target).netloc==urlparse(url).netloc or pdf or urlparse(target).hostname=='api2.lunchgate.ch':
+            if (urlparse(target).hostname or '').removeprefix('www.')==(urlparse(url).hostname or '').removeprefix('www.') or pdf or urlparse(target).hostname=='api2.lunchgate.ch':
                 links.append(target)
     for node in soup(['script','style','nav','footer','header']):
         node.decompose()
     rows=parallel_menu_rows(soup)
+    # Pair only structurally adjacent names and numeric size/price rows.
+    # Some menus put several products in one paragraph separated by <br>.
+    def product_portions(name, amounts):
+        if len(name)>80 or not BEER.search(name) or SIZE.search(name) or re.search(r'\d',name):
+            return
+        remainder=SIZE.sub('',amounts)
+        if SIZE.search(amounts) and re.fullmatch(r'[\d\s.,/|–—-]+',re.sub(r'CHF|Fr\.?','',remainder,flags=re.I)):
+            rows.append(name+' '+amounts)
+
+    for label in soup.select('h2,h3,h4,h5,h6,p'):
+        name=label.get_text(' ',strip=True)
+        sibling=label.find_next_sibling()
+        if sibling is not None:
+            product_portions(name,sibling.get_text(' ',strip=True))
+        if label.find('br'):
+            lines=label.get_text('\n',strip=True).splitlines()
+            for name,amounts in zip(lines,lines[1:]):
+                product_portions(name,amounts)
     # Zurich's public cafeterias publish table cells as JSON in a web component.
     for table in soup.select('stzh-datatable[rows]'):
         try:
@@ -289,7 +309,9 @@ def parallel_menu_rows(soup):
 
 
 def prioritize_links(links):
-    return sorted(dict.fromkeys(links),key=lambda u:(not bool(re.search(r'bier|beer|getr|drink|barkarte|beverage',urlparse(u).path,re.I)),not urlparse(u).path.lower().endswith('.pdf')))
+    # Combined wine/drinks lists can contain all the beers. Keep wine-only
+    # documents as a lower priority fallback instead of discarding them.
+    return sorted(dict.fromkeys(links),key=lambda u:(not bool(re.search(r'bier|beer|getr|drink|barkarte|beverage',urlparse(u).path,re.I)),bool(re.search(r'weinkarte|wine.?list',urlparse(u).path,re.I)),not urlparse(u).path.lower().endswith('.pdf')))
 
 
 def source_allowed(bar_id, url, beverage='beer'):
@@ -304,18 +326,22 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
         bar={**bar,'website':WEBSITES[bar['id']]}
     stamp=now()
     urls=list(hints.get(bar['id'],[]))
+    urls.extend(o['sourceUrl'] for o in bar['offers'] if not o.get('photoSource'))
     if bar['website']:
         urls.append(bar['website'])
     if not urls:
         return {**bar,'scrapeStatus':'no_website','checkedAt':stamp}
-    visited=set();offers=[];errors=[];success=0;changed_reviews=set()
-    while urls and len(visited)<max_pages:
+    urls=list(dict.fromkeys(urls))
+    visited=set();offers=[];errors=[];success=0;changed_reviews=set();read_sources=set();attempts=0
+    while urls and attempts<max_pages:
         url=urls.pop(0)
         if url in visited:
             continue
         visited.add(url)
+        attempts+=1
         try:
             final,kind,body=fetcher.get(url)
+            visited.add(final)
             review=(REVIEWED_COFFEE_MENUS if beverage=='coffee' else REVIEWED_MENUS).get(final)
             if review and review['barId']==bar['id']:
                 if hashlib.sha256(body).hexdigest()==review['sha256']:
@@ -333,10 +359,15 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
             else:
                 continue
             urls=prioritize_links([link for link in links if link not in visited and (not urlparse(link).path.lower().endswith('.pdf') or source_allowed(bar['id'],link,beverage))]+urls)
+            read_sources.update((url,final))
             success+=1
         except Exception as exc:
             # One malformed PDF or offline site must not abort the city import.
             errors.append(str(exc) if isinstance(exc,ValueError) else type(exc).__name__)
+    # A homepage fetch or a hit in another document says nothing about a menu
+    # we could not read. Preserve its prices and original dates independently.
+    fresh_offers=bool(offers)
+    offers.extend(o for o in bar['offers'] if o['sourceUrl'] not in read_sources and o['sourceUrl'] not in changed_reviews)
     dedup={}
     for o in offers:
         # Expiring download signatures are not useful public source links.
@@ -349,17 +380,17 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
         known={key[:3] for key in dedup if key[3]!='unknown'}
         dedup={key:o for key,o in dedup.items() if key[3]!='unknown' or key[:3] not in known}
     # Preserve the last known offers (with their original date) when a crawl fails.
-    if offers:
+    if fresh_offers:
         result=list(dedup.values())
         status='prices_found'
     elif changed_reviews:
-        result=[o for o in bar['offers'] if o['sourceUrl'] not in changed_reviews]
+        result=list(dedup.values())
         status='review_required'
     elif success and not errors:
-        result=[]
-        status='no_prices'
+        result=list(dedup.values())
+        status='prices_found' if result else 'no_prices'
     else:
-        result=bar['offers']
+        result=list(dedup.values())
         status='partial' if success else ('robots_blocked' if errors and all(x=='robots_blocked' for x in errors) else 'fetch_failed')
     return {**bar,'offers':result,'checkedAt':stamp,'scrapeStatus':status}
 
@@ -379,6 +410,8 @@ def main():
     parser.add_argument('--workers',type=int,default=6)
     parser.add_argument('--max-pages',type=int,default=8)
     parser.add_argument('--name',help='Only scrape names containing this text')
+    parser.add_argument('--type',action='append',choices=['bar','pub','biergarten','restaurant','cafe'],help='Only these venue types; repeatable')
+    parser.add_argument('--missing-prices',action='store_true',help='Focus on venues without any recorded beer price')
     args=parser.parse_args()
     dataset=json.loads(DATA.read_text()) if DATA.exists() else {}
     if args.discover or args.osm_file or not dataset:
@@ -390,6 +423,7 @@ def main():
     hints=json.loads((ROOT/'scraper/menu_urls.json').read_text())
     fetcher=Fetcher()
     bars=[b for b in dataset['bars'] if not args.name or args.name.casefold() in b['name'].casefold()]
+    bars=[b for b in bars if (not args.type or b['type'] in args.type) and (not args.missing_prices or not b['offers'])]
     # Oldest checks first so limited runs do not repeatedly hit the same venues.
     bars.sort(key=lambda b:b['checkedAt'] or '')
     if args.limit:

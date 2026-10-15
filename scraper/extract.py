@@ -12,7 +12,7 @@ SIZE = re.compile(r'(?<![\d.])(\d+(?:[.,]\d+)?)\s*(ml|cl|dl|l)\b', re.I)
 PRICE = re.compile(r'(?:(?:CHF|Fr\.?)\s*)?(\d{1,2}[.,]\d{1,2}|\d{1,2}\.\s*[–—-])(?:\s*(?:CHF|Fr\.?))?', re.I)
 STANGE = re.compile(r'\bstange\b', re.I)
 # A named beer serving is also an explicit product, even without a brand.
-BEER = re.compile(BEER.pattern + r'|\b(?:stange|boxer|haldengut|einsiedler)\b', re.I)
+BEER = re.compile(BEER.pattern + r'|\b(?:stange|boxer|haldengut|einsiedler|superbock|ittinger|kirin|carlsberg|tsingtao|weihenstephaner|la chouffe|witbier)\b', re.I)
 
 def extract_stange_prefix(text, source_url, observed_at):
     """A complete, explicitly sized Stange may precede a second PDF column.
@@ -58,6 +58,11 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         line = re.sub(r'(\d)\s*([.,])\s*(\d)',r'\1\2\3',line)
         line = re.sub(r'((?:ml|cl|dl|l)\b)\.(?=\s)',r'\1',line,flags=re.I)
         line = re.sub(r'((?:ml|cl|dl|l)\b)\s+(?:bügelflasche|flasche|bottle)\b',r'\1',line,flags=re.I)
+        # Some bar cards put the portion before the product (Metropol).
+        # Only reorder a complete single-product row, keeping its evidence.
+        prefix = re.fullmatch(r'('+SIZE.pattern+r')\s+(.+?)\s+((?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?(?:\s*CHF)?)', line, re.I)
+        if prefix and BEER.search(prefix[4]) and not SIZE.search(prefix[4]):
+            line = prefix[4]+' '+prefix[1]+' '+prefix[5]
         # Some menus print price(s) before explicitly stated portion(s).
         # Accept only a complete row with equal, slash-separated list lengths.
         amount=r'(?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?'

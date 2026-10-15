@@ -127,7 +127,7 @@ def table_lines(lines):
         elif STOP_HEADING.search(text) and not BEER.search(text):
             beer_section = False
             unit = None
-        unit_header = re.search(r'\b(ml|cl|dl|l)\s+(?:CHF|Fr\.?)\b', text, re.I)
+        unit_header = re.search(r'\b(ml|cl|dl|l)\s+(?:CHF|Fr\.?)\b', text, re.I) or re.fullmatch(r'(ml|cl|dl|l)',text,re.I)
         if beer_section and unit_header and not re.search(r'\d', text):
             unit = unit_header[1]
             heading = text if BEER_HEADING.search(text) else previous + ' / ' + text

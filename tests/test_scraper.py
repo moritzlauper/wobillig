@@ -1,7 +1,7 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 from scraper.extract import extract_offers
-from scraper.scrape import html_content, public_url, scrape_bar
+from scraper.scrape import Fetcher, html_content, public_url, scrape_bar
 
 class ExtractionTests(unittest.TestCase):
     def offers(self,text):
@@ -83,5 +83,88 @@ class ExtractionTests(unittest.TestCase):
         result=scrape_bar(bar,Failing(),{},3)
         self.assertEqual(result['offers'],bar['offers'])
         self.assertEqual(result['scrapeStatus'],'robots_blocked')
+
+class BarCoverageRegressionTests(unittest.TestCase):
+    def test_larger_pdf_limit_stays_bounded_and_does_not_apply_to_html(self):
+        response=MagicMock()
+        response.__enter__.return_value=response
+        response.is_redirect=False
+        response.status_code=200
+        with patch('scraper.scrape.public_url'), patch('scraper.scrape.requests.get',return_value=response), patch('scraper.scrape.MAX_BYTES',8), patch('scraper.scrape.MAX_PDF_BYTES',24):
+            fetcher=Fetcher()
+            response.headers={'Content-Type':'application/pdf'}
+            response.iter_content.return_value=[b'x'*12]
+            self.assertEqual(len(fetcher.raw('https://bar.example/menu.pdf',delay=0)[2]),12)
+            response.iter_content.return_value=[b'x'*25]
+            with self.assertRaisesRegex(ValueError,'response_too_large'):
+                fetcher.raw('https://bar.example/menu.pdf',delay=0)
+            response.headers={'Content-Type':'text/html'}
+            response.iter_content.return_value=[b'x'*12]
+            with self.assertRaisesRegex(ValueError,'response_too_large'):
+                fetcher.raw('https://bar.example/',delay=0)
+
+    def test_www_alias_menu_links(self):
+        _, links = html_content(b'<a href="https://bar.example/angebot">Angebot</a><a href="https://evilbar.example/menu">Menu</a>', 'https://www.bar.example/')
+        self.assertEqual(links, ['https://bar.example/angebot'])
+
+    def test_combined_wine_drinks_card_is_not_discarded(self):
+        _, links = html_content(b'<a href="/Canvas_Bar_Wine_Spirits_Softdrinks.pdf">Drinks &amp; Weinkarte</a><a href="/catering.pdf">Catering</a>', 'https://bar.example/')
+        self.assertEqual(links, ['https://bar.example/Canvas_Bar_Wine_Spirits_Softdrinks.pdf'])
+
+    def test_cocktail_page_can_lead_to_full_bar_card(self):
+        _, links = html_content(b'<a href="/rare-cocktails/">Read More</a>', 'https://bar.example/')
+        self.assertEqual(links, ['https://bar.example/rare-cocktails/'])
+
+    def test_portion_before_product(self):
+        offers = extract_offers('BIER VOM FASS\n30 cl Birra Moretti 6.9\n50 cl Birra Moretti 10.5\n33 cl Ginger Beer 7', 'https://bar.example/menu.pdf', '2026-10-15')
+        self.assertEqual([(o['volumeMl'], o['priceChf'], o['beerType']) for o in offers], [(300, 6.9, 'draft'), (500, 10.5, 'draft')])
+        self.assertEqual(offers[0]['evidence'], '30 cl Birra Moretti 6.9')
+        self.assertEqual(extract_offers('30 cl 5.00 Lager 8.00', 'https://bar.example', '2026-10-15'), [])
+
+    def test_structural_product_and_portions(self):
+        body='<p>Hürlimann offen</p><p>2 dl / 3 dl / 5 dl 3.5 / 5.5 / 7.5</p><p>Softdrinks</p><p>5 dl 4.50</p>'
+        text,_=html_content(body.encode(),'https://bar.example')
+        offers=extract_offers(text,'https://bar.example','2026-10-15')
+        self.assertEqual([(o['volumeMl'],o['priceChf']) for o in offers],[(200,3.5),(300,5.5),(500,7.5)])
+
+    def test_failed_menu_is_preserved_alongside_successful_menu(self):
+        old=extract_offers('Lager 5dl 7.00','https://bar.example/old.pdf','2026-09-01')
+        bar={'id':'node/test','website':'https://bar.example/','offers':old}
+        class Fetch:
+            def get(self,url):
+                if url.endswith('old.pdf'):raise ValueError('http_503')
+                return url,'text/html',b'<p>IPA 3dl 6.00</p>'
+        result=scrape_bar(bar,Fetch(),{},3)
+        self.assertEqual(len(result['offers']),2)
+        retained=next(o for o in result['offers'] if o['volumeMl']==500)
+        self.assertEqual(retained['observedAt'],'2026-09-01')
+
+    def test_kunsthaus_line_break_menu(self):
+        body='<p>HÜRLIMANN OFFEN<br/>2 DL / 3 DL / 5 DL 3.5 / 5.5 / 7.5<br/>SCHNEIDER’S WEISSE 3.3 DL 7<br/>BROOKLYN EAST IPA 3.3 DL 8</p><p>Cola<br/>5 dl 4.50</p>'
+        text,_=html_content(body.encode(),'https://bar.example')
+        offers=extract_offers(text,'https://bar.example','2026-10-15')
+        self.assertEqual([(o['volumeMl'],o['priceChf']) for o in offers],[(200,3.5),(300,5.5),(500,7.5),(330,7),(330,8)])
+
+    def test_bounded_scan_preserves_unvisited_source(self):
+        old=extract_offers('Lager 5dl 7.00','https://bar.example/old','2026-09-01')
+        bar={'id':'node/test','website':'https://bar.example/','offers':old}
+        class Fetch:
+            def get(self,url):return url,'text/html',b'<p>No current menu here</p>'
+        result=scrape_bar(bar,Fetch(),{'node/test':['https://bar.example/hint']},1)
+        self.assertEqual(result['offers'],old)
+        result=scrape_bar(bar,Fetch(),{},1)
+        self.assertEqual(result['offers'],[])
+
+    def test_empty_source_is_removed_even_when_another_source_fails(self):
+        old=extract_offers('Lager 5dl 7.00','https://bar.example/old','2026-09-01')
+        old+=extract_offers('IPA 3dl 6.00','https://bar.example/offline','2026-09-01')
+        bar={'id':'node/test','website':None,'offers':old}
+        class Fetch:
+            def get(self,url):
+                if url.endswith('offline'):raise ValueError('http_503')
+                return url,'text/html',b'<p>No current menu</p>'
+        result=scrape_bar(bar,Fetch(),{},2)
+        self.assertEqual(result['offers'],old[1:])
+        self.assertEqual(result['scrapeStatus'],'partial')
 
 if __name__=='__main__': unittest.main()

@@ -112,3 +112,14 @@ class PdfTests(unittest.TestCase):
     def test_shared_unit_does_not_consume_previous_price(self):
         offers=extract_offers('Lager 33cl 6.5 / 50cl 9.9\nPils 0.2/0.4l 4.5/8.5','url','today')
         self.assertEqual([(o['volumeMl'],o['priceChf']) for o in offers],[(330,6.5),(500,9.9),(200,4.5),(400,8.5)])
+
+class BareBeerUnitHeaderTests(unittest.TestCase):
+    def test_explicit_unit_without_currency_label(self):
+        from scraper.pdf_extract import table_lines
+        rows=[{'text':t,'top':i*15} for i,t in enumerate(['BEERS','cl','Bier vom Fass 30 7.00','Bier vom Fass 50 9.50','SOFTDRINKS','Cola 33 7.00'])]
+        self.assertEqual([t for t,_ in table_lines(rows)],['Bier vom Fass 30cl 7.00','Bier vom Fass 50cl 9.50'])
+
+    def test_unit_outside_beer_section_does_not_assign_sizes(self):
+        from scraper.pdf_extract import table_lines
+        rows=[{'text':t,'top':i*15} for i,t in enumerate(['cl','Lager 30 7.00'])]
+        self.assertEqual(table_lines(rows),[])

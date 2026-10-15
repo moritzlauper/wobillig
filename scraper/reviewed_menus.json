@@ -1054,5 +1054,917 @@
         "evidence": "Brooklyn IPA alkoholfrei · 3.3 dl · CHF 8.00 · Flaschenbier"
       }
     ]
+  },
+  "https://cinchona.bar/wp-content/uploads/sites/4/2023/10/25hours_Hotel_Zuerich_Langstrasse_CinchonaBar_Tageskarte.pdf": {
+    "barId": "node/7273882085",
+    "sha256": "6c22d197b0d8f6776ec0509ff338b7ab5d3125a162cb5c9a36833ca956c95935",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Turbinenbräu Goldsprint",
+        "volumeMl": 200,
+        "priceChf": 4,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Turbinenbräu Goldsprint · 20 cl · CHF 4.00 · vom Fass"
+      },
+      {
+        "name": "Turbinenbräu Goldsprint Stange",
+        "volumeMl": 300,
+        "priceChf": 5.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Turbinenbräu Goldsprint Stange · 30 cl · CHF 5.50 · vom Fass",
+        "serving": "stange"
+      },
+      {
+        "name": "Turbinenbräu Orion IPA",
+        "volumeMl": 200,
+        "priceChf": 4.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Turbinenbräu Orion IPA · 20 cl · CHF 4.50 · vom Fass"
+      },
+      {
+        "name": "Turbinenbräu Orion IPA Stange",
+        "volumeMl": 300,
+        "priceChf": 6.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Turbinenbräu Orion IPA Stange · 30 cl · CHF 6.50 · vom Fass",
+        "serving": "stange"
+      },
+      {
+        "name": "Super Bock non-alcoholic",
+        "volumeMl": 300,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 2: Super Bock non-alcoholic · 30 cl · CHF 7.00 · Flasche"
+      }
+    ]
+  },
+  "https://bar63.ch/files/Winter%202026/Sommer%20Menu%202026_10.pdf": {
+    "barId": "node/1235083734",
+    "sha256": "510efff2359761be5906a0e36c29113a25e4c2f43d0dbe573022e90430fbdb7e",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Turbinenbräu Sprint",
+        "volumeMl": 330,
+        "priceChf": 5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Turbinenbräu Sprint · 33 cl · CHF 5.00 · vom Fass"
+      },
+      {
+        "name": "Turbinenbräu Sprint",
+        "volumeMl": 500,
+        "priceChf": 8,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Turbinenbräu Sprint · 50 cl · CHF 8.00 · vom Fass"
+      },
+      {
+        "name": "Bier Paul 01 Spezial",
+        "volumeMl": 330,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Bier Paul 01 Spezial · 33 cl · CHF 7.00 · Flasche"
+      },
+      {
+        "name": "Egger Maximus Spezial",
+        "volumeMl": 330,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Egger Maximus Spezial · 33 cl · CHF 7.00 · Flasche"
+      },
+      {
+        "name": "Jever Pilsener",
+        "volumeMl": 330,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Jever Pilsener · 33 cl · CHF 7.00 · Flasche"
+      },
+      {
+        "name": "Turbinenbräu Amber Rekord",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Turbinenbräu Amber Rekord · 33 cl · CHF 8.00 · Flasche"
+      },
+      {
+        "name": "Appenzeller Schwarzer Kristall",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Appenzeller Schwarzer Kristall · 33 cl · CHF 8.00 · Flasche"
+      },
+      {
+        "name": "BFM La Cuvée Alex Le Rouge Imperial Stout",
+        "volumeMl": 330,
+        "priceChf": 12,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: BFM La Cuvée Alex Le Rouge Imperial Stout · 33 cl · CHF 12.00 · Flasche"
+      },
+      {
+        "name": "Weisser Hase Hefeweizen",
+        "volumeMl": 500,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Weisser Hase Hefeweizen · 50 cl · CHF 8.00 · Flasche"
+      },
+      {
+        "name": "Jever Fun Pilsener",
+        "volumeMl": 330,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 1: Jever Fun Pilsener · 33 cl · CHF 7.00 · Flasche"
+      },
+      {
+        "name": "Turbinenbräu Pause",
+        "volumeMl": 330,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 1: Turbinenbräu Pause · 33 cl · CHF 7.00 · Flasche"
+      },
+      {
+        "name": "Lola IPA",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 1: Lola IPA · 33 cl · CHF 8.00 · Flasche"
+      }
+    ]
+  },
+  "https://www.widderhotel.com/media/seofh4oi/barkarte_juni_2026.pdf": {
+    "barId": "node/7273885585",
+    "sha256": "cba148ecc1210fd1df8b9aa655fefc958acbbc40620e167c9a75a4e33c76c021",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Eichhof Braugold",
+        "volumeMl": 300,
+        "priceChf": 8,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 25: Eichhof Braugold · 30 cl · CHF 8.00 · vom Fass"
+      },
+      {
+        "name": "Ittinger Klosterbräu",
+        "volumeMl": 250,
+        "priceChf": 8,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 25: Ittinger Klosterbräu · 25 cl · CHF 8.00 · vom Fass"
+      },
+      {
+        "name": "Lagunitas IPA",
+        "volumeMl": 300,
+        "priceChf": 10,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 25: Lagunitas IPA · 30 cl · CHF 10.00 · vom Fass"
+      },
+      {
+        "name": "Erdinger Hefeweizen",
+        "volumeMl": 330,
+        "priceChf": 10,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 25: Erdinger Hefeweizen · 33 cl · CHF 10.00"
+      },
+      {
+        "name": "Campo Gold Lager",
+        "volumeMl": 330,
+        "priceChf": 10,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 25: Campo Gold Lager · 33 cl · CHF 10.00"
+      },
+      {
+        "name": "Campo Gold alcohol-free",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "unknown",
+        "alcoholFree": true,
+        "evidence": "PDF S. 25: Campo Gold alcohol-free · 33 cl · CHF 8.00"
+      }
+    ]
+  },
+  "https://www.thedoldergrand.com/app/uploads/2026/10/Canvas_Bar_Wine_Spirits_Softdrinks_DE_EN.pdf": {
+    "barId": "node/12612390224",
+    "sha256": "1464665f666210423ea7ceacfd970b16550f8e3a5a9d8fe2f7f33227b3a712bd",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Turbinenbräu Gold Spring",
+        "volumeMl": 330,
+        "priceChf": 11,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 24: Turbinenbräu Gold Spring · 33 cl · CHF 11.00"
+      },
+      {
+        "name": "Ittinger Klosterbräu Amber",
+        "volumeMl": 330,
+        "priceChf": 11,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 24: Ittinger Klosterbräu Amber · 33 cl · CHF 11.00"
+      },
+      {
+        "name": "Erdinger Weissbier",
+        "volumeMl": 330,
+        "priceChf": 11,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 24: Erdinger Weissbier · 33 cl · CHF 11.00"
+      },
+      {
+        "name": "Guiness",
+        "volumeMl": 330,
+        "priceChf": 11,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 24: Guiness · 33 cl · CHF 11.00"
+      },
+      {
+        "name": "Appenzeller Leermond Non-Alcoholic",
+        "volumeMl": 330,
+        "priceChf": 11,
+        "beerType": "unknown",
+        "alcoholFree": true,
+        "evidence": "PDF S. 24: Appenzeller Leermond Non-Alcoholic · 33 cl · CHF 11.00"
+      }
+    ]
+  },
+  "https://files.lunchgate.ch/gastrouploads/1170/menu/165ff55800b4.pdf": {
+    "barId": "node/4833061572",
+    "sha256": "99bb883401bea2f7dce02c4ca9c81519fa865ca4591443b1e40ec5225f2a18b0",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Bier vom Fass",
+        "volumeMl": 300,
+        "priceChf": 7,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Bier vom Fass · 30 cl · CHF 7.00 · vom Fass"
+      },
+      {
+        "name": "Bier vom Fass",
+        "volumeMl": 500,
+        "priceChf": 9.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Bier vom Fass · 50 cl · CHF 9.50 · vom Fass"
+      },
+      {
+        "name": "Calanda Senza",
+        "volumeMl": 330,
+        "priceChf": 6.5,
+        "beerType": "unknown",
+        "alcoholFree": true,
+        "evidence": "PDF S. 2: Calanda Senza · 33 cl · CHF 6.50"
+      },
+      {
+        "name": "Heineken",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Heineken · 33 cl · CHF 8.00"
+      }
+    ]
+  },
+  "https://static1.squarespace.com/static/6065dcd9f0af6879f1d1712a/t/687f616be3c4601db1f51620/1753178476048/Men%C3%BCkarte+TBB+-+PDF.pdf": {
+    "barId": "node/8912884300",
+    "sha256": "36086074701762368e5b1172575bd1709d03ae9c2a4e0385ae95887bd8d1b9f4",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Una Más Extrafrisch Helles",
+        "volumeMl": 200,
+        "priceChf": 4.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Una Más Extrafrisch Helles · 20 cl · CHF 4.50 · vom Fass"
+      },
+      {
+        "name": "Una Más Extrafrisch Helles",
+        "volumeMl": 400,
+        "priceChf": 8.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Una Más Extrafrisch Helles · 40 cl · CHF 8.50 · vom Fass"
+      },
+      {
+        "name": "Rainbow Intercontinental IPA",
+        "volumeMl": 200,
+        "priceChf": 5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Rainbow Intercontinental IPA · 20 cl · CHF 5.00 · vom Fass"
+      },
+      {
+        "name": "Rainbow Intercontinental IPA",
+        "volumeMl": 400,
+        "priceChf": 9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Rainbow Intercontinental IPA · 40 cl · CHF 9.00 · vom Fass"
+      },
+      {
+        "name": "Velobier Micro IPA",
+        "volumeMl": 200,
+        "priceChf": 5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Velobier Micro IPA · 20 cl · CHF 5.00 · vom Fass"
+      },
+      {
+        "name": "Velobier Micro IPA",
+        "volumeMl": 400,
+        "priceChf": 9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Velobier Micro IPA · 40 cl · CHF 9.00 · vom Fass"
+      },
+      {
+        "name": "Inky Züri City Stout",
+        "volumeMl": 200,
+        "priceChf": 5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Inky Züri City Stout · 20 cl · CHF 5.00 · vom Fass"
+      },
+      {
+        "name": "Inky Züri City Stout",
+        "volumeMl": 400,
+        "priceChf": 9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Inky Züri City Stout · 40 cl · CHF 9.00 · vom Fass"
+      },
+      {
+        "name": "Trigo Feines Weissbier",
+        "volumeMl": 200,
+        "priceChf": 4.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Trigo Feines Weissbier · 20 cl · CHF 4.50 · vom Fass"
+      },
+      {
+        "name": "Trigo Feines Weissbier",
+        "volumeMl": 400,
+        "priceChf": 8.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Trigo Feines Weissbier · 40 cl · CHF 8.50 · vom Fass"
+      },
+      {
+        "name": "Hop Schwiiz Keller Pils",
+        "volumeMl": 200,
+        "priceChf": 5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Hop Schwiiz Keller Pils · 20 cl · CHF 5.00 · vom Fass"
+      },
+      {
+        "name": "Hop Schwiiz Keller Pils",
+        "volumeMl": 400,
+        "priceChf": 9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Hop Schwiiz Keller Pils · 40 cl · CHF 9.00 · vom Fass"
+      },
+      {
+        "name": "Super Trigo DDH White IPA",
+        "volumeMl": 200,
+        "priceChf": 5.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Super Trigo DDH White IPA · 20 cl · CHF 5.50 · vom Fass"
+      },
+      {
+        "name": "Super Trigo DDH White IPA",
+        "volumeMl": 400,
+        "priceChf": 9.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Super Trigo DDH White IPA · 40 cl · CHF 9.50 · vom Fass"
+      },
+      {
+        "name": "Wonder Woman Pale Ale",
+        "volumeMl": 200,
+        "priceChf": 4.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Wonder Woman Pale Ale · 20 cl · CHF 4.50 · vom Fass"
+      },
+      {
+        "name": "Wonder Woman Pale Ale",
+        "volumeMl": 400,
+        "priceChf": 8.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Wonder Woman Pale Ale · 40 cl · CHF 8.50 · vom Fass"
+      },
+      {
+        "name": "Yuzella Fruit Sour",
+        "volumeMl": 200,
+        "priceChf": 5.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Yuzella Fruit Sour · 20 cl · CHF 5.50 · vom Fass"
+      },
+      {
+        "name": "Yuzella Fruit Sour",
+        "volumeMl": 400,
+        "priceChf": 9.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Yuzella Fruit Sour · 40 cl · CHF 9.50 · vom Fass"
+      },
+      {
+        "name": "Afterparty Alkoholfreies IPA",
+        "volumeMl": 200,
+        "priceChf": 4.5,
+        "beerType": "draft",
+        "alcoholFree": true,
+        "evidence": "PDF S. 1: Afterparty Alkoholfreies IPA · 20 cl · CHF 4.50 · vom Fass"
+      },
+      {
+        "name": "Afterparty Alkoholfreies IPA",
+        "volumeMl": 400,
+        "priceChf": 8.5,
+        "beerType": "draft",
+        "alcoholFree": true,
+        "evidence": "PDF S. 1: Afterparty Alkoholfreies IPA · 40 cl · CHF 8.50 · vom Fass"
+      }
+    ]
+  },
+  "https://kasheme.com/wp-content/uploads/2026/05/260427_Kasheme_Menu_booklet.pdf": {
+    "barId": "node/598560604",
+    "sha256": "ccac917a3bceb57b3af58c12c91945bb2f4d01b30181b01e79486062334cd765",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Superbock",
+        "volumeMl": 300,
+        "priceChf": 6,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: Superbock · 30 cl · CHF 6.00 · vom Fass"
+      },
+      {
+        "name": "Superbock",
+        "volumeMl": 500,
+        "priceChf": 9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: Superbock · 50 cl · CHF 9.00 · vom Fass"
+      },
+      {
+        "name": "Superbock Panache",
+        "volumeMl": 300,
+        "priceChf": 6,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: Superbock Panache · 30 cl · CHF 6.00 · vom Fass"
+      },
+      {
+        "name": "Superbock Panache",
+        "volumeMl": 500,
+        "priceChf": 9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: Superbock Panache · 50 cl · CHF 9.00 · vom Fass"
+      },
+      {
+        "name": "Superbock 0%",
+        "volumeMl": 330,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 7: Superbock 0% · 33 cl · CHF 7.00 · Flasche"
+      },
+      {
+        "name": "Lola IPA",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 7: Lola IPA · 33 cl · CHF 8.00 · Flasche"
+      },
+      {
+        "name": "Hürlimann",
+        "volumeMl": 330,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: Hürlimann · 33 cl · CHF 7.00 · Flasche"
+      },
+      {
+        "name": "Quöllfrisch Naturtrüb",
+        "volumeMl": 330,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: Quöllfrisch Naturtrüb · 33 cl · CHF 7.00 · Flasche"
+      },
+      {
+        "name": "Vrenelisgärtli Witbier",
+        "volumeMl": 290,
+        "priceChf": 7,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: Vrenelisgärtli Witbier · 29 cl · CHF 7.00 · Flasche"
+      },
+      {
+        "name": "Appenzeller Amber",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: Appenzeller Amber · 33 cl · CHF 8.00 · Flasche"
+      },
+      {
+        "name": "Coruja IPA",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: Coruja IPA · 33 cl · CHF 8.00 · Flasche"
+      },
+      {
+        "name": "La Chouffe Blonde",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 7: La Chouffe Blonde · 33 cl · CHF 8.00 · Flasche"
+      }
+    ]
+  },
+  "https://www.lacatedral.ch/_files/ugd/f728f6_a7564a33314b411c99405c82609df5c2.pdf": {
+    "barId": "node/320526598",
+    "sha256": "28659e29f0276244ccc34a5f2cce9a788d24e5885e56b0ce0a5e901651e694ba",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Juan Cordero Pale Ale",
+        "volumeMl": 330,
+        "priceChf": 8.9,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Juan Cordero Pale Ale · 33 cl · CHF 8.90"
+      },
+      {
+        "name": "La Lupulosa American IPA",
+        "volumeMl": 330,
+        "priceChf": 8.9,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: La Lupulosa American IPA · 33 cl · CHF 8.90"
+      },
+      {
+        "name": "Rompeolas IPA",
+        "volumeMl": 330,
+        "priceChf": 8.9,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Rompeolas IPA · 33 cl · CHF 8.90"
+      },
+      {
+        "name": "Tiniebla Belgian White Ale",
+        "volumeMl": 330,
+        "priceChf": 8.9,
+        "beerType": "unknown",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2: Tiniebla Belgian White Ale · 33 cl · CHF 8.90"
+      },
+      {
+        "name": "Cañon Lager",
+        "volumeMl": 330,
+        "priceChf": 7.5,
+        "beerType": "unknown",
+        "alcoholFree": true,
+        "evidence": "PDF S. 2: Cañon Lager · 33 cl · CHF 7.50"
+      },
+      {
+        "name": "St Laurentius Clear your Mind",
+        "volumeMl": 330,
+        "priceChf": 8.5,
+        "beerType": "unknown",
+        "alcoholFree": true,
+        "evidence": "PDF S. 2: St Laurentius Clear your Mind · 33 cl · CHF 8.50"
+      }
+    ]
+  },
+  "https://files.lunchgate.ch/gastrouploads/956/menu/5fe765adb414.pdf": {
+    "barId": "node/267345323",
+    "sha256": "9f8bde770f72142a15c57b36f4547f46fae777be912417607b288aaeb4d5052c",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "1664",
+        "volumeMl": 250,
+        "priceChf": 6.2,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: 1664 · 25 cl · CHF 6.20"
+      },
+      {
+        "name": "1664",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: 1664 · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Brooklyn Lager",
+        "volumeMl": 250,
+        "priceChf": 5.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Brooklyn Lager · 25 cl · CHF 5.50"
+      },
+      {
+        "name": "Brooklyn Lager",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Brooklyn Lager · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Carlsberg",
+        "volumeMl": 250,
+        "priceChf": 5.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Carlsberg · 25 cl · CHF 5.50"
+      },
+      {
+        "name": "Carlsberg",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Carlsberg · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "East India Pale Ale",
+        "volumeMl": 250,
+        "priceChf": 5.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: East India Pale Ale · 25 cl · CHF 5.50"
+      },
+      {
+        "name": "East India Pale Ale",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: East India Pale Ale · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Feldschlösschen",
+        "volumeMl": 250,
+        "priceChf": 5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Feldschlösschen · 25 cl · CHF 5.00"
+      },
+      {
+        "name": "Feldschlösschen",
+        "volumeMl": 500,
+        "priceChf": 8.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Feldschlösschen · 50 cl · CHF 8.90"
+      },
+      {
+        "name": "Grimbergen",
+        "volumeMl": 250,
+        "priceChf": 5.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Grimbergen · 25 cl · CHF 5.50"
+      },
+      {
+        "name": "Grimbergen",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Grimbergen · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Guinness",
+        "volumeMl": 250,
+        "priceChf": 5.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Guinness · 25 cl · CHF 5.90"
+      },
+      {
+        "name": "Guinness",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Guinness · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Hop House 13",
+        "volumeMl": 250,
+        "priceChf": 5.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Hop House 13 · 25 cl · CHF 5.50"
+      },
+      {
+        "name": "Hop House 13",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Hop House 13 · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Kilkenny",
+        "volumeMl": 250,
+        "priceChf": 5.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Kilkenny · 25 cl · CHF 5.90"
+      },
+      {
+        "name": "Kilkenny",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Kilkenny · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Pilsner Urquell",
+        "volumeMl": 250,
+        "priceChf": 5.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Pilsner Urquell · 25 cl · CHF 5.90"
+      },
+      {
+        "name": "Pilsner Urquell",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Pilsner Urquell · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Schneider Weisse",
+        "volumeMl": 250,
+        "priceChf": 5.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Schneider Weisse · 25 cl · CHF 5.90"
+      },
+      {
+        "name": "Schneider Weisse",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Schneider Weisse · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Seasonal Beer",
+        "volumeMl": 250,
+        "priceChf": 5.5,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Seasonal Beer · 25 cl · CHF 5.50"
+      },
+      {
+        "name": "Seasonal Beer",
+        "volumeMl": 500,
+        "priceChf": 9.9,
+        "beerType": "draft",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, BEER ON TAP: Seasonal Beer · 50 cl · CHF 9.90"
+      },
+      {
+        "name": "Brooklyn Special Effects IPA non alcoholic",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: Brooklyn Special Effects IPA non alcoholic · 33 cl · CHF 8.00"
+      },
+      {
+        "name": "Feldschlösschen non alcoholic",
+        "volumeMl": 330,
+        "priceChf": 6.5,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: Feldschlösschen non alcoholic · 33 cl · CHF 6.50"
+      },
+      {
+        "name": "Schneider Weisse non alcoholic",
+        "volumeMl": 500,
+        "priceChf": 9,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: Schneider Weisse non alcoholic · 50 cl · CHF 9.00"
+      },
+      {
+        "name": "Desperados Tequila Beer",
+        "volumeMl": 350,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: Desperados Tequila Beer · 35 cl · CHF 8.00"
+      },
+      {
+        "name": "San Miguel",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: San Miguel · 33 cl · CHF 8.00"
+      },
+      {
+        "name": "San Miguel Fresca",
+        "volumeMl": 330,
+        "priceChf": 8,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: San Miguel Fresca · 33 cl · CHF 8.00"
+      },
+      {
+        "name": "Valaisanne Brune",
+        "volumeMl": 330,
+        "priceChf": 6.5,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: Valaisanne Brune · 33 cl · CHF 6.50"
+      }
+    ]
+  },
+  "https://oldgregorypub.ch/uploads/images/Getränkekarte/Getraenkekarte_OGP_2024.pdf": {
+    "barId": "node/1235083455",
+    "sha256": "29e1b3e9086e6a9ed2d7f41d95ee09fb7fb6f142bc474872239a6f8d1b575e39",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Feldschlösschen Alkoholfrei",
+        "volumeMl": 330,
+        "priceChf": 6.5,
+        "beerType": "bottle",
+        "alcoholFree": true,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: Feldschlösschen Alkoholfrei · 33 cl · CHF 6.50"
+      },
+      {
+        "name": "Corona",
+        "volumeMl": 355,
+        "priceChf": 8.5,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: Corona · 35.5 cl · CHF 8.50"
+      },
+      {
+        "name": "Singha",
+        "volumeMl": 330,
+        "priceChf": 8.5,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: Singha · 33 cl · CHF 8.50"
+      },
+      {
+        "name": "Valaisanne Pale Ale",
+        "volumeMl": 330,
+        "priceChf": 8.5,
+        "beerType": "bottle",
+        "alcoholFree": false,
+        "evidence": "PDF S. 2, FLASCHENBIERE / BOTTLED BEER: Valaisanne Pale Ale · 33 cl · CHF 8.50"
+      }
+    ]
   }
 }
