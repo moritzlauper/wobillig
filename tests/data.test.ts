@@ -114,6 +114,15 @@ describe("coffee comparisons", () => {
     expect(cost({ ...cappuccino, volumeMl: 150 }, "half")).toBe(5.5);
     expect(filterBars([cafe], { ...coffee, max: 5 })).toHaveLength(0);
   });
+  it("filters Matcha and Matcha Latte separately from coffee", () => {
+    const matcha = { ...espresso, name: "Matcha", coffeeType: "matcha", priceChf: 5 };
+    const latte = { ...matcha, name: "Matcha Latte", coffeeType: "matcha_latte", priceChf: 6.5 };
+    const venue = { ...cafe, offers: [...cafe.offers, matcha, latte] };
+    expect(bestOffer(venue, { ...coffee, coffeeType: "matcha" })).toBe(matcha);
+    expect(bestOffer(venue, { ...coffee, coffeeType: "matcha_latte" })).toBe(latte);
+    expect(cost(latte, "half")).toBe(6.5);
+    expect(filterBars([venue], { ...coffee, coffeeType: "matcha_latte", max: 6 })).toHaveLength(0);
+  });
   it("sorts matching coffees and optionally shows missing varieties", () => {
     const cheaper = { ...cafe, id: "node/2", offers: [{ ...cappuccino, priceChf: 4.5 }] };
     const noMatch = { ...cafe, id: "node/3", offers: [espresso] };

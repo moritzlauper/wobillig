@@ -33,6 +33,17 @@ class CoffeeTests(unittest.TestCase):
         for line in ['Espresso / Doppio 4.70 5.70', 'Espresso 4.70 / 5.70', 'Espresso / Doppio / Cappuccino 4.70 / 5.70']:
             self.assertEqual(self.parse(line), [], line)
 
+    def test_matcha_drinks_keep_their_category(self):
+        for name,kind in [('Matcha','matcha'),('Matcha Tee','matcha'),('Matcha Tea','matcha'),('Matcha Latte','matcha_latte'),('Matcha-Latte','matcha_latte')]:
+            self.assertEqual([(o['coffeeType'],o['priceChf']) for o in self.parse(name+' 6.50')],[(kind,6.5)])
+        for line in ['Matcha Kuchen 6.50','Matcha Martini 12','Extra Matcha 2','Iced Matcha Latte 7']:
+            self.assertEqual(self.parse(line),[],line)
+
+    def test_matcha_only_pdf_page_is_extracted(self):
+        body=document([(20,450,'Matcha 5.50'),(20,420,'Matcha Latte 6.50')])
+        offers=coffee_pdf(body,'https://example.com/menu.pdf','2026-10-15')
+        self.assertEqual({(o['coffeeType'],o['priceChf']) for o in offers},{('matcha',5.5),('matcha_latte',6.5)})
+
     def test_supplements_cocktails_iced_and_combos_are_not_standard_coffee(self):
         for line in ['Extra Espresso 2.00', '+ Espresso 2.00', 'Espresso Martini 12', 'Kafi Luz 6.50', 'Iced Cappuccino 6', 'Cappuccino auf Eis 5.50', 'Gipfeli und Kaffee 5', 'Espresso oder Kaffee zum Menü 3.50', 'CAPPUCCINO. 2']:
             self.assertEqual(self.parse(line), [], line)

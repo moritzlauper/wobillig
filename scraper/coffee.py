@@ -7,8 +7,11 @@ from scraper.pdf_extract import column_regions
 
 LABELS = {'creme':'Café crème', 'espresso':'Espresso', 'double':'Doppelter Espresso',
           'ristretto':'Ristretto', 'cappuccino':'Cappuccino', 'latte':'Latte macchiato',
-          'milk':'Milchkaffee', 'flat_white':'Flat White', 'americano':'Americano', 'filter':'Filterkaffee'}
+          'milk':'Milchkaffee', 'flat_white':'Flat White', 'americano':'Americano', 'filter':'Filterkaffee',
+          'matcha':'Matcha', 'matcha_latte':'Matcha Latte'}
 ALIASES = {
+    'matcha_latte':r'matcha[\s-]*latte',
+    'matcha':r'matcha(?:[\s-]*(?:tee|tea))?',
     'double':r'(?:doppelter? espresso|doppel[ -]espresso|espresso dopp(?:io|elt)|double espresso|doppio(?: espresso)?)',
     'flat_white':r'flat\s*white',
     'latte':r'latte\s*macchiato',
@@ -131,7 +134,7 @@ def coffee_pdf(body,url,stamp):
     with pdfplumber.open(BytesIO(body)) as document:
         for number,page in enumerate(document.pages[:25],1):
             # Skip wine/food pages before the more expensive layout analysis.
-            if not re.search(r'kaffee|kafi|caff?[eèé]|espresso|cappuccino|flat white',page.extract_text() or '',re.I):
+            if not re.search(r'kaffee|kafi|caff?[eèé]|espresso|cappuccino|flat white|matcha',page.extract_text() or '',re.I):
                 continue
             for region in column_regions(page):
                 rows=region.extract_text_lines(x_tolerance=2,y_tolerance=3)

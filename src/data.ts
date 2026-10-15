@@ -57,6 +57,7 @@ export const coffeeLabels: Record<string, string> = {
   creme: "Café crème / Kaffee", espresso: "Espresso", double: "Doppelter Espresso",
   ristretto: "Ristretto", cappuccino: "Cappuccino", latte: "Latte macchiato",
   milk: "Milchkaffee", flat_white: "Flat White", americano: "Americano", filter: "Filterkaffee",
+  matcha: "Matcha", matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
   return o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : o.volumeMl ? `${o.volumeMl / 100} dl` : "Stange · Grösse nicht angegeben";

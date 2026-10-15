@@ -19,6 +19,9 @@ describe('shared price validation', () => {
   it('accepts real glass prices and coffee with no made-up volume', () => {
     expect(validateInput(input, [bar]).priceChf).toBe(6.5);
     expect(validateInput({ ...input, drink: 'coffee', coffeeType: 'espresso', volumeMl: null }, [bar]).alcoholFree).toBe(true);
+    for (const coffeeType of ['matcha', 'matcha_latte']) {
+      expect(validateInput({ ...input, drink: 'coffee', coffeeType, volumeMl: null }, [bar]).coffeeType).toBe(coffeeType);
+    }
     expect(validateInput({ ...input, volumeMl: null, serving: 'stange' }, [bar]).volumeMl).toBeNull();
   });
   it.each([

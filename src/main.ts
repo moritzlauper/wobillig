@@ -25,7 +25,7 @@ $('app').innerHTML = `
   <div class="switch" role="group" aria-label="Getränk"><button id="drink-beer">Bier</button><button id="drink-coffee">Kaffee</button></div>
   <input id="search" type="search" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen">
   <select id="volume" aria-label="Biergrösse">${options({ '500': '5 dl', stange: 'Stange / 3 dl', '300': 'Genau 3 dl', '330': '3.3 dl', '400': '4 dl', all: 'Alle Grössen' })}</select>
-  <select id="coffeeType" aria-label="Kaffeesorte" hidden><option value="all">Alle Kaffees</option>${coffeeOptions}</select>
+  <select id="coffeeType" aria-label="Kaffee- oder Matchasorte" hidden><option value="all">Alle Kaffees &amp; Matchas</option>${coffeeOptions}</select>
   <label class="budget">Bis CHF <input id="price" aria-label="Höchstpreis in CHF" type="number" min="0.5" max="50" step="0.5" value="15"></label>
   <button id="filters-toggle" aria-expanded="false" aria-controls="filters">Filter</button>
   <button id="new-price" class="primary" disabled>Preis eintragen</button>
