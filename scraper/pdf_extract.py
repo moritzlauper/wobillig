@@ -2,7 +2,7 @@
 from io import BytesIO
 import re
 import pdfplumber
-from scraper.extract import BEER, SIZE, extract_offers, extract_stange_prefix
+from scraper.extract import BEER, SIZE, extract_offers, extract_stange_prefix, beer_product
 from scraper.beer_type import explicit_type, section_type, annotate
 
 BEER_HEADING = re.compile(r'\b(?:biere?|beers?|flaschenbier[e]?|offenbier[e]?|draught|draft|bottled|by the bottle|bottles|vom fass)\b', re.I)
@@ -26,6 +26,31 @@ def beer_name(name, heading):
 
 def column_regions(page):
     """Split only at clear gutters with prose on BOTH sides, never price columns."""
+    # Folded menus often have unequal panels plus an illustration. Find actual
+    # empty vertical gutters when equal fractions cannot separate the columns.
+    # Both sides must contain prose, so size/price columns stay with their names.
+    def split(region, depth=0):
+        items = region.extract_words()
+        intervals = sorted((w['x0'], w['x1']) for w in items)
+        gaps = []; end = region.bbox[0]
+        for left, right in intervals:
+            if left - end >= 20 and end > region.bbox[0]:
+                gaps.append((left - end, (left + end) / 2))
+            end = max(end, right)
+        if depth < 5:
+            for _, cut in sorted(gaps, reverse=True):
+                sides = [[w for w in items if w['x1'] <= cut],
+                         [w for w in items if w['x0'] >= cut]]
+                if all(len({w['text'].casefold() for w in side
+                            if re.search(r'[a-zäöü]{3}', w['text'], re.I)
+                            and w['text'].casefold() not in {'vol.', 'chf', 'preis', 'inhalt', 'flasche'}}) >= 6 for side in sides):
+                    x0, top, x1, bottom = region.bbox
+                    return (split(region.crop((x0, top, cut, bottom), strict=False), depth + 1)
+                            + split(region.crop((cut, top, x1, bottom), strict=False), depth + 1))
+        return [region]
+    regions = split(page)
+    if len(regions) > 1:
+        return regions
     words = page.extract_words()
     for count in (4, 3, 2):
         cuts = [page.width * i / count for i in range(1, count)]
@@ -96,7 +121,7 @@ def aligned_table_lines(region):
             continue
         name_words = [w for w in words if w['x1'] < columns[0][1] - 20]
         name = ' '.join(w['text'] for w in name_words)
-        if not BEER.search(name):
+        if not beer_product(name, heading):
             continue
         matched = []
         for size, right in columns:
@@ -133,7 +158,7 @@ def table_lines(lines):
             heading = text if BEER_HEADING.search(text) else previous + ' / ' + text
         elif unit:
             match = re.fullmatch(r'(.+?)\s+(\d+(?:[.,]\d+)?)\s+(' + NUMBER + ')', text)
-            if match and BEER.search(match[1]):
+            if match and beer_product(match[1], heading):
                 result.append((f'{beer_name(match[1],heading)} {match[2]}{unit} {match[3]}', heading + ' / ' + text))
         is_header = found and not re.search(r'\d', without_sizes) and (
             size_heading(text) or (not without_sizes and size_heading(previous)))
@@ -149,7 +174,7 @@ def table_lines(lines):
                 if match:
                     name = match[1].strip()
                     prices = re.findall(NUMBER, match[2])
-                    if BEER.search(name) and len(prices) == len(sizes):
+                    if beer_product(name, heading) and len(prices) == len(sizes):
                         expanded = beer_name(name,heading) + ' ' + ' | '.join(s + ' ' + p for s, p in zip(sizes, prices))
                         result.append((expanded, heading + ' / ' + text))
                     else:
@@ -167,6 +192,8 @@ def extract_pdf(body, url, stamp):
     offers = []
     with pdfplumber.open(BytesIO(body)) as doc:
         for number, page in enumerate(doc.pages[:25], 1):
+            # Some PDFs paint headings twice; otherwise BIER becomes BBIIEERR.
+            page = page.dedupe_chars()
             for region in column_regions(page):
                 lines = region.extract_text_lines(x_tolerance=2, y_tolerance=3)
                 context='unknown'; context_x=None; contexts=[]
@@ -175,9 +202,32 @@ def extract_pdf(body, url, stamp):
                     if heading is not None:
                         context=heading; context_x=row['x0']
                     contexts.append(context if context_x is not None and abs(row['x0']-context_x)<=60 else 'unknown')
-                text = '\n'.join(row['text'] for row in lines)
+                # A small subtitle directly beneath a priced product can be its
+                # brewery or alcohol-free qualifier. Require the same left edge,
+                # close spacing, and a complete preceding size/price row.
+                joined = []; evidence_by_line = {}
+                for index, row in enumerate(lines):
+                    name = row['text']
+                    if index and joined and abs(row['x0'] - lines[index-1]['x0']) <= 3 and -5 <= row['top'] - lines[index-1]['bottom'] <= 10:
+                        previous = joined[-1]
+                        label = ((BEER.fullmatch(name) and re.match(r'^(?:(?:es|ein)\s+)?(?:grosses|großes|stange|herrg[oö]ttli|herg[oö]ttli)\b', previous, re.I)) or re.fullmatch(r'alkohol\s*frei(?:es|e|er)?|non[ -]alcoholic|alcohol[ -]free', name, re.I))
+                        next_is_portion = index+1 < len(lines) and SIZE.match(lines[index+1]['text'])
+                        if label and not next_is_portion and SIZE.search(previous) and extract_offers('BIER\n' + previous, url, stamp):
+                            size = SIZE.search(previous)
+                            combined = previous[:size.start()].rstrip() + ' ' + name + ' ' + previous[size.start():]
+                            joined[-1] = combined
+                            evidence_by_line[combined] = previous + ' / ' + name
+                            continue
+                    joined.append(name)
+                text = '\n'.join(joined)
                 direct = extract_offers(text, url, stamp, continuations=True)
+                for offer in direct:
+                    proof = offer['evidence']
+                    if proof in evidence_by_line:
+                        offer['evidence'] = evidence_by_line[proof]
                 for index,row in enumerate(lines):
+                    if any(o['evidence'] == row['text'] or o['evidence'].startswith(row['text'] + ' / ') for o in direct):
+                        continue
                     for offer in extract_stange_prefix(row['text'],url,stamp):
                         annotate(offer,contexts[index])
                         offer['evidence']=f'PDF S. {number}: '+offer['evidence']
@@ -236,7 +286,7 @@ def extract_pdf(body, url, stamp):
                                     offers.append(o)
                         break
                 for expanded, evidence in table_lines(lines) + aligned_table_lines(region):
-                    for offer in extract_offers(expanded, url, stamp):
+                    for offer in extract_offers(evidence.split(' / ')[0] + '\n' + expanded, url, stamp):
                         offer['evidence'] = f'PDF S. {number}: {evidence}'[:350]
                         annotate(offer)
                         offers.append(offer)

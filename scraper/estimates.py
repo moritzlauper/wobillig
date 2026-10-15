@@ -32,7 +32,15 @@ def estimate_types(bars):
                                 and o['beerTypeEstimate'].get('type') in ('bottle', 'can')) for o in peers)
             if explicit_type(offer.get('evidence', '')) == 'draft':
                 kind, reason = 'draft', 'Explizite Ausschankangabe im gespeicherten Menübeleg'
-            elif not packaging and (re.search(r'\b(?:stange|herrgöttli|humpen|fliessend|grosses\s+bier)\b', name, re.I) or offer.get('serving') == 'stange'):
+            # Manufacturer documents this specific 29-cl bottle. Keep it an
+            # inference: the venue menu itself does not specify packaging.
+            elif (offer.get('volumeMl') == 290
+                  and re.search(r'\bpanix[\s-]+perle\b', name, re.I)
+                  and explicit_type(offer.get('evidence', '')) is None):
+                kind, reason = 'bottle', ('Panix Perle mit 29 cl entspricht der von der Brauerei beschriebenen Flasche; '
+                                          'Zuordnung aus Produkt und Menge, nicht ausdrücklich auf der Menükarte. '
+                                          'Hersteller: https://www.brauereiadler.ch/brauerei/philosophie')
+            elif not packaging and (re.search(r'\b(?:stange|herrgöttli|humpen|fliessend|grosses(?:\s+bier)?|großes(?:\s+bier)?)\b', name, re.I) or offer.get('serving') == 'stange'):
                 kind, reason = 'draft', 'Bezeichnung einer ausgeschenkten Bierportion'
             elif re.search(r'\b(?:bügel|fl)\b', name, re.I):
                 kind, reason = 'bottle', 'Kurzbezeichnung für Flasche oder Bügelverschluss'

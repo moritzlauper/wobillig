@@ -15,6 +15,14 @@ STANGE = re.compile(r'\bstange\b', re.I)
 # A named beer serving is also an explicit product, even without a brand.
 BEER = re.compile(BEER.pattern + r'|\b(?:stange|boxer|haldengut|einsiedler|superbock|ittinger|kirin|carlsberg|tsingtao|weihenstephaner|la chouffe|witbier)\b', re.I)
 
+# These labels need an explicit beer section; 'Grosses' alone is not a beer.
+CONTEXT_BEER = re.compile(r'(?:(?:es|ein)\s+)?(?:grosses|großes|herrg[oö]ttli|herg[oö]ttli|mythos|fix\s+hellas)', re.I)
+
+
+def beer_product(name, heading=''):
+    return bool(BEER.search(name) or (heading and CONTEXT_BEER.fullmatch(name.strip())))
+
+
 def extract_stange_prefix(text, source_url, observed_at):
     """A complete, explicitly sized Stange may precede a second PDF column.
 
@@ -45,6 +53,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
     previous_evidence = None
     blank_count = 0
     beer_type = 'unknown'
+    beer_heading = ''
     for line in lines:
         if not line:
             blank_count += 1
@@ -55,6 +64,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         heading_type=section_type(line)
         if heading_type is not None:
             beer_type=heading_type
+            beer_heading = line if BEER.search(line) or heading_type == 'draft' else ''
         evidence = line
         line = re.sub(r'(\d)\s*([.,])\s*(\d)',r'\1\2\3',line)
         line = re.sub(r'((?:ml|cl|dl|l)\b)\.(?=\s)',r'\1',line,flags=re.I)
@@ -62,7 +72,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         # Some bar cards put the portion before the product (Metropol).
         # Only reorder a complete single-product row, keeping its evidence.
         prefix = re.fullmatch(r'('+SIZE.pattern+r')\s+(.+?)\s+((?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?(?:\s*CHF)?)', line, re.I)
-        if prefix and BEER.search(prefix[4]) and not SIZE.search(prefix[4]):
+        if prefix and beer_product(prefix[4], beer_heading) and not SIZE.search(prefix[4]):
             line = prefix[4]+' '+prefix[1]+' '+prefix[5]
         # Some menus print price(s) before explicitly stated portion(s).
         # Accept only a complete row with equal, slash-separated list lengths.
@@ -71,7 +81,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         if reverse:
             portions=[s[0] for s in SIZE.finditer(reverse[3])]
             prices=re.split(r'\s*/\s*',reverse[2])
-            if len(portions)==len(prices) and BEER.search(reverse[1]):
+            if len(portions)==len(prices) and beer_product(reverse[1], beer_heading):
                 line=reverse[1]+' '+' | '.join(size+' '+price for size,price in zip(portions,prices))
         # Printed brackets/leader dots are layout, not additional product data.
         line = re.sub(r'\((\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l))\)', r'\1', line, flags=re.I)
@@ -103,7 +113,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             line = previous_name + ' ' + continuation[2]
             evidence = previous_evidence + ' / ' + evidence
         previous_name = None
-        if len(line) > 350 or not BEER.search(line) or is_beer_mix(line):
+        if len(line) > 350 or not (BEER.search(line) or (beer_heading and CONTEXT_BEER.match(line))) or is_beer_mix(line):
             continue
         if re.search(r'\b(happy\s*hour|ab\s+\d|from\s+\d|pitcher|tower|pack|dose[n]?pack|degu|degustation|tasting|take[ -]?away|[246]x)\b', line, re.I):
             continue
@@ -134,8 +144,10 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
                 line=name+' '+' | '.join(s[0]+' '+p for s,p in zip(sizes,parts))
                 sizes=list(SIZE.finditer(line))
         # Match the beer name itself, not a different product elsewhere in the row.
-        if not BEER.search(name) or re.search(r'ginger|tonic|cocktail|mule|martini|bourbon|grenadine|ananassaft|kafi|mineral|laut\s*/\s*still|still\s*/\s*laut|picon|aperitivo|spritz|bierbrand|bierschnaps|sorbet|suppe|sauce|risotto|salate|\bCHF\b|mit\s*/\s*ohne',name,re.I):
+        if not beer_product(name, beer_heading) or re.search(r'ginger|tonic|cocktail|mule|martini|bourbon|grenadine|ananassaft|kafi|mineral|laut\s*/\s*still|still\s*/\s*laut|picon|aperitivo|spritz|bierbrand|bierschnaps|sorbet|suppe|sauce|risotto|salate|\bCHF\b|mit\s*/\s*ohne',name,re.I):
             continue
+        if not BEER.search(name):
+            evidence = beer_heading + ' / ' + evidence
         # Multi-column PDFs can merge a wine/cocktail price into the beer name.
         without_abv=re.sub(r'<?\s*\d+(?:[.,]\d+)?\s*%\s*(?:vol)?', '', name, flags=re.I)
         without_abv=re.sub(r'\b0[.,]0\b', '', without_abv)

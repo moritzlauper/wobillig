@@ -11149,8 +11149,8 @@
           "beerType": "unknown",
           "beerTypeEstimate": {
             "type": "bottle",
-            "reason": "KI-Schätzung aus Bezeichnung, Menge und Menü-Kontext; nicht belegt.",
-            "method": "ai"
+            "reason": "Panix Perle mit 29 cl entspricht der von der Brauerei beschriebenen Flasche; Zuordnung aus Produkt und Menge, nicht ausdrücklich auf der Menükarte. Hersteller: https://www.brauereiadler.ch/brauerei/philosophie",
+            "method": "rules"
           }
         },
         {
@@ -12795,7 +12795,12 @@
           "confidence": "automatic",
           "evidence": "Adler Panix Perle Hell (5.2 %) 29cl 6.00",
           "alcoholFree": false,
-          "beerType": "unknown"
+          "beerType": "unknown",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Panix Perle mit 29 cl entspricht der von der Brauerei beschriebenen Flasche; Zuordnung aus Produkt und Menge, nicht ausdrücklich auf der Menükarte. Hersteller: https://www.brauereiadler.ch/brauerei/philosophie",
+            "method": "rules"
+          }
         },
         {
           "name": "Sapporo JP",

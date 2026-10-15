@@ -23,7 +23,8 @@ def section_type(text):
     """None means ordinary product/prose, unknown explicitly resets context."""
     if len(text)>100 or re.search(r'\d',re.sub(SIZE_TEXT,'',text,flags=re.I)):
         return None
-    kind=explicit_type(re.sub(SIZE_TEXT,'',text,flags=re.I).strip(' /|'))
+    text = re.sub(SIZE_TEXT, '', text, flags=re.I).strip(' /|')
+    kind=explicit_type(text)
     if kind:
         # Only short headings, not sentences describing multiple drinks.
         words=re.findall(r'[\w]+',re.sub(SIZE_TEXT,'',text,flags=re.I))
@@ -31,7 +32,7 @@ def section_type(text):
             return kind
     if re.search(r'\b(?:beers?|biere?)\s*$',text,re.I):
         return 'unknown'
-    if re.fullmatch(r'[\s:–—/&-]*(?:bier\w*|beers?|alkoholfrei\w*|wine\w*|wein\w*|soft\s*drinks?|mineral\w*|wasser|cocktails?|kaffee|coffee|tee|säfte|saefte|cider|most|aperitif\w*)(?:[\s:–—/&-]+(?:bier\w*|beers?|wine\w*|wein\w*|cider|most))*[\s:–—/&-]*',text,re.I):
+    if re.fullmatch(r'[\s:–—/&-]*(?:bier\w*|beers?|alkoholfrei\w*|wine\w*|wein\w*|weisswein\w*|weißwein\w*|rotwein\w*|ros[eé]\w*|spirituosen|schn[aä]pse|lik[oö]re|soft\s*drinks?|mineral\w*|wasser|cocktails?|kaffee|coffee|tee|säfte|saefte|cider|most|aperitif\w*)(?:[\s:–—/&-]+(?:bier\w*|beers?|wine\w*|wein\w*|cider|most))*[\s:–—/&-]*',text,re.I):
         return 'unknown'
     return None
 
