@@ -15,7 +15,7 @@ import time
 import unicodedata
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
-from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, clean_offers, ESTIMATE_SCHEMA, KINDS, SYSTEM, MODEL, MAX_BUDGET_USD
+from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, clean_offers, ESTIMATE_SCHEMA, KINDS, SYSTEM, MODEL, DEFAULT_BUDGET_USD, MAX_BUDGET_USD
 from scraper.estimates import estimate_types, name_key
 from scraper.beer_rules import eligible_offer
 from scraper.extract import SIZE
@@ -176,7 +176,7 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--budget-usd', type=float, default=MAX_BUDGET_USD, help=f'Hard maximum {MAX_BUDGET_USD:.2f} USD; larger values are clamped')
+    parser.add_argument('--budget-usd', type=float, default=DEFAULT_BUDGET_USD, help=f'Hard maximum {MAX_BUDGET_USD:.2f} USD; larger values are clamped')
     parser.add_argument('--max-requests', type=int, default=1000)
     parser.add_argument('--max-pages', type=int, default=8)
     parser.add_argument('--minutes', type=int, default=65)

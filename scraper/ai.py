@@ -18,7 +18,8 @@ from scraper.coffee import ALIASES
 from scraper.product_images import image_for_offer
 
 MODEL = 'claude-haiku-5-5'
-MAX_BUDGET_USD = 1.00
+DEFAULT_BUDGET_USD = 1.00
+MAX_BUDGET_USD = 10.00
 MAX_INPUT_TOKENS = 100_000
 MAX_OUTPUT_TOKENS = 6000
 VERSION = '1'
@@ -56,7 +57,7 @@ class APIUnavailable(Exception): pass
 
 
 class Claude:
-    def __init__(self, budget=MAX_BUDGET_USD, max_requests=300, cache=Path('scraper/cache/ai')):
+    def __init__(self, budget=DEFAULT_BUDGET_USD, max_requests=300, cache=Path('scraper/cache/ai')):
         self.key = os.environ.get('ANTHROPIC_API_KEY', '')
         if not self.key: raise APIUnavailable('ANTHROPIC_API_KEY fehlt')
         if not math.isfinite(budget) or budget < 0:

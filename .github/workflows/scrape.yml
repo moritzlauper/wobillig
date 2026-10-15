@@ -11,7 +11,7 @@ on:
         options: [full, ai_only, estimates_only, photos_only]
         default: full
       ai_budget_usd:
-        description: Maximum Haiku 5.5 API cost in USD (hard cap 1.00)
+        description: Maximum Haiku 5.5 API cost in USD (hard cap 10.00)
         type: number
         default: 1.00
       ai_max_requests:
