@@ -27,7 +27,7 @@ from scraper.coffee import extract_coffees, coffee_pdf, coffee_types, PRICE as C
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'public/data/bars.json'
-UA = 'WoguenstigBot/1.0 (+https://github.com/moritzlauper/woguenstig)'
+UA = 'WobilligBot/1.0 (+https://github.com/moritzlauper/wobillig)'
 EXTRA_VENUES = json.loads((ROOT / 'scraper/additional_venues.json').read_text())
 SOURCE_SCOPES = json.loads((ROOT / 'scraper/source_scopes.json').read_text())
 COFFEE_SOURCE_SCOPES = json.loads((ROOT / 'scraper/coffee_source_scopes.json').read_text())

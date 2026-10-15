@@ -127,7 +127,7 @@ function detail(b: Bar) {
     const url = barLink(location.href, b.id, f.drink!, f.volume);
     button.disabled = true;
     try {
-      const result = await shareLink({ title: `${b.name} · wogünstig`, url });
+      const result = await shareLink({ title: `${b.name} · wobillig`, url });
       if (result === 'copied') toast('Link kopiert.');
       if (result === 'manual') {
         $<HTMLInputElement>('share-url').value = url;

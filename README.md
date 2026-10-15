@@ -1,4 +1,4 @@
-# wogünstig 🍻 ☕
+# wobillig 🍻 ☕
 
 Eine einfache Zürich-Karte für Bier- und Kaffeepreise. TypeScript, Leaflet, Python-Scraper und eine Vercel-API für gemeinsam gespeicherte Preise. Keine Registrierung erforderlich.
 
@@ -63,7 +63,7 @@ npm run build
 npm run preview
 ```
 
-`dist/` enthält das statische Frontend. Die vollständige App benötigt zusätzlich `api/prices.ts`. Für einen Unterpfad: `npm run build -- --base=/woguenstig/`.
+`dist/` enthält das statische Frontend. Die vollständige App benötigt zusätzlich `api/prices.ts`. Für einen Unterpfad: `npm run build -- --base=/wobillig/`.
 
 ## Scraper starten
 
@@ -163,7 +163,7 @@ Vor öffentlichem Betrieb die Nutzungsbedingungen und Kapazitätsgrenzen der Kar
 Deployment mit der Vercel CLI:
 
 ```sh
-vercel link --project woguenstig
+vercel link --project wobillig
 vercel --prod
 ```
 
@@ -190,7 +190,7 @@ vercel dev
 Speicher für eine neue Installation verbinden:
 
 ```sh
-vercel blob create-store woguenstig-prices --access private --region fra1 --yes
+vercel blob create-store wobillig-prices --access private --region fra1 --yes
 vercel deploy --prod --yes
 ```
 

@@ -3,8 +3,8 @@ import { barLink, shareLink } from '../src/sharing';
 
 describe('bar links', () => {
   it('keeps the deployment path and bar ID without unrelated URL state', () => {
-    const url = new URL(barLink('https://example.com/woguenstig/?bar=node%2F1&drink=coffee&utm_source=test#old', 'way/123', 'beer', '500'));
-    expect(url.pathname).toBe('/woguenstig/');
+    const url = new URL(barLink('https://example.com/wobillig/?bar=node%2F1&drink=coffee&utm_source=test#old', 'way/123', 'beer', '500'));
+    expect(url.pathname).toBe('/wobillig/');
     expect([...url.searchParams]).toEqual([['bar', 'way/123']]);
     expect(url.hash).toBe('');
   });
@@ -18,7 +18,7 @@ describe('bar links', () => {
 });
 
 describe('native sharing', () => {
-  const data = { title: 'AYA · wogünstig', url: 'https://example.com/?bar=node%2F123' };
+  const data = { title: 'AYA · wobillig', url: 'https://example.com/?bar=node%2F123' };
   it('opens native sharing immediately and does not copy when sharing succeeds', async () => {
     const share = vi.fn().mockResolvedValue(undefined);
     const writeText = vi.fn();
