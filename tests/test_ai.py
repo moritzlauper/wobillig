@@ -221,6 +221,15 @@ class CafeCoverageTests(unittest.TestCase):
         bar={'id':'b','name':'A','type':'bar','offers':[{'priceChf':8}]}
         self.assertLess(candidate_priority(cafe,{},{}),candidate_priority(bar,{},{}))
 
+    def test_missing_bars_are_not_starved_by_repeated_empty_cafe_scans(self):
+        from scraper.ai_scan import candidate_priority
+        cafe={'id':'c','name':'A','type':'cafe','offers':[]}
+        bar={'id':'b','name':'Z','type':'bar','offers':[]}
+        checks={'c':{'checkedAt':'2026-10-15'},'b':{'checkedAt':'2026-10-14'}}
+        self.assertLess(candidate_priority(bar,checks,{}),candidate_priority(cafe,checks,{}))
+        checks['b']['checkedAt']='2026-10-16'
+        self.assertLess(candidate_priority(cafe,checks,{}),candidate_priority(bar,checks,{}))
+
 class CostAndSourceRegressionTests(unittest.TestCase):
     @patch.dict(os.environ,{'ANTHROPIC_API_KEY':'test-secret'})
     def test_parallel_generations_share_one_budget(self):

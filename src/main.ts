@@ -1,6 +1,7 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
+import { coverageLabel, missingPriceLabel } from './coverage';
 import { bestOffer, matchingOffers, isCurrentOffer, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
 import { allVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 
@@ -90,11 +91,11 @@ function syncControls() {
 function render() {
   syncControls();
   current = filterBars(bars, f, position);
-  $('count').textContent = `${current.length} Lokale · ${current.filter(b => bestOffer(b, f)).length} mit Preis`;
+  $('count').textContent = coverageLabel(current, f);
   $('map-unit').textContent = coffee() ? `CHF · ${f.coffeeType === 'all' ? 'pro Getränk' : coffeeLabels[f.coffeeType!]}` : f.mode === 'half' ? 'CHF / 5 dl · umgerechnet' : f.volume === 'all' ? 'CHF / Portion · Menge beachten' : f.volume === 'stange' ? 'CHF / Stange' : `CHF / ${Number(f.volume) / 100} dl`;
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
-    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || 'Zürich')}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : '<small>Kein Preis</small>'}</span></button>`;
+    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || 'Zürich')}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
   }).join('') : '<p class="empty">Keine passenden Lokale.</p>';
   layer.clearLayers();
   for (const b of current) {

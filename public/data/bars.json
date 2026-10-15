@@ -11,12 +11,112 @@
       "type": "bar",
       "address": "",
       "postcode": "",
-      "website": null,
+      "website": "https://01bar.ch/",
       "openingHours": null,
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-15T07:08:01.607655+00:00"
+      "offers": [
+        {
+          "name": "Edelspez Premium / Panaché",
+          "volumeMl": 250,
+          "priceChf": 5.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Edelspez Premium / Panaché · 2.5 dl · CHF 5.50 · Offen / vom Fass",
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Edelspez Premium / Panaché",
+          "volumeMl": 500,
+          "priceChf": 9.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Edelspez Premium / Panaché · 5 dl · CHF 9.50 · Offen / vom Fass",
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Weisser Engel Hefe Weissbier",
+          "volumeMl": 250,
+          "priceChf": 5.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Weisser Engel Hefe Weissbier · 2.5 dl · CHF 5.50 · Offen / vom Fass",
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Weisser Engel Hefe Weissbier",
+          "volumeMl": 500,
+          "priceChf": 9.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Weisser Engel Hefe Weissbier · 5 dl · CHF 9.50 · Offen / vom Fass",
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Schützengarten Alkoholfrei",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "beerType": "bottle",
+          "alcoholFree": true,
+          "evidence": "Schützengarten Alkoholfrei · 3.3 dl · CHF 7.50 · Flaschenbier",
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Vadian Pale Ale",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "beerType": "bottle",
+          "alcoholFree": false,
+          "evidence": "Vadian Pale Ale · 3.3 dl · CHF 7.50 · Flaschenbier",
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Gallus 612 – Old Style Ale",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "beerType": "bottle",
+          "alcoholFree": false,
+          "evidence": "Gallus 612 – Old Style Ale · 3.3 dl · CHF 7.50 · Flaschenbier",
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Säntisbier Naturtrüb",
+          "volumeMl": 330,
+          "priceChf": 8,
+          "beerType": "bottle",
+          "alcoholFree": false,
+          "evidence": "Säntisbier Naturtrüb · 3.3 dl · CHF 8.00 · Flaschenbier",
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "San Miguel",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "beerType": "bottle",
+          "alcoholFree": false,
+          "evidence": "San Miguel · 3.3 dl · CHF 7.50 · Flaschenbier",
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T15:41:10.187902+00:00"
     },
     {
       "id": "node/10045296143",
@@ -839,12 +939,156 @@
       "type": "bar",
       "address": "",
       "postcode": "",
-      "website": null,
+      "website": "https://alexis-cana.ch/getraenkekarte/",
       "openingHours": "Mo-Th 11:00-24:00, Fr,Sa 11:00-02:00, Su 16:00-24:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-15T07:08:08.469177+00:00"
+      "offers": [
+        {
+          "name": "Gold Sprint Züri Bier",
+          "volumeMl": 300,
+          "priceChf": 4.9,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Gold Sprint Züri Bier · 3 dl · CHF 4.90 · Offen / vom Fass",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Gold Sprint Züri Bier",
+          "volumeMl": 500,
+          "priceChf": 8.2,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Gold Sprint Züri Bier · 5 dl · CHF 8.20 · Offen / vom Fass",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Weissbier",
+          "volumeMl": 300,
+          "priceChf": 5.8,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Weissbier · 3 dl · CHF 5.80 · Offen / vom Fass",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Weissbier",
+          "volumeMl": 500,
+          "priceChf": 9.2,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Weissbier · 5 dl · CHF 9.20 · Offen / vom Fass",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Amber",
+          "volumeMl": 300,
+          "priceChf": 5.8,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Amber · 3 dl · CHF 5.80 · Offen / vom Fass",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Amber",
+          "volumeMl": 500,
+          "priceChf": 9.2,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Amber · 5 dl · CHF 9.20 · Offen / vom Fass",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Lager",
+          "volumeMl": 300,
+          "priceChf": 5.1,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Lager · 3 dl · CHF 5.10 · Offen / vom Fass",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Lager",
+          "volumeMl": 500,
+          "priceChf": 8.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Lager · 5 dl · CHF 8.50 · Offen / vom Fass",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Heinecken",
+          "volumeMl": 330,
+          "priceChf": 7.2,
+          "beerType": "bottle",
+          "alcoholFree": false,
+          "evidence": "Heinecken · 3.3 dl · CHF 7.20 · Flaschenbier",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Edelweiss Weissbier",
+          "volumeMl": 500,
+          "priceChf": 8.9,
+          "beerType": "bottle",
+          "alcoholFree": false,
+          "evidence": "Edelweiss Weissbier · 5 dl · CHF 8.90 · Flaschenbier",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Weissbier alkoholfrei",
+          "volumeMl": 500,
+          "priceChf": 8.4,
+          "beerType": "bottle",
+          "alcoholFree": true,
+          "evidence": "Weissbier alkoholfrei · 5 dl · CHF 8.40 · Flaschenbier",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Eichhof alkoholfrei",
+          "volumeMl": 330,
+          "priceChf": 5.2,
+          "beerType": "bottle",
+          "alcoholFree": true,
+          "evidence": "Eichhof alkoholfrei · 3.3 dl · CHF 5.20 · Flaschenbier",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Corona",
+          "volumeMl": 355,
+          "priceChf": 7.5,
+          "beerType": "bottle",
+          "alcoholFree": false,
+          "evidence": "Corona · 3.55 dl · CHF 7.50 · Flaschenbier",
+          "sourceUrl": "https://alexis-cana.ch/wp-content/uploads/2022/06/AC_Angebotskarte_Getraenke_12s_A4_quer_2022_RZ_Web.pdf",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T15:41:10.187902+00:00"
     },
     {
       "id": "node/297710735",
@@ -9086,9 +9330,120 @@
       "website": "https://www.dalis.ch/",
       "openingHours": "Tu-Th 17:00-24:00; Fr-Sa 17:00-26:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T12:25:56.824331+00:00"
+      "offers": [
+        {
+          "name": "Helvetic Lager",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Helvetic Lager · 3 dl · CHF 5.50 · Offen / vom Fass",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Helvetic Lager",
+          "volumeMl": 500,
+          "priceChf": 8.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Helvetic Lager · 5 dl · CHF 8.50 · Offen / vom Fass",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Valaisanne Juicy IPA",
+          "volumeMl": 300,
+          "priceChf": 6,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Valaisanne Juicy IPA · 3 dl · CHF 6.00 · Offen / vom Fass",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Valaisanne Juicy IPA",
+          "volumeMl": 500,
+          "priceChf": 9.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Valaisanne Juicy IPA · 5 dl · CHF 9.50 · Offen / vom Fass",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Panaché",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Panaché · 3 dl · CHF 5.50 · Offen / vom Fass",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Panaché",
+          "volumeMl": 500,
+          "priceChf": 8.5,
+          "beerType": "draft",
+          "alcoholFree": false,
+          "evidence": "Panaché · 5 dl · CHF 8.50 · Offen / vom Fass",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Valaisanne Brune",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "beerType": "bottle",
+          "alcoholFree": false,
+          "evidence": "Valaisanne Brune · 3.3 dl · CHF 6.50 · Flaschenbier",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "San Miguel Fresca",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "beerType": "bottle",
+          "alcoholFree": false,
+          "evidence": "San Miguel Fresca · 3.3 dl · CHF 6.50 · Flaschenbier",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Feldschlösschen alkoholfrei",
+          "volumeMl": 330,
+          "priceChf": 6,
+          "beerType": "bottle",
+          "alcoholFree": true,
+          "evidence": "Feldschlösschen alkoholfrei · 3.3 dl · CHF 6.00 · Flaschenbier",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Brooklyn IPA alkoholfrei",
+          "volumeMl": 330,
+          "priceChf": 8,
+          "beerType": "bottle",
+          "alcoholFree": true,
+          "evidence": "Brooklyn IPA alkoholfrei · 3.3 dl · CHF 8.00 · Flaschenbier",
+          "sourceUrl": "https://www.dalis.ch/kopie-von-drinks-and-cocktails-1",
+          "observedAt": "2026-10-15T15:41:10.187902+00:00",
+          "confidence": "reviewed"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T15:41:10.187902+00:00"
     },
     {
       "id": "node/3393151844",

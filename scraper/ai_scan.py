@@ -28,9 +28,11 @@ CHECKS = ROOT / 'scraper/ai_checks.json'
 
 
 def candidate_priority(bar, checks, hints):
-    # Spend the small budget on missing cafe prices before re-reading beer menus.
-    missing_coffee = bar.get('type') == 'cafe' and not any(o.get('coffeeType') for o in bar['offers'])
-    return (not missing_coffee, checks.get(bar['id'], {}).get('checkedAt', ''), not bool(hints.get(bar['id'])), bar['name'].casefold())
+    # Missing bar and cafe prices share the queue. Rotate by last check so
+    # permanently empty cafes cannot monopolise every bounded scan.
+    wants_coffee = bar.get('type') == 'cafe'
+    missing = not any(bool(o.get('coffeeType')) == wants_coffee for o in bar['offers'])
+    return (not missing, checks.get(bar['id'], {}).get('checkedAt', ''), not bool(hints.get(bar['id'])), bar['name'].casefold())
 
 
 def product_key(name):

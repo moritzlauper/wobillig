@@ -202,6 +202,16 @@ def html_content(body,url):
             node.extract()
         heading.decompose()
     links=[]
+    # DearFlip stores the actual PDF in JSON inside its viewer script, not an
+    # anchor. Read only the source string; never execute website JavaScript.
+    for script in soup.select('script.df-shortcode-script'):
+        for match in re.finditer(r'"source"\s*:\s*("(?:\\.|[^"\\])*")', script.get_text()):
+            try:
+                target = urljoin(url, json.loads(match[1])).split('#')[0]
+            except (ValueError, TypeError):
+                continue
+            if urlparse(target).scheme in ('http', 'https') and urlparse(target).path.lower().endswith('.pdf') and not SKIP_MENU.search(target):
+                links.append(target)
     for a in soup.select('a[href], iframe[src], embed[src], object[data], img[src]'):
         target=urljoin(url,a.get('href') or a.get('src') or a.get('data')).split('#')[0]
         # A hostname containing "bier" must not make every site link a menu.

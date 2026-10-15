@@ -45,6 +45,14 @@ class ExtractionTests(unittest.TestCase):
         _,links=html_content(b'<a href="/about">Team</a><a href="/drinks.pdf">Karte</a>','https://bier.example')
         self.assertEqual(links,['https://bier.example/drinks.pdf'])
 
+    def test_embedded_pdf_viewer_discovers_menu_without_executing_script(self):
+        body = br'<script class="df-shortcode-script">window.option_df_1={"source":"https:\/\/cdn.example\/Getraenke.pdf"}; arbitraryCode();</script>'
+        _, links = html_content(body, 'https://bar.example')
+        self.assertEqual(links, ['https://cdn.example/Getraenke.pdf'])
+        for value in ['javascript:alert(1)', 'file:///menu.pdf', 'https://example.org/press.pdf']:
+            _, links = html_content(('<script class="df-shortcode-script">{"source":"' + value + '"}</script>').encode(), 'https://bar.example')
+            self.assertEqual(links, [])
+
     def test_merged_menu_rows_and_ginger_beer_rejected(self):
         for text in ['Ginger Beer 3 dl 5.00','Goba Citro 3dl 5.00 Lager 5dl 7.00','Lager 3dl 5.00 Cola 5dl 7.00','Appenzeller 29% 2cl 5.50 Wein 1dl 8.00','MOSCOW MULE 17.5 BROOKLYN IPA 3.3dl 9.0','Mythos, Suisse, 13% 9 | 58 Rekord Amber, 5% 3.3 dl 7.5']:
             self.assertEqual(self.offers(text),[],text)
