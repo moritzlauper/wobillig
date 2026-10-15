@@ -5,7 +5,7 @@ export function barLink(href: string, barId: string, drink: Drink, volume: strin
   url.search = '';
   url.hash = '';
   url.searchParams.set('bar', barId);
-  if (drink === 'coffee') url.searchParams.set('drink', 'coffee');
+  if (drink !== 'beer') url.searchParams.set('drink', drink);
   else if (volume === 'stange') url.searchParams.set('size', 'stange');
   return url.href;
 }

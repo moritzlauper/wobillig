@@ -103,8 +103,9 @@ dialog::backdrop { background: #0005; }
 #detail { z-index: 1100; }
 @media (max-width: 760px) {
   .toolbar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .toolbar > .switch { grid-column: span 2; }
-  #search { grid-column: span 4; width: 100%; }
+  .toolbar > .switch { grid-column: 1 / -1; }
+  .toolbar > .switch button { flex: 1; }
+  #search { grid-column: 1 / -1; width: 100%; }
   #volume, #coffeeType { grid-column: span 3; width: 100%; }
   .budget { grid-column: span 2; }
   #filters-toggle { grid-column: span 1; padding-inline: 2px; }

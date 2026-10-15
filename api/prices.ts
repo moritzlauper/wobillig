@@ -5,10 +5,10 @@ import { allVenues, validateInput, InputError } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore, savePrice } from '../server/prices.js';
 
-let dataPromise: Promise<Record<'beer' | 'coffee', Dataset>> | undefined;
+let dataPromise: Promise<Record<'beer' | 'coffee' | 'pizza', Dataset>> | undefined;
 function datasets() {
-  return dataPromise ||= Promise.all(['bars', 'coffee'].map(name => readFile(`${process.cwd()}/public/data/${name}.json`, 'utf8').then(JSON.parse)))
-    .then(([beer, coffee]) => ({ beer, coffee }));
+  return dataPromise ||= Promise.all(['bars', 'coffee', 'pizza'].map(name => readFile(`${process.cwd()}/public/data/${name}.json`, 'utf8').then(JSON.parse)))
+    .then(([beer, coffee, pizza]) => ({ beer, coffee, pizza }));
 }
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');

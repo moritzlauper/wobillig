@@ -1,4 +1,4 @@
-name: Refresh Zurich drink prices
+name: Refresh Zurich prices
 on:
   schedule:
     # The cadence job skips alternate Mondays to keep a true 14-day interval.
@@ -72,6 +72,8 @@ jobs:
         run: python -m scraper.enrich --limit 0 --max-pages 10
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
         run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages 10
+      - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
+        run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages 6
       - name: Claude menu and serving-format scan
         id: ai
         env:
@@ -107,9 +109,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/data/bars.json public/data/coffee.json scraper/discovery_checks.json scraper/coffee_checks.json scraper/ai_checks.json
+          git add public/data/bars.json public/data/coffee.json public/data/pizza.json scraper/discovery_checks.json scraper/coffee_checks.json scraper/pizza_checks.json scraper/ai_checks.json
           if ! git diff --cached --quiet; then
-            git commit -m "data: refresh Zurich beer and coffee prices"
+            git commit -m "data: refresh Zurich beer, coffee and pizza prices"
             git pull --rebase origin "$GITHUB_REF_NAME"
             git push origin "HEAD:$GITHUB_REF_NAME"
           fi

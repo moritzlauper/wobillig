@@ -3,6 +3,7 @@ export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bo
 export type Offer = {
   name: string;
   volumeMl: number | null;
+  pizzaType?: "margherita";
   coffeeType?: string;
   serving?: "stange";
   beerType?: BeerType;
@@ -40,7 +41,7 @@ export type Dataset = {
   bars: Bar[];
 };
 export type Filters = {
-  drink?: "beer" | "coffee";
+  drink?: "beer" | "coffee" | "pizza";
   coffeeType?: string;
   beerType?: BeerType | "all";
   query: string;
@@ -60,16 +61,19 @@ export const coffeeLabels: Record<string, string> = {
   matcha: "Matcha", matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
-  return o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : o.volumeMl ? `${o.volumeMl / 100} dl` : "Stange · Grösse nicht angegeben";
+  return o.pizzaType ? "Pro Pizza Margherita" : o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : o.volumeMl ? `${o.volumeMl / 100} dl` : "Stange · Grösse nicht angegeben";
+}
+export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" {
+  return o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
 }
 export function effectiveBeerType(o: Offer): BeerType {
   return o.beerType && o.beerType !== "unknown" ? o.beerType : o.beerTypeEstimate?.type || "unknown";
 }
 export function beerTypeLabel(o: Offer) {
-  return o.coffeeType ? "" : beerTypeLabels[effectiveBeerType(o)] + ((!o.beerType || o.beerType === "unknown") && o.beerTypeEstimate ? " · geschätzt" : "");
+  return offerCategory(o) !== "beer" ? "" : beerTypeLabels[effectiveBeerType(o)] + ((!o.beerType || o.beerType === "unknown") && o.beerTypeEstimate ? " · geschätzt" : "");
 }
 export function isStange(o: Offer) {
-  return !o.coffeeType && effectiveBeerType(o) !== "bottle" && effectiveBeerType(o) !== "can" && (o.volumeMl === 300 || (o.serving === "stange" && (o.volumeMl === null || (o.volumeMl >= 300 && o.volumeMl <= 330))));
+  return offerCategory(o) === "beer" && effectiveBeerType(o) !== "bottle" && effectiveBeerType(o) !== "can" && (o.volumeMl === 300 || (o.serving === "stange" && (o.volumeMl === null || (o.volumeMl >= 300 && o.volumeMl <= 330))));
 }
 export function selectBeerSize(f: Filters, volume: string) {
   f.volume = volume;
@@ -78,8 +82,10 @@ export function selectBeerSize(f: Filters, volume: string) {
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return bar.offers
     .filter(o => isCurrentOffer(o))
+    .filter(o => offerCategory(o) === (f.drink || "beer"))
     .filter(
       (o) =>
+        f.drink === "pizza" ? o.pizzaType === "margherita" :
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree &&
@@ -107,7 +113,7 @@ export function bestOffer(bar: Bar, f: Filters): Offer | undefined {
   return matchingOffers(bar, f)[0];
 }
 export function cost(o: Offer, mode: Filters["mode"]) {
-  return !o.coffeeType && mode === "half" ? (o.volumeMl ? (o.priceChf * 500) / o.volumeMl : Infinity) : o.priceChf;
+  return offerCategory(o) === "beer" && mode === "half" ? (o.volumeMl ? (o.priceChf * 500) / o.volumeMl : Infinity) : o.priceChf;
 }
 export function distance(a: [number, number], b: [number, number]) {
   const r = Math.PI / 180;
