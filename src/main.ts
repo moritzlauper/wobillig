@@ -11,9 +11,9 @@ const money = (n: number) => n.toFixed(2);
 const options = (values: Record<string, string>) => Object.entries(values).map(([value, label]) => `<option value="${value}">${e(label)}</option>`).join('');
 const coffeeOptions = options(coffeeLabels);
 const initial = new URLSearchParams(location.search);
-const initialSize = initial.get('size') || 'stange';
-const initialBeerType = initial.get('beerType') || (initialSize === '300-330' ? 'all' : 'draft');
-const f: Filters = { drink: initial.get('drink') === 'pizza' ? 'pizza' : initial.get('drink') === 'coffee' ? 'coffee' : 'beer', coffeeType: 'creme', beerType: ['all', ...Object.keys(beerTypeLabels)].includes(initialBeerType) ? initialBeerType as Filters['beerType'] : 'draft', query: '', max: initial.get('drink') === 'pizza' ? 30 : 15, volume: ['stange', '300-330', '500', '300', '330', '400', 'all'].includes(initialSize) ? initialSize : 'stange', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
+const initialSize = initial.get('size') || '300-330';
+const initialBeerType = initial.get('beerType') || 'all';
+const f: Filters = { drink: initial.get('drink') === 'pizza' ? 'pizza' : initial.get('drink') === 'coffee' ? 'coffee' : 'beer', coffeeType: 'creme', beerType: ['all', ...Object.keys(beerTypeLabels)].includes(initialBeerType) ? initialBeerType as Filters['beerType'] : 'all', query: '', max: initial.get('drink') === 'pizza' ? 30 : 15, volume: ['stange', '300-330', '500', '300', '330', '400', 'all'].includes(initialSize) ? initialSize : '300-330', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
 if (['bottle', 'can'].includes(f.beerType!) && f.volume === 'stange') f.volume = 'all';
 const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
@@ -97,7 +97,7 @@ function syncControls() {
   const url = new URL(location.href);
   if (!beer()) url.searchParams.set('drink', f.drink!); else url.searchParams.delete('drink');
   if (beer()) url.searchParams.set('size', f.volume); else url.searchParams.delete('size');
-  if (beer() && f.beerType !== 'draft') url.searchParams.set('beerType', f.beerType!); else url.searchParams.delete('beerType');
+  if (beer() && f.beerType !== 'all') url.searchParams.set('beerType', f.beerType!); else url.searchParams.delete('beerType');
   if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
   history.replaceState(null, '', url);
 }
@@ -169,7 +169,7 @@ for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcoh
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
 $('reset').onclick = () => {
-  Object.assign(f, { query: '', max: pizza() ? 30 : 15, volume: 'stange', coffeeType: 'creme', beerType: 'draft', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  Object.assign(f, { query: '', max: pizza() ? 30 : 15, volume: '300-330', coffeeType: 'creme', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = String(f.max);
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
   for (const id of ['unknown', 'outdoor', 'alcohol-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
