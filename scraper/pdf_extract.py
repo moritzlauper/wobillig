@@ -9,6 +9,13 @@ STOP_HEADING = re.compile(r'\b(?:wein[e]?|wine[s]?|soft|getränke|cocktails?|spi
 NUMBER = r'\d{1,2}(?:[.,]\d{1,2}|[.][–—-])?'
 
 
+def size_heading(text):
+    """A product such as 'Amboss Weizen Bier 5dl' is NOT a size header."""
+    words=re.findall(r'[a-zäöü]+',SIZE.sub('',text).casefold())
+    allowed={'bier','biere','beers','beer','flaschen','flaschenbier','flaschenbiere','offenbier','offenbiere','vom','fass','frisch','gezapft','zapft','bottled','bottles','draft','draught','on','tap','alkoholfrei','alkoholfreie','alkoholfreies','alcohol','free','non','naturtrübe','naturtrüb','amber','hell','helle','weizen','weizenbiere','cl','chf'}
+    return bool(words) and all(w in allowed for w in words)
+
+
 def beer_name(name, heading):
     if re.search(r'^(?:alkoholfrei\w*\s+biere?|non[ .-]*alcoholic\s+beers?)\b',heading,re.I):
         return name + ' alkoholfrei'
@@ -51,7 +58,14 @@ def aligned_table_lines(region):
         words.sort(key=lambda w: w['x0'])
         text = ' '.join(w['text'] for w in words)
         sizes = list(SIZE.finditer(text))
-        if sizes and BEER_HEADING.search(text) and not re.search(r'\d', SIZE.sub('', text)):
+        if sizes and size_heading(text) and not re.search(r'\d', SIZE.sub('', text)):
+            # A second text heading belongs to a separate table on the same row.
+            first_group=[sizes[0]]
+            for size in sizes[1:]:
+                if re.search(r'[a-zäöü]',text[first_group[-1].end():size.start()],re.I):
+                    break
+                first_group.append(size)
+            sizes=first_group
             offsets = []; offset = 0
             for word in words:
                 offsets.append((offset, offset + len(word['text']), word)); offset += len(word['text']) + 1
@@ -113,7 +127,7 @@ def table_lines(lines):
             if match and BEER.search(match[1]):
                 result.append((f'{beer_name(match[1],heading)} {match[2]}{unit} {match[3]}', heading + ' / ' + text))
         is_header = found and not re.search(r'\d', without_sizes) and (
-            BEER_HEADING.search(without_sizes) or (not without_sizes and BEER_HEADING.search(previous)))
+            size_heading(text) or (not without_sizes and size_heading(previous)))
         if is_header:
             sizes = [s[0] for s in found]
             heading = text if without_sizes else previous + ' ' + text
@@ -159,8 +173,13 @@ def extract_pdf(body, url, stamp):
                             if offer['evidence'] == row['text']:
                                 offer['alcoholFree'] = True
                 offers.extend(direct)
+                header_sizes=[]
                 for index, row in enumerate(lines):
                     name = row['text'].strip()
+                    if SIZE.search(name) and not SIZE.sub('',name).strip(' /|'):
+                        header_sizes=[s[0] for s in SIZE.finditer(name)]
+                    elif STOP_HEADING.search(name) and not BEER.search(name):
+                        header_sizes=[]
                     if not BEER.search(name) or SIZE.search(name) or len(name) > 100:
                         continue
                     # A named beer may wrap onto a draught/bottle and size line.
@@ -168,10 +187,25 @@ def extract_pdf(body, url, stamp):
                         if following['top'] - row['top'] > 50:
                             break
                         part = re.sub(r'^(?:on draught|by the bottle)\s*[-–]?\s*', '', following['text'], flags=re.I)
+                        part = re.sub(r'(?:\.\s*){3,}', ' ', part)
+                        abv=re.match(r'^\(?<?\s*\d+(?:[.,]\d+)?\s*%\s*(?:vol\.?)?\)?\s*',part,re.I)
+                        metadata=abv[0] if abv else ''
+                        if abv:
+                            part=part[abv.end():].strip()
                         if not part:
                             continue
                         if SIZE.match(part):
-                            offers.extend(extract_offers(name + ' ' + part, url, stamp))
+                            recovered=extract_offers(name + ' ' + metadata + ' ' + part, url, stamp)
+                            for o in recovered:
+                                o['evidence']=f'PDF S. {number}: {name} / {following["text"]}'[:350]
+                            offers.extend(recovered)
+                        elif abv and header_sizes:
+                            prices=re.split(r'\s*/\s*',part)
+                            if len(prices)==len(header_sizes) and all(re.fullmatch(NUMBER,p) for p in prices):
+                                expanded=name+' '+metadata+' '+' | '.join(s+' '+p for s,p in zip(header_sizes,prices))
+                                for o in extract_offers(expanded,url,stamp):
+                                    o['evidence']=f'PDF S. {number}: {" / ".join(header_sizes)} / {name} / {following["text"]}'[:350]
+                                    offers.append(o)
                         break
                 for expanded, evidence in table_lines(lines) + aligned_table_lines(region):
                     for offer in extract_offers(expanded, url, stamp):

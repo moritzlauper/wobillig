@@ -5,7 +5,7 @@ extractor does not OCR images or infer column alignment in broken PDF text.
 """
 import re
 
-BEER = re.compile(r'\b(biere?|beers?|lager(?:bier)?|pils(?:e?ner)?|ipa|pale ale|stout|porter|weizen|weissbier|weißbier|helles|quöllfrisch|feldschlösschen|calanda|turbinenbräu|chopfab|heineken|guinness|erdinger|schützengarten|appenzeller|valaisanne|braufrisch|eichhof|amber|hofbräu|amboss|moretti|poretti|corona|schneider|grimbergen|sonnwendlig|lokalbier|schiffbrau|adler panix|hürlimann|augustiner|san miguel|super bock|1664 blanc|peroni|asahi|sapporo|red stripe|singha|chang|tiger|brooklyn|paulaner|falken|warsteiner|hoegaarden|franziskaner|budweiser|bitburger|jever|brew.?dog)\b', re.I)
+BEER = re.compile(r'\b(biere?|beers?|lager(?:bier)?|pils(?:e?ner)?|ipa|pale ale|stout|porter|weizen|weissbier|weißbier|helles|quöllfrisch|feldschlösschen|calanda|turbinenbräu|chopfab|heineken|guinness|erdinger|schützengarten|appenzeller|valaisanne|braufrisch|eichhof|amber|hofbräu|amboss|moretti|poretti|corona|schneider|grimbergen|sonnwendlig|lokalbier|schiffbrau|adler panix|hürlimann|augustiner|san miguel|super bock|1664 blanc|peroni|asahi|sapporo|red stripe|singha|chang|tiger|brooklyn|paulaner|falken|warsteiner|hoegaarden|franziskaner|budweiser|bitburger|jever|brew.?dog|tegernseer?|maisel|kilkenny|fullers|five lamps|hop house|1664)\b', re.I)
 SIZE = re.compile(r'(?<![\d.])(\d+(?:[.,]\d+)?)\s*(ml|cl|dl|l)\b', re.I)
 PRICE = re.compile(r'(?:CHF\s*)?(\d{1,2}[.,]\d{1,2}|\d{1,2}\.\s*[–—-])(?:\s*(?:CHF|Fr\.?))?', re.I)
 
@@ -25,6 +25,10 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             continue
         blank_count = 0
         evidence = line
+        # Printed brackets/leader dots are layout, not additional product data.
+        line = re.sub(r'\((\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l))\)', r'\1', line, flags=re.I)
+        line = re.sub(r'((?:ml|cl|dl|l)\b)\s*\((?:flasche|stange|offen|bottle)\)', r'\1', line, flags=re.I)
+        line = re.sub(r'(?:\.\s*){3,}', ' ', line)
         # Explicit alternate notations, never infer a missing unit or ABV.
         line = re.sub(r'(\d+[.,])\s+(\d+)\s*%', r'\1\2%', line)
         line = re.sub(r'(\d+)\.\s*%', r'\1%', line)
@@ -49,12 +53,14 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         previous_name = None
         if len(line) > 350 or not BEER.search(line):
             continue
-        if re.search(r'\b(happy\s*hour|ab\s+\d|from\s+\d|pitcher|tower|pack|dose[n]?pack|[246]x)\b', line, re.I):
+        if re.search(r'\b(happy\s*hour|ab\s+\d|from\s+\d|pitcher|tower|pack|dose[n]?pack|degu|degustation|tasting|take[ -]?away|[246]x)\b', line, re.I):
             continue
         sizes = list(SIZE.finditer(line))
         if not sizes:
             continue
         name = line[:sizes[0].start()].strip(' |:–—-')
+        if re.search(r'\bappenzeller\b.*\b(?:laut|still)\b',name,re.I):
+            continue
         # Explicit parallel size/price lists, e.g. Lager 3dl / 5dl 5.00 / 7.50.
         if len(sizes)>1 and all(re.fullmatch(r'[\s/|]+',line[a.end():b.start()]) for a,b in zip(sizes,sizes[1:])):
             tail=line[sizes[-1].end():].strip()
@@ -63,7 +69,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
                 line=name+' '+' | '.join(s[0]+' '+p for s,p in zip(sizes,parts))
                 sizes=list(SIZE.finditer(line))
         # Match the beer name itself, not a different product elsewhere in the row.
-        if not BEER.search(name) or re.search(r'ginger|tonic|cocktail|mule|martini|bourbon|grenadine|ananassaft|kafi',name,re.I):
+        if not BEER.search(name) or re.search(r'ginger|tonic|cocktail|mule|martini|bourbon|grenadine|ananassaft|kafi|mineral|laut\s*/\s*still|still\s*/\s*laut|picon|aperitivo|spritz|bierbrand|bierschnaps|sorbet|suppe|sauce|risotto|salate|\bCHF\b|mit\s*/\s*ohne',name,re.I):
             continue
         # Multi-column PDFs can merge a wine/cocktail price into the beer name.
         without_abv=re.sub(r'<?\s*\d+(?:[.,]\d+)?\s*%\s*(?:vol)?', '', name, flags=re.I)

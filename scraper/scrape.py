@@ -19,7 +19,7 @@ from urllib.robotparser import RobotFileParser
 
 from bs4 import BeautifulSoup
 import requests
-from scraper.extract import extract_offers, BEER
+from scraper.extract import extract_offers, BEER, SIZE
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,11 +28,13 @@ UA = 'WoguenstigBot/1.0 (+https://github.com/moritzlauper/woguenstig)'
 EXTRA_VENUES = json.loads((ROOT / 'scraper/additional_venues.json').read_text())
 SOURCE_SCOPES = json.loads((ROOT / 'scraper/source_scopes.json').read_text())
 REVIEWED_MENUS = json.loads((ROOT / 'scraper/reviewed_menus.json').read_text())
+WEBSITES = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
 QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + EXTRA_QUERY + ');out center tags;'
 MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card', re.I)
 SKIP_MENU = re.compile(r'catering|bankett|ap[eé]ro.?karte|ap[eé]ro.?vorschl|event.?menu|gruppen|anlass|checkliste|vision|mission|geschichte|weinkarte|wine.?list|datenschutz|impressum', re.I)
+ORDER_MENU = re.compile(r'/(?:bestellen|online-bestellen|online-order|delivery|takeaway|take-away|shop|order)(?:/|\?|$)', re.I)
 MAX_BYTES = 8 * 1024 * 1024
 
 def now():
@@ -125,7 +127,7 @@ class Fetcher:
             return url,headers.get('Content-Type',''),body
         raise ValueError('too_many_redirects')
 
-def discover(previous, path=None):
+def discover(previous, path=None, query=QUERY):
     if path:
         raw=json.loads(Path(path).read_text())
     else:
@@ -133,7 +135,12 @@ def discover(previous, path=None):
         endpoints=[os.environ.get('OVERPASS_URL','https://overpass.osm.ch/api/interpreter'),'https://overpass-api.de/api/interpreter']
         for endpoint in endpoints:
             try:
-                r=requests.get(endpoint,params={'data':QUERY},headers={'User-Agent':UA},timeout=120)
+                # Keep restaurants discovered by the wider price search on refresh.
+                active_query=query
+                if query == QUERY:
+                    retained=''.join(f"{b['id'].split('/')[0]}({b['id'].split('/')[1]})(area.city);" for b in previous.get('bars',[]) if b.get('type') in ('restaurant','cafe') and re.fullmatch(r'(node|way|relation)/\d+', b['id']))
+                    active_query=query.replace(');out center tags;',retained+');out center tags;')
+                r=requests.get(endpoint,params={'data':active_query},headers={'User-Agent':UA},timeout=120)
                 r.raise_for_status()
                 raw=r.json()
                 if raw.get('remark') or not raw.get('elements'):
@@ -152,7 +159,7 @@ def discover(previous, path=None):
         if not tags.get('name') or 'lat' not in center:
             continue
         id=f"{el['type']}/{el['id']}"
-        website=tags.get('website') or tags.get('contact:website') or EXTRA_VENUES.get(id,{}).get('website')
+        website=WEBSITES.get(id) or tags.get('website') or tags.get('contact:website') or EXTRA_VENUES.get(id,{}).get('website')
         if website and not website.startswith(('http://','https://')):
             website='https://'+website
         bars.append({'id':id,'name':tags['name'],'lat':center['lat'],'lon':center['lon'],
@@ -172,6 +179,23 @@ def discover(previous, path=None):
 
 def html_content(body,url):
     soup=BeautifulSoup(body,'html.parser')
+    title=soup.title.get_text(' ',strip=True) if soup.title else ''
+    if re.search(r'online\s+bestellen|essen\s+bestellen|order\s+(?:food\s+)?online|food\s+delivery',title,re.I):
+        # Restaurant delivery storefronts are not evidence of on-site prices.
+        return '',[]
+    # Remove explicitly labelled takeaway sections, including their child rows.
+    for heading in list(soup.select('h1,h2,h3,h4,h5,h6')):
+        if not re.search(r'take[ -]?away|zum mitnehmen',heading.get_text(' ',strip=True),re.I):
+            continue
+        level=int(heading.name[1])
+        for node in list(heading.find_all_next(string=True)):
+            parent=node.find_parent(re.compile(r'^h[1-6]$'))
+            if parent is heading:
+                continue
+            if parent and int(parent.name[1])<=level:
+                break
+            node.extract()
+        heading.decompose()
     links=[]
     for a in soup.select('a[href], iframe[src], embed[src], object[data], img[src]'):
         target=urljoin(url,a.get('href') or a.get('src') or a.get('data')).split('#')[0]
@@ -185,6 +209,19 @@ def html_content(body,url):
     for node in soup(['script','style','nav','footer','header']):
         node.decompose()
     rows=[]
+    # Some CMS menus use alternating grid cells, not a table or product card.
+    # Pair a named, sized product only with its immediately adjacent price cell.
+    for cell in soup.select('div, p, li, dt'):
+        name=cell.get_text(' ',strip=True)
+        if len(name)>160 or not BEER.search(name):
+            continue
+        if not SIZE.search(name):
+            continue
+        sibling=cell.find_next_sibling()
+        if sibling:
+            price=sibling.get_text(' ',strip=True)
+            if re.fullmatch(r'(?:CHF\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?\s*(?:CHF|Fr\.?)?',price,re.I):
+                rows.append(name+' '+price)
     for table in soup.select('table'):
         heading=table.find_previous(re.compile(r'^h[1-6]$'))
         table_rows=([heading.get_text(' ',strip=True)] if heading else [])+[r.get_text(' ',strip=True) for r in table.select('tr')]
@@ -209,9 +246,11 @@ def prioritize_links(links):
 def source_allowed(bar_id, url):
     # Shared restaurant websites must not mix menus from different branches.
     allowed = SOURCE_SCOPES.get(bar_id)
-    return not allowed or any(part.casefold() in url.casefold() for part in allowed)
+    return not ORDER_MENU.search(url) and (not allowed or any(part.casefold() in url.casefold() for part in allowed))
 
 def scrape_bar(bar, fetcher, hints, max_pages):
+    if bar['id'] in WEBSITES:
+        bar={**bar,'website':WEBSITES[bar['id']]}
     stamp=now()
     urls=list(hints.get(bar['id'],[]))
     if bar['website']:
@@ -233,7 +272,7 @@ def scrape_bar(bar, fetcher, hints, max_pages):
                 else:
                     changed_reviews.add(final)
             if 'pdf' in kind or urlparse(final).path.lower().endswith('.pdf'):
-                if source_allowed(bar['id'],final):
+                if source_allowed(bar['id'],final) and not (review and review['barId']==bar['id'] and review.get('exclusive')):
                     offers.extend(extract_pdf(body,final,stamp))
                 links=[link for link in pdf_links(body) if urlparse(link).scheme in ('https','http') and urlparse(link).path.lower().endswith('.pdf') and not SKIP_MENU.search(link)]
             elif 'html' in kind:

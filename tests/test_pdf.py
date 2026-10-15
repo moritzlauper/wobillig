@@ -59,15 +59,16 @@ class PdfTests(unittest.TestCase):
         self.assertNotIn('https://example.com/gruppenmenu.pdf',links)
 
     def test_reviewed_prices_require_exact_source_hash(self):
-        body=document([(20,450,'Menu')]);url='https://example.com/menu.pdf'
+        body=document([(20,450,'Lager 5dl 9.00')]);url='https://example.com/menu.pdf'
         offer={'name':'Lager','volumeMl':500,'priceChf':6,'alcoholFree':False,'evidence':'50cl 6'}
-        review={url:{'barId':'node/1','sha256':hashlib.sha256(body).hexdigest(),'offers':[offer]}}
+        review={url:{'barId':'node/1','sha256':hashlib.sha256(body).hexdigest(),'exclusive':True,'offers':[offer]}}
         class Fetch:
             def get(self,url):return url,'application/pdf',body
         bar={'id':'node/1','website':url,'offers':[]}
         with patch('scraper.scrape.REVIEWED_MENUS',review):
             found=scrape_bar(bar,Fetch(),{},1)
             self.assertEqual(found['offers'][0]['confidence'],'reviewed')
+            self.assertEqual([o['priceChf'] for o in found['offers']],[6])
             review[url]['sha256']='changed'
             result=scrape_bar({**bar,'offers':found['offers']},Fetch(),{},1)
             self.assertEqual(result['offers'],[])
