@@ -101,7 +101,7 @@ function render() {
     const o = bestOffer(b, f);
     const label = `${b.name}: ${o ? `CHF ${money(cost(o, f.mode))} / ${unit(o)}` : 'kein passender Preis'}`;
     L.marker([b.lat, b.lon], {
-      icon: L.divIcon({ className: 'marker-wrap', html: `<span class="price-marker ${o ? '' : 'unknown'} ${b.id === selected ? 'active' : ''}">${o ? money(cost(o, f.mode)) : '·'}${o && !o.coffeeType ? `<small>${{ draft: 'Offen', bottle: 'Flasche', can: 'Dose', unknown: 'Art unbek.' }[o.beerType || 'unknown']}</small>` : ''}</span>`, iconSize: o ? [54, o.coffeeType ? 26 : 40] : [14, 14], iconAnchor: o ? [27, o.coffeeType ? 13 : 20] : [7, 7] }),
+      icon: L.divIcon({ className: 'marker-wrap', html: `<span class="price-marker ${o ? '' : 'unknown'} ${b.id === selected ? 'active' : ''}">${o ? money(cost(o, f.mode)) : '·'}</span>`, iconSize: o ? [54, 26] : [14, 14], iconAnchor: o ? [27, 13] : [7, 7] }),
       title: label, alt: label, zIndexOffset: b.id === selected ? 2000 : o ? 1000 : 0,
     }).addTo(layer).on('click', () => showBar(b));
   }

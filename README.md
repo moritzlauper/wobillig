@@ -12,7 +12,7 @@ Eine einfache Zürich-Karte für Bier- und Kaffeepreise. TypeScript, Leaflet, Py
 - Startansicht mit **tatsächlich angebotenen 5-dl-Portionen**. Über „Genau 3 dl“ lässt sich die Stangen-Suche zusätzlich auf belegte 3 dl beschränken.
 - Standardvergleich nach **tatsächlichem Glaspreis**, optional auf 5 dl umgerechnet. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal. Die Stangen-Direktwahl und der 3-dl-Filter wechseln automatisch zum Glaspreis. Stangen ohne Mengenangabe zeigen „Grösse nicht angegeben“ und werden aus dem rechnerischen 5-dl-Vergleich ausgeschlossen.
 - Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.
-- **Offenbier / Flaschenbier / Dosenbier / Ausschankart unbekannt** auf Kartenmarkern, in der Liste und in den Preisdetails. Ausschank-Filter und Auswahl beim Eintragen oder Korrigieren eines Bierpreises.
+- **Offenbier / Flaschenbier / Dosenbier / Ausschankart unbekannt** in der Liste und in den Preisdetails. Die Kartenmarker zeigen nur den Preis. Ausschank-Filter und Auswahl beim Eintragen oder Korrigieren eines Bierpreises.
 - Quellenlink, Portionsgrösse und Abrufdatum für jedes gefundene Angebot.
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
 - Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.
