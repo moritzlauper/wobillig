@@ -62,7 +62,7 @@ def photo_source(row, venues, at=None):
 
 
 def scan_photos(rows, venues, client, fetcher, at=None):
-    """Uses the caller's Claude client, sharing its 0.50 USD budget and cache."""
+    """Uses the caller's Claude client, sharing its per-run budget and cache."""
     at = at or today()
     found, report, seen = [], [], set()
     for row in rows:

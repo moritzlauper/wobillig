@@ -11,9 +11,9 @@ on:
         options: [full, ai_only, estimates_only, photos_only]
         default: full
       ai_budget_usd:
-        description: Maximum Haiku 5.5 API cost in USD (hard cap 0.50)
+        description: Maximum Haiku 5.5 API cost in USD (hard cap 1.00)
         type: number
-        default: 0.50
+        default: 1.00
       ai_max_requests:
         description: Maximum Claude generations (hard cap 1000)
         type: number
@@ -78,7 +78,7 @@ jobs:
         id: ai
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          AI_BUDGET: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.ai_budget_usd) || '0.50' }}
+          AI_BUDGET: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.ai_budget_usd) || '1.00' }}
           AI_REQUESTS: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.ai_max_requests) || '1000' }}
           SCAN_MODE: ${{ inputs.scan_mode }}
         run: |

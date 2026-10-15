@@ -18,7 +18,7 @@ from scraper.coffee import ALIASES
 from scraper.product_images import image_for_offer
 
 MODEL = 'claude-haiku-5-5'
-MAX_BUDGET_USD = .50
+MAX_BUDGET_USD = 1.00
 MAX_INPUT_TOKENS = 100_000
 MAX_OUTPUT_TOKENS = 6000
 VERSION = '1'

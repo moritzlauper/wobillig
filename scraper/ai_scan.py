@@ -175,7 +175,7 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--budget-usd', type=float, default=MAX_BUDGET_USD, help='Hard maximum 0.50 USD; larger values are clamped')
+    parser.add_argument('--budget-usd', type=float, default=MAX_BUDGET_USD, help=f'Hard maximum {MAX_BUDGET_USD:.2f} USD; larger values are clamped')
     parser.add_argument('--max-requests', type=int, default=1000)
     parser.add_argument('--max-pages', type=int, default=8)
     parser.add_argument('--minutes', type=int, default=65)

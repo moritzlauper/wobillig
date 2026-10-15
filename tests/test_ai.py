@@ -90,7 +90,7 @@ class APIErrorTests(unittest.TestCase):
         self.assertEqual(MODEL, 'claude-haiku-5-5')
         with tempfile.TemporaryDirectory() as tmp:
             c=Claude(100,1000,Path(tmp))
-            self.assertEqual(c.budget, .50)
+            self.assertEqual(c.budget, 1.00)
             for bad in [float('nan'), float('inf'), -1]:
                 with self.assertRaises(ValueError): Claude(bad,cache=Path(tmp))
             replies=[{'input_tokens':1000},{'stop_reason':'end_turn','content':[{'type':'text','text':'{"offers":[]}'}],'usage':{'input_tokens':1000,'output_tokens':100}}]
