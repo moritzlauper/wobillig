@@ -1,4 +1,4 @@
-name: Refresh Zurich prices
+name: Refresh city prices
 on:
   schedule:
     # The cadence job runs every third Monday to keep a true 21-day interval.
@@ -11,11 +11,11 @@ on:
         options: [full, ai_only, estimates_only, photos_only]
         default: full
       ai_budget_usd:
-        description: Maximum Haiku 5.5 API cost in USD (hard cap 1.00)
+        description: Total Haiku 5.5 API cost across all cities in USD (hard cap 1.00)
         type: number
         default: 1.00
       ai_max_requests:
-        description: Maximum Claude generations (hard cap 1000)
+        description: Total Claude generations across all cities (hard cap 1000)
         type: number
         default: 1000
 permissions:
@@ -47,6 +47,14 @@ jobs:
     if: ${{ needs.cadence.outputs.refresh == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      # Serial publication avoids competing commits and overlapping host crawls.
+      max-parallel: 1
+      matrix:
+        city: [zurich, bern, basel]
+    env:
+      WOBILLIG_CITY: ${{ matrix.city }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -61,8 +69,8 @@ jobs:
       - uses: actions/cache/restore@v4
         with:
           path: scraper/cache/ai
-          key: claude-menus-v1-${{ github.run_id }}
-          restore-keys: claude-menus-v1-
+          key: claude-menus-v1-${{ matrix.city }}-${{ github.run_id }}
+          restore-keys: claude-menus-v1-${{ matrix.city }}-
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
         run: python -m scraper.scrape --discover
       - name: Refresh selectable map locations
@@ -89,6 +97,9 @@ jobs:
             echo 'ANTHROPIC_API_KEY is missing; deterministic scan remains available.'
             exit 0
           fi
+          # Split the existing total budget/request cap across the three cities.
+          AI_BUDGET=$(python -c 'import os; print(max(0, min(1, float(os.environ["AI_BUDGET"]))) / 3)')
+          AI_REQUESTS=$(python -c 'import os; print(max(0, min(1000, int(os.environ["AI_REQUESTS"]))) // 3)')
           if [ "$SCAN_MODE" = 'estimates_only' ]; then
             python -m scraper.ai_scan --estimates-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
           elif [ "$SCAN_MODE" = 'photos_only' ]; then
@@ -100,12 +111,12 @@ jobs:
         if: ${{ always() }}
         with:
           path: scraper/cache/ai
-          key: claude-menus-v1-${{ github.run_id }}
+          key: claude-menus-v1-${{ matrix.city }}-${{ github.run_id }}
       - uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
-          name: claude-scan-report
-          path: scraper/cache/ai-report.json
+          name: claude-scan-report-${{ matrix.city }}
+          path: scraper/cache/${{ matrix.city }}/ai-report.json
           if-no-files-found: ignore
       - name: Snapshot refreshed dataset
         id: snapshot
@@ -115,7 +126,7 @@ jobs:
         if: ${{ always() && steps.snapshot.outcome == 'success' }}
         uses: actions/upload-artifact@v4
         with:
-          name: refreshed-dataset
+          name: refreshed-dataset-${{ matrix.city }}
           path: ${{ runner.temp }}/refresh-snapshot.json
           if-no-files-found: error
       - name: Save refreshed dataset

@@ -1,4 +1,4 @@
-"""Discover Zurich bars with OSM, then read public menus with bounded crawling.
+"""Discover city bars with OSM, then read public menus with bounded crawling.
 
 Run from repository root: python -m scraper.scrape --discover
 """
@@ -26,8 +26,8 @@ from scraper.beer_rules import eligible_offer
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 from scraper.coffee import extract_coffees, coffee_pdf, coffee_types, PRICE as COFFEE_PRICE
 
-ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / 'public/data/bars.json'
+from scraper.cities import ROOT, CITY, AREA, DATA_DIR, CACHE_DIR
+DATA = DATA_DIR / 'bars.json'
 UA = 'WobilligBot/1.0 (+https://github.com/moritzlauper/wobillig)'
 EXTRA_VENUES = json.loads((ROOT / 'scraper/additional_venues.json').read_text())
 SOURCE_SCOPES = json.loads((ROOT / 'scraper/source_scopes.json').read_text())
@@ -37,7 +37,7 @@ REVIEWED_MENUS = json.loads((ROOT / 'scraper/reviewed_menus.json').read_text())
 WEBSITES = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
-QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + EXTRA_QUERY + ');out center tags;'
+QUERY = '[out:json][timeout:90];' + AREA + '(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + (EXTRA_QUERY if CITY == 'zurich' else '') + ');out center tags;'
 MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card|coffee|kaffee|cocktail|beverage|angebot', re.I)
 SKIP_MENU = re.compile(r'catering|bankett|sitzung|seminar|tagung|meeting|conference|ap[eé]ro.?vorschl|event.?menu|gruppen|anlass|checkliste|vision|mission|geschichte|datenschutz|impressum|zeitung|newspaper|(?:^|[/_. -])press(?:e)?(?:[/_. -]|$)', re.I)
 ORDER_MENU = re.compile(r'/(?:bestellen|online-bestellen|online-order|delivery|takeaway|take-away|shop|order)(?:/|\?|$)', re.I)
@@ -62,8 +62,8 @@ class Fetcher:
         self.locks = {}
         self.guard = threading.Lock()
         self.last = {}
-        self.cache = ROOT / 'scraper/cache'
-        self.cache.mkdir(exist_ok=True)
+        self.cache = CACHE_DIR
+        self.cache.mkdir(parents=True, exist_ok=True)
 
     def raw(self, url, delay=1.0):
         public_url(url)
@@ -103,7 +103,9 @@ class Fetcher:
                         target=urljoin(target,headers.get('Location',''))
                         continue
                     break
-                if code==404:
+                # RFC 9309 §2.3.1.3: unavailable robots.txt (4xx) is not
+                # a Disallow rule. Keep rate limits and transient failures closed.
+                if 400<=code<500 and code not in (408, 429):
                     robot.parse([])
                 elif code==200:
                     robot.parse(body.decode('utf-8',errors='replace').splitlines())
@@ -173,6 +175,7 @@ def discover(previous, path=None, query=QUERY):
         bars.append({'id':id,'name':tags['name'],'lat':center['lat'],'lon':center['lon'],
             'type':tags.get('amenity','bar'),'address':' '.join(filter(None,[tags.get('addr:street'),tags.get('addr:housenumber')])),
             'postcode':tags.get('addr:postcode',''),'website':website,
+            'cuisine':[c.strip().lower() for c in tags.get('cuisine','').split(';') if c.strip()],
             'openingHours':tags.get('opening_hours'),'outdoor':tags.get('outdoor_seating')=='yes',
             'offers':old.get(id,{}).get('offers',[]),'scrapeStatus':old.get(id,{}).get('scrapeStatus','pending'),
             'checkedAt':old.get(id,{}).get('checkedAt')})

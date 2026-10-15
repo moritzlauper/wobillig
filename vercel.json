@@ -5,8 +5,26 @@
   "outputDirectory": "dist",
   "functions": {
     "api/prices.ts": {
-      "includeFiles": "public/data/*.json",
+      "includeFiles": "public/data/**/*.json",
       "maxDuration": 30
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/bern",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/bern/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/basel",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/basel/",
+      "destination": "/index.html"
+    }
+  ]
 }

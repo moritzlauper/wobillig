@@ -1,3 +1,4 @@
+import { cities, isCity, cityStoragePath, type City } from '../src/cities.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { createHmac } from 'node:crypto';
@@ -5,9 +6,9 @@ import { allVenues, communityVenues, validateInput, InputError } from '../src/co
 import type { Dataset } from '../src/data.js';
 import { blobStore, savePrice } from '../server/prices.js';
 
-let dataPromise: Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>> | undefined;
-function datasets() {
-  return dataPromise ||= Promise.all(['bars', 'coffee', 'pizza', 'locations'].map(name => readFile(`${process.cwd()}/public/data/${name}.json`, 'utf8').then(JSON.parse)))
+const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>>>> = {};
+function datasets(city: City) {
+  return dataPromises[city] ||= Promise.all(['bars', 'coffee', 'pizza', 'locations'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse)))
     .then(([beer, coffee, pizza, locations]) => ({ beer, coffee, pizza, locations }));
 }
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
@@ -17,7 +18,9 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
   const reply = (status: number, body: unknown) => { res.statusCode = status; res.end(JSON.stringify(body)); };
   if (!['GET', 'POST'].includes(req.method || '')) { res.setHeader('Allow', 'GET, POST'); return reply(405, { error: 'Methode nicht erlaubt.' }); }
   try {
-    const store = blobStore();
+    const city = new URL(req.url || '/', 'http://localhost').searchParams.get('city') || 'zurich';
+    if (!isCity(city)) throw new InputError('Unbekannte Stadt.');
+    const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     if (req.method === 'GET') return reply(200, { entries: (await store.read()).state.entries });
     const origin = req.headers.origin;
     if (!origin || new URL(origin).host !== req.headers.host || req.headers['sec-fetch-site'] === 'cross-site') return reply(403, { error: 'Bitte das Formular auf dieser Website verwenden.' });
@@ -31,7 +34,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     }
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch { throw new InputError('Ungültiges JSON.'); } }
     if (JSON.stringify(body)?.length > 8192) throw new InputError('Eintrag zu gross.', 413);
-    const data = await datasets();
+    const data = await datasets(city);
     const input = validateInput(body, [...allVenues(data), ...communityVenues({}, (await store.read()).state.entries)]);
     // Vercel overwrites this header. Only a daily salted hash is kept, never the IP address.
     const ip = req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown';

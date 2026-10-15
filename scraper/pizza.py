@@ -1,6 +1,8 @@
-"""Conservative extraction of regular, whole Margherita pizzas at dine-in prices."""
+"""Extract regular whole Margheritas; label online menu prices explicitly."""
 from io import BytesIO
 import re
+import json
+from urllib.parse import urljoin, urlparse
 import unicodedata
 
 from bs4 import BeautifulSoup
@@ -99,3 +101,65 @@ def pizza_pdf(body,url,stamp):
                     for o in found:o['evidence']=f'PDF S. {number}: '+o['evidence']
                     offers.extend(found)
     return list({o['priceChf']:o for o in offers}.values())
+
+
+def structured_menu_links(body, url):
+    """Read location-owned schema.org menus, including external PDF hosts."""
+    soup = BeautifulSoup(body, 'html.parser')
+    result = []
+    def visit(value):
+        if isinstance(value, list):
+            for child in value: visit(child)
+        elif isinstance(value, dict):
+            types = value.get('@type', [])
+            if isinstance(types, str): types = [types]
+            owner = value.get('url')
+            if (any(t in ('Restaurant', 'FoodEstablishment', 'CafeOrCoffeeShop', 'BarOrPub') for t in types)
+                    and (not owner or urljoin(url, owner).rstrip('/') == url.rstrip('/'))):
+                for key in ('menu', 'hasMenu'):
+                    menus = value.get(key, [])
+                    if not isinstance(menus, list): menus = [menus]
+                    for menu in menus:
+                        if isinstance(menu, dict): menu = menu.get('url', '')
+                        if isinstance(menu, str) and menu:
+                            target = urljoin(url, menu)
+                            if urlparse(target).scheme in ('http', 'https'):
+                                result.append(target)
+            for child in value.values():
+                if isinstance(child, (dict, list)): visit(child)
+    for script in soup.select('script[type="application/ld+json"]'):
+        try: visit(json.loads(script.string or script.get_text()))
+        except (ValueError, TypeError): pass
+    return list(dict.fromkeys(result))
+
+
+def orderstar_menu_url(body, url):
+    """The public read-only menu feed used by Orderstar restaurant homepages."""
+    soup = BeautifulSoup(body, 'html.parser')
+    if any('/bundles/js/orderstar.loc.js' in s.get('src', '') for s in soup.select('script[src]')):
+        return urljoin(url, '/Home/GetHomeData')
+    return None
+
+
+def pizza_orderstar(body, url, stamp):
+    """Keep regular whole-pizza sizes; never use a delivery fee or discount."""
+    data = json.loads(body)
+    if data.get('isSuccessful') is not True: return []
+    offers = []
+    for category in data.get('categories', []):
+        if EXCLUDED.search(category.get('name', '')): continue
+        for product in category.get('products', []):
+            name = product.get('name', '')
+            if not re.fullmatch(r'(?:pizza\s+)?margh?erita', name, re.I): continue
+            sizes = product.get('sizes') or [product]
+            for size in sizes:
+                size_name = size.get('name', '') if size is not product else ''
+                if size_name and not re.fullmatch(r'(?:[Øø]\s*)?(?:2[6-9]|3[0-5])\s*cm', size_name, re.I): continue
+                price = size.get('price')
+                if isinstance(price, bool) or not isinstance(price, (int, float)): continue
+                line = f"{name} {size_name} {product.get('description') or ''} CHF {price:.2f}"
+                for offer in pizza_row(line, url, stamp):
+                    offer['priceContext'] = 'online_menu'
+                    offer['evidence'] = 'Öffentliche Online-Speisekarte: ' + offer['evidence']
+                    offers.append(offer)
+    return list({o['priceChf']: o for o in offers}.values())

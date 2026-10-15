@@ -1,3 +1,4 @@
+import { cities, cityFromPath, cityLink, type City } from './cities';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
@@ -12,6 +13,12 @@ const money = (n: number) => n.toFixed(2);
 const options = (values: Record<string, string>) => Object.entries(values).map(([value, label]) => `<option value="${value}">${e(label)}</option>`).join('');
 const coffeeOptions = options(coffeeLabels);
 const venueTypes = { '': 'Alle', bar: 'Bar / Pub', restaurant: 'Restaurant', cafe: 'Café', fast_food: 'Imbiss' };
+const cityId = cityFromPath(location.pathname, import.meta.env.BASE_URL);
+const city = cities[cityId];
+const dataPath = `${import.meta.env.BASE_URL}data/${city.data}`;
+const pricesApi = `/api/prices?city=${cityId}`;
+document.title = `wobillig · ${city.name}`;
+document.querySelector('meta[name=description]')?.setAttribute('content', `Bier-, Kaffee- und Margherita-Preise in ${city.name} vergleichen, eintragen und ändern.`);
 const initial = new URLSearchParams(location.search);
 const initialSize = initial.get('size') || '300-330';
 const initialBeerType = initial.get('beerType') || 'all';
@@ -20,7 +27,7 @@ if (['bottle', 'can'].includes(f.beerType!) && f.volume === 'stange') f.volume =
 const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
-let communityReady = false, saving = false;
+let communityReady = false, saving = false, pizzaAvailable = false;
 let locationCatalogue: Bar[] = [];
 let userMarker: L.CircleMarker | undefined;
 const coffee = () => f.drink === 'coffee';
@@ -31,7 +38,7 @@ const unit = (o: Offer) => offerCategory(o) !== 'beer' ? portion(o) : `${f.mode 
 
 $('app').innerHTML = `
 <div class="toolbar">
-  <div class="switch" role="group" aria-label="Kategorie"><button id="drink-beer">Bier</button><button id="drink-coffee">Kaffee</button><button id="drink-pizza">Pizza Margherita</button></div>
+  <div class="switch" role="group" aria-label="Kategorie"><button id="drink-beer">Bier</button><button id="drink-coffee">Kaffee</button><button id="drink-pizza" hidden>Pizza Margherita</button></div>
   <input id="search" type="search" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen">
   <div id="beer-controls" class="beer-controls">
     <select id="beer-type" aria-label="Ausschank">${options({ draft: 'Offenbier', bottle: 'Flaschenbier', all: 'Alle Ausschankarten', can: 'Dosenbier', unknown: 'Unbekannt' })}</select>
@@ -49,12 +56,13 @@ $('app').innerHTML = `
   <label id="normalize-label"><input id="normalize" type="checkbox"> Auf 5 dl umrechnen</label>
   <button id="reset">Zurücksetzen</button>
 </div>
-<div class="status-row"><span id="count" role="status">Laden …</span><div class="mobile-switch" role="group" aria-label="Ansicht"><button id="view-map" aria-pressed="true">Karte</button><button id="view-list" aria-pressed="false">Liste</button></div><button id="data-info" class="text-button">Daten</button></div>
+<div class="status-row"><span id="count" role="status">Laden …</span><div class="mobile-switch" role="group" aria-label="Ansicht"><button id="view-map" aria-pressed="true">Karte</button><button id="view-list" aria-pressed="false">Liste</button></div><div class="status-meta"><small class="refresh-note">Wird alle 3 Wochen aktualisiert</small><nav class="city-switch" aria-label="Stadt wechseln">${(Object.keys(cities) as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL))}"${id === cityId ? ' aria-current="page"' : ''}>${cities[id].name}</a>`).join('<span aria-hidden="true">/</span>')}</nav><button id="data-info" class="text-button">Daten</button></div></div>
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', price_desc: 'Preis absteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
   <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="fit">Alle anzeigen</button></div><div id="map-unit" class="map-unit"></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section></section>
 </main>
+<footer class="app-footer"><a href="mailto:team@whatshouldistudy.com?subject=Wunsch%20f%C3%BCr%20wobillig&amp;body=f%C3%BCr%20wobillig%20w%C3%BCnsche%20ich%20mir%3A%0D%0A%0D%0A">Wunsch mitteilen</a></footer>
 <div id="toast" role="status" hidden></div>
 <dialog id="share-dialog" aria-labelledby="share-title"><div class="dialog-top"><strong id="share-title">Lokal teilen</strong><button id="close-share" type="button">Schliessen</button></div><label for="share-url">Diesen Link kopieren und teilen:</label><input id="share-url" type="url" readonly></dialog>
 <dialog id="price-dialog" aria-label="Preis eintragen"><form id="price-form">
@@ -71,7 +79,7 @@ $('app').innerHTML = `
 </form></dialog>
 <dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><p id="coverage"></p><p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.</p><p>Bier: Cafés ohne erfasstes Bierangebot oder mit ausschliesslicher Öffnung bis spätestens 19 Uhr werden ausgeblendet, auch bei «Ohne passenden Preis anzeigen». Unbekannte Öffnungszeiten bleiben offen.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
 
-const map = L.map('map', { zoomControl: false }).setView([47.378, 8.535], 14);
+const map = L.map('map', { zoomControl: false }).setView(city.center, 14);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 new ResizeObserver(() => map.invalidateSize()).observe($('map'));
@@ -109,8 +117,17 @@ function showView(list: boolean) {
 }
 function rebuild() {
   venues = communityVenues(datasets, entries);
+  const pizzaBars = datasets.pizza ? applyEntries(datasets.pizza, entries, venues, 'pizza').bars : [];
+  // Count priced venues city-wide, including contributions, independently of UI filters.
+  pizzaAvailable = pizzaBars.filter(b => b.offers.some(o => o.pizzaType === 'margherita' && isCurrentOffer(o) && isComparableOffer(o))).length >= 20;
+  $('drink-pizza').hidden = !pizzaAvailable;
+  if (pizza() && !pizzaAvailable) {
+    f.drink = 'beer'; f.max = budgets.beer; f.mode = 'glass'; selected = undefined;
+    $<HTMLInputElement>('price').value = String(f.max);
+  }
+  document.querySelector('meta[name=description]')?.setAttribute('content', `${pizzaAvailable ? 'Bier-, Kaffee- und Margherita-' : 'Bier- und Kaffee-'}Preise in ${city.name} vergleichen, eintragen und ändern.`);
   const base = datasets[f.drink!];
-  bars = base ? applyEntries(base, entries, venues, f.drink!).bars : [];
+  bars = pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!).bars : [];
   render();
 }
 function syncControls() {
@@ -130,6 +147,7 @@ function syncControls() {
   if (beer() && f.beerType !== 'all') url.searchParams.set('beerType', f.beerType!); else url.searchParams.delete('beerType');
   if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
   history.replaceState(null, '', url);
+  document.querySelectorAll<HTMLAnchorElement>('[data-city]').forEach(link => { link.href = cityLink(link.dataset.city as City, url.search, import.meta.env.BASE_URL); });
 }
 function render() {
   if (selected && !bars.some(b => b.id === selected && isVenueEligible(b, f))) selected = undefined;
@@ -139,7 +157,7 @@ function render() {
   $('map-unit').textContent = pizza() ? 'CHF / Pizza Margherita' : coffee() ? `CHF · ${f.coffeeType === 'all' ? 'pro Getränk' : coffeeLabels[f.coffeeType!]}` : f.mode === 'half' ? 'CHF / 5 dl · umgerechnet' : f.volume === 'all' ? 'CHF / Portion · Menge beachten' : f.volume === 'stange' ? 'CHF / Stange' : f.volume === '300-330' ? 'CHF / Portion · 3 / 3.3 dl' : `CHF / ${Number(f.volume) / 100} dl`;
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
-    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || 'Zürich')}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
+    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || city.name)}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
   }).join('') : '<p class="empty">Keine passenden Lokale.</p>';
   layer.clearLayers();
   const selectedBar = bars.find(b => b.id === selected);
@@ -317,7 +335,7 @@ $('price-form').onsubmit = async event => {
       observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
     } satisfies PriceInput, selectableLocations(venues, locationCatalogue));
     saving = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = 'Speichern …';
-    const response = await fetch('/api/prices', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
+    const response = await fetch(pricesApi, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
     const result = await response.json().catch(() => { throw new Error('Speichern gerade nicht möglich. Bitte erneut versuchen.'); });
     if (!response.ok) {
       if (response.status === 409 && await loadCommunity()) rebuild();
@@ -346,7 +364,7 @@ $('price-form').onsubmit = async event => {
 };
 async function loadCommunity() {
   try {
-    const response = await fetch('/api/prices', { cache: 'no-store', signal: AbortSignal.timeout(20000) });
+    const response = await fetch(pricesApi, { cache: 'no-store', signal: AbortSignal.timeout(20000) });
     if (!response.ok) throw new Error();
     const result = await response.json();
     if (!Array.isArray(result.entries)) throw new Error();
@@ -356,11 +374,11 @@ async function loadCommunity() {
 }
 async function init() {
   const [beerResult, coffeeResult, pizzaResult, loadedCommunity, locationsResult] = await Promise.all([
-    fetch(`${import.meta.env.BASE_URL}data/bars.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
-    fetch(`${import.meta.env.BASE_URL}data/coffee.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
-    fetch(`${import.meta.env.BASE_URL}data/pizza.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    fetch(`${dataPath}bars.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    fetch(`${dataPath}coffee.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    fetch(`${dataPath}pizza.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     loadCommunity(),
-    fetch(`${import.meta.env.BASE_URL}data/locations.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    fetch(`${dataPath}locations.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
   ]);
   if (beerResult) datasets.beer = beerResult;
   if (coffeeResult) datasets.coffee = coffeeResult;

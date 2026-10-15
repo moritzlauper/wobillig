@@ -1,9 +1,10 @@
-"""Search additional Zurich restaurants/cafes; publish only real beer-price hits.
+"""Search additional city restaurants/cafes; publish only real beer-price hits.
 
 python -m scraper.enrich --limit 200
 Repeated limited runs rotate through least recently checked candidates. Shared
 chain websites require a venue-specific menu hint to avoid mixing branches.
 """
+from scraper.cities import STATE_DIR, CACHE_DIR, venue_query
 import argparse
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -14,8 +15,8 @@ from urllib.parse import urlparse
 
 from scraper.scrape import DATA, ROOT, Fetcher, discover, now, scrape_bar, write
 
-QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;nwr["amenity"~"^(restaurant|cafe)$"]["name"](area.city);out center tags;'
-STATE = ROOT / 'scraper/discovery_checks.json'
+QUERY = venue_query('restaurant|cafe')
+STATE = STATE_DIR / 'discovery_checks.json'
 
 
 def host(url):
@@ -81,9 +82,10 @@ def main():
     if args.limit:
         selected=selected[:args.limit]
     fetcher=AuditFetcher(args.audit_dir)
-    review_path=Path(args.audit_dir or 'scraper/cache')/'discoveries.json'
+    review_path=(Path(args.audit_dir) if args.audit_dir else CACHE_DIR)/'discoveries.json'
     additions=json.loads(review_path.read_text()) if args.review_only and review_path.exists() else []
     def save():
+        STATE.parent.mkdir(parents=True, exist_ok=True)
         temporary=STATE.with_suffix('.tmp')
         temporary.write_text(json.dumps(checks,ensure_ascii=False,indent=2)+'\n')
         temporary.replace(STATE)

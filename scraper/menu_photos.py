@@ -6,6 +6,7 @@ or review date for a photo date. This module consumes a curated source list.
 from calendar import monthrange
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
+from scraper.cities import CITY_NAME
 import hashlib
 import mimetypes
 from pathlib import Path
@@ -91,7 +92,7 @@ def scan_photos(rows, venues, client, fetcher, at=None):
             blocks = list(documents(body, kind))
             if not blocks: raise ValueError('image_too_large')
             venue = venues[row['barId']]
-            prompt = {'type': 'text', 'text': f'Menu photo for {venue["name"]}, {venue.get("address", "")}, Zürich. Photo date: {row["photoDate"]}. Extract only clearly legible, unconditional on-premise beer/coffee prices. Tally marks, donations, receipts and a photographed drink without a menu are not prices. Ignore text bleeding through from the reverse side. Omit unsupported coffee categories such as cortado, tea-based lattes/cappuccinos, cold brew and iced drinks. Named beans under a FILTER coffee heading are filter coffee. If uncertain, return no offer. Never guess a digit, volume or price.'}
+            prompt = {'type': 'text', 'text': f'Menu photo for {venue["name"]}, {venue.get("address", "")}, {CITY_NAME}. Photo date: {row["photoDate"]}. Extract only clearly legible, unconditional on-premise beer/coffee prices. Tally marks, donations, receipts and a photographed drink without a menu are not prices. Ignore text bleeding through from the reverse side. Omit unsupported coffee categories such as cortado, tea-based lattes/cappuccinos, cold brew and iced drinks. Named beans under a FILTER coffee heading are filter coffee. If uncertain, return no offer. Never guess a digit, volume or price.'}
             result = client.ask(blocks[0][0] + [prompt], system=SYSTEM)
             offers = clean_offers(result, row['sourceUrl'], at.isoformat())
             digest = hashlib.sha256(body).hexdigest()

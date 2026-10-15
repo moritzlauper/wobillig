@@ -168,3 +168,19 @@ class BarCoverageRegressionTests(unittest.TestCase):
         self.assertEqual(result['scrapeStatus'],'partial')
 
 if __name__=='__main__': unittest.main()
+
+
+class RobotsAvailabilityTests(unittest.TestCase):
+    def test_missing_robots_on_asset_cdn_does_not_block_public_menu(self):
+        from scraper.scrape import UA
+        for code in (403, 404, 410):
+            fetcher = Fetcher()
+            with patch.object(fetcher, 'raw', return_value=(code, {}, b'AccessDenied')):
+                self.assertTrue(fetcher.policy('https://cdn.example/menu.pdf').can_fetch(UA, 'https://cdn.example/menu.pdf'))
+
+    def test_real_disallow_rate_limits_and_server_errors_stay_blocked(self):
+        from scraper.scrape import UA
+        for code, body in [(200, b'User-agent: *\nDisallow: /'), (429, b''), (503, b'')]:
+            fetcher = Fetcher()
+            with patch.object(fetcher, 'raw', return_value=(code, {}, body)):
+                self.assertFalse(fetcher.policy('https://example.org/menu.pdf').can_fetch(UA, 'https://example.org/menu.pdf'))

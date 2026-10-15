@@ -1,9 +1,10 @@
-"""Crawl Zurich restaurant menus for regular Margherita pizzas.
+"""Crawl city restaurant menus for regular Margherita pizzas.
 
 python -m scraper.scrape_pizza --discover --limit 0
-Audited source bodies are cached for inspection; shared chain menus need explicit
-venue-specific hints. Conflicting prices stay unpublished until reviewed.
+Audited source bodies are cached for inspection; shared chain menus are scoped
+to explicit hints or distinct OSM branch pages and their structured menu links. Conflicting prices stay unpublished until reviewed.
 """
+from scraper.cities import DATA_DIR, STATE_DIR, CACHE_DIR, venue_query
 import argparse
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -17,15 +18,39 @@ from bs4 import BeautifulSoup
 from scraper.scrape import ROOT, discover, now, html_content, SKIP_MENU, ORDER_MENU
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
-from scraper.pizza import pizza_html, pizza_pdf
+from scraper.pizza import pizza_html, pizza_pdf, structured_menu_links, orderstar_menu_url, pizza_orderstar
 from scraper.scrape_coffee import save, ArchiveFetcher
 
-DATA=ROOT/'public/data/pizza.json'
-CHECKS=ROOT/'scraper/pizza_checks.json'
-QUERY='[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;nwr["amenity"~"^(restaurant|cafe|fast_food|bar|pub)$"]["name"](area.city);out center tags;'
+DATA=DATA_DIR/'pizza.json'
+CHECKS=STATE_DIR/'pizza_checks.json'
+QUERY = venue_query('restaurant|cafe|fast_food|bar|pub')
 SKIP=re.compile(r'take[ _-]?away|delivery|liefer|kinder|bambini|lunch|mittag|wochen|tagesmen|weine|wine|getr[aä]nke|drinks|cocktail',re.I)
 HINTS_PATH=ROOT/'scraper/pizza_menu_urls.json'
 REVIEWS_PATH=ROOT/'scraper/reviewed_pizza_menus.json'
+
+
+def is_pizza_venue(bar):
+    """Pizza identity does not depend on finding a publishable price."""
+    cuisine = bar.get('cuisine', [])
+    if isinstance(cuisine, str):
+        cuisine = cuisine.split(';')
+    return ('pizza' in [c.strip().lower() for c in cuisine]
+            or bool(re.search(r'pizz(?:a|eria|e)', bar['name'], re.I))
+            or bool(bar.get('pizzaEvidence'))
+            or any(o.get('pizzaType') for o in bar.get('offers', [])))
+
+
+def scoped_hints(bars, hints):
+    """Distinct OSM branch pages may be checked without borrowing chain prices."""
+    result = dict(hints)
+    hosts = Counter(host(b['website']) for b in bars if b.get('website'))
+    urls = Counter(b['website'].rstrip('/') for b in bars if b.get('website'))
+    for bar in bars:
+        url = bar.get('website')
+        if (url and hosts[host(url)] > 1 and urls[url.rstrip('/')] == 1
+                and urlparse(url).path.strip('/') and bar['id'] not in result):
+            result[bar['id']] = [url]
+    return result
 
 
 def skip_source(url):
@@ -50,7 +75,10 @@ def pizza_links(body, url):
 
 def crawl(bar,fetcher,hints,max_pages,reviews):
     stamp=now();queue=list(hints.get(bar['id'],[]))+[bar['website']]
+    bar = dict(bar)
     visited=set();offers=[];errors=[];success=0;changed=set()
+    allowed = set(hints.get(bar['id'], []))
+    online_feeds = set()
     while queue and len(visited)<max_pages:
         url=queue.pop(0)
         if not url or url in visited or ORDER_MENU.search(url) or SKIP_MENU.search(url):continue
@@ -68,12 +96,25 @@ def crawl(bar,fetcher,hints,max_pages,reviews):
                 links=pdf_links(body)
             elif 'html' in kind:
                 found=[] if reviewed else pizza_html(body,final,stamp)
+                soup = BeautifulSoup(body, 'html.parser')
+                title = soup.title.get_text(' ', strip=True) if soup.title else ''
+                if re.search(r'\bpizzeri[ae]\b', title, re.I):
+                    bar['pizzaEvidence'] = {'sourceUrl': final, 'evidence': title[:200]}
                 _,links=html_content(body,final)
                 links+=pizza_links(body,final)
+                menu_links = structured_menu_links(body, final)
+                feed = orderstar_menu_url(body, final)
+                if feed:
+                    menu_links.append(feed); online_feeds.add(feed)
+                links += menu_links
+                if url in allowed:
+                    allowed.update(menu_links)
+            elif url in online_feeds and 'json' in kind:
+                found=pizza_orderstar(body,final,stamp);links=[]
             else:continue
-            if not skip_source(final) and (not hints.get(bar['id']) or url in hints[bar['id']]):offers.extend(found)
+            if not skip_source(final) and (not hints.get(bar['id']) or url in allowed):offers.extend(found)
             # Hints scope shared websites to the confirmed location menu(s).
-            if hints.get(bar['id']):links=[u for u in links if u in hints[bar['id']]]
+            if hints.get(bar['id']):links=[u for u in links if u in allowed]
             links=[u for u in links if u not in visited and not skip_source(u) and not SKIP_MENU.search(u) and not ORDER_MENU.search(u)]
             queue=sorted(dict.fromkeys(links+queue),key=lambda u:(not bool(re.search(r'pizza|speise|food|essen|menu|karte',urlparse(u).path,re.I)),not urlparse(u).path.lower().endswith('.pdf')))
             success+=1
@@ -99,21 +140,30 @@ def main():
     args=p.parse_args()
     old=json.loads(DATA.read_text()) if DATA.exists() else {'bars':[]}
     if args.venues_file:found=json.loads(Path(args.venues_file).read_text())
-    elif args.discover or not old['bars']:found=discover({},query=QUERY)
+    elif args.discover or not old['bars']:
+        found=discover({},query=QUERY)
+        save(CACHE_DIR/'pizza-venues.json', found)
     else:found=old
     hints=json.loads(HINTS_PATH.read_text()) if HINTS_PATH.exists() else {}
     reviews=json.loads(REVIEWS_PATH.read_text()) if REVIEWS_PATH.exists() else []
     checks=json.loads(CHECKS.read_text()) if CHECKS.exists() else {}
+    hints=scoped_hints(found['bars'], hints)
     hosts=Counter(host(b['website']) for b in found['bars'] if b['website'])
     prior={b['id']:b for b in old['bars']}
-    selected=[{**b,'offers':prior.get(b['id'],{}).get('offers',[])} for b in found['bars'] if b['website'] and (b['type'] in ('restaurant','fast_food') or re.search(r'pizz',b['name'],re.I)) and (hosts[host(b['website'])]==1 or b['id'] in hints)]
+    selected=[{**b,'offers':prior.get(b['id'],{}).get('offers',[])} for b in found['bars'] if b['website'] and (b['type'] in ('restaurant','fast_food') or is_pizza_venue(b)) and (hosts[host(b['website'])]==1 or b['id'] in hints)]
     if args.only:selected=[b for b in selected if re.search(args.only,b['name'],re.I)]
     if args.retry:selected=[b for b in selected if checks.get(b['id'],{}).get('status')!='prices_found']
-    selected.sort(key=lambda b:(not bool(re.search(r'pizz|ital|napol|rosso|luigia|leone|lucia|molino|trattoria|ristorante',b['name'],re.I)),checks.get(b['id'],{}).get('checkedAt',''),b['name'].casefold()))
+    selected.sort(key=lambda b:(not is_pizza_venue(b),not bool(re.search(r'pizz|ital|napol|rosso|luigia|leone|lucia|molino|trattoria|ristorante',b['name'],re.I)),checks.get(b['id'],{}).get('checkedAt',''),b['name'].casefold()))
     if args.limit:selected=selected[:args.limit]
     print(f'{len(found["bars"])} locations; crawling {len(selected)} eligible websites',flush=True)
-    fetcher=ArchiveFetcher(args.archive_dir) if args.archive_dir else AuditFetcher(ROOT/'scraper/cache/pizza')
+    fetcher=ArchiveFetcher(args.archive_dir) if args.archive_dir else AuditFetcher(CACHE_DIR/'pizza')
     output=dict(prior)
+    # Publish known pizzerias even when they lack a website or a scoped menu.
+    for b in found['bars']:
+        if is_pizza_venue(b):
+            output[b['id']] = {**b, **prior.get(b['id'], {}), 'cuisine': b.get('cuisine', [])}
+            if b['id'] not in prior:
+                output[b['id']]['scrapeStatus'] = 'pending' if b['website'] else 'no_website'
     def flush():
         save(DATA,{'generatedAt':now(),'discoveredAt':found.get('discoveredAt',now()),'attribution':found.get('attribution','© OpenStreetMap contributors, ODbL 1.0'),'bars':sorted(output.values(),key=lambda b:b['name'].casefold())})
         save(CHECKS,checks)
@@ -121,7 +171,7 @@ def main():
         tasks=[pool.submit(crawl,b,fetcher,hints,args.max_pages,reviews) for b in selected]
         for i,task in enumerate(as_completed(tasks),1):
             b,check=task.result();checks[b['id']]=check
-            if b['offers'] or b['id'] in output or re.search(r'pizzeria|pizza',b['name'],re.I):output[b['id']]=b
+            if b['offers'] or b['id'] in output or is_pizza_venue(b):output[b['id']]=b
             print(f'[{i}/{len(tasks)}] {b["name"]}: {b["scrapeStatus"]} '+str([o['priceChf'] for o in b['offers']]),flush=True)
             if i%20==0:flush()
     flush()

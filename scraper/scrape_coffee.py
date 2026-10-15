@@ -4,6 +4,7 @@ python -m scraper.scrape_coffee --discover --limit 200
 Use --limit 0 for all candidates. Archived HTTP documents can be reused offline;
 every offer retains the original fetch date, never the replay date.
 """
+from scraper.cities import DATA_DIR, STATE_DIR
 import argparse
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from datetime import datetime,timezone
@@ -14,8 +15,8 @@ from urllib.parse import urlparse
 from scraper.scrape import ROOT,discover,scrape_bar,now
 from scraper.enrich import QUERY,candidates,host,AuditFetcher
 
-DATA=ROOT/'public/data/coffee.json'
-CHECKS=ROOT/'scraper/coffee_checks.json'
+DATA=DATA_DIR/'coffee.json'
+CHECKS=STATE_DIR/'coffee_checks.json'
 
 
 class ArchiveFetcher:
@@ -52,6 +53,7 @@ class ArchiveFetcher:
 
 
 def save(path,value):
+    path.parent.mkdir(parents=True, exist_ok=True)
     temp=path.with_suffix('.tmp');temp.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n');temp.replace(path)
 
 
@@ -90,7 +92,7 @@ def main():
     parser.add_argument('--only',help='Only venue names matching this regular expression')
     parser.add_argument('--missing-only',action='store_true',help='Only venues without any coffee prices')
     args=parser.parse_args()
-    beer=json.loads((ROOT/'public/data/bars.json').read_text())
+    beer=json.loads((DATA_DIR/'bars.json').read_text())
     previous=json.loads(DATA.read_text()) if DATA.exists() else {'bars':[]}
     old={b['id']:b for b in previous['bars']}
     checks=json.loads(CHECKS.read_text()) if CHECKS.exists() else {}

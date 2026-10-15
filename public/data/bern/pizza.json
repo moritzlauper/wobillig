@@ -1,0 +1,1297 @@
+{
+  "generatedAt": "2026-10-15T22:50:08.907404+00:00",
+  "discoveredAt": "2026-10-15T22:42:24.506451+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "bars": [
+    {
+      "id": "node/704348001",
+      "name": "A'Amico",
+      "lat": 46.9441845,
+      "lon": 7.4210554,
+      "type": "fast_food",
+      "address": "Könizstrasse 4",
+      "postcode": "3008",
+      "website": "https://www.aamicopizza.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Su 11:00-23:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:30.414098+00:00"
+    },
+    {
+      "id": "node/4688138991",
+      "name": "Ambiente",
+      "lat": 46.9491209,
+      "lon": 7.4284577,
+      "type": "restaurant",
+      "address": "Bühlstrasse 5",
+      "postcode": "3012",
+      "website": "https://www.ambiente-bern.ch/",
+      "cuisine": [
+        "italian_pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 09:00-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.8,
+          "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
+          "observedAt": "2026-10-15T22:43:01.514592+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: 52. Margherita 18.80",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T22:43:01.514592+00:00"
+    },
+    {
+      "id": "node/507607982",
+      "name": "Amma Masala",
+      "lat": 46.9439815,
+      "lon": 7.4722982,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://amma-masala.ch/",
+      "cuisine": [
+        "sri_lankan",
+        "pizza",
+        "pasta"
+      ],
+      "openingHours": "Mo 16:30-21:30; Tu 17:30-21:30; We 11:30-13:30,17:00-22:30; Th-Su 11:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:30.953187+00:00"
+    },
+    {
+      "id": "node/6349130272",
+      "name": "Artigiano",
+      "lat": 46.9485358,
+      "lon": 7.4427668,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.artigiano-pizzeria.com/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Su,PH 11:00-24:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:31.290103+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.artigiano-pizzeria.com/",
+        "evidence": "Pizzeria | Restaurant und Delivery | Artigiano Café | Basel, Bern, Windisch"
+      }
+    },
+    {
+      "id": "node/2251379755",
+      "name": "Bella Vita",
+      "lat": 46.9445122,
+      "lon": 7.4588956,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.pizzabellavita.ch/",
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:31.954798+00:00"
+    },
+    {
+      "id": "node/617990033",
+      "name": "Berner Pizza Huus",
+      "lat": 46.9626335,
+      "lon": 7.451856,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://bernerpizzahuus.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 09:00-23:00; Fr,Sa 09:00-24:00; Su,PH 10:00-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:24.521535+00:00"
+    },
+    {
+      "id": "node/5742165435",
+      "name": "Bistro Breiten",
+      "lat": 46.9567891,
+      "lon": 7.4486508,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "http://www.bistrobreiten.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Sa 08:00-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 14.0,
+          "sourceUrl": "https://bistrobreiten-bern.ch/kategori-pizza-30-cm",
+          "observedAt": "2026-10-15T22:43:26.936511+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita 14,00 CHF",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T22:43:26.936511+00:00"
+    },
+    {
+      "id": "node/14086504561",
+      "name": "Blue Sky by Daily Pizza Foodtruck",
+      "lat": 46.9486891,
+      "lon": 7.4078662,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://bluesky-bern.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Su,PH 10:30-14:00,17:30-21:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:24.521712+00:00"
+    },
+    {
+      "id": "node/1722752400",
+      "name": "Bümpliz Express",
+      "lat": 46.9380206,
+      "lon": 7.3955265,
+      "type": "fast_food",
+      "address": "Bümplizstrasse 187",
+      "postcode": "3018",
+      "website": "https://www.buemplizexpress.ch",
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa,PH 10:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-15T22:42:32.446267+00:00"
+    },
+    {
+      "id": "node/514536836",
+      "name": "Calabrisella",
+      "lat": 46.9623208,
+      "lon": 7.4551664,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.calabrisella-bern.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Tu-Su 09:00-23:30; Fr 09:00-00:30; Sa 10:00-00:30; Su 10:00-23:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:43:56.568385+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.calabrisella-bern.ch/",
+        "evidence": "Calabrisella Bern – Restaurant Pizzeria"
+      }
+    },
+    {
+      "id": "node/824801772",
+      "name": "Cavallo Star",
+      "lat": 46.9475754,
+      "lon": 7.4382717,
+      "type": "restaurant",
+      "address": "Bubenbergplatz 8",
+      "postcode": "",
+      "website": "https://www.cavallostar.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 08:30-23:00; Su 10:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.9,
+          "sourceUrl": "https://www.cavallostar.ch/index.php/speisekarte",
+          "observedAt": "2026-10-15T22:42:32.871493+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita Mit Mozzarella und Oregano V 17.90",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T22:42:32.871493+00:00"
+    },
+    {
+      "id": "node/8651603412",
+      "name": "Celina",
+      "lat": 46.955392,
+      "lon": 7.4470493,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.celinabern.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 11:00-14:00,17:00-23:00; Su 11:30-14:00,17:30-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:44:02.387312+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.celinabern.ch/",
+        "evidence": "Ristorante Pizzeria Celina │ Ihr Italiener im Nordring"
+      }
+    },
+    {
+      "id": "node/6645659122",
+      "name": "City Pizzeria",
+      "lat": 46.9440145,
+      "lon": 7.4357364,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://city-pizzeria-bern.ch/",
+      "cuisine": [
+        "pizza",
+        "kebab",
+        "italian",
+        "chicken",
+        "greek"
+      ],
+      "openingHours": "Mo-Sa 10:30-20:45; Su 11:00-20:45",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:24.521852+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.city-pizzeria-bern.ch/",
+        "evidence": "City Pizzeria - Hausgemachte Spezialitäten & Kebab - Essen online bestellen in Bern"
+      }
+    },
+    {
+      "id": "node/1066324526",
+      "name": "da Bucolo",
+      "lat": 46.9474238,
+      "lon": 7.4465106,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://dabucolo.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:30, 17:30-23:30; Sa 17:30-23:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.5,
+          "sourceUrl": "https://dabucolo.ch/unsere-speisekarte/",
+          "observedAt": "2026-10-15T22:42:33.771089+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita Tomaten, Mozzarella CHF 18.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T22:42:33.771089+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://dabucolo.ch/pizzateig/",
+        "evidence": "Pizzateig | Ristorante Pizzeria da Bucolo"
+      }
+    },
+    {
+      "id": "node/5137495924",
+      "name": "Da Keli",
+      "lat": 46.946631,
+      "lon": 7.447453,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.dakeli.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 07:00-23:00; Fr 07:00-00:30; Sa 09:00-00:30; Su off; PH off",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:33.791266+00:00"
+    },
+    {
+      "id": "node/286879695",
+      "name": "da Nino",
+      "lat": 46.9420149,
+      "lon": 7.4314041,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://pizzeriadanino.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:30-22:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-15T22:44:18.316521+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.pizzeriadanino.ch/",
+        "evidence": "Pizzeria Da Nino am Eigerplatz Bern » 031 371 11 31 – Pizzeria Da Nino am Eigerplatz in Bern. Restaurant & Take Away. Klein aber fein. Komm vorbei wir freuen uns. 031 371 11 31."
+      }
+    },
+    {
+      "id": "node/7545709020",
+      "name": "Da Rina",
+      "lat": 46.9407874,
+      "lon": 7.4306266,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.darina.ch",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 10:00-23:00; Fr,Sa 10:00-23:30; Su,PH off",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:34.907165+00:00"
+    },
+    {
+      "id": "node/286879727",
+      "name": "Da Vinci",
+      "lat": 46.9484276,
+      "lon": 7.4433385,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.ristorantedavinci.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 10:00-23:00; Su 11:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:44:20.581387+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.ristorantedavinci.ch/",
+        "evidence": "Pizzeria Ristorante Da Vinci | RistoranteDaVinci.ch"
+      }
+    },
+    {
+      "id": "node/608998367",
+      "name": "Dal Capo",
+      "lat": 46.9512257,
+      "lon": 7.4302367,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://dal-capo.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-14:00,17:00-23:00; Fr-Sa 11:00-14:00,17:00-23:30; Su 13:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-15T22:42:36.174488+00:00"
+    },
+    {
+      "id": "node/836516188",
+      "name": "Delux Burger",
+      "lat": 46.944131,
+      "lon": 7.4326735,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://deluxburger.ch/",
+      "cuisine": [
+        "pizza",
+        "kebab",
+        "oriental",
+        "turkish"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00, 17:00-22:30; Fr-Sa 11:00-14:00, 17:00-23:00; Su 12:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:36.417475+00:00"
+    },
+    {
+      "id": "node/806279404",
+      "name": "Deniz Pizzeria",
+      "lat": 46.9559071,
+      "lon": 7.4259148,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": "Mo-Th 10:00-22:00; Fr 10:00-23:00; Sa 11:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/2289108301",
+      "name": "Dicle Pizza",
+      "lat": 46.9392919,
+      "lon": 7.3889223,
+      "type": "restaurant",
+      "address": "Rehhagstrasse 2",
+      "postcode": "3018",
+      "website": "http://www.diclepizza.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:00-14:00, 17:00-23:00; Sa 11:00-23:00; Su off",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-15T22:42:24.521962+00:00"
+    },
+    {
+      "id": "node/10860875524",
+      "name": "dieci Pizza Kurier",
+      "lat": 46.9595433,
+      "lon": 7.4574836,
+      "type": "fast_food",
+      "address": "Rodtmattstrasse 92",
+      "postcode": "3014",
+      "website": "https://dieci.ch/de/pizzakurier-bern-breitenrain",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-13:30,17:00-22:00; Fr,Sa 11:00-13:30,17:00-22:30; Su 16:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:24.522062+00:00"
+    },
+    {
+      "id": "node/720897232",
+      "name": "Dieci Pizzakurier",
+      "lat": 46.9424815,
+      "lon": 7.3995347,
+      "type": "fast_food",
+      "address": "Bernstrasse 30a",
+      "postcode": "3018",
+      "website": "https://dieci.ch/de/pizzakurier-bern-west",
+      "cuisine": [],
+      "openingHours": "Mo-Th 11:00-13:30, 17:00-22:00; Fr-Sa 11:00-13:30, 17:00-22:30; Su 16:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:24.522168+00:00"
+    },
+    {
+      "id": "node/4564844790",
+      "name": "Domino's",
+      "lat": 46.9437641,
+      "lon": 7.4062324,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "3008",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th,Su 11:00-22:00; Fr-Sa 11:00-22:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/614862146",
+      "name": "Eleven",
+      "lat": 46.9621055,
+      "lon": 7.4650634,
+      "type": "restaurant",
+      "address": "Papiermühlestrasse 71",
+      "postcode": "3014",
+      "website": "https://restaurant-eleven.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 09:00-23:00; Sa 17:00-23:00; Su off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 20.0,
+          "sourceUrl": "https://restaurant-eleven.ch/wp-content/uploads/2026/09/11_Getraenke_Speisekarte_2609-10.pdf",
+          "observedAt": "2026-10-15T22:44:56.400129+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: margherita 20",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T22:44:56.400129+00:00"
+    },
+    {
+      "id": "node/6432400358",
+      "name": "Fontana",
+      "lat": 46.9418904,
+      "lon": 7.3912422,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/279803128",
+      "name": "Gio Pizza",
+      "lat": 46.9556624,
+      "lon": 7.4453265,
+      "type": "fast_food",
+      "address": "Lorrainestrasse 12",
+      "postcode": "",
+      "website": "https://pizzagio.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Tu-Sa 11:30-14:00, 18:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:24.522261+00:00"
+    },
+    {
+      "id": "node/265627185",
+      "name": "Grotto Ticino",
+      "lat": 46.9586076,
+      "lon": 7.4550161,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.grotto-ticino.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Tu-Sa 12:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://www.grotto-ticino.ch/pizzakarte",
+          "observedAt": "2026-10-15T22:42:36.793423+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 19.-",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T22:42:36.793423+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.grotto-ticino.ch/angebot",
+        "evidence": "Ristorante Pizzeria Grotto Ticino Bern | Wilkommen"
+      }
+    },
+    {
+      "id": "node/824792337",
+      "name": "Hemen's Take Away",
+      "lat": 46.9489861,
+      "lon": 7.4392119,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.hemenstakeaway.ch/",
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:38.052731+00:00"
+    },
+    {
+      "id": "node/286879776",
+      "name": "Krone",
+      "lat": 46.9482676,
+      "lon": 7.4530574,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.kronebern.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Mo-Fr 09:00-23:30; Sa 16:00-00:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_37d4cd2831394d539962a86e1557b193.pdf",
+          "observedAt": "2026-10-15T22:45:37.700202+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: Margherita 18.5",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T22:45:37.700202+00:00"
+    },
+    {
+      "id": "node/602498809",
+      "name": "König Kebab & Pizza",
+      "lat": 46.9563367,
+      "lon": 7.451797,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Sa 10:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/280528098",
+      "name": "La Carbonara",
+      "lat": 46.9580433,
+      "lon": 7.4465318,
+      "type": "restaurant",
+      "address": "Quartiergasse 3",
+      "postcode": "3013",
+      "website": "https://www.lacarbonara.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 08:00-23:30; Sa 10:00-23:30; Su off",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:45:40.417864+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.lacarbonara.ch/",
+        "evidence": "La Carbonara | Ristorante Pizzeria | Quartiergasse 3, 3013 Bern, Switzerland"
+      }
+    },
+    {
+      "id": "node/6432399960",
+      "name": "La Villa Kebap",
+      "lat": 46.9436111,
+      "lon": 7.4093581,
+      "type": "fast_food",
+      "address": "Schlossstrasse 141",
+      "postcode": "3008",
+      "website": null,
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/2336992357",
+      "name": "Marzilibrücke",
+      "lat": 46.9448768,
+      "lon": 7.4445896,
+      "type": "restaurant",
+      "address": "Gasstrasse 8",
+      "postcode": "",
+      "website": "https://www.restaurant-marzilibruecke.ch/",
+      "cuisine": [
+        "regional",
+        "french",
+        "pizza",
+        "fondue"
+      ],
+      "openingHours": "Mo-Fr 11:30-23:30; Sa 12:00-23:30; Su 10:00-22:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:38.549846+00:00"
+    },
+    {
+      "id": "node/5916011989",
+      "name": "Massimo Pizza Express",
+      "lat": 46.9334797,
+      "lon": 7.3870968,
+      "type": "restaurant",
+      "address": "Morgenstrasse 148",
+      "postcode": "3018",
+      "website": "https://pizza-massimo.ch/",
+      "cuisine": [
+        "arab",
+        "kebab",
+        "italian_pizza",
+        "balkan"
+      ],
+      "openingHours": "Mo-Fr 11:00-22:00; Sa-Su 17:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-15T22:42:24.522351+00:00"
+    },
+    {
+      "id": "node/490033763",
+      "name": "Mega Pizza",
+      "lat": 46.9430325,
+      "lon": 7.451054,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.megapizza.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 10:30-14:00, 17:00-22:30; Fr 10:30-14:00, 17:00-24:00; Sa 11:00-24:00; Su 11:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:24.537120+00:00"
+    },
+    {
+      "id": "node/286879728",
+      "name": "Molino",
+      "lat": 46.9486,
+      "lon": 7.44401,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://molino.ch/de/pizzeria-ristorante-molino-thurm",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Th 08:00-23:00; Fr-Sa 08:00-24:00; Su 10:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:49.279417+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://molino.ch/de/",
+        "evidence": "Italianità per tutti – Pizzeria Ristorante Molino"
+      }
+    },
+    {
+      "id": "node/2946057658",
+      "name": "Nemrut",
+      "lat": 46.9493855,
+      "lon": 7.3804233,
+      "type": "restaurant",
+      "address": "Holenackerstrasse 21",
+      "postcode": "3027",
+      "website": "https://www.nemrutpizza.ch",
+      "cuisine": [
+        "pizza",
+        "fast_food"
+      ],
+      "openingHours": "Mo-Sa 09:00-23:00; Su 11:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:40.894377+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.nemrutpizza.ch",
+        "evidence": "Pizzeria Nemrut - Essen einfach Online bestellen"
+      }
+    },
+    {
+      "id": "node/2976324699",
+      "name": "Piazza",
+      "lat": 46.9483029,
+      "lon": 7.3769832,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.piazzabern.ch",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Su 10:00-23:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:41.658239+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.piazzabern.ch",
+        "evidence": "Restaurant Bern | Bern | Ristorante Pizzeria Piazza"
+      }
+    },
+    {
+      "id": "node/286879726",
+      "name": "Piazza Italia",
+      "lat": 46.9480522,
+      "lon": 7.4439523,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://piazzaitalia.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 10:30-23:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:24.537233+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://piazzaitalia.ch/",
+        "evidence": "Piazza Italia Bern – Die neue Pizzeria am Bärenplatz"
+      }
+    },
+    {
+      "id": "node/598242905",
+      "name": "Piazza Vittoria",
+      "lat": 46.9547304,
+      "lon": 7.4514632,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.piazzavittoria.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 10:00-22:00; Su,PH closed",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:41.813449+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+        "evidence": "PIAZZA VITTORIA - Pizzeria, Restaurant, Feinkost, Eisdiele, Café - Pizzeria, ristorante, gastronomia, gelateria, caffetteria - Bern"
+      }
+    },
+    {
+      "id": "node/286879707",
+      "name": "Piccola Napoli",
+      "lat": 46.9432488,
+      "lon": 7.4361178,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.piccolanapoli.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 10:00-14:00,16:30-22:00; Sa 11:30-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:54.089694+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.piccolanapoli.ch/",
+        "evidence": "Ristorante Pizzeria Piccola Napoli - Lieferservice - Bern - Essen Online Bestellen"
+      }
+    },
+    {
+      "id": "node/382955829",
+      "name": "Pizzeria L'Angolo",
+      "lat": 46.9407934,
+      "lon": 7.4184531,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 09:45-23:30; Sa 11:30-23:30; Su 17:30-22:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/813680128",
+      "name": "Pizzeria Länggasse",
+      "lat": 46.9523406,
+      "lon": 7.433518,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://pizzeria-laenggasse.ch/?",
+      "cuisine": [
+        "pizza",
+        "kebab"
+      ],
+      "openingHours": "Mo-Fr 09:30-14:00,17:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:26.904350+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://pizzeria-laenggasse.ch/menu",
+        "evidence": "Pizzeria Länggasse Bern | Frische Pizza bestellen und geniessen"
+      }
+    },
+    {
+      "id": "node/6341503764",
+      "name": "Pizzeria Neufeld",
+      "lat": 46.9603377,
+      "lon": 7.4310187,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/507607736",
+      "name": "Pizzeria Ostring",
+      "lat": 46.9427854,
+      "lon": 7.4691126,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "kebab"
+      ],
+      "openingHours": "Mo-Th 11:00-13:30, 17:00-22:30; Fr, Sa 11:00-13:30, 17:00-22:30; Su 16:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4468414867",
+      "name": "Ponte Nuovo",
+      "lat": 46.9581282,
+      "lon": 7.4362924,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://pontenuovo.ch/",
+      "cuisine": [
+        "pizza",
+        "pinsa"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:46.785612+00:00"
+    },
+    {
+      "id": "node/9844659964",
+      "name": "Ragazzi di Berna",
+      "lat": 46.9399609,
+      "lon": 7.4402161,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.ragazzidiberna.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-We 09:00-15:00; Th-Fr 09:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:46.953478+00:00"
+    },
+    {
+      "id": "node/761255424",
+      "name": "Rialto",
+      "lat": 46.9495071,
+      "lon": 7.4437168,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.rialtobern.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:47.369788+00:00"
+    },
+    {
+      "id": "node/290704798",
+      "name": "Ristorante Aurelis",
+      "lat": 46.9487728,
+      "lon": 7.3965921,
+      "type": "restaurant",
+      "address": "Bümplizstrasse 12",
+      "postcode": "3027",
+      "website": "https://ristorante-aurelis.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 09:00-22:00; Sa 11:00-23:30; Su off; PH off",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:27.354800+00:00"
+    },
+    {
+      "id": "node/278791605",
+      "name": "Ristorante Pizzeria Benigni",
+      "lat": 46.9395452,
+      "lon": 7.4808659,
+      "type": "restaurant",
+      "address": "Jupiterstrasse 15",
+      "postcode": "3015",
+      "website": "https://www.benigni.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:42:28.703007+00:00"
+    },
+    {
+      "id": "node/6349130278",
+      "name": "San Gottardo",
+      "lat": 46.9495652,
+      "lon": 7.4435612,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.sangottardobern.ch",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Su 09:00-00:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-15T22:42:48.492335+00:00"
+    },
+    {
+      "id": "node/286879724",
+      "name": "Santa Lucia",
+      "lat": 46.9478846,
+      "lon": 7.4439881,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.bindella.ch/de/santa-lucia-bern.html",
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 10:00-23:30; Sa 09:00-23:30; Su 11:00-23:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-15T22:42:29.117921+00:00"
+    },
+    {
+      "id": "node/10856205423",
+      "name": "Sicula",
+      "lat": 46.9569124,
+      "lon": 7.4321139,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "3012",
+      "website": "https://sicula.org/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu 11:30-13:30; We-Fr 11:30-13:30, 17:30-21:00; Sa 09:00-16:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "ambiguous_prices",
+      "checkedAt": "2026-10-15T22:42:48.506913+00:00"
+    },
+    {
+      "id": "node/13063654325",
+      "name": "Siesta alla Finestra",
+      "lat": 46.9442216,
+      "lon": 7.4114353,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Fr 11:30-14:00,17:30-21:00; Mo-Th,Sa-Su,PH closed",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/13595458461",
+      "name": "Ste's Cucina del Sud",
+      "lat": 46.9538383,
+      "lon": 7.4238588,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00,17:30-21:30; Fr 11:30-14:00,17:30-22:00; Sa 17:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/537955663",
+      "name": "Strada",
+      "lat": 46.9452602,
+      "lon": 7.4728748,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.strada-bern.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 08:00-23:00; Su,PH off",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:47:46.184492+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.strada-bern.ch",
+        "evidence": "Ristorante Pizzeria StraDa in Bern | Mediterrane Küche"
+      }
+    },
+    {
+      "id": "node/514589641",
+      "name": "Tavola Calda",
+      "lat": 46.9582904,
+      "lon": 7.4546545,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.tavolacalda.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Th 10:00-23:00; Fr-Sa 10:00-23:30; Su 16:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-15T22:48:01.818455+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.tavolacalda.ch/our-menu/pasta-2/",
+        "evidence": "Pasta – Restaurant Pizzeria Tavola Calda"
+      }
+    },
+    {
+      "id": "node/1274323364",
+      "name": "Tre Fratelli",
+      "lat": 46.9471272,
+      "lon": 7.4349876,
+      "type": "restaurant",
+      "address": "Laupenstrasse 17",
+      "postcode": "3008",
+      "website": "https://www.tre-fratelli-bern.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:00-23:30; Sa 17:00-24:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 19.8,
+          "sourceUrl": "https://www.tre-fratelli-bern.ch/karte",
+          "observedAt": "2026-10-15T22:48:27.599129+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 19.80",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T22:48:27.599129+00:00"
+    },
+    {
+      "id": "node/3474124939",
+      "name": "Venezia",
+      "lat": 46.9408619,
+      "lon": 7.3983439,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    }
+  ]
+}

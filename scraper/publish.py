@@ -14,7 +14,7 @@ FILES = (
     'public/data/bars.json', 'public/data/coffee.json', 'public/data/pizza.json', 'public/data/locations.json',
     'scraper/discovery_checks.json', 'scraper/coffee_checks.json',
     'scraper/pizza_checks.json', 'scraper/ai_checks.json',
-)
+) + tuple(f'public/data/{city}/{name}.json' for city in ('bern', 'basel') for name in ('bars', 'coffee', 'pizza', 'locations')) + tuple(f'scraper/cities/{city}/{name}_checks.json' for city in ('bern', 'basel') for name in ('discovery', 'coffee', 'pizza', 'ai'))
 MISSING = object()
 
 
@@ -115,7 +115,7 @@ def publish(repo, saved, branch, attempts=3):
                 if git(worktree, 'diff', '--cached', '--quiet', check=False).returncode == 0:
                     print('No new data to publish.', flush=True)
                     return
-                git(worktree, 'commit', '-m', 'data: refresh Zurich beer, coffee and pizza prices')
+                git(worktree, 'commit', '-m', 'data: refresh city beer, coffee and pizza prices')
                 pushed = git(worktree, 'push', 'origin', f'HEAD:refs/heads/{branch}', check=False)
                 if pushed.returncode == 0:
                     print(pushed.stderr.strip(), flush=True)

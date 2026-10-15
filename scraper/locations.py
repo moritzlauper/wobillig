@@ -5,19 +5,22 @@ python -m scraper.locations --venues-file scraper/cache/pizza-venues.json
 No menu fetching or invented prices; locations stay outside price comparisons
 until a price is contributed. Failed discovery leaves the previous file intact.
 """
+from scraper.cities import DATA_DIR, venue_query
 import argparse
 import json
 from pathlib import Path
-from scraper.scrape import ROOT, discover
+from scraper.scrape import discover
 from scraper.scrape_coffee import save
 
-QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;nwr["amenity"~"^(restaurant|cafe|fast_food|bar|pub|biergarten)$"]["name"](area.city);out center tags;'
+QUERY = venue_query('restaurant|cafe|fast_food|bar|pub|biergarten')
 
 
 def catalogue(discovered, existing):
     # Keep the IDs and metadata already used by the price datasets.
-    bars = {b['id']: {**b, 'offers': [], 'scrapeStatus': 'location_only', 'checkedAt': None}
-            for b in discovered['bars'] + existing}
+    bars = {}
+    for b in discovered['bars'] + existing:
+        bars[b['id']] = {**bars.get(b['id'], {}), **b, 'offers': [],
+                         'scrapeStatus': 'location_only', 'checkedAt': None}
     return {**discovered, 'bars': sorted(bars.values(), key=lambda b: (b['name'].casefold(), b['id']))}
 
 
@@ -29,9 +32,10 @@ def main():
     if not found.get('bars'):
         raise ValueError('Refusing to publish an empty location catalogue')
     existing = [b for name in ('bars', 'coffee', 'pizza')
-                for b in json.loads((ROOT / f'public/data/{name}.json').read_text())['bars']]
+                if (DATA_DIR / f'{name}.json').exists()
+                for b in json.loads((DATA_DIR / f'{name}.json').read_text())['bars']]
     output = catalogue(found, existing)
-    save(ROOT / 'public/data/locations.json', output)
+    save(DATA_DIR / 'locations.json', output)
     print(f"Saved {len(output['bars'])} selectable OSM locations")
 
 

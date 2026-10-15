@@ -1,0 +1,59 @@
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import textwrap
+import unittest
+from datetime import datetime, timezone
+from unittest.mock import patch
+from scraper.publish import FILES, merge_file
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class CityTests(unittest.TestCase):
+    def test_each_scraper_uses_the_selected_city(self):
+        script = '''
+import json
+from scraper import cities, scrape, scrape_coffee, scrape_pizza, enrich, locations, ai_scan
+print(json.dumps({
+    'paths': [str(p.relative_to(cities.ROOT)) for p in [scrape.DATA, scrape_coffee.DATA, scrape_pizza.DATA, enrich.STATE, ai_scan.CHECKS]],
+    'queries': [scrape.QUERY, enrich.QUERY, scrape_pizza.QUERY, locations.QUERY]
+}))
+'''
+        for city, name in [('zurich', 'Zürich'), ('bern', 'Bern'), ('basel', 'Basel')]:
+            with self.subTest(city=city):
+                output = subprocess.check_output([sys.executable, '-c', script], cwd=ROOT, env={**os.environ, 'WOBILLIG_CITY': city}, text=True)
+                data = json.loads(output)
+                prefix = 'public/data/' + ('' if city == 'zurich' else city + '/')
+                self.assertEqual(data['paths'][:3], [prefix + p + '.json' for p in ['bars', 'coffee', 'pizza']])
+                self.assertTrue(all(f'"name"="{name}"' in query for query in data['queries']))
+                self.assertTrue(all(path in FILES for path in data['paths']))
+
+    def test_city_refresh_preserves_concurrent_manual_corrections(self):
+        base = {'bars': [{'id': 'node/1', 'name': 'Test', 'offers': []}]}
+        scan = {'bars': [{'id': 'node/1', 'name': 'Test', 'offers': [{'priceChf': 5}]}]}
+        latest = {'bars': [{'id': 'node/1', 'name': 'Test', 'offers': [{'priceChf': 6}]}]}
+        for city in ['bern', 'basel']:
+            self.assertEqual(merge_file(f'public/data/{city}/bars.json', base, scan, latest), (latest, 1))
+
+    def test_real_workflow_cadence_across_year_boundary_and_manual_run(self):
+        workflow = (ROOT / '.github/workflows/scrape.yml').read_text()
+        code = textwrap.dedent(workflow.split('        run: |\n', 1)[1].split('\n  scrape:', 1)[0])
+        for day, event, expected in [
+            ('2026-10-12', 'schedule', False), ('2026-10-19', 'schedule', True),
+            ('2026-10-26', 'schedule', False), ('2026-11-02', 'schedule', False),
+            ('2026-11-09', 'schedule', True), ('2026-11-30', 'schedule', True),
+            ('2026-12-21', 'schedule', True), ('2027-01-04', 'schedule', False),
+            ('2027-01-11', 'schedule', True), ('2026-10-16', 'workflow_dispatch', True),
+        ]:
+            class FixedDateTime(datetime):
+                @classmethod
+                def now(cls, tz=None):
+                    return datetime.fromisoformat(day).replace(tzinfo=timezone.utc)
+            with self.subTest(day=day), tempfile.NamedTemporaryFile() as output:
+                with patch('datetime.datetime', FixedDateTime), patch.dict(os.environ, GITHUB_EVENT_NAME=event, GITHUB_OUTPUT=output.name):
+                    exec(code, {})
+                self.assertEqual(Path(output.name).read_text().strip(), f'refresh={str(expected).lower()}')
