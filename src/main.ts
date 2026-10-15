@@ -184,7 +184,7 @@ function openPrice(bar?: Bar, offer?: Offer) {
   $<HTMLInputElement>('entry-volume').value = String(offer?.volumeMl ? offer.volumeMl / 100 : f.volume === 'stange' ? 3 : f.volume === 'all' ? 5 : Number(f.volume) / 100);
   $<HTMLInputElement>('entry-stange').checked = offer?.serving === 'stange' || (!offer && f.volume === 'stange');
   $<HTMLInputElement>('entry-size-unknown').checked = Boolean(offer && !offer.coffeeType && offer.volumeMl === null);
-  $<HTMLSelectElement>('entry-beer-type').value = offer?.beerType || 'unknown';
+  $<HTMLSelectElement>('entry-beer-type').value = offer ? offer.beerType || 'unknown' : 'draft';
   $<HTMLInputElement>('entry-alcohol').checked = offer?.alcoholFree ?? f.alcoholFree;
   $<HTMLInputElement>('entry-date').value = zurichToday(); $<HTMLInputElement>('entry-date').max = zurichToday();
   $<HTMLInputElement>('entry-source').value = offer?.sourceUrl || '';
