@@ -92,10 +92,12 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
         url = urls.pop(0)
         if url in visited: continue
         visited.add(url)
+        if SKIP_MENU.search(urlparse(url).path): continue
         if not any(source_allowed(bar['id'], url, drink) for drink in ('beer', 'coffee')): continue
         try:
             final, kind, body = fetcher.get(url)
             stamp = now()
+            if SKIP_MENU.search(urlparse(final).path): continue
             if not any(source_allowed(bar['id'], final, drink) for drink in ('beer', 'coffee')): continue
             visited.add(final)
             if 'pdf' in kind or urlparse(final).path.lower().endswith('.pdf'):

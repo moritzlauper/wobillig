@@ -220,3 +220,30 @@ class CafeCoverageTests(unittest.TestCase):
         cafe={'id':'c','name':'Z','type':'cafe','offers':[]}
         bar={'id':'b','name':'A','type':'bar','offers':[{'priceChf':8}]}
         self.assertLess(candidate_priority(cafe,{},{}),candidate_priority(bar,{},{}))
+
+class CostAndSourceRegressionTests(unittest.TestCase):
+    @patch.dict(os.environ,{'ANTHROPIC_API_KEY':'test-secret'})
+    def test_parallel_generations_share_one_budget(self):
+        import time
+        from concurrent.futures import ThreadPoolExecutor
+        with tempfile.TemporaryDirectory() as tmp:
+            c=Claude(.05,1000,Path(tmp))
+            def post(path,payload):
+                if path.endswith('count_tokens'): return {'input_tokens':1000}
+                time.sleep(.005)
+                return {'stop_reason':'end_turn','content':[{'type':'text','text':'{"offers":[]}'}],'usage':{'input_tokens':1000,'output_tokens':6000}}
+            def ask(i):
+                try:c.ask([{'type':'text','text':str(i)}]);return True
+                except BudgetExhausted:return False
+            with patch.object(c,'post',side_effect=post):
+                with ThreadPoolExecutor(max_workers=6) as pool: success=sum(pool.map(ask,range(100)))
+            self.assertGreater(success,0)
+            self.assertLess(success,100)
+            self.assertLessEqual(c.spent,.05)
+            self.assertAlmostEqual(c.spent,success*.0031)
+
+    def test_press_pdf_is_not_treated_as_a_menu(self):
+        from scraper.scrape import html_content
+        body=b'<a href="/Neue_Zuercher_Zeitung_20201008.pdf">Bericht</a><a href="/Getraenke.pdf">Karte</a>'
+        _,links=html_content(body,'https://example.com/')
+        self.assertEqual(links,['https://example.com/Getraenke.pdf'])

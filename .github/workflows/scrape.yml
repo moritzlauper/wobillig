@@ -50,8 +50,8 @@ jobs:
         id: ai
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          AI_BUDGET: ${{ inputs.ai_budget_usd || 0.50 }}
-          AI_REQUESTS: ${{ inputs.ai_max_requests || 1000 }}
+          AI_BUDGET: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.ai_budget_usd) || '0.50' }}
+          AI_REQUESTS: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.ai_max_requests) || '1000' }}
           SCAN_MODE: ${{ inputs.scan_mode }}
         run: |
           if [ -z "$ANTHROPIC_API_KEY" ]; then
