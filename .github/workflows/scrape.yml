@@ -1,6 +1,7 @@
 name: Refresh Zurich drink prices
 on:
   schedule:
+    # The cadence job skips alternate Mondays to keep a true 14-day interval.
     - cron: "23 4 * * 1"
   workflow_dispatch:
     inputs:
@@ -23,7 +24,27 @@ concurrency:
   group: drink-data-refresh
   cancel-in-progress: false
 jobs:
+  cadence:
+    runs-on: ubuntu-latest
+    outputs:
+      refresh: ${{ steps.check.outputs.refresh }}
+    steps:
+      - name: Check fortnightly refresh cadence
+        id: check
+        shell: python
+        run: |
+          import os
+          from datetime import date, datetime, timezone
+
+          anchor = date(2026, 10, 19)
+          today = datetime.now(timezone.utc).date()
+          due = today >= anchor and (today - anchor).days % 14 == 0
+          refresh = os.environ['GITHUB_EVENT_NAME'] == 'workflow_dispatch' or due
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'refresh={str(refresh).lower()}\n')
   scrape:
+    needs: cadence
+    if: ${{ needs.cadence.outputs.refresh == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:

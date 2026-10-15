@@ -17,7 +17,7 @@ Eine einfache Zürich-Karte für Bier- und Kaffeepreise. TypeScript, Leaflet, Py
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
 - Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.
 - **Preis eintragen**, **Preis hinzufügen** und **Ändern**: Bier und Kaffee bei bekannten Lokalen ergänzen oder korrigieren. Alle Besucher sehen die gespeicherten Preise. Änderungen werden getrennt vom Scraper gespeichert und als ungeprüfte Einträge gekennzeichnet.
-- Wöchentlicher Scraping-Workflow, CI und optionaler GitHub-Pages-Workflow.
+- Scraping-Workflow alle zwei Wochen, CI und optionaler GitHub-Pages-Workflow.
 
 ## Ehrlicher Datenstand
 
@@ -120,7 +120,7 @@ Der Schlüssel ist die bestehende OSM-ID. Preise oder Koordinaten müssen dafür
 ## GitHub Actions
 
 - **Checks:** Frontend-Tests, TypeScript/Produktionsbuild und Python-Tests bei Push und Pull Request.
-- **Refresh Zurich drink prices:** montags um 04:23 UTC und manuell unter Actions. Aktualisiert Standorte und bekannte Preise, prüft danach alle eindeutig zuordenbaren Gastronomie-Websites für Bier und Kaffee mit bis zu zehn Dokumenten pro Kandidat. Kaffee und zusätzliche Bier-Locations verwenden maximal acht parallele Abrufe; robots.txt, Pausen und Grössenlimits gelten weiterhin. Der Lauf committet beide Datenbestände samt Prüfstand und hat ein Limit von 180 Minuten. Benötigt die im Workflow deklarierte Schreibberechtigung für Repository-Inhalte. Private Repositories verwenden das Actions-Kontingent des Accounts.
+- **Refresh Zurich drink prices:** alle zwei Wochen montags um 04:23 UTC (ab 19. Oktober 2026) und jederzeit manuell unter Actions. Aktualisiert Standorte und bekannte Preise, prüft danach alle eindeutig zuordenbaren Gastronomie-Websites für Bier und Kaffee mit bis zu zehn Dokumenten pro Kandidat. Kaffee und zusätzliche Bier-Locations verwenden maximal acht parallele Abrufe; robots.txt, Pausen und Grössenlimits gelten weiterhin. Der Lauf committet beide Datenbestände samt Prüfstand und hat ein Limit von 180 Minuten. Benötigt die im Workflow deklarierte Schreibberechtigung für Repository-Inhalte. Private Repositories verwenden das Actions-Kontingent des Accounts.
 - **Deploy to GitHub Pages (manual):** optional. Zuerst unter Settings → Pages die Quelle „GitHub Actions“ aktivieren, dann den Workflow starten. Für Pages aus privaten Repositories ist ein passender GitHub-Tarif erforderlich; das Repository wird nicht automatisch öffentlich gemacht. Nach Datenupdates muss dieser manuelle Deployment-Workflow erneut gestartet werden.
 
 ## Aufbau
@@ -194,7 +194,7 @@ vercel deploy --prod --yes
 
 ## Claude-Scans in GitHub Actions
 
-Das Repository-Secret `ANTHROPIC_API_KEY` wird ausschliesslich dem KI-Scan-Schritt übergeben. Es gehört weder in den Browser noch in Vercel oder die Daten-Dateien. `Refresh Zurich drink prices` führt montags nach der normalen Suche den Claude-Scan aus; manuell sind `full`, `ai_only` und `estimates_only` auswählbar.
+Das Repository-Secret `ANTHROPIC_API_KEY` wird ausschliesslich dem KI-Scan-Schritt übergeben. Es gehört weder in den Browser noch in Vercel oder die Daten-Dateien. `Refresh Zurich drink prices` aktualisiert Bier und Kaffee **alle zwei Wochen montags um 04:23 UTC**, beginnend am **19. Oktober 2026**, und führt nach der normalen Suche den Claude-Scan aus. Der wöchentliche Zeitplan überspringt über einen festen 14-Tage-Rhythmus jeden zweiten Montag, auch über Jahreswechsel hinweg. Manuelle Läufe sind jederzeit möglich; auswählbar sind `full`, `ai_only`, `estimates_only` und `photos_only`.
 
 `python -m scraper.ai_scan --discover` sucht zusätzliche Zürcher Restaurants/Cafés, folgt Menülinks und liest HTML, PDF-Seiten samt Bildern sowie direkt verlinkte Menübilder. Derselbe Aufruf sammelt Bier und Kaffee. Ausschliesslich Claude Haiku 5.5 (`claude-haiku-5-5`) liefert strukturierte Ergebnisse; Mengen, Preise, Quellenzuordnung und Preisbelege werden zusätzlich validiert. Bestehende widersprechende Preise werden nicht automatisch ersetzt. Neue KI-Preise tragen «KI-erkannt · nicht geprüft», Quellenlink, Abrufdatum, Dokument-Hash und gegebenenfalls PDF-Seite. KI-Erkennung kann dennoch fehlerhaft sein.
 
