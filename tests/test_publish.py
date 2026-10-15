@@ -1,4 +1,3 @@
-import copy
 import json
 from pathlib import Path
 import subprocess
@@ -101,6 +100,16 @@ class PublishIntegrationTests(unittest.TestCase):
             commit(writer, 'concurrent correction')
             git(writer, 'push', 'origin', 'main')
             original_git = publisher.git
+            def rejected_git(repo, *args, **kwargs):
+                if args[0] == 'push':
+                    return subprocess.CompletedProcess(args, 1, '', 'remote unavailable')
+                return original_git(repo, *args, **kwargs)
+            with patch.object(publisher, 'git', side_effect=rejected_git):
+                with self.assertRaisesRegex(RuntimeError, 'snapshot remains available'):
+                    publisher.publish(scan, saved, 'main', attempts=1)
+            self.assertEqual((scan / DATA).read_bytes(), scan_content)
+            self.assertEqual(json.loads(snapshot_path.read_text()), saved)
+            self.assertEqual(git(scan, 'worktree', 'list', '--porcelain').count('worktree '), 1)
             pushes = []
             def racing_git(repo, *args, **kwargs):
                 if args[0] == 'push':
