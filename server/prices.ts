@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { get, put, BlobPreconditionFailedError } from '@vercel/blob';
-import { InputError, offerKey, matchesOfferKey, type PriceEntry, type PriceInput } from '../src/community.js';
+import { InputError, allVenues, offerKey, matchesOfferKey, type PriceEntry, type PriceInput } from '../src/community.js';
 import type { Dataset, Offer } from '../src/data.js';
 
 export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }> };
@@ -28,7 +28,7 @@ export function blobStore(path = process.env.VERCEL_ENV === 'production' ? 'pric
     },
   };
 }
-export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset> & Partial<Record<'pizza', Dataset>>, visitor: string, now = Date.now()) {
+export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset> & Partial<Record<'pizza' | 'locations', Dataset>>, visitor: string, now = Date.now()) {
   const offer: Offer = {
     name: input.name, priceChf: input.priceChf, volumeMl: input.volumeMl, coffeeType: input.coffeeType, pizzaType: input.pizzaType,
     serving: input.serving, beerType: input.beerType, alcoholFree: input.alcoholFree, observedAt: input.observedAt,
@@ -47,7 +47,9 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     const limit = state.limits[visitor] || { count: 0, expires: now + 3600000 };
     if (limit.count >= 20) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[visitor] = { ...limit, count: limit.count + 1 };
-    const entry: PriceEntry = { id: old?.id || randomUUID(), barId: input.barId, drink: input.drink, targetKey, revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString(), offer };
+    const venue = allVenues(datasets).find(b => b.id === input.barId) || state.entries.find(e => e.barId === input.barId && e.venue)?.venue;
+    if (!venue) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
+    const entry: PriceEntry = { id: old?.id || randomUUID(), barId: input.barId, drink: input.drink, targetKey, revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString(), offer, venue: { ...venue, offers: [] } };
     if (old) state.history.push(old);
     state.entries = [...state.entries.filter(x => x.id !== entry.id), entry];
     try { await store.write(state, etag); return entry; }

@@ -65,6 +65,9 @@ jobs:
           restore-keys: claude-menus-v1-
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
         run: python -m scraper.scrape --discover
+      - name: Refresh selectable map locations
+        if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
+        run: python -m scraper.locations
       - name: Deep search for missing bar and pub prices
         if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
         run: python -m scraper.scrape --type bar --type pub --type biergarten --missing-prices --max-pages 20

@@ -3,8 +3,9 @@ import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { coverageLabel, missingPriceLabel } from './coverage';
 import { selectBeerSize, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
-import { allVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
+import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
+import { nearbyLocations, selectableLocations } from './locations';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 const money = (n: number) => n.toFixed(2);
@@ -20,6 +21,7 @@ const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
 let communityReady = false, saving = false;
+let locationCatalogue: Bar[] = [];
 let userMarker: L.CircleMarker | undefined;
 const coffee = () => f.drink === 'coffee';
 const pizza = () => f.drink === 'pizza';
@@ -58,7 +60,7 @@ $('app').innerHTML = `
 <dialog id="price-dialog" aria-label="Preis eintragen"><form id="price-form">
   <div class="dialog-top"><strong id="form-title">Preis eintragen</strong><button id="cancel-price" type="button">Schliessen</button></div>
   <input id="entry-bar" type="hidden">
-  <label>Lokal<input id="entry-bar-name" readonly></label>
+  <label>Lokal<input id="entry-bar-name" readonly></label><p id="entry-location" class="muted"></p>
   <div class="form-row"><label>Kategorie<select id="entry-drink"><option value="beer">Bier</option><option value="coffee">Kaffee</option><option value="pizza">Pizza Margherita</option></select></label><label id="entry-coffee-label" hidden>Sorte<select id="entry-coffee">${coffeeOptions}</select></label></div>
   <label>Bezeichnung<input id="entry-name" maxlength="100" placeholder="z. B. Lager oder Espresso" required></label>
   <div id="entry-beer-fields"><label>Ausschank<select id="entry-beer-type">${options(beerTypeLabels)}</select></label><small id="entry-type-hint" class="muted" hidden>Diese Vorauswahl ist geschätzt. Bitte prüfen.</small><div class="form-row"><label>Menge in dl<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label class="check"><input id="entry-size-unknown" type="checkbox"> Menge nicht angegeben (nur Stange)</label><label class="check"><input id="entry-alcohol" type="checkbox"> Alkoholfrei</label></div>
@@ -74,6 +76,24 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&c
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 new ResizeObserver(() => map.invalidateSize()).observe($('map'));
 const layer = L.layerGroup().addTo(map);
+const locationLayer = L.layerGroup().addTo(map);
+map.on('moveend', renderLocations);
+map.on('click', event => {
+  if (map.getZoom() < 17) { toast('Zum Auswählen eines Lokals näher heranzoomen.'); return; }
+  const choices = nearbyLocations(selectableLocations(venues, locationCatalogue), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
+  if (!choices.length) { toast('Hier wurde kein Lokal gefunden. Tippe auf das Symbol oder näher an den Namen.'); return; }
+  if (choices.length === 1) { openPrice(choices[0]); return; }
+  const content = document.createElement('div');
+  content.className = 'location-choices';
+  const title = document.createElement('strong'); title.textContent = 'Für welches Lokal?'; content.append(title);
+  for (const bar of choices) {
+    const button = document.createElement('button');
+    button.type = 'button'; button.textContent = [bar.name, bar.address].filter(Boolean).join(' · ');
+    button.onclick = () => { map.closePopup(); openPrice(bar); };
+    content.append(button);
+  }
+  L.popup().setLatLng(event.latlng).setContent(content).openOn(map);
+});
 // At street level, give unpriced venues their own clickable name labels.
 let showVenueNames = map.getZoom() >= 17;
 map.on('zoomend', () => {
@@ -88,6 +108,7 @@ function showView(list: boolean) {
   map.invalidateSize();
 }
 function rebuild() {
+  venues = communityVenues(datasets, entries);
   const base = datasets[f.drink!];
   bars = base ? applyEntries(base, entries, venues, f.drink!).bars : [];
   render();
@@ -140,6 +161,20 @@ function render() {
   }
   $('results').querySelectorAll<HTMLButtonElement>('[data-bar]').forEach(button => button.onclick = () => showBar(bars.find(b => b.id === button.dataset.bar)!));
   if (selectedBar) detail(selectedBar); else $('detail').hidden = true;
+  renderLocations();
+}
+function renderLocations() {
+  locationLayer.clearLayers();
+  if (map.getZoom() < 17) return;
+  const displayed = new Set([...current.map(b => b.id), ...(selected ? [selected] : [])]);
+  for (const bar of selectableLocations(venues, locationCatalogue)) {
+    if (displayed.has(bar.id) || !map.getBounds().pad(.1).contains([bar.lat, bar.lon])) continue;
+    const label = `${bar.name}: Preis eintragen`;
+    L.marker([bar.lat, bar.lon], {
+      icon: L.divIcon({ className: 'location-marker', html: '<span aria-hidden="true">+</span>', iconSize: [30, 30], iconAnchor: [15, 15] }),
+      title: label, alt: label, zIndexOffset: -1000, bubblingMouseEvents: false,
+    }).addTo(locationLayer).bindTooltip(e(bar.name), { direction: 'top' }).on('click', () => openPrice(bar));
+  }
 }
 function detail(b: Bar) {
   const matches = matchingOffers(b, f);
@@ -230,15 +265,17 @@ function entryFields() {
 }
 function openPrice(bar: Bar, offer?: Offer) {
   if (!communityReady) return toast('Gemeinsame Preise sind gerade nicht verfügbar. Bitte neu laden.');
+  map.closePopup();
   editing = offer;
   $<HTMLFormElement>('price-form').reset();
   $('form-title').textContent = offer ? 'Preis ändern' : 'Preis eintragen';
   $<HTMLInputElement>('entry-bar').value = bar.id;
+  $('entry-location').textContent = `Standort übernommen: ${bar.lat.toFixed(5)}, ${bar.lon.toFixed(5)}`;
   $<HTMLInputElement>('entry-bar-name').value = [bar.name, bar.address].filter(Boolean).join(' · ');
   $<HTMLSelectElement>('entry-drink').value = offer ? offerCategory(offer) : f.drink!;
   $<HTMLSelectElement>('entry-drink').disabled = Boolean(offer);
   $<HTMLSelectElement>('entry-coffee').value = offer?.coffeeType || (f.coffeeType === 'all' ? 'creme' : f.coffeeType!);
-  $<HTMLInputElement>('entry-name').value = offer?.name || '';
+  $<HTMLInputElement>('entry-name').value = offer?.name || (coffee() ? coffeeLabels[$<HTMLSelectElement>('entry-coffee').value] : '');
   $<HTMLInputElement>('entry-price').value = offer ? String(offer.priceChf) : '';
   $<HTMLInputElement>('entry-volume').value = String(offer?.volumeMl ? offer.volumeMl / 100 : ['stange', '300-330'].includes(f.volume) ? 3 : f.volume === 'all' ? 5 : Number(f.volume) / 100);
   $<HTMLInputElement>('entry-stange').checked = offer?.serving === 'stange' || (!offer && f.volume === 'stange');
@@ -253,7 +290,12 @@ function openPrice(bar: Bar, offer?: Offer) {
   $<HTMLDialogElement>('price-dialog').showModal();
   $<HTMLInputElement>(offer || pizza() ? 'entry-price' : 'entry-name').focus();
 }
-$('entry-drink').onchange = entryFields; $('entry-size-unknown').onchange = entryFields;
+$('entry-drink').onchange = () => {
+  if (!editing) $<HTMLInputElement>('entry-name').value = $<HTMLSelectElement>('entry-drink').value === 'coffee' ? coffeeLabels[$<HTMLSelectElement>('entry-coffee').value] : '';
+  entryFields();
+};
+$('entry-coffee').onchange = () => { if (!editing) $<HTMLInputElement>('entry-name').value = coffeeLabels[$<HTMLSelectElement>('entry-coffee').value]; };
+ $('entry-size-unknown').onchange = entryFields;
 $('entry-beer-type').onchange = entryFields;
 $('cancel-price').onclick = () => { if (!saving) $<HTMLDialogElement>('price-dialog').close(); };
 $('price-dialog').addEventListener('cancel', event => { if (saving) event.preventDefault(); });
@@ -273,7 +315,7 @@ $('price-form').onsubmit = async event => {
       serving: drink === 'beer' && $<HTMLInputElement>('entry-stange').checked ? 'stange' : undefined,
       alcoholFree: drink !== 'beer' || $<HTMLInputElement>('entry-alcohol').checked,
       observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
-    } satisfies PriceInput, venues);
+    } satisfies PriceInput, selectableLocations(venues, locationCatalogue));
     saving = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = 'Speichern …';
     const response = await fetch('/api/prices', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
     const result = await response.json().catch(() => { throw new Error('Speichern gerade nicht möglich. Bitte erneut versuchen.'); });
@@ -286,7 +328,10 @@ $('price-form').onsubmit = async event => {
     f.drink = drink; selected = input.barId;
     // Keep the saved portion visible even if it differs from the current filter.
     f.mode = 'glass'; f.alcoholFree = input.alcoholFree;
-    if (drink === 'coffee') f.coffeeType = input.coffeeType;
+    if (drink === 'coffee') {
+      f.coffeeType = input.coffeeType;
+      if (entry.venue?.type === 'fast_food') f.type = 'fast_food';
+    }
     else if (drink === 'beer') { f.volume = input.serving === 'stange' ? 'stange' : String(input.volumeMl); f.beerType = input.beerType || 'unknown'; }
     if (!Array.from($<HTMLSelectElement>('volume').options).some(x => x.value === f.volume)) f.volume = 'all';
     f.max = Math.max(f.max, input.priceChf); $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
@@ -310,18 +355,19 @@ async function loadCommunity() {
   } catch { communityReady = false; return false; }
 }
 async function init() {
-  const [beerResult, coffeeResult, pizzaResult, loadedCommunity] = await Promise.all([
+  const [beerResult, coffeeResult, pizzaResult, loadedCommunity, locationsResult] = await Promise.all([
     fetch(`${import.meta.env.BASE_URL}data/bars.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${import.meta.env.BASE_URL}data/coffee.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${import.meta.env.BASE_URL}data/pizza.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     loadCommunity(),
+    fetch(`${import.meta.env.BASE_URL}data/locations.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
   ]);
   if (beerResult) datasets.beer = beerResult;
   if (coffeeResult) datasets.coffee = coffeeResult;
   if (pizzaResult) datasets.pizza = pizzaResult;
-  venues = allVenues(datasets);
+  locationCatalogue = locationsResult?.bars || [];
   $<HTMLInputElement>('price').value = String(f.max);
-  const errors = [!beerResult ? 'Bierdaten konnten nicht geladen werden.' : '', !coffeeResult ? 'Kaffeedaten konnten nicht geladen werden.' : '', !pizzaResult ? 'Pizzadaten konnten nicht geladen werden.' : '', !loadedCommunity ? 'Gemeinsame Einträge nicht verfügbar. Zum Eintragen bitte später neu laden.' : ''].filter(Boolean);
+  const errors = [!beerResult ? 'Bierdaten konnten nicht geladen werden.' : '', !coffeeResult ? 'Kaffeedaten konnten nicht geladen werden.' : '', !pizzaResult ? 'Pizzadaten konnten nicht geladen werden.' : '', !locationsResult ? 'Zusätzliche Kartenlokale konnten nicht geladen werden. Bitte neu laden.' : '', !loadedCommunity ? 'Gemeinsame Einträge nicht verfügbar. Zum Eintragen bitte später neu laden.' : ''].filter(Boolean);
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   rebuild();
   const linkedId = initial.get('bar');

@@ -117,3 +117,10 @@ dialog::backdrop { background: #0005; }
   .switch { gap: 3px; }
   .switch button { padding-inline: 6px; }
 }
+
+/* Selectable OSM locations without a visible price marker. */
+.location-marker { display: grid; place-items: center; cursor: pointer; }
+.location-marker span { display: grid; place-items: center; width: 20px; height: 20px; background: #fff8eb; color: #a6570b; border: 2px solid #c98224; border-radius: 50%; font: bold 17px/1 Arial, sans-serif; box-shadow: 0 1px 3px #0003; }
+.location-marker:hover span, .location-marker:focus-visible span { outline: 3px solid #2767b3; }
+.location-choices { display: grid; gap: 7px; min-width: 200px; max-width: 280px; }
+.location-choices button { width: 100%; text-align: left; white-space: normal; min-height: 44px; }

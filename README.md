@@ -19,6 +19,7 @@ Eine einfache Zürich-Karte für Bier-, Kaffee- und Pizza-Margherita-Preise. Typ
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
 - Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.
 - Ein Lokal auf der Karte oder in der Liste anklicken, dann **Preis hinzufügen** oder **Ändern**: Bier, Kaffee und Pizza Margherita ergänzen oder korrigieren. Das Lokal ist im Formular bereits festgelegt. Alle Besucher sehen die gespeicherten Preise. Änderungen werden getrennt vom Scraper gespeichert und als ungeprüfte Einträge gekennzeichnet.
+- **Lokale direkt auf der Karte auswählen:** Im Nahzoom (ab Stufe 17) markieren orange Plus-Symbole weitere OSM-Lokale. Ein Klick öffnet das Preisformular mit Name und Standort. Auch ein Klick auf den Namen im Kartenbild sucht nahe Lokale; bei mehreren Treffern erscheint eine Auswahl. Bier, Kaffee und Pizza Margherita sind im selben Formular wählbar.
 - Scraping-Workflow alle zwei Wochen, CI und optionaler GitHub-Pages-Workflow.
 
 ## Ehrlicher Datenstand
@@ -205,6 +206,10 @@ vercel --prod
 `vercel.json` konfiguriert den Vite-Build. Der Scraper läuft weiterhin in GitHub Actions; Vercel liefert den eingecheckten Datenbestand statisch aus. Nach Datenupdates erneut deployen oder die GitHub-Integration in Vercel verbinden. `.vercelignore` hält die lokale Python-Umgebung und den Scraper aus dem Deployment-Upload.
 
 ## Gemeinsame Preise
+
+`public/data/locations.json` ergänzt einen separaten Katalog von **2’192 OSM-Lokalen** für Kartenauswahl und serverseitige Prüfung. Er enthält keine Preise und füllt die Preislisten nicht mit zusätzlichen leeren Lokalen. Name, Koordinaten und OSM-ID kommen aus diesem Katalog bzw. den bestehenden Datensätzen; der Server akzeptiert keine frei übermittelten Standortangaben. Mit einem Preiseintrag wird eine Standortkopie gespeichert, sodass das neue Lokal auch nach dem Neuladen oder einer späteren Katalogänderung erhalten bleibt. Bestehende Einträge ohne Standortkopie bleiben kompatibel.
+
+`python -m scraper.locations` aktualisiert den Katalog innerhalb der Zürcher Stadtgrenze ohne Menüabrufe; der vollständige Refresh-Workflow führt diesen Schritt ebenfalls aus und veröffentlicht die Datei zusammen mit den Preisen. Der Erstbestand verwendet den vorhandenen OSM-Import vom 15. Oktober 2026. Noch nicht im Katalog enthaltene oder umbenannte OSM-Orte stehen nach einem späteren Import zur Verfügung. Kartenbeschriftungen und OSM-Daten können zeitlich voneinander abweichen.
 
 Die API unter `/api/prices` liest und schreibt in einem privaten Vercel-Blob-Store. Ausschliesslich der Server erhält `BLOB_READ_WRITE_TOKEN`; es gibt keinen öffentlichen Upload-Token. Die veröffentlichte API gibt nur Preise zurück, keine internen Rate-Limit-Daten oder Historie.
 

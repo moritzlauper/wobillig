@@ -1,14 +1,14 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { createHmac } from 'node:crypto';
-import { allVenues, validateInput, InputError } from '../src/community.js';
+import { allVenues, communityVenues, validateInput, InputError } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore, savePrice } from '../server/prices.js';
 
-let dataPromise: Promise<Record<'beer' | 'coffee' | 'pizza', Dataset>> | undefined;
+let dataPromise: Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>> | undefined;
 function datasets() {
-  return dataPromise ||= Promise.all(['bars', 'coffee', 'pizza'].map(name => readFile(`${process.cwd()}/public/data/${name}.json`, 'utf8').then(JSON.parse)))
-    .then(([beer, coffee, pizza]) => ({ beer, coffee, pizza }));
+  return dataPromise ||= Promise.all(['bars', 'coffee', 'pizza', 'locations'].map(name => readFile(`${process.cwd()}/public/data/${name}.json`, 'utf8').then(JSON.parse)))
+    .then(([beer, coffee, pizza, locations]) => ({ beer, coffee, pizza, locations }));
 }
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -32,7 +32,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch { throw new InputError('Ungültiges JSON.'); } }
     if (JSON.stringify(body)?.length > 8192) throw new InputError('Eintrag zu gross.', 413);
     const data = await datasets();
-    const input = validateInput(body, allVenues(data));
+    const input = validateInput(body, [...allVenues(data), ...communityVenues({}, (await store.read()).state.entries)]);
     // Vercel overwrites this header. Only a daily salted hash is kept, never the IP address.
     const ip = req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown';
     const secret = process.env.BLOB_READ_WRITE_TOKEN;

@@ -11,7 +11,7 @@ import subprocess
 import tempfile
 
 FILES = (
-    'public/data/bars.json', 'public/data/coffee.json', 'public/data/pizza.json',
+    'public/data/bars.json', 'public/data/coffee.json', 'public/data/pizza.json', 'public/data/locations.json',
     'scraper/discovery_checks.json', 'scraper/coffee_checks.json',
     'scraper/pizza_checks.json', 'scraper/ai_checks.json',
 )

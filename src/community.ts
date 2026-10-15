@@ -9,6 +9,7 @@ export type PriceEntry = {
   revision: number;
   updatedAt: string;
   offer: Offer;
+  venue?: Bar;
 };
 export type PriceInput = {
   id?: string;
@@ -43,9 +44,16 @@ export function matchesOfferKey(o: Offer, key: string, offers: Offer[]) {
 export function zurichToday() {
   return new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Zurich' }).format(new Date());
 }
-export function allVenues(datasets: Partial<Record<Drink, Dataset>>): Bar[] {
-  return [...new Map(Object.values(datasets).flatMap(d => d.bars).map(b => [b.id, b])).values()]
+export function allVenues(datasets: Partial<Record<Drink | 'locations', Dataset>>): Bar[] {
+  const { locations, ...priced } = datasets;
+  return [...new Map([locations, ...Object.values(priced)].flatMap(d => d?.bars || []).map(b => [b.id, b])).values()]
     .sort((a, b) => a.name.localeCompare(b.name, 'de'));
+}
+// Persisted location snapshots keep contributions visible across catalogue updates.
+// Canonical scraper metadata wins when the location later joins a dataset.
+export function communityVenues(datasets: Partial<Record<Drink, Dataset>>, entries: PriceEntry[]): Bar[] {
+  return [...new Map([...entries.flatMap(entry => entry.venue && entry.venue.id === entry.barId ? [{ ...entry.venue, offers: [] }] : []),
+    ...allVenues(datasets)].map(bar => [bar.id, bar])).values()];
 }
 export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Bar[], drink: Drink): Dataset {
   // Drinks share locations; pizza only includes known pizza venues and pizza entries.
@@ -54,7 +62,7 @@ export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Ba
   for (const entry of entries.filter(x => x.drink === drink)) {
     let bar = bars.get(entry.barId);
     if (!bar) {
-      const known = venues.find(b => b.id === entry.barId);
+      const known = venues.find(b => b.id === entry.barId) || (entry.venue?.id === entry.barId ? entry.venue : undefined);
       if (!known) continue;
       bar = { ...known, offers: [] };
       bars.set(bar.id, bar);
