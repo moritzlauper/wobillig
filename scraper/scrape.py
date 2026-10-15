@@ -22,6 +22,7 @@ import requests
 from scraper.extract import extract_offers, BEER, SIZE, STANGE
 from scraper.beer_type import explicit_type, section_type
 from scraper.estimates import estimate_types
+from scraper.beer_rules import eligible_offer
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 from scraper.coffee import extract_coffees, coffee_pdf, coffee_types, PRICE as COFFEE_PRICE
 
@@ -370,6 +371,7 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     offers.extend(o for o in bar['offers'] if o['sourceUrl'] not in read_sources and o['sourceUrl'] not in changed_reviews)
     dedup={}
     for o in offers:
+        if beverage == 'beer' and not eligible_offer(o): continue
         # Expiring download signatures are not useful public source links.
         # Keep the menu's originating venue page as the durable reference.
         if re.search(r'[?&]X-Amz-Signature=',o['sourceUrl'],re.I) and bar.get('website'):

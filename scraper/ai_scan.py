@@ -17,6 +17,7 @@ from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, clean_offers, ESTIMATE_SCHEMA, KINDS, SYSTEM, MODEL, MAX_BUDGET_USD
 from scraper.estimates import estimate_types, name_key
+from scraper.beer_rules import eligible_offer
 from scraper.extract import SIZE
 from scraper.scrape import ROOT, Fetcher, now, html_content, prioritize_links, source_allowed, discover, pdf_links, SKIP_MENU, WEBSITES, REVIEWED_MENUS, REVIEWED_COFFEE_MENUS
 from scraper.scrape_coffee import save, include_cafes
@@ -47,8 +48,9 @@ def product_key(name):
 
 
 def merge_offers(existing, found):
-    result = [dict(o) for o in existing]
+    result = [dict(o) for o in existing if eligible_offer(o)]
     for offer in found:
+        if not eligible_offer(offer): continue
         matches = [o for o in result if (offer.get('coffeeType') or product_key(o['name']) == product_key(offer['name']))
                    and o['volumeMl'] == offer['volumeMl'] and o.get('coffeeType') == offer.get('coffeeType')
                    and o['alcoholFree'] == offer['alcoholFree']]
@@ -69,7 +71,7 @@ def merge_offers(existing, found):
 
 
 def classify_existing(client, bars):
-    unknown = [(b, o) for b in bars for o in b['offers'] if not o.get('coffeeType') and o.get('beerType', 'unknown') == 'unknown' and not o.get('beerTypeEstimate')]
+    unknown = [(b, o) for b in bars for o in b['offers'] if eligible_offer(o) and not o.get('coffeeType') and o.get('beerType', 'unknown') == 'unknown' and not o.get('beerTypeEstimate')]
     for start in range(0, len(unknown), 35):
         batch = unknown[start:start + 35]
         rows = [{'id': i, 'venue': b['name'], 'name': o['name'], 'volumeMl': o['volumeMl'], 'priceChf': o['priceChf'],

@@ -1,7 +1,7 @@
-import { bestOffer, isCurrentOffer, offerCategory, type Bar, type Filters } from './data';
+import { bestOffer, isCurrentOffer, isComparableOffer, offerCategory, type Bar, type Filters } from './data';
 
 export function hasDrinkPrice(bar: Bar, f: Filters): boolean {
-  return bar.offers.some(o => isCurrentOffer(o) && offerCategory(o) === (f.drink || 'beer'));
+  return bar.offers.some(o => isCurrentOffer(o) && isComparableOffer(o) && offerCategory(o) === (f.drink || 'beer'));
 }
 
 export function missingPriceLabel(bar: Bar, f: Filters): string {

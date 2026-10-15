@@ -1,6 +1,7 @@
 """Keep inferred beer formats separate from source-backed beerType values."""
-from collections import Counter, defaultdict
 import re
+from scraper.beer_rules import eligible_offer
+from scraper.beer_type import explicit_type
 
 
 def name_key(value):
@@ -8,40 +9,38 @@ def name_key(value):
 
 
 def estimate_types(bars):
-    sizes = defaultdict(Counter)
     for bar in bars:
-        for offer in bar['offers']:
-            if not offer.get('coffeeType') and offer.get('beerType', 'unknown') != 'unknown':
-                sizes[offer['volumeMl']][offer['beerType']] += 1
-    for bar in bars:
-        beer = [o for o in bar['offers'] if not o.get('coffeeType')]
+        bar['offers'] = [o for o in bar['offers'] if eligible_offer(o)]
+        beer = [o for o in bar['offers'] if not o.get('coffeeType') and not o.get('pizzaType')]
         for offer in beer:
             if offer.get('beerType', 'unknown') != 'unknown':
                 offer.pop('beerTypeEstimate', None)
                 continue
             ai = offer.get('beerTypeEstimate', {}).get('method') == 'ai'
-            if ai and offer['beerTypeEstimate'].get('sourceImage'):
+            if ai and offer['beerTypeEstimate'].get('sourceImage') and offer['beerTypeEstimate'].get('type') in ('bottle', 'can'):
                 continue  # A linked product photo outweighs portion-size heuristics.
-            if not ai: offer.pop('beerTypeEstimate', None)
-            name, volume = offer['name'], offer['volumeMl']
+            if not ai or offer['beerTypeEstimate'].get('type') == 'draft':
+                offer.pop('beerTypeEstimate', None)
+                ai = False
+            name = offer['name']
             peers = [o for o in beer if name_key(o['name']) == name_key(name)
                      and o['sourceUrl'] == offer['sourceUrl'] and o['alcoholFree'] == offer['alcoholFree']]
             kind = reason = None
-            if re.search(r'\b(?:stange|herrgöttli|humpen|fliessend|grosses\s+bier)\b', name, re.I) or offer.get('serving') == 'stange':
+            packaging = any(o.get('beerType') in ('bottle', 'can')
+                            or explicit_type(o.get('evidence', '')) in ('bottle', 'can', 'unknown')
+                            or (o.get('beerTypeEstimate', {}).get('sourceImage')
+                                and o['beerTypeEstimate'].get('type') in ('bottle', 'can')) for o in peers)
+            if explicit_type(offer.get('evidence', '')) == 'draft':
+                kind, reason = 'draft', 'Explizite Ausschankangabe im gespeicherten Menübeleg'
+            elif not packaging and (re.search(r'\b(?:stange|herrgöttli|humpen|fliessend|grosses\s+bier)\b', name, re.I) or offer.get('serving') == 'stange'):
                 kind, reason = 'draft', 'Bezeichnung einer ausgeschenkten Bierportion'
             elif re.search(r'\b(?:bügel|fl)\b', name, re.I):
                 kind, reason = 'bottle', 'Kurzbezeichnung für Flasche oder Bügelverschluss'
             elif {o['volumeMl'] for o in peers} >= {300, 500} or {o['volumeMl'] for o in peers} >= {250, 500} or {o['volumeMl'] for o in peers} >= {200, 400}:
-                if not any(o.get('beerType') in ('bottle', 'can') for o in peers):
+                if not packaging:
                     kind, reason = 'draft', 'Dasselbe Bier auf derselben Karte in mehreren Glasgrössen'
             if not kind and ai:
                 continue
-            if not kind and volume:
-                counts = sizes[volume]
-                if counts:
-                    likely, count = counts.most_common(1)[0]
-                    if sum(counts.values()) >= 5 and count / sum(counts.values()) >= .8:
-                        kind, reason = likely, f'Bei {volume / 100:g} dl überwiegt diese Ausschankart in den belegten Angeboten; die Menge allein ist kein Nachweis'
             if kind:
                 offer['beerTypeEstimate'] = {'type': kind, 'reason': reason, 'method': 'rules'}
     return bars

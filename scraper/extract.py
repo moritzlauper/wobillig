@@ -6,6 +6,7 @@ extractor does not OCR images or infer column alignment in broken PDF text.
 """
 import re
 from scraper.beer_type import explicit_type, section_type
+from scraper.beer_rules import is_beer_mix
 
 BEER = re.compile(r'\b(biere?|beers?|lager(?:bier)?|pils(?:e?ner)?|ipa|pale ale|stout|porter|weizen(?:bier)?|weissbier|weißbier|helles|quöllfrisch|feldschlösschen|calanda|turbinenbräu|chopfab|heineken|guinness|erdinger|schützengarten|appenzeller|valaisanne|braufrisch|eichhof|amber|hofbräu|amboss|moretti|poretti|corona|schneider|grimbergen|sonnwendlig|lokalbier|schiffbrau|adler panix|hürlimann|augustiner|san miguel|super bock|1664 blanc|peroni|asahi|sapporo|red stripe|singha|chang|tiger|brooklyn|paulaner|falken|warsteiner|hoegaarden|franziskaner|budweiser|bitburger|jever|brew.?dog|tegernseer?|maisel|kilkenny|fullers|five lamps|hop house|1664)\b', re.I)
 SIZE = re.compile(r'(?<![\d.])(\d+(?:[.,]\d+)?)\s*(ml|cl|dl|l)\b', re.I)
@@ -102,7 +103,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             line = previous_name + ' ' + continuation[2]
             evidence = previous_evidence + ' / ' + evidence
         previous_name = None
-        if len(line) > 350 or not BEER.search(line):
+        if len(line) > 350 or not BEER.search(line) or is_beer_mix(line):
             continue
         if re.search(r'\b(happy\s*hour|ab\s+\d|from\s+\d|pitcher|tower|pack|dose[n]?pack|degu|degustation|tasting|take[ -]?away|[246]x)\b', line, re.I):
             continue

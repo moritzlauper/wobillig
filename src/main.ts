@@ -2,7 +2,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { coverageLabel, missingPriceLabel } from './coverage';
-import { bestOffer, matchingOffers, isCurrentOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
+import { bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
 import { allVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
 
@@ -34,7 +34,7 @@ $('app').innerHTML = `
   <button id="new-price" class="primary" disabled>Preis eintragen</button>
 </div>
 <div id="filters" hidden>
-  <label>Lokal <select id="type">${options({ '': 'Alle', bar: 'Bar', pub: 'Pub', biergarten: 'Biergarten', restaurant: 'Restaurant', cafe: 'Café', fast_food: 'Imbiss' })}</select></label>
+  <label>Lokal <select id="type">${options({ '': 'Alle', bar: 'Bar', pub: 'Pub', restaurant: 'Restaurant', cafe: 'Café', fast_food: 'Imbiss' })}</select></label>
   <label><input id="unknown" type="checkbox" checked> Ohne passenden Preis anzeigen</label>
   <label><input id="outdoor" type="checkbox"> Draussen sitzen</label>
   <label id="beer-type-label">Ausschank<select id="beer-type">${options({ all: 'Alle', ...beerTypeLabels })}</select></label>
@@ -119,7 +119,7 @@ function render() {
 }
 function detail(b: Bar) {
   const matches = matchingOffers(b, f);
-  const other = b.offers.filter(o => isCurrentOffer(o) && !matches.includes(o));
+  const other = b.offers.filter(o => isCurrentOffer(o) && isComparableOffer(o) && !matches.includes(o));
   const offers = [...matches, ...other];
   $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">Schliessen</button></div><p class="muted">${e([b.address, b.postcode].filter(Boolean).join(' '))}</p><div class="detail-actions"><button id="add-here">Preis hinzufügen</button><button id="share-bar" aria-label="${e(b.name)} teilen">Teilen</button></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${offerCategory(o) === 'beer' ? ' · ' + e(beerTypeLabels[effectiveBeerType(o)]) : ''}${offerCategory(o) === 'beer' && o.alcoholFree ? ' · alkoholfrei' : ''}${!matches.includes(o) ? ' · ausserhalb Filter' : ''}</div>${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>geschätzt</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `Google-Maps-Foto · ${e(o.photoSource.date)} · ` : ''}${o.confidence === 'community' ? 'Eingetragen · nicht geprüft' : o.confidence === 'reviewed' ? 'Manuell geprüft' : o.confidence === 'ai' ? 'KI-erkannt · nicht geprüft' : 'Automatisch erkannt'} · ${e(new Date(o.observedAt).toLocaleDateString('de-CH'))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">Quelle</a>` : ''}<button data-edit="${i}">Ändern</button></div></div>`).join('') : '<p>Noch kein Preis eingetragen.</p>'}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
   $('detail').hidden = false;

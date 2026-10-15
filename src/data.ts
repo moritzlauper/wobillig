@@ -66,6 +66,13 @@ export function portion(o: Offer) {
 export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" {
   return o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
 }
+// Keep in sync with scraper/beer_rules.py.
+export function isBeerMix(name: string): boolean {
+  return /\b(?:panach(?:e+)?|panash|henach(?:e+)?|radler|shandy|diesel|russ(?:en)?|snakebite|black\s*(?:&|and)\s*tan|biermisch(?:getrank\w*)?|biermix\w*|beer\s*mix\w*|(?:bier|beer|lager|weizen)\s*(?:mit|with|[+&])\s*(?:cola|sprite|limonade|lemonade|zitronenlimonade))\b/i.test(name.normalize("NFKD").replace(/\p{M}/gu, ""));
+}
+export function isComparableOffer(o: Offer): boolean {
+  return offerCategory(o) !== "beer" || !isBeerMix(o.name);
+}
 export function effectiveBeerType(o: Offer): BeerType {
   return o.beerType && o.beerType !== "unknown" ? o.beerType : o.beerTypeEstimate?.type || "unknown";
 }
@@ -73,7 +80,7 @@ export function beerTypeLabel(o: Offer) {
   return offerCategory(o) !== "beer" ? "" : beerTypeLabels[effectiveBeerType(o)] + ((!o.beerType || o.beerType === "unknown") && o.beerTypeEstimate ? " · geschätzt" : "");
 }
 export function isStange(o: Offer) {
-  return offerCategory(o) === "beer" && effectiveBeerType(o) !== "bottle" && effectiveBeerType(o) !== "can" && (o.volumeMl === 300 || (o.serving === "stange" && (o.volumeMl === null || (o.volumeMl >= 300 && o.volumeMl <= 330))));
+  return offerCategory(o) === "beer" && isComparableOffer(o) && effectiveBeerType(o) !== "bottle" && effectiveBeerType(o) !== "can" && (o.volumeMl === 300 || (o.serving === "stange" && (o.volumeMl === null || (o.volumeMl >= 300 && o.volumeMl <= 330))));
 }
 export function selectBeerSize(f: Filters, volume: string) {
   f.volume = volume;
@@ -81,7 +88,7 @@ export function selectBeerSize(f: Filters, volume: string) {
 }
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return bar.offers
-    .filter(o => isCurrentOffer(o))
+    .filter(o => isCurrentOffer(o) && isComparableOffer(o))
     .filter(o => offerCategory(o) === (f.drink || "beer"))
     .filter(
       (o) =>

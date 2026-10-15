@@ -1,4 +1,4 @@
-import { coffeeLabels, beerTypeLabels, type BeerType, type Bar, type Dataset, type Offer } from './data.js';
+import { isBeerMix, coffeeLabels, beerTypeLabels, type BeerType, type Bar, type Dataset, type Offer } from './data.js';
 
 export type Drink = 'beer' | 'coffee' | 'pizza';
 export type PriceEntry = {
@@ -98,6 +98,7 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
     if (x.beerType !== undefined) throw new InputError('Kaffee hat keine Bier-Ausschankart.');
     if (typeof x.coffeeType !== 'string' || !Object.hasOwn(coffeeLabels, x.coffeeType) || x.volumeMl !== null || x.serving !== undefined) throw new InputError('Bitte eine gültige Kaffeesorte wählen.');
   } else {
+    if (isBeerMix(x.name)) throw new InputError('Biermischgetränke wie Panaché oder Radler gehören nicht in den Biervergleich.');
     if (x.beerType !== undefined && (typeof x.beerType !== 'string' || !Object.hasOwn(beerTypeLabels, x.beerType))) throw new InputError('Bitte eine gültige Ausschankart wählen.');
     if (x.serving === 'stange' && (x.beerType === 'bottle' || x.beerType === 'can')) throw new InputError('Flaschen- und Dosenbier ist keine Stange.');
     if (x.coffeeType !== undefined || (x.serving !== undefined && x.serving !== 'stange')) throw new InputError('Ungültige Bierportion.');

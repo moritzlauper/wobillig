@@ -1,6 +1,9 @@
+import mixes from './fixtures/beer-mixes.json';
 import { describe, it, expect } from "vitest";
 import {
   filterBars,
+  isBeerMix,
+  isComparableOffer,
   isCurrentOffer,
   bestOffer,
   isStange,
@@ -207,3 +210,15 @@ describe("dated menu photos", () => {
     expect(isCurrentOffer({ ...old, confidence: "community" }, "2026-10-15")).toBe(true);
   });
 });
+
+it.each(mixes.excluded)('excludes %s even with an explicit or estimated draft flag', name => {
+  for (const beerType of ['draft', 'unknown'] as const) {
+    const mix = { ...b.offers[0], name, volumeMl: 300, beerType, beerTypeEstimate: { type: 'draft' as const, reason: 'old guess', method: 'ai' as const } };
+    expect(isBeerMix(name)).toBe(true);
+    expect(isComparableOffer(mix)).toBe(false);
+    expect(isStange(mix)).toBe(false);
+    expect(bestOffer({ ...b, offers: [mix] }, { ...f, beerType: 'all' })).toBeUndefined();
+    expect(bestOffer({ ...b, offers: [mix] }, { ...f, beerType: 'draft' })).toBeUndefined();
+  }
+});
+it.each(mixes.beer)('keeps ordinary beer %s eligible', name => expect(isBeerMix(name)).toBe(false));

@@ -136,3 +136,7 @@ it('preserves an estimate for legacy edits but lets a visitor override it', asyn
   expect(corrected.beerType).toBe('bottle');
   expect(corrected.beerTypeEstimate).toBeUndefined();
 });
+
+it.each(['Panash', 'Stange Panaché', 'Calanda Radler'])('rejects beer mix entry %s', name => {
+  expect(() => validateInput({ ...input, name, beerType: 'draft' }, [bar])).toThrow('Biermischgetränke');
+});
