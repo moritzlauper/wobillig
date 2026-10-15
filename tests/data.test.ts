@@ -169,3 +169,13 @@ describe('beer Ausschankart', () => {
     expect(bestOffer({ ...bar, offers: [espresso] }, { ...f, drink: 'coffee', beerType: 'bottle' })).toBe(espresso);
   });
 });
+
+it('keeps estimated formats filterable and distinct from source facts', async () => {
+  const { beerTypeLabel, effectiveBeerType } = await import('../src/data');
+  const estimated = { ...b.offers[0], beerType: 'unknown' as const, beerTypeEstimate: { type: 'bottle' as const, method: 'ai' as const, reason: 'Gebinde' } };
+  expect(effectiveBeerType(estimated)).toBe('bottle');
+  expect(beerTypeLabel(estimated)).toBe('Flaschenbier · geschätzt');
+  expect(isStange(estimated)).toBe(false);
+  expect(bestOffer({ ...b, offers: [estimated] }, { ...f, beerType: 'bottle' })).toBe(estimated);
+  expect(beerTypeLabel({ ...estimated, beerType: 'draft' })).toBe('Offenbier');
+});

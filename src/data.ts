@@ -6,10 +6,11 @@ export type Offer = {
   coffeeType?: string;
   serving?: "stange";
   beerType?: BeerType;
+  beerTypeEstimate?: { type: Exclude<BeerType, "unknown">; reason: string; method: "rules" | "ai" };
   priceChf: number;
   sourceUrl: string;
   observedAt: string;
-  confidence: "automatic" | "reviewed" | "community";
+  confidence: "automatic" | "reviewed" | "community" | "ai";
   communityId?: string;
   revision?: number;
   originalKey?: string;
@@ -59,11 +60,14 @@ export const coffeeLabels: Record<string, string> = {
 export function portion(o: Offer) {
   return o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : o.volumeMl ? `${o.volumeMl / 100} dl` : "Stange · Grösse nicht angegeben";
 }
+export function effectiveBeerType(o: Offer): BeerType {
+  return o.beerType && o.beerType !== "unknown" ? o.beerType : o.beerTypeEstimate?.type || "unknown";
+}
 export function beerTypeLabel(o: Offer) {
-  return o.coffeeType ? "" : beerTypeLabels[o.beerType || "unknown"];
+  return o.coffeeType ? "" : beerTypeLabels[effectiveBeerType(o)] + ((!o.beerType || o.beerType === "unknown") && o.beerTypeEstimate ? " · geschätzt" : "");
 }
 export function isStange(o: Offer) {
-  return !o.coffeeType && o.beerType !== "bottle" && o.beerType !== "can" && (o.volumeMl === 300 || (o.serving === "stange" && (o.volumeMl === null || (o.volumeMl >= 300 && o.volumeMl <= 330))));
+  return !o.coffeeType && effectiveBeerType(o) !== "bottle" && effectiveBeerType(o) !== "can" && (o.volumeMl === 300 || (o.serving === "stange" && (o.volumeMl === null || (o.volumeMl >= 300 && o.volumeMl <= 330))));
 }
 export function selectBeerSize(f: Filters, volume: string) {
   f.volume = volume;
@@ -76,7 +80,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree &&
-        (!f.beerType || f.beerType === "all" || (o.beerType || "unknown") === f.beerType) &&
+        (!f.beerType || f.beerType === "all" || effectiveBeerType(o) === f.beerType) &&
         (f.mode !== "half" || Boolean(o.volumeMl)) &&
         (f.volume === "stange" ? isStange(o) : f.volume === "all" || o.volumeMl === Number(f.volume)),
     )

@@ -3,6 +3,20 @@ on:
   schedule:
     - cron: "23 4 * * 1"
   workflow_dispatch:
+    inputs:
+      scan_mode:
+        description: Scan mode
+        type: choice
+        options: [full, ai_only, estimates_only]
+        default: full
+      ai_budget_usd:
+        description: Maximum estimated Claude cost in USD (hard cap 100)
+        type: number
+        default: 20
+      ai_max_requests:
+        description: Maximum Claude generations (hard cap 1000)
+        type: number
+        default: 300
 permissions:
   contents: write
 concurrency:
@@ -11,7 +25,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,14 +35,51 @@ jobs:
           cache-dependency-path: scraper/requirements.txt
       - run: pip install -r scraper/requirements.txt
       - run: python -m unittest discover -s tests -p 'test_*.py'
-      - run: python -m scraper.scrape --discover
-      - run: python -m scraper.enrich --limit 0 --max-pages 10
-      - run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages 10
+      - uses: actions/cache/restore@v4
+        with:
+          path: scraper/cache/ai
+          key: claude-menus-v1-${{ github.run_id }}
+          restore-keys: claude-menus-v1-
+      - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
+        run: python -m scraper.scrape --discover
+      - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
+        run: python -m scraper.enrich --limit 0 --max-pages 10
+      - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
+        run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages 10
+      - name: Claude menu and serving-format scan
+        id: ai
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AI_BUDGET: ${{ inputs.ai_budget_usd || 20 }}
+          AI_REQUESTS: ${{ inputs.ai_max_requests || 300 }}
+          SCAN_MODE: ${{ inputs.scan_mode }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo 'ANTHROPIC_API_KEY is missing; deterministic scan remains available.'
+            exit 0
+          fi
+          if [ "$SCAN_MODE" = 'estimates_only' ]; then
+            python -m scraper.ai_scan --estimates-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
+          else
+            python -m scraper.ai_scan --discover --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS" --workers 6 --minutes 60
+          fi
+      - uses: actions/cache/save@v4
+        if: ${{ always() }}
+        with:
+          path: scraper/cache/ai
+          key: claude-menus-v1-${{ github.run_id }}
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: claude-scan-report
+          path: scraper/cache/ai-report.json
+          if-no-files-found: ignore
       - name: Save refreshed dataset
+        if: ${{ !cancelled() && (success() || steps.ai.outcome == 'failure') }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/data/bars.json public/data/coffee.json scraper/discovery_checks.json scraper/coffee_checks.json
+          git add public/data/bars.json public/data/coffee.json scraper/discovery_checks.json scraper/coffee_checks.json scraper/ai_checks.json
           if ! git diff --cached --quiet; then
             git commit -m "data: refresh Zurich beer and coffee prices"
             git push

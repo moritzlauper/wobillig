@@ -21,6 +21,7 @@ from bs4 import BeautifulSoup
 import requests
 from scraper.extract import extract_offers, BEER, SIZE, STANGE
 from scraper.beer_type import explicit_type, section_type
+from scraper.estimates import estimate_types
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 from scraper.coffee import extract_coffees, coffee_pdf, coffee_types, PRICE as COFFEE_PRICE
 
@@ -353,6 +354,7 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     return {**bar,'offers':result,'checkedAt':stamp,'scrapeStatus':status}
 
 def write(data):
+    estimate_types(data['bars'])
     DATA.parent.mkdir(parents=True,exist_ok=True)
     temp=DATA.with_suffix('.tmp')
     temp.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
