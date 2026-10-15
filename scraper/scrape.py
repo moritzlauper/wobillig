@@ -3,9 +3,9 @@
 Run from repository root: python -m scraper.scrape --discover
 """
 import argparse
+import hashlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
-from io import BytesIO
 import ipaddress
 import json
 import os
@@ -18,18 +18,21 @@ from urllib.parse import urljoin, urlparse
 from urllib.robotparser import RobotFileParser
 
 from bs4 import BeautifulSoup
-from pypdf import PdfReader
 import requests
 from scraper.extract import extract_offers, BEER
+from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'public/data/bars.json'
 UA = 'WoguenstigBot/1.0 (+https://github.com/moritzlauper/woguenstig)'
 EXTRA_VENUES = json.loads((ROOT / 'scraper/additional_venues.json').read_text())
+SOURCE_SCOPES = json.loads((ROOT / 'scraper/source_scopes.json').read_text())
+REVIEWED_MENUS = json.loads((ROOT / 'scraper/reviewed_menus.json').read_text())
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
 QUERY = '[out:json][timeout:90];area["name"="Zürich"]["admin_level"="8"]->.city;(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + EXTRA_QUERY + ');out center tags;'
 MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card', re.I)
+SKIP_MENU = re.compile(r'catering|bankett|ap[eé]ro.?karte|ap[eé]ro.?vorschl|event.?menu|gruppen|anlass|checkliste|vision|mission|geschichte|weinkarte|wine.?list|datenschutz|impressum', re.I)
 MAX_BYTES = 8 * 1024 * 1024
 
 def now():
@@ -170,17 +173,22 @@ def discover(previous, path=None):
 def html_content(body,url):
     soup=BeautifulSoup(body,'html.parser')
     links=[]
-    for a in soup.select('a[href]'):
-        target=urljoin(url,a['href']).split('#')[0]
+    for a in soup.select('a[href], iframe[src], embed[src], object[data], img[src]'):
+        target=urljoin(url,a.get('href') or a.get('src') or a.get('data')).split('#')[0]
         # A hostname containing "bier" must not make every site link a menu.
         link_label=a.get_text(' ',strip=True)+' '+urlparse(target).path
-        if MENU.search(link_label) and not re.search(r'catering|bankett|ap[eé]rokarte|event.?menu',link_label,re.I) and urlparse(target).scheme in ('http','https'):
+        pdf=urlparse(target).path.lower().endswith('.pdf')
+        if (MENU.search(link_label) or pdf) and not SKIP_MENU.search(link_label) and urlparse(target).scheme in ('http','https'):
             # Only same-origin navigation; external PDFs are allowed as direct menu links.
-            if urlparse(target).netloc==urlparse(url).netloc or urlparse(target).path.lower().endswith('.pdf'):
+            if urlparse(target).netloc==urlparse(url).netloc or pdf or urlparse(target).hostname=='api2.lunchgate.ch':
                 links.append(target)
     for node in soup(['script','style','nav','footer','header']):
         node.decompose()
     rows=[]
+    for table in soup.select('table'):
+        heading=table.find_previous(re.compile(r'^h[1-6]$'))
+        table_rows=([heading.get_text(' ',strip=True)] if heading else [])+[r.get_text(' ',strip=True) for r in table.select('tr')]
+        rows.extend(t for t,_ in table_lines([{'text':t,'top':i*10} for i,t in enumerate(table_rows)]))
     for row in soup.select('tr, p, li, div'):
         content=row.get_text(' ',strip=True)
         if len(content)<=350:
@@ -191,7 +199,17 @@ def html_content(body,url):
                 if len(context)<70 and BEER.search(context):
                     rows.append(context+' – '+content)
     rows.extend(soup.get_text('\n',strip=True).splitlines())
-    return '\n'.join(rows),list(dict.fromkeys(links))
+    return '\n'.join(rows),prioritize_links(links)
+
+
+def prioritize_links(links):
+    return sorted(dict.fromkeys(links),key=lambda u:(not bool(re.search(r'bier|beer|getr|drink|barkarte|beverage',urlparse(u).path,re.I)),not urlparse(u).path.lower().endswith('.pdf')))
+
+
+def source_allowed(bar_id, url):
+    # Shared restaurant websites must not mix menus from different branches.
+    allowed = SOURCE_SCOPES.get(bar_id)
+    return not allowed or any(part.casefold() in url.casefold() for part in allowed)
 
 def scrape_bar(bar, fetcher, hints, max_pages):
     stamp=now()
@@ -200,7 +218,7 @@ def scrape_bar(bar, fetcher, hints, max_pages):
         urls.append(bar['website'])
     if not urls:
         return {**bar,'scrapeStatus':'no_website','checkedAt':stamp}
-    visited=set();offers=[];errors=[];success=0
+    visited=set();offers=[];errors=[];success=0;changed_reviews=set()
     while urls and len(visited)<max_pages:
         url=urls.pop(0)
         if url in visited:
@@ -208,16 +226,24 @@ def scrape_bar(bar, fetcher, hints, max_pages):
         visited.add(url)
         try:
             final,kind,body=fetcher.get(url)
+            review=REVIEWED_MENUS.get(final)
+            if review and review['barId']==bar['id']:
+                if hashlib.sha256(body).hexdigest()==review['sha256']:
+                    offers.extend({**o,'sourceUrl':final,'observedAt':stamp,'confidence':'reviewed'} for o in review['offers'])
+                else:
+                    changed_reviews.add(final)
             if 'pdf' in kind or urlparse(final).path.lower().endswith('.pdf'):
-                reader=PdfReader(BytesIO(body))
-                text='\n'.join(p.extract_text(extraction_mode='layout') or '' for p in reader.pages[:25])
+                if source_allowed(bar['id'],final):
+                    offers.extend(extract_pdf(body,final,stamp))
+                links=[link for link in pdf_links(body) if urlparse(link).scheme in ('https','http') and urlparse(link).path.lower().endswith('.pdf') and not SKIP_MENU.search(link)]
             elif 'html' in kind:
                 text,links=html_content(body,final)
-                urls.extend(link for link in links if link not in visited and link not in urls)
+                if source_allowed(bar['id'],final):
+                    offers.extend(extract_offers(text,final,stamp))
             else:
                 continue
+            urls=prioritize_links([link for link in links if link not in visited and (not urlparse(link).path.lower().endswith('.pdf') or source_allowed(bar['id'],link))]+urls)
             success+=1
-            offers.extend(extract_offers(text,final,stamp,continuations='pdf' in kind or urlparse(final).path.lower().endswith('.pdf')))
         except Exception as exc:
             # One malformed PDF or offline site must not abort the city import.
             errors.append(str(exc) if isinstance(exc,ValueError) else type(exc).__name__)
@@ -228,6 +254,9 @@ def scrape_bar(bar, fetcher, hints, max_pages):
     if offers:
         result=list(dedup.values())
         status='prices_found'
+    elif changed_reviews:
+        result=[o for o in bar['offers'] if o['sourceUrl'] not in changed_reviews]
+        status='review_required'
     elif success and not errors:
         result=[]
         status='no_prices'
@@ -249,7 +278,7 @@ def main():
     parser.add_argument('--discover-only',action='store_true')
     parser.add_argument('--limit',type=int,default=0)
     parser.add_argument('--workers',type=int,default=6)
-    parser.add_argument('--max-pages',type=int,default=5)
+    parser.add_argument('--max-pages',type=int,default=8)
     parser.add_argument('--name',help='Only scrape names containing this text')
     args=parser.parse_args()
     dataset=json.loads(DATA.read_text()) if DATA.exists() else {}

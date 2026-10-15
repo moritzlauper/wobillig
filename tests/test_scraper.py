@@ -12,7 +12,7 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual([(o['volumeMl'],o['priceChf']) for o in offers],[(300,5.5),(500,8),(330,6),(500,7.5)])
 
     def test_no_prices_from_soft_drinks_or_percentages(self):
-        for line in ['Coca-Cola 0.5 l 5.00','Lager 0.5 l 4.8% 8.00','Lager 5 dl','Lager 5 dl 80.00','Happy Hour Lager 3 dl 4.50','Lager 5 dl 4.50 / 7.50']:
+        for line in ['Coca-Cola 0.5 l 5.00','Lager 0.5 l 4.8%','Lager 5 dl','Lager 5 dl 80.00','Happy Hour Lager 3 dl 4.50','Lager 5 dl 4.50 / 7.50']:
             self.assertEqual(self.offers(line),[],line)
 
     def test_no_cross_row_guessing(self):

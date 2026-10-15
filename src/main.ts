@@ -71,9 +71,9 @@ function render() {
   current = filterBars(data.bars, f, position);
   $("count").textContent = String(current.length);
   $("price-value").textContent = `CHF ${money(f.max)}`;
-  $("count-label").textContent = "Spots entdeckt";
+  $("count-label").textContent = `Locations · ${current.filter((b) => bestOffer(b, f)).length} mit passendem Preis`;
   $("coverage-strip").textContent =
-    `${data.bars.filter((b) => b.offers.length).length} von ${data.bars.length} Locations mit gefundenen Preisen · Rest offen`;
+    `${data.bars.reduce((n, b) => n + b.offers.length, 0)} Bierangebote bei ${data.bars.filter((b) => b.offers.length).length} von ${data.bars.length} Locations · vor deinen Filtern`;
   document.querySelector("label[for=price]")!.textContent =
     f.mode === "half" ? "Max. Preis pro 5 dl" : "Max. Bierpreis";
   $("map-unit").textContent =

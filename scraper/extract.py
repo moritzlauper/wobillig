@@ -5,7 +5,7 @@ extractor does not OCR images or infer column alignment in broken PDF text.
 """
 import re
 
-BEER = re.compile(r'\b(bier|beer|lager|pils(?:ner)?|ipa|pale ale|stout|porter|weizen|weissbier|weißbier|helles|quöllfrisch|feldschlösschen|calanda|turbinenbräu|chopfab|heineken|guinness|erdinger|schützengarten|appenzeller|valaisanne|braufrisch|eichhof|amber|hofbräu|amboss|moretti|poretti|corona|schneider|grimbergen|sonnwendlig|lokalbier|schiffbrau|adler panix)\b', re.I)
+BEER = re.compile(r'\b(biere?|beers?|lager(?:bier)?|pils(?:e?ner)?|ipa|pale ale|stout|porter|weizen|weissbier|weißbier|helles|quöllfrisch|feldschlösschen|calanda|turbinenbräu|chopfab|heineken|guinness|erdinger|schützengarten|appenzeller|valaisanne|braufrisch|eichhof|amber|hofbräu|amboss|moretti|poretti|corona|schneider|grimbergen|sonnwendlig|lokalbier|schiffbrau|adler panix|hürlimann|augustiner|san miguel|super bock|1664 blanc|peroni|asahi|sapporo|red stripe|singha|chang|tiger|brooklyn|paulaner|falken|warsteiner|hoegaarden|franziskaner|budweiser|bitburger|jever|brew.?dog)\b', re.I)
 SIZE = re.compile(r'(?<![\d.])(\d+(?:[.,]\d+)?)\s*(ml|cl|dl|l)\b', re.I)
 PRICE = re.compile(r'(?:CHF\s*)?(\d{1,2}[.,]\d{1,2}|\d{1,2}\.\s*[–—-])(?:\s*(?:CHF|Fr\.?))?', re.I)
 
@@ -25,6 +25,20 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             continue
         blank_count = 0
         evidence = line
+        # Explicit alternate notations, never infer a missing unit or ABV.
+        line = re.sub(r'(\d+[.,])\s+(\d+)\s*%', r'\1\2%', line)
+        line = re.sub(r'(\d+)\.\s*%', r'\1%', line)
+        line = re.sub(r'(\d+(?:[.,]\d+)?)\s+vol\.?\s*-?\s*%', r'\1%', line, flags=re.I)
+        shared = re.search(r'(\d+(?:[.,]\d+)?)\s*/\s*(\d+(?:[.,]\d+)?)\s*(ml|cl|dl|l)\b', line, re.I)
+        if shared and not SIZE.search(line[:shared.start()]):
+            line = line[:shared.start()] + f'{shared[1]}{shared[3]} / {shared[2]}{shared[3]}' + line[shared.end():]
+        # Menus can place the alcohol declaration between size and price.
+        trailing_abv = re.search(r'(?<=\s)(<?\s*\d+(?:[.,]\d*)?\s*%\s*(?:vol\.?)?|alkoholfrei)(?=\s|$)', line, re.I)
+        first_size = SIZE.search(line)
+        if trailing_abv and first_size and trailing_abv.start() > first_size.start():
+            metadata = trailing_abv[0]
+            line = line[:trailing_abv.start()] + line[trailing_abv.end():]
+            line = line[:first_size.start()] + metadata + ' ' + line[first_size.start():]
         # PDF rows often print a product once and the second size on the next line.
         # Only an immediately adjacent explicit size/price (optionally prefixed by
         # a parenthetical product description) may inherit that product name.
@@ -53,6 +67,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             continue
         # Multi-column PDFs can merge a wine/cocktail price into the beer name.
         without_abv=re.sub(r'<?\s*\d+(?:[.,]\d+)?\s*%\s*(?:vol)?', '', name, flags=re.I)
+        without_abv=re.sub(r'\b0[.,]0\b', '', without_abv)
         if PRICE.search(without_abv) or re.search(r'\d\s*[|/]\s*\d',without_abv):
             continue
         abvs=re.findall(r'(\d+(?:[.,]\d+)?)\s*%',name)
@@ -89,7 +104,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             offers.append({'name':clean_name, 'volumeMl':ml, 'priceChf':price,
                 'sourceUrl':source_url, 'observedAt':observed_at,
                 'confidence':'automatic', 'evidence':evidence[:350],
-                'alcoholFree':bool(re.search(r'alkoholfrei|alcohol.?free|non.alcoholic|sans alcool|ohne alk',name,re.I)) or bool(abvs and all(float(v.replace(',','.'))<=.5 for v in abvs))})
+                'alcoholFree':bool(re.search(r'alkoholfrei|alcohol.?free|non[ .-]*alcoholic|sans alcool|ohne alk|\bzero\b|\b0[.,]0\b',name,re.I)) or bool(abvs and all(float(v.replace(',','.'))<=.5 for v in abvs))})
             if len(sizes)==1:
                 # Keep ABV metadata for the next portion's alcohol-free flag.
                 previous_name=name

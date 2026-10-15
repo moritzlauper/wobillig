@@ -16,13 +16,17 @@
 
 ## Ehrlicher Datenstand
 
-Der Datenstand vom **14. Oktober 2026** enthält **302 Locations** in der administrativen Stadt Zürich. Nach Erweiterung des Scrapers gibt es **144 Preisangebote bei 25 Locations** (zuvor 51 bei 13). Bei 20 Locations ist mindestens ein alkoholhaltiges 5-dl-Angebot erfasst. Dies sind Quellendaten, keine Demo-Preise. Die Zahlen ändern sich bei späteren Läufen.
+Der Datenstand vom **15. Oktober 2026** enthält **302 Locations** in der administrativen Stadt Zürich. Nach Erweiterung des Scrapers gibt es **355 Preisangebote bei 43 Locations** (zuvor 144 bei 25). Bei 34 Locations ist mindestens ein alkoholhaltiges 5-dl-Angebot erfasst. Dies sind Quellendaten, keine Demo-Preise. Die Zahlen ändern sich bei späteren Läufen.
 
 Beispiele für echte 5-dl-Portionen aus den Originalkarten: Rheinfelder Bierhalle CHF 6.80, New Bombay (Erdinger) CHF 6.90, Amara CHF 6.80, Zum Guten Glück (Adler Lager) CHF 6.80 und La Stazione in Oerlikon CHF 5.50. Im El Lokal erkennt der Parser jetzt auch das Appenzeller vom Fass für CHF 8.50. Die Quellen sind direkt beim jeweiligen Angebot verlinkt.
 
 „Möglichst jede Bar“ umfasst alle benannten OSM-Objekte mit `amenity=bar`, `pub` oder `biergarten` innerhalb der Stadtgrenze. Ergänzend werden ausgewählte Bierhallen, Restaurants und Cafés aus `scraper/additional_venues.json` bei jedem OSM-Import berücksichtigt. Koordinaten und Typ kommen weiterhin aus OSM; optional ergänzte Websites sind in dieser Datei erkennbar. Andere Restaurants, Cafés und Nachtclubs werden nicht flächendeckend erfasst. OSM ist unvollständig; ein Standort kann veraltet oder falsch klassifiziert sein. Preise sind nur für einen Teil öffentlich maschinenlesbar. **Vollständigkeit und aktuelle Ausschankpreise sind nicht garantiert.**
 
-Der Parser liest auch explizite parallele Grössen-/Preislisten und unmittelbar folgende Grössenzeilen desselben Biers in PDFs. HTML-Zeilen wie „Grosses“ erhalten nur bei einer vorangehenden Bierüberschrift diesen Kontext. Er lässt mehrdeutige Tabellen, Bilder, reine JavaScript-Menüs, fehlende Grössen, Ginger Beer, Catering-Karten und bedingte Angebote aus. Automatisch erkannte Preise sind ausdrücklich als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %.
+Der Scraper folgt auch eingebetteten PDFs, PDF-Inhaltsverzeichnissen und verlinkten Lunchgate-Menüs. Er priorisiert Getränkekarten vor anderen Dokumenten. Der PDF-Parser trennt klare Spalten, liest Grössenüberschriften und ordnet Preise anhand der Textpositionen zu. Explizite Portionsgrössen direkt beim Produkt haben Vorrang. Einheiten, parallele Grössen-/Preislisten, umgebrochene Bierzeilen und Alkoholangaben werden ebenfalls ausgewertet.
+
+Zwei grafische Originalkarten sind zusätzlich in `scraper/reviewed_menus.json` visuell geprüft hinterlegt. Diese Angebote erscheinen als **manuell geprüft** und werden nur bei identischer SHA-256-Prüfsumme der erneut abgerufenen Quelle übernommen. Eine geänderte Datei verlangt eine erneute Prüfung; alte geprüfte Preise daraus werden nicht blind übernommen. `source_scopes.json` verhindert bei bekannten gemeinsamen Websites, dass Karten anderer Filialen oder archivierte Menüs zugeordnet werden.
+
+Mehrdeutige Tabellen, nicht geprüfte Bilder, reine JavaScript-Menüs, fehlende Grössen, Ginger Beer, Catering-Karten und bedingte Angebote werden ausgelassen. Automatisch erkannte Preise sind als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %. Die Oberfläche trennt Gesamtangebote von den Locations mit einem zu den aktuellen Filtern passenden Preis.
 
 ## Lokal starten
 
@@ -62,14 +66,14 @@ python -m scraper.scrape --limit 20 --workers 4
 python -m scraper.scrape --name 'Bar Rossi'
 ```
 
-`--max-pages 5` begrenzt die Dokumente pro Bar, `--workers` die Parallelität (maximal 8). Begrenzte Läufe beginnen mit den am längsten nicht geprüften Bars. `OVERPASS_URL` überschreibt den primären Overpass-Endpunkt. Standard ist `overpass.osm.ch`, Fallback `overpass-api.de`. `--osm-file /path/response.json` importiert eine gespeicherte vollständige Overpass-Antwort.
+`--max-pages 8` (Standard) begrenzt die Dokumente pro Bar, `--workers` die Parallelität (maximal 8). Begrenzte Läufe beginnen mit den am längsten nicht geprüften Bars. `OVERPASS_URL` überschreibt den primären Overpass-Endpunkt. Standard ist `overpass.osm.ch`, Fallback `overpass-api.de`. `--osm-file /path/response.json` importiert eine gespeicherte vollständige Overpass-Antwort.
 
 ### Ablauf und Rücksichtnahme
 
 1. OSM-Stadtgrenze und Standorte per Overpass abfragen; doppelte Node-/Way-Einträge desselben Namens in unmittelbarer Nähe zusammenführen.
 2. Hinterlegte Website und zusätzliche Original-Menülinks aus `scraper/menu_urls.json` verwenden.
 3. `robots.txt` lesen und respektieren. Bei Fehlern oder unklarer Erlaubnis wird die Website ausgelassen. Crawl-Delay und Request-Rate werden berücksichtigt, mindestens eine Sekunde Pause pro Host. Keine Login-, CAPTCHA- oder Zugriffsschutz-Umgehung.
-4. Begrenzt HTML-Menüseiten und direkt verlinkte PDF-Karten lesen. Externe Navigation nur für direkt verlinkte PDF-Dateien, jeder Redirect wird erneut geprüft. Private/Loopback-Adressen und ungewöhnliche Ports werden abgewiesen.
+4. Begrenzt HTML-Menüseiten, eingebettete PDFs und in PDFs verlinkte Unterkarten lesen. Externe Navigation nur für direkt verlinkte PDF-Dateien und den ausdrücklich verlinkten Menüanbieter `api2.lunchgate.ch`; jeder Redirect wird erneut geprüft. Private/Loopback-Adressen und ungewöhnliche Ports werden abgewiesen.
 5. Nur Bierzeilen mit expliziter Grösse und zuordenbarem Preis übernehmen. CHF 2–25 und 100–1000 ml sind Plausibilitätsgrenzen. Fehlende Preise werden nie geschätzt.
 6. `public/data/bars.json` atomar schreiben. Ein fehlgeschlagener Abruf erhält den letzten bekannten Preis samt ursprünglichem Datum; erfolgreich gelesene, aber preislose Karten können alte Angebote entfernen. Bei teilweise fehlgeschlagenen Crawls können einzelne Angebote fehlen.
 
@@ -98,6 +102,9 @@ src/style.css                Responsive Gestaltung
 public/data/bars.json        Versionierter Datenbestand
 scraper/scrape.py            Standortimport, höflicher Crawler, PDF/HTML
 scraper/extract.py           Konservative Preisextraktion
+scraper/pdf_extract.py       PDF-Spalten, Grössenüberschriften und Textpositionen
+scraper/reviewed_menus.json   Geprüfte Bildkarten mit Inhalts-Prüfsummen
+scraper/source_scopes.json   Abgrenzung von Filial- und Archivkarten
 scraper/menu_urls.json       Zusätzliche Original-Menülinks pro OSM-ID
 scraper/additional_venues.json Ausgewählte weitere OSM-Locations und Websites
 tests/                      Preis-, Filter- und Parser-Regressionstests
