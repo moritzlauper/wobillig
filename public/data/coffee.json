@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T14:56:50.297398+00:00",
+  "generatedAt": "2026-10-15T14:59:27.209714+00:00",
   "discoveredAt": "2026-10-15T14:55:17.430562+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -1099,9 +1099,25 @@
       "website": "https://www.apotheke-zh.ch/",
       "openingHours": "Mo-Fr 08:00-22:00, Sa 09:00-16:00",
       "outdoor": true,
-      "offers": [],
+      "offers": [
+        {
+          "name": "Espresso",
+          "priceChf": 4.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.apotheke-zh.ch/media/files/Neue_Zürcher_Zeitung_20201008_Seite_10.pdf",
+          "observedAt": "2026-10-15T14:59:02.061402+00:00",
+          "confidence": "ai",
+          "evidence": "ein ausgezeichneter Espresso (Fr. 4.–)",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "22180afc834ace456fffe92902b3ec07f0125ed476ea7fb6ebc83bfd28e97a5a"
+        }
+      ],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-15T14:59:15.587005+00:00"
     },
     {
       "id": "node/5235108623",
