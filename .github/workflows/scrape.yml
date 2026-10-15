@@ -7,7 +7,7 @@ on:
       scan_mode:
         description: Scan mode
         type: choice
-        options: [full, ai_only, estimates_only]
+        options: [full, ai_only, estimates_only, photos_only]
         default: full
       ai_budget_usd:
         description: Maximum Haiku 5.5 API cost in USD (hard cap 0.50)
@@ -60,6 +60,8 @@ jobs:
           fi
           if [ "$SCAN_MODE" = 'estimates_only' ]; then
             python -m scraper.ai_scan --estimates-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
+          elif [ "$SCAN_MODE" = 'photos_only' ]; then
+            python -m scraper.ai_scan --photos-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
           else
             python -m scraper.ai_scan --discover --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS" --workers 6 --minutes 60
           fi

@@ -16,6 +16,7 @@ export type Offer = {
   originalKey?: string;
   evidence: string;
   alcoholFree: boolean;
+  photoSource?: { kind: "google_maps_photo"; date: string; dateEvidence: string; dateCheckedAt: string; validUntil: string };
 };
 export type Bar = {
   id: string;
@@ -75,6 +76,7 @@ export function selectBeerSize(f: Filters, volume: string) {
 }
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return bar.offers
+    .filter(o => isCurrentOffer(o))
     .filter(
       (o) =>
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
@@ -85,6 +87,20 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
         (f.volume === "stange" ? isStange(o) : f.volume === "all" || o.volumeMl === Number(f.volume)),
     )
     .sort((a, b) => cost(a, f.mode) - cost(b, f.mode));
+}
+export function isCurrentOffer(o: Offer, today?: string): boolean {
+  if (!o.photoSource || o.confidence === "community") return true;
+  const photo = o.photoSource.date;
+  if (!/^\d{4}-\d{2}(?:-\d{2})?$/.test(photo)) return false;
+  const first = photo.length === 7 ? photo + "-01" : photo;
+  const parsed = new Date(first + "T00:00:00Z");
+  if (!Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== first) return false;
+  today ||= new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Zurich" }).format(new Date());
+  const [year, month, day] = today.split("-").map(Number);
+  const cutoff = new Date(Date.UTC(year, month - 7, 1));
+  const last = new Date(Date.UTC(cutoff.getUTCFullYear(), cutoff.getUTCMonth() + 1, 0)).getUTCDate();
+  cutoff.setUTCDate(Math.min(day, last));
+  return first >= cutoff.toISOString().slice(0, 10) && first <= today;
 }
 export function bestOffer(bar: Bar, f: Filters): Offer | undefined {
   return matchingOffers(bar, f)[0];

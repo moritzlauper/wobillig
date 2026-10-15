@@ -21,6 +21,7 @@ from scraper.extract import SIZE
 from scraper.scrape import ROOT, Fetcher, now, html_content, prioritize_links, source_allowed, discover, pdf_links, SKIP_MENU, WEBSITES, REVIEWED_MENUS, REVIEWED_COFFEE_MENUS
 from scraper.scrape_coffee import save, include_cafes
 from scraper.enrich import QUERY, candidates
+from scraper.menu_photos import scan_photos, prune_expired_photos
 
 CHECKS = ROOT / 'scraper/ai_checks.json'
 
@@ -87,7 +88,7 @@ def classify_existing(client, bars):
 
 def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
     found, failures, visited, seen_documents = [], [], set(), set()
-    urls = list(dict.fromkeys(hints.get(bar['id'], []) + [o['sourceUrl'] for o in bar['offers']] + ([bar['website']] if bar.get('website') else [])))
+    urls = list(dict.fromkeys(hints.get(bar['id'], []) + [o['sourceUrl'] for o in bar['offers'] if not o.get('photoSource')] + ([bar['website']] if bar.get('website') else [])))
     while urls and len(visited) < max_pages and time.monotonic() < deadline:
         url = urls.pop(0)
         if url in visited: continue
@@ -155,6 +156,7 @@ def main():
     parser.add_argument('--limit', type=int, default=0)
     parser.add_argument('--discover', action='store_true')
     parser.add_argument('--estimates-only', action='store_true')
+    parser.add_argument('--photos-only', action='store_true')
     args = parser.parse_args()
     client = Claude(args.budget_usd, max(0, min(args.max_requests, 1000)))
     paths = {d: ROOT / 'public/data' / f'{file}.json' for d, file in [('beer', 'bars'), ('coffee', 'coffee')]}
@@ -169,21 +171,30 @@ def main():
             if b['id'] in merged: merged[b['id']]['offers'].extend(b['offers'])
             else: merged[b['id']] = {**b, 'offers': list(b['offers'])}
     before = {d: {'venues': sum(bool(b['offers']) for b in value['bars']), 'offers': sum(len(b['offers']) for b in value['bars'])} for d, value in data.items()}
-    failures = []
+    failures, photo_report = [], []
     def flush():
         estimate_types(list(by_drink['beer'].values()))
         for d, value in data.items():
+            prune_expired_photos(by_drink[d].values())
             value['bars'] = sorted(by_drink[d].values(), key=lambda b: b['name'].casefold())
             value['generatedAt'] = now(); save(paths[d], value)
         save(CHECKS, checks)
     try:
-        classify_existing(client, data['beer']['bars'])
+        if not args.estimates_only:
+            rows = json.loads((ROOT / 'scraper/menu_photos.json').read_text())
+            photo_offers, photo_report = scan_photos(rows, merged, client, Fetcher())
+            for bar_id, offer in photo_offers:
+                drink = 'coffee' if offer.get('coffeeType') else 'beer'
+                old = by_drink[drink].get(bar_id, {**merged[bar_id], 'offers': []})
+                prune_expired_photos([old])
+                by_drink[drink][bar_id] = {**old, 'offers': merge_offers(old['offers'], [offer])}
+        if not args.photos_only: classify_existing(client, data['beer']['bars'])
         flush()
         if args.discover:
             discovered = discover({}, query=QUERY)['bars']
             include_cafes(by_drink['coffee'], discovered)
             for b in candidates(discovered, list(merged.values()), hints, checks): merged[b['id']] = b
-        if not args.estimates_only:
+        if not args.estimates_only and not args.photos_only:
             deadline = time.monotonic() + max(1, args.minutes) * 60
             selected = [dict(b, website=WEBSITES.get(b['id'], b.get('website'))) for b in merged.values() if b.get('website') or hints.get(b['id']) or b['offers']]
             eligible_ids = {b['id'] for b in candidates(list(merged.values()), [], hints, checks)}
@@ -215,7 +226,7 @@ def main():
     finally:
         flush()
         after = {d: {'venues': sum(bool(b['offers']) for b in value['bars']), 'offers': sum(len(b['offers']) for b in value['bars'])} for d, value in data.items()}
-        report = {'model': MODEL, 'budgetUsd': client.budget, 'requests': client.requests, 'cacheHits': client.hits, 'estimatedCostUsd': round(client.spent, 4), 'before': before, 'after': after, 'errors': failures[:50]}
+        report = {'model': MODEL, 'budgetUsd': client.budget, 'requests': client.requests, 'cacheHits': client.hits, 'estimatedCostUsd': round(client.spent, 4), 'before': before, 'after': after, 'photos': photo_report, 'errors': failures[:50]}
         Path('scraper/cache/ai-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
         print(json.dumps(report, ensure_ascii=False, indent=2), flush=True)
         if os.environ.get('GITHUB_STEP_SUMMARY'):

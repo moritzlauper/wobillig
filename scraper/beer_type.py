@@ -11,6 +11,8 @@ SIZE_TEXT = r'\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l)\b'
 
 def explicit_type(text):
     matches=[kind for kind,pattern in PATTERNS.items() if re.search(pattern,text,re.I)]
+    if 'bottle' not in matches and re.search(r'\bfl\.?(?=\s+\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l)\b)', text, re.I):
+        matches.append('bottle')
     # "Draft" alone can be a section title, but also part of a bottled brand.
     if not matches and re.fullmatch(r'\s*(?:draft|draught)\s*:?',text,re.I):
         return 'draft'

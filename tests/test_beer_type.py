@@ -46,3 +46,24 @@ class BeerTypeTests(unittest.TestCase):
         body=document([(350,460,'Flaschenbier'),(20,440,'Lager 5dl 8.00'),(350,420,'Weizen 5dl 9.00')])
         found=extract_pdf(body,'url','today')
         self.assertEqual({(o['name'],o['beerType']) for o in found},{('Lager','unknown'),('Weizen','bottle')})
+
+class SpheresContinuationTests(unittest.TestCase):
+    def test_explicit_format_on_a_second_size_row_keeps_product(self):
+        from scraper.extract import extract_offers
+        menu='''Gold Sprint Lager – Turbinenbräu offen 3 dl 5.20
+        offen 5 dl 7.80
+        Amber – Amboss offen 3 dl 5.70
+        offen 5 dl 8.80
+        Pale Ale – AhoiHill offen 3 dl 6.50
+        offen 5 dl 9.50
+        Quöllfrisch, naturtrüb FL 5 dl 8.50
+        Weisser Hase, Weissbier FL 5 dl 8.50'''
+        offers=extract_offers(menu,'https://spheres.cc/menu','today',continuations=True)
+        self.assertEqual([(o['priceChf'],o['beerType']) for o in offers if o['volumeMl']==500],[(7.8,'draft'),(8.8,'draft'),(9.5,'draft'),(8.5,'bottle'),(8.5,'bottle')])
+        self.assertTrue(all(' / offen 5 dl' in o['evidence'] for o in offers if o['volumeMl']==500 and o['beerType']=='draft'))
+
+    def test_continuation_cannot_cross_an_unrelated_product(self):
+        from scraper.extract import extract_offers
+        menu='Lager offen 3 dl 5.20\nApfelschorle\noffen 5 dl 7.80'
+        self.assertEqual(len(extract_offers(menu,'url','today',continuations=True)),1)
+        self.assertEqual(extract_offers('offen 5 dl 7.80','url','today',continuations=True),[])

@@ -90,9 +90,11 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         # PDF rows often print a product once and the second size on the next line.
         # Only an immediately adjacent explicit size/price (optionally prefixed by
         # a parenthetical product description) may inherit that product name.
-        continuation = re.fullmatch(r'(?:\([^)]{1,65}\)\s*)?(\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l)\s+(?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?(?:\s*CHF)?)', line, re.I)
+        continuation = re.fullmatch(r'(?:\([^)]{1,65}\)\s*)?((?:(?:offen|vom\s+fass|fl\.?|flasche|bottle|dose|can)\s+)?)(\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l)\s+(?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?(?:\s*CHF)?)', line, re.I)
+        continuation_kind = None
         if continuations and previous_name and continuation:
-            line = previous_name + ' ' + continuation[1]
+            continuation_kind = explicit_type(line)
+            line = previous_name + ' ' + continuation[2]
             evidence = previous_evidence + ' / ' + evidence
         previous_name = None
         if len(line) > 350 or not BEER.search(line):
@@ -162,7 +164,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             clean_name=re.sub(r'\s*(?:alc\s*)?\(?<?\s*\d+(?:[.,]\d+)?\s*%\s*(?:vol\.?)?\)?', '', name, flags=re.I).strip()
             if not clean_name or len(clean_name)>80:
                 continue
-            kind=explicit_type(evidence) or beer_type
+            kind=continuation_kind or explicit_type(evidence) or beer_type
             key = (clean_name.casefold(), ml, price, kind)
             if key in seen:
                 continue

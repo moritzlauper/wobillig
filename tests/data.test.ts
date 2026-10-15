@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   filterBars,
+  isCurrentOffer,
   bestOffer,
   isStange,
   selectBeerSize,
@@ -178,4 +179,22 @@ it('keeps estimated formats filterable and distinct from source facts', async ()
   expect(isStange(estimated)).toBe(false);
   expect(bestOffer({ ...b, offers: [estimated] }, { ...f, beerType: 'bottle' })).toBe(estimated);
   expect(beerTypeLabel({ ...estimated, beerType: 'draft' })).toBe('Offenbier');
+});
+
+
+describe("dated menu photos", () => {
+  const photo = { kind: "google_maps_photo" as const, date: "2026-04-15", dateEvidence: "15 April 2026", dateCheckedAt: "2026-10-15", validUntil: "2026-10-15" };
+  it("accepts the exact six-month boundary but rejects ambiguous boundary months", () => {
+    expect(isCurrentOffer({ ...b.offers[0], photoSource: photo }, "2026-10-15")).toBe(true);
+    for (const date of ["2026-04-14", "2026-04", "2026-10-16", "2026-02-30", "", "2027-01"]) {
+      expect(isCurrentOffer({ ...b.offers[0], photoSource: { ...photo, date } }, "2026-10-15")).toBe(false);
+    }
+    expect(isCurrentOffer({ ...b.offers[0], photoSource: { ...photo, date: "2026-05" } }, "2026-10-15")).toBe(true);
+    expect(isCurrentOffer({ ...b.offers[0], photoSource: { ...photo, date: "2026-08-31" } }, "2027-02-28")).toBe(true);
+  });
+  it("keeps expired photo prices out of map and sorting even without a new deployment", () => {
+    const old = { ...b.offers[0], priceChf: 1, photoSource: { ...photo, date: "2020-01" } };
+    expect(bestOffer({ ...b, offers: [old, b.offers[1]] }, f)?.priceChf).toBe(7);
+    expect(isCurrentOffer({ ...old, confidence: "community" }, "2026-10-15")).toBe(true);
+  });
 });
