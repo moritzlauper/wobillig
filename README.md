@@ -18,7 +18,7 @@ Eine einfache Zürich-Karte für Bier-, Kaffee- und Pizza-Margherita-Preise. Typ
 - **Teilen** in den Lokaldetails öffnet das native Teilen-Menü. Der Direktlink öffnet das Lokal samt Karte und Preisen; Kaffee- und Stangenansicht bleiben erhalten. Ohne native Unterstützung wird der Link kopiert oder zum manuellen Kopieren angezeigt.
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
 - Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.
-- **Preis eintragen**, **Preis hinzufügen** und **Ändern**: Bier, Kaffee und Pizza Margherita bei bekannten Lokalen ergänzen oder korrigieren. Alle Besucher sehen die gespeicherten Preise. Änderungen werden getrennt vom Scraper gespeichert und als ungeprüfte Einträge gekennzeichnet.
+- Ein Lokal auf der Karte oder in der Liste anklicken, dann **Preis hinzufügen** oder **Ändern**: Bier, Kaffee und Pizza Margherita ergänzen oder korrigieren. Das Lokal ist im Formular bereits festgelegt. Alle Besucher sehen die gespeicherten Preise. Änderungen werden getrennt vom Scraper gespeichert und als ungeprüfte Einträge gekennzeichnet.
 - Scraping-Workflow alle zwei Wochen, CI und optionaler GitHub-Pages-Workflow.
 
 ## Ehrlicher Datenstand

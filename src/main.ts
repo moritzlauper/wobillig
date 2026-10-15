@@ -38,7 +38,6 @@ $('app').innerHTML = `
   <select id="coffeeType" aria-label="Kaffee- oder Matchasorte" hidden><option value="all">Alle Kaffees &amp; Matchas</option>${coffeeOptions}</select>
   <label class="budget">Bis CHF <input id="price" aria-label="Höchstpreis in CHF" type="number" min="0.5" max="50" step="0.5" value="15"></label>
   <button id="filters-toggle" aria-expanded="false" aria-controls="filters">Filter</button>
-  <button id="new-price" class="primary" disabled>Preis eintragen</button>
 </div>
 <div id="filters" hidden>
   <label>Lokal <select id="type">${options(venueTypes)}</select></label>
@@ -58,7 +57,8 @@ $('app').innerHTML = `
 <dialog id="share-dialog" aria-labelledby="share-title"><div class="dialog-top"><strong id="share-title">Lokal teilen</strong><button id="close-share" type="button">Schliessen</button></div><label for="share-url">Diesen Link kopieren und teilen:</label><input id="share-url" type="url" readonly></dialog>
 <dialog id="price-dialog" aria-label="Preis eintragen"><form id="price-form">
   <div class="dialog-top"><strong id="form-title">Preis eintragen</strong><button id="cancel-price" type="button">Schliessen</button></div>
-  <label>Lokal<select id="entry-bar" required></select></label>
+  <input id="entry-bar" type="hidden">
+  <label>Lokal<input id="entry-bar-name" readonly></label>
   <div class="form-row"><label>Kategorie<select id="entry-drink"><option value="beer">Bier</option><option value="coffee">Kaffee</option><option value="pizza">Pizza Margherita</option></select></label><label id="entry-coffee-label" hidden>Sorte<select id="entry-coffee">${coffeeOptions}</select></label></div>
   <label>Bezeichnung<input id="entry-name" maxlength="100" placeholder="z. B. Lager oder Espresso" required></label>
   <div id="entry-beer-fields"><label>Ausschank<select id="entry-beer-type">${options(beerTypeLabels)}</select></label><small id="entry-type-hint" class="muted" hidden>Diese Vorauswahl ist geschätzt. Bitte prüfen.</small><div class="form-row"><label>Menge in dl<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label class="check"><input id="entry-size-unknown" type="checkbox"> Menge nicht angegeben (nur Stange)</label><label class="check"><input id="entry-alcohol" type="checkbox"> Alkoholfrei</label></div>
@@ -132,7 +132,7 @@ function detail(b: Bar) {
   const matches = matchingOffers(b, f);
   const other = b.offers.filter(o => isCurrentOffer(o) && isComparableOffer(o) && !matches.includes(o));
   const offers = [...matches, ...other];
-  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">Schliessen</button></div><p class="muted">${e([b.address, b.postcode].filter(Boolean).join(' '))}</p><div class="detail-actions"><button id="add-here">Preis hinzufügen</button><button id="share-bar" aria-label="${e(b.name)} teilen">Teilen</button></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${offerCategory(o) === 'beer' ? ' · ' + e(beerTypeLabels[effectiveBeerType(o)]) : ''}${offerCategory(o) === 'beer' && o.alcoholFree ? ' · alkoholfrei' : ''}${!matches.includes(o) ? ' · ausserhalb Filter' : ''}</div>${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>geschätzt</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `Google-Maps-Foto · ${e(o.photoSource.date)} · ` : ''}${o.confidence === 'community' ? 'Eingetragen · nicht geprüft' : o.confidence === 'reviewed' ? 'Manuell geprüft' : o.confidence === 'ai' ? 'KI-erkannt · nicht geprüft' : 'Automatisch erkannt'} · ${e(new Date(o.observedAt).toLocaleDateString('de-CH'))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">Quelle</a>` : ''}<button data-edit="${i}">Ändern</button></div></div>`).join('') : '<p>Noch kein Preis eingetragen.</p>'}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
+  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">Schliessen</button></div><p class="muted">${e([b.address, b.postcode].filter(Boolean).join(' '))}</p><div class="detail-actions"><button id="add-here" class="primary">Preis hinzufügen</button><button id="share-bar" aria-label="${e(b.name)} teilen">Teilen</button></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${offerCategory(o) === 'beer' ? ' · ' + e(beerTypeLabels[effectiveBeerType(o)]) : ''}${offerCategory(o) === 'beer' && o.alcoholFree ? ' · alkoholfrei' : ''}${!matches.includes(o) ? ' · ausserhalb Filter' : ''}</div>${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>geschätzt</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `Google-Maps-Foto · ${e(o.photoSource.date)} · ` : ''}${o.confidence === 'community' ? 'Eingetragen · nicht geprüft' : o.confidence === 'reviewed' ? 'Manuell geprüft' : o.confidence === 'ai' ? 'KI-erkannt · nicht geprüft' : 'Automatisch erkannt'} · ${e(new Date(o.observedAt).toLocaleDateString('de-CH'))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">Quelle</a>` : ''}<button data-edit="${i}">Ändern</button></div></div>`).join('') : '<p>Noch kein Preis eingetragen.</p>'}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
   $('detail').hidden = false;
   $('close-detail').onclick = () => { selected = undefined; render(); };
   $('add-here').onclick = () => openPrice(b);
@@ -215,14 +215,13 @@ function entryFields() {
   if (unknown) $<HTMLInputElement>('entry-stange').checked = true;
   $<HTMLInputElement>('entry-stange').disabled = unknown || packaged;
 }
-function openPrice(bar?: Bar, offer?: Offer) {
+function openPrice(bar: Bar, offer?: Offer) {
   if (!communityReady) return toast('Gemeinsame Preise sind gerade nicht verfügbar. Bitte neu laden.');
   editing = offer;
   $<HTMLFormElement>('price-form').reset();
   $('form-title').textContent = offer ? 'Preis ändern' : 'Preis eintragen';
-  const select = $<HTMLSelectElement>('entry-bar');
-  select.innerHTML = '<option value="">Lokal wählen</option>' + venues.map(b => `<option value="${e(b.id)}">${e(b.name)}${b.address ? ` · ${e(b.address)}` : ''}</option>`).join('');
-  select.value = bar?.id || ''; select.disabled = Boolean(offer);
+  $<HTMLInputElement>('entry-bar').value = bar.id;
+  $<HTMLInputElement>('entry-bar-name').value = [bar.name, bar.address].filter(Boolean).join(' · ');
   $<HTMLSelectElement>('entry-drink').value = offer ? offerCategory(offer) : f.drink!;
   $<HTMLSelectElement>('entry-drink').disabled = Boolean(offer);
   $<HTMLSelectElement>('entry-coffee').value = offer?.coffeeType || (f.coffeeType === 'all' ? 'creme' : f.coffeeType!);
@@ -239,9 +238,8 @@ function openPrice(bar?: Bar, offer?: Offer) {
   $('form-error').hidden = true;
   entryFields();
   $<HTMLDialogElement>('price-dialog').showModal();
-  if (offer) $<HTMLInputElement>('entry-price').focus();
+  $<HTMLInputElement>(offer || pizza() ? 'entry-price' : 'entry-name').focus();
 }
-$('new-price').onclick = () => openPrice();
 $('entry-drink').onchange = entryFields; $('entry-size-unknown').onchange = entryFields;
 $('entry-beer-type').onchange = entryFields;
 $('cancel-price').onclick = () => { if (!saving) $<HTMLDialogElement>('price-dialog').close(); };
@@ -253,7 +251,7 @@ $('price-form').onsubmit = async event => {
     const drink = $<HTMLSelectElement>('entry-drink').value as Drink;
     const input = validateInput({
       id: editing?.communityId, revision: editing?.revision || 0, targetKey: editing ? editing.originalKey || offerKey(editing) : undefined,
-      barId: $<HTMLSelectElement>('entry-bar').value, drink,
+      barId: $<HTMLInputElement>('entry-bar').value, drink,
       name: $<HTMLInputElement>('entry-name').value, priceChf: $<HTMLInputElement>('entry-price').valueAsNumber,
       volumeMl: drink !== 'beer' || $<HTMLInputElement>('entry-size-unknown').checked ? null : $<HTMLInputElement>('entry-volume').valueAsNumber * 100,
       beerType: drink === 'beer' ? $<HTMLSelectElement>('entry-beer-type').value as BeerType : undefined,
@@ -295,9 +293,8 @@ async function loadCommunity() {
     const result = await response.json();
     if (!Array.isArray(result.entries)) throw new Error();
     entries = result.entries; communityReady = true;
-    $<HTMLButtonElement>('new-price').disabled = !venues.length;
     return true;
-  } catch { communityReady = false; $<HTMLButtonElement>('new-price').disabled = true; return false; }
+  } catch { communityReady = false; return false; }
 }
 async function init() {
   const [beerResult, coffeeResult, pizzaResult, loadedCommunity] = await Promise.all([
@@ -311,7 +308,6 @@ async function init() {
   if (pizzaResult) datasets.pizza = pizzaResult;
   venues = allVenues(datasets);
   $<HTMLInputElement>('price').value = String(f.max);
-  $<HTMLButtonElement>('new-price').disabled = !communityReady || !venues.length;
   const errors = [!beerResult ? 'Bierdaten konnten nicht geladen werden.' : '', !coffeeResult ? 'Kaffeedaten konnten nicht geladen werden.' : '', !pizzaResult ? 'Pizzadaten konnten nicht geladen werden.' : '', !loadedCommunity ? 'Gemeinsame Einträge nicht verfügbar. Zum Eintragen bitte später neu laden.' : ''].filter(Boolean);
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   rebuild();

@@ -90,8 +90,7 @@ dialog::backdrop { background: #0005; }
   #coffeeType { order: 1; grid-column: 1 / -1; max-width: none; width: 100%; min-width: 0; font-size: 16px; }
   .budget { order: 3; grid-column: span 2; font-size: 12px; }
   .budget input { width: 60px; min-width: 0; font-size: 16px; }
-  #filters-toggle { order: 4; grid-column: span 1; padding-inline: 2px; }
-  #new-price { order: 5; grid-column: span 3; width: 100%; padding-inline: 4px; }
+  #filters-toggle { order: 4; grid-column: span 4; padding-inline: 2px; }
   .status-row { min-height: 42px; }
   .mobile-switch { display: flex; gap: 3px; margin-left: auto; }
   .mobile-switch button { font-size: 12px; min-height: 44px; padding: 4px 8px; }
