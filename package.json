@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && tsc -p tsconfig.server.json && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:storage": "RUN_BLOB_INTEGRATION=1 node --env-file=.env.local node_modules/vitest/vitest.mjs run tests/blob.integration.test.ts"

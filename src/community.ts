@@ -1,4 +1,4 @@
-import { coffeeLabels, type Bar, type Dataset, type Offer } from './data';
+import { coffeeLabels, type Bar, type Dataset, type Offer } from './data.js';
 
 export type Drink = 'beer' | 'coffee';
 export type PriceEntry = {
