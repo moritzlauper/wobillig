@@ -1,12 +1,16 @@
+import type { Filters } from './data';
 import type { Drink } from './community';
 
-export function barLink(href: string, barId: string, drink: Drink, volume: string): string {
+export function barLink(href: string, barId: string, drink: Drink, volume: string, beerType: Filters['beerType'] = 'draft'): string {
   const url = new URL(href);
   url.search = '';
   url.hash = '';
   url.searchParams.set('bar', barId);
   if (drink !== 'beer') url.searchParams.set('drink', drink);
-  else if (volume === 'stange') url.searchParams.set('size', 'stange');
+  else {
+    url.searchParams.set('size', volume);
+    if (beerType && beerType !== 'draft') url.searchParams.set('beerType', beerType);
+  }
   return url.href;
 }
 

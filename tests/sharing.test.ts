@@ -5,8 +5,13 @@ describe('bar links', () => {
   it('keeps the deployment path and bar ID without unrelated URL state', () => {
     const url = new URL(barLink('https://example.com/wobillig/?bar=node%2F1&drink=coffee&utm_source=test#old', 'way/123', 'beer', '500'));
     expect(url.pathname).toBe('/wobillig/');
-    expect([...url.searchParams]).toEqual([['bar', 'way/123']]);
+    expect([...url.searchParams]).toEqual([['bar', 'way/123'], ['size', '500']]);
     expect(url.hash).toBe('');
+  });
+  it('preserves bottled beer and its portion when sharing', () => {
+    const url = new URL(barLink('https://example.com/', 'node/2', 'beer', 'all', 'bottle'));
+    expect(url.searchParams.get('size')).toBe('all');
+    expect(url.searchParams.get('beerType')).toBe('bottle');
   });
   it('preserves coffee and Stange entry points', () => {
     const coffee = new URL(barLink('https://example.com/', 'node/2', 'coffee', 'stange'));

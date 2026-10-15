@@ -8,6 +8,7 @@ import {
   isComparableOffer,
   isCurrentOffer,
   bestOffer,
+  matchingOffers,
   isStange,
   selectBeerSize,
   cost,
@@ -272,5 +273,25 @@ describe("evening opening intervals", () => {
   });
   it.each([null, "", '"Community events"', "sunset-sunrise", "Mo 08:00-17:00; Fr 18:00+", "by appointment"])("leaves unsupported or missing hours unknown: %s", hours => {
     expect(hasEveningHours(hours)).toBeUndefined();
+  });
+});
+
+
+describe("combined 3 / 3.3 dl filter", () => {
+  const draft = { ...b.offers[0], beerType: "draft" as const };
+  const bottle = { ...draft, beerType: "bottle" as const, volumeMl: 330, priceChf: 5.5 };
+  const stange = { ...draft, serving: "stange" as const, volumeMl: null, priceChf: 4.5 };
+  const bar = { ...b, offers: [draft, bottle, stange, { ...bottle, volumeMl: 500 }, { ...draft, volumeMl: 200 }, { ...bottle, volumeMl: null }] };
+  it("shows Stangen and small bottles together at their actual serving price", () => {
+    const filters: Filters = { ...f, beerType: "draft", mode: "half" };
+    selectBeerSize(filters, "300-330");
+    expect(filters.beerType).toBe("all");
+    expect(filters.mode).toBe("glass");
+    expect(matchingOffers(bar, filters)).toEqual([stange, draft, bottle]);
+  });
+  it("still allows narrowing the combined size to bottles or draft afterwards", () => {
+    expect(matchingOffers(bar, { ...f, volume: "300-330", beerType: "bottle" })).toEqual([bottle]);
+    expect(matchingOffers(bar, { ...f, volume: "300-330", beerType: "draft" })).toEqual([stange, draft]);
+    expect(matchingOffers(bar, { ...f, volume: "stange", beerType: "all" })).toEqual([stange, draft]);
   });
 });

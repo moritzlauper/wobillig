@@ -17,6 +17,9 @@ a { color: #285b90; text-underline-offset: 2px; }
 .switch { display: flex; gap: 4px; }
 #search { flex: 1; min-width: 160px; }
 #coffeeType { max-width: 200px; }
+.beer-controls { display: flex; gap: 8px; }
+.beer-controls label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; min-width: 0; }
+.beer-controls select { font-size: 14px; font-weight: 400; min-height: 44px; width: 100%; }
 .budget { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
 .budget input { width: 70px; }
 #filters { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; padding: 10px; background: #f7f7f7; border-bottom: 1px solid #ccc; }
@@ -78,17 +81,21 @@ dialog::backdrop { background: #0005; }
 #form-error { color: #a21c16; background: #fff0ef; padding: 9px; font-size: 13px; }
 #toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #252525; color: white; padding: 12px 16px; border-radius: 3px; z-index: 1500; max-width: calc(100% - 24px); width: max-content; font-size: 13px; }
 @media (max-width: 760px) {
-  .toolbar { gap: 7px; padding: 8px; }
-  .toolbar > .switch { order: 0; }
-  #search { order: 1; width: 50%; min-width: 0; }
-  #volume, #coffeeType { order: 2; flex: 1; max-width: none; width: 135px; min-width: 0; }
-  .budget { order: 3; font-size: 12px; }
-  .budget input { width: 60px; }
-  #filters-toggle { order: 4; }
-  #new-price { order: 5; width: 100%; }
+  .toolbar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 7px; padding: 8px; flex-shrink: 0; }
+  .toolbar button, .toolbar select, .toolbar input { min-height: 44px; }
+  .toolbar > .switch { order: 0; grid-column: 1 / -1; }
+  .toolbar > .switch button { flex: 1; }
+  .beer-controls { order: 1; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .beer-controls select { font-size: 16px; }
+  #search { order: 2; grid-column: 1 / -1; width: 100%; min-width: 0; }
+  #coffeeType { order: 1; grid-column: 1 / -1; max-width: none; width: 100%; min-width: 0; font-size: 16px; }
+  .budget { order: 3; grid-column: span 2; font-size: 12px; }
+  .budget input { width: 60px; min-width: 0; font-size: 16px; }
+  #filters-toggle { order: 4; grid-column: span 1; padding-inline: 2px; }
+  #new-price { order: 5; grid-column: span 3; width: 100%; padding-inline: 4px; }
   .status-row { min-height: 42px; }
   .mobile-switch { display: flex; gap: 3px; margin-left: auto; }
-  .mobile-switch button { font-size: 12px; min-height: 29px; padding: 4px 8px; }
+  .mobile-switch button { font-size: 12px; min-height: 44px; padding: 4px 8px; }
   #count { font-size: 11px; }
   #filters { gap: 10px; max-height: 30dvh; overflow-y: auto; font-size: 12px; }
   .list-panel { display: none; flex-basis: 100%; border: 0; }
@@ -101,16 +108,6 @@ dialog::backdrop { background: #0005; }
 }
 /* Keep the detail sheet above Leaflet's controls. */
 #detail { z-index: 1100; }
-@media (max-width: 760px) {
-  .toolbar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .toolbar > .switch { grid-column: 1 / -1; }
-  .toolbar > .switch button { flex: 1; }
-  #search { grid-column: 1 / -1; width: 100%; }
-  #volume, #coffeeType { grid-column: span 3; width: 100%; }
-  .budget { grid-column: span 2; }
-  #filters-toggle { grid-column: span 1; padding-inline: 2px; }
-  #new-price { grid-column: 1 / -1; }
-}
 @media (max-width: 360px) {
   .budget { font-size: 11px; gap: 4px; }
   .budget input { width: 48px; padding-inline: 4px; }

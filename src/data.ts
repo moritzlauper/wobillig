@@ -84,7 +84,8 @@ export function isStange(o: Offer) {
 }
 export function selectBeerSize(f: Filters, volume: string) {
   f.volume = volume;
-  if (volume === "stange" || volume === "300") f.mode = "glass";
+  if (["stange", "300", "300-330"].includes(volume)) f.mode = "glass";
+  if (volume === "300-330") f.beerType = "all";
 }
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return bar.offers
@@ -98,7 +99,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
         !o.coffeeType && o.alcoholFree === f.alcoholFree &&
         (!f.beerType || f.beerType === "all" || effectiveBeerType(o) === f.beerType) &&
         (f.mode !== "half" || Boolean(o.volumeMl)) &&
-        (f.volume === "stange" ? isStange(o) : f.volume === "all" || o.volumeMl === Number(f.volume)),
+        (f.volume === "stange" ? isStange(o) : f.volume === "300-330" ? isStange(o) || o.volumeMl === 300 || o.volumeMl === 330 : f.volume === "all" || o.volumeMl === Number(f.volume)),
     )
     .sort((a, b) => cost(a, f.mode) - cost(b, f.mode));
 }
