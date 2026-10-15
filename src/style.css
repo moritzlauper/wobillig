@@ -45,6 +45,11 @@ main { display: flex; flex: 1; min-height: 0; }
 .price-marker { display: block; background: white; color: #222; border: 1px solid #444; border-radius: 3px; padding: 4px 2px; text-align: center; font: bold 13px Arial, sans-serif; box-shadow: 0 1px 3px #0003; }
 .price-marker.active { background: #262626; color: white; border: 2px solid white; outline: 1px solid #262626; }
 .price-marker.unknown { border: 1px solid #888; color: #666; padding: 0; height: 14px; width: 14px; font-size: 13px; line-height: 10px; border-radius: 50%; }
+.unpriced-marker { display: flex; flex-direction: column; align-items: center; padding-top: 15px; cursor: pointer; }
+.unpriced-marker .unknown { flex-shrink: 0; }
+.venue-marker-name { max-width: 132px; margin-top: 2px; padding: 2px 4px; border: 1px solid #bbb; border-radius: 3px; background: #fffffff2; color: #444; font: 11px/14px Arial, sans-serif; text-align: center; }
+.unpriced-marker:hover .unknown, .unpriced-marker:focus-visible .unknown { outline: 2px solid #2767b3; }
+.unpriced-marker:hover .venue-marker-name { border-color: #444; }
 #detail { position: absolute; top: 10px; right: 10px; bottom: 10px; width: min(390px, calc(100% - 20px)); background: white; border: 1px solid #aaa; border-radius: 4px; z-index: 700; padding: 15px; overflow-y: auto; box-shadow: 0 2px 10px #0002; }
 #detail:focus { outline: none; }
 .detail-top, .dialog-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
