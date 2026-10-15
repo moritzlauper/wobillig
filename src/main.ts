@@ -31,8 +31,8 @@ $('app').innerHTML = `
   <div class="switch" role="group" aria-label="Kategorie"><button id="drink-beer">Bier</button><button id="drink-coffee">Kaffee</button><button id="drink-pizza">Pizza Margherita</button></div>
   <input id="search" type="search" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen">
   <div id="beer-controls" class="beer-controls">
-    <label>Ausschank<select id="beer-type">${options({ draft: 'Offenbier', bottle: 'Flaschenbier', all: 'Alle Ausschankarten', can: 'Dosenbier', unknown: 'Unbekannt' })}</select></label>
-    <label>Grösse<select id="volume" aria-label="Biergrösse">${options({ stange: 'Stange / 3 dl', '300-330': '3 / 3.3 dl', '500': '5 dl', '300': 'Genau 3 dl', '330': '3.3 dl', '400': '4 dl', all: 'Alle Grössen' })}</select></label>
+    <select id="beer-type" aria-label="Ausschank">${options({ draft: 'Offenbier', bottle: 'Flaschenbier', all: 'Alle Ausschankarten', can: 'Dosenbier', unknown: 'Unbekannt' })}</select>
+    <select id="volume" aria-label="Biergrösse">${options({ stange: 'Stange / 3 dl', '300-330': '3 / 3.3 dl', '500': '5 dl', '300': 'Genau 3 dl', '330': '3.3 dl', '400': '4 dl', all: 'Alle Grössen' })}</select>
   </div>
   <select id="coffeeType" aria-label="Kaffee- oder Matchasorte" hidden><option value="all">Alle Kaffees &amp; Matchas</option>${coffeeOptions}</select>
   <label class="budget">Bis CHF <input id="price" aria-label="Höchstpreis in CHF" type="number" min="0.5" max="50" step="0.5" value="15"></label>
