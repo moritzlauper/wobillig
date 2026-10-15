@@ -3,6 +3,7 @@ from io import BytesIO
 import re
 import pdfplumber
 from scraper.extract import BEER, SIZE, extract_offers, extract_stange_prefix
+from scraper.beer_type import explicit_type, section_type, annotate
 
 BEER_HEADING = re.compile(r'\b(?:biere?|beers?|flaschenbier[e]?|offenbier[e]?|draught|draft|bottled|by the bottle|bottles|vom fass)\b', re.I)
 STOP_HEADING = re.compile(r'\b(?:wein[e]?|wine[s]?|soft|getränke|cocktails?|spirituosen|shots|aperitif|kaffee|coffee|tee|cider|most|säfte|spritz|gin|whisk\w*)\b', re.I)
@@ -168,12 +169,25 @@ def extract_pdf(body, url, stamp):
         for number, page in enumerate(doc.pages[:25], 1):
             for region in column_regions(page):
                 lines = region.extract_text_lines(x_tolerance=2, y_tolerance=3)
+                context='unknown'; context_x=None; contexts=[]
+                for row in lines:
+                    heading=section_type(row['text'])
+                    if heading is not None:
+                        context=heading; context_x=row['x0']
+                    contexts.append(context if context_x is not None and abs(row['x0']-context_x)<=60 else 'unknown')
                 text = '\n'.join(row['text'] for row in lines)
                 direct = extract_offers(text, url, stamp, continuations=True)
-                for row in lines:
+                for index,row in enumerate(lines):
                     for offer in extract_stange_prefix(row['text'],url,stamp):
+                        annotate(offer,contexts[index])
                         offer['evidence']=f'PDF S. {number}: '+offer['evidence']
                         direct.append(offer)
+                # Text order alone must not carry a neighbouring column's heading.
+                for offer in direct:
+                    if explicit_type(offer['evidence']) is None:
+                        evidence=re.sub(r'^PDF S\. \d+: ','',offer['evidence'])
+                        matches=[contexts[i] for i,row in enumerate(lines) if evidence==row['text'] or evidence.startswith(row['text']+' / ')]
+                        offer['beerType']=matches[0] if matches and len(set(matches))==1 else 'unknown'
                 alcohol_free = False
                 for row in lines:
                     if re.fullmatch(r'(?:BIER\s+)?ALKOHOLFREI(?:ES BIER)?',row['text'],re.I):
@@ -210,6 +224,7 @@ def extract_pdf(body, url, stamp):
                             recovered=extract_offers(name + ' ' + metadata + ' ' + part, url, stamp)
                             for o in recovered:
                                 o['evidence']=f'PDF S. {number}: {name} / {following["text"]}'[:350]
+                                annotate(o,contexts[index])
                             offers.extend(recovered)
                         elif abv and header_sizes:
                             prices=re.split(r'\s*/\s*',part)
@@ -217,11 +232,13 @@ def extract_pdf(body, url, stamp):
                                 expanded=name+' '+metadata+' '+' | '.join(s+' '+p for s,p in zip(header_sizes,prices))
                                 for o in extract_offers(expanded,url,stamp):
                                     o['evidence']=f'PDF S. {number}: {" / ".join(header_sizes)} / {name} / {following["text"]}'[:350]
+                                    annotate(o,contexts[index])
                                     offers.append(o)
                         break
                 for expanded, evidence in table_lines(lines) + aligned_table_lines(region):
                     for offer in extract_offers(expanded, url, stamp):
                         offer['evidence'] = f'PDF S. {number}: {evidence}'[:350]
+                        annotate(offer)
                         offers.append(offer)
     return offers
 

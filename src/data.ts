@@ -1,8 +1,11 @@
+export type BeerType = "draft" | "bottle" | "can" | "unknown";
+export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bottle: "Flaschenbier", can: "Dosenbier", unknown: "Ausschankart unbekannt" };
 export type Offer = {
   name: string;
   volumeMl: number | null;
   coffeeType?: string;
   serving?: "stange";
+  beerType?: BeerType;
   priceChf: number;
   sourceUrl: string;
   observedAt: string;
@@ -37,6 +40,7 @@ export type Dataset = {
 export type Filters = {
   drink?: "beer" | "coffee";
   coffeeType?: string;
+  beerType?: BeerType | "all";
   query: string;
   max: number;
   volume: string;
@@ -55,8 +59,11 @@ export const coffeeLabels: Record<string, string> = {
 export function portion(o: Offer) {
   return o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : o.volumeMl ? `${o.volumeMl / 100} dl` : "Stange · Grösse nicht angegeben";
 }
+export function beerTypeLabel(o: Offer) {
+  return o.coffeeType ? "" : beerTypeLabels[o.beerType || "unknown"];
+}
 export function isStange(o: Offer) {
-  return !o.coffeeType && (o.volumeMl === 300 || (o.serving === "stange" && (o.volumeMl === null || (o.volumeMl >= 300 && o.volumeMl <= 330))));
+  return !o.coffeeType && o.beerType !== "bottle" && o.beerType !== "can" && (o.volumeMl === 300 || (o.serving === "stange" && (o.volumeMl === null || (o.volumeMl >= 300 && o.volumeMl <= 330))));
 }
 export function selectBeerSize(f: Filters, volume: string) {
   f.volume = volume;
@@ -69,6 +76,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree &&
+        (!f.beerType || f.beerType === "all" || (o.beerType || "unknown") === f.beerType) &&
         (f.mode !== "half" || Boolean(o.volumeMl)) &&
         (f.volume === "stange" ? isStange(o) : f.volume === "all" || o.volumeMl === Number(f.volume)),
     )

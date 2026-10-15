@@ -1,7 +1,7 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
-import { bestOffer, matchingOffers, coffeeLabels, portion, cost, escapeHtml as e, filterBars, safeUrl, type Bar, type Dataset, type Filters, type Offer } from './data';
+import { bestOffer, matchingOffers, coffeeLabels, portion, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
 import { allVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -9,14 +9,14 @@ const money = (n: number) => n.toFixed(2);
 const options = (values: Record<string, string>) => Object.entries(values).map(([value, label]) => `<option value="${value}">${e(label)}</option>`).join('');
 const coffeeOptions = options(coffeeLabels);
 const initial = new URLSearchParams(location.search);
-const f: Filters = { drink: initial.get('drink') === 'coffee' ? 'coffee' : 'beer', coffeeType: 'creme', query: '', max: 15, volume: initial.get('size') === 'stange' ? 'stange' : '500', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
+const f: Filters = { drink: initial.get('drink') === 'coffee' ? 'coffee' : 'beer', coffeeType: 'creme', beerType: 'all', query: '', max: 15, volume: initial.get('size') === 'stange' ? 'stange' : '500', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
 const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
 let communityReady = false, saving = false;
 let userMarker: L.CircleMarker | undefined;
 const coffee = () => f.drink === 'coffee';
-const unit = (o: Offer) => o.coffeeType ? portion(o) : f.mode === 'half' ? `5 dl${o.volumeMl === 500 ? '' : ' · umgerechnet'}` : portion(o);
+const unit = (o: Offer) => o.coffeeType ? portion(o) : `${f.mode === 'half' ? `5 dl${o.volumeMl === 500 ? '' : ' · umgerechnet'}` : portion(o)} · ${beerTypeLabel(o)}`;
 
 $('app').innerHTML = `
 <div class="toolbar">
@@ -32,6 +32,7 @@ $('app').innerHTML = `
   <label>Lokal <select id="type">${options({ '': 'Alle', bar: 'Bar', pub: 'Pub', biergarten: 'Biergarten', restaurant: 'Restaurant', cafe: 'Café' })}</select></label>
   <label><input id="unknown" type="checkbox" checked> Ohne passenden Preis anzeigen</label>
   <label><input id="outdoor" type="checkbox"> Draussen sitzen</label>
+  <label id="beer-type-label">Ausschank<select id="beer-type">${options({ all: 'Alle', ...beerTypeLabels })}</select></label>
   <label id="alcohol-label"><input id="alcohol-free" type="checkbox"> Alkoholfrei</label>
   <label id="normalize-label"><input id="normalize" type="checkbox"> Auf 5 dl umrechnen</label>
   <button id="reset">Zurücksetzen</button>
@@ -48,13 +49,13 @@ $('app').innerHTML = `
   <label>Lokal<select id="entry-bar" required></select></label>
   <div class="form-row"><label>Getränk<select id="entry-drink"><option value="beer">Bier</option><option value="coffee">Kaffee</option></select></label><label id="entry-coffee-label" hidden>Sorte<select id="entry-coffee">${coffeeOptions}</select></label></div>
   <label>Bezeichnung<input id="entry-name" maxlength="100" placeholder="z. B. Lager oder Espresso" required></label>
-  <div id="entry-beer-fields"><div class="form-row"><label>Menge in dl<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label class="check"><input id="entry-size-unknown" type="checkbox"> Menge nicht angegeben (nur Stange)</label><label class="check"><input id="entry-alcohol" type="checkbox"> Alkoholfrei</label></div>
+  <div id="entry-beer-fields"><label>Ausschank<select id="entry-beer-type">${options(beerTypeLabels)}</select></label><div class="form-row"><label>Menge in dl<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label class="check"><input id="entry-size-unknown" type="checkbox"> Menge nicht angegeben (nur Stange)</label><label class="check"><input id="entry-alcohol" type="checkbox"> Alkoholfrei</label></div>
   <div class="form-row"><label>Preis in CHF<input id="entry-price" type="number" min="0.5" max="50" step="0.01" inputmode="decimal" required></label><label>Preis gesehen am<input id="entry-date" type="date" min="2020-01-01" required></label></div>
   <label>Link zur Karte (optional)<input id="entry-source" type="url" maxlength="1500" placeholder="https://…"></label>
   <p class="muted">Wird für alle sichtbar. Bitte den tatsächlichen Preis dieser Portion eintragen.</p>
   <p id="form-error" role="alert" hidden></p><button id="save-price" class="primary" type="submit">Speichern</button>
 </form></dialog>
-<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><p id="coverage"></p><p>Preise stammen aus verlinkten Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
+<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><p id="coverage"></p><p>Preise stammen aus verlinkten Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Ausschankart nur gemäss Quelle, sonst unbekannt. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
 
 const map = L.map('map', { zoomControl: false }).setView([47.378, 8.535], 14);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
@@ -75,6 +76,7 @@ function rebuild() {
 }
 function syncControls() {
   $('volume').hidden = coffee(); $('coffeeType').hidden = !coffee();
+  $('beer-type-label').hidden = coffee(); $<HTMLSelectElement>('beer-type').value = f.beerType || 'all';
   $('alcohol-label').hidden = coffee(); $('normalize-label').hidden = coffee() || ['stange', '300'].includes(f.volume);
   $<HTMLSelectElement>('volume').value = f.volume;
   $<HTMLSelectElement>('coffeeType').value = f.coffeeType!;
@@ -99,7 +101,7 @@ function render() {
     const o = bestOffer(b, f);
     const label = `${b.name}: ${o ? `CHF ${money(cost(o, f.mode))} / ${unit(o)}` : 'kein passender Preis'}`;
     L.marker([b.lat, b.lon], {
-      icon: L.divIcon({ className: 'marker-wrap', html: `<span class="price-marker ${o ? '' : 'unknown'} ${b.id === selected ? 'active' : ''}">${o ? money(cost(o, f.mode)) : '·'}</span>`, iconSize: o ? [50, 26] : [14, 14], iconAnchor: o ? [25, 13] : [7, 7] }),
+      icon: L.divIcon({ className: 'marker-wrap', html: `<span class="price-marker ${o ? '' : 'unknown'} ${b.id === selected ? 'active' : ''}">${o ? money(cost(o, f.mode)) : '·'}${o && !o.coffeeType ? `<small>${{ draft: 'Offen', bottle: 'Flasche', can: 'Dose', unknown: 'Art unbek.' }[o.beerType || 'unknown']}</small>` : ''}</span>`, iconSize: o ? [54, o.coffeeType ? 26 : 40] : [14, 14], iconAnchor: o ? [27, o.coffeeType ? 13 : 20] : [7, 7] }),
       title: label, alt: label, zIndexOffset: b.id === selected ? 2000 : o ? 1000 : 0,
     }).addTo(layer).on('click', () => showBar(b));
   }
@@ -111,7 +113,7 @@ function detail(b: Bar) {
   const matches = matchingOffers(b, f);
   const other = b.offers.filter(o => !matches.includes(o));
   const offers = [...matches, ...other];
-  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">Schliessen</button></div><p class="muted">${e([b.address, b.postcode].filter(Boolean).join(' '))}</p><button id="add-here">Preis hinzufügen</button>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${!o.coffeeType && o.alcoholFree ? ' · alkoholfrei' : ''}${!matches.includes(o) ? ' · ausserhalb Filter' : ''}</div><div class="offer-meta"><span>${o.confidence === 'community' ? 'Eingetragen · nicht geprüft' : o.confidence === 'reviewed' ? 'Manuell geprüft' : 'Automatisch erkannt'} · ${e(new Date(o.observedAt).toLocaleDateString('de-CH'))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">Quelle</a>` : ''}<button data-edit="${i}">Ändern</button></div></div>`).join('') : '<p>Noch kein Preis eingetragen.</p>'}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
+  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">Schliessen</button></div><p class="muted">${e([b.address, b.postcode].filter(Boolean).join(' '))}</p><button id="add-here">Preis hinzufügen</button>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${!o.coffeeType ? ' · ' + e(beerTypeLabel(o)) : ''}${!o.coffeeType && o.alcoholFree ? ' · alkoholfrei' : ''}${!matches.includes(o) ? ' · ausserhalb Filter' : ''}</div><div class="offer-meta"><span>${o.confidence === 'community' ? 'Eingetragen · nicht geprüft' : o.confidence === 'reviewed' ? 'Manuell geprüft' : 'Automatisch erkannt'} · ${e(new Date(o.observedAt).toLocaleDateString('de-CH'))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">Quelle</a>` : ''}<button data-edit="${i}">Ändern</button></div></div>`).join('') : '<p>Noch kein Preis eingetragen.</p>'}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
   $('detail').hidden = false;
   $('close-detail').onclick = () => { selected = undefined; render(); };
   $('add-here').onclick = () => openPrice(b);
@@ -125,13 +127,14 @@ $('search').oninput = () => { f.query = $<HTMLInputElement>('search').value; ren
 $('price').oninput = () => { const n = $<HTMLInputElement>('price').valueAsNumber; f.max = Number.isFinite(n) ? n : Infinity; render(); };
 $('volume').onchange = () => { f.volume = $<HTMLSelectElement>('volume').value; if (['stange', '300'].includes(f.volume)) f.mode = 'glass'; render(); };
 $('coffeeType').onchange = () => { f.coffeeType = $<HTMLSelectElement>('coffeeType').value; render(); };
+$('beer-type').onchange = () => { f.beerType = $<HTMLSelectElement>('beer-type').value as Filters['beerType']; render(); };
 $('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render(); };
 $('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position) locate(); else render(); };
 for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree']] as const) $(id).onchange = () => { f[key] = $<HTMLInputElement>(id).checked; render(); };
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
 $('reset').onclick = () => {
-  Object.assign(f, { query: '', max: 15, volume: '500', coffeeType: 'creme', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  Object.assign(f, { query: '', max: 15, volume: '500', coffeeType: 'creme', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = '15';
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
   for (const id of ['unknown', 'outdoor', 'alcohol-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
@@ -155,12 +158,15 @@ $('close-info').onclick = () => $<HTMLDialogElement>('info').close();
 
 function entryFields() {
   const isCoffee = $<HTMLSelectElement>('entry-drink').value === 'coffee';
+  const packaged = ['bottle', 'can'].includes($<HTMLSelectElement>('entry-beer-type').value);
+  if (packaged) { $<HTMLInputElement>('entry-stange').checked = false; $<HTMLInputElement>('entry-size-unknown').checked = false; }
+  $<HTMLInputElement>('entry-size-unknown').disabled = packaged;
   const unknown = $<HTMLInputElement>('entry-size-unknown').checked;
   $('entry-coffee-label').hidden = !isCoffee; $('entry-beer-fields').hidden = isCoffee;
   $<HTMLInputElement>('entry-volume').disabled = isCoffee || unknown;
   $<HTMLInputElement>('entry-volume').required = !isCoffee && !unknown;
   if (unknown) $<HTMLInputElement>('entry-stange').checked = true;
-  $<HTMLInputElement>('entry-stange').disabled = unknown;
+  $<HTMLInputElement>('entry-stange').disabled = unknown || packaged;
 }
 function openPrice(bar?: Bar, offer?: Offer) {
   if (!communityReady) return toast('Gemeinsame Preise sind gerade nicht verfügbar. Bitte neu laden.');
@@ -178,6 +184,7 @@ function openPrice(bar?: Bar, offer?: Offer) {
   $<HTMLInputElement>('entry-volume').value = String(offer?.volumeMl ? offer.volumeMl / 100 : f.volume === 'stange' ? 3 : f.volume === 'all' ? 5 : Number(f.volume) / 100);
   $<HTMLInputElement>('entry-stange').checked = offer?.serving === 'stange' || (!offer && f.volume === 'stange');
   $<HTMLInputElement>('entry-size-unknown').checked = Boolean(offer && !offer.coffeeType && offer.volumeMl === null);
+  $<HTMLSelectElement>('entry-beer-type').value = offer?.beerType || 'unknown';
   $<HTMLInputElement>('entry-alcohol').checked = offer?.alcoholFree ?? f.alcoholFree;
   $<HTMLInputElement>('entry-date').value = zurichToday(); $<HTMLInputElement>('entry-date').max = zurichToday();
   $<HTMLInputElement>('entry-source').value = offer?.sourceUrl || '';
@@ -188,6 +195,7 @@ function openPrice(bar?: Bar, offer?: Offer) {
 }
 $('new-price').onclick = () => openPrice();
 $('entry-drink').onchange = entryFields; $('entry-size-unknown').onchange = entryFields;
+$('entry-beer-type').onchange = entryFields;
 $('cancel-price').onclick = () => { if (!saving) $<HTMLDialogElement>('price-dialog').close(); };
 $('price-dialog').addEventListener('cancel', event => { if (saving) event.preventDefault(); });
 $('price-form').onsubmit = async event => {
@@ -200,6 +208,7 @@ $('price-form').onsubmit = async event => {
       barId: $<HTMLSelectElement>('entry-bar').value, drink,
       name: $<HTMLInputElement>('entry-name').value, priceChf: $<HTMLInputElement>('entry-price').valueAsNumber,
       volumeMl: drink === 'coffee' || $<HTMLInputElement>('entry-size-unknown').checked ? null : $<HTMLInputElement>('entry-volume').valueAsNumber * 100,
+      beerType: drink === 'beer' ? $<HTMLSelectElement>('entry-beer-type').value as BeerType : undefined,
       coffeeType: drink === 'coffee' ? $<HTMLSelectElement>('entry-coffee').value : undefined,
       serving: drink === 'beer' && $<HTMLInputElement>('entry-stange').checked ? 'stange' : undefined,
       alcoholFree: drink === 'coffee' || $<HTMLInputElement>('entry-alcohol').checked,
@@ -218,7 +227,7 @@ $('price-form').onsubmit = async event => {
     // Keep the saved portion visible even if it differs from the current filter.
     f.mode = 'glass'; f.alcoholFree = input.alcoholFree;
     if (drink === 'coffee') f.coffeeType = input.coffeeType;
-    else f.volume = input.serving === 'stange' ? 'stange' : String(input.volumeMl);
+    else { f.volume = input.serving === 'stange' ? 'stange' : String(input.volumeMl); f.beerType = input.beerType || 'unknown'; }
     if (!Array.from($<HTMLSelectElement>('volume').options).some(x => x.value === f.volume)) f.volume = 'all';
     f.max = Math.max(f.max, input.priceChf); $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
     $<HTMLInputElement>('alcohol-free').checked = f.alcoholFree;

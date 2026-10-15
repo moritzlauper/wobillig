@@ -8,10 +8,11 @@ Eine einfache Zürich-Karte für Bier- und Kaffeepreise. TypeScript, Leaflet, Py
 - Kaffee nach Sorte vergleichen: Café crème/Kaffee, Espresso, doppelter Espresso, Ristretto, Cappuccino, Latte macchiato, Milchkaffee/Caffè latte, Flat White, Americano und Filterkaffee. Preise gelten **pro Getränk**, ohne erfundene Tassengrössen oder 5-dl-Umrechnung.
 - Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.
 - Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten/Restaurant/Café, Terrasse und alkoholfreies Bier.
-- Grössenfilter **Stange / 3 dl** und **5 dl**. Die Stangen-Auswahl zeigt den tatsächlichen Glaspreis und ist unter `?size=stange` direkt verlinkbar. Sie enthält 3-dl-Angebote sowie ausdrücklich als Stange bezeichnete 3–3.3-dl-Portionen oder Angebote ohne Mengenangabe. Bekannte 2-dl-Portionen und gewöhnliche 3.3-dl-Flaschen gehören nicht dazu.
+- Grössenfilter **Stange / 3 dl** und **5 dl**. Die Stangen-Auswahl zeigt den tatsächlichen Glaspreis und ist unter `?size=stange` direkt verlinkbar. Sie enthält 3-dl-Angebote sowie ausdrücklich als Stange bezeichnete 3–3.3-dl-Portionen oder Angebote ohne Mengenangabe. Bekannte 2-dl-Portionen sowie alle als Flaschen- oder Dosenbier gekennzeichneten Angebote gehören nicht dazu, auch bei 3 dl.
 - Startansicht mit **tatsächlich angebotenen 5-dl-Portionen**. Über „Genau 3 dl“ lässt sich die Stangen-Suche zusätzlich auf belegte 3 dl beschränken.
 - Standardvergleich nach **tatsächlichem Glaspreis**, optional auf 5 dl umgerechnet. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal. Die Stangen-Direktwahl und der 3-dl-Filter wechseln automatisch zum Glaspreis. Stangen ohne Mengenangabe zeigen „Grösse nicht angegeben“ und werden aus dem rechnerischen 5-dl-Vergleich ausgeschlossen.
 - Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.
+- **Offenbier / Flaschenbier / Dosenbier / Ausschankart unbekannt** auf Kartenmarkern, in der Liste und in den Preisdetails. Ausschank-Filter und Auswahl beim Eintragen oder Korrigieren eines Bierpreises.
 - Quellenlink, Portionsgrösse und Abrufdatum für jedes gefundene Angebot.
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
 - Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.
@@ -30,11 +31,11 @@ Der Scraper folgt auch eingebetteten PDFs, PDF-Inhaltsverzeichnissen und verlink
 
 Grafische oder mehrdeutige Originalkarten sind zusätzlich in `scraper/reviewed_menus.json` visuell geprüft hinterlegt. Diese Angebote erscheinen als **manuell geprüft** und werden nur bei identischer SHA-256-Prüfsumme der erneut abgerufenen Quelle übernommen. Bei als exklusiv markierten Prüfungen ersetzen diese Einträge die automatische Erkennung für dieselbe Karte. Eine geänderte Datei verlangt eine erneute Prüfung; alte geprüfte Preise daraus werden nicht blind übernommen. `source_scopes.json` verhindert bei bekannten gemeinsamen Websites, dass Karten anderer Filialen oder archivierte Menüs zugeordnet werden.
 
-Mehrdeutige Tabellen, nicht geprüfte Bilder, reine JavaScript-Menüs, fehlende Grössen (ausser ausdrücklich als Stange bepreiste Portionen), Ginger Beer, Mineralwasser gleicher Marken, Catering-Karten, erkannte Liefer-/Bestellseiten, Take-away-Abschnitte und bedingte Angebote werden ausgelassen. 5 dl umfasst Fass- und Flaschenbier; die Ausschankart ist nicht flächendeckend klassifiziert. Automatisch erkannte Preise sind als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %. Die Oberfläche trennt Gesamtangebote von den Locations mit einem zu den aktuellen Filtern passenden Preis.
+Mehrdeutige Tabellen, nicht geprüfte Bilder, reine JavaScript-Menüs, fehlende Grössen (ausser ausdrücklich als Stange bepreiste Portionen), Ginger Beer, Mineralwasser gleicher Marken, Catering-Karten, erkannte Liefer-/Bestellseiten, Take-away-Abschnitte und bedingte Angebote werden ausgelassen. 5 dl umfasst Fass-, Flaschen- und gegebenenfalls Dosenbier. Der Ausschank-Filter trennt diese Angebote. Die Kennzeichnung stützt sich auf ausdrückliche Angaben beim Getränk oder eine eindeutig zugeordnete Menüüberschrift; Marke und Menge allein bestimmen sie nicht. Am 15. Oktober 2026 sind 236 Angebote als Offenbier, 189 als Flaschenbier und 4 als Dosenbier belegt; bei 577 fehlt eine eindeutige Angabe. Diese bleiben sichtbar als „Ausschankart unbekannt“ und werden bei einer konkreten Ausschank-Auswahl ausgeschlossen. Automatisch erkannte Preise sind als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %. Die Oberfläche trennt Gesamtangebote von den Locations mit einem zu den aktuellen Filtern passenden Preis.
 
 ### Stangenpreise
 
-Die Stangen-Auswahl umfasst **179 Angebote**; **83 Locations** haben einen passenden alkoholhaltigen Preis. Die gezielte Nachsuche ergänzt 17 Angebote aus Originalkarten, etwa bei Gabbiano, Hot Pasta und Tramblu (je 3 dl für CHF 4.80), Handelshof (3 dl für CHF 5.50) und La Stazione (Stange für CHF 4.50, Menge nicht angegeben). Die Abrufdaten der wiederverwendeten Originaldokumente bleiben erhalten. Der reguläre Scraper erkennt diese Formate bei künftigen Läufen ebenfalls.
+Die Stangen-Auswahl umfasst **174 Angebote**; **83 Locations** haben einen passenden alkoholhaltigen Preis. Die gezielte Nachsuche ergänzt 17 Angebote aus Originalkarten, etwa bei Gabbiano, Hot Pasta und Tramblu (je 3 dl für CHF 4.80), Handelshof (3 dl für CHF 5.50) und La Stazione (Stange für CHF 4.50, Menge nicht angegeben). Die Abrufdaten der wiederverwendeten Originaldokumente bleiben erhalten. Der reguläre Scraper erkennt diese Formate bei künftigen Läufen ebenfalls.
 
 ### Kaffee
 
@@ -134,6 +135,7 @@ scraper/coffee.py            Erkennung von Kaffeesorten und Einzelpreisen
 scraper/scrape_coffee.py     Kaffee-Import und optionale Offline-Auswertung
 scraper/scrape.py            Standortimport, höflicher Crawler, PDF/HTML
 scraper/extract.py           Konservative Preisextraktion
+scraper/beer_type.py         Ausschankart aus ausdrücklichen Quellenangaben
 scraper/pdf_extract.py       PDF-Spalten, Grössenüberschriften und Textpositionen
 scraper/reviewed_menus.json   Geprüfte Bierkarten mit Inhalts-Prüfsummen
 scraper/reviewed_coffee_menus.json Geprüfte Kaffeekarten mit Inhalts-Prüfsummen
@@ -166,7 +168,7 @@ vercel --prod
 Die API unter `/api/prices` liest und schreibt in einem privaten Vercel-Blob-Store. Ausschliesslich der Server erhält `BLOB_READ_WRITE_TOKEN`; es gibt keinen öffentlichen Upload-Token. Die veröffentlichte API gibt nur Preise zurück, keine internen Rate-Limit-Daten oder Historie.
 
 - Produktion: `prices/production.json`; Entwicklung und Vorschau: `prices/development.json`.
-- Korrekturen ersetzen das passende Angebot in der Anzeige, ohne die ursprünglichen JSON-Dateien zu verändern. Die Zuordnung hängt nicht am bisherigen Preis oder Quellenlink. Ein erneuter Scraper-Lauf überschreibt diese Korrekturen deshalb nicht.
+- Korrekturen ersetzen das passende Angebot in der Anzeige, ohne die ursprünglichen JSON-Dateien zu verändern. Die Zuordnung hängt nicht am bisherigen Preis oder Quellenlink. Offen- und Flaschenbier mit demselben Namen und derselben Menge haben getrennte Einträge. Ältere Korrekturen ohne Ausschankart werden nur bei eindeutiger Zuordnung auf ein inzwischen klassifiziertes Angebot angewendet. Ein erneuter Scraper-Lauf überschreibt diese Korrekturen deshalb nicht.
 - Validierung: bekanntes Lokal, gültige Sorte/Menge, CHF 0.50–50, echtes Datum bis heute und optionale HTTP(S)-Quelle. Keine Umrechnung beim Eintragen.
 - Gleichzeitige Schreibvorgänge verwenden ETags; überholte Formularversionen erhalten HTTP 409 statt Änderungen zu überschreiben. Frühere Versionen bleiben intern in `history` erhalten.
 - 20 Schreibvorgänge pro Stunde und Besucherkennung. Kennungen sind mit dem Speichergeheimnis und Tagesdatum abgeleitete IP-Hashes; keine IP-Adressen im gespeicherten JSON. Abgelaufene Kennungen werden beim nächsten Schreiben entfernt.

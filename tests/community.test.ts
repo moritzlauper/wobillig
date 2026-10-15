@@ -78,3 +78,32 @@ describe('persistent edits', () => {
     expect((await store.read()).state.entries).toHaveLength(0);
   });
 });
+
+describe('shared Ausschankart', () => {
+  it('validates and persists the type, including explicit unknown', async () => {
+    const typed = validateInput({ ...input, beerType: 'draft' }, [bar]);
+    expect((await savePrice(memoryStore(), typed, data, 'a')).offer.beerType).toBe('draft');
+    expect(validateInput(input, [bar]).beerType).toBe('unknown');
+    for (const patch of [{ beerType: 'invented' }, { beerType: 'bottle', serving: 'stange', volumeMl: 300 }, { drink: 'coffee', coffeeType: 'espresso', volumeMl: null, beerType: 'draft' }]) {
+      expect(() => validateInput({ ...input, ...patch }, [bar])).toThrow();
+    }
+  });
+  it('keeps identical draft and bottled products independently editable', async () => {
+    const draft = { ...offer, beerType: 'draft' as const }, bottle = { ...offer, beerType: 'bottle' as const };
+    const dataset = { ...beer, bars: [{ ...bar, offers: [draft, bottle] }] };
+    const store = memoryStore();
+    const a = await savePrice(store, { ...input, beerType: 'draft', targetKey: offerKey(draft) }, { ...data, beer: dataset }, 'a');
+    const c = await savePrice(store, { ...input, beerType: 'bottle', targetKey: offerKey(bottle), priceChf: 5 }, { ...data, beer: dataset }, 'b');
+    const offers = applyEntries(dataset, [a, c], [bar], 'beer').bars[0].offers;
+    expect(offers.map(o => [o.beerType, o.priceChf])).toEqual([['draft', 6.5], ['bottle', 5]]);
+  });
+  it('retains legacy corrections when the scraper learns the type, without conflating two types', async () => {
+    const entry = await savePrice(memoryStore(), input, data, 'a');
+    const draft = { ...offer, beerType: 'draft' as const }, bottle = { ...offer, beerType: 'bottle' as const };
+    const learned = { ...beer, bars: [{ ...bar, offers: [draft] }] };
+    const fixed = applyEntries(learned, [entry], [bar], 'beer').bars[0].offers;
+    expect(fixed).toHaveLength(1); expect(fixed[0].beerType).toBe('draft');
+    const ambiguous = applyEntries({ ...beer, bars: [{ ...bar, offers: [draft, bottle] }] }, [entry], [bar], 'beer').bars[0].offers;
+    expect(ambiguous.filter(o => o.confidence === 'automatic')).toHaveLength(2);
+  });
+});

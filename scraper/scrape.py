@@ -20,6 +20,7 @@ from urllib.robotparser import RobotFileParser
 from bs4 import BeautifulSoup
 import requests
 from scraper.extract import extract_offers, BEER, SIZE, STANGE
+from scraper.beer_type import explicit_type, section_type
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 from scraper.coffee import extract_coffees, coffee_pdf, coffee_types, PRICE as COFFEE_PRICE
 
@@ -245,6 +246,9 @@ def html_content(body,url):
         if len(content)<=350:
             rows.append(content)
             heading=row.find_previous(re.compile(r'^h[1-6]$'))
+            if heading and section_type(heading.get_text(' ',strip=True)) in ('draft','bottle','can') and BEER.search(content):
+                # Explicitly carry the nearest HTML section label with the row.
+                rows.append(heading.get_text(' ',strip=True)+'\n'+content+'\nBier')
             if heading and not BEER.search(content) and re.match(r'^(Herrg[oö]ttli|Herg[oö]ttli|Stange|Grosses|Großes|Panach[eé])\b',content,re.I):
                 context=heading.get_text(' ',strip=True)
                 if len(context)<70 and BEER.search(context):
@@ -328,7 +332,11 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
         # Keep the menu's originating venue page as the durable reference.
         if re.search(r'[?&]X-Amz-Signature=',o['sourceUrl'],re.I) and bar.get('website'):
             o={**o,'sourceUrl':bar['website']}
-        dedup.setdefault((o.get('coffeeType',o['name'].casefold()),o['volumeMl'],o['priceChf']),o)
+        if beverage=='beer':o.setdefault('beerType',explicit_type(o.get('evidence','')) or 'unknown')
+        dedup.setdefault((o.get('coffeeType',o['name'].casefold()),o['volumeMl'],o['priceChf'],o.get('beerType')),o)
+    if beverage=='beer':
+        known={key[:3] for key in dedup if key[3]!='unknown'}
+        dedup={key:o for key,o in dedup.items() if key[3]!='unknown' or key[:3] not in known}
     # Preserve the last known offers (with their original date) when a crawl fails.
     if offers:
         result=list(dedup.values())

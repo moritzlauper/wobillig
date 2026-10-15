@@ -1,4 +1,4 @@
-import { coffeeLabels, type Bar, type Dataset, type Offer } from './data.js';
+import { coffeeLabels, beerTypeLabels, type BeerType, type Bar, type Dataset, type Offer } from './data.js';
 
 export type Drink = 'beer' | 'coffee';
 export type PriceEntry = {
@@ -20,6 +20,7 @@ export type PriceInput = {
   priceChf: number;
   volumeMl: number | null;
   serving?: 'stange';
+  beerType?: BeerType;
   coffeeType?: string;
   alcoholFree: boolean;
   observedAt: string;
@@ -28,7 +29,14 @@ export type PriceInput = {
 
 // Price and source are deliberately excluded: scraper refreshes must not undo corrections.
 export function offerKey(o: Offer) {
-  return JSON.stringify([o.name.trim().toLocaleLowerCase('de-CH'), o.volumeMl, o.coffeeType || '', o.alcoholFree]);
+  const key: (string | number | boolean | null)[] = [o.name.trim().toLocaleLowerCase('de-CH'), o.volumeMl, o.coffeeType || '', o.alcoholFree];
+  if (!o.coffeeType && o.beerType && o.beerType !== 'unknown') key.push(o.beerType);
+  return JSON.stringify(key);
+}
+// Old corrections without an Ausschankart remain valid only for a unique match.
+export function matchesOfferKey(o: Offer, key: string, offers: Offer[]) {
+  return offerKey(o) === key || (offerKey({ ...o, beerType: undefined }) === key &&
+    offers.filter(candidate => offerKey({ ...candidate, beerType: undefined }) === key).length === 1);
 }
 export function zurichToday() {
   return new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Zurich' }).format(new Date());
@@ -47,8 +55,9 @@ export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Ba
       bar = { ...known, offers: [] };
       bars.set(bar.id, bar);
     }
-    const replacement = { ...entry.offer, confidence: 'community' as const, communityId: entry.id, revision: entry.revision, originalKey: entry.targetKey };
-    bar.offers = bar.offers.filter(o => offerKey(o) !== entry.targetKey && offerKey(o) !== offerKey(entry.offer) && o.communityId !== entry.id);
+    const original = bar.offers.find(o => matchesOfferKey(o, entry.targetKey, bar!.offers));
+    const replacement = { ...entry.offer, beerType: entry.offer.beerType ?? original?.beerType, confidence: 'community' as const, communityId: entry.id, revision: entry.revision, originalKey: entry.targetKey };
+    bar.offers = bar.offers.filter(o => !matchesOfferKey(o, entry.targetKey, bar.offers) && offerKey(o) !== offerKey(entry.offer) && o.communityId !== entry.id);
     bar.offers.push(replacement);
   }
   return { ...dataset, bars: [...bars.values()] };
@@ -78,8 +87,11 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
   if (x.targetKey !== undefined && (typeof x.targetKey !== 'string' || x.targetKey.length > 1000)) throw new InputError('Ungültiges Angebot.');
   if (typeof x.alcoholFree !== 'boolean') throw new InputError('Ungültige Getränkeangabe.');
   if (x.drink === 'coffee') {
+    if (x.beerType !== undefined) throw new InputError('Kaffee hat keine Bier-Ausschankart.');
     if (typeof x.coffeeType !== 'string' || !Object.hasOwn(coffeeLabels, x.coffeeType) || x.volumeMl !== null || x.serving !== undefined) throw new InputError('Bitte eine gültige Kaffeesorte wählen.');
   } else {
+    if (x.beerType !== undefined && (typeof x.beerType !== 'string' || !Object.hasOwn(beerTypeLabels, x.beerType))) throw new InputError('Bitte eine gültige Ausschankart wählen.');
+    if (x.serving === 'stange' && (x.beerType === 'bottle' || x.beerType === 'can')) throw new InputError('Flaschen- und Dosenbier ist keine Stange.');
     if (x.coffeeType !== undefined || (x.serving !== undefined && x.serving !== 'stange')) throw new InputError('Ungültige Bierportion.');
     if (x.volumeMl === null ? x.serving !== 'stange' : !Number.isInteger(x.volumeMl) || (x.volumeMl as number) < 100 || (x.volumeMl as number) > 1000) throw new InputError('Bitte eine Menge zwischen 1 und 10 dl angeben.');
     if (x.serving === 'stange' && x.volumeMl !== null && ((x.volumeMl as number) < 300 || (x.volumeMl as number) > 330)) throw new InputError('Diese Menge ist keine Stange.');
@@ -88,6 +100,7 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
     id: x.id as string | undefined, revision: x.revision as number, barId: x.barId, drink: x.drink,
     targetKey: x.targetKey as string | undefined, name: x.name.trim(), priceChf: x.priceChf,
     volumeMl: x.volumeMl as number | null, serving: x.serving as 'stange' | undefined,
+    beerType: x.drink === 'beer' ? (x.beerType as BeerType | undefined) || 'unknown' : undefined,
     coffeeType: x.coffeeType as string | undefined, alcoholFree: x.drink === 'coffee' || x.alcoholFree,
     observedAt: x.observedAt, sourceUrl,
   };

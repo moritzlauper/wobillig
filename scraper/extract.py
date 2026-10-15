@@ -5,6 +5,7 @@ Ambiguous tables are intentionally skipped rather than inventing prices. This
 extractor does not OCR images or infer column alignment in broken PDF text.
 """
 import re
+from scraper.beer_type import explicit_type, section_type
 
 BEER = re.compile(r'\b(biere?|beers?|lager(?:bier)?|pils(?:e?ner)?|ipa|pale ale|stout|porter|weizen(?:bier)?|weissbier|weißbier|helles|quöllfrisch|feldschlösschen|calanda|turbinenbräu|chopfab|heineken|guinness|erdinger|schützengarten|appenzeller|valaisanne|braufrisch|eichhof|amber|hofbräu|amboss|moretti|poretti|corona|schneider|grimbergen|sonnwendlig|lokalbier|schiffbrau|adler panix|hürlimann|augustiner|san miguel|super bock|1664 blanc|peroni|asahi|sapporo|red stripe|singha|chang|tiger|brooklyn|paulaner|falken|warsteiner|hoegaarden|franziskaner|budweiser|bitburger|jever|brew.?dog|tegernseer?|maisel|kilkenny|fullers|five lamps|hop house|1664)\b', re.I)
 SIZE = re.compile(r'(?<![\d.])(\d+(?:[.,]\d+)?)\s*(ml|cl|dl|l)\b', re.I)
@@ -42,6 +43,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
     previous_name = None
     previous_evidence = None
     blank_count = 0
+    beer_type = 'unknown'
     for line in lines:
         if not line:
             blank_count += 1
@@ -49,6 +51,9 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
                 previous_name = None
             continue
         blank_count = 0
+        heading_type=section_type(line)
+        if heading_type is not None:
+            beer_type=heading_type
         evidence = line
         line = re.sub(r'(\d)\s*([.,])\s*(\d)',r'\1\2\3',line)
         line = re.sub(r'((?:ml|cl|dl|l)\b)\.(?=\s)',r'\1',line,flags=re.I)
@@ -106,7 +111,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
                     key=(offer['name'].casefold(),None,offer['priceChf'])
                     if key not in seen:
                         seen.add(key)
-                        offers.append({**offer,'volumeMl':None,'serving':'stange','evidence':evidence[:350]})
+                        offers.append({**offer,'volumeMl':None,'serving':'stange','beerType':explicit_type(evidence) or beer_type,'evidence':evidence[:350]})
             continue
         name = line[:sizes[0].start()].strip(' |:–—-')
         if re.search(r'\bspezi\b|orangensaft|apfelsaft|lemonade|limonade',name,re.I):
@@ -157,11 +162,13 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             clean_name=re.sub(r'\s*(?:alc\s*)?\(?<?\s*\d+(?:[.,]\d+)?\s*%\s*(?:vol\.?)?\)?', '', name, flags=re.I).strip()
             if not clean_name or len(clean_name)>80:
                 continue
-            key = (clean_name.casefold(), ml, price)
+            kind=explicit_type(evidence) or beer_type
+            key = (clean_name.casefold(), ml, price, kind)
             if key in seen:
                 continue
             seen.add(key)
             offers.append({'name':clean_name, 'volumeMl':ml, 'priceChf':price,
+                'beerType':kind,
                 'sourceUrl':source_url, 'observedAt':observed_at,
                 'confidence':'automatic', 'evidence':evidence[:350],
                 'alcoholFree':bool(re.search(r'alkohol\s*frei|alcohol.?free|non[ .-]*alcohol(?:ic)?\b|sans alcool|ohne alk|\bzero\b|\b0[.,]0\b',name,re.I)) or bool(abvs and all(float(v.replace(',','.'))<=.5 for v in abvs))})
@@ -171,4 +178,5 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
                 # Keep ABV metadata for the next portion's alcohol-free flag.
                 previous_name=name
                 previous_evidence=evidence
-    return offers
+    classified={(o['name'].casefold(),o['volumeMl'],o['priceChf']) for o in offers if o['beerType']!='unknown'}
+    return [o for o in offers if o['beerType']!='unknown' or (o['name'].casefold(),o['volumeMl'],o['priceChf']) not in classified]

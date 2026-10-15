@@ -147,3 +147,25 @@ describe("Stange prices", () => {
     expect(filterBars([{ ...bar, offers: [unknownSize] }], { ...f, mode: "half", unknown: false })).toHaveLength(0);
   });
 });
+
+describe('beer Ausschankart', () => {
+  const draft = { ...b.offers[1], beerType: 'draft' as const, priceChf: 8 };
+  const bottle = { ...draft, beerType: 'bottle' as const, priceChf: 6 };
+  const bar = { ...b, offers: [draft, bottle, b.offers[1]] };
+  it('compares prices within the selected Ausschankart', () => {
+    expect(bestOffer(bar, { ...f, beerType: 'draft' })).toBe(draft);
+    expect(bestOffer(bar, { ...f, beerType: 'bottle' })).toBe(bottle);
+    expect(bestOffer(bar, { ...f, beerType: 'unknown' })).toBe(b.offers[1]);
+    expect(bestOffer(bar, { ...f, beerType: 'all' })).toBe(bottle);
+    expect(filterBars([bar], { ...f, beerType: 'draft', max: 7 })).toHaveLength(0);
+  });
+  it('does not show a known 3 dl bottle or can as a Stange', () => {
+    expect(isStange({ ...b.offers[0], beerType: 'bottle' })).toBe(false);
+    expect(isStange({ ...b.offers[0], beerType: 'can' })).toBe(false);
+    expect(isStange({ ...b.offers[0], beerType: 'draft' })).toBe(true);
+  });
+  it('ignores the beer filter for coffee', () => {
+    const espresso = { ...draft, coffeeType: 'espresso', volumeMl: null };
+    expect(bestOffer({ ...bar, offers: [espresso] }, { ...f, drink: 'coffee', beerType: 'bottle' })).toBe(espresso);
+  });
+});
