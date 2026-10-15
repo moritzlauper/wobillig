@@ -27,7 +27,7 @@ def beer_name(name, heading):
 def column_regions(page):
     """Split only at clear gutters with prose on BOTH sides, never price columns."""
     # Folded menus often have unequal panels plus an illustration. Find actual
-    # empty vertical gutters when equal fractions cannot separate the columns.
+    # empty vertical gutters before trying equal-width column boundaries.
     # Both sides must contain prose, so size/price columns stay with their names.
     def split(region, depth=0):
         items = region.extract_words()

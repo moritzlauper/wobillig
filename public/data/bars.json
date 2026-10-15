@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T17:05:45.864179+00:00",
+  "generatedAt": "2026-10-15T17:34:07.683455+00:00",
   "discoveredAt": "2026-10-14T20:34:18.309225+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -10847,6 +10847,86 @@
             "reason": "KI-Schätzung aus Bezeichnung, Menge und Menü-Kontext; nicht belegt.",
             "method": "ai"
           }
+        },
+        {
+          "name": "HERRGÖTTLI",
+          "volumeMl": 200,
+          "priceChf": 4.1,
+          "beerType": "unknown",
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/463/menu/0857d5f02a11.pdf",
+          "observedAt": "2026-10-15T17:03:22.954499+00:00",
+          "confidence": "automatic",
+          "evidence": "BIERE / HERRGÖTTLI 2dl. 4.10",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Bezeichnung einer ausgeschenkten Bierportion",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "GROSSES",
+          "volumeMl": 500,
+          "priceChf": 7.9,
+          "beerType": "unknown",
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/463/menu/0857d5f02a11.pdf",
+          "observedAt": "2026-10-15T17:03:22.954499+00:00",
+          "confidence": "automatic",
+          "evidence": "BIERE / GROSSES 5dl. 7.90",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Bezeichnung einer ausgeschenkten Bierportion",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "GROSSES",
+          "volumeMl": 500,
+          "priceChf": 8.4,
+          "beerType": "unknown",
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/463/menu/0857d5f02a11.pdf",
+          "observedAt": "2026-10-15T17:03:22.954499+00:00",
+          "confidence": "automatic",
+          "evidence": "BIERE / GROSSES 5dl. 8.40",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Bezeichnung einer ausgeschenkten Bierportion",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "GROSSES",
+          "volumeMl": 500,
+          "priceChf": 8.9,
+          "beerType": "unknown",
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/463/menu/0857d5f02a11.pdf",
+          "observedAt": "2026-10-15T17:03:22.954499+00:00",
+          "confidence": "automatic",
+          "evidence": "BIERE / GROSSES 5.0dl. 8.90",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Bezeichnung einer ausgeschenkten Bierportion",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "GROSSES",
+          "volumeMl": 500,
+          "priceChf": 9.8,
+          "beerType": "unknown",
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/463/menu/0857d5f02a11.pdf",
+          "observedAt": "2026-10-15T17:03:22.954499+00:00",
+          "confidence": "automatic",
+          "evidence": "BIERE / GROSSES 5.0dl. 9.80",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Bezeichnung einer ausgeschenkten Bierportion",
+            "method": "rules"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
@@ -11609,6 +11689,22 @@
             "type": "bottle",
             "reason": "KI-Schätzung aus Bezeichnung, Menge und Menü-Kontext; nicht belegt.",
             "method": "ai"
+          }
+        },
+        {
+          "name": "Herrgöttli",
+          "volumeMl": 200,
+          "priceChf": 4.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.gabbiano-exp.ch/menus/getraenke.pdf",
+          "observedAt": "2026-10-15T17:03:42.244105+00:00",
+          "confidence": "automatic",
+          "evidence": "Bier / Herrgöttli 2dl 4.00",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Bezeichnung einer ausgeschenkten Bierportion",
+            "method": "rules"
           }
         }
       ],
@@ -17196,25 +17292,74 @@
       "outdoor": true,
       "offers": [
         {
-          "name": "STANGE",
+          "name": "MYTHOS",
+          "volumeMl": 330,
+          "priceChf": 5.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://mymythos.ch/sites/default/files/2024-07/speisekarte-zuerich.pdf",
+          "observedAt": "2026-10-15T17:25:41.712710+00:00",
+          "confidence": "automatic",
+          "evidence": "BIER / MYTHOS 3.3dl 5.5",
+          "alcoholFree": false
+        },
+        {
+          "name": "FIX HELLAS",
+          "volumeMl": 330,
+          "priceChf": 5.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://mymythos.ch/sites/default/files/2024-07/speisekarte-zuerich.pdf",
+          "observedAt": "2026-10-15T17:25:41.712710+00:00",
+          "confidence": "automatic",
+          "evidence": "BIER / FIX HELLAS 3.3dl 5.5",
+          "alcoholFree": false
+        },
+        {
+          "name": "STANGE Turbinenbräu",
           "volumeMl": 300,
           "priceChf": 5.5,
+          "beerType": "unknown",
           "sourceUrl": "https://mymythos.ch/sites/default/files/2024-07/speisekarte-zuerich.pdf",
-          "observedAt": "2026-10-15T12:05:26.743679+00:00",
+          "observedAt": "2026-10-15T17:25:41.712710+00:00",
           "confidence": "automatic",
-          "evidence": "PDF S. 1: STANGE 3dl 5.5 die hauptsächlich bei langjährigen, regionalen Lieferanten eingekauft werden.",
+          "evidence": "STANGE 3dl 5.5 / Turbinenbräu",
           "alcoholFree": false,
           "serving": "stange",
-          "beerType": "unknown",
           "beerTypeEstimate": {
             "type": "draft",
             "reason": "Bezeichnung einer ausgeschenkten Bierportion",
             "method": "rules"
           }
+        },
+        {
+          "name": "GROSSES Turbinenbräu",
+          "volumeMl": 500,
+          "priceChf": 7.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://mymythos.ch/sites/default/files/2024-07/speisekarte-zuerich.pdf",
+          "observedAt": "2026-10-15T17:25:41.712710+00:00",
+          "confidence": "automatic",
+          "evidence": "GROSSES 5dl 7.5 / Turbinenbräu",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Bezeichnung einer ausgeschenkten Bierportion",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "FELDSCHLÖSSCHEN ALKOHOLFREI",
+          "volumeMl": 330,
+          "priceChf": 5.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://mymythos.ch/sites/default/files/2024-07/speisekarte-zuerich.pdf",
+          "observedAt": "2026-10-15T17:25:41.712710+00:00",
+          "confidence": "automatic",
+          "evidence": "FELDSCHLÖSSCHEN 3.3dl 5.- / ALKOHOLFREI",
+          "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:27:13.710741+00:00"
+      "checkedAt": "2026-10-15T17:25:41.712710+00:00"
     },
     {
       "id": "node/9234454006",
@@ -19500,6 +19645,17 @@
           "alcoholFree": false,
           "serving": "stange",
           "beerType": "draft"
+        },
+        {
+          "name": "Grosses",
+          "volumeMl": 500,
+          "priceChf": 8.6,
+          "beerType": "draft",
+          "sourceUrl": "https://www.gertrudhof.ch/ws/media-library/80e5ae66744daaa78f0e5d6c4c90d3f6/speisekarte_gertrudhof_englisch.pdf",
+          "observedAt": "2026-10-15T17:08:55.159230+00:00",
+          "confidence": "automatic",
+          "evidence": "On tap: / Grosses 50 cl 8.60",
+          "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
