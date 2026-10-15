@@ -1,10 +1,10 @@
 # wobillig 🍻 ☕
 
-Eine einfache Zürich-Karte für Bier- und Kaffeepreise. TypeScript, Leaflet, Python-Scraper und eine Vercel-API für gemeinsam gespeicherte Preise. Keine Registrierung erforderlich.
+Eine einfache Zürich-Karte für Bier-, Kaffee- und Pizza-Margherita-Preise. TypeScript, Leaflet, Python-Scraper und eine Vercel-API für gemeinsam gespeicherte Preise. Keine Registrierung erforderlich.
 
 ## Was drin ist
 
-- Umschalter **Bier / Kaffee**, mit direkt verlinkbarer Kaffeeansicht unter `?drink=coffee`.
+- Umschalter **Bier / Kaffee / Pizza Margherita**, mit Direktlinks unter `?drink=coffee` und `?drink=pizza`.
 - Kaffee nach Sorte vergleichen: Café crème/Kaffee, Espresso, doppelter Espresso, Ristretto, Cappuccino, Latte macchiato, Milchkaffee/Caffè latte, Flat White, Americano und Filterkaffee. Preise gelten **pro Getränk**, ohne erfundene Tassengrössen oder 5-dl-Umrechnung.
 - Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.
 - Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten/Restaurant/Café, Terrasse und alkoholfreies Bier.
@@ -18,7 +18,7 @@ Eine einfache Zürich-Karte für Bier- und Kaffeepreise. TypeScript, Leaflet, Py
 - **Teilen** in den Lokaldetails öffnet das native Teilen-Menü. Der Direktlink öffnet das Lokal samt Karte und Preisen; Kaffee- und Stangenansicht bleiben erhalten. Ohne native Unterstützung wird der Link kopiert oder zum manuellen Kopieren angezeigt.
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
 - Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.
-- Ein Lokal auf der Karte oder in der Liste anklicken, dann **Preis hinzufügen** oder **Ändern**: Bier und Kaffee ergänzen oder korrigieren. Das Lokal ist im Formular bereits festgelegt. Alle Besucher sehen die gespeicherten Preise. Änderungen werden getrennt vom Scraper gespeichert und als ungeprüfte Einträge gekennzeichnet.
+- Ein Lokal auf der Karte oder in der Liste anklicken, dann **Preis hinzufügen** oder **Ändern**: Bier, Kaffee und Pizza Margherita ergänzen oder korrigieren. Das Lokal ist im Formular bereits festgelegt. Alle Besucher sehen die gespeicherten Preise. Änderungen werden getrennt vom Scraper gespeichert und als ungeprüfte Einträge gekennzeichnet.
 - Scraping-Workflow alle zwei Wochen, CI und optionaler GitHub-Pages-Workflow.
 
 ## Ehrlicher Datenstand
@@ -42,6 +42,27 @@ Auch Bezeichnungen wie **Grosses / Großes** und **Herrgöttli** werden mit ausd
 ### Stangenpreise
 
 Die Stangen-Auswahl umfasst **204 Angebote**; **97 Locations** haben einen passenden alkoholhaltigen Preis. Die gezielte Stangen-Nachsuche ergänzte 17 Angebote aus Originalkarten, etwa bei Gabbiano, Hot Pasta und Tramblu (je 3 dl für CHF 4.80), Handelshof (3 dl für CHF 5.50) und La Stazione (Stange für CHF 4.50, Menge nicht angegeben). Weitere Stangenpreise stammen aus der Bar-Nachsuche. Die Abrufdaten der wiederverwendeten Originaldokumente bleiben erhalten. Der reguläre Scraper erkennt diese Formate bei künftigen Läufen ebenfalls.
+
+### Pizza Margherita
+
+Karte und Liste zeigen in dieser Kategorie nur erfasste Pizza-Lokale und Lokale mit einem gemeinsamen Pizza-Preiseintrag. Reine Getränke-Lokale werden auch bei «Ohne passenden Preis anzeigen» nicht eingeblendet.
+
+`public/data/pizza.json` enthält am **15. Oktober 2026** **46 belegte Margherita-Preise bei 46 Zürcher Lokalen**. Der erste Durchlauf hat aus 2’187 OSM-Standorten **802 Restaurant-Websites** systematisch abgearbeitet; eine gezielte Nachprüfung ergänzt Filialseiten, mehrspaltige PDFs und Bildkarten. Fehlgeschlagene oder gesperrte Abrufe zählen nicht als erfolgreiche Preisermittlung. Das Prüfprotokoll steht in `scraper/pizza_checks.json`.
+
+Verglichen wird eine **ganze, normale Pizza Margherita im Lokal**. Kinderpizzen, kleine/halbe Portionen, Familienpizzen, separate Spezialvarianten, reine Pinsa-Angebote, bedingte Mittagsangebote und Liefer-/Take-away-Karten werden nicht übernommen. Die Standardgrösse kann je nach Restaurant variieren; eine fehlende Durchmesserangabe wird nicht erfunden. Preisfilter und Sortierung gelten pro Pizza, ohne Getränke- oder Volumenfilter. Die Pizzaansicht startet bei CHF 30; der Preisfilter bleibt je Kategorie erhalten. Einträge und Korrekturen nutzen dieselbe gemeinsame Speicherung wie Getränke.
+
+Der neue Scraper liest HTML und PDF-Karten, prüft Restaurantstandorte getrennt und hält widersprüchliche Preise zurück. `pizza_menu_urls.json` enthält gezielt zugeordnete Originalkarten. Visuell geprüfte Bildkarten, Grössenspalten und mehrdeutige Layouts stehen mit SHA-256-Prüfsumme in `reviewed_pizza_menus.json`; bei einer Änderung werden sie erneut prüfpflichtig. Beispiele: Pizza Züri CHF 17.50 für 1/1 statt CHF 14.50 für 1/2; Il Grappolo CHF 19 für 30 cm statt CHF 14 für die Kinderpizza; Santa Lucia je nach Filialkarte CHF 18 oder CHF 19. Das Abrufdatum belegt den Quellenabruf und garantiert nicht, dass die Karte selbst neu ist. Es wird keine vollständige Marktabdeckung behauptet.
+
+```bash
+# Bekannte Standorte aktualisieren und weitere Zürcher Restaurants prüfen
+python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages 6
+# Gezielt einzelne Lokale erneut prüfen
+python -m scraper.scrape_pizza --discover --only 'Santa Lucia|Margheri'
+# Archivierte Dokumente mit ihrem ursprünglichen Abrufdatum auswerten
+python -m scraper.scrape_pizza --venues-file scraper/cache/pizza-venues.json --archive-dir scraper/cache/pizza
+```
+
+Der vorhandene zweiwöchentliche Vollscan aktualisiert zusätzlich den Pizza-Datensatz. Der reine KI-Scan bleibt auf seine bisherigen Getränkedaten begrenzt.
 
 ### Kaffee
 
@@ -238,4 +259,4 @@ Wenn ein direkter automatischer Bildabruf durch robots.txt ausgeschlossen ist, k
 
 OCR-Preise behalten den Fotolink, das Fotodatum, den Textbeleg und das separate Lesedatum. Unlesbare Ziffern, Strichlisten, Spenden, rückseitig durchscheinender Text und unklare Portionsgrössen werden nicht als Preise übernommen. Bestehende widersprechende Preise werden nicht automatisch ersetzt. Abgelaufene Fotoangebote verschwinden aus dem Kartenvergleich und der Detailansicht auch ohne neuen Scan; der nächste Scan entfernt sie aus dem Datensatz. Ein neuer Besucherpreis bleibt unabhängig davon erhalten.
 
-Im Biervergleich erscheinen Cafés nur mit einem aktuellen, vergleichbaren Bierangebot im Datensatz (einschliesslich Besucherbeiträgen). Cafés, deren hinterlegte Öffnungszeiten an keinem Tag über 19 Uhr hinausreichen, werden auch mit Bierpreisen ausgeblendet. Unbekannte Öffnungszeiten allein führen nicht zum Ausschluss. Diese Vorauswahl gilt für Liste, Karte und ausgewählte Lokale unabhängig von «Ohne passenden Preis anzeigen»; Kaffee ist davon ausgenommen.
+Im Biervergleich erscheinen Cafés nur mit einem aktuellen, vergleichbaren Bierangebot im Datensatz (einschliesslich Besucherbeiträgen). Cafés, deren hinterlegte Öffnungszeiten an keinem Tag über 19 Uhr hinausreichen, werden auch mit Bierpreisen ausgeblendet. Unbekannte Öffnungszeiten allein führen nicht zum Ausschluss. Diese Vorauswahl gilt für Liste, Karte und ausgewählte Lokale unabhängig von «Ohne passenden Preis anzeigen»; Kaffee und Pizza sind davon ausgenommen.

@@ -12,4 +12,4 @@ def is_beer_mix(name):
 
 
 def eligible_offer(offer):
-    return bool(offer.get('coffeeType') or not is_beer_mix(offer['name']))
+    return bool(offer.get('coffeeType') or offer.get('pizzaType') or not is_beer_mix(offer['name']))

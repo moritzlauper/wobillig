@@ -3,6 +3,7 @@ export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bo
 export type Offer = {
   name: string;
   volumeMl: number | null;
+  pizzaType?: "margherita";
   coffeeType?: string;
   serving?: "stange";
   beerType?: BeerType;
@@ -40,7 +41,7 @@ export type Dataset = {
   bars: Bar[];
 };
 export type Filters = {
-  drink?: "beer" | "coffee";
+  drink?: "beer" | "coffee" | "pizza";
   coffeeType?: string;
   beerType?: BeerType | "all";
   query: string;
@@ -60,10 +61,10 @@ export const coffeeLabels: Record<string, string> = {
   matcha: "Matcha", matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
-  return o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : o.volumeMl ? `${o.volumeMl / 100} dl` : "Stange · Grösse nicht angegeben";
+  return o.pizzaType ? "Pro Pizza Margherita" : o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : o.volumeMl ? `${o.volumeMl / 100} dl` : "Stange · Grösse nicht angegeben";
 }
-export function offerCategory(o: Offer): "beer" | "coffee" {
-  return o.coffeeType ? "coffee" : "beer";
+export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" {
+  return o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
 }
 // Keep in sync with scraper/beer_rules.py.
 export function isBeerMix(name: string): boolean {
@@ -92,6 +93,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
     .filter(o => offerCategory(o) === (f.drink || "beer"))
     .filter(
       (o) =>
+        f.drink === "pizza" ? o.pizzaType === "margherita" :
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree &&

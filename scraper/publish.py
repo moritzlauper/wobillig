@@ -11,9 +11,9 @@ import subprocess
 import tempfile
 
 FILES = (
-    'public/data/bars.json', 'public/data/coffee.json',
+    'public/data/bars.json', 'public/data/coffee.json', 'public/data/pizza.json',
     'scraper/discovery_checks.json', 'scraper/coffee_checks.json',
-    'scraper/ai_checks.json',
+    'scraper/pizza_checks.json', 'scraper/ai_checks.json',
 )
 MISSING = object()
 
@@ -115,7 +115,7 @@ def publish(repo, saved, branch, attempts=3):
                 if git(worktree, 'diff', '--cached', '--quiet', check=False).returncode == 0:
                     print('No new data to publish.', flush=True)
                     return
-                git(worktree, 'commit', '-m', 'data: refresh Zurich beer and coffee prices')
+                git(worktree, 'commit', '-m', 'data: refresh Zurich beer, coffee and pizza prices')
                 pushed = git(worktree, 'push', 'origin', f'HEAD:refs/heads/{branch}', check=False)
                 if pushed.returncode == 0:
                     print(pushed.stderr.strip(), flush=True)

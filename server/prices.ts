@@ -28,9 +28,9 @@ export function blobStore(path = process.env.VERCEL_ENV === 'production' ? 'pric
     },
   };
 }
-export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset>, visitor: string, now = Date.now()) {
+export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset> & Partial<Record<'pizza', Dataset>>, visitor: string, now = Date.now()) {
   const offer: Offer = {
-    name: input.name, priceChf: input.priceChf, volumeMl: input.volumeMl, coffeeType: input.coffeeType,
+    name: input.name, priceChf: input.priceChf, volumeMl: input.volumeMl, coffeeType: input.coffeeType, pizzaType: input.pizzaType,
     serving: input.serving, beerType: input.beerType, alcoholFree: input.alcoholFree, observedAt: input.observedAt,
     sourceUrl: input.sourceUrl, confidence: 'community', evidence: '',
   };
@@ -39,10 +39,10 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     const old = input.id ? state.entries.find(x => x.id === input.id) : state.entries.find(x => x.barId === input.barId && x.drink === input.drink && (x.targetKey === (input.targetKey || offerKey(offer)) || offerKey(x.offer) === offerKey(offer)));
     if ((input.id && !old) || (old && (old.barId !== input.barId || old.drink !== input.drink)) || (old?.revision || 0) !== input.revision) throw new InputError('Dieser Preis wurde inzwischen geändert. Bitte schliessen und erneut öffnen.', 409);
     const targetKey = old?.targetKey || input.targetKey || offerKey(offer);
-    const originals = datasets[input.drink].bars.find(b => b.id === input.barId)?.offers || [];
+    const originals = datasets[input.drink]?.bars.find(b => b.id === input.barId)?.offers || [];
     if (!old && input.targetKey && !originals.some(o => matchesOfferKey(o, input.targetKey!, originals))) throw new InputError('Das ursprüngliche Angebot ist nicht mehr vorhanden. Bitte neu laden.', 409);
     const duplicate = state.entries.find(x => x.id !== old?.id && x.barId === input.barId && x.drink === input.drink && offerKey(x.offer) === offerKey(offer));
-    if (duplicate) throw new InputError('Dieses Getränk wurde bereits eingetragen. Bitte den vorhandenen Preis ändern.', 409);
+    if (duplicate) throw new InputError('Dieses Angebot wurde bereits eingetragen. Bitte den vorhandenen Preis ändern.', 409);
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
     const limit = state.limits[visitor] || { count: 0, expires: now + 3600000 };
     if (limit.count >= 20) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);

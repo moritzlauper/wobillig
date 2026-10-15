@@ -14,7 +14,7 @@ const venueTypes = { '': 'Alle', bar: 'Bar / Pub', restaurant: 'Restaurant', caf
 const initial = new URLSearchParams(location.search);
 const initialSize = initial.get('size') || '300-330';
 const initialBeerType = initial.get('beerType') || 'all';
-const f: Filters = { drink: initial.get('drink') === 'coffee' ? 'coffee' : 'beer', coffeeType: 'creme', beerType: ['all', ...Object.keys(beerTypeLabels)].includes(initialBeerType) ? initialBeerType as Filters['beerType'] : 'all', query: '', max: 15, volume: ['stange', '300-330', '500', '300', '330', '400', 'all'].includes(initialSize) ? initialSize : '300-330', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
+const f: Filters = { drink: initial.get('drink') === 'pizza' ? 'pizza' : initial.get('drink') === 'coffee' ? 'coffee' : 'beer', coffeeType: 'creme', beerType: ['all', ...Object.keys(beerTypeLabels)].includes(initialBeerType) ? initialBeerType as Filters['beerType'] : 'all', query: '', max: initial.get('drink') === 'pizza' ? 30 : 15, volume: ['stange', '300-330', '500', '300', '330', '400', 'all'].includes(initialSize) ? initialSize : '300-330', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
 if (['bottle', 'can'].includes(f.beerType!) && f.volume === 'stange') f.volume = 'all';
 const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
@@ -22,13 +22,14 @@ let selected: string | undefined, position: [number, number] | undefined, editin
 let communityReady = false, saving = false;
 let userMarker: L.CircleMarker | undefined;
 const coffee = () => f.drink === 'coffee';
+const pizza = () => f.drink === 'pizza';
 const beer = () => f.drink === 'beer';
-const budgets: Record<Drink, number> = { beer: 15, coffee: 15 };
+const budgets: Record<Drink, number> = { beer: 15, coffee: 15, pizza: 30 };
 const unit = (o: Offer) => offerCategory(o) !== 'beer' ? portion(o) : `${f.mode === 'half' ? `5 dl${o.volumeMl === 500 ? '' : ' · umgerechnet'}` : portion(o)} · ${beerTypeLabel(o)}`;
 
 $('app').innerHTML = `
 <div class="toolbar">
-  <div class="switch" role="group" aria-label="Kategorie"><button id="drink-beer">Bier</button><button id="drink-coffee">Kaffee</button></div>
+  <div class="switch" role="group" aria-label="Kategorie"><button id="drink-beer">Bier</button><button id="drink-coffee">Kaffee</button><button id="drink-pizza">Pizza Margherita</button></div>
   <input id="search" type="search" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen">
   <div id="beer-controls" class="beer-controls">
     <select id="beer-type" aria-label="Ausschank">${options({ draft: 'Offenbier', bottle: 'Flaschenbier', all: 'Alle Ausschankarten', can: 'Dosenbier', unknown: 'Unbekannt' })}</select>
@@ -58,7 +59,7 @@ $('app').innerHTML = `
   <div class="dialog-top"><strong id="form-title">Preis eintragen</strong><button id="cancel-price" type="button">Schliessen</button></div>
   <input id="entry-bar" type="hidden">
   <label>Lokal<input id="entry-bar-name" readonly></label>
-  <div class="form-row"><label>Kategorie<select id="entry-drink"><option value="beer">Bier</option><option value="coffee">Kaffee</option></select></label><label id="entry-coffee-label" hidden>Sorte<select id="entry-coffee">${coffeeOptions}</select></label></div>
+  <div class="form-row"><label>Kategorie<select id="entry-drink"><option value="beer">Bier</option><option value="coffee">Kaffee</option><option value="pizza">Pizza Margherita</option></select></label><label id="entry-coffee-label" hidden>Sorte<select id="entry-coffee">${coffeeOptions}</select></label></div>
   <label>Bezeichnung<input id="entry-name" maxlength="100" placeholder="z. B. Lager oder Espresso" required></label>
   <div id="entry-beer-fields"><label>Ausschank<select id="entry-beer-type">${options(beerTypeLabels)}</select></label><small id="entry-type-hint" class="muted" hidden>Diese Vorauswahl ist geschätzt. Bitte prüfen.</small><div class="form-row"><label>Menge in dl<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label class="check"><input id="entry-size-unknown" type="checkbox"> Menge nicht angegeben (nur Stange)</label><label class="check"><input id="entry-alcohol" type="checkbox"> Alkoholfrei</label></div>
   <div class="form-row"><label>Preis in CHF<input id="entry-price" type="number" min="0.5" max="50" step="0.01" inputmode="decimal" required></label><label>Preis gesehen am<input id="entry-date" type="date" min="2020-01-01" required></label></div>
@@ -66,7 +67,7 @@ $('app').innerHTML = `
   <p class="muted">Wird für alle sichtbar. Bitte den tatsächlichen Preis dieser Portion eintragen.</p>
   <p id="form-error" role="alert" hidden></p><button id="save-price" class="primary" type="submit">Speichern</button>
 </form></dialog>
-<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><p id="coverage"></p><p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Bier: Cafés ohne erfasstes Bierangebot oder mit ausschliesslicher Öffnung bis spätestens 19 Uhr werden ausgeblendet, auch bei «Ohne passenden Preis anzeigen». Unbekannte Öffnungszeiten bleiben offen.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
+<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><p id="coverage"></p><p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.</p><p>Bier: Cafés ohne erfasstes Bierangebot oder mit ausschliesslicher Öffnung bis spätestens 19 Uhr werden ausgeblendet, auch bei «Ohne passenden Preis anzeigen». Unbekannte Öffnungszeiten bleiben offen.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
 
 const map = L.map('map', { zoomControl: false }).setView([47.378, 8.535], 14);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
@@ -101,7 +102,7 @@ function syncControls() {
   $<HTMLSelectElement>('volume').value = f.volume;
   $<HTMLSelectElement>('coffeeType').value = f.coffeeType!;
   $<HTMLInputElement>('normalize').checked = f.mode === 'half';
-  for (const drink of ['beer', 'coffee']) $('drink-' + drink).setAttribute('aria-pressed', String(f.drink === drink));
+  for (const drink of ['beer', 'coffee', 'pizza']) $('drink-' + drink).setAttribute('aria-pressed', String(f.drink === drink));
   const url = new URL(location.href);
   if (!beer()) url.searchParams.set('drink', f.drink!); else url.searchParams.delete('drink');
   if (beer()) url.searchParams.set('size', f.volume); else url.searchParams.delete('size');
@@ -114,7 +115,7 @@ function render() {
   syncControls();
   current = filterBars(bars, f, position);
   $('count').textContent = coverageLabel(current, f);
-  $('map-unit').textContent = coffee() ? `CHF · ${f.coffeeType === 'all' ? 'pro Getränk' : coffeeLabels[f.coffeeType!]}` : f.mode === 'half' ? 'CHF / 5 dl · umgerechnet' : f.volume === 'all' ? 'CHF / Portion · Menge beachten' : f.volume === 'stange' ? 'CHF / Stange' : f.volume === '300-330' ? 'CHF / Portion · 3 / 3.3 dl' : `CHF / ${Number(f.volume) / 100} dl`;
+  $('map-unit').textContent = pizza() ? 'CHF / Pizza Margherita' : coffee() ? `CHF · ${f.coffeeType === 'all' ? 'pro Getränk' : coffeeLabels[f.coffeeType!]}` : f.mode === 'half' ? 'CHF / 5 dl · umgerechnet' : f.volume === 'all' ? 'CHF / Portion · Menge beachten' : f.volume === 'stange' ? 'CHF / Stange' : f.volume === '300-330' ? 'CHF / Portion · 3 / 3.3 dl' : `CHF / ${Number(f.volume) / 100} dl`;
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
     return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || 'Zürich')}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
@@ -167,7 +168,7 @@ function detail(b: Bar) {
 }
 function showBar(b: Bar) { selected = b.id; showView(false); map.setView([b.lat, b.lon], Math.max(map.getZoom(), 15)); render(); $('detail').focus({ preventScroll: true }); }
 function chooseDrink(drink: Drink) { budgets[f.drink!] = f.max; f.max = budgets[drink]; $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : ''; f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
-$('drink-beer').onclick = () => chooseDrink('beer'); $('drink-coffee').onclick = () => chooseDrink('coffee');
+$('drink-beer').onclick = () => chooseDrink('beer'); $('drink-coffee').onclick = () => chooseDrink('coffee'); $('drink-pizza').onclick = () => chooseDrink('pizza');
 $('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
 $('search').oninput = () => { f.query = $<HTMLInputElement>('search').value; render(); };
 $('price').oninput = () => { const n = $<HTMLInputElement>('price').valueAsNumber; f.max = Number.isFinite(n) ? n : Infinity; render(); };
@@ -184,7 +185,7 @@ for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcoh
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
 $('reset').onclick = () => {
-  Object.assign(f, { query: '', max: 15, volume: '300-330', coffeeType: 'creme', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  Object.assign(f, { query: '', max: pizza() ? 30 : 15, volume: '300-330', coffeeType: 'creme', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = String(f.max);
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
   for (const id of ['unknown', 'outdoor', 'alcohol-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
@@ -201,7 +202,7 @@ function locate() {
 $('locate').onclick = locate;
 $('fit').onclick = () => { if (current.length) map.fitBounds(L.latLngBounds(current.map(b => [b.lat, b.lon])), { padding: [35, 35], maxZoom: 16 }); };
 $('data-info').onclick = () => {
-  $('coverage').textContent = Object.entries(datasets).map(([drink, data]) => `${drink === 'beer' ? 'Bier' : 'Kaffee'}: ${data.bars.reduce((n, b) => n + b.offers.length, 0)} Angebote aus Karten bei ${data.bars.filter(b => b.offers.length).length} Lokalen`).join('. ') + `. ${entries.length} gemeinsame Einträge/Korrekturen.`;
+  $('coverage').textContent = Object.entries(datasets).map(([drink, data]) => `${drink === 'pizza' ? 'Pizza Margherita' : drink === 'beer' ? 'Bier' : 'Kaffee'}: ${data.bars.reduce((n, b) => n + b.offers.length, 0)} Angebote aus Karten bei ${data.bars.filter(b => b.offers.length).length} Lokalen`).join('. ') + `. ${entries.length} gemeinsame Einträge/Korrekturen.`;
   $<HTMLDialogElement>('info').showModal();
 };
 $('close-info').onclick = () => $<HTMLDialogElement>('info').close();
@@ -213,6 +214,9 @@ function entryFields() {
   const isCoffee = category === 'coffee';
   const isBeer = category === 'beer';
   const name = $<HTMLInputElement>('entry-name');
+  name.readOnly = category === 'pizza';
+  if (category === 'pizza') name.value = 'Pizza Margherita';
+  else if (name.value === 'Pizza Margherita') name.value = '';
   name.placeholder = category === 'coffee' ? 'z. B. Espresso' : 'z. B. Lager';
   const packaged = ['bottle', 'can'].includes($<HTMLSelectElement>('entry-beer-type').value);
   if (packaged) { $<HTMLInputElement>('entry-stange').checked = false; $<HTMLInputElement>('entry-size-unknown').checked = false; }
@@ -247,7 +251,7 @@ function openPrice(bar: Bar, offer?: Offer) {
   $('form-error').hidden = true;
   entryFields();
   $<HTMLDialogElement>('price-dialog').showModal();
-  $<HTMLInputElement>(offer ? 'entry-price' : 'entry-name').focus();
+  $<HTMLInputElement>(offer || pizza() ? 'entry-price' : 'entry-name').focus();
 }
 $('entry-drink').onchange = entryFields; $('entry-size-unknown').onchange = entryFields;
 $('entry-beer-type').onchange = entryFields;
@@ -265,6 +269,7 @@ $('price-form').onsubmit = async event => {
       volumeMl: drink !== 'beer' || $<HTMLInputElement>('entry-size-unknown').checked ? null : $<HTMLInputElement>('entry-volume').valueAsNumber * 100,
       beerType: drink === 'beer' ? $<HTMLSelectElement>('entry-beer-type').value as BeerType : undefined,
       coffeeType: drink === 'coffee' ? $<HTMLSelectElement>('entry-coffee').value : undefined,
+      pizzaType: drink === 'pizza' ? 'margherita' : undefined,
       serving: drink === 'beer' && $<HTMLInputElement>('entry-stange').checked ? 'stange' : undefined,
       alcoholFree: drink !== 'beer' || $<HTMLInputElement>('entry-alcohol').checked,
       observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
@@ -305,16 +310,18 @@ async function loadCommunity() {
   } catch { communityReady = false; return false; }
 }
 async function init() {
-  const [beerResult, coffeeResult, loadedCommunity] = await Promise.all([
+  const [beerResult, coffeeResult, pizzaResult, loadedCommunity] = await Promise.all([
     fetch(`${import.meta.env.BASE_URL}data/bars.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${import.meta.env.BASE_URL}data/coffee.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    fetch(`${import.meta.env.BASE_URL}data/pizza.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     loadCommunity(),
   ]);
   if (beerResult) datasets.beer = beerResult;
   if (coffeeResult) datasets.coffee = coffeeResult;
+  if (pizzaResult) datasets.pizza = pizzaResult;
   venues = allVenues(datasets);
   $<HTMLInputElement>('price').value = String(f.max);
-  const errors = [!beerResult ? 'Bierdaten konnten nicht geladen werden.' : '', !coffeeResult ? 'Kaffeedaten konnten nicht geladen werden.' : '', !loadedCommunity ? 'Gemeinsame Einträge nicht verfügbar. Zum Eintragen bitte später neu laden.' : ''].filter(Boolean);
+  const errors = [!beerResult ? 'Bierdaten konnten nicht geladen werden.' : '', !coffeeResult ? 'Kaffeedaten konnten nicht geladen werden.' : '', !pizzaResult ? 'Pizzadaten konnten nicht geladen werden.' : '', !loadedCommunity ? 'Gemeinsame Einträge nicht verfügbar. Zum Eintragen bitte später neu laden.' : ''].filter(Boolean);
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   rebuild();
   const linkedId = initial.get('bar');
