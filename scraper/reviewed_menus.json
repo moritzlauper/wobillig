@@ -738,5 +738,44 @@
         "evidence": "Stadtbühler Lager dunkel | 50cl | CHF 8 · Spaltenzuordnung visuell geprüft"
       }
     ]
+  },
+  "https://darbar.ch/menu/": {
+    "barId": "node/2289568166",
+    "sha256": "8032347517c7db46d7a997cf6e69d8adba105e37bd1db592c5ce1a68fae81ff2",
+    "reviewedAt": "2026-10-15",
+    "offers": [
+      {
+        "name": "Feldschlösschen",
+        "volumeMl": 500,
+        "priceChf": 5.0,
+        "evidence": "Feldschlösschen 0.5L CHF 5.00 · Zugeordnetes Produktbild zeigt eine Dose: https://darbar.ch/wp-content/uploads/2023/07/FELDSCHLOSSCHEN-0.5L-150x150.jpg",
+        "alcoholFree": false,
+        "beerType": "can"
+      },
+      {
+        "name": "Heineken",
+        "volumeMl": 500,
+        "priceChf": 5.0,
+        "evidence": "Heineken 0.5L CHF 5.00 · Zugeordnetes Produktbild zeigt eine Flasche: https://darbar.ch/wp-content/uploads/2023/07/Heineken-0.5L-150x150.jpg",
+        "alcoholFree": false,
+        "beerType": "bottle"
+      },
+      {
+        "name": "Kingfisher Bier",
+        "volumeMl": 330,
+        "priceChf": 6.5,
+        "evidence": "Kingfisher Bier 0.33L CHF 6.50 · Zugeordnetes Produktbild zeigt eine Flasche: https://darbar.ch/wp-content/uploads/2023/07/Kingfisher-Bier-0.33L-150x150.webp",
+        "alcoholFree": false,
+        "beerType": "bottle"
+      },
+      {
+        "name": "Feldschlösschen Alkoholfrei",
+        "volumeMl": 330,
+        "priceChf": 5.5,
+        "evidence": "Feldschlösschen Alkoholfrei 0.33L CHF 5.50 · Zugeordnetes Produktbild zeigt eine Dose: https://darbar.ch/wp-content/uploads/2023/07/feldschloesschen-alkoholfrei.webp",
+        "alcoholFree": true,
+        "beerType": "can"
+      }
+    ]
   }
 }

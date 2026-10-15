@@ -6,7 +6,7 @@ export type Offer = {
   coffeeType?: string;
   serving?: "stange";
   beerType?: BeerType;
-  beerTypeEstimate?: { type: Exclude<BeerType, "unknown">; reason: string; method: "rules" | "ai" };
+  beerTypeEstimate?: { type: Exclude<BeerType, "unknown">; reason: string; method: "rules" | "ai"; sourceImage?: string };
   priceChf: number;
   sourceUrl: string;
   observedAt: string;

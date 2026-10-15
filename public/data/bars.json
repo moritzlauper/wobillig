@@ -9403,15 +9403,10 @@
           "priceChf": 5.0,
           "sourceUrl": "https://darbar.ch/menu/",
           "observedAt": "2026-10-15T12:03:55.597165+00:00",
-          "confidence": "automatic",
-          "evidence": "Feldschlösschen 0.5L CHF 5.00",
+          "confidence": "reviewed",
+          "evidence": "Feldschlösschen 0.5L CHF 5.00 · Zugeordnetes Produktbild zeigt eine Dose: https://darbar.ch/wp-content/uploads/2023/07/FELDSCHLOSSCHEN-0.5L-150x150.jpg",
           "alcoholFree": false,
-          "beerType": "unknown",
-          "beerTypeEstimate": {
-            "type": "draft",
-            "reason": "KI-Schätzung aus Bezeichnung, Menge und Menü-Kontext; nicht belegt.",
-            "method": "ai"
-          }
+          "beerType": "can"
         },
         {
           "name": "Heineken",
@@ -9419,15 +9414,10 @@
           "priceChf": 5.0,
           "sourceUrl": "https://darbar.ch/menu/",
           "observedAt": "2026-10-15T12:03:55.597165+00:00",
-          "confidence": "automatic",
-          "evidence": "Heineken 0.5L CHF 5.00",
+          "confidence": "reviewed",
+          "evidence": "Heineken 0.5L CHF 5.00 · Zugeordnetes Produktbild zeigt eine Flasche: https://darbar.ch/wp-content/uploads/2023/07/Heineken-0.5L-150x150.jpg",
           "alcoholFree": false,
-          "beerType": "unknown",
-          "beerTypeEstimate": {
-            "type": "draft",
-            "reason": "KI-Schätzung aus Bezeichnung, Menge und Menü-Kontext; nicht belegt.",
-            "method": "ai"
-          }
+          "beerType": "bottle"
         },
         {
           "name": "Kingfisher Bier",
@@ -9435,15 +9425,10 @@
           "priceChf": 6.5,
           "sourceUrl": "https://darbar.ch/menu/",
           "observedAt": "2026-10-15T12:03:55.597165+00:00",
-          "confidence": "automatic",
-          "evidence": "Kingfisher Bier 0.33L CHF 6.50",
+          "confidence": "reviewed",
+          "evidence": "Kingfisher Bier 0.33L CHF 6.50 · Zugeordnetes Produktbild zeigt eine Flasche: https://darbar.ch/wp-content/uploads/2023/07/Kingfisher-Bier-0.33L-150x150.webp",
           "alcoholFree": false,
-          "beerType": "unknown",
-          "beerTypeEstimate": {
-            "type": "bottle",
-            "reason": "KI-Schätzung aus Bezeichnung, Menge und Menü-Kontext; nicht belegt.",
-            "method": "ai"
-          }
+          "beerType": "bottle"
         },
         {
           "name": "Feldschlösschen Alkoholfrei",
@@ -9451,15 +9436,10 @@
           "priceChf": 5.5,
           "sourceUrl": "https://darbar.ch/menu/",
           "observedAt": "2026-10-15T12:03:55.597165+00:00",
-          "confidence": "automatic",
-          "evidence": "Feldschlösschen Alkoholfrei 0.33L CHF 5.50",
+          "confidence": "reviewed",
+          "evidence": "Feldschlösschen Alkoholfrei 0.33L CHF 5.50 · Zugeordnetes Produktbild zeigt eine Dose: https://darbar.ch/wp-content/uploads/2023/07/feldschloesschen-alkoholfrei.webp",
           "alcoholFree": true,
-          "beerType": "unknown",
-          "beerTypeEstimate": {
-            "type": "bottle",
-            "reason": "KI-Schätzung aus Bezeichnung, Menge und Menü-Kontext; nicht belegt.",
-            "method": "ai"
-          }
+          "beerType": "can"
         }
       ],
       "scrapeStatus": "prices_found",

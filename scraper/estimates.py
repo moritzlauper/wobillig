@@ -20,6 +20,8 @@ def estimate_types(bars):
                 offer.pop('beerTypeEstimate', None)
                 continue
             ai = offer.get('beerTypeEstimate', {}).get('method') == 'ai'
+            if ai and offer['beerTypeEstimate'].get('sourceImage'):
+                continue  # A linked product photo outweighs portion-size heuristics.
             if not ai: offer.pop('beerTypeEstimate', None)
             name, volume = offer['name'], offer['volumeMl']
             peers = [o for o in beer if name_key(o['name']) == name_key(name)
