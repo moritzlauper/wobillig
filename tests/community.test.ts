@@ -33,19 +33,22 @@ describe('shared price validation', () => {
   ])('rejects malformed or misleading input %j', patch => expect(() => validateInput({ ...input, ...patch }, [bar])).toThrow());
 });
 describe('persistent edits', () => {
-  it('shows coffee-only venues such as Plüsch in the beer map without borrowing coffee prices', () => {
+  it('hides coffee-only cafés from beer results until a beer price is contributed', async () => {
     const pluesch: Bar = { ...bar, id: 'node/364410129', name: 'Plüsch', type: 'cafe', offers: [{ ...offer, name: 'Espresso', coffeeType: 'espresso', volumeMl: null }] };
     const coffeeData = { ...coffee, bars: [pluesch] };
     const venues = allVenues({ beer, coffee: coffeeData });
     const result = applyEntries(beer, [], venues, 'beer');
     const filters: Filters = { drink: 'beer', query: 'Plüsch', max: 15, volume: '500', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
-    expect(filterBars(result.bars, filters).map(b => b.id)).toEqual([pluesch.id]);
+    expect(filterBars(result.bars, filters)).toEqual([]);
     expect(result.bars.find(b => b.id === pluesch.id)?.offers).toEqual([]);
     expect(filterBars(result.bars, { ...filters, unknown: false })).toEqual([]);
     const coffeeResult = applyEntries(coffeeData, [], venues, 'coffee');
     expect(coffeeResult.bars.find(b => b.id === bar.id)?.offers).toEqual([]);
     expect(coffeeResult.bars.find(b => b.id === pluesch.id)?.offers).toEqual(pluesch.offers);
     expect(result.bars.find(b => b.id === bar.id)?.offers).toEqual(bar.offers);
+    const entry = await savePrice(memoryStore(), { ...input, barId: pluesch.id, targetKey: undefined }, { beer, coffee: coffeeData }, 'a');
+    const withBeer = applyEntries(beer, [entry], venues, 'beer');
+    expect(filterBars(withBeer.bars, filters).map(b => b.id)).toEqual([pluesch.id]);
   });
   it('replaces a scraped price without changing the scraped data, including after scraper refreshes', async () => {
     const store = memoryStore();

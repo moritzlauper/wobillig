@@ -2,6 +2,8 @@ import mixes from './fixtures/beer-mixes.json';
 import { describe, it, expect } from "vitest";
 import {
   filterBars,
+  hasEveningHours,
+  isVenueEligible,
   isBeerMix,
   isComparableOffer,
   isCurrentOffer,
@@ -222,3 +224,53 @@ it.each(mixes.excluded)('excludes %s even with an explicit or estimated draft fl
   }
 });
 it.each(mixes.beer)('keeps ordinary beer %s eligible', name => expect(isBeerMix(name)).toBe(false));
+
+
+describe("cafés in the beer view", () => {
+  const cafe: Bar = { ...b, type: "cafe", openingHours: "Mo-Fr 08:00-22:00; Sa-Su 09:00-18:00" };
+  it("excludes cafés without beer even when missing prices are enabled", () => {
+    const coffeeOnly = { ...b.offers[0], coffeeType: "espresso" };
+    for (const offers of [[], [coffeeOnly], [{ ...b.offers[0], name: "Panaché" }]]) {
+      expect(filterBars([{ ...cafe, offers }], { ...f, type: "cafe" })).toEqual([]);
+    }
+  });
+  it("excludes daytime cafés even with a matching beer price or explicit selection", () => {
+    for (const openingHours of ["Mo-Fr 08:00-18:00; Sa 08:00-17:00", "Tu-Fr 07:00-18:30; Sa-Su 09:00-17:00", "Mo-Su 09:00-19:00"]) {
+      const daytime = { ...cafe, openingHours };
+      expect(filterBars([daytime], f)).toEqual([]);
+      expect(isVenueEligible(daytime, f)).toBe(false);
+    }
+  });
+  it("keeps beer cafés with evening service or unknown hours", () => {
+    for (const openingHours of [cafe.openingHours, "Tu-Fr 08:30-17:00, Sa 10:00-17:00, Th 08:30-22:00", null]) {
+      expect(filterBars([{ ...cafe, openingHours }], f)).toHaveLength(1);
+    }
+  });
+  it("still allows a missing size or format price at eligible cafés", () => {
+    expect(filterBars([cafe], { ...f, beerType: "bottle" })).toHaveLength(1);
+    expect(filterBars([cafe], { ...f, beerType: "bottle", unknown: false })).toHaveLength(0);
+  });
+  it("keeps coffee, pizza and other venue types unaffected", () => {
+    const daytime = { ...cafe, openingHours: "08:00-17:00", offers: [] };
+    expect(filterBars([daytime], { ...f, drink: "coffee" })).toHaveLength(1);
+    expect(filterBars([daytime], { ...f, drink: "pizza" })).toHaveLength(1);
+    expect(filterBars([{ ...daytime, type: "bar" }], f)).toHaveLength(1);
+  });
+  it("accepts newly contributed beer but ignores expired photo evidence", () => {
+    const expired = { ...b.offers[0], photoSource: { kind: "google_maps_photo" as const, date: "2020-01", dateEvidence: "Jan 2020", dateCheckedAt: "2020-01-01", validUntil: "2020-07-01" } };
+    expect(filterBars([{ ...cafe, offers: [expired] }], f)).toHaveLength(0);
+    expect(filterBars([{ ...cafe, offers: [{ ...expired, confidence: "community" }] }], f)).toHaveLength(1);
+  });
+});
+
+describe("evening opening intervals", () => {
+  it.each(["24/7", "Mo-Fr 08:00-19:30", "Fr 18:00-02:00", "Sa 09:00-25:00", "16:00-28:00", "Mo 08:00-12:00,18:00-22:00", "Mo 07:00-07:00"])("recognizes evening hours: %s", hours => {
+    expect(hasEveningHours(hours)).toBe(true);
+  });
+  it.each(["Mo-Fr 08:00-19:00", "Sa 00:00-03:00", "Mo 08:00-12:00,14:00-17:00", 'Mo 08:00-17:00 "events 20:00-23:00"', "closed"])("recognizes daytime-only hours: %s", hours => {
+    expect(hasEveningHours(hours)).toBe(false);
+  });
+  it.each([null, "", '"Community events"', "sunset-sunrise", "Mo 08:00-17:00; Fr 18:00+", "by appointment"])("leaves unsupported or missing hours unknown: %s", hours => {
+    expect(hasEveningHours(hours)).toBeUndefined();
+  });
+});
