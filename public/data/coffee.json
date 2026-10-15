@@ -1,8 +1,140 @@
 {
-  "generatedAt": "2026-10-15T14:20:14.834214+00:00",
+  "generatedAt": "2026-10-15T14:39:10.619222+00:00",
   "discoveredAt": "2026-10-15T09:14:10.891398+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
+    {
+      "id": "node/317023457",
+      "name": "2. Akt",
+      "lat": 47.3698304,
+      "lon": 8.5336387,
+      "type": "pub",
+      "address": "Selnaustrasse 2",
+      "postcode": "8001",
+      "website": "https://2akt.ch/",
+      "openingHours": "Tu-Fr 11:00-14:00, Tu-Th 17:00-23:00, Fr 17:00-02:00, Sa 15:00-02:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Kaffee Creme",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/2893/menu/2521309a212a.pdf",
+          "observedAt": "2026-10-15T14:25:22.038261+00:00",
+          "confidence": "ai",
+          "evidence": "Heissgetränke | Kaffee Creme 4.80",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "creme",
+          "sourceSha256": "2b3dc3a5cbd40ff4c0cec2fa4a23ad56a37ff5e4498a33d4e7128ecad4c82ebf"
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/2893/menu/2521309a212a.pdf",
+          "observedAt": "2026-10-15T14:25:22.038261+00:00",
+          "confidence": "ai",
+          "evidence": "Heissgetränke | Espresso 4.80",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "2b3dc3a5cbd40ff4c0cec2fa4a23ad56a37ff5e4498a33d4e7128ecad4c82ebf"
+        },
+        {
+          "name": "Doppelter Espresso",
+          "priceChf": 6.8,
+          "volumeMl": null,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/2893/menu/2521309a212a.pdf",
+          "observedAt": "2026-10-15T14:25:22.038261+00:00",
+          "confidence": "ai",
+          "evidence": "Heissgetränke | Doppelter Espresso 6.80",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "2b3dc3a5cbd40ff4c0cec2fa4a23ad56a37ff5e4498a33d4e7128ecad4c82ebf"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 6.8,
+          "volumeMl": null,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/2893/menu/2521309a212a.pdf",
+          "observedAt": "2026-10-15T14:25:22.038261+00:00",
+          "confidence": "ai",
+          "evidence": "Heissgetränke | Cappuccino 6.80",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "2b3dc3a5cbd40ff4c0cec2fa4a23ad56a37ff5e4498a33d4e7128ecad4c82ebf"
+        },
+        {
+          "name": "Schale",
+          "priceChf": 6.8,
+          "volumeMl": null,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/2893/menu/2521309a212a.pdf",
+          "observedAt": "2026-10-15T14:25:22.038261+00:00",
+          "confidence": "ai",
+          "evidence": "Heissgetränke | Schale 6.80",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "milk",
+          "sourceSha256": "2b3dc3a5cbd40ff4c0cec2fa4a23ad56a37ff5e4498a33d4e7128ecad4c82ebf"
+        },
+        {
+          "name": "Latte Macchiato",
+          "priceChf": 6.8,
+          "volumeMl": null,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/2893/menu/2521309a212a.pdf",
+          "observedAt": "2026-10-15T14:25:22.038261+00:00",
+          "confidence": "ai",
+          "evidence": "Heissgetränke | Latte Macchiato 6.80",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "2b3dc3a5cbd40ff4c0cec2fa4a23ad56a37ff5e4498a33d4e7128ecad4c82ebf"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:25:12.926002+00:00",
+      "aiCheckedAt": "2026-10-15T14:27:05.208879+00:00"
+    },
+    {
+      "id": "node/2904476133",
+      "name": "4Leoni Firenze",
+      "lat": 47.3843323,
+      "lon": 8.5302362,
+      "type": "restaurant",
+      "address": "Luisenstrasse 43",
+      "postcode": "8005",
+      "website": "https://4leoni-firenze.ch/",
+      "openingHours": "Mo-Fr 11:30-14:30,18:00-23:30; Sa 18:00-23:30; Su 11:30-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Caffè della Moka",
+          "priceChf": 5,
+          "volumeMl": null,
+          "sourceUrl": "https://4leoni-firenze.ch/wp-content/uploads/2024/12/Menu-A3-Newspaper-4Leoni-23-61-1.pdf",
+          "observedAt": "2026-10-15T14:25:18.620584+00:00",
+          "confidence": "ai",
+          "evidence": "Caffè della Moka | 5–",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "filter",
+          "sourceSha256": "7515c101f9e9688c224493843e1153c53cf91bf6425cfaafdd8eb0e6fa30b1fb"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:25:13.100961+00:00",
+      "aiCheckedAt": "2026-10-15T14:25:50.126079+00:00"
+    },
     {
       "id": "node/370835059",
       "name": "5. Akt",
@@ -83,7 +215,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:13.460744+00:00"
+      "checkedAt": "2026-10-15T12:25:13.460744+00:00",
+      "aiCheckedAt": "2026-10-15T14:26:14.516964+00:00"
     },
     {
       "id": "node/3357441576",
@@ -121,7 +254,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:14.868439+00:00"
+      "checkedAt": "2026-10-15T12:25:14.868439+00:00",
+      "aiCheckedAt": "2026-10-15T14:26:25.155934+00:00"
     },
     {
       "id": "node/914812684",
@@ -145,10 +279,39 @@
           "confidence": "automatic",
           "evidence": "Doppelter Espresso CHF 6.5",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso / Kaffee / Decaffein",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.akaraka.ch/menus?location=Location+1&menu=drinks",
+          "observedAt": "2026-10-15T14:25:17.350288+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso / Kaffee / Decaffein CHF 4.9",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "f5563e0f75f97f178eeaa417334a207dfe71e621abe7c8ea460e74f7e8446594"
+        },
+        {
+          "name": "Cappuccino / Milch Kaffee / Latte Macchiato",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.akaraka.ch/menus?location=Location+1&menu=drinks",
+          "observedAt": "2026-10-15T14:25:17.350288+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino / Milch Kaffee / Latte Macchiato CHF 6.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "f5563e0f75f97f178eeaa417334a207dfe71e621abe7c8ea460e74f7e8446594"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:15.440101+00:00"
+      "checkedAt": "2026-10-15T12:25:15.440101+00:00",
+      "aiCheckedAt": "2026-10-15T14:25:38.044013+00:00"
     },
     {
       "id": "node/411069901",
@@ -216,10 +379,140 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: Cappuccino 6",
           "alcoholFree": true
+        },
+        {
+          "name": "Iced Latte",
+          "priceChf": 7.0,
+          "volumeMl": null,
+          "sourceUrl": "https://alea-spielbar.ch/wp-content/uploads/2026/02/Alea_Menu.pdf",
+          "observedAt": "2026-10-15T14:25:18.331519+00:00",
+          "confidence": "ai",
+          "evidence": "Iced Latte 7",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "e30e2873f4e80aca9290842a1914ca1e739eec93eea49c093ee66418d38a5e4a"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:15.885903+00:00"
+      "checkedAt": "2026-10-15T12:25:15.885903+00:00",
+      "aiCheckedAt": "2026-10-15T14:25:53.994457+00:00"
+    },
+    {
+      "id": "node/297710735",
+      "name": "Almodobar",
+      "lat": 47.3669773,
+      "lon": 8.5333873,
+      "type": "pub",
+      "address": "",
+      "postcode": "",
+      "website": "https://almodobar.com/",
+      "openingHours": "Mo-We 07:30-24:00; Th-Fr 07:30-02:00; Fr-Sa 07:30-04:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Café Crème",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://almodobar.com/wp-content/uploads/2022/10/Getränkekarte.pdf",
+          "observedAt": "2026-10-15T14:27:10.890751+00:00",
+          "confidence": "ai",
+          "evidence": "Café Crème 4.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "creme",
+          "sourceSha256": "48ef24a27f17b3d7c6a1f520881c882ebffa36cd028b970d4e78aa0f599db012"
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://almodobar.com/wp-content/uploads/2022/10/Getränkekarte.pdf",
+          "observedAt": "2026-10-15T14:27:10.890751+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso / Ristretto 4.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "48ef24a27f17b3d7c6a1f520881c882ebffa36cd028b970d4e78aa0f599db012"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://almodobar.com/wp-content/uploads/2022/10/Getränkekarte.pdf",
+          "observedAt": "2026-10-15T14:27:10.890751+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso / Ristretto 4.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "ristretto",
+          "sourceSha256": "48ef24a27f17b3d7c6a1f520881c882ebffa36cd028b970d4e78aa0f599db012"
+        },
+        {
+          "name": "Milchkaffee \"Schale\"",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://almodobar.com/wp-content/uploads/2022/10/Getränkekarte.pdf",
+          "observedAt": "2026-10-15T14:27:10.890751+00:00",
+          "confidence": "ai",
+          "evidence": "Milchkaffee \"Schale\" 4.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "milk",
+          "sourceSha256": "48ef24a27f17b3d7c6a1f520881c882ebffa36cd028b970d4e78aa0f599db012"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://almodobar.com/wp-content/uploads/2022/10/Getränkekarte.pdf",
+          "observedAt": "2026-10-15T14:27:10.890751+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "48ef24a27f17b3d7c6a1f520881c882ebffa36cd028b970d4e78aa0f599db012"
+        },
+        {
+          "name": "Latte Macchiato",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://almodobar.com/wp-content/uploads/2022/10/Getränkekarte.pdf",
+          "observedAt": "2026-10-15T14:27:10.890751+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato 5.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "48ef24a27f17b3d7c6a1f520881c882ebffa36cd028b970d4e78aa0f599db012"
+        },
+        {
+          "name": "Doppio",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://almodobar.com/wp-content/uploads/2022/10/Getränkekarte.pdf",
+          "observedAt": "2026-10-15T14:27:10.890751+00:00",
+          "confidence": "ai",
+          "evidence": "Doppio 6.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "48ef24a27f17b3d7c6a1f520881c882ebffa36cd028b970d4e78aa0f599db012"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:25:15.519149+00:00",
+      "aiCheckedAt": "2026-10-15T14:28:13.981639+00:00"
     },
     {
       "id": "node/721046177",
@@ -301,7 +594,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:16.384292+00:00"
+      "checkedAt": "2026-10-15T12:25:16.384292+00:00",
+      "aiCheckedAt": "2026-10-15T14:27:53.293622+00:00"
     },
     {
       "id": "node/289669794",
@@ -383,7 +677,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:17.026597+00:00"
+      "checkedAt": "2026-10-15T12:25:17.026597+00:00",
+      "aiCheckedAt": "2026-10-15T14:28:02.226646+00:00"
     },
     {
       "id": "node/1245160899",
@@ -421,7 +716,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:29:25.450560+00:00"
+      "checkedAt": "2026-10-15T12:29:25.450560+00:00",
+      "aiCheckedAt": "2026-10-15T14:27:54.860833+00:00"
     },
     {
       "id": "node/683404164",
@@ -503,7 +799,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:17.551583+00:00"
+      "checkedAt": "2026-10-15T12:25:17.551583+00:00",
+      "aiCheckedAt": "2026-10-15T14:28:02.444369+00:00"
     },
     {
       "id": "node/5741642320",
@@ -531,6 +828,37 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-15T12:25:17.580108+00:00"
+    },
+    {
+      "id": "node/4968281140",
+      "name": "An Chay",
+      "lat": 47.3790326,
+      "lon": 8.5154904,
+      "type": "restaurant",
+      "address": "Zypressenstrasse 94",
+      "postcode": "8004",
+      "website": "https://www.anchayzurich.com/",
+      "openingHours": "Tu-Fr 11:30-13:30,18:00-22:00; Sa 18:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Viet-Coffee",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/63485a96d0b9b006967d8a62/t/6ac5167cd5c63e2b67d4368e/1791301245215/AnChay_Dinner_Oct26.pdf",
+          "observedAt": "2026-10-15T14:28:15.531507+00:00",
+          "confidence": "ai",
+          "evidence": "Viet-Coffee classic Vietnamese drip coffee with condensed milk. hot / iced 6",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "filter",
+          "sourceSha256": "ee8da12b2ea59a9ae4d9fa92efc3425f368343e7464da895d0230c8e691e8105"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:25:17.360302+00:00",
+      "aiCheckedAt": "2026-10-15T14:28:46.409252+00:00"
     },
     {
       "id": "node/267879347",
@@ -601,7 +929,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:18.453869+00:00"
+      "checkedAt": "2026-10-15T12:25:18.453869+00:00",
+      "aiCheckedAt": "2026-10-15T14:29:36.685198+00:00"
     },
     {
       "id": "node/370844160",
@@ -650,7 +979,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:19.118361+00:00"
+      "checkedAt": "2026-10-15T12:25:19.118361+00:00",
+      "aiCheckedAt": "2026-10-15T14:29:56.528156+00:00"
     },
     {
       "id": "node/13665204352",
@@ -729,10 +1059,112 @@
           "confidence": "automatic",
           "evidence": "PDF S. 6: Flat White 6.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Iced Americano",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.arnold-kiosk.ch/_files/ugd/8be3e6_c7a87dd8d8924650bb7fb972596d7ff5.pdf",
+          "observedAt": "2026-10-15T14:28:15.946022+00:00",
+          "confidence": "ai",
+          "evidence": "Iced Americano 6.50",
+          "alcoholFree": true,
+          "sourcePage": 6,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "americano",
+          "sourceSha256": "03586799eec2accaee1333a5274e6bae16d143c472392008ca31c9b7ab81f5ee"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:22.804984+00:00"
+      "checkedAt": "2026-10-15T12:25:22.804984+00:00",
+      "aiCheckedAt": "2026-10-15T14:28:42.086454+00:00"
+    },
+    {
+      "id": "node/283458368",
+      "name": "Astra",
+      "lat": 47.3743934,
+      "lon": 8.535549,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://astra-kitchenbar.ch/",
+      "openingHours": "Tu-Th 11:30-24:00, Fr 11:30-01:45, Sa 19:00-01:45",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Cafe Creme",
+          "priceChf": 5,
+          "volumeMl": null,
+          "sourceUrl": "https://astra-kitchenbar.ch/PDF/Astra-Barkarte-2025.pdf",
+          "observedAt": "2026-10-15T14:30:15.363709+00:00",
+          "confidence": "ai",
+          "evidence": "CAFE CREME 5",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "creme",
+          "sourceSha256": "9805463269ae862addafb81bcf2e1a6cb876b85e492d30c14a5716f555264828"
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 5,
+          "volumeMl": null,
+          "sourceUrl": "https://astra-kitchenbar.ch/PDF/Astra-Barkarte-2025.pdf",
+          "observedAt": "2026-10-15T14:30:15.363709+00:00",
+          "confidence": "ai",
+          "evidence": "ESPRESSO 5",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "9805463269ae862addafb81bcf2e1a6cb876b85e492d30c14a5716f555264828"
+        },
+        {
+          "name": "Espresso Doppio",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://astra-kitchenbar.ch/PDF/Astra-Barkarte-2025.pdf",
+          "observedAt": "2026-10-15T14:30:15.363709+00:00",
+          "confidence": "ai",
+          "evidence": "ESPRESSO DOPPIO 6",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "9805463269ae862addafb81bcf2e1a6cb876b85e492d30c14a5716f555264828"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://astra-kitchenbar.ch/PDF/Astra-Barkarte-2025.pdf",
+          "observedAt": "2026-10-15T14:30:15.363709+00:00",
+          "confidence": "ai",
+          "evidence": "CAPUCCINO 6",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "9805463269ae862addafb81bcf2e1a6cb876b85e492d30c14a5716f555264828"
+        },
+        {
+          "name": "Latte Macchiato",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://astra-kitchenbar.ch/PDF/Astra-Barkarte-2025.pdf",
+          "observedAt": "2026-10-15T14:30:15.363709+00:00",
+          "confidence": "ai",
+          "evidence": "LATTE MACCHIATO 6",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "9805463269ae862addafb81bcf2e1a6cb876b85e492d30c14a5716f555264828"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:25:22.500899+00:00",
+      "aiCheckedAt": "2026-10-15T14:31:09.041635+00:00"
     },
     {
       "id": "node/10162798340",
@@ -778,10 +1210,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 16: Coffee 5",
           "alcoholFree": true
+        },
+        {
+          "name": "Coffee",
+          "priceChf": 5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tao-group.ch/docs/aura_cocktails.pdf",
+          "observedAt": "2026-10-15T14:30:15.354409+00:00",
+          "confidence": "ai",
+          "evidence": "Coffee 5",
+          "alcoholFree": true,
+          "sourcePage": 16,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "filter",
+          "sourceSha256": "91237fd3094c0e0097bf6395f216a770decae7ece929d66564bbb5db3eb7f0bb"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:25.690610+00:00"
+      "checkedAt": "2026-10-15T12:25:25.690610+00:00",
+      "aiCheckedAt": "2026-10-15T14:31:23.589502+00:00"
     },
     {
       "id": "node/4895551237",
@@ -852,7 +1299,123 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:25.226743+00:00"
+      "checkedAt": "2026-10-15T12:25:25.226743+00:00",
+      "aiCheckedAt": "2026-10-15T14:31:26.535835+00:00"
+    },
+    {
+      "id": "node/4070417589",
+      "name": "Bank",
+      "lat": 47.3764213,
+      "lon": 8.5264559,
+      "type": "restaurant",
+      "address": "Molkenstrasse 15",
+      "postcode": "8004",
+      "website": "https://www.bankzuerich.ch/",
+      "openingHours": "Mo 10:00-22:00; Tu-Sa 09:00-23:00; Su 09:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Espresso Brazil",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bankzuerich.ch/site/assets/files/1072/bank-getrankekarte-07_26.pdf",
+          "observedAt": "2026-10-15T14:30:18.454902+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso Brazil 4.8",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "fd829db47bf3a98d48cb411cc30d01f9f7264e76c25399c53c195b2a96ff0691"
+        },
+        {
+          "name": "Doppio Brazil",
+          "priceChf": 6.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bankzuerich.ch/site/assets/files/1072/bank-getrankekarte-07_26.pdf",
+          "observedAt": "2026-10-15T14:30:18.454902+00:00",
+          "confidence": "ai",
+          "evidence": "Doppio Brazil 6.3",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "fd829db47bf3a98d48cb411cc30d01f9f7264e76c25399c53c195b2a96ff0691"
+        },
+        {
+          "name": "Americano Brazil",
+          "priceChf": 6.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bankzuerich.ch/site/assets/files/1072/bank-getrankekarte-07_26.pdf",
+          "observedAt": "2026-10-15T14:30:18.454902+00:00",
+          "confidence": "ai",
+          "evidence": "Americano Brazil 6.3",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "americano",
+          "sourceSha256": "fd829db47bf3a98d48cb411cc30d01f9f7264e76c25399c53c195b2a96ff0691"
+        },
+        {
+          "name": "Cappuccino Brazil",
+          "priceChf": 5.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bankzuerich.ch/site/assets/files/1072/bank-getrankekarte-07_26.pdf",
+          "observedAt": "2026-10-15T14:30:18.454902+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino Brazil 5.8",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "fd829db47bf3a98d48cb411cc30d01f9f7264e76c25399c53c195b2a96ff0691"
+        },
+        {
+          "name": "Grandeccino Brazil",
+          "priceChf": 7.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bankzuerich.ch/site/assets/files/1072/bank-getrankekarte-07_26.pdf",
+          "observedAt": "2026-10-15T14:30:18.454902+00:00",
+          "confidence": "ai",
+          "evidence": "Grandeccino Brazil 7.3",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "milk",
+          "sourceSha256": "fd829db47bf3a98d48cb411cc30d01f9f7264e76c25399c53c195b2a96ff0691"
+        },
+        {
+          "name": "Latte Macchiato Brazil",
+          "priceChf": 6.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bankzuerich.ch/site/assets/files/1072/bank-getrankekarte-07_26.pdf",
+          "observedAt": "2026-10-15T14:30:18.454902+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato Brazil 6.3",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "fd829db47bf3a98d48cb411cc30d01f9f7264e76c25399c53c195b2a96ff0691"
+        },
+        {
+          "name": "Café Crème Brazil",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bankzuerich.ch/site/assets/files/1072/bank-getrankekarte-07_26.pdf",
+          "observedAt": "2026-10-15T14:30:18.454902+00:00",
+          "confidence": "ai",
+          "evidence": "SWISS CLASSICS – Café Crème Brazil 4.8",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "creme",
+          "sourceSha256": "fd829db47bf3a98d48cb411cc30d01f9f7264e76c25399c53c195b2a96ff0691"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:25:26.040830+00:00",
+      "aiCheckedAt": "2026-10-15T14:31:18.317740+00:00"
     },
     {
       "id": "node/10718529590",
@@ -890,7 +1453,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:27.029293+00:00"
+      "checkedAt": "2026-10-15T12:25:27.029293+00:00",
+      "aiCheckedAt": "2026-10-15T14:31:00.968317+00:00"
     },
     {
       "id": "node/5803645580",
@@ -950,7 +1514,339 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:27.471206+00:00"
+      "checkedAt": "2026-10-15T12:25:27.471206+00:00",
+      "aiCheckedAt": "2026-10-15T14:32:05.349240+00:00"
+    },
+    {
+      "id": "node/694152201",
+      "name": "Bar Zürichberg",
+      "lat": 47.3824554,
+      "lon": 8.5671437,
+      "type": "bar",
+      "address": "Orellistrasse 21",
+      "postcode": "8044",
+      "website": "https://www.zuerichberg.ch/bar",
+      "openingHours": "Mo-Th 14:00-23:00; Fr-Su 12:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Espresso",
+          "priceChf": 5.7,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
+          "observedAt": "2026-10-15T14:31:26.924883+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 5.70",
+          "alcoholFree": true,
+          "sourcePage": 15,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "5eb64aff0f12b4043c9b5bb276b2e9dcff1bb4eca23440a038c8e658ee5a4188"
+        },
+        {
+          "name": "Kaffee Creme",
+          "priceChf": 5.7,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
+          "observedAt": "2026-10-15T14:31:26.924883+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee Creme 5.70",
+          "alcoholFree": true,
+          "sourcePage": 15,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "creme",
+          "sourceSha256": "5eb64aff0f12b4043c9b5bb276b2e9dcff1bb4eca23440a038c8e658ee5a4188"
+        },
+        {
+          "name": "Milchkaffee",
+          "priceChf": 6.2,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
+          "observedAt": "2026-10-15T14:31:26.924883+00:00",
+          "confidence": "ai",
+          "evidence": "Milchkaffee 6.20",
+          "alcoholFree": true,
+          "sourcePage": 15,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "milk",
+          "sourceSha256": "5eb64aff0f12b4043c9b5bb276b2e9dcff1bb4eca23440a038c8e658ee5a4188"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 6.7,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
+          "observedAt": "2026-10-15T14:31:26.924883+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 6.70",
+          "alcoholFree": true,
+          "sourcePage": 15,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "5eb64aff0f12b4043c9b5bb276b2e9dcff1bb4eca23440a038c8e658ee5a4188"
+        },
+        {
+          "name": "Latte Macchiato",
+          "priceChf": 7.2,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
+          "observedAt": "2026-10-15T14:31:26.924883+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato 7.20",
+          "alcoholFree": true,
+          "sourcePage": 15,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "5eb64aff0f12b4043c9b5bb276b2e9dcff1bb4eca23440a038c8e658ee5a4188"
+        },
+        {
+          "name": "Doppelter Espresso",
+          "priceChf": 7.9,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6aa90829f2a209780264e41b/1789462569069/Barkarte+Sommer+2026.pdf",
+          "observedAt": "2026-10-15T14:31:26.924883+00:00",
+          "confidence": "ai",
+          "evidence": "Doppelter Espresso 7.90",
+          "alcoholFree": true,
+          "sourcePage": 15,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "5eb64aff0f12b4043c9b5bb276b2e9dcff1bb4eca23440a038c8e658ee5a4188"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:29:25.143305+00:00",
+      "aiCheckedAt": "2026-10-15T14:32:05.100583+00:00"
+    },
+    {
+      "id": "node/297710736",
+      "name": "Barfly'z",
+      "lat": 47.365884,
+      "lon": 8.5367894,
+      "type": "bar",
+      "address": "Gotthardstrasse 21",
+      "postcode": "",
+      "website": "https://barflyz.ch/",
+      "openingHours": "Mo-Fr 08:00-24:00; Tu 08:00-01:00; Sa 17:00-02:00; Su \"Auf Anfrage\"",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coffee",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://barflyz.ch/wp-content/uploads/2025/02/240930_Cocktailkarte-barflyz.pdf",
+          "observedAt": "2026-10-15T14:31:30.219791+00:00",
+          "confidence": "ai",
+          "evidence": "Coffee 4.50",
+          "alcoholFree": true,
+          "sourcePage": 32,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "creme",
+          "sourceSha256": "55d669969bc788b61643e7e4a0c6573dc3a5678c796cf58b9cbf545603a7fa2b"
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://barflyz.ch/wp-content/uploads/2025/02/240930_Cocktailkarte-barflyz.pdf",
+          "observedAt": "2026-10-15T14:31:30.219791+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 4.50",
+          "alcoholFree": true,
+          "sourcePage": 32,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "55d669969bc788b61643e7e4a0c6573dc3a5678c796cf58b9cbf545603a7fa2b"
+        },
+        {
+          "name": "Doppio",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://barflyz.ch/wp-content/uploads/2025/02/240930_Cocktailkarte-barflyz.pdf",
+          "observedAt": "2026-10-15T14:31:30.219791+00:00",
+          "confidence": "ai",
+          "evidence": "Doppio 5.-",
+          "alcoholFree": true,
+          "sourcePage": 32,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "55d669969bc788b61643e7e4a0c6573dc3a5678c796cf58b9cbf545603a7fa2b"
+        },
+        {
+          "name": "Latte macchiato",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://barflyz.ch/wp-content/uploads/2025/02/240930_Cocktailkarte-barflyz.pdf",
+          "observedAt": "2026-10-15T14:31:30.219791+00:00",
+          "confidence": "ai",
+          "evidence": "Latte macchiato 5.-",
+          "alcoholFree": true,
+          "sourcePage": 32,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "55d669969bc788b61643e7e4a0c6573dc3a5678c796cf58b9cbf545603a7fa2b"
+        },
+        {
+          "name": "Cappucino",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://barflyz.ch/wp-content/uploads/2025/02/240930_Cocktailkarte-barflyz.pdf",
+          "observedAt": "2026-10-15T14:31:30.219791+00:00",
+          "confidence": "ai",
+          "evidence": "Cappucino 5.-",
+          "alcoholFree": true,
+          "sourcePage": 32,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "55d669969bc788b61643e7e4a0c6573dc3a5678c796cf58b9cbf545603a7fa2b"
+        },
+        {
+          "name": "Flat White",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://barflyz.ch/wp-content/uploads/2025/02/240930_Cocktailkarte-barflyz.pdf",
+          "observedAt": "2026-10-15T14:31:30.219791+00:00",
+          "confidence": "ai",
+          "evidence": "Flat White 6.-",
+          "alcoholFree": true,
+          "sourcePage": 32,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "flat_white",
+          "sourceSha256": "55d669969bc788b61643e7e4a0c6573dc3a5678c796cf58b9cbf545603a7fa2b"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:25:27.536363+00:00",
+      "aiCheckedAt": "2026-10-15T14:32:36.317900+00:00"
+    },
+    {
+      "id": "way/38098975",
+      "name": "Bauschänzli",
+      "lat": 47.3678613,
+      "lon": 8.5423935,
+      "type": "restaurant",
+      "address": "Stadthausquai 2",
+      "postcode": "8001",
+      "website": "https://bauschaenzli.com/",
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Kaffee",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/08/Bauschaenzli_Speisekarte_Biergarten_DE_0826_web.pdf",
+          "observedAt": "2026-10-15T14:31:30.325638+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFEE / ESPRESSO / RISTRETTO CHF 5",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "creme",
+          "sourceSha256": "6d6a2898be298cfdb2a999d6bcf489e6ca1bc6a89b50624a59bbe06e8d676a41"
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/08/Bauschaenzli_Speisekarte_Biergarten_DE_0826_web.pdf",
+          "observedAt": "2026-10-15T14:31:30.325638+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFEE / ESPRESSO / RISTRETTO CHF 5",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "6d6a2898be298cfdb2a999d6bcf489e6ca1bc6a89b50624a59bbe06e8d676a41"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/08/Bauschaenzli_Speisekarte_Biergarten_DE_0826_web.pdf",
+          "observedAt": "2026-10-15T14:31:30.325638+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFEE / ESPRESSO / RISTRETTO CHF 5",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "ristretto",
+          "sourceSha256": "6d6a2898be298cfdb2a999d6bcf489e6ca1bc6a89b50624a59bbe06e8d676a41"
+        },
+        {
+          "name": "Espresso Doppio",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/08/Bauschaenzli_Speisekarte_Biergarten_DE_0826_web.pdf",
+          "observedAt": "2026-10-15T14:31:30.325638+00:00",
+          "confidence": "ai",
+          "evidence": "ESPRESSO DOPPIO CHF 6",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "6d6a2898be298cfdb2a999d6bcf489e6ca1bc6a89b50624a59bbe06e8d676a41"
+        },
+        {
+          "name": "Milchkaffee",
+          "priceChf": 5.6,
+          "volumeMl": null,
+          "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/08/Bauschaenzli_Speisekarte_Biergarten_DE_0826_web.pdf",
+          "observedAt": "2026-10-15T14:31:30.325638+00:00",
+          "confidence": "ai",
+          "evidence": "MILCHKAFFEE CHF 5.6",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "milk",
+          "sourceSha256": "6d6a2898be298cfdb2a999d6bcf489e6ca1bc6a89b50624a59bbe06e8d676a41"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/08/Bauschaenzli_Speisekarte_Biergarten_DE_0826_web.pdf",
+          "observedAt": "2026-10-15T14:31:30.325638+00:00",
+          "confidence": "ai",
+          "evidence": "CAPPUCCINO CHF 6",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "6d6a2898be298cfdb2a999d6bcf489e6ca1bc6a89b50624a59bbe06e8d676a41"
+        },
+        {
+          "name": "Latte Macchiato",
+          "priceChf": 6.6,
+          "volumeMl": null,
+          "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/08/Bauschaenzli_Speisekarte_Biergarten_DE_0826_web.pdf",
+          "observedAt": "2026-10-15T14:31:30.325638+00:00",
+          "confidence": "ai",
+          "evidence": "LATTE MACCHIATO CHF 6.6",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "6d6a2898be298cfdb2a999d6bcf489e6ca1bc6a89b50624a59bbe06e8d676a41"
+        },
+        {
+          "name": "Flat White",
+          "priceChf": 5.6,
+          "volumeMl": null,
+          "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/05/Bauschaenzli_Speisekarte_Biergarten_EN_0526_red.pdf",
+          "observedAt": "2026-10-15T14:32:22.640182+00:00",
+          "confidence": "ai",
+          "evidence": "FLAT WHITE CHF 5.6",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "flat_white",
+          "sourceSha256": "fa331d288aa4b81f4cd1f70be0651d01801664a0c5fd2d3ced538c513a6992cd"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:25:27.998120+00:00",
+      "aiCheckedAt": "2026-10-15T14:32:58.415643+00:00"
     },
     {
       "id": "node/906856274",
@@ -974,10 +1870,81 @@
           "confidence": "automatic",
           "evidence": "PDF S. 1: Cappuccino 5.5",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bertabar.ch/assets/images/Angebot/Kategorien/07%20Kaffee%20Tee%20Schoggi%20&%20Matcha.pdf",
+          "observedAt": "2026-10-15T14:32:14.482886+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso / Doppio 4.5 / 6.",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "6ac4a0342b7e860b5e9f121e4a885f98b9bffd7eec5c519c85028047c8db2966"
+        },
+        {
+          "name": "Doppio",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bertabar.ch/assets/images/Angebot/Kategorien/07%20Kaffee%20Tee%20Schoggi%20&%20Matcha.pdf",
+          "observedAt": "2026-10-15T14:32:14.482886+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso / Doppio 4.5 / 6.",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "6ac4a0342b7e860b5e9f121e4a885f98b9bffd7eec5c519c85028047c8db2966"
+        },
+        {
+          "name": "Flat White",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bertabar.ch/assets/images/Angebot/Kategorien/07%20Kaffee%20Tee%20Schoggi%20&%20Matcha.pdf",
+          "observedAt": "2026-10-15T14:32:14.482886+00:00",
+          "confidence": "ai",
+          "evidence": "Flat White Doppelter Ristretto unter aufgeschäumter Milch im Glas 6.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "flat_white",
+          "sourceSha256": "6ac4a0342b7e860b5e9f121e4a885f98b9bffd7eec5c519c85028047c8db2966"
+        },
+        {
+          "name": "Latte macchiato",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bertabar.ch/assets/images/Angebot/Kategorien/07%20Kaffee%20Tee%20Schoggi%20&%20Matcha.pdf",
+          "observedAt": "2026-10-15T14:32:14.482886+00:00",
+          "confidence": "ai",
+          "evidence": "Latte macchiato Espresso zwischen warmer & aufgeschäumter Milch im Glas 6.",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "6ac4a0342b7e860b5e9f121e4a885f98b9bffd7eec5c519c85028047c8db2966"
+        },
+        {
+          "name": "Americano",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bertabar.ch/assets/images/Angebot/Kategorien/07%20Kaffee%20Tee%20Schoggi%20&%20Matcha.pdf",
+          "observedAt": "2026-10-15T14:32:14.482886+00:00",
+          "confidence": "ai",
+          "evidence": "Americano Espresso in Glas mit Wasser verlängert 5.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "americano",
+          "sourceSha256": "6ac4a0342b7e860b5e9f121e4a885f98b9bffd7eec5c519c85028047c8db2966"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:29.816160+00:00"
+      "checkedAt": "2026-10-15T12:25:29.816160+00:00",
+      "aiCheckedAt": "2026-10-15T14:32:28.771391+00:00"
     },
     {
       "id": "node/14203666230",
@@ -1141,7 +2108,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:30.601347+00:00"
+      "checkedAt": "2026-10-15T12:25:30.601347+00:00",
+      "aiCheckedAt": "2026-10-15T14:33:40.369152+00:00"
     },
     {
       "id": "node/442522931",
@@ -1223,7 +2191,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:30.872367+00:00"
+      "checkedAt": "2026-10-15T12:25:30.872367+00:00",
+      "aiCheckedAt": "2026-10-15T14:33:36.122929+00:00"
     },
     {
       "id": "node/9909005887",
@@ -1302,10 +2271,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 4: Cappuccino, Latte macchiato 5.2",
           "alcoholFree": true
+        },
+        {
+          "name": "Milchkaffee",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://sos-ch-dk-2.exo.io/kgz-prod-private/media/private/documents/Bistro_Menukarte_2025_digital.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=EXO5831a7ed8c357c2afb25e3de%2F20261015%2Fch-dk-2%2Fs3%2Faws4_request&X-Amz-Date=20261015T143317Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=67628802bba22cbfe49199a079642d050279c56f7638ec89269f6ede0aab2c63",
+          "observedAt": "2026-10-15T14:33:18.132255+00:00",
+          "confidence": "ai",
+          "evidence": "Milchkaffee, Espresso macchiato 4.8",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "milk",
+          "sourceSha256": "352621d7b726b2d1118f47c46ca9737f9fa662008ff45512a4e0a7adee41364e"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:29:05.627151+00:00"
+      "checkedAt": "2026-10-15T12:29:05.627151+00:00",
+      "aiCheckedAt": "2026-10-15T14:33:40.791452+00:00"
     },
     {
       "id": "node/656628375",
@@ -1354,7 +2338,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:32.450219+00:00"
+      "checkedAt": "2026-10-15T12:25:32.450219+00:00",
+      "aiCheckedAt": "2026-10-15T14:33:19.246588+00:00"
     },
     {
       "id": "node/480320546",
@@ -1425,7 +2410,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:32.562467+00:00"
+      "checkedAt": "2026-10-15T12:25:32.562467+00:00",
+      "aiCheckedAt": "2026-10-15T14:33:35.503682+00:00"
     },
     {
       "id": "node/1346146716",
@@ -1493,10 +2479,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: Cappuccino 6",
           "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiatto",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.vorbahnhof.ch/wp-content/uploads/2026/04/Vorbahnhof_Speisekarte_Fruehling_DE_0426.pdf",
+          "observedAt": "2026-10-15T14:33:43.555407+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiatto 6.5",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "8b4f62641b45eb99f186ae4f5540ff775d6a735d4e89a18ecb690e7574a8e26e"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:33.279510+00:00"
+      "checkedAt": "2026-10-15T12:25:33.279510+00:00",
+      "aiCheckedAt": "2026-10-15T14:34:06.408411+00:00"
     },
     {
       "id": "node/1937429078",
@@ -1545,7 +2546,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:34.851093+00:00"
+      "checkedAt": "2026-10-15T12:25:34.851093+00:00",
+      "aiCheckedAt": "2026-10-15T14:35:09.286490+00:00"
     },
     {
       "id": "node/5577702376",
@@ -1649,7 +2651,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:35.827437+00:00"
+      "checkedAt": "2026-10-15T12:25:35.827437+00:00",
+      "aiCheckedAt": "2026-10-15T14:34:42.563062+00:00"
     },
     {
       "id": "way/75803849",
@@ -1742,7 +2745,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:41.795423+00:00"
+      "checkedAt": "2026-10-15T12:25:41.795423+00:00",
+      "aiCheckedAt": "2026-10-15T14:36:44.196469+00:00"
     },
     {
       "id": "node/4424600900",
@@ -1835,7 +2839,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:36.706875+00:00"
+      "checkedAt": "2026-10-15T12:25:36.706875+00:00",
+      "aiCheckedAt": "2026-10-15T14:34:09.292572+00:00"
     },
     {
       "id": "node/13833950371",
@@ -1914,10 +2919,25 @@
           "confidence": "automatic",
           "evidence": "Cappuccino, Latte macchiato, Milchkaffee (Bio und Fair Trade) 3.60",
           "alcoholFree": true
+        },
+        {
+          "name": "Doppelter Espresso",
+          "priceChf": 4.2,
+          "volumeMl": null,
+          "sourceUrl": "https://www.stadt-zuerich.ch/personalcafeterias",
+          "observedAt": "2026-10-15T14:36:47.223890+00:00",
+          "confidence": "ai",
+          "evidence": "Doppelter Espresso, Ristretto (Bio und Fair Trade) 4.20",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "e62fe465e902cb6f42280c2952e987649762fa944eeb68e480401a84f9adb2a6"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:29:05.003274+00:00"
+      "checkedAt": "2026-10-15T12:29:05.003274+00:00",
+      "aiCheckedAt": "2026-10-15T14:37:10.637133+00:00"
     },
     {
       "id": "node/343068234",
@@ -2010,7 +3030,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:37.322129+00:00"
+      "checkedAt": "2026-10-15T12:25:37.322129+00:00",
+      "aiCheckedAt": "2026-10-15T14:37:43.669575+00:00"
     },
     {
       "id": "node/370843777",
@@ -2114,7 +3135,123 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:37.662806+00:00"
+      "checkedAt": "2026-10-15T12:25:37.662806+00:00",
+      "aiCheckedAt": "2026-10-15T14:37:27.827182+00:00"
+    },
+    {
+      "id": "node/268468109",
+      "name": "Café Bar ODEON",
+      "lat": 47.3677942,
+      "lon": 8.5451446,
+      "type": "restaurant",
+      "address": "Limmatquai 2",
+      "postcode": "8001",
+      "website": "https://odeon.ch/",
+      "openingHours": "Mo-Th 07:00-24:00, Fr-Sa 07:00-02:00, Su 09:00-24:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Kleiner Schwarzer / Brauner",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://odeon.ch/de/karten/fruhstuck-und-brunch/",
+          "observedAt": "2026-10-15T14:38:57.277190+00:00",
+          "confidence": "ai",
+          "evidence": "Kleiner Schwarzer / Brauner Espresso ohne / mit Kaffeerahm CHF 6.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "espresso",
+          "sourceSha256": "638217ffc059dd236b1e73f9648b6b2978a50f64a114857fa21d6abf91ac5576"
+        },
+        {
+          "name": "Grosser Schwarzer / Brauner",
+          "priceChf": 8.5,
+          "volumeMl": null,
+          "sourceUrl": "https://odeon.ch/de/karten/fruhstuck-und-brunch/",
+          "observedAt": "2026-10-15T14:38:57.277190+00:00",
+          "confidence": "ai",
+          "evidence": "Grosser Schwarzer / Brauner Doppelter Espresso ohne / mit Kaffeerahm CHF 8.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "double",
+          "sourceSha256": "638217ffc059dd236b1e73f9648b6b2978a50f64a114857fa21d6abf91ac5576"
+        },
+        {
+          "name": "Verlängerter (Café Crème)",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://odeon.ch/de/karten/fruhstuck-und-brunch/",
+          "observedAt": "2026-10-15T14:38:57.277190+00:00",
+          "confidence": "ai",
+          "evidence": "Verlängerter (Café Crème) Espresso mit heissem Wasser aufgegossen CHF 6.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "creme",
+          "sourceSha256": "638217ffc059dd236b1e73f9648b6b2978a50f64a114857fa21d6abf91ac5576"
+        },
+        {
+          "name": "Kaffee verkehrt (Schale)",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://odeon.ch/de/karten/fruhstuck-und-brunch/",
+          "observedAt": "2026-10-15T14:38:57.277190+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee verkehrt (Schale) Verlängerter mit heisser, aufgeschäumter Milch CHF 6.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "milk",
+          "sourceSha256": "638217ffc059dd236b1e73f9648b6b2978a50f64a114857fa21d6abf91ac5576"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 7.0,
+          "volumeMl": null,
+          "sourceUrl": "https://odeon.ch/de/karten/fruhstuck-und-brunch/",
+          "observedAt": "2026-10-15T14:38:57.277190+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino Espresso mit viel geschäumter Milch CHF 7.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "638217ffc059dd236b1e73f9648b6b2978a50f64a114857fa21d6abf91ac5576"
+        },
+        {
+          "name": "Flat White",
+          "priceChf": 9.5,
+          "volumeMl": null,
+          "sourceUrl": "https://odeon.ch/de/karten/fruhstuck-und-brunch/",
+          "observedAt": "2026-10-15T14:38:57.277190+00:00",
+          "confidence": "ai",
+          "evidence": "Flat White Doppelter Espresso mit Milch CHF 9.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "flat_white",
+          "sourceSha256": "638217ffc059dd236b1e73f9648b6b2978a50f64a114857fa21d6abf91ac5576"
+        },
+        {
+          "name": "Latte Macchiato",
+          "priceChf": 8.0,
+          "volumeMl": null,
+          "sourceUrl": "https://odeon.ch/de/karten/fruhstuck-und-brunch/",
+          "observedAt": "2026-10-15T14:38:57.277190+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato Espresso mit viel heisser Milch und feinem Milchschaum geschichtet CHF 8.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "638217ffc059dd236b1e73f9648b6b2978a50f64a114857fa21d6abf91ac5576"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-15T12:25:37.249621+00:00",
+      "aiCheckedAt": "2026-10-15T14:39:10.521637+00:00"
     },
     {
       "id": "node/1895863272",
@@ -2171,10 +3308,39 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: FlatWhite 6.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino petit",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/6239ad1d875fd33877cb9ec5/t/6a8710342936a83b5e553186/1787236404886/Getra%CC%88nkekarte+CDA+20260813.pdf",
+          "observedAt": "2026-10-15T14:36:44.351483+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino petit/grand 5.50/7.50",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "53cf66aff2f24fdff6ddbcfa15dc87d3b9d993a5aa5987f42907773afb347e4a"
+        },
+        {
+          "name": "Café au Lait petit",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/6239ad1d875fd33877cb9ec5/t/6a8710342936a83b5e553186/1787236404886/Getra%CC%88nkekarte+CDA+20260813.pdf",
+          "observedAt": "2026-10-15T14:36:44.351483+00:00",
+          "confidence": "ai",
+          "evidence": "Café au Lait petit/grand 5.50/7.50",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "latte",
+          "sourceSha256": "53cf66aff2f24fdff6ddbcfa15dc87d3b9d993a5aa5987f42907773afb347e4a"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:38.963709+00:00"
+      "checkedAt": "2026-10-15T12:25:38.963709+00:00",
+      "aiCheckedAt": "2026-10-15T14:37:46.208434+00:00"
     },
     {
       "id": "node/582819804",
@@ -2264,10 +3430,25 @@
           "confidence": "automatic",
           "evidence": "Latte Macchiato 6.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Coffee",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.cafe-lang.ch/en/menu",
+          "observedAt": "2026-10-15T14:37:21.548150+00:00",
+          "confidence": "ai",
+          "evidence": "Coffee 5.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-sonnet-4-6",
+          "coffeeType": "filter",
+          "sourceSha256": "51685efca9ccbce73a7ea75f67f3d966f66eefe1712db8d2cfc714e2906ad2f0"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T12:25:38.865749+00:00"
+      "checkedAt": "2026-10-15T12:25:38.865749+00:00",
+      "aiCheckedAt": "2026-10-15T14:38:41.777413+00:00"
     },
     {
       "id": "node/370657577",
