@@ -12,21 +12,40 @@ import os
 from pathlib import Path
 import re
 import time
+import unicodedata
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
-from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, clean_offers, ESTIMATE_SCHEMA, KINDS
+from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, clean_offers, ESTIMATE_SCHEMA, KINDS, SYSTEM, MODEL, MAX_BUDGET_USD
 from scraper.estimates import estimate_types, name_key
-from scraper.scrape import ROOT, Fetcher, now, html_content, prioritize_links, source_allowed, discover, pdf_links, SKIP_MENU, WEBSITES
-from scraper.scrape_coffee import save
+from scraper.extract import SIZE
+from scraper.scrape import ROOT, Fetcher, now, html_content, prioritize_links, source_allowed, discover, pdf_links, SKIP_MENU, WEBSITES, REVIEWED_MENUS, REVIEWED_COFFEE_MENUS
+from scraper.scrape_coffee import save, include_cafes
 from scraper.enrich import QUERY, candidates
 
 CHECKS = ROOT / 'scraper/ai_checks.json'
 
 
+def candidate_priority(bar, checks, hints):
+    # Spend the small budget on missing cafe prices before re-reading beer menus.
+    missing_coffee = bar.get('type') == 'cafe' and not any(o.get('coffeeType') for o in bar['offers'])
+    return (not missing_coffee, checks.get(bar['id'], {}).get('checkedAt', ''), not bool(hints.get(bar['id'])), bar['name'].casefold())
+
+
+def product_key(name):
+    name = SIZE.sub('', name)
+    name = re.sub(r'\d+(?:[.,]\d+)?\s*%', '', name)
+    name = re.sub(r'\((?:ch|de|ger|usa|it|zh-ch|deutschland|schweiz|italien|mexiko|mex|fr|be|belgien)\)', '', name, flags=re.I)
+    name = re.sub(r'\b(?:vom fass|offen|flasche|flaschenbier|alla spina|on tap)\b', '', name, flags=re.I)
+    name = re.sub(r'\b(?:non[- ]alcoholic|alcohol[- ]free)\b', 'alkoholfrei', name, flags=re.I)
+    name = re.sub(r'\bwheat beer\b', 'weizenbier', name, flags=re.I)
+    name = ''.join(c for c in unicodedata.normalize('NFKD', name.casefold()) if not unicodedata.combining(c))
+    return name_key(name)
+
+
 def merge_offers(existing, found):
     result = [dict(o) for o in existing]
     for offer in found:
-        matches = [o for o in result if (offer.get('coffeeType') or name_key(o['name']) == name_key(offer['name']))
+        matches = [o for o in result if (offer.get('coffeeType') or product_key(o['name']) == product_key(offer['name']))
                    and o['volumeMl'] == offer['volumeMl'] and o.get('coffeeType') == offer.get('coffeeType')
                    and o['alcoholFree'] == offer['alcoholFree']]
         # Explicitly different serving formats can coexist.
@@ -67,7 +86,7 @@ def classify_existing(client, bars):
 
 
 def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
-    found, failures, visited = [], [], set()
+    found, failures, visited, seen_documents = [], [], set(), set()
     urls = list(dict.fromkeys(hints.get(bar['id'], []) + [o['sourceUrl'] for o in bar['offers']] + ([bar['website']] if bar.get('website') else [])))
     while urls and len(visited) < max_pages and time.monotonic() < deadline:
         url = urls.pop(0)
@@ -98,14 +117,20 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
             urls = prioritize_links([u for u in links if u not in visited] + urls)
             if not content: continue
             digest = hashlib.sha256(body).hexdigest()
+            if digest in seen_documents: continue
+            seen_documents.add(digest)
+            reviewed = {drink for drink, reviews in [('beer', REVIEWED_MENUS), ('coffee', REVIEWED_COFFEE_MENUS)] if (r := reviews.get(final)) and r['barId'] == bar['id'] and r.get('exclusive') and r['sha256'] == digest}
+            if reviewed == {'beer', 'coffee'}: continue
             for blocks, offset, pages, text in documents(content, kind):
                 if time.monotonic() >= deadline: break
                 prompt = {'type': 'text', 'text': f'Venue: {bar["name"]}, {bar.get("address", "")}, Zürich. Source: {final}. Extract every beer and coffee price for this venue. PDF chunk begins at original page {offset + 1}.'}
-                result = client.ask(blocks + [prompt])
+                allowed = ', '.join(sorted({'beer', 'coffee'} - reviewed))
+                result = client.ask(blocks + [prompt], system=SYSTEM + '\nFor this document ONLY extract these drink categories: ' + allowed + '. Other categories have already been manually reviewed; omit them from the response.')
                 cleaned = clean_offers(result, final, stamp, offset, pages, text)
                 print(f'  {bar["name"]}: {len(result.get("offers", []))} extracted / {len(cleaned)} validated, document page {offset + 1}', flush=True)
                 for o in cleaned:
-                    if source_allowed(bar['id'], final, 'coffee' if o.get('coffeeType') else 'beer'):
+                    drink = 'coffee' if o.get('coffeeType') else 'beer'
+                    if drink not in reviewed and source_allowed(bar['id'], final, drink):
                         found.append({**o, 'sourceSha256': digest})
         except BudgetExhausted:
             return found, 'budget_limit', failures
@@ -120,8 +145,8 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--budget-usd', type=float, default=20)
-    parser.add_argument('--max-requests', type=int, default=300)
+    parser.add_argument('--budget-usd', type=float, default=MAX_BUDGET_USD, help='Hard maximum 0.50 USD; larger values are clamped')
+    parser.add_argument('--max-requests', type=int, default=1000)
     parser.add_argument('--max-pages', type=int, default=8)
     parser.add_argument('--minutes', type=int, default=65)
     parser.add_argument('--workers', type=int, default=4)
@@ -129,7 +154,7 @@ def main():
     parser.add_argument('--discover', action='store_true')
     parser.add_argument('--estimates-only', action='store_true')
     args = parser.parse_args()
-    client = Claude(max(0, min(args.budget_usd, 100)), max(0, min(args.max_requests, 1000)))
+    client = Claude(args.budget_usd, max(0, min(args.max_requests, 1000)))
     paths = {d: ROOT / 'public/data' / f'{file}.json' for d, file in [('beer', 'bars'), ('coffee', 'coffee')]}
     data = {d: json.loads(path.read_text()) for d, path in paths.items()}
     by_drink = {d: {b['id']: b for b in value['bars']} for d, value in data.items()}
@@ -154,11 +179,14 @@ def main():
         flush()
         if args.discover:
             discovered = discover({}, query=QUERY)['bars']
+            include_cafes(by_drink['coffee'], discovered)
             for b in candidates(discovered, list(merged.values()), hints, checks): merged[b['id']] = b
         if not args.estimates_only:
             deadline = time.monotonic() + max(1, args.minutes) * 60
             selected = [dict(b, website=WEBSITES.get(b['id'], b.get('website'))) for b in merged.values() if b.get('website') or hints.get(b['id']) or b['offers']]
-            selected.sort(key=lambda b: (checks.get(b['id'], {}).get('checkedAt', ''), not bool(hints.get(b['id']) or b['offers']), b['name'].casefold()))
+            eligible_ids = {b['id'] for b in candidates(list(merged.values()), [], hints, checks)}
+            selected = [b for b in selected if b['offers'] or b['id'] in eligible_ids or hints.get(b['id'])]
+            selected.sort(key=lambda b: candidate_priority(b, checks, hints))
             if args.limit: selected = selected[:args.limit]
             fetcher = Fetcher()
             # Submit only a small window; hitting budget/time limits doesn't leave hundreds of pending fetches.
@@ -185,7 +213,7 @@ def main():
     finally:
         flush()
         after = {d: {'venues': sum(bool(b['offers']) for b in value['bars']), 'offers': sum(len(b['offers']) for b in value['bars'])} for d, value in data.items()}
-        report = {'model': 'claude-sonnet-4-6', 'requests': client.requests, 'cacheHits': client.hits, 'estimatedCostUsd': round(client.spent, 4), 'before': before, 'after': after, 'errors': failures[:50]}
+        report = {'model': MODEL, 'budgetUsd': client.budget, 'requests': client.requests, 'cacheHits': client.hits, 'estimatedCostUsd': round(client.spent, 4), 'before': before, 'after': after, 'errors': failures[:50]}
         Path('scraper/cache/ai-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
         print(json.dumps(report, ensure_ascii=False, indent=2), flush=True)
         if os.environ.get('GITHUB_STEP_SUMMARY'):

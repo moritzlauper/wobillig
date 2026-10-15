@@ -9,10 +9,16 @@ from pathlib import Path
 import re
 import threading
 import time
+import unicodedata
 import requests
 from pypdf import PdfReader, PdfWriter
+from scraper.extract import BEER, SIZE
+from scraper.coffee import ALIASES
 
-MODEL = 'claude-sonnet-4-6'
+MODEL = 'claude-haiku-5-5'
+MAX_BUDGET_USD = .50
+MAX_INPUT_TOKENS = 100_000
+MAX_OUTPUT_TOKENS = 6000
 VERSION = '1'
 COFFEE = ['creme', 'espresso', 'double', 'ristretto', 'cappuccino', 'latte', 'milk', 'flat_white', 'americano', 'filter']
 KINDS = ['draft', 'bottle', 'can', 'unknown']
@@ -44,10 +50,12 @@ class APIUnavailable(Exception): pass
 
 
 class Claude:
-    def __init__(self, budget=20, max_requests=300, cache=Path('scraper/cache/ai')):
+    def __init__(self, budget=MAX_BUDGET_USD, max_requests=300, cache=Path('scraper/cache/ai')):
         self.key = os.environ.get('ANTHROPIC_API_KEY', '')
         if not self.key: raise APIUnavailable('ANTHROPIC_API_KEY fehlt')
-        self.budget, self.max_requests = budget, max_requests
+        if not math.isfinite(budget) or budget < 0:
+            raise ValueError('Budget muss endlich und nicht negativ sein')
+        self.budget, self.max_requests = min(budget, MAX_BUDGET_USD), max_requests
         self.spent = 0.0
         self.requests = self.hits = 0
         self.lock = threading.Lock()
@@ -71,12 +79,13 @@ class Claude:
                 # A rejected PDF/image must not disable scans of all other venues.
                 self.disabled = response.status_code in (401, 403, 404) or bool(re.search(r'credit balance|insufficient.*credit|billing|model.*not found', message, re.I))
                 raise APIUnavailable(f'Anthropic HTTP {response.status_code}: {message}')
-            if response.status_code not in (429, 500, 502, 503, 529) or attempt == 2:
+            # Never retry generation: a lost/error response may already be billed.
+            if path == 'messages' or response.status_code not in (429, 500, 502, 503, 529) or attempt == 2:
                 raise APIUnavailable(f'Anthropic HTTP {response.status_code}')
             time.sleep(2 ** (attempt + 1))
 
     def ask(self, content, schema=SCHEMA, system=SYSTEM):
-        payload = {'model': MODEL, 'max_tokens': 6000, 'system': system,
+        payload = {'model': MODEL, 'max_tokens': MAX_OUTPUT_TOKENS, 'system': system,
                    'messages': [{'role': 'user', 'content': content}],
                    'output_config': {'format': {'type': 'json_schema', 'schema': schema}}}
         key = hashlib.sha256((VERSION + json.dumps(payload, sort_keys=True)).encode()).hexdigest()
@@ -92,13 +101,20 @@ class Claude:
             if self.requests >= self.max_requests or self.spent >= self.budget: raise BudgetExhausted()
         # Token counting is free. Reserve the maximum output cost before generation.
         counted = self.post('messages/count_tokens', {k: v for k, v in payload.items() if k != 'max_tokens'})
-        reserve = (counted['input_tokens'] * 3 + 6000 * 15) / 1_000_000 + .01
+        if type(counted.get('input_tokens')) is not int or not 0 <= counted['input_tokens'] <= MAX_INPUT_TOKENS:
+            raise APIUnavailable('Dokument überschreitet das Tokenlimit; keine Generierung')
+        # Reserve at the expensive >100k tier, even though large prompts are rejected.
+        # This also covers small count/usage differences and failed requests.
+        reserve = ((counted['input_tokens'] + 2000) * .50 + MAX_OUTPUT_TOKENS * 2.50) / 1_000_000
         with self.lock:
+            if self.disabled: raise APIUnavailable('Anthropic für diesen Lauf deaktiviert')
             if self.requests >= self.max_requests or self.spent + reserve > self.budget: raise BudgetExhausted()
             self.requests += 1; self.spent += reserve
         reply = self.post('messages', payload)
         usage = reply.get('usage', {})
-        actual = (usage.get('input_tokens', counted['input_tokens']) * 3 + usage.get('output_tokens', 6000) * 15) / 1_000_000
+        input_tokens = usage.get('input_tokens', counted['input_tokens'])
+        input_rate, output_rate = (.10, .50) if input_tokens <= MAX_INPUT_TOKENS else (.50, 2.50)
+        actual = (input_tokens * input_rate + usage.get('output_tokens', MAX_OUTPUT_TOKENS) * output_rate) / 1_000_000
         with self.lock: self.spent += actual - reserve
         if reply.get('stop_reason') != 'end_turn': raise APIUnavailable('Unvollständige KI-Antwort verworfen')
         try:
@@ -106,6 +122,21 @@ class Claude:
         except (ValueError, KeyError, TypeError): raise APIUnavailable('Ungültige KI-Antwort verworfen') from None
         tmp = path.with_suffix('.tmp'); tmp.write_text(json.dumps(result, ensure_ascii=False)); tmp.replace(path)
         return result
+
+
+def drink_page(text):
+    # Empty/broken text can be an image menu: always let vision inspect it.
+    if len(re.sub(r'\W', '', text)) < 100:
+        return True
+    plain = ''.join(c for c in unicodedata.normalize('NFKD', text.casefold()) if not unicodedata.combining(c))
+    if BEER.search(text) or re.search('|'.join(ALIASES.values()), plain):
+        return True
+    # Keep unfamiliar beer brands when a plausible portion size is present.
+    for amount, unit in SIZE.findall(text):
+        ml = float(amount.replace(',', '.')) * {'ml': 1, 'cl': 10, 'dl': 100, 'l': 1000}[unit.lower()]
+        if 100 <= ml <= 600:
+            return True
+    return False
 
 
 def documents(body, kind):
@@ -117,6 +148,7 @@ def documents(body, kind):
         def priority(start):
             text = '\n'.join(page.extract_text() or '' for page in reader.pages[start:start + 4])
             return 0 if not text.strip() or re.search(r'bier|beer|kaffee|coffee|café|espresso|cappuccino', text, re.I) else 1
+        starts = [start for start in starts if any(drink_page(page.extract_text() or '') for page in reader.pages[start:start + 4])]
         starts.sort(key=priority)
         for start in starts:
             writer = PdfWriter()
@@ -134,6 +166,24 @@ def documents(body, kind):
         for start in range(0, len(text), 25000):
             chunk = text[max(0, start - 1500):start + 25000]
             if chunk.strip(): yield [{'type': 'text', 'text': chunk}], 0, 1, chunk
+
+
+def supported_size_price(evidence, volume, price):
+    sizes = list(SIZE.finditer(evidence))
+    values = [round(float(m[1].replace(',', '.')) * {'ml': 1, 'cl': 10, 'dl': 100, 'l': 1000}[m[2].lower()]) for m in sizes]
+    if volume not in values:
+        return False
+    if len(set(values)) == 1:
+        return True
+    # For multi-size evidence require the price immediately after its own size.
+    # Flattened headers plus sparse price rows cannot establish column alignment.
+    for index, match in enumerate(sizes):
+        if values[index] != volume: continue
+        end = sizes[index + 1].start() if index + 1 < len(sizes) else len(evidence)
+        following = re.match(r'\s*(?:[:=–—-]\s*)?(?:CHF|Fr\.?)?\s*(\d{1,2}(?:[.,]\d{1,2})?)(?!\d)', evidence[match.end():end], re.I)
+        if following and abs(float(following[1].replace(',', '.')) - price) < .001:
+            return True
+    return False
 
 
 def clean_offers(result, url, stamp, page_start=0, page_count=1, source_text=''):
@@ -154,23 +204,23 @@ def clean_offers(result, url, stamp, page_start=0, page_count=1, source_text='')
             if norm(name) not in norm(source_text): continue
             price_texts = [str(price), f'{price:.2f}', f'{price:g}']
             if not any(norm(x) in norm(source_text) for x in price_texts): continue
-        if re.search(r'ginger\s*beer|cider|apfelwein|irish\s*coffee|espresso\s*martini', name, re.I): continue
+        if re.search(r'ginger\s*beer|cider|apfelwein|irish\s*coffee|espresso\s*martini|picon|weissbier aperitivo', name, re.I): continue
         offer = {'name': name.strip(), 'priceChf': round(price, 2), 'volumeMl': volume,
                  'sourceUrl': url, 'observedAt': stamp, 'confidence': 'ai',
                  'evidence': evidence, 'alcoholFree': bool(row.get('alcoholFree')),
                  'sourcePage': page_start + row['page'], 'extractionModel': MODEL}
         if row.get('drink') == 'coffee':
-            if row.get('coffeeType') not in COFFEE or price > 20: continue
+            if row.get('coffeeType') not in COFFEE or price > 20 or re.search(r'iced|cold|eis|frapp|viet|moka|corretto', name, re.I): continue
             offer.update(coffeeType=row['coffeeType'], volumeMl=None, alcoholFree=True)
         elif row.get('drink') == 'beer':
             if volume is None:
                 if not row.get('stange') or not re.search(r'\bstange\b', evidence, re.I): continue
-            elif type(volume) is not int or not 100 <= volume <= 1000: continue
+            elif type(volume) is not int or not 100 <= volume <= 1000 or not supported_size_price(evidence, volume, price): continue
             if row.get('beerType') not in KINDS: continue
             offer['beerType'] = row['beerType']
             if row.get('stange') and row['beerType'] not in ('bottle', 'can'): offer['serving'] = 'stange'
             if row['beerType'] == 'unknown' and row.get('estimatedBeerType') in KINDS[:-1] and row.get('estimateReason'):
-                offer['beerTypeEstimate'] = {'type': row['estimatedBeerType'], 'reason': str(row['estimateReason'])[:350], 'method': 'ai'}
+                offer['beerTypeEstimate'] = {'type': row['estimatedBeerType'], 'reason': 'KI-Schätzung aus Bezeichnung, Menge und Menü-Kontext; nicht belegt.', 'method': 'ai'}
         else: continue
         offers.append(offer)
     return offers

@@ -85,6 +85,48 @@ class AITests(unittest.TestCase):
 
 class APIErrorTests(unittest.TestCase):
     @patch.dict(os.environ,{'ANTHROPIC_API_KEY':'test-secret'})
+    def test_haiku_only_and_hard_budget_even_with_oversized_input(self):
+        from scraper.ai import MODEL, MAX_BUDGET_USD
+        self.assertEqual(MODEL, 'claude-haiku-5-5')
+        with tempfile.TemporaryDirectory() as tmp:
+            c=Claude(100,1000,Path(tmp))
+            self.assertEqual(c.budget, .50)
+            for bad in [float('nan'), float('inf'), -1]:
+                with self.assertRaises(ValueError): Claude(bad,cache=Path(tmp))
+            replies=[{'input_tokens':1000},{'stop_reason':'end_turn','content':[{'type':'text','text':'{"offers":[]}'}],'usage':{'input_tokens':1000,'output_tokens':100}}]
+            with patch.object(c,'post',side_effect=replies) as post:
+                c.ask([{'type':'text','text':'menu'}])
+                self.assertTrue(all(call.args[1]['model']==MODEL for call in post.call_args_list))
+            self.assertAlmostEqual(c.spent,.00015)
+            c.spent=MAX_BUDGET_USD-.001
+            with patch.object(c,'post',return_value={'input_tokens':100}) as post:
+                with self.assertRaises(BudgetExhausted): c.ask([{'type':'text','text':'other'}])
+                self.assertEqual([call.args[0] for call in post.call_args_list],['messages/count_tokens'])
+
+    @patch.dict(os.environ,{'ANTHROPIC_API_KEY':'test-secret'})
+    def test_failed_generation_is_not_retried_or_refunded(self):
+        from unittest.mock import Mock
+        with tempfile.TemporaryDirectory() as tmp:
+            c=Claude(cache=Path(tmp))
+            response=Mock(status_code=503)
+            with patch('scraper.ai.requests.post',return_value=response) as post:
+                with self.assertRaises(APIUnavailable):c.post('messages',{})
+                self.assertEqual(post.call_count,1)
+            with patch.object(c,'post',side_effect=[{'input_tokens':1000},APIUnavailable('failed')]):
+                with self.assertRaises(APIUnavailable):c.ask([{'type':'text','text':'menu'}])
+            self.assertGreater(c.spent,0)
+            self.assertLessEqual(c.spent,.50)
+
+    @patch.dict(os.environ,{'ANTHROPIC_API_KEY':'test-secret'})
+    def test_long_prompt_rejected_before_paid_request(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            c=Claude(cache=Path(tmp))
+            with patch.object(c,'post',return_value={'input_tokens':100001}) as post:
+                with self.assertRaises(APIUnavailable):c.ask([{'type':'text','text':'menu'}])
+                self.assertEqual(post.call_count,1)
+            self.assertEqual(c.requests,0)
+
+    @patch.dict(os.environ,{'ANTHROPIC_API_KEY':'test-secret'})
     def test_bad_document_does_not_disable_other_scans_or_reveal_key(self):
         from unittest.mock import Mock
         with tempfile.TemporaryDirectory() as tmp:
@@ -106,3 +148,75 @@ class APIErrorTests(unittest.TestCase):
         estimate_types([{'offers':[a,b]}])
         self.assertEqual(a['beerTypeEstimate']['type'],'draft')
         self.assertEqual(b['beerTypeEstimate']['type'],'draft')
+
+class DocumentSelectionTests(unittest.TestCase):
+    def test_food_pages_are_skipped_but_scanned_and_drink_pages_are_kept(self):
+        from scraper.ai import drink_page
+        food = 'Vorspeisen Salat Pasta Pizza Risotto Spaghetti mit Tomatensauce und Parmesan. ' * 5
+        self.assertFalse(drink_page(food))
+        self.assertTrue(drink_page(''))
+        self.assertTrue(drink_page(food + ' Espresso 4.50'))
+        self.assertTrue(drink_page(food + ' Special Haze 33cl 8.50'))
+        self.assertTrue(drink_page(food + ' Stange 5.50'))
+
+class ScanReuseTests(unittest.TestCase):
+    def test_identical_menu_under_two_urls_only_uses_model_once(self):
+        import time
+        from unittest.mock import Mock
+        from scraper.ai_scan import scan_venue
+        body=b'<h2>Bier</h2><p>Lager 5dl 8.00</p>'
+        fetcher=Mock();fetcher.get.side_effect=lambda url:(url,'text/html',body)
+        client=Mock();client.ask.return_value={'offers':[]}
+        bar={'id':'test','name':'Test Bar','address':'Zurich','website':None,'offers':[]}
+        found,status,errors=scan_venue(bar,client,fetcher,{'test':['https://example.com/menu-a','https://example.com/menu-b']},8,time.monotonic()+30)
+        self.assertEqual(client.ask.call_count,1)
+        self.assertEqual(status,'checked')
+        self.assertEqual(errors,[])
+
+class PriceAssociationTests(unittest.TestCase):
+    def test_sparse_table_does_not_guess_size_columns(self):
+        from scraper.ai import supported_size_price
+        evidence='25cl 30cl 40cl 50cl | Ittinger Klosterbräu 5.5 7.6'
+        self.assertFalse(supported_size_price(evidence,300,7.6))
+        self.assertTrue(supported_size_price('Lager 30cl CHF 5.50 / 50cl CHF 8.50',500,8.5))
+        self.assertFalse(supported_size_price('Lager 30cl CHF 5.50 / 50cl CHF 8.50',500,5.5))
+        self.assertFalse(supported_size_price('Lager 33cl 8.50',500,8.5))
+
+    def test_capacity_and_abv_in_names_do_not_create_duplicate_prices(self):
+        a=offer();a['name']='Lager (USA)'
+        b=offer();b['name']='Lager (USA) 5% 50cl'
+        self.assertEqual(len(merge_offers([a],[b])),1)
+
+    def test_exclusive_reviewed_source_is_not_overwritten_by_ai(self):
+        import time,hashlib
+        from unittest.mock import Mock
+        from scraper.ai_scan import scan_venue
+        body=b'<h2>Bier</h2><p>Lager 5dl 8.00</p>';url='https://example.com/menu'
+        fetcher=Mock();fetcher.get.return_value=(url,'text/html',body)
+        client=Mock();client.ask.return_value={'offers':[AITests().row()]}
+        bar={'id':'test','name':'Test Bar','address':'Zurich','website':url,'offers':[]}
+        review={url:{'barId':'test','exclusive':True,'sha256':hashlib.sha256(body).hexdigest()}}
+        with patch('scraper.ai_scan.REVIEWED_MENUS',review):
+            found,_,_=scan_venue(bar,client,fetcher,{},8,time.monotonic()+30)
+        self.assertEqual(found,[])
+        self.assertIn('ONLY extract these drink categories: coffee',client.ask.call_args.kwargs['system'])
+
+class CafeCoverageTests(unittest.TestCase):
+    def test_cafe_without_website_or_price_remains_available_for_contributions(self):
+        from scraper.scrape_coffee import include_cafes
+        cafe={'id':'node/364410129','name':'Plüsch','type':'cafe','website':None,'offers':[]}
+        restaurant={**cafe,'id':'node/other','type':'restaurant'}
+        output={}
+        include_cafes(output,[cafe,restaurant])
+        self.assertIn(cafe['id'],output)
+        self.assertNotIn(restaurant['id'],output)
+        self.assertEqual(output[cafe['id']]['offers'],[])
+        output[cafe['id']]['offers']=[{'priceChf':4.5}]
+        include_cafes(output,[cafe])
+        self.assertEqual(output[cafe['id']]['offers'],[{'priceChf':4.5}])
+
+    def test_missing_cafe_gets_budget_before_already_priced_bar(self):
+        from scraper.ai_scan import candidate_priority
+        cafe={'id':'c','name':'Z','type':'cafe','offers':[]}
+        bar={'id':'b','name':'A','type':'bar','offers':[{'priceChf':8}]}
+        self.assertLess(candidate_priority(cafe,{},{}),candidate_priority(bar,{},{}))

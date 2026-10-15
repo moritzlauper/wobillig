@@ -54,6 +54,14 @@ def save(path,value):
     temp=path.with_suffix('.tmp');temp.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n');temp.replace(path)
 
 
+def include_cafes(output, discovered):
+    """A missing online price must not hide an actual cafe from the map/form."""
+    for bar in discovered:
+        if bar.get('type') == 'cafe':
+            previous = output.get(bar['id'], {})
+            output[bar['id']] = {**bar, **previous, 'offers': previous.get('offers', [])}
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--discover',action='store_true')
@@ -72,12 +80,14 @@ def main():
     discovered=discover(previous,args.osm_file,query=QUERY) if args.discover or args.osm_file or not old else previous
     all_bars={b['id']:b for b in beer['bars']+discovered['bars']}
     eligible=candidates(list(all_bars.values()),[],hints,checks)
-    known=[all_bars.get(id,b) for id,b in old.items()]
+    eligible_ids={b['id'] for b in eligible}
+    known=[all_bars.get(id,b) for id,b in old.items() if b['offers'] or id in eligible_ids]
     fresh=[b for b in eligible if b['id'] not in old]
     if args.limit:fresh=fresh[:args.limit]
     selected=[{**b,'offers':old.get(b['id'],{}).get('offers',[])} for b in known+fresh]
     fetcher=ArchiveFetcher(args.archive_dir) if args.archive_dir else Fetcher()
     output=dict(old)
+    include_cafes(output, discovered['bars'])
     def flush():
         dataset={'generatedAt':now(),'discoveredAt':discovered['discoveredAt'],'attribution':beer['attribution'],'bars':sorted(output.values(),key=lambda b:b['name'].casefold())}
         save(DATA,dataset);save(CHECKS,checks)
@@ -89,7 +99,7 @@ def main():
                 for o in b['offers']:
                     if o['sourceUrl'] in fetcher.docs:o['observedAt']=fetcher.docs[o['sourceUrl']]['stamp']
             checks[b['id']]={'checkedAt':b['checkedAt'],'status':b['scrapeStatus']}
-            if b['offers'] or b['id'] in old:output[b['id']]=b
+            if b['offers'] or b['id'] in output:output[b['id']]=b
             print(f"[{i}/{len(tasks)}] {b['name']}: {len(b['offers'])} coffees",flush=True)
             if i%25==0:flush()
     flush()
