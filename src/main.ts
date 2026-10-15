@@ -10,6 +10,7 @@ const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getEleme
 const money = (n: number) => n.toFixed(2);
 const options = (values: Record<string, string>) => Object.entries(values).map(([value, label]) => `<option value="${value}">${e(label)}</option>`).join('');
 const coffeeOptions = options(coffeeLabels);
+const venueTypes = { '': 'Alle', bar: 'Bar / Pub', restaurant: 'Restaurant', cafe: 'Café', fast_food: 'Imbiss' };
 const initial = new URLSearchParams(location.search);
 const initialSize = initial.get('size') || '300-330';
 const initialBeerType = initial.get('beerType') || 'all';
@@ -40,7 +41,7 @@ $('app').innerHTML = `
   <button id="new-price" class="primary" disabled>Preis eintragen</button>
 </div>
 <div id="filters" hidden>
-  <label>Lokal <select id="type">${options({ '': 'Alle', bar: 'Bar', pub: 'Pub', restaurant: 'Restaurant', cafe: 'Café', fast_food: 'Imbiss' })}</select></label>
+  <label>Lokal <select id="type">${options(venueTypes)}</select></label>
   <label><input id="unknown" type="checkbox" checked> Ohne passenden Preis anzeigen</label>
   <label><input id="outdoor" type="checkbox"> Draussen sitzen</label>
   <label id="alcohol-label"><input id="alcohol-free" type="checkbox"> Alkoholfrei</label>
@@ -86,6 +87,8 @@ function rebuild() {
   render();
 }
 function syncControls() {
+  $<HTMLSelectElement>('type').innerHTML = options({ ...venueTypes, '': coffee() ? 'Ohne Bars, Pubs / Imbisse' : 'Alle' });
+  $<HTMLSelectElement>('type').value = f.type;
   $('beer-controls').hidden = !beer(); $('coffeeType').hidden = !coffee();
   $<HTMLSelectElement>('volume').querySelector<HTMLOptionElement>('[value=stange]')!.disabled = ['bottle', 'can'].includes(f.beerType!);
   $<HTMLSelectElement>('beer-type').value = f.beerType || 'all';

@@ -153,7 +153,13 @@ export function hasEveningHours(hours: string | null): boolean | undefined {
   return undefined;
 }
 
+function venueCategory(type: string): string {
+  return type === "pub" ? "bar" : type;
+}
+
 export function isVenueEligible(bar: Bar, f: Filters): boolean {
+  const category = venueCategory(bar.type);
+  if (f.drink === "coffee" && ["bar", "fast_food"].includes(category)) return f.type === category;
   if ((f.drink || "beer") !== "beer" || bar.type !== "cafe") return true;
   // A missing price for the selected size/format is different from no beer
   // evidence at all. Community beer entries count after applyEntries merges them.
@@ -174,7 +180,7 @@ export function filterBars(
         `${b.name} ${b.address} ${b.postcode}`
           .toLocaleLowerCase()
           .includes(f.query.toLocaleLowerCase()) &&
-        (!f.type || b.type === f.type) &&
+        (!f.type || venueCategory(b.type) === f.type) &&
         (!f.outdoor || b.outdoor) &&
         (o ? cost(o, f.mode) <= f.max : f.unknown)
       );
