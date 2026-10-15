@@ -48,6 +48,9 @@ main { display: flex; flex: 1; min-height: 0; }
 .detail-top, .dialog-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .detail-top > strong { font-size: 17px; }
 .detail-top > button, .dialog-top > button { font-size: 12px; flex-shrink: 0; }
+.detail-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.detail-actions button { min-height: 44px; }
+#share-url { display: block; width: 100%; margin-top: 10px; font-size: 16px; }
 p { line-height: 1.5; }
 .muted { color: #666; font-size: 12px; }
 .estimate { margin-top: 4px; }

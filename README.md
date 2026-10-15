@@ -14,6 +14,7 @@ Eine einfache Zürich-Karte für Bier- und Kaffeepreise. TypeScript, Leaflet, Py
 - Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.
 - **Offenbier / Flaschenbier / Dosenbier / Ausschankart unbekannt** in der Liste und in den Preisdetails. Die Kartenmarker zeigen nur den Preis. Ausschank-Filter und Auswahl beim Eintragen oder Korrigieren eines Bierpreises.
 - Quellenlink, Portionsgrösse und Abrufdatum für jedes gefundene Angebot.
+- **Teilen** in den Lokaldetails öffnet das native Teilen-Menü. Der Direktlink öffnet das Lokal samt Karte und Preisen; Kaffee- und Stangenansicht bleiben erhalten. Ohne native Unterstützung wird der Link kopiert oder zum manuellen Kopieren angezeigt.
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
 - Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.
 - **Preis eintragen**, **Preis hinzufügen** und **Ändern**: Bier und Kaffee bei bekannten Lokalen ergänzen oder korrigieren. Alle Besucher sehen die gespeicherten Preise. Änderungen werden getrennt vom Scraper gespeichert und als ungeprüfte Einträge gekennzeichnet.

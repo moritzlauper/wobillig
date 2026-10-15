@@ -4,6 +4,7 @@ import './style.css';
 import { coverageLabel, missingPriceLabel } from './coverage';
 import { bestOffer, matchingOffers, isCurrentOffer, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
 import { allVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
+import { barLink, shareLink } from './sharing';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 const money = (n: number) => n.toFixed(2);
@@ -45,6 +46,7 @@ $('app').innerHTML = `
   <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="fit">Alle anzeigen</button></div><div id="map-unit" class="map-unit"></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section></section>
 </main>
 <div id="toast" role="status" hidden></div>
+<dialog id="share-dialog" aria-labelledby="share-title"><div class="dialog-top"><strong id="share-title">Lokal teilen</strong><button id="close-share" type="button">Schliessen</button></div><label for="share-url">Diesen Link kopieren und teilen:</label><input id="share-url" type="url" readonly></dialog>
 <dialog id="price-dialog" aria-label="Preis eintragen"><form id="price-form">
   <div class="dialog-top"><strong id="form-title">Preis eintragen</strong><button id="cancel-price" type="button">Schliessen</button></div>
   <label>Lokal<select id="entry-bar" required></select></label>
@@ -86,6 +88,7 @@ function syncControls() {
   const url = new URL(location.href);
   if (coffee()) url.searchParams.set('drink', 'coffee'); else url.searchParams.delete('drink');
   if (!coffee() && f.volume === 'stange') url.searchParams.set('size', 'stange'); else url.searchParams.delete('size');
+  if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
   history.replaceState(null, '', url);
 }
 function render() {
@@ -98,7 +101,9 @@ function render() {
     return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || 'Zürich')}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
   }).join('') : '<p class="empty">Keine passenden Lokale.</p>';
   layer.clearLayers();
-  for (const b of current) {
+  const selectedBar = bars.find(b => b.id === selected);
+  const mapped = selectedBar && !current.includes(selectedBar) ? [...current, selectedBar] : current;
+  for (const b of mapped) {
     const o = bestOffer(b, f);
     const label = `${b.name}: ${o ? `CHF ${money(cost(o, f.mode))} / ${unit(o)}` : 'kein passender Preis'}`;
     L.marker([b.lat, b.lon], {
@@ -107,17 +112,31 @@ function render() {
     }).addTo(layer).on('click', () => showBar(b));
   }
   $('results').querySelectorAll<HTMLButtonElement>('[data-bar]').forEach(button => button.onclick = () => showBar(bars.find(b => b.id === button.dataset.bar)!));
-  const selectedBar = bars.find(b => b.id === selected);
   if (selectedBar) detail(selectedBar); else $('detail').hidden = true;
 }
 function detail(b: Bar) {
   const matches = matchingOffers(b, f);
   const other = b.offers.filter(o => isCurrentOffer(o) && !matches.includes(o));
   const offers = [...matches, ...other];
-  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">Schliessen</button></div><p class="muted">${e([b.address, b.postcode].filter(Boolean).join(' '))}</p><button id="add-here">Preis hinzufügen</button>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${!o.coffeeType ? ' · ' + e(beerTypeLabels[effectiveBeerType(o)]) : ''}${!o.coffeeType && o.alcoholFree ? ' · alkoholfrei' : ''}${!matches.includes(o) ? ' · ausserhalb Filter' : ''}</div>${!o.coffeeType && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>geschätzt</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `Google-Maps-Foto · ${e(o.photoSource.date)} · ` : ''}${o.confidence === 'community' ? 'Eingetragen · nicht geprüft' : o.confidence === 'reviewed' ? 'Manuell geprüft' : o.confidence === 'ai' ? 'KI-erkannt · nicht geprüft' : 'Automatisch erkannt'} · ${e(new Date(o.observedAt).toLocaleDateString('de-CH'))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">Quelle</a>` : ''}<button data-edit="${i}">Ändern</button></div></div>`).join('') : '<p>Noch kein Preis eingetragen.</p>'}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
+  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">Schliessen</button></div><p class="muted">${e([b.address, b.postcode].filter(Boolean).join(' '))}</p><div class="detail-actions"><button id="add-here">Preis hinzufügen</button><button id="share-bar" aria-label="${e(b.name)} teilen">Teilen</button></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${!o.coffeeType ? ' · ' + e(beerTypeLabels[effectiveBeerType(o)]) : ''}${!o.coffeeType && o.alcoholFree ? ' · alkoholfrei' : ''}${!matches.includes(o) ? ' · ausserhalb Filter' : ''}</div>${!o.coffeeType && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>geschätzt</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `Google-Maps-Foto · ${e(o.photoSource.date)} · ` : ''}${o.confidence === 'community' ? 'Eingetragen · nicht geprüft' : o.confidence === 'reviewed' ? 'Manuell geprüft' : o.confidence === 'ai' ? 'KI-erkannt · nicht geprüft' : 'Automatisch erkannt'} · ${e(new Date(o.observedAt).toLocaleDateString('de-CH'))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">Quelle</a>` : ''}<button data-edit="${i}">Ändern</button></div></div>`).join('') : '<p>Noch kein Preis eingetragen.</p>'}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
   $('detail').hidden = false;
   $('close-detail').onclick = () => { selected = undefined; render(); };
   $('add-here').onclick = () => openPrice(b);
+  $('share-bar').onclick = async () => {
+    const button = $<HTMLButtonElement>('share-bar');
+    const url = barLink(location.href, b.id, f.drink!, f.volume);
+    button.disabled = true;
+    try {
+      const result = await shareLink({ title: `${b.name} · wogünstig`, url });
+      if (result === 'copied') toast('Link kopiert.');
+      if (result === 'manual') {
+        $<HTMLInputElement>('share-url').value = url;
+        $<HTMLDialogElement>('share-dialog').showModal();
+        $<HTMLInputElement>('share-url').focus();
+        $<HTMLInputElement>('share-url').select();
+      }
+    } finally { button.disabled = false; }
+  };
   $('detail').querySelectorAll<HTMLButtonElement>('[data-edit]').forEach(button => button.onclick = () => openPrice(b, offers[Number(button.dataset.edit)]));
 }
 function showBar(b: Bar) { selected = b.id; showView(false); map.setView([b.lat, b.lon], Math.max(map.getZoom(), 15)); render(); $('detail').focus({ preventScroll: true }); }
@@ -156,6 +175,8 @@ $('data-info').onclick = () => {
   $<HTMLDialogElement>('info').showModal();
 };
 $('close-info').onclick = () => $<HTMLDialogElement>('info').close();
+$('close-share').onclick = () => $<HTMLDialogElement>('share-dialog').close();
+$('share-url').onclick = () => $<HTMLInputElement>('share-url').select();
 
 function entryFields() {
   const isCoffee = $<HTMLSelectElement>('entry-drink').value === 'coffee';
@@ -265,5 +286,11 @@ async function init() {
   const errors = [!beerResult ? 'Bierdaten konnten nicht geladen werden.' : '', !coffeeResult ? 'Kaffeedaten konnten nicht geladen werden.' : '', !loadedCommunity ? 'Gemeinsame Einträge nicht verfügbar. Zum Eintragen bitte später neu laden.' : ''].filter(Boolean);
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   rebuild();
+  const linkedId = initial.get('bar');
+  if (linkedId) {
+    const linkedBar = bars.find(b => b.id === linkedId);
+    if (linkedBar) showBar(linkedBar);
+    else toast('Das geteilte Lokal ist gerade nicht verfügbar.');
+  }
 }
 void init();
