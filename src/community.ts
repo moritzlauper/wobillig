@@ -46,7 +46,9 @@ export function allVenues(datasets: Partial<Record<Drink, Dataset>>): Bar[] {
     .sort((a, b) => a.name.localeCompare(b.name, 'de'));
 }
 export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Bar[], drink: Drink): Dataset {
-  const bars = new Map(dataset.bars.map(b => [b.id, { ...b, offers: [...b.offers] }]));
+  // Locations are shared across drinks; prices belong only to the active dataset.
+  const bars = new Map(venues.map(b => [b.id, { ...b, offers: [] as Offer[] }]));
+  for (const b of dataset.bars) bars.set(b.id, { ...b, offers: [...b.offers] });
   for (const entry of entries.filter(x => x.drink === drink)) {
     let bar = bars.get(entry.barId);
     if (!bar) {

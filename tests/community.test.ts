@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { applyEntries, offerKey, validateInput, type PriceInput } from '../src/community';
+import { allVenues, applyEntries, offerKey, validateInput, type PriceInput } from '../src/community';
 import { emptyState, savePrice, WriteConflict, type State, type Store } from '../server/prices';
-import type { Bar, Dataset, Offer } from '../src/data';
+import { filterBars, type Bar, type Dataset, type Offer, type Filters } from '../src/data';
 const offer: Offer = { name: 'Lager', priceChf: 7, volumeMl: 500, sourceUrl: 'https://example.org/menu', observedAt: '2026-10-14', confidence: 'automatic', evidence: '', alcoholFree: false };
 const bar: Bar = { id: 'node/1', name: 'Testbar', lat: 47.37, lon: 8.53, address: '', postcode: '', type: 'bar', website: null, openingHours: null, outdoor: false, offers: [offer], scrapeStatus: 'prices_found', checkedAt: null };
 const beer: Dataset = { generatedAt: '', discoveredAt: '', attribution: '', bars: [bar] };
@@ -30,6 +30,20 @@ describe('shared price validation', () => {
   ])('rejects malformed or misleading input %j', patch => expect(() => validateInput({ ...input, ...patch }, [bar])).toThrow());
 });
 describe('persistent edits', () => {
+  it('shows coffee-only venues such as Plüsch in the beer map without borrowing coffee prices', () => {
+    const pluesch: Bar = { ...bar, id: 'node/364410129', name: 'Plüsch', type: 'cafe', offers: [{ ...offer, name: 'Espresso', coffeeType: 'espresso', volumeMl: null }] };
+    const coffeeData = { ...coffee, bars: [pluesch] };
+    const venues = allVenues({ beer, coffee: coffeeData });
+    const result = applyEntries(beer, [], venues, 'beer');
+    const filters: Filters = { drink: 'beer', query: 'Plüsch', max: 15, volume: '500', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
+    expect(filterBars(result.bars, filters).map(b => b.id)).toEqual([pluesch.id]);
+    expect(result.bars.find(b => b.id === pluesch.id)?.offers).toEqual([]);
+    expect(filterBars(result.bars, { ...filters, unknown: false })).toEqual([]);
+    const coffeeResult = applyEntries(coffeeData, [], venues, 'coffee');
+    expect(coffeeResult.bars.find(b => b.id === bar.id)?.offers).toEqual([]);
+    expect(coffeeResult.bars.find(b => b.id === pluesch.id)?.offers).toEqual(pluesch.offers);
+    expect(result.bars.find(b => b.id === bar.id)?.offers).toEqual(bar.offers);
+  });
   it('replaces a scraped price without changing the scraped data, including after scraper refreshes', async () => {
     const store = memoryStore();
     const entry = await savePrice(store, input, data, 'a');
