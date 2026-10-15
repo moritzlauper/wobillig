@@ -74,6 +74,12 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&c
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 new ResizeObserver(() => map.invalidateSize()).observe($('map'));
 const layer = L.layerGroup().addTo(map);
+// At street level, give unpriced venues their own clickable name labels.
+let showVenueNames = map.getZoom() >= 17;
+map.on('zoomend', () => {
+  const showNames = map.getZoom() >= 17;
+  if (showNames !== showVenueNames) { showVenueNames = showNames; render(); }
+});
 let toastTimer: ReturnType<typeof setTimeout>;
 function toast(message: string) { $('toast').textContent = message; $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').hidden = true, 5000); }
 function showView(list: boolean) {
@@ -121,7 +127,14 @@ function render() {
     const o = bestOffer(b, f);
     const label = `${b.name}: ${o ? `CHF ${money(cost(o, f.mode))} / ${unit(o)}` : 'kein passender Preis'}`;
     L.marker([b.lat, b.lon], {
-      icon: L.divIcon({ className: 'marker-wrap', html: `<span class="price-marker ${o ? '' : 'unknown'} ${b.id === selected ? 'active' : ''}">${o ? money(cost(o, f.mode)) : '·'}</span>`, iconSize: o ? [54, 26] : [14, 14], iconAnchor: o ? [27, 13] : [7, 7] }),
+      icon: L.divIcon({
+        className: `marker-wrap${o ? '' : ' unpriced-marker'}`,
+        html: o
+          ? `<span class="price-marker ${b.id === selected ? 'active' : ''}">${money(cost(o, f.mode))}</span>`
+          : `<span class="price-marker unknown ${b.id === selected ? 'active' : ''}">·</span>${showVenueNames ? `<span class="venue-marker-name">${e(b.name)}</span>` : ''}`,
+        iconSize: o ? [54, 26] : showVenueNames ? [132, 64] : [44, 44],
+        iconAnchor: o ? [27, 13] : showVenueNames ? [66, 22] : [22, 22],
+      }),
       title: label, alt: label, zIndexOffset: b.id === selected ? 2000 : o ? 1000 : 0,
     }).addTo(layer).on('click', () => showBar(b));
   }
