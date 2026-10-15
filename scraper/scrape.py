@@ -21,7 +21,7 @@ from bs4 import BeautifulSoup
 import requests
 from scraper.extract import extract_offers, BEER, SIZE, STANGE
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
-from scraper.coffee import extract_coffees, coffee_pdf, coffee_types
+from scraper.coffee import extract_coffees, coffee_pdf, coffee_types, PRICE as COFFEE_PRICE
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'public/data/bars.json'
@@ -29,6 +29,7 @@ UA = 'WoguenstigBot/1.0 (+https://github.com/moritzlauper/woguenstig)'
 EXTRA_VENUES = json.loads((ROOT / 'scraper/additional_venues.json').read_text())
 SOURCE_SCOPES = json.loads((ROOT / 'scraper/source_scopes.json').read_text())
 COFFEE_SOURCE_SCOPES = json.loads((ROOT / 'scraper/coffee_source_scopes.json').read_text())
+REVIEWED_COFFEE_MENUS = json.loads((ROOT / 'scraper/reviewed_coffee_menus.json').read_text())
 REVIEWED_MENUS = json.loads((ROOT / 'scraper/reviewed_menus.json').read_text())
 WEBSITES = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
@@ -202,7 +203,7 @@ def html_content(body,url):
     for a in soup.select('a[href], iframe[src], embed[src], object[data], img[src]'):
         target=urljoin(url,a.get('href') or a.get('src') or a.get('data')).split('#')[0]
         # A hostname containing "bier" must not make every site link a menu.
-        link_label=a.get_text(' ',strip=True)+' '+urlparse(target).path
+        link_label=a.get_text(' ',strip=True)+' '+a.get('aria-label','')+' '+a.get('title','')+' '+a.get('alt','')+' '+urlparse(target).path
         pdf=urlparse(target).path.lower().endswith('.pdf')
         if (MENU.search(link_label) or pdf) and not SKIP_MENU.search(link_label) and urlparse(target).scheme in ('http','https'):
             # Only same-origin navigation; external PDFs are allowed as direct menu links.
@@ -210,7 +211,18 @@ def html_content(body,url):
                 links.append(target)
     for node in soup(['script','style','nav','footer','header']):
         node.decompose()
-    rows=[]
+    rows=parallel_menu_rows(soup)
+    # Zurich's public cafeterias publish table cells as JSON in a web component.
+    for table in soup.select('stzh-datatable[rows]'):
+        try:
+            cells=json.loads(table['rows'])
+        except (TypeError,ValueError):
+            continue
+        if not isinstance(cells,list):
+            continue
+        for row in cells:
+            if isinstance(row,list) and len(row)==2 and all(isinstance(c,dict) and isinstance(c.get('value'),str) for c in row):
+                rows.append(' '.join(BeautifulSoup(c['value'],'html.parser').get_text(' ',strip=True) for c in row))
     # Some CMS menus use alternating grid cells, not a table or product card.
     # Pair a named, sized product only with its immediately adjacent price cell.
     for cell in soup.select('div, p, li, dt'):
@@ -241,6 +253,26 @@ def html_content(body,url):
     return '\n'.join(rows),prioritize_links(links)
 
 
+def parallel_menu_rows(soup):
+    """Pair neighbouring CMS columns only when their explicit row counts agree."""
+    rows=[]
+    for layout in soup.select('.fluid-engine, .sqs-row'):
+        blocks=layout.find_all('div',recursive=False)
+        for left,right in zip(blocks,blocks[1:]):
+            for names,amounts in ((left,right),(right,left)):
+                name_paragraphs=names.select('p');price_paragraphs=amounts.select('p')
+                if len(name_paragraphs)!=len(price_paragraphs):
+                    continue
+                for label,price in zip(name_paragraphs,price_paragraphs):
+                    labels=label.get_text('\n',strip=True).splitlines()
+                    if not 2<=len(labels)<=30 or sum(bool(coffee_types(x) or BEER.search(x)) for x in labels)<2:
+                        continue
+                    prices=price.get_text('\n',strip=True).splitlines()
+                    if len(labels)==len(prices) and all(re.fullmatch(r'\+?'+COFFEE_PRICE,x,re.I) for x in prices):
+                        rows.extend(name+' '+value for name,value in zip(labels,prices))
+    return rows
+
+
 def prioritize_links(links):
     return sorted(dict.fromkeys(links),key=lambda u:(not bool(re.search(r'bier|beer|getr|drink|barkarte|beverage',urlparse(u).path,re.I)),not urlparse(u).path.lower().endswith('.pdf')))
 
@@ -269,7 +301,7 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
         visited.add(url)
         try:
             final,kind,body=fetcher.get(url)
-            review=REVIEWED_MENUS.get(final) if beverage=='beer' else None
+            review=(REVIEWED_COFFEE_MENUS if beverage=='coffee' else REVIEWED_MENUS).get(final)
             if review and review['barId']==bar['id']:
                 if hashlib.sha256(body).hexdigest()==review['sha256']:
                     offers.extend({**o,'sourceUrl':final,'observedAt':stamp,'confidence':'reviewed'} for o in review['offers'])
@@ -292,6 +324,10 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
             errors.append(str(exc) if isinstance(exc,ValueError) else type(exc).__name__)
     dedup={}
     for o in offers:
+        # Expiring download signatures are not useful public source links.
+        # Keep the menu's originating venue page as the durable reference.
+        if re.search(r'[?&]X-Amz-Signature=',o['sourceUrl'],re.I) and bar.get('website'):
+            o={**o,'sourceUrl':bar['website']}
         dedup.setdefault((o.get('coffeeType',o['name'].casefold()),o['volumeMl'],o['priceChf']),o)
     # Preserve the last known offers (with their original date) when a crawl fails.
     if offers:

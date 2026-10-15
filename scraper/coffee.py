@@ -9,23 +9,27 @@ LABELS = {'creme':'Café crème', 'espresso':'Espresso', 'double':'Doppelter Esp
           'ristretto':'Ristretto', 'cappuccino':'Cappuccino', 'latte':'Latte macchiato',
           'milk':'Milchkaffee', 'flat_white':'Flat White', 'americano':'Americano', 'filter':'Filterkaffee'}
 ALIASES = {
-    'double':r'(?:doppelter? espresso|espresso dopp(?:io|elt)|double espresso|doppio(?: espresso)?)',
+    'double':r'(?:doppelter? espresso|doppel[ -]espresso|espresso dopp(?:io|elt)|double espresso|doppio(?: espresso)?)',
     'flat_white':r'flat\s*white',
     'latte':r'latte\s*macchiato',
     'milk':r'milchkaffee?|schale|cafe au lait|(?:cafe|caffe|coffee)\s*latte',
     'cappuccino':r'cappucc?ino',
-    'americano':r'americano|long black',
+    'americano':r'(?:(?:caffe?|coffee|kaffee)\s+)?americano|long black',
     'filter':r'filterkaffee|filter coffee|batch brew',
     'ristretto':r'ristretto',
     'espresso':r'espresso',
     'creme':r'(?:kaffee|kafi|cafe|caffe|coffee)(?:\s*(?:creme|crema|nature))?',
 }
-PRICE = r'(?:CHF\s*)?(\d{1,2}(?:[.,]\d{1,2}|\.\s*[–—-])?)(?:\s*(?:CHF|Fr\.?))?'
+PRICE = r'(?:(?:CHF|Fr\.?)\s*)?(\d{1,2}(?:[.,]\d{1,2}|\.\s*[–—-])?)(?:\s*(?:CHF|Fr\.?))?'
 
 
 def coffee_types(name):
     plain=''.join(c for c in unicodedata.normalize('NFKD',name.casefold()) if not unicodedata.combining(c))
+    plain=re.sub(r'\(\s*\d+(?:[.,]\d+)?\s*(?:ml|cl|dl)\s*\)', '',plain)
     plain=re.sub(r'\((?:bio|fair\s*(?:trade|&\s*trade)|bio und fair trade)\)', '',plain)
+    plain=re.sub(r'[●•*]+','',plain)
+    if re.search(r'\(\s*doppio\s*\)',plain):
+        return []
     remaining=plain
     kinds=[]
     for kind,pattern in ALIASES.items():
@@ -35,8 +39,14 @@ def coffee_types(name):
             remaining=re.sub(regex,'',remaining)
     if len(kinds)>1 and not re.search(r'[/,&|;]|\b(?:oder|or|und|and)\b',plain):
         return []
+    # "Doppelter Espresso, Ristretto" can mean two double servings.
+    # Never publish its amount as an ordinary ristretto price.
+    if 'double' in kinds and 'ristretto' in kinds:
+        return []
     # Reject cocktails, desserts, iced drinks, supplements, combos and descriptions.
     # A shared price is valid only when the entire label lists known coffees.
+    if kinds and re.search(r'[/,&|;]|\b(?:oder|or|und|and)\b',plain):
+        remaining=re.sub(r'\b(?:tee|tea|hag)\b','',remaining)
     remaining=re.sub(r'\b(?:oder|or|und|and)\b','',remaining)
     return kinds if not re.sub(r'[\s,/&|;:()«»–—-]','',remaining) else []
 
@@ -46,7 +56,11 @@ def extract_coffees(text,url,stamp):
     for raw in text.splitlines():
         line=re.sub(r'\s+',' ',raw).strip().lstrip('•*- ')
         line=re.sub(r'(?:\.\s*){3,}',' ',line)
-        line=re.sub(r'(\d)\s+([.,])\s*(\d)',r'\1\2\3',line)
+        line=re.sub(r'(\d)\s*([.,])\s*(\d)',r'\1\2\3',line)
+        # Some HTML cards print the CHF amount before the product name.
+        leading=re.fullmatch(PRICE+r'\s+(.+)',line,re.I)
+        if leading and coffee_types(leading[2]):
+            line=leading[2]+' '+leading[1]
         # Parallel alternatives are accepted only with one explicit price per
         # fully recognised label. Keep their printed order, not alias order.
         multi=re.fullmatch(r'(.+?)\s+('+PRICE+r'(?:\s*/\s*'+PRICE+r')+)',line,re.I)
@@ -76,6 +90,42 @@ def extract_coffees(text,url,stamp):
     return list(offers.values())
 
 
+def coffee_row_columns(row):
+    """Read labelled price cells from actual PDF coordinates, including raised cents."""
+    groups=[]; seen=set()
+    for char in sorted(row.get('chars',[]),key=lambda c:c['x0']):
+        key=(char['text'],char['x0'],char['x1'],char['top'])
+        if key in seen: continue
+        seen.add(key)
+        if char['text'].isspace():
+            if groups: groups[-1].append(char)
+            continue
+        if not groups or char['x0']-groups[-1][-1]['x1']>16:
+            groups.append([])
+        groups[-1].append(char)
+    cells=[]
+    for chars in groups:
+        # Reconstruct words, preserving ordinary spaces within each cell.
+        text=''
+        for i,char in enumerate(chars):
+            if i and char['x0']-chars[i-1]['x1']>2:
+                text+=' '
+            text+=char['text']
+        digits=''.join(c['text'] for c in chars)
+        if digits.isdigit() and 3<=len(chars)<=4:
+            whole=chars[:-2];cents=chars[-2:]
+            if (all(c['size'] < whole[-1]['size']*.8 for c in cents) and
+                max(c['bottom'] for c in cents) < whole[-1]['bottom']-2 and
+                cents[0]['x0']-whole[-1]['x1']<6):
+                text=''.join(c['text'] for c in whole)+'.'+''.join(c['text'] for c in cents)
+        cells.append(text.strip())
+    result=list(cells)
+    for name,price in zip(cells,cells[1:]):
+        if coffee_types(name) and re.fullmatch(PRICE,price,re.I):
+            result.append(name+' '+price)
+    return result
+
+
 def coffee_pdf(body,url,stamp):
     offers=[]
     with pdfplumber.open(BytesIO(body)) as document:
@@ -90,6 +140,8 @@ def coffee_pdf(body,url,stamp):
                         continue
                     text=row['text']
                     found=extract_coffees(text,url,stamp)
+                    for candidate in coffee_row_columns(row):
+                        found.extend(extract_coffees(candidate,url,stamp))
                     if not found and coffee_types(text) and index+1<len(rows):
                         following=rows[index+1]
                         if (following['top'] < page.height * .92 and
@@ -97,6 +149,7 @@ def coffee_pdf(body,url,stamp):
                             abs(following['x0']-row['x0'])<=25 and
                             re.fullmatch(PRICE,following['text'],re.I)):
                             found=extract_coffees(text+' '+following['text'],url,stamp)
+                    found=list({(o['coffeeType'],o['priceChf']):o for o in found}.values())
                     for o in found:
                         o['evidence']=f'PDF S. {number}: '+o['evidence']
                     offers.extend(found)

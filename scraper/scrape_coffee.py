@@ -60,6 +60,7 @@ def main():
     parser.add_argument('--osm-file')
     parser.add_argument('--limit',type=int,default=200,help='Additional candidates; known coffee venues are always refreshed')
     parser.add_argument('--workers',type=int,default=4)
+    parser.add_argument('--max-pages',type=int,default=10,help='Maximum linked documents per venue')
     parser.add_argument('--archive-dir',action='append',default=[])
     args=parser.parse_args()
     beer=json.loads((ROOT/'public/data/bars.json').read_text())
@@ -81,7 +82,7 @@ def main():
         dataset={'generatedAt':now(),'discoveredAt':discovered['discoveredAt'],'attribution':beer['attribution'],'bars':sorted(output.values(),key=lambda b:b['name'].casefold())}
         save(DATA,dataset);save(CHECKS,checks)
     with ThreadPoolExecutor(max_workers=max(1,min(args.workers,8))) as pool:
-        tasks=[pool.submit(scrape_bar,b,fetcher,hints,8,'coffee') for b in selected]
+        tasks=[pool.submit(scrape_bar,b,fetcher,hints,args.max_pages,'coffee') for b in selected]
         for i,task in enumerate(as_completed(tasks),1):
             b=task.result()
             if args.archive_dir:

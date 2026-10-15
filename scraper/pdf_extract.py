@@ -4,7 +4,7 @@ import re
 import pdfplumber
 from scraper.extract import BEER, SIZE, extract_offers, extract_stange_prefix
 
-BEER_HEADING = re.compile(r'\b(?:biere?|beers?|flaschenbier[e]?|offenbier[e]?|draught|draft|bottled|vom fass)\b', re.I)
+BEER_HEADING = re.compile(r'\b(?:biere?|beers?|flaschenbier[e]?|offenbier[e]?|draught|draft|bottled|by the bottle|bottles|vom fass)\b', re.I)
 STOP_HEADING = re.compile(r'\b(?:wein[e]?|wine[s]?|soft|getränke|cocktails?|spirituosen|shots|aperitif|kaffee|coffee|tee|cider|most|säfte|spritz|gin|whisk\w*)\b', re.I)
 NUMBER = r'\d{1,2}(?:[.,]\d{1,2}|[.][–—-])?'
 
@@ -13,6 +13,7 @@ def size_heading(text):
     """A product such as 'Amboss Weizen Bier 5dl' is NOT a size header."""
     words=re.findall(r'[a-zäöü]+',SIZE.sub('',text).casefold())
     allowed={'bier','biere','beers','beer','flaschen','flaschenbier','flaschenbiere','offenbier','offenbiere','vom','fass','frisch','gezapft','zapft','bottled','bottles','draft','draught','on','tap','alkoholfrei','alkoholfreie','alkoholfreies','alcohol','free','non','naturtrübe','naturtrüb','amber','hell','helle','weizen','weizenbiere','cl','chf'}
+    allowed.update({'im','offenausschank','diverse'})
     return bool(words) and all(w in allowed for w in words)
 
 
@@ -54,11 +55,18 @@ def aligned_table_lines(region):
     heading = ''
     last_top = 0
     result = []
+    section = ''; section_top = 0
     for words in rows:
         words.sort(key=lambda w: w['x0'])
         text = ' '.join(w['text'] for w in words)
         sizes = list(SIZE.finditer(text))
-        if sizes and size_heading(text) and not re.search(r'\d', SIZE.sub('', text)):
+        if BEER_HEADING.search(text) and not re.search(r'\d',text):
+            section=text; section_top=words[0]['top']
+            columns=[]
+        elif STOP_HEADING.search(text) and not BEER.search(text):
+            section=''
+        bare_sizes=not SIZE.sub('',text).strip(' /|')
+        if sizes and (size_heading(text) or (bare_sizes and section and words[0]['top']-section_top<=45)) and not re.search(r'\d', SIZE.sub('', text)):
             # A second text heading belongs to a separate table on the same row.
             first_group=[sizes[0]]
             for size in sizes[1:]:
@@ -72,7 +80,7 @@ def aligned_table_lines(region):
             columns = [(size[0], max(w['x1'] for a,b,w in offsets if a < size.end() and b > size.start())) for size in sizes]
             if any(abs(a[1]-b[1]) < 20 for a,b in zip(columns,columns[1:])):
                 columns = []
-            heading = text
+            heading = (section+' / ' if bare_sizes else '')+text
             last_top = words[0]['top']
             continue
         if not columns:

@@ -6,12 +6,12 @@ extractor does not OCR images or infer column alignment in broken PDF text.
 """
 import re
 
-BEER = re.compile(r'\b(biere?|beers?|lager(?:bier)?|pils(?:e?ner)?|ipa|pale ale|stout|porter|weizen|weissbier|weißbier|helles|quöllfrisch|feldschlösschen|calanda|turbinenbräu|chopfab|heineken|guinness|erdinger|schützengarten|appenzeller|valaisanne|braufrisch|eichhof|amber|hofbräu|amboss|moretti|poretti|corona|schneider|grimbergen|sonnwendlig|lokalbier|schiffbrau|adler panix|hürlimann|augustiner|san miguel|super bock|1664 blanc|peroni|asahi|sapporo|red stripe|singha|chang|tiger|brooklyn|paulaner|falken|warsteiner|hoegaarden|franziskaner|budweiser|bitburger|jever|brew.?dog|tegernseer?|maisel|kilkenny|fullers|five lamps|hop house|1664)\b', re.I)
+BEER = re.compile(r'\b(biere?|beers?|lager(?:bier)?|pils(?:e?ner)?|ipa|pale ale|stout|porter|weizen(?:bier)?|weissbier|weißbier|helles|quöllfrisch|feldschlösschen|calanda|turbinenbräu|chopfab|heineken|guinness|erdinger|schützengarten|appenzeller|valaisanne|braufrisch|eichhof|amber|hofbräu|amboss|moretti|poretti|corona|schneider|grimbergen|sonnwendlig|lokalbier|schiffbrau|adler panix|hürlimann|augustiner|san miguel|super bock|1664 blanc|peroni|asahi|sapporo|red stripe|singha|chang|tiger|brooklyn|paulaner|falken|warsteiner|hoegaarden|franziskaner|budweiser|bitburger|jever|brew.?dog|tegernseer?|maisel|kilkenny|fullers|five lamps|hop house|1664)\b', re.I)
 SIZE = re.compile(r'(?<![\d.])(\d+(?:[.,]\d+)?)\s*(ml|cl|dl|l)\b', re.I)
-PRICE = re.compile(r'(?:CHF\s*)?(\d{1,2}[.,]\d{1,2}|\d{1,2}\.\s*[–—-])(?:\s*(?:CHF|Fr\.?))?', re.I)
+PRICE = re.compile(r'(?:(?:CHF|Fr\.?)\s*)?(\d{1,2}[.,]\d{1,2}|\d{1,2}\.\s*[–—-])(?:\s*(?:CHF|Fr\.?))?', re.I)
 STANGE = re.compile(r'\bstange\b', re.I)
 # A named beer serving is also an explicit product, even without a brand.
-BEER = re.compile(BEER.pattern + r'|\bstange\b', re.I)
+BEER = re.compile(BEER.pattern + r'|\b(?:stange|boxer|haldengut|einsiedler)\b', re.I)
 
 def extract_stange_prefix(text, source_url, observed_at):
     """A complete, explicitly sized Stange may precede a second PDF column.
@@ -23,7 +23,7 @@ def extract_stange_prefix(text, source_url, observed_at):
     if not size:
         return []
     tail=text[size.end():]
-    price=re.match(r'\s*(?:«Stange»\s*)?(?:CHF\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?(?:\s*CHF)?(?=\s+[A-Za-zÄÖÜäöü]|$)',tail,re.I)
+    price=re.match(r'\s*(?:«Stange»\s*)?(?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?(?:\s*CHF)?(?=\s+[A-Za-zÄÖÜäöü]|$)',tail,re.I)
     if not price:
         return []
     prefix=text[:size.end()+price.end()]
@@ -50,6 +50,18 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             continue
         blank_count = 0
         evidence = line
+        line = re.sub(r'(\d)\s*([.,])\s*(\d)',r'\1\2\3',line)
+        line = re.sub(r'((?:ml|cl|dl|l)\b)\.(?=\s)',r'\1',line,flags=re.I)
+        line = re.sub(r'((?:ml|cl|dl|l)\b)\s+(?:bügelflasche|flasche|bottle)\b',r'\1',line,flags=re.I)
+        # Some menus print price(s) before explicitly stated portion(s).
+        # Accept only a complete row with equal, slash-separated list lengths.
+        amount=r'(?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?'
+        reverse=re.fullmatch(r'(.+?)\s+('+amount+r'(?:\s*/\s*'+amount+r')*)\s+('+SIZE.pattern+r'(?:\s*/\s*'+SIZE.pattern+r')*)',line,re.I)
+        if reverse:
+            portions=[s[0] for s in SIZE.finditer(reverse[3])]
+            prices=re.split(r'\s*/\s*',reverse[2])
+            if len(portions)==len(prices) and BEER.search(reverse[1]):
+                line=reverse[1]+' '+' | '.join(size+' '+price for size,price in zip(portions,prices))
         # Printed brackets/leader dots are layout, not additional product data.
         line = re.sub(r'\((\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l))\)', r'\1', line, flags=re.I)
         line = re.sub(r'((?:ml|cl|dl|l)\b)\s*\((?:flasche|stange|offen|bottle)\)', r'\1', line, flags=re.I)
@@ -73,7 +85,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         # PDF rows often print a product once and the second size on the next line.
         # Only an immediately adjacent explicit size/price (optionally prefixed by
         # a parenthetical product description) may inherit that product name.
-        continuation = re.fullmatch(r'(?:\([^)]{1,65}\)\s*)?(\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l)\s+(?:CHF\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?(?:\s*CHF)?)', line, re.I)
+        continuation = re.fullmatch(r'(?:\([^)]{1,65}\)\s*)?(\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l)\s+(?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?(?:\s*CHF)?)', line, re.I)
         if continuations and previous_name and continuation:
             line = previous_name + ' ' + continuation[1]
             evidence = previous_evidence + ' / ' + evidence
@@ -87,7 +99,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             # A menu can price a "Stange" without specifying its capacity.
             # Reuse the normal product/price validation with a parsing-only
             # sentinel, then discard that volume: never publish an assumed 3 dl.
-            match=re.fullmatch(r'(.*?\bstange\b.*?)\s+((?:CHF\s*)?\d{1,2}(?:[.,]\d{1,2}|\.\s*[–—-])?(?:\s*(?:CHF|Fr\.?))?)',line,re.I)
+            match=re.fullmatch(r'(.*?\bstange\b.*?)\s+((?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.\s*[–—-])?(?:\s*(?:CHF|Fr\.?))?)',line,re.I)
             if (match and not re.search(r'\bgross\w*|\blarge\b|\bbig\b',match[1],re.I) and
                 (BEER.search(STANGE.sub('',match[1])) or re.fullmatch(r'stange(?:\s*[/|]\s*(?:stange\s*)?panach[eé])?',match[1],re.I))):
                 for offer in extract_offers(match[1]+' 100ml '+match[2],source_url,observed_at):
@@ -97,13 +109,15 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
                         offers.append({**offer,'volumeMl':None,'serving':'stange','evidence':evidence[:350]})
             continue
         name = line[:sizes[0].start()].strip(' |:–—-')
+        if re.search(r'\bspezi\b|orangensaft|apfelsaft|lemonade|limonade',name,re.I):
+            continue
         if re.search(r'\bappenzeller\b.*\b(?:laut|still)\b',name,re.I):
             continue
         # Explicit parallel size/price lists, e.g. Lager 3dl / 5dl 5.00 / 7.50.
         if len(sizes)>1 and all(re.fullmatch(r'[\s/|]+',line[a.end():b.start()]) for a,b in zip(sizes,sizes[1:])):
             tail=line[sizes[-1].end():].strip()
             parts=re.split(r'\s*[/|]\s*',tail)
-            if len(parts)==len(sizes) and all(re.fullmatch(r'(?:CHF\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?',p) for p in parts):
+            if len(parts)==len(sizes) and all(re.fullmatch(r'(?:(?:CHF|Fr\.?)\s*)?\d{1,2}(?:[.,]\d{1,2}|\.[–—-])?',p) for p in parts):
                 line=name+' '+' | '.join(s[0]+' '+p for s,p in zip(sizes,parts))
                 sizes=list(SIZE.finditer(line))
         # Match the beer name itself, not a different product elsewhere in the row.
@@ -112,6 +126,8 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         # Multi-column PDFs can merge a wine/cocktail price into the beer name.
         without_abv=re.sub(r'<?\s*\d+(?:[.,]\d+)?\s*%\s*(?:vol)?', '', name, flags=re.I)
         without_abv=re.sub(r'\b0[.,]0\b', '', without_abv)
+        if re.search(r'\s\d{1,2}\s*$',without_abv) and not re.search(r'\bPaul\s+\d{2}\s*$',without_abv,re.I):
+            continue
         if PRICE.search(without_abv) or re.search(r'\d\s*[|/]\s*\d',without_abv):
             continue
         abvs=re.findall(r'(\d+(?:[.,]\d+)?)\s*%',name)
@@ -128,7 +144,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
                 continue
             tail = line[size.end():sizes[i+1].start() if i+1 < len(sizes) else len(line)]
             # A single price directly follows the size. Percentages are never prices.
-            match = re.match(r'^\s*(?:[|:/–—-]\s*)?(?:CHF\s*)?(\d{1,2}(?:[.,]\d{1,2}|\.\s*[–—-])?)(?:\s*(?:CHF|Fr\.?))?(?![\d%])', tail, re.I)
+            match = re.match(r'^\s*(?:[|:/–—-]\s*)?(?:(?:CHF|Fr\.?)\s*)?(\d{1,2}(?:[.,]\d{1,2}|\.\s*[–—-])?)(?:\s*(?:CHF|Fr\.?))?(?![\d%])', tail, re.I)
             if not match or '%' in tail[:match.end()+2]:
                 continue
             raw = re.sub(r'[–—-]', '0', match[1]).replace(' ', '').replace(',', '.')
@@ -148,7 +164,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
             offers.append({'name':clean_name, 'volumeMl':ml, 'priceChf':price,
                 'sourceUrl':source_url, 'observedAt':observed_at,
                 'confidence':'automatic', 'evidence':evidence[:350],
-                'alcoholFree':bool(re.search(r'alkoholfrei|alcohol.?free|non[ .-]*alcoholic|sans alcool|ohne alk|\bzero\b|\b0[.,]0\b',name,re.I)) or bool(abvs and all(float(v.replace(',','.'))<=.5 for v in abvs))})
+                'alcoholFree':bool(re.search(r'alkohol\s*frei|alcohol.?free|non[ .-]*alcohol(?:ic)?\b|sans alcool|ohne alk|\bzero\b|\b0[.,]0\b',name,re.I)) or bool(abvs and all(float(v.replace(',','.'))<=.5 for v in abvs))})
             if STANGE.search(clean_name) and not re.search(r'\bgross\w*|\blarge\b|\bbig\b',clean_name,re.I):
                 offers[-1]['serving']='stange'
             if len(sizes)==1:

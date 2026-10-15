@@ -477,5 +477,104 @@
         "evidence": "Visuell geprüft, S. 5: Corona 0.0, 3.3 dl, CHF 7.50"
       }
     ]
+  },
+  "https://www.cafe1842.ch/fileadmin/user_upload/Speisen_und_Getr%C3%A4nke_1842_Sommer.pdf": {
+    "barId": "node/370843777",
+    "sha256": "16e23853cf53a68be88003ee1cc4c8678c05095d01f799cbc94a30f8e6a0cfa2",
+    "reviewedAt": "2026-10-15",
+    "offers": [
+      {
+        "name": "Amboss Blonde",
+        "volumeMl": 330,
+        "priceChf": 6.5,
+        "alcoholFree": false,
+        "evidence": "PDF S. 15: Amboss Blonde 3.3 dl CHF 6.50"
+      },
+      {
+        "name": "Amboss Weizen",
+        "volumeMl": 500,
+        "priceChf": 9,
+        "alcoholFree": false,
+        "evidence": "PDF S. 15: Amboss Weizen 5 dl CHF 9.00"
+      },
+      {
+        "name": "Appenzeller Panaché",
+        "volumeMl": 330,
+        "priceChf": 6.5,
+        "alcoholFree": false,
+        "evidence": "PDF S. 15: Appenzeller Panaché 3.3 dl CHF 6.50"
+      },
+      {
+        "name": "Appenzeller Leermond",
+        "volumeMl": 330,
+        "priceChf": 6.5,
+        "alcoholFree": true,
+        "evidence": "PDF S. 15: Appenzeller Leermond 3.3 dl CHF 6.50"
+      }
+    ]
+  },
+  "https://daizy.ch/storage/pdfs/Daizy_Getraenkekarte-Diner-2026.pdf": {
+    "barId": "node/4313510389",
+    "sha256": "117fb4c07086c08572d82c5bed5212c8a278a538fb7e90bfdc72e95c8081d580",
+    "reviewedAt": "2026-10-15",
+    "exclusive": true,
+    "offers": [
+      {
+        "name": "Appenzeller Naturperle trüb",
+        "volumeMl": 250,
+        "priceChf": 5,
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Appenzeller Naturperle trüb 2.5 dl CHF 5.00"
+      },
+      {
+        "name": "Appenzeller Naturperle trüb",
+        "volumeMl": 400,
+        "priceChf": 7.5,
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Appenzeller Naturperle trüb 4 dl CHF 7.50"
+      },
+      {
+        "name": "Dr. Brauwolf Suisse Lager",
+        "volumeMl": 250,
+        "priceChf": 5.5,
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Dr. Brauwolf Suisse Lager 2.5 dl CHF 5.50"
+      },
+      {
+        "name": "Dr. Brauwolf Suisse Lager",
+        "volumeMl": 400,
+        "priceChf": 8,
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Dr. Brauwolf Suisse Lager 4 dl CHF 8.00"
+      },
+      {
+        "name": "Dr. Brauwolf Red Ale",
+        "volumeMl": 250,
+        "priceChf": 5.5,
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Dr. Brauwolf Red Ale 2.5 dl CHF 5.50"
+      },
+      {
+        "name": "Dr. Brauwolf Red Ale",
+        "volumeMl": 400,
+        "priceChf": 8,
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Dr. Brauwolf Red Ale 4 dl CHF 8.00"
+      },
+      {
+        "name": "Appenzeller Vollmond",
+        "volumeMl": 330,
+        "priceChf": 6,
+        "alcoholFree": false,
+        "evidence": "PDF S. 1: Appenzeller Vollmond 3.3 dl CHF 6.00"
+      },
+      {
+        "name": "Appenzeller Leermond alkoholfrei",
+        "volumeMl": 330,
+        "priceChf": 6,
+        "alcoholFree": true,
+        "evidence": "PDF S. 1: Appenzeller Leermond alkoholfrei 3.3 dl CHF 6.00"
+      }
+    ]
   }
 }
