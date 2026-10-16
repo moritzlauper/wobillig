@@ -1,3 +1,5 @@
+import { matchesSearch } from './search.js';
+
 export type BeerType = "draft" | "bottle" | "can" | "unknown";
 export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bottle: "Flaschenbier", can: "Dosenbier", unknown: "Ausschankart unbekannt" };
 export type Offer = {
@@ -179,9 +181,7 @@ export function filterBars(
       if (!isVenueEligible(b, f)) return false;
       const o = bestOffer(b, f);
       return (
-        `${b.name} ${b.address} ${b.postcode}`
-          .toLocaleLowerCase()
-          .includes(f.query.toLocaleLowerCase()) &&
+        matchesSearch(b, f.query) &&
         (!f.type || venueCategory(b.type) === f.type) &&
         (!f.outdoor || b.outdoor) &&
         (o ? cost(o, f.mode) <= f.max : f.unknown)

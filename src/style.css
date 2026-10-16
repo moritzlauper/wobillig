@@ -15,17 +15,35 @@ a { color: #285b90; text-underline-offset: 2px; }
 #app { height: 100dvh; display: flex; flex-direction: column; }
 .toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 10px; border-bottom: 1px solid #ccc; }
 .switch { display: flex; gap: 4px; }
-#search { flex: 1; min-width: 160px; }
+.search-box { position: relative; flex: 1; min-width: 160px; }
+#search { width: 100%; min-width: 0; padding-right: 44px; }
+#search::-webkit-search-cancel-button { -webkit-appearance: none; }
+#search-clear { position: absolute; top: 0; right: 0; width: 44px; height: 100%; padding: 0; border: 0; background: transparent; font-size: 24px; line-height: 1; }
+#search-clear:hover { background: #f0f0f0; }
+#search-clear:focus-visible { outline-offset: -3px; }
+#search-dropdown { position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 1600; max-height: min(340px, 45dvh); overflow-y: auto; background: #fff; border: 1px solid #aaa; border-radius: 4px; box-shadow: 0 4px 14px #0003; }
+#search-suggestions button { display: block; width: 100%; min-height: 60px; padding: 10px 12px; text-align: left; border: 0; border-bottom: 1px solid #eee; border-radius: 0; }
+#search-suggestions button[aria-selected=true] { background: #eaf2fb; }
+#search-suggestions small { display: block; margin-top: 3px; color: #666; font-size: 12px; }
+#search-empty { margin: 0; padding: 12px; font-size: 13px; }
 #coffeeType { max-width: 200px; }
 .beer-controls { display: flex; gap: 8px; }
 .beer-controls select { min-width: 0; }
 .budget { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
 .budget input { width: 70px; }
+#filters-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.filter-chevron { width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+#filters-toggle[aria-expanded=true] .filter-chevron { transform: translateY(2px) rotate(225deg); }
 #filters { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; padding: 10px; background: #f7f7f7; border-bottom: 1px solid #ccc; }
 #filters label { display: flex; align-items: center; gap: 4px; }
 .status-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 36px; padding: 3px 10px; color: #555; border-bottom: 1px solid #ccc; font-size: 12px; }
 .status-summary { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 16px; min-width: 0; }
 #city-average { color: #222; font-size: 14px; white-space: nowrap; }
+#district-average { color: #1255a1; font-size: 14px; }
+#district-select { max-width: 100%; }
+.district-tooltip { color: #1255a1; font-weight: 600; }
+/* Kreisflächen zeigen ihre Auswahl entlang der Grenze, ohne rechteckigen Fokusrahmen. */
+#map .leaflet-districts-pane path:focus { outline: none; }
 .status-meta { display: flex; align-items: center; justify-content: flex-end; gap: 14px; margin-left: auto; }
 .refresh-note { font-size: 10px; color: #777; }
 .city-switch { display: flex; align-items: center; gap: 6px; font-size: 11px; white-space: nowrap; }
@@ -112,7 +130,7 @@ dialog::backdrop { background: #0005; }
   .toolbar > .switch button { flex: 1; }
   .beer-controls { order: 1; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .beer-controls select { width: 100%; font-size: 16px; }
-  #search { order: 2; grid-column: 1 / -1; width: 100%; min-width: 0; }
+  .search-box { order: 2; grid-column: 1 / -1; min-width: 0; }
   #coffeeType { order: 1; grid-column: 1 / -1; max-width: none; width: 100%; min-width: 0; font-size: 16px; }
   .budget { order: 3; grid-column: span 2; font-size: 12px; }
   .budget input { width: 60px; min-width: 0; font-size: 16px; }

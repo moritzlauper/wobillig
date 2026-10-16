@@ -13,6 +13,7 @@ export function cityFromPath(path: string, base = '/'): City {
 export function cityLink(city: City, search: string, base = '/'): string {
   const params = new URLSearchParams(search);
   params.delete('bar');
+  if (city !== 'zurich') { params.delete('kreise'); params.delete('kreis'); }
   const query = params.toString();
   return base.replace(/\/$/, '') + cities[city].path + (query ? `?${query}` : '');
 }

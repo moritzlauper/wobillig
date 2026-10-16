@@ -9,6 +9,8 @@ import { barLink, shareLink } from './sharing';
 import { filtersFromSearch, writeFilters } from './filters';
 import { createExport, downloadExport } from './export';
 import { nearbyLocations, selectableLocations } from './locations';
+import { createDistrictLookup, districtFromSearch, type Districts } from './districts';
+import { searchSuggestions } from './search';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 const money = (n: number) => n.toFixed(2);
@@ -20,9 +22,12 @@ const city = cities[cityId];
 const dataPath = `${import.meta.env.BASE_URL}data/${city.data}`;
 const pricesApi = `/api/prices?city=${cityId}`;
 document.title = `wobillig · ${city.name}`;
-document.querySelector('meta[name=description]')?.setAttribute('content', `Bier-, Kaffee- und Margherita-Preise in ${city.name} vergleichen, eintragen und ändern.`);
 const initial = new URLSearchParams(location.search);
 const f: Filters = filtersFromSearch(initial);
+const districtState = districtFromSearch(initial, cityId);
+let districtData: Districts | undefined;
+let districtLookup: ReturnType<typeof createDistrictLookup> | undefined;
+let districtsLoading = false;
 const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
@@ -31,6 +36,8 @@ let cheapMode = initial.get('cheap') === '1';
 let cheapLimit: number | undefined;
 let locationCatalogue: Bar[] = [];
 let userMarker: L.CircleMarker | undefined;
+let suggestions: Bar[] = [], activeSuggestion = -1, searchOpen = false;
+let searchZoomTimer: ReturnType<typeof setTimeout> | undefined;
 const coffee = () => f.drink === 'coffee';
 const pizza = () => f.drink === 'pizza';
 const beer = () => f.drink === 'beer';
@@ -40,14 +47,18 @@ const unit = (o: Offer) => offerCategory(o) !== 'beer' ? portion(o) : `${f.mode 
 $('app').innerHTML = `
 <div class="toolbar">
   <div class="switch" role="group" aria-label="Kategorie"><button id="drink-coffee">Kaffee</button><button id="drink-beer">Bier</button><button id="drink-pizza" hidden>Pizza Margherita</button></div>
-  <input id="search" type="search" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen">
+  <div class="search-box">
+    <input id="search" type="search" role="combobox" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
+    <button id="search-clear" type="button" aria-label="Suche löschen" title="Suche löschen" hidden><span aria-hidden="true">×</span></button>
+    <div id="search-dropdown" hidden><div id="search-suggestions" role="listbox" aria-label="Suchvorschläge"></div><p id="search-empty" role="status" hidden>Keine Lokale gefunden. Prüfe den Suchbegriff und die Kreisauswahl.</p></div>
+  </div>
   <div id="beer-controls" class="beer-controls">
     <select id="beer-type" aria-label="Ausschank">${options({ draft: 'Offenbier', bottle: 'Flaschenbier', all: 'Alle Ausschankarten', can: 'Dosenbier', unknown: 'Unbekannt' })}</select>
     <select id="volume" aria-label="Biergrösse">${options({ stange: 'Stange / 3 dl', '300-330': '3 / 3.3 dl', '500': '5 dl', '300': 'Genau 3 dl', '330': '3.3 dl', '400': '4 dl', all: 'Alle Grössen' })}</select>
   </div>
   <select id="coffeeType" aria-label="Kaffeesorte oder Matcha Latte" hidden><option value="all">Alle Kaffees &amp; Matcha Latte</option>${coffeeOptions}</select>
   <label class="budget">Bis CHF <input id="price" aria-label="Höchstpreis in CHF" type="number" min="0.5" max="50" step="0.5" value="15"></label>
-  <button id="filters-toggle" aria-expanded="false" aria-controls="filters">Filter</button>
+  <button id="filters-toggle" aria-expanded="false" aria-controls="filters">Filter <span class="filter-chevron" aria-hidden="true"></span></button>
 </div>
 <div id="filters" hidden>
   <label>Lokal <select id="type">${options(venueTypes)}</select></label>
@@ -55,9 +66,10 @@ $('app').innerHTML = `
   <label><input id="outdoor" type="checkbox"> Draussen sitzen</label>
   <label id="alcohol-label"><input id="alcohol-free" type="checkbox"> Alkoholfrei</label>
   <label id="normalize-label"><input id="normalize" type="checkbox"> Auf 5 dl umrechnen</label>
+  ${cityId === 'zurich' ? '<label><input id="district-toggle" type="checkbox" aria-controls="district-select-label"> Kreise anzeigen</label><label id="district-select-label" hidden>Kreis <select id="district-select" aria-label="Zürcher Stadtkreis"><option value="">Alle Kreise</option></select></label>' : ''}
   <button id="reset">Zurücksetzen</button>
 </div>
-<div class="status-row"><div class="status-summary" role="status"><strong id="city-average">Schnitt ${e(city.name)} —</strong><span id="count">Laden …</span></div><div class="mobile-switch" role="group" aria-label="Ansicht"><button id="view-map" aria-pressed="true">Karte</button><button id="view-list" aria-pressed="false">Liste</button></div><div class="status-meta"><small class="refresh-note">Wird alle 3 Wochen aktualisiert</small><nav class="city-switch" aria-label="Stadt wechseln">${(Object.keys(cities) as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL))}"${id === cityId ? ' aria-current="page"' : ''}>${cities[id].name}</a>`).join('<span aria-hidden="true">/</span>')}</nav><button id="data-info" class="text-button">Daten</button></div></div>
+<div class="status-row"><div class="status-summary" role="status"><strong id="city-average">Schnitt ${e(city.name)} —</strong><strong id="district-average" hidden></strong><span id="count">Laden …</span></div><div class="mobile-switch" role="group" aria-label="Ansicht"><button id="view-map" aria-pressed="true">Karte</button><button id="view-list" aria-pressed="false">Liste</button></div><div class="status-meta"><small class="refresh-note">Wird alle 3 Wochen aktualisiert</small><nav class="city-switch" aria-label="Stadt wechseln">${(Object.keys(cities) as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL))}"${id === cityId ? ' aria-current="page"' : ''}>${cities[id].name}</a>`).join('<span aria-hidden="true">/</span>')}</nav><button id="data-info" class="text-button">Daten</button></div></div>
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', price_desc: 'Preis absteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
@@ -78,18 +90,26 @@ $('app').innerHTML = `
   <p class="muted">Wird für alle sichtbar. Bitte den tatsächlichen Preis dieser Portion eintragen.</p>
   <p id="form-error" role="alert" hidden></p><button id="save-price" class="primary" type="submit">Speichern</button>
 </form></dialog>
-<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">Daten für ${e(city.name)} herunterladen</strong><p>Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.</p><div class="download-actions"><button id="download-csv" class="primary" disabled>CSV herunterladen</button><button id="download-json" disabled>JSON herunterladen</button></div><p class="muted">CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.</p><p id="download-status" class="muted" role="status">Daten werden geladen …</p></section><p id="coverage"></p><p>Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.</p><p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.</p><p>Bier: Cafés ohne erfasstes Bierangebot oder mit ausschliesslicher Öffnung bis spätestens 19 Uhr werden ausgeblendet, auch bei «Ohne passenden Preis anzeigen». Unbekannte Öffnungszeiten bleiben offen.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
+<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">Daten für ${e(city.name)} herunterladen</strong><p>Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.</p><div class="download-actions"><button id="download-csv" class="primary" disabled>CSV herunterladen</button><button id="download-json" disabled>JSON herunterladen</button></div><p class="muted">CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.</p><p id="download-status" class="muted" role="status">Daten werden geladen …</p></section><p id="coverage"></p><p>Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.</p>${cityId === 'zurich' ? '<p>Kreise: Unter «Filter» lassen sich die Stadtkreise einblenden und per Karte oder Auswahlfeld auswählen. Der Kreisdurchschnitt wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb der gewählten Kreisgrenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis. Kreisgrenzen: <a href="https://data.stadt-zuerich.ch/dataset/geo_stadtkreise" target="_blank" rel="noopener noreferrer">Stadt Zürich, Stadtkreise (CC0)</a>.</p>' : ''}<p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.</p><p>Bier: Cafés ohne erfasstes Bierangebot oder mit ausschliesslicher Öffnung bis spätestens 19 Uhr werden ausgeblendet, auch bei «Ohne passenden Preis anzeigen». Unbekannte Öffnungszeiten bleiben offen.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
 
 const map = L.map('map', { zoomControl: false }).setView(city.center, 14);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
-new ResizeObserver(() => map.invalidateSize()).observe($('map'));
+const mapLayoutObserver = new ResizeObserver(() => {
+  map.invalidateSize({ pan: false });
+  const bar = bars.find(b => b.id === selected);
+  if (bar) centerBarInVisibleMap(bar);
+});
+mapLayoutObserver.observe($('map'));
+mapLayoutObserver.observe($('detail'));
+map.createPane('districts').style.zIndex = '350';
+const districtLayer = L.geoJSON(undefined, { pane: 'districts', bubblingMouseEvents: false });
 const layer = L.layerGroup().addTo(map);
 const locationLayer = L.layerGroup().addTo(map);
 map.on('moveend', renderLocations);
 map.on('click', event => {
   if (map.getZoom() < 17) { toast('Zum Auswählen eines Lokals näher heranzoomen.'); return; }
-  const choices = nearbyLocations(selectableLocations(venues, locationCatalogue).filter(b => !coffee() || b.type !== 'fast_food'), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
+  const choices = nearbyLocations(selectableLocations(venues, locationCatalogue).filter(b => (!coffee() || b.type !== 'fast_food') && inSelectedDistrict(b)), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
   if (!choices.length) { toast('Hier wurde kein Lokal gefunden. Tippe auf das Symbol oder näher an den Namen.'); return; }
   if (choices.length === 1) { openPrice(choices[0]); return; }
   const content = document.createElement('div');
@@ -116,6 +136,98 @@ function showView(list: boolean) {
   $('view-map').setAttribute('aria-pressed', String(!list)); $('view-list').setAttribute('aria-pressed', String(list));
   map.invalidateSize();
 }
+function inSelectedDistrict(bar: Bar) {
+  return !districtState.enabled || !districtState.selected || !districtLookup || districtLookup(bar) === districtState.selected;
+}
+async function loadDistricts() {
+  if (districtData || districtsLoading) return;
+  districtsLoading = true;
+  renderDistricts();
+  try {
+    const response = await fetch(`${import.meta.env.BASE_URL}data/districts.json`, { signal: AbortSignal.timeout(15000) });
+    if (!response.ok) throw new Error('Kreisgrenzen fehlen');
+    districtData = await response.json() as Districts;
+    districtLookup = createDistrictLookup(districtData);
+    districtLayer.addData(districtData);
+    districtLayer.eachLayer(layer => {
+      const polygon = layer as L.Polygon & { feature: { properties: { number: number } } };
+      const number = polygon.feature.properties.number;
+      polygon.on('click', () => chooseDistrict(districtState.selected === number ? undefined : number));
+      polygon.on('mouseover', () => polygon.setStyle({ weight: 3, fillOpacity: districtState.selected ? .25 : 0 }));
+      polygon.on('mouseout', () => polygon.setStyle(districtStyle(number)));
+    });
+  } catch {
+    districtData = undefined;
+    districtState.enabled = false; districtState.selected = undefined;
+    toast('Kreisgrenzen konnten nicht geladen werden. Bitte «Kreise anzeigen» erneut aktivieren.');
+  } finally {
+    districtsLoading = false;
+    render();
+  }
+}
+function districtStyle(number: number): L.PathOptions {
+  const active = districtState.selected === number;
+  return { color: active ? '#1255a1' : '#527ba6', weight: active ? 3 : 1.5, fillColor: '#2679c9', fillOpacity: active ? .24 : districtState.selected ? .035 : 0 };
+}
+function chooseDistrict(number: number | undefined) {
+  districtState.selected = number;
+  selected = undefined;
+  render();
+  if (number) {
+    districtLayer.eachLayer(layer => {
+      const polygon = layer as L.Polygon & { feature: { properties: { number: number } } };
+      if (polygon.feature.properties.number === number) map.fitBounds(polygon.getBounds(), { padding: [30, 60], maxZoom: 15 });
+    });
+  }
+}
+function renderDistricts() {
+  if (cityId !== 'zurich') return;
+  const enabled = districtState.enabled;
+  $<HTMLInputElement>('district-toggle').checked = enabled;
+  $('district-select-label').hidden = !enabled;
+  const select = $<HTMLSelectElement>('district-select');
+  select.disabled = !districtData;
+  $('district-average').hidden = true;
+  if (!enabled || !districtData) {
+    districtLayer.remove();
+    select.innerHTML = `<option value="">${districtsLoading ? 'Kreise laden …' : 'Alle Kreise'}</option>`;
+    return;
+  }
+  if (!map.hasLayer(districtLayer)) districtLayer.addTo(map);
+  const averages = new Map(districtData.features.map(d => {
+    const number = d.properties.number;
+    return [number, cityAverage(bars.filter(b => districtLookup!(b) === number), f)];
+  }));
+  const label = (number: number) => {
+    const average = averages.get(number);
+    return `Kreis ${number} · ${average ? `Ø CHF ${money(average.price)} (${average.count})` : 'kein passender Preis'}`;
+  };
+  select.innerHTML = '<option value="">Alle Kreise</option>' + districtData.features.map(d => `<option value="${d.properties.number}">${label(d.properties.number)}</option>`).join('');
+  select.value = districtState.selected ? String(districtState.selected) : '';
+  districtLayer.eachLayer(layer => {
+    const polygon = layer as L.Polygon & { feature: { properties: { number: number } } };
+    const number = polygon.feature.properties.number;
+    polygon.setStyle(districtStyle(number));
+    if (polygon.getTooltip()) polygon.setTooltipContent(label(number));
+    else polygon.bindTooltip(label(number), { sticky: true, className: 'district-tooltip' });
+  });
+  if (districtState.selected) {
+    const average = averages.get(districtState.selected);
+    $('district-average').hidden = false;
+    $('district-average').textContent = `Schnitt Kreis ${districtState.selected} ${average ? `CHF ${money(average.price)} (${average.count} Lokale)` : '— keine passenden Preise'}`;
+    $('district-average').title = 'Günstigster passender Preis je Lokal im Kreis. Unabhängig von Suche, Preislimit, Günstig-Filter, Lokaltyp und Draussen-Filter.';
+  }
+}
+if (cityId === 'zurich') {
+  $('district-toggle').onchange = () => {
+    districtState.enabled = $<HTMLInputElement>('district-toggle').checked;
+    if (!districtState.enabled) districtState.selected = undefined;
+    selected = undefined;
+    render();
+    if (districtState.enabled) void loadDistricts();
+  };
+  $('district-select').onchange = () => chooseDistrict(Number($<HTMLSelectElement>('district-select').value) || undefined);
+}
 function rebuild() {
   venues = communityVenues(datasets, entries);
   const pizzaBars = datasets.pizza ? applyEntries(datasets.pizza, entries, venues, 'pizza').bars : [];
@@ -126,7 +238,6 @@ function rebuild() {
     f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
     $<HTMLInputElement>('price').value = String(f.max);
   }
-  document.querySelector('meta[name=description]')?.setAttribute('content', `${pizzaAvailable ? 'Bier-, Kaffee- und Margherita-' : 'Bier- und Kaffee-'}Preise in ${city.name} vergleichen, eintragen und ändern.`);
   const base = datasets[f.drink!];
   bars = pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!).bars : [];
   render();
@@ -144,19 +255,23 @@ function syncControls() {
   $<HTMLInputElement>('normalize').checked = f.mode === 'half';
   for (const drink of ['beer', 'coffee', 'pizza']) $('drink-' + drink).setAttribute('aria-pressed', String(f.drink === drink));
   $<HTMLInputElement>('search').value = f.query;
+  $('search-clear').hidden = f.query.length === 0;
   $<HTMLSelectElement>('sort').value = f.sort;
   $<HTMLInputElement>('outdoor').checked = f.outdoor;
   $<HTMLInputElement>('alcohol-free').checked = f.alcoholFree;
   const url = new URL(location.href);
   writeFilters(url.searchParams, f, cheapMode);
+  if (cityId === 'zurich' && districtState.enabled) url.searchParams.set('kreise', '1'); else url.searchParams.delete('kreise');
+  if (cityId === 'zurich' && districtState.enabled && districtState.selected) url.searchParams.set('kreis', String(districtState.selected)); else url.searchParams.delete('kreis');
   if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
   history.replaceState(null, '', url);
   document.querySelectorAll<HTMLAnchorElement>('[data-city]').forEach(link => { link.href = cityLink(link.dataset.city as City, url.search, import.meta.env.BASE_URL); });
 }
 function render() {
-  if (selected && !bars.some(b => b.id === selected && isVenueEligible(b, f))) selected = undefined;
+  if (selected && !bars.some(b => b.id === selected && isVenueEligible(b, f) && inSelectedDistrict(b))) selected = undefined;
   syncControls();
-  cheapLimit = cheapPriceLimit(bars, f);
+  const districtBars = bars.filter(inSelectedDistrict);
+  cheapLimit = cheapPriceLimit(districtBars, f);
   const cheapButton = $<HTMLButtonElement>('cheap');
   cheapButton.textContent = cheapLimit === undefined ? 'Günstig' : `Günstig bis CHF ${Number.isInteger(cheapLimit) ? cheapLimit : cheapLimit.toFixed(2)}`;
   cheapButton.disabled = cheapLimit === undefined && !cheapMode;
@@ -165,7 +280,8 @@ function render() {
   const activeFilters = cheapMode ? { ...f, max: cheapLimit ?? -Infinity, unknown: false } : f;
   if (document.activeElement !== $('price')) $<HTMLInputElement>('price').value = Number.isFinite(activeFilters.max) && activeFilters.max > 0 ? String(activeFilters.max) : '';
   $<HTMLInputElement>('unknown').checked = activeFilters.unknown;
-  current = filterBars(bars, activeFilters, position);
+  current = filterBars(districtBars, activeFilters, position);
+  renderDistricts();
   $('count').textContent = coverageLabel(current, f);
   const average = cityAverage(bars, f);
   $('city-average').textContent = `Schnitt ${city.name} ${average ? `CHF ${money(average.price)}` : '—'}`;
@@ -199,12 +315,57 @@ function render() {
   $('results').querySelectorAll<HTMLButtonElement>('[data-bar]').forEach(button => button.onclick = () => showBar(bars.find(b => b.id === button.dataset.bar)!));
   if (selectedBar) detail(selectedBar); else $('detail').hidden = true;
   renderLocations();
+  renderSearchSuggestions();
+}
+function searchCandidates() { return bars.filter(b => isVenueEligible(b, f) && inSelectedDistrict(b)); }
+function closeSearchSuggestions() {
+  searchOpen = false; activeSuggestion = -1; suggestions = [];
+  $('search-dropdown').hidden = true;
+  $('search').setAttribute('aria-expanded', 'false');
+  $('search').removeAttribute('aria-activedescendant');
+}
+function renderSearchSuggestions() {
+  if (!searchOpen || !f.query.trim()) { closeSearchSuggestions(); return; }
+  suggestions = searchSuggestions(searchCandidates(), f.query);
+  if (activeSuggestion >= suggestions.length) activeSuggestion = -1;
+  $('search-dropdown').hidden = false;
+  $('search').setAttribute('aria-expanded', 'true');
+  $('search-empty').hidden = suggestions.length > 0;
+  const visible = new Set(current.map(b => b.id));
+  $('search-suggestions').innerHTML = suggestions.map((b, index) => {
+    const offer = bestOffer(b, f);
+    return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}"><strong>${e(b.name)}</strong><small>${e([b.address, b.postcode].filter(Boolean).join(' · ') || city.name)}</small><small>${offer ? `CHF ${money(cost(offer, f.mode))} · ${e(unit(offer))}` : missingPriceLabel(b, f)}${visible.has(b.id) ? '' : ' · ausserhalb der aktuellen Filter'}</small></button>`;
+  }).join('');
+  if (activeSuggestion >= 0) $('search').setAttribute('aria-activedescendant', `search-option-${activeSuggestion}`);
+  else $('search').removeAttribute('aria-activedescendant');
+  $('search-suggestions').querySelectorAll<HTMLButtonElement>('[data-suggestion]').forEach(button => {
+    button.onpointerdown = event => event.preventDefault();
+    button.onclick = () => selectSearchSuggestion(Number(button.dataset.suggestion));
+  });
+}
+function zoomToSearchResults() {
+  if (!f.query.trim()) return;
+  const matches = current.length ? current : searchSuggestions(searchCandidates(), f.query, Infinity);
+  if (matches.length === 1) map.setView([matches[0].lat, matches[0].lon], 17);
+  else if (matches.length) map.fitBounds(L.latLngBounds(matches.map(b => [b.lat, b.lon] as [number, number])), { padding: [45, 60], maxZoom: 17 });
+}
+function selectSearchSuggestion(index: number) {
+  const bar = suggestions[index];
+  if (!bar) return;
+  clearTimeout(searchZoomTimer);
+  closeSearchSuggestions();
+  f.query = bar.name;
+  $('search').blur();
+  if (matchMedia('(max-width: 760px)').matches) {
+    $('filters').hidden = true; $('filters-toggle').setAttribute('aria-expanded', 'false');
+  }
+  showBar(bar, 17);
 }
 function renderLocations() {
   locationLayer.clearLayers();
   if (map.getZoom() < 17) return;
   const displayed = new Set([...current.map(b => b.id), ...(selected ? [selected] : [])]);
-  for (const bar of selectableLocations(venues, locationCatalogue).filter(b => !coffee() || b.type !== 'fast_food')) {
+  for (const bar of selectableLocations(venues, locationCatalogue).filter(b => (!coffee() || b.type !== 'fast_food') && inSelectedDistrict(b))) {
     if (displayed.has(bar.id) || !map.getBounds().pad(.1).contains([bar.lat, bar.lon])) continue;
     const label = `${bar.name}: Preis eintragen`;
     L.marker([bar.lat, bar.lon], {
@@ -238,11 +399,62 @@ function detail(b: Bar) {
   };
   $('detail').querySelectorAll<HTMLButtonElement>('[data-edit]').forEach(button => button.onclick = () => openPrice(b, offers[Number(button.dataset.edit)]));
 }
-function showBar(b: Bar) { selected = b.id; showView(false); map.setView([b.lat, b.lon], Math.max(map.getZoom(), 15)); render(); $('detail').focus({ preventScroll: true }); }
+function centerBarInVisibleMap(b: Bar, zoom = map.getZoom()) {
+  const mapRect = $('map').getBoundingClientRect();
+  if (!mapRect.width || !mapRect.height) return;
+  const detailRect = $('detail').getBoundingClientRect();
+  let visibleWidth = mapRect.width, visibleHeight = mapRect.height;
+  if (!$('detail').hidden) {
+    if (matchMedia('(max-width: 760px)').matches) visibleHeight = Math.max(0, detailRect.top - mapRect.top);
+    else visibleWidth = Math.max(0, detailRect.left - mapRect.left);
+  }
+  // Shift the map centre so the venue sits in the uncovered area, not under its details.
+  const offset = L.point((mapRect.width - visibleWidth) / 2, (mapRect.height - visibleHeight) / 2);
+  const center = map.unproject(map.project([b.lat, b.lon], zoom).add(offset), zoom);
+  map.setView(center, zoom, { animate: false });
+}
+function showBar(b: Bar, zoom = 15) {
+  clearTimeout(searchZoomTimer); closeSearchSuggestions(); selected = b.id;
+  showView(false); render();
+  centerBarInVisibleMap(b, Math.max(map.getZoom(), zoom));
+  $('detail').focus({ preventScroll: true });
+}
 function chooseDrink(drink: Drink) { budgets[f.drink!] = f.max; f.max = budgets[drink]; $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : ''; f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
 $('drink-beer').onclick = () => chooseDrink('beer'); $('drink-coffee').onclick = () => chooseDrink('coffee'); $('drink-pizza').onclick = () => chooseDrink('pizza');
 $('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
-$('search').oninput = () => { f.query = $<HTMLInputElement>('search').value; render(); };
+$('search').oninput = event => {
+  clearTimeout(searchZoomTimer);
+  f.query = $<HTMLInputElement>('search').value;
+  selected = undefined; activeSuggestion = -1; searchOpen = true;
+  render();
+  if (!(event as InputEvent).isComposing && f.query.trim().length >= 2) searchZoomTimer = setTimeout(zoomToSearchResults, 350);
+};
+$('search').onfocus = () => { searchOpen = true; renderSearchSuggestions(); };
+$('search-clear').onpointerdown = event => event.preventDefault();
+$('search-clear').onclick = () => {
+  clearTimeout(searchZoomTimer);
+  closeSearchSuggestions();
+  f.query = ''; selected = undefined;
+  render();
+  $('search').focus({ preventScroll: true });
+};
+$('search').onblur = closeSearchSuggestions;
+$('search').onkeydown = event => {
+  if (event.isComposing) return;
+  if (event.key === 'Escape') { clearTimeout(searchZoomTimer); closeSearchSuggestions(); }
+  else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault(); searchOpen = true;
+    renderSearchSuggestions();
+    if (!suggestions.length) return;
+    activeSuggestion = (activeSuggestion + (event.key === 'ArrowDown' ? 1 : activeSuggestion < 0 ? 0 : -1) + suggestions.length) % suggestions.length;
+    renderSearchSuggestions();
+    $(`search-option-${activeSuggestion}`).scrollIntoView({ block: 'nearest' });
+  } else if (event.key === 'Enter') {
+    event.preventDefault(); clearTimeout(searchZoomTimer);
+    if (searchOpen && suggestions.length) selectSearchSuggestion(activeSuggestion >= 0 ? activeSuggestion : 0);
+    else { closeSearchSuggestions(); zoomToSearchResults(); }
+  }
+};
 $('price').oninput = () => { cheapMode = false; const n = $<HTMLInputElement>('price').valueAsNumber; f.max = Number.isFinite(n) ? n : Infinity; render(); };
 $('volume').onchange = () => { selectBeerSize(f, $<HTMLSelectElement>('volume').value); render(); };
 $('coffeeType').onchange = () => { f.coffeeType = $<HTMLSelectElement>('coffeeType').value; render(); };
@@ -258,7 +470,9 @@ for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcoh
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
 $('reset').onclick = () => {
+  clearTimeout(searchZoomTimer); closeSearchSuggestions();
   cheapMode = false;
+  districtState.enabled = false; districtState.selected = undefined;
   Object.assign(f, { query: '', max: pizza() ? 30 : 15, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = String(f.max);
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
@@ -363,7 +577,7 @@ $('price-form').onsubmit = async event => {
       serving: drink === 'beer' && $<HTMLInputElement>('entry-stange').checked ? 'stange' : undefined,
       alcoholFree: drink !== 'beer' || $<HTMLInputElement>('entry-alcohol').checked,
       observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
-    } satisfies PriceInput, selectableLocations(venues, locationCatalogue).filter(b => !coffee() || b.type !== 'fast_food'));
+    } satisfies PriceInput, selectableLocations(venues, locationCatalogue).filter(b => (!coffee() || b.type !== 'fast_food') && inSelectedDistrict(b)));
     saving = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = 'Speichern …';
     const response = await fetch(pricesApi, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
     const result = await response.json().catch(() => { throw new Error('Speichern gerade nicht möglich. Bitte erneut versuchen.'); });
@@ -385,7 +599,7 @@ $('price-form').onsubmit = async event => {
     f.max = Math.max(f.max, input.priceChf); $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
     $<HTMLInputElement>('alcohol-free').checked = f.alcoholFree;
     $<HTMLDialogElement>('price-dialog').close(); rebuild(); showView(false);
-    const bar = bars.find(b => b.id === input.barId); if (bar) map.setView([bar.lat, bar.lon], 16);
+    const bar = bars.find(b => b.id === input.barId); if (bar) showBar(bar, 16);
     toast('Gespeichert. Für alle sichtbar.');
   } catch (error) {
     $('form-error').textContent = error instanceof Error && !['TypeError', 'TimeoutError', 'AbortError'].includes(error.name) ? error.message : 'Speichern fehlgeschlagen. Bitte Verbindung prüfen und erneut versuchen.';
@@ -419,7 +633,7 @@ async function init() {
   for (const format of ['csv', 'json']) $<HTMLButtonElement>('download-' + format).disabled = !hasData;
   $('download-status').textContent = !hasData ? 'Download nicht verfügbar. Bitte lade die Seite erneut.' : missing.length ? `Unvollständiger Export: ${missing.join(', ')} konnten nicht geladen werden. Bitte lade die Seite erneut für einen vollständigen Export.` : 'Gemeinsame Einträge und Korrekturen sind enthalten.';
   $<HTMLInputElement>('price').value = String(f.max);
-  const errors = [!beerResult ? 'Bierdaten konnten nicht geladen werden.' : '', !coffeeResult ? 'Kaffeedaten konnten nicht geladen werden.' : '', !pizzaResult ? 'Pizzadaten konnten nicht geladen werden.' : '', !locationsResult ? 'Zusätzliche Kartenlokale konnten nicht geladen werden. Bitte neu laden.' : '', !loadedCommunity ? 'Gemeinsame Einträge nicht verfügbar. Zum Eintragen bitte später neu laden.' : ''].filter(Boolean);
+  const errors = [!beerResult ? 'Bierdaten konnten nicht geladen werden.' : '', !coffeeResult ? 'Kaffeedaten konnten nicht geladen werden.' : '', !pizzaResult ? 'Pizzadaten konnten nicht geladen werden.' : '', !locationsResult ? 'Zusätzliche Kartenlokale konnten nicht geladen werden. Bitte neu laden.' : ''].filter(Boolean);
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   rebuild();
   const linkedId = initial.get('bar');
@@ -427,7 +641,11 @@ async function init() {
     const linkedBar = bars.find(b => b.id === linkedId);
     if (linkedBar) showBar(linkedBar);
     else toast('Das geteilte Lokal ist gerade nicht verfügbar.');
-  }
+  } else if (f.query.trim()) zoomToSearchResults();
 }
 syncControls();
 void init();
+if (districtState.enabled) {
+  $('filters').hidden = false; $('filters-toggle').setAttribute('aria-expanded', 'true');
+  void loadDistricts();
+}
