@@ -64,7 +64,7 @@ a { color: #285b90; text-underline-offset: 2px; }
 .mobile-switch { display: none; }
 #load-error { background: #fff6df; padding: 8px 12px; font-size: 12px; }
 main { display: flex; flex: 1; min-height: 0; }
-.app-footer { position: absolute; right: 52px; bottom: 22px; z-index: 500; font-size: 10px; }
+.app-footer { position: absolute; right: calc(52px + env(safe-area-inset-right, 0px)); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); z-index: 500; font-size: 10px; }
 .app-footer a { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 5px; border-radius: 3px; background: #fffffff0; color: #555; }
 .list-panel { flex: 0 0 300px; overflow-y: auto; border-right: 1px solid #aaa; }
 .list-tools { padding: 8px; border-bottom: 1px solid #ddd; }
@@ -77,13 +77,15 @@ main { display: flex; flex: 1; min-height: 0; }
 .empty { margin: 20px 12px; color: #666; }
 .map-panel { position: relative; flex: 1; min-width: 0; }
 #map { width: 100%; height: 100%; background: #eee; }
+/* Extend the map to the screen edge; only its controls avoid the home indicator. */
+#map .leaflet-bottom { bottom: env(safe-area-inset-bottom, 0px); }
+#map .leaflet-right { right: env(safe-area-inset-right, 0px); }
 .map-actions { position: absolute; left: 10px; top: 10px; z-index: 500; display: flex; flex-wrap: wrap; max-width: calc(100% - 20px); gap: 5px; }
-.map-actions button { min-height: 30px; padding: 5px 9px; border-color: #24636b; border-radius: 6px; background: #24636b; color: #fff; font-size: 12px; box-shadow: 0 1px 4px #0002; }
-.map-actions button:hover { background: #194e55; border-color: #194e55; }
-.map-actions button[aria-pressed=true] { background: #d7efeb; color: #153e43; border-color: #24636b; box-shadow: inset 0 0 0 1px #24636b, 0 1px 4px #0002; }
-.map-actions button[aria-pressed=true]:hover { background: #bfe2dc; }
+.map-actions button { min-height: 30px; padding: 5px 9px; border-color: #83a8ac; border-radius: 6px; background: #f4f9f8; color: #24636b; font-size: 12px; box-shadow: 0 1px 4px #0002; }
+.map-actions button:hover { background: #e5f0ee; border-color: #24636b; }
+.map-actions button[aria-pressed=true] { background: #24636b; color: #fff; border-color: #24636b; box-shadow: inset 0 0 0 1px #24636b, 0 1px 4px #0002; }
+.map-actions button[aria-pressed=true]:hover { background: #194e55; }
 .map-panel:has(#detail:not([hidden])) .map-actions, .map-panel:has(#detail:not([hidden])) .app-footer { display: none; }
-.map-unit { position: absolute; bottom: 22px; left: 8px; z-index: 500; background: #fffe; border: 1px solid #ccc; border-radius: 2px; padding: 3px 5px; font-size: 11px; max-width: calc(100% - 175px); }
 .price-marker { display: block; background: white; color: #222; border: 1px solid #444; border-radius: 3px; padding: 4px 2px; text-align: center; font: bold 13px Arial, sans-serif; box-shadow: 0 1px 3px #0003; }
 .price-marker.active { background: #262626; color: white; border: 2px solid white; outline: 1px solid #262626; }
 .price-marker.unknown { border: 1px solid #888; color: #666; padding: 0; height: 14px; width: 14px; font-size: 13px; line-height: 10px; border-radius: 50%; }
@@ -164,10 +166,10 @@ dialog::backdrop { background: #0005; }
   .toolbar-collapsed .toolbar-heading .switch { margin-right: 88px; }
   .toolbar-collapsed .status-row { position: absolute; top: 6px; right: 42px; z-index: 600; padding: 0; border: 0; }
   #filters { gap: 10px; max-height: 30dvh; overflow-y: auto; font-size: 12px; }
-  .list-panel { display: none; flex-basis: 100%; border: 0; }
+  .list-panel { display: none; flex-basis: 100%; border: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .show-list .list-panel { display: block; }
   .show-list .map-panel { display: none; }
-  #detail { top: auto; bottom: 0; right: 0; width: 100%; max-height: 72%; border-radius: 4px 4px 0 0; padding: 13px; }
+  #detail { top: auto; bottom: 0; right: 0; width: 100%; max-height: 72%; border-radius: 4px 4px 0 0; padding: 13px; padding-bottom: calc(13px + env(safe-area-inset-bottom, 0px)); }
   dialog { padding: 16px; }
   #price-form input, #price-form select, #search { font-size: 16px; }
   .leaflet-control-attribution { font-size: 9px; }

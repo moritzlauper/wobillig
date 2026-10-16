@@ -73,7 +73,7 @@ $('app').innerHTML = `
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', price_desc: 'Preis absteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
-  <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="cheap" aria-pressed="false" disabled>Günstig</button></div><div id="map-unit" class="map-unit"></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section>
+  <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="cheap" aria-pressed="false" disabled>Günstig</button></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section>
 <footer class="app-footer"><a href="mailto:team@whatshouldistudy.com?subject=Wunsch%20f%C3%BCr%20wobillig&amp;body=f%C3%BCr%20wobillig%20w%C3%BCnsche%20ich%20mir%3A%0D%0A%0D%0A">Wunsch mitteilen</a></footer>
   </section>
 </main>
@@ -96,10 +96,29 @@ $('app').innerHTML = `
 const map = L.map('map', { zoomControl: false }).setView(city.center, 14);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
+let mapMoving = false;
+let revealFrame: number | undefined;
+let pendingReveal: { id: string; zoom?: number } | undefined;
+map.on('movestart', () => { mapMoving = true; });
+map.on('moveend', () => {
+  mapMoving = false;
+  if (pendingReveal) scheduleBarReveal();
+});
+function scheduleBarReveal(zoom?: number) {
+  if (!selected) { pendingReveal = undefined; return; }
+  pendingReveal = { id: selected, zoom: zoom ?? (pendingReveal?.id === selected ? pendingReveal.zoom : undefined) };
+  if (revealFrame !== undefined) return;
+  revealFrame = requestAnimationFrame(() => {
+    revealFrame = undefined;
+    if (mapMoving) return;
+    const request = pendingReveal; pendingReveal = undefined;
+    const bar = request?.id === selected ? bars.find(b => b.id === selected) : undefined;
+    if (bar) revealBarInVisibleMap(bar, request?.zoom);
+  });
+}
 const mapLayoutObserver = new ResizeObserver(() => {
   map.invalidateSize({ pan: false });
-  const bar = bars.find(b => b.id === selected);
-  if (bar) centerBarInVisibleMap(bar);
+  scheduleBarReveal();
 });
 mapLayoutObserver.observe($('map'));
 mapLayoutObserver.observe($('detail'));
@@ -290,7 +309,6 @@ function render() {
   $('city-average').title = average
     ? `${comparison}: Durchschnitt des günstigsten passenden Preises pro Lokal (${average.count} Lokale). Stadtweit, unabhängig von Suche, Preislimit, Günstig-Filter, Lokaltyp und Draussen-Filter.`
     : `${comparison}: Noch keine passenden Preise für den Stadtdurchschnitt vorhanden.`;
-  $('map-unit').textContent = pizza() ? 'CHF / Pizza Margherita' : coffee() ? `CHF · ${f.coffeeType === 'all' ? 'pro Getränk' : coffeeLabels[f.coffeeType!]}` : f.mode === 'half' ? 'CHF / 5 dl · umgerechnet' : f.volume === 'all' ? 'CHF / Portion · Menge beachten' : f.volume === 'stange' ? 'CHF / Stange' : f.volume === '300-330' ? 'CHF / Portion · 3 / 3.3 dl' : `CHF / ${Number(f.volume) / 100} dl`;
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
     return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || city.name)}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
@@ -400,7 +418,7 @@ function detail(b: Bar) {
   };
   $('detail').querySelectorAll<HTMLButtonElement>('[data-edit]').forEach(button => button.onclick = () => openPrice(b, offers[Number(button.dataset.edit)]));
 }
-function centerBarInVisibleMap(b: Bar, zoom = map.getZoom()) {
+function revealBarInVisibleMap(b: Bar, zoom = map.getZoom()) {
   const mapRect = $('map').getBoundingClientRect();
   if (!mapRect.width || !mapRect.height) return;
   const detailRect = $('detail').getBoundingClientRect();
@@ -409,15 +427,30 @@ function centerBarInVisibleMap(b: Bar, zoom = map.getZoom()) {
     if (matchMedia('(max-width: 760px)').matches) visibleHeight = Math.max(0, detailRect.top - mapRect.top);
     else visibleWidth = Math.max(0, detailRect.left - mapRect.left);
   }
-  // Shift the map centre so the venue sits in the uncovered area, not under its details.
-  const offset = L.point((mapRect.width - visibleWidth) / 2, (mapRect.height - visibleHeight) / 2);
-  const center = map.unproject(map.project([b.lat, b.lon], zoom).add(offset), zoom);
-  map.setView(center, zoom, { animate: false });
+  if (!visibleWidth || !visibleHeight) return;
+  // Leave a visible marker where it is, including at the current zoom level.
+  const point = map.latLngToContainerPoint([b.lat, b.lon]);
+  const paddingX = Math.min(32, visibleWidth / 2), paddingY = Math.min(24, visibleHeight / 2);
+  const target = L.point(
+    Math.max(paddingX, Math.min(visibleWidth - paddingX, point.x)),
+    Math.max(paddingY, Math.min(visibleHeight - paddingY, point.y)),
+  );
+  const delta = point.subtract(target);
+  if (Math.abs(delta.x) < 1 && Math.abs(delta.y) < 1) return;
+  const animate = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (zoom > map.getZoom()) {
+    const offset = L.point((mapRect.width - visibleWidth) / 2, (mapRect.height - visibleHeight) / 2);
+    const center = map.unproject(map.project([b.lat, b.lon], zoom).add(offset), zoom);
+    map.flyTo(center, zoom, { animate, duration: .5 });
+  } else {
+    // Move only as far as necessary to uncover the marker.
+    map.panBy(delta, { animate, duration: .45 });
+  }
 }
-function showBar(b: Bar, zoom = 15) {
+function showBar(b: Bar, zoom?: number) {
   clearTimeout(searchZoomTimer); closeSearchSuggestions(); selected = b.id;
   showView(false); render();
-  centerBarInVisibleMap(b, Math.max(map.getZoom(), zoom));
+  scheduleBarReveal(zoom);
   $('detail').focus({ preventScroll: true });
 }
 function chooseDrink(drink: Drink) { budgets[f.drink!] = f.max; f.max = budgets[drink]; $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : ''; f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
