@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T21:53:40.316062+00:00",
+  "generatedAt": "2026-10-16T09:20:26.680589+00:00",
   "discoveredAt": "2026-10-15T19:54:33.820147+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -5260,17 +5260,6 @@
           "alcoholFree": true
         },
         {
-          "name": "Matcha",
-          "coffeeType": "matcha",
-          "volumeMl": null,
-          "priceChf": 6.5,
-          "sourceUrl": "https://www.cafetartines.ch/wp-content/uploads/2026/07/14083_CAFE_TARTINES_Menu_ZH_web.pdf",
-          "observedAt": "2026-10-15T19:56:10.504928+00:00",
-          "confidence": "automatic",
-          "evidence": "PDF S. 1: Matcha 6.5",
-          "alcoholFree": true
-        },
-        {
           "name": "Americano",
           "coffeeType": "americano",
           "volumeMl": null,
@@ -7510,19 +7499,7 @@
       "website": "https://www.eclipsebarlounge.com/",
       "openingHours": "Mo-Th 11:00-02:00; Fr 11:00-05:00; Sa 12:00-05:00; Su 12:00-02:00",
       "outdoor": true,
-      "offers": [
-        {
-          "name": "Matcha",
-          "coffeeType": "matcha",
-          "volumeMl": null,
-          "priceChf": 5.0,
-          "sourceUrl": "https://www.eclipsebarlounge.com/menu",
-          "observedAt": "2026-10-15T20:08:06.079042+00:00",
-          "confidence": "automatic",
-          "evidence": "Matcha CHF 5",
-          "alcoholFree": true
-        }
-      ],
+      "offers": [],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-15T20:08:06.079042+00:00"
     },
@@ -9410,17 +9387,6 @@
       "openingHours": "Mo-Fr 08:00-22:30; Sa 10:00-22:30; Su 10:00-15:30",
       "outdoor": false,
       "offers": [
-        {
-          "name": "Matcha",
-          "coffeeType": "matcha",
-          "volumeMl": null,
-          "priceChf": 7.0,
-          "sourceUrl": "https://hikari.ch/files/25-10-WEB-Drinks.pdf",
-          "observedAt": "2026-10-15T19:58:15.399909+00:00",
-          "confidence": "automatic",
-          "evidence": "PDF S. 4: Matcha 7.00",
-          "alcoholFree": true
-        },
         {
           "name": "Espresso",
           "coffeeType": "espresso",
@@ -13793,6 +13759,64 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-15T20:05:14.194641+00:00"
+    },
+    {
+      "id": "node/13052489329",
+      "name": "Maru",
+      "lat": 47.3789711,
+      "lon": 8.5267429,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 7.5,
+          "alcoholFree": true,
+          "evidence": "MARU Rolandstrasse: MATCHA / HOJICHA LATTE 7.50; WARM | KALT. Matcha / Hojicha, Bio-Milch",
+          "sourceUrl": "https://www.maru.ch/speisekarte-maru-rolandstrasse",
+          "observedAt": "2026-10-16T09:18:29.787852+00:00",
+          "confidence": "reviewed"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T09:18:29.787852+00:00"
+    },
+    {
+      "id": "node/4833061536",
+      "name": "Maru",
+      "lat": 47.3781269,
+      "lon": 8.5401993,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "8001",
+      "website": "https://www.maru.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 09:00-21:00; Sa,Su 09:00-20:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 7.5,
+          "alcoholFree": true,
+          "evidence": "MARU HB: MATCHA / HOJICHA LATTE 7.50; WARM | KALT. Matcha / Hojicha, Bio-Milch",
+          "sourceUrl": "https://www.maru.ch/speisekarte-maru-hb",
+          "observedAt": "2026-10-16T09:18:28.659265+00:00",
+          "confidence": "reviewed"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T09:18:28.659265+00:00"
     },
     {
       "id": "node/10965918728",
@@ -18396,6 +18420,34 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-15T20:02:23.212566+00:00"
+    },
+    {
+      "id": "node/279180952",
+      "name": "Schminkbar",
+      "lat": 47.375762,
+      "lon": 8.5402732,
+      "type": "pub",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 7.5,
+          "alcoholFree": true,
+          "evidence": "PDF S. 2, Heisse Getränke: Matcha Latte 7.50",
+          "sourceUrl": "https://schminkbar.ch/app/uploads/2025/11/10_Genusskarte_schminkbar_02.pdf",
+          "observedAt": "2026-10-16T09:17:06.069581+00:00",
+          "confidence": "reviewed"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T09:17:06.069581+00:00"
     },
     {
       "id": "node/6973974585",

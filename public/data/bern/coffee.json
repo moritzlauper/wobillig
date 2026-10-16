@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T22:42:23.111203+00:00",
+  "generatedAt": "2026-10-16T09:20:26.692285+00:00",
   "discoveredAt": "2026-10-15T22:32:35.851113+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -1378,9 +1378,21 @@
       "cuisine": [],
       "openingHours": "Tu-We 07:00-19:00; Th-Fr 07:00-20:00; Sa 09:00-18:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "alcoholFree": true,
+          "evidence": "Warme Getränke: Matcha Latte Fr. 6.50",
+          "sourceUrl": "https://www.thecaferacer.ch/speisekarte",
+          "observedAt": "2026-10-16T09:17:05.927291+00:00",
+          "confidence": "automatic"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T09:17:05.927291+00:00"
     },
     {
       "id": "node/497179139",
@@ -6515,6 +6527,36 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-15T22:38:17.588700+00:00"
+    },
+    {
+      "id": "node/6554088370",
+      "name": "Queen's Bread",
+      "lat": 46.9424958,
+      "lon": 7.4316804,
+      "type": "restaurant",
+      "address": "Belpstrasse 49",
+      "postcode": "",
+      "website": "https://www.queensbread.ch/",
+      "cuisine": [
+        "vietnamese"
+      ],
+      "openingHours": "Mo-Th 11:00-15:00; Fr 11:00-15:00, 17:00-21:00; Sa 17:00-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Matcha Classic",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "alcoholFree": true,
+          "evidence": "Matcha Latte (Trà Matcha): M1. Matcha Classic, Feinster, cremiger Matcha. CHF 6.50",
+          "sourceUrl": "https://www.queensbread.ch/menu",
+          "observedAt": "2026-10-16T09:18:29.250365+00:00",
+          "confidence": "reviewed"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T09:18:29.250365+00:00"
     },
     {
       "id": "node/11897158625",

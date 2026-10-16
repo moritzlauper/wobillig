@@ -1,0 +1,37 @@
+import { describe, expect, it } from 'vitest';
+import { filtersFromSearch, writeFilters } from '../src/filters';
+import { cityLink } from '../src/cities';
+import type { Filters } from '../src/data';
+
+describe('filters across city navigation', () => {
+  it.each(['coffee', 'beer', 'pizza'] as const)('preserves every %s filter and cheap mode through all city links', drink => {
+    const filters: Filters = {
+      drink, coffeeType: 'matcha_latte', beerType: 'bottle', query: 'Café & Bar', max: 7.5,
+      volume: '330', type: 'cafe', unknown: false, outdoor: true, alcoholFree: true, mode: 'half', sort: 'price_desc',
+    };
+    const params = new URLSearchParams('bar=node/1');
+    writeFilters(params, filters, true);
+    for (const city of ['zurich', 'bern', 'basel'] as const) {
+      const url = new URL(cityLink(city, params.toString()), 'https://wobillig.ch');
+      expect(filtersFromSearch(url.searchParams)).toEqual(filters);
+      expect(url.searchParams.get('cheap')).toBe('1');
+      expect(url.searchParams.has('bar')).toBe(false);
+    }
+  });
+  it('restores defaults and unlimited prices without turning a blank limit into zero', () => {
+    const defaults = filtersFromSearch(new URLSearchParams());
+    expect(defaults).toMatchObject({ drink: 'coffee', coffeeType: 'cappuccino', max: 15, unknown: true });
+    const params = new URLSearchParams();
+    writeFilters(params, { ...defaults, max: Infinity, sort: 'distance' }, false);
+    expect(filtersFromSearch(params)).toEqual({ ...defaults, max: Infinity, sort: 'distance' });
+    for (const max of ['', 'NaN', '-5', '0', 'Infinity']) {
+      expect(filtersFromSearch(new URLSearchParams({ max })).max).toBe(15);
+    }
+  });
+  it('validates query values and keeps legacy beer links', () => {
+    expect(filtersFromSearch(new URLSearchParams('size=stange'))).toMatchObject({ drink: 'beer', volume: 'stange' });
+    expect(filtersFromSearch(new URLSearchParams('drink=coffee&type=fast_food&coffeeType=matcha&sort=invalid')))
+      .toMatchObject({ type: '', coffeeType: 'cappuccino', sort: 'price' });
+    expect(filtersFromSearch(new URLSearchParams('drink=beer&beerType=can&size=stange'))).toMatchObject({ volume: 'all' });
+  });
+});

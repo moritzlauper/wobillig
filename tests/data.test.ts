@@ -120,15 +120,15 @@ describe("coffee comparisons", () => {
     expect(bestOffer(cafe, { ...coffee, coffeeType: "all" })).toBe(espresso);
     expect(bestOffer(cafe, f)?.name).toBe("Lager");
   });
-  it.each(["fast_food"])("hides %s by default but allows explicit selection in coffee", type => {
+  it.each(["fast_food"])("excludes %s from coffee even with a stale explicit selection", type => {
     for (const offers of [[], [espresso], [cappuccino], [{ ...cappuccino, confidence: "community" as const }]]) {
       const venue = { ...b, type, offers };
       expect(isVenueEligible(venue, coffee)).toBe(false);
       expect(filterBars([venue], coffee)).toEqual([]);
       const selected = { ...coffee, type };
-      expect(isVenueEligible(venue, selected)).toBe(true);
-      expect(filterBars([venue], selected)).toEqual([venue]);
-      expect(filterBars([venue], { ...selected, unknown: false })).toHaveLength(offers.some(o => o.coffeeType === "cappuccino") ? 1 : 0);
+      expect(isVenueEligible(venue, selected)).toBe(false);
+      expect(filterBars([venue], selected)).toEqual([]);
+      expect(filterBars([venue], { ...selected, unknown: false })).toEqual([]);
       expect(filterBars([venue], { ...coffee, type: "restaurant" })).toEqual([]);
     }
   });
@@ -154,11 +154,11 @@ describe("coffee comparisons", () => {
     expect(cost({ ...cappuccino, volumeMl: 150 }, "half")).toBe(5.5);
     expect(filterBars([cafe], { ...coffee, max: 5 })).toHaveLength(0);
   });
-  it("filters Matcha and Matcha Latte separately from coffee", () => {
+  it("keeps Matcha Latte and excludes discontinued plain Matcha", () => {
     const matcha = { ...espresso, name: "Matcha", coffeeType: "matcha", priceChf: 5 };
     const latte = { ...matcha, name: "Matcha Latte", coffeeType: "matcha_latte", priceChf: 6.5 };
     const venue = { ...cafe, offers: [...cafe.offers, matcha, latte] };
-    expect(bestOffer(venue, { ...coffee, coffeeType: "matcha" })).toBe(matcha);
+    expect(bestOffer(venue, { ...coffee, coffeeType: "matcha" })).toBeUndefined();
     expect(bestOffer(venue, { ...coffee, coffeeType: "matcha_latte" })).toBe(latte);
     expect(cost(latte, "half")).toBe(6.5);
     expect(filterBars([venue], { ...coffee, coffeeType: "matcha_latte", max: 6 })).toHaveLength(0);

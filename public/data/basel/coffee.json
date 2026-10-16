@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T22:35:56.212800+00:00",
+  "generatedAt": "2026-10-16T09:20:26.699404+00:00",
   "discoveredAt": "2026-10-15T22:28:55.283289+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -1166,10 +1166,21 @@
           "confidence": "automatic",
           "evidence": "PDF S. 3: Espresso Doppio 5.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 7.5,
+          "alcoholFree": true,
+          "evidence": "PDF S. 3, Getränke warm: Matcha Latte (3 dl) 7.50; hg = hausgemacht",
+          "sourceUrl": "https://www.cafe-nona.ch/dam/jcr:8d4746e5-39b1-4a98-b28c-38d650336641/260921_Nona_Menukarte.b755d4e54724d34a13f3f11d2c59384c.pdf",
+          "observedAt": "2026-10-16T09:17:14.252085+00:00",
+          "confidence": "reviewed"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:28:55.288950+00:00"
+      "checkedAt": "2026-10-16T09:17:14.252085+00:00"
     },
     {
       "id": "node/11835158537",
@@ -1701,10 +1712,21 @@
           "confidence": "automatic",
           "evidence": "Flat White 6.5",
           "alcoholFree": true
+        },
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 7,
+          "alcoholFree": true,
+          "evidence": "Matcha Latte iced / hot 7; Alle Preise in CHF",
+          "sourceUrl": "https://www.pfoertnerhaus.ch/karte/",
+          "observedAt": "2026-10-16T09:17:08.456119+00:00",
+          "confidence": "reviewed"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:30:25.684770+00:00"
+      "checkedAt": "2026-10-16T09:17:08.456119+00:00"
     },
     {
       "id": "node/3890667961",

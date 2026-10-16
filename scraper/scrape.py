@@ -395,6 +395,7 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     dedup={}
     for o in offers:
         if beverage == 'beer' and not eligible_offer(o): continue
+        if beverage == 'coffee' and o.get('coffeeType') == 'matcha': continue
         # Expiring download signatures are not useful public source links.
         # Keep the menu's originating venue page as the durable reference.
         if re.search(r'[?&]X-Amz-Signature=',o['sourceUrl'],re.I) and bar.get('website'):

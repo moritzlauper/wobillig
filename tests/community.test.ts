@@ -19,7 +19,7 @@ describe('shared price validation', () => {
   it('accepts real glass prices and coffee with no made-up volume', () => {
     expect(validateInput(input, [bar]).priceChf).toBe(6.5);
     expect(validateInput({ ...input, drink: 'coffee', coffeeType: 'espresso', volumeMl: null }, [bar]).alcoholFree).toBe(true);
-    for (const coffeeType of ['matcha', 'matcha_latte']) {
+    for (const coffeeType of ['matcha_latte']) {
       expect(validateInput({ ...input, drink: 'coffee', coffeeType, volumeMl: null }, [bar]).coffeeType).toBe(coffeeType);
     }
     expect(validateInput({ ...input, volumeMl: null, serving: 'stange' }, [bar]).volumeMl).toBeNull();
@@ -27,7 +27,7 @@ describe('shared price validation', () => {
   it.each([
     { priceChf: NaN }, { priceChf: 0 }, { priceChf: 2.123 }, { priceChf: '7.50' },
     { barId: 'node/missing' }, { volumeMl: null }, { volumeMl: 200, serving: 'stange' },
-    { drink: 'coffee', coffeeType: 'espresso', volumeMl: 300 }, { drink: 'coffee', coffeeType: 'invented', volumeMl: null },
+    { drink: 'coffee', coffeeType: 'espresso', volumeMl: 300 }, { drink: 'coffee', coffeeType: 'invented', volumeMl: null }, { drink: 'coffee', coffeeType: 'matcha', volumeMl: null },
     { observedAt: '2099-01-01' }, { observedAt: '2026-02-30' }, { sourceUrl: 'javascript:alert(1)' },
     { sourceUrl: 'https://user:password@example.org' }, { name: '' }, { revision: -1 },
   ])('rejects malformed or misleading input %j', patch => expect(() => validateInput({ ...input, ...patch }, [bar])).toThrow());

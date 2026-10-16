@@ -61,7 +61,7 @@ export const coffeeLabels: Record<string, string> = {
   creme: "Café crème / Kaffee", espresso: "Espresso", double: "Doppelter Espresso",
   ristretto: "Ristretto", cappuccino: "Cappuccino", latte: "Latte macchiato",
   milk: "Milchkaffee", flat_white: "Flat White", americano: "Americano", filter: "Filterkaffee",
-  matcha: "Matcha", matcha_latte: "Matcha Latte",
+  matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
   return o.pizzaType ? "Pro Pizza Margherita" + (o.priceContext === "online_menu" ? " · Onlinepreis" : "") : o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : o.volumeMl ? `${o.volumeMl / 100} dl` : "Stange · Grösse nicht angegeben";
@@ -74,7 +74,7 @@ export function isBeerMix(name: string): boolean {
   return /\b(?:panach(?:e+)?|panash|henach(?:e+)?|radler|shandy|diesel|russ(?:en)?|snakebite|black\s*(?:&|and)\s*tan|biermisch(?:getrank\w*)?|biermix\w*|beer\s*mix\w*|(?:bier|beer|lager|weizen)\s*(?:mit|with|[+&])\s*(?:cola|sprite|limonade|lemonade|zitronenlimonade))\b/i.test(name.normalize("NFKD").replace(/\p{M}/gu, ""));
 }
 export function isComparableOffer(o: Offer): boolean {
-  return offerCategory(o) !== "beer" || !isBeerMix(o.name);
+  return o.coffeeType !== "matcha" && (offerCategory(o) !== "beer" || !isBeerMix(o.name));
 }
 export function effectiveBeerType(o: Offer): BeerType {
   return o.beerType && o.beerType !== "unknown" ? o.beerType : o.beerTypeEstimate?.type || "unknown";
@@ -161,7 +161,7 @@ function venueCategory(type: string): string {
 }
 
 export function isVenueEligible(bar: Bar, f: Filters): boolean {
-  if (f.drink === "coffee" && bar.type === "fast_food") return f.type === "fast_food";
+  if (f.drink === "coffee" && bar.type === "fast_food") return false;
   if ((f.drink || "beer") !== "beer" || bar.type !== "cafe") return true;
   // A missing price for the selected size/format is different from no beer
   // evidence at all. Community beer entries count after applyEntries merges them.

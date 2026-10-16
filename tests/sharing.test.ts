@@ -1,11 +1,25 @@
 import { describe, expect, it, vi } from 'vitest';
-import { barLink, shareLink } from '../src/sharing';
+import { drinkFromSearch, barLink, shareLink } from '../src/sharing';
 
 describe('bar links', () => {
+  it('defaults every city to coffee while preserving explicit and legacy beer links', () => {
+    for (const path of ['/', '/bern', '/basel']) {
+      const params = new URL('https://example.com' + path).searchParams;
+      expect(drinkFromSearch(params)).toBe('coffee');
+      for (const drink of ['coffee', 'beer', 'pizza'] as const) {
+        const shared = new URL(barLink('https://example.com' + path, 'node/2', drink, '500'));
+        expect(drinkFromSearch(shared.searchParams)).toBe(drink);
+      }
+    }
+    expect(drinkFromSearch(new URLSearchParams('size=stange'))).toBe('beer');
+    expect(drinkFromSearch(new URLSearchParams('beerType=bottle'))).toBe('beer');
+    expect(drinkFromSearch(new URLSearchParams('drink=coffee&size=500'))).toBe('coffee');
+    expect(drinkFromSearch(new URLSearchParams('drink=invalid'))).toBe('coffee');
+  });
   it('keeps the deployment path and bar ID without unrelated URL state', () => {
     const url = new URL(barLink('https://example.com/wobillig/?bar=node%2F1&drink=coffee&utm_source=test#old', 'way/123', 'beer', '500'));
     expect(url.pathname).toBe('/wobillig/');
-    expect([...url.searchParams]).toEqual([['bar', 'way/123'], ['size', '500']]);
+    expect([...url.searchParams]).toEqual([['bar', 'way/123'], ['drink', 'beer'], ['size', '500']]);
     expect(url.hash).toBe('');
   });
   it('preserves bottled beer and its portion when sharing', () => {

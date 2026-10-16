@@ -8,10 +8,9 @@ from scraper.pdf_extract import column_regions
 LABELS = {'creme':'Café crème', 'espresso':'Espresso', 'double':'Doppelter Espresso',
           'ristretto':'Ristretto', 'cappuccino':'Cappuccino', 'latte':'Latte macchiato',
           'milk':'Milchkaffee', 'flat_white':'Flat White', 'americano':'Americano', 'filter':'Filterkaffee',
-          'matcha':'Matcha', 'matcha_latte':'Matcha Latte'}
+          'matcha_latte':'Matcha Latte'}
 ALIASES = {
     'matcha_latte':r'matcha[\s-]*latte',
-    'matcha':r'matcha(?:[\s-]*(?:tee|tea))?',
     'double':r'(?:doppelter? espresso|doppel[ -]espresso|espresso dopp(?:io|elt)|double espresso|doppio(?: espresso)?)',
     'flat_white':r'flat\s*white',
     'latte':r'latte\s*macchiato',

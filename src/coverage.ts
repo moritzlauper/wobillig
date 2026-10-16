@@ -1,4 +1,14 @@
-import { bestOffer, isCurrentOffer, isComparableOffer, offerCategory, type Bar, type Filters } from './data';
+import { bestOffer, cost, filterBars, isCurrentOffer, isComparableOffer, offerCategory, type Bar, type Filters } from './data';
+
+export function cityAverage(bars: Bar[], f: Filters): { price: number; count: number } | undefined {
+  // Keep the product comparison, but do not let a search or price ceiling bias the city benchmark.
+  const cityFilters: Filters = { ...f, query: '', max: Infinity, type: '', outdoor: false, unknown: false, sort: 'price' };
+  const prices = filterBars(bars, cityFilters)
+    .map(bar => cost(bestOffer(bar, cityFilters)!, cityFilters.mode))
+    .filter(price => Number.isFinite(price) && price > 0);
+  if (!prices.length) return undefined;
+  return { price: prices.reduce((sum, price) => sum + price, 0) / prices.length, count: prices.length };
+}
 
 export function hasDrinkPrice(bar: Bar, f: Filters): boolean {
   return bar.offers.some(o => isCurrentOffer(o) && isComparableOffer(o) && offerCategory(o) === (f.drink || 'beer'));

@@ -2,10 +2,11 @@ import { cities, cityFromPath, cityLink, type City } from './cities';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
-import { coverageLabel, missingPriceLabel } from './coverage';
+import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
 import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
+import { filtersFromSearch, writeFilters } from './filters';
 import { nearbyLocations, selectableLocations } from './locations';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -20,15 +21,12 @@ const pricesApi = `/api/prices?city=${cityId}`;
 document.title = `wobillig · ${city.name}`;
 document.querySelector('meta[name=description]')?.setAttribute('content', `Bier-, Kaffee- und Margherita-Preise in ${city.name} vergleichen, eintragen und ändern.`);
 const initial = new URLSearchParams(location.search);
-const initialSize = initial.get('size') || '300-330';
-const initialBeerType = initial.get('beerType') || 'all';
-const f: Filters = { drink: initial.get('drink') === 'pizza' ? 'pizza' : initial.get('drink') === 'coffee' ? 'coffee' : 'beer', coffeeType: 'creme', beerType: ['all', ...Object.keys(beerTypeLabels)].includes(initialBeerType) ? initialBeerType as Filters['beerType'] : 'all', query: '', max: initial.get('drink') === 'pizza' ? 30 : 15, volume: ['stange', '300-330', '500', '300', '330', '400', 'all'].includes(initialSize) ? initialSize : '300-330', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' };
-if (['bottle', 'can'].includes(f.beerType!) && f.volume === 'stange') f.volume = 'all';
+const f: Filters = filtersFromSearch(initial);
 const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
 let communityReady = false, saving = false, pizzaAvailable = false;
-let cheapMode = false;
+let cheapMode = initial.get('cheap') === '1';
 let cheapLimit: number | undefined;
 let locationCatalogue: Bar[] = [];
 let userMarker: L.CircleMarker | undefined;
@@ -40,13 +38,13 @@ const unit = (o: Offer) => offerCategory(o) !== 'beer' ? portion(o) : `${f.mode 
 
 $('app').innerHTML = `
 <div class="toolbar">
-  <div class="switch" role="group" aria-label="Kategorie"><button id="drink-beer">Bier</button><button id="drink-coffee">Kaffee</button><button id="drink-pizza" hidden>Pizza Margherita</button></div>
+  <div class="switch" role="group" aria-label="Kategorie"><button id="drink-coffee">Kaffee</button><button id="drink-beer">Bier</button><button id="drink-pizza" hidden>Pizza Margherita</button></div>
   <input id="search" type="search" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen">
   <div id="beer-controls" class="beer-controls">
     <select id="beer-type" aria-label="Ausschank">${options({ draft: 'Offenbier', bottle: 'Flaschenbier', all: 'Alle Ausschankarten', can: 'Dosenbier', unknown: 'Unbekannt' })}</select>
     <select id="volume" aria-label="Biergrösse">${options({ stange: 'Stange / 3 dl', '300-330': '3 / 3.3 dl', '500': '5 dl', '300': 'Genau 3 dl', '330': '3.3 dl', '400': '4 dl', all: 'Alle Grössen' })}</select>
   </div>
-  <select id="coffeeType" aria-label="Kaffee- oder Matchasorte" hidden><option value="all">Alle Kaffees &amp; Matchas</option>${coffeeOptions}</select>
+  <select id="coffeeType" aria-label="Kaffeesorte oder Matcha Latte" hidden><option value="all">Alle Kaffees &amp; Matcha Latte</option>${coffeeOptions}</select>
   <label class="budget">Bis CHF <input id="price" aria-label="Höchstpreis in CHF" type="number" min="0.5" max="50" step="0.5" value="15"></label>
   <button id="filters-toggle" aria-expanded="false" aria-controls="filters">Filter</button>
 </div>
@@ -58,7 +56,7 @@ $('app').innerHTML = `
   <label id="normalize-label"><input id="normalize" type="checkbox"> Auf 5 dl umrechnen</label>
   <button id="reset">Zurücksetzen</button>
 </div>
-<div class="status-row"><span id="count" role="status">Laden …</span><div class="mobile-switch" role="group" aria-label="Ansicht"><button id="view-map" aria-pressed="true">Karte</button><button id="view-list" aria-pressed="false">Liste</button></div><div class="status-meta"><small class="refresh-note">Wird alle 3 Wochen aktualisiert</small><nav class="city-switch" aria-label="Stadt wechseln">${(Object.keys(cities) as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL))}"${id === cityId ? ' aria-current="page"' : ''}>${cities[id].name}</a>`).join('<span aria-hidden="true">/</span>')}</nav><button id="data-info" class="text-button">Daten</button></div></div>
+<div class="status-row"><div class="status-summary" role="status"><strong id="city-average">Schnitt ${e(city.name)} —</strong><span id="count">Laden …</span></div><div class="mobile-switch" role="group" aria-label="Ansicht"><button id="view-map" aria-pressed="true">Karte</button><button id="view-list" aria-pressed="false">Liste</button></div><div class="status-meta"><small class="refresh-note">Wird alle 3 Wochen aktualisiert</small><nav class="city-switch" aria-label="Stadt wechseln">${(Object.keys(cities) as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL))}"${id === cityId ? ' aria-current="page"' : ''}>${cities[id].name}</a>`).join('<span aria-hidden="true">/</span>')}</nav><button id="data-info" class="text-button">Daten</button></div></div>
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', price_desc: 'Preis absteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
@@ -71,7 +69,7 @@ $('app').innerHTML = `
   <div class="dialog-top"><strong id="form-title">Preis eintragen</strong><button id="cancel-price" type="button">Schliessen</button></div>
   <input id="entry-bar" type="hidden">
   <label>Lokal<input id="entry-bar-name" readonly></label><p id="entry-location" class="muted"></p>
-  <div class="form-row"><label>Kategorie<select id="entry-drink"><option value="beer">Bier</option><option value="coffee">Kaffee</option><option value="pizza">Pizza Margherita</option></select></label><label id="entry-coffee-label" hidden>Sorte<select id="entry-coffee">${coffeeOptions}</select></label></div>
+  <div class="form-row"><label>Kategorie<select id="entry-drink"><option value="coffee">Kaffee</option><option value="beer">Bier</option><option value="pizza">Pizza Margherita</option></select></label><label id="entry-coffee-label" hidden>Sorte<select id="entry-coffee">${coffeeOptions}</select></label></div>
   <label>Bezeichnung<input id="entry-name" maxlength="100" placeholder="z. B. Lager oder Espresso" required></label>
   <div id="entry-beer-fields"><label>Ausschank<select id="entry-beer-type">${options(beerTypeLabels)}</select></label><small id="entry-type-hint" class="muted" hidden>Diese Vorauswahl ist geschätzt. Bitte prüfen.</small><div class="form-row"><label>Menge in dl<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label class="check"><input id="entry-size-unknown" type="checkbox"> Menge nicht angegeben (nur Stange)</label><label class="check"><input id="entry-alcohol" type="checkbox"> Alkoholfrei</label></div>
   <div class="form-row"><label>Preis in CHF<input id="entry-price" type="number" min="0.5" max="50" step="0.01" inputmode="decimal" required></label><label>Preis gesehen am<input id="entry-date" type="date" min="2020-01-01" required></label></div>
@@ -79,7 +77,7 @@ $('app').innerHTML = `
   <p class="muted">Wird für alle sichtbar. Bitte den tatsächlichen Preis dieser Portion eintragen.</p>
   <p id="form-error" role="alert" hidden></p><button id="save-price" class="primary" type="submit">Speichern</button>
 </form></dialog>
-<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><p id="coverage"></p><p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.</p><p>Bier: Cafés ohne erfasstes Bierangebot oder mit ausschliesslicher Öffnung bis spätestens 19 Uhr werden ausgeblendet, auch bei «Ohne passenden Preis anzeigen». Unbekannte Öffnungszeiten bleiben offen.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
+<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><p id="coverage"></p><p>Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.</p><p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.</p><p>Bier: Cafés ohne erfasstes Bierangebot oder mit ausschliesslicher Öffnung bis spätestens 19 Uhr werden ausgeblendet, auch bei «Ohne passenden Preis anzeigen». Unbekannte Öffnungszeiten bleiben offen.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
 
 const map = L.map('map', { zoomControl: false }).setView(city.center, 14);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
@@ -90,7 +88,7 @@ const locationLayer = L.layerGroup().addTo(map);
 map.on('moveend', renderLocations);
 map.on('click', event => {
   if (map.getZoom() < 17) { toast('Zum Auswählen eines Lokals näher heranzoomen.'); return; }
-  const choices = nearbyLocations(selectableLocations(venues, locationCatalogue), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
+  const choices = nearbyLocations(selectableLocations(venues, locationCatalogue).filter(b => !coffee() || b.type !== 'fast_food'), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
   if (!choices.length) { toast('Hier wurde kein Lokal gefunden. Tippe auf das Symbol oder näher an den Namen.'); return; }
   if (choices.length === 1) { openPrice(choices[0]); return; }
   const content = document.createElement('div');
@@ -124,7 +122,7 @@ function rebuild() {
   pizzaAvailable = pizzaBars.filter(b => b.offers.some(o => o.pizzaType === 'margherita' && isCurrentOffer(o) && isComparableOffer(o))).length >= 20;
   $('drink-pizza').hidden = !pizzaAvailable;
   if (pizza() && !pizzaAvailable) {
-    f.drink = 'beer'; f.max = budgets.beer; f.mode = 'glass'; selected = undefined;
+    f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
     $<HTMLInputElement>('price').value = String(f.max);
   }
   document.querySelector('meta[name=description]')?.setAttribute('content', `${pizzaAvailable ? 'Bier-, Kaffee- und Margherita-' : 'Bier- und Kaffee-'}Preise in ${city.name} vergleichen, eintragen und ändern.`);
@@ -133,7 +131,8 @@ function rebuild() {
   render();
 }
 function syncControls() {
-  $<HTMLSelectElement>('type').innerHTML = options({ ...venueTypes, '': coffee() ? 'Ohne Imbisse' : 'Alle' });
+  if (coffee() && f.type === 'fast_food') f.type = '';
+  $<HTMLSelectElement>('type').innerHTML = options(Object.fromEntries(Object.entries(venueTypes).filter(([type]) => !coffee() || type !== 'fast_food')));
   $<HTMLSelectElement>('type').value = f.type;
   $('beer-controls').hidden = !beer(); $('coffeeType').hidden = !coffee();
   $<HTMLSelectElement>('volume').querySelector<HTMLOptionElement>('[value=stange]')!.disabled = ['bottle', 'can'].includes(f.beerType!);
@@ -143,10 +142,12 @@ function syncControls() {
   $<HTMLSelectElement>('coffeeType').value = f.coffeeType!;
   $<HTMLInputElement>('normalize').checked = f.mode === 'half';
   for (const drink of ['beer', 'coffee', 'pizza']) $('drink-' + drink).setAttribute('aria-pressed', String(f.drink === drink));
+  $<HTMLInputElement>('search').value = f.query;
+  $<HTMLSelectElement>('sort').value = f.sort;
+  $<HTMLInputElement>('outdoor').checked = f.outdoor;
+  $<HTMLInputElement>('alcohol-free').checked = f.alcoholFree;
   const url = new URL(location.href);
-  if (!beer()) url.searchParams.set('drink', f.drink!); else url.searchParams.delete('drink');
-  if (beer()) url.searchParams.set('size', f.volume); else url.searchParams.delete('size');
-  if (beer() && f.beerType !== 'all') url.searchParams.set('beerType', f.beerType!); else url.searchParams.delete('beerType');
+  writeFilters(url.searchParams, f, cheapMode);
   if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
   history.replaceState(null, '', url);
   document.querySelectorAll<HTMLAnchorElement>('[data-city]').forEach(link => { link.href = cityLink(link.dataset.city as City, url.search, import.meta.env.BASE_URL); });
@@ -165,6 +166,12 @@ function render() {
   $<HTMLInputElement>('unknown').checked = activeFilters.unknown;
   current = filterBars(bars, activeFilters, position);
   $('count').textContent = coverageLabel(current, f);
+  const average = cityAverage(bars, f);
+  $('city-average').textContent = `Schnitt ${city.name} ${average ? `CHF ${money(average.price)}` : '—'}`;
+  const comparison = pizza() ? 'Pizza Margherita' : coffee() ? (f.coffeeType === 'all' ? 'alle Kaffees & Matcha Latte' : coffeeLabels[f.coffeeType!]) : `Bier · ${f.volume === 'all' ? 'alle Grössen' : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`} · ${f.mode === 'half' ? 'auf 5 dl umgerechnet' : 'Portionspreis'}`;
+  $('city-average').title = average
+    ? `${comparison}: Durchschnitt des günstigsten passenden Preises pro Lokal (${average.count} Lokale). Stadtweit, unabhängig von Suche, Preislimit, Günstig-Filter, Lokaltyp und Draussen-Filter.`
+    : `${comparison}: Noch keine passenden Preise für den Stadtdurchschnitt vorhanden.`;
   $('map-unit').textContent = pizza() ? 'CHF / Pizza Margherita' : coffee() ? `CHF · ${f.coffeeType === 'all' ? 'pro Getränk' : coffeeLabels[f.coffeeType!]}` : f.mode === 'half' ? 'CHF / 5 dl · umgerechnet' : f.volume === 'all' ? 'CHF / Portion · Menge beachten' : f.volume === 'stange' ? 'CHF / Stange' : f.volume === '300-330' ? 'CHF / Portion · 3 / 3.3 dl' : `CHF / ${Number(f.volume) / 100} dl`;
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
@@ -196,7 +203,7 @@ function renderLocations() {
   locationLayer.clearLayers();
   if (map.getZoom() < 17) return;
   const displayed = new Set([...current.map(b => b.id), ...(selected ? [selected] : [])]);
-  for (const bar of selectableLocations(venues, locationCatalogue)) {
+  for (const bar of selectableLocations(venues, locationCatalogue).filter(b => !coffee() || b.type !== 'fast_food')) {
     if (displayed.has(bar.id) || !map.getBounds().pad(.1).contains([bar.lat, bar.lon])) continue;
     const label = `${bar.name}: Preis eintragen`;
     L.marker([bar.lat, bar.lon], {
@@ -250,7 +257,7 @@ $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').chec
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
 $('reset').onclick = () => {
   cheapMode = false;
-  Object.assign(f, { query: '', max: pizza() ? 30 : 15, volume: '300-330', coffeeType: 'creme', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  Object.assign(f, { query: '', max: pizza() ? 30 : 15, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = String(f.max);
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
   for (const id of ['unknown', 'outdoor', 'alcohol-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
@@ -308,7 +315,7 @@ function openPrice(bar: Bar, offer?: Offer) {
   $<HTMLInputElement>('entry-bar-name').value = [bar.name, bar.address].filter(Boolean).join(' · ');
   $<HTMLSelectElement>('entry-drink').value = offer ? offerCategory(offer) : f.drink!;
   $<HTMLSelectElement>('entry-drink').disabled = Boolean(offer);
-  $<HTMLSelectElement>('entry-coffee').value = offer?.coffeeType || (f.coffeeType === 'all' ? 'creme' : f.coffeeType!);
+  $<HTMLSelectElement>('entry-coffee').value = offer?.coffeeType || (f.coffeeType === 'all' ? 'cappuccino' : f.coffeeType!);
   $<HTMLInputElement>('entry-name').value = offer?.name || (coffee() ? coffeeLabels[$<HTMLSelectElement>('entry-coffee').value] : '');
   $<HTMLInputElement>('entry-price').value = offer ? String(offer.priceChf) : '';
   $<HTMLInputElement>('entry-volume').value = String(offer?.volumeMl ? offer.volumeMl / 100 : ['stange', '300-330'].includes(f.volume) ? 3 : f.volume === 'all' ? 5 : Number(f.volume) / 100);
@@ -349,7 +356,7 @@ $('price-form').onsubmit = async event => {
       serving: drink === 'beer' && $<HTMLInputElement>('entry-stange').checked ? 'stange' : undefined,
       alcoholFree: drink !== 'beer' || $<HTMLInputElement>('entry-alcohol').checked,
       observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
-    } satisfies PriceInput, selectableLocations(venues, locationCatalogue));
+    } satisfies PriceInput, selectableLocations(venues, locationCatalogue).filter(b => !coffee() || b.type !== 'fast_food'));
     saving = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = 'Speichern …';
     const response = await fetch(pricesApi, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
     const result = await response.json().catch(() => { throw new Error('Speichern gerade nicht möglich. Bitte erneut versuchen.'); });
@@ -365,7 +372,6 @@ $('price-form').onsubmit = async event => {
     f.mode = 'glass'; f.alcoholFree = input.alcoholFree;
     if (drink === 'coffee') {
       f.coffeeType = input.coffeeType;
-      if (entry.venue?.type === 'fast_food') f.type = 'fast_food';
     }
     else if (drink === 'beer') { f.volume = input.serving === 'stange' ? 'stange' : String(input.volumeMl); f.beerType = input.beerType || 'unknown'; }
     if (!Array.from($<HTMLSelectElement>('volume').options).some(x => x.value === f.volume)) f.volume = 'all';
