@@ -8,7 +8,7 @@ import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, ty
 import { barLink, shareLink } from './sharing';
 import { filtersFromSearch, writeFilters } from './filters';
 import { createExport, downloadExport } from './export';
-import { nearbyLocations, selectableLocations } from './locations';
+import { locationAtPosition, nearbyLocations, selectableLocations } from './locations';
 import { createDistrictLookup, districtFromSearch, type Districts } from './districts';
 import { searchSuggestions } from './search';
 
@@ -112,7 +112,7 @@ function scheduleBarReveal(zoom?: number) {
     revealFrame = undefined;
     if (mapMoving) return;
     const request = pendingReveal; pendingReveal = undefined;
-    const bar = request?.id === selected ? bars.find(b => b.id === selected) : undefined;
+    const bar = request?.id === selected ? selectedLocation() : undefined;
     if (bar) revealBarInVisibleMap(bar, request?.zoom);
   });
 }
@@ -291,8 +291,12 @@ function syncControls() {
   history.replaceState(null, '', url);
   document.querySelectorAll<HTMLAnchorElement>('[data-city]').forEach(link => { link.href = cityLink(link.dataset.city as City, url.search, import.meta.env.BASE_URL); });
 }
+function selectedLocation() {
+  return bars.find(b => b.id === selected) || locationCatalogue.find(b => b.id === selected);
+}
 function render() {
-  if (selected && !bars.some(b => b.id === selected && isVenueEligible(b, f) && inSelectedDistrict(b))) selected = undefined;
+  const selection = selectedLocation();
+  if (selected && (!selection || !isVenueEligible(selection, f) || !inSelectedDistrict(selection))) selected = undefined;
   syncControls();
   const districtBars = bars.filter(inSelectedDistrict);
   cheapLimit = cheapPriceLimit(districtBars, f);
@@ -318,7 +322,7 @@ function render() {
     return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || city.name)}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
   }).join('') : '<p class="empty">Keine passenden Lokale.</p>';
   layer.clearLayers();
-  const selectedBar = bars.find(b => b.id === selected);
+  const selectedBar = selectedLocation();
   const mapped = selectedBar && !current.includes(selectedBar) ? [...current, selectedBar] : current;
   for (const b of mapped) {
     const o = bestOffer(b, f);
@@ -527,15 +531,30 @@ $('reset').onclick = () => {
   for (const id of ['unknown', 'outdoor', 'alcohol-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
   render();
 };
-function locate() {
+let locating = false;
+function locate(openNearby = false) {
   if (!navigator.geolocation) return toast('Standort wird von diesem Browser nicht unterstützt.');
+  if (locating) return;
+  locating = true;
+  const button = $<HTMLButtonElement>('locate');
+  button.disabled = true;
+  button.setAttribute('aria-busy', 'true');
+  const finish = () => { locating = false; button.disabled = false; button.removeAttribute('aria-busy'); };
   navigator.geolocation.getCurrentPosition(p => {
+    finish();
     position = [p.coords.latitude, p.coords.longitude];
     userMarker?.remove(); userMarker = L.circleMarker(position, { radius: 7, color: '#fff', fillColor: '#1766c2', fillOpacity: 1, weight: 2 }).addTo(map);
-    map.setView(position, 15); render();
-  }, () => { if (f.sort === 'distance') { f.sort = 'price'; $<HTMLSelectElement>('sort').value = 'price'; } toast('Standort nicht verfügbar.'); }, { timeout: 10000 });
+    clearTimeout(searchZoomTimer);
+    if (openNearby) { selected = undefined; pendingReveal = undefined; }
+    map.setView(position, Math.max(map.getZoom(), 18)); render();
+    // Without the full catalogue, a missing neighbour could look unambiguous.
+    const nearby = openNearby && locationCatalogue.length
+      ? locationAtPosition(selectableLocations(bars, selectableLocations(venues, locationCatalogue)), position, p.coords.accuracy)
+      : undefined;
+    if (nearby && isVenueEligible(nearby, f) && inSelectedDistrict(nearby)) showBar(nearby);
+  }, () => { finish(); if (f.sort === 'distance') { f.sort = 'price'; $<HTMLSelectElement>('sort').value = 'price'; } toast('Standort nicht verfügbar.'); }, { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 });
 }
-$('locate').onclick = locate;
+$('locate').onclick = () => locate(true);
 $('cheap').onclick = () => {
   cheapMode = !cheapMode;
   selected = undefined;

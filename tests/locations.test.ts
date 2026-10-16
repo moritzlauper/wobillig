@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { nearbyLocations, selectableLocations } from '../src/locations';
+import { locationAtPosition, nearbyLocations, selectableLocations } from '../src/locations';
 import { allVenues, communityVenues, applyEntries, validateInput, type PriceInput } from '../src/community';
 import { emptyState, savePrice, WriteConflict, type State } from '../server/prices';
 import type { Dataset } from '../src/data';
@@ -17,6 +17,31 @@ function memoryStore() {
   };
 }
 describe('map locations', () => {
+  const position: [number, number] = [47.37, 8.54];
+  const atMetres = (metres: number, id = 'nearby') => ({ ...roi, id, lat: position[0] + metres / 6371000 * 180 / Math.PI, lon: position[1] });
+  it('opens only an immediately nearby venue with an accurate fix', () => {
+    const here = atMetres(5);
+    expect(locationAtPosition([atMetres(70, 'other'), here], position, 8)).toBe(here);
+    expect(locationAtPosition([atMetres(16)], position, 5)).toBeUndefined();
+    expect(locationAtPosition([atMetres(10)], position, 20)).toBeUndefined();
+    expect(locationAtPosition([], position, 5)).toBeUndefined();
+  });
+  it.each([0, -1, 21, 100, NaN, Infinity])('does not auto-open for unreliable accuracy %s', accuracy => {
+    expect(locationAtPosition([atMetres(0)], position, accuracy)).toBeUndefined();
+  });
+  it('leaves adjacent and overlapping venues to the visitor', () => {
+    expect(locationAtPosition([atMetres(0), atMetres(0, 'other')], position, 5)).toBeUndefined();
+    expect(locationAtPosition([atMetres(2), atMetres(18, 'other')], position, 5)).toBeUndefined();
+    expect(locationAtPosition([atMetres(2), atMetres(30, 'other')], position, 15)).toBeUndefined();
+    const here = atMetres(2);
+    expect(locationAtPosition([here, atMetres(40, 'other')], position, 15)).toBe(here);
+    expect(locationAtPosition([here, here], position, 5)).toBe(here);
+  });
+  it('rejects invalid coordinates', () => {
+    for (const point of [[NaN, 8], [91, 8], [47, 181]] as [number, number][]) {
+      expect(locationAtPosition([atMetres(0)], point, 5)).toBeUndefined();
+    }
+  });
   it('contains the named locations from the map without invented prices', () => {
     for (const name of ['Kokoro', 'Roi-Et', 'Piccolo Giardino', 'Phuket Thai Food', 'Restaurant Schnupf / Rangierbahnhof']) {
       expect(catalogue.bars.find(b => b.name === name)).toMatchObject({ offers: [], lat: expect.any(Number), lon: expect.any(Number) });
