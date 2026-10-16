@@ -32,6 +32,7 @@ Die neuen Datensätze liegen unter `public/data/bern/` und `public/data/basel/`;
 
 ## Was drin ist
 
+- Darkmode für Karte, Liste, Formulare und Preisübersichten. Über **Design → System / Hell / Dunkel** wählbar; die Auswahl bleibt lokal gespeichert und gilt für alle Städte und Ranglisten. «System» folgt Änderungen des Gerätefarbschemas automatisch. Ohne JavaScript folgen die statischen Übersichten ebenfalls dem Gerätefarbschema.
 - Umschalter **Kaffee / Bier / Pizza Margherita**. Kaffee ist in allen Städten die Standardansicht und steht links; Cappuccino ist vorausgewählt und wird beim Zurücksetzen wieder gewählt; direkte Kategorienlinks verwenden `?drink=coffee`, `?drink=beer` oder `?drink=pizza`. Ältere Bierlinks mit `?size=…` bzw. `?beerType=…` bleiben gültig.
 - Kaffee nach Sorte vergleichen: Café crème/Kaffee, Espresso, doppelter Espresso, Ristretto, Cappuccino, Latte macchiato, Milchkaffee/Caffè latte, Flat White, Americano und Filterkaffee. Preise gelten **pro Getränk**, ohne erfundene Tassengrössen oder 5-dl-Umrechnung.
 - Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.

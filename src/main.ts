@@ -199,7 +199,7 @@ async function loadDistricts() {
 }
 function districtStyle(number: number): L.PathOptions {
   const active = districtState.selected === number;
-  return { color: active ? '#1255a1' : '#527ba6', weight: active ? 3 : 1.5, fillColor: '#2679c9', fillOpacity: active ? .24 : districtState.selected ? .035 : 0 };
+  return { color: active ? 'var(--blue)' : 'var(--district-line)', weight: active ? 3 : 1.5, fillColor: '#2679c9', fillOpacity: active ? .24 : districtState.selected ? .035 : 0 };
 }
 function chooseDistrict(number: number | undefined) {
   districtState.selected = number;
