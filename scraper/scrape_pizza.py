@@ -12,13 +12,13 @@ import hashlib
 import json
 from pathlib import Path
 import re
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin, parse_qs
 from bs4 import BeautifulSoup
 
-from scraper.scrape import ROOT, discover, now, html_content, SKIP_MENU, ORDER_MENU
+from scraper.scrape import ROOT, discover, now, html_content, SKIP_MENU
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
-from scraper.pizza import pizza_html, pizza_pdf, structured_menu_links, orderstar_menu_url, pizza_orderstar
+from scraper.pizza import pizza_html, pizza_pdf, pizza_image, structured_menu_links, orderstar_menu_url, pizza_orderstar
 from scraper.scrape_coffee import save, ArchiveFetcher
 
 DATA=DATA_DIR/'pizza.json'
@@ -54,23 +54,45 @@ def scoped_hints(bars, hints):
 
 
 def skip_source(url):
-    path=urlparse(url).path
+    parsed=urlparse(url)
+    if parsed.scheme not in ('http','https'):return True
+    # Never follow action links (including GET-based carts and wishlists).
+    if any(re.search(r'cart|wishlist|checkout|nonce|action|remove|delete',key,re.I) for key in parse_qs(parsed.query)):return True
+    path=parsed.path
+    if re.search(r'/(?:cart|warenkorb|checkout|kasse|mein-konto|my-account)(?:/|$)',path,re.I):return True
     if re.search(r'take[ _-]?away|delivery|liefer|kinder|bambini|lunch|mittag|wochen|tagesmen',path,re.I):
         return True
-    return bool(SKIP.search(path) and not re.search(r'speise|pizza|food|essen',path,re.I))
+    return bool(SKIP.search(path) and not re.search(r'speise|pizza|food|essen|menu|karte',path,re.I))
 
 
 def pizza_links(body, url):
-    """Food and pizza links need broader labels than the drinks crawler."""
+    """Follow menu pages and their image documents, including lazy-loaded scans."""
     result=[]
     soup=BeautifulSoup(body,'html.parser')
-    for a in soup.select('a[href],iframe[src],img[src]'):
-        target=urljoin(url,a.get('href') or a.get('src')).split('#')[0]
+    menu_page=bool(re.search(r'menu|speise|karte|carta|carte|pizza|food',urlparse(url).path,re.I))
+    for a in soup.select('a[href],iframe[src],img'):
+        value=a.get('href') or a.get('data-src') or a.get('data-lazy-src') or a.get('src')
+        if not value:continue
+        target=urljoin(url,value).split('#')[0]
+        if skip_source(target):continue
+        # Wix display crops are too small for OCR; retain the linked original.
+        if a.name=='img' and host(target)=='static.wixstatic.com' and '/v1/' in target:
+            target=target.split('/v1/')[0]
         label=a.get_text(' ',strip=True)+' '+a.get('alt','')+' '+urlparse(target).path
-        if re.search(r'pizz|pizze|speise|food|essen|dinner|carte|carta',label,re.I) and not re.search(r'bestell|delivery|take.?away|shop|order',label,re.I):
-            if host(target)==host(url) or urlparse(target).path.lower().endswith('.pdf'):
-                result.append(target)
-    return result
+        image=a.name=='img'
+        if image and (re.search(r'logo|icon|banner|avatar|favicon',label,re.I) or urlparse(target).path.endswith('.svg')):continue
+        relevant=bool(re.search(r'pizz|speise|food|essen|dinner|carte|carta|men[uü]|karte|bestell|order',label,re.I))
+        wix_gallery=image and host(target)=='static.wixstatic.com' and len(soup.select('img'))<=20 and bool(re.search(r'pizza|speisekarte',soup.get_text(' ',strip=True),re.I))
+        if relevant or (image and menu_page) or wix_gallery:
+            document=bool(re.search(r'\.(?:pdf|jpe?g|png|webp)$',urlparse(target).path,re.I))
+            if host(target)==host(url) or host(target).endswith('.'+host(url)) or document:result.append(target)
+    return list(dict.fromkeys(result))
+
+
+def menu_priority(url):
+    path=urlparse(url).path.lower()
+    rank=0 if re.search('pizza|pizze|margherita',path) else 1 if re.search('speise|food|essen',path) else 2 if re.search('menu|karte|carta|carte',path) else 3
+    return rank, not path.endswith('.pdf'), bool(re.search(r'\.(?:jpe?g|png|webp)$',path))
 
 
 def crawl(bar,fetcher,hints,max_pages,reviews):
@@ -81,7 +103,7 @@ def crawl(bar,fetcher,hints,max_pages,reviews):
     online_feeds = set()
     while queue and len(visited)<max_pages:
         url=queue.pop(0)
-        if not url or url in visited or ORDER_MENU.search(url) or SKIP_MENU.search(url):continue
+        if not url or url in visited or skip_source(url) or SKIP_MENU.search(url):continue
         visited.add(url)
         try:
             final,kind,body=fetcher.get(url)
@@ -93,7 +115,7 @@ def crawl(bar,fetcher,hints,max_pages,reviews):
                 else:changed.add(final)
             if 'pdf' in kind or urlparse(final).path.lower().endswith('.pdf'):
                 found=[] if reviewed else pizza_pdf(body,final,stamp)
-                links=pdf_links(body)
+                links=[u for u in pdf_links(body) if re.search(r'\.(?:pdf|jpe?g|png|webp)$',urlparse(u).path,re.I)]
             elif 'html' in kind:
                 found=[] if reviewed else pizza_html(body,final,stamp)
                 soup = BeautifulSoup(body, 'html.parser')
@@ -108,18 +130,25 @@ def crawl(bar,fetcher,hints,max_pages,reviews):
                     menu_links.append(feed); online_feeds.add(feed)
                 links += menu_links
                 if url in allowed:
+                    # A branch page owns its directly linked menu documents.
                     allowed.update(menu_links)
+                    allowed.update(u for u in links if re.search(r'\.(?:pdf|jpe?g|png|webp)$',urlparse(u).path,re.I))
+            elif kind.startswith('image/'):
+                found=[] if reviewed else pizza_image(body,final,stamp);links=[]
             elif url in online_feeds and 'json' in kind:
                 found=pizza_orderstar(body,final,stamp);links=[]
             else:continue
             if not skip_source(final) and (not hints.get(bar['id']) or url in allowed):offers.extend(found)
             # Hints scope shared websites to the confirmed location menu(s).
             if hints.get(bar['id']):links=[u for u in links if u in allowed]
-            links=[u for u in links if u not in visited and not skip_source(u) and not SKIP_MENU.search(u) and not ORDER_MENU.search(u)]
-            queue=sorted(dict.fromkeys(links+queue),key=lambda u:(not bool(re.search(r'pizza|speise|food|essen|menu|karte',urlparse(u).path,re.I)),not urlparse(u).path.lower().endswith('.pdf')))
+            links=[u for u in links if u not in visited and not skip_source(u) and not SKIP_MENU.search(u)]
+            queue=sorted(dict.fromkeys(links+queue),key=menu_priority)
             success+=1
         except Exception as exc:
             errors.append({'url':url,'error':str(exc)[:150] if isinstance(exc,ValueError) else type(exc).__name__})
+    # Restaurant menus take precedence over separately labelled ordering prices.
+    restaurant_offers=[o for o in offers if o.get('priceContext')!='online_menu']
+    if restaurant_offers: offers=restaurant_offers
     unique={}
     for o in sorted(offers,key=lambda o:o['confidence']!='reviewed'):
         unique.setdefault(o['priceChf'],o)
@@ -135,7 +164,7 @@ def crawl(bar,fetcher,hints,max_pages,reviews):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--discover',action='store_true');p.add_argument('--venues-file');p.add_argument('--limit',type=int,default=0)
-    p.add_argument('--workers',type=int,default=8);p.add_argument('--max-pages',type=int,default=6)
+    p.add_argument('--workers',type=int,default=8);p.add_argument('--max-pages',type=int,default=20)
     p.add_argument('--archive-dir',action='append',default=[]);p.add_argument('--only',help='Venue name regex');p.add_argument('--retry',action='store_true')
     args=p.parse_args()
     old=json.loads(DATA.read_text()) if DATA.exists() else {'bars':[]}
@@ -147,6 +176,8 @@ def main():
     hints=json.loads(HINTS_PATH.read_text()) if HINTS_PATH.exists() else {}
     reviews=json.loads(REVIEWS_PATH.read_text()) if REVIEWS_PATH.exists() else []
     checks=json.loads(CHECKS.read_text()) if CHECKS.exists() else {}
+    overrides=json.loads((ROOT/'scraper/website_overrides.json').read_text())
+    found['bars']=[{**b,'website':overrides.get(b['id'],b.get('website'))} for b in found['bars']]
     hints=scoped_hints(found['bars'], hints)
     hosts=Counter(host(b['website']) for b in found['bars'] if b['website'])
     prior={b['id']:b for b in old['bars']}

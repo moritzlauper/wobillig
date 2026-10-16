@@ -64,6 +64,7 @@ jobs:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: scraper/requirements.txt
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
       - run: pip install -r scraper/requirements.txt
       - run: python -m unittest discover -s tests -p 'test_*.py'
       - uses: actions/cache/restore@v4
@@ -84,7 +85,7 @@ jobs:
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
         run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages 10
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
-        run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages 6
+        run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages 20
       - name: Claude menu and serving-format scan
         id: ai
         env:

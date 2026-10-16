@@ -4,10 +4,13 @@ import re
 import json
 from urllib.parse import urljoin, urlparse
 import unicodedata
+from threading import Lock
 
 from bs4 import BeautifulSoup
 import pdfplumber
 from scraper.pdf_extract import column_regions
+
+PDF_RENDER_LOCK = Lock()
 
 NAME = re.compile(r'\bmargh?erita\b', re.I)
 CHILDREN = re.compile(r'kinder|bambini|piccoli\s+ospiti|kleinen?\s+g[aä]ste|little\s+(?:guests|customers)|kids', re.I)
@@ -19,6 +22,10 @@ INGREDIENTS = re.compile(r'tomat\w*|pomodor\w*|mozzarella|fior\s+di\s+latte|basi
 def pizza_row(raw, url, stamp):
     line=unicodedata.normalize('NFKC', re.sub(r'\s+', ' ', raw)).strip()
     line=re.sub(r'(?:\.\s*){3,}', ' ', line)
+    line=re.sub(r'(\d)\s*([.,])\s+(\d{2})\b', r'\1\2\3', line)
+    # Some menu cards render the price before the product heading.
+    leading=re.match(r'^((?:CHF\s*)?\d{1,2}[.,]\d{2}(?:\s*CHF)?)\s+((?:pizza\s+)?margh?erita\b.*)', line, re.I)
+    if leading: line=leading[2]+' '+leading[1]
     if not NAME.search(line) or EXCLUDED.search(line) or len(line)>400:
         return []
     # Only a standalone Margherita label with recognised ingredient prose.
@@ -55,10 +62,10 @@ def extract_pizzas(text,url,stamp):
 def pizza_html(body,url,stamp):
     soup=BeautifulSoup(body,'html.parser')
     title=soup.title.get_text(' ',strip=True) if soup.title else ''
-    if re.search(r'online\s+bestellen|essen\s+bestellen|order\s+(?:food\s+)?online|food\s+delivery',title,re.I):
-        return []
+    online=bool(re.search(r'/(?:online-ordering|bestellen|order|shop)(?:/|$)',urlparse(url).path,re.I) or re.search(r'online\s+bestellen|essen\s+bestellen|order\s+(?:food\s+)?online|food\s+delivery',title,re.I) or soup.select_one('.menu-toopen, .meal-wrapper, .add_to_cart_button'))
     for node in soup(['script','style','nav','footer','header']):node.decompose()
-    offers=[]
+    offers=product_card_pizzas(soup,url,stamp)
+    for card in soup.select('.meal-wrapper, .wppizza-article, form[hx-get]'):card.decompose()
     for row in soup.select('tr,p,li,div,article,h2,h3,h4,h5,dt'):
         text=row.get_text(' ',strip=True)
         if not NAME.search(text) or len(text)>400:continue
@@ -67,7 +74,7 @@ def pizza_html(body,url,stamp):
             heading_level=int(heading.name[1])
             if heading_level<level:
                 label=heading.get_text(' ',strip=True)
-                if EXCLUDED.search(label) or CHILDREN.search(label):excluded=True;break
+                if CHILDREN.search(label) or ((heading_level<=2 or re.search(r'pizz|menu|portion',label,re.I)) and EXCLUDED.search(label)):excluded=True;break
                 level=heading_level
         if excluded:continue
         found=pizza_row(text,url,stamp)
@@ -76,30 +83,155 @@ def pizza_html(body,url,stamp):
             if sibling and len(sibling.get_text(' ',strip=True))<200:
                 found=pizza_row(text+' '+sibling.get_text(' ',strip=True),url,stamp)
         offers.extend(found)
+    if online:
+        for offer in offers: offer['priceContext']='online_menu'
     return list({o['priceChf']:o for o in offers}.values())
 
 
-def pizza_pdf(body,url,stamp):
+
+def product_card_pizzas(soup, url, stamp):
     offers=[]
+    def add(name, description, price, size=''):
+        for offer in pizza_row(f'{name} {size} {description} {price}',url,stamp):
+            offer['priceContext']='online_menu'
+            offers.append(offer)
+    for card in soup.select('.meal-wrapper'):
+        name=card.select_one('[itemprop="name"], .product-name')
+        price=card.select_one('[itemprop="price"], .product-price')
+        description=card.select_one('[itemprop="description"], .product-description')
+        if name and price:
+            group=card.find_parent(class_='menucat')
+            category=group.select_one('.category-name, .category-title, .menucard__category-name') if group else None
+            if category is None: category=card.find_previous(re.compile(r'^h[12]$'))
+            size=category.get_text(' ',strip=True) if category else ''
+            sizes=re.findall(r'(?<!\d)(\d{2})\s*cm',size,re.I)
+            if EXCLUDED.search(size) or CHILDREN.search(size) or (sizes and any(not 26<=int(n)<=35 for n in sizes)):continue
+            add(name.get_text(' ',strip=True),description.get_text(' ',strip=True) if description else '',price.get_text(' ',strip=True))
+    for card in soup.select('.wppizza-article'):
+        name=card.select_one('.wppizza-article-title')
+        if not name or not NAME.search(name.get_text()):continue
+        desc=card.select_one('.wppizza-article-content')
+        for variant in card.select('.wppizza-article-price'):
+            size=variant.select_one('.wppizza-article-size');price=variant.select_one('span')
+            if size and price:add(name.get_text(' ',strip=True),desc.get_text(' ',strip=True) if desc else '',price.get_text(' ',strip=True),size.get_text(' ',strip=True))
+    for card in soup.select('.product'):
+        name=card.select_one('.name, .woocommerce-loop-product__title')
+        if not name or not NAME.search(name.get_text()):continue
+        desc=card.select_one('.woocommerce-product-details__short-description')
+        for variant in card.select('.lafka-variations-in-catalog'):
+            label=variant.select_one('.lafka-list-variation-label');price=variant.select_one('.amount')
+            if not label or not price:continue
+            size=re.search(r'[Øø]\s*(\d{2})',label.get_text())
+            if size:add(name.get_text(' ',strip=True),desc.get_text(' ',strip=True) if desc else '',price.get_text('',strip=True),size[1]+' cm')
+    for card in soup.select('form[hx-get]'):
+        name=card.select_one('h3');price=card.select_one('[x-text="price"]')
+        if not name or not price:continue
+        selected=card.select_one('input[name="size"][checked]')
+        size=card.find('label',attrs={'for':selected.get('id')}) if selected else None
+        if card.select_one('input[name="size"]') and size is None:continue
+        add(name.get_text(' ',strip=True),'',price.get_text(' ',strip=True),size.get_text(' ',strip=True) if size else '')
+    for name in soup.select('td > b'):
+        label=name.get_text(' ',strip=True)
+        if not NAME.search(label):continue
+        card=name.parent
+        price=card.select_one('.price')
+        desc=card.select_one('.desc')
+        if not price:continue
+        sizes=re.findall(r'(?<!\d)(\d{2})\s*cm',label,re.I)
+        if not sizes:
+            options=card.select('input[value]')
+            sizes=list(set(n for option in options for n in re.findall(r'Zutaten\s*(\d{2})\s*cm',option.get('value',''),re.I)))
+        if len(sizes)>1 or (sizes and not 26<=int(sizes[0])<=35):continue
+        add(label,desc.get_text(' ',strip=True) if desc else '',price.get_text(' ',strip=True),sizes[0]+' cm' if sizes and 'cm' not in label else '')
+    return offers
+
+def pizza_page(page, url, stamp, number):
+    offers = []
+    page = page.dedupe_chars()
+    text = page.extract_text() or ''
+    if not NAME.search(text): return []
+    # A children section elsewhere on the page must not suppress adult pizzas.
+    first = next((line.strip() for line in text.splitlines() if line.strip()), '')
+    if re.match(r'^(?:kinderkarte|bambini|take[ -]?away(?:\s+menu)?$|delivery\s+menu)', first, re.I):
+        return []
+    for region in column_regions(page):
+        rows = region.extract_text_lines(x_tolerance=2, y_tolerance=3)
+        children = False
+        for i, row in enumerate(rows):
+            label = row['text']
+            if CHILDREN.search(label) and not NAME.search(label) and len(label) < 100:
+                children = True
+            elif re.fullmatch(r'(?:le nostre\s+)?pizz[ae](?:\s+classiche)?', label.strip(), re.I):
+                children = False
+            if children or not NAME.search(label) or row['top'] > page.height * .94: continue
+            found = pizza_row(label, url, stamp)
+            if not found:
+                # Two menu panels can share a row beneath a full-width heading.
+                # Split only when a second named, priced dish follows the first.
+                for price in PRICE.finditer(label):
+                    tail=label[price.end():].strip()
+                    if re.match(r'[A-ZÄÖÜ][A-Za-zÄÖÜäöü ]+\s+\d',tail):
+                        found=pizza_row(label[:price.end()],url,stamp)
+                        if found:break
+            combined = label
+            # Name, ingredients and price may occupy three separate nearby rows.
+            for following in rows[i+1:i+4]:
+                if found or following['top'] - row['top'] > 60: break
+                if abs(following['x0'] - row['x0']) > 50 and not re.fullmatch(r'(?:CHF\s*)?\d{1,2}(?:[.,]\d{1,2})?', following['text']): break
+                combined += ' ' + following['text']
+                found = pizza_row(combined, url, stamp)
+            for offer in found: offer['evidence'] = f'PDF S. {number}: ' + offer['evidence']
+            offers.extend(found)
+    return offers
+
+
+def ocr_pizza_image(image, url, stamp, number=1):
+    from scraper.menu_ocr import searchable_image
+    body, words = searchable_image(image)
+    # OCR is accepted only with a clearly recognised product name and price.
+    names = [w for w in words if NAME.search(w['text'])]
+    if not any(float(w['conf']) >= 85 for w in names): return []
     with pdfplumber.open(BytesIO(body)) as doc:
-        for number,page in enumerate(doc.pages[:30],1):
-            text=page.extract_text() or ''
-            if not NAME.search(text) or CHILDREN.search(text):continue
-            # A separate takeaway/children's card is never a restaurant price.
-            if re.search(r'take[ -]?away|lieferkarte|delivery\s+menu|kinderkarte|bambini', '\n'.join(text.splitlines()[:5]),re.I):continue
-            for region in column_regions(page):
-                rows=region.extract_text_lines(x_tolerance=2,y_tolerance=3)
-                for i,row in enumerate(rows):
-                    if not NAME.search(row['text']) or row['top']>page.height*.94:continue
-                    context=' '.join(r['text'] for r in rows[max(0,i-2):i])
-                    if EXCLUDED.search(context) and re.search(r'kinder|bambini|take[ -]?away|kleine\s+piz',context,re.I):continue
-                    found=pizza_row(row['text'],url,stamp)
-                    if not found and i+1<len(rows):
-                        next_row=rows[i+1]
-                        if next_row['top']-row['top']<32 and abs(next_row['x0']-row['x0'])<30:
-                            found=pizza_row(row['text']+' '+next_row['text'],url,stamp)
-                    for o in found:o['evidence']=f'PDF S. {number}: '+o['evidence']
-                    offers.extend(found)
+        offers = pizza_page(doc.pages[0], url, stamp, number)
+    numeric_words=list(words)
+    for word in words:
+        if re.fullmatch(r'\d{1,2}[.,]',word['text']):
+            for tail in words:
+                gap=int(tail['left'])-int(word['left'])-int(word['width'])
+                if re.fullmatch(r'\d{2}',tail['text']) and 0<=gap<=int(word['height']) and abs(int(tail['top'])-int(word['top']))<=4:
+                    numeric_words.append({**word,'text':word['text']+tail['text'],'conf':str(min(float(word['conf']),float(tail['conf'])))})
+    result = []
+    for offer in offers:
+        price = offer['priceChf']
+        matching = [w for w in numeric_words if re.fullmatch(r'(?:CHF)?\d{1,2}(?:[.,]\d{1,2}|[.]?[–—-])?', w['text'])
+                    and any(abs(float(m[1].replace(',', '.').rstrip('.–—-')) - price) < .001 for m in PRICE.finditer(w['text']))]
+        if not any(float(w['conf']) >= 85 and any(float(n['conf']) >= 85 and abs(int(w['top'])-int(n['top'])) <= max(100, int(n['height'])*4) for n in names) for w in matching): continue
+        offer['evidence'] = 'OCR ' + offer['evidence']
+        offer['extractionMethod'] = 'ocr'
+        result.append(offer)
+    return result
+
+
+def pizza_image(body, url, stamp):
+    from scraper.menu_ocr import image_from_bytes
+    return ocr_pizza_image(image_from_bytes(body), url, stamp)
+
+
+def pizza_pdf(body, url, stamp, *, ocr=True):
+    offers = []
+    with pdfplumber.open(BytesIO(body)) as doc:
+        for number, page in enumerate(doc.pages[:30], 1):
+            found = pizza_page(page, url, stamp, number)
+            # Tiny headers/page numbers are not a usable text layer. Large raster
+            # images can also carry the menu beneath a selectable title.
+            image_area = sum(max(0, i['x1']-i['x0']) * max(0, i['bottom']-i['top']) for i in page.images)
+            sparse = len(page.chars) < 120
+            if ocr and not found and page.images and (sparse or image_area > page.width * page.height * .6):
+                # PDFium rendering is not thread-safe; network/OCR work stays parallel.
+                with PDF_RENDER_LOCK:
+                    rendered = page.to_image(resolution=min(200,3500*72/max(page.width,page.height))).original.copy()
+                found = ocr_pizza_image(rendered, url, stamp, number)
+            offers.extend(found)
     return list({o['priceChf']:o for o in offers}.values())
 
 

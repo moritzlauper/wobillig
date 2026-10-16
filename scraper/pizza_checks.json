@@ -9,16 +9,37 @@
     "candidates": []
   },
   "node/104274210": {
-    "checkedAt": "2026-10-15T22:32:10.757236+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:36:31.444355+00:00",
+    "status": "prices_found",
     "visited": [
+      "https://static.wixstatic.com/media/52d217_0cf8ac5d88ef4c7fa88f61ae900fde20~mv2.jpg",
+      "https://static.wixstatic.com/media/52d217_141dc58e78994f0b846c258857ee5215~mv2.jpg",
+      "https://static.wixstatic.com/media/52d217_2425735ce1ca4868a31cfe6ef56b6598~mv2.jpeg",
+      "https://static.wixstatic.com/media/52d217_6a59d41d211049cab02d9f04ab45a74b~mv2.jpg",
+      "https://static.wixstatic.com/media/52d217_aea88c9fa8f94d85bb343c314c80487d~mv2.jpeg",
+      "https://static.wixstatic.com/media/52d217_afe0aff84be746beaa85824f04f72af0~mv2.jpeg",
+      "https://static.wixstatic.com/media/52d217_ce63e06fcdb94141af1133aa09d39941~mv2.jpg",
+      "https://static.wixstatic.com/media/52d217_f75dd2b82a654c13adf780b1aea40ef5~mv2.jpg",
       "https://www.freihofetna.ch/"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 15.9,
+        "sourceUrl": "https://static.wixstatic.com/media/52d217_ce63e06fcdb94141af1133aa09d39941~mv2.jpg",
+        "observedAt": "2026-10-16T07:36:31.444355+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: Margherita Tomaten, Mozzarella, Oregano 15.90",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
   },
   "node/2509647639": {
-    "checkedAt": "2026-10-15T22:32:11.343054+00:00",
+    "checkedAt": "2026-10-16T07:30:21.711423+00:00",
     "status": "no_prices",
     "visited": [
       "https://janni.ch/"
@@ -27,7 +48,7 @@
     "candidates": []
   },
   "node/6819291454": {
-    "checkedAt": "2026-10-15T22:32:08.995965+00:00",
+    "checkedAt": "2026-10-16T07:30:17.990563+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://francospizza.ch/oerlikon/"
@@ -41,30 +62,69 @@
     "candidates": []
   },
   "node/386002566": {
-    "checkedAt": "2026-10-15T22:32:08.631317+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:30:12.757773+00:00",
+    "status": "prices_found",
     "visited": [
+      "https://static.wixstatic.com/media/3ce50d73792e4e4da83e128785a5899c.jpg",
+      "https://static.wixstatic.com/media/cc677961443f485481ad8cb7c8e809aa.jpg",
+      "https://static.wixstatic.com/media/nsplsh_db608cb590e24bb782ecd826b61e0c2b~mv2.jpg",
       "https://www.pizza-delsole.ch",
-      "https://www.pizza-delsole.ch/_files/ugd/be8807_88ce047acb2c4eb6a5046fd09c3b7293.pdf"
+      "https://www.pizza-delsole.ch/_files/ugd/be8807_88ce047acb2c4eb6a5046fd09c3b7293.pdf",
+      "https://www.pizza-delsole.ch/online-bestellen",
+      "https://www.pizza-delsole.ch/online-ordering"
     ],
-    "errors": [],
-    "candidates": []
+    "errors": [
+      {
+        "url": "https://static.wixstatic.com/media/cc677961443f485481ad8cb7c8e809aa.jpg",
+        "error": "response_too_large"
+      }
+    ],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 17.0,
+        "sourceUrl": "https://www.pizza-delsole.ch/online-ordering",
+        "observedAt": "2026-10-16T07:30:12.757773+00:00",
+        "confidence": "automatic",
+        "evidence": "Pizza Margherita Tomaten, Mozzarella, Oregano CHF 17.00",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/10779724980": {
-    "checkedAt": "2026-10-15T22:30:34.532492+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:21:20.607513+00:00",
+    "status": "prices_found",
     "visited": [
       "https://pizzabuona.ch",
+      "https://pizzabuona.ch/",
+      "https://pizzabuona.ch/#menu",
       "https://pizzabuona.ch/pizza-Birmensdorf",
       "https://pizzabuona.ch/pizza-ETH-H%C3%B6nggerberg",
       "https://pizzabuona.ch/pizza-H%C3%B6ngg",
       "https://pizzabuona.ch/pizza-Oberengstringen",
+      "https://pizzabuona.ch/pizza-Schlieren",
       "https://pizzabuona.ch/pizza-Uitikon-Waldegg",
       "https://pizzabuona.ch/pizza-Wiedikon",
       "https://pizzabuona.ch/pizza-Z%C3%BCrich"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 13.9,
+        "sourceUrl": "https://pizzabuona.ch",
+        "observedAt": "2026-10-16T07:21:20.607513+00:00",
+        "confidence": "automatic",
+        "evidence": "Pizza Margherita 33 cm Tomatensauce, Mozzarella, Oregano 13.90",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/2924593640": {
     "checkedAt": "2026-10-15T22:32:16.811621+00:00",
@@ -110,41 +170,87 @@
     "candidates": []
   },
   "node/475991816": {
-    "checkedAt": "2026-10-15T22:32:05.775783+00:00",
+    "checkedAt": "2026-10-16T07:30:06.011603+00:00",
     "status": "partial",
     "visited": [
       "https://60secondstonapoli.de/allergen-und-zusatzstoffkarte-specials/",
       "https://60secondstonapoli.de/menue/",
+      "https://60secondstonapoli.de/online-bestellen/",
       "https://60secondstonapoli.de/standort/essen/",
       "https://60secondstonapoli.de/standort/zuerich/",
+      "https://60secondstonapoli.de/wp-content/uploads/2024/04/vegetarisch.svg",
+      "https://60secondstonapoli.de/wp-content/uploads/2024/05/01_Burrata-mit-Bruschettatomaten-black-1024x569.jpg",
+      "https://60secondstonapoli.de/wp-content/uploads/2024/05/2.-Mixed-Antipasti.webp",
       "https://60secondstonapoli.de/wp-content/uploads/2024/05/Essen-Final-1-1024x576.webp",
+      "https://60secondstonapoli.de/wp-content/uploads/2024/05/Focaccia-Neu.webp",
+      "https://60secondstonapoli.de/wp-content/uploads/2024/06/Nutella-Pizza-1024x684.png",
+      "https://60secondstonapoli.de/wp-content/uploads/2024/06/Nutella-Pizza-scaled.png",
+      "https://60secondstonapoli.de/wp-content/uploads/2024/06/Trufflepasta-in-a-Pizza-Bowl-1024x576.png",
+      "https://60secondstonapoli.de/wp-content/uploads/2024/06/Trufflepasta-in-a-Pizza-Bowl.png",
+      "https://60secondstonapoli.de/wp-content/uploads/2025/09/Best-of-Burschetta.webp",
       "https://60secondstonapoli.de/wp-content/uploads/2025/12/60-Seconds-Speisekarte-Zuerich.pdf",
       "https://60secondstonapoli.de/wp-content/uploads/2026/05/60-StN-Pizza-Margharita-weboptimiert-01-1024x682.webp",
+      "https://60secondstonapoli.de/wp-content/uploads/2026/09/Pizza-Vitello-1024x1024.webp",
+      "https://60secondstonapoli.de/wp-content/uploads/2026/09/Pizza-Vitello.webp",
       "https://60secondstonapoli.de/zusatzstoff-und-allergenkarte-normale-karte/"
     ],
     "errors": [
       {
         "url": "https://60secondstonapoli.de/wp-content/uploads/2025/12/60-Seconds-Speisekarte-Zuerich.pdf",
         "error": "http_404"
+      },
+      {
+        "url": "https://60secondstonapoli.de/wp-content/uploads/2024/04/vegetarisch.svg",
+        "error": "UnidentifiedImageError"
       }
     ],
     "candidates": []
   },
   "node/9703112521": {
-    "checkedAt": "2026-10-15T22:30:34.532668+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:21:55.944675+00:00",
+    "status": "prices_found",
     "visited": [
       "https://pizzabinz.ch/",
+      "https://pizzabinz.ch/bestellen/pizza",
+      "https://pizzabinz.ch/bestellen/pizza/",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/Margherita-1-e1729097593604.jpg",
       "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/PizzaBinz01.jpg",
       "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/PizzaBinz03.jpg",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/PizzaBinz06.jpg",
       "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/PizzaBinz07.jpg",
       "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/PizzaBinz08.jpg",
       "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/PizzaBinz09.jpg",
       "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/PizzaBinz10.jpg",
-      "https://pizzabinz.ch/wp-content/uploads/sites/21/yootheme/cache/fd/logo-pizzabinz-fd6af938.png"
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/Prosciutto-carciofi.Pizza-Binz-1-scaled.jpg",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/Prosciutto-carciofi.Pizza-Binz-scaled-e1676119830954.jpg",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/Vegetariana.Pizza-Binz-scaled-e1676120412348.jpg",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2022/01/Pizza-Caprese-1.jpg",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2022/01/Pizza-Caprese.jpg",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2022/01/Pizza-Rucola-1.jpg",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2022/01/Pizza-Rucola.jpg",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2022/01/Wunsch-Pizza-1.jpg",
+      "https://pizzabinz.ch/wp-content/uploads/sites/21/2022/01/Wunsch-Pizza.jpg"
     ],
-    "errors": [],
-    "candidates": []
+    "errors": [
+      {
+        "url": "https://pizzabinz.ch/wp-content/uploads/sites/21/2021/02/Margherita-1-e1729097593604.jpg",
+        "error": "not_in_archive"
+      }
+    ],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 15.0,
+        "sourceUrl": "https://pizzabinz.ch/bestellen/pizza/",
+        "observedAt": "2026-10-16T07:21:27.354527+00:00",
+        "confidence": "automatic",
+        "evidence": "Pizza Margherita CHF 15.00",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/1360231903": {
     "checkedAt": "2026-10-15T22:32:15.447793+00:00",
@@ -159,12 +265,20 @@
     "candidates": []
   },
   "node/8786108318": {
-    "checkedAt": "2026-10-15T22:32:20.491209+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:36:31.444443+00:00",
+    "status": "partial",
     "visited": [
-      "https://pizzanation.ch/"
+      "https://cdn.shopify.com/s/files/1/0513/0010/6398/files/MENU2025.1.png?v=1762506170",
+      "https://cdn.shopify.com/s/files/1/0513/0010/6398/files/MENU2025.5.png?v=1762506333",
+      "https://pizzanation.ch/",
+      "https://pizzanation.ch/pages/menu"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0513/0010/6398/files/MENU2025.1.png?v=1762506170",
+        "error": "http_404"
+      }
+    ],
     "candidates": []
   },
   "node/1588996926": {
@@ -179,9 +293,15 @@
     "candidates": []
   },
   "node/3689198434": {
-    "checkedAt": "2026-10-15T22:32:11.417482+00:00",
+    "checkedAt": "2026-10-16T07:30:22.047616+00:00",
     "status": "no_prices",
     "visited": [
+      "https://nicsell.com/de/domain/foerstersfeinebiere.de",
+      "https://nicsell.com/en/domain/foerstersfeinebiere.de",
+      "https://nicsell.com/es/domain/foerstersfeinebiere.de",
+      "https://nicsell.com/fr/domain/foerstersfeinebiere.de",
+      "https://nicsell.com/it/domain/foerstersfeinebiere.de",
+      "https://nicsell.com/nl/domain/foerstersfeinebiere.de",
       "https://www.lapiccolatrattoria.ch/"
     ],
     "errors": [],
@@ -204,16 +324,29 @@
     "candidates": []
   },
   "node/9666216541": {
-    "checkedAt": "2026-10-15T22:30:34.532952+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:29:03.928850+00:00",
+    "status": "prices_found",
     "visited": [
       "https://www.pizzeria-felice.ch/"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 18.0,
+        "sourceUrl": "https://www.pizzeria-felice.ch/",
+        "observedAt": "2026-10-16T07:29:03.928850+00:00",
+        "confidence": "automatic",
+        "evidence": "Pizza Margherita Tomatensauce, Mozzarella 18,00 CHF",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/1240180975": {
-    "checkedAt": "2026-10-15T22:30:34.533060+00:00",
+    "checkedAt": "2026-10-16T07:29:03.928948+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.restaurant-milano.ch/"
@@ -227,19 +360,33 @@
     "candidates": []
   },
   "node/1828352894": {
-    "checkedAt": "2026-10-15T22:30:34.532829+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:29:03.928779+00:00",
+    "status": "prices_found",
     "visited": [
       "https://pizza-pirata.ch/",
+      "https://pizza-pirata.ch/bestellungen/",
       "https://pizza-pirata.ch/bier/",
       "https://pizza-pirata.ch/getr%c3%a4nke/",
+      "https://pizza-pirata.ch/online-bestellung/",
       "https://pizza-pirata.ch/pizza/",
       "https://pizza-pirata.ch/wp-content/uploads/2019/01/bier.jpg",
-      "https://pizza-pirata.ch/wp-content/uploads/2019/01/logo.jpg",
       "https://pizza-pirata.ch/wp-content/uploads/2019/01/pizza-64.png"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 16.0,
+        "sourceUrl": "https://pizza-pirata.ch/pizza/",
+        "observedAt": "2026-10-16T07:29:03.928779+00:00",
+        "confidence": "automatic",
+        "evidence": "Pizza Margherita 32cm Tomaten, Mozzarella, Oregano 16,00",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/5113146557": {
     "checkedAt": "2026-10-15T22:31:56.294788+00:00",
@@ -287,17 +434,19 @@
     ]
   },
   "node/4833061566": {
-    "checkedAt": "2026-10-15T22:30:34.532586+00:00",
+    "checkedAt": "2026-10-16T07:29:03.928692+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.pimp-your-pizza.ch/",
       "https://www.pimp-your-pizza.ch/en/product-category/italienische-pizza-en/",
       "https://www.pimp-your-pizza.ch/en/product-category/pimp-your-pizza-en/",
       "https://www.pimp-your-pizza.ch/en/product-category/pizza-mit-veganem-kaese-en/",
+      "https://www.pimp-your-pizza.ch/produkt-kategorie/alkoholfreie-getraenke/",
+      "https://www.pimp-your-pizza.ch/produkt-kategorie/alkoholische-getraenke/",
       "https://www.pimp-your-pizza.ch/produkt-kategorie/italienische-pizza/",
       "https://www.pimp-your-pizza.ch/produkt-kategorie/pimp-your-pizza/",
       "https://www.pimp-your-pizza.ch/produkt-kategorie/pizza-mit-veganem-kaese/",
-      "https://www.pimp-your-pizza.ch/wp-content/uploads/2022/02/pimg-your-pizza-logo.png"
+      "https://www.pimp-your-pizza.ch/wp-content/plugins/product-extras-for-woocommerce/assets/images/remove.png"
     ],
     "errors": [],
     "candidates": []
@@ -325,7 +474,7 @@
     ]
   },
   "node/552932425": {
-    "checkedAt": "2026-10-15T22:30:51.740840+00:00",
+    "checkedAt": "2026-10-16T07:29:03.929049+00:00",
     "status": "no_prices",
     "visited": [
       "https://pizzeriaveneziana.ch/",
@@ -377,23 +526,48 @@
     "candidates": []
   },
   "node/8262559375": {
-    "checkedAt": "2026-10-15T22:30:50.297546+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:21:21.813749+00:00",
+    "status": "prices_found",
     "visited": [
       "https://venice-pizza.ch",
       "https://venice-pizza.ch/pizza-Affoltern",
+      "https://venice-pizza.ch/pizza-Buchs",
+      "https://venice-pizza.ch/pizza-D%C3%A4llikon",
+      "https://venice-pizza.ch/pizza-D%C3%A4nikon",
       "https://venice-pizza.ch/pizza-D%C3%BCbendorf",
+      "https://venice-pizza.ch/pizza-Niederglatt",
+      "https://venice-pizza.ch/pizza-Niederhasli",
       "https://venice-pizza.ch/pizza-Oberengstringen",
+      "https://venice-pizza.ch/pizza-Oberglatt",
+      "https://venice-pizza.ch/pizza-Oberhasli",
+      "https://venice-pizza.ch/pizza-Opfikon",
       "https://venice-pizza.ch/pizza-Orlikon",
+      "https://venice-pizza.ch/pizza-R%C3%BCmlang",
+      "https://venice-pizza.ch/pizza-Regensdorf",
       "https://venice-pizza.ch/pizza-Seebach",
+      "https://venice-pizza.ch/pizza-Unterengstringen",
+      "https://venice-pizza.ch/pizza-Weiningen",
       "https://venice-pizza.ch/pizza-Wipkingen",
       "https://venice-pizza.ch/pizza-Z%C3%BCrich"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 12.0,
+        "sourceUrl": "https://venice-pizza.ch",
+        "observedAt": "2026-10-16T07:21:21.813749+00:00",
+        "confidence": "automatic",
+        "evidence": "Pizza Margherita 32cm Tomatensauce, Mozzarella 12.00",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/252407018": {
-    "checkedAt": "2026-10-15T22:31:02.540670+00:00",
+    "checkedAt": "2026-10-16T07:29:03.929162+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.culmann.ch/"
@@ -463,9 +637,23 @@
     ]
   },
   "node/1491966830": {
-    "checkedAt": "2026-10-15T22:31:04.872490+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:36:31.443692+00:00",
+    "status": "prices_found",
     "visited": [
+      "https://static.wixstatic.com/media/2bf470_1c276e2465624ff09bbd9aa8940ade67.png",
+      "https://static.wixstatic.com/media/2bf470_1d7b24dd6e1f49b1a0d5103206ee32e4.png",
+      "https://static.wixstatic.com/media/2bf470_1fb409616a7344a5895bdc0e50dfa570.png",
+      "https://static.wixstatic.com/media/2bf470_2395e576dc38307bcfe5da68ef4b2dbe.png",
+      "https://static.wixstatic.com/media/2bf470_258d806b690937be0d110b47100a0e65.png",
+      "https://static.wixstatic.com/media/2bf470_3a2c028e6c0848cbbf05ac3d23f872a8.png",
+      "https://static.wixstatic.com/media/2bf470_7f453d865d33408e9f2c597461b958f7.png",
+      "https://static.wixstatic.com/media/2bf470_87565401d993065602617322fc564958.png",
+      "https://static.wixstatic.com/media/2bf470_88cf8cd9bc9e082b5732e6a8985d5aa9.png",
+      "https://static.wixstatic.com/media/2bf470_8f7113119ce446a1a3afe2861edbd3ca.png",
+      "https://static.wixstatic.com/media/2bf470_d3da25b07e366452e92f66eecc7f4fb4.png",
+      "https://static.wixstatic.com/media/2bf470_d94c332a77be4c5bb35d40f0677ee38e.png",
+      "https://static.wixstatic.com/media/2bf470_e9f4aa299865467b999d6bd66dc826f0.png",
+      "https://static.wixstatic.com/media/2bf470_f7b51031dde4deed19d0e7ec78a15b38.png",
       "https://www.ristorante-99.ch/",
       "https://www.ristorante-99.ch/antipasti--insalate--vorspeisen",
       "https://www.ristorante-99.ch/dienstleistungen",
@@ -473,7 +661,20 @@
       "https://www.ristorante-99.ch/pizza-bild"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 16.8,
+        "sourceUrl": "https://static.wixstatic.com/media/2bf470_e9f4aa299865467b999d6bd66dc826f0.png",
+        "observedAt": "2026-10-16T07:36:31.443692+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: Margherita Tomaten, Mozzarella, Basilikum 16.80",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
   },
   "node/2465121289": {
     "checkedAt": "2026-10-15T22:31:15.611862+00:00",
@@ -514,15 +715,27 @@
     "candidates": []
   },
   "node/3725397475": {
-    "checkedAt": "2026-10-15T22:31:05.721697+00:00",
+    "checkedAt": "2026-10-16T07:29:05.179647+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.ristorante-pizzeria-daenzo.ch/",
+      "https://www.ristorante-pizzeria-daenzo.ch/images/1.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/images/2.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/images/3.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/images/logo.png",
       "https://www.ristorante-pizzeria-daenzo.ch/images/menu.png",
+      "https://www.ristorante-pizzeria-daenzo.ch/images/s3.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/images/s4.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/images/s7.jpg",
       "https://www.ristorante-pizzeria-daenzo.ch/images/speisekarte.jpg",
       "https://www.ristorante-pizzeria-daenzo.ch/menu/menu_1.jpg",
       "https://www.ristorante-pizzeria-daenzo.ch/menu/menu_2.jpg",
       "https://www.ristorante-pizzeria-daenzo.ch/menu/menu_3.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/menu/menu_4.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/menu/menu_5.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/menu/menu_6.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/menu/menu_7.jpg",
+      "https://www.ristorante-pizzeria-daenzo.ch/menu/menu_8.jpg",
       "https://www.ristorante-pizzeria-daenzo.ch/menu/sommerkarte.jpg",
       "https://www.ristorante-pizzeria-daenzo.ch/speisekarte.html"
     ],
@@ -556,23 +769,35 @@
     ]
   },
   "node/848938990": {
-    "checkedAt": "2026-10-15T22:31:19.238984+00:00",
+    "checkedAt": "2026-10-16T07:29:05.717736+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.so.pizza/",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Fig-3.webp&w=1080&q=70",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Fig-3.webp&w=828&q=70",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Fig-5.webp&w=828&q=70",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Fig-8.webp&w=828&q=70",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Fig-9.webp&w=828&q=70",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Foven.jpg&w=1080&q=70",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Foven.jpg&w=1200&q=70",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Froom-1.jpg&w=828&q=70",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Froom-2.jpg&w=828&q=70",
+      "https://www.so.pizza/_next/image?url=%2Fso-pizza%2Froom-3.jpg&w=828&q=70",
       "https://www.so.pizza/so-pizza/award-2021.jpg",
       "https://www.so.pizza/so-pizza/award-2022.jpg",
       "https://www.so.pizza/so-pizza/award-2024.jpg",
+      "https://www.so.pizza/so-pizza/ig-1.webp",
       "https://www.so.pizza/so-pizza/ig-2.webp",
       "https://www.so.pizza/so-pizza/ig-4.webp",
       "https://www.so.pizza/so-pizza/ig-6.webp",
-      "https://www.so.pizza/so-pizza/logo-black.svg"
+      "https://www.so.pizza/so-pizza/ig-7.webp",
+      "https://www.so.pizza/so-pizza/ig-9.webp"
     ],
     "errors": [],
     "candidates": []
   },
   "node/2281350139": {
-    "checkedAt": "2026-10-15T22:31:27.988814+00:00",
+    "checkedAt": "2026-10-16T07:29:16.521647+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.yoyo-pizza.ch/"
@@ -591,9 +816,10 @@
     "candidates": []
   },
   "node/283458331": {
-    "checkedAt": "2026-10-15T22:31:29.519792+00:00",
+    "checkedAt": "2026-10-16T07:29:17.861728+00:00",
     "status": "no_prices",
     "visited": [
+      "https://samspizza.ch/schweizergasse/",
       "https://samspizza.ch/wp-content/uploads/2025/12/2512_SAMS-Speise-Gertankekarte-Ende-2025-1.pdf",
       "https://www.samspizza.ch/"
     ],
@@ -601,20 +827,50 @@
     "candidates": []
   },
   "node/14170149101": {
-    "checkedAt": "2026-10-15T22:31:19.653587+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:36:31.444239+00:00",
+    "status": "prices_found",
     "visited": [
       "https://www.spizzati.ch",
       "https://www.spizzati.ch/product-category/pizzas/",
       "https://www.spizzati.ch/product-category/pizzas/pizza-mit-creme/",
       "https://www.spizzati.ch/product-category/pizzas/pizza/",
+      "https://www.spizzati.ch/product-category/pizzas/pizza/page/2/",
+      "https://www.spizzati.ch/product-category/pizzas/pizza/page/3/",
       "https://www.spizzati.ch/product-category/speisen/",
+      "https://www.spizzati.ch/product-category/speisen/page/2/",
       "https://www.spizzati.ch/product-category/speisen/pasta/",
       "https://www.spizzati.ch/product-category/speisen/piadina/",
-      "https://www.spizzati.ch/product-category/speisen/salat/"
+      "https://www.spizzati.ch/product-category/speisen/salat/",
+      "https://www.spizzati.ch/product/spizzati/",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/Spizzati-Pizza-Boscaiola2.png",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/Spizzati-Pizza-calzone.png",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/Spizzati-Pizza-capricciosa-300x260.png",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/Spizzati-Pizza-contadina-300x260.png",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/Spizzati-Pizza-diavola-300x260.png",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/Spizzati-Pizza-fruti-di-mare-300x260.png",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/Spizzati-Pizza-napoli-300x260.png",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/pizza_hawaii-300x300.jpg",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/pizza_margherita-300x300.jpg",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/pizza_padrone-300x300.jpg",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/pizza_parmigiana-1-300x300.jpg",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/pizza_pollo-300x300.jpg",
+      "https://www.spizzati.ch/wp-content/uploads/2020/01/pizza_primavera-300x300.jpg"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 16.0,
+        "sourceUrl": "https://www.spizzati.ch/product-category/pizzas/",
+        "observedAt": "2026-10-16T07:36:31.444239+00:00",
+        "confidence": "automatic",
+        "evidence": "Margherita 32 cm Tomaten, Mozzarella, Oregano CHF16.00",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/2904476133": {
     "checkedAt": "2026-10-15T22:33:27.361721+00:00",
@@ -807,7 +1063,7 @@
     "candidates": []
   },
   "node/613673924": {
-    "checkedAt": "2026-10-15T22:33:42.144744+00:00",
+    "checkedAt": "2026-10-16T07:30:43.583130+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://akaras.ch/"
@@ -835,17 +1091,29 @@
     "candidates": []
   },
   "node/266630290": {
-    "checkedAt": "2026-10-15T22:30:34.532746+00:00",
+    "checkedAt": "2026-10-16T07:29:03.927962+00:00",
     "status": "no_prices",
     "visited": [
       "https://pizzacasa.ch/",
       "https://pizzacasa.ch/product-category/pizzas/",
       "https://pizzacasa.ch/product/pizza-arrabbiata/",
-      "https://pizzacasa.ch/product/pizza-pollo/",
-      "https://pizzacasa.ch/product/pizza-romana/",
-      "https://pizzacasa.ch/product/pizza-rustica/",
+      "https://pizzacasa.ch/product/pizza-capricciosa/",
+      "https://pizzacasa.ch/product/pizza-diavola/",
+      "https://pizzacasa.ch/product/pizza-fiorentina/",
+      "https://pizzacasa.ch/product/pizza-funghi/",
+      "https://pizzacasa.ch/product/pizza-giardiniera/",
+      "https://pizzacasa.ch/product/pizza-gorgonzola/",
+      "https://pizzacasa.ch/product/pizza-hawaii/",
+      "https://pizzacasa.ch/product/pizza-marinara/",
+      "https://pizzacasa.ch/product/pizza-napoli/",
+      "https://pizzacasa.ch/product/pizza-padrone/",
+      "https://pizzacasa.ch/product/pizza-prosciutto-e-funghi/",
+      "https://pizzacasa.ch/product/pizza-prosciutto/",
+      "https://pizzacasa.ch/product/pizza-quattro-formaggi/",
+      "https://pizzacasa.ch/product/pizza-salami/",
       "https://pizzacasa.ch/product/pizza-siciliana/",
-      "https://pizzacasa.ch/produkte/"
+      "https://pizzacasa.ch/product/pizza-tonno/",
+      "https://pizzacasa.ch/product/pizza-vegetariana/"
     ],
     "errors": [],
     "candidates": []
@@ -896,11 +1164,28 @@
     "candidates": []
   },
   "node/13028181701": {
-    "checkedAt": "2026-10-15T22:33:43.657935+00:00",
+    "checkedAt": "2026-10-16T07:30:44.054559+00:00",
     "status": "no_prices",
     "visited": [
-      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2023/01/logo-full-allegrezza.svg",
-      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2023/01/symbol-allegrezza.svg",
+      "https://pizza-allegrezza.ch/bestellen/pizza-glutenfrei/",
+      "https://pizza-allegrezza.ch/bestellen/pizza/",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/aglio_mrpizza-1-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/aglio_mrpizza-2-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/caserreccia_vegi_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/cipolla_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/diavola_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/funghi_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/gorgonzola_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/hawaii_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/margeritha-mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/paesana_vegi_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/porcini_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/prosciutto_e_funghi_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/proscuito_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/quatro_stagiioni_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/quattro_formaggi_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/rucola_mrpizza-1-1-1-1.png",
+      "https://pizza-allegrezza.ch/wp-content/uploads/sites/50/2025/04/salami_mrpizza-1-1-1-1.png",
       "https://www.pizza-allegrezza.ch/"
     ],
     "errors": [],
@@ -1163,11 +1448,12 @@
     "candidates": []
   },
   "node/14019839153": {
-    "checkedAt": "2026-10-15T22:33:45.880745+00:00",
+    "checkedAt": "2026-10-16T07:30:45.076932+00:00",
     "status": "no_prices",
     "visited": [
       "https://allegrotto-zurich.ch/",
-      "https://allegrotto-zurich.ch/wp-content/uploads/2025/12/drink.png"
+      "https://allegrotto-zurich.ch/wp-content/uploads/2025/12/drink.png",
+      "https://allegrotto-zurich.ch/wp-content/uploads/2025/12/order.png"
     ],
     "errors": [],
     "candidates": []
@@ -1225,7 +1511,7 @@
     ]
   },
   "node/2348674695": {
-    "checkedAt": "2026-10-15T22:31:22.312843+00:00",
+    "checkedAt": "2026-10-16T07:29:13.382906+00:00",
     "status": "no_prices",
     "visited": [
       "https://trattoriaemilia.ch",
@@ -1234,7 +1520,12 @@
       "https://trattoriaemilia.ch/le-nostre-paste-risotti/",
       "https://trattoriaemilia.ch/le-nostre-pesci-carne/",
       "https://trattoriaemilia.ch/pizza-aus-dem-holzofen/",
-      "https://trattoriaemilia.ch/wp-content/plugins/revslider/public/assets/assets/dummy.png"
+      "https://trattoriaemilia.ch/wp-content/plugins/revslider/public/assets/assets/dummy.png",
+      "https://trattoriaemilia.ch/wp-content/uploads/2020/04/rest6-slider-slide22.jpg",
+      "https://trattoriaemilia.ch/wp-content/uploads/2026/09/restaurant_pizzeria_emilia_antipasti.webp",
+      "https://trattoriaemilia.ch/wp-content/uploads/2026/09/restaurant_pizzeria_emilia_antipasti_le_noster_pasta_risotti.webp",
+      "https://trattoriaemilia.ch/wp-content/uploads/2026/09/restaurant_pizzeria_emilia_pesci_carne.webp",
+      "https://trattoriaemilia.ch/wp-content/uploads/2026/09/restaurant_pizzeria_emilia_pizza.webp"
     ],
     "errors": [],
     "candidates": []
@@ -2073,9 +2364,19 @@
     "candidates": []
   },
   "node/10638716073": {
-    "checkedAt": "2026-10-15T22:35:03.842236+00:00",
+    "checkedAt": "2026-10-16T07:30:48.726025+00:00",
     "status": "no_prices",
     "visited": [
+      "https://static.wixstatic.com/media/99278d_1630bb86ab3a40cab3cf40bb28338eec~mv2.png",
+      "https://static.wixstatic.com/media/99278d_2c04a9575163428487e4bdad7a91e389~mv2.jpg",
+      "https://static.wixstatic.com/media/99278d_48dbab4ba9ea41d3bdbb968f9fe179e1~mv2.png",
+      "https://static.wixstatic.com/media/99278d_6034e79badf5468b8ddbefdf08eaad13~mv2.png",
+      "https://static.wixstatic.com/media/99278d_6f20524aefa448caaae974cb1479f382~mv2.jpg",
+      "https://static.wixstatic.com/media/99278d_b608638d0af641d7afb9fa611654f8ec~mv2.png",
+      "https://static.wixstatic.com/media/99278d_c1a2478d3e294b6f8dd6790ec83955b5~mv2.jpg",
+      "https://static.wixstatic.com/media/99278d_e61723587509445eac20d9c7732f7dc3~mv2.png",
+      "https://static.wixstatic.com/media/99278d_f32214fb46ba49b2b5078c92c8844d2e~mv2.jpg",
+      "https://static.wixstatic.com/media/99278d_fb6ec8cf282241b4be7802822cbdc86d~mv2.jpg",
       "https://www.butegar.ch",
       "https://www.butegar.ch/bottega",
       "https://www.butegar.ch/menubutegar",
@@ -2684,14 +2985,85 @@
     "candidates": []
   },
   "node/4377444852": {
-    "checkedAt": "2026-10-15T22:36:23.186112+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:30:49.775933+00:00",
+    "status": "prices_found",
     "visited": [
       "https://daamici2.ch",
-      "https://daamici2.ch/menu/"
+      "https://daamici2.ch/menu/",
+      "https://daamici2.ch/static/payment/card_american_express.787b7bd7e3dd.svg",
+      "https://daamici2.ch/static/payment/card_apple_pay.e4f4b0e377a6.svg",
+      "https://daamici2.ch/static/payment/card_diners_club.23b4e4c181f6.svg",
+      "https://daamici2.ch/static/payment/card_discover.f8956ea5a657.svg",
+      "https://daamici2.ch/static/payment/card_google_pay.f9f2d4491046.svg",
+      "https://daamici2.ch/static/payment/card_mastercard.0db10c292680.svg",
+      "https://daamici2.ch/static/payment/card_postfinance_pay.9fa06c12d655.svg",
+      "https://daamici2.ch/static/payment/card_samsung_pay.dd0bb3535020.svg",
+      "https://daamici2.ch/static/payment/card_twint.6a77581c1355.svg",
+      "https://daamici2.ch/static/payment/card_visa.f19ecec2f65e.svg",
+      "https://static.webstaurantcdn.ch/cache/00/48/0048a2417828f5840ba1a7402026be90.jpg",
+      "https://static.webstaurantcdn.ch/cache/1f/e1/1fe12b2e5c7cd3cfe469a6ba877d2feb.jpg",
+      "https://static.webstaurantcdn.ch/cache/46/4d/464db0b8cf2436017a3a25e9535141e8.jpg",
+      "https://static.webstaurantcdn.ch/cache/4e/d4/4ed456d875ddf04e31714e959c13a607.jpg",
+      "https://static.webstaurantcdn.ch/cache/e3/76/e3760414f8e1e66a13e1bf49621d2376.jpg",
+      "https://static.webstaurantcdn.ch/cache/f6/ff/f6ffbf2ff6a0fa82cdf86a8d7a4f52ef.jpg",
+      "https://static.webstaurantcdn.ch/cache/fa/d3/fad3c406d74a5359655f9e3cd82b058c.jpg"
     ],
-    "errors": [],
-    "candidates": []
+    "errors": [
+      {
+        "url": "https://daamici2.ch/static/payment/card_twint.6a77581c1355.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://daamici2.ch/static/payment/card_mastercard.0db10c292680.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://daamici2.ch/static/payment/card_visa.f19ecec2f65e.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://daamici2.ch/static/payment/card_american_express.787b7bd7e3dd.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://daamici2.ch/static/payment/card_discover.f8956ea5a657.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://daamici2.ch/static/payment/card_diners_club.23b4e4c181f6.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://daamici2.ch/static/payment/card_apple_pay.e4f4b0e377a6.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://daamici2.ch/static/payment/card_google_pay.f9f2d4491046.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://daamici2.ch/static/payment/card_samsung_pay.dd0bb3535020.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://daamici2.ch/static/payment/card_postfinance_pay.9fa06c12d655.svg",
+        "error": "UnidentifiedImageError"
+      }
+    ],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 15.0,
+        "sourceUrl": "https://daamici2.ch/menu/",
+        "observedAt": "2026-10-16T07:30:49.775933+00:00",
+        "confidence": "automatic",
+        "evidence": "Pizza Margherita Ø32cm CHF 15.00",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/2710664809": {
     "checkedAt": "2026-10-15T22:36:22.422432+00:00",
@@ -2732,8 +3104,8 @@
     "candidates": []
   },
   "node/3110688142": {
-    "checkedAt": "2026-10-15T22:36:29.606263+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:30:58.575319+00:00",
+    "status": "prices_found",
     "visited": [
       "https://www.da-michelangelo.ch/",
       "https://www.da-michelangelo.ch/Dessertkarte.pdf",
@@ -2742,10 +3114,28 @@
       "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-menue-1.jpg",
       "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-menue-2.jpg",
       "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-menue-3.jpg",
-      "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-menue-6.jpg"
+      "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-menue-4.jpg",
+      "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-menue-5.jpg",
+      "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-menue-6.jpg",
+      "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-menue-7.jpg",
+      "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-pizza-1.jpg",
+      "https://www.da-michelangelo.ch/phpthumbsup/w/500/q/50/src/assets/files/img/slider/da-michelangelo-pizza-2.jpg"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 18.0,
+        "sourceUrl": "https://www.da-michelangelo.ch/Speisekarte.pdf",
+        "observedAt": "2026-10-16T07:30:58.575319+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 5: MARGHERITA TOMATENSAUCE, MOZZARELLA, OREGANO 18.00",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
   },
   "node/370834639": {
     "checkedAt": "2026-10-15T22:36:34.467129+00:00",
@@ -2912,11 +3302,10 @@
     "candidates": []
   },
   "node/315861625": {
-    "checkedAt": "2026-10-15T22:36:49.713783+00:00",
+    "checkedAt": "2026-10-16T07:30:59.659329+00:00",
     "status": "no_prices",
     "visited": [
-      "https://pizzaderby.ch/",
-      "https://pizzaderby.ch/media/derby_logo_mit-pizza.png"
+      "https://pizzaderby.ch/"
     ],
     "errors": [],
     "candidates": []
@@ -2997,7 +3386,7 @@
     "candidates": []
   },
   "node/2232079982": {
-    "checkedAt": "2026-10-15T22:36:52.790789+00:00",
+    "checkedAt": "2026-10-16T07:31:01.519898+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://dimama.ch/"
@@ -3041,7 +3430,7 @@
     "candidates": []
   },
   "node/5652355503": {
-    "checkedAt": "2026-10-15T22:37:03.363727+00:00",
+    "checkedAt": "2026-10-16T07:31:01.542480+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.ecke-west-zurich.ch/"
@@ -3342,9 +3731,15 @@
     "candidates": []
   },
   "node/1639345927": {
-    "checkedAt": "2026-10-15T22:37:18.702280+00:00",
+    "checkedAt": "2026-10-16T07:31:01.557081+00:00",
     "status": "no_prices",
     "visited": [
+      "https://deliverect.imgix.net/static/9fdc2931-7fba-456a-a1cc-6fe3ae3ad2ed/assets/image-1758879210.png",
+      "https://deliverect.imgix.net/static/9fdc2931-7fba-456a-a1cc-6fe3ae3ad2ed/assets/image-1758879210.png?h=100&auto=compress,format&cs=srgb",
+      "https://images.squarespace-cdn.com/content/v1/68d020c32ea53f7a0c27b78b/47494063-48af-4ca1-914f-b1187cd508c6/insegna+horiz+red.png?format=1500w",
+      "https://images.squarespace-cdn.com/content/v1/68d020c32ea53f7a0c27b78b/e1254d11-a6d6-4635-a1ac-42737d609aca/pizza+table+filo+wipkingen.jpg",
+      "https://order.filopizza.ch",
+      "https://order.filopizza.ch/",
       "https://www.filopizza.ch/"
     ],
     "errors": [],
@@ -3440,7 +3835,7 @@
     "candidates": []
   },
   "node/565524652": {
-    "checkedAt": "2026-10-15T22:37:26.634229+00:00",
+    "checkedAt": "2026-10-16T07:31:07.177611+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.fresh-orient.ch/"
@@ -3560,17 +3955,20 @@
     "candidates": []
   },
   "node/105443906": {
-    "checkedAt": "2026-10-15T22:37:31.935576+00:00",
+    "checkedAt": "2026-10-16T07:31:08.524671+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.gabbiano-exp.ch/",
+      "https://www.gabbiano-exp.ch/bestellen",
+      "https://www.gabbiano-exp.ch/images/pizza-detail.jpg",
       "https://www.gabbiano-exp.ch/images/pizza-hero.jpg",
       "https://www.gabbiano-exp.ch/menus/fleisch.pdf",
       "https://www.gabbiano-exp.ch/menus/getraenke.pdf",
       "https://www.gabbiano-exp.ch/menus/pasta.pdf",
       "https://www.gabbiano-exp.ch/menus/risotto.pdf",
       "https://www.gabbiano-exp.ch/menus/salate.pdf",
-      "https://www.gabbiano-exp.ch/speisekarte"
+      "https://www.gabbiano-exp.ch/speisekarte",
+      "https://www.google.ch/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjG4buZu8zVAhWLh7QKHUp3CdgQFghgMAI&url=https%3A%2F%2Fde.wikipedia.org%2Fwiki%2FSirup&usg=AFQjCNF-gpHeUHQEPOHR_F61jKN0_poB-w"
     ],
     "errors": [],
     "candidates": []
@@ -3662,19 +4060,40 @@
     "candidates": []
   },
   "node/307742573": {
-    "checkedAt": "2026-10-15T22:37:31.410070+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:31:07.190271+00:00",
+    "status": "partial",
     "visited": [
       "https://fusio.ch/oerlikon/",
       "https://fusio.ch/oerlikon/menu/",
       "https://fusio.ch/oerlikon/menu/getraenke/bier/",
+      "https://fusio.ch/oerlikon/menu/getraenke/cocktails/kategorien/",
+      "https://fusio.ch/oerlikon/menu/getraenke/cocktails/kategorien/aperitivo/",
+      "https://fusio.ch/oerlikon/menu/getraenke/cocktails/kategorien/dessert/",
+      "https://fusio.ch/oerlikon/menu/getraenke/cocktails/kategorien/mocktails/",
+      "https://fusio.ch/oerlikon/menu/getraenke/cocktails/kategorien/negroni-bar/",
+      "https://fusio.ch/oerlikon/menu/getraenke/cocktails/kategorien/signatures/",
       "https://fusio.ch/oerlikon/menu/getraenke/gt-spirituosen/",
       "https://fusio.ch/oerlikon/menu/getraenke/heise-kalte-getraenke/",
       "https://fusio.ch/oerlikon/menu/getraenke/wein/",
       "https://fusio.ch/oerlikon/menu/speisen/antipasti/",
-      "https://fusio.ch/oerlikon/menu/speisen/pasta/"
+      "https://fusio.ch/oerlikon/menu/speisen/bowl/",
+      "https://fusio.ch/oerlikon/menu/speisen/desserts/",
+      "https://fusio.ch/oerlikon/menu/speisen/pasta/",
+      "https://fusio.ch/oerlikon/menu/speisen/pizza/",
+      "https://fusio.ch/wp-content/uploads/2024/10/ESSENZA-DI-VENUS-TOSCANA-IGT-TENIMENTI-RUFFINO_rose_25.webp",
+      "https://fusio.ch/wp-content/uploads/2024/10/anspruchsvoller-Essensbegleiter_bubble.svg",
+      "https://fusio.ch/wp-content/uploads/2024/10/guter-Essensbegleiter_bubble_1.svg"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://fusio.ch/wp-content/uploads/2024/10/guter-Essensbegleiter_bubble_1.svg",
+        "error": "UnidentifiedImageError"
+      },
+      {
+        "url": "https://fusio.ch/wp-content/uploads/2024/10/anspruchsvoller-Essensbegleiter_bubble.svg",
+        "error": "UnidentifiedImageError"
+      }
+    ],
     "candidates": []
   },
   "node/1817263418": {
@@ -4435,14 +4854,105 @@
     "candidates": []
   },
   "node/11898794623": {
-    "checkedAt": "2026-10-15T22:38:50.360463+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:37:48.051091+00:00",
+    "status": "prices_found",
     "visited": [
+      "https://static.wixstatic.com/media/9cc232f4c60746dc92321fedec48c69c.jpg",
+      "https://static.wixstatic.com/media/ac2d87_48fbb8e7740f47e69ce550dc7573afed~mv2.jpg",
+      "https://static.wixstatic.com/media/ac2d87_97b6881ca4a648898916456002c8645f~mv2.jpg",
+      "https://static.wixstatic.com/media/ac2d87_a39d42a7254247539a1071de697c24c5~mv2.jpg",
+      "https://static.wixstatic.com/media/ac2d87_cec77658447446b78be3373e6c814d5d~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_12faba51cabb428492abddab3458c66c~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_1690f9e0adff4f1aa824098f0105bc4f~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_192b6bd35f4349038059f3ae85c4dcec~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_203a43a75f384c3d9b3ffe9642e1a009~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_293bded2b18747618acc3e55d23ebeca~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_3167fab86a87474d833716d95d2dbfdb~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_34ea36ae4c8e41c98fabf4d19ee4507e~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_40395c65c017489db418f0fb4254b5ab~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_462738d39d834de5b00184b7049fa4a2~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_699bac5b032145e58160e00416188652~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_6a6a9ef38f494cfc8c7591c1efa4ef8e~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_735c206b27a545be99a2dbdaf692131f~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_7dad4f16d1014709955516efb7ea4422~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_843c18e120f643eab4e513e10441fd5c~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_8c4e6ea5dd9d489c9eabd8d3d804db3d~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_9552d0f70e9b4be1adcdcd51bc8fe363~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_994f255c64734c97a6fa88922c9c4063~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_9d92ef72af214901bc897eeb8afbdf88~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_a1f1acf7124a4ca6b694450d81d16cbe~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_bdf3d0f7c7fa493c90a9eb5c1c05bc6e~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_c145b877e06b40caa9ee6a0fdb635550~mv2.png",
+      "https://static.wixstatic.com/media/b3bb35_cf879ec1a4c043ab90d38f381f88f9b8~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_ea869a4812f0491b80651c9c8df18892~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_f57bc45ac0414d3bb1da7d4ea886ca48~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_f87fe2aeec004b948513a940c780aa38~mv2.jpg",
+      "https://static.wixstatic.com/media/b3bb35_faabc71c8eaf4fc582aecc719ba7e3ba~mv2.png",
       "https://www.im-guet.ch",
-      "https://www.im-guet.ch/"
+      "https://www.im-guet.ch/",
+      "https://www.im-guet.ch/online-bestellen",
+      "https://www.im-guet.ch/online-ordering"
     ],
-    "errors": [],
-    "candidates": []
+    "errors": [
+      {
+        "url": "https://static.wixstatic.com/media/9cc232f4c60746dc92321fedec48c69c.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_843c18e120f643eab4e513e10441fd5c~mv2.png",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_192b6bd35f4349038059f3ae85c4dcec~mv2.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_f57bc45ac0414d3bb1da7d4ea886ca48~mv2.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_699bac5b032145e58160e00416188652~mv2.png",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_12faba51cabb428492abddab3458c66c~mv2.png",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_c145b877e06b40caa9ee6a0fdb635550~mv2.png",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_6a6a9ef38f494cfc8c7591c1efa4ef8e~mv2.png",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_735c206b27a545be99a2dbdaf692131f~mv2.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_f87fe2aeec004b948513a940c780aa38~mv2.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/b3bb35_7dad4f16d1014709955516efb7ea4422~mv2.jpg",
+        "error": "not_in_archive"
+      }
+    ],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 16.0,
+        "sourceUrl": "https://www.im-guet.ch/online-ordering",
+        "observedAt": "2026-10-16T07:36:36.428169+00:00",
+        "confidence": "automatic",
+        "evidence": "Pizza Margherita Tomaten, Mozzarella, Oregano CHF 16.00",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/75025846": {
     "checkedAt": "2026-10-15T22:38:48.402076+00:00",
@@ -4467,13 +4977,86 @@
     ]
   },
   "node/311960281": {
-    "checkedAt": "2026-10-15T22:38:47.233861+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:31:38.507776+00:00",
+    "status": "prices_found",
     "visited": [
+      "https://ristoranteilsalento.ch/menus-weine/",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1001.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1002.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1004.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1005.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1006.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1007.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1008.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1009.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1010.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1011.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/20210.jpg",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202101.jpg",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202102.jpg",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202103.jpg",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202104.jpg",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202105.jpg",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202106.jpg",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202107.jpg",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202108.jpg",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/italia-line.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/menu09.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/menu16.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/menu17.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/menu18.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/menu19.png",
+      "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/menu20.png",
       "https://www.ristoranteilsalento.ch"
     ],
-    "errors": [],
-    "candidates": []
+    "errors": [
+      {
+        "url": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202104.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202106.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202108.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202101.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202103.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202105.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/202107.jpg",
+        "error": "not_in_archive"
+      },
+      {
+        "url": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/italia-line.png",
+        "error": "not_in_archive"
+      }
+    ],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 16.5,
+        "sourceUrl": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1006.png",
+        "observedAt": "2026-10-16T07:31:27.320380+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: MARGHERITA 16.50",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
   },
   "node/13136192701": {
     "checkedAt": "2026-10-15T22:38:46.156240+00:00",
@@ -4624,10 +5207,17 @@
     "candidates": []
   },
   "node/13920868271": {
-    "checkedAt": "2026-10-15T22:39:09.631552+00:00",
+    "checkedAt": "2026-10-16T07:31:15.860995+00:00",
     "status": "no_prices",
     "visited": [
-      "https://kantonslice.ch/"
+      "https://kantonslice.ch/",
+      "https://kantonslice.ch/jetzt-bestellen/",
+      "https://kantonslice.ch/wp-content/uploads/2026/03/Packages-KAN-01.jpg",
+      "https://kantonslice.ch/wp-content/uploads/2026/03/Packages-KAN-03.jpg",
+      "https://kantonslice.ch/wp-content/uploads/2026/03/Packages-KAN-04.jpg",
+      "https://kantonslice.ch/wp-content/uploads/2026/03/Packages-KAN-05.jpg",
+      "https://kantonslice.ch/wp-content/uploads/2026/03/Rectangle-180-2.jpg",
+      "https://kantonslice.ch/wp-content/uploads/2026/03/image00231-1-1-681x1024.jpg"
     ],
     "errors": [],
     "candidates": []
@@ -4919,16 +5509,46 @@
     "candidates": []
   },
   "node/11408113758": {
-    "checkedAt": "2026-10-15T22:39:52.830261+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:36:31.444678+00:00",
+    "status": "prices_found",
     "visited": [
+      "https://static.wixstatic.com/media/1953fd7445b64f0d8e8a75a0577ff149.jpg",
+      "https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png",
+      "https://static.wixstatic.com/media/4057345bcf57474b96976284050c00df.png",
+      "https://static.wixstatic.com/media/59e8c6_560bad3e8616469cab5937ed9df800e7~mv2.jpg",
+      "https://static.wixstatic.com/media/59e8c6_5af2607f83a94507837eeb91d5bad08a~mv2.jpg",
+      "https://static.wixstatic.com/media/59e8c6_b84183666efc49bc8ec91e6c71868b05~mv2.jpg",
+      "https://static.wixstatic.com/media/59e8c6_e5efaedbf8824a5bac9857b0d1c77850~mv2.jpg",
+      "https://static.wixstatic.com/media/59e8c6_e76ddcb96073423c8d3ae305a6fe4e98~mv2.jpg",
+      "https://static.wixstatic.com/media/59e8c6_f7a7846a1b194b6e8701b197c3aace2e~mv2.jpg",
+      "https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png",
+      "https://static.wixstatic.com/media/82a25410e8f1404db4e1921b5d84eb61.jpg",
+      "https://static.wixstatic.com/media/e1aa082f7c0747168d9cf43e77046142.png",
       "https://www.ladoro.ch/",
       "https://www.ladoro.ch/_files/ugd/59e8c6_713d4a33ff8e482b849c065201e7c7c7.pdf",
       "https://www.ladoro.ch/_files/ugd/59e8c6_f8d2e8bf9eb84f5ebc78a289e12b9441.pdf",
-      "https://www.ladoro.ch/menükarte"
+      "https://www.ladoro.ch/menükarte",
+      "https://www.ladoro.ch/online-ordering"
     ],
-    "errors": [],
-    "candidates": []
+    "errors": [
+      {
+        "url": "https://static.wixstatic.com/media/1953fd7445b64f0d8e8a75a0577ff149.jpg",
+        "error": "response_too_large"
+      }
+    ],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 17.0,
+        "sourceUrl": "https://b0206d7b-df31-4af3-81f4-ebbdfd8d60d7.filesusr.com/ugd/59e8c6_713d4a33ff8e482b849c065201e7c7c7.pdf",
+        "observedAt": "2026-10-16T07:36:31.444678+00:00",
+        "confidence": "automatic",
+        "evidence": "PDF S. 5: MARGHERITA 17",
+        "alcoholFree": true
+      }
+    ]
   },
   "node/4604638576": {
     "checkedAt": "2026-10-15T22:39:33.403199+00:00",
@@ -4969,7 +5589,7 @@
     "candidates": []
   },
   "node/289669851": {
-    "checkedAt": "2026-10-15T22:40:08.858676+00:00",
+    "checkedAt": "2026-10-16T07:31:16.736035+00:00",
     "status": "fetch_failed",
     "visited": [
       "http://la-mimosa.ch/"
@@ -5013,16 +5633,48 @@
     "candidates": []
   },
   "node/594103804": {
-    "checkedAt": "2026-10-15T22:40:13.582915+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:31:44.118929+00:00",
+    "status": "prices_found",
     "visited": [
-      "https://pizza-laperladelsud.ch"
+      "https://pizza-laperladelsud.ch",
+      "https://pizza-laperladelsud.ch/bestellen/beilagen/",
+      "https://pizza-laperladelsud.ch/bestellen/burger/",
+      "https://pizza-laperladelsud.ch/bestellen/desserts/",
+      "https://pizza-laperladelsud.ch/bestellen/getraenke/",
+      "https://pizza-laperladelsud.ch/bestellen/getraenke/alkoholfreie-getraenke/",
+      "https://pizza-laperladelsud.ch/bestellen/getraenke/alkoholische-getraenke/",
+      "https://pizza-laperladelsud.ch/bestellen/pasta-hauptspeisen/",
+      "https://pizza-laperladelsud.ch/bestellen/pizza/",
+      "https://pizza-laperladelsud.ch/bestellen/snacks/",
+      "https://pizza-laperladelsud.ch/bestellen/vorspeisen/",
+      "https://pizza-laperladelsud.ch/wp-content/uploads/sites/35/2024/10/230f70b9-e24c-4244-8974-133900eb8e9a.jpeg",
+      "https://pizza-laperladelsud.ch/wp-content/uploads/sites/35/2024/10/24b39b9d-a062-41a5-8e79-468c2bd77565.jpeg",
+      "https://pizza-laperladelsud.ch/wp-content/uploads/sites/35/2024/10/25fda067-3695-481e-8ebb-a46b054d226c.jpeg",
+      "https://pizza-laperladelsud.ch/wp-content/uploads/sites/35/2024/10/ee296dbf-b7a5-4e00-92e3-7368dc683a65.jpeg",
+      "https://pizza-laperladelsud.ch/wp-content/uploads/sites/35/2024/10/f8d1b5d2-0390-4b0f-9411-f1fba9bcc659.jpeg",
+      "https://pizza-laperladelsud.ch/wp-content/uploads/sites/35/2024/10/img_7353-scaled.jpeg",
+      "https://pizza-laperladelsud.ch/wp-content/uploads/sites/35/2024/10/img_7354-scaled.jpeg",
+      "https://pizza-laperladelsud.ch/wp-content/uploads/sites/35/2025/01/melanzane-fritte.jpg",
+      "https://pizza-laperladelsud.ch/wp-content/uploads/sites/35/yootheme/cache/a6/pizza-bestellen-laperladelsud-a620a5ef.png"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 13.9,
+        "sourceUrl": "https://pizza-laperladelsud.ch/bestellen/pizza/",
+        "observedAt": "2026-10-16T07:31:20.458450+00:00",
+        "confidence": "automatic",
+        "evidence": "Pizza Margherita Tomatensauce, Fior di latte und Oregano CHF 13.90",
+        "alcoholFree": true,
+        "priceContext": "online_menu"
+      }
+    ]
   },
   "node/12026879416": {
-    "checkedAt": "2026-10-15T22:40:15.451693+00:00",
+    "checkedAt": "2026-10-16T07:31:20.991805+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.pizza-la-regina-zurich.ch/"
@@ -5229,7 +5881,7 @@
     "candidates": []
   },
   "node/2355693108": {
-    "checkedAt": "2026-10-15T22:40:42.534961+00:00",
+    "checkedAt": "2026-10-16T07:31:21.009436+00:00",
     "status": "no_prices",
     "visited": [
       "http://www.pizzalemon.ch/"
@@ -5296,7 +5948,7 @@
     "candidates": []
   },
   "node/10827057990": {
-    "checkedAt": "2026-10-15T22:40:50.955803+00:00",
+    "checkedAt": "2026-10-16T07:31:23.404232+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://casa-gourmet.ch/"
@@ -6133,7 +6785,7 @@
     "candidates": []
   },
   "node/4868938106": {
-    "checkedAt": "2026-10-15T22:42:50.082506+00:00",
+    "checkedAt": "2026-10-16T07:31:37.437717+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.moonrestaurant.ch/"
@@ -6147,19 +6799,41 @@
     "candidates": []
   },
   "node/725765073": {
-    "checkedAt": "2026-10-15T22:42:35.268741+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:31:23.554282+00:00",
+    "status": "prices_found",
     "visited": [
       "http://millennium-restaurant.ch/",
       "http://millennium-restaurant.ch/speisekarte",
+      "http://millennium-restaurant.ch/wp-content/plugins/elementor/assets/images/placeholder.png",
+      "http://millennium-restaurant.ch/wp-content/plugins/nd-elements/widgets/navigation/img/navigation-close.svg",
+      "http://millennium-restaurant.ch/wp-content/uploads/2024/08/doner-snack-salad-desert-444x1024.jpg",
       "http://millennium-restaurant.ch/wp-content/uploads/2024/08/menu-1-2024-445x1024.jpg",
       "http://millennium-restaurant.ch/wp-content/uploads/2024/08/menu-2-2024-444x1024.jpg",
       "http://millennium-restaurant.ch/wp-content/uploads/2024/08/menu-3-2024-444x1024.jpg",
       "http://millennium-restaurant.ch/wp-content/uploads/2024/08/pizzen-1-2024-444x1024.jpg",
-      "http://millennium-restaurant.ch/wp-content/uploads/2024/08/pizzen-spagetti-pide-2024-444x1024.jpg"
+      "http://millennium-restaurant.ch/wp-content/uploads/2024/08/pizzen-spagetti-pide-2024-444x1024.jpg",
+      "http://millennium-restaurant.ch/wp-content/uploads/2024/08/tellergerischte-2024-444x1024.jpg"
     ],
-    "errors": [],
-    "candidates": []
+    "errors": [
+      {
+        "url": "http://millennium-restaurant.ch/wp-content/plugins/nd-elements/widgets/navigation/img/navigation-close.svg",
+        "error": "UnidentifiedImageError"
+      }
+    ],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 15.0,
+        "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/pizzen-1-2024-444x1024.jpg",
+        "observedAt": "2026-10-16T07:31:23.554282+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: Pizza Margherita mit Tomaten, Mozzarella 15.00",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
   },
   "node/1510019206": {
     "checkedAt": "2026-10-15T22:42:36.750631+00:00",
@@ -6267,10 +6941,29 @@
     "candidates": []
   },
   "node/4949132238": {
-    "checkedAt": "2026-10-15T22:42:46.133681+00:00",
+    "checkedAt": "2026-10-16T07:31:36.599324+00:00",
     "status": "no_prices",
     "visited": [
-      "https://monti-triemli.ch/"
+      "https://monti-20a23.kxcdn.com/wp-content/uploads/2024/07/Pizza-Buffalo.png",
+      "https://monti-20a23.kxcdn.com/wp-content/uploads/2024/07/pizzaboy.webp",
+      "https://monti-triemli.ch/",
+      "https://monti-triemli.ch/bestellen/",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Americana-300x300.webp",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Arrabbiata.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Buffalo.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Calzone-300x300.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Capricciosa-300x300.webp",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Diavolo-300x300.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Frutti-di-Mare-300x300.webp",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Funghi.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Gamberetti.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Gorgonzola-300x300.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Greco.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Hawaii-300x300.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Kebab-300x300.webp",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Lardo.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/Pizza-Porcini.png",
+      "https://monti-triemli.ch/wp-content/uploads/2024/07/menue-salat-01.webp"
     ],
     "errors": [],
     "candidates": []
@@ -6394,17 +7087,14 @@
     "candidates": []
   },
   "node/10576943784": {
-    "checkedAt": "2026-10-15T22:43:16.819936+00:00",
+    "checkedAt": "2026-10-16T07:31:37.511824+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.napule.ch/",
-      "https://www.napule.ch/assets/images/2/Foodtruck-sb0abwgjsfhgrf0.jpg",
-      "https://www.napule.ch/assets/images/8/Napule-Pizzaverace-baj7b48hcb36wh4.png",
-      "https://www.napule.ch/assets/images/k/50TOPPizza_logo-s20m6ahm71m1dt3.svg",
-      "https://www.napule.ch/assets/images/t/Napule-Foodtruck_Header_2400x800-q9w13f3pwew2n55.jpg",
-      "https://www.napule.ch/de/foodtruck",
-      "https://www.napule.ch/de/meilen",
-      "https://www.napule.ch/files/napule/images/downloads/RZ_NP_Menuekarten_Meilen_DE.pdf"
+      "https://www.napule.ch/assets/images/6/Napule_Content_Pizza-a-Portafoglio-94zrtfhy56awf1n.jpg",
+      "https://www.napule.ch/assets/images/j/Napule_Content_Pizzateig-3-mxz9qv4k6pbk8g7.jpg",
+      "https://www.napule.ch/assets/images/s/Napule_Content_Pizza-3-jvf2t6cgm4f2ame.jpg",
+      "https://www.napule.ch/de/josefstrasse"
     ],
     "errors": [],
     "candidates": []
@@ -7164,7 +7854,7 @@
     "candidates": []
   },
   "node/1840633299": {
-    "checkedAt": "2026-10-15T22:44:29.156064+00:00",
+    "checkedAt": "2026-10-16T07:31:39.025995+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.puzzles-zuerich.ch"
@@ -7300,15 +7990,35 @@
     "candidates": []
   },
   "node/300419202": {
-    "checkedAt": "2026-10-15T22:44:30.237464+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:31:39.076577+00:00",
+    "status": "prices_found",
     "visited": [
       "https://quartier5.ch/",
+      "https://static.wixstatic.com/media/27d54a_1990ca6d528d4825b1646965e429ea63~mv2.jpg",
+      "https://static.wixstatic.com/media/27d54a_2b8b728d5ee74614bcdc7ec8c25247a1~mv2.jpg",
+      "https://static.wixstatic.com/media/27d54a_861db53cda3d46cfb2872305468fa33f~mv2.png",
+      "https://static.wixstatic.com/media/27d54a_b507eefb219d4846b4ae766f19d6241d~mv2.jpg",
+      "https://static.wixstatic.com/media/27d54a_cafc680f0e404c85ad9a47ac22648a9c~mv2.jpg",
+      "https://static.wixstatic.com/media/4057345bcf57474b96976284050c00df.png",
+      "https://static.wixstatic.com/media/e1aa082f7c0747168d9cf43e77046142.png",
       "https://www.quartier5.ch/kopie-von-speisekarte",
       "https://www.quartier5.ch/kopie-von-wildkarte"
     ],
     "errors": [],
-    "candidates": []
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 20.5,
+        "sourceUrl": "https://static.wixstatic.com/media/27d54a_cafc680f0e404c85ad9a47ac22648a9c~mv2.jpg",
+        "observedAt": "2026-10-16T07:31:39.076577+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: MARGHERITA 20.5",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
   },
   "node/11777908612": {
     "checkedAt": "2026-10-15T22:44:35.522032+00:00",
@@ -7875,7 +8585,7 @@
     "candidates": []
   },
   "node/694632572": {
-    "checkedAt": "2026-10-15T22:45:27.511385+00:00",
+    "checkedAt": "2026-10-16T07:31:41.297493+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.restaurant-rodi-zuerich.ch/"
@@ -8139,7 +8849,7 @@
     "candidates": []
   },
   "node/4424600893": {
-    "checkedAt": "2026-10-15T22:46:07.520202+00:00",
+    "checkedAt": "2026-10-16T07:31:41.317495+00:00",
     "status": "no_prices",
     "visited": [
       "https://sangennarozurigo.ch/"
@@ -8369,10 +9079,11 @@
     "candidates": []
   },
   "node/3909362593": {
-    "checkedAt": "2026-10-15T22:46:39.522134+00:00",
+    "checkedAt": "2026-10-16T07:31:42.205859+00:00",
     "status": "no_prices",
     "visited": [
-      "https://www.seebach-treff.ch/"
+      "https://www.seebach-treff.ch/",
+      "https://www.seebach-treff.ch/orderonline"
     ],
     "errors": [],
     "candidates": []
@@ -8683,7 +9394,7 @@
     "candidates": []
   },
   "node/289669639": {
-    "checkedAt": "2026-10-15T22:47:08.448536+00:00",
+    "checkedAt": "2026-10-16T07:31:43.860950+00:00",
     "status": "fetch_failed",
     "visited": [
       "http://www.daguido.ch/"
@@ -9492,10 +10203,12 @@
     "candidates": []
   },
   "node/10948817478": {
-    "checkedAt": "2026-10-15T22:48:22.704906+00:00",
+    "checkedAt": "2026-10-16T07:31:43.877415+00:00",
     "status": "no_prices",
     "visited": [
+      "https://www.fbgcdn.com/websites/img/gloriafood.png",
       "https://www.triemlitreffpunkt.ch/",
+      "https://www.triemlitreffpunkt.ch/im-voraus-bestellen",
       "https://www.triemlitreffpunkt.ch/menue",
       "https://www.triemlitreffpunkt.ch/pizza-zum-mitnehmen-zuerich"
     ],
@@ -10914,22 +11627,26 @@
     ]
   },
   "node/2110405159": {
-    "checkedAt": "2026-10-15T22:31:47.285969+00:00",
+    "checkedAt": "2026-10-16T07:29:31.412177+00:00",
     "status": "no_prices",
     "visited": [
       "https://molino.ch/de/pizzeria-ristorante-molino-gasometerstrasse",
       "https://molino.ch/de/restaurant/pizzeria-ristorante-molino-gasometer-zuerich/",
+      "https://molino.ch/wp-content/uploads/2023/04/pizza-semi-e-ceci-1.jpg",
+      "https://molino.ch/wp-content/uploads/2023/10/molino_dessertkarte_kat1_102026_de.pdf",
       "https://molino.ch/wp-content/uploads/2023/10/molino_menukarte_kat1_de_1026.pdf"
     ],
     "errors": [],
     "candidates": []
   },
   "node/869977914": {
-    "checkedAt": "2026-10-15T22:31:48.734592+00:00",
+    "checkedAt": "2026-10-16T07:29:33.456465+00:00",
     "status": "no_prices",
     "visited": [
       "https://molino.ch/de/pizzeria-ristorante-molino-stauffacher",
       "https://molino.ch/de/restaurant/pizzeria-ristorante-molino-stauffacher-zuerich/",
+      "https://molino.ch/wp-content/uploads/2023/04/pizza-miss-italia.jpg",
+      "https://molino.ch/wp-content/uploads/2023/10/molino_dessertkarte_kat2_102026_de.pdf",
       "https://molino.ch/wp-content/uploads/2023/10/molino_menukarte_kat2_de_1026.pdf",
       "https://molino.ch/wp-content/uploads/2024/06/molino_spez_proposta_062026_poggio_de.pdf"
     ],
@@ -10937,21 +11654,41 @@
     "candidates": []
   },
   "node/3803343518": {
-    "checkedAt": "2026-10-15T22:31:46.014713+00:00",
+    "checkedAt": "2026-10-16T07:29:18.300806+00:00",
     "status": "no_prices",
     "visited": [
       "https://molino.ch/de/restaurant/altstetten/",
-      "https://molino.ch/wp-content/uploads/2023/10/molino_menukarte_kat2_de_1026.pdf"
+      "https://molino.ch/wp-content/uploads/2023/04/pizza-miss-italia.jpg",
+      "https://molino.ch/wp-content/uploads/2023/10/molino_menukarte_kat2_de_1026.pdf",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-10.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-11.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-12.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-13.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-14.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-15.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-16.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-17.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-18.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-19.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-20.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-21.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-22.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-23.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-24.jpg",
+      "https://molino.ch/wp-content/uploads/2024/10/pizzeria-ristorante-molino-altstetten_web-9.jpg",
+      "https://molino.ch/wp-content/uploads/2025/05/molino_dessertkarte_altstetten_kat2_102026_de.pdf"
     ],
     "errors": [],
     "candidates": []
   },
   "node/270800785": {
-    "checkedAt": "2026-10-15T22:31:49.848372+00:00",
+    "checkedAt": "2026-10-16T07:29:36.977560+00:00",
     "status": "no_prices",
     "visited": [
       "https://molino.ch/de/pizzeria-ristorante-molino-select",
       "https://molino.ch/de/restaurant/pizzeria-ristorante-molino-select-zuerich/",
+      "https://molino.ch/wp-content/uploads/2023/04/pizza-san-daniele-1.jpg",
+      "https://molino.ch/wp-content/uploads/2023/10/molino_dessertkarte_kat3_102026_de_druck.pdf",
       "https://molino.ch/wp-content/uploads/2023/10/molino_menukarte_kat3_de_1026.pdf"
     ],
     "errors": [],
@@ -11068,12 +11805,25 @@
     ]
   },
   "node/267049752": {
-    "checkedAt": "2026-10-15T22:31:59.074606+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:29:37.340096+00:00",
+    "status": "partial",
     "visited": [
-      "https://dieci.ch/de/pizzakurier-binz-wollishofen"
+      "https://dieci.ch/de/pizzakurier-binz-wollishofen",
+      "https://sd-images.simplydelivery.io/8c9741f3c4550ecfafd139f0d9b0943c/other/mandant/1789386207_CHD_Booklet_Innenseite_ONLINE.pdf",
+      "https://www.dieci.ch/assets/images/8/dieci-ristorante-focaccia-e23537d2.jpg",
+      "https://www.dieci.ch/de/assets/images/4/veganer-kaese-pizza-margherita-dieci-ef24ab63.jpg",
+      "https://www.dieci.ch/de/assets/images/5/dieci-gelato-neue-sorten-add0f59f.jpg"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://www.dieci.ch/de/assets/images/4/veganer-kaese-pizza-margherita-dieci-ef24ab63.jpg",
+        "error": "http_404"
+      },
+      {
+        "url": "https://www.dieci.ch/de/assets/images/5/dieci-gelato-neue-sorten-add0f59f.jpg",
+        "error": "http_404"
+      }
+    ],
     "candidates": []
   },
   "node/370840605": {
@@ -11086,57 +11836,121 @@
     "candidates": []
   },
   "node/271151271": {
-    "checkedAt": "2026-10-15T22:32:05.030565+00:00",
+    "checkedAt": "2026-10-16T07:30:04.017149+00:00",
     "status": "no_prices",
     "visited": [
-      "https://www.zoo.ch/de/essen-trinken/zoo-caffe-ristorante"
+      "https://cdn.zoo.ch/cms/p/assets/zoobesuch/gastronomie/altes-klosterli/05_weinkarte_ak_event_0.pdf",
+      "https://www.zoo.ch/de/essen-trinken/zoo-caffe-ristorante",
+      "https://zoo.ch/zoobesuch/essen-trinken",
+      "https://zoo.ch/zoobesuch/essen-trinken/restaurant-altes-kloesterli",
+      "https://zoo.ch/zoobesuch/essen-trinken/restaurant-masoala",
+      "https://zoo.ch/zoobesuch/essen-trinken/restaurant-pantanal",
+      "https://zoo.ch/zoobesuch/essen-trinken/verpflegungsstaende",
+      "https://zoo.ch/zoobesuch/essen-trinken/zoo-caffe-ristorante"
     ],
     "errors": [],
     "candidates": []
   },
   "node/5380840438": {
-    "checkedAt": "2026-10-15T22:32:00.032457+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:29:37.837791+00:00",
+    "status": "partial",
     "visited": [
-      "https://dieci.ch/de/pizzakurier-zuerich-oerlikon"
+      "https://dieci.ch/de/pizzakurier-zuerich-oerlikon",
+      "https://sd-images.simplydelivery.io/8c9741f3c4550ecfafd139f0d9b0943c/other/mandant/1789386247_CHD_Booklet_Innenseite_ONLINE.pdf",
+      "https://www.dieci.ch/assets/images/8/dieci-ristorante-focaccia-e23537d2.jpg",
+      "https://www.dieci.ch/de/assets/images/4/veganer-kaese-pizza-margherita-dieci-ef24ab63.jpg"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://www.dieci.ch/de/assets/images/4/veganer-kaese-pizza-margherita-dieci-ef24ab63.jpg",
+        "error": "http_404"
+      }
+    ],
     "candidates": []
   },
   "node/5386923026": {
-    "checkedAt": "2026-10-15T22:32:01.926947+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:29:51.172888+00:00",
+    "status": "partial",
     "visited": [
-      "https://dieci.ch/de/pizzakurier-zuerich-hardbruecke"
+      "https://dieci.ch/de/pizzakurier-zuerich-hardbruecke",
+      "https://sd-images.simplydelivery.io/8c9741f3c4550ecfafd139f0d9b0943c/other/mandant/1789386222_CHD_Booklet_Innenseite_ONLINE.pdf",
+      "https://www.dieci.ch/assets/images/8/dieci-ristorante-focaccia-e23537d2.jpg",
+      "https://www.dieci.ch/de/assets/images/0/dieci-occhio-pizzakurier-716adb74.jpg",
+      "https://www.dieci.ch/de/assets/images/0/dieci-pizza-auguri-ofen-e6f74c0c.jpg",
+      "https://www.dieci.ch/de/assets/images/1/dieci-pizza-prosciutto-funghi-d6d6b474.jpg"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://www.dieci.ch/de/assets/images/0/dieci-occhio-pizzakurier-716adb74.jpg",
+        "error": "http_404"
+      },
+      {
+        "url": "https://www.dieci.ch/de/assets/images/0/dieci-pizza-auguri-ofen-e6f74c0c.jpg",
+        "error": "http_404"
+      },
+      {
+        "url": "https://www.dieci.ch/de/assets/images/1/dieci-pizza-prosciutto-funghi-d6d6b474.jpg",
+        "error": "http_404"
+      }
+    ],
     "candidates": []
   },
   "node/1710700206": {
-    "checkedAt": "2026-10-15T22:32:03.127640+00:00",
+    "checkedAt": "2026-10-16T07:30:02.856599+00:00",
     "status": "no_prices",
     "visited": [
-      "https://molino.ch/de/ristorante-frascati"
+      "https://molino.ch/de/ristorante-frascati",
+      "https://molino.ch/wp-content/uploads/2023/06/220228_ospena-foodaufnahmen_pizza-miss-italia_010_2.jpg"
     ],
     "errors": [],
     "candidates": []
   },
   "node/5386900841": {
-    "checkedAt": "2026-10-15T22:32:01.373063+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:29:48.162603+00:00",
+    "status": "partial",
     "visited": [
-      "https://dieci.ch/de/pizzakurier-zuerichberg"
+      "https://dieci.ch/de/pizzakurier-zuerichberg",
+      "https://sd-images.simplydelivery.io/8c9741f3c4550ecfafd139f0d9b0943c/other/mandant/1789386260_CHD_Booklet_Innenseite_ONLINE.pdf",
+      "https://www.dieci.ch/assets/images/8/dieci-ristorante-focaccia-e23537d2.jpg",
+      "https://www.dieci.ch/de/assets/images/0/dieci-pizza-auguri-ofen-e6f74c0c.jpg",
+      "https://www.dieci.ch/de/assets/images/1/dieci-zutaten-pizza-sugo-mozzarella-09d2b3ab.jpg",
+      "https://www.dieci.ch/de/assets/images/9/dieci-pizzakurier-rustica-33818b10.jpg",
+      "https://www.dieci.ch/de/assets/images/c/dieci-pizzakurier-occhio-di-bue-speciale-b51f2414.jpg"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://www.dieci.ch/de/assets/images/c/dieci-pizzakurier-occhio-di-bue-speciale-b51f2414.jpg",
+        "error": "http_404"
+      },
+      {
+        "url": "https://www.dieci.ch/de/assets/images/0/dieci-pizza-auguri-ofen-e6f74c0c.jpg",
+        "error": "http_404"
+      },
+      {
+        "url": "https://www.dieci.ch/de/assets/images/9/dieci-pizzakurier-rustica-33818b10.jpg",
+        "error": "http_404"
+      },
+      {
+        "url": "https://www.dieci.ch/de/assets/images/1/dieci-zutaten-pizza-sugo-mozzarella-09d2b3ab.jpg",
+        "error": "http_404"
+      }
+    ],
     "candidates": []
   },
   "node/317769155": {
-    "checkedAt": "2026-10-15T22:32:20.496196+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-16T07:30:39.691530+00:00",
+    "status": "partial",
     "visited": [
-      "https://dieci.ch/de/gelateria-zuerich-niederdorf"
+      "https://dieci.ch/de/gelateria-zuerich-niederdorf",
+      "https://www.dieci.ch/assets/images/8/dieci-ristorante-focaccia-e23537d2.jpg",
+      "https://www.dieci.ch/de/assets/images/3/dieci-pizza-auguri-ofen-61e7785e.jpg"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://www.dieci.ch/de/assets/images/3/dieci-pizza-auguri-ofen-61e7785e.jpg",
+        "error": "http_404"
+      }
+    ],
     "candidates": []
   },
   "node/268471384": {
@@ -11195,7 +12009,7 @@
     "candidates": []
   },
   "node/638966087": {
-    "checkedAt": "2026-10-15T22:32:22.799592+00:00",
+    "checkedAt": "2026-10-16T07:30:42.162737+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.instagram.com/colibribarzurich/"
@@ -12325,7 +13139,7 @@
     "candidates": []
   },
   "node/9792386803": {
-    "checkedAt": "2026-10-15T22:33:22.150395+00:00",
+    "checkedAt": "2026-10-16T07:30:42.337550+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.vito.ch/europaallee"
@@ -12437,5 +13251,425 @@
     ],
     "errors": [],
     "candidates": []
+  },
+  "node/4860115710": {
+    "checkedAt": "2026-10-16T07:29:03.928583+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://images.squarespace-cdn.com/content/v1/5923e966e3df28823047d68b/1501241997600-JX8HE8VLP6HLYFGTNZUW/belcafe-zuerich-belpizza.png",
+      "https://images.squarespace-cdn.com/content/v1/5923e966e3df28823047d68b/3fb6f946-ccb0-4ea5-bd25-4a342417ff83/belcafe-belpizza-happy-hour.png",
+      "https://images.squarespace-cdn.com/content/v1/5923e966e3df28823047d68b/a55650c3-3fc9-49bd-8f33-5bb8702e3001/belpizza-button.png",
+      "https://images.squarespace-cdn.com/content/v1/5923e966e3df28823047d68b/fa1bf654-2fd3-4f67-b8ca-fc737ae47bb5/belcafe-belpizza-intro.jpg",
+      "https://www.belcafe.ch/",
+      "https://www.belcafe.ch/angebot",
+      "https://www.belcafe.ch/belpizza",
+      "https://www.belcafe.ch/bier",
+      "https://www.belcafe.ch/kaffee-tee-schoggi",
+      "https://www.belcafe.ch/mineral-suessgetraenke",
+      "https://www.belcafe.ch/pizza"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/6066072455": {
+    "checkedAt": "2026-10-16T07:23:11.534393+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://con-gusto.ch/",
+      "https://con-gusto.ch/menu/pizza",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/0f0bc328-353d-4d29-8095-3c6f53dccb32/Congusto_pizza_siciliana.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/2d50f85e-c75e-4c79-98d0-ceb1a5fc1c15/Congusto_pizza_vegetariana.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/38ceeac0-7315-49c6-8c14-1438ee80df72/Congusto_pizza_friarielli_e_salsiccia.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/580dbcd5-4226-4fcd-996d-08aa7592b924/Congusto_pizza_vesuvio.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/699df7dd-6ac6-4e93-8330-990a58c8b866/Congusto_pizza_bufala_indiavolata.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/6b575bff-0cf1-4340-a2cc-50bf448fff79/Congusto_pizza_valtellina.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/78333c2d-9dbd-42d3-87d6-2716bfcc401e/Congusto_pizza_calabrese.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/8e9e6278-fc59-4dd0-8ad6-3eb5b0918b9a/Congusto_pizza_tartufella.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/951b792f-64a9-48ae-a533-4db478d2f476/Con_gusto_U.S.T+united+states+of+Terronia.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/b7c04bed-1b36-4d3c-8047-0f0a96dab785/Congusto_pizza_chef.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/bb5e3864-6cca-4abb-b8e6-e7c6ebd9fda9/Con_gusto_Pizza_ampel.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/c2fe8422-ee4d-4c89-81c9-4792dbff25da/Congusto_pizza_siciliana.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/d79aba6c-df0c-481b-8e6e-5c6d5bb166d6/Congusto_pizza_buffalina.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/d8712625-3859-429a-9972-a4e6879c6435/Congusto_pizza_marinara.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/d8c24ad6-dede-4d66-b8d2-d644142b9bf9/Congusto_pizza_5_formaggi.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/f12ff5bc-18bc-419b-be47-4372a7b3ec80/Congusto_pizza_mortazza.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/f18e682e-0ed4-485f-bbdd-50a1d53d9814/Congusto_pizza_margherita.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/fd0b2aec-3c51-49a4-9fb8-dc6301f2c8d8/Congusto_pizza_calzone.jpg"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 20.0,
+        "sourceUrl": "https://con-gusto.ch/menu/pizza",
+        "observedAt": "2026-10-16T07:23:11.534393+00:00",
+        "confidence": "automatic",
+        "evidence": "MARGHERITA TOMATENSAUCE, FIORDILATTE CHF 20",
+        "alcoholFree": true
+      }
+    ]
+  },
+  "node/300419657": {
+    "checkedAt": "2026-10-16T07:23:26.737799+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/677833dd2986d75f75cdbc8c_Microsoft%20Word%20-%20Cucina%20Stammkarte%202025.docx_Seite_07.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf2977c8b42114c9e3_page_6.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a7258e3f02b2450_page_12.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf87e2c48565bd2a74_page_7.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf96cd64d159bb8256_page_11.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfcf2cdb1ed66d3487_page_9.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb5_page_15.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb8_page_14.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdf0bb199b16bae8b_page_13.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc06330960ba936d4c0_page_1.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc096cd64d159bb82be_page_4.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc0d2d88e7624674727_page_3.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/68f76caaf80973b062581698_Cucina%20Wildkarte_2025.pdf",
+      "https://www.cucinarestaurant.ch/",
+      "https://www.cucinarestaurant.ch/menu/bernoulli"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 18.0,
+        "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+        "observedAt": "2026-10-16T07:23:26.737799+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: Margherita 18.00",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
+  },
+  "node/370844602": {
+    "checkedAt": "2026-10-16T07:23:27.941160+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/677833dd2986d75f75cdbc8c_Microsoft%20Word%20-%20Cucina%20Stammkarte%202025.docx_Seite_07.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf2977c8b42114c9e3_page_6.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a7258e3f02b2450_page_12.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf87e2c48565bd2a74_page_7.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf96cd64d159bb8256_page_11.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfcf2cdb1ed66d3487_page_9.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb5_page_15.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb8_page_14.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdf0bb199b16bae8b_page_13.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc06330960ba936d4c0_page_1.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc096cd64d159bb82be_page_4.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc0d2d88e7624674727_page_3.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/68f76caaf80973b062581698_Cucina%20Wildkarte_2025.pdf",
+      "https://www.cucinarestaurant.ch/",
+      "https://www.cucinarestaurant.ch/menu/niederdorf"
+    ],
+    "errors": [
+      {
+        "url": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdf0bb199b16bae8b_page_13.png",
+        "error": "gaierror"
+      }
+    ],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 18.0,
+        "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+        "observedAt": "2026-10-16T07:23:27.941160+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: Margherita 18.00",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
+  },
+  "node/1978573306": {
+    "checkedAt": "2026-10-16T07:23:32.309575+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/677833dd2986d75f75cdbc8c_Microsoft%20Word%20-%20Cucina%20Stammkarte%202025.docx_Seite_07.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf2977c8b42114c9e3_page_6.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a7258e3f02b2450_page_12.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf87e2c48565bd2a74_page_7.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf96cd64d159bb8256_page_11.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfcf2cdb1ed66d3487_page_9.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb5_page_15.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb8_page_14.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdf0bb199b16bae8b_page_13.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc06330960ba936d4c0_page_1.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc096cd64d159bb82be_page_4.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc0d2d88e7624674727_page_3.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/68f76caaf80973b062581698_Cucina%20Wildkarte_2025.pdf",
+      "https://www.cucinarestaurant.ch/",
+      "https://www.cucinarestaurant.ch/menu/luisenstrasse"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 18.0,
+        "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+        "observedAt": "2026-10-16T07:23:32.309575+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: Margherita 18.00",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
+  },
+  "node/6205732851": {
+    "checkedAt": "2026-10-16T07:23:12.728564+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://con-gusto.ch/menu/pizza",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/0f0bc328-353d-4d29-8095-3c6f53dccb32/Congusto_pizza_siciliana.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/2d50f85e-c75e-4c79-98d0-ceb1a5fc1c15/Congusto_pizza_vegetariana.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/38ceeac0-7315-49c6-8c14-1438ee80df72/Congusto_pizza_friarielli_e_salsiccia.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/580dbcd5-4226-4fcd-996d-08aa7592b924/Congusto_pizza_vesuvio.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/699df7dd-6ac6-4e93-8330-990a58c8b866/Congusto_pizza_bufala_indiavolata.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/6b575bff-0cf1-4340-a2cc-50bf448fff79/Congusto_pizza_valtellina.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/78333c2d-9dbd-42d3-87d6-2716bfcc401e/Congusto_pizza_calabrese.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/8e9e6278-fc59-4dd0-8ad6-3eb5b0918b9a/Congusto_pizza_tartufella.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/951b792f-64a9-48ae-a533-4db478d2f476/Con_gusto_U.S.T+united+states+of+Terronia.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/b7c04bed-1b36-4d3c-8047-0f0a96dab785/Congusto_pizza_chef.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/bb5e3864-6cca-4abb-b8e6-e7c6ebd9fda9/Con_gusto_Pizza_ampel.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/c2fe8422-ee4d-4c89-81c9-4792dbff25da/Congusto_pizza_siciliana.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/d79aba6c-df0c-481b-8e6e-5c6d5bb166d6/Congusto_pizza_buffalina.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/d8712625-3859-429a-9972-a4e6879c6435/Congusto_pizza_marinara.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/d8c24ad6-dede-4d66-b8d2-d644142b9bf9/Congusto_pizza_5_formaggi.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/f12ff5bc-18bc-419b-be47-4372a7b3ec80/Congusto_pizza_mortazza.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/f18e682e-0ed4-485f-bbdd-50a1d53d9814/Congusto_pizza_margherita.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/fd0b2aec-3c51-49a4-9fb8-dc6301f2c8d8/Congusto_pizza_calzone.jpg",
+      "https://www.con-gusto.ch"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 20.0,
+        "sourceUrl": "https://con-gusto.ch/menu/pizza",
+        "observedAt": "2026-10-16T07:23:12.728564+00:00",
+        "confidence": "automatic",
+        "evidence": "MARGHERITA TOMATENSAUCE, FIORDILATTE CHF 20",
+        "alcoholFree": true
+      }
+    ]
+  },
+  "node/11884208971": {
+    "checkedAt": "2026-10-16T07:23:13.165848+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://con-gusto.ch/",
+      "https://con-gusto.ch/menu/pizza",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/0f0bc328-353d-4d29-8095-3c6f53dccb32/Congusto_pizza_siciliana.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/2d50f85e-c75e-4c79-98d0-ceb1a5fc1c15/Congusto_pizza_vegetariana.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/38ceeac0-7315-49c6-8c14-1438ee80df72/Congusto_pizza_friarielli_e_salsiccia.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/580dbcd5-4226-4fcd-996d-08aa7592b924/Congusto_pizza_vesuvio.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/699df7dd-6ac6-4e93-8330-990a58c8b866/Congusto_pizza_bufala_indiavolata.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/6b575bff-0cf1-4340-a2cc-50bf448fff79/Congusto_pizza_valtellina.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/78333c2d-9dbd-42d3-87d6-2716bfcc401e/Congusto_pizza_calabrese.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/8e9e6278-fc59-4dd0-8ad6-3eb5b0918b9a/Congusto_pizza_tartufella.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/951b792f-64a9-48ae-a533-4db478d2f476/Con_gusto_U.S.T+united+states+of+Terronia.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/b7c04bed-1b36-4d3c-8047-0f0a96dab785/Congusto_pizza_chef.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/bb5e3864-6cca-4abb-b8e6-e7c6ebd9fda9/Con_gusto_Pizza_ampel.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/c2fe8422-ee4d-4c89-81c9-4792dbff25da/Congusto_pizza_siciliana.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/d79aba6c-df0c-481b-8e6e-5c6d5bb166d6/Congusto_pizza_buffalina.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/d8712625-3859-429a-9972-a4e6879c6435/Congusto_pizza_marinara.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/d8c24ad6-dede-4d66-b8d2-d644142b9bf9/Congusto_pizza_5_formaggi.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/f12ff5bc-18bc-419b-be47-4372a7b3ec80/Congusto_pizza_mortazza.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/f18e682e-0ed4-485f-bbdd-50a1d53d9814/Congusto_pizza_margherita.jpg",
+      "https://images.squarespace-cdn.com/content/v1/62d6ebec85b6c13749cb2817/fd0b2aec-3c51-49a4-9fb8-dc6301f2c8d8/Congusto_pizza_calzone.jpg"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 20.0,
+        "sourceUrl": "https://con-gusto.ch/menu/pizza",
+        "observedAt": "2026-10-16T07:23:13.165848+00:00",
+        "confidence": "automatic",
+        "evidence": "MARGHERITA TOMATENSAUCE, FIORDILATTE CHF 20",
+        "alcoholFree": true
+      }
+    ]
+  },
+  "node/3284823885": {
+    "checkedAt": "2026-10-16T07:30:32.680788+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://lapenisola.ch",
+      "https://lapenisola.ch/angebot/",
+      "https://lapenisola.ch/online-order/diverses/",
+      "https://lapenisola.ch/online-order/panini-piadine/",
+      "https://lapenisola.ch/online-order/paninipiadine-creator/",
+      "https://lapenisola.ch/online-order/snacks/"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/1525269376": {
+    "checkedAt": "2026-10-16T07:30:32.544711+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://ilbasilico.ch/images/Bildschirmfoto-2023-02-01-um-22.37.46.jpg",
+      "https://ilbasilico.ch/images/Manuekarte-il-Basilico.pdf",
+      "https://ilbasilico.ch/speisekarte",
+      "https://www.ilbasilico.ch/"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 18.0,
+        "sourceUrl": "https://ilbasilico.ch/images/Manuekarte-il-Basilico.pdf",
+        "observedAt": "2026-10-16T07:30:32.544711+00:00",
+        "confidence": "automatic",
+        "evidence": "PDF S. 7: Margherita V / 18",
+        "alcoholFree": true
+      }
+    ]
+  },
+  "node/4948524161": {
+    "checkedAt": "2026-10-16T07:30:31.898060+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://ilbasilico.ch/images/Bildschirmfoto-2023-02-01-um-22.37.46.jpg",
+      "https://ilbasilico.ch/images/Manuekarte-il-Basilico.pdf",
+      "https://ilbasilico.ch/speisekarte",
+      "https://www.ilbasilico.ch/"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 18.0,
+        "sourceUrl": "https://ilbasilico.ch/images/Manuekarte-il-Basilico.pdf",
+        "observedAt": "2026-10-16T07:30:31.898060+00:00",
+        "confidence": "automatic",
+        "evidence": "PDF S. 7: Margherita V / 18",
+        "alcoholFree": true
+      }
+    ]
+  },
+  "node/4958366047": {
+    "checkedAt": "2026-10-16T07:30:24.279417+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/677833dd2986d75f75cdbc8c_Microsoft%20Word%20-%20Cucina%20Stammkarte%202025.docx_Seite_07.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf2977c8b42114c9e3_page_6.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a7258e3f02b2450_page_12.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf87e2c48565bd2a74_page_7.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf96cd64d159bb8256_page_11.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfcf2cdb1ed66d3487_page_9.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb5_page_15.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb8_page_14.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdf0bb199b16bae8b_page_13.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc06330960ba936d4c0_page_1.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc096cd64d159bb82be_page_4.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc0d2d88e7624674727_page_3.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/68f76caaf80973b062581698_Cucina%20Wildkarte_2025.pdf",
+      "https://www.cucinarestaurant.ch/",
+      "https://www.cucinarestaurant.ch/menu/milchbuck"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 18.0,
+        "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+        "observedAt": "2026-10-16T07:30:24.279417+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: Margherita 18.00",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
+  },
+  "node/9995613567": {
+    "checkedAt": "2026-10-16T07:30:24.543930+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/677833dd2986d75f75cdbc8c_Microsoft%20Word%20-%20Cucina%20Stammkarte%202025.docx_Seite_07.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf2977c8b42114c9e3_page_6.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a7258e3f02b2450_page_12.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf87e2c48565bd2a74_page_7.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf96cd64d159bb8256_page_11.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfcf2cdb1ed66d3487_page_9.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb5_page_15.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdd8280ea627e3fb8_page_14.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbfdf0bb199b16bae8b_page_13.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc06330960ba936d4c0_page_1.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc096cd64d159bb82be_page_4.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc0d2d88e7624674727_page_3.png",
+      "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/68f76caaf80973b062581698_Cucina%20Wildkarte_2025.pdf",
+      "https://www.cucinarestaurant.ch/",
+      "https://www.cucinarestaurant.ch/menu/basilisk"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 18.0,
+        "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+        "observedAt": "2026-10-16T07:30:24.543930+00:00",
+        "confidence": "automatic",
+        "evidence": "OCR PDF S. 1: Margherita 18.00",
+        "alcoholFree": true,
+        "extractionMethod": "ocr"
+      }
+    ]
+  },
+  "node/1496400845": {
+    "checkedAt": "2026-10-16T07:36:31.444555+00:00",
+    "status": "prices_found",
+    "visited": [
+      "https://la-fonte.ch",
+      "https://la-fonte.ch/",
+      "https://la-fonte.ch/speisekarte/",
+      "https://la-fonte.ch/wp-content/uploads/2026/07/Speisekarte-Quer-mit-schwarzem-Rand-2.pdf"
+    ],
+    "errors": [],
+    "candidates": [
+      {
+        "name": "Pizza Margherita",
+        "pizzaType": "margherita",
+        "volumeMl": null,
+        "priceChf": 21.4,
+        "sourceUrl": "https://la-fonte.ch/wp-content/uploads/2026/07/Speisekarte-Quer-mit-schwarzem-Rand-2.pdf",
+        "observedAt": "2026-10-16T07:36:31.444555+00:00",
+        "confidence": "automatic",
+        "evidence": "PDF S. 6: Margherita Tomatensauce, Mozzarella Fior di latte 21,40",
+        "alcoholFree": true
+      }
+    ]
   }
 }

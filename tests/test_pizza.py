@@ -15,7 +15,7 @@ class PizzaTests(unittest.TestCase):
     def test_html_sections(self):
         html=b'<h2>Pizza</h2><div><h3>Margherita</h3><p>Tomaten, Mozzarella</p><span>18.50</span></div><h2>Kinderpizzen</h2><div>Margherita 10</div>'
         self.assertEqual([o['priceChf'] for o in pizza_html(html,'url','date')],[18.5])
-        self.assertEqual(pizza_html(b'<title>Pizza online bestellen</title><div>Margherita 15</div>','url','date'),[])
+        self.assertEqual(pizza_html(b'<title>Pizza online bestellen</title><div>Margherita 15</div>','url','date')[0]['priceContext'],'online_menu')
 
 
 class PizzaCrawlTests(unittest.TestCase):
@@ -143,3 +143,123 @@ class PizzaCatalogueRegressionTests(unittest.TestCase):
             self.assertEqual({b['id'] for b in result['bars']}, {'1', '2', '3'})
             self.assertTrue(all(not b['offers'] for b in result['bars']))
             crawl.assert_not_called()
+
+
+class PizzaRecallRegressionTests(unittest.TestCase):
+    def test_spaced_decimal_and_price_before_heading(self):
+        for text in ['Margherita Tomatensauce, Mozzarella 18. 00', 'CHF 18.00 Pizza Margherita Tomaten, Mozzarella']:
+            self.assertEqual(pizza_row(text,'url','date')[0]['priceChf'],18)
+
+    def test_product_size_and_extras_are_separate(self):
+        html='''<div class="menucat"><div class="category-name">Pizza Ø30cm</div>
+        <div class="meal-wrapper"><div itemprop="name">Pizza Margherita</div>
+        <div itemprop="description">Tomaten, Mozzarella</div><div itemprop="price">18,00 CHF</div>
+        <div>inkl. Pfand (0,00 CHF)</div></div></div>
+        <div class="menucat"><div class="category-name">Pizza Ø36cm</div>
+        <div class="meal-wrapper"><div itemprop="name">Pizza Margherita</div><div itemprop="price">21,00 CHF</div></div></div>'''
+        offers=pizza_html(html,'url','date')
+        self.assertEqual([o['priceChf'] for o in offers],[18])
+        self.assertEqual(offers[0]['priceContext'],'online_menu')
+
+    def test_wordpress_size_prices(self):
+        html='''<article class="wppizza-article"><h2 class="wppizza-article-title">Pizza Margherita</h2>
+        <div class="wppizza-article-price"><span>16,00</span><div class="wppizza-article-size">32cm</div></div>
+        <div class="wppizza-article-price"><span>28,00</span><div class="wppizza-article-size">40cm</div></div>
+        <p class="wppizza-article-content">Tomaten, Mozzarella, Oregano</p></article>'''
+        self.assertEqual([o['priceChf'] for o in pizza_html(html,'url','date')],[16])
+
+    def test_pdf_surcharge_header_does_not_hide_regular_pizza(self):
+        from tests.test_pdf import document
+        from scraper.pizza import pizza_pdf
+        body=document([(20,480,'KLEINE PIZZA -2 TAKE AWAY -2'),(20,440,'MARGHERITA'),
+                       (20,425,'Tomaten, Mozzarella'),(400,425,'17'),
+                       (20,380,'KINDER'),(20,350,'Margherita 10')])
+        self.assertEqual([o['priceChf'] for o in pizza_pdf(body,'url','date',ocr=False)],[17])
+
+    def test_scanned_pdf_uses_ocr_and_rejects_children(self):
+        import shutil
+        if not shutil.which('tesseract'):self.skipTest('tesseract not installed')
+        from PIL import Image, ImageDraw, ImageFont
+        from io import BytesIO
+        from tempfile import TemporaryDirectory
+        from pathlib import Path
+        from unittest.mock import patch
+        from scraper.pizza import pizza_pdf
+        font=ImageFont.load_default(size=38)
+        page=Image.new('RGB',(1500,900),'white');draw=ImageDraw.Draw(page)
+        for xy,text in [((70,50),'PIZZA'),((70,150),'MARGHERITA'),((70,210),'Tomaten, Mozzarella'),((1200,210),'18.00'),
+                        ((70,400),'KINDER'),((70,470),'MARGHERITA 10.00')]:draw.text(xy,text,font=font,fill='black')
+        body=BytesIO();page.save(body,format='PDF',resolution=200)
+        with TemporaryDirectory() as directory, patch('scraper.menu_ocr.CACHE_DIR',Path(directory)):
+            offers=pizza_pdf(body.getvalue(),'https://example.org/menu.pdf','date')
+        self.assertEqual([o['priceChf'] for o in offers],[18])
+        self.assertEqual(offers[0]['extractionMethod'],'ocr')
+
+    def test_low_confidence_or_distant_ocr_price_is_not_accepted(self):
+        from tests.test_pdf import document
+        from scraper.pizza import ocr_pizza_image
+        from unittest.mock import patch
+        body=document([(20,450,'Margherita 18.00')])
+        name={'text':'Margherita','conf':'96','left':'20','top':'50','width':'80','height':'20'}
+        price={'text':'18.00','conf':'50','left':'400','top':'50','width':'50','height':'20'}
+        with patch('scraper.menu_ocr.searchable_image',return_value=(body,[name,price])):
+            self.assertEqual(ocr_pizza_image(None,'url','date'),[])
+        price.update(conf='96',top='500')
+        with patch('scraper.menu_ocr.searchable_image',return_value=(body,[name,price])):
+            self.assertEqual(ocr_pizza_image(None,'url','date'),[])
+
+    def test_branch_follows_linked_pdf_and_not_sibling_branch(self):
+        from tests.test_pdf import document
+        from scraper.scrape_pizza import crawl
+        bar={'id':'1','name':'Pizza','website':'https://example.org/branch','offers':[]}
+        class Fetcher:
+            def get(self,url):
+                if url.endswith('.pdf'):return url,'application/pdf',document([(20,450,'Margherita 18')])
+                return url,'text/html',b'<a href="https://cdn.example.org/menu.pdf">Menu</a><a href="/other-menu">Menu</a>'
+        result,check=crawl(bar,Fetcher(),{'1':[bar['website']]},5,[])
+        self.assertEqual([o['priceChf'] for o in result['offers']],[18])
+        self.assertNotIn('https://example.org/other-menu',check['visited'])
+
+    def test_restaurant_price_precedes_separate_online_price(self):
+        from scraper.scrape_pizza import crawl
+        bar={'id':'1','name':'Pizza','website':'https://example.org/','offers':[]}
+        class Fetcher:
+            def get(self,url):
+                return (url,'text/html',b'<title>Online bestellen</title><div>Margherita 15</div>') if url.endswith('/order') else (url,'text/html',b'<div>Margherita 17</div><a href="/order">Order</a>')
+        result,_=crawl(bar,Fetcher(),{},4,[])
+        self.assertEqual([o['priceChf'] for o in result['offers']],[17])
+
+    def test_discovery_reads_original_images_but_never_cart_actions(self):
+        from scraper.scrape_pizza import pizza_links,skip_source
+        html=b'<img alt="Pizza menu" src="https://static.wixstatic.com/media/menu.jpg/v1/fill/w_200/menu.jpg"><a href="/menu?add-to-cart=1">Pizza</a>'
+        self.assertEqual(pizza_links(html,'https://example.org/menu'),['https://static.wixstatic.com/media/menu.jpg'])
+        for url in ['https://example.org/menu?add_to_wishlist=1','https://example.org/menu?add-to-cart=2','https://example.org/checkout/']:
+            self.assertTrue(skip_source(url))
+        self.assertFalse(skip_source('https://example.org/menus-weine/'))
+
+    def test_pdf_neighboring_dish_does_not_hide_margherita(self):
+        from tests.test_pdf import document
+        from scraper.pizza import pizza_pdf
+        body=document([(20,460,'PIZZA'),(20,430,'MARGHERITA 16.50 TOSCANA 22.00'),
+                       (20,400,'NAPOLI 17.50 DIAVOLA 22.00')])
+        self.assertEqual([o['priceChf'] for o in pizza_pdf(body,'url','date',ocr=False)],[16.5])
+
+    def test_wix_family_section_and_online_url(self):
+        html='<h2>PIZZAS</h2><h3>PIZZAS Standard</h3><div>Margherita 16</div><h3>PIZZAS FAMILY</h3><div>Margherita 36</div>'
+        offers=pizza_html(html,'https://example.org/online-ordering','date')
+        self.assertEqual([o['priceChf'] for o in offers],[16])
+        self.assertEqual(offers[0]['priceContext'],'online_menu')
+
+    def test_fragmented_ocr_decimal_requires_both_parts_confident(self):
+        from tests.test_pdf import document
+        from scraper.pizza import ocr_pizza_image
+        from unittest.mock import patch
+        body=document([(20,450,'MARGHERITA 18. 00')])
+        words=[{'text':'MARGHERITA','conf':'95','left':'20','top':'50','width':'80','height':'20'},
+               {'text':'18.','conf':'95','left':'400','top':'50','width':'30','height':'20'},
+               {'text':'00','conf':'96','left':'435','top':'50','width':'20','height':'20'}]
+        with patch('scraper.menu_ocr.searchable_image',return_value=(body,words)):
+            self.assertEqual(ocr_pizza_image(None,'url','date')[0]['priceChf'],18)
+        words[-1]['conf']='30'
+        with patch('scraper.menu_ocr.searchable_image',return_value=(body,words)):
+            self.assertEqual(ocr_pizza_image(None,'url','date'),[])

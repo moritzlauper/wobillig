@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T22:50:57.564311+00:00",
+  "generatedAt": "2026-10-16T07:43:26.565351+00:00",
   "discoveredAt": "2026-10-15T22:29:11.239160+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -18,8 +18,8 @@
       "openingHours": "Nov-Mar Mo-Sa 11:30-22:00; Apr-Oct Su-Th 11:00-23:00; Apr-Oct Fr-Sa 11:00-24:00",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:20.496196+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-16T07:30:39.691530+00:00"
     },
     {
       "id": "node/9968313408",
@@ -72,7 +72,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T22:32:05.775783+00:00"
+      "checkedAt": "2026-10-16T07:30:06.011603+00:00"
     },
     {
       "id": "node/10905768126",
@@ -108,7 +108,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:33:42.144744+00:00"
+      "checkedAt": "2026-10-16T07:30:43.583130+00:00"
     },
     {
       "id": "node/4053473354",
@@ -251,7 +251,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:33:43.657935+00:00"
+      "checkedAt": "2026-10-16T07:30:44.054559+00:00"
     },
     {
       "id": "node/1536879758",
@@ -305,7 +305,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:33:45.880745+00:00"
+      "checkedAt": "2026-10-16T07:30:45.076932+00:00"
     },
     {
       "id": "node/289669794",
@@ -613,8 +613,8 @@
       "openingHours": "Su-Th 11:00-23:00, Fr,Sa 11:00-01:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-16T07:29:03.928583+00:00"
     },
     {
       "id": "node/11850092310",
@@ -669,7 +669,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:35:03.842236+00:00"
+      "checkedAt": "2026-10-16T07:30:48.726025+00:00"
     },
     {
       "id": "node/808458835",
@@ -769,7 +769,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:32:22.799592+00:00"
+      "checkedAt": "2026-10-16T07:30:42.162737+00:00"
     },
     {
       "id": "node/6066072455",
@@ -785,9 +785,21 @@
       ],
       "openingHours": "Mo-Su 11:00-22:30",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 20.0,
+          "sourceUrl": "https://con-gusto.ch/menu/pizza",
+          "observedAt": "2026-10-16T07:23:11.534393+00:00",
+          "confidence": "automatic",
+          "evidence": "MARGHERITA TOMATENSAUCE, FIORDILATTE CHF 20",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:23:11.534393+00:00"
     },
     {
       "id": "node/6205732851",
@@ -803,9 +815,21 @@
       ],
       "openingHours": "Mo-Fr 07:00-22:30; Sa 08:30-22:30; Su 09:00-22:30",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 20.0,
+          "sourceUrl": "https://con-gusto.ch/menu/pizza",
+          "observedAt": "2026-10-16T07:23:12.728564+00:00",
+          "confidence": "automatic",
+          "evidence": "MARGHERITA TOMATENSAUCE, FIORDILATTE CHF 20",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:23:12.728564+00:00"
     },
     {
       "id": "node/11884208971",
@@ -821,9 +845,21 @@
       ],
       "openingHours": "Mo-Th 11:00-14:00, 17:30-22:00; Fr 11:00-14:00, 17:30-22:30; Sa-Su 15:30-22:30",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 20.0,
+          "sourceUrl": "https://con-gusto.ch/menu/pizza",
+          "observedAt": "2026-10-16T07:23:13.165848+00:00",
+          "confidence": "automatic",
+          "evidence": "MARGHERITA TOMATENSAUCE, FIORDILATTE CHF 20",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:23:13.165848+00:00"
     },
     {
       "id": "node/300419657",
@@ -840,9 +876,22 @@
       ],
       "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00,17:30-22:30; Sa 17:00-22:30; Su off",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+          "observedAt": "2026-10-16T07:23:26.737799+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: Margherita 18.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:23:26.737799+00:00"
     },
     {
       "id": "node/370844602",
@@ -859,9 +908,22 @@
       ],
       "openingHours": "Mo-Sa 11:00-24:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+          "observedAt": "2026-10-16T07:23:27.941160+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: Margherita 18.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:23:27.941160+00:00"
     },
     {
       "id": "node/1978573306",
@@ -878,9 +940,22 @@
       ],
       "openingHours": "Mo-Th 11:30-14:00,17:30-23:00; Fr-Su 11:30-23:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+          "observedAt": "2026-10-16T07:23:32.309575+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: Margherita 18.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:23:32.309575+00:00"
     },
     {
       "id": "node/4958366047",
@@ -897,9 +972,22 @@
       ],
       "openingHours": "11:30-14:00,17:30-23:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+          "observedAt": "2026-10-16T07:30:24.279417+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: Margherita 18.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:30:24.279417+00:00"
     },
     {
       "id": "node/9995613567",
@@ -916,9 +1004,22 @@
       ],
       "openingHours": null,
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fc069a73c19052befb0_page_5.png",
+          "observedAt": "2026-10-16T07:30:24.543930+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: Margherita 18.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:30:24.543930+00:00"
     },
     {
       "id": "node/4377444852",
@@ -936,9 +1037,22 @@
       ],
       "openingHours": null,
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:36:23.186112+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "https://daamici2.ch/menu/",
+          "observedAt": "2026-10-16T07:30:49.775933+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita Ø32cm CHF 15.00",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:30:49.775933+00:00"
     },
     {
       "id": "node/3110688142",
@@ -955,9 +1069,22 @@
       ],
       "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00, 18:00-23:30; Sa 18:00-23:30; Su off; 2025 Jul 28-2025 Aug 17 off \"Sommerferien\"",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:36:29.606263+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.da-michelangelo.ch/Speisekarte.pdf",
+          "observedAt": "2026-10-16T07:30:58.575319+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 5: MARGHERITA TOMATENSAUCE, MOZZARELLA, OREGANO 18.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:30:58.575319+00:00"
     },
     {
       "id": "node/1528733083",
@@ -1096,9 +1223,22 @@
       ],
       "openingHours": "Mo-Th 17:00-22:00, 11:00-13:30; Fr 11:00-13:30, 17:00-23:00; Sa 17:00-23:00; Su 17:00-22:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:08.631317+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://www.pizza-delsole.ch/online-ordering",
+          "observedAt": "2026-10-16T07:30:12.757773+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita Tomaten, Mozzarella, Oregano CHF 17.00",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:30:12.757773+00:00"
     },
     {
       "id": "node/315861625",
@@ -1116,7 +1256,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:36:49.713783+00:00"
+      "checkedAt": "2026-10-16T07:30:59.659329+00:00"
     },
     {
       "id": "node/2232079982",
@@ -1134,7 +1274,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:36:52.790789+00:00"
+      "checkedAt": "2026-10-16T07:31:01.519898+00:00"
     },
     {
       "id": "node/267049752",
@@ -1151,8 +1291,8 @@
       "openingHours": "Mo-We 11:00-13:30, 17:00-22:00; Th-Sa 11:00-13:30, 17:00-23:00; Su 11:00-22:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:59.074606+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-16T07:29:37.340096+00:00"
     },
     {
       "id": "node/5380840438",
@@ -1169,8 +1309,8 @@
       "openingHours": "Mo-We 11:00-13:30, 17:00-22:00; Th-Sa 11:00-13:30, 17:00-23:00; Su 11:00-22:00",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:00.032457+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-16T07:29:37.837791+00:00"
     },
     {
       "id": "node/5386900841",
@@ -1187,8 +1327,8 @@
       "openingHours": "Mo-We 11:00-13:30, 17:00-22:00; Th-Sa 11:00-13:30, 17:00-23:00; Su 11:00-22:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:01.373063+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-16T07:29:48.162603+00:00"
     },
     {
       "id": "node/5386923026",
@@ -1205,8 +1345,8 @@
       "openingHours": "Mo-We 11:00-13:30, 17:00-22:00; Th-Sa 11:00-13:30, 17:00-23:00; Su 11:00-22:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:01.926947+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-16T07:29:51.172888+00:00"
     },
     {
       "id": "node/633584154",
@@ -1424,7 +1564,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:37:03.363727+00:00"
+      "checkedAt": "2026-10-16T07:31:01.542480+00:00"
     },
     {
       "id": "node/12090984377",
@@ -1478,7 +1618,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:37:18.702280+00:00"
+      "checkedAt": "2026-10-16T07:31:01.557081+00:00"
     },
     {
       "id": "node/12390093683",
@@ -1526,7 +1666,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:32:08.995965+00:00"
+      "checkedAt": "2026-10-16T07:30:17.990563+00:00"
     },
     {
       "id": "node/104274210",
@@ -1543,9 +1683,22 @@
       ],
       "openingHours": null,
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:10.757236+00:00",
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.9,
+          "sourceUrl": "https://static.wixstatic.com/media/52d217_ce63e06fcdb94141af1133aa09d39941~mv2.jpg",
+          "observedAt": "2026-10-16T07:36:31.444355+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: Margherita Tomaten, Mozzarella, Oregano 15.90",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:36:31.444355+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.freihofetna.ch/",
         "evidence": "freihofetna.ch, Pizzeria ETNA, Pizzeria ETNA mit Kegelbahn | Freihof Pizzeria ETNA mit Kegelbahn"
@@ -1569,7 +1722,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:37:26.634229+00:00"
+      "checkedAt": "2026-10-16T07:31:07.177611+00:00"
     },
     {
       "id": "node/307742573",
@@ -1587,8 +1740,8 @@
       "openingHours": "Mo-We 11:00-14:00,17:00-22:00; Th 11:00-14:00,17:00-23:00; Fr 11:00-14:00,17:00-24:00; Sa 10:00-24:00; Su 10:00-22:00",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:37:31.410070+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-16T07:31:07.190271+00:00"
     },
     {
       "id": "node/105443906",
@@ -1608,7 +1761,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:37:31.935576+00:00"
+      "checkedAt": "2026-10-16T07:31:08.524671+00:00"
     },
     {
       "id": "node/3799099678",
@@ -1825,9 +1978,21 @@
       ],
       "openingHours": "Mo- Fr 10:00-13:30, 17:00-22:30; Sa 16:00-23:00; Su 14:00-22:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://ilbasilico.ch/images/Manuekarte-il-Basilico.pdf",
+          "observedAt": "2026-10-16T07:30:31.898060+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: Margherita V / 18",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:30:31.898060+00:00"
     },
     {
       "id": "node/1525269376",
@@ -1844,9 +2009,21 @@
       ],
       "openingHours": "Mo-Sa 11:00-13:30, 17:00-23:00; Su, PH 11:30-23:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://ilbasilico.ch/images/Manuekarte-il-Basilico.pdf",
+          "observedAt": "2026-10-16T07:30:32.544711+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: Margherita V / 18",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:30:32.544711+00:00"
     },
     {
       "id": "node/75025846",
@@ -1924,9 +2101,22 @@
       ],
       "openingHours": "Mo-Fr 10:00-14:00,17:00-23:00; Sa 11:00-14:00,17:00-23:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:38:47.233861+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.5,
+          "sourceUrl": "https://ristoranteilsalento.ch/wp-content/uploads/2026/01/1006.png",
+          "observedAt": "2026-10-16T07:31:27.320380+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: MARGHERITA 16.50",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:31:38.507776+00:00"
     },
     {
       "id": "node/11898794623",
@@ -1942,9 +2132,22 @@
       ],
       "openingHours": "Mo-Fr 10:30-22:00, Sa-Su 11:00-22:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:38:50.360463+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.im-guet.ch/online-ordering",
+          "observedAt": "2026-10-16T07:36:36.428169+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita Tomaten, Mozzarella, Oregano CHF 16.00",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:37:48.051091+00:00"
     },
     {
       "id": "node/2509647639",
@@ -1962,7 +2165,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:11.343054+00:00"
+      "checkedAt": "2026-10-16T07:30:21.711423+00:00"
     },
     {
       "id": "node/13920868271",
@@ -1980,7 +2183,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:39:09.631552+00:00"
+      "checkedAt": "2026-10-16T07:31:15.860995+00:00"
     },
     {
       "id": "node/11408113758",
@@ -1996,9 +2199,21 @@
       ],
       "openingHours": null,
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:39:52.830261+00:00",
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://b0206d7b-df31-4af3-81f4-ebbdfd8d60d7.filesusr.com/ugd/59e8c6_713d4a33ff8e482b849c065201e7c7c7.pdf",
+          "observedAt": "2026-10-16T07:36:31.444678+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: MARGHERITA 17",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:36:31.444678+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.ladoro.ch/",
         "evidence": "Ristorante | Ristorante Pizzeria L`Adoro Pizzakurier | Schweiz"
@@ -2030,15 +2245,27 @@
       "type": "restaurant",
       "address": "",
       "postcode": "",
-      "website": null,
+      "website": "https://la-fonte.ch/",
       "cuisine": [
         "pizza"
       ],
       "openingHours": "Mo-Tu,Th-Fr 11:30-13:30,17:00-22:30; We off; Sa-Su 17:00-22:30",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_website",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 21.4,
+          "sourceUrl": "https://la-fonte.ch/wp-content/uploads/2026/07/Speisekarte-Quer-mit-schwarzem-Rand-2.pdf",
+          "observedAt": "2026-10-16T07:36:31.444555+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: Margherita Tomatensauce, Mozzarella Fior di latte 21,40",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:36:31.444555+00:00"
     },
     {
       "id": "node/289669851",
@@ -2058,7 +2285,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:40:08.858676+00:00"
+      "checkedAt": "2026-10-16T07:31:16.736035+00:00"
     },
     {
       "id": "node/10563612524",
@@ -2096,8 +2323,8 @@
       "openingHours": "Mo-Fr 09:30-20:00; Sa-Su off",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-16T07:30:32.680788+00:00"
     },
     {
       "id": "node/11216070995",
@@ -2132,12 +2359,25 @@
       ],
       "openingHours": "Tu-Fr 11:00-14:00,17:30-22:00; Sa,Su 17:30-22:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:40:13.582915+00:00",
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 13.9,
+          "sourceUrl": "https://pizza-laperladelsud.ch/bestellen/pizza/",
+          "observedAt": "2026-10-16T07:31:20.458450+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita Tomatensauce, Fior di latte und Oregano CHF 13.90",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:31:44.118929+00:00",
       "pizzaEvidence": {
-        "sourceUrl": "https://pizza-laperladelsud.ch",
-        "evidence": "Pizzeria la Perla del Sud – Dein Pizza-Kurier der Extraklasse"
+        "sourceUrl": "https://pizza-laperladelsud.ch/bestellen/desserts/",
+        "evidence": "Desserts – Pizzeria la Perla del Sud"
       }
     },
     {
@@ -2187,7 +2427,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:11.417482+00:00"
+      "checkedAt": "2026-10-16T07:30:22.047616+00:00"
     },
     {
       "id": "node/10779724980",
@@ -2203,9 +2443,22 @@
       ],
       "openingHours": null,
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:30:34.532492+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 13.9,
+          "sourceUrl": "https://pizzabuona.ch",
+          "observedAt": "2026-10-16T07:21:20.607513+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita 33 cm Tomatensauce, Mozzarella, Oregano 13.90",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:21:20.607513+00:00"
     },
     {
       "id": "node/12026879416",
@@ -2223,7 +2476,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:40:15.451693+00:00"
+      "checkedAt": "2026-10-16T07:31:20.991805+00:00"
     },
     {
       "id": "node/12765869271",
@@ -2290,7 +2543,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:40:42.534961+00:00"
+      "checkedAt": "2026-10-16T07:31:21.009436+00:00"
     },
     {
       "id": "node/10827057990",
@@ -2308,7 +2561,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:40:50.955803+00:00"
+      "checkedAt": "2026-10-16T07:31:23.404232+00:00"
     },
     {
       "id": "node/13041959578",
@@ -2352,9 +2605,22 @@
       ],
       "openingHours": "Mo-Th, Su 06:30-04:00; Fr, Sa 00:00-24:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:35.268741+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/pizzen-1-2024-444x1024.jpg",
+          "observedAt": "2026-10-16T07:31:23.554282+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: Pizza Margherita mit Tomaten, Mozzarella 15.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:31:23.554282+00:00"
     },
     {
       "id": "node/270800785",
@@ -2372,7 +2638,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:49.848372+00:00",
+      "checkedAt": "2026-10-16T07:29:36.977560+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://molino.ch/de/",
         "evidence": "Italianità per tutti – Pizzeria Ristorante Molino"
@@ -2394,7 +2660,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:48.734592+00:00",
+      "checkedAt": "2026-10-16T07:29:33.456465+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://molino.ch/de/",
         "evidence": "Italianità per tutti – Pizzeria Ristorante Molino"
@@ -2416,7 +2682,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:47.285969+00:00",
+      "checkedAt": "2026-10-16T07:29:31.412177+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://molino.ch/de/",
         "evidence": "Italianità per tutti – Pizzeria Ristorante Molino"
@@ -2438,7 +2704,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:46.014713+00:00",
+      "checkedAt": "2026-10-16T07:29:18.300806+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://molino.ch/de/restaurant/altstetten/",
         "evidence": "Zürich Altstetten – Pizzeria Ristorante Molino"
@@ -2463,10 +2729,10 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:46.133681+00:00",
+      "checkedAt": "2026-10-16T07:31:36.599324+00:00",
       "pizzaEvidence": {
-        "sourceUrl": "https://monti-triemli.ch/",
-        "evidence": "Monti Triemli Restaurant Pizzeria - Essen Online bestellen in Zürich"
+        "sourceUrl": "https://monti-triemli.ch/bestellen/",
+        "evidence": "Shop - Monti Triemli Restaurant Pizzeria"
       }
     },
     {
@@ -2485,7 +2751,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:42:50.082506+00:00"
+      "checkedAt": "2026-10-16T07:31:37.437717+00:00"
     },
     {
       "id": "node/3626070826",
@@ -2533,7 +2799,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:43:16.819936+00:00",
+      "checkedAt": "2026-10-16T07:31:37.511824+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.napule.ch/de/meilen",
         "evidence": "Pizzeria Meilen - Napulé"
@@ -2625,7 +2891,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:30:34.532586+00:00"
+      "checkedAt": "2026-10-16T07:29:03.928692+00:00"
     },
     {
       "id": "node/4948524549",
@@ -2676,9 +2942,22 @@
       ],
       "openingHours": "Mo-Th 11:00-14:00, 17:00-21:00; Fr, Sa 11:00-14:00, 17:00-22:00; Su 11:00-21:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:30:34.532668+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "https://pizzabinz.ch/bestellen/pizza/",
+          "observedAt": "2026-10-16T07:21:27.354527+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita CHF 15.00",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:21:55.944675+00:00"
     },
     {
       "id": "node/266630290",
@@ -2694,7 +2973,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:30:34.532746+00:00"
+      "checkedAt": "2026-10-16T07:29:03.927962+00:00"
     },
     {
       "id": "node/8786108318",
@@ -2711,8 +2990,8 @@
       "openingHours": "Mo-Fr 11:30-15:00,17:30-21:00; Sa 11:30-21:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:20.491209+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-16T07:36:31.444443+00:00"
     },
     {
       "id": "node/1828352894",
@@ -2728,9 +3007,22 @@
       ],
       "openingHours": "Mo-Fr 10:30-22:30; Sa,Su 16:30-22:30",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:30:34.532829+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://pizza-pirata.ch/pizza/",
+          "observedAt": "2026-10-16T07:29:03.928779+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita 32cm Tomaten, Mozzarella, Oregano 16,00",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:29:03.928779+00:00"
     },
     {
       "id": "node/104275299",
@@ -2865,9 +3157,22 @@
       ],
       "openingHours": "Mo-Su 11:00-24:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:30:34.532952+00:00",
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.pizzeria-felice.ch/",
+          "observedAt": "2026-10-16T07:29:03.928850+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita Tomatensauce, Mozzarella 18,00 CHF",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:29:03.928850+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.pizzeria-felice.ch/",
         "evidence": "Pizzeria Felice Zürich - Essen online bestellen in Zürich"
@@ -2923,7 +3228,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:30:34.533060+00:00"
+      "checkedAt": "2026-10-16T07:29:03.928948+00:00"
     },
     {
       "id": "node/3725379463",
@@ -3075,7 +3380,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:30:51.740840+00:00",
+      "checkedAt": "2026-10-16T07:29:03.929049+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://pizzeriaveneziana.ch/",
         "evidence": "Pizzeria Veneziana – Pizza in Zürich & Dübendorf"
@@ -3095,12 +3400,25 @@
       ],
       "openingHours": "Mo-Su 10:00-00:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:30:50.297546+00:00",
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 12.0,
+          "sourceUrl": "https://venice-pizza.ch",
+          "observedAt": "2026-10-16T07:21:21.813749+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita 32cm Tomatensauce, Mozzarella 12.00",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:21:21.813749+00:00",
       "pizzaEvidence": {
-        "sourceUrl": "https://venice-pizza.ch/pizza-Oberengstringen",
-        "evidence": "Pizza Oberengstringen – Pizzeria Venice"
+        "sourceUrl": "https://venice-pizza.ch/pizza-Niederglatt",
+        "evidence": "Pizza Niederglatt – Pizzeria Venice"
       }
     },
     {
@@ -3140,7 +3458,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:44:29.156064+00:00"
+      "checkedAt": "2026-10-16T07:31:39.025995+00:00"
     },
     {
       "id": "node/300419202",
@@ -3154,9 +3472,22 @@
       "cuisine": [],
       "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00,17:30-22:00; Sa 18:00-23:00; Su off",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:44:30.237464+00:00",
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 20.5,
+          "sourceUrl": "https://static.wixstatic.com/media/27d54a_cafc680f0e404c85ad9a47ac22648a9c~mv2.jpg",
+          "observedAt": "2026-10-16T07:31:39.076577+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: MARGHERITA 20.5",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:31:39.076577+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.quartier5.ch/",
         "evidence": "Quartier 5 Zürich 🍕 Restaurant & Pizzeria – seit 2014 frisch, lokal & perfekt für Genuss & Events"
@@ -3316,7 +3647,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:31:02.540670+00:00"
+      "checkedAt": "2026-10-16T07:29:03.929162+00:00"
     },
     {
       "id": "node/1710700206",
@@ -3334,7 +3665,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:03.127640+00:00",
+      "checkedAt": "2026-10-16T07:30:02.856599+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://molino.ch/de/",
         "evidence": "Italianità per tutti – Pizzeria Ristorante Molino"
@@ -3355,9 +3686,22 @@
       ],
       "openingHours": "Mo-Fr 11:00-14:30, Mo-Sa 18:00-23:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:04.872490+00:00",
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.8,
+          "sourceUrl": "https://static.wixstatic.com/media/2bf470_e9f4aa299865467b999d6bd66dc826f0.png",
+          "observedAt": "2026-10-16T07:36:31.443692+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: Margherita Tomaten, Mozzarella, Basilikum 16.80",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:36:31.443692+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.ristorante-99.ch/",
         "evidence": "Ristorante Pizzeria 99 in Zürich an der Bederstrasse 99."
@@ -3379,7 +3723,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:05.721697+00:00",
+      "checkedAt": "2026-10-16T07:29:05.179647+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.ristorante-pizzeria-daenzo.ch/",
         "evidence": "RESTAURANT PIZZERIA DA ENZO ZÜRICH | RISTORANTE :: DA ENZO"
@@ -3420,7 +3764,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:45:27.511385+00:00"
+      "checkedAt": "2026-10-16T07:31:41.297493+00:00"
     },
     {
       "id": "node/476981326",
@@ -3505,7 +3849,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:29.519792+00:00"
+      "checkedAt": "2026-10-16T07:29:17.861728+00:00"
     },
     {
       "id": "node/4424600893",
@@ -3523,7 +3867,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:46:07.520202+00:00"
+      "checkedAt": "2026-10-16T07:31:41.317495+00:00"
     },
     {
       "id": "node/268602798",
@@ -3782,7 +4126,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:46:39.522134+00:00"
+      "checkedAt": "2026-10-16T07:31:42.205859+00:00"
     },
     {
       "id": "node/1504204985",
@@ -3819,7 +4163,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:19.238984+00:00"
+      "checkedAt": "2026-10-16T07:29:05.717736+00:00"
     },
     {
       "id": "node/4244049693",
@@ -3871,12 +4215,25 @@
       ],
       "openingHours": "Mo-Fr 11:00-13:30,17:00-23:00; Sa-Su 17:00-23:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:19.653587+00:00",
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.spizzati.ch/product-category/pizzas/",
+          "observedAt": "2026-10-16T07:36:31.444239+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 32 cm Tomaten, Mozzarella, Oregano CHF16.00",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-16T07:36:31.444239+00:00",
       "pizzaEvidence": {
-        "sourceUrl": "https://www.spizzati.ch/product-category/speisen/piadina/",
-        "evidence": "Piadina bestellen in Zürich | Pizzeria Piadineria Spizzati"
+        "sourceUrl": "https://www.spizzati.ch/product-category/speisen/page/2/",
+        "evidence": "Speisen bestellen in Zürich | Pizzeria Piadineria Spizzati"
       }
     },
     {
@@ -3946,7 +4303,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:47:08.448536+00:00"
+      "checkedAt": "2026-10-16T07:31:43.860950+00:00"
     },
     {
       "id": "node/485617148",
@@ -4030,7 +4387,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:22.312843+00:00",
+      "checkedAt": "2026-10-16T07:29:13.382906+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://trattoriaemilia.ch/le-nostre-pesci-carne/",
         "evidence": "Le nostre pesci & carne - Restaurant Pizzeria Emilia"
@@ -4075,7 +4432,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:48:22.704906+00:00"
+      "checkedAt": "2026-10-16T07:31:43.877415+00:00"
     },
     {
       "id": "node/3817121658",
@@ -4129,7 +4486,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:33:22.150395+00:00"
+      "checkedAt": "2026-10-16T07:30:42.337550+00:00"
     },
     {
       "id": "node/10015479901",
@@ -4166,7 +4523,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:31:27.988814+00:00"
+      "checkedAt": "2026-10-16T07:29:16.521647+00:00"
     },
     {
       "id": "node/271151271",
@@ -4185,7 +4542,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:32:05.030565+00:00"
+      "checkedAt": "2026-10-16T07:30:04.017149+00:00"
     }
   ]
 }
