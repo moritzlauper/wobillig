@@ -143,12 +143,13 @@ map.on('click', event => {
   }
   L.popup().setLatLng(event.latlng).setContent(content).openOn(map);
 });
-// At street level, give unpriced venues their own clickable name labels.
-let showVenueNames = map.getZoom() >= 17;
-map.on('zoomend', () => {
-  const showNames = map.getZoom() >= 17;
-  if (showNames !== showVenueNames) { showVenueNames = showNames; render(); }
-});
+// Hide labels throughout zoom gestures/animations, including touch pinch zoom.
+// Toggle visibility directly so zooming does not rebuild every marker and result.
+const venueNamesMinZoom = 18;
+const syncVenueNames = () => $('map').classList.toggle('show-venue-names', map.getZoom() >= venueNamesMinZoom);
+map.on('zoomstart', () => $('map').classList.remove('show-venue-names'));
+map.on('zoomend', syncVenueNames);
+syncVenueNames();
 let toastTimer: ReturnType<typeof setTimeout>;
 function toast(message: string) { $('toast').textContent = message; $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').hidden = true, 5000); }
 function showView(list: boolean) {
@@ -327,9 +328,9 @@ function render() {
         className: `marker-wrap${o ? '' : ' unpriced-marker'}`,
         html: o
           ? `<span class="price-marker ${b.id === selected ? 'active' : ''}">${money(cost(o, f.mode))}</span>`
-          : `<span class="price-marker unknown ${b.id === selected ? 'active' : ''}">·</span>${showVenueNames ? `<span class="venue-marker-name">${e(b.name)}</span>` : ''}`,
-        iconSize: o ? [54, 26] : showVenueNames ? [132, 64] : [44, 44],
-        iconAnchor: o ? [27, 13] : showVenueNames ? [66, 22] : [22, 22],
+          : `<span class="price-marker unknown ${b.id === selected ? 'active' : ''}">·</span><span class="venue-marker-name">${e(b.name)}</span>`,
+        iconSize: o ? [54, 26] : [44, 44],
+        iconAnchor: o ? [27, 13] : [22, 22],
       }),
       title: label, alt: label, zIndexOffset: b.id === selected ? 2000 : o ? 1000 : 0,
     }).addTo(layer).on('click', () => showBar(b));
