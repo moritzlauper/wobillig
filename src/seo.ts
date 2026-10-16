@@ -73,7 +73,7 @@ export function cityContent(cityId: City, dataset: Dataset, base = '/') {
     const href = guideTypes.includes(type as GuideType) ? localPath(guidePath(cityId, type as GuideType), base) : mapLink(cityId, type, base);
     return [`<tr><th scope="row"><a href="${e(href)}">${e(label)}</a></th><td>${money(rows[0].offer.priceChf)}</td><td>${money(average)}</td><td>${rows.length}</td></tr>`];
   }).join('');
-  return `<section id="kaffeepreise" class="seo-content" aria-labelledby="preisvergleich"><h1 id="preisvergleich">Kaffeepreise in ${city} vergleichen</h1><h2>Günstigen Kaffee in ${city} finden</h2>
+  return `<section id="kaffeepreise" class="seo-content" aria-labelledby="preisvergleich"><h2 id="preisvergleich">Günstigen Kaffee in ${city} finden</h2>
     <p>Was kostet ein Espresso in ${city}? Wo gibt es günstigen Cappuccino? wobillig vergleicht erfasste Kaffeepreise in Cafés, Restaurants und Bars in ${city}. Wähle dieselbe Kaffeesorte, vergleiche den Preis pro Getränk und öffne das passende Lokal auf der Karte.</p>
     <div class="seo-table-wrap"><table><caption>Kaffeepreise ${city} nach Sorte – günstigster erfasster Preis und Durchschnitt</caption><thead><tr><th scope="col">Kaffeesorte</th><th scope="col">Ab</th><th scope="col">Durchschnitt</th><th scope="col">Lokale mit Preis</th></tr></thead><tbody>${summary}</tbody></table></div>
     ${guideTypes.map(type => `<section><h2>${coffeeLabels[type]}-Preise in ${city}</h2>${priceTable(cityId, type, dataset, 5, base)}<p><a href="${localPath(guidePath(cityId, type), base)}">${coffeeLabels[type]}-Preisvergleich ${city} mit weiteren Lokalen</a></p></section>`).join('')}

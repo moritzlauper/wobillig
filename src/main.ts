@@ -21,6 +21,7 @@ const cityId = cityFromPath(location.pathname, import.meta.env.BASE_URL);
 const city = cities[cityId];
 const dataPath = `${import.meta.env.BASE_URL}data/${city.data}`;
 const pricesApi = `/api/prices?city=${cityId}`;
+const coffeePageTitle = document.title;
 const initial = new URLSearchParams(location.search);
 const f: Filters = filtersFromSearch(initial);
 const districtState = districtFromSearch(initial, cityId);
@@ -262,6 +263,9 @@ function rebuild() {
   render();
 }
 function syncControls() {
+  const heading = `${beer() ? 'Bierpreise' : pizza() ? 'Pizzapreise' : 'Kaffeepreise'} ${city.name}`;
+  if ($('map-title').textContent !== heading) $('map-title').textContent = heading;
+  document.title = coffee() ? coffeePageTitle : `${heading} vergleichen | wobillig`;
   if (coffee() && f.type === 'fast_food') f.type = '';
   $<HTMLSelectElement>('type').innerHTML = options(Object.fromEntries(Object.entries(venueTypes).filter(([type]) => !coffee() || type !== 'fast_food')));
   $<HTMLSelectElement>('type').value = f.type;

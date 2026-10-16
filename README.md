@@ -6,7 +6,7 @@ Eine einfache Karte für Bier-, Kaffee- und Pizza-Margherita-Preise in Zürich, 
 
 ### Suchmaschinen und Search Console
 
-`npm run build` erzeugt bereits lesbares HTML für Zürich (`/`), Basel (`/basel`) und Bern (`/bern`): eindeutige Titel und Beschreibungen, H1, Preisübersichten mit Quellen, Canonical-URLs, Social-Metadaten und strukturierte Daten (`WebSite`, `CollectionPage`). Die Kartenansicht überschreibt den Seitentitel nicht. Die Preisübersichten bleiben auch nach dem Start der interaktiven Karte sichtbar.
+`npm run build` erzeugt bereits lesbares HTML für Zürich (`/`), Basel (`/basel`) und Bern (`/bern`): eindeutige Titel und Beschreibungen, H1, Preisübersichten mit Quellen, Canonical-URLs, Social-Metadaten und strukturierte Daten (`WebSite`, `CollectionPage`). Eine 26 Pixel hohe, auch mobil einzeilige Kopfzeile zeigt die Kategorie und Stadt sowie den Link «Preisliste» zur Kaffee-Preisübersicht. Bei einem Wechsel auf Bier oder Pizza passen sich die Überschrift und der Browser-Seitentitel an; bei Kaffee gilt wieder der SEO-Seitentitel. Die Preisübersichten bleiben auch nach dem Start der interaktiven Karte sichtbar.
 
 Zusätzlich entstehen sechs direkt verlinkte, ohne JavaScript nutzbare Preisvergleichsseiten: `/espresso-zuerich`, `/cappuccino-zuerich`, `/espresso-basel`, `/cappuccino-basel`, `/espresso-bern`, `/cappuccino-bern`. Sie zeigen je Sorte die günstigsten 25 erfassten Lokale, Anzahl, Preisspanne, Durchschnitt und Quellen. Die Auswahl verwendet dieselben Kaffeesorten und Gültigkeitsregeln wie die Karte; pro Lokal zählt ein Preis. Es wird keine vollständige Marktabdeckung behauptet. Community-Korrekturen werden in der Karte laufend geladen; die statischen Übersichten verwenden die JSON-Daten des Builds.
 
