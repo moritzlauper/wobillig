@@ -27,6 +27,7 @@ QUERY = venue_query('restaurant|cafe|fast_food|bar|pub')
 SKIP=re.compile(r'take[ _-]?away|delivery|liefer|kinder|bambini|lunch|mittag|wochen|tagesmen|weine|wine|getr[aä]nke|drinks|cocktail',re.I)
 HINTS_PATH=ROOT/'scraper/pizza_menu_urls.json'
 REVIEWS_PATH=ROOT/'scraper/reviewed_pizza_menus.json'
+EXCLUSIONS_PATH=ROOT/'scraper/pizza_exclusions.json'
 
 
 def is_pizza_venue(bar):
@@ -176,6 +177,10 @@ def main():
     hints=json.loads(HINTS_PATH.read_text()) if HINTS_PATH.exists() else {}
     reviews=json.loads(REVIEWS_PATH.read_text()) if REVIEWS_PATH.exists() else []
     checks=json.loads(CHECKS.read_text()) if CHECKS.exists() else {}
+    exclusions=json.loads(EXCLUSIONS_PATH.read_text()) if EXCLUSIONS_PATH.exists() else {}
+    # Remove excluded venues from discovery and retained data, including retry runs.
+    old['bars']=[b for b in old['bars'] if b['id'] not in exclusions]
+    found['bars']=[b for b in found['bars'] if b['id'] not in exclusions]
     overrides=json.loads((ROOT/'scraper/website_overrides.json').read_text())
     found['bars']=[{**b,'website':overrides.get(b['id'],b.get('website'))} for b in found['bars']]
     hints=scoped_hints(found['bars'], hints)

@@ -263,3 +263,26 @@ class PizzaRecallRegressionTests(unittest.TestCase):
         words[-1]['conf']='30'
         with patch('scraper.menu_ocr.searchable_image',return_value=(body,words)):
             self.assertEqual(ocr_pizza_image(None,'url','date'),[])
+
+
+class PizzaExclusionTests(unittest.TestCase):
+    def test_exclusion_removes_retained_prices_and_rediscovered_venue(self):
+        import json
+        from pathlib import Path
+        from tempfile import TemporaryDirectory
+        from unittest.mock import patch
+        from scraper import scrape_pizza as module
+        excluded={'id':'node/10779724980','name':'La Pizza Buona','website':'https://example.org/',
+                  'type':'restaurant','cuisine':['pizza'],'offers':[{'pizzaType':'margherita','priceChf':13.9}]}
+        retained={**excluded,'id':'node/2','name':'Neighbour Pizzeria','website':None,'offers':[]}
+        with TemporaryDirectory() as directory:
+            root=Path(directory)
+            data=root/'pizza.json'; data.write_text(json.dumps({'bars':[excluded,retained]}))
+            venues=root/'venues.json'; venues.write_text(json.dumps({'bars':[excluded,retained]}))
+            exclusions=root/'exclusions.json'; exclusions.write_text(json.dumps({excluded['id']:{'reason':'User request'}}))
+            with patch.object(module,'DATA',data), patch.object(module,'CHECKS',root/'checks.json'), \
+                 patch.object(module,'EXCLUSIONS_PATH',exclusions), patch.object(module,'crawl') as crawl:
+                for args in [[],['--retry'],['--venues-file',str(venues)]]:
+                    with patch('sys.argv',['scrape_pizza',*args]):module.main()
+                    self.assertEqual([b['id'] for b in json.loads(data.read_text())['bars']],[retained['id']])
+                crawl.assert_not_called()
