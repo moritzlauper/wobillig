@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import type { Plugin } from 'vite';
 import { cities, type City } from '../src/cities';
 import type { Dataset } from '../src/data';
-import { cityContent, cityIds, guideContent, guidePath, guideTypes, localPath, metadata, seoHead, siteOrigin } from '../src/seo';
+import { cityContent, cityIds, guideContent, guidePath, guideTypes, localPath, seoHead, siteOrigin } from '../src/seo';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 export function seoPlugin(): Plugin {
@@ -27,7 +27,6 @@ export function seoPlugin(): Plugin {
       handler(html, context) {
         const city: City = context.filename.replaceAll('\\', '/').endsWith('/basel/index.html') ? 'basel' : context.filename.replaceAll('\\', '/').endsWith('/bern/index.html') ? 'bern' : 'zurich';
         return html.replace('<!-- SEO_HEAD -->', seoHead(city, origin))
-          .replace('<!-- SEO_HEADING -->', `<header class="seo-map-header"><h1>${metadata(city).heading}</h1><a href="#kaffeepreise">Preisübersicht &amp; Quellen</a></header>`)
           .replace('<!-- SEO_CONTENT -->', cityContent(city, dataset(city), base));
       },
     },
