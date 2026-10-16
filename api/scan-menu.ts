@@ -39,13 +39,17 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const key = process.env.ANTHROPIC_API_KEY, secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!key || !secret) throw new InputError('Karte scannen ist gerade nicht verfügbar. Du kannst Preise einzeln eintragen.', 503);
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
-    const hash = createHash('sha256').update(`menu-v1:${city}:${bar.id}:`).update(Buffer.from(image.data, 'base64')).digest('hex');
+    const hash = createHash('sha256').update(`menu-v2:${city}:${bar.id}:`).update(Buffer.from(image.data, 'base64')).digest('hex');
     const visitor = createHmac('sha256', secret).update(`${zurichToday()}:${req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown'}`).digest('hex');
     const cached = await reserveScan(store, hash, visitor);
     if (cached) return reply(200, cached);
     reserved = { store, hash };
     const result = await readMenu(image, bar, key);
     const { prices, skipped } = menuPrices(result.parsed, bar, zurichToday());
+    // Diagnostics without image data or visitor identity, to see why readable photos fail.
+    console.info('Menu scan', JSON.stringify({ city, menu: result.parsed?.menu, currency: result.parsed?.currency, rows: result.parsed?.rows?.length,
+      clear: result.parsed?.rows?.filter((r: { clear?: boolean }) => r.clear).length, saved: prices.length, skipped, usage: result.usage,
+      rejected: (result.verification as { rejected?: unknown } | undefined)?.rejected }));
     if (!prices.length) throw new InputError('Keine eindeutigen Bier-, Kaffee- oder Margherita-Preise erkannt. Bitte einen näheren, scharfen Ausschnitt fotografieren.', 422);
     const originals = [beer, coffee, pizza].flatMap(d => d.bars.find(b => b.id === bar.id)?.offers || []);
     const saved = await saveMenuScan(store, hash, bar, originals, prices, skipped);

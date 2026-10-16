@@ -27,6 +27,15 @@ describe('menu interpretation', () => {
       expect(extract([{ ...row, ...patch }])).toEqual({ prices: [], skipped: 1 });
     }
   });
+  it('reads tap-board rows with superscript sizes and whole-franc prices', () => {
+    const tap = (name: string, prices: string[]) => ({ ...row, name, beerType: 'unknown', sizes: ['3DL', '5DL'], prices });
+    const result = extract([tap('Adler Bräu Zwickel', ['7', '9.5']), tap('Ahoi Hill IPA', ['10', '15']), tap('Turbinenbräu Sprint', ['5', '7.5']),
+      { ...tap('Gsöff Session IPA', ['9', '13']), clear: false }]);
+    expect(result.prices.map(p => [p.input.name, p.input.volumeMl, p.input.priceChf, p.input.beerType])).toEqual([
+      ['Adler Bräu Zwickel', 300, 7, 'unknown'], ['Adler Bräu Zwickel', 500, 9.5, 'unknown'], ['Ahoi Hill IPA', 300, 10, 'unknown'],
+      ['Ahoi Hill IPA', 500, 15, 'unknown'], ['Turbinenbräu Sprint', 300, 5, 'unknown'], ['Turbinenbräu Sprint', 500, 7.5, 'unknown']]);
+    expect(result.skipped).toBe(1);
+  });
   it('keeps unknown packaging unknown and requires explicit Stange for missing size', () => {
     expect(extract([{ ...row, beerType: 'unknown' }]).prices.every(p => p.input.beerType === 'unknown')).toBe(true);
     expect(extract([{ ...row, sizes: ['Stange'], prices: ['5.20'] }]).prices[0].input).toMatchObject({ volumeMl: null, serving: 'stange' });

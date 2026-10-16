@@ -45,6 +45,13 @@ it.skipIf(!enabled)('distinguishes packaging, alcohol-free, coffee and normal pi
   expect(prices.find(p => p.input.name.includes('Feldschlösschen'))?.input).toMatchObject({ beerType: 'bottle', alcoholFree: true });
   expect(prices.find(p => p.input.name === 'IPA')?.input.beerType).toBe('can');
 }, 90000);
+it.skipIf(!enabled)('reads a dim tap board with superscript sizes and whole-franc prices', async () => {
+  const { result, bar } = await scan('tests/fixtures/menu-scan-tapboard.jpg', 'Poli');
+  const { prices } = menuPrices(result.parsed, bar, '2026-10-16');
+  const found = prices.map(p => [p.input.volumeMl, p.input.priceChf]);
+  for (const pair of [[300, 7], [500, 9.5], [300, 10], [500, 15], [300, 5], [500, 7.5], [300, 6], [500, 8.5]]) expect(found).toContainEqual(pair);
+  expect(prices.find(p => /zwickel/i.test(p.input.name))?.input.priceChf).toBe(7);
+}, 90000);
 it.skipIf(!enabled)('does not save an unreadable menu', async () => {
   const { result, bar } = await scan('tests/fixtures/menu-scan-unreadable.jpg', 'Mars Bar');
   let prices: unknown[] = [];
