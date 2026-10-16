@@ -30,3 +30,23 @@ it.skipIf(process.env.RUN_BLOB_INTEGRATION !== '1')('persists repeated edits and
     expect(state.history).toHaveLength(5);
   } finally { await del(path); }
 }, 60000);
+
+it.skipIf(process.env.RUN_BLOB_INTEGRATION !== '1')('commits a scanned menu atomically and reuses its receipt across real store instances', async () => {
+  const { reserveScan, saveMenuScan } = await import('../server/menu-scan-store');
+  const { menuPrices } = await import('../server/menu-ocr');
+  const path = `tests/menu-scan-${randomUUID()}.json`;
+  const store = blobStore(path);
+  const data = JSON.parse(await readFile('public/data/bars.json', 'utf8')) as Dataset;
+  const bar = data.bars.find(b => b.id === 'node/582264861')!;
+  const { prices, skipped } = menuPrices({ menu: true, wrongVenue: false, currency: 'CHF', rows: [
+    { name: 'Sprint', category: 'beer', sizes: ['3dl', '5dl'], prices: ['5.20', '7.90'], beerType: 'draft', alcoholFree: false, clear: true },
+  ] }, bar, '2026-10-16');
+  try {
+    await reserveScan(store, 'test-photo', 'integration-test');
+    const saved = await saveMenuScan(store, 'test-photo', bar, [], prices, skipped);
+    expect(saved.added).toBe(2);
+    const repeated = await reserveScan(blobStore(path), 'test-photo', 'integration-test');
+    expect(repeated?.entries.map(e => e.id)).toEqual(saved.entries.map(e => e.id));
+    expect((await blobStore(path).read()).state.entries).toHaveLength(2);
+  } finally { await del(path); }
+}, 60000);

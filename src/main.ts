@@ -11,6 +11,7 @@ import { createExport, downloadExport } from './export';
 import { locationAtPosition, nearbyLocations, selectableLocations } from './locations';
 import { createDistrictLookup, districtFromSearch, type Districts } from './districts';
 import { searchSuggestions } from './search';
+import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 const money = (n: number) => n.toFixed(2);
@@ -83,13 +84,23 @@ $('app').innerHTML = `
   <div class="dialog-top"><strong id="form-title">Preis eintragen</strong><button id="cancel-price" type="button">Schliessen</button></div>
   <input id="entry-bar" type="hidden">
   <label>Lokal<input id="entry-bar-name" readonly></label><p id="entry-location" class="muted"></p>
+  <section id="menu-scan" class="menu-scan" aria-label="Karte scannen">
+    <button id="scan-menu" class="primary" type="button">Karte scannen / hochladen</button>
+    <input id="menu-photo" type="file" accept="image/*" aria-label="Menüfoto auswählen" hidden>
+    <p class="muted">Foto aufnehmen oder auswählen. Lesbare Bier-, Kaffee- und Margherita-Preise werden automatisch gespeichert.</p>
+    <p class="scan-privacy">Das Foto wird zur Erkennung an Anthropic gesendet und von wobillig nicht gespeichert.</p>
+    <p id="scan-status" role="status" hidden></p>
+  </section>
+  <details id="manual-entry"><summary>Preis von Hand eintragen</summary><fieldset id="manual-fields">
   <div class="form-row"><label>Kategorie<select id="entry-drink"><option value="coffee">Kaffee</option><option value="beer">Bier</option><option value="pizza">Pizza Margherita</option></select></label><label id="entry-coffee-label" hidden>Sorte<select id="entry-coffee">${coffeeOptions}</select></label></div>
   <label>Bezeichnung<input id="entry-name" maxlength="100" placeholder="z. B. Lager oder Espresso" required></label>
   <div id="entry-beer-fields"><label>Ausschank<select id="entry-beer-type">${options(beerTypeLabels)}</select></label><small id="entry-type-hint" class="muted" hidden>Diese Vorauswahl ist geschätzt. Bitte prüfen.</small><div class="form-row"><label>Menge in dl<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label class="check"><input id="entry-size-unknown" type="checkbox"> Menge nicht angegeben (nur Stange)</label><label class="check"><input id="entry-alcohol" type="checkbox"> Alkoholfrei</label></div>
   <div class="form-row"><label>Preis in CHF<input id="entry-price" type="number" min="0.5" max="50" step="0.01" inputmode="decimal" required></label><label>Preis gesehen am<input id="entry-date" type="date" min="2020-01-01" required></label></div>
   <label>Link zur Karte (optional)<input id="entry-source" type="url" maxlength="1500" placeholder="https://…"></label>
   <p class="muted">Wird für alle sichtbar. Bitte den tatsächlichen Preis dieser Portion eintragen.</p>
-  <p id="form-error" role="alert" hidden></p><button id="save-price" class="primary" type="submit">Speichern</button>
+  <button id="save-price" class="primary" type="submit">Speichern</button>
+  </fieldset></details>
+  <p id="form-error" role="alert" hidden></p>
 </form></dialog>
 <dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">Daten für ${e(city.name)} herunterladen</strong><p>Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.</p><div class="download-actions"><button id="download-csv" class="primary" disabled>CSV herunterladen</button><button id="download-json" disabled>JSON herunterladen</button></div><p class="muted">CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.</p><p id="download-status" class="muted" role="status">Daten werden geladen …</p></section><p id="coverage"></p><p>Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.</p>${cityId === 'zurich' ? '<p>Kreise: Unter «Filter» lassen sich die Stadtkreise einblenden und per Karte oder Auswahlfeld auswählen. Der Kreisdurchschnitt wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb der gewählten Kreisgrenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis. Kreisgrenzen: <a href="https://data.stadt-zuerich.ch/dataset/geo_stadtkreise" target="_blank" rel="noopener noreferrer">Stadt Zürich, Stadtkreise (CC0)</a>.</p>' : ''}<p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise sind nicht geprüft. Quelle, Menge und Datum stehen beim Angebot.</p><p>Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.</p><p>Bier: Cafés ohne erfasstes Bierangebot oder mit ausschliesslicher Öffnung bis spätestens 19 Uhr werden ausgeblendet, auch bei «Ohne passenden Preis anzeigen». Unbekannte Öffnungszeiten bleiben offen.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
 
@@ -598,9 +609,12 @@ function openPrice(bar: Bar, offer?: Offer) {
   map.closePopup();
   editing = offer;
   $<HTMLFormElement>('price-form').reset();
-  $('form-title').textContent = offer ? 'Preis ändern' : 'Preis eintragen';
+  $('form-title').textContent = offer ? 'Preis ändern' : 'Preise hinzufügen';
+  $('menu-scan').hidden = Boolean(offer);
+  $<HTMLDetailsElement>('manual-entry').open = Boolean(offer);
+  $('scan-status').hidden = true;
   $<HTMLInputElement>('entry-bar').value = bar.id;
-  $('entry-location').textContent = `Standort übernommen: ${bar.lat.toFixed(5)}, ${bar.lon.toFixed(5)}`;
+  $('entry-location').textContent = 'Die Preise werden diesem Lokal zugeordnet.';
   $<HTMLInputElement>('entry-bar-name').value = [bar.name, bar.address].filter(Boolean).join(' · ');
   $<HTMLSelectElement>('entry-drink').value = offer ? offerCategory(offer) : f.drink!;
   $<HTMLSelectElement>('entry-drink').disabled = Boolean(offer);
@@ -618,8 +632,51 @@ function openPrice(bar: Bar, offer?: Offer) {
   $('form-error').hidden = true;
   entryFields();
   $<HTMLDialogElement>('price-dialog').showModal();
-  $<HTMLInputElement>(offer || pizza() ? 'entry-price' : 'entry-name').focus();
+  if (offer) $<HTMLInputElement>('entry-price').focus();
+  else $('scan-menu').focus();
 }
+$('scan-menu').onclick = () => { if (!saving) $<HTMLInputElement>('menu-photo').click(); };
+$('menu-photo').onchange = async () => {
+  const picker = $<HTMLInputElement>('menu-photo');
+  const file = picker.files?.[0];
+  if (!file || saving) return;
+  const barId = $<HTMLInputElement>('entry-bar').value;
+  saving = true;
+  $<HTMLButtonElement>('scan-menu').disabled = true;
+  $<HTMLButtonElement>('cancel-price').disabled = true;
+  $<HTMLFieldSetElement>('manual-fields').disabled = true;
+  $('menu-scan').setAttribute('aria-busy', 'true');
+  $('form-error').hidden = true;
+  $('scan-status').hidden = false; $('scan-status').textContent = 'Foto wird vorbereitet …';
+  try {
+    const image = await prepareMenuPhoto(file);
+    $('scan-status').textContent = 'Karte wird gelesen und Preise werden gespeichert …';
+    const response = await fetch(`/api/scan-menu?city=${cityId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ barId, image }), signal: AbortSignal.timeout(100000) });
+    const result = await response.json().catch(() => { throw new Error('Der Scan ist gerade nicht verfügbar. Bitte später erneut versuchen.'); });
+    if (!response.ok) throw new Error(result.error || 'Das Foto konnte nicht verarbeitet werden.');
+    const scanned = result as MenuScanResult;
+    const ids = new Set(scanned.entries.map(entry => entry.id));
+    entries = [...entries.filter(entry => !ids.has(entry.id)), ...scanned.entries];
+    if (scanned.entries.length && !scanned.entries.some(entry => entry.drink === f.drink)) f.drink = scanned.entries[0].drink;
+    cheapMode = false; selected = barId;
+    $<HTMLDialogElement>('price-dialog').close(); rebuild();
+    const bar = bars.find(b => b.id === barId) || locationCatalogue.find(b => b.id === barId);
+    if (bar) showBar(bar);
+    toast(scanSummary(scanned));
+  } catch (error) {
+    $('scan-status').hidden = true;
+    $('form-error').textContent = error instanceof Error && !['TypeError', 'TimeoutError', 'AbortError'].includes(error.name)
+      ? error.message : 'Verbindung unterbrochen. Bitte lade die Seite neu, um bereits gespeicherte Preise zu sehen.';
+    $('form-error').hidden = false;
+  } finally {
+    saving = false; picker.value = '';
+    $<HTMLButtonElement>('scan-menu').disabled = false;
+    $<HTMLButtonElement>('cancel-price').disabled = false;
+    $<HTMLFieldSetElement>('manual-fields').disabled = false;
+    $('menu-scan').removeAttribute('aria-busy');
+  }
+};
 $('entry-drink').onchange = () => {
   if (!editing) $<HTMLInputElement>('entry-name').value = $<HTMLSelectElement>('entry-drink').value === 'coffee' ? coffeeLabels[$<HTMLSelectElement>('entry-coffee').value] : '';
   entryFields();
@@ -646,7 +703,7 @@ $('price-form').onsubmit = async event => {
       alcoholFree: drink !== 'beer' || $<HTMLInputElement>('entry-alcohol').checked,
       observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
     } satisfies PriceInput, selectableLocations(venues, locationCatalogue).filter(b => (!coffee() || b.type !== 'fast_food') && inSelectedDistrict(b)));
-    saving = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = 'Speichern …';
+    saving = true; $<HTMLButtonElement>('scan-menu').disabled = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = 'Speichern …';
     const response = await fetch(pricesApi, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
     const result = await response.json().catch(() => { throw new Error('Speichern gerade nicht möglich. Bitte erneut versuchen.'); });
     if (!response.ok) {
@@ -672,7 +729,7 @@ $('price-form').onsubmit = async event => {
   } catch (error) {
     $('form-error').textContent = error instanceof Error && !['TypeError', 'TimeoutError', 'AbortError'].includes(error.name) ? error.message : 'Speichern fehlgeschlagen. Bitte Verbindung prüfen und erneut versuchen.';
     $('form-error').hidden = false;
-  } finally { saving = false; $<HTMLButtonElement>('save-price').disabled = false; $<HTMLButtonElement>('cancel-price').disabled = false; $('save-price').textContent = 'Speichern'; }
+  } finally { saving = false; $<HTMLButtonElement>('scan-menu').disabled = false; $<HTMLButtonElement>('save-price').disabled = false; $<HTMLButtonElement>('cancel-price').disabled = false; $('save-price').textContent = 'Speichern'; }
 };
 async function loadCommunity() {
   try {

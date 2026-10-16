@@ -21,6 +21,7 @@ export type Offer = {
   evidence: string;
   alcoholFree: boolean;
   photoSource?: { kind: "google_maps_photo"; date: string; dateEvidence: string; dateCheckedAt: string; validUntil: string };
+  menuScan?: { sha256: string; model: string };
 };
 export type Bar = {
   id: string;

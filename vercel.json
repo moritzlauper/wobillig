@@ -7,6 +7,10 @@
     "api/prices.ts": {
       "includeFiles": "public/data/**/*.json",
       "maxDuration": 30
+    },
+    "api/scan-menu.ts": {
+      "includeFiles": "public/data/**/*.json",
+      "maxDuration": 90
     }
   },
   "rewrites": [

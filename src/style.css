@@ -192,3 +192,12 @@ dialog::backdrop { background: #0005; }
 .location-marker:hover span, .location-marker:focus-visible span { outline: 3px solid #2767b3; }
 .location-choices { display: grid; gap: 7px; min-width: 200px; max-width: 280px; }
 .location-choices button { width: 100%; text-align: left; white-space: normal; min-height: 44px; }
+
+.menu-scan { margin: 16px 0; padding: 14px; border: 1px solid #c5d9d5; border-radius: 6px; background: #f4f9f8; }
+#scan-menu { width: 100%; min-height: 44px; background: #24636b; border-color: #24636b; }
+#scan-menu:hover { background: #194e55; }
+.menu-scan p { margin: 9px 0 0; }
+.scan-privacy { font-size: var(--font-meta); color: #666; }
+#scan-status { font-size: var(--font-control); color: #194e55; }
+#manual-entry > summary { padding: 10px 0; cursor: pointer; font-size: var(--font-control); }
+#manual-fields { min-width: 0; margin: 0; padding: 10px 0 0; border: 0; }
