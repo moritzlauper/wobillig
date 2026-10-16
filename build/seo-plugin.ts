@@ -27,7 +27,7 @@ export function seoPlugin(): Plugin {
       handler(html, context) {
         const city: City = context.filename.replaceAll('\\', '/').endsWith('/basel/index.html') ? 'basel' : context.filename.replaceAll('\\', '/').endsWith('/bern/index.html') ? 'bern' : 'zurich';
         return html.replace('<!-- SEO_HEAD -->', seoHead(city, origin))
-          .replace('<!-- SEO_HEADING -->', `<header class="seo-map-header"><h1 id="map-title">Kaffeepreise ${cities[city].name}</h1><a href="#kaffeepreise" aria-label="Kaffee-Preisliste und Quellen" title="Kaffee-Preisliste und Quellen">Preisliste</a></header>`)
+          .replace('<!-- SEO_HEADING -->', `<header class="seo-map-header"><h1 id="map-title">Kaffeepreise ${cities[city].name}</h1></header>`)
           .replace('<!-- SEO_CONTENT -->', cityContent(city, dataset(city), base));
       },
     },

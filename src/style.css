@@ -69,6 +69,7 @@ main { display: flex; flex: 1; min-height: 0; }
 .list-panel { flex: 0 0 300px; overflow-y: auto; border-right: 1px solid #aaa; }
 .list-tools { padding: 8px; border-bottom: 1px solid #ddd; }
 .list-tools select { width: 100%; }
+.rankings-link { display: flex; align-items: center; min-height: 35px; margin-bottom: 8px; font-size: var(--font-control); }
 .venue { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; text-align: left; border: 0; border-bottom: 1px solid #ddd; border-radius: 0; padding: 12px; }
 .venue strong { font-weight: 600; }
 .venue small { display: block; color: #666; font-size: var(--font-control); margin-top: 4px; }
