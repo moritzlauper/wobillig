@@ -272,6 +272,12 @@ vercel deploy --prod --yes
 
 `npm run test:storage` prüft den verbundenen Blob-Store mit temporären, anschliessend gelöschten Testobjekten. Dazu muss `.env.local` vorhanden sein. Der Test prüft aufeinanderfolgende und gleichzeitige Schreibvorgänge inklusive Versionskonflikten und wachsender Historie. Im normalen Testlauf wird dieser Integrationstest übersprungen.
 
+## Lokaladressen
+
+Der Import berücksichtigt neben `addr:street` auch OSM-Kontaktadressen. `WOBILLIG_CITY=bern python -m scraper.addresses` ergänzt fehlende Adressen in allen vier Stadt-Datensätzen; für Basel entsprechend `WOBILLIG_CITY=basel`. Der Refresh führt diesen Schritt vor der Veröffentlichung aus. Ein bestehender OSM-Export lässt sich mit `--osm-file` verwenden.
+
+Gebäudeadressen werden nur übernommen, wenn das Lokal innerhalb des Gebäudes liegt und dessen Adressangaben eindeutig sind. Es wird keine nächstgelegene Hausnummer geraten. Manuell auf den Lokal-Websites geprüfte Ergänzungen stehen mit Quelle in `scraper/reviewed_addresses.json`; ergänzte Datensätze speichern `addressSource`. Bestehende Adressen bleiben erhalten. Ohne belegbare Adresse zeigt die Detailansicht «Adresse noch nicht erfasst» in der grauen Adresszeile.
+
 ## Claude-Scans in GitHub Actions
 
 Das Repository-Secret `ANTHROPIC_API_KEY` wird ausschliesslich dem KI-Scan-Schritt übergeben. Es gehört weder in den Browser noch in Vercel oder die Daten-Dateien. `Refresh city prices` aktualisiert Bier und Kaffee **alle drei Wochen montags um 04:23 UTC**, beginnend am **19. Oktober 2026**, und führt nach der normalen Suche den Claude-Scan aus. Der wöchentliche Zeitplan führt den Scan nur jeden dritten Montag in einem festen 21-Tage-Rhythmus aus, auch über Jahreswechsel hinweg. Manuelle Läufe sind jederzeit möglich; auswählbar sind `full`, `ai_only`, `estimates_only` und `photos_only`.

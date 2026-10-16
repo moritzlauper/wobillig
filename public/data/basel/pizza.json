@@ -48,8 +48,8 @@
       "lat": 47.5670069,
       "lon": 7.6009293,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Maulbeerstrasse 34",
+      "postcode": "4058",
       "website": null,
       "cuisine": [
         "pizza"
@@ -58,7 +58,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3220375665"
     },
     {
       "id": "node/3392587471",
@@ -126,8 +127,8 @@
       "lat": 47.5558584,
       "lon": 7.5741727,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Allschwilerstrasse 19",
+      "postcode": "4055",
       "website": null,
       "cuisine": [
         "kebab",
@@ -137,7 +138,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3242554135"
     },
     {
       "id": "node/11379700569",
@@ -205,8 +207,8 @@
       "lat": 47.5705037,
       "lon": 7.5952502,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Brombacherstrasse 2",
+      "postcode": "4057",
       "website": "https://www.dettoprontopizzakurier.ch",
       "cuisine": [
         "pizza"
@@ -215,7 +217,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:36:05.350733+00:00"
+      "checkedAt": "2026-10-15T22:36:05.350733+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3207784715"
     },
     {
       "id": "way/1371153668",
@@ -339,8 +342,8 @@
       "lat": 47.5671452,
       "lon": 7.5952952,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Feldbergstrasse 113",
+      "postcode": "4057",
       "website": null,
       "cuisine": [
         "kebab",
@@ -350,7 +353,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/249341166"
     },
     {
       "id": "node/4618831145",
@@ -488,8 +492,8 @@
       "lat": 47.5551145,
       "lon": 7.6122362,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Froburgstrasse 31",
+      "postcode": "4052",
       "website": "http://www.froburg-basel.ch/",
       "cuisine": [
         "pizza",
@@ -499,7 +503,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:36:08.095279+00:00"
+      "checkedAt": "2026-10-15T22:36:08.095279+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3551978996"
     },
     {
       "id": "node/11141978301",
@@ -507,15 +512,16 @@
       "lat": 47.5728263,
       "lon": 7.5745664,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Weinlagerstrasse 11",
+      "postcode": "4056",
       "website": null,
       "cuisine": [],
       "openingHours": "Tu-Su,PH 09:00-22:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/10678952126"
     },
     {
       "id": "node/3237678599",
@@ -687,15 +693,16 @@
       "lat": 47.5682571,
       "lon": 7.5798928,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Mülhauserstrasse 57",
+      "postcode": "4056",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/266419399"
     },
     {
       "id": "node/731419122",
@@ -721,8 +728,8 @@
       "lat": 47.5666707,
       "lon": 7.5938957,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Feldbergstrasse 88",
+      "postcode": "4057",
       "website": null,
       "cuisine": [
         "pizza"
@@ -731,7 +738,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3208777914"
     },
     {
       "id": "node/71525588",
@@ -755,8 +763,8 @@
       "lat": 47.5552409,
       "lon": 7.5900301,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Streitgasse 20",
+      "postcode": "4051",
       "website": "https://www.centroambarfi.ch/",
       "cuisine": [
         "italian",
@@ -783,7 +791,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.centroambarfi.ch/en/coffee-and-digestifs-2/",
         "evidence": "Italian Restaurant - Pizzeria: Good food in Basel | Centro am Barfi"
-      }
+      },
+      "addressSource": "https://www.centroambarfi.ch/kontakt/"
     },
     {
       "id": "node/822473463",
@@ -1142,8 +1151,8 @@
       "lat": 47.5820238,
       "lon": 7.5920945,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Hochbergerstrasse 134",
+      "postcode": "4057",
       "website": "http://www.schiff-restaurant.ch/",
       "cuisine": [],
       "openingHours": "Mo-Fr 09:30-23:00; Sa,Su 10:00-23:00",
@@ -1162,7 +1171,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:39:11.219112+00:00"
+      "checkedAt": "2026-10-15T22:39:11.219112+00:00",
+      "addressSource": "https://www.schiff-restaurant.ch/"
     },
     {
       "id": "node/14178506071",
@@ -1314,15 +1324,16 @@
       "lat": 47.5547279,
       "lon": 7.6110572,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Zürcherstrasse 95",
+      "postcode": "4052",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3551979200"
     },
     {
       "id": "node/1796023933",

@@ -119,6 +119,10 @@ jobs:
           name: claude-scan-report-${{ matrix.city }}
           path: scraper/cache/${{ matrix.city }}/ai-report.json
           if-no-files-found: ignore
+      - name: Fill missing venue addresses
+        if: ${{ !cancelled() && (success() || steps.ai.outcome == 'failure') }}
+        continue-on-error: true
+        run: python -m scraper.addresses
       - name: Snapshot refreshed dataset
         id: snapshot
         if: ${{ !cancelled() && (success() || steps.ai.outcome == 'failure') }}

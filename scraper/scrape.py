@@ -25,6 +25,7 @@ from scraper.estimates import estimate_types
 from scraper.beer_rules import eligible_offer
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 from scraper.coffee import extract_coffees, coffee_pdf, coffee_types, PRICE as COFFEE_PRICE
+from scraper.addresses import tag_address
 
 from scraper.cities import ROOT, CITY, AREA, DATA_DIR, CACHE_DIR
 DATA = DATA_DIR / 'bars.json'
@@ -172,9 +173,12 @@ def discover(previous, path=None, query=QUERY):
         website=WEBSITES.get(id) or tags.get('website') or tags.get('contact:website') or EXTRA_VENUES.get(id,{}).get('website')
         if website and not website.startswith(('http://','https://')):
             website='https://'+website
+        address = tag_address(tags)
+        previous_address = old.get(id, {})
+        if not address['address']:
+            address = {**address, **{k: previous_address[k] for k in ('address', 'postcode', 'addressSource') if previous_address.get(k)}}
         bars.append({'id':id,'name':tags['name'],'lat':center['lat'],'lon':center['lon'],
-            'type':tags.get('amenity','bar'),'address':' '.join(filter(None,[tags.get('addr:street'),tags.get('addr:housenumber')])),
-            'postcode':tags.get('addr:postcode',''),'website':website,
+            'type':tags.get('amenity','bar'),**address,'website':website,
             'cuisine':[c.strip().lower() for c in tags.get('cuisine','').split(';') if c.strip()],
             'openingHours':tags.get('opening_hours'),'outdoor':tags.get('outdoor_seating')=='yes',
             'offers':old.get(id,{}).get('offers',[]),'scrapeStatus':old.get(id,{}).get('scrapeStatus','pending'),
