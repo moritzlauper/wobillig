@@ -25,6 +25,78 @@
     {
       "source": "/basel/",
       "destination": "/basel/index.html"
+    },
+    {
+      "source": "/espresso-zuerich",
+      "destination": "/espresso-zuerich/index.html"
+    },
+    {
+      "source": "/cappuccino-zuerich",
+      "destination": "/cappuccino-zuerich/index.html"
+    },
+    {
+      "source": "/espresso-basel",
+      "destination": "/espresso-basel/index.html"
+    },
+    {
+      "source": "/cappuccino-basel",
+      "destination": "/cappuccino-basel/index.html"
+    },
+    {
+      "source": "/espresso-bern",
+      "destination": "/espresso-bern/index.html"
+    },
+    {
+      "source": "/cappuccino-bern",
+      "destination": "/cappuccino-bern/index.html"
+    }
+  ],
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/bern/index.html",
+      "destination": "/bern",
+      "permanent": true
+    },
+    {
+      "source": "/basel/index.html",
+      "destination": "/basel",
+      "permanent": true
+    },
+    {
+      "source": "/espresso-zuerich/index.html",
+      "destination": "/espresso-zuerich",
+      "permanent": true
+    },
+    {
+      "source": "/cappuccino-zuerich/index.html",
+      "destination": "/cappuccino-zuerich",
+      "permanent": true
+    },
+    {
+      "source": "/espresso-basel/index.html",
+      "destination": "/espresso-basel",
+      "permanent": true
+    },
+    {
+      "source": "/cappuccino-basel/index.html",
+      "destination": "/cappuccino-basel",
+      "permanent": true
+    },
+    {
+      "source": "/espresso-bern/index.html",
+      "destination": "/espresso-bern",
+      "permanent": true
+    },
+    {
+      "source": "/cappuccino-bern/index.html",
+      "destination": "/cappuccino-bern",
+      "permanent": true
     }
   ]
 }

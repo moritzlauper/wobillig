@@ -21,7 +21,6 @@ const cityId = cityFromPath(location.pathname, import.meta.env.BASE_URL);
 const city = cities[cityId];
 const dataPath = `${import.meta.env.BASE_URL}data/${city.data}`;
 const pricesApi = `/api/prices?city=${cityId}`;
-document.title = `wobillig · ${city.name}`;
 const initial = new URLSearchParams(location.search);
 const f: Filters = filtersFromSearch(initial);
 const districtState = districtFromSearch(initial, cityId);

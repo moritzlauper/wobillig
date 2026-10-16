@@ -1,0 +1,34 @@
+/* Shared by the map's price overview and the standalone, JavaScript-free guides. */
+.seo-map-header { min-height: 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; padding: 8px 12px; border-bottom: 1px solid #ddd; font-family: Arial, Helvetica, sans-serif; }
+.seo-map-header h1 { margin: 0; font-size: 16px; line-height: 1.4; }
+.seo-map-header > a { font-size: 12px; }
+.seo-map-header + #app { height: calc(100dvh - 48px); min-height: 440px; }
+.seo-content, .guide-header { max-width: 1040px; margin: 0 auto; padding: 32px 24px; font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.65; color: #222; }
+.seo-content { scroll-margin-top: 16px; }
+.seo-content h1 { font-size: clamp(26px, 5vw, 38px); line-height: 1.2; }
+.seo-content h2 { margin: 36px 0 12px; font-size: 22px; line-height: 1.3; }
+.seo-content p { max-width: 80ch; }
+.seo-content a, .guide-header a, .seo-map-header a { color: #285b90; text-underline-offset: 3px; }
+.seo-content a:focus-visible, .guide-header a:focus-visible, .seo-map-header a:focus-visible { outline: 2px solid #2767b3; outline-offset: 3px; }
+.seo-table-wrap { overflow-x: auto; }
+.seo-content table { border-collapse: collapse; width: 100%; font-size: 14px; text-align: left; }
+.seo-content caption { text-align: left; margin-bottom: 12px; font-size: 14px; color: #555; }
+.seo-content th, .seo-content td { padding: 12px; border-bottom: 1px solid #ddd; vertical-align: top; }
+.seo-content thead { background: #f4f6f7; }
+.seo-content td:nth-child(2) { white-space: nowrap; }
+.seo-content small { display: block; margin-top: 4px; color: #666; font-size: 12px; }
+.seo-links { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 24px; }
+.seo-summary { padding: 16px; background: #f4f6f7; border-radius: 4px; }
+.seo-content .seo-cta { display: inline-block; padding: 12px 18px; background: #262626; color: white; border-radius: 4px; text-decoration: none; }
+.guide-header { border-bottom: 1px solid #ddd; padding-block: 16px; }
+.guide-header > a { font-size: 20px; font-weight: bold; text-decoration: none; }
+.guide-header .seo-links { margin-top: 8px; }
+main.seo-guide { display: block; }
+@media (max-width: 600px) {
+  .seo-map-header { min-height: 64px; }
+  .seo-map-header h1 { font-size: 14px; }
+  .seo-map-header + #app { height: calc(100dvh - 64px); }
+  .seo-content, .guide-header { padding: 24px 16px; }
+  .seo-content th, .seo-content td { padding: 9px 7px; }
+  .seo-content table { font-size: 13px; }
+}
