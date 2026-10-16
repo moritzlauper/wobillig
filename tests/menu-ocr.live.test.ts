@@ -45,6 +45,20 @@ it.skipIf(!enabled)('distinguishes packaging, alcohol-free, coffee and normal pi
   expect(prices.find(p => p.input.name.includes('Feldschlösschen'))?.input).toMatchObject({ beerType: 'bottle', alcoholFree: true });
   expect(prices.find(p => p.input.name === 'IPA')?.input.beerType).toBe('can');
 }, 90000);
+it.skipIf(!enabled)('reads a dark tap board at phone-upload resolution', async () => {
+  const { result, bar } = await scan('tests/fixtures/menu-scan-taps.jpg', 'Testbar');
+  const { prices } = menuPrices(result.parsed, bar, '2026-10-16');
+  // Faint rows may be rejected, but every saved price must match the board; the 5 dl Session IPA is cut off.
+  const board: Record<string, number[][]> = { Zwickel: [[300, 7], [500, 9.5]], 'Hill IPA': [[300, 10], [500, 15]], 'Pale Ale': [[300, 10], [500, 15]],
+    Kundert: [[300, 7], [500, 9.5]], Sprint: [[300, 5], [500, 7.5]], Rekord: [[300, 6], [500, 8.5]], Session: [[300, 9]] };
+  for (const p of prices) {
+    const name = Object.keys(board).find(n => p.input.name.includes(n));
+    expect(name, p.input.name).toBeDefined();
+    expect(board[name!]).toContainEqual([p.input.volumeMl, p.input.priceChf]);
+  }
+  for (const name of ['Zwickel', 'Sprint', 'Rekord', 'Hill IPA']) expect(prices.filter(p => p.input.name.includes(name))).toHaveLength(2);
+  expect(prices.every(p => ['draft', 'unknown'].includes(p.input.beerType!))).toBe(true);
+}, 90000);
 it.skipIf(!enabled)('does not save an unreadable menu', async () => {
   const { result, bar } = await scan('tests/fixtures/menu-scan-unreadable.jpg', 'Mars Bar');
   let prices: unknown[] = [];

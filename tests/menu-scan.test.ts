@@ -33,6 +33,10 @@ describe('menu interpretation', () => {
     expect(extract([{ ...row, sizes: [''], prices: ['5.20'] }]).prices).toEqual([]);
     expect(extract([{ ...row, beerType: 'bottle', sizes: ['Stange'], prices: ['5.20'] }]).prices).toEqual([]);
   });
+  it('strips alcohol percentage and volume from beer names', () => {
+    expect(extract([{ ...row, name: 'IPA 50 cl' }, { ...row, name: 'Feldschlösschen alkoholfrei 0.0% 33cl' }, { ...row, name: 'Lager 5,2 % 0,5 l' }]).prices.map(p => p.input.name))
+      .toEqual(['IPA', 'IPA', 'Feldschlösschen alkoholfrei', 'Feldschlösschen alkoholfrei', 'Lager', 'Lager']);
+  });
   it('excludes beer mixes, unsupported categories and invented client metadata', () => {
     expect(extract([{ ...row, name: 'Panaché' }, { ...row, category: 'tea' }]).prices).toEqual([]);
     const result = extract([{ ...row, barId: 'node/other', observedAt: '2099-01-01', sourceUrl: 'https://attacker.example', confidence: 'reviewed' }]);

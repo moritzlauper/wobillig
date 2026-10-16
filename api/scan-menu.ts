@@ -39,7 +39,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const key = process.env.ANTHROPIC_API_KEY, secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!key || !secret) throw new InputError('Karte scannen ist gerade nicht verfügbar. Du kannst Preise einzeln eintragen.', 503);
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
-    const hash = createHash('sha256').update(`menu-v1:${city}:${bar.id}:`).update(Buffer.from(image.data, 'base64')).digest('hex');
+    const hash = createHash('sha256').update(`menu-v2:${city}:${bar.id}:`).update(Buffer.from(image.data, 'base64')).digest('hex');
     const visitor = createHmac('sha256', secret).update(`${zurichToday()}:${req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown'}`).digest('hex');
     const cached = await reserveScan(store, hash, visitor);
     if (cached) return reply(200, cached);
