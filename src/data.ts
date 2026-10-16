@@ -204,6 +204,20 @@ export function filterBars(
       );
     });
 }
+// One price per venue, independent of the current budget and missing-price toggle.
+export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
+  const prices = filterBars(bars, { ...f, max: Infinity, unknown: false, sort: "price" })
+    .map(bar => cost(bestOffer(bar, f)!, f.mode))
+    .filter(price => Number.isFinite(price) && price > 0)
+    .sort((a, b) => a - b);
+  if (!prices.length) return undefined;
+  const index = (prices.length - 1) * .25;
+  const lower = Math.floor(index);
+  const quartile = prices[lower] + (prices[Math.ceil(index)] - prices[lower]) * (index - lower);
+  // Round to CHF 0.50, but always include at least the cheapest venue.
+  return Math.max(Math.round(quartile * 2) / 2, Math.ceil(prices[0] * 2) / 2);
+}
+
 export function escapeHtml(s: string) {
   return s.replace(
     /[&<>"']/g,

@@ -2,6 +2,7 @@ import mixes from './fixtures/beer-mixes.json';
 import { describe, it, expect } from "vitest";
 import {
   filterBars,
+  cheapPriceLimit,
   hasEveningHours,
   isVenueEligible,
   isBeerMix,
@@ -326,5 +327,47 @@ describe("combined 3 / 3.3 dl filter", () => {
     expect(matchingOffers(bar, { ...f, volume: "300-330", beerType: "bottle" })).toEqual([bottle]);
     expect(matchingOffers(bar, { ...f, volume: "300-330", beerType: "draft" })).toEqual([stange, draft]);
     expect(matchingOffers(bar, { ...f, volume: "stange", beerType: "all" })).toEqual([stange, draft]);
+  });
+});
+
+
+describe("cheap price shortcut", () => {
+  const venues = (prices: number[], volumeMl = 300): Bar[] => prices.map((priceChf, i) => ({
+    ...b, id: String(i), offers: [{ ...b.offers[0], priceChf, volumeMl }],
+  }));
+  it("uses the lower quartile, rounds in both directions and ignores the active budget", () => {
+    expect(cheapPriceLimit(venues([4, 5.2, 6, 7, 8]), { ...f, max: 1 })).toBe(5);
+    expect(cheapPriceLimit(venues([4, 5.3, 6, 7, 8]), f)).toBe(5.5);
+    expect(cheapPriceLimit(venues([4, 5, 7, 9]), f)).toBe(5);
+  });
+  it("counts each venue once and leaves missing prices out", () => {
+    const bars = venues([4, 5, 6, 7, 8]);
+    bars[0].offers.push(...Array.from({ length: 20 }, () => ({ ...b.offers[0], priceChf: 4.1 })));
+    bars.push({ ...b, offers: [] });
+    expect(cheapPriceLimit(bars, f)).toBe(5);
+  });
+  it("adapts to size, normalized prices and other filters", () => {
+    const bars = [...venues([4, 5, 6, 7, 8]), ...venues([6, 7, 8, 9, 10], 500).map(bar => ({ ...bar, id: 'large-' + bar.id, outdoor: false }))];
+    expect(cheapPriceLimit(bars, { ...f, volume: 'stange' })).toBe(5);
+    expect(cheapPriceLimit(bars, { ...f, volume: '500' })).toBe(7);
+    expect(cheapPriceLimit(bars, { ...f, volume: '300', mode: 'half' })).toBe(8.5);
+    expect(cheapPriceLimit(bars, { ...f, outdoor: true })).toBe(5);
+    expect(cheapPriceLimit(bars, { ...f, beerType: 'bottle' })).toBeUndefined();
+    expect(cheapPriceLimit(bars, { ...f, query: 'no such venue' })).toBeUndefined();
+  });
+  it.each(['coffee', 'pizza'] as const)("uses matching %s portions", drink => {
+    const bars = venues([4, 5, 6, 7, 8]).map(bar => ({ ...bar, offers: bar.offers.map(offer => ({
+      ...offer, volumeMl: null, ...(drink === 'coffee' ? { coffeeType: 'espresso' } : { pizzaType: 'margherita' as const }),
+    })) }));
+    expect(cheapPriceLimit(bars, { ...f, drink, coffeeType: 'espresso' })).toBe(5);
+    expect(cheapPriceLimit(bars, { ...f, drink: 'coffee', coffeeType: 'latte' })).toBeUndefined();
+  });
+  it("handles empty data and keeps a result when rounding a small sample", () => {
+    expect(cheapPriceLimit([], f)).toBeUndefined();
+    expect(cheapPriceLimit([{ ...b, offers: [] }], f)).toBeUndefined();
+    const bars = venues([5.1]);
+    const max = cheapPriceLimit(bars, f)!;
+    expect(max).toBe(5.5);
+    expect(filterBars(bars, { ...f, max, unknown: false })).toHaveLength(1);
   });
 });

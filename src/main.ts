@@ -3,7 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { coverageLabel, missingPriceLabel } from './coverage';
-import { selectBeerSize, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
+import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
 import { nearbyLocations, selectableLocations } from './locations';
@@ -28,6 +28,8 @@ const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
 let communityReady = false, saving = false, pizzaAvailable = false;
+let cheapMode = false;
+let cheapLimit: number | undefined;
 let locationCatalogue: Bar[] = [];
 let userMarker: L.CircleMarker | undefined;
 const coffee = () => f.drink === 'coffee';
@@ -60,7 +62,7 @@ $('app').innerHTML = `
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', price_desc: 'Preis absteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
-  <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="fit">Alle anzeigen</button></div><div id="map-unit" class="map-unit"></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section></section>
+  <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="cheap" aria-pressed="false" disabled>Günstig</button></div><div id="map-unit" class="map-unit"></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section></section>
 </main>
 <footer class="app-footer"><a href="mailto:team@whatshouldistudy.com?subject=Wunsch%20f%C3%BCr%20wobillig&amp;body=f%C3%BCr%20wobillig%20w%C3%BCnsche%20ich%20mir%3A%0D%0A%0D%0A">Wunsch mitteilen</a></footer>
 <div id="toast" role="status" hidden></div>
@@ -152,7 +154,16 @@ function syncControls() {
 function render() {
   if (selected && !bars.some(b => b.id === selected && isVenueEligible(b, f))) selected = undefined;
   syncControls();
-  current = filterBars(bars, f, position);
+  cheapLimit = cheapPriceLimit(bars, f);
+  const cheapButton = $<HTMLButtonElement>('cheap');
+  cheapButton.textContent = cheapLimit === undefined ? 'Günstig' : `Günstig bis CHF ${Number.isInteger(cheapLimit) ? cheapLimit + '.–' : cheapLimit.toFixed(2)}`;
+  cheapButton.disabled = cheapLimit === undefined && !cheapMode;
+  cheapButton.setAttribute('aria-pressed', String(cheapMode));
+  cheapButton.title = cheapLimit === undefined ? 'Keine passenden Preise vorhanden' : cheapMode ? 'Günstig-Filter aufheben' : 'Günstige Lokale für die aktuelle Auswahl anzeigen';
+  const activeFilters = cheapMode ? { ...f, max: cheapLimit ?? -Infinity, unknown: false } : f;
+  if (document.activeElement !== $('price')) $<HTMLInputElement>('price').value = Number.isFinite(activeFilters.max) && activeFilters.max > 0 ? String(activeFilters.max) : '';
+  $<HTMLInputElement>('unknown').checked = activeFilters.unknown;
+  current = filterBars(bars, activeFilters, position);
   $('count').textContent = coverageLabel(current, f);
   $('map-unit').textContent = pizza() ? 'CHF / Pizza Margherita' : coffee() ? `CHF · ${f.coffeeType === 'all' ? 'pro Getränk' : coffeeLabels[f.coffeeType!]}` : f.mode === 'half' ? 'CHF / 5 dl · umgerechnet' : f.volume === 'all' ? 'CHF / Portion · Menge beachten' : f.volume === 'stange' ? 'CHF / Stange' : f.volume === '300-330' ? 'CHF / Portion · 3 / 3.3 dl' : `CHF / ${Number(f.volume) / 100} dl`;
   $('results').innerHTML = current.length ? current.map(b => {
@@ -224,7 +235,7 @@ function chooseDrink(drink: Drink) { budgets[f.drink!] = f.max; f.max = budgets[
 $('drink-beer').onclick = () => chooseDrink('beer'); $('drink-coffee').onclick = () => chooseDrink('coffee'); $('drink-pizza').onclick = () => chooseDrink('pizza');
 $('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
 $('search').oninput = () => { f.query = $<HTMLInputElement>('search').value; render(); };
-$('price').oninput = () => { const n = $<HTMLInputElement>('price').valueAsNumber; f.max = Number.isFinite(n) ? n : Infinity; render(); };
+$('price').oninput = () => { cheapMode = false; const n = $<HTMLInputElement>('price').valueAsNumber; f.max = Number.isFinite(n) ? n : Infinity; render(); };
 $('volume').onchange = () => { selectBeerSize(f, $<HTMLSelectElement>('volume').value); render(); };
 $('coffeeType').onchange = () => { f.coffeeType = $<HTMLSelectElement>('coffeeType').value; render(); };
 $('beer-type').onchange = () => {
@@ -234,10 +245,11 @@ $('beer-type').onchange = () => {
 };
 $('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render(); };
 $('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position) locate(); else render(); };
-for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree']] as const) $(id).onchange = () => { f[key] = $<HTMLInputElement>(id).checked; render(); };
+for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree']] as const) $(id).onchange = () => { if (key === 'unknown') cheapMode = false; f[key] = $<HTMLInputElement>(id).checked; render(); };
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
 $('reset').onclick = () => {
+  cheapMode = false;
   Object.assign(f, { query: '', max: pizza() ? 30 : 15, volume: '300-330', coffeeType: 'creme', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = String(f.max);
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
@@ -253,7 +265,12 @@ function locate() {
   }, () => { if (f.sort === 'distance') { f.sort = 'price'; $<HTMLSelectElement>('sort').value = 'price'; } toast('Standort nicht verfügbar.'); }, { timeout: 10000 });
 }
 $('locate').onclick = locate;
-$('fit').onclick = () => { if (current.length) map.fitBounds(L.latLngBounds(current.map(b => [b.lat, b.lon])), { padding: [35, 35], maxZoom: 16 }); };
+$('cheap').onclick = () => {
+  cheapMode = !cheapMode;
+  selected = undefined;
+  render();
+  if (cheapMode && current.length) map.fitBounds(L.latLngBounds(current.map(b => [b.lat, b.lon])), { padding: [35, 35], maxZoom: 16 });
+};
 $('data-info').onclick = () => {
   $('coverage').textContent = Object.entries(datasets).map(([drink, data]) => `${drink === 'pizza' ? 'Pizza Margherita' : drink === 'beer' ? 'Bier' : 'Kaffee'}: ${data.bars.reduce((n, b) => n + b.offers.length, 0)} Angebote aus Karten bei ${data.bars.filter(b => b.offers.length).length} Lokalen`).join('. ') + `. ${entries.length} gemeinsame Einträge/Korrekturen.`;
   $<HTMLDialogElement>('info').showModal();
@@ -343,6 +360,7 @@ $('price-form').onsubmit = async event => {
     }
     const entry = result.entry as PriceEntry;
     entries = [...entries.filter(x => x.id !== entry.id), entry];
+    cheapMode = false;
     f.drink = drink; selected = input.barId;
     // Keep the saved portion visible even if it differs from the current filter.
     f.mode = 'glass'; f.alcoholFree = input.alcoholFree;
