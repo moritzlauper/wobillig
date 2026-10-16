@@ -269,7 +269,6 @@ $('cheap').onclick = () => {
   cheapMode = !cheapMode;
   selected = undefined;
   render();
-  if (cheapMode && current.length) map.fitBounds(L.latLngBounds(current.map(b => [b.lat, b.lon])), { padding: [35, 35], maxZoom: 16 });
 };
 $('data-info').onclick = () => {
   $('coverage').textContent = Object.entries(datasets).map(([drink, data]) => `${drink === 'pizza' ? 'Pizza Margherita' : drink === 'beer' ? 'Bier' : 'Kaffee'}: ${data.bars.reduce((n, b) => n + b.offers.length, 0)} Angebote aus Karten bei ${data.bars.filter(b => b.offers.length).length} Lokalen`).join('. ') + `. ${entries.length} gemeinsame Einträge/Korrekturen.`;
