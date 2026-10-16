@@ -6,6 +6,7 @@ async function openForm(page: import('@playwright/test').Page) {
   await page.goto('/?drink=beer&bar=' + encodeURIComponent(mars.id));
   await page.locator('#add-here').click();
   await expect(page.locator('#price-dialog')).toBeVisible();
+  await expect(page.locator('#form-title')).toBeFocused();
 }
 test('a single photo choice sends the selected venue and compressed photo, then opens saved prices', async ({ page }) => {
   let uploaded: any;
@@ -57,4 +58,30 @@ test('manual additions and existing-price editing still work', async ({ page }) 
   await expect(page.locator('#price-dialog')).not.toBeVisible(); expect(manual.priceChf).toBe(6.5);
   await page.locator('#detail [data-edit]').first().click();
   await expect(page.locator('#menu-scan')).not.toBeVisible(); await expect(page.locator('#entry-price')).toBeVisible();
+  await expect(page.locator('#form-title')).toBeFocused();
+  await page.locator('#entry-price').click();
+  await expect(page.locator('#entry-price')).toBeFocused();
+});
+
+test('opening and reopening the coffee price dialog never briefly focuses an input', async ({ page }) => {
+  await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
+  await page.goto('/?drink=coffee&bar=' + encodeURIComponent(mars.id));
+  await page.locator('#add-here').waitFor();
+  await page.evaluate(() => {
+    (window as any).priceInputFocuses = [];
+    document.querySelector('#price-dialog')!.addEventListener('focusin', event => {
+      if (event.target instanceof HTMLInputElement) (window as any).priceInputFocuses.push(event.target.id);
+    });
+  });
+  for (let attempt = 0; attempt < 2; attempt++) {
+    await page.locator('#add-here').click();
+    await expect(page.locator('#form-title')).toBeFocused();
+    expect(await page.evaluate(() => (window as any).priceInputFocuses)).toEqual([]);
+    await page.locator('#manual-entry > summary').click();
+    expect(await page.evaluate(() => (window as any).priceInputFocuses)).toEqual([]);
+    await page.locator('#entry-name').click();
+    await expect(page.locator('#entry-name')).toBeFocused();
+    await page.locator('#cancel-price').click();
+    await page.evaluate(() => { (window as any).priceInputFocuses = []; });
+  }
 });

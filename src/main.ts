@@ -81,7 +81,7 @@ $('app').innerHTML = `
 <div id="toast" role="status" hidden></div>
 <dialog id="share-dialog" aria-labelledby="share-title"><div class="dialog-top"><strong id="share-title">Lokal teilen</strong><button id="close-share" type="button">Schliessen</button></div><label for="share-url">Diesen Link kopieren und teilen:</label><input id="share-url" type="url" readonly></dialog>
 <dialog id="price-dialog" aria-label="Preis eintragen"><form id="price-form">
-  <div class="dialog-top"><strong id="form-title">Preis eintragen</strong><button id="cancel-price" type="button">Schliessen</button></div>
+  <div class="dialog-top"><strong id="form-title" tabindex="-1" autofocus>Preis eintragen</strong><button id="cancel-price" type="button">Schliessen</button></div>
   <input id="entry-bar" type="hidden">
   <label>Lokal<input id="entry-bar-name" readonly></label><p id="entry-location" class="muted"></p>
   <section id="menu-scan" class="menu-scan" aria-label="Karte scannen">
@@ -632,8 +632,9 @@ function openPrice(bar: Bar, offer?: Offer) {
   $('form-error').hidden = true;
   entryFields();
   $<HTMLDialogElement>('price-dialog').showModal();
-  if (offer) $<HTMLInputElement>('entry-price').focus();
-  else $('scan-menu').focus();
+  // Focus the heading even when reopening after typing; inputs must never open
+  // the phone keyboard until the visitor explicitly taps a field.
+  $('form-title').focus({ preventScroll: true });
 }
 $('scan-menu').onclick = () => { if (!saving) $<HTMLInputElement>('menu-photo').click(); };
 $('menu-photo').onchange = async () => {
