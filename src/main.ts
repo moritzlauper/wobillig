@@ -73,7 +73,7 @@ $('app').innerHTML = `
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><a class="rankings-link" href="#kaffeepreise" aria-label="Kaffee-Ranglisten und Quellen" title="Kaffee-Ranglisten und Quellen">Ranglisten</a><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', price_desc: 'Preis absteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
-  <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate" aria-label="Standort anzeigen" title="Standort anzeigen"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><button id="cheap" aria-pressed="false" disabled>Günstig</button></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section>
+  <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="Standort anzeigen" title="Standort anzeigen"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><button id="cheap" aria-pressed="false" disabled>Günstig</button></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section>
 <footer class="app-footer"><a href="mailto:team@whatshouldistudy.com?subject=Wunsch%20f%C3%BCr%20wobillig&amp;body=f%C3%BCr%20wobillig%20w%C3%BCnsche%20ich%20mir%3A%0D%0A%0D%0A">Wunsch mitteilen</a></footer>
   </section>
 </main>
@@ -543,6 +543,7 @@ function locate(openNearby = false) {
   navigator.geolocation.getCurrentPosition(p => {
     finish();
     position = [p.coords.latitude, p.coords.longitude];
+    button.setAttribute('aria-pressed', 'true');
     userMarker?.remove(); userMarker = L.circleMarker(position, { radius: 7, color: '#fff', fillColor: '#1766c2', fillOpacity: 1, weight: 2 }).addTo(map);
     clearTimeout(searchZoomTimer);
     if (openNearby) { selected = undefined; pendingReveal = undefined; }
