@@ -34,6 +34,7 @@ Die neuen Datensätze liegen unter `public/data/bern/` und `public/data/basel/`;
 - Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.
 - **Offenbier / Flaschenbier / Dosenbier / Ausschankart unbekannt** in der Liste und in den Preisdetails. Die Kartenmarker zeigen nur den Preis. Ausschank-Filter und Auswahl beim Eintragen oder Korrigieren eines Bierpreises.
 - Quellenlink, Portionsgrösse und Abrufdatum für jedes gefundene Angebot.
+- **Daten herunterladen** im Datenfenster: CSV (UTF-8 mit BOM, Semikolon, eine Zeile je Angebot) und JSON für die aktuelle Stadt, alle Kategorien ohne UI-Filter. Originalpreise, Mengen, Quellen, Datum, Prüfstatus und gemeinsame Korrekturen sind enthalten. CSV kennzeichnet abgelaufene und nicht vergleichbare Angebote sowie geschätzte Ausschankarten; JSON bewahrt vollständige Angebotsdetails und Lokale ohne Preise. Fehlende Kategorien oder nicht geladene gemeinsame Einträge werden im Fenster und Export ausgewiesen. Standortattribution bleibt enthalten.
 - **Teilen** in den Lokaldetails öffnet das native Teilen-Menü. Der Direktlink öffnet das Lokal samt Karte und Preisen; Kaffee- und Stangenansicht bleiben erhalten. Ohne native Unterstützung wird der Link kopiert oder zum manuellen Kopieren angezeigt.
 - Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
 - Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.

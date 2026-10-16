@@ -93,6 +93,9 @@ p { line-height: 1.5; }
 dialog { width: min(460px, calc(100% - 24px)); max-height: calc(100dvh - 24px); border: 1px solid #999; border-radius: 4px; padding: 20px; overflow-y: auto; }
 dialog::backdrop { background: #0005; }
 .dialog-top { margin-bottom: 18px; }
+.data-download { padding-bottom: 12px; border-bottom: 1px solid #ddd; }
+.download-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.download-actions button { min-height: 44px; }
 #price-form > label, #entry-beer-fields > label:not(.check), .form-row > label:not(.inline-check) { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
 #price-form input:not([type=checkbox]), #price-form select { width: 100%; min-width: 0; }
 .form-row { display: flex; gap: 14px; }
