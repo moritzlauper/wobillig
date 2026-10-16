@@ -7,6 +7,7 @@ import type { Dataset } from '../src/data';
 import { cityContent, cityIds, guideContent, guidePath, guideTypes, localPath, seoHead, siteOrigin } from '../src/seo';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+const analyticsTag = '<script data-goatcounter="https://wobillig.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>';
 export function seoPlugin(): Plugin {
   let base = '/';
   const origin = (process.env.SITE_URL || siteOrigin).replace(/\/$/, '');
@@ -16,7 +17,7 @@ export function seoPlugin(): Plugin {
     const css = readFileSync(`${root}src/seo.css`, 'utf8');
     return {
       path: guidePath(city, type),
-      html: `<!doctype html><html lang="de-CH"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />${seoHead(city, origin, type)}<link rel="icon" href="${localPath('/favicon.svg', base)}" type="image/svg+xml" /><style>${css}</style></head><body>${guideContent(city, type, dataset(city), base)}</body></html>`,
+      html: `<!doctype html><html lang="de-CH"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />${seoHead(city, origin, type)}<link rel="icon" href="${localPath('/favicon.svg', base)}" type="image/svg+xml" /><style>${css}</style>${analyticsTag}</head><body>${guideContent(city, type, dataset(city), base)}</body></html>`,
     };
   }));
   return {
@@ -26,7 +27,7 @@ export function seoPlugin(): Plugin {
       order: 'pre',
       handler(html, context) {
         const city: City = context.filename.replaceAll('\\', '/').endsWith('/basel/index.html') ? 'basel' : context.filename.replaceAll('\\', '/').endsWith('/bern/index.html') ? 'bern' : 'zurich';
-        return html.replace('<!-- SEO_HEAD -->', seoHead(city, origin))
+        return html.replace('<!-- SEO_HEAD -->', `${seoHead(city, origin)}${analyticsTag}`)
           .replace('<!-- SEO_HEADING -->', `<header class="seo-map-header"><h1 id="map-title">Kaffeepreise ${cities[city].name}</h1></header>`)
           .replace('<!-- SEO_CONTENT -->', cityContent(city, dataset(city), base));
       },
