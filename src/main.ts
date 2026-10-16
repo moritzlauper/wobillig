@@ -46,7 +46,7 @@ const unit = (o: Offer) => offerCategory(o) !== 'beer' ? portion(o) : `${f.mode 
 
 $('app').innerHTML = `
 <div class="toolbar">
-  <div class="switch" role="group" aria-label="Kategorie"><button id="drink-coffee">Kaffee</button><button id="drink-beer">Bier</button><button id="drink-pizza" hidden>Pizza Margherita</button></div>
+  <div class="toolbar-heading"><div class="switch" role="group" aria-label="Kategorie"><button id="drink-coffee">Kaffee</button><button id="drink-beer">Bier</button><button id="drink-pizza" aria-label="Pizza Margherita" hidden>Pizza<span class="category-description"> Margherita</span></button></div><button id="toolbar-toggle" aria-expanded="true" aria-label="Suche und Filter einklappen" title="Suche und Filter einklappen"><span class="filter-chevron" aria-hidden="true"></span></button></div>
   <div class="search-box">
     <input id="search" type="search" role="combobox" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
     <button id="search-clear" type="button" aria-label="Suche löschen" title="Suche löschen" hidden><span aria-hidden="true">×</span></button>
@@ -73,9 +73,10 @@ $('app').innerHTML = `
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="Lokale"><div class="list-tools"><select id="sort" aria-label="Sortierung">${options({ price: 'Preis aufsteigend', price_desc: 'Preis absteigend', name: 'Name A–Z', distance: 'Entfernung' })}</select></div><div id="results"></div></aside>
-  <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="cheap" aria-pressed="false" disabled>Günstig</button></div><div id="map-unit" class="map-unit"></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section></section>
-</main>
+  <section class="map-panel" aria-label="Karte"><div id="map"></div><div class="map-actions"><button id="locate">Standort</button><button id="cheap" aria-pressed="false" disabled>Günstig</button></div><div id="map-unit" class="map-unit"></div><section id="detail" aria-label="Lokal und Preise" tabindex="-1" hidden></section>
 <footer class="app-footer"><a href="mailto:team@whatshouldistudy.com?subject=Wunsch%20f%C3%BCr%20wobillig&amp;body=f%C3%BCr%20wobillig%20w%C3%BCnsche%20ich%20mir%3A%0D%0A%0D%0A">Wunsch mitteilen</a></footer>
+  </section>
+</main>
 <div id="toast" role="status" hidden></div>
 <dialog id="share-dialog" aria-labelledby="share-title"><div class="dialog-top"><strong id="share-title">Lokal teilen</strong><button id="close-share" type="button">Schliessen</button></div><label for="share-url">Diesen Link kopieren und teilen:</label><input id="share-url" type="url" readonly></dialog>
 <dialog id="price-dialog" aria-label="Preis eintragen"><form id="price-form">
@@ -422,6 +423,16 @@ function showBar(b: Bar, zoom = 15) {
 function chooseDrink(drink: Drink) { budgets[f.drink!] = f.max; f.max = budgets[drink]; $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : ''; f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
 $('drink-beer').onclick = () => chooseDrink('beer'); $('drink-coffee').onclick = () => chooseDrink('coffee'); $('drink-pizza').onclick = () => chooseDrink('pizza');
 $('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
+$('toolbar-toggle').onclick = () => {
+  const collapsed = $('app').classList.toggle('toolbar-collapsed');
+  $('toolbar-toggle').setAttribute('aria-expanded', String(!collapsed));
+  const label = collapsed ? 'Suche und Filter ausklappen' : 'Suche und Filter einklappen';
+  $('toolbar-toggle').setAttribute('aria-label', label); $('toolbar-toggle').title = label;
+  if (collapsed) {
+    closeSearchSuggestions();
+    $('filters').hidden = true; $('filters-toggle').setAttribute('aria-expanded', 'false');
+  }
+};
 $('search').oninput = event => {
   clearTimeout(searchZoomTimer);
   f.query = $<HTMLInputElement>('search').value;
