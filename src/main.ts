@@ -156,7 +156,7 @@ function render() {
   syncControls();
   cheapLimit = cheapPriceLimit(bars, f);
   const cheapButton = $<HTMLButtonElement>('cheap');
-  cheapButton.textContent = cheapLimit === undefined ? 'Günstig' : `Günstig bis CHF ${Number.isInteger(cheapLimit) ? cheapLimit + '.–' : cheapLimit.toFixed(2)}`;
+  cheapButton.textContent = cheapLimit === undefined ? 'Günstig' : `Günstig bis CHF ${Number.isInteger(cheapLimit) ? cheapLimit : cheapLimit.toFixed(2)}`;
   cheapButton.disabled = cheapLimit === undefined && !cheapMode;
   cheapButton.setAttribute('aria-pressed', String(cheapMode));
   cheapButton.title = cheapLimit === undefined ? 'Keine passenden Preise vorhanden' : cheapMode ? 'Günstig-Filter aufheben' : 'Günstige Lokale für die aktuelle Auswahl anzeigen';
