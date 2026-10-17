@@ -100,8 +100,8 @@ def scan_photos(rows, venues, client, fetcher, at=None):
                 offer.update(photoSource=metadata, sourceSha256=digest)
                 found.append((row['barId'], offer))
             report.append({**label, 'status': 'scanned', 'offers': len(offers)})
-        except BudgetExhausted:
-            report.append({**label, 'status': 'budget_limit'})
+        except BudgetExhausted as exc:
+            report.append({**label, 'status': str(exc)})
             break
         except (ValueError, APIUnavailable) as exc:
             report.append({**label, 'status': 'skipped', 'reason': str(exc)[:240]})

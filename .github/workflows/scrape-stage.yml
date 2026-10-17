@@ -17,9 +17,6 @@ on:
       ai_budget_usd:
         type: number
         required: true
-      ai_max_requests:
-        type: number
-        required: true
       stage:
         type: string
         required: true
@@ -32,7 +29,7 @@ jobs:
   scan:
     name: ${{ inputs.city }} / ${{ inputs.stage }}
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ inputs.deep_scan && 360 || 180 }}
+    timeout-minutes: ${{ (inputs.stage == 'ai' || inputs.deep_scan) && 360 || 180 }}
     env:
       WOBILLIG_CITY: ${{ inputs.city }}
       BEER_PAGES: ${{ inputs.deep_scan && '50' || '8' }}
@@ -41,7 +38,7 @@ jobs:
       COFFEE_PAGES: ${{ inputs.deep_scan && '50' || '10' }}
       PIZZA_PAGES: ${{ inputs.deep_scan && '50' || '20' }}
       AI_PAGES: ${{ inputs.deep_scan && '20' || '8' }}
-      AI_MINUTES: ${{ inputs.deep_scan && '120' || '60' }}
+      AI_MINUTES: '330'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -90,8 +87,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           AI_BUDGET: ${{ inputs.ai_budget_usd }}
-          AI_BUDGET_CAP: ${{ inputs.deep_scan && '10.00' || '1.00' }}
-          AI_REQUESTS: ${{ inputs.ai_max_requests }}
+          AI_BUDGET_CAP: '20.00'
           SCAN_MODE: ${{ inputs.scan_mode }}
           CITY_COUNT: ${{ inputs.city_count }}
         run: |
@@ -99,15 +95,14 @@ jobs:
             echo 'ANTHROPIC_API_KEY is missing; deterministic scan remains available.'
             exit 0
           fi
-          # Split the total budget/request cap across the selected cities.
+          # Split only the dollar budget across cities; generations have no fixed cap.
           AI_BUDGET=$(python -c 'import os; print(max(0, min(float(os.environ["AI_BUDGET_CAP"]), float(os.environ["AI_BUDGET"]))) / int(os.environ["CITY_COUNT"]))')
-          AI_REQUESTS=$(python -c 'import os; print(max(0, min(1000, int(os.environ["AI_REQUESTS"]))) // int(os.environ["CITY_COUNT"]))')
           if [ "$SCAN_MODE" = 'estimates_only' ]; then
-            python -m scraper.ai_scan --estimates-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
+            python -m scraper.ai_scan --estimates-only --budget-usd "$AI_BUDGET"
           elif [ "$SCAN_MODE" = 'photos_only' ]; then
-            python -m scraper.ai_scan --photos-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
+            python -m scraper.ai_scan --photos-only --budget-usd "$AI_BUDGET"
           else
-            python -m scraper.ai_scan --discover --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS" --workers 6 --minutes "$AI_MINUTES" --max-pages "$AI_PAGES"
+            python -m scraper.ai_scan --discover --budget-usd "$AI_BUDGET" --workers 6 --minutes "$AI_MINUTES" --max-pages "$AI_PAGES"
           fi
       - name: Report additional venues and prices
         if: ${{ always() && steps.baseline.outcome == 'success' }}

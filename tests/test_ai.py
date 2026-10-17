@@ -84,14 +84,49 @@ class AITests(unittest.TestCase):
                 with self.assertRaises(APIUnavailable):c.ask([{'type':'text','text':'different'}])
 
 class APIErrorTests(unittest.TestCase):
+    @patch.dict(os.environ, {'ANTHROPIC_API_KEY': 'test-secret'})
+    def test_default_has_no_request_cap_and_can_exceed_old_limits(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            client = Claude(5, cache=Path(tmp))
+            self.assertIsNone(client.max_requests)
+            def reply(path, payload):
+                if path.endswith('count_tokens'): return {'input_tokens': 100}
+                return {'stop_reason': 'end_turn', 'content': [{'type': 'text', 'text': '{"offers":[]}'}],
+                        'usage': {'input_tokens': 100, 'output_tokens': 10}}
+            with patch.object(client, 'post', side_effect=reply):
+                for i in range(1005):
+                    client.ask([{'type': 'text', 'text': str(i)}])
+            self.assertEqual(client.requests, 1005)
+            self.assertIsNone(client.limit_reason())
+            self.assertLess(client.spent, 5)
+
+    @patch.dict(os.environ, {'ANTHROPIC_API_KEY': 'test-secret'})
+    def test_stop_reasons_distinguish_requests_dollars_and_time(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for client, expected in [
+                (Claude(5, 0, Path(tmp)), 'request_limit'),
+                (Claude(0, cache=Path(tmp)), 'budget_limit'),
+                (Claude(5, cache=Path(tmp), deadline=0), 'time_limit'),
+            ]:
+                with patch.object(client, 'post') as post:
+                    with self.assertRaisesRegex(BudgetExhausted, expected):
+                        client.ask([{'type': 'text', 'text': expected}])
+                    post.assert_not_called()
+            client = Claude(5, cache=Path(tmp))
+            client.spent = 4.999
+            with patch.object(client, 'post', return_value={'input_tokens': 100}) as post:
+                with self.assertRaisesRegex(BudgetExhausted, 'budget_limit'):
+                    client.ask([{'type': 'text', 'text': 'near budget'}])
+                self.assertEqual([c.args[0] for c in post.call_args_list], ['messages/count_tokens'])
+
     @patch.dict(os.environ,{'ANTHROPIC_API_KEY':'test-secret'})
     def test_haiku_only_and_hard_budget_even_with_oversized_input(self):
         from scraper.ai import MODEL, MAX_BUDGET_USD
         self.assertEqual(MODEL, 'claude-haiku-5-5')
         with tempfile.TemporaryDirectory() as tmp:
             c=Claude(100,1000,Path(tmp))
-            self.assertEqual(c.budget, 10.00)
-            self.assertEqual(Claude(cache=Path(tmp)).budget, 1.00)
+            self.assertEqual(c.budget, 20.00)
+            self.assertEqual(Claude(cache=Path(tmp)).budget, 20.00)
             self.assertEqual(Claude(10, cache=Path(tmp)).budget, 10.00)
             self.assertEqual(Claude(.50, cache=Path(tmp)).budget, .50)
             for bad in [float('nan'), float('inf'), -1]:

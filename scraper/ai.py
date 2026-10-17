@@ -18,8 +18,8 @@ from scraper.coffee import ALIASES
 from scraper.product_images import image_for_offer
 
 MODEL = 'claude-haiku-5-5'
-DEFAULT_BUDGET_USD = 1.00
-MAX_BUDGET_USD = 10.00
+DEFAULT_BUDGET_USD = 20.00
+MAX_BUDGET_USD = 20.00
 MAX_INPUT_TOKENS = 100_000
 MAX_OUTPUT_TOKENS = 6000
 VERSION = '1'
@@ -52,22 +52,36 @@ ESTIMATE_SCHEMA = obj({'estimates': {'type': 'array', 'items': obj({
 })}})
 
 
-class BudgetExhausted(Exception): pass
+class BudgetExhausted(Exception):
+    def __init__(self, reason='budget_limit'):
+        super().__init__(reason)
 class APIUnavailable(Exception): pass
 
 
 class Claude:
-    def __init__(self, budget=DEFAULT_BUDGET_USD, max_requests=300, cache=Path('scraper/cache/ai')):
+    def __init__(self, budget=DEFAULT_BUDGET_USD, max_requests=None, cache=Path('scraper/cache/ai'), *, deadline=None):
         self.key = os.environ.get('ANTHROPIC_API_KEY', '')
         if not self.key: raise APIUnavailable('ANTHROPIC_API_KEY fehlt')
         if not math.isfinite(budget) or budget < 0:
             raise ValueError('Budget muss endlich und nicht negativ sein')
+        if max_requests is not None and (type(max_requests) is not int or max_requests < 0):
+            raise ValueError('Request limit must be a non-negative integer or None')
+        self.deadline = deadline
         self.budget, self.max_requests = min(budget, MAX_BUDGET_USD), max_requests
         self.spent = 0.0
         self.requests = self.hits = 0
         self.lock = threading.Lock()
         self.cache = Path(cache); self.cache.mkdir(parents=True, exist_ok=True)
         self.disabled = False
+
+    def limit_reason(self, reserve=0):
+        if self.deadline is not None and time.monotonic() >= self.deadline:
+            return 'time_limit'
+        if self.max_requests is not None and self.requests >= self.max_requests:
+            return 'request_limit'
+        if self.spent >= self.budget or self.spent + reserve > self.budget:
+            return 'budget_limit'
+        return None
 
     def post(self, path, payload):
         for attempt in range(3):
@@ -105,7 +119,7 @@ class Claude:
             except (ValueError, OSError): pass
         with self.lock:
             if self.disabled: raise APIUnavailable('Anthropic für diesen Lauf deaktiviert')
-            if self.requests >= self.max_requests or self.spent >= self.budget: raise BudgetExhausted()
+            if reason := self.limit_reason(): raise BudgetExhausted(reason)
         # Token counting is free. Reserve the maximum output cost before generation.
         counted = self.post('messages/count_tokens', {k: v for k, v in payload.items() if k != 'max_tokens'})
         if type(counted.get('input_tokens')) is not int or not 0 <= counted['input_tokens'] <= MAX_INPUT_TOKENS:
@@ -115,7 +129,7 @@ class Claude:
         reserve = ((counted['input_tokens'] + 2000) * .50 + MAX_OUTPUT_TOKENS * 2.50) / 1_000_000
         with self.lock:
             if self.disabled: raise APIUnavailable('Anthropic für diesen Lauf deaktiviert')
-            if self.requests >= self.max_requests or self.spent + reserve > self.budget: raise BudgetExhausted()
+            if reason := self.limit_reason(reserve): raise BudgetExhausted(reason)
             self.requests += 1; self.spent += reserve
         reply = self.post('messages', payload)
         usage = reply.get('usage', {})

@@ -164,30 +164,33 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
                     drink = 'coffee' if o.get('coffeeType') else 'beer'
                     if drink not in reviewed and source_allowed(bar['id'], final, drink):
                         found.append({**o, 'sourceSha256': digest})
-        except BudgetExhausted:
-            return found, 'budget_limit', failures
+        except BudgetExhausted as exc:
+            return found, str(exc), failures
         except APIUnavailable as exc:
             failures.append(urlparse(url).hostname + ': ' + str(exc))
             if client.disabled: return found, 'api_error', failures
         except Exception as exc:
             # Only exception type, never request representations or response bodies.
             failures.append(type(exc).__name__)
+    if time.monotonic() >= deadline: return found, 'time_limit', failures
     return found, 'partial' if urls or failures else 'checked', failures
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--budget-usd', type=float, default=DEFAULT_BUDGET_USD, help=f'Hard maximum {MAX_BUDGET_USD:.2f} USD; larger values are clamped')
-    parser.add_argument('--max-requests', type=int, default=1000)
+    parser.add_argument('--max-requests', type=int, default=None, help='Optional generation limit; omitted means no request cap')
     parser.add_argument('--max-pages', type=int, default=8)
-    parser.add_argument('--minutes', type=int, default=65)
+    parser.add_argument('--minutes', type=int, default=330, help='Time available before saving results; GitHub jobs have a six-hour limit')
     parser.add_argument('--workers', type=int, default=4)
     parser.add_argument('--limit', type=int, default=0)
     parser.add_argument('--discover', action='store_true')
     parser.add_argument('--estimates-only', action='store_true')
     parser.add_argument('--photos-only', action='store_true')
     args = parser.parse_args()
-    client = Claude(args.budget_usd, max(0, min(args.max_requests, 1000)))
+    if args.minutes <= 0: parser.error('--minutes must be positive')
+    deadline = time.monotonic() + args.minutes * 60
+    client = Claude(args.budget_usd, args.max_requests, deadline=deadline)
     paths = {d: DATA_DIR / f'{file}.json' for d, file in [('beer', 'bars'), ('coffee', 'coffee')]}
     data = {d: json.loads(path.read_text()) for d, path in paths.items()}
     by_drink = {d: {b['id']: b for b in value['bars']} for d, value in data.items()}
@@ -201,6 +204,7 @@ def main():
             else: merged[b['id']] = {**b, 'offers': list(b['offers'])}
     before = {d: {'venues': sum(bool(b['offers']) for b in value['bars']), 'offers': sum(len(b['offers']) for b in value['bars'])} for d, value in data.items()}
     failures, photo_report = [], []
+    stop_reason = 'completed'
     def flush():
         estimate_types(list(by_drink['beer'].values()))
         for d, value in data.items():
@@ -212,6 +216,7 @@ def main():
         if not args.estimates_only:
             rows = json.loads((ROOT / 'scraper/menu_photos.json').read_text())
             photo_offers, photo_report = scan_photos(rows, merged, client, Fetcher())
+            stop_reason = next((r['status'] for r in photo_report if r['status'] in ('budget_limit', 'request_limit', 'time_limit')), stop_reason)
             for bar_id, offer in photo_offers:
                 drink = 'coffee' if offer.get('coffeeType') else 'beer'
                 old = by_drink[drink].get(bar_id, {**merged[bar_id], 'offers': []})
@@ -224,7 +229,6 @@ def main():
             include_cafes(by_drink['coffee'], discovered)
             for b in candidates(discovered, list(merged.values()), hints, checks): merged[b['id']] = b
         if not args.estimates_only and not args.photos_only:
-            deadline = time.monotonic() + max(1, args.minutes) * 60
             selected = [dict(b, website=WEBSITES.get(b['id'], b.get('website'))) for b in merged.values() if b.get('website') or hints.get(b['id']) or b['offers']]
             eligible_ids = {b['id'] for b in candidates(list(merged.values()), [], hints, checks)}
             selected = [b for b in selected if b['offers'] or b['id'] in eligible_ids or hints.get(b['id'])]
@@ -234,13 +238,18 @@ def main():
             # Submit only a small window; hitting budget/time limits doesn't leave hundreds of pending fetches.
             with ThreadPoolExecutor(max_workers=max(1, min(6, args.workers))) as pool:
                 for start in range(0, len(selected), 6):
-                    if client.disabled or client.spent >= client.budget or client.requests >= client.max_requests or time.monotonic() >= deadline: break
+                    reason = 'api_error' if client.disabled else client.limit_reason()
+                    if reason:
+                        stop_reason = reason
+                        break
                     batch = {pool.submit(scan_venue, b, client, fetcher, hints, args.max_pages, deadline): b for b in selected[start:start + 6]}
                     stop = False
                     for task in as_completed(batch):
                         b = batch[task]; found, status, errors = task.result()
                         failures.extend(errors)
-                        if status == 'budget_limit': stop = True
+                        if status in ('budget_limit', 'request_limit', 'time_limit', 'api_error'):
+                            stop = True
+                            stop_reason = status
                         else: checks[b['id']] = {'checkedAt': now(), 'status': status, 'offers': len(found)}
                         for drink in ('beer', 'coffee'):
                             offers = [o for o in found if bool(o.get('coffeeType')) == (drink == 'coffee')]
@@ -251,11 +260,12 @@ def main():
                     flush()
                     if stop: break
     except (BudgetExhausted, APIUnavailable) as exc:
-        failures.append(str(exc) or 'budget_limit')
+        stop_reason = str(exc) if isinstance(exc, BudgetExhausted) else 'api_error'
+        failures.append(str(exc))
     finally:
         flush()
         after = {d: {'venues': sum(bool(b['offers']) for b in value['bars']), 'offers': sum(len(b['offers']) for b in value['bars'])} for d, value in data.items()}
-        report = {'model': MODEL, 'budgetUsd': client.budget, 'requests': client.requests, 'cacheHits': client.hits, 'estimatedCostUsd': round(client.spent, 4), 'before': before, 'after': after, 'photos': photo_report, 'errors': failures[:50]}
+        report = {'model': MODEL, 'budgetUsd': client.budget, 'maxRequests': client.max_requests, 'stopReason': stop_reason, 'requests': client.requests, 'cacheHits': client.hits, 'estimatedCostUsd': round(client.spent, 4), 'before': before, 'after': after, 'photos': photo_report, 'errors': failures[:50]}
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
         (CACHE_DIR / 'ai-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
         print(json.dumps(report, ensure_ascii=False, indent=2), flush=True)

@@ -17,9 +17,6 @@ on:
       ai_budget_usd:
         type: number
         required: true
-      ai_max_requests:
-        type: number
-        required: true
     secrets:
       ANTHROPIC_API_KEY:
         required: false
@@ -37,7 +34,6 @@ jobs:
       scan_mode: ${{ inputs.scan_mode }}
       deep_scan: ${{ inputs.deep_scan }}
       ai_budget_usd: ${{ inputs.ai_budget_usd }}
-      ai_max_requests: ${{ inputs.ai_max_requests }}
   pizza:
     name: Pizza
     needs: drinks
@@ -50,7 +46,6 @@ jobs:
       scan_mode: ${{ inputs.scan_mode }}
       deep_scan: ${{ inputs.deep_scan }}
       ai_budget_usd: ${{ inputs.ai_budget_usd }}
-      ai_max_requests: ${{ inputs.ai_max_requests }}
   ai:
     name: Claude menus and serving formats
     needs: [drinks, pizza]
@@ -63,6 +58,5 @@ jobs:
       scan_mode: ${{ inputs.scan_mode }}
       deep_scan: ${{ inputs.deep_scan }}
       ai_budget_usd: ${{ inputs.ai_budget_usd }}
-      ai_max_requests: ${{ inputs.ai_max_requests }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
