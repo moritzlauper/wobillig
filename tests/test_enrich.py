@@ -43,9 +43,9 @@ class EnrichmentTests(unittest.TestCase):
             def raise_for_status(self):pass
             def json(self):return {'elements':[{'type':'node','id':9,'lat':47.37,'lon':8.53,'tags':{'name':'New restaurant','amenity':'restaurant'}}]}
         previous={'bars':[{'id':'node/9','type':'restaurant','offers':[]}]}
-        with patch('scraper.scrape.requests.get',return_value=Response()) as get:
+        with patch('scraper.scrape.requests.post',return_value=Response()) as post:
             result=discover(previous)
-        self.assertIn('node(9)(area.city);',get.call_args.kwargs['params']['data'])
+        self.assertIn('node(9)(area.city);',post.call_args.kwargs['data']['data'])
         self.assertEqual(result['bars'][0]['id'],'node/9')
 
     def test_corrected_takeaway_type_survives_osm_refresh(self):
@@ -60,9 +60,9 @@ class EnrichmentTests(unittest.TestCase):
                 ]}
         offers = [{'name': 'Stange', 'priceChf': 4.8}]
         previous = {'bars': [{'id': 'node/725765073', 'type': 'fast_food', 'offers': offers}]}
-        with patch('scraper.scrape.requests.get', return_value=Response()) as get:
+        with patch('scraper.scrape.requests.post', return_value=Response()) as post:
             result = {b['id']: b for b in discover(previous)['bars']}
-        self.assertIn('node(725765073)(area.city);', get.call_args.kwargs['params']['data'])
+        self.assertIn('node(725765073)(area.city);', post.call_args.kwargs['data']['data'])
         self.assertEqual(result['node/725765073']['type'], 'fast_food')
         self.assertEqual(result['node/725765073']['offers'], offers)
         self.assertEqual(result['node/9']['type'], 'restaurant')

@@ -153,14 +153,16 @@ def discover(previous, path=None, query=QUERY):
                 if query == QUERY:
                     retained=''.join(f"{b['id'].split('/')[0]}({b['id'].split('/')[1]})(area.city);" for b in previous.get('bars',[]) if b.get('type') in ('restaurant','cafe','fast_food') and re.fullmatch(r'(node|way|relation)/\d+', b['id']))
                     active_query=query.replace(');out center tags;',retained+');out center tags;')
-                r=requests.get(endpoint,params={'data':active_query},headers={'User-Agent':UA},timeout=120)
+                # Retained venues can exceed the servers' URL length limit.
+                r=requests.post(endpoint,data={'data':active_query},headers={'User-Agent':UA},timeout=120)
                 r.raise_for_status()
                 raw=r.json()
                 if raw.get('remark') or not raw.get('elements'):
                     raise ValueError('Incomplete or empty Overpass response')
                 break
             except (requests.RequestException, ValueError) as exc:
-                print(f'Overpass failed: {type(exc).__name__}',flush=True)
+                status = exc.response.status_code if isinstance(exc, requests.HTTPError) and exc.response is not None else None
+                print(f'Overpass failed ({endpoint}): {type(exc).__name__}' + (f' HTTP {status}' if status is not None else ''),flush=True)
                 raw=None
         if raw is None:
             raise RuntimeError('Discovery failed; existing dataset was not changed')

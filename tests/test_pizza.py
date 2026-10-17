@@ -115,7 +115,7 @@ class PizzaOsmRegressionTests(unittest.TestCase):
         response = Mock()
         response.json.return_value = {'elements': [{'type': 'node', 'id': 1, 'lat': 47.37, 'lon': 8.52,
             'tags': {'name': 'Grottino 77', 'amenity': 'restaurant', 'cuisine': 'italian; pizza'}}]}
-        with patch('scraper.scrape.requests.get', return_value=response):
+        with patch('scraper.scrape.requests.post', return_value=response):
             result = discover({})
         self.assertEqual(result['bars'][0]['cuisine'], ['italian', 'pizza'])
 

@@ -71,7 +71,7 @@ class AddressTests(unittest.TestCase):
                'addressSource': 'https://www.openstreetmap.org/node/2'}
         response = Mock()
         response.json.return_value = {'elements': [{'type': 'node', 'id': 10, 'lat': 1, 'lon': 1, 'tags': {'name': 'Test'}}]}
-        with patch('scraper.scrape.requests.get', return_value=response):
+        with patch('scraper.scrape.requests.post', return_value=response):
             result = discover({'bars': [old]})['bars'][0]
         self.assertEqual(result['address'], old['address'])
         self.assertEqual(result['addressSource'], old['addressSource'])
