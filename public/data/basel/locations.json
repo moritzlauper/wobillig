@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-15T22:40:58.914644+00:00",
-  "discoveredAt": "2026-10-15T22:40:58.914655+00:00",
+  "generatedAt": "2026-10-17T21:29:33.206508+00:00",
+  "discoveredAt": "2026-10-17T21:29:33.206533+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -30,7 +30,7 @@
       "lon": 7.6073791,
       "type": "bar",
       "address": "Grenzacherstrasse 124",
-      "postcode": "",
+      "postcode": "4070",
       "website": null,
       "cuisine": [],
       "openingHours": null,
@@ -6344,8 +6344,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3638026950"
+      "checkedAt": null
     },
     {
       "id": "node/3420195749",
@@ -7253,8 +7252,8 @@
       "lat": 47.5599753,
       "lon": 7.5819948,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Bernoullistrasse 16",
+      "postcode": "4056",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 09:00-16:00",
@@ -9001,11 +9000,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
+      "addressSource": "https://www.centroambarfi.ch/kontakt/",
       "pizzaEvidence": {
         "sourceUrl": "https://www.centroambarfi.ch/en/coffee-and-digestifs-2/",
         "evidence": "Italian Restaurant - Pizzeria: Good food in Basel | Centro am Barfi"
-      },
-      "addressSource": "https://www.centroambarfi.ch/kontakt/"
+      }
     },
     {
       "id": "node/822473463",
@@ -10745,6 +10744,7 @@
       "address": "",
       "postcode": "",
       "website": null,
+      "cuisine": [],
       "openingHours": "May-Oct: Mo-Su,PH 11:30-20:00; Sa off",
       "outdoor": false,
       "offers": [],
@@ -11017,6 +11017,22 @@
       "address": "",
       "postcode": "",
       "website": "https://klybeck.tumblr.com/post/149316210887/project-sommerresidenz-fr%C3%BCher",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "location_only",
+      "checkedAt": null
+    },
+    {
+      "id": "node/14293160501",
+      "name": "Somos",
+      "lat": 47.5426366,
+      "lon": 7.5897418,
+      "type": "cafe",
+      "address": "Pfeffingerstrasse 78a",
+      "postcode": "4053",
+      "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
