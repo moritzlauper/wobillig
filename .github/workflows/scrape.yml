@@ -17,9 +17,9 @@ on:
         options: [full, ai_only, estimates_only, photos_only]
         default: full
       ai_budget_usd:
-        description: Total Haiku 5.5 API budget across selected cities in USD (hard cap 20.00; no request cap)
+        description: Haiku 5.5 API budget per city in USD (default 5.00, hard cap 20.00; no request cap)
         type: number
-        default: 20.00
+        default: 5.00
       deep_scan:
         description: Extended scan (default; all candidates, up to 50 menu pages per venue)
         type: boolean
@@ -50,22 +50,45 @@ jobs:
           refresh = os.environ['GITHUB_EVENT_NAME'] == 'workflow_dispatch' or due
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write(f'refresh={str(refresh).lower()}\n')
-  scrape:
-    name: ${{ matrix.city }}
+  basel:
+    name: Basel
     needs: cadence
-    if: ${{ needs.cadence.outputs.refresh == 'true' }}
-    strategy:
-      fail-fast: false
-      # Keep publication and shared-host crawling serial across cities.
-      max-parallel: 1
-      matrix:
-        city: ${{ fromJSON(inputs.city == 'zurich' && '["zurich"]' || inputs.city == 'bern' && '["bern"]' || inputs.city == 'basel' && '["basel"]' || '["zurich","bern","basel"]') }}
+    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (github.event_name == 'schedule' || inputs.city == 'all' || inputs.city == 'basel') }}
     uses: ./.github/workflows/scrape-city.yml
     with:
-      city: ${{ matrix.city }}
-      city_count: ${{ inputs.city && inputs.city != 'all' && 1 || 3 }}
+      city: basel
+      # Each city has its own budget; do not divide it across the three jobs.
+      city_count: 1
       scan_mode: ${{ inputs.scan_mode || 'full' }}
       deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan }}
-      ai_budget_usd: ${{ github.event_name == 'schedule' && 20 || inputs.ai_budget_usd || 0 }}
+      ai_budget_usd: ${{ github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0 }}
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  bern:
+    name: Bern
+    needs: [cadence, basel]
+    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (github.event_name == 'schedule' || inputs.city == 'all' || inputs.city == 'bern') }}
+    uses: ./.github/workflows/scrape-city.yml
+    with:
+      city: bern
+      # Each city has its own budget; do not divide it across the three jobs.
+      city_count: 1
+      scan_mode: ${{ inputs.scan_mode || 'full' }}
+      deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan }}
+      ai_budget_usd: ${{ github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0 }}
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  zurich:
+    name: Zürich
+    needs: [cadence, bern]
+    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (github.event_name == 'schedule' || inputs.city == 'all' || inputs.city == 'zurich') }}
+    uses: ./.github/workflows/scrape-city.yml
+    with:
+      city: zurich
+      # Each city has its own budget; do not divide it across the three jobs.
+      city_count: 1
+      scan_mode: ${{ inputs.scan_mode || 'full' }}
+      deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan }}
+      ai_budget_usd: ${{ github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0 }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
