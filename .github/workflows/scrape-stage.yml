@@ -1,0 +1,155 @@
+name: Refresh one scan stage
+on:
+  workflow_call:
+    inputs:
+      city:
+        type: string
+        required: true
+      city_count:
+        type: number
+        required: true
+      scan_mode:
+        type: string
+        required: true
+      deep_scan:
+        type: boolean
+        required: true
+      ai_budget_usd:
+        type: number
+        required: true
+      ai_max_requests:
+        type: number
+        required: true
+      stage:
+        type: string
+        required: true
+    secrets:
+      ANTHROPIC_API_KEY:
+        required: false
+permissions:
+  contents: write
+jobs:
+  scan:
+    name: ${{ inputs.city }} / ${{ inputs.stage }}
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.deep_scan && 360 || 180 }}
+    env:
+      WOBILLIG_CITY: ${{ inputs.city }}
+      BEER_PAGES: ${{ inputs.deep_scan && '50' || '8' }}
+      DEEP_PAGES: ${{ inputs.deep_scan && '50' || '20' }}
+      DISCOVERY_PAGES: ${{ inputs.deep_scan && '50' || '10' }}
+      COFFEE_PAGES: ${{ inputs.deep_scan && '50' || '10' }}
+      PIZZA_PAGES: ${{ inputs.deep_scan && '50' || '20' }}
+      AI_PAGES: ${{ inputs.deep_scan && '20' || '8' }}
+      AI_MINUTES: ${{ inputs.deep_scan && '120' || '60' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Each stage starts from the datasets published by preceding stages.
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scraper/requirements.txt
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
+      - run: pip install -r scraper/requirements.txt
+      - run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Record coverage before scanning
+        id: baseline
+        run: python -m scraper.scan_report --baseline "$RUNNER_TEMP/scan-before.json"
+      - uses: actions/cache/restore@v4
+        if: ${{ inputs.stage == 'ai' }}
+        with:
+          path: scraper/cache/ai
+          key: claude-menus-v1-${{ inputs.city }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: claude-menus-v1-${{ inputs.city }}-
+      - if: ${{ inputs.stage == 'drinks' }}
+        run: python -m scraper.scrape --discover --max-pages "$BEER_PAGES"
+      - name: Refresh selectable map locations
+        if: ${{ inputs.stage == 'drinks' }}
+        run: python -m scraper.locations
+      - name: Deep search for missing bar and pub prices
+        if: ${{ inputs.stage == 'drinks' }}
+        run: python -m scraper.scrape --type bar --type pub --type biergarten --missing-prices --max-pages "$DEEP_PAGES"
+      - name: Discover coffee venues and shared drinks menus
+        if: ${{ inputs.stage == 'drinks' }}
+        run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages "$COFFEE_PAGES"
+      - if: ${{ inputs.stage == 'drinks' }}
+        run: python -m scraper.enrich --limit 0 --max-pages "$DISCOVERY_PAGES"
+      - name: Deep search for missing bottle beer prices
+        if: ${{ inputs.stage == 'drinks' }}
+        run: python -m scraper.scrape --missing-bottles --max-pages "$DEEP_PAGES"
+      - name: Discover pizza venues and prices
+        if: ${{ inputs.stage == 'pizza' }}
+        run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages "$PIZZA_PAGES"
+      - name: Claude menu and serving-format scan
+        id: ai
+        if: ${{ inputs.stage == 'ai' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AI_BUDGET: ${{ inputs.ai_budget_usd }}
+          AI_BUDGET_CAP: ${{ inputs.deep_scan && '10.00' || '1.00' }}
+          AI_REQUESTS: ${{ inputs.ai_max_requests }}
+          SCAN_MODE: ${{ inputs.scan_mode }}
+          CITY_COUNT: ${{ inputs.city_count }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo 'ANTHROPIC_API_KEY is missing; deterministic scan remains available.'
+            exit 0
+          fi
+          # Split the total budget/request cap across the selected cities.
+          AI_BUDGET=$(python -c 'import os; print(max(0, min(float(os.environ["AI_BUDGET_CAP"]), float(os.environ["AI_BUDGET"]))) / int(os.environ["CITY_COUNT"]))')
+          AI_REQUESTS=$(python -c 'import os; print(max(0, min(1000, int(os.environ["AI_REQUESTS"]))) // int(os.environ["CITY_COUNT"]))')
+          if [ "$SCAN_MODE" = 'estimates_only' ]; then
+            python -m scraper.ai_scan --estimates-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
+          elif [ "$SCAN_MODE" = 'photos_only' ]; then
+            python -m scraper.ai_scan --photos-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
+          else
+            python -m scraper.ai_scan --discover --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS" --workers 6 --minutes "$AI_MINUTES" --max-pages "$AI_PAGES"
+          fi
+      - name: Report additional venues and prices
+        if: ${{ always() && steps.baseline.outcome == 'success' }}
+        env:
+          SCAN_STATUS: ${{ job.status }}
+        run: python -m scraper.scan_report --compare "$RUNNER_TEMP/scan-before.json" --output "$RUNNER_TEMP/scan-report.json" --status "$SCAN_STATUS"
+      - name: Save coverage report
+        if: ${{ always() && steps.baseline.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-coverage-${{ inputs.city }}-${{ inputs.stage }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/scan-report.json
+          if-no-files-found: warn
+      - uses: actions/cache/save@v4
+        if: ${{ always() && inputs.stage == 'ai' }}
+        with:
+          path: scraper/cache/ai
+          key: claude-menus-v1-${{ inputs.city }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && inputs.stage == 'ai' }}
+        with:
+          name: claude-scan-report-${{ inputs.city }}-${{ github.run_attempt }}
+          path: scraper/cache/${{ inputs.city }}/ai-report.json
+          if-no-files-found: ignore
+      - name: Fill missing venue addresses
+        if: ${{ !cancelled() && (success() || steps.ai.outcome == 'failure') }}
+        continue-on-error: true
+        run: python -m scraper.addresses
+      - name: Snapshot refreshed dataset
+        id: snapshot
+        if: ${{ always() && steps.baseline.outcome == 'success' }}
+        run: python -m scraper.publish --snapshot "$RUNNER_TEMP/refresh-snapshot.json"
+      - name: Back up refreshed dataset
+        if: ${{ always() && steps.snapshot.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: refreshed-dataset-${{ inputs.city }}-${{ inputs.stage }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/refresh-snapshot.json
+          if-no-files-found: error
+      - name: Save refreshed dataset
+        if: ${{ !cancelled() && steps.snapshot.outcome == 'success' && (success() || steps.ai.outcome == 'failure') }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python -m scraper.publish --snapshot "$RUNNER_TEMP/refresh-snapshot.json" --branch "$GITHUB_REF_NAME"

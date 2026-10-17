@@ -1,0 +1,68 @@
+name: Refresh one city
+on:
+  workflow_call:
+    inputs:
+      city:
+        type: string
+        required: true
+      city_count:
+        type: number
+        required: true
+      scan_mode:
+        type: string
+        required: true
+      deep_scan:
+        type: boolean
+        required: true
+      ai_budget_usd:
+        type: number
+        required: true
+      ai_max_requests:
+        type: number
+        required: true
+    secrets:
+      ANTHROPIC_API_KEY:
+        required: false
+permissions:
+  contents: write
+jobs:
+  drinks:
+    name: Beer and coffee
+    if: ${{ inputs.scan_mode == 'full' }}
+    uses: ./.github/workflows/scrape-stage.yml
+    with:
+      stage: drinks
+      city: ${{ inputs.city }}
+      city_count: ${{ inputs.city_count }}
+      scan_mode: ${{ inputs.scan_mode }}
+      deep_scan: ${{ inputs.deep_scan }}
+      ai_budget_usd: ${{ inputs.ai_budget_usd }}
+      ai_max_requests: ${{ inputs.ai_max_requests }}
+  pizza:
+    name: Pizza
+    needs: drinks
+    if: ${{ !cancelled() && inputs.scan_mode == 'full' }}
+    uses: ./.github/workflows/scrape-stage.yml
+    with:
+      stage: pizza
+      city: ${{ inputs.city }}
+      city_count: ${{ inputs.city_count }}
+      scan_mode: ${{ inputs.scan_mode }}
+      deep_scan: ${{ inputs.deep_scan }}
+      ai_budget_usd: ${{ inputs.ai_budget_usd }}
+      ai_max_requests: ${{ inputs.ai_max_requests }}
+  ai:
+    name: Claude menus and serving formats
+    needs: [drinks, pizza]
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/scrape-stage.yml
+    with:
+      stage: ai
+      city: ${{ inputs.city }}
+      city_count: ${{ inputs.city_count }}
+      scan_mode: ${{ inputs.scan_mode }}
+      deep_scan: ${{ inputs.deep_scan }}
+      ai_budget_usd: ${{ inputs.ai_budget_usd }}
+      ai_max_requests: ${{ inputs.ai_max_requests }}
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
