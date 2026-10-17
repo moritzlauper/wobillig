@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-15T22:50:08.907404+00:00",
-  "discoveredAt": "2026-10-15T22:42:24.506451+00:00",
+  "generatedAt": "2026-10-17T14:14:28.231164+00:00",
+  "discoveredAt": "2026-10-17T13:46:29.135727+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -19,7 +19,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:30.414098+00:00"
+      "checkedAt": "2026-10-17T13:46:39.493584+00:00"
     },
     {
       "id": "node/4688138991",
@@ -43,14 +43,14 @@
           "volumeMl": null,
           "priceChf": 18.8,
           "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
-          "observedAt": "2026-10-15T22:43:01.514592+00:00",
+          "observedAt": "2026-10-17T13:48:42.982821+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 7: 52. Margherita 18.80",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:43:01.514592+00:00"
+      "checkedAt": "2026-10-17T13:48:42.982821+00:00"
     },
     {
       "id": "node/507607982",
@@ -68,10 +68,22 @@
       ],
       "openingHours": "Mo 16:30-21:30; Tu 17:30-21:30; We 11:30-13:30,17:00-22:30; Th-Su 11:30-22:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:30.953187+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/507607982"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 12.5,
+          "sourceUrl": "https://amma-masala.ch/speisekarte/",
+          "observedAt": "2026-10-17T13:46:46.308032+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita Tomatensauce, Mozzarella 12,50 CHF",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T13:46:46.308032+00:00"
     },
     {
       "id": "node/6349130272",
@@ -89,7 +101,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:31.290103+00:00",
+      "checkedAt": "2026-10-17T13:46:48.171194+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.artigiano-pizzeria.com/",
         "evidence": "Pizzeria | Restaurant und Delivery | Artigiano Café | Basel, Bern, Windisch"
@@ -112,8 +124,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:31.954798+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/2251379755"
+      "checkedAt": "2026-10-17T13:46:56.155008+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://pizzabellavita.ch/berndeki-en-iyi-pizza-duekkani-pizza-bella-vita/",
+        "evidence": "Beste Pizzeria in Bern - Pizza Bella Vita - Pizza Bella Vita | Bern Pizza Bestellen | Bern Pizza | Pizzaliefer"
+      }
     },
     {
       "id": "node/617990033",
@@ -129,10 +144,22 @@
       ],
       "openingHours": "Mo-Th 09:00-23:00; Fr,Sa 09:00-24:00; Su,PH 10:00-22:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:24.521535+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/617990033"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://bernerpizzahuus.ch/pizza/",
+          "observedAt": "2026-10-17T13:46:29.158834+00:00",
+          "confidence": "automatic",
+          "evidence": "001 Pizza Margherita 30cm Mozzarella, Tomatensauce, Oregano 16,00",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T13:46:29.158834+00:00"
     },
     {
       "id": "node/5742165435",
@@ -153,15 +180,34 @@
           "volumeMl": null,
           "priceChf": 14.0,
           "sourceUrl": "https://bistrobreiten-bern.ch/kategori-pizza-30-cm",
-          "observedAt": "2026-10-15T22:43:26.936511+00:00",
+          "observedAt": "2026-10-17T13:48:44.024825+00:00",
           "confidence": "automatic",
           "evidence": "Pizza Margherita 14,00 CHF",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:43:26.936511+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/5742165435"
+      "checkedAt": "2026-10-17T13:48:44.024825+00:00"
+    },
+    {
+      "id": "node/14291014339",
+      "name": "Blue Sky",
+      "lat": 46.9486432,
+      "lon": 7.4073795,
+      "type": "restaurant",
+      "address": "Murtenstrasse 151",
+      "postcode": "3008",
+      "website": "https://bluesky-bern.ch/",
+      "cuisine": [
+        "pizza",
+        "pasta",
+        "breakfast"
+      ],
+      "openingHours": "07:00-23:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
     },
     {
       "id": "node/14086504561",
@@ -198,7 +244,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:42:32.446267+00:00"
+      "checkedAt": "2026-10-17T13:46:57.677679+00:00"
     },
     {
       "id": "node/514536836",
@@ -216,12 +262,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:43:56.568385+00:00",
+      "checkedAt": "2026-10-17T13:52:32.753607+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.calabrisella-bern.ch/",
         "evidence": "Calabrisella Bern – Restaurant Pizzeria"
-      },
-      "addressSource": "https://www.openstreetmap.org/node/514536836"
+      }
     },
     {
       "id": "node/824801772",
@@ -245,14 +290,14 @@
           "volumeMl": null,
           "priceChf": 17.9,
           "sourceUrl": "https://www.cavallostar.ch/index.php/speisekarte",
-          "observedAt": "2026-10-15T22:42:32.871493+00:00",
+          "observedAt": "2026-10-17T13:46:59.224569+00:00",
           "confidence": "automatic",
           "evidence": "Margherita Mit Mozzarella und Oregano V 17.90",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:42:32.871493+00:00"
+      "checkedAt": "2026-10-17T13:46:59.224569+00:00"
     },
     {
       "id": "node/8651603412",
@@ -270,7 +315,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:44:02.387312+00:00",
+      "checkedAt": "2026-10-17T13:52:59.480112+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.celinabern.ch/",
         "evidence": "Ristorante Pizzeria Celina │ Ihr Italiener im Nordring"
@@ -295,9 +340,22 @@
       ],
       "openingHours": "Mo-Sa 10:30-20:45; Su 11:00-20:45",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:24.521852+00:00",
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.city-pizzeria-bern.ch/",
+          "observedAt": "2026-10-17T13:46:29.159284+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita Tomaten, Mozzarella, Oregano 16,00 CHF",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T13:46:29.159284+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.city-pizzeria-bern.ch/",
         "evidence": "City Pizzeria - Hausgemachte Spezialitäten & Kebab - Essen online bestellen in Bern"
@@ -326,19 +384,18 @@
           "volumeMl": null,
           "priceChf": 18.5,
           "sourceUrl": "https://dabucolo.ch/unsere-speisekarte/",
-          "observedAt": "2026-10-15T22:42:33.771089+00:00",
+          "observedAt": "2026-10-17T13:46:59.698170+00:00",
           "confidence": "automatic",
           "evidence": "Margherita Tomaten, Mozzarella CHF 18.50",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:42:33.771089+00:00",
+      "checkedAt": "2026-10-17T13:46:59.698170+00:00",
       "pizzaEvidence": {
-        "sourceUrl": "https://dabucolo.ch/pizzateig/",
-        "evidence": "Pizzateig | Ristorante Pizzeria da Bucolo"
-      },
-      "addressSource": "https://www.openstreetmap.org/node/1066324526"
+        "sourceUrl": "https://dabucolo.ch/glutenfreie-karte/",
+        "evidence": "Glutenfreie Karte | Ristorante Pizzeria da Bucolo"
+      }
     },
     {
       "id": "node/5137495924",
@@ -357,8 +414,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:33.791266+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/5137495924"
+      "checkedAt": "2026-10-17T13:47:19.276223+00:00"
     },
     {
       "id": "node/286879695",
@@ -376,12 +432,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-15T22:44:18.316521+00:00",
+      "checkedAt": "2026-10-17T13:53:59.397668+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.pizzeriadanino.ch/",
         "evidence": "Pizzeria Da Nino am Eigerplatz Bern » 031 371 11 31 – Pizzeria Da Nino am Eigerplatz in Bern. Restaurant & Take Away. Klein aber fein. Komm vorbei wir freuen uns. 031 371 11 31."
-      },
-      "addressSource": "https://www.openstreetmap.org/node/286879695"
+      }
     },
     {
       "id": "node/7545709020",
@@ -398,10 +453,22 @@
       ],
       "openingHours": "Mo-Th 10:00-23:00; Fr,Sa 10:00-23:30; Su,PH off",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:34.907165+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/7545709020"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://www.darina.ch/wp-content/uploads/2026/07/Sommerkarte-Pizza-Pasta-2606.pdf",
+          "observedAt": "2026-10-17T13:47:21.154916+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: MARGHERITA TOMATENSAUCE, MOZZARELLA, OREGANO 17.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T13:47:21.154916+00:00"
     },
     {
       "id": "node/286879727",
@@ -419,12 +486,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:44:20.581387+00:00",
+      "checkedAt": "2026-10-17T13:53:59.701678+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.ristorantedavinci.ch/",
         "evidence": "Pizzeria Ristorante Da Vinci | RistoranteDaVinci.ch"
-      },
-      "addressSource": "https://www.openstreetmap.org/node/286879727"
+      }
     },
     {
       "id": "node/608998367",
@@ -440,10 +506,22 @@
       ],
       "openingHours": "Mo-Th 11:00-14:00,17:00-23:00; Fr-Sa 11:00-14:00,17:00-23:30; Su 13:00-23:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:42:36.174488+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/608998367"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "https://dal-capo.ch/pizzas/",
+          "observedAt": "2026-10-17T13:47:22.777031+00:00",
+          "confidence": "automatic",
+          "evidence": "48 Margherita 30cm Tomatensauce, Mozzarella, Oregano 15,00",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T13:47:22.777031+00:00"
     },
     {
       "id": "node/836516188",
@@ -464,8 +542,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:36.417475+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/836516188"
+      "checkedAt": "2026-10-17T13:47:56.643041+00:00"
     },
     {
       "id": "node/806279404",
@@ -500,7 +577,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:42:24.521962+00:00"
+      "checkedAt": "2026-10-17T13:46:29.159498+00:00"
     },
     {
       "id": "node/10860875524",
@@ -517,8 +594,8 @@
       "openingHours": "Mo-Th 11:00-13:30,17:00-22:00; Fr,Sa 11:00-13:30,17:00-22:30; Su 16:00-22:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:24.522062+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-17T13:46:29.159712+00:00"
     },
     {
       "id": "node/720897232",
@@ -533,8 +610,8 @@
       "openingHours": "Mo-Th 11:00-13:30, 17:00-22:00; Fr-Sa 11:00-13:30, 17:00-22:30; Su 16:00-22:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:24.522168+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-17T13:46:29.159924+00:00"
     },
     {
       "id": "node/4564844790",
@@ -573,14 +650,14 @@
           "volumeMl": null,
           "priceChf": 20.0,
           "sourceUrl": "https://restaurant-eleven.ch/wp-content/uploads/2026/09/11_Getraenke_Speisekarte_2609-10.pdf",
-          "observedAt": "2026-10-15T22:44:56.400129+00:00",
+          "observedAt": "2026-10-17T13:48:45.724638+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: margherita 20",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:44:56.400129+00:00"
+      "checkedAt": "2026-10-17T13:48:45.724638+00:00"
     },
     {
       "id": "node/6432400358",
@@ -616,8 +693,8 @@
       "openingHours": "Tu-Sa 11:30-14:00, 18:00-22:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:24.522261+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-17T13:46:29.160133+00:00"
     },
     {
       "id": "node/265627185",
@@ -641,19 +718,18 @@
           "volumeMl": null,
           "priceChf": 19.0,
           "sourceUrl": "https://www.grotto-ticino.ch/pizzakarte",
-          "observedAt": "2026-10-15T22:42:36.793423+00:00",
+          "observedAt": "2026-10-17T13:47:58.807030+00:00",
           "confidence": "automatic",
           "evidence": "Margherita 19.-",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:42:36.793423+00:00",
+      "checkedAt": "2026-10-17T13:47:58.807030+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.grotto-ticino.ch/angebot",
         "evidence": "Ristorante Pizzeria Grotto Ticino Bern | Wilkommen"
-      },
-      "addressSource": "https://www.openstreetmap.org/node/265627185"
+      }
     },
     {
       "id": "node/824792337",
@@ -672,7 +748,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:38.052731+00:00"
+      "checkedAt": "2026-10-17T13:47:59.146843+00:00"
     },
     {
       "id": "node/286879776",
@@ -695,15 +771,14 @@
           "volumeMl": null,
           "priceChf": 18.5,
           "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_37d4cd2831394d539962a86e1557b193.pdf",
-          "observedAt": "2026-10-15T22:45:37.700202+00:00",
+          "observedAt": "2026-10-17T13:48:51.464264+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 7: Margherita 18.5",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:45:37.700202+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/286879776"
+      "checkedAt": "2026-10-17T13:48:51.464264+00:00"
     },
     {
       "id": "node/602498809",
@@ -740,9 +815,9 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:45:40.417864+00:00",
+      "checkedAt": "2026-10-17T13:57:12.278022+00:00",
       "pizzaEvidence": {
-        "sourceUrl": "https://www.lacarbonara.ch/",
+        "sourceUrl": "https://www.lacarbonara.ch",
         "evidence": "La Carbonara | Ristorante Pizzeria | Quartiergasse 3, 3013 Bern, Switzerland"
       }
     },
@@ -784,7 +859,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:38.549846+00:00"
+      "checkedAt": "2026-10-17T13:48:09.198730+00:00",
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.restaurant-marzilibruecke.ch/angebot/pizzeria/",
+        "evidence": "Garten Pizzeria – Marzilibrücke"
+      }
     },
     {
       "id": "node/5916011989",
@@ -805,7 +884,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:42:24.522351+00:00"
+      "checkedAt": "2026-10-17T13:46:29.160336+00:00"
     },
     {
       "id": "node/490033763",
@@ -823,8 +902,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:24.537120+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/490033763"
+      "checkedAt": "2026-10-17T13:46:29.160528+00:00"
     },
     {
       "id": "node/286879728",
@@ -842,12 +920,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:49.279417+00:00",
+      "checkedAt": "2026-10-17T13:49:33.934314+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://molino.ch/de/",
         "evidence": "Italianità per tutti – Pizzeria Ristorante Molino"
-      },
-      "addressSource": "https://www.openstreetmap.org/node/286879728"
+      }
     },
     {
       "id": "node/2946057658",
@@ -866,7 +943,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:40.894377+00:00",
+      "checkedAt": "2026-10-17T13:48:11.160610+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.nemrutpizza.ch",
         "evidence": "Pizzeria Nemrut - Essen einfach Online bestellen"
@@ -889,7 +966,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:41.658239+00:00",
+      "checkedAt": "2026-10-17T13:48:19.031832+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.piazzabern.ch",
         "evidence": "Restaurant Bern | Bern | Ristorante Pizzeria Piazza"
@@ -913,7 +990,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:24.537233+00:00",
+      "checkedAt": "2026-10-17T13:46:29.184250+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://piazzaitalia.ch/",
         "evidence": "Piazza Italia Bern – Die neue Pizzeria am Bärenplatz"
@@ -934,8 +1011,8 @@
       "openingHours": "Mo-Sa 10:00-22:00; Su,PH closed",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:41.813449+00:00",
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-17T13:48:21.820734+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
         "evidence": "PIAZZA VITTORIA - Pizzeria, Restaurant, Feinkost, Eisdiele, Café - Pizzeria, ristorante, gastronomia, gelateria, caffetteria - Bern"
@@ -958,12 +1035,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:54.089694+00:00",
+      "checkedAt": "2026-10-17T13:49:42.992119+00:00",
       "pizzaEvidence": {
-        "sourceUrl": "https://www.piccolanapoli.ch/",
-        "evidence": "Ristorante Pizzeria Piccola Napoli - Lieferservice - Bern - Essen Online Bestellen"
-      },
-      "addressSource": "https://www.openstreetmap.org/node/286879707"
+        "sourceUrl": "https://www.piccolanapoli.ch/menue",
+        "evidence": "Menü von Ristorante Pizzeria Piccola Napoli"
+      }
     },
     {
       "id": "node/382955829",
@@ -1001,7 +1077,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:26.904350+00:00",
+      "checkedAt": "2026-10-17T13:46:29.320666+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://pizzeria-laenggasse.ch/menu",
         "evidence": "Pizzeria Länggasse Bern | Frische Pizza bestellen und geniessen"
@@ -1064,7 +1140,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:46.785612+00:00",
+      "checkedAt": "2026-10-17T13:48:28.797372+00:00",
       "addressSource": "https://www.openstreetmap.org/node/1103962406"
     },
     {
@@ -1083,8 +1159,38 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:46.953478+00:00",
+      "checkedAt": "2026-10-17T13:48:33.357353+00:00",
       "addressSource": "https://www.openstreetmap.org/node/5387424120"
+    },
+    {
+      "id": "node/5745409029",
+      "name": "Restaurant Höhe",
+      "lat": 46.9420597,
+      "lon": 7.3960751,
+      "type": "restaurant",
+      "address": "Bernstrasse 51",
+      "postcode": "3018",
+      "website": "https://www.restauranthoehe.ch/",
+      "cuisine": [],
+      "openingHours": "08:00-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "https://www.restauranthoehe.ch/",
+          "observedAt": "2026-10-17T14:01:37.430006+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita Tomatensauce, Mozzarella, Oregano 15,00 CHF",
+          "alcoholFree": true,
+          "priceContext": "online_menu"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T14:01:37.430006+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/1114942542"
     },
     {
       "id": "node/761255424",
@@ -1102,8 +1208,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:47.369788+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/761255424"
+      "checkedAt": "2026-10-17T13:48:38.464819+00:00"
     },
     {
       "id": "node/290704798",
@@ -1121,7 +1226,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:27.354800+00:00"
+      "checkedAt": "2026-10-17T13:46:31.019439+00:00"
     },
     {
       "id": "node/278791605",
@@ -1139,7 +1244,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:42:28.703007+00:00"
+      "checkedAt": "2026-10-17T13:46:35.002865+00:00"
     },
     {
       "id": "node/6349130278",
@@ -1158,8 +1263,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:42:48.492335+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/6349130278"
+      "checkedAt": "2026-10-17T13:48:40.798206+00:00"
     },
     {
       "id": "node/286879724",
@@ -1178,8 +1282,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-15T22:42:29.117921+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/286879724"
+      "checkedAt": "2026-10-17T13:46:36.234584+00:00"
     },
     {
       "id": "node/10856205423",
@@ -1197,7 +1300,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "ambiguous_prices",
-      "checkedAt": "2026-10-15T22:42:48.506913+00:00",
+      "checkedAt": "2026-10-17T13:48:40.871887+00:00",
       "addressSource": "https://www.openstreetmap.org/node/1104632321"
     },
     {
@@ -1254,9 +1357,9 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:47:46.184492+00:00",
+      "checkedAt": "2026-10-17T14:03:43.398107+00:00",
       "pizzaEvidence": {
-        "sourceUrl": "https://www.strada-bern.ch",
+        "sourceUrl": "https://www.strada-bern.ch/",
         "evidence": "Ristorante Pizzeria StraDa in Bern | Mediterrane Küche"
       },
       "addressSource": "https://www.openstreetmap.org/node/2357312697"
@@ -1275,12 +1378,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-15T22:48:01.818455+00:00",
+      "checkedAt": "2026-10-17T14:04:32.765053+00:00",
       "pizzaEvidence": {
-        "sourceUrl": "https://www.tavolacalda.ch/our-menu/pasta-2/",
-        "evidence": "Pasta – Restaurant Pizzeria Tavola Calda"
-      },
-      "addressSource": "https://www.openstreetmap.org/node/514589641"
+        "sourceUrl": "https://www.tavolacalda.ch/lostpassword/",
+        "evidence": "Passwort vergessen – Restaurant Pizzeria Tavola Calda"
+      }
     },
     {
       "id": "node/1274323364",
@@ -1303,14 +1405,14 @@
           "volumeMl": null,
           "priceChf": 19.8,
           "sourceUrl": "https://www.tre-fratelli-bern.ch/karte",
-          "observedAt": "2026-10-15T22:48:27.599129+00:00",
+          "observedAt": "2026-10-17T13:48:53.349033+00:00",
           "confidence": "automatic",
           "evidence": "Margherita 19.80",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-15T22:48:27.599129+00:00"
+      "checkedAt": "2026-10-17T13:48:53.349033+00:00"
     },
     {
       "id": "node/3474124939",
