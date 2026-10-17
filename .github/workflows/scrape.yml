@@ -28,6 +28,8 @@ permissions:
   contents: write
 concurrency:
   group: drink-data-refresh
+  # Keep separately requested city runs in FIFO order instead of replacing pending runs.
+  queue: max
   cancel-in-progress: false
 jobs:
   cadence:
