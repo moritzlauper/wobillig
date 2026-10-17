@@ -1,4 +1,5 @@
 name: Refresh city prices
+run-name: "City prices · ${{ inputs.deep_scan && 'deep scan' || inputs.scan_mode || 'scheduled refresh' }}"
 on:
   schedule:
     # The cadence job runs every third Monday to keep a true 21-day interval.
@@ -11,13 +12,17 @@ on:
         options: [full, ai_only, estimates_only, photos_only]
         default: full
       ai_budget_usd:
-        description: Total Haiku 5.5 API cost across all cities in USD (hard cap 1.00)
+        description: Total Haiku 5.5 API cost across all cities in USD (default 1.00, hard cap 10.00)
         type: number
         default: 1.00
       ai_max_requests:
         description: Total Claude generations across all cities (hard cap 1000)
         type: number
         default: 1000
+      deep_scan:
+        description: Extended full scan (all candidates, up to 50 menu pages per venue)
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -46,7 +51,7 @@ jobs:
     needs: cadence
     if: ${{ needs.cadence.outputs.refresh == 'true' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: ${{ inputs.deep_scan && 360 || 180 }}
     strategy:
       fail-fast: false
       # Serial publication avoids competing commits and overlapping host crawls.
@@ -55,6 +60,13 @@ jobs:
         city: [zurich, bern, basel]
     env:
       WOBILLIG_CITY: ${{ matrix.city }}
+      BEER_PAGES: ${{ inputs.deep_scan && '50' || '8' }}
+      DEEP_PAGES: ${{ inputs.deep_scan && '50' || '20' }}
+      DISCOVERY_PAGES: ${{ inputs.deep_scan && '50' || '10' }}
+      COFFEE_PAGES: ${{ inputs.deep_scan && '50' || '10' }}
+      PIZZA_PAGES: ${{ inputs.deep_scan && '50' || '20' }}
+      AI_PAGES: ${{ inputs.deep_scan && '20' || '8' }}
+      AI_MINUTES: ${{ inputs.deep_scan && '120' || '60' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -67,28 +79,32 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
       - run: pip install -r scraper/requirements.txt
       - run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Record coverage before scanning
+        id: baseline
+        run: python -m scraper.scan_report --baseline "$RUNNER_TEMP/scan-before.json"
       - uses: actions/cache/restore@v4
         with:
           path: scraper/cache/ai
           key: claude-menus-v1-${{ matrix.city }}-${{ github.run_id }}
           restore-keys: claude-menus-v1-${{ matrix.city }}-
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
-        run: python -m scraper.scrape --discover
+        run: python -m scraper.scrape --discover --max-pages "$BEER_PAGES"
       - name: Refresh selectable map locations
         if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
         run: python -m scraper.locations
       - name: Deep search for missing bar and pub prices
         if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
-        run: python -m scraper.scrape --type bar --type pub --type biergarten --missing-prices --max-pages 20
+        run: python -m scraper.scrape --type bar --type pub --type biergarten --missing-prices --max-pages "$DEEP_PAGES"
+      - name: Discover coffee venues and shared drinks menus
+        if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
+        run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages "$COFFEE_PAGES"
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
-        run: python -m scraper.enrich --limit 0 --max-pages 10
+        run: python -m scraper.enrich --limit 0 --max-pages "$DISCOVERY_PAGES"
       - name: Deep search for missing bottle beer prices
         if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
-        run: python -m scraper.scrape --missing-bottles --max-pages 20
+        run: python -m scraper.scrape --missing-bottles --max-pages "$DEEP_PAGES"
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
-        run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages 10
-      - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
-        run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages 20
+        run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages "$PIZZA_PAGES"
       - name: Claude menu and serving-format scan
         id: ai
         env:
@@ -102,15 +118,27 @@ jobs:
             exit 0
           fi
           # Split the existing total budget/request cap across the three cities.
-          AI_BUDGET=$(python -c 'import os; print(max(0, min(1, float(os.environ["AI_BUDGET"]))) / 3)')
+          AI_BUDGET=$(python -c 'import os; print(max(0, min(10, float(os.environ["AI_BUDGET"]))) / 3)')
           AI_REQUESTS=$(python -c 'import os; print(max(0, min(1000, int(os.environ["AI_REQUESTS"]))) // 3)')
           if [ "$SCAN_MODE" = 'estimates_only' ]; then
             python -m scraper.ai_scan --estimates-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
           elif [ "$SCAN_MODE" = 'photos_only' ]; then
             python -m scraper.ai_scan --photos-only --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS"
           else
-            python -m scraper.ai_scan --discover --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS" --workers 6 --minutes 60
+            python -m scraper.ai_scan --discover --budget-usd "$AI_BUDGET" --max-requests "$AI_REQUESTS" --workers 6 --minutes "$AI_MINUTES" --max-pages "$AI_PAGES"
           fi
+      - name: Report additional venues and prices
+        if: ${{ always() && steps.baseline.outcome == 'success' }}
+        env:
+          SCAN_STATUS: ${{ job.status }}
+        run: python -m scraper.scan_report --compare "$RUNNER_TEMP/scan-before.json" --output "$RUNNER_TEMP/scan-report.json" --status "$SCAN_STATUS"
+      - name: Save coverage report
+        if: ${{ always() && steps.baseline.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-coverage-${{ matrix.city }}
+          path: ${{ runner.temp }}/scan-report.json
+          if-no-files-found: warn
       - uses: actions/cache/save@v4
         if: ${{ always() }}
         with:
