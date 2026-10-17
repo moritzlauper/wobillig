@@ -6,13 +6,15 @@ every offer retains the original fetch date, never the replay date.
 """
 from scraper.cities import DATA_DIR, STATE_DIR
 import argparse
+from collections import Counter
 from concurrent.futures import ThreadPoolExecutor,as_completed
 from datetime import datetime,timezone
 import json
 import re
 from pathlib import Path
 from urllib.parse import urlparse
-from scraper.scrape import ROOT,discover,scrape_bar,now
+from scraper.scrape import ROOT,discover,scrape_task,now
+from scraper.scan_logging import log_result, log_summary
 from scraper.enrich import QUERY,candidates,host,AuditFetcher
 
 DATA=DATA_DIR/'coffee.json'
@@ -107,19 +109,23 @@ def main():
     def flush():
         dataset={'generatedAt':now(),'discoveredAt':discovered['discoveredAt'],'attribution':beer['attribution'],'bars':sorted(output.values(),key=lambda b:b['name'].casefold())}
         save(DATA,dataset);save(CHECKS,checks)
+    statuses=Counter();offer_count=0
+    print(f'[coffee] Checking {len(selected)} venues for coffee prices only; up to {args.max_pages} documents per venue.',flush=True)
     with ThreadPoolExecutor(max_workers=max(1,min(args.workers,8))) as pool:
-        tasks=[pool.submit(scrape_bar,b,fetcher,hints,args.max_pages,'coffee') for b in selected]
+        tasks=[pool.submit(scrape_task,b,fetcher,hints,args.max_pages,'coffee') for b in selected]
         for i,task in enumerate(as_completed(tasks),1):
-            b=task.result()
+            b,details=task.result()
             if args.archive_dir:
                 for o in b['offers']:
                     if o['sourceUrl'] in fetcher.docs:o['observedAt']=fetcher.docs[o['sourceUrl']]['stamp']
-            checks[b['id']]={'checkedAt':b['checkedAt'],'status':b['scrapeStatus']}
+            checks[b['id']]={'checkedAt':b['checkedAt'],'status':b['scrapeStatus'],**details}
             if b['offers'] or b['id'] in output:output[b['id']]=b
-            print(f"[{i}/{len(tasks)}] {b['name']}: {len(b['offers'])} coffees",flush=True)
+            statuses[b['scrapeStatus']]+=1;offer_count+=len(b['offers'])
+            log_result(i,len(tasks),b,details,'coffee',args.max_pages)
             if i%25==0:flush()
     flush()
     print(f"Saved {len(output)} coffee venues with {sum(len(b['offers']) for b in output.values())} offers",flush=True)
+    log_summary('coffee',statuses,offer_count,fetcher)
 
 
 if __name__=='__main__':main()

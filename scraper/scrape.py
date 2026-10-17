@@ -3,6 +3,7 @@
 Run from repository root: python -m scraper.scrape --discover
 """
 import argparse
+from collections import Counter
 import hashlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
@@ -27,6 +28,8 @@ from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 from scraper.coffee import extract_coffees, coffee_pdf, coffee_types, PRICE as COFFEE_PRICE
 from scraper.addresses import tag_address
 from scraper.menu_dates import verified_menu_date
+from scraper.http_cache import RunHttpCache
+from scraper.scan_logging import TraceFetcher, log_result, log_summary
 
 from scraper.cities import ROOT, CITY, AREA, DATA_DIR, CACHE_DIR
 DATA = DATA_DIR / 'bars.json'
@@ -67,6 +70,8 @@ class Fetcher:
         self.last = {}
         self.cache = CACHE_DIR
         self.cache.mkdir(parents=True, exist_ok=True)
+        cache_path = os.environ.get('WOBILLIG_HTTP_CACHE')
+        self.http_cache = RunHttpCache(cache_path) if cache_path else None
 
     def raw(self, url, delay=1.0):
         public_url(url)
@@ -120,6 +125,11 @@ class Fetcher:
             return robot
 
     def get(self,url):
+        if self.http_cache is not None:
+            return self.http_cache.fetch(url, lambda: self._get(url))
+        return self._get(url)
+
+    def _get(self,url):
         for _ in range(5):
             public_url(url)
             robot=self.policy(url)
@@ -404,8 +414,10 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
             continue
         visited.add(url)
         attempts+=1
+        fetched=False
         try:
             final,kind,body=fetcher.get(url)
+            fetched=True
             visited.add(final)
             review=(REVIEWED_COFFEE_MENUS if beverage=='coffee' else REVIEWED_MENUS).get(final)
             if review and review['barId']==bar['id'] and source_allowed(bar['id'],final,beverage):
@@ -429,6 +441,8 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
             success+=1
         except Exception as exc:
             # One malformed PDF or offline site must not abort the city import.
+            if fetched and isinstance(fetcher,TraceFetcher):
+                fetcher.parse_error(final,exc)
             errors.append(str(exc) if isinstance(exc,ValueError) else type(exc).__name__)
     # A homepage fetch or a hit in another document says nothing about a menu
     # we could not read. Preserve its prices and original dates independently.
@@ -461,6 +475,12 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
         result=list(dedup.values())
         status='partial' if success else ('robots_blocked' if errors and all(x=='robots_blocked' for x in errors) else 'fetch_failed')
     return {**bar,'offers':result,'checkedAt':stamp,'scrapeStatus':status}
+
+def scrape_task(bar, fetcher, hints, max_pages, beverage='beer'):
+    trace = TraceFetcher(fetcher)
+    result = scrape_bar(bar, trace, hints, max_pages, beverage)
+    return result, trace.details()
+
 
 def write(data):
     estimate_types(data['bars'])
@@ -500,15 +520,19 @@ def main():
     if args.limit:
         bars=bars[:args.limit]
     by_id={b['id']:b for b in dataset['bars']}
+    statuses=Counter();offer_count=0
+    print(f'[beer] Checking {len(bars)} venues for beer prices only; up to {args.max_pages} documents per venue.',flush=True)
     with ThreadPoolExecutor(max_workers=max(1,min(args.workers,8))) as pool:
-        tasks=[pool.submit(scrape_bar,b,fetcher,hints,args.max_pages) for b in bars]
+        tasks=[pool.submit(scrape_task,b,fetcher,hints,args.max_pages) for b in bars]
         for i,task in enumerate(as_completed(tasks),1):
-            b=task.result();by_id[b['id']]=b
-            print(f"[{i}/{len(tasks)}] {b['name']}: {b['scrapeStatus']} ({len(b['offers'])} offers)",flush=True)
+            b,details=task.result();by_id[b['id']]=b
+            statuses[b['scrapeStatus']]+=1;offer_count+=len(b['offers'])
+            log_result(i,len(tasks),b,details,'beer',args.max_pages)
             if i%20==0:
                 dataset['bars']=list(by_id.values());dataset['generatedAt']=now();write(dataset)
     dataset['bars']=list(by_id.values());dataset['generatedAt']=now();write(dataset)
     print(f"Saved {len(dataset['bars'])} bars; {sum(bool(b['offers']) for b in dataset['bars'])} with prices")
+    log_summary('beer',statuses,offer_count,fetcher)
 
 if __name__=='__main__':
     main()

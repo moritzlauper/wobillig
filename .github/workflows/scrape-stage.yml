@@ -32,6 +32,9 @@ jobs:
     timeout-minutes: ${{ (inputs.stage == 'ai' || inputs.deep_scan) && 360 || 180 }}
     env:
       WOBILLIG_CITY: ${{ inputs.city }}
+      # Successful documents are shared between this job's sequential passes.
+      # Never restore this cache in another run: every refresh fetches fresh data.
+      WOBILLIG_HTTP_CACHE: scraper/cache/http-${{ inputs.city }}-${{ inputs.stage }}-${{ github.run_id }}-${{ github.run_attempt }}.sqlite3
       BEER_PAGES: ${{ inputs.deep_scan && '50' || '8' }}
       DEEP_PAGES: ${{ inputs.deep_scan && '50' || '20' }}
       DISCOVERY_PAGES: ${{ inputs.deep_scan && '50' || '10' }}
@@ -62,7 +65,8 @@ jobs:
           path: scraper/cache/ai
           key: claude-menus-v1-${{ inputs.city }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: claude-menus-v1-${{ inputs.city }}-
-      - if: ${{ inputs.stage == 'drinks' }}
+      - name: Refresh known beer venues and discover bars
+        if: ${{ inputs.stage == 'drinks' }}
         run: python -m scraper.scrape --discover --max-pages "$BEER_PAGES"
       - name: Refresh selectable map locations
         if: ${{ inputs.stage == 'drinks' }}
@@ -73,7 +77,8 @@ jobs:
       - name: Discover coffee venues and shared drinks menus
         if: ${{ inputs.stage == 'drinks' }}
         run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages "$COFFEE_PAGES"
-      - if: ${{ inputs.stage == 'drinks' }}
+      - name: Search additional restaurants and cafes for beer prices only
+        if: ${{ inputs.stage == 'drinks' }}
         run: python -m scraper.enrich --limit 0 --max-pages "$DISCOVERY_PAGES"
       - name: Deep search for missing bottle beer prices
         if: ${{ inputs.stage == 'drinks' }}

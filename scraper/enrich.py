@@ -13,7 +13,8 @@ import json
 from pathlib import Path
 from urllib.parse import urlparse
 
-from scraper.scrape import DATA, ROOT, Fetcher, discover, now, scrape_bar, write, beer_menu_hints
+from scraper.scrape import DATA, ROOT, Fetcher, discover, now, scrape_task, write, beer_menu_hints
+from scraper.scan_logging import log_result, log_summary
 
 QUERY = venue_query('restaurant|cafe')
 STATE = STATE_DIR / 'discovery_checks.json'
@@ -81,6 +82,9 @@ def main():
     print(f'{len(found)} restaurants/cafes; {len(selected)} eligible new websites',flush=True)
     if args.limit:
         selected=selected[:args.limit]
+    print(f'[beer discovery] Checking {len(selected)} additional restaurants/cafes for beer prices only; '
+          f'existing beer venues excluded; up to {args.max_pages} documents per venue. '
+          'Coffee prices are counted in the separate coffee scan.',flush=True)
     fetcher=AuditFetcher(args.audit_dir)
     review_path=(Path(args.audit_dir) if args.audit_dir else CACHE_DIR)/'discoveries.json'
     additions=json.loads(review_path.read_text()) if args.review_only and review_path.exists() else []
@@ -95,17 +99,20 @@ def main():
         elif additions:
             dataset['bars']=sorted(dataset['bars']+additions,key=lambda b:b['name'].casefold())
             dataset['generatedAt']=now();write(dataset);additions.clear()
+    statuses=Counter();offer_count=0
     with ThreadPoolExecutor(max_workers=max(1,min(args.workers,8))) as pool:
-        tasks=[pool.submit(scrape_bar,b,fetcher,hints,args.max_pages) for b in selected]
+        tasks=[pool.submit(scrape_task,b,fetcher,hints,args.max_pages) for b in selected]
         for i,task in enumerate(as_completed(tasks),1):
-            b=task.result()
-            checks[b['id']]={'checkedAt':b['checkedAt'],'status':b['scrapeStatus']}
+            b,details=task.result()
+            checks[b['id']]={'checkedAt':b['checkedAt'],'status':b['scrapeStatus'],**details}
             if b['offers']:
                 additions.append(b)
-            print(f"[{i}/{len(tasks)}] {b['name']}: {b['scrapeStatus']} ({len(b['offers'])} offers)",flush=True)
+            statuses[b['scrapeStatus']]+=1;offer_count+=len(b['offers'])
+            log_result(i,len(tasks),b,details,'beer',args.max_pages)
             if i%20==0:
                 save()
     save()
+    log_summary('beer discovery',statuses,offer_count,fetcher)
 
 
 if __name__=='__main__':
