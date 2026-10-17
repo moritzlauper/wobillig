@@ -19,6 +19,7 @@ from scraper.scrape import ROOT, discover, now, html_content, SKIP_MENU
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
 from scraper.pizza import pizza_html, pizza_pdf, pizza_image, structured_menu_links, orderstar_menu_url, pizza_orderstar
+from scraper.menu_dates import verified_menu_date
 from scraper.scrape_coffee import save, ArchiveFetcher
 
 DATA=DATA_DIR/'pizza.json'
@@ -112,7 +113,8 @@ def crawl(bar,fetcher,hints,max_pages,reviews):
             reviewed=[r for r in reviews if r['url']==final and bar['id'] in r['barIds']]
             for r in reviewed:
                 if hashlib.sha256(body).hexdigest()==r['sha256']:
-                    offers.extend({**o,'sourceUrl':final,'observedAt':stamp,'confidence':'reviewed'} for o in r['offers'])
+                    proof=verified_menu_date(r,body,stamp)
+                    offers.extend({**o,**proof,'sourceUrl':final,'observedAt':stamp,'confidence':'reviewed'} for o in r['offers'])
                 else:changed.add(final)
             if 'pdf' in kind or urlparse(final).path.lower().endswith('.pdf'):
                 found=[] if reviewed else pizza_pdf(body,final,stamp)

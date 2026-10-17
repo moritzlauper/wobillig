@@ -14,6 +14,8 @@ export type Offer = {
   priceChf: number;
   sourceUrl: string;
   observedAt: string;
+  // Explicit menu validity date, verified against the exact source document.
+  verifiedMenuDate?: { date: string; evidence: string; sha256: string };
   confidence: "automatic" | "reviewed" | "community" | "ai";
   communityId?: string;
   revision?: number;

@@ -1,4 +1,4 @@
-import { isBeerMix, coffeeLabels, beerTypeLabels, type BeerType, type Bar, type Dataset, type Offer } from './data.js';
+import { isBeerMix, coffeeLabels, beerTypeLabels, safeUrl, type BeerType, type Bar, type Dataset, type Offer } from './data.js';
 
 export type Drink = 'beer' | 'coffee' | 'pizza';
 export type PriceEntry = {
@@ -55,6 +55,19 @@ export function communityVenues(datasets: Partial<Record<Drink, Dataset>>, entri
   return [...new Map([...entries.flatMap(entry => entry.venue && entry.venue.id === entry.barId ? [{ ...entry.venue, offers: [] }] : []),
     ...allVenues(datasets)].map(bar => [bar.id, bar])).values()];
 }
+function verifiedWebsiteUpdate(offer: Offer, entry: PriceEntry): boolean {
+  const proof = offer.verifiedMenuDate;
+  if (offer.confidence !== 'reviewed' || offer.communityId || offer.menuScan || offer.photoSource || !safeUrl(offer.sourceUrl)
+      || !proof || typeof proof.evidence !== 'string' || !proof.evidence.trim() || !/^[a-f\d]{64}$/i.test(proof.sha256)
+      || !/^\d{4}-\d{2}-\d{2}$/.test(proof.date) || !Number.isFinite(Date.parse(proof.date))
+      || new Date(proof.date).toISOString().slice(0, 10) !== proof.date || proof.date > zurichToday()
+      || !Number.isFinite(Date.parse(entry.updatedAt))) return false;
+  const submitted = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Zurich' }).format(new Date(entry.updatedAt));
+  // A photo may show an older menu. The contribution's actual upload/edit date
+  // is the minimum cutoff, never the scraper's most recent fetch timestamp.
+  const cutoff = [submitted, entry.offer.observedAt.slice(0, 10)].sort().at(-1)!;
+  return proof.date > cutoff;
+}
 export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Bar[], drink: Drink): Dataset {
   // Drinks share locations; pizza only includes known pizza venues and pizza entries.
   const bars = new Map((drink === 'pizza' ? [] : venues).map(b => [b.id, { ...b, offers: [] as Offer[] }]));
@@ -68,7 +81,16 @@ export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Ba
       bars.set(bar.id, bar);
     }
     const original = bar.offers.find(o => matchesOfferKey(o, entry.targetKey, bar!.offers));
-    const replacement = { ...entry.offer, beerType: entry.offer.beerType ?? original?.beerType, beerTypeEstimate: entry.offer.beerType === undefined ? original?.beerTypeEstimate : undefined, confidence: entry.offer.menuScan ? 'ai' as const : 'community' as const, communityId: entry.id, revision: entry.revision, originalKey: entry.targetKey };
+    const newer = bar.offers.filter(o => offerKey(o) === offerKey(entry.offer) && verifiedWebsiteUpdate(o, entry))
+      .sort((a, b) => b.verifiedMenuDate!.date.localeCompare(a.verifiedMenuDate!.date));
+    // Conflicting prices on equally recent verified menus do not override an upload.
+    const website = newer[0] && newer[0].priceChf !== entry.offer.priceChf && newer.filter(o => o.verifiedMenuDate!.date === newer[0].verifiedMenuDate!.date)
+      .every(o => o.priceChf === newer[0].priceChf) ? newer[0] : undefined;
+    const chosen = website || { ...entry.offer, beerType: entry.offer.beerType ?? original?.beerType,
+      beerTypeEstimate: entry.offer.beerType === undefined ? original?.beerTypeEstimate : undefined,
+      confidence: entry.offer.menuScan ? 'ai' as const : 'community' as const };
+    // Keep the contribution in storage and retain its edit/revision identity.
+    const replacement = { ...chosen, communityId: entry.id, revision: entry.revision, originalKey: entry.targetKey };
     bar.offers = bar.offers.filter(o => !matchesOfferKey(o, entry.targetKey, bar.offers) && offerKey(o) !== offerKey(entry.offer) && o.communityId !== entry.id);
     bar.offers.push(replacement);
   }

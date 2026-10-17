@@ -26,6 +26,7 @@ from scraper.beer_rules import eligible_offer
 from scraper.pdf_extract import extract_pdf, pdf_links, table_lines
 from scraper.coffee import extract_coffees, coffee_pdf, coffee_types, PRICE as COFFEE_PRICE
 from scraper.addresses import tag_address
+from scraper.menu_dates import verified_menu_date
 
 from scraper.cities import ROOT, CITY, AREA, DATA_DIR, CACHE_DIR
 DATA = DATA_DIR / 'bars.json'
@@ -404,9 +405,10 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
             final,kind,body=fetcher.get(url)
             visited.add(final)
             review=(REVIEWED_COFFEE_MENUS if beverage=='coffee' else REVIEWED_MENUS).get(final)
-            if review and review['barId']==bar['id']:
+            if review and review['barId']==bar['id'] and source_allowed(bar['id'],final,beverage):
                 if hashlib.sha256(body).hexdigest()==review['sha256']:
-                    offers.extend({**o,'sourceUrl':final,'observedAt':stamp,'confidence':'reviewed'} for o in review['offers'])
+                    proof=verified_menu_date(review,body,stamp)
+                    offers.extend({**o,**proof,'sourceUrl':final,'observedAt':stamp,'confidence':'reviewed'} for o in review['offers'])
                 else:
                     changed_reviews.add(final)
             if 'pdf' in kind or urlparse(final).path.lower().endswith('.pdf'):
