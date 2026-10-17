@@ -1,5 +1,6 @@
 import json
 import os
+from itertools import takewhile
 from pathlib import Path
 import subprocess
 import sys
@@ -41,7 +42,12 @@ print(json.dumps({
 
     def test_real_workflow_cadence_across_year_boundary_and_manual_run(self):
         workflow = (ROOT / '.github/workflows/scrape.yml').read_text()
-        code = textwrap.dedent(workflow.split('        run: |\n', 1)[1].split('\n  scrape:', 1)[0])
+        cadence_step = workflow.split('        id: check\n', 1)[1]
+        run_lines = cadence_step.split('        run: |\n', 1)[1].splitlines(keepends=True)
+        # The YAML block ends at the next unindented line, regardless of job names.
+        code = textwrap.dedent(''.join(takewhile(
+            lambda line: not line.strip() or line.startswith('          '), run_lines,
+        )))
         for day, event, expected in [
             ('2026-10-12', 'schedule', False), ('2026-10-19', 'schedule', True),
             ('2026-10-26', 'schedule', False), ('2026-11-02', 'schedule', False),
