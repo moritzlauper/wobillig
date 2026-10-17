@@ -28,12 +28,20 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
 }
 
 // Persist the underlying filters, not the temporary price cap of cheap mode.
+// Only values that differ from the defaults are written, so the default view stays at a bare URL.
 export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean): void {
+  const drink = f.drink || 'coffee';
+  const beerType = f.beerType && f.beerType !== 'all' ? f.beerType : '';
+  const size = f.volume !== '300-330' ? f.volume : '';
   const values = {
-    drink: f.drink || 'coffee', coffeeType: f.coffeeType || 'cappuccino',
-    beerType: f.beerType || 'all', q: f.query, max: Number.isFinite(f.max) ? String(f.max) : 'all',
-    size: f.volume, type: f.type, unknown: f.unknown ? '1' : '0', outdoor: f.outdoor ? '1' : '0',
-    alcoholFree: f.alcoholFree ? '1' : '0', mode: f.mode, sort: f.sort, cheap: cheap ? '1' : '0',
+    // Without a drink, size or beerType would be read as a legacy beer link.
+    drink: drink !== 'coffee' || beerType || size ? drink : '',
+    coffeeType: f.coffeeType && f.coffeeType !== 'cappuccino' ? f.coffeeType : '',
+    beerType, q: f.query,
+    max: f.max === (drink === 'pizza' ? 30 : 15) ? '' : Number.isFinite(f.max) ? String(f.max) : 'all',
+    size, type: f.type, unknown: f.unknown ? '' : '0', outdoor: f.outdoor ? '1' : '',
+    alcoholFree: f.alcoholFree ? '1' : '', mode: f.mode !== 'glass' ? f.mode : '',
+    sort: f.sort !== 'price' ? f.sort : '', cheap: cheap ? '1' : '',
   };
   for (const [key, value] of Object.entries(values)) {
     if (value) params.set(key, value); else params.delete(key);

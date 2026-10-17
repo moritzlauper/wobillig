@@ -28,6 +28,16 @@ describe('filters across city navigation', () => {
       expect(filtersFromSearch(new URLSearchParams({ max })).max).toBe(15);
     }
   });
+  it('keeps the default view at a bare URL', () => {
+    const params = new URLSearchParams('drink=coffee&coffeeType=cappuccino&beerType=all&max=15&size=300-330&unknown=1&outdoor=0&alcoholFree=0&mode=glass&sort=price&cheap=0');
+    writeFilters(params, filtersFromSearch(params), false);
+    expect(params.toString()).toBe('');
+    writeFilters(params, { ...filtersFromSearch(new URLSearchParams()), drink: 'pizza', max: 30 }, false);
+    expect(params.toString()).toBe('drink=pizza');
+    const coffee = { ...filtersFromSearch(new URLSearchParams()), beerType: 'draft' as const };
+    writeFilters(params, coffee, false);
+    expect(filtersFromSearch(params)).toEqual(coffee);
+  });
   it('validates query values and keeps legacy beer links', () => {
     expect(filtersFromSearch(new URLSearchParams('size=stange'))).toMatchObject({ drink: 'beer', volume: 'stange' });
     expect(filtersFromSearch(new URLSearchParams('drink=coffee&type=fast_food&coffeeType=matcha&sort=invalid')))
