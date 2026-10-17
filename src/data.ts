@@ -74,7 +74,7 @@ export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" {
 }
 // Keep in sync with scraper/beer_rules.py.
 export function isBeerMix(name: string): boolean {
-  return /\b(?:panach(?:e+)?|panash|henach(?:e+)?|radler|shandy|diesel|russ(?:en)?|snakebite|black\s*(?:&|and)\s*tan|biermisch(?:getrank\w*)?|biermix\w*|beer\s*mix\w*|(?:bier|beer|lager|weizen)\s*(?:mit|with|[+&])\s*(?:cola|sprite|limonade|lemonade|zitronenlimonade))\b/i.test(name.normalize("NFKD").replace(/\p{M}/gu, ""));
+  return /\b(?:panach(?:e+)?|panash|henach(?:e+)?|radler|moretti\s+limone|shandy|diesel|russ(?:en)?|snakebite|black\s*(?:&|and)\s*tan|biermisch(?:getrank\w*)?|biermix\w*|beer\s*mix\w*|(?:bier|beer|lager|weizen)\s*(?:mit|with|[+&])\s*(?:cola|sprite|limonade|lemonade|zitronenlimonade))\b/i.test(name.normalize("NFKD").replace(/\p{M}/gu, ""));
 }
 export function isComparableOffer(o: Offer): boolean {
   return o.coffeeType !== "matcha" && (offerCategory(o) !== "beer" || !isBeerMix(o.name));

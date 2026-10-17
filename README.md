@@ -23,12 +23,17 @@ Alle drei Städte werden durch denselben vollständigen Workflow aktualisiert: a
 ```sh
 WOBILLIG_CITY=bern python -m scraper.scrape --discover
 WOBILLIG_CITY=bern python -m scraper.enrich --limit 0 --max-pages 10
+WOBILLIG_CITY=bern python -m scraper.scrape --missing-bottles --max-pages 20
 WOBILLIG_CITY=bern python -m scraper.scrape_coffee --discover --limit 0
 WOBILLIG_CITY=bern python -m scraper.scrape_pizza --discover --limit 0
 WOBILLIG_CITY=bern python -m scraper.locations
 ```
 
 Die neuen Datensätze liegen unter `public/data/bern/` und `public/data/basel/`; Prüfstände unter `scraper/cities/<stadt>/`. Vorhandene Zürich-Pfade bleiben bestehen. Community-Einträge werden pro Stadt in eigenen Blob-Dateien gespeichert; Zürich verwendet weiterhin seine bisherigen Dateien. Vercel bedient die Stadtpfade direkt über `index.html`.
+
+Die vertiefte Flaschenbier-Nachsuche (`--missing-bottles`) prüft auch Lokale, die bereits Offenbierpreise haben. Sie läuft im vollständigen Refresh für alle drei Städte. Die Biersuche nutzt zusätzlich die bereits einem Lokal zugeordneten Getränkekarten aus dem Kaffee-Datensatz, unter Beachtung beider Quellenbeschränkungen. Beschriftete Getränkelinks haben auch bei undurchsichtigen Dateinamen Vorrang. Regionale Namen wie Felsenau, Bärner Müntschi, Ueli und Kitchen Brew, die Überschrift «Fläsche», Ausschankangaben in einzelnen HTML-Produktkarten und eingerückte PDF-Überschriften werden erkannt. Preise und Mengen müssen weiterhin ausdrücklich in der Quelle stehen.
+
+Die Nachsuche vom **17. Oktober 2026** erhöht die erfassten Flaschenbierangebote in Basel von 59 auf 115 (19 → 28 Lokale) und in Bern von 75 auf 123 (21 → 37 Lokale), jeweils über alle Grössen und inklusive alkoholfreier Angebote. Mit **Flaschenbier, 3.3 dl, alkoholhaltig, bis CHF 15** ergeben die Frontend-Filter 23 statt 14 passende Lokale in Basel und 25 statt 17 in Bern. Diese Zahlen beziehen sich auf die JSON-Datensätze ohne zusätzliche Community-Einträge.
 
 ## Was drin ist
 
@@ -39,7 +44,7 @@ Die neuen Datensätze liegen unter `public/data/bern/` und `public/data/basel/`;
 - Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten/Restaurant/Café, Terrasse und alkoholfreies Bier.
 - Grössenfilter **Stange / 3 dl** und **5 dl**. Die Stangen-Auswahl zeigt den tatsächlichen Glaspreis und ist unter `?size=stange` direkt verlinkbar. Sie enthält 3-dl-Angebote sowie ausdrücklich als Stange bezeichnete 3–3.3-dl-Portionen oder Angebote ohne Mengenangabe. Bekannte 2-dl-Portionen sowie alle als Flaschen- oder Dosenbier gekennzeichneten Angebote gehören nicht dazu, auch bei 3 dl.
 - **3 / 3.3 dl** zeigt kleine Offenbiere und Flaschen gemeinsam: 3- und 3.3-dl-Angebote sowie Stangen gemäss Stangenfilter, auch ohne Mengenangabe. Die Auswahl aktiviert alle Ausschankarten und den tatsächlichen Portionspreis. Danach lässt sich der Ausschank separat einschränken. Direktlink: `?size=300-330`.
-- Bieransicht mit **allen Ausschankarten, 3 / 3.3 dl und maximal CHF 15**, einschliesslich Lokalen ohne passenden Preis. Zurücksetzen stellt diese Standardfilter wieder her. Ausschank und Grösse sind direkt oben wählbar, auf dem Handy in zwei nebeneinanderliegenden Feldern. Bei Flaschen- oder Dosenbier wechselt eine aktive Stangen-Auswahl auf „Alle Grössen“. Über „Genau 3 dl“ lässt sich die Stangen-Suche zusätzlich auf belegte 3 dl beschränken.
+- Bieransicht mit **allen Ausschankarten, 3 / 3.3 dl und maximal CHF 15**, einschliesslich Lokalen ohne passenden Preis. Zurücksetzen stellt diese Standardfilter wieder her. Ausschank und Grösse sind direkt oben wählbar, auf dem Handy in zwei nebeneinanderliegenden Feldern. Bei Flaschen- oder Dosenbier wechselt eine aktive Stangen-Auswahl auf „Alle Grössen“.
 - Standardvergleich nach **tatsächlichem Glaspreis**, optional auf 5 dl umgerechnet. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal. Die Stangen-Direktwahl und der 3-dl-Filter wechseln automatisch zum Glaspreis. Stangen ohne Mengenangabe zeigen „Grösse nicht angegeben“ und werden aus dem rechnerischen 5-dl-Vergleich ausgeschlossen.
 - **Schnitt Zürich / Bern / Basel CHF …** steht prominent in der Statuszeile. Der stadtweite Durchschnitt zählt den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse, Ausschankart und Alkoholfrei-Auswahl; die 5-dl-Umrechnung wird berücksichtigt. Suche, Preislimit, Günstig-Modus, Lokaltyp und Draussen-Filter verändern diesen Vergleichswert nicht. Fehlende oder abgelaufene Preise zählen nicht mit; ohne Treffer erscheint ein Strich. Der Hinweis am Wert und «Daten» erklären die Berechnung.
 - Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.

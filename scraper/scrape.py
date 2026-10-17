@@ -39,8 +39,8 @@ WEBSITES = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
 QUERY = '[out:json][timeout:90];' + AREA + '(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + (EXTRA_QUERY if CITY == 'zurich' else '') + ');out center tags;'
-MENU = re.compile(r'men[uü]|karte|getr[aä]nk|drink|beer|bier|bar.?card|coffee|kaffee|cocktail|beverage|angebot', re.I)
-SKIP_MENU = re.compile(r'catering|bankett|sitzung|seminar|tagung|meeting|conference|ap[eé]ro.?vorschl|event.?menu|gruppen|anlass|checkliste|vision|mission|geschichte|datenschutz|impressum|zeitung|newspaper|(?:^|[/_. -])press(?:e)?(?:[/_. -]|$)', re.I)
+MENU = re.compile(r'men[uü]|karte|getr(?:[aä]|ae)nk|trinken|drink|beer|bier|bar.?card|coffee|kaffee|cocktail|beverage|angebot', re.I)
+SKIP_MENU = re.compile(r'catering|bankett|sitzung|seminar|tagung|meeting|conference|ap[eé]ro.?vorschl|event.?menu|event[._ -](?:wein|getr)|gruppen|anlass|checkliste|vision|mission|geschichte|datenschutz|impressum|zeitung|newspaper|(?:^|[/_. -])press(?:e)?(?:[/_. -]|$)', re.I)
 ORDER_MENU = re.compile(r'/(?:bestellen|online-bestellen|online-order|delivery|takeaway|take-away|shop|order)(?:/|\?|$)', re.I)
 MAX_BYTES = 8 * 1024 * 1024
 MAX_PDF_BYTES = 24 * 1024 * 1024
@@ -226,7 +226,7 @@ def html_content(body,url,beverage='beer',link_labels=None):
     for a in soup.select('a[href], iframe[src], embed[src], object[data], img[src]'):
         target=urljoin(url,a.get('href') or a.get('src') or a.get('data')).split('#')[0]
         # A hostname containing "bier" must not make every site link a menu.
-        link_label=a.get_text(' ',strip=True)+' '+a.get('aria-label','')+' '+a.get('title','')+' '+a.get('alt','')+' '+urlparse(target).path
+        link_label=a.get_text(' ',strip=True)+' '+a.get('aria-label','')+' '+a.get('title','')+' '+a.get('alt','')+' '+unquote(urlparse(target).path)
         pdf=urlparse(target).path.lower().endswith('.pdf')
         cafe_page = beverage=='coffee' and re.search(r'\b(?:caf[eé]|cafeteria|bistro|restaurant|essen|trinken|food)\b', unquote(link_label), re.I)
         if (MENU.search(link_label) or pdf or cafe_page) and not SKIP_MENU.search(link_label) and urlparse(target).scheme in ('http','https'):
@@ -239,6 +239,18 @@ def html_content(body,url,beverage='beer',link_labels=None):
     for node in soup(['script','style','nav','footer','header']):
         node.decompose()
     rows=parallel_menu_rows(soup)
+    # Product cards may put "Flaschenbier" after the price, outside the
+    # heading/price row. Use only a single product's own explicit category.
+    for card in soup.select('article, [data-drink-card]'):
+        headings=card.select('h2,h3,h4,h5,h6')
+        if len(headings)!=1:
+            continue
+        product=headings[0].parent.get_text(' ',strip=True)
+        categories=[label for label in card.stripped_strings
+                    if section_type(label) in ('draft','bottle','can') and not SIZE.search(label)]
+        kinds={section_type(label) for label in categories}
+        if len(kinds)==1 and extract_offers(product,url,''):
+            rows.append(categories[0]+'\n'+product+'\nBier')
     # Pair only structurally adjacent names and numeric size/price rows.
     # Some menus put several products in one paragraph separated by <br>.
     def product_portions(name, amounts):
@@ -337,17 +349,38 @@ def prioritize_links(links, beverage='beer', labels=None):
         return sorted(dict.fromkeys(links),key=priority)
     # Combined wine/drinks lists can contain all the beers. Keep wine-only
     # documents as a lower priority fallback instead of discarding them.
-    return sorted(dict.fromkeys(links),key=lambda u:(not bool(re.search(r'bier|beer|getr|drink|barkarte|beverage',urlparse(u).path,re.I)),bool(re.search(r'weinkarte|wine.?list',urlparse(u).path,re.I)),not urlparse(u).path.lower().endswith('.pdf')))
+    def beer_priority(url):
+        path=unquote(urlparse(url).path)
+        text=path+' '+(labels or {}).get(url,'')
+        drinks=bool(re.search(r'bier|beer|getr|trinken|drink|barkarte|beverage',text,re.I))
+        wine=bool(re.search(r'weinkarte|wine.?list',text,re.I))
+        return not drinks, wine, not path.lower().endswith('.pdf')
+    return sorted(dict.fromkeys(links),key=beer_priority)
 
 
 def source_allowed(bar_id, url, beverage='beer'):
     # Shared restaurant websites must not mix menus from different branches.
-    if beverage=='coffee' and SKIP_MENU.search(unquote(urlparse(url).path)):
+    if SKIP_MENU.search(unquote(urlparse(url).path)):
         return False
     if beverage=='coffee' and re.search(r'wochenmen|tagesmen|mittags|lunchkarte|lunchmenu',url,re.I):
         return False
     allowed = COFFEE_SOURCE_SCOPES.get(bar_id, SOURCE_SCOPES.get(bar_id)) if beverage=='coffee' else SOURCE_SCOPES.get(bar_id)
     return not ORDER_MENU.search(url) and (not allowed or any(part.casefold() in url.casefold() for part in allowed))
+
+def beer_menu_hints():
+    """Reuse venue-specific drinks menus already found by the coffee crawl."""
+    hints=json.loads((ROOT/'scraper/menu_urls.json').read_text())
+    coffee_hints=json.loads((ROOT/'scraper/coffee_menu_urls.json').read_text())
+    coffee_path=DATA_DIR/'coffee.json'
+    if coffee_path.exists():
+        for bar in json.loads(coffee_path.read_text()).get('bars',[]):
+            coffee_hints.setdefault(bar['id'],[]).extend(
+                o['sourceUrl'] for o in bar['offers'] if not o.get('photoSource'))
+    for bar_id, urls in coffee_hints.items():
+        allowed=[url for url in urls if source_allowed(bar_id,url) and source_allowed(bar_id,url,'coffee')]
+        if allowed:
+            hints[bar_id]=list(dict.fromkeys(hints.get(bar_id,[])+allowed))
+    return hints
 
 def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     if bar['id'] in WEBSITES:
@@ -395,7 +428,7 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     # A homepage fetch or a hit in another document says nothing about a menu
     # we could not read. Preserve its prices and original dates independently.
     fresh_offers=bool(offers)
-    offers.extend(o for o in bar['offers'] if o['sourceUrl'] not in read_sources and o['sourceUrl'] not in changed_reviews)
+    offers.extend(o for o in bar['offers'] if o['sourceUrl'] not in read_sources and o['sourceUrl'] not in changed_reviews and source_allowed(bar['id'],o['sourceUrl'],beverage))
     dedup={}
     for o in offers:
         if beverage == 'beer' and not eligible_offer(o): continue
@@ -442,6 +475,7 @@ def main():
     parser.add_argument('--name',help='Only scrape names containing this text')
     parser.add_argument('--type',action='append',choices=['bar','pub','biergarten','restaurant','cafe'],help='Only these venue types; repeatable')
     parser.add_argument('--missing-prices',action='store_true',help='Focus on venues without any recorded beer price')
+    parser.add_argument('--missing-bottles',action='store_true',help='Revisit venues without bottle prices, including those with draft prices')
     args=parser.parse_args()
     dataset=json.loads(DATA.read_text()) if DATA.exists() else {}
     if args.discover or args.osm_file or not dataset:
@@ -450,10 +484,12 @@ def main():
     if args.discover_only:
         print(f"Discovered {len(dataset['bars'])} locations")
         return
-    hints=json.loads((ROOT/'scraper/menu_urls.json').read_text())
+    hints=beer_menu_hints()
     fetcher=Fetcher()
     bars=[b for b in dataset['bars'] if not args.name or args.name.casefold() in b['name'].casefold()]
     bars=[b for b in bars if (not args.type or b['type'] in args.type) and (not args.missing_prices or not b['offers'])]
+    if args.missing_bottles:
+        bars=[b for b in bars if not any(o.get('beerType')=='bottle' or (o.get('beerType','unknown')=='unknown' and o.get('beerTypeEstimate',{}).get('type')=='bottle') for o in b['offers'])]
     # Oldest checks first so limited runs do not repeatedly hit the same venues.
     bars.sort(key=lambda b:b['checkedAt'] or '')
     if args.limit:

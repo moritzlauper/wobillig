@@ -196,12 +196,18 @@ def extract_pdf(body, url, stamp):
             page = page.dedupe_chars()
             for region in column_regions(page):
                 lines = region.extract_text_lines(x_tolerance=2, y_tolerance=3)
-                context='unknown'; context_x=None; contexts=[]
+                context='unknown'; context_x=None; context_right=None; contexts=[]
                 for row in lines:
                     heading=section_type(row['text'])
                     if heading is not None:
-                        context=heading; context_x=row['x0']
-                    contexts.append(context if context_x is not None and abs(row['x0']-context_x)<=60 else 'unknown')
+                        context=heading; context_x=row['x0']; context_right=row['x1']
+                    # Indented headings can label a full-width product/price
+                    # row (e.g. Sommereck). Narrow neighbouring columns must
+                    # still not inherit a heading merely from reading order.
+                    spans_heading=(context_x is not None and row['x0']<=context_x
+                                   and row['x1']>=context_right
+                                   and row['x1']-row['x0'] >= .65*region.width)
+                    contexts.append(context if context_x is not None and (abs(row['x0']-context_x)<=60 or spans_heading) else 'unknown')
                 # A small subtitle directly beneath a priced product can be its
                 # brewery or alcohol-free qualifier. Require the same left edge,
                 # close spacing, and a complete preceding size/price row.

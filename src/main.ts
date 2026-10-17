@@ -55,7 +55,7 @@ $('app').innerHTML = `
   </div>
   <div id="beer-controls" class="beer-controls">
     <select id="beer-type" aria-label="Ausschank">${options({ draft: 'Offenbier', bottle: 'Flaschenbier', all: 'Alle Ausschankarten', can: 'Dosenbier', unknown: 'Unbekannt' })}</select>
-    <select id="volume" aria-label="Biergrösse">${options({ stange: 'Stange / 3 dl', '300-330': '3 / 3.3 dl', '500': '5 dl', '300': 'Genau 3 dl', '330': '3.3 dl', '400': '4 dl', all: 'Alle Grössen' })}</select>
+    <select id="volume" aria-label="Biergrösse">${options({ stange: 'Stange / 3 dl', '300-330': '3 / 3.3 dl', '500': '5 dl', '330': '3.3 dl', '400': '4 dl', all: 'Alle Grössen' })}</select>
   </div>
   <select id="coffeeType" aria-label="Kaffeesorte oder Matcha Latte" hidden><option value="all">Alle Kaffees &amp; Matcha Latte</option>${coffeeOptions}</select>
   <label class="budget">Bis CHF <input id="price" aria-label="Höchstpreis in CHF" type="number" min="0.5" max="50" step="0.5" value="15"></label>

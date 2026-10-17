@@ -3,7 +3,7 @@ import re
 
 PATTERNS = {
     'draft': r'\b(?:vom\s+fass|fassbier\w*|offen(?:bier\w*|ausschank|e[rs]?\s+biere?)?|(?:on|from|by)\s+(?:t\s*ap|draft|draught)|frisch\s+(?:ge)?zapft|(?:draft|draught)\s+beers?|alla\s+spina|au\s+f[uû]t|pression)\b',
-    'bottle': r'\b(?:flaschenbier\w*|flaschen?|bügelflaschen?|bottles?|bottled|bouteilles?)\b',
+    'bottle': r'\b(?:flaschenbier\w*|flaschen?|fläschli|fläsche|bügelflaschen?|bottles?|bottled|bouteilles?)\b',
     'can': r'\b(?:dosen?|cans?)\b',
 }
 SIZE_TEXT = r'\d+(?:[.,]\d+)?\s*(?:ml|cl|dl|l)\b'

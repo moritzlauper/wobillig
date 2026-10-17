@@ -23,6 +23,18 @@ def document(rows):
 
 
 class PdfTests(unittest.TestCase):
+    def test_indented_bottle_heading_over_full_width_rows(self):
+        body=document([(156,460,'Bier in Flaschen'),
+                       (70,435,'Carlsberg'),(400,435,'3.3 dl'),(500,435,'5.50'),
+                       (70,410,'Schlossgold Alkoholfrei'),(400,410,'3.3 dl'),(500,410,'4.50')])
+        offers=extract_pdf(body,'url','today')
+        self.assertEqual([(o['name'],o['beerType']) for o in offers],
+                         [('Carlsberg','bottle'),('Schlossgold Alkoholfrei','bottle')])
+
+    def test_bottle_heading_does_not_label_narrow_neighbouring_column(self):
+        body=document([(350,460,'Bier in Flaschen'),(20,435,'Lager 3dl 5.00')])
+        self.assertEqual(extract_pdf(body,'url','today')[0]['beerType'],'unknown')
+
     def test_fr_currency_for_beer_portions(self):
         found=extract_offers('Lager 3dl Fr. 5.50 / 5dl Fr. 8.00\nStange Fr. 4.50','url','today')
         self.assertEqual([(o['volumeMl'],o['priceChf']) for o in found],[(300,5.5),(500,8),(None,4.5)])

@@ -1,7 +1,10 @@
 import unittest
+import json
+import tempfile
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 from scraper.extract import extract_offers
-from scraper.scrape import Fetcher, html_content, public_url, scrape_bar
+from scraper.scrape import Fetcher, html_content, public_url, scrape_bar, prioritize_links, main
 
 class ExtractionTests(unittest.TestCase):
     def offers(self,text):
@@ -10,6 +13,44 @@ class ExtractionTests(unittest.TestCase):
     def test_swiss_prices_and_units(self):
         offers=self.offers('Quöllfrisch 3 dl CHF 5.50 | 5 dl CHF 8.00\nLager 33cl 6.–\nPils 0,5 l 7,50')
         self.assertEqual([(o['volumeMl'],o['priceChf']) for o in offers],[(300,5.5),(500,8),(330,6),(500,7.5)])
+
+    def test_regional_bottle_beers_without_generic_beer_word(self):
+        offers=self.offers('Flaschenbiere\nFelsenau Bärner Müntschi 33cl 6\nUeli Reverenz 33cl 6.50\nKitchen Brew 33cl 7.50\nEgger 33cl 5.50')
+        self.assertEqual([(o['volumeMl'],o['priceChf'],o['beerType']) for o in offers],
+                         [(330,6,'bottle'),(330,6.5,'bottle'),(330,7.5,'bottle'),(330,5.5,'bottle')])
+        for line in ['Felsenau Bierschnaps 2cl 8.00', 'Ueli Bierbrand 2cl 8.00',
+                     'Felsenau Panaché 33cl 6.00', 'Kitchen Brew Ginger Beer 33cl 6.00',
+                     'Ueli 6x 33cl 20.00', 'Felsenau 4.8% 6.00']:
+            self.assertEqual(self.offers('Flaschenbiere\n'+line),[],line)
+
+    def test_alcohol_free_name_does_not_hide_abv_after_size(self):
+        offers=self.offers('Flaschenbiere\nFeldschlösschen Alkoholfrei 33cl 0.5 % 7.00')
+        self.assertEqual([(o['volumeMl'],o['priceChf'],o['alcoholFree']) for o in offers],[(330,7,True)])
+        self.assertTrue(self.offers('Rothaus Tannenzäpfle Alk.frei Flasche 33cl 6.50')[0]['alcoholFree'])
+
+    def test_swiss_bottle_heading(self):
+        text,_=html_content('<h3>Fläsche</h3><table><tr><td>Feldschlösschen Lager</td><td>33 cl</td><td>5.00</td></tr></table>'.encode(),'url')
+        self.assertEqual({o['beerType'] for o in self.offers(text)},{'bottle'})
+
+    def test_drinks_link_labels_and_encoded_paths(self):
+        body='<a href="/food.pdf">Speisekarte</a><a href="/files/123.pdf">Getränkekarte</a><a href="/trinken">Trinken</a><a href="/getr%C3%A4nke">Angebot</a>'
+        labels={}
+        _,links=html_content(body.encode(),'https://bar.example',link_labels=labels)
+        self.assertEqual(links[0],'https://bar.example/files/123.pdf')
+        self.assertIn('https://bar.example/trinken',links)
+        self.assertIn('https://bar.example/getr%C3%A4nke',links)
+        self.assertEqual(prioritize_links(list(reversed(links)),labels=labels)[-1],
+                         'https://bar.example/food.pdf')
+
+    def test_product_card_category_after_price_stays_with_its_product(self):
+        body='''<article><div><h3>Ueli Bier (33cl)</h3><span>CHF 6.50</span></div><p>Array</p><span>Offenbier</span></article>
+        <article><div><h3>Red Stripe (33cl)</h3><span>CHF 8</span></div><span>Flaschenbier</span></article>
+        <article><div><h3>Moretti (33cl)</h3><span>CHF 7</span></div></article>'''
+        text,_=html_content(body.encode(),'https://bar.example')
+        offers=self.offers(text)
+        self.assertIn(('Ueli Bier','draft'),[(o['name'],o['beerType']) for o in offers])
+        self.assertIn(('Red Stripe','bottle'),[(o['name'],o['beerType']) for o in offers])
+        self.assertNotIn(('Moretti','bottle'),[(o['name'],o['beerType']) for o in offers])
 
     def test_no_prices_from_soft_drinks_or_percentages(self):
         for line in ['Coca-Cola 0.5 l 5.00','Lager 0.5 l 4.8%','Lager 5 dl','Lager 5 dl 80.00','Happy Hour Lager 3 dl 4.50','Lager 5 dl 4.50 / 7.50']:
@@ -85,6 +126,23 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(result['scrapeStatus'],'robots_blocked')
 
 class BarCoverageRegressionTests(unittest.TestCase):
+    def test_deep_bottle_search_also_visits_existing_draft_prices(self):
+        bars=[{'id':str(i),'name':str(i),'type':'bar','website':'https://bar.example','checkedAt':None,
+               'offers':offers} for i,offers in enumerate([
+                   [], [{'beerType':'draft'}], [{'beerType':'bottle'}],
+                   [{'beerType':'unknown','beerTypeEstimate':{'type':'bottle'}}]])]
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'bars.json';path.write_text(json.dumps({'bars':bars}))
+            def result(bar,*args):
+                return {**bar,'scrapeStatus':'no_prices'}
+            with patch('sys.argv',['scrape','--missing-bottles','--max-pages','20']), \
+                 patch('scraper.scrape.DATA',path), patch('scraper.scrape.write'), \
+                 patch('scraper.scrape.Fetcher'), patch('scraper.scrape.beer_menu_hints',return_value={}), \
+                 patch('scraper.scrape.scrape_bar',side_effect=result) as scrape, patch('builtins.print'):
+                main()
+            self.assertEqual({call.args[0]['id'] for call in scrape.call_args_list},{'0','1'})
+            self.assertTrue(all(call.args[3]==20 for call in scrape.call_args_list))
+
     def test_larger_pdf_limit_stays_bounded_and_does_not_apply_to_html(self):
         response=MagicMock()
         response.__enter__.return_value=response

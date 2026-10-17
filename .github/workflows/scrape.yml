@@ -82,6 +82,9 @@ jobs:
         run: python -m scraper.scrape --type bar --type pub --type biergarten --missing-prices --max-pages 20
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
         run: python -m scraper.enrich --limit 0 --max-pages 10
+      - name: Deep search for missing bottle beer prices
+        if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
+        run: python -m scraper.scrape --missing-bottles --max-pages 20
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}
         run: python -m scraper.scrape_coffee --discover --limit 0 --workers 8 --max-pages 10
       - if: ${{ github.event_name == 'schedule' || inputs.scan_mode == 'full' }}

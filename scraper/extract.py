@@ -14,6 +14,11 @@ PRICE = re.compile(r'(?:(?:CHF|Fr\.?)\s*)?(\d{1,2}[.,]\d{1,2}|\d{1,2}\.\s*[–�
 STANGE = re.compile(r'\bstange\b', re.I)
 # A named beer serving is also an explicit product, even without a brand.
 BEER = re.compile(BEER.pattern + r'|\b(?:stange|boxer|haldengut|einsiedler|superbock|ittinger|kirin|carlsberg|tsingtao|weihenstephaner|la chouffe|witbier)\b', re.I)
+# Regional brewery/product names also occur without the word "Bier".
+# Keep an explicit vocabulary: a bottle heading alone does not make a soft
+# drink, cider or spirit a beer.
+BEER = re.compile(BEER.pattern + r'|\b(?:felsenau|b[äa]rner\s+m[üu]ntschi|ueli|egger|kitchen\s*brew|dr\.?\s*gab[’\x27]?s|b[äa]rner\s+fr[üu]bi|gurten|rugenbr[äa]u)\b', re.I)
+BEER = re.compile(BEER.pattern + r'|\b(?:schlossgold|estrella(?:\s+(?:daura|galicia))?|k[öo]stritzer|rothaus|tannenz[äa]pfle|duvel|burgdorfer|hopfenperle|(?:schwarz|b[üu]gel|keller|gurten)bier)\b', re.I)
 
 # These labels need an explicit beer section; 'Grosses' alone is not a beer.
 CONTEXT_BEER = re.compile(r'(?:(?:es|ein)\s+)?(?:grosses|großes|herrg[oö]ttli|herg[oö]ttli|mythos|fix\s+hellas)', re.I)
@@ -97,9 +102,10 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
         if shared and not SIZE.search(line[:shared.start()]):
             line = line[:shared.start()] + f'{shared[1]}{shared[3]} / {shared[2]}{shared[3]}' + line[shared.end():]
         # Menus can place the alcohol declaration between size and price.
-        trailing_abv = re.search(r'(?<=\s)(<?\s*\d+(?:[.,]\d*)?\s*%\s*(?:vol\.?)?|alkoholfrei)(?=\s|$)', line, re.I)
         first_size = SIZE.search(line)
-        if trailing_abv and first_size and trailing_abv.start() > first_size.start():
+        trailing_abv = next((m for m in re.finditer(r'(?<=\s)(<?\s*\d+(?:[.,]\d*)?\s*%\s*(?:vol\.?)?|alkoholfrei)(?=\s|$)', line, re.I)
+                             if first_size and m.start()>first_size.end()), None)
+        if trailing_abv:
             metadata = trailing_abv[0]
             line = line[:trailing_abv.start()] + line[trailing_abv.end():]
             line = line[:first_size.start()] + metadata + ' ' + line[first_size.start():]
@@ -191,7 +197,7 @@ def extract_offers(text, source_url, observed_at, *, continuations=False):
                 'beerType':kind,
                 'sourceUrl':source_url, 'observedAt':observed_at,
                 'confidence':'automatic', 'evidence':evidence[:350],
-                'alcoholFree':bool(re.search(r'alkohol\s*frei|alcohol.?free|non[ .-]*alcohol(?:ic)?\b|sans alcool|ohne alk|\bzero\b|\b0[.,]0\b',name,re.I)) or bool(abvs and all(float(v.replace(',','.'))<=.5 for v in abvs))})
+                'alcoholFree':bool(re.search(r'alk(?:ohol)?[.\s]*frei|alcohol.?free|non[ .-]*alcohol(?:ic)?\b|sans alcool|ohne alk|\bzero\b|\b0[.,]0\b',name,re.I)) or bool(abvs and all(float(v.replace(',','.'))<=.5 for v in abvs))})
             if STANGE.search(clean_name) and not re.search(r'\bgross\w*|\blarge\b|\bbig\b',clean_name,re.I):
                 offers[-1]['serving']='stange'
             if len(sizes)==1:

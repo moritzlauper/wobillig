@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 from urllib.parse import urlparse
 
-from scraper.scrape import DATA, ROOT, Fetcher, discover, now, scrape_bar, write
+from scraper.scrape import DATA, ROOT, Fetcher, discover, now, scrape_bar, write, beer_menu_hints
 
 QUERY = venue_query('restaurant|cafe')
 STATE = STATE_DIR / 'discovery_checks.json'
@@ -73,7 +73,7 @@ def main():
     args=parser.parse_args()
     dataset=json.loads(DATA.read_text())
     found=discover({},args.osm_file,query=QUERY)['bars']
-    hints=json.loads((ROOT/'scraper/menu_urls.json').read_text())
+    hints=beer_menu_hints()
     checks=json.loads(STATE.read_text()) if STATE.exists() else {}
     selected=candidates(found,dataset['bars'],hints,checks)
     if args.retry_failed:

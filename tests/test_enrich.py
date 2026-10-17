@@ -1,7 +1,10 @@
 import unittest
+import json
+import tempfile
+from pathlib import Path
 from unittest.mock import patch
 from scraper.enrich import candidates
-from scraper.scrape import discover, html_content, source_allowed
+from scraper.scrape import discover, html_content, source_allowed, beer_menu_hints
 from scraper.extract import extract_offers
 from scraper.pdf_extract import extract_pdf
 from test_pdf import document
@@ -12,6 +15,22 @@ def venue(id, name, website):
 
 
 class EnrichmentTests(unittest.TestCase):
+    def test_beer_search_reuses_coffee_sources_with_branch_scopes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); (root/'scraper').mkdir()
+            (root/'scraper/menu_urls.json').write_text(json.dumps({'node/1':['https://bar.example/beer.pdf']}))
+            (root/'scraper/coffee_menu_urls.json').write_text(json.dumps({'node/1':['https://bar.example/drinks.pdf']}))
+            (root/'coffee.json').write_text(json.dumps({'bars':[
+                {'id':'node/1','offers':[{'sourceUrl':'https://bar.example/drinks.pdf'},
+                    {'sourceUrl':'https://bar.example/other-branch.pdf'},
+                    {'sourceUrl':'https://maps.example/photo','photoSource':{'date':'2026-10'}}]},
+                {'id':'node/2','offers':[{'sourceUrl':'https://bar.example/other-branch.pdf'}]},
+            ]}))
+            scopes={'node/1':['beer.pdf','drinks.pdf'],'node/2':['correct-branch.pdf']}
+            with patch('scraper.scrape.ROOT',root), patch('scraper.scrape.DATA_DIR',root), patch('scraper.scrape.COFFEE_SOURCE_SCOPES',scopes):
+                hints=beer_menu_hints()
+            self.assertEqual(hints,{'node/1':['https://bar.example/beer.pdf','https://bar.example/drinks.pdf']})
+
     def test_candidate_rotation_and_shared_branch_guard(self):
         existing=[venue('node/1','Existing','https://chain.example/a')]
         found=[venue('node/2','Other branch','https://chain.example/b'),venue('node/3','Checked','https://checked.example'),venue('node/4','New','https://new.example'),venue('node/5','No site',None)]
@@ -61,6 +80,7 @@ class EnrichmentTests(unittest.TestCase):
 
     def test_delivery_menu_excluded_from_on_site_prices(self):
         self.assertFalse(source_allowed('node/1','https://example.com/bestellen/getraenke/'))
+        self.assertFalse(source_allowed('node/1','https://example.com/casino_bern_event_wein_und_getraenkekarte.pdf'))
         self.assertTrue(source_allowed('node/1','https://example.com/menu/'))
         text,_=html_content(b'<title>Restaurant - Essen online bestellen</title><div>Lager 5dl 5.00</div>','https://example.com')
         self.assertEqual(text,'')
