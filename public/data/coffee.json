@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T16:31:08.049561+00:00",
+  "generatedAt": "2026-10-17T17:34:26.842211+00:00",
   "discoveredAt": "2026-10-17T15:43:32.938895+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -17983,9 +17983,52 @@
       ],
       "openingHours": "Mo-Su 10:00-00:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-17T15:59:54.655647+00:00"
+      "offers": [
+        {
+          "name": "Espresso",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurant-kiosk.ch/media/kiosk_speisekarte-de.pdf",
+          "observedAt": "2026-10-17T12:37:18.244935+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso Fr. 5.–",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "a0d69649a1200fe0d0bede42a4fd0e7276e245edfbea459152338b8b8bf7d85c"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurant-kiosk.ch/media/kiosk_speisekarte-de.pdf",
+          "observedAt": "2026-10-17T12:37:18.244935+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino Fr. 6.–",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "a0d69649a1200fe0d0bede42a4fd0e7276e245edfbea459152338b8b8bf7d85c"
+        },
+        {
+          "name": "Latte Macchiato",
+          "priceChf": 7.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurant-kiosk.ch/media/kiosk_speisekarte-de.pdf",
+          "observedAt": "2026-10-17T12:37:18.244935+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato Fr. 7.–",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "a0d69649a1200fe0d0bede42a4fd0e7276e245edfbea459152338b8b8bf7d85c"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T17:34:26.842211+00:00"
     },
     {
       "id": "node/2330404237",
@@ -18802,9 +18845,94 @@
       ],
       "openingHours": "Mo-Sa 10:00-23:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-17T16:01:32.329772+00:00"
+      "offers": [
+        {
+          "name": "Kaffee crème",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee crème 4.90",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 4.90",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Doppelter Espresso",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Doppelter Espresso 6.50",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Latte Macchiato",
+          "priceChf": 6.2,
+          "volumeMl": null,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato 6.20",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.8,
+          "volumeMl": null,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 5.80",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Michkaffee / Schale",
+          "priceChf": 5.2,
+          "volumeMl": null,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Michkaffee / Schale 5.20",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T17:34:26.842211+00:00"
     },
     {
       "id": "node/4833061570",

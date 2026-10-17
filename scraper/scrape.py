@@ -407,7 +407,7 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     if not urls:
         return {**bar,'scrapeStatus':'no_website','checkedAt':stamp}
     urls=list(dict.fromkeys(urls))
-    visited=set();offers=[];errors=[];success=0;changed_reviews=set();read_sources=set();attempts=0;link_labels={}
+    visited=set();offers=[];errors=[];success=0;changed_reviews=set();changed_ai=set();read_sources=set();attempts=0;link_labels={}
     while urls and attempts<max_pages:
         url=urls.pop(0)
         if url in visited:
@@ -420,8 +420,21 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
             fetched=True
             visited.add(final)
             review=(REVIEWED_COFFEE_MENUS if beverage=='coffee' else REVIEWED_MENUS).get(final)
+            digest=hashlib.sha256(body).hexdigest()
+            # A text parser cannot disprove a previous visual/AI extraction.
+            # Reuse its evidence only when the actual source bytes still match;
+            # preserve the original observation date and extraction metadata.
+            for old_offer in bar['offers']:
+                if old_offer.get('confidence')!='ai' or old_offer.get('photoSource') or old_offer['sourceUrl'] not in (url,final):
+                    continue
+                if old_offer.get('sourceSha256')!=digest:
+                    changed_ai.add(old_offer['sourceUrl'])
+                elif (source_allowed(bar['id'],old_offer['sourceUrl'],beverage)
+                      and source_allowed(bar['id'],final,beverage)
+                      and not (review and review['barId']==bar['id'] and review.get('exclusive'))):
+                    offers.append(dict(old_offer))
             if review and review['barId']==bar['id'] and source_allowed(bar['id'],final,beverage):
-                if hashlib.sha256(body).hexdigest()==review['sha256']:
+                if digest==review['sha256']:
                     proof=verified_menu_date(review,body,stamp)
                     offers.extend({**o,**proof,'sourceUrl':final,'observedAt':stamp,'confidence':'reviewed'} for o in review['offers'])
                 else:
@@ -447,7 +460,7 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     # A homepage fetch or a hit in another document says nothing about a menu
     # we could not read. Preserve its prices and original dates independently.
     fresh_offers=bool(offers)
-    offers.extend(o for o in bar['offers'] if o['sourceUrl'] not in read_sources and o['sourceUrl'] not in changed_reviews and source_allowed(bar['id'],o['sourceUrl'],beverage))
+    offers.extend(o for o in bar['offers'] if o['sourceUrl'] not in read_sources and o['sourceUrl'] not in changed_reviews and o['sourceUrl'] not in changed_ai and source_allowed(bar['id'],o['sourceUrl'],beverage))
     dedup={}
     for o in offers:
         if beverage == 'beer' and not eligible_offer(o): continue
@@ -465,7 +478,7 @@ def scrape_bar(bar, fetcher, hints, max_pages, beverage='beer'):
     if fresh_offers:
         result=list(dedup.values())
         status='prices_found'
-    elif changed_reviews:
+    elif changed_reviews or changed_ai:
         result=list(dedup.values())
         status='review_required'
     elif success and not errors:

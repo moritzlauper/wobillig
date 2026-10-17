@@ -20,6 +20,16 @@ def dataset(*bars):
 
 
 class MergeTests(unittest.TestCase):
+    def test_running_scan_cannot_erase_ai_prices_restored_on_branch(self):
+        base = dataset(venue('restored'), venue('other'))
+        scanned = dataset({'id': 'restored', 'name': 'restored', 'offers': []}, venue('other', 6))
+        latest = dataset({**venue('restored'), 'checkedAt': 'verified after scan started'}, venue('other'))
+        result, conflicts = publisher.merge_file(DATA, base, scanned, latest)
+        bars = {b['id']: b for b in result['bars']}
+        self.assertEqual(bars['restored'], latest['bars'][0])
+        self.assertEqual(bars['other'], venue('other', 6))
+        self.assertEqual(conflicts, 1)
+
     def test_preserves_concurrent_correction_addition_and_deletion(self):
         base = dataset(venue('corrected'), venue('removed'), venue('refreshed'), venue('unchanged'))
         scanned = dataset(venue('corrected', 6), venue('removed', 6), venue('refreshed', 6),

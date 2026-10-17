@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T17:22:31.332783+00:00",
+  "generatedAt": "2026-10-17T17:34:26.842211+00:00",
   "discoveredAt": "2026-10-17T15:04:31.703876+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -14603,9 +14603,94 @@
       ],
       "openingHours": "Mo-Tu,Th-Fr 11:30-13:30,17:00-22:30; We off; Sa-Su 17:00-22:30",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-17T16:59:40.239535+00:00"
+      "offers": [
+        {
+          "name": "Bier offen 2 dl",
+          "priceChf": 5.0,
+          "volumeMl": 200,
+          "sourceUrl": "https://la-fonte.ch/wp-content/uploads/2026/07/Speisekarte-Quer-mit-schwarzem-Rand-2.pdf",
+          "observedAt": "2026-10-17T12:36:23.098431+00:00",
+          "confidence": "ai",
+          "evidence": "Bier offen 2 dl 5,00",
+          "alcoholFree": false,
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "f5c76e87e82881e474a57eca3166d8a1a6f1cfab2a2a3ac470d553e8e6bcb041"
+        },
+        {
+          "name": "Bier offen 3 dl",
+          "priceChf": 5.5,
+          "volumeMl": 300,
+          "sourceUrl": "https://la-fonte.ch/wp-content/uploads/2026/07/Speisekarte-Quer-mit-schwarzem-Rand-2.pdf",
+          "observedAt": "2026-10-17T12:36:23.098431+00:00",
+          "confidence": "ai",
+          "evidence": "Bier offen 3 dl 5,50",
+          "alcoholFree": false,
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "f5c76e87e82881e474a57eca3166d8a1a6f1cfab2a2a3ac470d553e8e6bcb041"
+        },
+        {
+          "name": "Bier offen 5 dl",
+          "priceChf": 7.3,
+          "volumeMl": 500,
+          "sourceUrl": "https://la-fonte.ch/wp-content/uploads/2026/07/Speisekarte-Quer-mit-schwarzem-Rand-2.pdf",
+          "observedAt": "2026-10-17T12:36:23.098431+00:00",
+          "confidence": "ai",
+          "evidence": "Bier offen 5 dl 7,30",
+          "alcoholFree": false,
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "f5c76e87e82881e474a57eca3166d8a1a6f1cfab2a2a3ac470d553e8e6bcb041"
+        },
+        {
+          "name": "Franziskaner Weizenbier 5 dl",
+          "priceChf": 8.0,
+          "volumeMl": 500,
+          "sourceUrl": "https://la-fonte.ch/wp-content/uploads/2026/07/Speisekarte-Quer-mit-schwarzem-Rand-2.pdf",
+          "observedAt": "2026-10-17T12:36:23.098431+00:00",
+          "confidence": "ai",
+          "evidence": "Franziskaner Weizenbier 5 dl 8,00",
+          "alcoholFree": false,
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "f5c76e87e82881e474a57eca3166d8a1a6f1cfab2a2a3ac470d553e8e6bcb041"
+        },
+        {
+          "name": "Bier Alkoholfrei 3 dl",
+          "priceChf": 6.0,
+          "volumeMl": 300,
+          "sourceUrl": "https://la-fonte.ch/wp-content/uploads/2026/07/Speisekarte-Quer-mit-schwarzem-Rand-2.pdf",
+          "observedAt": "2026-10-17T12:36:23.098431+00:00",
+          "confidence": "ai",
+          "evidence": "Bier Alkoholfrei 3 dl 6,00",
+          "alcoholFree": true,
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "f5c76e87e82881e474a57eca3166d8a1a6f1cfab2a2a3ac470d553e8e6bcb041"
+        },
+        {
+          "name": "Peroni/Moretti 3 dl",
+          "priceChf": 5.9,
+          "volumeMl": 300,
+          "sourceUrl": "https://la-fonte.ch/wp-content/uploads/2026/07/Speisekarte-Quer-mit-schwarzem-Rand-2.pdf",
+          "observedAt": "2026-10-17T12:36:23.098431+00:00",
+          "confidence": "ai",
+          "evidence": "Peroni/Moretti 3 dl 5,90",
+          "alcoholFree": false,
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "f5c76e87e82881e474a57eca3166d8a1a6f1cfab2a2a3ac470d553e8e6bcb041"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T17:34:26.842211+00:00"
     },
     {
       "id": "node/9811018969",
@@ -20719,9 +20804,24 @@
       ],
       "openingHours": "Mo-Su 10:00-00:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-17T16:59:30.595360+00:00"
+      "offers": [
+        {
+          "name": "Einsiedler Weizen",
+          "priceChf": 9.0,
+          "volumeMl": 500,
+          "sourceUrl": "https://www.restaurant-kiosk.ch/media/kiosk_speisekarte-de.pdf",
+          "observedAt": "2026-10-17T12:37:18.244935+00:00",
+          "confidence": "ai",
+          "evidence": "Einsiedler Weizen 5 dl Fr. 9.–",
+          "alcoholFree": false,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "a0d69649a1200fe0d0bede42a4fd0e7276e245edfbea459152338b8b8bf7d85c"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T17:34:26.842211+00:00"
     },
     {
       "id": "node/2330404237",
@@ -20767,9 +20867,80 @@
       ],
       "openingHours": "Mo,Tu 11:30-14:00; We,Th 11:30-14:00,18:00-22:00; Fr 11:30-14:00,18:00-22:30; Sa 17:30-22:30",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "partial",
-      "checkedAt": "2026-10-17T16:59:30.595731+00:00"
+      "offers": [
+        {
+          "name": "Bier vom Fass / Feldschlösschen",
+          "priceChf": 7.0,
+          "volumeMl": 500,
+          "sourceUrl": "https://pyramids-restaurant.ch/wp-content/uploads/2026/06/Pyramids-Mittagsmenue.pdf",
+          "observedAt": "2026-10-17T12:37:51.248387+00:00",
+          "confidence": "ai",
+          "evidence": "Bier vom Fass/ Feldschlösschen 5 dl. 7,00",
+          "alcoholFree": false,
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "c64a5513f267ba7fe006409d32decaad82020b6b1bf724161821d6a244339d49"
+        },
+        {
+          "name": "Bier vom Fass / Feldschlösschen",
+          "priceChf": 5.0,
+          "volumeMl": 300,
+          "sourceUrl": "https://pyramids-restaurant.ch/wp-content/uploads/2026/06/Pyramids-Mittagsmenue.pdf",
+          "observedAt": "2026-10-17T12:37:51.248387+00:00",
+          "confidence": "ai",
+          "evidence": "Bier vom Fass/ Feldschlösschen 3 dl. 5,00",
+          "alcoholFree": false,
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "c64a5513f267ba7fe006409d32decaad82020b6b1bf724161821d6a244339d49"
+        },
+        {
+          "name": "Feldschlösschen Hopfenperle",
+          "priceChf": 5.0,
+          "volumeMl": 300,
+          "sourceUrl": "https://pyramids-restaurant.ch/wp-content/uploads/2026/06/Pyramids-Mittagsmenue.pdf",
+          "observedAt": "2026-10-17T12:37:51.248387+00:00",
+          "confidence": "ai",
+          "evidence": "Feldschlösschen Hopfenperle 3 dl. 5,00",
+          "alcoholFree": false,
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "c64a5513f267ba7fe006409d32decaad82020b6b1bf724161821d6a244339d49"
+        },
+        {
+          "name": "Feldschlösschen Alkoholfrei",
+          "priceChf": 5.0,
+          "volumeMl": 300,
+          "sourceUrl": "https://pyramids-restaurant.ch/wp-content/uploads/2026/06/Pyramids-Mittagsmenue.pdf",
+          "observedAt": "2026-10-17T12:37:51.248387+00:00",
+          "confidence": "ai",
+          "evidence": "Feldschlösschen Alkoholfrei 3 dl. 5,00",
+          "alcoholFree": true,
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "c64a5513f267ba7fe006409d32decaad82020b6b1bf724161821d6a244339d49"
+        },
+        {
+          "name": "Schneider Weisse",
+          "priceChf": 7.0,
+          "volumeMl": 500,
+          "sourceUrl": "https://pyramids-restaurant.ch/wp-content/uploads/2026/06/Pyramids-Mittagsmenue.pdf",
+          "observedAt": "2026-10-17T12:37:51.248387+00:00",
+          "confidence": "ai",
+          "evidence": "Schneider Weisse 5 dl. 7,00",
+          "alcoholFree": false,
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "c64a5513f267ba7fe006409d32decaad82020b6b1bf724161821d6a244339d49"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T17:34:26.842211+00:00"
     },
     {
       "id": "node/1235083599",
@@ -21905,9 +22076,123 @@
       ],
       "openingHours": "Mo-Sa 10:00-23:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-17T16:59:30.596474+00:00"
+      "offers": [
+        {
+          "name": "Miller Genuine Draft 33 cl",
+          "priceChf": 6.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Miller Genuine Draft 33 cl 6.50",
+          "alcoholFree": false,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Müller Bräu Alkoholfrei 33 cl",
+          "priceChf": 5.2,
+          "volumeMl": 330,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Müller Bräu Alkoholfrei 33 cl 5.20",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Müller Bräu Dunkel 33 cl",
+          "priceChf": 5.6,
+          "volumeMl": 330,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Müller Bräu Dunkel 33 cl 5.60",
+          "alcoholFree": false,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Franziskaner Weissbier 50 cl",
+          "priceChf": 8.5,
+          "volumeMl": 500,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Franziskaner Weissbier 50 cl 8.50",
+          "alcoholFree": false,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Erdinger Weissbier 50 cl",
+          "priceChf": 8.5,
+          "volumeMl": 500,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Erdinger Weissbier 50 cl 8.50",
+          "alcoholFree": false,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Herrgöttli 20 cl",
+          "priceChf": 4.3,
+          "volumeMl": 200,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Offenes Bier Müller Bräu Herrgöttli 20 cl 4.30",
+          "alcoholFree": false,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "Stange 30 cl",
+          "priceChf": 4.9,
+          "volumeMl": 300,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Offenes Bier Müller Bräu Stange 30 cl 4.90",
+          "alcoholFree": false,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "serving": "stange",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        },
+        {
+          "name": "grosses Bier 50 cl",
+          "priceChf": 7.9,
+          "volumeMl": 500,
+          "sourceUrl": "https://rollis-steakhouse.ch/wp/wp-content/uploads/2025/10/Getraenkekarte.pdf",
+          "observedAt": "2026-10-17T12:41:08.991995+00:00",
+          "confidence": "ai",
+          "evidence": "Offenes Bier Müller Bräu grosses Bier 50 cl 7.90",
+          "alcoholFree": false,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "f2568574c21808deaaf6449f612ef373ec2e88c9377eb914c92af651d520036d"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T17:34:26.842211+00:00"
     },
     {
       "id": "node/4833061570",
@@ -21923,9 +22208,38 @@
       ],
       "openingHours": "Mo-We 09:00-24:00; Th 09:00-02:00; Fr-Sa 09:00-04:00; Su 10:00-22:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-17T16:59:38.798624+00:00"
+      "offers": [
+        {
+          "name": "einsiedler weizenbier",
+          "priceChf": 9.5,
+          "volumeMl": 500,
+          "sourceUrl": "https://www.ooo-zh.ch/media/rooftop_getraenke-de.pdf",
+          "observedAt": "2026-10-17T12:41:01.519942+00:00",
+          "confidence": "ai",
+          "evidence": "einsiedler weizenbier 5dl 9.50",
+          "alcoholFree": false,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "a398eb45bad424ada521d978271ad3620b0ffe3018d519e15ae541061414e6ab"
+        },
+        {
+          "name": "einsiedler (alkoholfrei)",
+          "priceChf": 6.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://www.ooo-zh.ch/media/rooftop_getraenke-de.pdf",
+          "observedAt": "2026-10-17T12:41:01.519942+00:00",
+          "confidence": "ai",
+          "evidence": "einsiedler (alkoholfrei) 3,3dl 6.50",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "a398eb45bad424ada521d978271ad3620b0ffe3018d519e15ae541061414e6ab"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T17:34:26.842211+00:00"
     },
     {
       "id": "node/268468215",
@@ -22649,9 +22963,24 @@
       ],
       "openingHours": "Mo 11:00-18:30; Tu-Th 11:00-23:00; Fr 11:00-18:30; Sa 11:00-16:00",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-17T16:59:46.705502+00:00"
+      "offers": [
+        {
+          "name": "Birra",
+          "priceChf": 6,
+          "volumeMl": 330,
+          "sourceUrl": "https://246647d4-ef35-4738-bff8-bdb71eaf231c.filesusr.com/ugd/10c111_71aeef22998f493794298b19d734fdc6.pdf",
+          "observedAt": "2026-10-17T12:43:53.805750+00:00",
+          "confidence": "ai",
+          "evidence": "Birra Mit oder ohne Alkohol 33cl Flasche 6",
+          "alcoholFree": false,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "44f9dc25408c7ccee0c64a5ea62ac8309e48e6756bae2d8d939745b367530114"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T17:34:26.842211+00:00"
     },
     {
       "id": "node/3806522222",
@@ -23311,9 +23640,24 @@
       ],
       "openingHours": "Mo-Su 18:00-23:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-17T16:59:30.597029+00:00"
+      "offers": [
+        {
+          "name": "Lola IPA 0.0%",
+          "priceChf": 7.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://www.soithai.ch/menu.html",
+          "observedAt": "2026-10-17T12:46:16.264649+00:00",
+          "confidence": "ai",
+          "evidence": "Lola IPA 0.0% [ 3.3dl ] 7.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "efe4137bd69eaed8ed23ebc137e198742496abafcf6c3480fa8f333be1c36671"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-17T17:34:26.842211+00:00"
     },
     {
       "id": "node/270794627",
