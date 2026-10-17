@@ -3,7 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
-import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
+import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
 import { filtersFromSearch, writeFilters } from './filters';
@@ -17,7 +17,7 @@ const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getEleme
 const money = (n: number) => n.toFixed(2);
 const options = (values: Record<string, string>) => Object.entries(values).map(([value, label]) => `<option value="${value}">${e(label)}</option>`).join('');
 const coffeeOptions = options(coffeeLabels);
-const venueTypes = { '': 'Alle', bar: 'Bar / Pub', restaurant: 'Restaurant', cafe: 'Café', fast_food: 'Imbiss' };
+const venueTypes = { '': 'Alle (ohne Imbiss)', all: 'Alle (inkl. Imbiss)', bar: 'Bar / Pub', restaurant: 'Restaurant', cafe: 'Café', fast_food: 'Imbiss' };
 const cityId = cityFromPath(location.pathname, import.meta.env.BASE_URL);
 const city = cities[cityId];
 const dataPath = `${import.meta.env.BASE_URL}data/${city.data}`;
@@ -140,7 +140,7 @@ const locationLayer = L.layerGroup().addTo(map);
 map.on('moveend', renderLocations);
 map.on('click', event => {
   if (map.getZoom() < 17) { toast('Zum Auswählen eines Lokals näher heranzoomen.'); return; }
-  const choices = nearbyLocations(selectableLocations(venues, locationCatalogue).filter(b => (!coffee() || b.type !== 'fast_food') && inSelectedDistrict(b)), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
+  const choices = nearbyLocations(selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f) && inSelectedDistrict(b)), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
   if (!choices.length) { toast('Hier wurde kein Lokal gefunden. Tippe auf das Symbol oder näher an den Namen.'); return; }
   if (choices.length === 1) { openPrice(choices[0]); return; }
   const content = document.createElement('div');
@@ -278,8 +278,7 @@ function syncControls() {
   const heading = `${beer() ? 'Bierpreise' : pizza() ? 'Pizzapreise' : 'Kaffeepreise'} ${city.name}`;
   if ($('map-title').textContent !== heading) $('map-title').textContent = heading;
   document.title = coffee() ? coffeePageTitle : `${heading} vergleichen | wobillig`;
-  if (coffee() && f.type === 'fast_food') f.type = '';
-  $<HTMLSelectElement>('type').innerHTML = options(Object.fromEntries(Object.entries(venueTypes).filter(([type]) => !coffee() || type !== 'fast_food')));
+  $<HTMLSelectElement>('type').innerHTML = options(venueTypes);
   $<HTMLSelectElement>('type').value = f.type;
   $('beer-controls').hidden = !beer(); $('coffeeType').hidden = !coffee();
   $<HTMLSelectElement>('volume').querySelector<HTMLOptionElement>('[value=stange]')!.disabled = ['bottle', 'can'].includes(f.beerType!);
@@ -403,7 +402,7 @@ function renderLocations() {
   locationLayer.clearLayers();
   if (map.getZoom() < 17) return;
   const displayed = new Set([...current.map(b => b.id), ...(selected ? [selected] : [])]);
-  for (const bar of selectableLocations(venues, locationCatalogue).filter(b => (!coffee() || b.type !== 'fast_food') && inSelectedDistrict(b))) {
+  for (const bar of selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f) && inSelectedDistrict(b))) {
     if (displayed.has(bar.id) || !map.getBounds().pad(.1).contains([bar.lat, bar.lon])) continue;
     const label = `${bar.name}: Preis eintragen`;
     L.marker([bar.lat, bar.lon], {
@@ -707,7 +706,7 @@ $('price-form').onsubmit = async event => {
       serving: drink === 'beer' && $<HTMLInputElement>('entry-stange').checked ? 'stange' : undefined,
       alcoholFree: drink !== 'beer' || $<HTMLInputElement>('entry-alcohol').checked,
       observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
-    } satisfies PriceInput, selectableLocations(venues, locationCatalogue).filter(b => (!coffee() || b.type !== 'fast_food') && inSelectedDistrict(b)));
+    } satisfies PriceInput, selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f) && inSelectedDistrict(b)));
     saving = true; $<HTMLButtonElement>('scan-menu').disabled = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = 'Speichern …';
     const response = await fetch(pricesApi, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
     const result = await response.json().catch(() => { throw new Error('Speichern gerade nicht möglich. Bitte erneut versuchen.'); });

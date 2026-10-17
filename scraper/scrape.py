@@ -37,6 +37,7 @@ COFFEE_SOURCE_SCOPES = json.loads((ROOT / 'scraper/coffee_source_scopes.json').r
 REVIEWED_COFFEE_MENUS = json.loads((ROOT / 'scraper/reviewed_coffee_menus.json').read_text())
 REVIEWED_MENUS = json.loads((ROOT / 'scraper/reviewed_menus.json').read_text())
 WEBSITES = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
+VENUE_TYPES = json.loads((ROOT / 'scraper/venue_type_overrides.json').read_text())
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
 QUERY = '[out:json][timeout:90];' + AREA + '(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + (EXTRA_QUERY if CITY == 'zurich' else '') + ');out center tags;'
@@ -150,7 +151,7 @@ def discover(previous, path=None, query=QUERY):
                 # Keep restaurants discovered by the wider price search on refresh.
                 active_query=query
                 if query == QUERY:
-                    retained=''.join(f"{b['id'].split('/')[0]}({b['id'].split('/')[1]})(area.city);" for b in previous.get('bars',[]) if b.get('type') in ('restaurant','cafe') and re.fullmatch(r'(node|way|relation)/\d+', b['id']))
+                    retained=''.join(f"{b['id'].split('/')[0]}({b['id'].split('/')[1]})(area.city);" for b in previous.get('bars',[]) if b.get('type') in ('restaurant','cafe','fast_food') and re.fullmatch(r'(node|way|relation)/\d+', b['id']))
                     active_query=query.replace(');out center tags;',retained+');out center tags;')
                 r=requests.get(endpoint,params={'data':active_query},headers={'User-Agent':UA},timeout=120)
                 r.raise_for_status()
@@ -179,7 +180,7 @@ def discover(previous, path=None, query=QUERY):
         if not address['address']:
             address = {**address, **{k: previous_address[k] for k in ('address', 'postcode', 'addressSource') if previous_address.get(k)}}
         bars.append({'id':id,'name':tags['name'],'lat':center['lat'],'lon':center['lon'],
-            'type':tags.get('amenity','bar'),**address,'website':website,
+            'type':VENUE_TYPES.get(id, tags.get('amenity','bar')),**address,'website':website,
             'cuisine':[c.strip().lower() for c in tags.get('cuisine','').split(';') if c.strip()],
             'openingHours':tags.get('opening_hours'),'outdoor':tags.get('outdoor_seating')=='yes',
             'offers':old.get(id,{}).get('offers',[]),'scrapeStatus':old.get(id,{}).get('scrapeStatus','pending'),

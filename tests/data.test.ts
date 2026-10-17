@@ -120,15 +120,16 @@ describe("coffee comparisons", () => {
     expect(bestOffer(cafe, { ...coffee, coffeeType: "all" })).toBe(espresso);
     expect(bestOffer(cafe, f)?.name).toBe("Lager");
   });
-  it.each(["fast_food"])("excludes %s from coffee even with a stale explicit selection", type => {
+  it.each(["fast_food"])("excludes %s from coffee by default but allows an explicit selection", type => {
     for (const offers of [[], [espresso], [cappuccino], [{ ...cappuccino, confidence: "community" as const }]]) {
       const venue = { ...b, type, offers };
       expect(isVenueEligible(venue, coffee)).toBe(false);
       expect(filterBars([venue], coffee)).toEqual([]);
       const selected = { ...coffee, type };
-      expect(isVenueEligible(venue, selected)).toBe(false);
-      expect(filterBars([venue], selected)).toEqual([]);
-      expect(filterBars([venue], { ...selected, unknown: false })).toEqual([]);
+      expect(isVenueEligible(venue, selected)).toBe(true);
+      expect(filterBars([venue], selected)).toEqual([venue]);
+      expect(filterBars([venue], { ...coffee, type: "all" })).toEqual([venue]);
+      expect(filterBars([venue], { ...selected, unknown: false })).toHaveLength(offers.some(o => o.coffeeType === "cappuccino") ? 1 : 0);
       expect(filterBars([venue], { ...coffee, type: "restaurant" })).toEqual([]);
     }
   });
@@ -139,14 +140,17 @@ describe("coffee comparisons", () => {
       expect(filterBars([venue], { ...coffee, unknown: false })).toHaveLength(offers.includes(cappuccino) ? 1 : 0);
     }
   });
-  it("keeps other coffee venues and bars/takeaways in beer and pizza", () => {
+  it("keeps other coffee venues and includes takeaways in beer and pizza only when selected", () => {
     for (const type of ["cafe", "restaurant", "bar", "pub"]) {
       expect(filterBars([{ ...cafe, type }], coffee)).toHaveLength(1);
     }
     for (const type of ["bar", "pub", "fast_food"]) {
       const venue = { ...b, type };
-      expect(filterBars([venue], f)).toHaveLength(1);
-      expect(filterBars([venue], { ...f, drink: "pizza" })).toHaveLength(1);
+      for (const drink of ["beer", "pizza"] as const) {
+        expect(filterBars([venue], { ...f, drink })).toHaveLength(type === "fast_food" ? 0 : 1);
+        expect(filterBars([venue], { ...f, drink, type: "all" })).toHaveLength(1);
+        expect(filterBars([venue], { ...f, drink, type: "fast_food" })).toHaveLength(type === "fast_food" ? 1 : 0);
+      }
     }
   });
   it("never converts coffee prices into a fictional volume", () => {

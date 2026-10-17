@@ -48,6 +48,25 @@ class EnrichmentTests(unittest.TestCase):
         self.assertIn('node(9)(area.city);',get.call_args.kwargs['params']['data'])
         self.assertEqual(result['bars'][0]['id'],'node/9')
 
+    def test_corrected_takeaway_type_survives_osm_refresh(self):
+        class Response:
+            def raise_for_status(self): pass
+            def json(self):
+                return {'elements': [
+                    {'type': 'node', 'id': 725765073, 'lat': 47.384, 'lon': 8.532,
+                     'tags': {'name': 'Millennium', 'amenity': 'restaurant'}},
+                    {'type': 'node', 'id': 9, 'lat': 47.37, 'lon': 8.53,
+                     'tags': {'name': 'Other restaurant', 'amenity': 'restaurant'}},
+                ]}
+        offers = [{'name': 'Stange', 'priceChf': 4.8}]
+        previous = {'bars': [{'id': 'node/725765073', 'type': 'fast_food', 'offers': offers}]}
+        with patch('scraper.scrape.requests.get', return_value=Response()) as get:
+            result = {b['id']: b for b in discover(previous)['bars']}
+        self.assertIn('node(725765073)(area.city);', get.call_args.kwargs['params']['data'])
+        self.assertEqual(result['node/725765073']['type'], 'fast_food')
+        self.assertEqual(result['node/725765073']['offers'], offers)
+        self.assertEqual(result['node/9']['type'], 'restaurant')
+
     def test_grid_menu_pairs_only_adjacent_product_and_price(self):
         body=b'<div><div><div>Sprint Lager (ZH) 5.2% (0.5L)</div></div><div><div>8.5 CHF</div></div><div>Cola 0.5L</div><div>5 CHF</div></div>'
         text,_=html_content(body,'https://example.com')

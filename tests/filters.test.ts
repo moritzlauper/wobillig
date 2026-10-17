@@ -18,6 +18,18 @@ describe('filters across city navigation', () => {
       expect(url.searchParams.has('bar')).toBe(false);
     }
   });
+  it.each(['coffee', 'beer', 'pizza'] as const)('defaults %s to no takeaways and preserves explicit choices', drink => {
+    expect(filtersFromSearch(new URLSearchParams({ drink })).type).toBe('');
+    for (const type of ['all', 'fast_food']) {
+      const filters = filtersFromSearch(new URLSearchParams({ drink, type }));
+      const params = new URLSearchParams();
+      writeFilters(params, filters, false);
+      expect(filtersFromSearch(params).type).toBe(type);
+      for (const city of ['zurich', 'bern', 'basel'] as const) {
+        expect(filtersFromSearch(new URL(cityLink(city, params.toString()), 'https://wobillig.ch').searchParams).type).toBe(type);
+      }
+    }
+  });
   it('restores defaults and unlimited prices without turning a blank limit into zero', () => {
     const defaults = filtersFromSearch(new URLSearchParams());
     expect(defaults).toMatchObject({ drink: 'coffee', coffeeType: 'cappuccino', max: 15, unknown: true });
@@ -41,7 +53,7 @@ describe('filters across city navigation', () => {
   it('validates query values and keeps legacy beer links', () => {
     expect(filtersFromSearch(new URLSearchParams('size=stange'))).toMatchObject({ drink: 'beer', volume: 'stange' });
     expect(filtersFromSearch(new URLSearchParams('drink=coffee&type=fast_food&coffeeType=matcha&sort=invalid')))
-      .toMatchObject({ type: '', coffeeType: 'cappuccino', sort: 'price' });
+      .toMatchObject({ type: 'fast_food', coffeeType: 'cappuccino', sort: 'price' });
     expect(filtersFromSearch(new URLSearchParams('drink=beer&beerType=can&size=stange'))).toMatchObject({ volume: 'all' });
   });
 });

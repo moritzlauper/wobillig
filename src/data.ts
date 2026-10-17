@@ -165,8 +165,13 @@ function venueCategory(type: string): string {
   return type === "pub" ? "bar" : type;
 }
 
+export function matchesVenueType(bar: Bar, f: Filters): boolean {
+  if (!f.type) return bar.type !== "fast_food";
+  return f.type === "all" || venueCategory(bar.type) === f.type;
+}
+
 export function isVenueEligible(bar: Bar, f: Filters): boolean {
-  if (f.drink === "coffee" && bar.type === "fast_food") return false;
+  if (!matchesVenueType(bar, f)) return false;
   if ((f.drink || "beer") !== "beer" || bar.type !== "cafe") return true;
   // A missing price for the selected size/format is different from no beer
   // evidence at all. Community beer entries count after applyEntries merges them.
@@ -185,7 +190,6 @@ export function filterBars(
       const o = bestOffer(b, f);
       return (
         matchesSearch(b, f.query) &&
-        (!f.type || venueCategory(b.type) === f.type) &&
         (!f.outdoor || b.outdoor) &&
         (o ? cost(o, f.mode) <= f.max : f.unknown)
       );
