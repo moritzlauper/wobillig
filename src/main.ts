@@ -141,7 +141,7 @@ const detailMarkersMinZoom = 17;
 map.on('moveend', renderLocations);
 map.on('click', event => {
   if (map.getZoom() < detailMarkersMinZoom) { toast('Zum Auswählen eines Lokals näher heranzoomen.'); return; }
-  const choices = nearbyLocations(selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f) && inSelectedDistrict(b)), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
+  const choices = nearbyLocations(mapLocations(), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
   if (!choices.length) { toast('Hier wurde kein Lokal gefunden. Tippe auf das Symbol oder näher an den Namen.'); return; }
   if (choices.length === 1) { openPrice(choices[0]); return; }
   const content = document.createElement('div');
@@ -403,11 +403,17 @@ function selectSearchSuggestion(index: number) {
   }
   showBar(bar, 17);
 }
+function mapLocations(): Bar[] {
+  // The pizza dataset includes confirmed pizzerias without prices and community
+  // pizza entries. Do not add the general restaurant catalogue back to this map.
+  const candidates = pizza() ? bars : selectableLocations(venues, locationCatalogue);
+  return candidates.filter(b => matchesVenueType(b, f) && inSelectedDistrict(b));
+}
 function renderLocations() {
   locationLayer.clearLayers();
   if (map.getZoom() < detailMarkersMinZoom) return;
   const displayed = new Set([...current.map(b => b.id), ...(selected ? [selected] : [])]);
-  for (const bar of selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f) && inSelectedDistrict(b))) {
+  for (const bar of mapLocations()) {
     if (displayed.has(bar.id) || !map.getBounds().pad(.1).contains([bar.lat, bar.lon])) continue;
     const label = `${bar.name}: Preis eintragen`;
     L.marker([bar.lat, bar.lon], {
