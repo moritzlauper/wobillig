@@ -158,7 +158,7 @@ map.on('click', event => {
 // Show unpriced dots at the same zoom as the orange location markers.
 // Hide detail markers/labels during zoom gestures, including touch pinch zoom.
 // Toggle visibility directly so zooming does not rebuild every marker and result.
-const venueNamesMinZoom = 18;
+const venueNamesMinZoom = 19;
 const syncZoomVisibility = () => {
   $('map').classList.toggle('show-unpriced-markers', map.getZoom() >= detailMarkersMinZoom);
   $('map').classList.toggle('show-venue-names', map.getZoom() >= venueNamesMinZoom);
