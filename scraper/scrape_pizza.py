@@ -12,7 +12,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
-from urllib.parse import urlparse, urljoin, parse_qs
+from urllib.parse import urlparse, urljoin, parse_qs, unquote
 from bs4 import BeautifulSoup
 
 from scraper.scrape import ROOT, discover, now, html_content, SKIP_MENU
@@ -60,9 +60,9 @@ def skip_source(url):
     if parsed.scheme not in ('http','https'):return True
     # Never follow action links (including GET-based carts and wishlists).
     if any(re.search(r'cart|wishlist|checkout|nonce|action|remove|delete',key,re.I) for key in parse_qs(parsed.query)):return True
-    path=parsed.path
+    path=unquote(parsed.path)
     if re.search(r'/(?:cart|warenkorb|checkout|kasse|mein-konto|my-account)(?:/|$)',path,re.I):return True
-    if re.search(r'take[ _-]?away|delivery|liefer|kinder|bambini|lunch|mittag|wochen|tagesmen',path,re.I):
+    if re.search(r'take[ _-]?away|mitnehmen|delivery|liefer|kinder|bambini|lunch|mittag|wochen|tagesmen',path,re.I):
         return True
     return bool(SKIP.search(path) and not re.search(r'speise|pizza|food|essen|menu|karte',path,re.I))
 

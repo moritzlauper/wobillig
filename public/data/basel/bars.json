@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T23:12:13.932219+00:00",
+  "generatedAt": "2026-10-18T08:25:12.237763+00:00",
   "discoveredAt": "2026-10-17T21:21:02.968706+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -51,6 +51,56 @@
       "offers": [],
       "scrapeStatus": "no_website",
       "checkedAt": "2026-10-17T22:00:04.822518+00:00"
+    },
+    {
+      "id": "node/4377359796",
+      "name": "Ackermannshof",
+      "lat": 47.5631097,
+      "lon": 7.5846236,
+      "type": "restaurant",
+      "address": "St. Johanns-Vorstadt 19/21",
+      "postcode": "4056",
+      "website": "https://www.ackermannshof.ch/",
+      "cuisine": [],
+      "openingHours": "Tu-Sa 16:00+",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Kitchen Brew Everyday Blond",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.ackermannshof.ch/assets/Files/Barkarte.pdf",
+          "observedAt": "2026-10-18T08:24:47.575239+00:00",
+          "confidence": "automatic",
+          "evidence": "Kitchen Brew Everyday Blond 5.2 % 3.3 dl 6",
+          "alcoholFree": false
+        },
+        {
+          "name": "Kitchen Brew American Pale Ale",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.ackermannshof.ch/assets/Files/Barkarte.pdf",
+          "observedAt": "2026-10-18T08:24:47.575239+00:00",
+          "confidence": "automatic",
+          "evidence": "Kitchen Brew American Pale Ale 5.5 % 3.3 dl 7",
+          "alcoholFree": false
+        },
+        {
+          "name": "Kitchen Brew Windstill Hell alkoholfrei",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.ackermannshof.ch/assets/Files/Barkarte.pdf",
+          "observedAt": "2026-10-18T08:24:47.575239+00:00",
+          "confidence": "automatic",
+          "evidence": "Kitchen Brew Windstill Hell alkoholfrei 3.3 dl 7",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-18T08:24:47.575239+00:00"
     },
     {
       "id": "node/585184294",
@@ -5312,7 +5362,7 @@
       "type": "bar",
       "address": "Ahornstrasse 10",
       "postcode": "4055",
-      "website": null,
+      "website": "https://huefyse.ch/",
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
@@ -5323,7 +5373,7 @@
           "priceChf": 6.5,
           "beerType": "bottle",
           "sourceUrl": "https://huefyse.ch/speisekarte/",
-          "observedAt": "2026-10-17T08:59:02.491404+00:00",
+          "observedAt": "2026-10-18T08:24:47.575680+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Lager 5 dl 6.50",
           "alcoholFree": false
@@ -5334,7 +5384,7 @@
           "priceChf": 5.0,
           "beerType": "bottle",
           "sourceUrl": "https://huefyse.ch/speisekarte/",
-          "observedAt": "2026-10-17T08:59:02.491404+00:00",
+          "observedAt": "2026-10-18T08:24:47.575680+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Lager 33 cl 5.00",
           "alcoholFree": false
@@ -5345,7 +5395,7 @@
           "priceChf": 6.5,
           "beerType": "bottle",
           "sourceUrl": "https://huefyse.ch/speisekarte/",
-          "observedAt": "2026-10-17T08:59:02.491404+00:00",
+          "observedAt": "2026-10-18T08:24:47.575680+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Bügel 5 dl 6.50",
           "alcoholFree": false
@@ -5356,7 +5406,7 @@
           "priceChf": 5.0,
           "beerType": "bottle",
           "sourceUrl": "https://huefyse.ch/speisekarte/",
-          "observedAt": "2026-10-17T08:59:02.491404+00:00",
+          "observedAt": "2026-10-18T08:24:47.575680+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Alkoholfrei 33 cl 5.00",
           "alcoholFree": true
@@ -5367,7 +5417,7 @@
           "priceChf": 6.5,
           "beerType": "bottle",
           "sourceUrl": "https://huefyse.ch/speisekarte/",
-          "observedAt": "2026-10-17T08:59:02.491404+00:00",
+          "observedAt": "2026-10-18T08:24:47.575680+00:00",
           "confidence": "automatic",
           "evidence": "Erdinger Weissbier 5 dl 6.50",
           "alcoholFree": false
@@ -5378,7 +5428,7 @@
           "priceChf": 4.6,
           "beerType": "draft",
           "sourceUrl": "https://huefyse.ch/de/speisekarte/",
-          "observedAt": "2026-10-17T08:59:02.491404+00:00",
+          "observedAt": "2026-10-18T08:24:47.575680+00:00",
           "confidence": "automatic",
           "evidence": "Rugeli, Stange 3 dl 4.60",
           "alcoholFree": false,
@@ -5390,7 +5440,7 @@
           "priceChf": 6.5,
           "beerType": "unknown",
           "sourceUrl": "https://huefyse.ch/de/speisekarte/",
-          "observedAt": "2026-10-17T08:59:02.491404+00:00",
+          "observedAt": "2026-10-18T08:24:47.575680+00:00",
           "confidence": "automatic",
           "evidence": "Bier / Grosses 5 dl 6.50",
           "alcoholFree": false,
@@ -5401,8 +5451,8 @@
           }
         }
       ],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-17T21:23:52.047475+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-18T08:24:47.575680+00:00"
     },
     {
       "id": "node/6662770296",

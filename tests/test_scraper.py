@@ -7,6 +7,12 @@ from scraper.extract import extract_offers
 from scraper.scrape import Fetcher, html_content, public_url, scrape_bar, prioritize_links, main
 
 class ExtractionTests(unittest.TestCase):
+    def test_drinks_follow_venue_landing_pages_without_crossing_hosts(self):
+        body=b'<a href="/de/bar-und-lounge/">Bar &amp; Lounge</a><a href="/restaurant/">Restaurant</a><a href="https://other.example/bar">Bar</a><a href="/geschichte/bar">Bar Geschichte</a>'
+        for beverage in ('beer','coffee'):
+            _,links=html_content(body,'https://example.org/',beverage)
+            self.assertCountEqual(links,['https://example.org/de/bar-und-lounge/','https://example.org/restaurant/'])
+
     def offers(self,text):
         return extract_offers(text,'https://bar.example/menu','2026-10-14T12:00:00Z')
 

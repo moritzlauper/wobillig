@@ -11,6 +11,9 @@ on:
       scan_mode:
         type: string
         required: true
+      exhaustive_scan:
+        type: boolean
+        default: false
       deep_scan:
         type: boolean
         required: true
@@ -32,6 +35,7 @@ jobs:
       city: ${{ inputs.city }}
       city_count: ${{ inputs.city_count }}
       scan_mode: ${{ inputs.scan_mode }}
+      exhaustive_scan: ${{ inputs.exhaustive_scan }}
       deep_scan: ${{ inputs.deep_scan }}
       ai_budget_usd: ${{ inputs.ai_budget_usd }}
   pizza:
@@ -44,6 +48,7 @@ jobs:
       city: ${{ inputs.city }}
       city_count: ${{ inputs.city_count }}
       scan_mode: ${{ inputs.scan_mode }}
+      exhaustive_scan: ${{ inputs.exhaustive_scan }}
       deep_scan: ${{ inputs.deep_scan }}
       ai_budget_usd: ${{ inputs.ai_budget_usd }}
   ai:
@@ -56,6 +61,7 @@ jobs:
       city: ${{ inputs.city }}
       city_count: ${{ inputs.city_count }}
       scan_mode: ${{ inputs.scan_mode }}
+      exhaustive_scan: ${{ inputs.exhaustive_scan }}
       deep_scan: ${{ inputs.deep_scan }}
       ai_budget_usd: ${{ inputs.ai_budget_usd }}
     secrets:

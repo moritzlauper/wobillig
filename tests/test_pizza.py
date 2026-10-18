@@ -21,6 +21,20 @@ class PizzaTests(unittest.TestCase):
 class PizzaCrawlTests(unittest.TestCase):
     def setUp(self):
         self.bar={'id':'node/1','name':'Test Pizza','website':'https://example.org/','offers':[]}
+    def test_encoded_takeaway_image_does_not_conflict_with_restaurant_price(self):
+        from scraper.scrape_pizza import crawl, skip_source
+        takeaway='https://example.org/Pizze%20Mitnehmen%202025.jpg'
+        self.assertTrue(skip_source(takeaway))
+        self.assertTrue(skip_source('https://example.org/Take%20away.pdf'))
+        class Fetcher:
+            def get(self,url):
+                if url != 'https://example.org/':
+                    raise AssertionError('Takeaway card must not be fetched')
+                return url,'text/html',f'<div>Margherita 19.00</div><a href="{takeaway}">Pizza</a>'.encode()
+        bar,check=crawl(self.bar,Fetcher(),{},10,[])
+        self.assertEqual([o['priceChf'] for o in bar['offers']],[19])
+        self.assertEqual(check['status'],'prices_found')
+        self.assertEqual(check['errors'],[])
     def test_ambiguous_prices_stay_unpublished(self):
         from scraper.scrape_pizza import crawl
         class Fetcher:

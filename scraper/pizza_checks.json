@@ -779,7 +779,7 @@
     ]
   },
   "node/1491966830": {
-    "checkedAt": "2026-10-17T17:28:13.073019+00:00",
+    "checkedAt": "2026-10-18T08:25:39.231170+00:00",
     "status": "no_prices",
     "visited": [
       "https://static.wixstatic.com/media/2bf470_1c276e2465624ff09bbd9aa8940ade67.png",
@@ -6276,14 +6276,13 @@
     "candidates": []
   },
   "node/4833061578": {
-    "checkedAt": "2026-10-17T17:29:22.406430+00:00",
-    "status": "ambiguous_prices",
+    "checkedAt": "2026-10-18T08:24:13.667300+00:00",
+    "status": "prices_found",
     "visited": [
       "https://www.grottino83.ch/",
       "https://www.grottino83.ch/pizze.php",
       "https://www.grottino83.ch/resources/Begr%C3%BCssung%20Speisenkarte%20a41.jpg.opt685x968o0%2C0s685x968.jpg",
       "https://www.grottino83.ch/resources/Homepage%20September%2026.pdf",
-      "https://www.grottino83.ch/resources/Pizze%20Mitnehmen%202025%20gr.%20Kunde1.jpg.opt872x1232o0%2C0s872x1232.jpg",
       "https://www.grottino83.ch/resources/September%202026.jpeg.opt872x1232o0%2C0s872x1232.jpeg",
       "https://www.grottino83.ch/speisenkarte.php"
     ],
@@ -6293,21 +6292,9 @@
         "name": "Pizza Margherita",
         "pizzaType": "margherita",
         "volumeMl": null,
-        "priceChf": 17.5,
-        "sourceUrl": "https://www.grottino83.ch/resources/Pizze%20Mitnehmen%202025%20gr.%20Kunde1.jpg.opt872x1232o0%2C0s872x1232.jpg",
-        "observedAt": "2026-10-17T17:29:22.406430+00:00",
-        "confidence": "automatic",
-        "evidence": "OCR PDF S. 1: Margherita | Tomatensauce, Mozzarella 17.50",
-        "alcoholFree": true,
-        "extractionMethod": "ocr"
-      },
-      {
-        "name": "Pizza Margherita",
-        "pizzaType": "margherita",
-        "volumeMl": null,
         "priceChf": 19.0,
         "sourceUrl": "https://www.grottino83.ch/resources/Homepage%20September%2026.pdf",
-        "observedAt": "2026-10-17T17:29:22.406430+00:00",
+        "observedAt": "2026-10-18T08:24:13.667300+00:00",
         "confidence": "automatic",
         "evidence": "PDF S. 6: Margherita Tomatensauce, Mozzarella 19.00",
         "alcoholFree": true

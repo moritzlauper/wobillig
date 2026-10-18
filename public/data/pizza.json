@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T18:25:07.616859+00:00",
+  "generatedAt": "2026-10-18T08:26:07.242887+00:00",
   "discoveredAt": "2026-10-17T17:23:37.598493+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -1966,9 +1966,21 @@
       ],
       "openingHours": "Tu-Fr 11:00-14:00,17:00-23:00, Sa 17:00-23:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "ambiguous_prices",
-      "checkedAt": "2026-10-17T17:29:22.406430+00:00"
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://www.grottino83.ch/resources/Homepage%20September%2026.pdf",
+          "observedAt": "2026-10-18T08:24:13.667300+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: Margherita Tomatensauce, Mozzarella 19.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-18T08:24:13.667300+00:00"
     },
     {
       "id": "node/270796284",
@@ -3696,7 +3708,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-17T17:28:13.073019+00:00",
+      "checkedAt": "2026-10-18T08:25:39.231170+00:00",
       "pizzaEvidence": {
         "sourceUrl": "https://www.ristorante-99.ch/",
         "evidence": "Ristorante Pizzeria 99 in Zürich an der Bederstrasse 99."

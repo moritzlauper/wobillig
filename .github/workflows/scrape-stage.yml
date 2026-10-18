@@ -11,6 +11,9 @@ on:
       scan_mode:
         type: string
         required: true
+      exhaustive_scan:
+        type: boolean
+        default: false
       deep_scan:
         type: boolean
         required: true
@@ -35,12 +38,12 @@ jobs:
       # Successful documents are shared between this job's sequential passes.
       # Never restore this cache in another run: every refresh fetches fresh data.
       WOBILLIG_HTTP_CACHE: scraper/cache/http-${{ inputs.city }}-${{ inputs.stage }}-${{ github.run_id }}-${{ github.run_attempt }}.sqlite3
-      BEER_PAGES: ${{ inputs.deep_scan && '50' || '8' }}
-      DEEP_PAGES: ${{ inputs.deep_scan && '50' || '20' }}
-      DISCOVERY_PAGES: ${{ inputs.deep_scan && '50' || '10' }}
-      COFFEE_PAGES: ${{ inputs.deep_scan && '50' || '10' }}
-      PIZZA_PAGES: ${{ inputs.deep_scan && '50' || '20' }}
-      AI_PAGES: ${{ inputs.deep_scan && '20' || '8' }}
+      BEER_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50' || '8' }}
+      DEEP_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50' || '20' }}
+      DISCOVERY_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50' || '10' }}
+      COFFEE_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50' || '10' }}
+      PIZZA_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50' || '20' }}
+      AI_PAGES: ${{ inputs.exhaustive_scan && '60' || inputs.deep_scan && '20' || '8' }}
       AI_MINUTES: '330'
     steps:
       - uses: actions/checkout@v4

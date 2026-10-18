@@ -242,8 +242,10 @@ def html_content(body,url,beverage='beer',link_labels=None):
         # A hostname containing "bier" must not make every site link a menu.
         link_label=a.get_text(' ',strip=True)+' '+a.get('aria-label','')+' '+a.get('title','')+' '+a.get('alt','')+' '+unquote(urlparse(target).path)
         pdf=urlparse(target).path.lower().endswith('.pdf')
-        cafe_page = beverage=='coffee' and re.search(r'\b(?:caf[eé]|cafeteria|bistro|restaurant|essen|trinken|food)\b', unquote(link_label), re.I)
-        if (MENU.search(link_label) or pdf or cafe_page) and not SKIP_MENU.search(link_label) and urlparse(target).scheme in ('http','https'):
+        # Menus can sit behind a bar/restaurant landing page without a menu
+        # keyword (e.g. Ackermannshof's "Bar & Lounge"). Both drinks need it.
+        venue_page = re.search(r'\b(?:bar|lounge|restaurant)\b', unquote(link_label), re.I) or (beverage=='coffee' and re.search(r'\b(?:caf[eé]|cafeteria|bistro|essen|trinken|food)\b', unquote(link_label), re.I))
+        if (MENU.search(link_label) or pdf or venue_page) and not SKIP_MENU.search(link_label) and urlparse(target).scheme in ('http','https'):
             # Only same-origin navigation; external PDFs are allowed as direct menu links.
             if (urlparse(target).hostname or '').removeprefix('www.')==(urlparse(url).hostname or '').removeprefix('www.') or pdf or urlparse(target).hostname=='api2.lunchgate.ch':
                 if beverage=='coffee' and re.search(r'\.(?:jpe?g|png|webp|svg|gif)$',urlparse(target).path,re.I):

@@ -1,5 +1,5 @@
 name: Refresh city prices
-run-name: "City prices · ${{ inputs.city || 'all' }} · ${{ (github.event_name == 'schedule' || inputs.deep_scan) && 'deep scan' || inputs.scan_mode || 'scheduled refresh' }}"
+run-name: "City prices · ${{ inputs.city || 'all' }} · ${{ inputs.exhaustive_scan && 'extra-deep scan' || (github.event_name == 'schedule' || inputs.deep_scan) && 'deep scan' || inputs.scan_mode || 'scheduled refresh' }}"
 on:
   schedule:
     # The cadence job runs every third Monday to keep a true 21-day interval.
@@ -20,6 +20,10 @@ on:
         description: Haiku 5.5 API budget per city in USD (default 5.00, hard cap 20.00; no request cap)
         type: number
         default: 5.00
+      exhaustive_scan:
+        description: Extra-deep manual scan (120 menu pages, 60 AI documents per venue)
+        type: boolean
+        default: false
       deep_scan:
         description: Extended scan (default; all candidates, up to 50 menu pages per venue)
         type: boolean
@@ -60,7 +64,8 @@ jobs:
       # Each city has its own budget; do not divide it across the three jobs.
       city_count: 1
       scan_mode: ${{ inputs.scan_mode || 'full' }}
-      deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan }}
+      exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
+      deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
       ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -74,7 +79,8 @@ jobs:
       # Each city has its own budget; do not divide it across the three jobs.
       city_count: 1
       scan_mode: ${{ inputs.scan_mode || 'full' }}
-      deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan }}
+      exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
+      deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
       ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -88,7 +94,8 @@ jobs:
       # Each city has its own budget; do not divide it across the three jobs.
       city_count: 1
       scan_mode: ${{ inputs.scan_mode || 'full' }}
-      deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan }}
+      exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
+      deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
       ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
