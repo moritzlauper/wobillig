@@ -12,7 +12,7 @@
     "seconds": 3.3
   },
   "node/5294134634": {
-    "checkedAt": "2026-10-17T21:45:50.940416+00:00",
+    "checkedAt": "2026-10-18T08:50:06.362278+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -25,11 +25,11 @@
       }
     ],
     "errors": [],
-    "seconds": 3.4
+    "seconds": 0.7
   },
   "way/542879934": {
-    "checkedAt": "2026-10-17T21:45:50.939705+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:50:06.361873+00:00",
+    "status": "partial",
     "documents": [
       {
         "url": "http://alterzoll.ch/",
@@ -40,11 +40,17 @@
         "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 5.9
+    "errors": [
+      {
+        "url": "http://alterzoll.ch/assets/images/events/AlterZollInnenraum_1.jpg",
+        "reason": "response_too_large",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 7.5
   },
   "node/3392587471": {
-    "checkedAt": "2026-10-17T21:45:50.940939+00:00",
+    "checkedAt": "2026-10-18T08:50:06.372957+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -54,13 +60,25 @@
       {
         "url": "https://www.artigiano-pizzeria.com/_files/ugd/5a51bf_31b1d6aa2a9c423c86f9b02aadf9e9da.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.artigiano-pizzeria.com/restaurant-basel",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.artigiano-pizzeria.com/restaurant-bern",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.artigiano-pizzeria.com/restaurant-windisch",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 2.6
+    "seconds": 1.6
   },
   "node/4749555721": {
-    "checkedAt": "2026-10-17T21:45:54.226451+00:00",
+    "checkedAt": "2026-10-18T08:50:06.399388+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -69,10 +87,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.1
+    "seconds": 1.1
   },
   "node/262502093": {
-    "checkedAt": "2026-10-17T21:45:50.939174+00:00",
+    "checkedAt": "2026-10-18T08:50:06.361712+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -85,10 +103,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.5
+    "seconds": 0.4
   },
   "node/121991199": {
-    "checkedAt": "2026-10-17T21:45:50.939941+00:00",
+    "checkedAt": "2026-10-18T08:50:06.362022+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -105,10 +123,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.8
+    "seconds": 2.6
   },
   "node/7178593691": {
-    "checkedAt": "2026-10-17T21:45:50.940719+00:00",
+    "checkedAt": "2026-10-18T08:50:06.362541+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -129,10 +147,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.0
+    "seconds": 1.1
   },
   "node/12707627770": {
-    "checkedAt": "2026-10-17T21:45:55.912967+00:00",
+    "checkedAt": "2026-10-18T08:50:07.078865+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -145,22 +163,42 @@
       }
     ],
     "errors": [],
-    "seconds": 3.9
+    "seconds": 2.8
   },
   "node/12161791752": {
-    "checkedAt": "2026-10-17T21:45:54.305476+00:00",
+    "checkedAt": "2026-10-18T08:50:06.732363+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.odelya.ch/de/gastronomie",
         "kind": "html"
+      },
+      {
+        "url": "https://www.odelya.ch/en/restaurant",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.odelya.ch/files/ciarticle/res-722x557xccenters/19-odelya_2022_work_00192.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.odelya.ch/files/ciarticle/res-722x557xccenters/odelya_2022_work_0046a2.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.odelya.ch/files/ciarticle/res-722x557xccenters/Hotel-Odelya_2025_Brunch_041klein.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.odelya.ch/files/ciarticle/res-722x557xccenters/odelya_2022_work_0046a.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 5.1
+    "seconds": 10.1
   },
   "node/2961150343": {
-    "checkedAt": "2026-10-17T21:45:56.799662+00:00",
+    "checkedAt": "2026-10-18T08:50:07.493841+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -173,14 +211,14 @@
       }
     ],
     "errors": [],
-    "seconds": 3.3
+    "seconds": 0.5
   },
   "node/585184294": {
     "checkedAt": "2026-10-15T22:21:20.201375+00:00",
     "status": "prices_found"
   },
   "node/3888944674": {
-    "checkedAt": "2026-10-17T21:45:58.428675+00:00",
+    "checkedAt": "2026-10-18T08:50:07.988565+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -190,19 +228,19 @@
       {
         "url": "https://www.beanbank.ch/category/our-coffee-beans",
         "kind": "html"
-      },
-      {
-        "url": "https://www.beanbank.ch/category/coffee",
-        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 5.0
+    "seconds": 0.3
   },
   "node/1170699798": {
-    "checkedAt": "2026-10-17T21:45:59.710930+00:00",
+    "checkedAt": "2026-10-18T08:50:08.261619+00:00",
     "status": "no_prices",
     "documents": [
+      {
+        "url": "https://static.wixstatic.com/media/19a4e6_e21d6bacd656490a818a07f58157ae45~mv2.jpg/v1/fill/w_600,h_849,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Sommer%20Getr%C3%A4nkekarte%20Bild.jpg",
+        "kind": "unsupported"
+      },
       {
         "url": "https://www.beesandbirdscafe.ch/",
         "kind": "html"
@@ -213,10 +251,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 0.5
   },
   "node/13791837929": {
-    "checkedAt": "2026-10-17T21:45:53.544500+00:00",
+    "checkedAt": "2026-10-18T08:50:06.378328+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -313,10 +351,10 @@
       }
     ],
     "errors": [],
-    "seconds": 41.9
+    "seconds": 3.2
   },
   "node/13606413684": {
-    "checkedAt": "2026-10-17T21:45:59.427974+00:00",
+    "checkedAt": "2026-10-18T08:50:07.991375+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -337,14 +375,14 @@
       }
     ],
     "errors": [],
-    "seconds": 6.6
+    "seconds": 4.8
   },
   "node/13894492703": {
     "checkedAt": "2026-10-15T22:21:24.417899+00:00",
     "status": "prices_found"
   },
   "node/2901296696": {
-    "checkedAt": "2026-10-17T21:45:59.849274+00:00",
+    "checkedAt": "2026-10-18T08:50:08.735938+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -357,10 +395,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.0
+    "seconds": 0.6
   },
   "node/5690813621": {
-    "checkedAt": "2026-10-17T21:46:03.404451+00:00",
+    "checkedAt": "2026-10-18T08:50:09.346619+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -373,14 +411,14 @@
       }
     ],
     "errors": [],
-    "seconds": 4.2
+    "seconds": 0.4
   },
   "node/4150413389": {
     "checkedAt": "2026-10-15T22:21:26.277281+00:00",
     "status": "prices_found"
   },
   "node/2369538706": {
-    "checkedAt": "2026-10-17T21:46:04.802258+00:00",
+    "checkedAt": "2026-10-18T08:50:09.614413+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -389,14 +427,14 @@
       }
     ],
     "errors": [],
-    "seconds": 1.6
+    "seconds": 0.1
   },
   "node/11163250005": {
     "checkedAt": "2026-10-15T22:21:32.351208+00:00",
     "status": "prices_found"
   },
   "node/12536731500": {
-    "checkedAt": "2026-10-17T21:46:03.346492+00:00",
+    "checkedAt": "2026-10-18T08:50:09.181785+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -409,10 +447,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.7
+    "seconds": 1.3
   },
   "node/1430898779": {
-    "checkedAt": "2026-10-17T21:46:06.040100+00:00",
+    "checkedAt": "2026-10-18T08:50:09.726913+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -429,14 +467,18 @@
       }
     ],
     "errors": [],
-    "seconds": 14.4
+    "seconds": 4.9
   },
   "node/5689913622": {
-    "checkedAt": "2026-10-17T21:45:57.283664+00:00",
+    "checkedAt": "2026-10-18T08:50:07.542404+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://restaurantbayleaf.ch/",
+        "kind": "html"
+      },
+      {
+        "url": "https://restaurantbayleaf.ch",
         "kind": "html"
       },
       {
@@ -446,10 +488,14 @@
       {
         "url": "https://restaurantbayleaf.ch/de/menu/",
         "kind": "html"
+      },
+      {
+        "url": "https://restaurantbayleaf.ch/de/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 38.4
+    "seconds": 1.6
   },
   "node/6556102796": {
     "checkedAt": "2026-10-17T21:45:50.940162+00:00",
@@ -524,7 +570,7 @@
     "status": "no_prices"
   },
   "node/3890667652": {
-    "checkedAt": "2026-10-17T21:46:07.599895+00:00",
+    "checkedAt": "2026-10-18T08:50:09.755522+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -534,13 +580,17 @@
       {
         "url": "http://www.jefferys.ch/Restaurant/Lageplan/",
         "kind": "html"
+      },
+      {
+        "url": "http://www.jefferys.ch/Restaurant/Lageplan/index.php/;focus=CM_cm4all_com_widgets_MapServices_167109&frame=CM_cm4all_com_widgets_MapServices_167109",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 23.1
+    "seconds": 1.1
   },
   "node/8016865752": {
-    "checkedAt": "2026-10-17T21:46:20.451556+00:00",
+    "checkedAt": "2026-10-18T08:50:10.476288+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -550,10 +600,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 6.5
+    "seconds": 6.9
   },
   "node/13000954116": {
-    "checkedAt": "2026-10-17T21:46:00.100717+00:00",
+    "checkedAt": "2026-10-18T08:50:08.976031+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -586,10 +636,10 @@
       }
     ],
     "errors": [],
-    "seconds": 50.0
+    "seconds": 21.5
   },
   "node/11379700569": {
-    "checkedAt": "2026-10-17T21:46:30.662285+00:00",
+    "checkedAt": "2026-10-18T08:50:10.853421+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -599,7 +649,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 5.6
+    "seconds": 3.2
   },
   "node/9871385224": {
     "checkedAt": "2026-10-15T22:22:05.510867+00:00",
@@ -610,7 +660,7 @@
     "status": "prices_found"
   },
   "node/11755443196": {
-    "checkedAt": "2026-10-17T21:46:36.276077+00:00",
+    "checkedAt": "2026-10-18T08:50:14.097296+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -620,10 +670,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.0
+    "seconds": 3.3
   },
   "node/10652308129": {
-    "checkedAt": "2026-10-17T21:46:35.732548+00:00",
+    "checkedAt": "2026-10-18T08:50:13.862636+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -633,7 +683,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.7
+    "seconds": 0.5
   },
   "node/1936100732": {
     "checkedAt": "2026-10-15T22:21:51.845773+00:00",
@@ -660,7 +710,7 @@
     "seconds": 18.1
   },
   "node/4031043644": {
-    "checkedAt": "2026-10-17T21:46:36.402972+00:00",
+    "checkedAt": "2026-10-18T08:50:14.384618+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -669,10 +719,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.1
+    "seconds": 0.2
   },
   "node/6411151585": {
-    "checkedAt": "2026-10-17T21:46:44.997570+00:00",
+    "checkedAt": "2026-10-18T08:50:16.795195+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -682,10 +732,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.6
+    "seconds": 1.8
   },
   "node/10733559775": {
-    "checkedAt": "2026-10-17T21:46:46.615207+00:00",
+    "checkedAt": "2026-10-18T08:50:17.351439+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -695,14 +745,14 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.7
+    "seconds": 1.4
   },
   "node/2663868226": {
     "checkedAt": "2026-10-15T22:21:37.684369+00:00",
     "status": "prices_found"
   },
   "node/2381403698": {
-    "checkedAt": "2026-10-17T21:46:39.460202+00:00",
+    "checkedAt": "2026-10-18T08:50:14.604840+00:00",
     "status": "partial",
     "documents": [
       {
@@ -900,6 +950,282 @@
       {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/einkreiser",
         "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/english",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espanol",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espresso",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressobruher",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/fast-heater",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffeemaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffeemuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/gesundheit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/grind-by-sync",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/grind-by-weight",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/handmuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/hybrid",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/in-eigener-sache",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffee-auswahl",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeeanbau",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemarkt",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemeisterschaften",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemuhle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeereisen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeevollautomat",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeewissen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeezubereitung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/latte-art",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/lelit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/milch",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/muhle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/nachhaltigkeit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/outdoor",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/partner",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/podcast",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/pressemitteilung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/projekte",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rezept",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rohkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rosten",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/santa-rita",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/sensorik",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/single-dosing",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/startup",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/thermoblock",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/transparenz",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/vollautomat",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/waage",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/wasser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/wissenschaft",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-mara-x",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espressomaschinen-testprotokoll",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/thermoblock-espressomaschinen-test",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-temperatur",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-bruehtemperatur-messen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-zubereiten",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-extraktionszeit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/mein-mahlgrad",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/kaffeemuehle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemuehle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemuehle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lagom-p80",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/option-o-lagom-p64",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/kaffeewissen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/filterkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/kaffeefarm",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/kurse",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/cdn/shop/files/Home_Barista_kurz_stark.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [
@@ -907,9 +1233,14 @@
         "url": "http://www.sge-ssn.ch/media/Proteine-2019.pdf",
         "reason": "http_404",
         "phase": "fetch"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/milchschaumer",
+        "reason": "http_404",
+        "phase": "fetch"
       }
     ],
-    "seconds": 354.8
+    "seconds": 298.2
   },
   "node/473398645": {
     "checkedAt": "2026-10-17T21:46:48.290424+00:00",
@@ -970,7 +1301,7 @@
     "seconds": 40.2
   },
   "node/702204838": {
-    "checkedAt": "2026-10-17T21:46:38.291026+00:00",
+    "checkedAt": "2026-10-18T08:50:14.591118+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -979,10 +1310,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.6
+    "seconds": 0.0
   },
   "node/122337399": {
-    "checkedAt": "2026-10-17T21:46:17.996630+00:00",
+    "checkedAt": "2026-10-18T08:50:09.888004+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1144,13 +1475,37 @@
       {
         "url": "https://www.uelibier.ch/wp-content/uploads/2022/12/Abfuellerei-4823-scaled.jpg",
         "kind": "unsupported"
+      },
+      {
+        "url": "https://www.uelibier.ch/wp-content/uploads/2022/12/Stimmungsbilder-2550Ueli-Brau-Bar-1024x681.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.uelibier.ch/restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.uelibier.ch/wp-content/uploads/2024/04/Ueli_Bier_2024_Fischerstube-1132-1024x681.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.uelibier.ch/wp-content/uploads/2025/02/Ueli_Bier_2025_Diverse_Portraits-5683-1024x683.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.uelibier.ch/wp-content/uploads/2025/02/Ueli_Bier_2025_Diverse_Portraits-5456-1024x683.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.uelibier.ch/wp-content/uploads/2023/01/stimmungsbild-1.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 180.8
+    "seconds": 172.7
   },
   "node/592182051": {
-    "checkedAt": "2026-10-17T21:46:37.717763+00:00",
+    "checkedAt": "2026-10-18T08:50:14.578944+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1167,10 +1522,10 @@
       }
     ],
     "errors": [],
-    "seconds": 32.0
+    "seconds": 25.0
   },
   "node/10905128012": {
-    "checkedAt": "2026-10-17T21:47:09.756946+00:00",
+    "checkedAt": "2026-10-18T08:50:18.777323+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1183,10 +1538,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.1
+    "seconds": 1.0
   },
   "node/12007516980": {
-    "checkedAt": "2026-10-17T21:47:12.480001+00:00",
+    "checkedAt": "2026-10-18T08:50:19.772999+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1195,22 +1550,26 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 0.4
   },
   "node/6804284317": {
-    "checkedAt": "2026-10-17T21:47:16.039754+00:00",
+    "checkedAt": "2026-10-18T08:50:20.158183+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://cantina-doncamillo.ch/index.html",
         "kind": "html"
+      },
+      {
+        "url": "https://cantina-doncamillo.ch/uploads/1/2/5/6/125613691/gr-ne-logo.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 6.8
+    "seconds": 4.7
   },
   "node/1598855455": {
-    "checkedAt": "2026-10-17T21:47:22.835904+00:00",
+    "checkedAt": "2026-10-18T08:50:30.502028+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1219,10 +1578,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.0
+    "seconds": 0.5
   },
   "node/4917036030": {
-    "checkedAt": "2026-10-17T21:47:28.519184+00:00",
+    "checkedAt": "2026-10-18T08:50:31.285372+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1232,10 +1591,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.5
   },
   "node/13910521083": {
-    "checkedAt": "2026-10-17T21:47:28.758597+00:00",
+    "checkedAt": "2026-10-18T08:50:31.827701+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1244,10 +1603,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.2
+    "seconds": 0.6
   },
   "way/376382307": {
-    "checkedAt": "2026-10-17T21:46:35.409814+00:00",
+    "checkedAt": "2026-10-18T08:50:12.833290+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1344,10 +1703,10 @@
       }
     ],
     "errors": [],
-    "seconds": 83.6
+    "seconds": 50.3
   },
   "node/10290989011": {
-    "checkedAt": "2026-10-17T21:47:34.964837+00:00",
+    "checkedAt": "2026-10-18T08:50:33.685522+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1356,10 +1715,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.2
+    "seconds": 0.3
   },
   "node/13910592465": {
-    "checkedAt": "2026-10-17T21:46:51.937454+00:00",
+    "checkedAt": "2026-10-18T08:50:18.550146+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1380,10 +1739,10 @@
       }
     ],
     "errors": [],
-    "seconds": 20.5
+    "seconds": 19.3
   },
   "node/5278457922": {
-    "checkedAt": "2026-10-17T21:47:18.852342+00:00",
+    "checkedAt": "2026-10-18T08:50:24.871972+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1400,10 +1759,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.1
+    "seconds": 8.8
   },
   "node/13507438488": {
-    "checkedAt": "2026-10-17T21:47:47.328673+00:00",
+    "checkedAt": "2026-10-18T08:50:37.822865+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1412,14 +1771,14 @@
       }
     ],
     "errors": [],
-    "seconds": 4.1
+    "seconds": 0.1
   },
   "node/13200691848": {
     "checkedAt": "2026-10-15T22:22:28.108880+00:00",
     "status": "prices_found"
   },
   "node/3207784844": {
-    "checkedAt": "2026-10-17T21:47:33.004406+00:00",
+    "checkedAt": "2026-10-18T08:50:32.424226+00:00",
     "status": "partial",
     "documents": [
       {
@@ -1438,10 +1797,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 25.4
+    "seconds": 9.3
   },
   "node/7003029881": {
-    "checkedAt": "2026-10-17T21:47:27.818865+00:00",
+    "checkedAt": "2026-10-18T08:50:30.975368+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1450,10 +1809,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.5
+    "seconds": 0.3
   },
   "node/7772352031": {
-    "checkedAt": "2026-10-17T21:47:48.913017+00:00",
+    "checkedAt": "2026-10-18T08:50:37.934627+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1470,15 +1829,19 @@
       }
     ],
     "errors": [],
-    "seconds": 17.8
+    "seconds": 0.8
   },
   "node/9905309814": {
-    "checkedAt": "2026-10-17T21:47:37.131345+00:00",
+    "checkedAt": "2026-10-18T08:50:33.973559+00:00",
     "status": "partial",
     "documents": [
       {
         "url": "https://choi-asiangarden.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://choi-asiangarden.ch/assets/source/f22ef56d9feb-logo-CHOI-v2025-250.jpg",
+        "kind": "unsupported"
       },
       {
         "url": "https://choi-asiangarden.ch/men%c3%bcs-asiatisches-restaurant-basel/",
@@ -1487,6 +1850,10 @@
       {
         "url": "https://choi-asiangarden.ch/assets/source/835378cbb49e-Icon-Getr-nkekarte.png",
         "kind": "unsupported"
+      },
+      {
+        "url": "https://choi-asiangarden.ch/galerie-asiatisches-restaurant-basel/",
+        "kind": "html"
       },
       {
         "url": "https://choi-asiangarden.ch/assets/source/68e05a8f6341-Icon-Speisekarte.png",
@@ -1524,10 +1891,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 29.5
+    "seconds": 22.6
   },
   "node/4828208000": {
-    "checkedAt": "2026-10-17T21:48:06.604703+00:00",
+    "checkedAt": "2026-10-18T08:50:41.696663+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1536,10 +1903,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.2
+    "seconds": 0.0
   },
   "node/12230466535": {
-    "checkedAt": "2026-10-17T21:47:58.430408+00:00",
+    "checkedAt": "2026-10-18T08:50:38.742413+00:00",
     "status": "partial",
     "documents": [
       {
@@ -1566,10 +1933,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 23.9
+    "seconds": 5.8
   },
   "node/4031337376": {
-    "checkedAt": "2026-10-17T21:48:26.013865+00:00",
+    "checkedAt": "2026-10-18T08:50:44.391418+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1579,10 +1946,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.3
+    "seconds": 0.2
   },
   "node/5483369521": {
-    "checkedAt": "2026-10-17T21:48:22.294773+00:00",
+    "checkedAt": "2026-10-18T08:50:44.343655+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1591,10 +1958,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.7
+    "seconds": 0.0
   },
   "node/9326577381": {
-    "checkedAt": "2026-10-17T21:48:19.785193+00:00",
+    "checkedAt": "2026-10-18T08:50:43.899620+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1607,10 +1974,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.3
+    "seconds": 0.4
   },
   "node/5693840423": {
-    "checkedAt": "2026-10-17T21:48:33.052145+00:00",
+    "checkedAt": "2026-10-18T08:50:44.604888+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1618,19 +1985,23 @@
         "kind": "html"
       },
       {
+        "url": "https://www.donobasel.ch/assets/images/logo-small.webp",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://www.donobasel.ch/speisekarte.php",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 19.0
+    "seconds": 5.1
   },
   "node/7747207685": {
     "checkedAt": "2026-10-15T22:22:59.868340+00:00",
     "status": "fetch_failed"
   },
   "node/317816754": {
-    "checkedAt": "2026-10-17T21:48:52.015758+00:00",
+    "checkedAt": "2026-10-18T08:50:49.656809+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1640,7 +2011,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.7
   },
   "node/9006499388": {
     "checkedAt": "2026-10-17T21:47:51.385871+00:00",
@@ -1855,19 +2226,23 @@
     "status": "prices_found"
   },
   "node/4346226796": {
-    "checkedAt": "2026-10-17T21:48:52.259121+00:00",
+    "checkedAt": "2026-10-18T08:50:50.319008+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://caffeeccetera.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://caffeeccetera.ch/caffe-bar/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 7.9
+    "seconds": 1.2
   },
   "node/13826290434": {
-    "checkedAt": "2026-10-17T21:46:50.062053+00:00",
+    "checkedAt": "2026-10-18T08:50:17.351638+00:00",
     "status": "partial",
     "documents": [
       {
@@ -2065,6 +2440,282 @@
       {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/einkreiser",
         "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/english",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espanol",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espresso",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressobruher",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/fast-heater",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffeemaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffeemuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/gesundheit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/grind-by-sync",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/grind-by-weight",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/handmuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/hybrid",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/in-eigener-sache",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffee-auswahl",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeeanbau",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemarkt",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemeisterschaften",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemuhle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeereisen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeevollautomat",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeewissen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeezubereitung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/latte-art",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/lelit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/milch",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/muhle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/nachhaltigkeit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/outdoor",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/partner",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/podcast",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/pressemitteilung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/projekte",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rezept",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rohkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rosten",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/santa-rita",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/sensorik",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/single-dosing",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/startup",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/thermoblock",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/transparenz",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/vollautomat",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/waage",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/wasser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/wissenschaft",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-mara-x",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espressomaschinen-testprotokoll",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/thermoblock-espressomaschinen-test",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-temperatur",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-bruehtemperatur-messen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-zubereiten",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-extraktionszeit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/mein-mahlgrad",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/kaffeemuehle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemuehle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemuehle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lagom-p80",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/option-o-lagom-p64",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/kaffeewissen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/filterkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/kaffeefarm",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/kurse",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/cdn/shop/files/Home_Barista_kurz_stark.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [
@@ -2072,12 +2723,17 @@
         "url": "http://www.sge-ssn.ch/media/Proteine-2019.pdf",
         "reason": "http_404",
         "phase": "fetch"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/milchschaumer",
+        "reason": "http_404",
+        "phase": "fetch"
       }
     ],
-    "seconds": 346.5
+    "seconds": 295.5
   },
   "node/2074770460": {
-    "checkedAt": "2026-10-17T21:48:06.713713+00:00",
+    "checkedAt": "2026-10-18T08:50:41.726642+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2098,10 +2754,10 @@
       }
     ],
     "errors": [],
-    "seconds": 63.2
+    "seconds": 2.2
   },
   "node/10727873562": {
-    "checkedAt": "2026-10-17T21:49:09.932052+00:00",
+    "checkedAt": "2026-10-18T08:50:52.099130+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2111,10 +2767,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.9
+    "seconds": 0.8
   },
   "node/71525604": {
-    "checkedAt": "2026-10-17T21:49:00.160186+00:00",
+    "checkedAt": "2026-10-18T08:50:51.530323+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2123,58 +2779,64 @@
       }
     ],
     "errors": [],
-    "seconds": 18.4
+    "seconds": 0.6
   },
   "node/3811616609": {
     "checkedAt": "2026-10-15T22:23:01.829721+00:00",
     "status": "prices_found"
   },
   "node/4840045320": {
-    "checkedAt": "2026-10-17T21:49:10.867879+00:00",
+    "checkedAt": "2026-10-18T08:50:52.917400+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.elsbethenstuebli.ch/",
         "kind": "html"
-      },
-      {
-        "url": "https://www.elsbethenstuebli.ch/menus",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.elsbethenstuebli.ch/_files/ugd/913a1d_4220f4bfb6c340789914aa8025743a94.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 43.6
+    "seconds": 0.9
   },
   "node/14007225418": {
-    "checkedAt": "2026-10-17T21:49:18.823758+00:00",
+    "checkedAt": "2026-10-18T08:50:54.968563+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.forartcafe-bar.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.forartcafe-bar.ch/__l5e/assets-v1/68f75d58-2afa-4dca-8bce-bfff4274bc38/cafe-salon.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 10.2
+    "seconds": 6.3
   },
   "node/12230410077": {
-    "checkedAt": "2026-10-17T21:49:18.530696+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:50:53.767779+00:00",
+    "status": "partial",
     "documents": [
       {
         "url": "https://www.etna-bar.ch",
         "kind": "html"
+      },
+      {
+        "url": "https://www.etna-bar.ch/lounge/",
+        "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 24.4
+    "errors": [
+      {
+        "url": "http://etna-bar.ch",
+        "reason": "unsupported_url",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 1.2
   },
   "node/9350766919": {
-    "checkedAt": "2026-10-17T21:49:42.980643+00:00",
+    "checkedAt": "2026-10-18T08:51:01.304716+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2187,26 +2849,34 @@
       }
     ],
     "errors": [],
-    "seconds": 14.7
+    "seconds": 1.1
   },
   "node/7683254632": {
-    "checkedAt": "2026-10-17T21:49:29.010009+00:00",
+    "checkedAt": "2026-10-18T08:50:56.566334+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.fujinsushi.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.fujinsushi.ch/wp-content/uploads/2025/05/logo.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.fujinsushi.ch/wp-content/uploads/2025/06/restaurant999.webp",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 15.9
+    "seconds": 10.6
   },
   "node/7871792488": {
     "checkedAt": "2026-10-15T22:22:59.907971+00:00",
     "status": "prices_found"
   },
   "way/967857744": {
-    "checkedAt": "2026-10-17T21:49:44.913239+00:00",
+    "checkedAt": "2026-10-18T08:51:02.366216+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2219,10 +2889,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.9
+    "seconds": 0.6
   },
   "node/7784095496": {
-    "checkedAt": "2026-10-17T21:47:58.963482+00:00",
+    "checkedAt": "2026-10-18T08:50:39.611662+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2238,15 +2908,47 @@
         "kind": "pdf"
       },
       {
+        "url": "https://restaurantconcordia.ch",
+        "kind": "html"
+      },
+      {
+        "url": "https://restaurantconcordia.ch/wp-content/uploads/2022/11/Buchstaben.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurantconcordia.ch/wp-content/uploads/2022/11/Buchstaben7-1.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurantconcordia.ch/wp-content/uploads/2022/11/Buchstaben5.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurantconcordia.ch/wp-content/uploads/2022/11/Buchstaben8.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurantconcordia.ch/wp-content/uploads/2022/11/Buchstaben3.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurantconcordia.ch/wp-content/uploads/2022/11/Buchstaben6.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurantconcordia.ch/wp-content/uploads/2022/11/Buchstaben9-1.png",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://restaurantconcordia.ch/wp-content/uploads/2026/08/20260814_Weinkarte-August-2026.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 69.1
+    "seconds": 99.0
   },
   "node/122336999": {
-    "checkedAt": "2026-10-17T21:49:54.444696+00:00",
+    "checkedAt": "2026-10-18T08:51:02.929764+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2255,22 +2957,26 @@
       }
     ],
     "errors": [],
-    "seconds": 8.4
+    "seconds": 0.1
   },
   "node/13519833131": {
-    "checkedAt": "2026-10-17T21:50:02.866484+00:00",
+    "checkedAt": "2026-10-18T08:51:03.363881+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.bistro-odeon.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.bistro-odeon.ch/wp-content/uploads/2025/04/logo-gniess-bar-S.png",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 3.4
+    "seconds": 3.1
   },
   "node/12014452761": {
-    "checkedAt": "2026-10-17T21:49:58.793686+00:00",
+    "checkedAt": "2026-10-18T08:51:03.115226+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2279,10 +2985,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.2
+    "seconds": 0.2
   },
   "node/2578291823": {
-    "checkedAt": "2026-10-17T21:50:02.976292+00:00",
+    "checkedAt": "2026-10-18T08:51:06.483088+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2291,10 +2997,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.7
+    "seconds": 0.1
   },
   "node/6015038275": {
-    "checkedAt": "2026-10-17T21:50:06.310718+00:00",
+    "checkedAt": "2026-10-18T08:51:06.601296+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2303,10 +3009,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.8
+    "seconds": 0.1
   },
   "node/12601771057": {
-    "checkedAt": "2026-10-17T21:50:12.105553+00:00",
+    "checkedAt": "2026-10-18T08:51:07.206831+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2315,10 +3021,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.4
+    "seconds": 0.1
   },
   "node/3900491566": {
-    "checkedAt": "2026-10-17T21:50:32.558561+00:00",
+    "checkedAt": "2026-10-18T08:51:11.961204+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2328,10 +3034,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.0
+    "seconds": 1.6
   },
   "node/8041425774": {
-    "checkedAt": "2026-10-17T21:50:09.649787+00:00",
+    "checkedAt": "2026-10-18T08:51:06.658027+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2355,15 +3061,43 @@
         "kind": "unsupported"
       },
       {
+        "url": "https://grillheuwaage.ch/wp-content/uploads/2018/10/Restaurant-Basel-City-Grill-Restaurant-kebab.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://grillheuwaage.ch/wp-content/uploads/2018/10/Restaurant-Basel-City-Pizza-teig.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://grillheuwaage.ch/wp-content/uploads/2018/10/Restaurant-Basel-City.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://grillheuwaage.ch/wp-content/uploads/2018/10/Restaurant-Basel-City-Grill-Restaurant-brot.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://grillheuwaage.ch/wp-content/uploads/2018/10/Restaurant-Basel-City-Innen.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://grillheuwaage.ch/wp-content/uploads/2018/10/Restaurant-Basel-City-stadt.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://grillheuwaage.ch/wp-content/uploads/2018/10/Restaurant-Basel-City-Grill-Restaurant-Innen.jpg",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://grillheuwaage.ch/wp-content/uploads/2023/08/menu-top-bg.png",
         "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 22.9
+    "seconds": 46.6
   },
   "relation/4250278": {
-    "checkedAt": "2026-10-17T21:50:36.543765+00:00",
+    "checkedAt": "2026-10-18T08:51:13.525888+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2376,10 +3110,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.5
+    "seconds": 0.2
   },
   "node/4574006993": {
-    "checkedAt": "2026-10-17T21:49:57.636020+00:00",
+    "checkedAt": "2026-10-18T08:51:03.004967+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2405,13 +3139,25 @@
       {
         "url": "https://gifthuettli.ch/assets/pdf/agb.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://gifthuettli.ch/assets/business/images/dividers/divider-white.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://gifthuettli.ch/assets/business/images/dividers/divider-black.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://gifthuettli.ch/assets/business/images/gallery/Gifthuettli_Restaurant-1-md.webp",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 31.5
+    "seconds": 20.2
   },
   "node/9448453209": {
-    "checkedAt": "2026-10-17T21:50:44.612452+00:00",
+    "checkedAt": "2026-10-18T08:51:14.725548+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2420,22 +3166,30 @@
       }
     ],
     "errors": [],
-    "seconds": 7.5
+    "seconds": 0.0
   },
   "node/1581301035": {
-    "checkedAt": "2026-10-17T21:50:42.087168+00:00",
+    "checkedAt": "2026-10-18T08:51:13.774362+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.hostaria-schweiz.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.hostaria-schweiz.ch/hostaria-restaurant-basel",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.hostaria-schweiz.ch/restaurant-basel-stadt",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 2.5
+    "seconds": 1.0
   },
   "node/5157189624": {
-    "checkedAt": "2026-10-17T21:50:55.328956+00:00",
+    "checkedAt": "2026-10-18T08:51:14.992373+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2445,10 +3199,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.0
+    "seconds": 0.8
   },
   "node/14022555383": {
-    "checkedAt": "2026-10-17T21:50:52.063098+00:00",
+    "checkedAt": "2026-10-18T08:51:14.989680+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2457,10 +3211,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.3
+    "seconds": 0.0
   },
   "node/2074770464": {
-    "checkedAt": "2026-10-17T21:50:29.156582+00:00",
+    "checkedAt": "2026-10-18T08:51:07.294871+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2480,15 +3234,19 @@
         "kind": "pdf"
       },
       {
+        "url": "https://hasenburg.swiss",
+        "kind": "html"
+      },
+      {
         "url": "https://hasenburg.swiss/wp-content/uploads/2026/10/Weine-Wine-1.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 20.1
+    "seconds": 4.7
   },
   "node/4166045869": {
-    "checkedAt": "2026-10-17T21:50:55.376962+00:00",
+    "checkedAt": "2026-10-18T08:51:15.796200+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2505,10 +3263,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.1
+    "seconds": 4.6
   },
   "node/1197413423": {
-    "checkedAt": "2026-10-17T21:48:26.276877+00:00",
+    "checkedAt": "2026-10-18T08:50:44.559762+00:00",
     "status": "partial",
     "documents": [
       {
@@ -2559,10 +3317,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 165.8
+    "seconds": 39.1
   },
   "node/7195539122": {
-    "checkedAt": "2026-10-17T21:51:22.795600+00:00",
+    "checkedAt": "2026-10-18T08:51:25.801942+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -2572,10 +3330,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.4
+    "seconds": 1.2
   },
   "node/13371328898": {
-    "checkedAt": "2026-10-17T21:51:23.164622+00:00",
+    "checkedAt": "2026-10-18T08:51:27.013759+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2585,14 +3343,14 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.7
+    "seconds": 5.7
   },
   "node/9326577380": {
     "checkedAt": "2026-10-15T22:21:44.759212+00:00",
     "status": "prices_found"
   },
   "node/7773218967": {
-    "checkedAt": "2026-10-17T21:50:49.237276+00:00",
+    "checkedAt": "2026-10-18T08:51:14.762436+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2601,10 +3359,10 @@
       }
     ],
     "errors": [],
-    "seconds": 20.0
+    "seconds": 0.2
   },
   "node/11064482315": {
-    "checkedAt": "2026-10-17T21:51:25.824260+00:00",
+    "checkedAt": "2026-10-18T08:51:27.436780+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2613,10 +3371,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.6
+    "seconds": 0.7
   },
   "node/2901296694": {
-    "checkedAt": "2026-10-17T21:51:07.513905+00:00",
+    "checkedAt": "2026-10-18T08:51:20.347350+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2641,10 +3399,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.3
+    "seconds": 7.1
   },
   "node/1197413430": {
-    "checkedAt": "2026-10-17T21:51:09.218182+00:00",
+    "checkedAt": "2026-10-18T08:51:23.224028+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2677,19 +3435,29 @@
       }
     ],
     "errors": [],
-    "seconds": 18.2
+    "seconds": 20.7
   },
   "node/13484845049": {
-    "checkedAt": "2026-10-17T21:51:35.591569+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:51:39.605254+00:00",
+    "status": "partial",
     "documents": [
       {
         "url": "https://www.etna-bar.ch",
         "kind": "html"
+      },
+      {
+        "url": "https://www.etna-bar.ch/lounge/",
+        "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 14.8
+    "errors": [
+      {
+        "url": "http://etna-bar.ch",
+        "reason": "unsupported_url",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 4.1
   },
   "node/6372498649": {
     "checkedAt": "2026-10-17T21:49:08.035597+00:00",
@@ -2760,7 +3528,7 @@
     "seconds": 147.1
   },
   "node/13997991120": {
-    "checkedAt": "2026-10-17T21:51:12.086238+00:00",
+    "checkedAt": "2026-10-18T08:51:23.694639+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2785,10 +3553,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.8
+    "seconds": 2.1
   },
   "node/4945175252": {
-    "checkedAt": "2026-10-17T21:51:35.175948+00:00",
+    "checkedAt": "2026-10-18T08:51:34.953284+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -2798,10 +3566,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.0
+    "seconds": 4.8
   },
   "node/5377769529": {
-    "checkedAt": "2026-10-17T21:51:27.374614+00:00",
+    "checkedAt": "2026-10-18T08:51:28.096157+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2813,12 +3581,20 @@
         "kind": "pdf"
       },
       {
+        "url": "https://arche-basel.ch/le-restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://arche-basel.ch/speisekarte-le-restaurant/",
+        "kind": "html"
+      },
+      {
         "url": "https://arche-basel.ch/wp-content/plugins/instagram-feed-pro/img/placeholder.png",
         "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 11.4
+    "seconds": 11.5
   },
   "way/225127782": {
     "checkedAt": "2026-10-17T21:51:29.903062+00:00",
@@ -2853,7 +3629,7 @@
     "seconds": 9.9
   },
   "node/13791838181": {
-    "checkedAt": "2026-10-17T21:51:27.397251+00:00",
+    "checkedAt": "2026-10-18T08:51:32.757598+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2878,7 +3654,7 @@
       }
     ],
     "errors": [],
-    "seconds": 8.2
+    "seconds": 2.2
   },
   "node/12017121002": {
     "checkedAt": "2026-10-17T21:51:38.802809+00:00",
@@ -3113,7 +3889,7 @@
     "seconds": 136.0
   },
   "node/5696224724": {
-    "checkedAt": "2026-10-17T21:52:02.999903+00:00",
+    "checkedAt": "2026-10-18T08:52:09.952327+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3123,10 +3899,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 1.2
   },
   "node/6644486815": {
-    "checkedAt": "2026-10-17T21:51:53.019413+00:00",
+    "checkedAt": "2026-10-18T08:51:56.138726+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3136,10 +3912,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 8.4
+    "seconds": 12.0
   },
   "node/14078084801": {
-    "checkedAt": "2026-10-17T21:51:39.770069+00:00",
+    "checkedAt": "2026-10-18T08:51:43.734489+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3148,10 +3924,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.9
+    "seconds": 2.6
   },
   "node/5772876669": {
-    "checkedAt": "2026-10-17T21:52:01.433697+00:00",
+    "checkedAt": "2026-10-18T08:52:08.096117+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3160,10 +3936,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.1
+    "seconds": 1.9
   },
   "node/3890667654": {
-    "checkedAt": "2026-10-17T21:51:49.129612+00:00",
+    "checkedAt": "2026-10-18T08:51:43.971953+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3173,10 +3949,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 3.9
+    "seconds": 12.2
   },
   "node/11413486822": {
-    "checkedAt": "2026-10-17T21:52:04.487774+00:00",
+    "checkedAt": "2026-10-18T08:52:11.127058+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3189,19 +3965,23 @@
       }
     ],
     "errors": [],
-    "seconds": 5.5
+    "seconds": 7.5
   },
   "node/985234865": {
-    "checkedAt": "2026-10-17T21:52:18.144784+00:00",
+    "checkedAt": "2026-10-18T08:52:18.611675+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.lerhinbleu.ch/de/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.lerhinbleu.ch/wp-content/uploads/2017/05/le-rhin-bleu-restaurant.svg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 7.7
+    "seconds": 11.7
   },
   "node/13061564803": {
     "checkedAt": "2026-10-17T21:52:10.037776+00:00",
@@ -3224,7 +4004,7 @@
     "seconds": 8.1
   },
   "node/2840757806": {
-    "checkedAt": "2026-10-17T21:52:22.719659+00:00",
+    "checkedAt": "2026-10-18T08:52:18.647945+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -3234,12 +4014,16 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.2
+    "seconds": 3.5
   },
   "node/2215970143": {
-    "checkedAt": "2026-10-17T21:51:39.144227+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:51:39.715515+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.restaurant-kunsthalle.ch/wp-content/uploads/2025/11/Campari_Bar_Karte_November_2025.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.restaurant-kunsthalle.ch/",
         "kind": "html"
@@ -3265,19 +4049,27 @@
         "kind": "pdf"
       },
       {
+        "url": "https://www.restaurant-kunsthalle.ch/campari-bar-5/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.restaurant-kunsthalle.ch/campari-bar/",
+        "kind": "html"
+      },
+      {
         "url": "https://www.restaurant-kunsthalle.ch/wp-content/uploads/2026/10/KunsthalleBasel_Weinkarte_1026.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 23.9
+    "seconds": 61.4
   },
   "node/5691850621": {
     "checkedAt": "2026-10-15T22:24:08.621350+00:00",
     "status": "prices_found"
   },
   "node/9381912099": {
-    "checkedAt": "2026-10-17T21:52:32.687970+00:00",
+    "checkedAt": "2026-10-18T08:52:32.604080+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3287,14 +4079,14 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 2.4
   },
   "node/3888881365": {
     "checkedAt": "2026-10-15T22:24:08.069975+00:00",
     "status": "prices_found"
   },
   "node/9182541851": {
-    "checkedAt": "2026-10-17T21:52:25.812584+00:00",
+    "checkedAt": "2026-10-18T08:52:30.263635+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3307,22 +4099,210 @@
       }
     ],
     "errors": [],
-    "seconds": 6.9
+    "seconds": 2.3
   },
   "node/3638026952": {
-    "checkedAt": "2026-10-17T21:52:32.875861+00:00",
+    "checkedAt": "2026-10-18T08:52:35.030343+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.luigia.ch/de/restaurant/luigia-basilea/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/Luigi-Basilea/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/luigia-Left-Bank/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/luigia-rechten-Ufer/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/luigia-Meyrin/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/Luigia-Nyon/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/louisiana-lausanne/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/Luigia-Sion/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/Louis-Z%C3%BCrich/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/luigia-%C3%B6ffikon/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/Louis-Freiburg/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-fribourg-04-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-fribourg-02-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-fribourg-03-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-fribourg-01-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/de/Restaurant/luigia-Dubai/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-zurich-opfikon-04-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-zurich-opfikon-03-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-zurich-opfikon-02-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-zurich-opfikon-01-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-zurich-center-01-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-zurich-center-02-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-zurich-center-03-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-zurich-center-04-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-sion-02-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-sion-03-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-sion-04-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-sion-01-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-lausanne-03-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-lausanne-01-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-lausanne-04-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-lausanne-02-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-nyon-04-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-nyon-03-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-nyon-01-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-nyon-02-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-meyrin-03-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-meyrin-01-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-meyrin-02-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-meyrin-05-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-geneve-rive-droite-03-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-geneve-rive-droite-01-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-geneve-rive-droite-02-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-geneve-rive-droite-04-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-geneve-rive-gauche-04-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-geneve-rive-gauche-03-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-geneve-rive-gauche-02-768x512.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.luigia.ch/wp-content/uploads/2023/02/luigia-geneve-rive-gauche-01-768x512.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 5.5
+    "seconds": 99.1
   },
   "node/6372498635": {
-    "checkedAt": "2026-10-17T21:51:50.357179+00:00",
+    "checkedAt": "2026-10-18T08:51:46.334061+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3359,6 +4339,10 @@
       },
       {
         "url": "https://www.kuechlin.ch/dessertkarte.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.kuechlin.ch/bar.html",
         "kind": "html"
       },
       {
@@ -3423,10 +4407,10 @@
       }
     ],
     "errors": [],
-    "seconds": 58.6
+    "seconds": 75.7
   },
   "node/292455543": {
-    "checkedAt": "2026-10-17T21:52:34.235203+00:00",
+    "checkedAt": "2026-10-18T08:52:41.144667+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3439,7 +4423,7 @@
       }
     ],
     "errors": [],
-    "seconds": 8.8
+    "seconds": 0.9
   },
   "node/4144545589": {
     "checkedAt": "2026-10-15T22:24:08.870438+00:00",
@@ -3454,7 +4438,7 @@
     "status": "prices_found"
   },
   "node/6388624275": {
-    "checkedAt": "2026-10-17T21:51:51.688999+00:00",
+    "checkedAt": "2026-10-18T08:51:53.291986+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3462,8 +4446,28 @@
         "kind": "html"
       },
       {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/logo-white.svg",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://restaurant-la.com/menu/",
         "kind": "html"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/etoile-michelin-la-restaurant.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/instagram-white.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/basel.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/michelin-guide.svg",
+        "kind": "unsupported"
       },
       {
         "url": "https://restaurant-la.com/wp-content/themes/la/images/la-restaurant-menu.svg",
@@ -3478,6 +4482,22 @@
         "kind": "unsupported"
       },
       {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/social-logo-footer/instagram.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/social-logo-footer/basel.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/social-logo-footer/michelin-guide.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/la-restaurant-footer.jpg",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://restaurant-la.com/fr/menu/",
         "kind": "html"
       },
@@ -3486,15 +4506,35 @@
         "kind": "html"
       },
       {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/2025/good/LA RESTAURANT 2025-8.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/2025/good/LA RESTAURANT 2025-9.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/2025/good/LA RESTAURANT 2025-10.jpg",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://restaurant-la.com/menu/",
         "kind": "html"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/2025/good/la-restaurant-compo.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-la.com/wp-content/themes/la/images/2025/good/LA RESTAURANT 2025-5.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 31.0
+    "seconds": 105.8
   },
   "node/2901279854": {
-    "checkedAt": "2026-10-17T21:52:40.219441+00:00",
+    "checkedAt": "2026-10-18T08:53:02.044715+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3504,38 +4544,38 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.3
   },
   "node/10581639707": {
-    "checkedAt": "2026-10-17T21:52:36.506952+00:00",
+    "checkedAt": "2026-10-18T08:52:42.091899+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.miake.ch/",
         "kind": "html"
-      },
-      {
-        "url": "https://www.miake.ch/menuekarte",
-        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 3.7
+    "seconds": 2.0
   },
   "node/4595404674": {
-    "checkedAt": "2026-10-17T21:52:38.381672+00:00",
+    "checkedAt": "2026-10-18T08:53:01.384341+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://molino.ch/de/",
         "kind": "html"
+      },
+      {
+        "url": "https://molino.ch/wp-content/uploads/2023/04/molino-restaurant.svg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 13.4
+    "seconds": 7.0
   },
   "node/4447974700": {
-    "checkedAt": "2026-10-17T21:52:24.912511+00:00",
+    "checkedAt": "2026-10-18T08:52:22.178960+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3600,10 +4640,10 @@
       }
     ],
     "errors": [],
-    "seconds": 76.9
+    "seconds": 71.0
   },
   "node/567050965": {
-    "checkedAt": "2026-10-17T21:52:36.549099+00:00",
+    "checkedAt": "2026-10-18T08:52:44.114631+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3620,10 +4660,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.3
+    "seconds": 17.3
   },
   "node/12844028801": {
-    "checkedAt": "2026-10-17T21:52:51.788325+00:00",
+    "checkedAt": "2026-10-18T08:53:09.671494+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -3633,26 +4673,50 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 3.1
+    "seconds": 2.6
   },
   "node/12718300663": {
     "checkedAt": "2026-10-15T22:24:37.032615+00:00",
     "status": "prices_found"
   },
   "node/5948052298": {
-    "checkedAt": "2026-10-17T21:52:55.835033+00:00",
+    "checkedAt": "2026-10-18T08:53:13.496032+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.osterialittleitaly.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.osterialittleitaly.ch/assets/components/phpthumbof/cache/Restaurant-Little-Italy-Basel.568c8d036ba8383d35b9b5cb984cfeca.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.osterialittleitaly.ch/assets/components/phpthumbof/cache/OsteriaLittleItaly-GaultMillau.568c8d036ba8383d35b9b5cb984cfeca.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.osterialittleitaly.ch/assets/components/phpthumbof/cache/Restaurant-Little-Italy-Basel-italienische-Spezialit%C3%A4ten.568c8d036ba8383d35b9b5cb984cfeca.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.osterialittleitaly.ch/assets/uploads/Restaurant-Little-Italy-italienische-Spezialitäten.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.osterialittleitaly.ch/assets/uploads/Osteria-Little-Italy-italienisches-Restaurant-in-Basel.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.osterialittleitaly.ch/assets/uploads/Restaurant-Little-Italy-in-Basel.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 5.8
+    "seconds": 21.2
   },
   "node/4110184297": {
-    "checkedAt": "2026-10-17T21:52:43.063584+00:00",
+    "checkedAt": "2026-10-18T08:53:02.636945+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3801,14 +4865,14 @@
       }
     ],
     "errors": [],
-    "seconds": 82.4
+    "seconds": 44.6
   },
   "node/458833991": {
     "checkedAt": "2026-10-15T22:24:29.087998+00:00",
     "status": "prices_found"
   },
   "way/93770064": {
-    "checkedAt": "2026-10-17T21:53:04.498267+00:00",
+    "checkedAt": "2026-10-18T08:53:26.665876+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -3818,10 +4882,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.4
+    "seconds": 1.0
   },
   "node/567050951": {
-    "checkedAt": "2026-10-17T21:53:01.643152+00:00",
+    "checkedAt": "2026-10-18T08:53:22.838165+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -3831,7 +4895,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.9
+    "seconds": 3.8
   },
   "node/3237678599": {
     "checkedAt": "2026-10-17T21:52:57.108558+00:00",
@@ -3850,7 +4914,7 @@
     "seconds": 7.7
   },
   "node/4377182496": {
-    "checkedAt": "2026-10-17T21:52:49.006342+00:00",
+    "checkedAt": "2026-10-18T08:53:08.421229+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3872,13 +4936,21 @@
       {
         "url": "https://newbombay-basel.ch/wp-content/uploads/2026/01/Tagesmenu-New-Bombay-2022.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://newbombay-basel.ch/wp-content/uploads/2026/01/New-bombay-restaurant-indisches-rhein-view.avif",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://newbombay-basel.ch/wp-content/uploads/2026/01/New-Bombay-INdisches-Restaurant-Seating-indoor.avif",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 20.6
+    "seconds": 14.4
   },
   "node/8067914457": {
-    "checkedAt": "2026-10-17T21:52:40.369571+00:00",
+    "checkedAt": "2026-10-18T08:53:02.307432+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3923,10 +4995,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.7
+    "seconds": 7.4
   },
   "node/5677223491": {
-    "checkedAt": "2026-10-17T21:52:54.851345+00:00",
+    "checkedAt": "2026-10-18T08:53:12.247455+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3955,10 +5027,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.4
+    "seconds": 1.2
   },
   "node/7995309310": {
-    "checkedAt": "2026-10-17T21:53:09.565381+00:00",
+    "checkedAt": "2026-10-18T08:53:35.592453+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3968,10 +5040,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.4
   },
   "node/13130547170": {
-    "checkedAt": "2026-10-17T21:53:04.916100+00:00",
+    "checkedAt": "2026-10-18T08:53:33.163264+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3984,7 +5056,7 @@
       }
     ],
     "errors": [],
-    "seconds": 8.4
+    "seconds": 4.0
   },
   "node/8909393066": {
     "checkedAt": "2026-10-15T22:24:46.807641+00:00",
@@ -3995,7 +5067,7 @@
     "status": "prices_found"
   },
   "node/2901279855": {
-    "checkedAt": "2026-10-17T21:53:13.292825+00:00",
+    "checkedAt": "2026-10-18T08:53:37.119823+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4003,15 +5075,83 @@
         "kind": "html"
       },
       {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/Logo_Froburg-1.png",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://www.pizzeriafroburg.ch/menuekarte/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/Logo_Froburg_weiss.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/salad.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/vorspeise.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/pizza.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/pasta.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/penne.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/ravioli.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/fisch.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/rippen.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/steak.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/kartoffeln.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/kochtopf.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/cupcake.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/IMG_20200830_194226_1000.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/IMG_20200830_191535_1000.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.pizzeriafroburg.ch/wp-content/uploads/2020/10/IMG_20200831_170730_1000.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 5.2
+    "seconds": 31.4
   },
   "node/7747174184": {
-    "checkedAt": "2026-10-17T21:53:09.721898+00:00",
+    "checkedAt": "2026-10-18T08:53:36.018206+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4023,47 +5163,92 @@
         "kind": "pdf"
       },
       {
+        "url": "https://restaurant-dapia.ch/images/logo-dapia.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-dapia.ch/_astro/hero-theke.DOYWnYpY_Z2fplM0.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-dapia.ch/gallery/Ristorante_Pizzeria_Da_Pia_Bar_in_Basel.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-dapia.ch/gallery/Ristorante_Pizzeria_Da_Pia_Bar_Basel.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-dapia.ch/gallery/Ristorante_da_Pia_von_aussen.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-dapia.ch/gallery/Ristorante_Da_Pia_Pizzeria_Bar_Italienisches_Restaurant.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://restaurant-dapia.ch/gallery/Ristorante_Da_Pia_Pizzeria_Bar_in_Basel.jpg",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://restaurant-dapia.ch/downloads/weinkarte.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 10.6
+    "seconds": 18.1
   },
   "way/327318693": {
-    "checkedAt": "2026-10-17T21:53:08.297657+00:00",
-    "status": "no_prices",
-    "documents": [
+    "checkedAt": "2026-10-18T08:53:34.729244+00:00",
+    "status": "robots_blocked",
+    "documents": [],
+    "errors": [
       {
-        "url": "https://parkpavillon.ch/",
-        "kind": "html"
-      },
-      {
-        "url": "https://parkpavillon.ch/angebote/",
-        "kind": "html"
-      },
-      {
-        "url": "https://parkpavillon.ch/wp-content/uploads/2026/03/Pavillon-im-Park-Kinderparty_26.pdf",
-        "kind": "pdf"
+        "url": "https://www.parkpavillon.ch/",
+        "reason": "robots_blocked",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 17.6
+    "seconds": 0.9
   },
   "node/122337395": {
-    "checkedAt": "2026-10-17T21:53:04.839211+00:00",
+    "checkedAt": "2026-10-18T08:53:27.662880+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.parterre-one.ch",
         "kind": "html"
+      },
+      {
+        "url": "https://www.parterre-one.ch/restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.parterre-one.ch/wp-content/uploads/2026/04/Sommerbar-2.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.parterre-one.ch",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.parterre-one.ch/wp-content/uploads/2025/06/One_Eat-1024x683.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.parterre-one.ch/wp-content/plugins/instagram-feed-pro/img/placeholder.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.parterre-one.ch/wp-content/uploads/2025/06/ONE_Weinkarte_Neuste_Version_22.10.pdf",
+        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 8.5
+    "seconds": 14.5
   },
   "node/586277088": {
-    "checkedAt": "2026-10-17T21:53:25.941788+00:00",
+    "checkedAt": "2026-10-18T08:53:44.885634+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4073,10 +5258,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.3
   },
   "node/457333463": {
-    "checkedAt": "2026-10-17T21:53:20.285256+00:00",
+    "checkedAt": "2026-10-18T08:53:44.262862+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4089,10 +5274,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.0
+    "seconds": 0.6
   },
   "node/8125259187": {
-    "checkedAt": "2026-10-17T21:53:28.404386+00:00",
+    "checkedAt": "2026-10-18T08:53:47.204056+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4102,10 +5287,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.0
+    "seconds": 0.1
   },
   "node/8500247484": {
-    "checkedAt": "2026-10-17T21:53:18.503762+00:00",
+    "checkedAt": "2026-10-18T08:53:42.172871+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4122,10 +5307,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.9
+    "seconds": 2.1
   },
   "node/4540155696": {
-    "checkedAt": "2026-10-17T21:53:28.415790+00:00",
+    "checkedAt": "2026-10-18T08:53:47.299563+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4135,10 +5320,18 @@
       {
         "url": "https://ramazzotti-basel.ch/pdf/agb.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://ramazzotti-basel.ch/assets/business/images/dividers/divider-white.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://ramazzotti-basel.ch/assets/business/images/dividers/divider-orange.svg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 9.0
+    "seconds": 6.9
   },
   "node/2578294254": {
     "checkedAt": "2026-10-15T22:24:54.309735+00:00",
@@ -4213,7 +5406,7 @@
     "seconds": 36.5
   },
   "node/1653595985": {
-    "checkedAt": "2026-10-17T21:53:37.399030+00:00",
+    "checkedAt": "2026-10-18T08:53:54.099745+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -4226,7 +5419,7 @@
     "seconds": 8.2
   },
   "node/12613597133": {
-    "checkedAt": "2026-10-17T21:53:26.102006+00:00",
+    "checkedAt": "2026-10-18T08:53:45.171563+00:00",
     "status": "partial",
     "documents": [
       {
@@ -4234,27 +5427,135 @@
         "kind": "html"
       },
       {
+        "url": "https://puro-basel.ch/wp-content/uploads/2022/07/PURO-Logo_rot.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://puro-basel.ch/puro-restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://puro-basel.ch/en/puro-restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://puro-basel.ch/en/menu/",
+        "kind": "html"
+      },
+      {
         "url": "https://puro-basel.ch/menu/",
         "kind": "html"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-14-1920px_web-1030x687.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-3-1920px_web-1030x685.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-13-1920px_web-1030x687.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [
       {
-        "url": "https://puro-basel.ch/en/menu/",
+        "url": "https://puro-basel.ch/festtagsangebot/",
         "reason": "ConnectTimeout",
         "phase": "fetch"
       },
       {
-        "url": "https://puro-basel.ch/festtagsangebot/",
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-23-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-22-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-4-1920px_web-1030x685.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-21-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-19-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-5-1920px_web-1030x685.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-18-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-17-1920px_web-1-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-16-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-6-1920px_web-1030x685.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-15-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-12-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-11-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-2-1920px_web-1030x685.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-1-1920px_web-1030x685.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-8-1920px_web-1030x687.jpg",
+        "reason": "ConnectTimeout",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://puro-basel.ch/wp-content/uploads/2023/08/moevenpick_basel-restaurant-10-1920px_web-1030x687.jpg",
         "reason": "ConnectTimeout",
         "phase": "fetch"
       }
     ],
-    "seconds": 26.0
+    "seconds": 189.2
   },
   "way/318389704": {
-    "checkedAt": "2026-10-17T21:53:52.138638+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:54:08.480756+00:00",
+    "status": "partial",
     "documents": [
       {
         "url": "https://www.blackstars.ch/restaurant_",
@@ -4273,6 +5574,26 @@
         "kind": "html"
       },
       {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
+      },
+      {
         "url": "https://www.blackstars.ch/restaurant_/speisekarte",
         "kind": "html"
       },
@@ -4281,11 +5602,32 @@
         "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 15.0
+    "errors": [
+      {
+        "url": "https://www.blackstars.ch/restaurant_/fileservlet",
+        "reason": "http_404",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/fileservlet",
+        "reason": "http_404",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://www.blackstars.ch/fileservlet",
+        "reason": "http_404",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://www.blackstars.ch/fileservlet",
+        "reason": "http_404",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 13.6
   },
   "node/8036732978": {
-    "checkedAt": "2026-10-17T21:53:59.878744+00:00",
+    "checkedAt": "2026-10-18T08:54:10.292545+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4295,10 +5637,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.3
   },
   "node/3888956159": {
-    "checkedAt": "2026-10-17T21:53:45.562389+00:00",
+    "checkedAt": "2026-10-18T08:54:02.338232+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4314,6 +5656,10 @@
         "kind": "pdf"
       },
       {
+        "url": "https://aeschenplatz.ch/wp-content/uploads/logo5-300x300.png",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://aeschenplatz.ch/menu/",
         "kind": "html"
       },
@@ -4327,23 +5673,23 @@
       }
     ],
     "errors": [],
-    "seconds": 23.2
+    "seconds": 10.7
   },
   "node/12802088001": {
-    "checkedAt": "2026-10-17T21:54:05.480394+00:00",
-    "status": "fetch_failed",
+    "checkedAt": "2026-10-18T08:54:13.079642+00:00",
+    "status": "robots_blocked",
     "documents": [],
     "errors": [
       {
         "url": "https://restaurantlu.com/",
-        "reason": "gaierror",
+        "reason": "robots_blocked",
         "phase": "fetch"
       }
     ],
-    "seconds": 0.1
+    "seconds": 0.6
   },
   "node/12867019283": {
-    "checkedAt": "2026-10-17T21:54:00.054500+00:00",
+    "checkedAt": "2026-10-18T08:54:10.596410+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4357,6 +5703,10 @@
       {
         "url": "https://www.laufeneck.ch/wp-content/uploads/2026/09/26_11_07-Wild-Buffet-2026.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.laufeneck.ch/wp-content/uploads/2019/10/logo_laufeneck.jpg",
+        "kind": "unsupported"
       },
       {
         "url": "https://www.laufeneck.ch/tagesmenue/",
@@ -4373,17 +5723,37 @@
       {
         "url": "https://www.laufeneck.ch/speisekarte-warm/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.laufeneck.ch/restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.laufeneck.ch/restaurant-2/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.laufeneck.ch/restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.laufeneck.ch/wp-content/uploads/2026/02/but_Kaesefondue-Laufeneck-Basel.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.laufeneck.ch/wp-content/uploads/2023/09/but-wild-laufeneck2.gif",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 13.7
+    "seconds": 8.6
   },
   "node/6047355929": {
     "checkedAt": "2026-10-15T22:25:11.264917+00:00",
     "status": "prices_found"
   },
   "node/1855733118": {
-    "checkedAt": "2026-10-17T21:54:08.790947+00:00",
+    "checkedAt": "2026-10-18T08:54:19.156771+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4393,14 +5763,18 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.0
+    "seconds": 0.1
   },
   "node/2684267823": {
-    "checkedAt": "2026-10-17T21:54:08.836781+00:00",
+    "checkedAt": "2026-10-18T08:54:19.270894+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.piadinabar-margherita.ch/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.piadinabar-margherita.ch/das-restaurant",
         "kind": "html"
       },
       {
@@ -4409,18 +5783,22 @@
       }
     ],
     "errors": [],
-    "seconds": 4.6
+    "seconds": 0.7
   },
   "node/2624405472": {
     "checkedAt": "2026-10-15T22:25:12.587170+00:00",
     "status": "prices_found"
   },
   "node/2343796329": {
-    "checkedAt": "2026-10-17T21:53:41.776471+00:00",
+    "checkedAt": "2026-10-18T08:53:54.150624+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.resslirytti.ch/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.resslirytti.ch/restaurant/",
         "kind": "html"
       },
       {
@@ -4430,13 +5808,45 @@
       {
         "url": "https://www.resslirytti.ch/wp-content/uploads/2026/10/12.10.-16.10.2026.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.resslirytti.ch/wp-content/uploads/2025/04/Speisekarte-1.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.resslirytti.ch/wp-content/uploads/2026/10/12.10.-16.10.2026.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.resslirytti.ch/en/restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.resslirytti.ch/wp-content/uploads/2024/03/IMG_7741-Bearbeitet.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.resslirytti.ch/wp-content/uploads/2024/03/IMG_7737-Bearbeitet.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.resslirytti.ch/wp-content/uploads/2024/03/kontakt-1024x525.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.resslirytti.ch/wp-content/uploads/2024/03/resslifront.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.resslirytti.ch/wp-content/uploads/2024/03/fassade_day.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 30.5
+    "seconds": 26.5
   },
   "node/4554501146": {
-    "checkedAt": "2026-10-17T21:54:12.271006+00:00",
+    "checkedAt": "2026-10-18T08:54:19.932453+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4462,17 +5872,25 @@
       {
         "url": "https://static1.squarespace.com/static/5faa99ac4025d26238b26caa/t/6acc905d7c4f39110e52cc19/1791791197699/Tagesmenu+Woche+12.10.-+17.10.2026.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.restaurant-schnabel.ch/restaurant-schnabel",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 10.7
+    "seconds": 14.0
   },
   "node/6654642118": {
-    "checkedAt": "2026-10-17T21:54:05.588000+00:00",
+    "checkedAt": "2026-10-18T08:54:13.665942+00:00",
     "status": "no_prices",
     "documents": [
       {
-        "url": "https://www.loewenzorn-basel.ch",
+        "url": "https://en.loewenzorn-basel.ch/",
+        "kind": "html"
+      },
+      {
+        "url": "https://en.loewenzorn-basel.ch/restaurant",
         "kind": "html"
       },
       {
@@ -4488,12 +5906,12 @@
         "kind": "html"
       },
       {
-        "url": "https://www.loewenzorn-basel.ch/mittagsmenue",
+        "url": "https://en.loewenzorn-basel.ch/mittagsmenue",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 8.6
+    "seconds": 6.8
   },
   "node/9832402717": {
     "checkedAt": "2026-10-17T21:54:13.484289+00:00",
@@ -4516,7 +5934,7 @@
     "seconds": 17.3
   },
   "node/1936094990": {
-    "checkedAt": "2026-10-17T21:54:14.191331+00:00",
+    "checkedAt": "2026-10-18T08:54:20.431996+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4526,7 +5944,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.3
   },
   "node/585133165": {
     "checkedAt": "2026-10-17T21:52:03.155923+00:00",
@@ -4593,7 +6011,7 @@
     "status": "prices_found"
   },
   "node/4823742529": {
-    "checkedAt": "2026-10-17T21:54:22.983551+00:00",
+    "checkedAt": "2026-10-18T08:54:20.760949+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4626,14 +6044,14 @@
       }
     ],
     "errors": [],
-    "seconds": 7.8
+    "seconds": 4.8
   },
   "node/582950406": {
     "checkedAt": "2026-10-15T22:25:31.942922+00:00",
     "status": "prices_found"
   },
   "node/9514136696": {
-    "checkedAt": "2026-10-17T21:54:07.138940+00:00",
+    "checkedAt": "2026-10-18T08:54:14.147185+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4835,13 +6253,157 @@
       {
         "url": "https://www.murano.ch/wp-content/uploads/murano-menu-20-800x450.jpg",
         "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-22.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-22-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-24.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-24-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-26.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-26-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-206.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-206-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-207.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-207-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-212.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-212-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-228.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-228-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-231.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-231-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-236.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-236-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-237.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-237-786x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-304.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-304-777x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-311.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-311-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-314.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-314-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-320.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-320-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-323.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-323-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-326.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-326-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-233.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/murano-menu-233-800x450.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.murano.ch/pdf/murano-weinkarte.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.murano.ch/wp-content/uploads/2023/06/murano_weinkarte.png",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 148.1
+    "seconds": 178.6
   },
   "node/9381403405": {
-    "checkedAt": "2026-10-17T21:54:30.789053+00:00",
+    "checkedAt": "2026-10-18T08:54:25.594712+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4851,7 +6413,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.3
+    "seconds": 2.6
   },
   "node/11757900217": {
     "checkedAt": "2026-10-17T21:54:30.772828+00:00",
@@ -4878,7 +6440,7 @@
     "seconds": 11.3
   },
   "node/9905765555": {
-    "checkedAt": "2026-10-17T21:54:42.560430+00:00",
+    "checkedAt": "2026-10-18T08:54:28.587074+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4888,7 +6450,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.0
+    "seconds": 0.9
   },
   "node/273223709": {
     "checkedAt": "2026-10-17T21:54:13.738705+00:00",
@@ -4983,7 +6545,7 @@
     "seconds": 47.8
   },
   "node/583280000": {
-    "checkedAt": "2026-10-17T21:54:43.545876+00:00",
+    "checkedAt": "2026-10-18T08:54:29.487495+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5016,14 +6578,26 @@
       }
     ],
     "errors": [],
-    "seconds": 13.5
+    "seconds": 0.7
   },
   "node/586283598": {
-    "checkedAt": "2026-10-17T21:54:24.855622+00:00",
+    "checkedAt": "2026-10-18T08:54:22.050642+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.rheinfelderhof.ch/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.rheinfelderhof.ch/de/restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.rheinfelderhof.ch/en/restaurant/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.rheinfelderhof.ch/en/restaurant/restaurant-offers/",
         "kind": "html"
       },
       {
@@ -5051,19 +6625,47 @@
         "kind": "pdf"
       },
       {
+        "url": "https://www.rheinfelderhof.ch/en/restaurant/reserve-a-table/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.rheinfelderhof.ch/de/restaurant/weihnachten-und-silvester/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.rheinfelderhof.ch/assets/Weihnachten-und-Silvester-Menues-2025.pdf",
+        "kind": "pdf"
+      },
+      {
         "url": "https://www.rheinfelderhof.ch/de/angebote/",
         "kind": "html"
       },
       {
         "url": "https://www.rheinfelderhof.ch/de/angebote/basel-weekend-arrangement-fuer-2/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.rheinfelderhof.ch/assets/rheinfelderhof/Images/Fruehstuecksbuffet__FocusFillWzMyMCwxMzAsInkiLDU1XQ.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.rheinfelderhof.ch/assets/rheinfelderhof/Images/Hotel-Rheinfelderhof-Februar-2020-52-von-79__FocusFillWzMyMCwxMzAsInkiLDQxXQ.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.rheinfelderhof.ch/assets/rheinfelderhof/Images/Ernaehrung_Fruehstueck_Header__FocusFillWzMyMCwxNzUsIngiLDBd.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.rheinfelderhof.ch/assets/rheinfelderhof/Images/Hotel-Rheinfelderhof-Februar-2020-52-von-79-v2__FocusFillWzMyMCwxMzAsInkiLDQxXQ.jpg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 31.3
+    "seconds": 22.2
   },
   "node/14113313801": {
-    "checkedAt": "2026-10-17T21:53:13.337792+00:00",
+    "checkedAt": "2026-10-18T08:53:39.123390+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5096,10 +6698,10 @@
       }
     ],
     "errors": [],
-    "seconds": 89.2
+    "seconds": 31.2
   },
   "node/10140233773": {
-    "checkedAt": "2026-10-17T21:54:57.043044+00:00",
+    "checkedAt": "2026-10-18T08:54:39.406375+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5108,10 +6710,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.0
+    "seconds": 0.3
   },
   "node/5718149115": {
-    "checkedAt": "2026-10-17T21:55:02.669879+00:00",
+    "checkedAt": "2026-10-18T08:54:44.213613+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -5121,10 +6723,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.1
+    "seconds": 2.6
   },
   "node/5744306322": {
-    "checkedAt": "2026-10-17T21:54:55.364418+00:00",
+    "checkedAt": "2026-10-18T08:54:30.223036+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5161,10 +6763,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.7
+    "seconds": 18.7
   },
   "node/457333518": {
-    "checkedAt": "2026-10-17T21:54:56.203644+00:00",
+    "checkedAt": "2026-10-18T08:54:33.975395+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5185,7 +6787,7 @@
       }
     ],
     "errors": [],
-    "seconds": 6.5
+    "seconds": 5.4
   },
   "node/5016417015": {
     "checkedAt": "2026-10-17T21:54:33.105714+00:00",
@@ -5244,7 +6846,7 @@
     "seconds": 39.7
   },
   "node/702231310": {
-    "checkedAt": "2026-10-17T21:54:14.341503+00:00",
+    "checkedAt": "2026-10-18T08:54:20.652829+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5254,6 +6856,10 @@
       {
         "url": "https://www.wanderruh.ch/wp-content/uploads/wanderruh/Ferien-26.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.wanderruh.ch/wp-content/uploads/wanderruh/Restaurant-Wanderruh-logo.png",
+        "kind": "unsupported"
       },
       {
         "url": "https://api2.lunchgate.ch/digital-menu/dm/menu/2c07fff398b6eff5bfe692c7bb2f08c9",
@@ -5268,6 +6874,14 @@
         "kind": "html"
       },
       {
+        "url": "https://www.wanderruh.ch/wp-content/uploads/wanderruh/Cordonbleu.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.wanderruh.ch/wp-content/uploads/wanderruh/Salat.webp",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://api2.lunchgate.ch/digital-menu/dm/menu/a1922a159a7df494574a5f8106b46df7",
         "kind": "html"
       },
@@ -5277,10 +6891,10 @@
       }
     ],
     "errors": [],
-    "seconds": 41.0
+    "seconds": 39.0
   },
   "node/2001289817": {
-    "checkedAt": "2026-10-17T21:55:04.753899+00:00",
+    "checkedAt": "2026-10-18T08:54:47.136930+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5290,13 +6904,61 @@
       {
         "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/modules/resto/misc_static/logo.png",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.royal-palace.ch/site/de/indian-restaurant-basel/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 7.4
+    "seconds": 7.0
   },
   "node/14203352696": {
-    "checkedAt": "2026-10-17T21:54:42.085623+00:00",
+    "checkedAt": "2026-10-18T08:54:28.158064+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5309,10 +6971,10 @@
       }
     ],
     "errors": [],
-    "seconds": 22.7
+    "seconds": 0.4
   },
   "node/7871928282": {
-    "checkedAt": "2026-10-17T21:55:06.075344+00:00",
+    "checkedAt": "2026-10-18T08:54:48.898303+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5330,13 +6992,17 @@
       {
         "url": "https://www.rubino-basel.ch/wp-content/uploads/2026-1august.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.rubino-basel.ch/wp-content/uploads/2024/10/rubino_logo.svg",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 10.4
+    "seconds": 6.1
   },
   "node/258889881": {
-    "checkedAt": "2026-10-17T21:55:13.582885+00:00",
+    "checkedAt": "2026-10-18T08:54:54.115835+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5346,14 +7012,14 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.4
+    "seconds": 0.3
   },
   "node/7778233543": {
     "checkedAt": "2026-10-15T22:24:21.549733+00:00",
     "status": "prices_found"
   },
   "node/12612357841": {
-    "checkedAt": "2026-10-17T21:55:01.510265+00:00",
+    "checkedAt": "2026-10-18T08:54:39.687144+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5382,10 +7048,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.1
+    "seconds": 9.9
   },
   "node/4701573904": {
-    "checkedAt": "2026-10-17T21:55:03.735292+00:00",
+    "checkedAt": "2026-10-18T08:54:46.847975+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5394,10 +7060,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.0
+    "seconds": 0.3
   },
   "node/12017251394": {
-    "checkedAt": "2026-10-17T21:55:09.025008+00:00",
+    "checkedAt": "2026-10-18T08:54:49.621949+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5406,10 +7072,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.0
+    "seconds": 0.3
   },
   "node/7762245664": {
-    "checkedAt": "2026-10-17T21:55:16.447487+00:00",
+    "checkedAt": "2026-10-18T08:54:56.927375+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5418,10 +7084,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.2
+    "seconds": 0.1
   },
   "node/10606351037": {
-    "checkedAt": "2026-10-17T21:55:15.065559+00:00",
+    "checkedAt": "2026-10-18T08:54:54.571546+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5431,10 +7097,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 8.7
+    "seconds": 5.2
   },
   "node/4714567615": {
-    "checkedAt": "2026-10-17T21:55:23.798077+00:00",
+    "checkedAt": "2026-10-18T08:54:57.980328+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5444,10 +7110,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.6
+    "seconds": 0.5
   },
   "node/7578166883": {
-    "checkedAt": "2026-10-17T21:55:12.112839+00:00",
+    "checkedAt": "2026-10-18T08:54:49.875309+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5456,27 +7122,26 @@
       }
     ],
     "errors": [],
-    "seconds": 20.1
+    "seconds": 0.2
   },
   "node/14178506071": {
-    "checkedAt": "2026-10-17T21:55:24.392848+00:00",
-    "status": "robots_blocked",
-    "documents": [],
-    "errors": [
+    "checkedAt": "2026-10-18T08:54:58.493133+00:00",
+    "status": "no_prices",
+    "documents": [
       {
         "url": "https://so.pizza/lokale/so-basel/",
-        "reason": "robots_blocked",
-        "phase": "fetch"
+        "kind": "html"
       }
     ],
-    "seconds": 1.3
+    "errors": [],
+    "seconds": 0.0
   },
   "node/10116280190": {
     "checkedAt": "2026-10-15T22:26:20.051099+00:00",
     "status": "prices_found"
   },
   "node/292058711": {
-    "checkedAt": "2026-10-17T21:55:15.743485+00:00",
+    "checkedAt": "2026-10-18T08:54:54.973733+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5497,10 +7162,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.9
+    "seconds": 2.0
   },
   "node/290725197": {
-    "checkedAt": "2026-10-17T21:55:13.937486+00:00",
+    "checkedAt": "2026-10-18T08:54:54.378959+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5513,10 +7178,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.5
+    "seconds": 0.2
   },
   "node/13302004345": {
-    "checkedAt": "2026-10-17T21:55:25.711277+00:00",
+    "checkedAt": "2026-10-18T08:54:59.676940+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -5526,10 +7191,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.3
+    "seconds": 0.4
   },
   "node/252822612": {
-    "checkedAt": "2026-10-17T21:55:12.808367+00:00",
+    "checkedAt": "2026-10-18T08:54:50.091426+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5541,19 +7206,487 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Weinkarte-Schiff.pdf",
-        "kind": "pdf"
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/07/Logo-Restaurant-Schiff.svg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/07/Plate-1.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/07/Board-1.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/07/Restaurant-Schiff-2.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/09/Restaurant-Schiff-12.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/07/Restaurant-Schiff-6.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Cordon-Bleu-Foto-1.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Pizza-Foto-1.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Roesti-Foto.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-11.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/09/Restaurant-Schiff-13.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-34.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-34-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-20.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-20-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-52.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-52-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-76.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-76-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-62.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-62-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-8.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-8-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-5.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-5-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-9.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-9-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-49.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-49-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-14.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-14-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-61.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-61-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-48.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-48-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-75.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-75-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/07/Restaurant-Schiff-2-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-41.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-41-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-39.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-39-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/09/Restaurant-Schiff-14.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/09/Restaurant-Schiff-14-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-65.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-65-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-4.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-4-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-43.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-43-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-16.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-16-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-7.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-7-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-44.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-44-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-69.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-69-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-9.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-9-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-71.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-71-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-53.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-53-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-13.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-13-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-72.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-72-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-42.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-42-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-68.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-68-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-66.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-66-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-70.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-70-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-6.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-6-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/07/Restaurant-Schiff-8.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/07/Restaurant-Schiff-8-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-46.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-46-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-60.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-60-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-27.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-27-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-15.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-15-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-21.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-21-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-35.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-35-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-47.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-47-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-10.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-10-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-67.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-67-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-58.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-58-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-51.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-51-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-40.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-40-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-25.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-25-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-30.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-30-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-55.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-55-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-57.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-57-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-28.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-28-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-77.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-77-400x284.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-26.webp",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Restaurant-Schiff-Basel-Foto-26-400x284.webp",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 16.2
+    "seconds": 195.3
   },
   "node/12533458853": {
     "checkedAt": "2026-10-15T22:26:30.232255+00:00",
     "status": "prices_found"
   },
   "node/11328121145": {
-    "checkedAt": "2026-10-17T21:55:27.052054+00:00",
+    "checkedAt": "2026-10-18T08:54:59.736994+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5562,7 +7695,7 @@
       }
     ],
     "errors": [],
-    "seconds": 4.2
+    "seconds": 0.0
   },
   "node/3758773688": {
     "checkedAt": "2026-10-15T22:26:25.965722+00:00",
@@ -5597,7 +7730,7 @@
     "seconds": 23.3
   },
   "node/3788956446": {
-    "checkedAt": "2026-10-17T21:55:32.855107+00:00",
+    "checkedAt": "2026-10-18T08:55:00.092162+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5606,10 +7739,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.9
+    "seconds": 0.0
   },
   "node/2573355484": {
-    "checkedAt": "2026-10-17T21:55:34.729519+00:00",
+    "checkedAt": "2026-10-18T08:55:00.099712+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5619,7 +7752,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.6
+    "seconds": 2.0
   },
   "node/9350766921": {
     "checkedAt": "2026-10-17T21:55:24.653691+00:00",
@@ -5650,7 +7783,7 @@
     "seconds": 11.1
   },
   "node/14158989682": {
-    "checkedAt": "2026-10-17T21:55:35.782065+00:00",
+    "checkedAt": "2026-10-18T08:55:01.953285+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5659,10 +7792,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.9
+    "seconds": 0.0
   },
   "node/4278519394": {
-    "checkedAt": "2026-10-17T21:55:19.629291+00:00",
+    "checkedAt": "2026-10-18T08:54:56.983618+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5691,10 +7824,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.8
+    "seconds": 1.0
   },
   "node/5137057421": {
-    "checkedAt": "2026-10-17T21:55:25.468440+00:00",
+    "checkedAt": "2026-10-18T08:54:58.503448+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5706,15 +7839,19 @@
         "kind": "html"
       },
       {
+        "url": "https://sparklingventure.com/assets/IMG_0227.webp",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://sparklingventure.com/assets/unnamed-4.jpg",
         "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 7.4
+    "seconds": 3.4
   },
   "node/11016416537": {
-    "checkedAt": "2026-10-17T21:55:42.889736+00:00",
+    "checkedAt": "2026-10-18T08:55:12.636885+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5723,10 +7860,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.7
+    "seconds": 0.0
   },
   "node/2579603914": {
-    "checkedAt": "2026-10-17T21:55:31.210132+00:00",
+    "checkedAt": "2026-10-18T08:54:59.780477+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5743,7 +7880,7 @@
       }
     ],
     "errors": [],
-    "seconds": 11.7
+    "seconds": 9.6
   },
   "node/4377355190": {
     "checkedAt": "2026-10-17T21:55:28.970689+00:00",
@@ -5782,7 +7919,7 @@
     "seconds": 29.6
   },
   "node/590051414": {
-    "checkedAt": "2026-10-17T21:55:55.478501+00:00",
+    "checkedAt": "2026-10-18T08:55:12.718563+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5792,10 +7929,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/1794707598": {
-    "checkedAt": "2026-10-17T21:55:37.285894+00:00",
+    "checkedAt": "2026-10-18T08:55:01.961389+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5811,6 +7948,10 @@
         "kind": "pdf"
       },
       {
+        "url": "https://tanjagrandits.ch/restaurant-stucki/",
+        "kind": "html"
+      },
+      {
         "url": "https://tanjagrandits.ch/speisekarte/",
         "kind": "html"
       },
@@ -5821,13 +7962,37 @@
       {
         "url": "https://tanjagrandits.ch/app/uploads/2026/07/August-2026.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://tanjagrandits.ch/app/uploads/2026/09/TanjaGranditsRestaurant-2026.zip",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://tanjagrandits.ch/en/restaurant-stucki/",
+        "kind": "html"
+      },
+      {
+        "url": "https://tanjagrandits.ch/app/uploads/2025/11/AGB_GGGmbH_eng.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://tanjagrandits.ch/en/menu/",
+        "kind": "html"
+      },
+      {
+        "url": "https://tanjagrandits.ch/app/uploads/2026/07/Summer-2026-Menu.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://tanjagrandits.ch/app/uploads/2026/07/August-2026_EN.pdf",
+        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 19.7
+    "seconds": 10.7
   },
   "node/9529779003": {
-    "checkedAt": "2026-10-17T21:55:55.632301+00:00",
+    "checkedAt": "2026-10-18T08:55:12.823164+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5836,10 +8001,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.4
+    "seconds": 0.1
   },
   "node/3207784771": {
-    "checkedAt": "2026-10-17T21:55:47.596864+00:00",
+    "checkedAt": "2026-10-18T08:55:12.638963+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5852,10 +8017,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.6
+    "seconds": 0.1
   },
   "node/13069636177": {
-    "checkedAt": "2026-10-17T21:55:57.080155+00:00",
+    "checkedAt": "2026-10-18T08:55:12.855569+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5880,10 +8045,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.7
+    "seconds": 4.1
   },
   "node/292057785": {
-    "checkedAt": "2026-10-17T21:55:37.382817+00:00",
+    "checkedAt": "2026-10-18T08:55:02.110689+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -5893,10 +8058,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 19.0
+    "seconds": 15.9
   },
   "node/6349326159": {
-    "checkedAt": "2026-10-17T21:55:56.997756+00:00",
+    "checkedAt": "2026-10-18T08:55:12.839759+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5917,10 +8082,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.0
+    "seconds": 4.7
   },
   "node/5092178833": {
-    "checkedAt": "2026-10-17T21:55:59.241689+00:00",
+    "checkedAt": "2026-10-18T08:55:16.958328+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5933,43 +8098,35 @@
       }
     ],
     "errors": [],
-    "seconds": 14.5
+    "seconds": 0.4
   },
   "node/9350906407": {
-    "checkedAt": "2026-10-17T21:55:56.412919+00:00",
+    "checkedAt": "2026-10-18T08:55:12.839182+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.threeladies.ch/",
         "kind": "html"
-      },
-      {
-        "url": "https://www.threeladies.ch/_files/ugd/8bad08_7f2627e7e68b44d39d7973f49e6f728d.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.threeladies.ch/_files/ugd/8bad08_c60d0b1ca220406c86445d714d132513.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.threeladies.ch/_files/ugd/8bad08_7169de898b954ef1a34db8c012d6c87c.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 13.8
+    "seconds": 0.0
   },
   "node/6954999086": {
     "checkedAt": "2026-10-15T22:26:40.412282+00:00",
     "status": "prices_found"
   },
   "node/3077292533": {
-    "checkedAt": "2026-10-17T21:55:38.720808+00:00",
+    "checkedAt": "2026-10-18T08:55:09.342887+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "http://www.tapeo.ch",
         "kind": "html"
+      },
+      {
+        "url": "http://www.tapeo.ch/wp-content/uploads/2021/11/tapeo-logo_red_210x80-1.png",
+        "kind": "unsupported"
       },
       {
         "url": "http://www.tapeo.ch/menue/",
@@ -6009,10 +8166,10 @@
       }
     ],
     "errors": [],
-    "seconds": 55.8
+    "seconds": 8.6
   },
   "node/3208777028": {
-    "checkedAt": "2026-10-17T21:56:12.995745+00:00",
+    "checkedAt": "2026-10-18T08:55:17.563384+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -6022,10 +8179,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.1
+    "seconds": 0.4
   },
   "node/4064658548": {
-    "checkedAt": "2026-10-17T21:56:13.128853+00:00",
+    "checkedAt": "2026-10-18T08:55:17.896745+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6035,10 +8192,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.6
+    "seconds": 2.2
   },
   "node/14090069126": {
-    "checkedAt": "2026-10-17T21:56:10.236009+00:00",
+    "checkedAt": "2026-10-18T08:55:17.336802+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6051,10 +8208,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.3
+    "seconds": 0.0
   },
   "node/2376800603": {
-    "checkedAt": "2026-10-17T21:56:13.740646+00:00",
+    "checkedAt": "2026-10-18T08:55:17.960829+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6063,26 +8220,58 @@
       }
     ],
     "errors": [],
-    "seconds": 1.6
+    "seconds": 0.2
   },
   "node/5341699522": {
-    "checkedAt": "2026-10-17T21:56:15.302587+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:55:17.982502+00:00",
+    "status": "prices_found",
     "documents": [
       {
+        "url": "https://walliserkanne-basel.ch/files/Walliserkanne_Basel_Wein_und_Getrankekarte_2026.pdf",
+        "kind": "pdf"
+      },
+      {
         "url": "https://walliserkanne-basel.ch/",
+        "kind": "html"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/images/W-Kanne_logo_gross.gif",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/restaurant.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/kanne-bar.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/restaurant-1.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/kanne-bar-2.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/restaurant-2.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/kanne-bar-1.html",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 2.1
+    "seconds": 10.7
   },
   "node/6318613814": {
     "checkedAt": "2026-10-15T22:26:57.737120+00:00",
     "status": "prices_found"
   },
   "node/1255857521": {
-    "checkedAt": "2026-10-17T21:56:15.575653+00:00",
+    "checkedAt": "2026-10-18T08:55:18.194792+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6095,10 +8284,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.7
+    "seconds": 1.6
   },
   "node/10116280189": {
-    "checkedAt": "2026-10-17T21:56:21.252684+00:00",
+    "checkedAt": "2026-10-18T08:55:20.136251+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6111,7 +8300,7 @@
     "seconds": 0.2
   },
   "node/14134798933": {
-    "checkedAt": "2026-10-17T21:56:17.402210+00:00",
+    "checkedAt": "2026-10-18T08:55:19.812100+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6144,22 +8333,54 @@
       }
     ],
     "errors": [],
-    "seconds": 24.8
+    "seconds": 19.8
   },
   "node/9285169638": {
-    "checkedAt": "2026-10-17T21:56:21.407562+00:00",
+    "checkedAt": "2026-10-18T08:55:20.357383+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://yulinqin18.wixsite.com/restaurant/menu",
         "kind": "html"
+      },
+      {
+        "url": "https://yulinqin18.wixsite.com/restaurant",
+        "kind": "html"
+      },
+      {
+        "url": "https://yulinqin18.wixsite.com/restaurant/buffet",
+        "kind": "html"
+      },
+      {
+        "url": "https://yulinqin18.wixsite.com/restaurant/contact-1",
+        "kind": "html"
+      },
+      {
+        "url": "https://yulinqin18.wixsite.com/restaurant/services-4",
+        "kind": "html"
+      },
+      {
+        "url": "https://yulinqin18.wixsite.com/restaurant/blank-1",
+        "kind": "html"
+      },
+      {
+        "url": "https://yulinqin18.wixsite.com/restaurant/blank-2",
+        "kind": "html"
+      },
+      {
+        "url": "https://yulinqin18.wixsite.com/restaurant/blank-3",
+        "kind": "html"
+      },
+      {
+        "url": "https://yulinqin18.wixsite.com/restaurant/blank-4",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 5.2
+    "seconds": 5.0
   },
   "node/13671055223": {
-    "checkedAt": "2026-10-17T21:55:58.547801+00:00",
+    "checkedAt": "2026-10-18T08:55:12.942908+00:00",
     "status": "partial",
     "documents": [
       {
@@ -6203,14 +8424,14 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 32.5
+    "seconds": 14.0
   },
   "node/1796023933": {
     "checkedAt": "2026-10-15T22:27:09.284434+00:00",
     "status": "prices_found"
   },
   "node/4601272799": {
-    "checkedAt": "2026-10-17T21:56:31.068981+00:00",
+    "checkedAt": "2026-10-18T08:55:26.949122+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6231,7 +8452,7 @@
     "status": "prices_found"
   },
   "node/2381403155": {
-    "checkedAt": "2026-10-17T21:56:12.827572+00:00",
+    "checkedAt": "2026-10-18T08:55:17.384154+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6433,13 +8654,29 @@
       {
         "url": "https://www.mitte.ch/en/kaffeehaus/organic-bakery/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.mitte.ch/en/kaffeehaus/gelato-vegano/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.mitte.ch/en/kaffeehaus/organic-aperitif-organic-banquet/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.mitte.ch/raumbuchung/kaffeehaushalle/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.mitte.ch/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 127.4
+    "seconds": 34.0
   },
   "node/260266671": {
-    "checkedAt": "2026-10-17T21:56:31.383756+00:00",
+    "checkedAt": "2026-10-18T08:55:27.296714+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6452,7 +8689,7 @@
       }
     ],
     "errors": [],
-    "seconds": 12.8
+    "seconds": 0.6
   },
   "node/698552423": {
     "checkedAt": "2026-10-15T22:27:18.100406+00:00",
@@ -6515,7 +8752,7 @@
     "status": "no_prices"
   },
   "node/584725541": {
-    "checkedAt": "2026-10-17T21:56:26.640011+00:00",
+    "checkedAt": "2026-10-18T08:55:25.399215+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6567,15 +8804,23 @@
         "kind": "unsupported"
       },
       {
+        "url": "https://braunermutz.ch/wp-content/uploads/bar.jpg",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://braunermutz.ch/wp-content/uploads/bar-845x650.jpg",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://braunermutz.ch/wp-content/uploads/weinkarte5.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 45.5
+    "seconds": 28.8
   },
   "node/2579987341": {
-    "checkedAt": "2026-10-17T21:56:35.270221+00:00",
+    "checkedAt": "2026-10-18T08:55:28.732369+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6584,10 +8829,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.1
+    "seconds": 0.2
   },
   "node/4273041689": {
-    "checkedAt": "2026-10-17T21:56:34.514980+00:00",
+    "checkedAt": "2026-10-18T08:55:27.885445+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6600,7 +8845,7 @@
       }
     ],
     "errors": [],
-    "seconds": 18.7
+    "seconds": 1.3
   },
   "node/2485517211": {
     "checkedAt": "2026-10-15T22:26:41.684596+00:00",

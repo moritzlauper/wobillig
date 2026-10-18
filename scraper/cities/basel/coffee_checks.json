@@ -1,6 +1,6 @@
 {
   "node/8016865752": {
-    "checkedAt": "2026-10-17T21:35:08.296700+00:00",
+    "checkedAt": "2026-10-18T08:44:42.422057+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -10,10 +10,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 10.3
+    "seconds": 4.9
   },
   "node/12707627770": {
-    "checkedAt": "2026-10-17T21:35:02.560782+00:00",
+    "checkedAt": "2026-10-18T08:44:32.902327+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -22,10 +22,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.6
+    "seconds": 3.0
   },
   "node/2369538706": {
-    "checkedAt": "2026-10-17T21:35:05.758144+00:00",
+    "checkedAt": "2026-10-18T08:44:39.957177+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -34,10 +34,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.5
+    "seconds": 6.7
   },
   "node/10652308129": {
-    "checkedAt": "2026-10-17T21:35:15.933431+00:00",
+    "checkedAt": "2026-10-18T08:44:46.594013+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -47,10 +47,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.5
+    "seconds": 0.4
   },
   "node/11755443196": {
-    "checkedAt": "2026-10-17T21:35:16.477965+00:00",
+    "checkedAt": "2026-10-18T08:44:46.674326+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -60,10 +60,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.1
+    "seconds": 1.2
   },
   "node/11379700569": {
-    "checkedAt": "2026-10-17T21:35:12.259072+00:00",
+    "checkedAt": "2026-10-18T08:44:43.296048+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -73,10 +73,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 3.7
+    "seconds": 3.3
   },
   "node/4031043644": {
-    "checkedAt": "2026-10-17T21:35:18.601989+00:00",
+    "checkedAt": "2026-10-18T08:44:47.001036+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -85,12 +85,16 @@
       }
     ],
     "errors": [],
-    "seconds": 2.8
+    "seconds": 2.4
   },
   "node/1170699798": {
-    "checkedAt": "2026-10-17T21:35:05.167000+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:40:53.512999+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://static.wixstatic.com/media/19a4e6_e21d6bacd656490a818a07f58157ae45~mv2.jpg/v1/fill/w_600,h_849,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Sommer%20Getr%C3%A4nkekarte%20Bild.jpg",
+        "kind": "unsupported"
+      },
       {
         "url": "https://www.beesandbirdscafe.ch/",
         "kind": "html"
@@ -105,10 +109,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.4
+    "seconds": 27.4
   },
   "node/262502093": {
-    "checkedAt": "2026-10-17T21:34:56.450875+00:00",
+    "checkedAt": "2026-10-18T08:44:32.479926+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -121,10 +125,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.6
+    "seconds": 7.5
   },
   "node/13606413684": {
-    "checkedAt": "2026-10-17T21:35:05.111813+00:00",
+    "checkedAt": "2026-10-18T08:44:37.390783+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -141,10 +145,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.1
+    "seconds": 6.1
   },
   "node/6411151585": {
-    "checkedAt": "2026-10-17T21:35:31.162203+00:00",
+    "checkedAt": "2026-10-18T08:44:49.426967+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -154,10 +158,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.3
+    "seconds": 1.1
   },
   "node/10733559775": {
-    "checkedAt": "2026-10-17T21:35:32.423268+00:00",
+    "checkedAt": "2026-10-18T08:44:49.834990+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -167,14 +171,14 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.6
+    "seconds": 2.0
   },
   "node/2381403698": {
-    "checkedAt": "2026-10-17T21:35:22.791523+00:00",
+    "checkedAt": "2026-10-18T08:41:09.252030+00:00",
     "status": "prices_found",
     "documents": [
       {
-        "url": "https://kaffeemacher.ch/pages/fruehling",
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-elizabeth-3",
         "kind": "html"
       },
       {
@@ -182,27 +186,15 @@
         "kind": "html"
       },
       {
-        "url": "https://kaffeemacher.ch/pages/bahnhof",
-        "kind": "html"
-      },
-      {
-        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/km-cafe-im-bahnhof-wiedereroeffnung",
-        "kind": "html"
-      },
-      {
-        "url": "https://kaffeemacher.ch/pages/sommer",
-        "kind": "html"
-      },
-      {
-        "url": "https://cdn.shopify.com/s/files/1/0406/3343/4269/files/260922_menu_online.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://kaffeemacher.ch/",
         "kind": "html"
       },
       {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/km-cafe-im-bahnhof-wiedereroeffnung",
         "kind": "html"
       },
       {
@@ -222,6 +214,22 @@
         "kind": "html"
       },
       {
+        "url": "https://kaffeemacher.ch/pages/fruehling",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/bahnhof",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/sommer",
+        "kind": "html"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0406/3343/4269/files/260922_menu_online.pdf",
+        "kind": "pdf"
+      },
+      {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen/cafeologia",
         "kind": "html"
       },
@@ -231,10 +239,6 @@
       },
       {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen/compak-fino",
-        "kind": "html"
-      },
-      {
-        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-elizabeth-3",
         "kind": "html"
       },
       {
@@ -372,13 +376,295 @@
       {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/english",
         "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espanol",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressobruher",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/fast-heater",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffeemaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffeemuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/gesundheit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/grind-by-sync",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/grind-by-weight",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/handmuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/hybrid",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/in-eigener-sache",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffee-auswahl",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeeanbau",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemarkt",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemeisterschaften",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemuhle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeereisen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeevollautomat",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeewissen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/caffee-kaffee-kaffi",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espressomaschinen-testprotokoll",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/dualboiler-espressomaschinen-tests",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/espressomaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/einkreiser-espressomaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-victoria-test-und-tipps",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/unsere-strom-leistungsmessung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/nachhaltigkeit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeezubereitung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/latte-art",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/lelit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/milch",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/muhle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/outdoor",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/partner",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/podcast",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/pressemitteilung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/projekte",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rezept",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rohkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/santa-rita",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/sensorik",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/single-dosing",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/startup",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/thermoblock",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/transparenz",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/vollautomat",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/waage",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/wasser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/wissenschaft",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-mara-x",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-mara-x3",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-pagaia",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/woc-genf-2025",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/kaffee-unterwegs-outdoor",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/aeropress-anleitung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/cold-brew-rezepte-gemixt-und-ungemixt",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/cold-brew",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/filterkaffee-zubereitung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/dosiermenge-kaffeepulver",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-zubereiten",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-extraktionszeit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/mein-mahlgrad",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomuehlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomuehlen",
+        "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 160.2
+    "errors": [
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/milchschaumer",
+        "reason": "http_404",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 319.0
   },
   "node/702204838": {
-    "checkedAt": "2026-10-17T21:35:21.387796+00:00",
+    "checkedAt": "2026-10-18T08:44:47.868856+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -387,10 +673,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.8
+    "seconds": 9.1
   },
   "node/7625132435": {
-    "checkedAt": "2026-10-17T21:31:31.749098+00:00",
+    "checkedAt": "2026-10-18T08:41:00.858623+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -415,10 +701,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.5
+    "seconds": 8.4
   },
   "node/592182051": {
-    "checkedAt": "2026-10-17T21:35:18.609231+00:00",
+    "checkedAt": "2026-10-18T08:44:47.348361+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -435,10 +721,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.3
+    "seconds": 14.9
   },
   "node/3888944674": {
-    "checkedAt": "2026-10-17T21:35:04.073332+00:00",
+    "checkedAt": "2026-10-18T08:44:35.867763+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -448,29 +734,13 @@
       {
         "url": "https://www.beanbank.ch/category/our-coffee-beans",
         "kind": "html"
-      },
-      {
-        "url": "https://www.beanbank.ch/category/coffee",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.beanbank.ch/product-page/colombia-café-granja-la-esperanza-1",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.beanbank.ch/product-page/colombia-gesha-las-margaritas-café-granja-la-esperanza",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.beanbank.ch/product-page/colombia-café-granja-la-esperanza",
-        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 18.7
+    "seconds": 7.4
   },
   "node/13910592465": {
-    "checkedAt": "2026-10-17T21:35:33.926950+00:00",
+    "checkedAt": "2026-10-18T08:44:50.521971+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -483,10 +753,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.8
+    "seconds": 8.1
   },
   "node/13507438488": {
-    "checkedAt": "2026-10-17T21:35:50.668694+00:00",
+    "checkedAt": "2026-10-18T08:44:56.931165+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -495,10 +765,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.0
+    "seconds": 2.7
   },
   "node/5483369521": {
-    "checkedAt": "2026-10-17T21:36:07.441761+00:00",
+    "checkedAt": "2026-10-18T08:45:02.245684+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -507,10 +777,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.5
+    "seconds": 1.4
   },
   "node/10905128012": {
-    "checkedAt": "2026-10-17T21:35:42.739081+00:00",
+    "checkedAt": "2026-10-18T08:44:51.797867+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -531,10 +801,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.2
+    "seconds": 9.3
   },
   "node/12230466535": {
-    "checkedAt": "2026-10-17T21:35:53.706011+00:00",
+    "checkedAt": "2026-10-18T08:44:59.603565+00:00",
     "status": "partial",
     "documents": [
       {
@@ -561,22 +831,26 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 19.6
+    "seconds": 14.5
   },
   "node/4346226796": {
-    "checkedAt": "2026-10-17T21:36:08.933286+00:00",
+    "checkedAt": "2026-10-18T08:45:03.601435+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://caffeeccetera.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://caffeeccetera.ch/caffe-bar/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 2.7
+    "seconds": 4.7
   },
   "node/14007225418": {
-    "checkedAt": "2026-10-17T21:36:11.611929+00:00",
+    "checkedAt": "2026-10-18T08:45:08.315773+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -585,10 +859,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.5
+    "seconds": 2.0
   },
   "node/12014452761": {
-    "checkedAt": "2026-10-17T21:36:13.259076+00:00",
+    "checkedAt": "2026-10-18T08:45:10.350359+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -601,10 +875,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.7
+    "seconds": 2.6
   },
   "node/2578291823": {
-    "checkedAt": "2026-10-17T21:36:14.157066+00:00",
+    "checkedAt": "2026-10-18T08:45:11.363566+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -613,10 +887,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.8
+    "seconds": 4.3
   },
   "node/7772352031": {
-    "checkedAt": "2026-10-17T21:35:50.910998+00:00",
+    "checkedAt": "2026-10-18T08:44:58.639704+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -633,10 +907,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.5
+    "seconds": 12.7
   },
   "way/376382307": {
-    "checkedAt": "2026-10-17T21:35:14.552235+00:00",
+    "checkedAt": "2026-10-18T08:44:43.457522+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -689,10 +963,10 @@
       }
     ],
     "errors": [],
-    "seconds": 36.1
+    "seconds": 35.2
   },
   "node/4828208000": {
-    "checkedAt": "2026-10-17T21:36:03.805132+00:00",
+    "checkedAt": "2026-10-18T08:45:01.061493+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -701,10 +975,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.0
+    "seconds": 12.1
   },
   "node/9326577381": {
-    "checkedAt": "2026-10-17T21:31:54.624205+00:00",
+    "checkedAt": "2026-10-18T08:41:28.228783+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -741,10 +1015,10 @@
       }
     ],
     "errors": [],
-    "seconds": 22.1
+    "seconds": 37.3
   },
   "node/11064482315": {
-    "checkedAt": "2026-10-17T21:36:23.470936+00:00",
+    "checkedAt": "2026-10-18T08:45:15.631891+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -753,10 +1027,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.0
+    "seconds": 1.7
   },
   "node/4166045869": {
-    "checkedAt": "2026-10-17T21:36:16.756831+00:00",
+    "checkedAt": "2026-10-18T08:45:12.970791+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -769,34 +1043,18 @@
       }
     ],
     "errors": [],
-    "seconds": 6.7
+    "seconds": 6.1
   },
   "node/13826290434": {
-    "checkedAt": "2026-10-17T21:35:33.034424+00:00",
+    "checkedAt": "2026-10-18T08:41:11.376122+00:00",
     "status": "prices_found",
     "documents": [
       {
-        "url": "https://kaffeemacher.ch/pages/sommer",
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-elizabeth-3",
         "kind": "html"
       },
       {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen/nivona-cube",
-        "kind": "html"
-      },
-      {
-        "url": "https://cdn.shopify.com/s/files/1/0406/3343/4269/files/260922_menu_online.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://kaffeemacher.ch/pages/bahnhof",
-        "kind": "html"
-      },
-      {
-        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/km-cafe-im-bahnhof-wiedereroeffnung",
-        "kind": "html"
-      },
-      {
-        "url": "https://kaffeemacher.ch/pages/fruehling",
         "kind": "html"
       },
       {
@@ -805,6 +1063,10 @@
       },
       {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/km-cafe-im-bahnhof-wiedereroeffnung",
         "kind": "html"
       },
       {
@@ -824,6 +1086,22 @@
         "kind": "html"
       },
       {
+        "url": "https://kaffeemacher.ch/pages/fruehling",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/bahnhof",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/sommer",
+        "kind": "html"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0406/3343/4269/files/260922_menu_online.pdf",
+        "kind": "pdf"
+      },
+      {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen/cafeologia",
         "kind": "html"
       },
@@ -833,10 +1111,6 @@
       },
       {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen/compak-fino",
-        "kind": "html"
-      },
-      {
-        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-elizabeth-3",
         "kind": "html"
       },
       {
@@ -974,13 +1248,295 @@
       {
         "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/english",
         "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espanol",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressobruher",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/fast-heater",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffeemaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/filterkaffeemuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/gesundheit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/grind-by-sync",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/grind-by-weight",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/handmuhlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/hybrid",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/in-eigener-sache",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffee-auswahl",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeeanbau",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemarkt",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemeisterschaften",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeemuhle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeereisen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeevollautomat",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeewissen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/caffee-kaffee-kaffi",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espressomaschinen-testprotokoll",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/dualboiler-espressomaschinen-tests",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/pages/espressomaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/einkreiser-espressomaschinen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-victoria-test-und-tipps",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/unsere-strom-leistungsmessung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/nachhaltigkeit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/kaffeezubereitung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/latte-art",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/lelit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/milch",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/muhle",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/outdoor",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/partner",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/podcast",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/pressemitteilung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/projekte",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rezept",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/rohkaffee",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/santa-rita",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/sensorik",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/single-dosing",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/startup",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/thermoblock",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/transparenz",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/vollautomat",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/waage",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/wasser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/wissenschaft",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/zweikreiser",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-mara-x",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-mara-x3",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/lelit-pagaia",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/woc-genf-2025",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/kaffee-unterwegs-outdoor",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/aeropress-anleitung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/cold-brew-rezepte-gemixt-und-ungemixt",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/cold-brew",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/filterkaffee-zubereitung",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/dosiermenge-kaffeepulver",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-zubereiten",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/espresso-extraktionszeit",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/mein-mahlgrad",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomuehlen",
+        "kind": "html"
+      },
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/espressomuehlen",
+        "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 153.9
+    "errors": [
+      {
+        "url": "https://kaffeemacher.ch/blogs/kaffeewissen/tagged/milchschaumer",
+        "reason": "http_404",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 316.8
   },
   "node/1197413430": {
-    "checkedAt": "2026-10-17T21:36:18.922357+00:00",
+    "checkedAt": "2026-10-18T08:45:14.078185+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -997,10 +1553,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.6
+    "seconds": 7.3
   },
   "node/5696224724": {
-    "checkedAt": "2026-10-17T21:36:36.590154+00:00",
+    "checkedAt": "2026-10-18T08:45:23.412429+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1010,10 +1566,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.3
   },
   "node/5772876669": {
-    "checkedAt": "2026-10-17T21:36:34.909964+00:00",
+    "checkedAt": "2026-10-18T08:45:21.390798+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1022,23 +1578,32 @@
       }
     ],
     "errors": [],
-    "seconds": 2.5
+    "seconds": 2.0
   },
   "node/13484845049": {
-    "checkedAt": "2026-10-17T21:36:31.111859+00:00",
-    "status": "fetch_failed",
-    "documents": [],
-    "errors": [
+    "checkedAt": "2026-10-18T08:45:18.699500+00:00",
+    "status": "partial",
+    "documents": [
       {
         "url": "https://www.etna-bar.ch",
-        "reason": "ReadTimeout",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.etna-bar.ch/lounge/",
+        "kind": "html"
+      }
+    ],
+    "errors": [
+      {
+        "url": "http://etna-bar.ch",
+        "reason": "unsupported_url",
         "phase": "fetch"
       }
     ],
-    "seconds": 20.7
+    "seconds": 11.8
   },
   "node/14078084801": {
-    "checkedAt": "2026-10-17T21:36:32.430005+00:00",
+    "checkedAt": "2026-10-18T08:45:19.114325+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1047,10 +1612,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.4
+    "seconds": 10.8
   },
   "node/13130547170": {
-    "checkedAt": "2026-10-17T21:36:36.751507+00:00",
+    "checkedAt": "2026-10-18T08:45:23.680699+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1059,10 +1624,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.5
+    "seconds": 5.0
   },
   "node/5691850621": {
-    "checkedAt": "2026-10-17T21:32:46.122024+00:00",
+    "checkedAt": "2026-10-18T08:43:09.134427+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1075,10 +1640,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.1
+    "seconds": 1.7
   },
   "node/4714567615": {
-    "checkedAt": "2026-10-17T21:36:44.867702+00:00",
+    "checkedAt": "2026-10-18T08:45:26.884552+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1088,12 +1653,16 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.7
+    "seconds": 0.3
   },
   "way/225127782": {
-    "checkedAt": "2026-10-17T21:36:26.491114+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:42:32.098806+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://kleinerwassermann.cafe/_next/image",
+        "kind": "unsupported"
+      },
       {
         "url": "https://kleinerwassermann.cafe/",
         "kind": "html"
@@ -1111,19 +1680,15 @@
         "kind": "unsupported"
       },
       {
-        "url": "https://kleinerwassermann.cafe/_next/image",
-        "kind": "unsupported"
-      },
-      {
         "url": "https://kleinerwassermann.cafe/angebot/tisch-reservierung",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 8.4
+    "seconds": 2.1
   },
   "node/13791838181": {
-    "checkedAt": "2026-10-17T21:36:25.519926+00:00",
+    "checkedAt": "2026-10-18T08:45:17.363268+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1152,10 +1717,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.1
+    "seconds": 9.0
   },
   "node/2901296694": {
-    "checkedAt": "2026-10-17T21:36:16.925811+00:00",
+    "checkedAt": "2026-10-18T08:45:13.173088+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1188,19 +1753,19 @@
       }
     ],
     "errors": [],
-    "seconds": 15.5
+    "seconds": 13.7
   },
   "node/11757900217": {
-    "checkedAt": "2026-10-17T21:36:37.385045+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:43:54.888088+00:00",
+    "status": "prices_found",
     "documents": [
-      {
-        "url": "https://rhylax-cafe.ch/",
-        "kind": "html"
-      },
       {
         "url": "https://rhylax-cafe.ch/wp-content/uploads/2024/11/Drinkmenu.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://rhylax-cafe.ch/",
+        "kind": "html"
       },
       {
         "url": "https://rhylax-cafe.ch/wp-content/uploads/2024/11/RHYLAX_MENU_A4.pdf",
@@ -1208,10 +1773,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.6
+    "seconds": 0.9
   },
   "node/14158989682": {
-    "checkedAt": "2026-10-17T21:36:46.034454+00:00",
+    "checkedAt": "2026-10-18T08:45:28.728464+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1220,10 +1785,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.9
+    "seconds": 2.2
   },
   "node/3788956446": {
-    "checkedAt": "2026-10-17T21:36:45.568726+00:00",
+    "checkedAt": "2026-10-18T08:45:27.202375+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1232,10 +1797,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.3
+    "seconds": 1.6
   },
   "node/11016416537": {
-    "checkedAt": "2026-10-17T21:36:46.917668+00:00",
+    "checkedAt": "2026-10-18T08:45:28.773475+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1244,10 +1809,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 3.1
   },
   "node/10116280189": {
-    "checkedAt": "2026-10-17T21:36:50.525514+00:00",
+    "checkedAt": "2026-10-18T08:45:30.500461+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1257,10 +1822,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.3
   },
   "node/1197413423": {
-    "checkedAt": "2026-10-17T21:32:09.585454+00:00",
+    "checkedAt": "2026-10-18T08:41:53.280897+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1307,10 +1872,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 59.5
+    "seconds": 81.4
   },
   "node/6349326159": {
-    "checkedAt": "2026-10-17T21:34:13.005210+00:00",
+    "checkedAt": "2026-10-18T08:44:14.426392+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1323,10 +1888,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.1
+    "seconds": 7.1
   },
   "node/2579987341": {
-    "checkedAt": "2026-10-17T21:36:50.707039+00:00",
+    "checkedAt": "2026-10-18T08:45:30.756503+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1335,38 +1900,22 @@
       }
     ],
     "errors": [],
-    "seconds": 6.2
+    "seconds": 6.1
   },
   "node/9350906407": {
-    "checkedAt": "2026-10-17T21:36:48.957774+00:00",
+    "checkedAt": "2026-10-18T08:45:29.906583+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.threeladies.ch/",
         "kind": "html"
-      },
-      {
-        "url": "https://www.threeladies.ch",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.threeladies.ch/_files/ugd/8bad08_c60d0b1ca220406c86445d714d132513.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.threeladies.ch/_files/ugd/8bad08_7169de898b954ef1a34db8c012d6c87c.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.threeladies.ch/_files/ugd/8bad08_7f2627e7e68b44d39d7973f49e6f728d.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 6.7
+    "seconds": 6.2
   },
   "node/4278519394": {
-    "checkedAt": "2026-10-17T21:36:42.292359+00:00",
+    "checkedAt": "2026-10-18T08:45:26.382388+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1399,10 +1948,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.2
+    "seconds": 17.6
   },
   "way/542879934": {
-    "checkedAt": "2026-10-17T21:36:55.655166+00:00",
+    "checkedAt": "2026-10-18T08:45:36.823148+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1415,10 +1964,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.3
+    "seconds": 4.9
   },
   "node/458833991": {
-    "checkedAt": "2026-10-17T21:33:09.123984+00:00",
+    "checkedAt": "2026-10-18T08:43:21.151083+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1493,10 +2042,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 56.1
+    "seconds": 50.4
   },
   "node/121991199": {
-    "checkedAt": "2026-10-17T21:36:56.925272+00:00",
+    "checkedAt": "2026-10-18T08:45:40.199685+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1513,10 +2062,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.5
+    "seconds": 9.0
   },
   "node/5294134634": {
-    "checkedAt": "2026-10-17T21:37:01.530626+00:00",
+    "checkedAt": "2026-10-18T08:45:41.751111+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1529,10 +2078,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 3.7
   },
   "node/585184294": {
-    "checkedAt": "2026-10-17T21:31:29.296812+00:00",
+    "checkedAt": "2026-10-18T08:40:53.512030+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1554,13 +2103,21 @@
       {
         "url": "https://www.alchemistbasel.ch/wp-content/uploads/2026/09/herbst26.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.alchemistbasel.ch/en/bar-academy-2/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.alchemistbasel.ch/bar-akademie/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 16.7
+    "seconds": 5.1
   },
   "node/2146304950": {
-    "checkedAt": "2026-10-17T21:37:10.048186+00:00",
+    "checkedAt": "2026-10-18T08:45:49.218869+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -1570,12 +2127,16 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.6
+    "seconds": 1.9
   },
   "node/4377359796": {
-    "checkedAt": "2026-10-17T21:36:51.850067+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:45:36.145873+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.ackermannshof.ch/assets/Files/Barkarte.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.ackermannshof.ch/",
         "kind": "html"
@@ -1617,6 +2178,22 @@
         "kind": "html"
       },
       {
+        "url": "https://www.ackermannshof.ch/it/bar-und-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.ackermannshof.ch/de/bar-und-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.ackermannshof.ch/en/bar-and-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.ackermannshof.ch/fr/bar-und-lounge/",
+        "kind": "html"
+      },
+      {
         "url": "https://www.ackermannshof.ch/assets/Files/Champagner-Weinkarte.pdf",
         "kind": "pdf"
       },
@@ -1626,10 +2203,10 @@
       }
     ],
     "errors": [],
-    "seconds": 30.2
+    "seconds": 4.1
   },
   "node/4749555721": {
-    "checkedAt": "2026-10-17T21:37:11.624195+00:00",
+    "checkedAt": "2026-10-18T08:45:51.132567+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1638,10 +2215,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.9
+    "seconds": 3.5
   },
   "node/2381403155": {
-    "checkedAt": "2026-10-17T21:34:19.087602+00:00",
+    "checkedAt": "2026-10-18T08:44:15.941800+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1843,13 +2420,29 @@
       {
         "url": "https://www.mitte.ch/en/coffeemobile/at-the-rhine/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.mitte.ch/kaffeemobil/am-rhein/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.mitte.ch/kaffeemobil/paulus-die-schone-bar/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.mitte.ch/raumbuchung/kaffeehaushalle/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.mitte.ch/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 132.0
+    "seconds": 131.3
   },
   "node/7178593691": {
-    "checkedAt": "2026-10-17T21:37:03.962025+00:00",
+    "checkedAt": "2026-10-18T08:45:42.049562+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1870,10 +2463,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.1
+    "seconds": 11.6
   },
   "node/5550633691": {
-    "checkedAt": "2026-10-17T21:37:18.057175+00:00",
+    "checkedAt": "2026-10-18T08:45:55.358203+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1883,10 +2476,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.5
+    "seconds": 2.6
   },
   "node/2961150343": {
-    "checkedAt": "2026-10-17T21:37:14.486615+00:00",
+    "checkedAt": "2026-10-18T08:45:54.623253+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1899,10 +2492,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 3.7
   },
   "node/12161791752": {
-    "checkedAt": "2026-10-17T21:37:13.164271+00:00",
+    "checkedAt": "2026-10-18T08:45:53.678142+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1915,10 +2508,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.9
+    "seconds": 6.5
   },
   "node/3392587471": {
-    "checkedAt": "2026-10-17T21:37:05.152895+00:00",
+    "checkedAt": "2026-10-18T08:45:44.032313+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1943,10 +2536,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.0
+    "seconds": 22.5
   },
   "node/6868688829": {
-    "checkedAt": "2026-10-17T21:37:22.092948+00:00",
+    "checkedAt": "2026-10-18T08:45:58.343209+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1955,10 +2548,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.8
+    "seconds": 0.2
   },
   "node/6898406988": {
-    "checkedAt": "2026-10-17T21:37:20.512100+00:00",
+    "checkedAt": "2026-10-18T08:45:58.277651+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1967,10 +2560,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.0
+    "seconds": 0.1
   },
   "node/13894492703": {
-    "checkedAt": "2026-10-17T21:31:29.297074+00:00",
+    "checkedAt": "2026-10-18T08:40:53.512371+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2003,10 +2596,10 @@
       }
     ],
     "errors": [],
-    "seconds": 25.3
+    "seconds": 7.4
   },
   "node/13791837929": {
-    "checkedAt": "2026-10-17T21:37:06.453175+00:00",
+    "checkedAt": "2026-10-18T08:45:45.414251+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2103,10 +2696,10 @@
       }
     ],
     "errors": [],
-    "seconds": 38.4
+    "seconds": 37.1
   },
   "node/2901296696": {
-    "checkedAt": "2026-10-17T21:37:36.849895+00:00",
+    "checkedAt": "2026-10-18T08:46:03.128144+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2119,10 +2712,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.7
+    "seconds": 4.5
   },
   "node/11163250005": {
-    "checkedAt": "2026-10-17T21:31:29.297447+00:00",
+    "checkedAt": "2026-10-18T08:40:53.512679+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2163,10 +2756,10 @@
       }
     ],
     "errors": [],
-    "seconds": 38.4
+    "seconds": 17.9
   },
   "node/4150413389": {
-    "checkedAt": "2026-10-17T21:37:24.554223+00:00",
+    "checkedAt": "2026-10-18T08:45:58.500610+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2195,10 +2788,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.9
+    "seconds": 4.6
   },
   "node/5690813621": {
-    "checkedAt": "2026-10-17T21:37:44.241132+00:00",
+    "checkedAt": "2026-10-18T08:46:07.661214+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2211,10 +2804,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.6
+    "seconds": 4.5
   },
   "node/11997975469": {
-    "checkedAt": "2026-10-17T21:34:07.354343+00:00",
+    "checkedAt": "2026-10-18T08:44:09.297130+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2235,12 +2828,16 @@
       }
     ],
     "errors": [],
-    "seconds": 44.1
+    "seconds": 1.6
   },
   "node/6556102796": {
-    "checkedAt": "2026-10-17T21:37:00.958363+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:40:53.512224+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.restaurant-anatolia.ch/.cm4all/uproc.php/0/Restaurant%20Anatolia%20Deutch%20Menu%CC%88.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.restaurant-anatolia.ch/",
         "kind": "html"
@@ -2248,17 +2845,13 @@
       {
         "url": "https://www.restaurant-anatolia.ch/speisekarte/",
         "kind": "html"
-      },
-      {
-        "url": "https://www.restaurant-anatolia.ch/.cm4all/uproc.php/0/Restaurant%20Anatolia%20Deutch%20Menu%CC%88.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 35.9
+    "seconds": 3.5
   },
   "node/3889420248": {
-    "checkedAt": "2026-10-17T21:37:20.049809+00:00",
+    "checkedAt": "2026-10-18T08:45:57.977639+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2270,15 +2863,231 @@
         "kind": "html"
       },
       {
+        "url": "https://www.barrouge.ch:443/de/anlaesse/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/ueber-uns/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/oeffnungszeiten/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/galerie/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/team/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/jobs/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/jobs/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/occasion/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/about-us/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/opening-hours/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/gallery/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/team/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/team/steckbrief-martin/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/team/profile-martin/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/team/profile-martin/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/team/steckbrief-martin/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/team/profile-martin/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/team/steckbrief-martin/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/team/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/team/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/team/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/team/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/gallery/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/galerie/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/gallery/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/galerie/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/opening-hours/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/oeffnungszeiten/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/opening-hours/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/oeffnungszeiten/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/media/filer_public/f5/cf/f5cf5eba-ea9c-4b3a-bd3e-c03d35d81f53/brlogocmykonwhitebg.eps",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/media/filer_public/a9/a1/a9a192fd-1ca9-4bea-ab07-b702275fc68c/brlogocmykonblackbg.eps",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/about-us/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/ueber-uns/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/about-us/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/ueber-uns/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/kontakt/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/kontakt/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/kontakt/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/kontakt/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/kontakt/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/kontakt/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/occasion/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/anlaesse/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/occasion/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/anlaesse/executive-lounge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/jobs/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/jobs/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/en/bar-rouge/jobs/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.barrouge.ch:443/de/bar-rouge/jobs/",
+        "kind": "html"
+      },
+      {
         "url": "https://www.barrouge.ch:443/de/cocktailkurs/",
         "kind": "html"
       },
       {
         "url": "https://www.barrouge.ch:443/en/occasion/cocktail-workshop/",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.barrouge.ch:443/en/bar/",
         "kind": "html"
       },
       {
@@ -2343,10 +3152,10 @@
       }
     ],
     "errors": [],
-    "seconds": 57.6
+    "seconds": 8.5
   },
   "node/13000954116": {
-    "checkedAt": "2026-10-17T21:37:37.413247+00:00",
+    "checkedAt": "2026-10-18T08:46:06.514552+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2379,10 +3188,10 @@
       }
     ],
     "errors": [],
-    "seconds": 28.9
+    "seconds": 17.8
   },
   "node/1430898779": {
-    "checkedAt": "2026-10-17T21:37:44.814379+00:00",
+    "checkedAt": "2026-10-18T08:46:12.159391+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2395,10 +3204,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.7
+    "seconds": 7.4
   },
   "node/12536731500": {
-    "checkedAt": "2026-10-17T21:37:41.522797+00:00",
+    "checkedAt": "2026-10-18T08:46:06.566370+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2415,10 +3224,10 @@
       }
     ],
     "errors": [],
-    "seconds": 18.6
+    "seconds": 10.1
   },
   "node/2663868226": {
-    "checkedAt": "2026-10-17T21:31:29.297743+00:00",
+    "checkedAt": "2026-10-18T08:40:53.524620+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2447,12 +3256,16 @@
       }
     ],
     "errors": [],
-    "seconds": 55.8
+    "seconds": 73.9
   },
   "node/7809972322": {
-    "checkedAt": "2026-10-17T21:37:48.866365+00:00",
+    "checkedAt": "2026-10-18T08:40:53.593546+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://7f90b464-6032-4902-b9f9-df4fcf0b3dd8.filesusr.com/ugd/9bdec0_321fc13cea3c4fba9f1fc205cbbddd95.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.boobasel.com/klybeck",
         "kind": "html"
@@ -2487,10 +3300,10 @@
       }
     ],
     "errors": [],
-    "seconds": 46.4
+    "seconds": 101.0
   },
   "node/12843974701": {
-    "checkedAt": "2026-10-17T21:31:29.298781+00:00",
+    "checkedAt": "2026-10-18T08:40:58.091831+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2503,10 +3316,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.2
+    "seconds": 2.8
   },
   "node/7778233544": {
-    "checkedAt": "2026-10-17T21:38:00.072878+00:00",
+    "checkedAt": "2026-10-18T08:46:19.605409+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2530,6 +3343,10 @@
         "kind": "html"
       },
       {
+        "url": "https://www.braubudebasel.ch/die-birreria-unsere-bar/",
+        "kind": "html"
+      },
+      {
         "url": "https://www.braubudebasel.ch/2021/08/04/unser-neuestes-collab-blanche-baloise-zusammen-mit-unser-bier/",
         "kind": "html"
       },
@@ -2543,10 +3360,10 @@
       }
     ],
     "errors": [],
-    "seconds": 22.9
+    "seconds": 0.2
   },
   "node/8067975981": {
-    "checkedAt": "2026-10-17T21:38:06.343147+00:00",
+    "checkedAt": "2026-10-18T08:46:22.541255+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2556,10 +3373,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.4
+    "seconds": 0.1
   },
   "node/11835158537": {
-    "checkedAt": "2026-10-17T21:31:33.514260+00:00",
+    "checkedAt": "2026-10-18T08:41:00.885806+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2580,12 +3397,16 @@
       }
     ],
     "errors": [],
-    "seconds": 13.1
+    "seconds": 9.7
   },
   "node/473398645": {
-    "checkedAt": "2026-10-17T21:38:06.715833+00:00",
+    "checkedAt": "2026-10-18T08:41:10.564388+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://de.cdn-website.com/51d53ccd20b649e18dc576034d8dd269/files/uploaded/Restaurantkarte+Papiermu-hle+2026.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.papiermuehle.ch/",
         "kind": "html"
@@ -2604,10 +3425,6 @@
       },
       {
         "url": "https://de.cdn-website.com/51d53ccd20b649e18dc576034d8dd269/files/uploaded/menu_italienisch.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://de.cdn-website.com/51d53ccd20b649e18dc576034d8dd269/files/uploaded/Restaurantkarte+Papiermu-hle+2026.pdf",
         "kind": "pdf"
       },
       {
@@ -2638,10 +3455,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 26.8
+    "seconds": 17.7
   },
   "node/122337399": {
-    "checkedAt": "2026-10-17T21:38:03.022378+00:00",
+    "checkedAt": "2026-10-18T08:46:19.809102+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2686,10 +3503,10 @@
       }
     ],
     "errors": [],
-    "seconds": 35.1
+    "seconds": 27.4
   },
   "node/12007516980": {
-    "checkedAt": "2026-10-17T21:38:06.896188+00:00",
+    "checkedAt": "2026-10-18T08:46:22.642524+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2706,10 +3523,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.9
+    "seconds": 6.0
   },
   "node/9871385224": {
-    "checkedAt": "2026-10-17T21:31:29.299018+00:00",
+    "checkedAt": "2026-10-18T08:40:58.592884+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2762,10 +3579,10 @@
       }
     ],
     "errors": [],
-    "seconds": 43.9
+    "seconds": 16.8
   },
   "node/1936100732": {
-    "checkedAt": "2026-10-17T21:31:29.298541+00:00",
+    "checkedAt": "2026-10-18T08:40:57.043053+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2790,10 +3607,10 @@
       }
     ],
     "errors": [],
-    "seconds": 57.2
+    "seconds": 16.1
   },
   "node/6804284317": {
-    "checkedAt": "2026-10-17T21:38:12.827440+00:00",
+    "checkedAt": "2026-10-18T08:46:24.362027+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2802,10 +3619,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.4
+    "seconds": 4.0
   },
   "node/13200691848": {
-    "checkedAt": "2026-10-17T21:31:45.950584+00:00",
+    "checkedAt": "2026-10-18T08:41:13.165624+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2830,10 +3647,10 @@
       }
     ],
     "errors": [],
-    "seconds": 23.6
+    "seconds": 19.2
   },
   "node/4917036030": {
-    "checkedAt": "2026-10-17T21:38:23.237542+00:00",
+    "checkedAt": "2026-10-18T08:46:28.389925+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2843,10 +3660,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/3220396501": {
-    "checkedAt": "2026-10-17T21:38:17.639587+00:00",
+    "checkedAt": "2026-10-18T08:46:28.176103+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2855,10 +3672,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.7
+    "seconds": 0.1
   },
   "node/1598855455": {
-    "checkedAt": "2026-10-17T21:38:20.388631+00:00",
+    "checkedAt": "2026-10-18T08:46:28.219008+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2867,10 +3684,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.8
+    "seconds": 1.5
   },
   "node/13910521083": {
-    "checkedAt": "2026-10-17T21:38:23.397110+00:00",
+    "checkedAt": "2026-10-18T08:46:28.494208+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2879,10 +3696,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.3
+    "seconds": 2.6
   },
   "node/10290989011": {
-    "checkedAt": "2026-10-17T21:38:26.985577+00:00",
+    "checkedAt": "2026-10-18T08:46:29.680568+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2891,10 +3708,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.2
+    "seconds": 1.6
   },
   "node/5278457922": {
-    "checkedAt": "2026-10-17T21:38:17.207255+00:00",
+    "checkedAt": "2026-10-18T08:46:27.230541+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2907,10 +3724,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.1
+    "seconds": 8.4
   },
   "node/3890667652": {
-    "checkedAt": "2026-10-17T21:37:53.478678+00:00",
+    "checkedAt": "2026-10-18T08:46:16.680096+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2927,10 +3744,10 @@
       }
     ],
     "errors": [],
-    "seconds": 33.5
+    "seconds": 32.2
   },
   "node/5689913622": {
-    "checkedAt": "2026-10-17T21:37:26.935435+00:00",
+    "checkedAt": "2026-10-18T08:46:00.175362+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2955,10 +3772,10 @@
       }
     ],
     "errors": [],
-    "seconds": 57.4
+    "seconds": 55.6
   },
   "node/3207784844": {
-    "checkedAt": "2026-10-17T21:38:24.313594+00:00",
+    "checkedAt": "2026-10-18T08:46:28.595335+00:00",
     "status": "partial",
     "documents": [
       {
@@ -2977,10 +3794,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 11.1
+    "seconds": 5.0
   },
   "node/593638990": {
-    "checkedAt": "2026-10-17T21:38:28.258777+00:00",
+    "checkedAt": "2026-10-18T08:46:31.300288+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2990,10 +3807,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.4
+    "seconds": 3.5
   },
   "node/4031337376": {
-    "checkedAt": "2026-10-17T21:38:32.753213+00:00",
+    "checkedAt": "2026-10-18T08:46:34.826354+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3006,7 +3823,7 @@
     "seconds": 0.2
   },
   "node/3208777203": {
-    "checkedAt": "2026-10-17T21:38:29.176573+00:00",
+    "checkedAt": "2026-10-18T08:46:33.606230+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3015,10 +3832,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 0.0
   },
   "node/7003029881": {
-    "checkedAt": "2026-10-17T21:38:22.991125+00:00",
+    "checkedAt": "2026-10-18T08:46:28.241597+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3027,10 +3844,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.4
+    "seconds": 10.5
   },
   "node/4064660679": {
-    "checkedAt": "2026-10-17T21:38:32.940635+00:00",
+    "checkedAt": "2026-10-18T08:46:35.049749+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3039,10 +3856,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.5
+    "seconds": 0.0
   },
   "node/5693840423": {
-    "checkedAt": "2026-10-17T21:38:33.542494+00:00",
+    "checkedAt": "2026-10-18T08:46:35.073900+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3055,10 +3872,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.1
+    "seconds": 3.4
   },
   "node/7747207685": {
-    "checkedAt": "2026-10-17T21:38:35.283983+00:00",
+    "checkedAt": "2026-10-18T08:42:05.485596+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3129,10 +3946,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 30.1
+    "seconds": 5.5
   },
   "node/317816754": {
-    "checkedAt": "2026-10-17T21:38:35.379690+00:00",
+    "checkedAt": "2026-10-18T08:46:35.596940+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3145,7 +3962,7 @@
     "seconds": 0.1
   },
   "node/9006190118": {
-    "checkedAt": "2026-10-17T21:32:13.177988+00:00",
+    "checkedAt": "2026-10-18T08:42:04.187828+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3158,10 +3975,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.6
+    "seconds": 4.0
   },
   "node/9905309814": {
-    "checkedAt": "2026-10-17T21:38:27.713188+00:00",
+    "checkedAt": "2026-10-18T08:46:31.078797+00:00",
     "status": "partial",
     "documents": [
       {
@@ -3204,10 +4021,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 19.6
+    "seconds": 16.2
   },
   "node/2074770460": {
-    "checkedAt": "2026-10-17T21:38:32.670779+00:00",
+    "checkedAt": "2026-10-18T08:46:33.633815+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3228,10 +4045,10 @@
       }
     ],
     "errors": [],
-    "seconds": 23.4
+    "seconds": 16.1
   },
   "node/8727999200": {
-    "checkedAt": "2026-10-17T21:32:07.739811+00:00",
+    "checkedAt": "2026-10-18T08:41:32.390241+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3256,10 +4073,10 @@
       }
     ],
     "errors": [],
-    "seconds": 18.8
+    "seconds": 20.9
   },
   "node/10727873562": {
-    "checkedAt": "2026-10-17T21:38:37.645807+00:00",
+    "checkedAt": "2026-10-18T08:46:38.480154+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3269,10 +4086,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/71525604": {
-    "checkedAt": "2026-10-17T21:38:35.509901+00:00",
+    "checkedAt": "2026-10-18T08:46:35.694256+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3281,10 +4098,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.5
+    "seconds": 4.0
   },
   "node/9006499388": {
-    "checkedAt": "2026-10-17T21:31:46.565522+00:00",
+    "checkedAt": "2026-10-18T08:41:15.425510+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3417,58 +4234,60 @@
       }
     ],
     "errors": [],
-    "seconds": 357.7
+    "seconds": 48.8
   },
   "node/11268583746": {
-    "checkedAt": "2026-10-17T21:38:37.796970+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:42:10.953390+00:00",
+    "status": "prices_found",
     "documents": [
-      {
-        "url": "https://www.bar-eleven.ch/",
-        "kind": "html"
-      },
       {
         "url": "https://www.bar-eleven.ch/wp-content/uploads/2023/08/Getraenkekarte.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.bar-eleven.ch/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 8.4
+    "seconds": 1.2
   },
   "node/4840045320": {
-    "checkedAt": "2026-10-17T21:38:38.082138+00:00",
+    "checkedAt": "2026-10-18T08:46:38.582193+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.elsbethenstuebli.ch/",
         "kind": "html"
-      },
-      {
-        "url": "https://www.elsbethenstuebli.ch/menus",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.elsbethenstuebli.ch/_files/ugd/913a1d_4220f4bfb6c340789914aa8025743a94.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 3.9
+    "seconds": 1.9
   },
   "node/12230410077": {
-    "checkedAt": "2026-10-17T21:38:38.428918+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:46:38.719442+00:00",
+    "status": "partial",
     "documents": [
       {
         "url": "https://www.etna-bar.ch",
         "kind": "html"
+      },
+      {
+        "url": "https://www.etna-bar.ch/lounge/",
+        "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 21.2
+    "errors": [
+      {
+        "url": "http://etna-bar.ch",
+        "reason": "unsupported_url",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 4.5
   },
   "node/3811616609": {
-    "checkedAt": "2026-10-17T21:32:21.790118+00:00",
+    "checkedAt": "2026-10-18T08:42:08.237843+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3513,10 +4332,10 @@
       }
     ],
     "errors": [],
-    "seconds": 26.6
+    "seconds": 12.1
   },
   "node/9350766919": {
-    "checkedAt": "2026-10-17T21:38:41.943795+00:00",
+    "checkedAt": "2026-10-18T08:46:40.490170+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3529,10 +4348,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.4
+    "seconds": 3.1
   },
   "node/13902829473": {
-    "checkedAt": "2026-10-17T21:32:25.053249+00:00",
+    "checkedAt": "2026-10-18T08:42:12.172093+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3557,10 +4376,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.0
+    "seconds": 1.7
   },
   "node/7683254632": {
-    "checkedAt": "2026-10-17T21:38:40.961077+00:00",
+    "checkedAt": "2026-10-18T08:46:39.666350+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3569,10 +4388,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.4
+    "seconds": 5.2
   },
   "way/967857744": {
-    "checkedAt": "2026-10-17T21:38:45.390055+00:00",
+    "checkedAt": "2026-10-18T08:46:43.234616+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3585,10 +4404,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.5
+    "seconds": 3.3
   },
   "node/122336999": {
-    "checkedAt": "2026-10-17T21:38:46.217724+00:00",
+    "checkedAt": "2026-10-18T08:46:43.614773+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3597,10 +4416,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.1
+    "seconds": 3.1
   },
   "node/13519833131": {
-    "checkedAt": "2026-10-17T21:38:48.326484+00:00",
+    "checkedAt": "2026-10-18T08:46:46.539670+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3609,10 +4428,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.0
+    "seconds": 2.3
   },
   "node/6015038275": {
-    "checkedAt": "2026-10-17T21:38:48.877448+00:00",
+    "checkedAt": "2026-10-18T08:46:46.750465+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3621,10 +4440,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.3
+    "seconds": 6.2
   },
   "node/4574006993": {
-    "checkedAt": "2026-10-17T21:38:47.343516+00:00",
+    "checkedAt": "2026-10-18T08:46:44.886813+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3637,10 +4456,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.8
+    "seconds": 6.6
   },
   "node/13535126290": {
-    "checkedAt": "2026-10-17T21:32:26.565492+00:00",
+    "checkedAt": "2026-10-18T08:42:25.414858+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3665,10 +4484,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.9
+    "seconds": 4.1
   },
   "node/7871792488": {
-    "checkedAt": "2026-10-17T21:32:16.739086+00:00",
+    "checkedAt": "2026-10-18T08:42:07.414597+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3701,10 +4520,10 @@
       }
     ],
     "errors": [],
-    "seconds": 27.3
+    "seconds": 2.2
   },
   "node/8041425774": {
-    "checkedAt": "2026-10-17T21:38:52.324695+00:00",
+    "checkedAt": "2026-10-18T08:46:47.313824+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3713,10 +4532,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.2
+    "seconds": 3.3
   },
   "node/9677739617": {
-    "checkedAt": "2026-10-17T21:32:26.514252+00:00",
+    "checkedAt": "2026-10-18T08:42:20.365531+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3760,11 +4579,43 @@
         "kind": "html"
       },
       {
+        "url": "https://www.flanagans.ch/zug/daily-lunch-special",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.flanagans.ch/zug/reservations",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.flanagans.ch/zug/events",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.flanagans.ch/zug/sports",
+        "kind": "html"
+      },
+      {
         "url": "https://www.flanagans.ch/basel/",
         "kind": "html"
       },
       {
         "url": "https://www.flanagans.ch/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.flanagans.ch/basel/daily-lunch-special",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.flanagans.ch/basel/reservations",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.flanagans.ch/basel/events",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.flanagans.ch/basel/sports",
         "kind": "html"
       }
     ],
@@ -3775,10 +4626,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 31.9
+    "seconds": 14.6
   },
   "node/5248674577": {
-    "checkedAt": "2026-10-17T21:38:50.307398+00:00",
+    "checkedAt": "2026-10-18T08:46:47.243190+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3786,19 +4637,19 @@
         "kind": "html"
       },
       {
-        "url": "https://grenzwert.ch/bar/",
+        "url": "https://grenzwert.ch/food/",
         "kind": "html"
       },
       {
-        "url": "https://grenzwert.ch/food/",
+        "url": "https://grenzwert.ch/bar/",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 10.4
+    "seconds": 4.4
   },
   "node/3900491566": {
-    "checkedAt": "2026-10-17T21:38:56.511225+00:00",
+    "checkedAt": "2026-10-18T08:46:49.759076+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3808,10 +4659,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.9
+    "seconds": 1.2
   },
   "node/12601771057": {
-    "checkedAt": "2026-10-17T21:38:53.223097+00:00",
+    "checkedAt": "2026-10-18T08:46:48.873857+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3820,10 +4671,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.3
+    "seconds": 3.4
   },
   "relation/4250278": {
-    "checkedAt": "2026-10-17T21:38:57.160660+00:00",
+    "checkedAt": "2026-10-18T08:46:50.625834+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3836,10 +4687,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.5
+    "seconds": 2.7
   },
   "node/9448453209": {
-    "checkedAt": "2026-10-17T21:38:59.596834+00:00",
+    "checkedAt": "2026-10-18T08:46:51.480559+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3848,19 +4699,19 @@
       }
     ],
     "errors": [],
-    "seconds": 4.9
+    "seconds": 3.3
   },
   "node/6372498649": {
-    "checkedAt": "2026-10-17T21:38:37.410723+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:42:09.595771+00:00",
+    "status": "prices_found",
     "documents": [
-      {
-        "url": "https://basel.elmexicano.ch/",
-        "kind": "html"
-      },
       {
         "url": "https://basel.elmexicano.ch/wp-content/uploads/2023/04/getraenke_karte_2023.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://basel.elmexicano.ch/",
+        "kind": "html"
       },
       {
         "url": "https://basel.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
@@ -3900,10 +4751,10 @@
       }
     ],
     "errors": [],
-    "seconds": 60.1
+    "seconds": 71.2
   },
   "node/5157189624": {
-    "checkedAt": "2026-10-17T21:39:04.363664+00:00",
+    "checkedAt": "2026-10-18T08:46:52.960169+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3913,10 +4764,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.1
+    "seconds": 0.0
   },
   "node/14022555383": {
-    "checkedAt": "2026-10-17T21:39:00.748445+00:00",
+    "checkedAt": "2026-10-18T08:46:52.238812+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3925,10 +4776,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 2.6
   },
   "node/7773338161": {
-    "checkedAt": "2026-10-17T21:39:04.454342+00:00",
+    "checkedAt": "2026-10-18T08:46:53.097428+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3937,10 +4788,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.5
+    "seconds": 0.0
   },
   "node/2074770464": {
-    "checkedAt": "2026-10-17T21:38:56.104040+00:00",
+    "checkedAt": "2026-10-18T08:46:48.920527+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3965,26 +4816,26 @@
       }
     ],
     "errors": [],
-    "seconds": 13.3
+    "seconds": 12.2
   },
   "node/2987527171": {
-    "checkedAt": "2026-10-17T21:39:05.369060+00:00",
+    "checkedAt": "2026-10-18T08:42:29.993872+00:00",
     "status": "prices_found",
     "documents": [
       {
-        "url": "https://kaserne-basel.ch/de/kabar",
-        "kind": "html"
-      },
-      {
         "url": "https://710cfdd7169c43e7b8160075cae40718.s3.pub1.infomaniak.cloud/web-kaserne-storage/Kabar_Maerz_2026_utopia_2_1_acdace74aa.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://kaserne-basel.ch/de/kabar",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 6.4
+    "seconds": 2.1
   },
   "node/7195539122": {
-    "checkedAt": "2026-10-17T21:39:07.236051+00:00",
+    "checkedAt": "2026-10-18T08:46:53.330981+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -3994,10 +4845,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.5
+    "seconds": 0.4
   },
   "node/6662770296": {
-    "checkedAt": "2026-10-17T21:39:04.438468+00:00",
+    "checkedAt": "2026-10-18T08:46:52.996529+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4010,10 +4861,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.4
+    "seconds": 0.1
   },
   "node/1581301035": {
-    "checkedAt": "2026-10-17T21:38:58.439553+00:00",
+    "checkedAt": "2026-10-18T08:46:50.952417+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4027,17 +4878,13 @@
       {
         "url": "https://www.hostaria-schweiz.ch/restaurant-basel-stadt",
         "kind": "html"
-      },
-      {
-        "url": "https://www.hostaria-schweiz.ch/restaurant-firmenevent-basel",
-        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 8.8
+    "seconds": 9.2
   },
   "node/13371328898": {
-    "checkedAt": "2026-10-17T21:39:07.768291+00:00",
+    "checkedAt": "2026-10-18T08:46:53.761737+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4047,10 +4894,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.9
+    "seconds": 2.4
   },
   "node/4945175252": {
-    "checkedAt": "2026-10-17T21:39:10.660919+00:00",
+    "checkedAt": "2026-10-18T08:46:54.822549+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -4060,10 +4907,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.8
+    "seconds": 3.3
   },
   "node/7773218967": {
-    "checkedAt": "2026-10-17T21:39:00.656894+00:00",
+    "checkedAt": "2026-10-18T08:46:51.675789+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4072,12 +4919,16 @@
       }
     ],
     "errors": [],
-    "seconds": 15.5
+    "seconds": 12.7
   },
   "node/12017121002": {
-    "checkedAt": "2026-10-17T21:39:11.759466+00:00",
+    "checkedAt": "2026-10-18T08:42:34.235329+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://6e1c27ab-ccdf-4b07-a1b8-2f2e840a8011.filesusr.com/ugd/9b5300_20d6b5d069fd46aa827f71854c370807.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.kuni-gunde.ch",
         "kind": "html"
@@ -4092,12 +4943,24 @@
       }
     ],
     "errors": [],
-    "seconds": 7.7
+    "seconds": 4.6
   },
   "node/4840045318": {
-    "checkedAt": "2026-10-17T21:38:55.490862+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:42:29.535770+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://hansimglueck-burgergrill.de/fileadmin/Dokumente/Speisekarten/de/basel_steinenvorstadt_speisekarte.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://hansimglueck-burgergrill.de/fileadmin/Dokumente/Speisekarten/allergenkarte/allergenkarte_de_CH.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://hansimglueck-burgergrill.de/fileadmin/Dokumente/Speisekarten/ch/herkunft_deklaration_schweiz.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://hansimglueck-burgergrill.de/burger-restaurant/basel-steinenvorstadt",
         "kind": "html"
@@ -4141,18 +5004,6 @@
       {
         "url": "https://menu.hansimglueck-burgergrill.de/details/schlingel-mit-heissgetraenk-15947565/info/options",
         "kind": "html"
-      },
-      {
-        "url": "https://hansimglueck-burgergrill.de/fileadmin/Dokumente/Speisekarten/de/basel_steinenvorstadt_speisekarte.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://hansimglueck-burgergrill.de/fileadmin/Dokumente/Speisekarten/allergenkarte/allergenkarte_de_CH.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://hansimglueck-burgergrill.de/fileadmin/Dokumente/Speisekarten/ch/herkunft_deklaration_schweiz.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://menu.hansimglueck-burgergrill.de/",
@@ -4239,14 +5090,6 @@
         "kind": "html"
       },
       {
-        "url": "https://hansimglueck-burgergrill.de/burger-restaurant/basel-steinenvorstadt/",
-        "kind": "html"
-      },
-      {
-        "url": "https://hansimglueck-burgergrill.de/en/burger-restaurant/basel-steinenvorstadt/",
-        "kind": "html"
-      },
-      {
         "url": "https://hansimglueck-burgergrill.de/essen-bestellen/",
         "kind": "html"
       },
@@ -4297,13 +5140,261 @@
       {
         "url": "https://menu.hansimglueck-burgergrill.de/api/image",
         "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/kaffee-creme-7280081/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/himbeergold-04-l-7324976",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/himbeergold-04-l-7324976/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/brombeere-04-l-7324943",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/brombeere-04-l-7324943/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/waldhimbeere-04-l-7324997",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/waldhimbeere-04-l-7324997/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/beerengold-7672526",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/beerengold-7672526/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/virgin-brombeer-7672523",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/virgin-brombeer-7672523/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/himbeer-minzessin-7672544",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/himbeer-minzessin-7672544/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/kugel-veganes-erdbeereis-13446449",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/en/details/kugel-veganes-erdbeereis-13446449/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/kugel-veganes-erdbeereis-11012393",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/kugel-veganes-erdbeereis-11012393/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/kaffee-creme-7280081",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/kaffee-creme-7280081/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/durstloescher-erdbeer-basilikum-05l-7281401",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/durstloescher-erdbeer-basilikum-05l-7281401/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/durstloescher-johannisbeer-heidelbeer-05l-7281407",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/durstloescher-johannisbeer-heidelbeer-05l-7281407/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/eistee-heidelbeer-minze-05l-7281422",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/eistee-heidelbeer-minze-05l-7281422/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/stille-limo-brombeer-rosmarin-05-l-7281431",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/api/image",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/stille-limo-brombeer-rosmarin-05-l-7281431/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/himbeergold-04-l-7324976",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/himbeergold-04-l-7324976/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/brombeere-04-l-7324943",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/brombeere-04-l-7324943/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/waldhimbeere-04-l-7324997",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/waldhimbeere-04-l-7324997/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/beerengold-04-l-7672526",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/beerengold-04-l-7672526/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/virgin-brombeere-04-l-7672523",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/virgin-brombeere-04-l-7672523/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/himbeer-minzessin-04-l-7672544",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/himbeer-minzessin-04-l-7672544/info",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/kugel-veganes-erdbeereis-13446449",
+        "kind": "html"
+      },
+      {
+        "url": "https://menu.hansimglueck-burgergrill.de/details/kugel-veganes-erdbeereis-13446449/info",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 128.1
+    "seconds": 72.2
   },
   "node/5377769529": {
-    "checkedAt": "2026-10-17T21:39:09.427408+00:00",
+    "checkedAt": "2026-10-18T08:46:54.807826+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4324,10 +5415,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.8
+    "seconds": 10.9
   },
   "node/13997991120": {
-    "checkedAt": "2026-10-17T21:39:06.912485+00:00",
+    "checkedAt": "2026-10-18T08:46:53.142912+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4352,10 +5443,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.2
+    "seconds": 26.9
   },
   "node/7784095496": {
-    "checkedAt": "2026-10-17T21:31:47.257242+00:00",
+    "checkedAt": "2026-10-18T08:41:20.919363+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4380,10 +5471,10 @@
       }
     ],
     "errors": [],
-    "seconds": 58.9
+    "seconds": 64.5
   },
   "node/6644486815": {
-    "checkedAt": "2026-10-17T21:39:19.909262+00:00",
+    "checkedAt": "2026-10-18T08:46:59.720746+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4393,10 +5484,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.9
+    "seconds": 3.3
   },
   "node/10598326199": {
-    "checkedAt": "2026-10-17T21:39:16.123269+00:00",
+    "checkedAt": "2026-10-18T08:46:58.167145+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4413,10 +5504,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.1
+    "seconds": 0.1
   },
   "node/3890667654": {
-    "checkedAt": "2026-10-17T21:39:15.489652+00:00",
+    "checkedAt": "2026-10-18T08:46:56.186115+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4426,11 +5517,11 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.4
+    "seconds": 3.5
   },
   "node/2215970143": {
-    "checkedAt": "2026-10-17T21:39:13.825351+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:46:55.792097+00:00",
+    "status": "prices_found",
     "documents": [
       {
         "url": "https://www.restaurant-kunsthalle.ch/",
@@ -4457,15 +5548,27 @@
         "kind": "pdf"
       },
       {
+        "url": "https://www.restaurant-kunsthalle.ch/campari-bar-5/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.restaurant-kunsthalle.ch/wp-content/uploads/2025/11/Campari_Bar_Karte_November_2025.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.restaurant-kunsthalle.ch/campari-bar/",
+        "kind": "html"
+      },
+      {
         "url": "https://www.restaurant-kunsthalle.ch/wp-content/uploads/2026/10/KunsthalleBasel_Weinkarte_1026.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 20.7
+    "seconds": 19.1
   },
   "node/11413486822": {
-    "checkedAt": "2026-10-17T21:39:22.266583+00:00",
+    "checkedAt": "2026-10-18T08:47:00.131247+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4478,10 +5581,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.0
+    "seconds": 4.4
   },
   "node/13061564803": {
-    "checkedAt": "2026-10-17T21:32:42.435385+00:00",
+    "checkedAt": "2026-10-18T08:42:38.798762+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4498,10 +5601,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.6
+    "seconds": 1.3
   },
   "node/2840757806": {
-    "checkedAt": "2026-10-17T21:39:24.846127+00:00",
+    "checkedAt": "2026-10-18T08:47:03.041848+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -4511,10 +5614,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.7
+    "seconds": 1.7
   },
   "node/985234865": {
-    "checkedAt": "2026-10-17T21:39:22.273701+00:00",
+    "checkedAt": "2026-10-18T08:47:01.150465+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4523,10 +5626,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.8
+    "seconds": 5.6
   },
   "node/6372498635": {
-    "checkedAt": "2026-10-17T21:32:38.073284+00:00",
+    "checkedAt": "2026-10-18T08:42:34.559627+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4614,6 +5717,10 @@
         "kind": "html"
       },
       {
+        "url": "https://www.kuechlin.ch/bar.html",
+        "kind": "html"
+      },
+      {
         "url": "https://api2.lunchgate.ch/digital-menu/dm/digital-menu/50a2d593281b3df196a3ffd0c522ab57/origin/Ym94",
         "kind": "html"
       },
@@ -4635,10 +5742,10 @@
       }
     ],
     "errors": [],
-    "seconds": 58.8
+    "seconds": 71.2
   },
   "node/9381912099": {
-    "checkedAt": "2026-10-17T21:39:29.311709+00:00",
+    "checkedAt": "2026-10-18T08:47:04.535670+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4648,10 +5755,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/9182541851": {
-    "checkedAt": "2026-10-17T21:39:27.503447+00:00",
+    "checkedAt": "2026-10-18T08:47:04.351156+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4668,10 +5775,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.9
+    "seconds": 5.9
   },
   "node/4144545589": {
-    "checkedAt": "2026-10-17T21:32:48.344958+00:00",
+    "checkedAt": "2026-10-18T08:43:10.872658+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4704,10 +5811,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.4
+    "seconds": 10.3
   },
   "node/3888881365": {
-    "checkedAt": "2026-10-17T21:32:43.997507+00:00",
+    "checkedAt": "2026-10-18T08:42:40.144678+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4766,10 +5873,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 31.8
+    "seconds": 29.0
   },
   "node/9800319929": {
-    "checkedAt": "2026-10-17T21:32:58.375418+00:00",
+    "checkedAt": "2026-10-18T08:43:14.696380+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4790,10 +5897,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.6
+    "seconds": 6.2
   },
   "node/6388624275": {
-    "checkedAt": "2026-10-17T21:39:19.465585+00:00",
+    "checkedAt": "2026-10-18T08:46:58.221320+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4818,10 +5925,10 @@
       }
     ],
     "errors": [],
-    "seconds": 23.4
+    "seconds": 35.8
   },
   "node/292455543": {
-    "checkedAt": "2026-10-17T21:39:35.438669+00:00",
+    "checkedAt": "2026-10-18T08:47:05.713834+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4834,10 +5941,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.2
+    "seconds": 7.2
   },
   "node/4447974700": {
-    "checkedAt": "2026-10-17T21:32:52.051954+00:00",
+    "checkedAt": "2026-10-18T08:43:10.936147+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4902,10 +6009,10 @@
       }
     ],
     "errors": [],
-    "seconds": 66.5
+    "seconds": 98.9
   },
   "node/9269725977": {
-    "checkedAt": "2026-10-17T21:33:01.208366+00:00",
+    "checkedAt": "2026-10-18T08:43:20.782373+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4926,26 +6033,22 @@
       }
     ],
     "errors": [],
-    "seconds": 12.1
+    "seconds": 3.1
   },
   "node/10581639707": {
-    "checkedAt": "2026-10-17T21:39:37.524374+00:00",
+    "checkedAt": "2026-10-18T08:47:05.739514+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.miake.ch/",
         "kind": "html"
-      },
-      {
-        "url": "https://www.miake.ch/menuekarte",
-        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 4.3
+    "seconds": 2.0
   },
   "node/8067972508": {
-    "checkedAt": "2026-10-17T21:39:34.487239+00:00",
+    "checkedAt": "2026-10-18T08:47:05.261205+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4961,15 +6064,19 @@
         "kind": "html"
       },
       {
+        "url": "https://manabar.ch/en/bar",
+        "kind": "html"
+      },
+      {
         "url": "https://manabar.ch/de/offers",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 15.4
+    "seconds": 0.5
   },
   "node/2901279854": {
-    "checkedAt": "2026-10-17T21:39:44.611377+00:00",
+    "checkedAt": "2026-10-18T08:47:10.299685+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4979,10 +6086,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.3
+    "seconds": 0.0
   },
   "node/567050965": {
-    "checkedAt": "2026-10-17T21:39:41.853936+00:00",
+    "checkedAt": "2026-10-18T08:47:06.737012+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4999,10 +6106,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.6
+    "seconds": 12.1
   },
   "node/9326577380": {
-    "checkedAt": "2026-10-17T21:31:29.298286+00:00",
+    "checkedAt": "2026-10-18T08:40:53.527741+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5017,10 +6124,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.5
+    "seconds": 4.6
   },
   "node/4595404674": {
-    "checkedAt": "2026-10-17T21:39:42.886011+00:00",
+    "checkedAt": "2026-10-18T08:47:07.752512+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5029,10 +6136,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.5
+    "seconds": 14.0
   },
   "node/12718300663": {
-    "checkedAt": "2026-10-17T21:33:11.961871+00:00",
+    "checkedAt": "2026-10-18T08:43:23.887836+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5049,10 +6156,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.7
+    "seconds": 2.0
   },
   "node/12844028801": {
-    "checkedAt": "2026-10-17T21:39:57.449777+00:00",
+    "checkedAt": "2026-10-18T08:47:18.880350+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -5062,10 +6169,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 3.2
+    "seconds": 2.5
   },
   "node/8143805822": {
-    "checkedAt": "2026-10-17T21:40:00.611105+00:00",
+    "checkedAt": "2026-10-18T08:47:20.070532+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5074,10 +6181,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.7
+    "seconds": 0.0
   },
   "node/8067914457": {
-    "checkedAt": "2026-10-17T21:39:44.939138+00:00",
+    "checkedAt": "2026-10-18T08:47:10.317710+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5122,10 +6229,10 @@
       }
     ],
     "errors": [],
-    "seconds": 18.3
+    "seconds": 15.0
   },
   "node/3638026952": {
-    "checkedAt": "2026-10-17T21:39:29.464546+00:00",
+    "checkedAt": "2026-10-18T08:47:04.653709+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5178,10 +6285,10 @@
       }
     ],
     "errors": [],
-    "seconds": 47.7
+    "seconds": 44.8
   },
   "node/4377182496": {
-    "checkedAt": "2026-10-17T21:39:53.417023+00:00",
+    "checkedAt": "2026-10-18T08:47:14.917877+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5210,10 +6317,10 @@
       }
     ],
     "errors": [],
-    "seconds": 18.8
+    "seconds": 14.1
   },
   "node/5948052298": {
-    "checkedAt": "2026-10-17T21:40:08.919165+00:00",
+    "checkedAt": "2026-10-18T08:47:21.730412+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5222,10 +6329,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.9
+    "seconds": 3.5
   },
   "node/4110184297": {
-    "checkedAt": "2026-10-17T21:39:49.919606+00:00",
+    "checkedAt": "2026-10-18T08:47:12.923985+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5330,10 +6437,10 @@
       }
     ],
     "errors": [],
-    "seconds": 55.4
+    "seconds": 43.3
   },
   "node/5677223491": {
-    "checkedAt": "2026-10-17T21:40:02.307182+00:00",
+    "checkedAt": "2026-10-18T08:47:20.076884+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5362,10 +6469,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.6
+    "seconds": 11.2
   },
   "way/93770064": {
-    "checkedAt": "2026-10-17T21:40:12.923333+00:00",
+    "checkedAt": "2026-10-18T08:47:25.251917+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -5375,10 +6482,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.4
+    "seconds": 0.5
   },
   "node/567050951": {
-    "checkedAt": "2026-10-17T21:40:12.240771+00:00",
+    "checkedAt": "2026-10-18T08:47:24.569845+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -5388,10 +6495,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.6
+    "seconds": 2.0
   },
   "node/2984213160": {
-    "checkedAt": "2026-10-17T21:40:03.198271+00:00",
+    "checkedAt": "2026-10-18T08:47:21.381351+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5400,10 +6507,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.7
+    "seconds": 0.0
   },
   "node/3237678599": {
-    "checkedAt": "2026-10-17T21:33:13.272495+00:00",
+    "checkedAt": "2026-10-18T08:43:25.854972+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5416,10 +6523,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.7
+    "seconds": 2.3
   },
   "node/11368724666": {
-    "checkedAt": "2026-10-17T21:39:30.077639+00:00",
+    "checkedAt": "2026-10-18T08:47:04.705321+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5436,10 +6543,10 @@
       }
     ],
     "errors": [],
-    "seconds": 35.8
+    "seconds": 0.6
   },
   "node/7995309310": {
-    "checkedAt": "2026-10-17T21:40:14.845138+00:00",
+    "checkedAt": "2026-10-18T08:47:26.444101+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5449,10 +6556,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/8909393066": {
-    "checkedAt": "2026-10-17T21:33:15.795041+00:00",
+    "checkedAt": "2026-10-18T08:43:28.156197+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5473,10 +6580,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.7
+    "seconds": 6.6
   },
   "node/9524853160": {
-    "checkedAt": "2026-10-17T21:33:18.948984+00:00",
+    "checkedAt": "2026-10-18T08:43:34.785638+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5493,10 +6600,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.1
+    "seconds": 2.1
   },
   "node/7747174184": {
-    "checkedAt": "2026-10-17T21:40:15.006223+00:00",
+    "checkedAt": "2026-10-18T08:47:26.548191+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5513,30 +6620,23 @@
       }
     ],
     "errors": [],
-    "seconds": 8.4
+    "seconds": 6.6
   },
   "way/327318693": {
-    "checkedAt": "2026-10-17T21:40:13.783288+00:00",
-    "status": "no_prices",
-    "documents": [
+    "checkedAt": "2026-10-18T08:47:25.705879+00:00",
+    "status": "robots_blocked",
+    "documents": [],
+    "errors": [
       {
-        "url": "https://parkpavillon.ch/",
-        "kind": "html"
-      },
-      {
-        "url": "https://parkpavillon.ch/angebote/",
-        "kind": "html"
-      },
-      {
-        "url": "https://parkpavillon.ch/wp-content/uploads/2026/03/Pavillon-im-Park-Kinderparty_26.pdf",
-        "kind": "pdf"
+        "url": "https://www.parkpavillon.ch/",
+        "reason": "robots_blocked",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 17.5
+    "seconds": 0.7
   },
   "node/2901279855": {
-    "checkedAt": "2026-10-17T21:40:17.203851+00:00",
+    "checkedAt": "2026-10-18T08:47:26.581495+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5549,10 +6649,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.1
+    "seconds": 3.4
   },
   "node/3117994730": {
-    "checkedAt": "2026-10-17T21:40:05.859373+00:00",
+    "checkedAt": "2026-10-18T08:47:21.396715+00:00",
     "status": "partial",
     "documents": [
       {
@@ -5595,10 +6695,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 13.5
+    "seconds": 3.2
   },
   "node/457333463": {
-    "checkedAt": "2026-10-17T21:40:23.373761+00:00",
+    "checkedAt": "2026-10-18T08:47:31.310088+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5611,10 +6711,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.9
+    "seconds": 2.4
   },
   "node/122337395": {
-    "checkedAt": "2026-10-17T21:40:13.321626+00:00",
+    "checkedAt": "2026-10-18T08:47:25.313250+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5639,10 +6739,10 @@
       }
     ],
     "errors": [],
-    "seconds": 24.1
+    "seconds": 22.5
   },
   "node/8500247484": {
-    "checkedAt": "2026-10-17T21:40:21.311746+00:00",
+    "checkedAt": "2026-10-18T08:47:29.962321+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5659,10 +6759,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.0
+    "seconds": 7.1
   },
   "node/3179353790": {
-    "checkedAt": "2026-10-17T21:40:31.286882+00:00",
+    "checkedAt": "2026-10-18T08:47:33.748600+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5671,10 +6771,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 0.0
   },
   "node/586277088": {
-    "checkedAt": "2026-10-17T21:40:34.934471+00:00",
+    "checkedAt": "2026-10-18T08:47:33.769893+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5687,7 +6787,7 @@
     "seconds": 0.2
   },
   "node/2578294254": {
-    "checkedAt": "2026-10-17T21:33:22.652589+00:00",
+    "checkedAt": "2026-10-18T08:43:36.908501+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5728,10 +6828,10 @@
       }
     ],
     "errors": [],
-    "seconds": 22.7
+    "seconds": 2.1
   },
   "node/8125259187": {
-    "checkedAt": "2026-10-17T21:40:37.467541+00:00",
+    "checkedAt": "2026-10-18T08:47:34.051089+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5744,7 +6844,7 @@
     "seconds": 0.2
   },
   "node/4540155696": {
-    "checkedAt": "2026-10-17T21:40:37.643549+00:00",
+    "checkedAt": "2026-10-18T08:47:34.226000+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5757,14 +6857,18 @@
       }
     ],
     "errors": [],
-    "seconds": 8.3
+    "seconds": 6.1
   },
   "node/4417769694": {
-    "checkedAt": "2026-10-17T21:33:27.032664+00:00",
+    "checkedAt": "2026-10-18T08:43:38.997332+00:00",
     "status": "prices_found",
     "documents": [
       {
         "url": "https://www.portofino-basel.ch/Portofino-Basel-Menukarten/Weine_Getränke_Spirituosen.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://files.lunchgate.ch/gastrouploads/15739/menu/ff0599f001d0.pdf",
         "kind": "pdf"
       },
       {
@@ -5808,19 +6912,15 @@
         "kind": "html"
       },
       {
-        "url": "https://files.lunchgate.ch/gastrouploads/15739/menu/ff0599f001d0.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://api2.lunchgate.ch/digital-menu/dm/menu/a040d58a57c56b00bbadf51265f561e1",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 26.8
+    "seconds": 6.6
   },
   "node/10963072012": {
-    "checkedAt": "2026-10-17T21:40:30.282929+00:00",
+    "checkedAt": "2026-10-18T08:47:33.238022+00:00",
     "status": "partial",
     "documents": [
       {
@@ -5852,6 +6952,26 @@
         "kind": "html"
       },
       {
+        "url": "https://www.potstillbar.ch/best-bar-basel",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.potstillbar.ch/best-bar-basel",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.potstillbar.ch/best-bar-basel",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.potstillbar.ch/founders-club",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.potstillbar.ch/reservation",
+        "kind": "html"
+      },
+      {
         "url": "https://www.potstillbar.ch/workshops",
         "kind": "html"
       },
@@ -5870,10 +6990,6 @@
       {
         "url": "https://www.potstillbar.ch/best-cocktails-basel",
         "kind": "html"
-      },
-      {
-        "url": "https://www.potstillbar.ch/reservation",
-        "kind": "html"
       }
     ],
     "errors": [
@@ -5883,10 +6999,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 28.0
+    "seconds": 1.0
   },
   "node/4895556124": {
-    "checkedAt": "2026-10-17T21:40:45.923939+00:00",
+    "checkedAt": "2026-10-18T08:47:37.090434+00:00",
     "status": "partial",
     "documents": [
       {
@@ -5901,10 +7017,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.4
+    "seconds": 0.6
   },
   "node/1653595985": {
-    "checkedAt": "2026-10-17T21:40:45.339277+00:00",
+    "checkedAt": "2026-10-18T08:47:34.235925+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -5914,10 +7030,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 8.3
+    "seconds": 8.1
   },
   "node/3888956159": {
-    "checkedAt": "2026-10-17T21:33:33.507545+00:00",
+    "checkedAt": "2026-10-18T08:43:41.778242+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5946,10 +7062,10 @@
       }
     ],
     "errors": [],
-    "seconds": 25.0
+    "seconds": 30.0
   },
   "node/13368137178": {
-    "checkedAt": "2026-10-17T21:40:27.236971+00:00",
+    "checkedAt": "2026-10-18T08:47:33.189856+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5962,10 +7078,10 @@
       }
     ],
     "errors": [],
-    "seconds": 22.6
+    "seconds": 0.0
   },
   "node/12613597133": {
-    "checkedAt": "2026-10-17T21:40:35.153698+00:00",
+    "checkedAt": "2026-10-18T08:47:33.999633+00:00",
     "status": "partial",
     "documents": [
       {
@@ -5975,11 +7091,15 @@
       {
         "url": "https://puro-basel.ch/menu/",
         "kind": "html"
+      },
+      {
+        "url": "https://puro-basel.ch/en/menu/",
+        "kind": "html"
       }
     ],
     "errors": [
       {
-        "url": "https://puro-basel.ch/en/menu/",
+        "url": "https://puro-basel.ch/en/puro-restaurant/",
         "reason": "ConnectTimeout",
         "phase": "fetch"
       },
@@ -5994,10 +7114,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 34.5
+    "seconds": 39.9
   },
   "node/8036732978": {
-    "checkedAt": "2026-10-17T21:40:53.602229+00:00",
+    "checkedAt": "2026-10-18T08:47:42.304811+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6010,7 +7130,7 @@
     "seconds": 0.2
   },
   "way/318389704": {
-    "checkedAt": "2026-10-17T21:40:49.832669+00:00",
+    "checkedAt": "2026-10-18T08:47:40.311330+00:00",
     "status": "partial",
     "documents": [
       {
@@ -6036,6 +7156,26 @@
       {
         "url": "https://www.blackstars.ch/restaurant_/speisekarte",
         "kind": "html"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.blackstars.ch/restaurant_/bar",
+        "kind": "html"
       }
     ],
     "errors": [
@@ -6060,23 +7200,23 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 22.2
+    "seconds": 26.9
   },
   "node/12802088001": {
-    "checkedAt": "2026-10-17T21:40:58.332369+00:00",
-    "status": "fetch_failed",
+    "checkedAt": "2026-10-18T08:47:47.815378+00:00",
+    "status": "robots_blocked",
     "documents": [],
     "errors": [
       {
         "url": "https://restaurantlu.com/",
-        "reason": "gaierror",
+        "reason": "robots_blocked",
         "phase": "fetch"
       }
     ],
-    "seconds": 0.0
+    "seconds": 0.2
   },
   "node/6047355929": {
-    "checkedAt": "2026-10-17T21:33:36.894628+00:00",
+    "checkedAt": "2026-10-18T08:43:45.579289+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6129,10 +7269,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 24.9
+    "seconds": 12.3
   },
   "node/2624405472": {
-    "checkedAt": "2026-10-17T21:33:45.332664+00:00",
+    "checkedAt": "2026-10-18T08:43:45.782852+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6173,10 +7313,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.0
+    "seconds": 3.9
   },
   "node/1855733118": {
-    "checkedAt": "2026-10-17T21:41:09.174140+00:00",
+    "checkedAt": "2026-10-18T08:47:56.180855+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6186,10 +7326,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.1
+    "seconds": 0.0
   },
   "node/2684267823": {
-    "checkedAt": "2026-10-17T21:41:09.225972+00:00",
+    "checkedAt": "2026-10-18T08:47:56.228139+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6206,10 +7346,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.2
+    "seconds": 5.1
   },
   "node/12867019283": {
-    "checkedAt": "2026-10-17T21:40:53.768202+00:00",
+    "checkedAt": "2026-10-18T08:47:42.481876+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6254,10 +7394,10 @@
       }
     ],
     "errors": [],
-    "seconds": 22.4
+    "seconds": 18.4
   },
   "node/2343796329": {
-    "checkedAt": "2026-10-17T21:40:48.333264+00:00",
+    "checkedAt": "2026-10-18T08:47:37.721517+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6282,14 +7422,14 @@
       }
     ],
     "errors": [],
-    "seconds": 35.0
+    "seconds": 36.9
   },
   "node/6654642118": {
-    "checkedAt": "2026-10-17T21:40:58.371072+00:00",
+    "checkedAt": "2026-10-18T08:47:48.014820+00:00",
     "status": "no_prices",
     "documents": [
       {
-        "url": "https://www.loewenzorn-basel.ch",
+        "url": "https://en.loewenzorn-basel.ch/",
         "kind": "html"
       },
       {
@@ -6305,11 +7445,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.loewenzorn-basel.ch/mittagsmenue",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.loewenzorn-basel.ch/restaurant",
+        "url": "https://en.loewenzorn-basel.ch/mittagsmenue",
         "kind": "html"
       },
       {
@@ -6318,19 +7454,19 @@
       }
     ],
     "errors": [],
-    "seconds": 10.8
+    "seconds": 17.1
   },
   "node/9832402717": {
-    "checkedAt": "2026-10-17T21:41:15.431381+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:43:49.682225+00:00",
+    "status": "prices_found",
     "documents": [
-      {
-        "url": "https://www.thaifamily.ch/",
-        "kind": "html"
-      },
       {
         "url": "https://www.thaifamily.ch/web/wp-content/uploads/ThaiFamily-Restaurant.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.thaifamily.ch/",
+        "kind": "html"
       },
       {
         "url": "https://www.thaifamily.ch/web/wp-content/uploads/Thai-Family-Take-Away.pdf",
@@ -6338,12 +7474,16 @@
       }
     ],
     "errors": [],
-    "seconds": 14.8
+    "seconds": 0.5
   },
   "node/585133165": {
-    "checkedAt": "2026-10-17T21:39:21.066518+00:00",
-    "status": "partial",
+    "checkedAt": "2026-10-18T08:42:34.930028+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://lauch-basel.ch/wp-content/uploads/2026/10/10.10.2026_Getraenke_LAUCH.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://lauch-basel.ch/",
         "kind": "html"
@@ -6375,10 +7515,6 @@
       {
         "url": "https://lauch-basel.ch/wp-content/uploads/2026/10/Menu-LAUCH__7.10.26_Gr.pdf",
         "kind": "pdf"
-      },
-      {
-        "url": "https://lauch-basel.ch/wp-content/uploads/2026/10/10.10.2026_Getraenke_LAUCH.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [
@@ -6398,10 +7534,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 138.4
+    "seconds": 36.0
   },
   "node/1936094990": {
-    "checkedAt": "2026-10-17T21:41:20.065452+00:00",
+    "checkedAt": "2026-10-18T08:48:01.284789+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6414,7 +7550,7 @@
     "seconds": 0.2
   },
   "node/4554501146": {
-    "checkedAt": "2026-10-17T21:41:11.983751+00:00",
+    "checkedAt": "2026-10-18T08:48:00.924165+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6443,10 +7579,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.1
+    "seconds": 8.0
   },
   "node/4601277651": {
-    "checkedAt": "2026-10-17T21:33:53.820436+00:00",
+    "checkedAt": "2026-10-18T08:43:50.160612+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6467,10 +7603,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.9
+    "seconds": 3.7
   },
   "node/4823742529": {
-    "checkedAt": "2026-10-17T21:41:22.399597+00:00",
+    "checkedAt": "2026-10-18T08:48:05.150999+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6503,10 +7639,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.5
+    "seconds": 8.3
   },
   "node/9381403405": {
-    "checkedAt": "2026-10-17T21:41:25.853372+00:00",
+    "checkedAt": "2026-10-18T08:48:08.877616+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6516,10 +7652,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.3
+    "seconds": 1.8
   },
   "node/9514136696": {
-    "checkedAt": "2026-10-17T21:41:03.631082+00:00",
+    "checkedAt": "2026-10-18T08:47:49.495882+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6552,12 +7688,16 @@
       }
     ],
     "errors": [],
-    "seconds": 40.8
+    "seconds": 36.6
   },
   "node/273223709": {
-    "checkedAt": "2026-10-17T21:41:16.119071+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:43:53.836726+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://restaurantziegelhof.ch/wp-content/uploads/2025/10/Speisekarte15-724x1024.jpg",
+        "kind": "unsupported"
+      },
       {
         "url": "https://restaurantziegelhof.ch/",
         "kind": "html"
@@ -6572,10 +7712,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.7
+    "seconds": 1.0
   },
   "node/9905765555": {
-    "checkedAt": "2026-10-17T21:41:32.929022+00:00",
+    "checkedAt": "2026-10-18T08:48:13.435719+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6585,10 +7725,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.9
+    "seconds": 1.0
   },
   "node/14113313801": {
-    "checkedAt": "2026-10-17T21:40:19.356185+00:00",
+    "checkedAt": "2026-10-18T08:47:29.030142+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6613,12 +7753,16 @@
       }
     ],
     "errors": [],
-    "seconds": 63.0
+    "seconds": 59.3
   },
   "node/582950406": {
-    "checkedAt": "2026-10-17T21:41:09.699935+00:00",
+    "checkedAt": "2026-10-18T08:43:46.613410+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://schluesselzunft.ch/download/2142/Bistrokarte_ab_September_2026.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://schluesselzunft.ch/de/",
         "kind": "html"
@@ -6660,10 +7804,6 @@
         "kind": "html"
       },
       {
-        "url": "https://schluesselzunft.ch/download/2142/Bistrokarte_ab_September_2026.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://schluesselzunft.ch/en/bilder/bar-bistro-restaurant",
         "kind": "html"
       },
@@ -6689,10 +7829,10 @@
       }
     ],
     "errors": [],
-    "seconds": 44.6
+    "seconds": 15.8
   },
   "node/583280000": {
-    "checkedAt": "2026-10-17T21:41:33.859312+00:00",
+    "checkedAt": "2026-10-18T08:48:13.904927+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6725,10 +7865,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.7
+    "seconds": 10.5
   },
   "node/457333518": {
-    "checkedAt": "2026-10-17T21:41:44.429647+00:00",
+    "checkedAt": "2026-10-18T08:48:14.591646+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6749,10 +7889,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.4
+    "seconds": 6.1
   },
   "node/586283598": {
-    "checkedAt": "2026-10-17T21:41:23.352811+00:00",
+    "checkedAt": "2026-10-18T08:48:07.226278+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6813,10 +7953,10 @@
       }
     ],
     "errors": [],
-    "seconds": 39.4
+    "seconds": 33.7
   },
   "node/5718149115": {
-    "checkedAt": "2026-10-17T21:41:52.838621+00:00",
+    "checkedAt": "2026-10-18T08:48:26.051426+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -6826,10 +7966,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.4
+    "seconds": 1.2
   },
   "node/10140233773": {
-    "checkedAt": "2026-10-17T21:41:46.551730+00:00",
+    "checkedAt": "2026-10-18T08:48:20.722707+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6838,10 +7978,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.4
+    "seconds": 7.0
   },
   "node/5744306322": {
-    "checkedAt": "2026-10-17T21:41:39.505142+00:00",
+    "checkedAt": "2026-10-18T08:48:14.432486+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6878,10 +8018,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.6
+    "seconds": 16.1
   },
   "node/1610930944": {
-    "checkedAt": "2026-10-17T21:41:54.261532+00:00",
+    "checkedAt": "2026-10-18T08:48:27.219416+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6890,10 +8030,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.6
+    "seconds": 0.1
   },
   "node/12612357841": {
-    "checkedAt": "2026-10-17T21:41:52.691191+00:00",
+    "checkedAt": "2026-10-18T08:48:24.447934+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6922,10 +8062,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.5
+    "seconds": 12.4
   },
   "node/13406499201": {
-    "checkedAt": "2026-10-17T21:41:59.635078+00:00",
+    "checkedAt": "2026-10-18T08:48:30.525784+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6934,12 +8074,16 @@
       }
     ],
     "errors": [],
-    "seconds": 2.1
+    "seconds": 0.0
   },
   "node/5016417015": {
-    "checkedAt": "2026-10-17T21:41:28.147961+00:00",
+    "checkedAt": "2026-10-18T08:43:55.746421+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.rhywyera.ch/wp-content/uploads/2026/06/Weinkarte_Rhywyera_16.06.2026.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.rhywyera.ch/",
         "kind": "html"
@@ -7007,17 +8151,13 @@
       {
         "url": "https://www.rhywyera.ch/wp-content/uploads/2024/06/Weinkarte_0724.pdf",
         "kind": "pdf"
-      },
-      {
-        "url": "https://www.rhywyera.ch/wp-content/uploads/2026/06/Weinkarte_Rhywyera_16.06.2026.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 52.7
+    "seconds": 11.8
   },
   "node/14203352696": {
-    "checkedAt": "2026-10-17T21:41:30.263752+00:00",
+    "checkedAt": "2026-10-18T08:48:10.693232+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7030,10 +8170,10 @@
       }
     ],
     "errors": [],
-    "seconds": 22.4
+    "seconds": 21.5
   },
   "node/7871928282": {
-    "checkedAt": "2026-10-17T21:41:57.064799+00:00",
+    "checkedAt": "2026-10-18T08:48:28.283150+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7050,10 +8190,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.7
+    "seconds": 6.7
   },
   "node/4701573904": {
-    "checkedAt": "2026-10-17T21:41:54.272072+00:00",
+    "checkedAt": "2026-10-18T08:48:27.310341+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7062,10 +8202,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.6
+    "seconds": 11.5
   },
   "node/5765336954": {
-    "checkedAt": "2026-10-17T21:42:02.705577+00:00",
+    "checkedAt": "2026-10-18T08:48:34.933645+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7074,10 +8214,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.5
+    "seconds": 0.0
   },
   "node/702231310": {
-    "checkedAt": "2026-10-17T21:41:20.224660+00:00",
+    "checkedAt": "2026-10-18T08:48:01.502686+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7110,10 +8250,10 @@
       }
     ],
     "errors": [],
-    "seconds": 39.4
+    "seconds": 38.5
   },
   "node/258889881": {
-    "checkedAt": "2026-10-17T21:42:06.916253+00:00",
+    "checkedAt": "2026-10-18T08:48:36.595548+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -7123,12 +8263,16 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/9350766920": {
-    "checkedAt": "2026-10-17T21:42:04.227056+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:44:02.369430+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.schallundrauchbar.ch/images/getraenkeundspeisekarte/Getrnke_Karte_klein_Buchschrauben_Flyeralarm_26_1_7.jpg",
+        "kind": "unsupported"
+      },
       {
         "url": "https://www.schallundrauchbar.ch",
         "kind": "html"
@@ -7143,10 +8287,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.5
+    "seconds": 0.6
   },
   "node/12017251394": {
-    "checkedAt": "2026-10-17T21:42:01.695800+00:00",
+    "checkedAt": "2026-10-18T08:48:30.531610+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7155,10 +8299,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.0
+    "seconds": 6.1
   },
   "node/2001289817": {
-    "checkedAt": "2026-10-17T21:41:54.973096+00:00",
+    "checkedAt": "2026-10-18T08:48:27.753289+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7215,10 +8359,10 @@
       }
     ],
     "errors": [],
-    "seconds": 25.1
+    "seconds": 21.9
   },
   "node/7578166883": {
-    "checkedAt": "2026-10-17T21:42:01.855433+00:00",
+    "checkedAt": "2026-10-18T08:48:32.241807+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7227,10 +8371,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.5
+    "seconds": 13.0
   },
   "node/10606351037": {
-    "checkedAt": "2026-10-17T21:42:07.209740+00:00",
+    "checkedAt": "2026-10-18T08:48:36.802698+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -7240,10 +8384,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 5.6
+    "seconds": 4.6
   },
   "node/7762245664": {
-    "checkedAt": "2026-10-17T21:42:09.719709+00:00",
+    "checkedAt": "2026-10-18T08:48:39.963393+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7252,10 +8396,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.3
+    "seconds": 2.3
   },
   "node/292058711": {
-    "checkedAt": "2026-10-17T21:42:07.685008+00:00",
+    "checkedAt": "2026-10-18T08:48:38.826486+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7276,10 +8420,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.9
+    "seconds": 6.2
   },
   "node/7778233543": {
-    "checkedAt": "2026-10-17T21:33:07.701424+00:00",
+    "checkedAt": "2026-10-18T08:43:20.847938+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7315,11 +8459,19 @@
         "kind": "pdf"
       },
       {
+        "url": "https://matt-elly.com/en/tapas-bar/",
+        "kind": "html"
+      },
+      {
         "url": "https://matt-elly.com/en/brewery/",
         "kind": "html"
       },
       {
         "url": "https://matt-elly.com",
+        "kind": "html"
+      },
+      {
+        "url": "https://matt-elly.com/bar-tapas/",
         "kind": "html"
       },
       {
@@ -7348,10 +8500,10 @@
       }
     ],
     "errors": [],
-    "seconds": 236.3
+    "seconds": 25.8
   },
   "node/252822612": {
-    "checkedAt": "2026-10-17T21:42:05.744917+00:00",
+    "checkedAt": "2026-10-18T08:48:34.978056+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7368,10 +8520,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.5
+    "seconds": 14.2
   },
   "node/14178506071": {
-    "checkedAt": "2026-10-17T21:42:12.772810+00:00",
+    "checkedAt": "2026-10-18T08:48:40.895037+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7380,10 +8532,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.4
+    "seconds": 4.1
   },
   "node/12533458853": {
-    "checkedAt": "2026-10-17T21:34:01.788550+00:00",
+    "checkedAt": "2026-10-18T08:44:04.568368+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7396,10 +8548,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.6
+    "seconds": 1.6
   },
   "node/13302004345": {
-    "checkedAt": "2026-10-17T21:42:16.380191+00:00",
+    "checkedAt": "2026-10-18T08:48:42.303179+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -7409,10 +8561,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.6
+    "seconds": 0.4
   },
   "node/11328121145": {
-    "checkedAt": "2026-10-17T21:42:16.435578+00:00",
+    "checkedAt": "2026-10-18T08:48:42.727647+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7421,10 +8573,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.3
+    "seconds": 2.4
   },
   "node/10745141574": {
-    "checkedAt": "2026-10-17T21:42:13.035849+00:00",
+    "checkedAt": "2026-10-18T08:48:41.445337+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7433,10 +8585,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.4
+    "seconds": 0.0
   },
   "node/12230410089": {
-    "checkedAt": "2026-10-17T21:42:14.583773+00:00",
+    "checkedAt": "2026-10-18T08:48:41.455233+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7449,10 +8601,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.3
+    "seconds": 0.1
   },
   "node/290725197": {
-    "checkedAt": "2026-10-17T21:42:07.095079+00:00",
+    "checkedAt": "2026-10-18T08:48:36.733124+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7468,7 +8620,7 @@
     "seconds": 11.3
   },
   "node/3758773688": {
-    "checkedAt": "2026-10-17T21:33:58.601253+00:00",
+    "checkedAt": "2026-10-18T08:44:02.940468+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7485,10 +8637,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.2
+    "seconds": 1.6
   },
   "node/2573355484": {
-    "checkedAt": "2026-10-17T21:42:18.443236+00:00",
+    "checkedAt": "2026-10-18T08:48:45.058618+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -7498,10 +8650,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.5
+    "seconds": 2.3
   },
   "node/9350766921": {
-    "checkedAt": "2026-10-17T21:34:02.329332+00:00",
+    "checkedAt": "2026-10-18T08:44:06.216437+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7526,10 +8678,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.7
+    "seconds": 3.1
   },
   "node/5137057421": {
-    "checkedAt": "2026-10-17T21:42:16.205114+00:00",
+    "checkedAt": "2026-10-18T08:48:41.526019+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7542,12 +8694,16 @@
       }
     ],
     "errors": [],
-    "seconds": 4.9
+    "seconds": 4.0
   },
   "node/6133118090": {
-    "checkedAt": "2026-10-17T21:42:17.910840+00:00",
+    "checkedAt": "2026-10-18T08:44:10.945420+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.stadtkeller-basel.ch/pdf/getraenkekarte_2026.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.stadtkeller-basel.ch",
         "kind": "html"
@@ -7559,17 +8715,13 @@
       {
         "url": "https://www.stadtkeller-basel.ch/pdf/speisekarte_herbst_2026.pdf",
         "kind": "pdf"
-      },
-      {
-        "url": "https://www.stadtkeller-basel.ch/pdf/getraenkekarte_2026.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 13.0
+    "seconds": 4.7
   },
   "node/2579603914": {
-    "checkedAt": "2026-10-17T21:42:17.011710+00:00",
+    "checkedAt": "2026-10-18T08:48:45.032423+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7578,10 +8730,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.3
+    "seconds": 8.8
   },
   "node/8041311738": {
-    "checkedAt": "2026-10-17T21:42:20.952167+00:00",
+    "checkedAt": "2026-10-18T08:48:45.660378+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7597,15 +8749,19 @@
         "kind": "pdf"
       },
       {
+        "url": "https://www.tacave.ch/affiliation",
+        "kind": "html"
+      },
+      {
         "url": "https://static1.squarespace.com/static/68b95a4eb279c80e27a41ee1/t/6ad2448b7bf5fe74898fa289/1792165003189/Weinkarte_Oktober+2026.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 6.1
+    "seconds": 0.8
   },
   "node/13474274101": {
-    "checkedAt": "2026-10-17T21:42:20.798473+00:00",
+    "checkedAt": "2026-10-18T08:48:45.552787+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7622,14 +8778,18 @@
       }
     ],
     "errors": [],
-    "seconds": 12.6
+    "seconds": 0.1
   },
   "node/4377355190": {
-    "checkedAt": "2026-10-17T21:34:05.207593+00:00",
+    "checkedAt": "2026-10-18T08:44:07.528327+00:00",
     "status": "prices_found",
     "documents": [
       {
         "url": "https://www.sriveda.ch/downloads/sriveda-abendkarte-single-01052023.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.sriveda.ch/downloads/sriveda-abendkarte-01052023.pdf",
         "kind": "pdf"
       },
       {
@@ -7653,8 +8813,8 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.sriveda.ch/downloads/sriveda-abendkarte-01052023.pdf",
-        "kind": "pdf"
+        "url": "https://www.sriveda.ch/sri-veda-bar-2/",
+        "kind": "html"
       },
       {
         "url": "https://www.sriveda.ch/wp-content/uploads/2026/09/sriveda-ayurveda-anfangskurs-2026-2.pdf",
@@ -7662,10 +8822,10 @@
       }
     ],
     "errors": [],
-    "seconds": 21.6
+    "seconds": 9.5
   },
   "node/590051414": {
-    "checkedAt": "2026-10-17T21:42:30.889837+00:00",
+    "checkedAt": "2026-10-18T08:48:49.181852+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -7678,7 +8838,7 @@
     "seconds": 0.1
   },
   "node/9529779003": {
-    "checkedAt": "2026-10-17T21:42:30.955774+00:00",
+    "checkedAt": "2026-10-18T08:48:49.279035+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7687,10 +8847,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.5
+    "seconds": 3.0
   },
   "node/9006190876": {
-    "checkedAt": "2026-10-17T21:42:32.480555+00:00",
+    "checkedAt": "2026-10-18T08:48:49.635583+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -7700,10 +8860,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 6.1
+    "seconds": 3.1
   },
   "node/10116280190": {
-    "checkedAt": "2026-10-17T21:33:58.507565+00:00",
+    "checkedAt": "2026-10-18T08:43:57.898496+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7744,10 +8904,10 @@
       }
     ],
     "errors": [],
-    "seconds": 52.6
+    "seconds": 16.5
   },
   "node/3207784771": {
-    "checkedAt": "2026-10-17T21:42:27.014457+00:00",
+    "checkedAt": "2026-10-18T08:48:48.054445+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7760,10 +8920,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.2
+    "seconds": 6.8
   },
   "node/1794707598": {
-    "checkedAt": "2026-10-17T21:42:19.706001+00:00",
+    "checkedAt": "2026-10-18T08:48:45.118408+00:00",
     "status": "partial",
     "documents": [
       {
@@ -7826,12 +8986,16 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 36.1
+    "seconds": 30.3
   },
   "node/6954999086": {
-    "checkedAt": "2026-10-17T21:42:21.271080+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:44:11.516835+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.tavernejohann.ch/assets/tavernejohann/Files/Zum-Gniesse.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.tavernejohann.ch/",
         "kind": "html"
@@ -7849,32 +9013,28 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.tavernejohann.ch/assets/tavernejohann/Files/Zum-Gniesse.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://www.tavernejohann.ch/assets/tavernejohann/Files/Weinkarte.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 19.5
+    "seconds": 10.3
   },
   "node/292057785": {
-    "checkedAt": "2026-10-17T21:42:20.065775+00:00",
-    "status": "robots_blocked",
+    "checkedAt": "2026-10-18T08:48:45.269223+00:00",
+    "status": "fetch_failed",
     "documents": [],
     "errors": [
       {
         "url": "http://www.thairestaurant.ch/de/home/",
-        "reason": "robots_blocked",
+        "reason": "ReadTimeout",
         "phase": "fetch"
       }
     ],
-    "seconds": 18.4
+    "seconds": 24.1
   },
   "node/3077292533": {
-    "checkedAt": "2026-10-17T21:42:21.124117+00:00",
+    "checkedAt": "2026-10-18T08:48:46.477003+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7915,10 +9075,10 @@
       }
     ],
     "errors": [],
-    "seconds": 26.0
+    "seconds": 22.3
   },
   "node/5092178833": {
-    "checkedAt": "2026-10-17T21:42:38.582472+00:00",
+    "checkedAt": "2026-10-18T08:48:53.792073+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7931,10 +9091,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.8
+    "seconds": 5.2
   },
   "node/7457896182": {
-    "checkedAt": "2026-10-17T21:34:09.713940+00:00",
+    "checkedAt": "2026-10-18T08:44:11.752369+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7963,10 +9123,10 @@
       }
     ],
     "errors": [],
-    "seconds": 18.0
+    "seconds": 4.2
   },
   "node/3208777028": {
-    "checkedAt": "2026-10-17T21:42:44.938123+00:00",
+    "checkedAt": "2026-10-18T08:48:59.002624+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -7976,10 +9136,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.3
+    "seconds": 0.4
   },
   "node/14090069126": {
-    "checkedAt": "2026-10-17T21:42:40.749021+00:00",
+    "checkedAt": "2026-10-18T08:48:54.889265+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7992,10 +9152,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.2
+    "seconds": 4.0
   },
   "node/4064658548": {
-    "checkedAt": "2026-10-17T21:42:45.214704+00:00",
+    "checkedAt": "2026-10-18T08:48:59.438437+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -8008,7 +9168,7 @@
     "seconds": 2.0
   },
   "node/13069636177": {
-    "checkedAt": "2026-10-17T21:42:34.224736+00:00",
+    "checkedAt": "2026-10-18T08:48:52.440767+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8033,10 +9193,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.7
+    "seconds": 7.9
   },
   "node/2376800603": {
-    "checkedAt": "2026-10-17T21:42:47.127861+00:00",
+    "checkedAt": "2026-10-18T08:49:00.362836+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8045,12 +9205,16 @@
       }
     ],
     "errors": [],
-    "seconds": 1.8
+    "seconds": 2.8
   },
   "node/5377769532": {
-    "checkedAt": "2026-10-17T21:42:45.405437+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:44:16.987171+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://valhalla-basel.ch/wp-content/uploads/2025/09/Getraenkekarte-final-2025.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://valhalla-basel.ch/",
         "kind": "html"
@@ -8060,19 +9224,19 @@
         "kind": "html"
       },
       {
-        "url": "https://valhalla-basel.ch/wp-content/uploads/2025/09/Getraenkekarte-final-2025.pdf",
+        "url": "https://valhalla-basel.ch/wp-content/uploads/2025/11/Valhalla-Menu-25.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://valhalla-basel.ch/wp-content/uploads/2025/11/Valhalla-Menu-25.pdf",
-        "kind": "pdf"
+        "url": "https://valhalla-basel.ch",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 10.3
+    "seconds": 4.9
   },
   "node/13671055223": {
-    "checkedAt": "2026-10-17T21:42:38.437267+00:00",
+    "checkedAt": "2026-10-18T08:48:52.703645+00:00",
     "status": "partial",
     "documents": [
       {
@@ -8116,10 +9280,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 25.4
+    "seconds": 23.6
   },
   "node/6318613814": {
-    "checkedAt": "2026-10-17T21:34:15.778112+00:00",
+    "checkedAt": "2026-10-18T08:44:15.681203+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8168,11 +9332,11 @@
       }
     ],
     "errors": [],
-    "seconds": 29.3
+    "seconds": 7.7
   },
   "node/5341699522": {
-    "checkedAt": "2026-10-17T21:42:55.693582+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:49:03.201402+00:00",
+    "status": "prices_found",
     "documents": [
       {
         "url": "https://walliserkanne-basel.ch/",
@@ -8189,13 +9353,29 @@
       {
         "url": "https://walliserkanne-basel.ch/restaurant-2.html",
         "kind": "html"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/kanne-bar.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/files/Walliserkanne_Basel_Wein_und_Getrankekarte_2026.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/kanne-bar-2.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://walliserkanne-basel.ch/kanne-bar-1.html",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 6.9
+    "seconds": 13.9
   },
   "node/4031088875": {
-    "checkedAt": "2026-10-17T21:34:26.758856+00:00",
+    "checkedAt": "2026-10-18T08:44:21.842819+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8216,10 +9396,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.9
+    "seconds": 4.8
   },
   "node/1255857521": {
-    "checkedAt": "2026-10-17T21:42:55.780261+00:00",
+    "checkedAt": "2026-10-18T08:49:03.752976+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8232,10 +9412,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.2
+    "seconds": 4.7
   },
   "node/740490382": {
-    "checkedAt": "2026-10-17T21:42:42.926886+00:00",
+    "checkedAt": "2026-10-18T08:48:58.870889+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8255,11 +9435,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/erlebnis-bier/aperos-und-führungen",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/erlebnis-bier/kontaktformular-events",
+        "url": "https://www.unserbier.ch/unsere-biere",
         "kind": "html"
       },
       {
@@ -8299,11 +9475,11 @@
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/erlebnis-bier/teambildung",
+        "url": "https://www.unserbier.ch/erlebnis-bier/kontaktformular-events",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/erlebnis-bier/brauerlebnis",
+        "url": "https://www.unserbier.ch/erlebnis-bier/aperos-und-führungen",
         "kind": "html"
       },
       {
@@ -8311,15 +9487,11 @@
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/unsere-biere",
+        "url": "https://www.unserbier.ch/erlebnis-bier/brauerlebnis",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/unsere-biere",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/unsere-biere",
+        "url": "https://www.unserbier.ch/erlebnis-bier/teambildung",
         "kind": "html"
       },
       {
@@ -8327,39 +9499,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/unser-bier-bier-shampoo",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/product-page/bieressig-25-cl-essig-auf-bier-basis",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/product-page/t-shirt",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/product-page/glühbiergewürz-und-6-pack-corubabier",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/product-page/geschenkkarton-unser-bier",
-        "kind": "html"
-      },
-      {
         "url": "https://www.unserbier.ch/product-page/geschenk-bier-abo-saisonbiere",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/product-page/whisky-bieressig-und-bierband",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/product-page/blond-schweizer-spezial-bier-dose-6-x-50-cl-1",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/product-page/amarone-saison-barrel-agend-i-schweizer-bierrarität",
         "kind": "html"
       },
       {
@@ -8367,15 +9507,11 @@
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/blond-schweizer-bio-bier-partyfass-10l",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.unserbier.ch/product-page/blond-schweizer-bio-bier-partyfass-20l",
-        "kind": "html"
-      },
-      {
         "url": "https://www.unserbier.ch/product-page/amber-partygrössen",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/blond-schweizer-bio-bier-partyfass-10l",
         "kind": "html"
       },
       {
@@ -8383,39 +9519,51 @@
         "kind": "html"
       },
       {
+        "url": "https://www.unserbier.ch/product-page/blond-schweizer-bio-bier-partyfass-20l",
+        "kind": "html"
+      },
+      {
         "url": "https://www.unserbier.ch/product-page/amber-schweizer-bio-bier-partyfass-20l",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/bierfondue-unser-bier",
+        "url": "https://www.unserbier.ch/product-page/blond",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/our-beer-single-malt-70-cl-unser-bier-whisky-8-years",
+        "url": "https://www.unserbier.ch/product-page/blond-schweizer-bio-bier-6-x-0-33l",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/subskription-our-beer-single-malt-70-cl-unser-bier-whisky-i-16-years",
+        "url": "https://www.unserbier.ch/product-page/sm-aesch-bier-schweizer-bio-bier-33-cl",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/unser-bier-single-malt-whisky-12jahre-70cl",
+        "url": "https://www.unserbier.ch/product-page/amber",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/our-beer-single-malt-20-cl-mitglas",
+        "url": "https://www.unserbier.ch/product-page/amber-schweizer-bio-bier-in-der-bügelflasche",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/bier-gin-5-dl-schweizer-gin-auf-bierbrand-basis",
+        "url": "https://www.unserbier.ch/product-page/amber-schweizer-bio-bier-6-x-0-33l",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/biermut-wermut-auf-bierbasis",
+        "url": "https://www.unserbier.ch/product-page/weizen",
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/bierbrand-10-cl-destillat-auf-bier-basis",
+        "url": "https://www.unserbier.ch/product-page/weizen-schweizer-bio-bier-bügelflasche-0-5l",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/aypiey",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/winter",
         "kind": "html"
       },
       {
@@ -8435,15 +9583,67 @@
         "kind": "html"
       },
       {
-        "url": "https://www.unserbier.ch/product-page/sm-aesch-bier-schweizer-bio-bier-33-cl",
+        "url": "https://www.unserbier.ch/product-page/öises-zwickel",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/imperial-maple-ale-barrel-aged",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/holzfassgereifter-doppelbock",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/amarone-saison-barrel-agend-i-schweizer-bierrarität",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/pale-ale-ohni-alkoholfreies-bier-33-cl",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/summer-ale-schweizer-leichtbier-33-cl",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/regiopils-schweizer-bier-33-cl",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/neipa-schweizer-craft-bier-0-33l",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/unser-pale-ale-schweizer-craft-bier-i-33-cl",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/leckerly-bier-schweizer-bier-33-cl",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/kürbisbier-schweizer-bierspezialität-33-cl",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/t-shirt-unser-bier",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/amber-ohni",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.unserbier.ch/product-page/pepibier-alkoholfreies-biermischgetränk-33-cl",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 88.9
+    "seconds": 5.1
   },
   "node/14134798933": {
-    "checkedAt": "2026-10-17T21:43:02.592492+00:00",
+    "checkedAt": "2026-10-18T08:49:04.321479+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8476,10 +9676,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.1
+    "seconds": 12.7
   },
   "node/107683868": {
-    "checkedAt": "2026-10-17T21:43:01.018382+00:00",
+    "checkedAt": "2026-10-18T08:49:03.980198+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8488,12 +9688,16 @@
       }
     ],
     "errors": [],
-    "seconds": 8.3
+    "seconds": 0.3
   },
   "node/593094711": {
-    "checkedAt": "2026-10-17T21:42:47.167458+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:44:21.569865+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.viprestaurantbar.ch/wp-content/uploads/2025/07/VIP-Getraenkekarte-2025.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.viprestaurantbar.ch/",
         "kind": "html"
@@ -8501,10 +9705,6 @@
       {
         "url": "https://www.viprestaurantbar.ch/menues/",
         "kind": "html"
-      },
-      {
-        "url": "https://www.viprestaurantbar.ch/wp-content/uploads/2025/07/VIP-Getraenkekarte-2025.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://www.viprestaurantbar.ch/menues/",
@@ -8528,12 +9728,16 @@
       }
     ],
     "errors": [],
-    "seconds": 29.2
+    "seconds": 1.8
   },
   "node/1796023933": {
-    "checkedAt": "2026-10-17T21:43:09.304533+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-18T08:44:26.655440+00:00",
+    "status": "prices_found",
     "documents": [
+      {
+        "url": "https://static1.squarespace.com/static/67d998bb4592e754083dc2e3/t/67f7ce81f30cbd4c4ef1b1fc/1744293506723/Karte_zum-Kuss_Sommer_25.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.zumkuss.ch/",
         "kind": "html"
@@ -8544,10 +9748,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.7
+    "seconds": 6.2
   },
   "node/4601272799": {
-    "checkedAt": "2026-10-17T21:43:15.017942+00:00",
+    "checkedAt": "2026-10-18T08:49:08.777794+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -8557,10 +9761,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.4
   },
   "node/584725541": {
-    "checkedAt": "2026-10-17T21:34:40.628496+00:00",
+    "checkedAt": "2026-10-18T08:44:23.404205+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8585,10 +9789,10 @@
       }
     ],
     "errors": [],
-    "seconds": 24.5
+    "seconds": 19.0
   },
   "node/13543480945": {
-    "checkedAt": "2026-10-17T21:34:45.065399+00:00",
+    "checkedAt": "2026-10-18T08:44:23.406099+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8617,10 +9821,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.5
+    "seconds": 4.0
   },
   "node/7838311321": {
-    "checkedAt": "2026-10-17T21:42:33.448443+00:00",
+    "checkedAt": "2026-10-18T08:48:52.327701+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8637,10 +9841,10 @@
       }
     ],
     "errors": [],
-    "seconds": 46.8
+    "seconds": 0.1
   },
   "node/698552423": {
-    "checkedAt": "2026-10-17T21:34:51.478144+00:00",
+    "checkedAt": "2026-10-18T08:44:31.679821+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8653,10 +9857,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.0
+    "seconds": 0.8
   },
   "node/2984329486": {
-    "checkedAt": "2026-10-17T21:42:48.900340+00:00",
+    "checkedAt": "2026-10-18T08:49:01.475807+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8692,7 +9896,31 @@
         "kind": "html"
       },
       {
+        "url": "https://volkshaus-basel.ch/en/imi-bar/",
+        "kind": "html"
+      },
+      {
+        "url": "https://volkshaus-basel.ch/media/Bar-Food-Oct-26.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://volkshaus-basel.ch/imi-bar/",
+        "kind": "html"
+      },
+      {
         "url": "https://volkshaus-basel.ch/aktuelle-angebote/",
+        "kind": "html"
+      },
+      {
+        "url": "https://volkshaus-basel.ch/flying-bar-klopft-an/",
+        "kind": "html"
+      },
+      {
+        "url": "https://volkshaus-basel.ch/flying-bar-klopft-vor-dem-hotelzimmer-an/",
+        "kind": "html"
+      },
+      {
+        "url": "https://volkshaus-basel.ch/en/the-flying-bar-knocks-on-your-hotel-room-door/",
         "kind": "html"
       },
       {
@@ -8709,10 +9937,10 @@
       }
     ],
     "errors": [],
-    "seconds": 42.8
+    "seconds": 2.3
   },
   "node/4601267408": {
-    "checkedAt": "2026-10-17T21:34:51.109994+00:00",
+    "checkedAt": "2026-10-18T08:44:27.433273+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8737,10 +9965,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.6
+    "seconds": 4.2
   },
   "node/260266671": {
-    "checkedAt": "2026-10-17T21:43:15.173339+00:00",
+    "checkedAt": "2026-10-18T08:49:09.193459+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8753,10 +9981,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.3
+    "seconds": 9.8
   },
   "node/13637537873": {
-    "checkedAt": "2026-10-17T21:34:27.668372+00:00",
+    "checkedAt": "2026-10-18T08:44:21.875279+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8769,6 +9997,18 @@
       },
       {
         "url": "https://www.westhive.com/fr/restauration/westhive-kitchen-bale-rosental/menue-westhive-kitchen-bale-rosental/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.westhive.com/de/eat-drink/la-kitchen-genf-pont-rouge/menu-la-kitchen-genf-pont-rouge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.westhive.com/en/eat-drink/la-kitchen-geneva-pont-rouge/menu-la-kitchen-geneva-pont-rouge/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.westhive.com/fr/restauration/la-kitchen-geneve-pont-rouge/carte-de-menu-de-westhive-kitchen-geneve-pont-rouge/",
         "kind": "html"
       },
       {
@@ -8824,18 +10064,6 @@
         "kind": "html"
       },
       {
-        "url": "https://www.westhive.com/de/eat-drink/la-kitchen-genf-pont-rouge/menu-la-kitchen-genf-pont-rouge/",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.westhive.com/en/eat-drink/la-kitchen-geneva-pont-rouge/menu-la-kitchen-geneva-pont-rouge/",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.westhive.com/fr/restauration/la-kitchen-geneve-pont-rouge/carte-de-menu-de-westhive-kitchen-geneve-pont-rouge/",
-        "kind": "html"
-      },
-      {
         "url": "https://www.westhive.com/en/eat-drink/la-kitchen-geneva-pont-rouge/",
         "kind": "html"
       },
@@ -8876,16 +10104,16 @@
         "kind": "html"
       },
       {
-        "url": "https://www.westhive.com/wp-content/uploads/2026/10/ZHS_Abendkarte_Preisliste_2026-10.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/",
         "kind": "html"
       },
       {
         "url": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/after-work/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.westhive.com/wp-content/uploads/2026/10/ZHS_Abendkarte_Preisliste_2026-10.pdf",
+        "kind": "pdf"
       },
       {
         "url": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-stettbach/after-work/",
@@ -8913,10 +10141,10 @@
       }
     ],
     "errors": [],
-    "seconds": 96.1
+    "seconds": 15.5
   },
   "node/9285169638": {
-    "checkedAt": "2026-10-17T21:43:03.852586+00:00",
+    "checkedAt": "2026-10-18T08:49:08.467676+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8957,10 +10185,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.6
+    "seconds": 31.0
   },
   "node/4273041689": {
-    "checkedAt": "2026-10-17T21:43:16.385040+00:00",
+    "checkedAt": "2026-10-18T08:49:09.375828+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8973,10 +10201,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.0
+    "seconds": 14.9
   },
   "node/2485517211": {
-    "checkedAt": "2026-10-17T21:42:25.318827+00:00",
+    "checkedAt": "2026-10-18T08:48:47.348342+00:00",
     "status": "partial",
     "documents": [
       {
@@ -9038,6 +10266,103 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 202.0
+    "seconds": 75.7
+  },
+  "node/8956017394": {
+    "checkedAt": "2026-10-18T08:42:13.857625+00:00",
+    "status": "prices_found",
+    "documents": [
+      {
+        "url": "https://fiskundol.ch/food-drinks/",
+        "kind": "html"
+      },
+      {
+        "url": "https://fiskundol.ch/",
+        "kind": "html"
+      },
+      {
+        "url": "https://fiskundol.ch/wp-content/uploads/2026/04/Zusammengefuegt-food-und-drink-Web.pdf",
+        "kind": "pdf"
+      }
+    ],
+    "errors": [],
+    "seconds": 16.1
+  },
+  "node/7598139857": {
+    "checkedAt": "2026-10-18T08:45:31.894335+00:00",
+    "status": "fetch_failed",
+    "documents": [],
+    "errors": [
+      {
+        "url": "https://huefyse.ch/speisekarte/",
+        "reason": "http_403",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://huefyse.ch/",
+        "reason": "http_403",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 2.5
+  },
+  "node/122626753": {
+    "checkedAt": "2026-10-18T08:45:30.950754+00:00",
+    "status": "partial",
+    "documents": [
+      {
+        "url": "https://www.cargobar.ch/cargobar/aktuell.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.cargobar.ch/cargobar/events/2027/09/30-Jahre-Cargo-Bar.html",
+        "kind": "html"
+      }
+    ],
+    "errors": [
+      {
+        "url": "https://www.cargobar.ch/cargobar/events/2027/09/${link:{uuid:{b8d9ff35-f33d-4416-af0a-7bba47860a84},repository:{website},handle:{/cargobar/bar},nodeData:{},extension:{html}}}",
+        "reason": "http_404",
+        "phase": "fetch"
+      },
+      {
+        "url": "http://www.cargobar.ch/author/cargobar/${link:{uuid:{b8d9ff35-f33d-4416-af0a-7bba47860a84},repository:{website},handle:{/cargobar/bar},nodeData:{},extension:{html}}}",
+        "reason": "http_401",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 11.1
+  },
+  "node/593639050": {
+    "checkedAt": "2026-10-18T08:45:34.394355+00:00",
+    "status": "no_prices",
+    "documents": [
+      {
+        "url": "https://www.pickwick.ch/locations/mr-pickwick-pub-basel/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.pickwick.ch/drinks/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.pickwick.ch/food/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.pickwick.ch/wp-content/uploads/sites/4/2026/10/FINAL_HQ_RZ_MrPickwick_Foodblog_Oktober26_Menukarte_200x282mm.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.pickwick.ch/wp-content/uploads/sites/4/2026/05/WEB_MrPickwick_Foodkarte_2025_210x297mm.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.pickwick.ch/beer/",
+        "kind": "html"
+      }
+    ],
+    "errors": [],
+    "seconds": 21.0
   }
 }
