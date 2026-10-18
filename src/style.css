@@ -91,7 +91,8 @@ main { display: flex; flex: 1; min-height: 0; }
 .price-marker { display: block; background: var(--surface); color: var(--text); border: 1px solid var(--marker-border); border-radius: 3px; padding: 4px 2px; text-align: center; font: bold 13px Arial, sans-serif; box-shadow: 0 1px 3px #0003; }
 .price-marker.active { background: var(--primary); color: var(--on-primary); border: 2px solid var(--surface); outline: 1px solid var(--primary); }
 .price-marker.unknown { border: 1px solid var(--strong-border); color: var(--muted); padding: 0; height: 14px; width: 14px; font-size: 13px; line-height: 10px; border-radius: 50%; }
-.unpriced-marker { display: flex; flex-direction: column; align-items: center; padding-top: 15px; cursor: pointer; }
+.unpriced-marker { display: none; flex-direction: column; align-items: center; padding-top: 15px; cursor: pointer; }
+#map.show-unpriced-markers .unpriced-marker { display: flex; }
 .unpriced-marker .unknown { flex-shrink: 0; }
 .venue-marker-name { display: none; flex-shrink: 0; width: max-content; max-width: 132px; margin-top: 2px; padding: 2px 4px; border: 1px solid var(--border); border-radius: 3px; background: var(--overlay); color: var(--marker-border); font: 11px/14px Arial, sans-serif; text-align: center; }
 #map.show-venue-names .venue-marker-name { display: block; }

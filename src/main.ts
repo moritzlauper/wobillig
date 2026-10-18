@@ -137,9 +137,10 @@ map.createPane('districts').style.zIndex = '350';
 const districtLayer = L.geoJSON(undefined, { pane: 'districts', bubblingMouseEvents: false });
 const layer = L.layerGroup().addTo(map);
 const locationLayer = L.layerGroup().addTo(map);
+const detailMarkersMinZoom = 17;
 map.on('moveend', renderLocations);
 map.on('click', event => {
-  if (map.getZoom() < 17) { toast('Zum Auswählen eines Lokals näher heranzoomen.'); return; }
+  if (map.getZoom() < detailMarkersMinZoom) { toast('Zum Auswählen eines Lokals näher heranzoomen.'); return; }
   const choices = nearbyLocations(selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f) && inSelectedDistrict(b)), event.containerPoint, b => map.latLngToContainerPoint([b.lat, b.lon]));
   if (!choices.length) { toast('Hier wurde kein Lokal gefunden. Tippe auf das Symbol oder näher an den Namen.'); return; }
   if (choices.length === 1) { openPrice(choices[0]); return; }
@@ -154,13 +155,17 @@ map.on('click', event => {
   }
   L.popup().setLatLng(event.latlng).setContent(content).openOn(map);
 });
-// Hide labels throughout zoom gestures/animations, including touch pinch zoom.
+// Show unpriced dots at the same zoom as the orange location markers.
+// Hide detail markers/labels during zoom gestures, including touch pinch zoom.
 // Toggle visibility directly so zooming does not rebuild every marker and result.
 const venueNamesMinZoom = 18;
-const syncVenueNames = () => $('map').classList.toggle('show-venue-names', map.getZoom() >= venueNamesMinZoom);
-map.on('zoomstart', () => $('map').classList.remove('show-venue-names'));
-map.on('zoomend', syncVenueNames);
-syncVenueNames();
+const syncZoomVisibility = () => {
+  $('map').classList.toggle('show-unpriced-markers', map.getZoom() >= detailMarkersMinZoom);
+  $('map').classList.toggle('show-venue-names', map.getZoom() >= venueNamesMinZoom);
+};
+map.on('zoomstart', () => $('map').classList.remove('show-unpriced-markers', 'show-venue-names'));
+map.on('zoomend', syncZoomVisibility);
+syncZoomVisibility();
 let toastTimer: ReturnType<typeof setTimeout>;
 function toast(message: string) { $('toast').textContent = message; $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').hidden = true, 5000); }
 function showView(list: boolean) {
@@ -400,7 +405,7 @@ function selectSearchSuggestion(index: number) {
 }
 function renderLocations() {
   locationLayer.clearLayers();
-  if (map.getZoom() < 17) return;
+  if (map.getZoom() < detailMarkersMinZoom) return;
   const displayed = new Set([...current.map(b => b.id), ...(selected ? [selected] : [])]);
   for (const bar of selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f) && inSelectedDistrict(b))) {
     if (displayed.has(bar.id) || !map.getBounds().pad(.1).contains([bar.lat, bar.lon])) continue;
