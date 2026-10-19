@@ -81,7 +81,7 @@ export const en: Record<string, string> = {
   '{count} Lokale mit {label}-Preis': '{count} venues with a {label} price',
   'ab {price}': 'from {price}',
   'Noch keine vergleichbaren Preise erfasst.': 'No comparable prices have been recorded yet.',
-  '{label}-Preise auf der Karte öffnen': 'View {label} prices on the map',
+  '{label}-Preise auf der Karte öffnen': 'View cheapest {label} prices on the map',
   'Wo gibt es günstigen {label} in {city}?': 'Where can I find cheap {label} in {city}?',
   'Was kostet ein {label} in {city}?': 'How much does {label} cost in {city}?',
   'Die erfassten Preise reichen von {min} bis {max}. Der Durchschnitt von {average} basiert auf dem günstigsten passenden Angebot je Lokal.': 'Recorded prices range from {min} to {max}. The average of {average} is based on the cheapest matching offer at each venue.',
