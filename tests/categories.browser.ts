@@ -5,7 +5,7 @@ test.beforeEach(async ({ context }) => {
   await context.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
   for (const foodType of ['doner', 'falafel']) {
     await context.route(`**/data/**${foodType}.json`, route => route.fulfill({ json: {
-      bars: [{ offers: Array.from({ length: 50 }, () => ({ foodType, priceChf: 12 })) }],
+      bars: [{ type: 'fast_food', offers: Array.from({ length: 50 }, () => ({ foodType, portionType: 'wrap', priceChf: 12 })) }],
     } }));
   }
 });
@@ -17,7 +17,7 @@ for (const [doner, falafel, visible] of [
     await page.route('**/api/categories', route => route.fulfill({ json: { counts: { doner: 9999, falafel: 9999 } } }));
     for (const [foodType, count] of [['doner', doner], ['falafel', falafel]] as const) {
       await page.route(`**/data/${foodType}.json`, route => route.fulfill({ json: {
-        bars: [{ offers: Array.from({ length: count }, () => ({ foodType, priceChf: 12 })) }],
+        bars: [{ type: 'fast_food', offers: Array.from({ length: count }, () => ({ foodType, portionType: 'wrap', priceChf: 12 })) }],
       } }));
     }
     const loaded = Promise.all(['doner', 'falafel'].map(category => page.waitForResponse(`**/data/${category}.json`)));

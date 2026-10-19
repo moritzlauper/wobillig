@@ -1,4 +1,4 @@
-"""Independent city crawls for Döner and Falafel; --category selects the dataset.
+"""Independent city crawls for Döner/Falafel Dürüm at fast-food venues only.
 
 Example: WOBILLIG_CITY=bern python -m scraper.scrape_streetfood \
     --category falafel --discover --limit 0 --max-pages 120
@@ -21,7 +21,7 @@ from scraper.pizza import structured_menu_links, orderstar_menu_url
 from scraper.pdf_extract import pdf_links
 from scraper.streetfood import LABELS, food_html, food_pdf, food_image, food_orderstar
 
-QUERY = venue_query('restaurant|fast_food|cafe|bar|pub')
+QUERY = venue_query('fast_food')
 HINTS_PATH = ROOT / 'scraper/streetfood_menu_urls.json'
 DOCUMENT = re.compile(r'\.(?:pdf|jpe?g|png|webp)$', re.I)
 RELEVANT = re.compile(r'd[oö]ner|doener|keba[bp]|falafel|d[uü]r[uü]m|menu|menü|karte|speise|food|essen|take.?away|bestell|order', re.I)
@@ -71,6 +71,10 @@ def menu_links(body, url):
 
 
 def crawl(bar, fetcher, hints, max_pages, category):
+    if bar.get('type') != 'fast_food':
+        return {**bar, 'offers': [], 'scrapeStatus': 'excluded_venue'}, {
+            'checkedAt': now(), 'status': 'excluded_venue', 'visited': [], 'errors': [], 'candidates': [],
+        }
     stamp = now()
     queue = list(hints.get(bar['id'], [])) + [bar['website']]
     allowed = set(hints.get(bar['id'], []))
@@ -135,7 +139,7 @@ def crawl(bar, fetcher, hints, max_pages, category):
     if errors:
         for old in bar.get('offers', []):
             key = (old.get('portionType'), old.get('meatType'))
-            if old.get('foodType') == category and old['sourceUrl'] not in successful_sources and key not in groups:
+            if old.get('foodType') == category and old.get('portionType') == 'wrap' and old['sourceUrl'] not in successful_sources and key not in groups:
                 result.append(old)
     status = 'ambiguous_prices' if ambiguous else 'prices_found' if result else 'partial' if successful_sources and errors else 'no_prices' if successful_sources else 'fetch_failed'
     return {**bar, 'offers': result, 'checkedAt': now(), 'scrapeStatus': status}, {
@@ -158,6 +162,9 @@ def main():
         parser.error('max-pages must be positive and limit non-negative')
     data_path, checks_path = paths(args.category)
     old = json.loads(data_path.read_text()) if data_path.exists() else {'bars': []}
+    old['bars'] = [{**b, 'offers': [o for o in b.get('offers', [])
+                                  if o.get('foodType') == args.category and o.get('portionType') == 'wrap']}
+                   for b in old['bars'] if b.get('type') == 'fast_food']
     if args.venues_file:
         found = json.loads(args.venues_file.read_text())
     elif args.discover or not old['bars']:
@@ -167,11 +174,13 @@ def main():
         found = old
     checks = json.loads(checks_path.read_text()) if checks_path.exists() else {}
     overrides = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
-    prior = {b['id']: b for b in old['bars']}
-    bars = [{**b, 'website': overrides.get(b['id'], b.get('website')), 'offers': prior.get(b['id'], {}).get('offers', [])} for b in found['bars']]
+    discovered = {b['id']: b for b in found['bars']}
+    prior = {b['id']: b for b in old['bars'] if discovered.get(b['id'], b).get('type') == 'fast_food'}
+    bars = [{**b, 'website': overrides.get(b['id'], b.get('website')), 'offers': prior.get(b['id'], {}).get('offers', [])}
+            for b in found['bars'] if b.get('type') == 'fast_food']
     hints = scoped_hints(bars, json.loads(HINTS_PATH.read_text()) if HINTS_PATH.exists() else {})
     hosts = Counter(host(b['website']) for b in bars if b.get('website'))
-    selected = [b for b in bars if b.get('website') and (b['type'] in ('restaurant', 'fast_food') or is_food_venue(b, args.category))
+    selected = [b for b in bars if b.get('website')
                 and (hosts[host(b['website'])] == 1 or b['id'] in hints)]
     if args.only:
         selected = [b for b in selected if re.search(args.only, b['name'], re.I)]

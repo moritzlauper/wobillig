@@ -8,8 +8,8 @@ export const isCategory = (value: unknown): value is Category => categories.incl
 
 export function streetfoodPriceCount(dataset: unknown, category: 'doner' | 'falafel'): number {
   if (!dataset || typeof dataset !== 'object' || !('bars' in dataset) || !Array.isArray(dataset.bars)) return 0;
-  return dataset.bars.reduce((count, bar) => count + (Array.isArray(bar?.offers) ? bar.offers.filter((offer: Offer & { foodType?: string }) =>
-    offer?.foodType === category && Number.isFinite(offer.priceChf) && offer.priceChf > 0 && isCurrentOffer(offer)
+  return dataset.bars.reduce((count, bar) => count + (bar?.type === 'fast_food' && Array.isArray(bar.offers) ? bar.offers.filter((offer: Offer & { foodType?: string; portionType?: string }) =>
+    offer?.foodType === category && offer.portionType === 'wrap' && Number.isFinite(offer.priceChf) && offer.priceChf > 0 && isCurrentOffer(offer)
   ).length : 0), 0);
 }
 

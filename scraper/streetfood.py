@@ -1,7 +1,7 @@
-"""Conservative single-portion Döner/Falafel extraction from HTML, PDF and scans.
+"""Conservative Döner-Dürüm/Falafel-Dürüm extraction from HTML, PDF and scans.
 
-Bread and wraps stay distinct. Boxes, plates, bundles, extras and ambiguous
-price/size columns never become comparable sandwich prices.
+Only standard wraps qualify. Bread, boxes, plates, bundles, extras and ambiguous
+price/size columns never become comparable Dürüm prices.
 """
 from io import BytesIO
 import json
@@ -17,7 +17,6 @@ from scraper.pizza import PRICE, PDF_RENDER_LOCK
 LABELS = {'doner': 'Döner', 'falafel': 'Falafel'}
 NAME = re.compile(r'\b(?:d[oö]ner|doener|d[uü]r[uü]m|dueruem|keba[bp]|falafel)\b', re.I)
 EXCLUDED = re.compile(r'\b(?:teller|plate|box|bowl|portion|st[uü]ck|pieces?|menu|men[uü]s?|combo|komb[iy]|kinder|kids|mini|klein|small|gross|groß|large|xxl|jumbo|mega|extra|zuschlag|aufpreis|supplement|pizza|pide|lahmacun|iskender|adana|shish|sis|spiess|spieß|burger|pommes|fries|getr[aä]nk\w*)\b', re.I)
-BREAD = re.compile(r'\b(?:taschenbrot|fladenbrot|brot|pita|pitta|sandwich|pocket)\b', re.I)
 WRAP = re.compile(r'\b(?:d[uü]r[uü]m|dueruem|wrap|yufka|tortilla|gerollt)\b', re.I)
 
 
@@ -52,13 +51,13 @@ def food_row(raw, url, stamp, category):
     # A price must finish the row, apart from a harmless currency or footnote.
     if re.sub(r'[\s*†]', '', label[prices[0].end():]):
         return []
-    bread, wrap = bool(BREAD.search(description)), bool(WRAP.search(description))
+    wrap = bool(WRAP.search(description))
     # "Dürüm im Fladenbrot" describes a wrap, not two separate portion options.
     if wrap and re.search(r'\b(?:taschenbrot|pita|pitta|sandwich)\b', description, re.I):
         return []
-    if is_falafel and not (bread or wrap):
-        return []  # Plain "Falafel" may mean a plate or a handful of pieces.
-    portion = 'wrap' if wrap else 'bread' if bread else 'unspecified'
+    if not wrap:
+        return []  # Bread and unspecified portions are outside the Dürüm comparison.
+    portion = 'wrap'
     meat = 'vegetarian' if is_falafel else 'chicken' if re.search(r'\bpoulet|\bchicken', description, re.I) else 'veal' if re.search(r'\bkalb|\bveal', description, re.I) else 'beef' if re.search(r'\brind|\bbeef', description, re.I) else 'unspecified'
     if category == 'doner' and len(re.findall(r'\b(?:poulet|chicken|kalb|veal|rind|beef)\b', description, re.I)) > 1:
         return []

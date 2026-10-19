@@ -15,17 +15,19 @@ function memoryStore(initial = emptyCategoryState()): CategoryStore {
 const now = Date.parse('2026-10-19T12:00:00Z');
 
 it('counts only current positive prices in the requested food category', () => {
-  expect(streetfoodPriceCount({ bars: [{ offers: [
+  expect(streetfoodPriceCount({ bars: [{ type: 'fast_food', offers: [
+    { portionType: 'wrap', foodType: 'doner', priceChf: 12 },
+    { portionType: 'wrap', foodType: 'doner', priceChf: 14 },
+    { portionType: 'wrap', foodType: 'falafel', priceChf: 10 },
+    { portionType: 'wrap', foodType: 'doner', priceChf: 0 },
+    { portionType: 'wrap', foodType: 'doner', priceChf: -1 },
+    { portionType: 'wrap', foodType: 'doner', priceChf: '12' },
+    { portionType: 'wrap', foodType: 'doner', priceChf: Infinity },
+    { portionType: 'wrap', foodType: 'doner', priceChf: 12, photoSource: { date: '2000-01-01' } },
+    { foodType: 'doner', portionType: 'bread', priceChf: 12 },
     { foodType: 'doner', priceChf: 12 },
-    { foodType: 'doner', priceChf: 14 },
-    { foodType: 'falafel', priceChf: 10 },
-    { foodType: 'doner', priceChf: 0 },
-    { foodType: 'doner', priceChf: -1 },
-    { foodType: 'doner', priceChf: '12' },
-    { foodType: 'doner', priceChf: Infinity },
-    { foodType: 'doner', priceChf: 12, photoSource: { date: '2000-01-01' } },
     null,
-  ] }, null, {}] }, 'doner')).toBe(2);
+  ] }, { type: 'restaurant', offers: [{ foodType: 'doner', portionType: 'wrap', priceChf: 12 }] }, null, {}] }, 'doner')).toBe(2);
   for (const missing of [null, {}, { bars: {} }, '<html>Not found</html>']) {
     expect(streetfoodPriceCount(missing, 'falafel')).toBe(0);
   }
