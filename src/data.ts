@@ -208,11 +208,14 @@ export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
     .filter(price => Number.isFinite(price) && price > 0)
     .sort((a, b) => a - b);
   if (!prices.length) return undefined;
-  const index = (prices.length - 1) * .25;
+  const index = (prices.length - 1) * .2;
   const lower = Math.floor(index);
-  const quartile = prices[lower] + (prices[Math.ceil(index)] - prices[lower]) * (index - lower);
-  // Round to CHF 0.50, but always include at least the cheapest venue.
-  return Math.max(Math.round(quartile * 2) / 2, Math.ceil(prices[0] * 2) / 2);
+  const quintile = prices[lower] + (prices[Math.ceil(index)] - prices[lower]) * (index - lower);
+  const average = prices.reduce((sum, price) => sum + price, 0) / prices.length;
+  // Target the cheapest fifth and at least 15% below the selection's average.
+  // Round down to CHF 0.10 so a common, near-average price cannot slip back in.
+  // For small or uniform samples, keep the cheapest price without rounding it up.
+  return Math.max(Math.floor(Math.min(quintile, average * .85) * 10) / 10, prices[0]);
 }
 
 export function escapeHtml(s: string) {
