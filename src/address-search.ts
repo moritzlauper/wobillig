@@ -1,4 +1,4 @@
-import { normalizeSearch } from './search';
+import { matchesSearch, normalizeSearch } from './search';
 
 export interface AddressResult {
   kind: 'address';
@@ -20,7 +20,7 @@ export function addressQuery(query: string): string {
 // https://docs.geo.admin.ch/access-data/search.html
 export async function searchAddresses(query: string, center: [number, number], signal: AbortSignal, locality = ''): Promise<AddressResult[]> {
   const text = addressQuery(query);
-  if (text.length < 2) return [];
+  if (normalizeSearch(text).length < 2) return [];
   const queries = [text];
   // Common street names can fill the national result limit before this city
   // appears. Include a local query without restricting explicit other places.
@@ -44,7 +44,9 @@ export async function searchAddresses(query: string, center: [number, number], s
       || Math.abs(attrs.lat) > 90 || Math.abs(attrs.lon) > 180) continue;
     const label = attrs.label.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").trim();
     const key = `${label}:${attrs.lat}:${attrs.lon}`;
-    if (!label || seen.has(key)) continue;
+    // The service can return places matching only the appended city name.
+    // Require every user-entered term, including the exact house number.
+    if (!label || seen.has(key) || !matchesSearch({ name: label, address: '', postcode: '' }, text)) continue;
     seen.add(key);
     results.push({ kind: 'address', label, lat: attrs.lat, lon: attrs.lon, origin: attrs.origin });
   }

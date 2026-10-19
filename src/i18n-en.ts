@@ -1,5 +1,10 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  'Weitere': 'More',
+  'Weitere Kategorien': 'More categories',
+  'Döner': 'Doner kebab',
+  'Bald verfügbar': 'Coming soon',
+  'Für diese Kategorie sind noch keine Preise verfügbar.': 'Prices are not available for this category yet.',
   // Offers and coverage
   'Offenbier': 'Draught beer',
   'Flaschenbier': 'Bottled beer',

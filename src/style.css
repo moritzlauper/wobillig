@@ -15,8 +15,13 @@ a { color: var(--link); text-underline-offset: 2px; }
 #app { position: relative; height: 100dvh; display: flex; flex-direction: column; }
 .toolbar { font-size: var(--font-control); display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 10px; border-bottom: 1px solid var(--divider); }
 .switch { display: flex; gap: 4px; }
-.toolbar-heading { display: contents; }
-#toolbar-toggle { display: none; }
+.toolbar-heading { display: flex; align-items: stretch; gap: 6px; }
+.more-categories { position: relative; }
+#categories-toggle { display: flex; align-items: center; justify-content: center; gap: 10px; height: 100%; }
+#categories-toggle[aria-expanded=true] .filter-chevron { transform: translateY(2px) rotate(225deg); }
+#additional-categories { position: absolute; top: calc(100% + 4px); right: 0; z-index: 1700; min-width: 180px; padding: 4px; background: var(--surface); border: 1px solid var(--strong-border); border-radius: 4px; box-shadow: 0 4px 14px #0003; }
+#additional-categories button { display: block; width: 100%; text-align: left; border: 0; min-height: 40px; }
+#additional-categories .category-description { display: inline; }
 .search-box { position: relative; flex: 1; min-width: 160px; }
 #search { width: 100%; min-width: 0; padding-right: 44px; }
 #search::-webkit-search-cancel-button { -webkit-appearance: none; }
@@ -27,6 +32,8 @@ a { color: var(--link); text-underline-offset: 2px; }
 #search-suggestions button { display: block; width: 100%; min-height: 60px; padding: 10px 12px; text-align: left; border: 0; border-bottom: 1px solid var(--map); border-radius: 0; }
 #search-suggestions button[aria-selected=true] { background: var(--suggestion); }
 #search-suggestions small { display: block; margin-top: 3px; color: var(--muted); font-size: var(--font-control); }
+#search-history-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 12px; font-size: var(--font-control); border-bottom: 1px solid var(--divider); }
+#search-history-clear { border: 0; background: transparent; text-decoration: underline; }
 #search-empty { margin: 0; padding: 12px; font-size: 13px; }
 #coffeeType { max-width: 200px; }
 .beer-controls { display: flex; gap: 8px; }
@@ -149,11 +156,12 @@ dialog::backdrop { background: var(--backdrop); }
   .toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 5px; padding: 6px; flex-shrink: 0; }
   .toolbar button, .toolbar select, .toolbar input { min-height: 34px; padding: 5px 7px; }
   .toolbar-heading { order: 0; grid-column: 1 / -1; display: flex; gap: 6px; }
-  .toolbar-heading .switch { flex: 1; }
-  .toolbar-heading .switch button { flex: 1; min-height: 30px; padding-block: 4px; }
+  .toolbar-heading .switch { flex: 1; min-width: 0; }
+  .toolbar-heading .switch button { flex: 1; min-width: 0; min-height: 30px; padding-block: 4px; }
   .category-description { display: none; }
-  #toolbar-toggle { display: inline-flex; align-items: center; justify-content: center; min-height: 30px; width: 30px; padding: 0; background: var(--soft); }
-  #toolbar-toggle[aria-expanded=true] .filter-chevron { transform: translateY(2px) rotate(225deg); }
+  #categories-toggle { min-height: 30px; width: 30px; padding: 0; }
+  #categories-toggle .more-label { display: none; }
+  #additional-categories button { min-height: 44px; padding: 10px; }
   .beer-controls { order: 1; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
   .beer-controls select { width: 100%; }
   .search-box { order: 2; grid-column: 1; min-width: 0; }
@@ -176,9 +184,6 @@ dialog::backdrop { background: var(--backdrop); }
   .status-meta { gap: 6px; }
   #data-info { min-height: 24px; font-size: var(--font-control); }
   .map-actions { left: 8px; top: 8px; }
-  .toolbar-collapsed .toolbar > :not(.toolbar-heading), .toolbar-collapsed #filters-toggle, .toolbar-collapsed .status-summary, .toolbar-collapsed .status-meta { display: none; }
-  .toolbar-collapsed .toolbar-heading .switch { margin-right: 96px; }
-  .toolbar-collapsed .status-row { position: absolute; top: 6px; right: 42px; z-index: 600; padding: 0; border: 0; }
   #filters { gap: 10px; max-height: 30dvh; overflow-y: auto; font-size: var(--font-control); }
   .list-panel { display: none; flex-basis: 100%; border: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .show-list .list-panel { display: block; }
