@@ -1,5 +1,20 @@
 import { distance, type Bar } from './data.js';
 
+// A sparse category export must not erase an address recorded for the same POI.
+export function withKnownAddress(bar: Bar, known?: Bar): Bar {
+  if (!known || known.id !== bar.id) return bar;
+  const address = bar.address.trim() || known.address;
+  const postcode = bar.postcode.trim() || (!bar.address.trim() || bar.address === known.address ? known.postcode : '');
+  return address === bar.address && postcode === bar.postcode ? bar : { ...bar, address, postcode };
+}
+
+export function googleMapsLink(bar: Bar, city: string): string {
+  const query = bar.address.trim()
+    ? [bar.name, bar.address, bar.postcode, city, 'Schweiz'].filter(Boolean).join(', ')
+    : `${bar.lat},${bar.lon}`;
+  return `https://www.google.com/maps/search/?${new URLSearchParams({ api: '1', query })}`;
+}
+
 // Coordinates are POIs, not building outlines: only resolve a close, precise,
 // unambiguous fix. Compare every known venue, including filtered-out neighbours.
 export function locationAtPosition(venues: Bar[], position: [number, number], accuracy: number): Bar | undefined {
@@ -28,5 +43,7 @@ export function nearbyLocations(venues: Bar[], point: Point, project: (bar: Bar)
 }
 
 export function selectableLocations(known: Bar[], catalogue: Bar[]): Bar[] {
-  return [...new Map([...catalogue, ...known].map(bar => [bar.id, bar])).values()];
+  const merged = new Map<string, Bar>();
+  for (const bar of [...catalogue, ...known]) merged.set(bar.id, withKnownAddress(bar, merged.get(bar.id)));
+  return [...merged.values()];
 }

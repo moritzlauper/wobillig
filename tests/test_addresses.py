@@ -19,6 +19,16 @@ VENUE = {'id': 'node/10', 'lat': 1, 'lon': 1, 'address': '', 'postcode': ''}
 
 
 class AddressTests(unittest.TestCase):
+    def test_summergarte_reviewed_location_survives_fresh_discovery(self):
+        response = Mock()
+        response.json.return_value = {'elements': [{'type': 'node', 'id': 1360776653,
+            'lat': 47.3772237, 'lon': 8.5305291, 'tags': {'name': 'Summergarte im Zeughaushof'}}]}
+        with patch('scraper.scrape.requests.post', return_value=response):
+            venue = discover({'bars': []})['bars'][0]
+        self.assertEqual(venue['address'], 'Kasernenareal / Zeughaushof')
+        self.assertEqual(venue['postcode'], '8004')
+        self.assertEqual(venue['addressSource'], 'https://www.summergarte.ch/kontakt/')
+
     def test_contact_addresses_and_standard_tag_priority(self):
         for key in ('contact:addr', 'contact:addr:full', 'addr:full'):
             self.assertEqual(tag_address({key: 'Breitenrainplatz 40, 3014 Bern'}),

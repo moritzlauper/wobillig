@@ -42,6 +42,7 @@ for (const width of [320, 1280]) {
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
       await expect(page.locator('#coffeeType')).toHaveValue('cappuccino');
       await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
+      await expect(page).toHaveURL(/cheap=1/);
       await expect(page.locator('#map-title')).toHaveText(metadata(city, undefined, 'en').heading.replace('Compare coffee', 'Coffee'));
       await expect(page.getByRole('button', { name: 'Filters', exact: true })).toBeVisible();
     }

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { locationAtPosition, nearbyLocations, selectableLocations } from '../src/locations';
+import { googleMapsLink, withKnownAddress, locationAtPosition, nearbyLocations, selectableLocations } from '../src/locations';
 import { allVenues, communityVenues, applyEntries, validateInput, type PriceInput } from '../src/community';
 import { emptyState, savePrice, WriteConflict, type State } from '../server/prices';
 import type { Dataset } from '../src/data';
@@ -17,6 +17,26 @@ function memoryStore() {
   };
 }
 describe('map locations', () => {
+  it('preserves known addresses through catalogue, category and community merges', () => {
+    const addressed = { ...roi, address: 'Testgasse 4', postcode: '8004' };
+    const sparse = { ...roi, address: '', postcode: '' };
+    expect(selectableLocations([sparse], [addressed])[0]).toMatchObject({ address: addressed.address, postcode: addressed.postcode });
+    const datasets = { locations: { ...empty, bars: [addressed] }, coffee: { ...empty, bars: [sparse] } };
+    const venues = communityVenues(datasets, []);
+    expect(venues[0].address).toBe(addressed.address);
+    for (const drink of ['coffee', 'beer', 'pizza'] as const) {
+      expect(applyEntries(datasets.coffee, [], venues, drink).bars[0].address).toBe(addressed.address);
+    }
+    expect(withKnownAddress({ ...roi, address: 'New address 2' }, roi).address).toBe('New address 2');
+    expect(withKnownAddress(sparse, { ...roi, id: 'another-venue' }).address).toBe('');
+  });
+  it('links to the named venue and address, or coordinates when no address is known', () => {
+    const link = new URL(googleMapsLink({ ...roi, name: 'Café & Bar', address: 'Testgasse 4', postcode: '8004' }, 'Zürich'));
+    expect(link.origin).toBe('https://www.google.com');
+    expect(link.searchParams.get('api')).toBe('1');
+    expect(link.searchParams.get('query')).toBe('Café & Bar, Testgasse 4, 8004, Zürich, Schweiz');
+    expect(new URL(googleMapsLink({ ...roi, address: '' }, 'Zürich')).searchParams.get('query')).toBe(`${roi.lat},${roi.lon}`);
+  });
   const position: [number, number] = [47.37, 8.54];
   const atMetres = (metres: number, id = 'nearby') => ({ ...roi, id, lat: position[0] + metres / 6371000 * 180 / Math.PI, lon: position[1] });
   it('opens only an immediately nearby venue with an accurate fix', () => {

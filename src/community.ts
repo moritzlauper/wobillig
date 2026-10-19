@@ -1,4 +1,5 @@
 import { isBeerMix, coffeeLabels, beerTypeLabels, safeUrl, type BeerType, type Bar, type Dataset, type Offer } from './data.js';
+import { selectableLocations, withKnownAddress } from './locations.js';
 
 export type Drink = 'beer' | 'coffee' | 'pizza';
 export type PriceEntry = {
@@ -46,14 +47,14 @@ export function zurichToday() {
 }
 export function allVenues(datasets: Partial<Record<Drink | 'locations', Dataset>>): Bar[] {
   const { locations, ...priced } = datasets;
-  return [...new Map([locations, ...Object.values(priced)].flatMap(d => d?.bars || []).map(b => [b.id, b])).values()]
+  return selectableLocations([locations, ...Object.values(priced)].flatMap(d => d?.bars || []), [])
     .sort((a, b) => a.name.localeCompare(b.name, 'de'));
 }
 // Persisted location snapshots keep contributions visible across catalogue updates.
 // Canonical scraper metadata wins when the location later joins a dataset.
 export function communityVenues(datasets: Partial<Record<Drink | 'locations', Dataset>>, entries: PriceEntry[], added: Bar[] = []): Bar[] {
-  return [...new Map([...added.map(bar => ({ ...bar, offers: [] })), ...entries.flatMap(entry => entry.venue && entry.venue.id === entry.barId ? [{ ...entry.venue, offers: [] }] : []),
-    ...allVenues(datasets)].map(bar => [bar.id, bar])).values()];
+  return selectableLocations([...added.map(bar => ({ ...bar, offers: [] })), ...entries.flatMap(entry => entry.venue && entry.venue.id === entry.barId ? [{ ...entry.venue, offers: [] }] : []),
+    ...allVenues(datasets)], []);
 }
 function verifiedWebsiteUpdate(offer: Offer, entry: PriceEntry): boolean {
   const proof = offer.verifiedMenuDate;
@@ -71,7 +72,8 @@ function verifiedWebsiteUpdate(offer: Offer, entry: PriceEntry): boolean {
 export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Bar[], drink: Drink): Dataset {
   // Drinks share locations; pizza only includes known pizza venues and pizza entries.
   const bars = new Map((drink === 'pizza' ? [] : venues).map(b => [b.id, { ...b, offers: [] as Offer[] }]));
-  for (const b of dataset.bars) bars.set(b.id, { ...b, offers: [...b.offers] });
+  const knownVenues = new Map(venues.map(bar => [bar.id, bar]));
+  for (const b of dataset.bars) bars.set(b.id, { ...withKnownAddress(b, knownVenues.get(b.id)), offers: [...b.offers] });
   for (const entry of entries.filter(x => x.drink === drink)) {
     let bar = bars.get(entry.barId);
     if (!bar) {

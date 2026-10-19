@@ -315,6 +315,8 @@ export const en: Record<string, string> = {
   'Adresse / Ort · Auf Karte anzeigen': 'Address / place · Show on map',
   'ausserhalb der aktuellen Filter': 'outside the current filters',
   'Adresse noch nicht erfasst': 'Address not yet recorded',
+  'Standort: {coordinates}': 'Location: {coordinates}',
+  'In Google Maps öffnen': 'Open in Google Maps',
   'Preis hinzufügen': 'Add price',
   '{name} teilen': 'Share {name}',
   'Teilen': 'Share',

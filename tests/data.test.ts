@@ -347,8 +347,23 @@ describe("cheap price shortcut", () => {
   it("excludes a common price only slightly below average", () => {
     const bars = venues([3, ...Array(19).fill(4), ...Array(115).fill(4.5), ...Array(152).fill(5)]);
     const max = cheapPriceLimit(bars, f)!;
-    expect(max).toBe(4);
+    expect(max).toBe(4.3);
     expect(filterBars(bars, { ...f, max, unknown: false })).toHaveLength(20);
+  });
+  it("includes the common cheap cappuccino price without requiring a 15% discount", () => {
+    const bars = venues([...Array(21).fill(5), ...Array(65).fill(5.5), ...Array(159).fill(6.21)]);
+    const max = cheapPriceLimit(bars, f)!;
+    expect(max).toBe(5.5);
+    expect(filterBars(bars, { ...f, max, unknown: false })).toHaveLength(86);
+  });
+  it("keeps affordable pizzas instead of only the single heavily discounted venue", () => {
+    const bars = venues([12, ...Array(4).fill(17), ...Array(15).fill(20)]).map(bar => ({
+      ...bar, offers: bar.offers.map(offer => ({ ...offer, volumeMl: null, pizzaType: 'margherita' as const })),
+    }));
+    const filters: Filters = { ...f, drink: 'pizza' };
+    const max = cheapPriceLimit(bars, filters)!;
+    expect(max).toBe(17);
+    expect(filterBars(bars, { ...filters, max, unknown: false })).toHaveLength(5);
   });
   it("counts each venue once and leaves missing prices out", () => {
     const bars = venues([4, 5, 6, 7, 8]);

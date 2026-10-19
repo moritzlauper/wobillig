@@ -112,6 +112,7 @@ main { display: flex; flex: 1; min-height: 0; }
 .detail-top > button, .dialog-top > button { font-size: var(--font-control); flex-shrink: 0; }
 .detail-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 .detail-actions button { min-height: 32px; padding: 5px 8px; font-size: var(--font-control); }
+.detail-actions a { display: inline-flex; align-items: center; min-height: 32px; padding: 5px 8px; font-size: var(--font-control); }
 #share-url { display: block; width: 100%; margin-top: 10px; }
 p { line-height: 1.5; }
 .muted { color: var(--muted); font-size: var(--font-control); }

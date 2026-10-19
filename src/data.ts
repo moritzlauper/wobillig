@@ -212,10 +212,10 @@ export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
   const lower = Math.floor(index);
   const quintile = prices[lower] + (prices[Math.ceil(index)] - prices[lower]) * (index - lower);
   const average = prices.reduce((sum, price) => sum + price, 0) / prices.length;
-  // Target the cheapest fifth and at least 15% below the selection's average.
+  // Target the cheapest fifth and at least 7% below the selection's average.
   // Round down to CHF 0.10 so a common, near-average price cannot slip back in.
   // For small or uniform samples, keep the cheapest price without rounding it up.
-  return Math.max(Math.floor(Math.min(quintile, average * .85) * 10) / 10, prices[0]);
+  return Math.max(Math.floor(Math.min(quintile, average * .93) * 10) / 10, prices[0]);
 }
 
 export function escapeHtml(s: string) {

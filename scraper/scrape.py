@@ -41,6 +41,7 @@ REVIEWED_COFFEE_MENUS = json.loads((ROOT / 'scraper/reviewed_coffee_menus.json')
 REVIEWED_MENUS = json.loads((ROOT / 'scraper/reviewed_menus.json').read_text())
 WEBSITES = json.loads((ROOT / 'scraper/website_overrides.json').read_text())
 VENUE_TYPES = json.loads((ROOT / 'scraper/venue_type_overrides.json').read_text())
+REVIEWED_ADDRESSES = json.loads((ROOT / 'scraper/reviewed_addresses.json').read_text())
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
 QUERY = '[out:json][timeout:90];' + AREA + '(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + (EXTRA_QUERY if CITY == 'zurich' else '') + ');out center tags;'
@@ -191,6 +192,8 @@ def discover(previous, path=None, query=QUERY):
         previous_address = old.get(id, {})
         if not address['address']:
             address = {**address, **{k: previous_address[k] for k in ('address', 'postcode', 'addressSource') if previous_address.get(k)}}
+        if not address['address'] and id in REVIEWED_ADDRESSES:
+            address = {**address, **REVIEWED_ADDRESSES[id]}
         bars.append({'id':id,'name':tags['name'],'lat':center['lat'],'lon':center['lon'],
             'type':VENUE_TYPES.get(id, tags.get('amenity','bar')),**address,'website':website,
             'cuisine':[c.strip().lower() for c in tags.get('cuisine','').split(';') if c.strip()],
