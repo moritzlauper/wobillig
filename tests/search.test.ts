@@ -34,3 +34,14 @@ it('finds unpriced venues and uses the same text matching for the list and sugge
   expect(filterBars(venues, { ...filters, unknown: false })).toEqual([]);
   expect(searchSuggestions(venues, 'piccolo')).toEqual([venues[0]]);
 });
+
+it('matches Swiss address variants and keeps house numbers distinct', () => {
+  const venue = bar('1', 'Quartiercafé', 'Bümplizstrasse 97a', '3018');
+  for (const query of ['Buemplizstrasse 97a', 'Bumplizstr.97 a', '97 A Bümplizstraße', '3018 BÜMPLIZSTRASSE', 'Bümplizstrasse97a']) {
+    expect(matchesSearch(venue, query), query).toBe(true);
+  }
+  expect(matchesSearch(venue, 'Bümplizstrasse 97')).toBe(true);
+  expect(matchesSearch(venue, 'Bümplizstrasse 7')).toBe(false);
+  expect(matchesSearch(venue, 'Bümplizstrasse 97b')).toBe(false);
+  expect(matchesSearch(bar('2', 'Cafe', 'Bümplizstrasse 197a'), '97a')).toBe(false);
+});

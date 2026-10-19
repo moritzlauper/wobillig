@@ -11,6 +11,7 @@ import { createExport, downloadExport } from './export';
 import { locationAtPosition, nearbyLocations, selectableLocations } from './locations';
 import { createDistrictLookup, districtFromSearch, type Districts } from './districts';
 import { searchSuggestions } from './search';
+import { searchAddresses, type AddressResult } from './address-search';
 import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -37,7 +38,12 @@ let cheapMode = initial.get('cheap') === '1';
 let cheapLimit: number | undefined;
 let locationCatalogue: Bar[] = [];
 let userMarker: L.CircleMarker | undefined;
-let suggestions: Bar[] = [], activeSuggestion = -1, searchOpen = false;
+let suggestions: (Bar | AddressResult)[] = [], activeSuggestion = -1, searchOpen = false;
+let addressResults: AddressResult[] = [], addressSelection: AddressResult | undefined;
+let addressController: AbortController | undefined, addressTimer: ReturnType<typeof setTimeout> | undefined;
+let addressStatus: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
+let addressRequest = 0;
+let addressPromise: Promise<void> | undefined;
 let searchZoomTimer: ReturnType<typeof setTimeout> | undefined;
 const coffee = () => f.drink === 'coffee';
 const pizza = () => f.drink === 'pizza';
@@ -49,9 +55,9 @@ $('app').innerHTML = `
 <div class="toolbar">
   <div class="toolbar-heading"><div class="switch" role="group" aria-label="Kategorie"><button id="drink-coffee">Kaffee</button><button id="drink-beer">Bier</button><button id="drink-pizza" aria-label="Pizza Margherita" hidden>Pizza<span class="category-description"> Margherita</span></button></div><button id="toolbar-toggle" aria-expanded="true" aria-label="Suche und Filter einklappen" title="Suche und Filter einklappen"><span class="filter-chevron" aria-hidden="true"></span></button></div>
   <div class="search-box">
-    <input id="search" type="search" role="combobox" placeholder="Lokal, Strasse, PLZ" aria-label="Lokal suchen" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
+    <input id="search" type="search" role="combobox" placeholder="Lokal, Adresse, PLZ oder Ort" aria-label="Lokal oder Adresse suchen" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
     <button id="search-clear" type="button" aria-label="Suche löschen" title="Suche löschen" hidden><span aria-hidden="true">×</span></button>
-    <div id="search-dropdown" hidden><div id="search-suggestions" role="listbox" aria-label="Suchvorschläge"></div><p id="search-empty" role="status" hidden>Keine Lokale gefunden. Prüfe den Suchbegriff und die Kreisauswahl.</p></div>
+    <div id="search-dropdown" hidden><div id="search-suggestions" role="listbox" aria-label="Suchvorschläge"></div><p id="search-empty" role="status" hidden></p></div>
   </div>
   <div id="beer-controls" class="beer-controls">
     <select id="beer-type" aria-label="Ausschank">${options({ draft: 'Offenbier', bottle: 'Flaschenbier', all: 'Alle Ausschankarten', can: 'Dosenbier', unknown: 'Unbekannt' })}</select>
@@ -300,6 +306,7 @@ function syncControls() {
   $<HTMLInputElement>('alcohol-free').checked = f.alcoholFree;
   const url = new URL(location.href);
   writeFilters(url.searchParams, f, cheapMode);
+  if (addressSelection) url.searchParams.set('address', '1'); else url.searchParams.delete('address');
   if (cityId === 'zurich' && districtState.enabled) url.searchParams.set('kreise', '1'); else url.searchParams.delete('kreise');
   if (cityId === 'zurich' && districtState.enabled && districtState.selected) url.searchParams.set('kreis', String(districtState.selected)); else url.searchParams.delete('kreis');
   if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
@@ -314,18 +321,19 @@ function render() {
   if (selected && (!selection || !isVenueEligible(selection, f) || !inSelectedDistrict(selection))) selected = undefined;
   syncControls();
   const districtBars = bars.filter(inSelectedDistrict);
-  cheapLimit = cheapPriceLimit(districtBars, f);
+  cheapLimit = cheapPriceLimit(districtBars, addressSelection ? { ...f, query: '' } : f);
   const cheapButton = $<HTMLButtonElement>('cheap');
   cheapButton.textContent = cheapLimit === undefined ? 'Günstig' : `Günstig bis CHF ${Number.isInteger(cheapLimit) ? cheapLimit : cheapLimit.toFixed(2)}`;
   cheapButton.disabled = cheapLimit === undefined && !cheapMode;
   cheapButton.setAttribute('aria-pressed', String(cheapMode));
   cheapButton.title = cheapLimit === undefined ? 'Keine passenden Preise vorhanden' : cheapMode ? 'Günstig-Filter aufheben' : 'Günstige Lokale für die aktuelle Auswahl anzeigen';
-  const activeFilters = cheapMode ? { ...f, max: cheapLimit ?? -Infinity, unknown: false } : f;
+  const searchFilters = addressSelection ? { ...f, query: '' } : f;
+  const activeFilters = cheapMode ? { ...searchFilters, max: cheapLimit ?? -Infinity, unknown: false } : searchFilters;
   if (document.activeElement !== $('price')) $<HTMLInputElement>('price').value = Number.isFinite(activeFilters.max) && activeFilters.max > 0 ? String(activeFilters.max) : '';
   $<HTMLInputElement>('unknown').checked = activeFilters.unknown;
-  current = filterBars(districtBars, activeFilters, position);
+  current = filterBars(districtBars, activeFilters, addressSelection ? [addressSelection.lat, addressSelection.lon] : position);
   renderDistricts();
-  $('count').textContent = coverageLabel(current, f);
+  $('count').textContent = coverageLabel(current, f) + (addressSelection ? ` · Bezugspunkt: ${addressSelection.label}` : '');
   const average = cityAverage(bars, f);
   $('city-average').textContent = `Schnitt ${city.name} ${average ? `CHF ${money(average.price)}` : '—'}`;
   const comparison = pizza() ? 'Pizza Margherita' : coffee() ? (f.coffeeType === 'all' ? 'alle Kaffees & Matcha Latte' : coffeeLabels[f.coffeeType!]) : `Bier · ${f.volume === 'all' ? 'alle Grössen' : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`} · ${f.mode === 'half' ? 'auf 5 dl umgerechnet' : 'Portionspreis'}`;
@@ -359,6 +367,45 @@ function render() {
   renderLocations();
   renderSearchSuggestions();
 }
+let addressMarker: L.CircleMarker | undefined;
+function clearAddressSelection() {
+  if (addressSelection && f.sort === 'distance' && !position) f.sort = 'price';
+  addressSelection = undefined; addressMarker?.remove(); addressMarker = undefined;
+}
+function cancelAddressRequest() {
+  clearTimeout(addressTimer); addressController?.abort(); addressRequest++;
+  addressPromise = undefined; addressResults = []; addressStatus = 'idle';
+}
+function scheduleAddressSearch() {
+  if (f.query.trim().length < 2) return;
+  addressStatus = 'loading'; renderSearchSuggestions();
+  clearTimeout(addressTimer);
+  addressTimer = setTimeout(() => void loadAddressResults(), 350);
+}
+async function loadAddressResults(): Promise<void> {
+  clearTimeout(addressTimer);
+  if (addressPromise) return addressPromise;
+  if (f.query.trim().length < 2) return;
+  const request = ++addressRequest, query = f.query;
+  addressController = new AbortController();
+  const controller = addressController;
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  addressStatus = 'loading'; renderSearchSuggestions();
+  addressPromise = (async () => {
+    try {
+      const results = await searchAddresses(query, city.center, controller.signal, city.name);
+      if (request !== addressRequest || query !== f.query) return;
+      addressResults = results; addressStatus = 'ready';
+    } catch {
+      if (request !== addressRequest) return;
+      addressResults = []; addressStatus = 'error';
+    } finally {
+      clearTimeout(timeout);
+      if (request === addressRequest) { addressPromise = undefined; renderSearchSuggestions(); }
+    }
+  })();
+  return addressPromise;
+}
 function searchCandidates() { return bars.filter(b => isVenueEligible(b, f) && inSelectedDistrict(b)); }
 function closeSearchSuggestions() {
   searchOpen = false; activeSuggestion = -1; suggestions = [];
@@ -368,13 +415,19 @@ function closeSearchSuggestions() {
 }
 function renderSearchSuggestions() {
   if (!searchOpen || !f.query.trim()) { closeSearchSuggestions(); return; }
-  suggestions = searchSuggestions(searchCandidates(), f.query);
-  if (activeSuggestion >= suggestions.length) activeSuggestion = -1;
+  const active = suggestions[activeSuggestion];
+  const venues = searchSuggestions(searchCandidates(), f.query);
+  suggestions = /\d/.test(f.query) ? [...addressResults, ...venues] : [...venues, ...addressResults];
+  activeSuggestion = active ? suggestions.indexOf(active) : -1;
   $('search-dropdown').hidden = false;
   $('search').setAttribute('aria-expanded', 'true');
-  $('search-empty').hidden = suggestions.length > 0;
+  $('search-empty').hidden = suggestions.length > 0 && addressStatus !== 'loading' && addressStatus !== 'error';
+  $('search-empty').textContent = addressStatus === 'loading' ? 'Adressen werden gesucht …'
+    : addressStatus === 'error' ? 'Adresssuche gerade nicht verfügbar. Mit Enter erneut versuchen.'
+    : f.query.trim().length < 2 ? 'Mindestens zwei Zeichen eingeben.' : 'Keine Lokale oder Adressen gefunden. Versuche Strasse, Hausnummer, PLZ oder Ort.';
   const visible = new Set(current.map(b => b.id));
   $('search-suggestions').innerHTML = suggestions.map((b, index) => {
+    if ('kind' in b) return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}"><strong>${e(b.label)}</strong><small>Adresse / Ort · Auf Karte anzeigen</small></button>`;
     const offer = bestOffer(b, f);
     return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}"><strong>${e(b.name)}</strong><small>${e([b.address, b.postcode].filter(Boolean).join(' · ') || city.name)}</small><small>${offer ? `CHF ${money(cost(offer, f.mode))} · ${e(unit(offer))}` : missingPriceLabel(b, f)}${visible.has(b.id) ? '' : ' · ausserhalb der aktuellen Filter'}</small></button>`;
   }).join('');
@@ -387,6 +440,7 @@ function renderSearchSuggestions() {
 }
 function zoomToSearchResults() {
   if (!f.query.trim()) return;
+  if (addressSelection) return;
   const matches = current.length ? current : searchSuggestions(searchCandidates(), f.query, Infinity);
   if (matches.length === 1) map.setView([matches[0].lat, matches[0].lon], 17);
   else if (matches.length) map.fitBounds(L.latLngBounds(matches.map(b => [b.lat, b.lon] as [number, number])), { padding: [45, 60], maxZoom: 17 });
@@ -395,7 +449,19 @@ function selectSearchSuggestion(index: number) {
   const bar = suggestions[index];
   if (!bar) return;
   clearTimeout(searchZoomTimer);
+  cancelAddressRequest();
   closeSearchSuggestions();
+  if ('kind' in bar) {
+    addressSelection = bar;
+    f.query = bar.label; f.sort = 'distance'; selected = undefined;
+    addressMarker?.remove();
+    addressMarker = L.circleMarker([bar.lat, bar.lon], { radius: 9, color: '#fff', fillColor: '#1766c2', fillOpacity: 1, weight: 3 })
+      .bindTooltip(() => { const label = document.createElement('span'); label.textContent = bar.label; return label; }, { permanent: true }).addTo(map);
+    $('search').blur(); showView(false); render();
+    map.setView([bar.lat, bar.lon], bar.origin === 'address' ? 17 : 14);
+    return;
+  }
+  clearAddressSelection();
   f.query = bar.name;
   $('search').blur();
   if (matchMedia('(max-width: 760px)').matches) {
@@ -501,24 +567,29 @@ $('toolbar-toggle').onclick = () => {
 };
 $('search').oninput = event => {
   clearTimeout(searchZoomTimer);
+  cancelAddressRequest(); clearAddressSelection();
   f.query = $<HTMLInputElement>('search').value;
   selected = undefined; activeSuggestion = -1; searchOpen = true;
   render();
-  if (!(event as InputEvent).isComposing && f.query.trim().length >= 2) searchZoomTimer = setTimeout(zoomToSearchResults, 350);
+  if (!(event as InputEvent).isComposing && f.query.trim().length >= 2) {
+    searchZoomTimer = setTimeout(zoomToSearchResults, 350);
+    scheduleAddressSearch();
+  }
 };
-$('search').onfocus = () => { searchOpen = true; renderSearchSuggestions(); };
+$('search').onfocus = () => { searchOpen = true; renderSearchSuggestions(); if (!addressSelection && addressStatus === 'idle') scheduleAddressSearch(); };
 $('search-clear').onpointerdown = event => event.preventDefault();
 $('search-clear').onclick = () => {
   clearTimeout(searchZoomTimer);
+  cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
   f.query = ''; selected = undefined;
   render();
   $('search').focus({ preventScroll: true });
 };
-$('search').onblur = closeSearchSuggestions;
-$('search').onkeydown = event => {
+$('search').onblur = () => { cancelAddressRequest(); closeSearchSuggestions(); };
+$('search').onkeydown = async event => {
   if (event.isComposing) return;
-  if (event.key === 'Escape') { clearTimeout(searchZoomTimer); closeSearchSuggestions(); }
+  if (event.key === 'Escape') { clearTimeout(searchZoomTimer); cancelAddressRequest(); closeSearchSuggestions(); }
   else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
     event.preventDefault(); searchOpen = true;
     renderSearchSuggestions();
@@ -528,8 +599,18 @@ $('search').onkeydown = event => {
     $(`search-option-${activeSuggestion}`).scrollIntoView({ block: 'nearest' });
   } else if (event.key === 'Enter') {
     event.preventDefault(); clearTimeout(searchZoomTimer);
-    if (searchOpen && suggestions.length) selectSearchSuggestion(activeSuggestion >= 0 ? activeSuggestion : 0);
-    else { closeSearchSuggestions(); zoomToSearchResults(); }
+    if (searchOpen && activeSuggestion >= 0) selectSearchSuggestion(activeSuggestion);
+    else if (searchOpen && suggestions.length && (!/\d/.test(f.query) || addressStatus === 'ready')) selectSearchSuggestion(0);
+    else {
+      const query = f.query;
+      searchOpen = true;
+      const pending = loadAddressResults(), request = addressRequest;
+      await pending;
+      if (searchOpen && f.query === query && request === addressRequest) {
+        if (suggestions.length) selectSearchSuggestion(0);
+        else zoomToSearchResults();
+      }
+    }
   }
 };
 $('price').oninput = () => { cheapMode = false; const n = $<HTMLInputElement>('price').valueAsNumber; f.max = Number.isFinite(n) ? n : Infinity; render(); };
@@ -542,11 +623,12 @@ $('beer-type').onchange = () => {
   render();
 };
 $('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render(); };
-$('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position) locate(); else render(); };
+$('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position && !addressSelection) locate(); else render(); };
 for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree']] as const) $(id).onchange = () => { if (key === 'unknown') cheapMode = false; f[key] = $<HTMLInputElement>(id).checked; render(); };
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
 $('reset').onclick = () => {
+  cancelAddressRequest(); clearAddressSelection();
   clearTimeout(searchZoomTimer); closeSearchSuggestions();
   cheapMode = false;
   districtState.enabled = false; districtState.selected = undefined;
@@ -567,6 +649,8 @@ function locate(openNearby = false) {
   const finish = () => { locating = false; button.disabled = false; button.removeAttribute('aria-busy'); };
   navigator.geolocation.getCurrentPosition(p => {
     finish();
+    if (addressSelection) f.query = '';
+    cancelAddressRequest(); clearAddressSelection();
     position = [p.coords.latitude, p.coords.longitude];
     button.setAttribute('aria-pressed', 'true');
     userMarker?.remove(); userMarker = L.circleMarker(position, { radius: 7, color: '#fff', fillColor: '#1766c2', fillOpacity: 1, weight: 2 }).addTo(map);
@@ -781,7 +865,16 @@ async function init() {
     const linkedBar = bars.find(b => b.id === linkedId);
     if (linkedBar) showBar(linkedBar);
     else toast('Das geteilte Lokal ist gerade nicht verfügbar.');
-  } else if (f.query.trim()) zoomToSearchResults();
+  } else if (f.query.trim()) {
+    zoomToSearchResults(); searchOpen = true;
+    if (initial.get('address') === '1') {
+      const query = f.query;
+      await loadAddressResults();
+      if (searchOpen && f.query === query && addressResults.length) {
+        selectSearchSuggestion(suggestions.findIndex(result => result === addressResults[0]));
+      }
+    } else scheduleAddressSearch();
+  }
 }
 syncControls();
 void init();
