@@ -38,7 +38,7 @@ export function coffeePrices(dataset: Dataset, type: string, today?: string) {
 }
 
 export function mapLink(cityId: City, type: string, base = '/', bar?: Bar, locale: Locale = 'de') {
-  const params = new URLSearchParams({ drink: 'coffee', coffeeType: type, sort: 'price', unknown: '0', max: 'all' });
+  const params = new URLSearchParams({ drink: 'coffee', coffeeType: type, sort: 'price', unknown: '0', max: 'all', cheap: '1' });
   if (bar) params.set('bar', bar.id);
   return `${localPath(cityPath(cityId, locale), base)}?${params}#app`;
 }
