@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { categoryCounts, emptyCategoryCounts, rankedCategories } from '../src/categories';
+import { categoryCounts, emptyCategoryCounts, rankedCategories, streetfoodPriceCount } from '../src/categories';
 import { CategoryWriteConflict, emptyCategoryState, popularityCounts, recordCategoryClick, type CategoryState, type CategoryStore } from '../server/category-popularity';
 
 function memoryStore(initial = emptyCategoryState()): CategoryStore {
@@ -13,6 +13,23 @@ function memoryStore(initial = emptyCategoryState()): CategoryStore {
   };
 }
 const now = Date.parse('2026-10-19T12:00:00Z');
+
+it('counts only current positive prices in the requested food category', () => {
+  expect(streetfoodPriceCount({ bars: [{ offers: [
+    { foodType: 'doner', priceChf: 12 },
+    { foodType: 'doner', priceChf: 14 },
+    { foodType: 'falafel', priceChf: 10 },
+    { foodType: 'doner', priceChf: 0 },
+    { foodType: 'doner', priceChf: -1 },
+    { foodType: 'doner', priceChf: '12' },
+    { foodType: 'doner', priceChf: Infinity },
+    { foodType: 'doner', priceChf: 12, photoSource: { date: '2000-01-01' } },
+    null,
+  ] }, null, {}] }, 'doner')).toBe(2);
+  for (const missing of [null, {}, { bars: {} }, '<html>Not found</html>']) {
+    expect(streetfoodPriceCount(missing, 'falafel')).toBe(0);
+  }
+});
 
 describe('shared category popularity', () => {
   it('promotes popular categories into the top three and uses the familiar order for ties', () => {

@@ -1,8 +1,8 @@
-import { categories, categoryCounts, emptyCategoryCounts, rankedCategories, type Category } from './categories';
+import { categories, categoryCounts, emptyCategoryCounts, rankedCategories, streetfoodPriceCount, type Category } from './categories';
 import type { Drink } from './community';
 import { t } from './i18n';
 
-export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void) {
+export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void, dataPath: string) {
   const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), pizza: 'Pizza Margherita', doner: t('Döner'), falafel: 'Falafel' };
   const upcoming = (category: Category) => category === 'doner' || category === 'falafel';
   root.innerHTML = `<div id="primary-categories" class="switch" role="group" aria-label="${t('Kategorie')}"></div>
@@ -11,6 +11,8 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   const primary = root.querySelector<HTMLElement>('#primary-categories')!;
   const more = root.querySelector<HTMLElement>('#additional-categories')!;
   const toggle = root.querySelector<HTMLButtonElement>('#categories-toggle')!;
+  const moreContainer = root.querySelector<HTMLElement>('.more-categories')!;
+  const priceCounts = { doner: 0, falafel: 0 };
   const dialog = document.createElement('dialog');
   dialog.id = 'upcoming-category';
   dialog.setAttribute('aria-labelledby', 'upcoming-category-title');
@@ -58,12 +60,18 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   }
   function render() {
     const focused = document.activeElement;
-    const order = rankedCategories(counts, pizzaAvailable);
+    const order = rankedCategories(counts, pizzaAvailable).filter(category =>
+      category !== 'doner' && category !== 'falafel' || priceCounts[category] >= 50);
     for (const category of categories) buttons[category].hidden = !order.includes(category);
     primary.replaceChildren(...order.filter(category => !upcoming(category)).map(category => buttons[category]));
     more.replaceChildren(...order.filter(upcoming).map(category => buttons[category]));
     // Retain the unavailable Pizza element for existing control synchronization.
     if (!pizzaAvailable) more.append(buttons.pizza);
+    moreContainer.hidden = !order.some(upcoming);
+    if (moreContainer.hidden) {
+      more.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
     syncActive();
     if (focused instanceof HTMLButtonElement && categories.some(category => buttons[category] === focused)) {
       (more.contains(focused) && more.hidden ? toggle : focused).focus({ preventScroll: true });
@@ -73,6 +81,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     more.hidden = true; toggle.setAttribute('aria-expanded', 'false'); render();
   }
   function open() {
+    if (moreContainer.hidden) return;
     more.hidden = false; toggle.setAttribute('aria-expanded', 'true');
   }
   toggle.onclick = () => more.hidden ? open() : close();
@@ -99,6 +108,17 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   }
   render();
   void refresh();
+  // Price availability comes from this city's datasets, independently of click popularity.
+  for (const category of ['doner', 'falafel'] as const) {
+    void (async () => {
+      try {
+        const response = await fetch(`${dataPath}${category}.json`, { signal: AbortSignal.timeout(15000) });
+        if (!response.ok) return;
+        priceCounts[category] = streetfoodPriceCount(await response.json(), category);
+        render();
+      } catch { /* Missing or unreadable datasets keep the category hidden. */ }
+    })();
+  }
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') void refresh(); });
   return {
     update(drink: Drink, hasPizza: boolean) {

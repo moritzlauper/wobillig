@@ -3,6 +3,50 @@ import { emptyCategoryCounts } from '../src/categories';
 
 test.beforeEach(async ({ context }) => {
   await context.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
+  for (const foodType of ['doner', 'falafel']) {
+    await context.route(`**/data/**${foodType}.json`, route => route.fulfill({ json: {
+      bars: [{ offers: Array.from({ length: 50 }, () => ({ foodType, priceChf: 12 })) }],
+    } }));
+  }
+});
+
+for (const [doner, falafel, visible] of [
+  [49, 49, []], [50, 49, ['Döner']], [49, 50, ['Falafel']], [50, 50, ['Döner', 'Falafel']],
+] as const) {
+  test(`price threshold is independent for each category: ${doner} doner, ${falafel} falafel`, async ({ page }) => {
+    await page.route('**/api/categories', route => route.fulfill({ json: { counts: { doner: 9999, falafel: 9999 } } }));
+    for (const [foodType, count] of [['doner', doner], ['falafel', falafel]] as const) {
+      await page.route(`**/data/${foodType}.json`, route => route.fulfill({ json: {
+        bars: [{ offers: Array.from({ length: count }, () => ({ foodType, priceChf: 12 })) }],
+      } }));
+    }
+    const loaded = Promise.all(['doner', 'falafel'].map(category => page.waitForResponse(`**/data/${category}.json`)));
+    await page.goto('/');
+    await loaded;
+    await expect(page.locator('#count')).not.toHaveText('Laden …');
+    await expect(page.locator('#primary-categories #drink-doner, #primary-categories #drink-falafel')).toHaveCount(0);
+    if (visible.length) {
+      await page.locator('#categories-toggle').click();
+      await expect(page.locator('#additional-categories button:visible')).toHaveText([...visible]);
+    } else {
+      await expect(page.locator('#categories-toggle')).toBeHidden();
+      await expect(page.locator('#drink-doner')).toBeHidden();
+      await expect(page.locator('#drink-falafel')).toBeHidden();
+    }
+  });
+}
+
+test('missing or unreadable city datasets keep More hidden despite high click counts', async ({ page }) => {
+  await page.route('**/api/categories', route => route.fulfill({ json: { counts: { doner: 9999, falafel: 9999 } } }));
+  await page.route('**/data/bern/doner.json', route => route.fulfill({ status: 404 }));
+  await page.route('**/data/bern/falafel.json', route => route.fulfill({ contentType: 'text/html', body: '<html>Not found</html>' }));
+  const loaded = Promise.all(['doner', 'falafel'].map(category => page.waitForResponse(`**/data/bern/${category}.json`)));
+  await page.goto('/bern');
+  await loaded;
+  await expect(page.locator('#count')).not.toHaveText('Laden …');
+  await expect(page.locator('#categories-toggle')).toBeHidden();
+  await expect(page.locator('#drink-doner')).toBeHidden();
+  await expect(page.locator('#drink-falafel')).toBeHidden();
 });
 
 for (const width of [320, 390, 1280]) {

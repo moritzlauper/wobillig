@@ -353,6 +353,8 @@ Gebäudeadressen werden nur übernommen, wenn das Lokal innerhalb des Gebäudes 
 
 ## Döner- und Falafel-Scrapes
 
+Die Kategorien erscheinen ausschliesslich unter «Weitere», sobald der jeweilige Stadt-Datensatz mindestens 50 aktuelle Angebote mit gültigem, positivem Preis enthält. Die Schwelle gilt für Döner und Falafel getrennt und ist unabhängig von Klickzahlen und Suchfiltern. Fehlende Datensätze halten die Kategorie verborgen; ohne verfügbare Zusatzkategorie wird auch «Weitere» ausgeblendet.
+
 Döner und Falafel haben je Stadt eigene Datensätze (`public/data/[bern|basel/]doner.json` bzw. `falafel.json`) und Prüfprotokolle (`scraper/[cities/bern|cities/basel/]doner_checks.json` bzw. `falafel_checks.json`). Die Dateien entstehen beim ersten Lauf; Zürich liegt jeweils direkt im Stammordner. Der dreistädtische Dreiwochen-Workflow enthält beide Kategorien automatisch. Zusätzliche Aufträge können mit `scan_mode=streetfood_only`, `exhaustive_scan=true` und der gewünschten Stadt gestartet werden. Das sind zwei getrennte Abschnitte pro Stadt, mit allen Kandidaten und bis zu 120 Menüseiten je Lokal; regulär gelten 50 Seiten.
 
 `python -m scraper.scrape_streetfood --category doner --discover --limit 0 --max-pages 120` bzw. `--category falafel` führt denselben Scan lokal aus. `WOBILLIG_CITY=zurich|bern|basel` wählt die Stadt. Erfasst werden HTML-Karten, PDF-Text und per lokaler Tesseract-OCR lesbare Bildkarten, ausserdem direkt zugeordnete öffentliche Orderstar-Menüs. Für diese beiden Abschnitte fallen keine KI-API-Aufrufe an. Das vorhandene KI-Stadtbudget bleibt unverändert.
