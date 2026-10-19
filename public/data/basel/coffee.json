@@ -198,7 +198,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:15:04.332147+00:00",
-      "aiCheckedAt": "2026-10-19T17:29:57.996529+00:00"
+      "aiCheckedAt": "2026-10-19T17:29:57.996529+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 13.5
+      }
     },
     {
       "id": "node/6556102796",
@@ -301,7 +305,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:15:04.332531+00:00",
-      "aiCheckedAt": "2026-10-19T17:26:34.548892+00:00"
+      "aiCheckedAt": "2026-10-19T17:26:34.548892+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 65.5
+      }
     },
     {
       "id": "node/1028007577",
@@ -659,7 +667,13 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:15:04.334847+00:00",
-      "aiCheckedAt": "2026-10-19T17:30:34.190863+00:00"
+      "aiCheckedAt": "2026-10-19T17:30:34.190863+00:00",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 24.0
+      }
     },
     {
       "id": "node/1170699798",
@@ -1087,7 +1101,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 7.0
+      }
     },
     {
       "id": "node/7809972322",
@@ -1435,7 +1453,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:15:14.306112+00:00",
-      "aiCheckedAt": "2026-10-19T17:31:15.202495+00:00"
+      "aiCheckedAt": "2026-10-19T17:31:15.202495+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 27.5
+      }
     },
     {
       "id": "node/8016865752",
@@ -1535,7 +1557,11 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3238083581"
+      "addressSource": "https://www.openstreetmap.org/node/3238083581",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 19.0
+      }
     },
     {
       "id": "node/7625132435",
@@ -1819,7 +1845,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-19T16:20:42.258788+00:00"
+      "checkedAt": "2026-10-19T16:20:42.258788+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.8
+      }
     },
     {
       "id": "node/11755443196",
@@ -1835,7 +1865,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-19T16:20:43.893306+00:00"
+      "checkedAt": "2026-10-19T16:20:43.893306+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 10.0
+      }
     },
     {
       "id": "node/1170699746",
@@ -1851,7 +1885,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 9.5
+      }
     },
     {
       "id": "node/4031043644",
@@ -1869,7 +1909,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:20:47.673893+00:00"
+      "checkedAt": "2026-10-19T16:20:47.673893+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 30.0
+      }
     },
     {
       "id": "node/260266425",
@@ -1919,7 +1963,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:20:48.224113+00:00"
+      "checkedAt": "2026-10-19T16:20:48.224113+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 5.5
+      }
     },
     {
       "id": "node/702204838",
@@ -2025,7 +2073,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T16:20:50.852668+00:00"
+      "checkedAt": "2026-10-19T16:20:50.852668+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 6.5
+      }
     },
     {
       "id": "node/10733559775",
@@ -2041,7 +2093,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-19T16:20:51.873976+00:00"
+      "checkedAt": "2026-10-19T16:20:51.873976+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 14.0
+      }
     },
     {
       "id": "node/473398645",
@@ -2195,7 +2251,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:15:35.669965+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/3420096584"
+      "addressSource": "https://www.openstreetmap.org/node/3420096584",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 77.0
+      }
     },
     {
       "id": "node/13910592465",
@@ -2396,7 +2456,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:20:59.524866+00:00"
+      "checkedAt": "2026-10-19T16:20:59.524866+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 3.0
+      }
     },
     {
       "id": "node/7772352031",
@@ -2414,7 +2478,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-19T16:20:59.574457+00:00"
+      "checkedAt": "2026-10-19T16:20:59.574457+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 24.75
+      }
     },
     {
       "id": "node/585055185",
@@ -2543,7 +2611,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:15:43.607068+00:00",
-      "aiCheckedAt": "2026-10-19T17:35:11.843095+00:00"
+      "aiCheckedAt": "2026-10-19T17:35:11.843095+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 18.2
+      }
     },
     {
       "id": "node/12230466535",
@@ -2588,7 +2660,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:15:44.579672+00:00",
-      "aiCheckedAt": "2026-10-19T17:07:37.570222+00:00"
+      "aiCheckedAt": "2026-10-19T17:07:37.570222+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.0
+      }
     },
     {
       "id": "node/4472355417",
@@ -2620,7 +2696,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 51.0
+      }
     },
     {
       "id": "node/5744291515",
@@ -2637,7 +2717,11 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5228942701"
+      "addressSource": "https://www.openstreetmap.org/node/5228942701",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 12.1
+      }
     },
     {
       "id": "node/13255498329",
@@ -2653,7 +2737,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 69.35
+      }
     },
     {
       "id": "node/4828208000",
@@ -2669,7 +2757,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:21:00.805988+00:00"
+      "checkedAt": "2026-10-19T16:21:00.805988+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 27.0
+      }
     },
     {
       "id": "node/9326577381",
@@ -3077,7 +3169,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:16:01.152404+00:00",
-      "aiCheckedAt": "2026-10-19T17:07:48.975758+00:00"
+      "aiCheckedAt": "2026-10-19T17:07:48.975758+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 53.5
+      }
     },
     {
       "id": "node/9612917396",
@@ -3093,7 +3189,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 14.15
+      }
     },
     {
       "id": "node/11876754508",
@@ -3128,7 +3228,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 11.0
+      }
     },
     {
       "id": "node/1197413423",
@@ -3247,7 +3351,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:16:45.405801+00:00",
-      "aiCheckedAt": "2026-10-19T17:30:46.985122+00:00"
+      "aiCheckedAt": "2026-10-19T17:30:46.985122+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 75.25
+      }
     },
     {
       "id": "node/7747207685",
@@ -3325,7 +3433,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:16:52.000625+00:00",
-      "aiCheckedAt": "2026-10-19T17:30:03.837216+00:00"
+      "aiCheckedAt": "2026-10-19T17:30:03.837216+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 22.0
+      }
     },
     {
       "id": "node/7871792488",
@@ -3588,7 +3700,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:16:55.774592+00:00",
-      "aiCheckedAt": "2026-10-19T17:26:37.743221+00:00"
+      "aiCheckedAt": "2026-10-19T17:26:37.743221+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 62.0
+      }
     },
     {
       "id": "node/11268583746",
@@ -3704,7 +3820,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:17:01.207808+00:00",
-      "aiCheckedAt": "2026-10-19T17:07:56.033251+00:00"
+      "aiCheckedAt": "2026-10-19T17:07:56.033251+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 74.0
+      }
     },
     {
       "id": "node/459572235",
@@ -3737,7 +3857,11 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/2684248635"
+      "addressSource": "https://www.openstreetmap.org/node/2684248635",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 18.0
+      }
     },
     {
       "id": "node/13902829473",
@@ -3807,7 +3931,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 7.2
+      }
     },
     {
       "id": "node/13526230219",
@@ -3823,7 +3951,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 67.17
+      }
     },
     {
       "id": "node/8956017394",
@@ -3913,7 +4045,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:07.194761+00:00"
+      "checkedAt": "2026-10-19T16:17:07.194761+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 43.0
+      }
     },
     {
       "id": "node/14007225418",
@@ -4030,7 +4166,11 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3420192963"
+      "addressSource": "https://www.openstreetmap.org/node/3420192963",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 10.2
+      }
     },
     {
       "id": "node/5698913601",
@@ -4260,7 +4400,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:17:20.749969+00:00",
-      "aiCheckedAt": "2026-10-19T17:37:59.042346+00:00"
+      "aiCheckedAt": "2026-10-19T17:37:59.042346+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 44.0
+      }
     },
     {
       "id": "node/12032495846",
@@ -4514,7 +4658,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 21.2
+      }
     },
     {
       "id": "node/11064482315",
@@ -4674,7 +4822,13 @@
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:17:31.777312+00:00",
       "addressSource": "https://www.openstreetmap.org/node/5294088443",
-      "aiCheckedAt": "2026-10-19T17:26:45.719493+00:00"
+      "aiCheckedAt": "2026-10-19T17:26:45.719493+00:00",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 60.0
+      }
     },
     {
       "id": "node/13484845049",
@@ -4792,7 +4946,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:32.651393+00:00"
+      "checkedAt": "2026-10-19T16:17:32.651393+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 39.85
+      }
     },
     {
       "id": "node/2215970143",
@@ -4881,7 +5039,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:21:15.055370+00:00"
+      "checkedAt": "2026-10-19T16:21:15.055370+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.4
+      }
     },
     {
       "id": "node/6372498635",
@@ -4979,7 +5141,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:17:34.999831+00:00",
-      "aiCheckedAt": "2026-10-19T17:11:09.667059+00:00"
+      "aiCheckedAt": "2026-10-19T17:11:09.667059+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 24.0
+      }
     },
     {
       "id": "node/10606177702",
@@ -5014,7 +5180,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:21:15.851516+00:00"
+      "checkedAt": "2026-10-19T16:21:15.851516+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 11.0
+      }
     },
     {
       "id": "node/5696224724",
@@ -5382,7 +5552,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:18:22.254987+00:00",
-      "aiCheckedAt": "2026-10-19T17:37:21.340235+00:00"
+      "aiCheckedAt": "2026-10-19T17:37:21.340235+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 150.0
+      }
     },
     {
       "id": "node/4447974700",
@@ -5486,7 +5660,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:18:30.225650+00:00",
-      "aiCheckedAt": "2026-10-19T17:36:30.403549+00:00"
+      "aiCheckedAt": "2026-10-19T17:36:30.403549+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 90.0
+      }
     },
     {
       "id": "node/9269725977",
@@ -5693,7 +5871,11 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5224680202"
+      "addressSource": "https://www.openstreetmap.org/node/5224680202",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "node/458833991",
@@ -5850,7 +6032,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:18:36.907435+00:00",
-      "aiCheckedAt": "2026-10-19T17:37:16.650494+00:00"
+      "aiCheckedAt": "2026-10-19T17:37:16.650494+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/10686083519",
@@ -5974,7 +6160,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/7623405885",
@@ -6022,7 +6212,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:18:42.744108+00:00",
-      "aiCheckedAt": "2026-10-19T17:25:18.423465+00:00"
+      "aiCheckedAt": "2026-10-19T17:25:18.423465+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 44.5
+      }
     },
     {
       "id": "node/8909393066",
@@ -6278,7 +6472,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:19:08.856681+00:00",
-      "aiCheckedAt": "2026-10-19T17:38:21.102747+00:00"
+      "aiCheckedAt": "2026-10-19T17:38:21.102747+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 56.0
+      }
     },
     {
       "id": "node/4417769694",
@@ -6397,7 +6595,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:19:09.908402+00:00",
-      "aiCheckedAt": "2026-10-19T17:27:18.053492+00:00"
+      "aiCheckedAt": "2026-10-19T17:27:18.053492+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 40.0
+      }
     },
     {
       "id": "node/3208777922",
@@ -6420,7 +6622,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 114.5
+      }
     },
     {
       "id": "node/3888956159",
@@ -6586,7 +6792,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:19:23.681025+00:00",
-      "aiCheckedAt": "2026-10-19T17:38:17.123491+00:00"
+      "aiCheckedAt": "2026-10-19T17:38:17.123491+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "node/582950406",
@@ -7076,7 +7286,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:19:33.717188+00:00",
-      "aiCheckedAt": "2026-10-19T17:43:57.985155+00:00"
+      "aiCheckedAt": "2026-10-19T17:43:57.985155+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.75
+      }
     },
     {
       "id": "node/6647636870",
@@ -7223,7 +7437,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 7.5
+      }
     },
     {
       "id": "node/9350766920",
@@ -7283,7 +7501,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:19:36.172360+00:00",
-      "aiCheckedAt": "2026-10-19T17:29:22.440137+00:00"
+      "aiCheckedAt": "2026-10-19T17:29:22.440137+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 10.0
+      }
     },
     {
       "id": "node/6644516746",
@@ -7369,7 +7591,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:19:37.523154+00:00",
-      "aiCheckedAt": "2026-10-19T17:42:43.721535+00:00"
+      "aiCheckedAt": "2026-10-19T17:42:43.721535+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 9.8
+      }
     },
     {
       "id": "node/4278519394",
@@ -7598,7 +7824,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:19:44.587790+00:00",
-      "aiCheckedAt": "2026-10-19T17:29:01.152539+00:00"
+      "aiCheckedAt": "2026-10-19T17:29:01.152539+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 22.0
+      }
     },
     {
       "id": "node/4377355190",
@@ -7867,7 +8097,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:19:53.249399+00:00",
-      "aiCheckedAt": "2026-10-19T17:43:30.103247+00:00"
+      "aiCheckedAt": "2026-10-19T17:43:30.103247+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.0
+      }
     },
     {
       "id": "node/3788956446",
@@ -7885,7 +8119,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:21:18.536483+00:00"
+      "checkedAt": "2026-10-19T16:21:18.536483+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 45.0
+      }
     },
     {
       "id": "node/7450557435",
@@ -7954,7 +8192,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:21:19.767010+00:00"
+      "checkedAt": "2026-10-19T16:21:19.767010+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 11.5
+      }
     },
     {
       "id": "node/702236061",
@@ -8272,7 +8514,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 90.0
+      }
     },
     {
       "id": "node/9350906407",
@@ -8290,7 +8536,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:21:21.669259+00:00"
+      "checkedAt": "2026-10-19T16:21:21.669259+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/6349326159",
@@ -8398,7 +8648,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:20:01.461457+00:00",
-      "aiCheckedAt": "2026-10-19T17:42:31.205396+00:00"
+      "aiCheckedAt": "2026-10-19T17:42:31.205396+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 4.2
+      }
     },
     {
       "id": "node/5765337053",
@@ -8415,7 +8669,13 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/2685105045"
+      "addressSource": "https://www.openstreetmap.org/node/2685105045",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 81.0
+      }
     },
     {
       "id": "node/6318613814",
@@ -8628,7 +8888,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:20:04.812758+00:00",
-      "aiCheckedAt": "2026-10-19T17:49:12.282173+00:00"
+      "aiCheckedAt": "2026-10-19T17:49:12.282173+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 59.0
+      }
     },
     {
       "id": "node/5377769532",
@@ -8794,7 +9058,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:20:09.554266+00:00",
-      "aiCheckedAt": "2026-10-19T17:30:07.538751+00:00"
+      "aiCheckedAt": "2026-10-19T17:30:07.538751+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 36.0
+      }
     },
     {
       "id": "node/4031088875",
@@ -8960,7 +9228,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/13637537873",
@@ -9111,7 +9383,13 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5238135801"
+      "addressSource": "https://www.openstreetmap.org/node/5238135801",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 4.5
+      }
     },
     {
       "id": "node/10116280189",
@@ -9146,7 +9424,11 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/315764384"
+      "addressSource": "https://www.openstreetmap.org/way/315764384",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 11.9
+      }
     },
     {
       "id": "node/6253646185",
@@ -9202,7 +9484,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:15.130707+00:00"
+      "checkedAt": "2026-10-19T16:20:15.130707+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 40.5
+      }
     },
     {
       "id": "node/13543480945",
@@ -9391,7 +9677,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:20:18.486100+00:00",
-      "aiCheckedAt": "2026-10-19T17:43:18.699240+00:00"
+      "aiCheckedAt": "2026-10-19T17:43:18.699240+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 141.5
+      }
     },
     {
       "id": "node/4601267408",
@@ -9480,7 +9770,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:20:20.822872+00:00",
-      "aiCheckedAt": "2026-10-19T17:47:42.829053+00:00"
+      "aiCheckedAt": "2026-10-19T17:47:42.829053+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 58.0
+      }
     },
     {
       "id": "node/698552423",
@@ -9532,7 +9826,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:20:23.665975+00:00",
-      "aiCheckedAt": "2026-10-19T17:44:05.383728+00:00"
+      "aiCheckedAt": "2026-10-19T17:44:05.383728+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/4110058268",
@@ -9566,7 +9864,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:21:22.002458+00:00"
+      "checkedAt": "2026-10-19T16:21:22.002458+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 32.0
+      }
     }
   ]
 }

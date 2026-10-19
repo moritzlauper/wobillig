@@ -13,6 +13,7 @@ import {
   selectBeerSize,
   cost,
   safeUrl,
+  hasOutdoorSeating,
   type Bar,
   type Filters,
 } from "../src/data";
@@ -92,6 +93,19 @@ describe("bar discovery", () => {
       filterBars([b], { ...f, query: "8004", outdoor: true }),
     ).toHaveLength(1);
     expect(filterBars([b], { ...f, query: "Basel" })).toHaveLength(0);
+  });
+  it("counts official boulevard permits as outdoor seating, seasonal ones only in season", () => {
+    const inside = { ...b, outdoor: false };
+    const seasonal = { ...inside, outdoorPermit: { season: "seasonal" as const, from: "02-15", until: "11-15" } };
+    expect(hasOutdoorSeating(inside)).toBe(false);
+    expect(hasOutdoorSeating({ ...inside, outdoorPermit: { season: "year" } })).toBe(true);
+    expect(hasOutdoorSeating({ ...inside, outdoorPermit: { season: "unspecified" } })).toBe(true);
+    expect(hasOutdoorSeating(seasonal, "2026-02-15")).toBe(true);
+    expect(hasOutdoorSeating(seasonal, "2026-11-16")).toBe(false);
+    expect(hasOutdoorSeating({ ...seasonal, outdoorPermit: { season: "seasonal", from: "11-01", until: "02-28" } }, "2027-01-10")).toBe(true);
+    expect(hasOutdoorSeating({ ...seasonal, outdoor: true }, "2026-12-01")).toBe(true);
+    const yearRound = { ...inside, id: "node/9", outdoorPermit: { season: "year" as const } };
+    expect(filterBars([inside, yearRound], { ...f, outdoor: true }).map(bar => bar.id)).toEqual(["node/9"]);
   });
   it.each(["beer", "coffee", "pizza"] as const)("groups bars and pubs in the %s venue filter", drink => {
     const venues = ["bar", "pub", "restaurant", "cafe", "fast_food"].map(type => ({ ...b, id: type, type, offers: [] }));

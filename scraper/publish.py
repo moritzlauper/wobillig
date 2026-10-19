@@ -19,7 +19,7 @@ FILES = (
     for root, suffix in [('public/data', ''), ('scraper', '_checks')]
     for prefix in (('', 'bern/', 'basel/') if root == 'public/data' else ('', 'cities/bern/', 'cities/basel/'))
     for category in ('doner', 'falafel')
-)
+) + ('scraper/cities/basel/outdoor_permits.json',)
 MISSING = object()
 
 

@@ -50,7 +50,10 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:53.630215+00:00"
+      "checkedAt": "2026-10-19T16:34:53.630215+00:00",
+      "outdoorPermit": {
+        "season": "unspecified"
+      }
     },
     {
       "id": "node/4377359796",
@@ -250,7 +253,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:04:23.064431+00:00",
-      "aiCheckedAt": "2026-10-19T17:29:57.996508+00:00"
+      "aiCheckedAt": "2026-10-19T17:29:57.996508+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 13.5
+      }
     },
     {
       "id": "node/252822642",
@@ -282,7 +289,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-19T16:35:01.522399+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522399+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 2.5
+      }
     },
     {
       "id": "node/6556102796",
@@ -413,7 +424,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:00:43.750465+00:00",
-      "aiCheckedAt": "2026-10-19T17:26:34.548873+00:00"
+      "aiCheckedAt": "2026-10-19T17:26:34.548873+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 65.5
+      }
     },
     {
       "id": "node/2146304950",
@@ -429,7 +444,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-19T16:35:02.593155+00:00"
+      "checkedAt": "2026-10-19T16:35:02.593155+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 70.0
+      }
     },
     {
       "id": "node/13894492703",
@@ -581,7 +600,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:56.131450+00:00"
+      "checkedAt": "2026-10-19T16:34:56.131450+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 26.0
+      }
     },
     {
       "id": "node/10031838987",
@@ -614,7 +637,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:56.131484+00:00"
+      "checkedAt": "2026-10-19T16:34:56.131484+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 16.0
+      }
     },
     {
       "id": "node/5550633691",
@@ -646,7 +673,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T16:35:05.362912+00:00"
+      "checkedAt": "2026-10-19T16:35:05.362912+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.3
+      }
     },
     {
       "id": "node/3889420248",
@@ -679,7 +710,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:08.322426+00:00"
+      "checkedAt": "2026-10-19T16:35:08.322426+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 14.6
+      }
     },
     {
       "id": "node/6868688829",
@@ -696,7 +731,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:08.354413+00:00"
+      "checkedAt": "2026-10-19T16:35:08.354413+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 9.0
+      }
     },
     {
       "id": "node/4150413389",
@@ -1197,7 +1236,13 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:33:26.052004+00:00",
-      "aiCheckedAt": "2026-10-19T17:30:34.190845+00:00"
+      "aiCheckedAt": "2026-10-19T17:30:34.190845+00:00",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 24.0
+      }
     },
     {
       "id": "node/6786431372",
@@ -1375,7 +1420,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:56.131525+00:00"
+      "checkedAt": "2026-10-19T16:34:56.131525+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 14.5
+      }
     },
     {
       "id": "node/9326577380",
@@ -2187,7 +2236,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-19T16:35:10.337589+00:00"
+      "checkedAt": "2026-10-19T16:35:10.337589+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 32.0
+      }
     },
     {
       "id": "node/12843974701",
@@ -2330,7 +2383,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:01:30.310189+00:00",
-      "aiCheckedAt": "2026-10-19T17:31:15.202464+00:00"
+      "aiCheckedAt": "2026-10-19T17:31:15.202464+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 27.5
+      }
     },
     {
       "id": "node/71525383",
@@ -2816,7 +2873,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:56.131581+00:00"
+      "checkedAt": "2026-10-19T16:34:56.131581+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/3220396501",
@@ -2983,7 +3044,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:03:41.583959+00:00",
-      "aiCheckedAt": "2026-10-19T17:35:11.843055+00:00"
+      "aiCheckedAt": "2026-10-19T17:35:11.843055+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 18.2
+      }
     },
     {
       "id": "node/593638990",
@@ -2999,7 +3064,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T16:35:10.853229+00:00"
+      "checkedAt": "2026-10-19T16:35:10.853229+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 52.5
+      }
     },
     {
       "id": "node/3208777203",
@@ -3121,7 +3190,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:26:48.255480+00:00",
-      "aiCheckedAt": "2026-10-19T17:25:15.956125+00:00"
+      "aiCheckedAt": "2026-10-19T17:25:15.956125+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 114.5
+      }
     },
     {
       "id": "node/8727999200",
@@ -3195,7 +3268,11 @@
       ],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-19T16:35:33.061261+00:00",
-      "aiCheckedAt": "2026-10-19T17:07:48.975737+00:00"
+      "aiCheckedAt": "2026-10-19T17:07:48.975737+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 53.5
+      }
     },
     {
       "id": "node/71525579",
@@ -3227,7 +3304,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:10.943612+00:00"
+      "checkedAt": "2026-10-19T16:35:10.943612+00:00",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 27.0
+      }
     },
     {
       "id": "node/9006190118",
@@ -3416,7 +3499,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:06:47.473505+00:00",
-      "aiCheckedAt": "2026-10-19T17:30:46.985104+00:00"
+      "aiCheckedAt": "2026-10-19T17:30:46.985104+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 75.25
+      }
     },
     {
       "id": "node/7747207685",
@@ -3469,7 +3556,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:31.560277+00:00"
+      "checkedAt": "2026-10-19T16:03:31.560277+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 22.0
+      }
     },
     {
       "id": "node/7871792488",
@@ -3640,7 +3731,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:56.801699+00:00"
+      "checkedAt": "2026-10-19T16:34:56.801699+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 211.0
+      }
     },
     {
       "id": "node/3811616609",
@@ -4188,7 +4283,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:00:43.750532+00:00",
-      "aiCheckedAt": "2026-10-19T17:26:37.743207+00:00"
+      "aiCheckedAt": "2026-10-19T17:26:37.743207+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 62.0
+      }
     },
     {
       "id": "node/11268583746",
@@ -4204,7 +4303,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:11.272707+00:00"
+      "checkedAt": "2026-10-19T16:35:11.272707+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 74.0
+      }
     },
     {
       "id": "node/4031101008",
@@ -4220,7 +4323,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:56.801735+00:00"
+      "checkedAt": "2026-10-19T16:34:56.801735+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 45.0
+      }
     },
     {
       "id": "node/13902829473",
@@ -4470,7 +4577,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:01.060177+00:00"
+      "checkedAt": "2026-10-19T16:02:01.060177+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/8956017394",
@@ -4733,7 +4844,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:09.129458+00:00"
+      "checkedAt": "2026-10-19T16:02:09.129458+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 43.0
+      }
     },
     {
       "id": "node/4064658549",
@@ -4749,7 +4864,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:34:56.801747+00:00"
+      "checkedAt": "2026-10-19T16:34:56.801747+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 9.6
+      }
     },
     {
       "id": "node/13535126290",
@@ -5457,7 +5576,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:57.226035+00:00"
+      "checkedAt": "2026-10-19T16:34:57.226035+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.5
+      }
     },
     {
       "id": "node/4840045318",
@@ -5685,7 +5808,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:34:12.478594+00:00",
-      "aiCheckedAt": "2026-10-19T17:37:59.042318+00:00"
+      "aiCheckedAt": "2026-10-19T17:37:59.042318+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 44.0
+      }
     },
     {
       "id": "node/1936085288",
@@ -5718,7 +5845,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:57.226097+00:00"
+      "checkedAt": "2026-10-19T16:34:57.226097+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 18.7
+      }
     },
     {
       "id": "node/7598139857",
@@ -5835,7 +5966,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:11.821225+00:00"
+      "checkedAt": "2026-10-19T16:35:11.821225+00:00",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 32.0
+      }
     },
     {
       "id": "node/4264494738",
@@ -5851,7 +5988,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:57.226110+00:00"
+      "checkedAt": "2026-10-19T16:34:57.226110+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 8.0
+      }
     },
     {
       "id": "node/7773338161",
@@ -5867,7 +6008,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:11.831785+00:00"
+      "checkedAt": "2026-10-19T16:35:11.831785+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/2987527171",
@@ -6243,7 +6388,13 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:33:23.058234+00:00",
-      "aiCheckedAt": "2026-10-19T17:26:45.719474+00:00"
+      "aiCheckedAt": "2026-10-19T17:26:45.719474+00:00",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 60.0
+      }
     },
     {
       "id": "node/12017121002",
@@ -6314,7 +6465,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:03:43.016465+00:00",
-      "aiCheckedAt": "2026-10-19T17:36:22.741124+00:00"
+      "aiCheckedAt": "2026-10-19T17:36:22.741124+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 39.85
+      }
     },
     {
       "id": "node/2215970143",
@@ -6508,7 +6663,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:12.133241+00:00"
+      "checkedAt": "2026-10-19T16:35:12.133241+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 19.0
+      }
     },
     {
       "id": "node/5983175585",
@@ -7244,7 +7403,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:33:51.698677+00:00",
-      "aiCheckedAt": "2026-10-19T17:37:21.340210+00:00"
+      "aiCheckedAt": "2026-10-19T17:37:21.340210+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 150.0
+      }
     },
     {
       "id": "node/6958402189",
@@ -7293,7 +7456,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:57.226144+00:00"
+      "checkedAt": "2026-10-19T16:34:57.226144+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 6.5
+      }
     },
     {
       "id": "node/9800319929",
@@ -7475,7 +7642,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:02:16.870021+00:00",
-      "aiCheckedAt": "2026-10-19T17:36:30.403531+00:00"
+      "aiCheckedAt": "2026-10-19T17:36:30.403531+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 90.0
+      }
     },
     {
       "id": "node/11368724666",
@@ -7491,7 +7662,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:12.928592+00:00"
+      "checkedAt": "2026-10-19T16:35:12.928592+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.8
+      }
     },
     {
       "id": "node/9269725977",
@@ -7557,7 +7732,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:13.084885+00:00"
+      "checkedAt": "2026-10-19T16:35:13.084885+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 4.9
+      }
     },
     {
       "id": "node/8956017395",
@@ -7735,7 +7914,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:34:57.226179+00:00"
+      "checkedAt": "2026-10-19T16:34:57.226179+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 54.7
+      }
     },
     {
       "id": "node/1668864832",
@@ -7752,7 +7935,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:35:01.522036+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522036+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 22.0
+      }
     },
     {
       "id": "node/5419683121",
@@ -7769,7 +7956,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:35:01.522110+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522110+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/6780084788",
@@ -8000,7 +8191,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:04:50.973257+00:00",
-      "aiCheckedAt": "2026-10-19T17:37:16.650472+00:00"
+      "aiCheckedAt": "2026-10-19T17:37:16.650472+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/3207784808",
@@ -8016,7 +8211,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:35:01.522152+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522152+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "node/8143805822",
@@ -8082,7 +8281,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-19T16:35:14.653852+00:00"
+      "checkedAt": "2026-10-19T16:35:14.653852+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 28.0
+      }
     },
     {
       "id": "node/3237678599",
@@ -8247,7 +8450,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:00:43.749994+00:00",
-      "aiCheckedAt": "2026-10-19T17:25:18.423456+00:00"
+      "aiCheckedAt": "2026-10-19T17:25:18.423456+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 44.5
+      }
     },
     {
       "id": "node/8909393066",
@@ -8875,7 +9082,13 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:25:53.185439+00:00",
-      "aiCheckedAt": "2026-10-19T17:25:40.148991+00:00"
+      "aiCheckedAt": "2026-10-19T17:25:40.148991+00:00",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 15.0
+      }
     },
     {
       "id": "node/6372498629",
@@ -8960,7 +9173,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:34:01.945912+00:00",
-      "aiCheckedAt": "2026-10-19T17:38:21.102730+00:00"
+      "aiCheckedAt": "2026-10-19T17:38:21.102730+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 56.0
+      }
     },
     {
       "id": "node/13368137178",
@@ -9024,7 +9241,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:33:23.057395+00:00",
-      "aiCheckedAt": "2026-10-19T17:27:18.053454+00:00"
+      "aiCheckedAt": "2026-10-19T17:27:18.053454+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 40.0
+      }
     },
     {
       "id": "node/10963072012",
@@ -9108,7 +9329,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:02:27.903434+00:00",
-      "aiCheckedAt": "2026-10-19T17:30:43.886695+00:00"
+      "aiCheckedAt": "2026-10-19T17:30:43.886695+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "node/3179353790",
@@ -9188,7 +9413,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-19T16:35:15.855123+00:00"
+      "checkedAt": "2026-10-19T16:35:15.855123+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 80.5
+      }
     },
     {
       "id": "node/3888956159",
@@ -9731,7 +9960,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:35.231391+00:00"
+      "checkedAt": "2026-10-19T16:02:35.231391+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "node/582950406",
@@ -10473,7 +10706,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:03:50.448833+00:00",
-      "aiCheckedAt": "2026-10-19T17:43:57.985134+00:00"
+      "aiCheckedAt": "2026-10-19T17:43:57.985134+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.75
+      }
     },
     {
       "id": "node/584725549",
@@ -10490,7 +10727,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:35:01.522248+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522248+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 8.0
+      }
     },
     {
       "id": "node/1610930944",
@@ -10575,7 +10816,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:16.101258+00:00"
+      "checkedAt": "2026-10-19T16:35:16.101258+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 4.0
+      }
     },
     {
       "id": "node/10116280190",
@@ -10964,7 +11209,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:05:12.628618+00:00",
-      "aiCheckedAt": "2026-10-19T17:29:22.440122+00:00"
+      "aiCheckedAt": "2026-10-19T17:29:22.440122+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 10.0
+      }
     },
     {
       "id": "node/6372546501",
@@ -10980,7 +11229,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:35:01.522261+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522261+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 8.0
+      }
     },
     {
       "id": "way/725684963",
@@ -11152,7 +11405,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:02:39.570906+00:00",
-      "aiCheckedAt": "2026-10-19T17:42:43.721512+00:00"
+      "aiCheckedAt": "2026-10-19T17:42:43.721512+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 9.8
+      }
     },
     {
       "id": "node/5341711822",
@@ -11168,7 +11425,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:35:01.522307+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522307+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 30.0
+      }
     },
     {
       "id": "node/12533458853",
@@ -11386,7 +11647,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:03:39.614602+00:00",
-      "aiCheckedAt": "2026-10-19T17:29:01.152519+00:00"
+      "aiCheckedAt": "2026-10-19T17:29:01.152519+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 22.0
+      }
     },
     {
       "id": "node/593094110",
@@ -11403,7 +11668,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:35:01.522319+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522319+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 65.1
+      }
     },
     {
       "id": "node/12230410089",
@@ -11419,7 +11688,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:16.883665+00:00"
+      "checkedAt": "2026-10-19T16:35:16.883665+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 41.1
+      }
     },
     {
       "id": "node/315128008",
@@ -11692,7 +11965,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:04:01.108446+00:00",
-      "aiCheckedAt": "2026-10-19T17:43:30.103231+00:00"
+      "aiCheckedAt": "2026-10-19T17:43:30.103231+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.0
+      }
     },
     {
       "id": "node/10699363505",
@@ -11709,7 +11986,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:35:01.522342+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522342+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 47.0
+      }
     },
     {
       "id": "node/13474274101",
@@ -11741,7 +12022,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:17.014201+00:00"
+      "checkedAt": "2026-10-19T16:35:17.014201+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 36.0
+      }
     },
     {
       "id": "node/6954999086",
@@ -11968,7 +12253,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T16:35:17.806932+00:00"
+      "checkedAt": "2026-10-19T16:35:17.806932+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 42.5
+      }
     },
     {
       "id": "node/7838311321",
@@ -12546,7 +12835,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:05:44.834212+00:00",
-      "aiCheckedAt": "2026-10-19T17:30:07.538738+00:00"
+      "aiCheckedAt": "2026-10-19T17:30:07.538738+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 36.0
+      }
     },
     {
       "id": "way/1140850617",
@@ -12562,7 +12855,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:35:01.522376+00:00"
+      "checkedAt": "2026-10-19T16:35:01.522376+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 35.5
+      }
     },
     {
       "id": "node/2984329486",
@@ -12578,7 +12875,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:23.725152+00:00"
+      "checkedAt": "2026-10-19T16:35:23.725152+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 35.5
+      }
     },
     {
       "id": "node/4031088875",
@@ -13219,7 +13520,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:08:09.077313+00:00",
-      "aiCheckedAt": "2026-10-19T17:43:18.699218+00:00"
+      "aiCheckedAt": "2026-10-19T17:43:18.699218+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 141.5
+      }
     },
     {
       "id": "node/14297566719",
@@ -13235,7 +13540,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-19T16:34:53.630162+00:00"
+      "checkedAt": "2026-10-19T16:34:53.630162+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 42.6
+      }
     },
     {
       "id": "node/4601267408",
@@ -13571,7 +13880,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:03:06.533341+00:00",
-      "aiCheckedAt": "2026-10-19T17:47:42.829017+00:00"
+      "aiCheckedAt": "2026-10-19T17:47:42.829017+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 58.0
+      }
     },
     {
       "id": "node/698552423",
@@ -13655,7 +13968,11 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:34:09.403910+00:00",
-      "aiCheckedAt": "2026-10-19T17:44:05.383716+00:00"
+      "aiCheckedAt": "2026-10-19T17:44:05.383716+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     }
   ]
 }

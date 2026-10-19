@@ -1,14 +1,15 @@
 import type { Feature, FeatureCollection, Polygon, MultiPolygon, Position } from 'geojson';
-import type { City } from './cities';
+import { cities, type City } from './cities';
 
-export type District = Feature<Polygon | MultiPolygon, { number: number }>;
-export type Districts = FeatureCollection<Polygon | MultiPolygon, { number: number }>;
+// Zürich's Kreise are labelled by number; Basel and Bern features carry their official name.
+export type District = Feature<Polygon | MultiPolygon, { number: number; name?: string }>;
+export type Districts = FeatureCollection<Polygon | MultiPolygon, { number: number; name?: string }>;
 
 export function districtFromSearch(params: URLSearchParams, city: City) {
-  if (city !== 'zurich') return { enabled: false, selected: undefined };
-  const number = Number(params.get('kreis'));
-  const selected = Number.isInteger(number) && number >= 1 && number <= 12 ? number : undefined;
-  return { enabled: params.get('kreise') === '1' || selected !== undefined, selected };
+  const { toggle, param, count } = cities[city].districts;
+  const number = Number(params.get(param));
+  const selected = Number.isInteger(number) && number >= 1 && number <= count ? number : undefined;
+  return { enabled: params.get(toggle) === '1' || selected !== undefined, selected };
 }
 
 // Ray casting in GeoJSON longitude/latitude order, including boundary points.

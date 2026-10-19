@@ -39,10 +39,21 @@ export type Bar = {
   pizzaEvidence?: { sourceUrl: string; evidence: string };
   openingHours: string | null;
   outdoor: boolean;
+  outdoorPermit?: OutdoorPermit;
   offers: Offer[];
   scrapeStatus: string;
   checkedAt: string | null;
 };
+// Official boulevard permit (Basel), matched by scraper/outdoor_permits.py.
+// from/until are MM-DD of a seasonal permit; "unspecified" states no season.
+export type OutdoorPermit = { season: "year" | "seasonal" | "unspecified"; from?: string; until?: string; areaM2?: number };
+export function hasOutdoorSeating(b: Bar, today = new Date().toISOString().slice(0, 10)) {
+  const permit = b.outdoorPermit;
+  if (b.outdoor || (permit && permit.season !== "seasonal")) return true;
+  if (!permit?.from || !permit.until) return false;
+  const day = today.slice(5);
+  return permit.from <= permit.until ? permit.from <= day && day <= permit.until : day >= permit.from || day <= permit.until;
+}
 export type Dataset = {
   generatedAt: string;
   discoveredAt: string;
@@ -169,7 +180,7 @@ export function filterBars(
       const o = bestOffer(b, f);
       return (
         matchesSearch(b, f.query) &&
-        (!f.outdoor || b.outdoor) &&
+        (!f.outdoor || hasOutdoorSeating(b)) &&
         (o ? cost(o, f.mode) <= f.max : f.unknown)
       );
     })

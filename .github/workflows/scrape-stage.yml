@@ -146,6 +146,11 @@ jobs:
         if: ${{ !cancelled() && (success() || steps.ai.outcome == 'failure') }}
         continue-on-error: true
         run: python -m scraper.addresses
+      # Rediscovered venues lose their permit; restore it before the snapshot.
+      - name: Match Basel boulevard permits
+        if: ${{ !cancelled() && inputs.city == 'basel' && (success() || steps.ai.outcome == 'failure') }}
+        continue-on-error: true
+        run: python -m scraper.outdoor_permits
       - name: Snapshot refreshed dataset
         id: snapshot
         if: ${{ always() && steps.baseline.outcome == 'success' }}

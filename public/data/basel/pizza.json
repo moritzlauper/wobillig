@@ -59,7 +59,11 @@
       "offers": [],
       "scrapeStatus": "no_website",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3220375665"
+      "addressSource": "https://www.openstreetmap.org/node/3220375665",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 4.5
+      }
     },
     {
       "id": "node/3392587471",
@@ -82,6 +86,10 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.artigiano-pizzeria.com/restaurant-windisch",
         "evidence": "Windisch | Artigiano Restaurant Pizzeria in Windisch"
+      },
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 115.0
       }
     },
     {
@@ -212,7 +220,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T16:37:00.549476+00:00"
+      "checkedAt": "2026-10-19T16:37:00.549476+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 92.4
+      }
     },
     {
       "id": "node/2579133152",
@@ -303,6 +315,10 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.diomio.ch",
         "evidence": "DIO/MIO | Pizzeria Napoletana | Basel"
+      },
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 75.25
       }
     },
     {
@@ -358,7 +374,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T16:37:09.166112+00:00"
+      "checkedAt": "2026-10-19T16:37:09.166112+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/9555618861",
@@ -415,7 +435,11 @@
       "offers": [],
       "scrapeStatus": "no_website",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/249341166"
+      "addressSource": "https://www.openstreetmap.org/way/249341166",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 4.2
+      }
     },
     {
       "id": "node/4618831145",
@@ -594,7 +618,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:37:53.223522+00:00"
+      "checkedAt": "2026-10-19T16:37:53.223522+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 14.2
+      }
     },
     {
       "id": "node/11141978301",
@@ -757,7 +785,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T16:36:33.141853+00:00"
+      "checkedAt": "2026-10-19T16:36:33.141853+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 16.0
+      }
     },
     {
       "id": "node/2616020991",
@@ -882,7 +914,11 @@
         "sourceUrl": "https://www.centroambarfi.ch/en/coffee-and-digestifs/",
         "evidence": "Italian Restaurant - Pizzeria: Good food in Basel | Centro am Barfi"
       },
-      "addressSource": "https://www.centroambarfi.ch/kontakt/"
+      "addressSource": "https://www.centroambarfi.ch/kontakt/",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 56.0
+      }
     },
     {
       "id": "node/822473463",
@@ -934,6 +970,12 @@
       "pizzaEvidence": {
         "sourceUrl": "https://restaurant-dapia.ch/",
         "evidence": "Restaurant Pizzeria Da Pia – Italienisches Restaurant in Basel"
+      },
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 18.0
       }
     },
     {
@@ -1043,6 +1085,12 @@
       "pizzaEvidence": {
         "sourceUrl": "https://pizzeria-laperla.ch/menu/de/",
         "evidence": "Menu – LaPerla Pizzeria"
+      },
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 9.0
       }
     },
     {
@@ -1077,6 +1125,10 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.resslirytti.ch/en/restaurant/",
         "evidence": "Pizzeria Basel | Italienisches Restaurant Basel"
+      },
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 117.0
       }
     },
     {
@@ -1217,7 +1269,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:36:46.793912+00:00"
+      "checkedAt": "2026-10-19T16:36:46.793912+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 16.0
+      }
     },
     {
       "id": "node/5744306322",
@@ -1331,7 +1387,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T16:36:46.572699+00:00"
+      "checkedAt": "2026-10-19T16:36:46.572699+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 54.0
+      }
     },
     {
       "id": "node/12533458853",
@@ -1410,7 +1470,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.6
+      }
     },
     {
       "id": "node/11268593147",
@@ -1432,6 +1496,10 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.vito.ch/standort/aeschen-basel",
         "evidence": "VITO – VITO Aeschen | Pizzeria"
+      },
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 37.65
       }
     },
     {
@@ -1469,7 +1537,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.6
+      }
     },
     {
       "id": "node/2663868065",
@@ -1566,7 +1638,11 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:37:44.855403+00:00"
+      "checkedAt": "2026-10-19T16:37:44.855403+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 141.5
+      }
     }
   ]
 }

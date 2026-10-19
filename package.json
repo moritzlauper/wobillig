@@ -9,6 +9,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "prices:review": "node --env-file-if-exists=.env.local scripts/price-review.mjs",
+    "districts": "node scripts/districts.mjs",
     "test:storage": "RUN_BLOB_INTEGRATION=1 node --env-file=.env.local node_modules/vitest/vitest.mjs run tests/blob.integration.test.ts",
     "test:browser": "playwright test",
     "test:ocr": "RUN_MENU_OCR_LIVE=1 node --env-file=.env.local node_modules/vitest/vitest.mjs run tests/menu-ocr.live.test.ts"

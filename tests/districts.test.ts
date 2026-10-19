@@ -1,11 +1,12 @@
 import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import { containsLocation, createDistrictLookup, districtFromSearch, type District, type Districts } from '../src/districts';
-import { cityLink } from '../src/cities';
+import { cities, cityLink } from '../src/cities';
 import { cityAverage } from '../src/coverage';
 import type { Dataset, Filters } from '../src/data';
 
-const districts = JSON.parse(readFileSync(new URL('../public/data/districts.json', import.meta.url), 'utf8')) as Districts;
+const load = (path: string) => JSON.parse(readFileSync(new URL(`../public/data/${path}`, import.meta.url), 'utf8')) as Districts;
+const districts = load('districts.json');
 
 it('assigns known Zürich locations to official boundaries and excludes other cities', () => {
   expect(districts.features.map(d => d.properties.number)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
@@ -15,6 +16,26 @@ it('assigns known Zürich locations to official boundaries and excludes other ci
   expect(lookup({ lat: 47.4105, lon: 8.5442 })).toBe(11); // Bahnhof Oerlikon
   expect(lookup({ lat: 46.948, lon: 7.447 })).toBeUndefined();
   expect(lookup({ lat: 47.558, lon: 7.589 })).toBeUndefined();
+});
+
+it('uses the named Basel Wohnviertel and Bern Stadtteile without neighbouring municipalities', () => {
+  const basel = load('basel/districts.json'), bern = load('bern/districts.json');
+  expect(basel.features.map(d => d.properties.number)).toEqual(Array.from({ length: cities.basel.districts.count }, (_, i) => i + 1));
+  expect(bern.features.map(d => d.properties.name)).toEqual(['Innere Stadt', 'Länggasse-Felsenau', 'Mattenhof-Weissenbühl', 'Kirchenfeld-Schosshalde', 'Breitenrain-Lorraine', 'Bümpliz-Oberbottigen']);
+  const inBasel = createDistrictLookup(basel), inBern = createDistrictLookup(bern);
+  expect(inBasel({ lat: 47.5565, lon: 7.5923 })).toBe(1); // Münster, Altstadt Grossbasel
+  expect(inBasel({ lat: 47.5628, lon: 7.5944 })).toBe(13); // Claraplatz
+  expect(inBasel({ lat: 47.5636, lon: 7.6003 })).toBe(16); // Messeplatz, Rosental
+  expect(inBasel({ lat: 47.5849, lon: 7.6513 })).toBeUndefined(); // Riehen
+  expect(inBern({ lat: 46.94797, lon: 7.44784 })).toBe(1); // Zytglogge
+  expect(inBern({ lat: 46.9632, lon: 7.4646 })).toBe(5); // Wankdorf
+  expect(inBern({ lat: 46.9445, lon: 7.388 })).toBe(6); // Bümpliz
+  expect(inBern({ lat: 47.3717, lon: 8.5422 })).toBeUndefined();
+  for (const city of ['basel', 'bern'] as const) {
+    const lookup = createDistrictLookup(city === 'basel' ? basel : bern);
+    const coffee = JSON.parse(readFileSync(new URL(`../public/data/${city}/coffee.json`, import.meta.url), 'utf8')) as Dataset;
+    expect(coffee.bars.filter(b => lookup(b) === undefined)).toEqual([]);
+  }
 });
 
 it('handles holes, boundary points and disconnected polygons', () => {
@@ -29,16 +50,22 @@ it('handles holes, boundary points and disconnected polygons', () => {
   expect(containsLocation(district, { lat: 5, lon: 5 })).toBe(false);
 });
 
-it('restores valid district links only for Zürich and clears them when switching cities', () => {
+it('restores valid district links per city and clears them when switching cities', () => {
   expect(districtFromSearch(new URLSearchParams('kreis=5'), 'zurich')).toEqual({ enabled: true, selected: 5 });
   expect(districtFromSearch(new URLSearchParams('kreise=1'), 'zurich')).toEqual({ enabled: true, selected: undefined });
   for (const value of ['0', '13', '-1', '1.5', 'nope', '']) {
     expect(districtFromSearch(new URLSearchParams(`kreis=${value}`), 'zurich')).toEqual({ enabled: false, selected: undefined });
   }
+  expect(districtFromSearch(new URLSearchParams('quartier=19'), 'basel')).toEqual({ enabled: true, selected: 19 });
+  expect(districtFromSearch(new URLSearchParams('quartier=20'), 'basel')).toEqual({ enabled: false, selected: undefined });
+  expect(districtFromSearch(new URLSearchParams('stadtteile=1'), 'bern')).toEqual({ enabled: true, selected: undefined });
+  expect(districtFromSearch(new URLSearchParams('stadtteil=7'), 'bern')).toEqual({ enabled: false, selected: undefined });
   for (const city of ['bern', 'basel'] as const) {
     expect(districtFromSearch(new URLSearchParams('kreise=1&kreis=5'), city)).toEqual({ enabled: false, selected: undefined });
     expect(cityLink(city, '?drink=coffee&kreise=1&kreis=5')).toBe(`/${city}?drink=coffee`);
   }
+  expect(cityLink('bern', '?quartiere=1&quartier=4&stadtteile=1&stadtteil=2')).toBe('/bern?stadtteile=1&stadtteil=2');
+  expect(cityLink('zurich', '?kreise=1&kreis=4&stadtteile=1&stadtteil=2')).toBe('/?kreise=1&kreis=4');
 });
 
 it('computes the Kreis average only from its matching venues without a budget or search bias', () => {

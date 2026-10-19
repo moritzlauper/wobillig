@@ -50,4 +50,16 @@ describe('analysis downloads', () => {
     expect(record).toMatchObject({ venue_name: "'" + data.bars[0].name, evidence: "'\t+SUM(1;2)", current_offer: 'false', community_loaded: 'false', missing_categories: 'coffee|pizza' });
     expect(JSON.parse(JSON.stringify(snapshot)).datasets.beer.bars[0].name).toBe(data.bars[0].name);
   });
+
+  it('exports Basel boulevard permits with their source and omits the source elsewhere', () => {
+    const permitted = { ...dataset, bars: [{ ...bar, outdoorPermit: { season: 'seasonal' as const, from: '02-15', until: '11-15', areaM2: 18 } }, { ...bar, id: 'node/3' }] };
+    const basel = createExport('basel', { beer: permitted }, [], false);
+    const [headers, ...rows] = parseCsv(exportCsv(basel));
+    const records = rows.map(row => Object.fromEntries(headers.map((key, i) => [key, row[i]])));
+    expect(records.map(r => r.outdoor_permit)).toEqual(['seasonal:02-15/11-15', '']);
+    expect(records[0].attribution).toContain('Allmendbewilligungen, CC BY 4.0');
+    expect(records[1].attribution).toBe('OSM');
+    expect(JSON.parse(JSON.stringify(basel)).datasets.beer.bars[0].outdoorPermit.areaM2).toBe(18);
+    expect(JSON.parse(JSON.stringify(createExport('bern', { beer: dataset }, [], false)))).not.toHaveProperty('outdoorPermitAttribution');
+  });
 });

@@ -5,7 +5,7 @@ import { analyticsBeforeSend, trackEvent } from './analytics';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
-import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
+import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer, type OutdoorPermit } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
 import { filtersFromSearch, writeFilters } from './filters';
@@ -32,6 +32,27 @@ const cityId = cityFromPath(location.pathname, import.meta.env.BASE_URL);
 const city = cities[cityId];
 const cityName = t(city.name);
 const dataPath = `${import.meta.env.BASE_URL}data/${city.data}`;
+// Each city filters by its own official boundaries and their open-data source.
+const districtTexts = {
+  zurich: {
+    show: t('Kreise anzeigen'), unit: t('Kreis'), select: t('Zürcher Stadtkreis'), all: t('Alle Kreise'), loading: t('Kreise laden …'),
+    failed: t('Kreisgrenzen konnten nicht geladen werden. Bitte «Kreise anzeigen» erneut aktivieren.'),
+    info: t('Kreise: Unter «Filter» lassen sich die Stadtkreise einblenden und per Karte oder Auswahlfeld auswählen. Der Kreisdurchschnitt wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb der gewählten Kreisgrenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.'),
+    source: t('Kreisgrenzen:'), sourceName: t('Stadt Zürich, Stadtkreise (CC0)'), sourceUrl: 'https://data.stadt-zuerich.ch/dataset/geo_stadtkreise',
+  },
+  bern: {
+    show: t('Stadtteile anzeigen'), unit: t('Stadtteil'), select: t('Berner Stadtteil'), all: t('Alle Stadtteile'), loading: t('Stadtteile laden …'),
+    failed: t('Stadtteilgrenzen konnten nicht geladen werden. Bitte «Stadtteile anzeigen» erneut aktivieren.'),
+    info: t('Stadtteile: Unter «Filter» lassen sich die sechs Stadtteile einblenden und per Karte oder Auswahlfeld auswählen. Der Durchschnitt eines Stadtteils wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb seiner Grenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.'),
+    source: t('Stadtteilgrenzen:'), sourceName: t('Stadt Bern, Stadtteile (freie Nutzung)'), sourceUrl: 'https://opendata.swiss/de/dataset/stadtteile',
+  },
+  basel: {
+    show: t('Wohnviertel anzeigen'), unit: t('Wohnviertel'), select: t('Basler Wohnviertel'), all: t('Alle Wohnviertel'), loading: t('Wohnviertel laden …'),
+    failed: t('Wohnviertelgrenzen konnten nicht geladen werden. Bitte «Wohnviertel anzeigen» erneut aktivieren.'),
+    info: t('Wohnviertel: Unter «Filter» lassen sich die 19 Wohnviertel der Stadt Basel einblenden und per Karte oder Auswahlfeld auswählen. Der Durchschnitt eines Wohnviertels wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb seiner Grenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.'),
+    source: t('Wohnviertelgrenzen:'), sourceName: t('Kanton Basel-Stadt, Statistische Raumeinheiten: Wohnviertel (CC BY 4.0)'), sourceUrl: 'https://data.bs.ch/explore/dataset/100042/',
+  },
+}[cityId];
 const pricesApi = `/api/prices?city=${cityId}`;
 const coffeePageTitle = document.title;
 const initial = new URLSearchParams(location.search);
@@ -84,7 +105,7 @@ $('app').innerHTML = `
   <label><input id="outdoor" type="checkbox"> ${t('Draussen sitzen')}</label>
   <label id="alcohol-label"><input id="alcohol-free" type="checkbox"> ${t('Alkoholfrei')}</label>
   <label id="normalize-label"><input id="normalize" type="checkbox"> ${t('Auf 5 dl umrechnen')}</label>
-  ${cityId === 'zurich' ? `<label><input id="district-toggle" type="checkbox" aria-controls="district-select-label"> ${t('Kreise anzeigen')}</label><label id="district-select-label" hidden>${t('Kreis')} <select id="district-select" aria-label="${t('Zürcher Stadtkreis')}"><option value="">${t('Alle Kreise')}</option></select></label>` : ''}
+  <label><input id="district-toggle" type="checkbox" aria-controls="district-select-label"> ${districtTexts.show}</label><label id="district-select-label" hidden>${districtTexts.unit} <select id="district-select" aria-label="${districtTexts.select}"><option value="">${districtTexts.all}</option></select></label>
   <button id="reset">${t('Zurücksetzen')}</button>
 </div>
 <div class="status-row"><div class="status-summary" role="status"><strong id="city-average">${e(t('Schnitt {city} {value}', { city: cityName, value: '—' }))}</strong><strong id="district-average" hidden></strong><span id="count">${t('Laden …')}</span></div><div class="mobile-switch" role="group" aria-label="${t('Ansicht')}"><button id="view-map" aria-pressed="true">${t('Karte')}</button><button id="view-list" aria-pressed="false">${t('Liste')}</button></div><div class="status-meta"><small class="refresh-note">${t('Wird alle 3 Wochen aktualisiert')}</small><nav class="city-switch" aria-label="${t('Stadt wechseln')}">${(Object.keys(cities) as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, locale()))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('<span aria-hidden="true">/</span>')}</nav><button id="data-info" class="text-button">${t('Daten')}</button></div></div>
@@ -119,7 +140,7 @@ $('app').innerHTML = `
   </fieldset></details>
   <p id="form-error" role="alert" hidden></p>
 </form></dialog>
-<dialog id="info" aria-label="${t('Daten')}"><div class="dialog-top"><strong>${t('Daten')}</strong><button id="close-info">${t('Schliessen')}</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">${e(t('Daten für {city} herunterladen', { city: cityName }))}</strong><p>${t('Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.')}</p><div class="download-actions"><button id="download-csv" class="primary" disabled>${t('CSV herunterladen')}</button><button id="download-json" disabled>${t('JSON herunterladen')}</button></div><p class="muted">${t('CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.')}</p><p id="download-status" class="muted" role="status">${t('Daten werden geladen …')}</p></section><p id="coverage"></p><p>${t('Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.')}</p>${cityId === 'zurich' ? `<p>${t('Kreise: Unter «Filter» lassen sich die Stadtkreise einblenden und per Karte oder Auswahlfeld auswählen. Der Kreisdurchschnitt wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb der gewählten Kreisgrenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.')} ${t('Kreisgrenzen:')} <a href="https://data.stadt-zuerich.ch/dataset/geo_stadtkreise" target="_blank" rel="noopener noreferrer">${t('Stadt Zürich, Stadtkreise (CC0)')}</a>.</p>` : ''}<p>${t('Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise und Foto-Uploads behalten Vorrang, ausser eine belegbar neuere Website-Karte nennt einen abweichenden Preis. Quelle, Menge und Datum stehen beim Angebot.')}</p><p>${t('Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.')}</p><p>${t('Bier: Cafés erscheinen mit einem erfassten, aktuellen Bierangebot unabhängig von ihren Öffnungszeiten. Cafés ohne Bierangebot werden auch bei «Ohne passenden Preis anzeigen» ausgeblendet.')}</p><p>${t('Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.')}</p><p>${t('Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.')}</p><p>${t('Standorte und Karte:')} <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">${t('© OpenStreetMap-Mitwirkende, ODbL')}</a>.</p></dialog>`;
+<dialog id="info" aria-label="${t('Daten')}"><div class="dialog-top"><strong>${t('Daten')}</strong><button id="close-info">${t('Schliessen')}</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">${e(t('Daten für {city} herunterladen', { city: cityName }))}</strong><p>${t('Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.')}</p><div class="download-actions"><button id="download-csv" class="primary" disabled>${t('CSV herunterladen')}</button><button id="download-json" disabled>${t('JSON herunterladen')}</button></div><p class="muted">${t('CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.')}</p><p id="download-status" class="muted" role="status">${t('Daten werden geladen …')}</p></section><p id="coverage"></p><p>${t('Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.')}</p><p>${districtTexts.info} ${districtTexts.source} <a href="${districtTexts.sourceUrl}" target="_blank" rel="noopener noreferrer">${districtTexts.sourceName}</a>.</p>${cityId === 'basel' ? `<p>${t('Draussen sitzen: In Basel zählen neben den Angaben aus OpenStreetMap auch Lokale mit einer gültigen Boulevard-Bewilligung des Kantons. Zugeordnet sind nur Bewilligungen, deren Name und Standort eindeutig zu einem Lokal passen. Saisonbewilligungen zählen nur während der bewilligten Zeit.')} ${t('Bewilligungen:')} <a href="https://data.bs.ch/explore/dataset/100018/" target="_blank" rel="noopener noreferrer">${t('Kanton Basel-Stadt, Allmendbewilligungen (CC BY 4.0)')}</a>.</p>` : ''}<p>${t('Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise und Foto-Uploads behalten Vorrang, ausser eine belegbar neuere Website-Karte nennt einen abweichenden Preis. Quelle, Menge und Datum stehen beim Angebot.')}</p><p>${t('Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.')}</p><p>${t('Bier: Cafés erscheinen mit einem erfassten, aktuellen Bierangebot unabhängig von ihren Öffnungszeiten. Cafés ohne Bierangebot werden auch bei «Ohne passenden Preis anzeigen» ausgeblendet.')}</p><p>${t('Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.')}</p><p>${t('Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.')}</p><p>${t('Standorte und Karte:')} <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">${t('© OpenStreetMap-Mitwirkende, ODbL')}</a>.</p></dialog>`;
 
 const categoryNav = categoryNavigation($('category-navigation'), chooseDrink, dataPath);
 const map = L.map('map', { zoomControl: false }).setView(city.center, 14);
@@ -213,8 +234,8 @@ async function loadDistricts() {
   districtsLoading = true;
   renderDistricts();
   try {
-    const response = await fetch(`${import.meta.env.BASE_URL}data/districts.json`, { signal: AbortSignal.timeout(15000) });
-    if (!response.ok) throw new Error('Kreisgrenzen fehlen');
+    const response = await fetch(`${dataPath}districts.json`, { signal: AbortSignal.timeout(15000) });
+    if (!response.ok) throw new Error('Grenzen fehlen');
     districtData = await response.json() as Districts;
     districtLookup = createDistrictLookup(districtData);
     districtLayer.addData(districtData);
@@ -228,7 +249,7 @@ async function loadDistricts() {
   } catch {
     districtData = undefined;
     districtState.enabled = false; districtState.selected = undefined;
-    toast(t('Kreisgrenzen konnten nicht geladen werden. Bitte «Kreise anzeigen» erneut aktivieren.'));
+    toast(districtTexts.failed);
   } finally {
     districtsLoading = false;
     render();
@@ -249,8 +270,10 @@ function chooseDistrict(number: number | undefined) {
     });
   }
 }
+function districtName(number: number) {
+  return districtData?.features.find(d => d.properties.number === number)?.properties.name ?? t('Kreis {number}', { number });
+}
 function renderDistricts() {
-  if (cityId !== 'zurich') return;
   const enabled = districtState.enabled;
   $<HTMLInputElement>('district-toggle').checked = enabled;
   $('district-select-label').hidden = !enabled;
@@ -259,7 +282,7 @@ function renderDistricts() {
   $('district-average').hidden = true;
   if (!enabled || !districtData) {
     districtLayer.remove();
-    select.innerHTML = `<option value="">${districtsLoading ? t('Kreise laden …') : t('Alle Kreise')}</option>`;
+    select.innerHTML = `<option value="">${districtsLoading ? districtTexts.loading : districtTexts.all}</option>`;
     return;
   }
   if (!map.hasLayer(districtLayer)) districtLayer.addTo(map);
@@ -269,9 +292,9 @@ function renderDistricts() {
   }));
   const label = (number: number) => {
     const average = averages.get(number);
-    return `${t('Kreis {number}', { number })} · ${average ? `Ø CHF ${money(average.price)} (${average.count})` : t('kein passender Preis')}`;
+    return `${e(districtName(number))} · ${average ? `Ø CHF ${money(average.price)} (${average.count})` : t('kein passender Preis')}`;
   };
-  select.innerHTML = `<option value="">${t('Alle Kreise')}</option>` + districtData.features.map(d => `<option value="${d.properties.number}">${label(d.properties.number)}</option>`).join('');
+  select.innerHTML = `<option value="">${districtTexts.all}</option>` + districtData.features.map(d => `<option value="${d.properties.number}">${label(d.properties.number)}</option>`).join('');
   select.value = districtState.selected ? String(districtState.selected) : '';
   districtLayer.eachLayer(layer => {
     const polygon = layer as L.Polygon & { feature: { properties: { number: number } } };
@@ -284,21 +307,19 @@ function renderDistricts() {
     const average = averages.get(districtState.selected);
     $('district-average').hidden = false;
     $('district-average').textContent = average
-      ? t('Schnitt Kreis {number} CHF {price} ({count} Lokale)', { number: districtState.selected, price: money(average.price), count: average.count })
-      : t('Schnitt Kreis {number} — keine passenden Preise', { number: districtState.selected });
-    $('district-average').title = t('Günstigster passender Preis je Lokal im Kreis. Unabhängig von Suche, Preislimit, Günstig-Filter, Lokaltyp und Draussen-Filter.');
+      ? t('Schnitt {district} CHF {price} ({count} Lokale)', { district: districtName(districtState.selected), price: money(average.price), count: average.count })
+      : t('Schnitt {district}: keine passenden Preise', { district: districtName(districtState.selected) });
+    $('district-average').title = t('Günstigster passender Preis je Lokal innerhalb der gewählten Grenze. Unabhängig von Suche, Preislimit, Günstig-Filter, Lokaltyp und Draussen-Filter.');
   }
 }
-if (cityId === 'zurich') {
-  $('district-toggle').onchange = () => {
-    districtState.enabled = $<HTMLInputElement>('district-toggle').checked;
-    if (!districtState.enabled) districtState.selected = undefined;
-    selected = undefined;
-    render();
-    if (districtState.enabled) void loadDistricts();
-  };
-  $('district-select').onchange = () => chooseDistrict(Number($<HTMLSelectElement>('district-select').value) || undefined);
-}
+$('district-toggle').onchange = () => {
+  districtState.enabled = $<HTMLInputElement>('district-toggle').checked;
+  if (!districtState.enabled) districtState.selected = undefined;
+  selected = undefined;
+  render();
+  if (districtState.enabled) void loadDistricts();
+};
+$('district-select').onchange = () => chooseDistrict(Number($<HTMLSelectElement>('district-select').value) || undefined);
 function rebuild() {
   venues = communityVenues(datasets, entries, addedVenues);
   const pizzaBars = datasets.pizza ? applyEntries(datasets.pizza, entries, venues, 'pizza').bars : [];
@@ -334,8 +355,8 @@ function syncControls() {
   const url = new URL(location.href);
   writeFilters(url.searchParams, f, cheapMode);
   if (addressSelection) url.searchParams.set('address', '1'); else url.searchParams.delete('address');
-  if (cityId === 'zurich' && districtState.enabled) url.searchParams.set('kreise', '1'); else url.searchParams.delete('kreise');
-  if (cityId === 'zurich' && districtState.enabled && districtState.selected) url.searchParams.set('kreis', String(districtState.selected)); else url.searchParams.delete('kreis');
+  if (districtState.enabled) url.searchParams.set(city.districts.toggle, '1'); else url.searchParams.delete(city.districts.toggle);
+  if (districtState.enabled && districtState.selected) url.searchParams.set(city.districts.param, String(districtState.selected)); else url.searchParams.delete(city.districts.param);
   if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
   history.replaceState(null, '', url);
   document.querySelectorAll<HTMLAnchorElement>('[data-city]').forEach(link => { link.href = cityLink(link.dataset.city as City, url.search, import.meta.env.BASE_URL, locale()); });
@@ -524,11 +545,18 @@ function renderLocations() {
     }).addTo(locationLayer).bindTooltip(e(bar.name), { direction: 'top' }).on('click', () => openPrice(bar));
   }
 }
+function permitLabel(p: OutdoorPermit) {
+  const day = (monthDay: string) => new Date(`2000-${monthDay}T12:00:00Z`).toLocaleDateString(dateLocale(), { day: '2-digit', month: '2-digit', timeZone: 'UTC' });
+  const season = p.season === 'year' ? t('Boulevard bewilligt, ganzjährig')
+    : p.season === 'seasonal' && p.from && p.until ? t('Boulevard bewilligt, {from}–{until}', { from: day(p.from), until: day(p.until) })
+    : t('Boulevard bewilligt');
+  return p.areaM2 ? `${season} · ${p.areaM2.toLocaleString(dateLocale())} m²` : season;
+}
 function detail(b: Bar) {
   const matches = matchingOffers(b, f);
   const other = b.offers.filter(o => isCurrentOffer(o) && isComparableOffer(o) && !matches.includes(o));
   const offers = [...matches, ...other];
-  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">${t('Schliessen')}</button></div><p class="muted">${e(b.address ? [b.address, b.postcode].filter(Boolean).join(' ') : t('Adresse noch nicht erfasst'))}</p><div class="detail-actions"><button id="add-here" class="primary">${t('Preis hinzufügen')}</button><button id="share-bar" aria-label="${e(t('{name} teilen', { name: b.name }))}">${t('Teilen')}</button></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${offerCategory(o) === 'beer' ? ' · ' + e(t(beerTypeLabels[effectiveBeerType(o)])) : ''}${offerCategory(o) === 'beer' && o.alcoholFree ? ` · ${t('alkoholfrei')}` : ''}${!matches.includes(o) ? ` · ${t('ausserhalb Filter')}` : ''}</div>${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>${t('geschätzt')}</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `${t('Google-Maps-Foto')} · ${e(o.photoSource.date)} · ` : ''}${o.menuScan ? t('Foto-Upload') : o.confidence === 'community' ? t('Eingetragen') : o.confidence === 'reviewed' ? t('Manuell geprüft') : o.confidence === 'ai' ? t('KI-erkannt') : t('Automatisch erkannt')} · ${e(new Date(o.verifiedMenuDate?.date || o.observedAt).toLocaleDateString(dateLocale()))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('Quelle')}</a>` : ''}<button data-edit="${i}">${t('Ändern')}</button></div></div>`).join('') : `<p>${t('Noch kein Preis eingetragen.')}</p>`}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
+  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">${t('Schliessen')}</button></div><p class="muted">${e(b.address ? [b.address, b.postcode].filter(Boolean).join(' ') : t('Adresse noch nicht erfasst'))}</p>${b.outdoorPermit ? `<p class="muted">${e(permitLabel(b.outdoorPermit))}</p>` : ''}<div class="detail-actions"><button id="add-here" class="primary">${t('Preis hinzufügen')}</button><button id="share-bar" aria-label="${e(t('{name} teilen', { name: b.name }))}">${t('Teilen')}</button></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${offerCategory(o) === 'beer' ? ' · ' + e(t(beerTypeLabels[effectiveBeerType(o)])) : ''}${offerCategory(o) === 'beer' && o.alcoholFree ? ` · ${t('alkoholfrei')}` : ''}${!matches.includes(o) ? ` · ${t('ausserhalb Filter')}` : ''}</div>${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>${t('geschätzt')}</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `${t('Google-Maps-Foto')} · ${e(o.photoSource.date)} · ` : ''}${o.menuScan ? t('Foto-Upload') : o.confidence === 'community' ? t('Eingetragen') : o.confidence === 'reviewed' ? t('Manuell geprüft') : o.confidence === 'ai' ? t('KI-erkannt') : t('Automatisch erkannt')} · ${e(new Date(o.verifiedMenuDate?.date || o.observedAt).toLocaleDateString(dateLocale()))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('Quelle')}</a>` : ''}<button data-edit="${i}">${t('Ändern')}</button></div></div>`).join('') : `<p>${t('Noch kein Preis eingetragen.')}</p>`}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
   $('detail').hidden = false;
   $('close-detail').onclick = () => {
     closeSearchSuggestions();

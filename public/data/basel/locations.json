@@ -70,7 +70,10 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified"
+      }
     },
     {
       "id": "way/376382291",
@@ -206,7 +209,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:11:46.572144+00:00"
+      "aiCheckedAt": "2026-10-18T10:11:46.572144+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 13.5
+      }
     },
     {
       "id": "node/252822642",
@@ -238,7 +245,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 2.5
+      }
     },
     {
       "id": "node/3530571040",
@@ -291,7 +302,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 11.4
+      }
     },
     {
       "id": "node/14203469061",
@@ -308,7 +323,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/2684267810"
+      "addressSource": "https://www.openstreetmap.org/node/2684267810",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 53.0
+      }
     },
     {
       "id": "node/6556102796",
@@ -326,7 +345,11 @@
       "scrapeStatus": "location_only",
       "checkedAt": null,
       "addressSource": "https://www.openstreetmap.org/node/583595231",
-      "aiCheckedAt": "2026-10-18T10:07:34.746204+00:00"
+      "aiCheckedAt": "2026-10-18T10:07:34.746204+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 65.5
+      }
     },
     {
       "id": "node/10607908166",
@@ -345,7 +368,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3220375665"
+      "addressSource": "https://www.openstreetmap.org/node/3220375665",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 4.5
+      }
     },
     {
       "id": "node/8001068550",
@@ -379,7 +406,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 38.0
+      }
     },
     {
       "id": "node/1028007577",
@@ -414,7 +447,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 28.0
+      }
     },
     {
       "id": "node/3392587471",
@@ -437,6 +474,10 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.artigiano-pizzeria.com/restaurant-windisch",
         "evidence": "Windisch | Artigiano Restaurant Pizzeria in Windisch"
+      },
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 115.0
       }
     },
     {
@@ -473,7 +514,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 7.0
+      }
     },
     {
       "id": "node/4665834588",
@@ -491,7 +536,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 4.0
+      }
     },
     {
       "id": "node/12100156307",
@@ -543,7 +594,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 70.0
+      }
     },
     {
       "id": "node/4749555721",
@@ -777,7 +832,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 26.0
+      }
     },
     {
       "id": "node/10031838987",
@@ -810,7 +869,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3242532473"
+      "addressSource": "https://www.openstreetmap.org/node/3242532473",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 16.0
+      }
     },
     {
       "id": "node/5550633691",
@@ -842,7 +905,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.3
+      }
     },
     {
       "id": "node/3889420248",
@@ -875,7 +942,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 14.6
+      }
     },
     {
       "id": "node/6868688829",
@@ -892,7 +963,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3611183443"
+      "addressSource": "https://www.openstreetmap.org/node/3611183443",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 9.0
+      }
     },
     {
       "id": "node/2434405556",
@@ -1016,7 +1091,13 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:12:22.895495+00:00"
+      "aiCheckedAt": "2026-10-18T10:12:22.895495+00:00",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 24.0
+      }
     },
     {
       "id": "node/1170699798",
@@ -1069,7 +1150,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 49.8
+      }
     },
     {
       "id": "node/5085889851",
@@ -1106,7 +1191,13 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3607170902"
+      "addressSource": "https://www.openstreetmap.org/node/3607170902",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 98.0
+      }
     },
     {
       "id": "node/7840775288",
@@ -1143,7 +1234,13 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/542879922"
+      "addressSource": "https://www.openstreetmap.org/way/542879922",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 20.0
+      }
     },
     {
       "id": "node/6786431372",
@@ -1375,7 +1472,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 14.5
+      }
     },
     {
       "id": "node/2074770476",
@@ -1392,7 +1493,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5227118272"
+      "addressSource": "https://www.openstreetmap.org/node/5227118272",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 10.5
+      }
     },
     {
       "id": "node/2369538706",
@@ -1478,7 +1583,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 7.0
+      }
     },
     {
       "id": "node/5347342422",
@@ -1530,7 +1639,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3208777844"
+      "addressSource": "https://www.openstreetmap.org/node/3208777844",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 78.84
+      }
     },
     {
       "id": "node/5137244721",
@@ -1627,7 +1740,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.0
+      }
     },
     {
       "id": "node/3208777122",
@@ -1643,7 +1760,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 10.0
+      }
     },
     {
       "id": "node/5714864124",
@@ -1715,7 +1836,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 32.0
+      }
     },
     {
       "id": "node/138310840",
@@ -1822,7 +1947,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5274961372"
+      "addressSource": "https://www.openstreetmap.org/node/5274961372",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 44.4
+      }
     },
     {
       "id": "node/569316788",
@@ -1858,7 +1987,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 42.0
+      }
     },
     {
       "id": "node/9006432485",
@@ -1876,7 +2009,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 32.5
+      }
     },
     {
       "id": "node/385647957",
@@ -1894,7 +2031,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 13.0
+      }
     },
     {
       "id": "node/7529438648",
@@ -1912,7 +2053,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 56.0
+      }
     },
     {
       "id": "node/9871385224",
@@ -1932,7 +2077,11 @@
       "scrapeStatus": "location_only",
       "checkedAt": null,
       "addressSource": "https://burger-meister.ch/locations/restaurant-basel-gerberbasse/",
-      "aiCheckedAt": "2026-10-18T10:14:39.031799+00:00"
+      "aiCheckedAt": "2026-10-18T10:14:39.031799+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 27.5
+      }
     },
     {
       "id": "node/11293701959",
@@ -1950,7 +2099,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 7.0
+      }
     },
     {
       "id": "node/71525383",
@@ -2100,7 +2253,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3238083581"
+      "addressSource": "https://www.openstreetmap.org/node/3238083581",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 19.0
+      }
     },
     {
       "id": "node/7625132435",
@@ -2230,7 +2387,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.8
+      }
     },
     {
       "id": "node/11755443196",
@@ -2246,7 +2407,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 10.0
+      }
     },
     {
       "id": "node/1170699746",
@@ -2262,7 +2427,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 9.5
+      }
     },
     {
       "id": "node/4031043644",
@@ -2280,7 +2451,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 30.0
+      }
     },
     {
       "id": "node/8067975981",
@@ -2329,7 +2504,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/583594733"
+      "addressSource": "https://www.openstreetmap.org/node/583594733",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 50.0
+      }
     },
     {
       "id": "node/260266425",
@@ -2379,7 +2558,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 5.5
+      }
     },
     {
       "id": "node/702204838",
@@ -2462,7 +2645,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 6.5
+      }
     },
     {
       "id": "node/10733559775",
@@ -2478,7 +2665,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 14.0
+      }
     },
     {
       "id": "node/473398645",
@@ -2530,7 +2721,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3420096584"
+      "addressSource": "https://www.openstreetmap.org/node/3420096584",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 77.0
+      }
     },
     {
       "id": "node/13910592465",
@@ -2670,7 +2865,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 22.5
+      }
     },
     {
       "id": "node/428476539",
@@ -2703,7 +2902,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3208777312"
+      "addressSource": "https://www.openstreetmap.org/node/3208777312",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/3890667961",
@@ -2770,7 +2973,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 76.55
+      }
     },
     {
       "id": "node/7003029881",
@@ -2788,7 +2995,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 46.0
+      }
     },
     {
       "id": "node/3441230907",
@@ -2805,7 +3016,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/2756575736"
+      "addressSource": "https://www.openstreetmap.org/node/2756575736",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/4917036030",
@@ -2825,7 +3040,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 92.4
+      }
     },
     {
       "id": "node/13910521083",
@@ -2843,7 +3062,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 39.0
+      }
     },
     {
       "id": "node/5698904086",
@@ -2966,7 +3189,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 78.28
+      }
     },
     {
       "id": "node/122336670",
@@ -3003,7 +3230,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 52.75
+      }
     },
     {
       "id": "node/3220397149",
@@ -3038,7 +3269,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5248314541"
+      "addressSource": "https://www.openstreetmap.org/node/5248314541",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 8.75
+      }
     },
     {
       "id": "node/9905309814",
@@ -3056,7 +3291,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 17.24
+      }
     },
     {
       "id": "node/13607491225",
@@ -3091,7 +3330,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 3.0
+      }
     },
     {
       "id": "node/7772352031",
@@ -3109,7 +3352,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 24.75
+      }
     },
     {
       "id": "node/4498365535",
@@ -3127,7 +3374,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 23.0
+      }
     },
     {
       "id": "node/585055185",
@@ -3163,7 +3414,11 @@
       "scrapeStatus": "location_only",
       "checkedAt": null,
       "addressSource": "https://www.clarastuebli.ch/",
-      "aiCheckedAt": "2026-10-18T10:25:04.730648+00:00"
+      "aiCheckedAt": "2026-10-18T10:25:04.730648+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 18.2
+      }
     },
     {
       "id": "node/593638990",
@@ -3179,7 +3434,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 52.5
+      }
     },
     {
       "id": "node/12230466535",
@@ -3212,7 +3471,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T09:37:09.651696+00:00"
+      "aiCheckedAt": "2026-10-18T09:37:09.651696+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.0
+      }
     },
     {
       "id": "node/14248554055",
@@ -3228,7 +3491,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 51.0
+      }
     },
     {
       "id": "node/4472355417",
@@ -3261,7 +3528,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5228942701"
+      "addressSource": "https://www.openstreetmap.org/node/5228942701",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 12.1
+      }
     },
     {
       "id": "node/13255498329",
@@ -3277,7 +3548,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 69.35
+      }
     },
     {
       "id": "node/4828208000",
@@ -3293,7 +3568,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 27.0
+      }
     },
     {
       "id": "node/3208777203",
@@ -3359,7 +3638,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 114.5
+      }
     },
     {
       "id": "node/14174002895",
@@ -3455,7 +3738,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.12
+      }
     },
     {
       "id": "node/254097107",
@@ -3581,7 +3868,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T09:37:27.697411+00:00"
+      "aiCheckedAt": "2026-10-18T09:37:27.697411+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 53.5
+      }
     },
     {
       "id": "node/11876754508",
@@ -3613,7 +3904,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 14.15
+      }
     },
     {
       "id": "node/13048973701",
@@ -3632,7 +3927,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 11.0
+      }
     },
     {
       "id": "node/10606351035",
@@ -3783,7 +4082,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 27.0
+      }
     },
     {
       "id": "way/1371153668",
@@ -3822,7 +4127,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:15:29.368209+00:00"
+      "aiCheckedAt": "2026-10-18T10:15:29.368209+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 75.25
+      }
     },
     {
       "id": "node/13853614903",
@@ -3892,7 +4201,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 30.3
+      }
     },
     {
       "id": "node/7747207685",
@@ -3911,7 +4224,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:11:49.587740+00:00"
+      "aiCheckedAt": "2026-10-18T10:11:49.587740+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 22.0
+      }
     },
     {
       "id": "node/317816754",
@@ -3963,7 +4280,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 3.8
+      }
     },
     {
       "id": "node/7554138216",
@@ -4000,7 +4321,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.0
+      }
     },
     {
       "id": "node/10721665168",
@@ -4019,7 +4344,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3420287644"
+      "addressSource": "https://www.openstreetmap.org/node/3420287644",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 7.5
+      }
     },
     {
       "id": "node/3208777648",
@@ -4038,7 +4367,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 18.0
+      }
     },
     {
       "id": "node/12771073601",
@@ -4054,7 +4387,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 211.0
+      }
     },
     {
       "id": "node/3811616609",
@@ -4160,7 +4497,11 @@
       "scrapeStatus": "location_only",
       "checkedAt": null,
       "addressSource": "https://www.openstreetmap.org/node/2684267822",
-      "aiCheckedAt": "2026-10-18T10:08:22.150970+00:00"
+      "aiCheckedAt": "2026-10-18T10:08:22.150970+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 62.0
+      }
     },
     {
       "id": "node/10727873562",
@@ -4197,7 +4538,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T09:37:34.249044+00:00"
+      "aiCheckedAt": "2026-10-18T09:37:34.249044+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 74.0
+      }
     },
     {
       "id": "node/459572235",
@@ -4232,7 +4577,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/105038198"
+      "addressSource": "https://www.openstreetmap.org/way/105038198",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 7.5
+      }
     },
     {
       "id": "node/9350106079",
@@ -4283,7 +4632,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 45.0
+      }
     },
     {
       "id": "node/3811616612",
@@ -4300,7 +4653,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/2684248635"
+      "addressSource": "https://www.openstreetmap.org/node/2684248635",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 18.0
+      }
     },
     {
       "id": "node/12230410077",
@@ -4369,7 +4726,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/13526230219",
@@ -4385,7 +4746,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 67.17
+      }
     },
     {
       "id": "node/8909431468",
@@ -4403,7 +4768,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 7.2
+      }
     },
     {
       "id": "node/71525553",
@@ -4488,7 +4857,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 43.0
+      }
     },
     {
       "id": "node/4371220437",
@@ -4520,7 +4893,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 9.6
+      }
     },
     {
       "id": "node/14007225418",
@@ -4590,7 +4967,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 70.0
+      }
     },
     {
       "id": "node/14072918060",
@@ -4674,7 +5055,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 100.0
+      }
     },
     {
       "id": "node/71525611",
@@ -4726,7 +5111,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3420192963"
+      "addressSource": "https://www.openstreetmap.org/node/3420192963",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 10.2
+      }
     },
     {
       "id": "node/3905328882",
@@ -4797,7 +5186,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 46.5
+      }
     },
     {
       "id": "node/7784095493",
@@ -4913,7 +5306,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 1.5
+      }
     },
     {
       "id": "node/5248674577",
@@ -4947,7 +5344,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 14.5
+      }
     },
     {
       "id": "node/5419675922",
@@ -4964,7 +5365,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5247726473"
+      "addressSource": "https://www.openstreetmap.org/node/5247726473",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.5
+      }
     },
     {
       "id": "node/11368724658",
@@ -4983,7 +5388,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/583280006"
+      "addressSource": "https://www.openstreetmap.org/node/583280006",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 7.0
+      }
     },
     {
       "id": "node/11552144245",
@@ -5002,7 +5411,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/3207784899",
@@ -5074,7 +5487,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:29:30.044084+00:00"
+      "aiCheckedAt": "2026-10-18T10:29:30.044084+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 44.0
+      }
     },
     {
       "id": "node/3224586250",
@@ -5092,7 +5509,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 4.5
+      }
     },
     {
       "id": "node/2074770464",
@@ -5110,7 +5531,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 63.0
+      }
     },
     {
       "id": "node/1936085288",
@@ -5159,7 +5584,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 18.7
+      }
     },
     {
       "id": "relation/4250278",
@@ -5175,7 +5604,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 43.5
+      }
     },
     {
       "id": "node/7806623582",
@@ -5211,7 +5644,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 48.0
+      }
     },
     {
       "id": "node/591435646",
@@ -5227,7 +5664,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 34.0
+      }
     },
     {
       "id": "node/590084594",
@@ -5259,7 +5700,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 8.0
+      }
     },
     {
       "id": "node/7598139857",
@@ -5414,7 +5859,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 11.5
+      }
     },
     {
       "id": "node/5157189624",
@@ -5432,7 +5881,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.0
+      }
     },
     {
       "id": "node/252822645",
@@ -5498,7 +5951,13 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3208777566"
+      "addressSource": "https://www.openstreetmap.org/node/3208777566",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 32.0
+      }
     },
     {
       "id": "node/796765566",
@@ -5518,7 +5977,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/249341166"
+      "addressSource": "https://www.openstreetmap.org/way/249341166",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 4.2
+      }
     },
     {
       "id": "node/8537314352",
@@ -5616,7 +6079,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 8.0
+      }
     },
     {
       "id": "node/7773338161",
@@ -5632,7 +6099,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/2901296694",
@@ -5780,7 +6251,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 21.2
+      }
     },
     {
       "id": "node/13997991120",
@@ -5798,7 +6273,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 28.85
+      }
     },
     {
       "id": "node/7195539122",
@@ -5885,7 +6364,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3593998043"
+      "addressSource": "https://www.openstreetmap.org/node/3593998043",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 4.0
+      }
     },
     {
       "id": "node/3787636235",
@@ -5937,7 +6420,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 16.4
+      }
     },
     {
       "id": "node/13192134020",
@@ -6042,7 +6529,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 4.0
+      }
     },
     {
       "id": "node/13791838181",
@@ -6079,7 +6570,13 @@
       "scrapeStatus": "location_only",
       "checkedAt": null,
       "addressSource": "https://www.openstreetmap.org/node/5294088443",
-      "aiCheckedAt": "2026-10-18T10:08:31.738150+00:00"
+      "aiCheckedAt": "2026-10-18T10:08:31.738150+00:00",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 60.0
+      }
     },
     {
       "id": "node/585056537",
@@ -6097,7 +6594,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 21.0
+      }
     },
     {
       "id": "node/4945175252",
@@ -6199,7 +6700,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 39.85
+      }
     },
     {
       "id": "node/2215970143",
@@ -6232,7 +6737,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.4
+      }
     },
     {
       "id": "node/3890667654",
@@ -6286,7 +6795,11 @@
       "scrapeStatus": "location_only",
       "checkedAt": null,
       "addressSource": "https://www.kuechlin.ch/",
-      "aiCheckedAt": "2026-10-18T09:42:04.157346+00:00"
+      "aiCheckedAt": "2026-10-18T09:42:04.157346+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 24.0
+      }
     },
     {
       "id": "node/9006466009",
@@ -6302,7 +6815,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 14.0
+      }
     },
     {
       "id": "node/10598326199",
@@ -6318,7 +6835,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 19.0
+      }
     },
     {
       "id": "node/7989065108",
@@ -6336,7 +6857,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 115.0
+      }
     },
     {
       "id": "node/6388624275",
@@ -6354,7 +6879,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 9.2
+      }
     },
     {
       "id": "node/10606177702",
@@ -6393,7 +6922,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.5
+      }
     },
     {
       "id": "node/3420195749",
@@ -6411,7 +6944,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 16.8
+      }
     },
     {
       "id": "node/9612917403",
@@ -6462,7 +7001,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 11.84
+      }
     },
     {
       "id": "node/6780034746",
@@ -6496,7 +7039,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 11.0
+      }
     },
     {
       "id": "node/5765336953",
@@ -6752,7 +7299,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:27:13.404969+00:00"
+      "aiCheckedAt": "2026-10-18T10:27:13.404969+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 150.0
+      }
     },
     {
       "id": "node/2840757806",
@@ -6788,7 +7339,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/6958402189",
@@ -6890,7 +7445,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 19.55
+      }
     },
     {
       "id": "node/3638026952",
@@ -6924,7 +7483,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 6.5
+      }
     },
     {
       "id": "node/9800319929",
@@ -6944,7 +7507,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:27:09.427291+00:00"
+      "aiCheckedAt": "2026-10-18T10:27:09.427291+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 90.0
+      }
     },
     {
       "id": "node/11368724666",
@@ -6960,7 +7527,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.8
+      }
     },
     {
       "id": "node/9269725977",
@@ -7027,7 +7598,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 4.9
+      }
     },
     {
       "id": "node/4264196508",
@@ -7043,7 +7618,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.0
+      }
     },
     {
       "id": "node/10262933051",
@@ -7226,7 +7805,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 9.5
+      }
     },
     {
       "id": "node/584725542",
@@ -7245,7 +7828,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5227116820"
+      "addressSource": "https://www.openstreetmap.org/node/5227116820",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 42.0
+      }
     },
     {
       "id": "node/6389507428",
@@ -7300,7 +7887,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 9.5
+      }
     },
     {
       "id": "node/1633856331",
@@ -7351,7 +7942,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 13.2
+      }
     },
     {
       "id": "node/8911103620",
@@ -7387,7 +7982,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 21.75
+      }
     },
     {
       "id": "node/12770980872",
@@ -7564,7 +8165,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 26.5
+      }
     },
     {
       "id": "node/10684421755",
@@ -7581,7 +8188,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5224680202"
+      "addressSource": "https://www.openstreetmap.org/node/5224680202",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "node/1598863595",
@@ -7599,7 +8210,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 20.0
+      }
     },
     {
       "id": "node/366084093",
@@ -7652,7 +8267,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3607427090"
+      "addressSource": "https://www.openstreetmap.org/node/3607427090",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 26.0
+      }
     },
     {
       "id": "node/10103183992",
@@ -7746,7 +8365,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 54.7
+      }
     },
     {
       "id": "node/2901279854",
@@ -7819,7 +8442,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 60.0
+      }
     },
     {
       "id": "node/593639067",
@@ -7852,7 +8479,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3207784688"
+      "addressSource": "https://www.openstreetmap.org/node/3207784688",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 22.0
+      }
     },
     {
       "id": "node/3207784678",
@@ -7868,7 +8499,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 14.2
+      }
     },
     {
       "id": "node/9350752818",
@@ -7884,7 +8519,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 8.7
+      }
     },
     {
       "id": "node/5419683121",
@@ -7901,7 +8540,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/591435994"
+      "addressSource": "https://www.openstreetmap.org/node/591435994",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/6780084788",
@@ -7937,7 +8580,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:27:09.939339+00:00"
+      "aiCheckedAt": "2026-10-18T10:27:09.939339+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/9080191421",
@@ -8008,7 +8655,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 31.4
+      }
     },
     {
       "id": "node/593639027",
@@ -8026,7 +8677,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 18.0
+      }
     },
     {
       "id": "node/7540941985",
@@ -8060,7 +8715,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 15.0
+      }
     },
     {
       "id": "node/252822648",
@@ -8112,7 +8773,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 55.0
+      }
     },
     {
       "id": "node/7540825695",
@@ -8164,7 +8829,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 21.0
+      }
     },
     {
       "id": "node/3207784808",
@@ -8180,7 +8849,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "node/8143805822",
@@ -8250,7 +8923,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 13.0
+      }
     },
     {
       "id": "node/9910284672",
@@ -8350,7 +9027,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 28.0
+      }
     },
     {
       "id": "node/2434405622",
@@ -8421,7 +9102,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/567050951",
@@ -8437,7 +9122,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 1.0
+      }
     },
     {
       "id": "node/1668864827",
@@ -8488,7 +9177,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 94.5
+      }
     },
     {
       "id": "node/7623405885",
@@ -8569,7 +9264,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T09:47:42.822963+00:00"
+      "aiCheckedAt": "2026-10-18T09:47:42.822963+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 44.5
+      }
     },
     {
       "id": "node/8909393066",
@@ -8639,7 +9338,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3340595013"
+      "addressSource": "https://www.openstreetmap.org/node/3340595013",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 63.0
+      }
     },
     {
       "id": "node/6647636867",
@@ -8694,7 +9397,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 15.0
+      }
     },
     {
       "id": "node/2434405628",
@@ -8729,7 +9438,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/2758948007"
+      "addressSource": "https://www.openstreetmap.org/node/2758948007",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.76
+      }
     },
     {
       "id": "node/9932434117",
@@ -8869,7 +9582,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 32.55
+      }
     },
     {
       "id": "node/7261553186",
@@ -8955,7 +9672,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 16.0
+      }
     },
     {
       "id": "node/2616020991",
@@ -9069,6 +9790,10 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.centroambarfi.ch/en/coffee-and-digestifs/",
         "evidence": "Italian Restaurant - Pizzeria: Good food in Basel | Centro am Barfi"
+      },
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 56.0
       }
     },
     {
@@ -9109,6 +9834,12 @@
       "pizzaEvidence": {
         "sourceUrl": "https://restaurant-dapia.ch/",
         "evidence": "Restaurant Pizzeria Da Pia – Italienisches Restaurant in Basel"
+      },
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 18.0
       }
     },
     {
@@ -9194,6 +9925,12 @@
       "pizzaEvidence": {
         "sourceUrl": "https://pizzeria-laperla.ch/menu/de/",
         "evidence": "Menu – LaPerla Pizzeria"
+      },
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 9.0
       }
     },
     {
@@ -9212,7 +9949,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 35.0
+      }
     },
     {
       "id": "node/10156961255",
@@ -9249,7 +9990,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 7.0
+      }
     },
     {
       "id": "node/13368137178",
@@ -9284,7 +10029,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:10:42.309358+00:00"
+      "aiCheckedAt": "2026-10-18T10:10:42.309358+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 40.0
+      }
     },
     {
       "id": "node/10963072012",
@@ -9300,7 +10049,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "node/9065952339",
@@ -9319,7 +10072,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3237683671"
+      "addressSource": "https://www.openstreetmap.org/node/3237683671",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 23.0
+      }
     },
     {
       "id": "node/9213343691",
@@ -9335,7 +10092,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 52.0
+      }
     },
     {
       "id": "node/3179353790",
@@ -9374,7 +10135,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 114.5
+      }
     },
     {
       "id": "node/586277088",
@@ -9489,7 +10254,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 38.0
+      }
     },
     {
       "id": "node/1653595985",
@@ -9521,7 +10290,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 80.5
+      }
     },
     {
       "id": "node/2343796329",
@@ -9543,6 +10316,10 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.resslirytti.ch/en/restaurant/",
         "evidence": "Pizzeria Basel | Italienisches Restaurant Basel"
+      },
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 117.0
       }
     },
     {
@@ -9630,7 +10407,13 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5227118249"
+      "addressSource": "https://www.openstreetmap.org/node/5227118249",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 7.0
+      }
     },
     {
       "id": "node/2434407887",
@@ -9699,7 +10482,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:29:47.292258+00:00"
+      "aiCheckedAt": "2026-10-18T10:29:47.292258+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "way/124457152",
@@ -9782,7 +10569,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 19.55
+      }
     },
     {
       "id": "node/6654642118",
@@ -9877,7 +10668,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 5.6
+      }
     },
     {
       "id": "node/582950406",
@@ -9912,7 +10707,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 57.0
+      }
     },
     {
       "id": "node/3226649487",
@@ -9930,7 +10729,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 10.8
+      }
     },
     {
       "id": "node/9832402717",
@@ -10109,7 +10912,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 3.9
+      }
     },
     {
       "id": "node/11757900217",
@@ -10146,7 +10953,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 69.5
+      }
     },
     {
       "id": "node/5016417015",
@@ -10165,7 +10976,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:36:36.805994+00:00"
+      "aiCheckedAt": "2026-10-18T10:36:36.805994+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 15.75
+      }
     },
     {
       "id": "node/1599798166",
@@ -10200,7 +11015,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 9.6
+      }
     },
     {
       "id": "node/9905765555",
@@ -10250,7 +11069,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5227118277"
+      "addressSource": "https://www.openstreetmap.org/node/5227118277",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 8.0
+      }
     },
     {
       "id": "node/583280000",
@@ -10266,7 +11089,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 16.0
+      }
     },
     {
       "id": "node/5744306322",
@@ -10495,7 +11322,13 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 60.5
+      }
     },
     {
       "id": "node/1769276555",
@@ -10579,7 +11412,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 4.0
+      }
     },
     {
       "id": "node/10116280190",
@@ -10630,7 +11467,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 7.5
+      }
     },
     {
       "id": "node/7578166883",
@@ -10717,7 +11558,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:11:08.958208+00:00"
+      "aiCheckedAt": "2026-10-18T10:11:08.958208+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 10.0
+      }
     },
     {
       "id": "node/252822612",
@@ -10784,7 +11629,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 8.0
+      }
     },
     {
       "id": "node/10606351037",
@@ -10918,7 +11767,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:34:21.084692+00:00"
+      "aiCheckedAt": "2026-10-18T10:34:21.084692+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 9.8
+      }
     },
     {
       "id": "node/7762245664",
@@ -10957,7 +11810,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/315467496"
+      "addressSource": "https://www.openstreetmap.org/way/315467496",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 24.2
+      }
     },
     {
       "id": "node/4278519394",
@@ -11058,7 +11915,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 54.0
+      }
     },
     {
       "id": "node/5341711822",
@@ -11074,7 +11935,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 30.0
+      }
     },
     {
       "id": "node/12533458853",
@@ -11144,7 +12009,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:10:59.459675+00:00"
+      "aiCheckedAt": "2026-10-18T10:10:59.459675+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 22.0
+      }
     },
     {
       "id": "node/8537314356",
@@ -11179,7 +12048,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/593094109"
+      "addressSource": "https://www.openstreetmap.org/node/593094109",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 65.1
+      }
     },
     {
       "id": "node/12230410089",
@@ -11195,7 +12068,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 41.1
+      }
     },
     {
       "id": "node/5137057421",
@@ -11213,7 +12090,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 5.5
+      }
     },
     {
       "id": "node/13302004345",
@@ -11231,7 +12112,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 18.0
+      }
     },
     {
       "id": "node/11328121145",
@@ -11247,7 +12132,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/315128008",
@@ -11317,7 +12206,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.85
+      }
     },
     {
       "id": "node/5772779668",
@@ -11333,7 +12226,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "node/11997975469",
@@ -11367,7 +12264,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:36:00.120305+00:00"
+      "aiCheckedAt": "2026-10-18T10:36:00.120305+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.0
+      }
     },
     {
       "id": "node/7784409617",
@@ -11385,7 +12286,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 7.5
+      }
     },
     {
       "id": "node/2434407893",
@@ -11421,7 +12326,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 45.0
+      }
     },
     {
       "id": "node/7450557435",
@@ -11491,7 +12400,13 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3215471973"
+      "addressSource": "https://www.openstreetmap.org/node/3215471973",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 6.0
+      }
     },
     {
       "id": "way/146708061",
@@ -11541,7 +12456,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 11.5
+      }
     },
     {
       "id": "node/1794707598",
@@ -11574,7 +12493,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5227118281"
+      "addressSource": "https://www.openstreetmap.org/node/5227118281",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 47.0
+      }
     },
     {
       "id": "node/10581517303",
@@ -11593,7 +12516,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3420096545"
+      "addressSource": "https://www.openstreetmap.org/node/3420096545",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 8.4
+      }
     },
     {
       "id": "node/5892860531",
@@ -11612,7 +12539,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3491483990"
+      "addressSource": "https://www.openstreetmap.org/node/3491483990",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 11.5
+      }
     },
     {
       "id": "node/7438234090",
@@ -11836,7 +12767,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 36.0
+      }
     },
     {
       "id": "node/14203469049",
@@ -11907,7 +12842,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3208777403"
+      "addressSource": "https://www.openstreetmap.org/node/3208777403",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 3.8
+      }
     },
     {
       "id": "node/6954999086",
@@ -12097,7 +13036,13 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/385648264"
+      "addressSource": "https://www.openstreetmap.org/node/385648264",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 16.0
+      }
     },
     {
       "id": "way/376382300",
@@ -12147,7 +13092,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 42.5
+      }
     },
     {
       "id": "node/3224586205",
@@ -12217,7 +13166,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 22.0
+      }
     },
     {
       "id": "node/7457896182",
@@ -12251,7 +13204,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 90.0
+      }
     },
     {
       "id": "node/9350906407",
@@ -12269,7 +13226,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/593094712",
@@ -12336,7 +13297,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:35:52.012508+00:00"
+      "aiCheckedAt": "2026-10-18T10:35:52.012508+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 4.2
+      }
     },
     {
       "id": "node/13069636177",
@@ -12408,7 +13373,13 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/2685105045"
+      "addressSource": "https://www.openstreetmap.org/node/2685105045",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 81.0
+      }
     },
     {
       "id": "node/12299581241",
@@ -12442,7 +13413,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 13.5
+      }
     },
     {
       "id": "node/5085880267",
@@ -12517,7 +13494,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/3607430399"
+      "addressSource": "https://www.openstreetmap.org/node/3607430399",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 56.0
+      }
     },
     {
       "id": "node/8060373608",
@@ -12566,7 +13547,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:48:12.157299+00:00"
+      "aiCheckedAt": "2026-10-18T10:48:12.157299+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 59.0
+      }
     },
     {
       "id": "node/3208777028",
@@ -12584,7 +13569,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 2.4
+      }
     },
     {
       "id": "node/4064658548",
@@ -12602,7 +13591,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 2.5
+      }
     },
     {
       "id": "node/5377769532",
@@ -12653,7 +13646,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 6.5
+      }
     },
     {
       "id": "node/4031085803",
@@ -12672,7 +13669,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/266419378"
+      "addressSource": "https://www.openstreetmap.org/way/266419378",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 3.5
+      }
     },
     {
       "id": "node/364938305",
@@ -12739,7 +13740,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:11:53.816961+00:00"
+      "aiCheckedAt": "2026-10-18T10:11:53.816961+00:00",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 36.0
+      }
     },
     {
       "id": "node/11268593147",
@@ -12761,6 +13766,10 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.vito.ch/standort/aeschen-basel",
         "evidence": "VITO – VITO Aeschen | Pizzeria"
+      },
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 37.65
       }
     },
     {
@@ -12779,7 +13788,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.6
+      }
     },
     {
       "id": "way/376382380",
@@ -12816,7 +13829,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.6
+      }
     },
     {
       "id": "node/2616015642",
@@ -12850,7 +13867,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 35.5
+      }
     },
     {
       "id": "node/2984329486",
@@ -12866,7 +13887,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 35.5
+      }
     },
     {
       "id": "node/4031088875",
@@ -12978,7 +14003,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/1170699744",
@@ -13114,7 +14143,13 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5238135801"
+      "addressSource": "https://www.openstreetmap.org/node/5238135801",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 4.5
+      }
     },
     {
       "id": "node/10116280189",
@@ -13167,7 +14202,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      }
     },
     {
       "id": "node/9285169638",
@@ -13203,7 +14242,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 64.0
+      }
     },
     {
       "id": "node/13824224401",
@@ -13219,7 +14262,11 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 6.55
+      }
     },
     {
       "id": "node/7784095498",
@@ -13253,7 +14300,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 1.25
+      }
     },
     {
       "id": "node/3901556434",
@@ -13269,7 +14320,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 7.0
+      }
     },
     {
       "id": "node/357561870",
@@ -13321,7 +14376,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/315764384"
+      "addressSource": "https://www.openstreetmap.org/way/315764384",
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 11.9
+      }
     },
     {
       "id": "node/6253646185",
@@ -13354,7 +14413,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 40.5
+      }
     },
     {
       "id": "node/75940582",
@@ -13408,7 +14471,12 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/5238135809"
+      "addressSource": "https://www.openstreetmap.org/node/5238135809",
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15"
+      }
     },
     {
       "id": "node/6923434369",
@@ -13443,7 +14511,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:36:40.706294+00:00"
+      "aiCheckedAt": "2026-10-18T10:36:40.706294+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 141.5
+      }
     },
     {
       "id": "node/4601272799",
@@ -13459,7 +14531,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "seasonal",
+        "from": "02-15",
+        "until": "11-15",
+        "areaM2": 18.0
+      }
     },
     {
       "id": "node/260266671",
@@ -13492,7 +14570,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 42.6
+      }
     },
     {
       "id": "node/4601267408",
@@ -13511,7 +14593,11 @@
       "offers": [],
       "scrapeStatus": "location_only",
       "checkedAt": null,
-      "aiCheckedAt": "2026-10-18T10:42:00.716087+00:00"
+      "aiCheckedAt": "2026-10-18T10:42:00.716087+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 58.0
+      }
     },
     {
       "id": "node/698552423",
@@ -13529,7 +14615,11 @@
       "scrapeStatus": "location_only",
       "checkedAt": null,
       "addressSource": "https://www.zumtellbasel.ch/kontakt.html",
-      "aiCheckedAt": "2026-10-18T10:40:42.818213+00:00"
+      "aiCheckedAt": "2026-10-18T10:40:42.818213+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 12.0
+      }
     },
     {
       "id": "node/4273041689",
@@ -13613,7 +14703,11 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "year",
+        "areaM2": 32.0
+      }
     }
   ]
 }

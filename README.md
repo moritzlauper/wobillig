@@ -66,6 +66,8 @@ Zürich hatte vor dieser Nachprüfung 81 bepreiste Pizza-Lokale, davon 71 in der
 - Kaffee nach Sorte vergleichen: Café crème/Kaffee, Espresso, doppelter Espresso, Ristretto, Cappuccino, Latte macchiato, Milchkaffee/Caffè latte, Flat White, Americano und Filterkaffee. Preise gelten **pro Getränk**, ohne erfundene Tassengrössen oder 5-dl-Umrechnung.
 - Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.
 - Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten/Restaurant/Café, Terrasse und alkoholfreies Bier.
+- **Amtliche Gebiete:** Unter «Filter» lassen sich in Zürich die 12 Stadtkreise, in Basel die 19 Wohnviertel der Stadt (ohne Riehen und Bettingen, die der Scraper nicht abdeckt) und in Bern die 6 Stadtteile einblenden. Ein Gebiet wird per Karte oder Auswahlfeld gewählt; die Statuszeile zeigt dann zusätzlich seinen Durchschnitt, berechnet wie der Stadtdurchschnitt. Direktlinks: `/?kreise=1&kreis=4`, `/basel?quartiere=1&quartier=12`, `/bern?stadtteile=1&stadtteil=1`. Beim Stadtwechsel fallen die Gebietsparameter der anderen Städte weg. Die Grenzen liegen in `public/data/[basel/|bern/]districts.json`; `npm run districts` lädt Basel und Bern neu.
+- **Boulevard-Bewilligungen Basel:** `WOBILLIG_CITY=basel python -m scraper.outdoor_permits` lädt die gültigen Boulevard-Bewilligungen aus den Allmendbewilligungen des Kantons (data.bs.ch, Datensatz 100018) und ordnet sie über Name und Distanz (höchstens 60 m) den Lokalen zu. Unklare Fälle bleiben ohne Zuordnung. Stand 19. Oktober 2026 passen 271 von 396 gültigen Bewilligungen zu 261 Lokalen. Die Zuordnung steht in `scraper/cities/basel/outdoor_permits.json`, die Lokale erhalten `outdoorPermit` mit Saison (`year`, `seasonal` mit `from`/`until` oder `unspecified`) und Fläche. «Draussen sitzen» zählt Lokale mit OSM-Aussenplätzen oder Bewilligung, Saisonbewilligungen nur innerhalb der bewilligten Zeit. Damit findet der Filter in Basel bei Bier 130 statt 112 und bei Kaffee 159 statt 148 Lokale. Die Lokaldetails nennen die Bewilligung, der CSV-Export hat die Spalte `outdoor_permit`. Der Workflow gleicht Basel vor jedem Snapshot neu ab; ist data.bs.ch nicht erreichbar, bleibt die gespeicherte Zuordnung bestehen.
 - Grössenfilter **Stange / 3 dl** und **5 dl**. Die Stangen-Auswahl zeigt den tatsächlichen Glaspreis und ist unter `?size=stange` direkt verlinkbar. Sie enthält 3-dl-Angebote sowie ausdrücklich als Stange bezeichnete 3–3.3-dl-Portionen oder Angebote ohne Mengenangabe. Bekannte 2-dl-Portionen sowie alle als Flaschen- oder Dosenbier gekennzeichneten Angebote gehören nicht dazu, auch bei 3 dl.
 - **3 / 3.3 dl** zeigt kleine Offenbiere und Flaschen gemeinsam: 3- und 3.3-dl-Angebote sowie Stangen gemäss Stangenfilter, auch ohne Mengenangabe. Die Auswahl aktiviert alle Ausschankarten und den tatsächlichen Portionspreis. Danach lässt sich der Ausschank separat einschränken. Direktlink: `?size=300-330`.
 - Bieransicht mit **allen Ausschankarten, 3 / 3.3 dl und maximal CHF 15**, einschliesslich Lokalen ohne passenden Preis. Zurücksetzen stellt diese Standardfilter wieder her. Ausschank und Grösse sind direkt oben wählbar, auf dem Handy in zwei nebeneinanderliegenden Feldern. Bei Flaschen- oder Dosenbier wechselt eine aktive Stangen-Auswahl auf „Alle Grössen“.
@@ -234,6 +236,7 @@ Der Schlüssel ist die bestehende OSM-ID. Preise oder Koordinaten müssen dafür
 ```text
 src/main.ts                  Oberfläche, Karte und Interaktionen
 src/data.ts                  Filter, Preisnormalisierung, sichere Links
+src/districts.ts             Stadtkreise, Wohnviertel und Stadtteile
 src/style.css                Responsive Gestaltung
 public/data/bars.json        Versionierte Bierpreise
 public/data/coffee.json      Versionierte Kaffeepreise
@@ -248,6 +251,8 @@ scraper/reviewed_coffee_menus.json Geprüfte Kaffeekarten mit Inhalts-Prüfsumme
 scraper/source_scopes.json   Abgrenzung von Filial- und Archivkarten
 scraper/menu_urls.json       Zusätzliche Original-Menülinks pro OSM-ID
 scraper/additional_venues.json Ausgewählte weitere OSM-Locations und Websites
+scraper/outdoor_permits.py   Basler Boulevard-Bewilligungen den Lokalen zuordnen
+scripts/districts.mjs        Grenzen von Basel und Bern laden
 tests/                      Preis-, Filter- und Parser-Regressionstests
 .github/workflows/          CI, Dreiwochenimport, optionales Deployment
 ```
@@ -255,6 +260,8 @@ tests/                      Preis-, Filter- und Parser-Regressionstests
 ## Quellen und Nutzung
 
 Standorte: [© OpenStreetMap-Mitwirkende](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Die OSM-abgeleiteten Standortdaten bleiben unter dieser Datenbanklizenz. Basiskarte: [OpenStreetMap](https://operations.osmfoundation.org/policies/tiles/). Getränkepreise stammen aus den im Datensatz verlinkten Originalkarten. Gespeichert werden strukturierte Preisfakten und kurze Belegzeilen, keine vollständigen Speisekarten. Es werden keine externen Schriften geladen.
+
+Gebietsgrenzen: [Stadt Zürich, Stadtkreise](https://data.stadt-zuerich.ch/dataset/geo_stadtkreise) (CC0), [Kanton Basel-Stadt, Statistische Raumeinheiten: Wohnviertel](https://data.bs.ch/explore/dataset/100042/) (CC BY 4.0) und [Stadt Bern, Stadtteile](https://opendata.swiss/de/dataset/stadtteile) (freie Nutzung). Boulevard-Bewilligungen: [Kanton Basel-Stadt, Allmendbewilligungen](https://data.bs.ch/explore/dataset/100018/) (CC BY 4.0). Das Datenfenster und der Export nennen die jeweilige Quelle.
 
 Vor öffentlichem Betrieb die Nutzungsbedingungen und Kapazitätsgrenzen der Kartenanbieter sowie die Anforderungen der eigenen Bereitstellung prüfen. Der Code steht unter MIT; Rechte an den Quelldaten und fremden Inhalten bleiben separat.
 
