@@ -304,6 +304,23 @@ Die API unter `/api/prices` liest und schreibt in einem privaten Vercel-Blob-Sto
 - 20 Schreibvorgänge pro Stunde und Besucherkennung. Kennungen sind mit dem Speichergeheimnis und Tagesdatum abgeleitete IP-Hashes; keine IP-Adressen im gespeicherten JSON. Abgelaufene Kennungen werden beim nächsten Schreiben entfernt.
 - Kein Login und keine Vorabmoderation. Öffentliche Einträge sind als «Eingetragen» sichtbar.
 
+### Manuelle Preisänderungen nachprüfen
+
+Jede Speicherung über das manuelle Preisformular legt ab dieser Version einen dauerhaften Eintrag in `priceChanges` im privaten Stadtspeicher an: Zeitpunkt, Lokal, Kategorie, Angebots-ID/Version sowie das vollständige Angebot vor und nach der Änderung (inklusive Preis, Menge, Quelle und Beobachtungsdatum). Auch die erste Korrektur eines Katalogpreises, neue Angebote und manuelle Korrekturen von Foto-Uploads werden erfasst. Preis und Protokoll werden atomar gespeichert; fehlgeschlagene oder wegen Versionskonflikten abgelehnte Änderungen erzeugen keinen Protokolleintrag. Es werden dafür keine zusätzlichen Besucherkennungen oder IP-Adressen gespeichert. Das Protokoll bleibt von Katalogaktualisierungen unabhängig und wird nicht über `/api/prices` ausgegeben.
+
+**Online-Übersicht:** [wobillig.ch/output/price-review/production](https://wobillig.ch/output/price-review/production) lädt bei jedem Öffnen die aktuellen Produktionsdaten aller drei Städte. «Jetzt aktualisieren» lädt den neuesten Stand; der CSV-Export liest ebenfalls direkt aus dem Speicher. Die Seite ist nicht in Navigation oder Sitemap verlinkt und sendet `noindex, nofollow, noarchive` sowie `no-store`. Sie ist bewusst **ohne Passwort** erreichbar: Wer die Adresse kennt, kann die Preisänderungen ansehen. Die Funktion `/api/price-review` gibt ausschliesslich die Preisübersicht bzw. CSV aus, keine Besucherkennungen, Rate-Limits oder Scan-Aufträge. Bei einem Ladefehler einer Stadt erscheint eine Fehlermeldung statt eines unvollständigen Berichts. Lokale Exportdateien werden weiterhin nicht veröffentlicht.
+
+Die lokale Übersicht für alle drei Städte mit Suche, Stadt-/Kategorie-/Artfilter und Startdatum wird so aktualisiert:
+
+```sh
+npm run prices:review
+open output/price-review/production/index.html
+```
+
+Der Befehl liest standardmässig die **Produktionsdaten** aus dem bestehenden privaten Blob-Store mit `BLOB_READ_WRITE_TOKEN` aus `.env.local`; er verändert keine Daten im Store. Für Entwicklung/Vorschau: `npm run prices:review -- --development` und `output/price-review/development/index.html` öffnen. Benötigt Node.js 22.9 oder neuer. Der Bericht zeigt Schweizer Zeit, Vorher-/Nachher-Preise, Differenz und aufklappbare vollständige Angebotsdetails. Daneben entstehen `price-changes.csv` (alle Einträge, Zeitstempel in UTC) und `price-changes.json`. Die Dateien liegen ausserhalb der Website und werden von Git ignoriert. Nach erneutem Ausführen die HTML-Datei im Browser neu laden.
+
+Bereits vorhandene manuelle Einträge werden aus `entries` und `history` als **Altbestand** ergänzt, ohne den Speicher zu migrieren. Bekannte Vorversionen bleiben sichtbar; ein ursprünglich überschriebener Katalogpreis wurde früher nicht gespeichert und erscheint deshalb als **Unbekannt**. Diese Rekonstruktion ist kein vollständiger Nachweis der damaligen Anzeige. Reine Foto-Scans werden nicht als manuelle Eingaben gezählt. Es gibt keine nachträglich erfundene Autorenzuordnung, da die Website keine Benutzerkonten verwendet. Die neue Protokollierung auf der Live-Website beginnt erst nach dem Deployment dieser Version.
+
 Lokale Entwicklung mit API:
 
 ```sh

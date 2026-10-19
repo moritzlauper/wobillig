@@ -32,6 +32,12 @@ describe('city-scoped price API', () => {
     expect((await request('/api/prices?city=../../private')).status).toBe(400);
     expect(mocks.blobStore).not.toHaveBeenCalled();
   });
+  it('does not expose the private audit log, history or visitor limits', async () => {
+    mocks.blobStore.mockReturnValue({ read: async () => ({ state: {
+      entries: [], history: [{ id: 'old' }], priceChanges: [{ id: 'private-change' }], limits: { visitor: { count: 1 } },
+    } }) });
+    expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [] });
+  });
   it('saves a Bern venue only in Bern and rejects that ID in Basel', async () => {
     const input = { barId: 'node/bern', drink: 'beer', revision: 0, name: 'Lager', priceChf: 5, volumeMl: 300, alcoholFree: false, observedAt: '2026-10-14', sourceUrl: '' };
     expect((await request('/api/prices?city=bern', input)).status).toBe(200);

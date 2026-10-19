@@ -4,6 +4,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
+    "api/price-review.ts": {
+      "includeFiles": "public/data/**/locations.json",
+      "maxDuration": 30
+    },
     "api/prices.ts": {
       "includeFiles": "public/data/**/*.json",
       "maxDuration": 30
@@ -14,6 +18,18 @@
     }
   },
   "rewrites": [
+    {
+      "source": "/output/price-review/production",
+      "destination": "/api/price-review"
+    },
+    {
+      "source": "/output/price-review/production/",
+      "destination": "/api/price-review"
+    },
+    {
+      "source": "/output/price-review/production/index.html",
+      "destination": "/api/price-review"
+    },
     {
       "source": "/bern",
       "destination": "/bern/index.html"

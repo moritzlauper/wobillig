@@ -5,10 +5,11 @@ import type { Bar, Dataset, Offer } from '../src/data.js';
 import { communityVenues } from '../src/community.js';
 import { duplicateVenue, validateVenue } from '../src/venue-contributions.js';
 import type { City } from '../src/cities.js';
+import { priceChange, type PriceChange } from './price-audit.js';
 
 export type ScanReceipt = { ids: string[]; added: number; unchanged: number; conflicts: number; skipped: number };
 export type ScanRecord = { status: 'pending' | 'done' | 'failed'; expires: number; result?: ScanReceipt };
-export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[] };
+export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; priceChanges?: PriceChange[] };
 export type Store = { read(): Promise<{ state: State; etag?: string }>; write(state: State, etag?: string): Promise<void> };
 export const emptyState = (): State => ({ entries: [], history: [], limits: {} });
 export class WriteConflict extends Error {}
@@ -55,6 +56,8 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     const venue = communityVenues(datasets, state.entries, state.venues).find(b => b.id === input.barId);
     if (!venue) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
     const entry: PriceEntry = { id: old?.id || randomUUID(), barId: input.barId, drink: input.drink, targetKey, revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString(), offer, venue: { ...venue, offers: [] } };
+    // The edit and its audit record commit atomically under the same ETag.
+    state.priceChanges = [...(state.priceChanges || []), priceChange(entry, old, datasets[input.drink])];
     if (old) state.history.push(old);
     state.entries = [...state.entries.filter(x => x.id !== entry.id), entry];
     try { await store.write(state, etag); return entry; }

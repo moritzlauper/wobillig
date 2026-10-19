@@ -58,11 +58,18 @@ describe('persistent edits', () => {
     expect(updated.bars[0].offers[0].priceChf).toBe(6.5);
     expect(updated.bars[0].offers[0].confidence).toBe('community');
     expect(bar.offers[0].priceChf).toBe(7);
+    expect((await store.read()).state.priceChanges).toMatchObject([{ entryId: entry.id, revision: 1,
+      venueName: 'Testbar', source: 'manual', before: { priceChf: 7 }, after: { priceChf: 6.5 } }]);
     expect(applyEntries({ ...beer, bars: [{ ...bar, offers: [{ ...offer, priceChf: 8 }] }] }, [entry], [bar], 'beer').bars[0].offers[0].priceChf).toBe(6.5);
     const edit = await savePrice(store, { ...input, id: entry.id, revision: 1, priceChf: 6 }, data, 'a');
     expect(edit.revision).toBe(2);
     expect((await store.read()).state.history).toEqual([entry]);
+    const changes = (await store.read()).state.priceChanges!;
+    expect(changes).toHaveLength(2);
+    expect(changes[1]).toMatchObject({ entryId: entry.id, revision: 2, before: { priceChf: 6.5 }, after: { priceChf: 6 } });
+    expect(changes[0].before?.priceChf).toBe(7);
     await expect(savePrice(store, { ...input, id: entry.id, revision: 1 }, data, 'a')).rejects.toMatchObject({ status: 409 });
+    expect((await store.read()).state.priceChanges).toHaveLength(2);
   });
   it('allows adding coffee at a venue previously only in the beer dataset', async () => {
     const entry = await savePrice(memoryStore(), { ...input, drink: 'coffee', name: 'Espresso', coffeeType: 'espresso', volumeMl: null, targetKey: undefined, alcoholFree: true }, data, 'a');
@@ -76,12 +83,17 @@ describe('persistent edits', () => {
       savePrice(store, { ...input, name: 'Stange', volumeMl: 300, priceChf: 4.5, targetKey: undefined }, data, 'b'),
     ]);
     expect((await store.read()).state.entries).toHaveLength(2);
+    const changes = (await store.read()).state.priceChanges!;
+    expect(changes).toHaveLength(2);
+    expect(new Set(changes.map(c => c.entryId)).size).toBe(2);
+    expect(changes.find(c => c.after.name === 'Stange')?.before).toBeNull();
   });
   it('rejects simultaneous overwrites and duplicate offers', async () => {
     const store = memoryStore();
     const result = await Promise.allSettled([savePrice(store, input, data, 'a'), savePrice(store, { ...input, priceChf: 8 }, data, 'b')]);
     expect(result.filter(r => r.status === 'fulfilled')).toHaveLength(1);
     expect((await store.read()).state.entries).toHaveLength(1);
+    expect((await store.read()).state.priceChanges).toHaveLength(1);
     await expect(savePrice(store, { ...input, targetKey: undefined }, data, 'c')).rejects.toMatchObject({ status: 409 });
   });
   it('limits repeated writes across requests, then expires the limit', async () => {
@@ -96,6 +108,31 @@ describe('persistent edits', () => {
     store.write = async () => { throw new Error('Offline'); };
     await expect(savePrice(store, input, data, 'a')).rejects.toThrow('Offline');
     expect((await store.read()).state.entries).toHaveLength(0);
+    expect((await store.read()).state.priceChanges || []).toHaveLength(0);
+  });
+  it('records the displayed verified website price instead of a superseded community price', async () => {
+    const store = memoryStore();
+    const first = await savePrice(store, input, data, 'a', Date.parse('2026-10-14T10:00:00Z'));
+    const refreshed = { ...beer, bars: [{ ...bar, offers: [{ ...offer, priceChf: 9, confidence: 'reviewed' as const,
+      verifiedMenuDate: { date: '2026-10-15', evidence: 'Karte vom 15. Oktober', sha256: 'a'.repeat(64) } }] }] };
+    await savePrice(store, { ...input, id: first.id, revision: 1, priceChf: 8 }, { ...data, beer: refreshed }, 'a');
+    const changes = (await store.read()).state.priceChanges!;
+    expect(changes[1].before?.priceChf).toBe(9);
+    expect(changes[1].after.priceChf).toBe(8);
+    expect(changes[0].before?.priceChf).toBe(7);
+  });
+  it('logs a manual correction of a photo upload and keeps the original scan evidence', async () => {
+    const store = memoryStore();
+    const scanned = { id: 'photo-entry', barId: bar.id, drink: 'beer' as const, targetKey: offerKey(offer), revision: 1,
+      updatedAt: '2026-10-14T10:00:00Z', offer: { ...offer, confidence: 'ai' as const, menuScan: { sha256: 'a'.repeat(64), model: 'test' } }, venue: bar };
+    const { state, etag } = await store.read();
+    state.entries.push(scanned);
+    await store.write(state, etag);
+    await savePrice(store, { ...input, id: scanned.id, revision: 1 }, data, 'a');
+    const changes = (await store.read()).state.priceChanges!;
+    expect(changes).toHaveLength(1);
+    expect(changes[0].before?.menuScan?.sha256).toBe('a'.repeat(64));
+    expect(changes[0].after.menuScan).toBeUndefined();
   });
 });
 
