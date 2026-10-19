@@ -25,7 +25,7 @@ export function categoryCounts(value: unknown): CategoryCounts {
 }
 
 export function rankedCategories(counts: CategoryCounts, pizzaAvailable = true): Category[] {
-  // Stable ties preserve the familiar order; categories without data can still collect interest.
+  // Coffee is always first; popularity only orders the remaining categories.
   return categories.filter(category => category !== 'pizza' || pizzaAvailable)
-    .sort((a, b) => counts[b] - counts[a]);
+    .sort((a, b) => a === 'coffee' ? -1 : b === 'coffee' ? 1 : counts[b] - counts[a]);
 }

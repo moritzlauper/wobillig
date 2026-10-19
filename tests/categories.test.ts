@@ -34,11 +34,14 @@ it('counts only current positive prices in the requested food category', () => {
 });
 
 describe('shared category popularity', () => {
-  it('promotes popular categories into the top three and uses the familiar order for ties', () => {
+  it('keeps coffee first and ranks the remaining categories with stable ties', () => {
     expect(rankedCategories(emptyCategoryCounts())).toEqual(['coffee', 'beer', 'pizza', 'doner', 'falafel']);
     const counts = { coffee: 40, beer: 30, pizza: 1, doner: 20, falafel: 0 };
     expect(rankedCategories(counts)).toEqual(['coffee', 'beer', 'doner', 'pizza', 'falafel']);
     expect(rankedCategories(counts, false)).toEqual(['coffee', 'beer', 'doner', 'falafel']);
+    const coffeeLeastPopular = { coffee: 0, beer: 100, pizza: 200, doner: 300, falafel: 400 };
+    expect(rankedCategories(coffeeLeastPopular)).toEqual(['coffee', 'falafel', 'doner', 'pizza', 'beer']);
+    expect(rankedCategories(coffeeLeastPopular, false)).toEqual(['coffee', 'falafel', 'doner', 'beer']);
   });
   it('counts at most one click per visitor, category and UTC day across clients', async () => {
     const store = memoryStore();
