@@ -1,4 +1,4 @@
-"""Crawl city restaurant menus for regular Margherita pizzas.
+"""Crawl pizza menus, comparing Margheritas and listing other varieties separately.
 
 python -m scraper.scrape_pizza --discover --limit 0
 Audited source bodies are cached for inspection; shared chain menus are scoped
@@ -97,6 +97,25 @@ def menu_priority(url):
     return rank, not path.endswith('.pdf'), bool(re.search(r'\.(?:jpe?g|png|webp)$',path))
 
 
+def resolve_pizza_menu(items):
+    """A conflict affects its named pizza only, never the Margherita comparison."""
+    groups = {}
+    for item in items:
+        key = re.sub(r'^pizza\s+', '', ' '.join(item['name'].casefold().split()))
+        groups.setdefault(key, []).append(item)
+    result, conflicts = [], []
+    for key, candidates in sorted(groups.items()):
+        restaurant = [o for o in candidates if o.get('priceContext') != 'online_menu']
+        candidates = restaurant or candidates
+        prices = {o['priceChf'] for o in candidates}
+        if len(prices) != 1:
+            conflicts.append({'name': key, 'candidates': candidates})
+            continue
+        # Prefer a sourced ingredient description when the price is identical.
+        result.append(max(candidates, key=lambda o: (bool(o.get('ingredients')), o.get('observedAt', ''))))
+    return result, conflicts
+
+
 def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
     stamp=now();queue=list(hints.get(bar['id'],[]))+[bar['website']]
     bar = dict(bar)
@@ -104,6 +123,7 @@ def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
     allowed = set(hints.get(bar['id'], []))
     online_feeds = set()
     ai_documents = set()
+    menu = []; document_hashes = {}
     while queue and len(visited)<max_pages:
         url=queue.pop(0)
         if not url or url in visited or skip_source(url) or SKIP_MENU.search(url):continue
@@ -118,6 +138,7 @@ def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
                     offers.extend({**o,**proof,'sourceUrl':final,'observedAt':stamp,'confidence':'reviewed'} for o in r['offers'])
                 else:changed.add(final)
             if 'pdf' in kind or urlparse(final).path.lower().endswith('.pdf'):
+                kind = 'application/pdf'
                 found=[] if reviewed else pizza_pdf(body,final,stamp)
                 links=[u for u in pdf_links(body) if re.search(r'\.(?:pdf|jpe?g|png|webp)$',urlparse(u).path,re.I)]
             elif 'html' in kind:
@@ -144,16 +165,32 @@ def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
             else:continue
             if not skip_source(final) and (not hints.get(bar['id']) or url in allowed):
                 digest = hashlib.sha256(body).hexdigest()
+                document_hashes[final] = digest
+                for offer in found:
+                    offer['sourceSha256'] = digest
+                    prior_ingredients = next((o.get('ingredients') for o in bar.get('offers', [])
+                                              if o.get('sourceUrl') == final and o.get('sourceSha256') == digest
+                                              and o['priceChf'] == offer['priceChf'] and o.get('ingredients')), None)
+                    if prior_ingredients: offer['ingredients'] = prior_ingredients
                 # A text-parser miss cannot erase a still-identical visual source.
                 if not found and not reviewed:
                     found = [o for o in bar.get('offers', []) if o.get('confidence') == 'ai'
                              and o.get('sourceUrl') == final and o.get('sourceSha256') == digest]
-                if (ai and not found and not reviewed and digest not in ai_documents
+                if (ai and (not reviewed or all(r['sha256'] == digest for r in reviewed)) and digest not in ai_documents
                         and len(ai_documents) < max_ai_documents
                         and ('pdf' in kind or 'html' in kind or kind.startswith('image/'))):
                     ai_documents.add(digest)
                     try:
-                        found = ai.extract(bar, body, kind, final, stamp)
+                        extracted = ai.extract(bar, body, kind, final, stamp)
+                        menu.extend(o for o in extracted if o.get('pizzaType') == 'other')
+                        regular = [o for o in extracted if o.get('pizzaType') == 'margherita']
+                        for offer in offers + found:
+                            ingredient_match = next((o for o in regular if o['sourceUrl'] == offer['sourceUrl']
+                                                     and o['priceChf'] == offer['priceChf'] and o.get('ingredients')), None)
+                            if ingredient_match:
+                                offer['ingredients'] = ingredient_match['ingredients']
+                                offer['sourceSha256'] = digest
+                        if not reviewed: found.extend(regular)
                     except Exception as exc:
                         errors.append({'url':final,'error':'pizza_ai: '+type(exc).__name__})
                 offers.extend(found)
@@ -176,7 +213,13 @@ def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
     elif changed:result=[];status='review_required'
     elif success and not errors:result=[];status='no_prices'
     else:result=[o for o in bar.get('offers',[]) if o['sourceUrl'] not in changed];status='partial' if success else 'fetch_failed'
-    return {**bar,'offers':result,'checkedAt':stamp,'scrapeStatus':status}, {'checkedAt':stamp,'status':status,'visited':sorted(visited),'errors':errors,'candidates':list(unique.values())}
+    # Failed/unvisited sources retain their original date. A changed source must
+    # be read again before any old supplementary price can be republished.
+    menu.extend(o for o in bar.get('pizzaMenu', []) if not skip_source(o['sourceUrl'])
+                and (not hints.get(bar['id']) or o['sourceUrl'] in allowed)
+                and (o['sourceUrl'] not in document_hashes or o.get('sourceSha256') == document_hashes[o['sourceUrl']]))
+    pizza_menu, menu_conflicts = resolve_pizza_menu(menu)
+    return {**bar,'offers':result,'pizzaMenu':pizza_menu,'checkedAt':stamp,'scrapeStatus':status}, {'checkedAt':stamp,'status':status,'visited':sorted(visited),'errors':errors,'candidates':list(unique.values()),'pizzaMenuCount':len(pizza_menu),'pizzaMenuConflicts':menu_conflicts}
 
 
 def main():
@@ -197,7 +240,7 @@ def main():
     if args.ai_budget_usd:
         from scraper.pizza_ai import PizzaAI
         ai = PizzaAI(args.ai_budget_usd, CACHE_DIR/'pizza-ai', args.ai_minutes)
-        print(f'Pizza-only AI fallback: maximum {args.ai_budget_usd:.2f} USD, {args.ai_max_documents} documents/venue',flush=True)
+        print(f'Complete pizza-menu AI scan: maximum {args.ai_budget_usd:.2f} USD, {args.ai_max_documents} documents/venue',flush=True)
     old=json.loads(DATA.read_text()) if DATA.exists() else {'bars':[]}
     if args.venues_file:found=json.loads(Path(args.venues_file).read_text())
     elif args.discover or not old['bars']:
@@ -216,7 +259,7 @@ def main():
     hints=scoped_hints(found['bars'], hints)
     hosts=Counter(host(b['website']) for b in found['bars'] if b['website'])
     prior={b['id']:b for b in old['bars']}
-    selected=[{**b,'offers':prior.get(b['id'],{}).get('offers',[])} for b in found['bars'] if b['website'] and (b['type'] in ('restaurant','fast_food') or is_pizza_venue(b)) and (hosts[host(b['website'])]==1 or b['id'] in hints)]
+    selected=[{**b,'offers':prior.get(b['id'],{}).get('offers',[]),'pizzaMenu':prior.get(b['id'],{}).get('pizzaMenu',[])} for b in found['bars'] if b['website'] and (b['type'] in ('restaurant','fast_food') or is_pizza_venue(b)) and (hosts[host(b['website'])]==1 or b['id'] in hints)]
     if args.only:selected=[b for b in selected if re.search(args.only,b['name'],re.I)]
     if args.retry:selected=[b for b in selected if checks.get(b['id'],{}).get('status')!='prices_found']
     selected.sort(key=lambda b:(not is_pizza_venue(b),not bool(re.search(r'pizz|ital|napol|rosso|luigia|leone|lucia|molino|trattoria|ristorante',b['name'],re.I)),checks.get(b['id'],{}).get('checkedAt',''),b['name'].casefold()))
@@ -237,16 +280,17 @@ def main():
         tasks=[pool.submit(crawl,b,fetcher,hints,args.max_pages,reviews,ai,args.ai_max_documents) for b in selected]
         for i,task in enumerate(as_completed(tasks),1):
             b,check=task.result();checks[b['id']]=check
-            if b['offers'] or b['id'] in output or is_pizza_venue(b):output[b['id']]=b
-            print(f'[{i}/{len(tasks)}] {b["name"]}: {b["scrapeStatus"]} '+str([o['priceChf'] for o in b['offers']]),flush=True)
+            if b['offers'] or b['pizzaMenu'] or b['id'] in output or is_pizza_venue(b):output[b['id']]=b
+            print(f'[{i}/{len(tasks)}] {b["name"]}: {b["scrapeStatus"]} '+str([o['priceChf'] for o in b['offers']])+f'; {len(b["pizzaMenu"])} other pizzas',flush=True)
             if i%20==0:
                 flush()
-                if ai:save(CACHE_DIR/'pizza-ai-report.json',ai.report())
+                if ai:save(CACHE_DIR/'pizza-ai-report.json',ai.report(completed=False))
     flush()
     if ai:
         report=ai.report();save(CACHE_DIR/'pizza-ai-report.json',report)
         print('Pizza AI report: '+json.dumps(report),flush=True)
     print(f'{sum(bool(b["offers"]) for b in output.values())} venues with verified-source Margherita prices',flush=True)
+    print(f'{sum(len(b.get("pizzaMenu", [])) for b in output.values())} additional pizza prices',flush=True)
 
 
 if __name__=='__main__':main()

@@ -233,6 +233,7 @@ export const en: Record<string, string> = {
   'Weitere Ranglisten': 'More rankings',
   'Ausschankart geschätzt': 'Estimated serving format',
   'Ranglisten': 'Rankings',
+  'Weitere Pizzen': 'More pizzas',
   'Sortierung': 'Sort order',
   'Preis aufsteigend': 'Price: low to high',
   'Preis absteigend': 'Price: high to low',

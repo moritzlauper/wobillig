@@ -19,6 +19,7 @@ import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan'
 import { dateLocale, locale, localizedPath, t, type Locale } from './i18n';
 import { venueForm } from './venue-form';
 import { categoryNavigation } from './category-navigation';
+import { pizzaMenuContent } from './pizza-menu';
 
 inject({ mode: import.meta.env.DEV ? 'development' : 'production', beforeSend: analyticsBeforeSend });
 
@@ -397,14 +398,14 @@ function render() {
     : t('{comparison}: Noch keine passenden Preise für den Stadtdurchschnitt vorhanden.', { comparison });
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
-    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || cityName)}</small>${o ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
+    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || cityName)}</small>${o && unit(o) ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
   }).join('') : `<p class="empty">${t('Keine passenden Lokale.')}</p>`;
   layer.clearLayers();
   const selectedBar = selectedLocation();
   const mapped = selectedBar && !current.includes(selectedBar) ? [...current, selectedBar] : current;
   for (const b of mapped) {
     const o = bestOffer(b, f);
-    const label = `${b.name}: ${o ? `CHF ${money(cost(o, f.mode))} / ${unit(o)}` : t('kein passender Preis')}`;
+    const label = `${b.name}: ${o ? `CHF ${money(cost(o, f.mode))}${unit(o) ? ` / ${unit(o)}` : ''}` : t('kein passender Preis')}`;
     L.marker([b.lat, b.lon], {
       icon: L.divIcon({
         className: `marker-wrap${o ? '' : ' unpriced-marker'}`,
@@ -554,11 +555,17 @@ function permitLabel(p: OutdoorPermit) {
     : t('Boulevard bewilligt');
   return p.areaM2 ? `${season} · ${p.areaM2.toLocaleString(dateLocale())} m²` : season;
 }
+function offerDescription(o: Offer, matches: Offer[]) {
+  return [portion(o), offerCategory(o) === 'beer' ? t(beerTypeLabels[effectiveBeerType(o)]) : '',
+    offerCategory(o) === 'beer' && o.alcoholFree ? t('alkoholfrei') : '',
+    !matches.includes(o) ? t('ausserhalb Filter') : ''].filter(Boolean).join(' · ');
+}
 function detail(b: Bar) {
   const matches = matchingOffers(b, f);
   const other = b.offers.filter(o => isCurrentOffer(o) && isComparableOffer(o) && !matches.includes(o));
   const offers = [...matches, ...other];
-  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">${t('Schliessen')}</button></div><p class="muted">${e(b.address ? [b.address, b.postcode, cityName].filter(Boolean).join(' ') : [b.postcode, cityName, t('Standort: {coordinates}', { coordinates: `${b.lat.toFixed(5)}, ${b.lon.toFixed(5)}` })].filter(Boolean).join(' · '))}</p>${b.outdoorPermit ? `<p class="muted">${e(permitLabel(b.outdoorPermit))}</p>` : ''}<div class="detail-actions"><button id="add-here" class="primary">${t('Preis hinzufügen')}</button><button id="share-bar" aria-label="${e(t('{name} teilen', { name: b.name }))}">${t('Teilen')}</button><a href="${e(googleMapsLink(b, city.name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}">Google Maps</a></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div><div class="muted">${e(portion(o))}${offerCategory(o) === 'beer' ? ' · ' + e(t(beerTypeLabels[effectiveBeerType(o)])) : ''}${offerCategory(o) === 'beer' && o.alcoholFree ? ` · ${t('alkoholfrei')}` : ''}${!matches.includes(o) ? ` · ${t('ausserhalb Filter')}` : ''}</div>${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>${t('geschätzt')}</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `${t('Google-Maps-Foto')} · ${e(o.photoSource.date)} · ` : ''}${o.menuScan ? t('Foto-Upload') : o.confidence === 'community' ? t('Eingetragen') : o.confidence === 'reviewed' ? t('Manuell geprüft') : o.confidence === 'ai' ? t('KI-erkannt') : t('Automatisch erkannt')} · ${e(new Date(o.verifiedMenuDate?.date || o.observedAt).toLocaleDateString(dateLocale()))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('Quelle')}</a>` : ''}<button data-edit="${i}">${t('Ändern')}</button></div></div>`).join('') : `<p>${t('Noch kein Preis eingetragen.')}</p>`}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
+  const additionalPizzas = pizza() ? pizzaMenuContent(b.pizzaMenu ?? datasets.pizza?.bars.find(venue => venue.id === b.id)?.pizzaMenu) : '';
+  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">${t('Schliessen')}</button></div><p class="muted">${e(b.address ? [b.address, b.postcode, cityName].filter(Boolean).join(' ') : [b.postcode, cityName, t('Standort: {coordinates}', { coordinates: `${b.lat.toFixed(5)}, ${b.lon.toFixed(5)}` })].filter(Boolean).join(' · '))}</p>${b.outdoorPermit ? `<p class="muted">${e(permitLabel(b.outdoorPermit))}</p>` : ''}<div class="detail-actions"><button id="add-here" class="primary">${t('Preis hinzufügen')}</button><button id="share-bar" aria-label="${e(t('{name} teilen', { name: b.name }))}">${t('Teilen')}</button><a href="${e(googleMapsLink(b, city.name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}">Google Maps</a></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div>${offerDescription(o, matches) ? `<div class="muted">${e(offerDescription(o, matches))}</div>` : ''}${o.pizzaType && o.ingredients ? `<p class="muted">${e(o.ingredients)}</p>` : ''}${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>${t('geschätzt')}</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `${t('Google-Maps-Foto')} · ${e(o.photoSource.date)} · ` : ''}${o.menuScan ? t('Foto-Upload') : o.confidence === 'community' ? t('Eingetragen') : o.confidence === 'reviewed' ? t('Manuell geprüft') : o.confidence === 'ai' ? t('KI-erkannt') : t('Automatisch erkannt')} · ${e(new Date(o.verifiedMenuDate?.date || o.observedAt).toLocaleDateString(dateLocale()))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('Quelle')}</a>` : ''}<button data-edit="${i}">${t('Ändern')}</button></div></div>`).join('') : additionalPizzas ? '' : `<p>${t('Noch kein Preis eingetragen.')}</p>`}${additionalPizzas}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
   $('detail').hidden = false;
   $('close-detail').onclick = () => {
     closeSearchSuggestions();

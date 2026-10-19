@@ -31,8 +31,8 @@ describe('Margherita category', () => {
     expect(bestOffer(bar, f)).toEqual(pizza);
     expect(cost(pizza, 'half')).toBe(19);
     expect(isStange(pizza)).toBe(false);
-    expect(portion(pizza)).toBe('Pro Pizza Margherita');
-    expect(portion({ ...pizza, priceContext: 'online_menu' })).toBe('Pro Pizza Margherita · Onlinepreis');
+    expect(portion(pizza)).toBe('');
+    expect(portion({ ...pizza, priceContext: 'online_menu' })).toBe('Onlinepreis');
     expect(beerTypeLabel(pizza)).toBe('');
     expect(filterBars([bar], { ...f, max: 18 })).toEqual([]);
     expect(coverageLabel([bar], f)).toBe('1 Lokale · 1 mit Margherita-Preis · 1 passend zum Filter');

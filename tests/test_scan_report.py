@@ -13,6 +13,13 @@ def bar(id='1', price=6, **extra):
 
 
 class ScanReportTests(unittest.TestCase):
+    def test_other_pizzas_count_as_distinct_products(self):
+        bars = [{'id': 'pizza-place', 'offers': [
+            {'name': 'Pizza Salami', 'pizzaType': 'other', 'priceChf': 20},
+            {'name': 'Pizza Funghi', 'pizzaType': 'other', 'priceChf': 18},
+        ]}]
+        self.assertEqual(coverage(bars)['products'], 2)
+
     def test_refetch_and_reclassification_are_not_discoveries(self):
         before = record([bar(sourceUrl='old', observedAt='old')])
         after = record([bar(sourceUrl='new', observedAt='new', beerType='bottle')])

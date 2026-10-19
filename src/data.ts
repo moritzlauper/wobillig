@@ -22,10 +22,12 @@ export type Offer = {
   revision?: number;
   originalKey?: string;
   evidence: string;
+  ingredients?: string;
   alcoholFree: boolean;
   photoSource?: { kind: "google_maps_photo"; date: string; dateEvidence: string; dateCheckedAt: string; validUntil: string };
   menuScan?: { sha256: string; model: string };
 };
+export type PizzaMenuItem = Omit<Offer, "pizzaType"> & { pizzaType: "other" };
 export type Bar = {
   id: string;
   name: string;
@@ -41,6 +43,7 @@ export type Bar = {
   outdoor: boolean;
   outdoorPermit?: OutdoorPermit;
   offers: Offer[];
+  pizzaMenu?: PizzaMenuItem[];
   scrapeStatus: string;
   checkedAt: string | null;
 };
@@ -81,7 +84,7 @@ export const coffeeLabels: Record<string, string> = {
   matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
-  return o.pizzaType ? t('Pro Pizza Margherita') + (o.priceContext === "online_menu" ? ` · ${t('Onlinepreis')}` : "") : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
+  return o.pizzaType ? (o.priceContext === "online_menu" ? t('Onlinepreis') : "") : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
 }
 export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" {
   return o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
@@ -123,7 +126,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
     )
     .sort((a, b) => cost(a, f.mode) - cost(b, f.mode));
 }
-export function isCurrentOffer(o: Offer, today?: string): boolean {
+export function isCurrentOffer(o: Pick<Offer, 'photoSource' | 'confidence'>, today?: string): boolean {
   if (!o.photoSource || o.confidence === "community") return true;
   const photo = o.photoSource.date;
   if (!/^\d{4}-\d{2}(?:-\d{2})?$/.test(photo)) return false;

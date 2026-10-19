@@ -162,20 +162,20 @@ def drink_page(text):
     return False
 
 
-def documents(body, kind, *, page_filter=drink_page):
+def documents(body, kind, *, page_filter=drink_page, pdf_chunk_pages=4, text_chunk_size=25000):
     """Small PDF chunks include page imagery, so scanned menus work too."""
     if 'pdf' in kind:
         reader = PdfReader(io.BytesIO(body))
         if reader.is_encrypted or len(reader.pages) > 100: return
-        starts = list(range(0, len(reader.pages), 4))
+        starts = list(range(0, len(reader.pages), pdf_chunk_pages))
         def priority(start):
-            text = '\n'.join(page.extract_text() or '' for page in reader.pages[start:start + 4])
+            text = '\n'.join(page.extract_text() or '' for page in reader.pages[start:start + pdf_chunk_pages])
             return 0 if not text.strip() or re.search(r'bier|beer|kaffee|coffee|café|espresso|cappuccino', text, re.I) else 1
-        starts = [start for start in starts if any(page_filter(page.extract_text() or '') for page in reader.pages[start:start + 4])]
+        starts = [start for start in starts if any(page_filter(page.extract_text() or '') for page in reader.pages[start:start + pdf_chunk_pages])]
         starts.sort(key=priority)
         for start in starts:
             writer = PdfWriter()
-            pages = reader.pages[start:start + 4]
+            pages = reader.pages[start:start + pdf_chunk_pages]
             for page in pages: writer.add_page(page)
             output = io.BytesIO(); writer.write(output); raw = output.getvalue()
             if len(raw) > 15_000_000: continue
@@ -186,8 +186,8 @@ def documents(body, kind, *, page_filter=drink_page):
     else:
         text = body.decode('utf-8') if isinstance(body, bytes) else body
         # Overlapping chunks preserve split headings and rows.
-        for start in range(0, len(text), 25000):
-            chunk = text[max(0, start - 1500):start + 25000]
+        for start in range(0, len(text), text_chunk_size):
+            chunk = text[max(0, start - 1500):start + text_chunk_size]
             if chunk.strip(): yield [{'type': 'text', 'text': chunk}], 0, 1, chunk
 
 

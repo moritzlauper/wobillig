@@ -7,7 +7,7 @@ from pathlib import Path
 
 from scraper.cities import CITY, CITY_NAME, DATA_DIR
 
-FILES = {'beer': 'bars', 'coffee': 'coffee', 'pizza': 'pizza', 'doner': 'doner', 'falafel': 'falafel'}
+FILES = {'beer': 'bars', 'coffee': 'coffee', 'pizza': 'pizza', 'pizza_menu': 'pizza', 'doner': 'doner', 'falafel': 'falafel'}
 
 
 def coverage(bars):
@@ -21,7 +21,7 @@ def coverage(bars):
             offers += 1
             # Sources, timestamps and inferred serving formats are not new
             # products. Coffee varieties use their canonical category names.
-            key = json.dumps([bar['id'], offer.get('coffeeType') or offer.get('pizzaType')
+            key = json.dumps([bar['id'], offer.get('coffeeType') or (offer.get('pizzaType') if offer.get('pizzaType') != 'other' else None)
                               or (':'.join([offer['foodType'], offer.get('portionType', 'unspecified'), offer.get('meatType', 'unspecified')]) if offer.get('foodType') else None)
                               or ' '.join(offer['name'].casefold().split()),
                               offer.get('volumeMl'), bool(offer.get('alcoholFree')),
@@ -46,7 +46,7 @@ def snapshot(directory=DATA_DIR):
             return []
         return json.loads(path.read_text())['bars']
     return {'city': CITY, 'recordedAt': datetime.now(timezone.utc).isoformat(),
-            'categories': {category: coverage(read_bars(name))
+            'categories': {category: coverage([{**bar, 'offers': bar.get('pizzaMenu', [])} for bar in read_bars(name)] if category == 'pizza_menu' else read_bars(name))
                            for category, name in FILES.items()}}
 
 
