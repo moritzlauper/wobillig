@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { build } from 'vite';
 import { readFileSync } from 'node:fs';
 import { cities } from '../src/cities';
-import { coffeePrices, cityIds, cityPath, guideContent, guidePath, guideTypes, metadata, siteOrigin } from '../src/seo';
+import { coffeePrices, guidePrices, guideDataset, cityIds, cityPath, guideContent, guidePath, guideTypes, metadata, siteOrigin, mapLink } from '../src/seo';
 import type { Dataset } from '../src/data';
 import { locales } from '../src/i18n';
 
@@ -16,7 +16,7 @@ describe('search-engine-visible production pages', () => {
     }
   });
 
-  it('ships unique titles, a single canonical and visible price content on all eighteen pages without JavaScript', () => {
+  it('ships unique titles, a single canonical and visible price content on all thirty pages without JavaScript', () => {
     const titles = new Set<string>();
     const pages = cityIds.flatMap(city => locales.flatMap(locale =>
       [undefined, ...guideTypes].map(type => ({ meta: metadata(city, type, locale), source: locale === 'en' ? 'Price source</a>' : 'Preisquelle</a>' }))));
@@ -35,7 +35,7 @@ describe('search-engine-visible production pages', () => {
       expect(data['@graph'].find((item: { '@type': string }) => item['@type'] === 'CollectionPage').url).toBe(siteOrigin + meta.path);
       titles.add(meta.title);
     }
-    expect(titles.size).toBe(18);
+    expect(titles.size).toBe(30);
   });
 
   it('serves each city map in English with language links in both directions', () => {
@@ -70,7 +70,7 @@ describe('search-engine-visible production pages', () => {
       const english = files.get(`${englishPath.slice(1)}/index.html`)!;
       expect(english).toContain('<html lang="en">');
       expect(english).toContain(`<h1>${metadata(city, type, 'en').heading}</h1>`);
-      expect(english).toContain('Which offers can be compared?');
+      if (type === 'espresso' || type === 'cappuccino') expect(english).toContain('Which offers can be compared?');
       expect(english).toContain('Recorded prices range from');
       expect(english).toContain('Data as of');
       expect(english).toContain('aria-label="Breadcrumbs"');
@@ -98,7 +98,7 @@ describe('search-engine-visible production pages', () => {
   it('lists only canonical pages in the sitemap and gives every guide a deployed route and incoming city link', () => {
     const sitemap = files.get('sitemap.xml')!;
     const config = JSON.parse(readFileSync('vercel.json', 'utf8'));
-    expect(sitemap.match(/<loc>/g)).toHaveLength(18);
+    expect(sitemap.match(/<loc>/g)).toHaveLength(30);
     for (const [, url] of sitemap.matchAll(/<loc>(.*?)<\/loc>/g)) expect(new URL(url).search).toBe('');
     expect(files.get('robots.txt')).toContain(`Sitemap: ${siteOrigin}/sitemap.xml`);
     for (const city of cityIds) {
@@ -115,7 +115,7 @@ describe('search-engine-visible production pages', () => {
         expect(config.rewrites).toContainEqual({ source: path, destination: `${path}/index.html` });
         expect(config.redirects).toContainEqual({ source: `${path}/index.html`, destination: path, permanent: true });
         const guide = files.get(`${path.slice(1)}/index.html`)!;
-        expect(guide).toContain(`coffeeType=${type}`);
+        expect(guide).toContain(type === 'stange' ? 'beerType=draft&amp;size=stange' : type === 'margherita' ? 'drink=pizza&amp;type=restaurant' : `coffeeType=${type}`);
         expect(guide).toContain(`href="${homePath}"`);
       }
     }
@@ -123,9 +123,9 @@ describe('search-engine-visible production pages', () => {
 
   it('uses the same source data as the map and keeps city totals separate', () => {
     for (const city of cityIds) {
-      const dataset: Dataset = JSON.parse(readFileSync(`public/data/${cities[city].data}coffee.json`, 'utf8'));
       for (const type of guideTypes) {
-        const prices = coffeePrices(dataset, type);
+        const dataset: Dataset = JSON.parse(readFileSync(`public/data/${cities[city].data}${guideDataset(type)}.json`, 'utf8'));
+        const prices = guidePrices(dataset, type);
         const html = files.get(`${guidePath(city, type).slice(1)}/index.html`)!;
         const english = files.get(`${guidePath(city, type, 'en').slice(1)}/index.html`)!;
         expect(html).toContain(`${prices.length} Lokale mit`);
@@ -141,6 +141,46 @@ describe('static price selection', () => {
   const original: Dataset = JSON.parse(readFileSync('public/data/coffee.json', 'utf8'));
   const offer = original.bars.flatMap(bar => bar.offers).find(offer => offer.coffeeType === 'espresso')!;
   const bar = { ...original.bars[0], type: 'cafe', offers: [offer] };
+
+  it('ranks only alcoholic draught Stangen at the actual portion price', () => {
+    const beer = { ...offer, name: 'Lager', coffeeType: undefined, volumeMl: 300, beerType: 'draft' as const, alcoholFree: false, priceChf: 5 };
+    const dataset: Dataset = { ...original, bars: [
+      { ...bar, id: 'regular', offers: [beer, { ...beer, priceChf: 6 }] },
+      { ...bar, id: 'named', offers: [{ ...beer, serving: 'stange', volumeMl: null, priceChf: 4 }] },
+      { ...bar, id: 'estimated', offers: [{ ...beer, beerType: 'unknown', beerTypeEstimate: { type: 'draft', method: 'rules', reason: 'Stange' } }] },
+      { ...bar, id: 'unknown', offers: [{ ...beer, beerType: 'unknown' }] },
+      { ...bar, id: 'bottle', offers: [{ ...beer, beerType: 'bottle', priceChf: 1 }] },
+      { ...bar, id: 'can', offers: [{ ...beer, beerType: 'can', priceChf: 1 }] },
+      { ...bar, id: 'large', offers: [{ ...beer, volumeMl: 500, priceChf: 1 }] },
+      { ...bar, id: 'alcohol-free', offers: [{ ...beer, alcoholFree: true, priceChf: 1 }] },
+      { ...bar, id: 'mix', offers: [{ ...beer, name: 'Panaché', priceChf: 1 }] },
+      { ...bar, id: 'fast-food', type: 'fast_food', offers: [beer] },
+    ] };
+    const rows = guidePrices(dataset, 'stange');
+    expect(rows.map(row => row.bar.id)).toEqual(['named', 'regular', 'estimated']);
+    expect(rows.map(row => row.offer.priceChf)).toEqual([4, 5, 5]);
+    const params = new URL(mapLink('zurich', 'stange'), siteOrigin).searchParams;
+    expect(params.get('drink')).toBe('beer');
+    expect(params.get('beerType')).toBe('draft');
+    expect(params.get('size')).toBe('stange');
+    expect(params.has('mode')).toBe(false);
+  });
+
+  it('ranks Margherita from restaurants and explicitly excludes takeaway venues', () => {
+    const pizza = { ...offer, name: 'Pizza Margherita', coffeeType: undefined, pizzaType: 'margherita' as const, priceChf: 18 };
+    const dataset: Dataset = { ...original, bars: [
+      { ...bar, id: 'restaurant', type: 'restaurant', offers: [pizza, { ...pizza, priceChf: 20 }, { ...offer, priceChf: 1 }] },
+      { ...bar, id: 'takeaway', type: 'fast_food', offers: [{ ...pizza, priceChf: 10 }] },
+      { ...bar, id: 'cafe', type: 'cafe', offers: [pizza] },
+    ] };
+    expect(guidePrices(dataset, 'margherita').map(row => row.bar.id)).toEqual(['restaurant']);
+    const html = guideContent('zurich', 'margherita', dataset);
+    expect(html).toContain('Pizza Margherita aus Restaurants, ohne Imbisse und Takeaways.');
+    expect(html).toContain('1 Lokale mit Pizza Margherita-Preis');
+    const params = new URL(mapLink('zurich', 'margherita'), siteOrigin).searchParams;
+    expect(params.get('drink')).toBe('pizza');
+    expect(params.get('type')).toBe('restaurant');
+  });
 
   it('counts each eligible venue once and excludes wrong sorts, invalid prices, fast food and expired photo prices', () => {
     const dataset: Dataset = { ...original, bars: [

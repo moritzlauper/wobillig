@@ -5,7 +5,7 @@ import type { Plugin } from 'vite';
 import { cities, cityFromPath, type City } from '../src/cities';
 import type { Dataset } from '../src/data';
 import { htmlLang, localeFromPath, locales, translate, type Locale } from '../src/i18n';
-import { cityContent, cityIds, cityPath, guideContent, guidePath, guideTypes, localPath, seoHead, siteOrigin } from '../src/seo';
+import { cityContent, cityIds, cityPath, guideContent, guidePath, guideTypes, guideDataset, localPath, seoHead, siteOrigin } from '../src/seo';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const analyticsTag = '<script data-goatcounter="https://wobillig.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>';
@@ -23,12 +23,12 @@ export function seoPlugin(): Plugin {
   const themeHead = () => `<style>${readFileSync(`${root}src/theme.css`, 'utf8')}</style><script src="${localPath('/theme.js', base)}"></script>`;
   const origin = (process.env.SITE_URL || siteOrigin).replace(/\/$/, '');
   if (!/^https:\/\/[^/]+$/.test(origin)) throw new Error('SITE_URL must be an HTTPS origin without a path.');
-  const dataset = (city: City): Dataset => JSON.parse(readFileSync(`${root}public/data/${cities[city].data}coffee.json`, 'utf8'));
+  const dataset = (city: City, category = 'coffee'): Dataset => JSON.parse(readFileSync(`${root}public/data/${cities[city].data}${category}.json`, 'utf8'));
   const guides = () => guidePages.map(({ city, type, locale, path }) => {
     const css = readFileSync(`${root}src/seo.css`, 'utf8');
     return {
       path,
-      html: `<!doctype html><html lang="${htmlLang[locale]}"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="theme-color" content="#ffffff" />${themeHead()}${seoHead(city, origin, type, locale)}<link rel="icon" href="${localPath('/favicon.svg', base)}" type="image/svg+xml" /><style>${css}</style>${analyticsTag}${guideAnalyticsTag}</head><body>${guideContent(city, type, dataset(city), base, locale).replace('<header class="guide-header">', `<header class="guide-header">${themeControl(locale)}`)}</body></html>`,
+      html: `<!doctype html><html lang="${htmlLang[locale]}"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="theme-color" content="#ffffff" />${themeHead()}${seoHead(city, origin, type, locale)}<link rel="icon" href="${localPath('/favicon.svg', base)}" type="image/svg+xml" /><style>${css}</style>${analyticsTag}${guideAnalyticsTag}</head><body>${guideContent(city, type, dataset(city, guideDataset(type)), base, locale).replace('<header class="guide-header">', `<header class="guide-header">${themeControl(locale)}`)}</body></html>`,
     };
   });
   return {
@@ -43,7 +43,7 @@ export function seoPlugin(): Plugin {
         const languageLink = `<a class="language-switch" data-locale="${other}" href="${localPath(cityPath(city, other), base)}" hreflang="${htmlLang[other]}" lang="${htmlLang[other]}">${other === 'en' ? 'English' : 'Deutsch'}</a>`;
         return html.replace('<!-- SEO_HEAD -->', `${themeHead()}${seoHead(city, origin, undefined, locale)}${analyticsTag}`)
           .replace('<!-- SEO_HEADING -->', `<header class="seo-map-header"><h1 id="map-title">${translate(locale, 'Kaffeepreise {city}', { city: translate(locale, cities[city].name) })}</h1>${languageLink}${themeControl(locale)}</header>`)
-          .replace('<!-- SEO_CONTENT -->', cityContent(city, dataset(city), base, locale));
+          .replace('<!-- SEO_CONTENT -->', cityContent(city, dataset(city), base, locale, dataset(city, 'bars'), dataset(city, 'pizza')));
       },
     },
     configureServer(server) {
