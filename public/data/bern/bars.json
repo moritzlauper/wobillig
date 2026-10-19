@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T01:53:18.855582+00:00",
+  "generatedAt": "2026-10-19T09:48:26.712584+00:00",
   "discoveredAt": "2026-10-17T23:13:15.189496+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -2936,6 +2936,110 @@
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-18T00:07:45.850895+00:00",
       "aiCheckedAt": "2026-10-18T01:35:31.478145+00:00"
+    },
+    {
+      "id": "way/460523809",
+      "name": "Cafébar Pinprinza",
+      "lat": 46.9434861,
+      "lon": 7.3918016,
+      "type": "cafe",
+      "address": "Bümplizstrasse 97a",
+      "postcode": "3018",
+      "website": "https://www.pinprinza.ch/",
+      "cuisine": [
+        "coffee_shop",
+        "regional",
+        "ice_cream",
+        "sandwich",
+        "breakfast",
+        "cake",
+        "tea",
+        "pastry"
+      ],
+      "openingHours": "Th-Su 09:00-17:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Lager von Egger",
+          "volumeMl": 300,
+          "priceChf": 5,
+          "alcoholFree": false,
+          "beerType": "unknown",
+          "evidence": "PDF S. 4: Lager von Egger, 3 dl / 5 dl, CHF 5.00 / 8.00; Ausschankart nicht ausdrücklich angegeben.",
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6ab0e9aa2e05f7273801682f/1789979050320/Pinprinza_Getra%CC%88nkekarte_260817_gru%CC%88n.pdf",
+          "observedAt": "2026-10-19",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Lager von Egger",
+          "volumeMl": 500,
+          "priceChf": 8,
+          "alcoholFree": false,
+          "beerType": "unknown",
+          "evidence": "PDF S. 4: Lager von Egger, 3 dl / 5 dl, CHF 5.00 / 8.00; Ausschankart nicht ausdrücklich angegeben.",
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6ab0e9aa2e05f7273801682f/1789979050320/Pinprinza_Getra%CC%88nkekarte_260817_gru%CC%88n.pdf",
+          "observedAt": "2026-10-19",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Amber von der Brass. de l’Avenir",
+          "volumeMl": 300,
+          "priceChf": 5,
+          "alcoholFree": false,
+          "beerType": "unknown",
+          "evidence": "PDF S. 4: Amber von der Brass. de l’Avenir, 3 dl / 5 dl, CHF 5.00 / 8.00; Ausschankart nicht ausdrücklich angegeben.",
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6ab0e9aa2e05f7273801682f/1789979050320/Pinprinza_Getra%CC%88nkekarte_260817_gru%CC%88n.pdf",
+          "observedAt": "2026-10-19",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Amber von der Brass. de l’Avenir",
+          "volumeMl": 500,
+          "priceChf": 8,
+          "alcoholFree": false,
+          "beerType": "unknown",
+          "evidence": "PDF S. 4: Amber von der Brass. de l’Avenir, 3 dl / 5 dl, CHF 5.00 / 8.00; Ausschankart nicht ausdrücklich angegeben.",
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6ab0e9aa2e05f7273801682f/1789979050320/Pinprinza_Getra%CC%88nkekarte_260817_gru%CC%88n.pdf",
+          "observedAt": "2026-10-19",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Craftbier des Monats",
+          "volumeMl": 330,
+          "priceChf": 8,
+          "alcoholFree": false,
+          "beerType": "unknown",
+          "evidence": "PDF S. 4: Craftbier des Monats, 3,3 dl, CHF 8.00; Ausschankart nicht ausdrücklich angegeben.",
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6ab0e9aa2e05f7273801682f/1789979050320/Pinprinza_Getra%CC%88nkekarte_260817_gru%CC%88n.pdf",
+          "observedAt": "2026-10-19",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Pause (alkoholfrei)",
+          "volumeMl": 330,
+          "priceChf": 5,
+          "alcoholFree": true,
+          "beerType": "unknown",
+          "evidence": "PDF S. 4: Pause (alkoholfrei), 3,3 dl, CHF 5.00; Ausschankart nicht ausdrücklich angegeben.",
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6ab0e9aa2e05f7273801682f/1789979050320/Pinprinza_Getra%CC%88nkekarte_260817_gru%CC%88n.pdf",
+          "observedAt": "2026-10-19",
+          "confidence": "reviewed"
+        },
+        {
+          "name": "Lola IPA (alkoholfrei)",
+          "volumeMl": 330,
+          "priceChf": 6,
+          "alcoholFree": true,
+          "beerType": "unknown",
+          "evidence": "PDF S. 4: Lola IPA (alkoholfrei), 3,3 dl, CHF 6.00; Ausschankart nicht ausdrücklich angegeben.",
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6ab0e9aa2e05f7273801682f/1789979050320/Pinprinza_Getra%CC%88nkekarte_260817_gru%CC%88n.pdf",
+          "observedAt": "2026-10-19",
+          "confidence": "reviewed"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-19",
+      "addressSource": "https://www.pinprinza.ch/"
     },
     {
       "id": "node/738207062",

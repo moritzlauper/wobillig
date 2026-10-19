@@ -2,9 +2,9 @@ import { cities, isCity, cityStoragePath, type City } from '../src/cities.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { createHmac } from 'node:crypto';
-import { allVenues, communityVenues, validateInput, InputError } from '../src/community.js';
+import { communityVenues, validateInput, InputError } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
-import { blobStore, savePrice } from '../server/prices.js';
+import { blobStore, savePrice, saveVenue } from '../server/prices.js';
 
 const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>>>> = {};
 function datasets(city: City) {
@@ -21,7 +21,10 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const city = new URL(req.url || '/', 'http://localhost').searchParams.get('city') || 'zurich';
     if (!isCity(city)) throw new InputError('Unbekannte Stadt.');
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
-    if (req.method === 'GET') return reply(200, { entries: (await store.read()).state.entries });
+    if (req.method === 'GET') {
+      const { state } = await store.read();
+      return reply(200, { entries: state.entries, venues: state.venues || [] });
+    }
     const origin = req.headers.origin;
     if (!origin || new URL(origin).host !== req.headers.host || req.headers['sec-fetch-site'] === 'cross-site') return reply(403, { error: 'Bitte das Formular auf dieser Website verwenden.' });
     if (!req.headers['content-type']?.startsWith('application/json')) return reply(415, { error: 'JSON erwartet.' });
@@ -35,12 +38,16 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch { throw new InputError('Ungültiges JSON.'); } }
     if (JSON.stringify(body)?.length > 8192) throw new InputError('Eintrag zu gross.', 413);
     const data = await datasets(city);
-    const input = validateInput(body, [...allVenues(data), ...communityVenues({}, (await store.read()).state.entries)]);
     // Vercel overwrites this header. Only a daily salted hash is kept, never the IP address.
     const ip = req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown';
     const secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!secret) throw new Error('Missing storage secret');
     const visitor = createHmac('sha256', secret).update(`${new Date().toISOString().slice(0, 10)}:${ip}`).digest('hex');
+    if (body && typeof body === 'object' && 'action' in body && body.action === 'addVenue') {
+      return reply(200, await saveVenue(store, 'venue' in body ? body.venue : undefined, data, city, visitor));
+    }
+    const { state } = await store.read();
+    const input = validateInput(body, communityVenues(data, state.entries, state.venues));
     const entry = await savePrice(store, input, data, visitor);
     return reply(200, { entry });
   } catch (error) {

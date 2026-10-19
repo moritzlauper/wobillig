@@ -1,11 +1,14 @@
 import { randomUUID } from 'node:crypto';
 import { get, put, BlobPreconditionFailedError } from '@vercel/blob';
 import { InputError, allVenues, offerKey, matchesOfferKey, type PriceEntry, type PriceInput } from '../src/community.js';
-import type { Dataset, Offer } from '../src/data.js';
+import type { Bar, Dataset, Offer } from '../src/data.js';
+import { communityVenues } from '../src/community.js';
+import { duplicateVenue, validateVenue } from '../src/venue-contributions.js';
+import type { City } from '../src/cities.js';
 
 export type ScanReceipt = { ids: string[]; added: number; unchanged: number; conflicts: number; skipped: number };
 export type ScanRecord = { status: 'pending' | 'done' | 'failed'; expires: number; result?: ScanReceipt };
-export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord> };
+export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[] };
 export type Store = { read(): Promise<{ state: State; etag?: string }>; write(state: State, etag?: string): Promise<void> };
 export const emptyState = (): State => ({ entries: [], history: [], limits: {} });
 export class WriteConflict extends Error {}
@@ -49,7 +52,7 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     const limit = state.limits[visitor] || { count: 0, expires: now + 3600000 };
     if (limit.count >= 20) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[visitor] = { ...limit, count: limit.count + 1 };
-    const venue = allVenues(datasets).find(b => b.id === input.barId) || state.entries.find(e => e.barId === input.barId && e.venue)?.venue;
+    const venue = communityVenues(datasets, state.entries, state.venues).find(b => b.id === input.barId);
     if (!venue) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
     const entry: PriceEntry = { id: old?.id || randomUUID(), barId: input.barId, drink: input.drink, targetKey, revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString(), offer, venue: { ...venue, offers: [] } };
     if (old) state.history.push(old);
@@ -58,4 +61,25 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     catch (error) { if (!(error instanceof WriteConflict)) throw error; }
   }
   throw new InputError('Gerade werden mehrere Preise gespeichert. Bitte erneut versuchen.', 409);
+}
+
+export async function saveVenue(store: Store, value: unknown, datasets: Parameters<typeof allVenues>[0], city: City, visitor: string, now = Date.now()) {
+  const input = validateVenue(value, city);
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const { state, etag } = await store.read();
+    const duplicate = duplicateVenue(input, communityVenues(datasets, state.entries, state.venues));
+    // Retrying after a lost response must not create a second location.
+    if (duplicate) return { venue: duplicate, created: false };
+    state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
+    const key = `venue:${visitor}`;
+    const limit = state.limits[key] || { count: 0, expires: now + 3600000 };
+    if (limit.count >= 5) throw new InputError('Zu viele neue Lokale. Bitte in einer Stunde erneut versuchen.', 429);
+    state.limits[key] = { ...limit, count: limit.count + 1 };
+    const venue: Bar = { ...input, id: `community/${randomUUID()}`, website: input.website || null,
+      openingHours: null, offers: [], scrapeStatus: 'community', checkedAt: new Date(now).toISOString() };
+    state.venues = [...(state.venues || []), venue];
+    try { await store.write(state, etag); return { venue, created: true }; }
+    catch (error) { if (!(error instanceof WriteConflict)) throw error; }
+  }
+  throw new InputError('Gerade werden weitere Lokale gespeichert. Bitte erneut versuchen.', 409);
 }

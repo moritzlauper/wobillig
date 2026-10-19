@@ -1,9 +1,9 @@
 import { cities, type City } from './cities';
 import { applyEntries, communityVenues, type Drink, type PriceEntry } from './community';
-import { effectiveBeerType, isComparableOffer, isCurrentOffer, type Dataset } from './data';
+import { effectiveBeerType, isComparableOffer, isCurrentOffer, type Bar, type Dataset } from './data';
 
-export function createExport(city: City, datasets: Partial<Record<Drink, Dataset>>, entries: PriceEntry[], communityLoaded: boolean, exportedAt = new Date().toISOString()) {
-  const venues = communityVenues(datasets, entries);
+export function createExport(city: City, datasets: Partial<Record<Drink, Dataset>>, entries: PriceEntry[], communityLoaded: boolean, exportedAt = new Date().toISOString(), added: Bar[] = []) {
+  const venues = communityVenues(datasets, entries, added);
   const merged = Object.fromEntries(Object.entries(datasets).map(([drink, dataset]) =>
     [drink, applyEntries(dataset, entries, venues, drink as Drink)])) as Partial<Record<Drink, Dataset>>;
   return {

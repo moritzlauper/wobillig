@@ -53,3 +53,12 @@ it('leaves the store unchanged for unreadable photos and does not charge another
 it('handles missing API configuration without sending the photo or claiming success', async () => {
   vi.stubEnv('ANTHROPIC_API_KEY', ''); expect((await request()).status).toBe(503); expect(mocks.readMenu).not.toHaveBeenCalled();
 });
+
+it('allows scanning a newly contributed venue that is absent from the OSM catalogue', async () => {
+  const { state, etag } = await store.read();
+  state.venues = [{ id: 'community/new', name: 'New café', lat: 47.378, lon: 8.535, type: 'cafe', address: 'Test 1', postcode: '8001', website: null,
+    openingHours: null, outdoor: false, offers: [], scrapeStatus: 'community', checkedAt: null }];
+  await store.write(state, etag);
+  const result = await request({ ...photo, barId: 'community/new' });
+  expect(result.status).toBe(200); expect(result.data.entries[0].venue.name).toBe('New café');
+});

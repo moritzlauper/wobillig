@@ -140,27 +140,6 @@ export function distance(a: [number, number], b: [number, number]) {
     Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dlon / 2) ** 2;
   return 6371 * 2 * Math.asin(Math.sqrt(h));
 }
-// Evening means an opening interval extending beyond 19:00 on at least one
-// day, not "open right now". Missing/unsupported hours remain unknown.
-export function hasEveningHours(hours: string | null): boolean | undefined {
-  if (!hours?.trim()) return undefined;
-  const schedule = hours.replace(/"[^"]*"/g, "").trim();
-  if (/\b24\/7\b/.test(schedule)) return true;
-  const ranges = [...schedule.matchAll(/\b(\d{1,2}):([0-5]\d)\s*-\s*(\d{1,2}):([0-5]\d)(?!\s*(?:off|closed)\b)/g)];
-  let known = false;
-  for (const [, sh, sm, eh, em] of ranges) {
-    const start = Number(sh) * 60 + Number(sm);
-    let end = Number(eh) * 60 + Number(em);
-    if (start >= 24 * 60 || end > 48 * 60) continue;
-    known = true;
-    if (end <= start) end += 24 * 60;
-    if (end > 19 * 60) return true;
-  }
-  if (/\+|sunrise|sunset|dawn|dusk|unknown|open\b/i.test(schedule)) return undefined;
-  if (known || /^(?:off|closed)$/i.test(schedule)) return false;
-  return undefined;
-}
-
 function venueCategory(type: string): string {
   return type === "pub" ? "bar" : type;
 }
@@ -175,8 +154,7 @@ export function isVenueEligible(bar: Bar, f: Filters): boolean {
   if ((f.drink || "beer") !== "beer" || bar.type !== "cafe") return true;
   // A missing price for the selected size/format is different from no beer
   // evidence at all. Community beer entries count after applyEntries merges them.
-  return bar.offers.some(o => offerCategory(o) === "beer" && isCurrentOffer(o) && isComparableOffer(o))
-    && hasEveningHours(bar.openingHours) !== false;
+  return bar.offers.some(o => offerCategory(o) === "beer" && isCurrentOffer(o) && isComparableOffer(o));
 }
 
 export function filterBars(

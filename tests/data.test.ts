@@ -3,7 +3,6 @@ import { describe, it, expect } from "vitest";
 import {
   filterBars,
   cheapPriceLimit,
-  hasEveningHours,
   isVenueEligible,
   isBeerMix,
   isComparableOffer,
@@ -273,11 +272,11 @@ describe("cafés in the beer view", () => {
       expect(filterBars([{ ...cafe, offers }], { ...f, type: "cafe" })).toEqual([]);
     }
   });
-  it("excludes daytime cafés even with a matching beer price or explicit selection", () => {
+  it("includes daytime cafés with a matching beer price and allows explicit selection", () => {
     for (const openingHours of ["Mo-Fr 08:00-18:00; Sa 08:00-17:00", "Tu-Fr 07:00-18:30; Sa-Su 09:00-17:00", "Mo-Su 09:00-19:00"]) {
       const daytime = { ...cafe, openingHours };
-      expect(filterBars([daytime], f)).toEqual([]);
-      expect(isVenueEligible(daytime, f)).toBe(false);
+      expect(filterBars([daytime], f)).toHaveLength(1);
+      expect(isVenueEligible(daytime, f)).toBe(true);
     }
   });
   it("keeps beer cafés with evening service or unknown hours", () => {
@@ -301,19 +300,6 @@ describe("cafés in the beer view", () => {
     expect(filterBars([{ ...cafe, offers: [{ ...expired, confidence: "community" }] }], f)).toHaveLength(1);
   });
 });
-
-describe("evening opening intervals", () => {
-  it.each(["24/7", "Mo-Fr 08:00-19:30", "Fr 18:00-02:00", "Sa 09:00-25:00", "16:00-28:00", "Mo 08:00-12:00,18:00-22:00", "Mo 07:00-07:00"])("recognizes evening hours: %s", hours => {
-    expect(hasEveningHours(hours)).toBe(true);
-  });
-  it.each(["Mo-Fr 08:00-19:00", "Sa 00:00-03:00", "Mo 08:00-12:00,14:00-17:00", 'Mo 08:00-17:00 "events 20:00-23:00"', "closed"])("recognizes daytime-only hours: %s", hours => {
-    expect(hasEveningHours(hours)).toBe(false);
-  });
-  it.each([null, "", '"Community events"', "sunset-sunrise", "Mo 08:00-17:00; Fr 18:00+", "by appointment"])("leaves unsupported or missing hours unknown: %s", hours => {
-    expect(hasEveningHours(hours)).toBeUndefined();
-  });
-});
-
 
 describe("combined 3 / 3.3 dl filter", () => {
   const draft = { ...b.offers[0], beerType: "draft" as const };

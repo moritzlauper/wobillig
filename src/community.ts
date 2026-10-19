@@ -51,8 +51,8 @@ export function allVenues(datasets: Partial<Record<Drink | 'locations', Dataset>
 }
 // Persisted location snapshots keep contributions visible across catalogue updates.
 // Canonical scraper metadata wins when the location later joins a dataset.
-export function communityVenues(datasets: Partial<Record<Drink, Dataset>>, entries: PriceEntry[]): Bar[] {
-  return [...new Map([...entries.flatMap(entry => entry.venue && entry.venue.id === entry.barId ? [{ ...entry.venue, offers: [] }] : []),
+export function communityVenues(datasets: Partial<Record<Drink | 'locations', Dataset>>, entries: PriceEntry[], added: Bar[] = []): Bar[] {
+  return [...new Map([...added.map(bar => ({ ...bar, offers: [] })), ...entries.flatMap(entry => entry.venue && entry.venue.id === entry.barId ? [{ ...entry.venue, offers: [] }] : []),
     ...allVenues(datasets)].map(bar => [bar.id, bar])).values()];
 }
 function verifiedWebsiteUpdate(offer: Offer, entry: PriceEntry): boolean {

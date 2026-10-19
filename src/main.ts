@@ -13,6 +13,7 @@ import { createDistrictLookup, districtFromSearch, type Districts } from './dist
 import { searchSuggestions } from './search';
 import { searchAddresses, type AddressResult } from './address-search';
 import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan';
+import { venueForm } from './venue-form';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 const money = (n: number) => n.toFixed(2);
@@ -37,6 +38,7 @@ let communityReady = false, saving = false, pizzaAvailable = false;
 let cheapMode = initial.get('cheap') === '1';
 let cheapLimit: number | undefined;
 let locationCatalogue: Bar[] = [];
+let addedVenues: Bar[] = [];
 let userMarker: L.CircleMarker | undefined;
 let suggestions: (Bar | AddressResult)[] = [], activeSuggestion = -1, searchOpen = false;
 let addressResults: AddressResult[] = [], addressSelection: AddressResult | undefined;
@@ -108,9 +110,23 @@ $('app').innerHTML = `
   </fieldset></details>
   <p id="form-error" role="alert" hidden></p>
 </form></dialog>
-<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">Daten für ${e(city.name)} herunterladen</strong><p>Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.</p><div class="download-actions"><button id="download-csv" class="primary" disabled>CSV herunterladen</button><button id="download-json" disabled>JSON herunterladen</button></div><p class="muted">CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.</p><p id="download-status" class="muted" role="status">Daten werden geladen …</p></section><p id="coverage"></p><p>Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.</p>${cityId === 'zurich' ? '<p>Kreise: Unter «Filter» lassen sich die Stadtkreise einblenden und per Karte oder Auswahlfeld auswählen. Der Kreisdurchschnitt wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb der gewählten Kreisgrenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis. Kreisgrenzen: <a href="https://data.stadt-zuerich.ch/dataset/geo_stadtkreise" target="_blank" rel="noopener noreferrer">Stadt Zürich, Stadtkreise (CC0)</a>.</p>' : ''}<p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise und Foto-Uploads behalten Vorrang, ausser eine belegbar neuere Website-Karte nennt einen abweichenden Preis. Quelle, Menge und Datum stehen beim Angebot.</p><p>Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.</p><p>Bier: Cafés ohne erfasstes Bierangebot oder mit ausschliesslicher Öffnung bis spätestens 19 Uhr werden ausgeblendet, auch bei «Ohne passenden Preis anzeigen». Unbekannte Öffnungszeiten bleiben offen.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
+<dialog id="info" aria-label="Daten"><div class="dialog-top"><strong>Daten</strong><button id="close-info">Schliessen</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">Daten für ${e(city.name)} herunterladen</strong><p>Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.</p><div class="download-actions"><button id="download-csv" class="primary" disabled>CSV herunterladen</button><button id="download-json" disabled>JSON herunterladen</button></div><p class="muted">CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.</p><p id="download-status" class="muted" role="status">Daten werden geladen …</p></section><p id="coverage"></p><p>Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.</p>${cityId === 'zurich' ? '<p>Kreise: Unter «Filter» lassen sich die Stadtkreise einblenden und per Karte oder Auswahlfeld auswählen. Der Kreisdurchschnitt wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb der gewählten Kreisgrenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis. Kreisgrenzen: <a href="https://data.stadt-zuerich.ch/dataset/geo_stadtkreise" target="_blank" rel="noopener noreferrer">Stadt Zürich, Stadtkreise (CC0)</a>.</p>' : ''}<p>Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise und Foto-Uploads behalten Vorrang, ausser eine belegbar neuere Website-Karte nennt einen abweichenden Preis. Quelle, Menge und Datum stehen beim Angebot.</p><p>Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.</p><p>Bier: Cafés erscheinen mit einem erfassten, aktuellen Bierangebot unabhängig von ihren Öffnungszeiten. Cafés ohne Bierangebot werden auch bei «Ohne passenden Preis anzeigen» ausgeblendet.</p><p>Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.</p><p>Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.</p><p>Standorte und Karte: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende, ODbL</a>.</p></dialog>`;
 
 const map = L.map('map', { zoomControl: false }).setView(city.center, 14);
+const openVenueForm = venueForm(cityId, pricesApi, () => selectableLocations(venues, locationCatalogue), (bar, created) => {
+  if (!addedVenues.some(b => b.id === bar.id)) addedVenues.push(bar);
+  clearAddressSelection(); f.query = ''; f.type = 'all'; f.unknown = true; f.outdoor = false;
+  districtState.selected = undefined; cheapMode = false; f.drink = 'coffee'; selected = bar.id;
+  closeSearchSuggestions(); rebuild(); showBar(bar, 18);
+  toast(created ? 'Lokal gespeichert und für alle sichtbar. Du kannst jetzt Preise hinzufügen.' : 'Dieses Lokal ist bereits vorhanden. Du kannst hier Preise hinzufügen.');
+});
+const addVenueButton = document.createElement('button');
+addVenueButton.id = 'add-venue'; addVenueButton.className = 'text-button'; addVenueButton.textContent = 'Lokal hinzufügen';
+$('data-info').before(addVenueButton);
+addVenueButton.onclick = () => {
+  if (!communityReady) return toast('Gemeinsame Einträge sind gerade nicht verfügbar. Bitte neu laden.');
+  openVenueForm(map.getCenter(), addressSelection ? '' : f.query.trim());
+};
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
 L.control.zoom({ position: 'bottomright' }).addTo(map);
 let mapMoving = false;
@@ -272,7 +288,7 @@ if (cityId === 'zurich') {
   $('district-select').onchange = () => chooseDistrict(Number($<HTMLSelectElement>('district-select').value) || undefined);
 }
 function rebuild() {
-  venues = communityVenues(datasets, entries);
+  venues = communityVenues(datasets, entries, addedVenues);
   const pizzaBars = datasets.pizza ? applyEntries(datasets.pizza, entries, venues, 'pizza').bars : [];
   // Count priced venues city-wide, including contributions, independently of UI filters.
   pizzaAvailable = pizzaBars.filter(b => b.offers.some(o => o.pizzaType === 'margherita' && isCurrentOffer(o) && isComparableOffer(o))).length >= 20;
@@ -676,7 +692,7 @@ $('data-info').onclick = () => {
 };
 for (const format of ['csv', 'json'] as const) {
   $('download-' + format).onclick = () => {
-    downloadExport(createExport(cityId, datasets, entries, communityReady), format);
+    downloadExport(createExport(cityId, datasets, entries, communityReady, undefined, addedVenues), format);
   };
 }
 $('close-info').onclick = () => $<HTMLDialogElement>('info').close();
@@ -836,7 +852,7 @@ async function loadCommunity() {
     if (!response.ok) throw new Error();
     const result = await response.json();
     if (!Array.isArray(result.entries)) throw new Error();
-    entries = result.entries; communityReady = true;
+    entries = result.entries; addedVenues = Array.isArray(result.venues) ? result.venues : []; communityReady = true;
     return true;
   } catch { communityReady = false; return false; }
 }
