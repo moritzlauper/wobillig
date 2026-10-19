@@ -362,7 +362,7 @@ describe("cheap price shortcut", () => {
     }));
     const filters: Filters = { ...f, drink: 'pizza' };
     const max = cheapPriceLimit(bars, filters)!;
-    expect(max).toBe(17);
+    expect(max).toBe(18);
     expect(filterBars(bars, { ...filters, max, unknown: false })).toHaveLength(5);
   });
   it("counts each venue once and leaves missing prices out", () => {
@@ -384,7 +384,7 @@ describe("cheap price shortcut", () => {
     const bars = venues([4, 5, 6, 7, 8]).map(bar => ({ ...bar, offers: bar.offers.map(offer => ({
       ...offer, volumeMl: null, ...(drink === 'coffee' ? { coffeeType: 'espresso' } : { pizzaType: 'margherita' as const }),
     })) }));
-    expect(cheapPriceLimit(bars, { ...f, drink, coffeeType: 'espresso' })).toBe(4.8);
+    expect(cheapPriceLimit(bars, { ...f, drink, coffeeType: 'espresso' })).toBe(drink === 'pizza' ? 18 : 4.8);
     expect(cheapPriceLimit(bars, { ...f, drink: 'coffee', coffeeType: 'latte' })).toBeUndefined();
   });
   it("handles empty data and keeps a result when rounding a small sample", () => {

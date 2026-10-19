@@ -89,7 +89,17 @@ jobs:
         run: python -m scraper.scrape --missing-bottles --max-pages "$DEEP_PAGES"
       - name: Discover pizza venues and prices
         if: ${{ inputs.stage == 'pizza' }}
-        run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages "$PIZZA_PAGES"
+        env:
+          ANTHROPIC_API_KEY: ${{ inputs.scan_mode == 'pizza_only' && secrets.ANTHROPIC_API_KEY || '' }}
+          PIZZA_AI_BUDGET: ${{ inputs.scan_mode == 'pizza_only' && inputs.ai_budget_usd || 0 }}
+        run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages "$PIZZA_PAGES" --ai-budget-usd "$PIZZA_AI_BUDGET" --ai-max-documents "$AI_PAGES" --ai-minutes "$AI_MINUTES"
+      - name: Save pizza AI cost report
+        if: ${{ always() && inputs.stage == 'pizza' && inputs.scan_mode == 'pizza_only' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: pizza-ai-report-${{ inputs.city }}-${{ github.run_attempt }}
+          path: scraper/cache/${{ inputs.city }}/pizza-ai-report.json
+          if-no-files-found: warn
       - name: Discover Döner venues and prices
         if: ${{ inputs.stage == 'doner' }}
         run: python -m scraper.scrape_streetfood --category doner --discover --limit 0 --workers 8 --max-pages "$STREETFOOD_PAGES"
@@ -143,7 +153,7 @@ jobs:
           path: scraper/cache/${{ inputs.city }}/ai-report.json
           if-no-files-found: ignore
       - name: Fill missing venue addresses
-        if: ${{ !cancelled() && (success() || steps.ai.outcome == 'failure') }}
+        if: ${{ !cancelled() && inputs.scan_mode != 'pizza_only' && (success() || steps.ai.outcome == 'failure') }}
         continue-on-error: true
         run: python -m scraper.addresses
       # Rediscovered venues lose their permit; restore it before the snapshot.

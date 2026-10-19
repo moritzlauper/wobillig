@@ -162,7 +162,7 @@ def drink_page(text):
     return False
 
 
-def documents(body, kind):
+def documents(body, kind, *, page_filter=drink_page):
     """Small PDF chunks include page imagery, so scanned menus work too."""
     if 'pdf' in kind:
         reader = PdfReader(io.BytesIO(body))
@@ -171,7 +171,7 @@ def documents(body, kind):
         def priority(start):
             text = '\n'.join(page.extract_text() or '' for page in reader.pages[start:start + 4])
             return 0 if not text.strip() or re.search(r'bier|beer|kaffee|coffee|café|espresso|cappuccino', text, re.I) else 1
-        starts = [start for start in starts if any(drink_page(page.extract_text() or '') for page in reader.pages[start:start + 4])]
+        starts = [start for start in starts if any(page_filter(page.extract_text() or '') for page in reader.pages[start:start + 4])]
         starts.sort(key=priority)
         for start in starts:
             writer = PdfWriter()
