@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T16:35:42.281029+00:00",
+  "generatedAt": "2026-10-19T17:49:12.340355+00:00",
   "discoveredAt": "2026-10-19T16:00:43.689105+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -100,7 +100,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:16.102244+00:00"
+      "checkedAt": "2026-10-19T16:34:16.102244+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:25.734817+00:00"
     },
     {
       "id": "node/585184294",
@@ -248,7 +249,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:04:23.064431+00:00"
+      "checkedAt": "2026-10-19T16:04:23.064431+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:57.996508+00:00"
     },
     {
       "id": "node/252822642",
@@ -410,7 +412,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:00:43.750465+00:00"
+      "checkedAt": "2026-10-19T16:00:43.750465+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:34.548873+00:00"
     },
     {
       "id": "node/2146304950",
@@ -529,7 +532,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:00:43.751144+00:00"
+      "checkedAt": "2026-10-19T16:00:43.751144+00:00",
+      "aiCheckedAt": "2026-10-19T17:31:32.523391+00:00"
     },
     {
       "id": "node/593079669",
@@ -738,7 +742,12 @@
           "observedAt": "2026-10-19T16:33:23.066582+00:00",
           "confidence": "automatic",
           "evidence": "pilsner 4.8%vol. | 0.33l 7",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Pilsner in 0,33 l ist eine typische Flaschengrösse. Schätzung, da 33 cl auch anders verpackt sein kann.",
+            "method": "ai"
+          }
         },
         {
           "name": "imperial stout,",
@@ -749,7 +758,12 @@
           "observedAt": "2026-10-19T16:33:23.066582+00:00",
           "confidence": "automatic",
           "evidence": "imperial stout, 7%vol. | 0.35l 7.5",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Imperial Stout in 35 cl entspricht einer typischen Flaschengrösse. Schätzung ohne Gewissheit.",
+            "method": "ai"
+          }
         },
         {
           "name": "boxer pale ale pale ale,",
@@ -878,7 +892,12 @@
           "observedAt": "2026-10-19T16:33:23.066582+00:00",
           "confidence": "automatic",
           "evidence": "flensburger pilsner 4.8%vol. | 0.33l 7",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Flensburger Pilsner in 0,33 l passt zur typischen Flaschenabfüllung dieser Marke. Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "samuel smith imperial stout,",
@@ -889,7 +908,12 @@
           "observedAt": "2026-10-19T16:33:23.066582+00:00",
           "confidence": "automatic",
           "evidence": "samuel smith imperial stout, 7%vol. | 0.35l 7.5",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Samuel Smith Imperial Stout in 35 cl entspricht der typischen Flaschengrösse dieser Marke. Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "kitchen brew alice neipa",
@@ -911,11 +935,129 @@
           "observedAt": "2026-10-19T16:33:23.066582+00:00",
           "confidence": "automatic",
           "evidence": "tannenzäpfle alkoholfrei, <0.5%vol. | 0.33l 6.5",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Alkoholfreies Tannenzäpfle in 0,33 l passt zur typischen Flaschenabfüllung dieser Marke. Schätzung.",
+            "method": "ai"
+          }
+        },
+        {
+          "name": "boxer pale ale",
+          "priceChf": 6,
+          "volumeMl": 250,
+          "sourceUrl": "https://www.bassoverse.space/bar",
+          "observedAt": "2026-10-19T17:30:11.282858+00:00",
+          "confidence": "ai",
+          "evidence": "boxer pale ale pale ale, 5.2%vol. | 0.25l 6",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "79618f64a80a49bc68052549cc3d0e78d6ef106d0dbaa2f42117769548ce129e"
+        },
+        {
+          "name": "ayinger bräuweisse",
+          "priceChf": 8,
+          "volumeMl": 500,
+          "sourceUrl": "https://www.bassoverse.space/bar",
+          "observedAt": "2026-10-19T17:30:11.282858+00:00",
+          "confidence": "ai",
+          "evidence": "ayinger bräuweisse weizenbier, 5.1%vol. | 0.5l 8",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "79618f64a80a49bc68052549cc3d0e78d6ef106d0dbaa2f42117769548ce129e"
+        },
+        {
+          "name": "flensburger",
+          "priceChf": 7,
+          "volumeMl": 330,
+          "sourceUrl": "https://www.bassoverse.space/bar",
+          "observedAt": "2026-10-19T17:30:11.282858+00:00",
+          "confidence": "ai",
+          "evidence": "flensburger pilsner 4.8%vol. | 0.33l 7",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "79618f64a80a49bc68052549cc3d0e78d6ef106d0dbaa2f42117769548ce129e"
+        },
+        {
+          "name": "samuel smith",
+          "priceChf": 7.5,
+          "volumeMl": 350,
+          "sourceUrl": "https://www.bassoverse.space/bar",
+          "observedAt": "2026-10-19T17:30:11.282858+00:00",
+          "confidence": "ai",
+          "evidence": "samuel smith imperial stout, 7%vol. | 0.35l 7.5",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "79618f64a80a49bc68052549cc3d0e78d6ef106d0dbaa2f42117769548ce129e"
+        },
+        {
+          "name": "kitchen brew alice",
+          "priceChf": 8,
+          "volumeMl": 330,
+          "sourceUrl": "https://www.bassoverse.space/bar",
+          "observedAt": "2026-10-19T17:30:11.282858+00:00",
+          "confidence": "ai",
+          "evidence": "kitchen brew alice neipa 5.6% Vol. | 0.33l 8",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "79618f64a80a49bc68052549cc3d0e78d6ef106d0dbaa2f42117769548ce129e"
+        },
+        {
+          "name": "birra da ris",
+          "priceChf": 7,
+          "volumeMl": 330,
+          "sourceUrl": "https://www.bassoverse.space/bar",
+          "observedAt": "2026-10-19T17:30:11.282858+00:00",
+          "confidence": "ai",
+          "evidence": "birra da ris reisbier glutenfrei, 5%vol. | 0.33l 7",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "79618f64a80a49bc68052549cc3d0e78d6ef106d0dbaa2f42117769548ce129e"
+        },
+        {
+          "name": "tannenzäpfle",
+          "priceChf": 6.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://www.bassoverse.space/bar",
+          "observedAt": "2026-10-19T17:30:11.282858+00:00",
+          "confidence": "ai",
+          "evidence": "tannenzäpfle alkoholfrei, <0.5%vol. | 0.33l 6.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "79618f64a80a49bc68052549cc3d0e78d6ef106d0dbaa2f42117769548ce129e"
+        },
+        {
+          "name": "birra da ris reisbier glutenfrei",
+          "priceChf": 7,
+          "volumeMl": 330,
+          "sourceUrl": "https://www.bassoverse.space/dinner",
+          "observedAt": "2026-10-19T17:30:25.148334+00:00",
+          "confidence": "ai",
+          "evidence": "birra da ris reisbier glutenfrei, 5%vol. | 0.33l 7",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "fecb0d016456d9295527ab47e62ee98784b06eef437bacd0ca06f8e4737a0347"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:23.066582+00:00"
+      "checkedAt": "2026-10-19T16:33:23.066582+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:30.864621+00:00"
     },
     {
       "id": "node/11163250005",
@@ -1054,7 +1196,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:26.052004+00:00"
+      "checkedAt": "2026-10-19T16:33:26.052004+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:34.190845+00:00"
     },
     {
       "id": "node/6786431372",
@@ -1199,7 +1342,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:00:43.751568+00:00"
+      "checkedAt": "2026-10-19T16:00:43.751568+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:30.594114+00:00"
     },
     {
       "id": "node/2539785137",
@@ -1321,7 +1465,12 @@
           "observedAt": "2026-10-17T08:58:26.933927+00:00",
           "confidence": "automatic",
           "evidence": "UNSER BIER AYPIEY 3.3 DL 7.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "0,33 l ist eine typische Flaschengrösse, es gibt aber keinen expliziten Hinweis. Schätzung mit Unsicherheit.",
+            "method": "ai"
+          }
         },
         {
           "name": "UNSER BIER SCHWARZ",
@@ -1332,7 +1481,12 @@
           "observedAt": "2026-10-17T08:58:26.933927+00:00",
           "confidence": "automatic",
           "evidence": "UNSER BIER SCHWARZ 3.3 DL 7.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "0,33 l ist eine typische Flaschengrösse, es gibt aber keinen expliziten Hinweis. Schätzung mit Unsicherheit.",
+            "method": "ai"
+          }
         },
         {
           "name": "UNSER BIER WEIZEN, BÜGEL",
@@ -1495,7 +1649,12 @@
           "observedAt": "2026-10-19T16:08:30.045766+00:00",
           "confidence": "automatic",
           "evidence": "Chopfab Amber, Schweiz 3.3 dl 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Chopfab wird typischerweise in 0,33 l Flaschen abgefüllt. Schätzung ohne Gewissheit.",
+            "method": "ai"
+          }
         },
         {
           "name": "Chopfab Weizen, Schweiz",
@@ -1506,7 +1665,12 @@
           "observedAt": "2026-10-19T16:08:30.045766+00:00",
           "confidence": "automatic",
           "evidence": "Chopfab Weizen, Schweiz 3.3 dl 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Chopfab wird typischerweise in 0,33 l Flaschen abgefüllt. Schätzung ohne Gewissheit.",
+            "method": "ai"
+          }
         },
         {
           "name": "Chopfab Australian Pale Ale, Schweiz",
@@ -1517,7 +1681,12 @@
           "observedAt": "2026-10-19T16:08:30.045766+00:00",
           "confidence": "automatic",
           "evidence": "Chopfab Australian Pale Ale, Schweiz 3.3 dl 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Chopfab wird typischerweise in 0,33 l Flaschen abgefüllt. Schätzung ohne Gewissheit.",
+            "method": "ai"
+          }
         },
         {
           "name": "Chopfab Bleifrei, alkoholfrei, Schweiz",
@@ -1539,7 +1708,12 @@
           "observedAt": "2026-10-19T16:08:30.045766+00:00",
           "confidence": "automatic",
           "evidence": "Singha, Thailand 3.3 dl 7.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Singha wird im Kontext von 33cl-Portionen typischerweise in Flaschen angeboten; dies ist eine Schätzung ohne explizite Serviervermerke.",
+            "method": "ai"
+          }
         },
         {
           "name": "Chang, Thailand",
@@ -1550,7 +1724,12 @@
           "observedAt": "2026-10-19T16:08:30.045766+00:00",
           "confidence": "automatic",
           "evidence": "Chang, Thailand 3.3 dl 7.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Chang wird im Kontext von 33cl-Portionen typischerweise in Flaschen angeboten; dies ist eine Schätzung ohne explizite Serviervermerke.",
+            "method": "ai"
+          }
         },
         {
           "name": "Tiger Bier, Singapur",
@@ -1561,7 +1740,12 @@
           "observedAt": "2026-10-19T16:08:30.045766+00:00",
           "confidence": "automatic",
           "evidence": "Tiger Bier, Singapur 3.3 dl 7.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Tiger Bier wird im Kontext von 33cl-Portionen typischerweise in Flaschen angeboten; dies ist eine Schätzung ohne explizite Serviervermerke.",
+            "method": "ai"
+          }
         },
         {
           "name": "Chopfab swiss blonde 3dl",
@@ -1695,7 +1879,12 @@
           "observedAt": "2026-10-19T16:08:30.045766+00:00",
           "confidence": "automatic",
           "evidence": "Singha, 3.3 dl 7.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Singha bei 33cl wird eher als Flaschenbier erwartet; die Einschätzung beruht nur auf Marke und Portionsgröße.",
+            "method": "ai"
+          }
         },
         {
           "name": "Chang,",
@@ -1706,7 +1895,12 @@
           "observedAt": "2026-10-19T16:08:30.045766+00:00",
           "confidence": "automatic",
           "evidence": "Chang, 3.3 dl 7.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Chang bei 33cl wird eher als Flaschenbier erwartet; die Einschätzung beruht nur auf Marke und Portionsgröße.",
+            "method": "ai"
+          }
         },
         {
           "name": "Tiger Bier,",
@@ -1717,7 +1911,12 @@
           "observedAt": "2026-10-19T16:08:30.045766+00:00",
           "confidence": "automatic",
           "evidence": "Tiger Bier, 3.3 dl 7.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Tiger Bier bei 33cl wird eher als Flaschenbier erwartet; die Einschätzung beruht nur auf Marke und Portionsgröße.",
+            "method": "ai"
+          }
         },
         {
           "name": "Leo, Thailand",
@@ -1816,7 +2015,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:08:30.045766+00:00"
+      "checkedAt": "2026-10-19T16:08:30.045766+00:00",
+      "aiCheckedAt": "2026-10-19T17:31:07.527462+00:00"
     },
     {
       "id": "node/7778233544",
@@ -1970,7 +2170,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:01:29.293898+00:00"
+      "checkedAt": "2026-10-19T16:01:29.293898+00:00",
+      "aiCheckedAt": "2026-10-19T17:31:21.363370+00:00"
     },
     {
       "id": "node/5772774856",
@@ -2041,7 +2242,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:12.257374+00:00"
+      "checkedAt": "2026-10-19T16:34:12.257374+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:11.916084+00:00"
     },
     {
       "id": "node/9871385224",
@@ -2127,7 +2329,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:01:30.310189+00:00"
+      "checkedAt": "2026-10-19T16:01:30.310189+00:00",
+      "aiCheckedAt": "2026-10-19T17:31:15.202464+00:00"
     },
     {
       "id": "node/71525383",
@@ -2208,7 +2411,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:32.993079+00:00"
+      "checkedAt": "2026-10-19T16:03:32.993079+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:48.785449+00:00"
     },
     {
       "id": "node/11835158537",
@@ -2314,7 +2518,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:01:37.843463+00:00"
+      "checkedAt": "2026-10-19T16:01:37.843463+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:53.918372+00:00"
     },
     {
       "id": "node/8067975981",
@@ -2436,7 +2641,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:06:24.429949+00:00"
+      "checkedAt": "2026-10-19T16:06:24.429949+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:05.377341+00:00"
     },
     {
       "id": "node/13200691848",
@@ -2576,7 +2782,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:01:37.946572+00:00"
+      "checkedAt": "2026-10-19T16:01:37.946572+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:27.088953+00:00"
     },
     {
       "id": "node/428476539",
@@ -2775,7 +2982,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:41.583959+00:00"
+      "checkedAt": "2026-10-19T16:03:41.583959+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:11.843055+00:00"
     },
     {
       "id": "node/593638990",
@@ -2912,7 +3120,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:26:48.255480+00:00"
+      "checkedAt": "2026-10-19T16:26:48.255480+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:15.956125+00:00"
     },
     {
       "id": "node/8727999200",
@@ -2926,9 +3135,67 @@
       "cuisine": [],
       "openingHours": "Tu-Th 11:00-22:00; Fr 11:00-23:00; Sa 10:00-23:00",
       "outdoor": true,
-      "offers": [],
+      "offers": [
+        {
+          "name": "Moretti Offen - Lager",
+          "priceChf": 5,
+          "volumeMl": 300,
+          "sourceUrl": "https://www.damatti.it/getraenke",
+          "observedAt": "2026-10-19T17:07:39.530646+00:00",
+          "confidence": "ai",
+          "evidence": "Moretti Offen - Lager CHF 5 3 dl 4.8%",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "6259812a6c498d4a06ed93699b184ede394eda8b540ac267fcd28c219cb32cdd"
+        },
+        {
+          "name": "Moretti Offen - Lager",
+          "priceChf": 8,
+          "volumeMl": 500,
+          "sourceUrl": "https://www.damatti.it/getraenke",
+          "observedAt": "2026-10-19T17:07:39.530646+00:00",
+          "confidence": "ai",
+          "evidence": "Moretti Offen - Lager CHF 8 5 dl 4.8%",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "6259812a6c498d4a06ed93699b184ede394eda8b540ac267fcd28c219cb32cdd"
+        },
+        {
+          "name": "Menabrea Amber Bier",
+          "priceChf": 6,
+          "volumeMl": 330,
+          "sourceUrl": "https://www.damatti.it/getraenke",
+          "observedAt": "2026-10-19T17:07:39.530646+00:00",
+          "confidence": "ai",
+          "evidence": "Menabrea Amber Bier CHF 6 33 cl 4.8%",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "6259812a6c498d4a06ed93699b184ede394eda8b540ac267fcd28c219cb32cdd"
+        },
+        {
+          "name": "Curmi – Birrificio 32 Helles Dinkel-Weissbier",
+          "priceChf": 22,
+          "volumeMl": 750,
+          "sourceUrl": "https://www.damatti.it/getraenke",
+          "observedAt": "2026-10-19T17:07:39.530646+00:00",
+          "confidence": "ai",
+          "evidence": "Curmi – Birrificio 32 Helles Dinkel-Weissbier CHF 22 75 cl 5.8%",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "6259812a6c498d4a06ed93699b184ede394eda8b540ac267fcd28c219cb32cdd"
+        }
+      ],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:35:33.061261+00:00"
+      "checkedAt": "2026-10-19T16:35:33.061261+00:00",
+      "aiCheckedAt": "2026-10-19T17:07:48.975737+00:00"
     },
     {
       "id": "node/71525579",
@@ -3148,7 +3415,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:06:47.473505+00:00"
+      "checkedAt": "2026-10-19T16:06:47.473505+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:46.985104+00:00"
     },
     {
       "id": "node/7747207685",
@@ -3258,7 +3526,12 @@
           "observedAt": "2026-10-19T16:01:51.557995+00:00",
           "confidence": "automatic",
           "evidence": "Schneider Weisse <0,5% 5dl 8.50",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Die Alternative mit 50cl und höherem Preis ist als Flasche gekennzeichnet; dies ist eine Schätzung für dasselbe Produkt, keine Bestätigung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Warteck Lager",
@@ -3350,7 +3623,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:01:51.557995+00:00"
+      "checkedAt": "2026-10-19T16:01:51.557995+00:00",
+      "aiCheckedAt": "2026-10-19T17:32:00.584778+00:00"
     },
     {
       "id": "node/12771073601",
@@ -3636,7 +3910,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:04:25.443793+00:00"
+      "checkedAt": "2026-10-19T16:04:25.443793+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:49.197818+00:00"
     },
     {
       "id": "node/13654761211",
@@ -3903,11 +4178,17 @@
           "sourcePage": 31,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "5d1ff6041450d6774efc8246da6110e8ccbc43ba70f804d7a38a1d3539f29c11"
+          "sourceSha256": "5d1ff6041450d6774efc8246da6110e8ccbc43ba70f804d7a38a1d3539f29c11",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Dos Equis XX wird bei 33cl im Exportbereich typischerweise als Flasche angeboten; dies ist eine Schätzung ohne Serviervermerk.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:00:43.750532+00:00"
+      "checkedAt": "2026-10-19T16:00:43.750532+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:37.743207+00:00"
     },
     {
       "id": "node/11268583746",
@@ -4063,7 +4344,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:06:51.137348+00:00"
+      "checkedAt": "2026-10-19T16:06:51.137348+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:33.645160+00:00"
     },
     {
       "id": "node/10884236353",
@@ -4244,11 +4526,87 @@
           "observedAt": "2026-10-19T16:33:27.925866+00:00",
           "confidence": "automatic",
           "evidence": "Flensburger Pils 4.8% 3.3 dl 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
+        },
+        {
+          "name": "Insel Bräu Saison 5.6%",
+          "priceChf": 7.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://fiskundol.ch/food-drinks/",
+          "observedAt": "2026-10-19T17:36:27.056067+00:00",
+          "confidence": "ai",
+          "evidence": "Bottled Beer 3.3 dl Insel Bräu Saison 5.6% 7.50",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "789d6b19dbbb1d3b828932ba9f436484117f305180289b649eb7d5798231da66"
+        },
+        {
+          "name": "Insel Bräu East Coast IPA 5.6%",
+          "priceChf": 7.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://fiskundol.ch/food-drinks/",
+          "observedAt": "2026-10-19T17:36:27.056067+00:00",
+          "confidence": "ai",
+          "evidence": "Bottled Beer 3.3 dl Insel Bräu East Coast IPA5.6% 7.50",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "789d6b19dbbb1d3b828932ba9f436484117f305180289b649eb7d5798231da66"
+        },
+        {
+          "name": "Birtel Lager – Alkoholfrei 0.5%",
+          "priceChf": 6.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://fiskundol.ch/food-drinks/",
+          "observedAt": "2026-10-19T17:36:27.056067+00:00",
+          "confidence": "ai",
+          "evidence": "Bottled Beer 3.3 dl Birtel Lager – Alkoholfrei 0.5% 6.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "789d6b19dbbb1d3b828932ba9f436484117f305180289b649eb7d5798231da66"
+        },
+        {
+          "name": "Flensburger – Alkoholfrei 0.5%",
+          "priceChf": 6.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://fiskundol.ch/food-drinks/",
+          "observedAt": "2026-10-19T17:36:27.056067+00:00",
+          "confidence": "ai",
+          "evidence": "Bottled Beer 3.3 dl Flensburger – Alkoholfrei 0.5% 6.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "789d6b19dbbb1d3b828932ba9f436484117f305180289b649eb7d5798231da66"
+        },
+        {
+          "name": "Kehrwieder Miami Grove Pale Ale – Alkoholfrei 0.5%",
+          "priceChf": 7.0,
+          "volumeMl": 330,
+          "sourceUrl": "https://fiskundol.ch/food-drinks/",
+          "observedAt": "2026-10-19T17:36:27.056067+00:00",
+          "confidence": "ai",
+          "evidence": "Bottled Beer 3.3 dl Kehrwieder Miami Grove Pale Ale – Alkoholfrei 0.5% 7.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "789d6b19dbbb1d3b828932ba9f436484117f305180289b649eb7d5798231da66"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:27.925866+00:00"
+      "checkedAt": "2026-10-19T16:33:27.925866+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:05.813853+00:00"
     },
     {
       "id": "node/9677739617",
@@ -4657,7 +5015,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:15.282569+00:00"
+      "checkedAt": "2026-10-19T16:02:15.282569+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:54.539775+00:00"
     },
     {
       "id": "node/5248674577",
@@ -4791,7 +5150,12 @@
           "observedAt": "2026-10-19T16:02:16.156241+00:00",
           "confidence": "automatic",
           "evidence": "Jever (D) 33 cl 6.5 CHF",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Hard Labor Pale Ale (CH)",
@@ -4802,7 +5166,12 @@
           "observedAt": "2026-10-19T16:02:16.156241+00:00",
           "confidence": "automatic",
           "evidence": "Hard Labor Pale Ale (CH) 33 cl 8.5 CHF",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Coopers Brewery Extra Stout (AUS)",
@@ -4813,7 +5182,12 @@
           "observedAt": "2026-10-19T16:02:16.156241+00:00",
           "confidence": "automatic",
           "evidence": "Coopers Brewery Extra Stout (AUS) 37.5 cl 8.0 CHF",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Unser Bier (CH)",
@@ -4824,7 +5198,12 @@
           "observedAt": "2026-10-19T16:02:16.156241+00:00",
           "confidence": "automatic",
           "evidence": "Unser Bier (CH) 50 cl 9.5 CHF",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Augustiner Helles (D)",
@@ -4835,7 +5214,12 @@
           "observedAt": "2026-10-19T16:02:16.156241+00:00",
           "confidence": "automatic",
           "evidence": "Augustiner Helles (D) 50 cl 9.5 CHF",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Kitchen Brew Windstill Helles (CH)",
@@ -4846,7 +5230,12 @@
           "observedAt": "2026-10-19T16:02:16.156241+00:00",
           "confidence": "automatic",
           "evidence": "Kitchen Brew Windstill Helles (CH) 33 cl 7.0 CHF",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Kitchen Brew Windstill NEIPA (CH)",
@@ -4857,11 +5246,201 @@
           "observedAt": "2026-10-19T16:02:16.156241+00:00",
           "confidence": "automatic",
           "evidence": "Kitchen Brew Windstill NEIPA (CH) 33 cl 7.0 CHF",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
+        },
+        {
+          "name": "Gösser (A) Stange",
+          "priceChf": 5.5,
+          "volumeMl": 300,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Gösser (A) Stange 30 cl 5.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "serving": "stange",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Gösser (A) Stange",
+          "priceChf": 5.5,
+          "volumeMl": 300,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Gösser (A) Stange 30 cl 5.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Hacker Pschorr Hefeweissbier (D)",
+          "priceChf": 9.5,
+          "volumeMl": 500,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Hacker Pschorr Hefeweissbier (D) 50 cl 9.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Adler Original (CH)",
+          "priceChf": 9.5,
+          "volumeMl": 580,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Adler Original (CH) 58 cl 9.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Lammsbräu (glutenfrei) (D)",
+          "priceChf": 7.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Lammsbräu (glutenfrei) (D) 33 cl 7.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Budvar (CZ)",
+          "priceChf": 6.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Budvar (CZ) 33 cl 6.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Hard Labor Double Blonde (CH)",
+          "priceChf": 8.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Hard Labor Double Blonde (CH) 33 cl 8.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Hard Labor Double Ambrée (CH)",
+          "priceChf": 8.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Hard Labor Double Ambrée (CH) 33 cl 8.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Hard Labor NEIPA (CH)",
+          "priceChf": 9.0,
+          "volumeMl": 330,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Hard Labor NEIPA (CH) 33 cl 9.0 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Gösser (A)",
+          "priceChf": 5.5,
+          "volumeMl": 300,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Fass Gösser (A) Stange 30 cl 5.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "serving": "stange",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Gösser (A)",
+          "priceChf": 8.5,
+          "volumeMl": 500,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Grosses 50 cl 8.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Gösser (A)",
+          "priceChf": 5.5,
+          "volumeMl": 300,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Flaschen Gösser (A) Stange 30 cl 5.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
+        },
+        {
+          "name": "Gösser (A)",
+          "priceChf": 8.5,
+          "volumeMl": 500,
+          "sourceUrl": "https://grenzwert.ch/bar/",
+          "observedAt": "2026-10-19T17:36:18.302302+00:00",
+          "confidence": "ai",
+          "evidence": "Grosses 50 cl 8.5 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "cd0f7de1ba8b184ca4e78838a0a414f2000d92b4ae4080e7b096db52f173417d"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:16.156241+00:00"
+      "checkedAt": "2026-10-19T16:02:16.156241+00:00",
+      "aiCheckedAt": "2026-10-19T17:36:20.694338+00:00"
     },
     {
       "id": "node/5419675922",
@@ -5063,7 +5642,12 @@
           "sourcePage": 18,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "d1e92b630c18259020d4591f71c3b749861cbbcdcd69258595b256b9e2d3d429"
+          "sourceSha256": "d1e92b630c18259020d4591f71c3b749861cbbcdcd69258595b256b9e2d3d429",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Nur 3,3 dl ohne Ausschanktext; 33cl ist häufig Flaschenformat, daher schwache Schätzung Flasche.",
+            "method": "ai"
+          }
         },
         {
           "name": "Lager non-alcoholic",
@@ -5100,7 +5684,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:12.478594+00:00"
+      "checkedAt": "2026-10-19T16:34:12.478594+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:59.042318+00:00"
     },
     {
       "id": "node/1936085288",
@@ -5464,7 +6049,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:16.843082+00:00"
+      "checkedAt": "2026-10-19T16:02:16.843082+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:19.743130+00:00"
     },
     {
       "id": "way/225127782",
@@ -5656,7 +6242,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:23.058234+00:00"
+      "checkedAt": "2026-10-19T16:33:23.058234+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:45.719474+00:00"
     },
     {
       "id": "node/12017121002",
@@ -5726,7 +6313,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:43.016465+00:00"
+      "checkedAt": "2026-10-19T16:03:43.016465+00:00",
+      "aiCheckedAt": "2026-10-19T17:36:22.741124+00:00"
     },
     {
       "id": "node/2215970143",
@@ -5753,7 +6341,12 @@
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "c4083e3442720d14825a45ab1cea188ac50f97b7a11fe426f789164898c8b9aa"
+          "sourceSha256": "c4083e3442720d14825a45ab1cea188ac50f97b7a11fe426f789164898c8b9aa",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "33cl-Angabe passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Unser Bier Blond 5 Vol.% 33cl",
@@ -5767,7 +6360,12 @@
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "c4083e3442720d14825a45ab1cea188ac50f97b7a11fe426f789164898c8b9aa"
+          "sourceSha256": "c4083e3442720d14825a45ab1cea188ac50f97b7a11fe426f789164898c8b9aa",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "33cl-Angabe passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Lagunitas IPA 6.2 Vol.% 33cl",
@@ -5781,7 +6379,12 @@
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "c4083e3442720d14825a45ab1cea188ac50f97b7a11fe426f789164898c8b9aa"
+          "sourceSha256": "c4083e3442720d14825a45ab1cea188ac50f97b7a11fe426f789164898c8b9aa",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "33cl-Angabe passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Erdinger Weissbier 5.3 Vol.% 50cl",
@@ -5820,7 +6423,12 @@
           "observedAt": "2026-10-19T16:34:24.628948+00:00",
           "confidence": "automatic",
           "evidence": "Ittinger Amber 5.6 Vol.% 33cl 7.5",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Gleiches Produkt mit 33cl-Angabe im selben Angebot; Flaschenformat nur als Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Unser Bier Blond",
@@ -5831,7 +6439,12 @@
           "observedAt": "2026-10-19T16:34:24.628948+00:00",
           "confidence": "automatic",
           "evidence": "Unser Bier Blond 5 Vol.% 33cl 6.5",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Gleiches Produkt mit 33cl-Angabe im selben Angebot; Flaschenformat nur als Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Lagunitas IPA",
@@ -5842,7 +6455,12 @@
           "observedAt": "2026-10-19T16:34:24.628948+00:00",
           "confidence": "automatic",
           "evidence": "Lagunitas IPA 6.2 Vol.% 33cl 9",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Gleiches Produkt mit 33cl-Angabe im selben Angebot; Flaschenformat nur als Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Erdinger Weissbier",
@@ -5864,11 +6482,17 @@
           "observedAt": "2026-10-19T16:34:24.628948+00:00",
           "confidence": "automatic",
           "evidence": "Birra Moretti Zero 0.0 33cl 8",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "33cl-Angabe passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:24.628948+00:00"
+      "checkedAt": "2026-10-19T16:34:24.628948+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:59.020825+00:00"
     },
     {
       "id": "node/10598326199",
@@ -6005,7 +6629,12 @@
           "sourcePage": 3,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "38be809e7126a00c366f5bbb0edda043c62a780214e42ae02124323d6b6a6947"
+          "sourceSha256": "38be809e7126a00c366f5bbb0edda043c62a780214e42ae02124323d6b6a6947",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Rothaus Tannenzäpfle alkoholfrei",
@@ -6019,7 +6648,12 @@
           "sourcePage": 3,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "38be809e7126a00c366f5bbb0edda043c62a780214e42ae02124323d6b6a6947"
+          "sourceSha256": "38be809e7126a00c366f5bbb0edda043c62a780214e42ae02124323d6b6a6947",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Lola IPA alkoholfrei",
@@ -6033,11 +6667,17 @@
           "sourcePage": 3,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "38be809e7126a00c366f5bbb0edda043c62a780214e42ae02124323d6b6a6947"
+          "sourceSha256": "38be809e7126a00c366f5bbb0edda043c62a780214e42ae02124323d6b6a6947",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:23.056863+00:00"
+      "checkedAt": "2026-10-19T16:33:23.056863+00:00",
+      "aiCheckedAt": "2026-10-19T17:28:54.190511+00:00"
     },
     {
       "id": "node/13061564803",
@@ -6110,7 +6750,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:36.992100+00:00"
+      "checkedAt": "2026-10-19T16:03:36.992100+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:44.154399+00:00"
     },
     {
       "id": "node/3888881365",
@@ -6135,7 +6776,12 @@
           "observedAt": "2026-10-19T16:33:46.962203+00:00",
           "confidence": "automatic",
           "evidence": "Appenzeller Quöllfrisch hell 33 cl 5.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "33cl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Appenzeller Quöllfrisch Alkoholfrei",
@@ -6146,7 +6792,12 @@
           "observedAt": "2026-10-19T16:33:46.962203+00:00",
           "confidence": "automatic",
           "evidence": "Appenzeller Quöllfrisch Alkoholfrei 33 cl 5.00",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "33cl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Ueli Lager",
@@ -6157,11 +6808,17 @@
           "observedAt": "2026-10-19T16:33:46.962203+00:00",
           "confidence": "automatic",
           "evidence": "Ueli Lager 33 cl 6.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "33cl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:46.962203+00:00"
+      "checkedAt": "2026-10-19T16:33:46.962203+00:00",
+      "aiCheckedAt": "2026-10-19T17:36:25.834477+00:00"
     },
     {
       "id": "node/5691850621",
@@ -6185,11 +6842,17 @@
           "observedAt": "2026-10-19T16:33:49.826743+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Alkoholfrei 3.3 dl 5.00",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:49.826743+00:00"
+      "checkedAt": "2026-10-19T16:33:49.826743+00:00",
+      "aiCheckedAt": "2026-10-19T17:36:25.644013+00:00"
     },
     {
       "id": "node/4144545589",
@@ -6246,7 +6909,12 @@
           "sourcePage": 3,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "3aa3c2c013741b5a5ad1c12cf5f08e2db11c37e690b8fca5965cda62730afb27"
+          "sourceSha256": "3aa3c2c013741b5a5ad1c12cf5f08e2db11c37e690b8fca5965cda62730afb27",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "PLACEBO",
@@ -6260,7 +6928,12 @@
           "sourcePage": 3,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "3aa3c2c013741b5a5ad1c12cf5f08e2db11c37e690b8fca5965cda62730afb27"
+          "sourceSha256": "3aa3c2c013741b5a5ad1c12cf5f08e2db11c37e690b8fca5965cda62730afb27",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "VRENELISGÄRTLI",
@@ -6288,7 +6961,12 @@
           "sourcePage": 3,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "3aa3c2c013741b5a5ad1c12cf5f08e2db11c37e690b8fca5965cda62730afb27"
+          "sourceSha256": "3aa3c2c013741b5a5ad1c12cf5f08e2db11c37e690b8fca5965cda62730afb27",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "COLLABORATION NEIPA",
@@ -6302,7 +6980,12 @@
           "sourcePage": 3,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "3aa3c2c013741b5a5ad1c12cf5f08e2db11c37e690b8fca5965cda62730afb27"
+          "sourceSha256": "3aa3c2c013741b5a5ad1c12cf5f08e2db11c37e690b8fca5965cda62730afb27",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "UELI REVERENZ SPEZIAL",
@@ -6368,7 +7051,12 @@
           "observedAt": "2026-10-19T16:33:51.698677+00:00",
           "confidence": "automatic",
           "evidence": "KIRIN FREE alkoholfrei 0,0% 3,3dl 6.50",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "MONSTEINER MUNGGA BIER",
@@ -6379,7 +7067,12 @@
           "observedAt": "2026-10-19T16:33:51.698677+00:00",
           "confidence": "automatic",
           "evidence": "MONSTEINER MUNGGA BIER 3,4% 3,3dl 7.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "LAGER HELL",
@@ -6390,7 +7083,12 @@
           "observedAt": "2026-10-19T16:33:51.698677+00:00",
           "confidence": "automatic",
           "evidence": "LAGER HELL 4,8% 3,3dl 7.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "3,3 dl passt zu gängigem Flaschenformat; keine Ausschankhinweise, daher nur Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "UNSER BIER BLOND",
@@ -6423,7 +7121,12 @@
           "observedAt": "2026-10-19T16:33:51.698677+00:00",
           "confidence": "automatic",
           "evidence": "MOUNTAIN PALE ALE 5,3% 3,3dl 8.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: 33cl ist bei diesem Bierstil üblicherweise Flaschenformat; keine Hinweise auf Offenausschank, daher nur geschätzt.",
+            "method": "ai"
+          }
         },
         {
           "name": "UELI OLD SCHOOL HOPS",
@@ -6434,7 +7137,12 @@
           "observedAt": "2026-10-19T16:33:51.698677+00:00",
           "confidence": "automatic",
           "evidence": "UELI OLD SCHOOL HOPS 5,6% 3,3dl 7.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: 33cl-Format eines Ueli-Bieres ist eher Flasche; keine Ausschankhinweise vorhanden.",
+            "method": "ai"
+          }
         },
         {
           "name": "SINGHA",
@@ -6445,7 +7153,12 @@
           "observedAt": "2026-10-19T16:33:51.698677+00:00",
           "confidence": "automatic",
           "evidence": "SINGHA 5% 3,3dl 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: Singha wird üblicherweise in 33cl-Flaschen angeboten; keine Ausschankhinweise.",
+            "method": "ai"
+          }
         },
         {
           "name": "TIGER",
@@ -6456,7 +7169,12 @@
           "observedAt": "2026-10-19T16:33:51.698677+00:00",
           "confidence": "automatic",
           "evidence": "TIGER 5% 3,3dl 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: Tiger wird üblicherweise in 33cl-Flaschen angeboten; keine Ausschankhinweise.",
+            "method": "ai"
+          }
         },
         {
           "name": "ASAHI",
@@ -6467,7 +7185,12 @@
           "observedAt": "2026-10-19T16:33:51.698677+00:00",
           "confidence": "automatic",
           "evidence": "ASAHI 5% 3,3dl 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: Asahi wird üblicherweise in 33cl-Flaschen angeboten; keine Ausschankhinweise.",
+            "method": "ai"
+          }
         },
         {
           "name": "Pale cellar beer, naturally cloudy,",
@@ -6500,7 +7223,12 @@
           "observedAt": "2026-10-19T16:33:51.698677+00:00",
           "confidence": "automatic",
           "evidence": "KIRIN FREE non-alcoholic 0,0% 3,3dl 6.50",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: alkoholfreie Biere dieses Formats kommen meist als 33cl-Flasche; keine Ausschankhinweise.",
+            "method": "ai"
+          }
         },
         {
           "name": "UNSER BIER BLOND",
@@ -6515,7 +7243,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:51.698677+00:00"
+      "checkedAt": "2026-10-19T16:33:51.698677+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:21.340210+00:00"
     },
     {
       "id": "node/6958402189",
@@ -6745,7 +7474,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:16.870021+00:00"
+      "checkedAt": "2026-10-19T16:02:16.870021+00:00",
+      "aiCheckedAt": "2026-10-19T17:36:30.403531+00:00"
     },
     {
       "id": "node/11368724666",
@@ -6785,7 +7515,12 @@
           "observedAt": "2026-10-19T16:33:52.561844+00:00",
           "confidence": "automatic",
           "evidence": "Ueli Bier Spezial 33cl 5.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: 33cl-Format eines Ueli-Bieres spricht eher für Flasche; kein Ausschankhinweis vorhanden.",
+            "method": "ai"
+          }
         },
         {
           "name": "Feldschlösschen alkoholfrei",
@@ -6796,11 +7531,17 @@
           "observedAt": "2026-10-19T16:33:52.561844+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen alkoholfrei 33cl 5.50",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: alkoholfreies Feldschlösschen wird meist in 33cl-Flaschen verkauft; keine Ausschankhinweise.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:52.561844+00:00"
+      "checkedAt": "2026-10-19T16:33:52.561844+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:23.326188+00:00"
     },
     {
       "id": "node/8067972508",
@@ -6909,7 +7650,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:54.413767+00:00"
+      "checkedAt": "2026-10-19T16:33:54.413767+00:00",
+      "aiCheckedAt": "2026-10-19T17:42:25.463389+00:00"
     },
     {
       "id": "node/10262933063",
@@ -6976,7 +7718,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:56.097320+00:00"
+      "checkedAt": "2026-10-19T16:33:56.097320+00:00",
+      "aiCheckedAt": "2026-10-19T17:38:58.604907+00:00"
     },
     {
       "id": "node/593639050",
@@ -7256,7 +7999,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:04:50.973257+00:00"
+      "checkedAt": "2026-10-19T16:04:50.973257+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:16.650472+00:00"
     },
     {
       "id": "node/3207784808",
@@ -7395,7 +8139,12 @@
           "sourcePage": 6,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "d29933ee45b51bb36d1ef8bee762c3968a4050a443a9b26218c45366b50f717d"
+          "sourceSha256": "d29933ee45b51bb36d1ef8bee762c3968a4050a443a9b26218c45366b50f717d",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: Nastro Azzurro wird üblicherweise in 33cl-Flaschen verkauft; keine Ausschankhinweise.",
+            "method": "ai"
+          }
         },
         {
           "name": "NASTRO AZZURRO 0.0",
@@ -7409,7 +8158,12 @@
           "sourcePage": 6,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "d29933ee45b51bb36d1ef8bee762c3968a4050a443a9b26218c45366b50f717d"
+          "sourceSha256": "d29933ee45b51bb36d1ef8bee762c3968a4050a443a9b26218c45366b50f717d",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: alkoholfreies Nastro Azzurro wird üblicherweise in 33cl-Flaschen verkauft; keine Ausschankhinweise.",
+            "method": "ai"
+          }
         },
         {
           "name": "KLEINBASLER VAGABUND",
@@ -7423,11 +8177,17 @@
           "sourcePage": 6,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "d29933ee45b51bb36d1ef8bee762c3968a4050a443a9b26218c45366b50f717d"
+          "sourceSha256": "d29933ee45b51bb36d1ef8bee762c3968a4050a443a9b26218c45366b50f717d",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: 33cl-Format spricht eher für Flasche; keine Ausschankhinweise vorhanden.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:23.057181+00:00"
+      "checkedAt": "2026-10-19T16:33:23.057181+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:54.877089+00:00"
     },
     {
       "id": "node/122337395",
@@ -7486,7 +8246,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:00:43.749994+00:00"
+      "checkedAt": "2026-10-19T16:00:43.749994+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:18.423456+00:00"
     },
     {
       "id": "node/8909393066",
@@ -7582,7 +8343,12 @@
           "observedAt": "2026-10-19T16:34:00.825123+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Alkoholfrei 0.33l 5.50",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Ueli Bier",
@@ -7593,7 +8359,12 @@
           "observedAt": "2026-10-19T16:34:00.825123+00:00",
           "confidence": "automatic",
           "evidence": "Ueli Bier 0.33l 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Warteck Bier",
@@ -7604,7 +8375,12 @@
           "observedAt": "2026-10-19T16:34:00.825123+00:00",
           "confidence": "automatic",
           "evidence": "Warteck Bier 0.5l 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Schneider Weisse Originale",
@@ -7615,7 +8391,12 @@
           "observedAt": "2026-10-19T16:34:00.825123+00:00",
           "confidence": "automatic",
           "evidence": "Schneider Weisse Originale 0.5l 7.90",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Amber",
@@ -7637,7 +8418,12 @@
           "observedAt": "2026-10-19T16:34:00.825123+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Non-Alcoholic 0.33l 5.50",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Ueli beer",
@@ -7648,7 +8434,12 @@
           "observedAt": "2026-10-19T16:34:00.825123+00:00",
           "confidence": "automatic",
           "evidence": "Ueli beer 0.35l 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Warteck beer",
@@ -7659,7 +8450,12 @@
           "observedAt": "2026-10-19T16:34:00.825123+00:00",
           "confidence": "automatic",
           "evidence": "Warteck beer 0.5l 6.50",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Schneider Weisse originals",
@@ -7670,7 +8466,12 @@
           "observedAt": "2026-10-19T16:34:00.825123+00:00",
           "confidence": "automatic",
           "evidence": "Schneider Weisse originals 0.5l 7.90",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Big Guinness",
@@ -7685,7 +8486,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:00.825123+00:00"
+      "checkedAt": "2026-10-19T16:34:00.825123+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:21.080971+00:00"
     },
     {
       "id": "node/6647636867",
@@ -7874,7 +8676,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:27.125425+00:00"
+      "checkedAt": "2026-10-19T16:02:27.125425+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:17.624959+00:00"
     },
     {
       "id": "node/6564834186",
@@ -8012,10 +8815,67 @@
           "confidence": "automatic",
           "evidence": "Hofbräu Alcohol-Free Wheat Beer (DE) 50cl | 9.5",
           "alcoholFree": true
+        },
+        {
+          "name": "Gösser (AT)",
+          "priceChf": 5.5,
+          "volumeMl": 300,
+          "sourceUrl": "https://perron-basel.ch/bar/",
+          "observedAt": "2026-10-19T17:24:56.812188+00:00",
+          "confidence": "ai",
+          "evidence": "Vom Fass Gösser (AT) 30cl 5.5",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "84c5d71f823744281531e4c225d8e9452549fcd40c8a9828c2a309e164350e88"
+        },
+        {
+          "name": "Gösser (AT)",
+          "priceChf": 8.5,
+          "volumeMl": 500,
+          "sourceUrl": "https://perron-basel.ch/bar/",
+          "observedAt": "2026-10-19T17:24:56.812188+00:00",
+          "confidence": "ai",
+          "evidence": "Gösser (AT) 30cl 5.5 / 50cl 8.5",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "draft",
+          "sourceSha256": "84c5d71f823744281531e4c225d8e9452549fcd40c8a9828c2a309e164350e88"
+        },
+        {
+          "name": "Budvar (CZ)",
+          "priceChf": 6.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://perron-basel.ch/bar/",
+          "observedAt": "2026-10-19T17:24:56.812188+00:00",
+          "confidence": "ai",
+          "evidence": "Budvar (CZ) 33cl | 6.5",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "84c5d71f823744281531e4c225d8e9452549fcd40c8a9828c2a309e164350e88"
+        },
+        {
+          "name": "Ichnusa Non Filtrata (IT)",
+          "priceChf": 6.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://perron-basel.ch/bar/",
+          "observedAt": "2026-10-19T17:24:56.812188+00:00",
+          "confidence": "ai",
+          "evidence": "Ichnusa Non Filtrata (IT) 33cl | 6.5",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "84c5d71f823744281531e4c225d8e9452549fcd40c8a9828c2a309e164350e88"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:25:53.185439+00:00"
+      "checkedAt": "2026-10-19T16:25:53.185439+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:40.148991+00:00"
     },
     {
       "id": "node/6372498629",
@@ -8068,10 +8928,39 @@
             "reason": "Bezeichnung einer ausgeschenkten Bierportion",
             "method": "rules"
           }
+        },
+        {
+          "name": "Nastro Azzurra",
+          "priceChf": 5.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://www.centroambarfi.ch/en/drinks/",
+          "observedAt": "2026-10-19T17:38:02.933623+00:00",
+          "confidence": "ai",
+          "evidence": "Nastro Azzurra 3.3 dl CHF 5.50",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "3e59fa1871b82a92e615d8a6f8e4ddd9fbd8946c0e1955772dd9db737f921ecf"
+        },
+        {
+          "name": "Clausthaler",
+          "priceChf": 5.0,
+          "volumeMl": 300,
+          "sourceUrl": "https://www.centroambarfi.ch/en/drinks/",
+          "observedAt": "2026-10-19T17:38:02.933623+00:00",
+          "confidence": "ai",
+          "evidence": "Clausthaler 3.0 dl CHF 5.00",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "3e59fa1871b82a92e615d8a6f8e4ddd9fbd8946c0e1955772dd9db737f921ecf"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:01.945912+00:00"
+      "checkedAt": "2026-10-19T16:34:01.945912+00:00",
+      "aiCheckedAt": "2026-10-19T17:38:21.102730+00:00"
     },
     {
       "id": "node/13368137178",
@@ -8134,7 +9023,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:23.057395+00:00"
+      "checkedAt": "2026-10-19T16:33:23.057395+00:00",
+      "aiCheckedAt": "2026-10-19T17:27:18.053454+00:00"
     },
     {
       "id": "node/10963072012",
@@ -8217,7 +9107,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:27.903434+00:00"
+      "checkedAt": "2026-10-19T16:02:27.903434+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:43.886695+00:00"
     },
     {
       "id": "node/3179353790",
@@ -8540,7 +9431,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:05:26.108910+00:00"
+      "checkedAt": "2026-10-19T16:05:26.108910+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:14.333060+00:00"
     },
     {
       "id": "node/6047355929",
@@ -8753,7 +9645,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:33.394998+00:00"
+      "checkedAt": "2026-10-19T16:02:33.394998+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:14.582095+00:00"
     },
     {
       "id": "node/2624405472",
@@ -8948,11 +9841,17 @@
           "observedAt": "2026-10-19T16:34:06.637832+00:00",
           "confidence": "automatic",
           "evidence": "Feldschlösschen Alkoholfrei 3.3dl 6.00",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Schätzung: alkoholfreies Feldschlösschen mit 33cl wird meist als Flasche verkauft; keine Ausschankhinweise.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:06.637832+00:00"
+      "checkedAt": "2026-10-19T16:34:06.637832+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:07.775026+00:00"
     },
     {
       "id": "node/9832402717",
@@ -9065,7 +9964,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:05:39.239679+00:00"
+      "checkedAt": "2026-10-19T16:05:39.239679+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:05.536219+00:00"
     },
     {
       "id": "node/4601277651",
@@ -9267,7 +10167,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:04:53.706464+00:00"
+      "checkedAt": "2026-10-19T16:04:53.706464+00:00",
+      "aiCheckedAt": "2026-10-19T17:38:12.328229+00:00"
     },
     {
       "id": "node/273223709",
@@ -9400,7 +10301,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:00:43.750868+00:00"
+      "checkedAt": "2026-10-19T16:00:43.750868+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:35.856606+00:00"
     },
     {
       "id": "node/11757900217",
@@ -9448,7 +10350,12 @@
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "0b057e8966a59cc870178092bd334a822fba3924a68d0f49556113c85b49a997"
+          "sourceSha256": "0b057e8966a59cc870178092bd334a822fba3924a68d0f49556113c85b49a997",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Die Angabe 0.33 l ist eine typische Flaschengröße, es gibt aber keinen Ausschank-Hinweis; daher nur eine vorsichtige Schätzung als Flasche.",
+            "method": "ai"
+          }
         },
         {
           "name": "Ueli Bier (5.4% vol.)",
@@ -9490,7 +10397,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:06:24.371714+00:00"
+      "checkedAt": "2026-10-19T16:06:24.371714+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:45.804440+00:00"
     },
     {
       "id": "node/5016417015",
@@ -9564,7 +10472,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:50.448833+00:00"
+      "checkedAt": "2026-10-19T16:03:50.448833+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:57.985134+00:00"
     },
     {
       "id": "node/584725549",
@@ -9618,10 +10527,39 @@
           "confidence": "automatic",
           "evidence": "Schneider Weisse – 4dl 7.00 CHF",
           "alcoholFree": false
+        },
+        {
+          "name": "Warteck",
+          "priceChf": 6.0,
+          "volumeMl": 400,
+          "sourceUrl": "https://rotblaubar.ch/",
+          "observedAt": "2026-10-19T17:42:32.636842+00:00",
+          "confidence": "ai",
+          "evidence": "Warteck – 4dl 6.00 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "6cfdc6a1638b7551069613443384aa19e1d95000f5082394a160c1eb28d7d044"
+        },
+        {
+          "name": "Helvetic",
+          "priceChf": 6.5,
+          "volumeMl": 400,
+          "sourceUrl": "https://rotblaubar.ch/",
+          "observedAt": "2026-10-19T17:42:32.636842+00:00",
+          "confidence": "ai",
+          "evidence": "Helvetic – 4dl 6.50 CHF",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "6cfdc6a1638b7551069613443384aa19e1d95000f5082394a160c1eb28d7d044"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:06.955096+00:00"
+      "checkedAt": "2026-10-19T16:34:06.955096+00:00",
+      "aiCheckedAt": "2026-10-19T17:42:39.075977+00:00"
     },
     {
       "id": "node/13406499201",
@@ -9664,7 +10602,12 @@
           "sourcePage": 13,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "1299581bd8f587c736e5968d9cfc5588659c1c5bc2c44882960284be0ab45ce2"
+          "sourceSha256": "1299581bd8f587c736e5968d9cfc5588659c1c5bc2c44882960284be0ab45ce2",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Kitchenbrew wird üblicherweise abgefüllt, und 33 cl ist eine typische Flaschengröße; ohne Ausschankhinweis nur eine Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Kitchenbrew Lager",
@@ -9707,7 +10650,12 @@
           "observedAt": "2026-10-19T16:34:07.300048+00:00",
           "confidence": "automatic",
           "evidence": "Kitchenbrew Windstill Hell Alkoholfre i 33 cl 7.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Gleiches Produkt wie Eintrag 3 mit identischer Größe und gleicher Quelle (nur Schreibvariante im Namen); daher dieselbe Schätzung als Flasche.",
+            "method": "ai"
+          }
         },
         {
           "name": "Kitchenbrew Cascade Amber Ale",
@@ -9718,7 +10666,12 @@
           "observedAt": "2026-10-19T16:34:07.300048+00:00",
           "confidence": "automatic",
           "evidence": "Kitchenbrew Cascade Amber Ale 33 cl 7.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Kitchenbrew-Produkt in 33 cl; die Flaschengröße spricht für eine Flasche, es fehlt aber ein Ausschankhinweis.",
+            "method": "ai"
+          }
         },
         {
           "name": "Kitchenbrew Wheat Ale",
@@ -9729,11 +10682,17 @@
           "observedAt": "2026-10-19T16:34:07.300048+00:00",
           "confidence": "automatic",
           "evidence": "Kitchenbrew Wheat Ale 33cl 7.00",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Kitchenbrew-Produkt in 33 cl; die Flaschengröße spricht für eine Flasche, es fehlt aber ein Ausschankhinweis.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:07.300048+00:00"
+      "checkedAt": "2026-10-19T16:34:07.300048+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:51.571060+00:00"
     },
     {
       "id": "node/5765336954",
@@ -10004,7 +10963,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:05:12.628618+00:00"
+      "checkedAt": "2026-10-19T16:05:12.628618+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:22.440122+00:00"
     },
     {
       "id": "node/6372546501",
@@ -10118,10 +11078,81 @@
           "confidence": "automatic",
           "evidence": "Schneider Weisse, Weizenbier 5.4% - 0.5l 8,00",
           "alcoholFree": false
+        },
+        {
+          "name": "Nubia Brew Cardamom Beer 4.5%",
+          "priceChf": 6.0,
+          "volumeMl": 330,
+          "sourceUrl": "https://shiro-basel.ch/speisekarte/",
+          "observedAt": "2026-10-19T17:42:31.015181+00:00",
+          "confidence": "ai",
+          "evidence": "Nubia Brew Cardamom Beer 4.5% - 0.33l Teff 6,00",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "ca139ee1003b2d7d938822e6bcc2136cb021b39157de0cff60fc144ac0bc8257"
+        },
+        {
+          "name": "Nubia Brew Black Beer 5.5%",
+          "priceChf": 6.0,
+          "volumeMl": 330,
+          "sourceUrl": "https://shiro-basel.ch/speisekarte/",
+          "observedAt": "2026-10-19T17:42:31.015181+00:00",
+          "confidence": "ai",
+          "evidence": "Nubia Brew Black Beer 5.5% - 0.33l Milo-Hirse 6,00",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "ca139ee1003b2d7d938822e6bcc2136cb021b39157de0cff60fc144ac0bc8257"
+        },
+        {
+          "name": "Nubia Brew Selam alkoholfrei",
+          "priceChf": 6.0,
+          "volumeMl": 330,
+          "sourceUrl": "https://shiro-basel.ch/speisekarte/",
+          "observedAt": "2026-10-19T17:42:31.015181+00:00",
+          "confidence": "ai",
+          "evidence": "Nubia Brew Selam alkoholfrei - 0.33l Gersten- und Weizenmalz 6,00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "ca139ee1003b2d7d938822e6bcc2136cb021b39157de0cff60fc144ac0bc8257"
+        },
+        {
+          "name": "Nubia Brew Georgis Lagerbier 4.8% - 0.33l",
+          "priceChf": 6.0,
+          "volumeMl": 330,
+          "sourceUrl": "https://shiro-basel.ch/speisekarte/",
+          "observedAt": "2026-10-19T17:42:31.015181+00:00",
+          "confidence": "ai",
+          "evidence": "Nubia Brew Georgis Lagerbier 4.8% - 0.33l mit Teff (Zwerghirse) 6,00",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "sourceSha256": "ca139ee1003b2d7d938822e6bcc2136cb021b39157de0cff60fc144ac0bc8257"
+        },
+        {
+          "name": "Chopfab Freibier <0.5% - 0.33l alkoholfrei",
+          "priceChf": 5.5,
+          "volumeMl": 330,
+          "sourceUrl": "https://shiro-basel.ch/speisekarte/",
+          "observedAt": "2026-10-19T17:42:31.015181+00:00",
+          "confidence": "ai",
+          "evidence": "Chopfab Freibier <0.5% - 0.33l alkoholfrei, Flasche 5,50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "bottle",
+          "sourceSha256": "ca139ee1003b2d7d938822e6bcc2136cb021b39157de0cff60fc144ac0bc8257"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:39.570906+00:00"
+      "checkedAt": "2026-10-19T16:02:39.570906+00:00",
+      "aiCheckedAt": "2026-10-19T17:42:43.721512+00:00"
     },
     {
       "id": "node/5341711822",
@@ -10234,7 +11265,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:56.280618+00:00"
+      "checkedAt": "2026-10-19T16:02:56.280618+00:00",
+      "aiCheckedAt": "2026-10-19T17:38:05.799274+00:00"
     },
     {
       "id": "node/10745141574",
@@ -10353,7 +11385,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:39.614602+00:00"
+      "checkedAt": "2026-10-19T16:03:39.614602+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:01.152519+00:00"
     },
     {
       "id": "node/593094110",
@@ -10430,7 +11463,12 @@
           "sourcePage": 4,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "0e860e3757416767d6549fca5fe5e0e542370d41fcf43b4f6893676860fd459b"
+          "sourceSha256": "0e860e3757416767d6549fca5fe5e0e542370d41fcf43b4f6893676860fd459b",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "33 cl ist eine typische Flaschengröße; für das Produkt gibt es keinen Ausschankhinweis, daher nur eine vorsichtige Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Leermondbier (alkoholfrei)",
@@ -10444,11 +11482,17 @@
           "sourcePage": 4,
           "extractionModel": "claude-haiku-5-5",
           "beerType": "unknown",
-          "sourceSha256": "0e860e3757416767d6549fca5fe5e0e542370d41fcf43b4f6893676860fd459b"
+          "sourceSha256": "0e860e3757416767d6549fca5fe5e0e542370d41fcf43b4f6893676860fd459b",
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Alkoholfreies Produkt in 33 cl; die typische Flaschengröße spricht für Flasche, ohne Ausschankhinweis nur als Schätzung.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:33:23.057659+00:00"
+      "checkedAt": "2026-10-19T16:33:23.057659+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:24.440364+00:00"
     },
     {
       "id": "node/11997975469",
@@ -10472,7 +11516,12 @@
           "observedAt": "2026-10-19T16:34:08.536396+00:00",
           "confidence": "automatic",
           "evidence": "Ueli Bier - Spezial hell | 5.0% 3.3 dl 6",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Ueli-Bier in 33 cl; diese Größe ist typisch für Flaschen, es gibt aber keinen Ausschankhinweis.",
+            "method": "ai"
+          }
         },
         {
           "name": "Ueli Sorglos - alkoholfrei",
@@ -10483,11 +11532,17 @@
           "observedAt": "2026-10-19T16:34:08.536396+00:00",
           "confidence": "automatic",
           "evidence": "Ueli Sorglos - alkoholfrei 3.3 dl 5.80",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Ueli Sorglos alkoholfrei in 33 cl; die typische Flaschengröße spricht für Flasche, ohne Ausschankhinweis nur als Schätzung.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:08.536396+00:00"
+      "checkedAt": "2026-10-19T16:34:08.536396+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:08.828547+00:00"
     },
     {
       "id": "node/6133118090",
@@ -10636,7 +11691,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:04:01.108446+00:00"
+      "checkedAt": "2026-10-19T16:04:01.108446+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:30.103231+00:00"
     },
     {
       "id": "node/10699363505",
@@ -10742,7 +11798,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:04:55.189085+00:00"
+      "checkedAt": "2026-10-19T16:04:55.189085+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:31.509801+00:00"
     },
     {
       "id": "node/292057787",
@@ -10894,7 +11951,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:02:59.895009+00:00"
+      "checkedAt": "2026-10-19T16:02:59.895009+00:00",
+      "aiCheckedAt": "2026-10-19T17:46:59.810467+00:00"
     },
     {
       "id": "node/9006190876",
@@ -11106,7 +12164,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:00.134631+00:00"
+      "checkedAt": "2026-10-19T16:03:00.134631+00:00",
+      "aiCheckedAt": "2026-10-19T17:44:37.407556+00:00"
     },
     {
       "id": "node/14124587711",
@@ -11289,7 +12348,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:05.357789+00:00"
+      "checkedAt": "2026-10-19T16:03:05.357789+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:41.913272+00:00"
     },
     {
       "id": "node/740490382",
@@ -11485,7 +12545,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:05:44.834212+00:00"
+      "checkedAt": "2026-10-19T16:05:44.834212+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:07.538738+00:00"
     },
     {
       "id": "way/1140850617",
@@ -11569,7 +12630,12 @@
           "observedAt": "2026-10-19T16:05:03.127690+00:00",
           "confidence": "automatic",
           "evidence": "Lola IPA 0.33l 7.50",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         },
         {
           "name": "Schlappeseppel Weizen",
@@ -11580,11 +12646,17 @@
           "observedAt": "2026-10-19T16:05:03.127690+00:00",
           "confidence": "automatic",
           "evidence": "Schlappeseppel Weizen 0.5l 10.50",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "KI-Zuordnung anhand der Getränkekarte",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:05:03.127690+00:00"
+      "checkedAt": "2026-10-19T16:05:03.127690+00:00",
+      "aiCheckedAt": "2026-10-19T17:44:24.954939+00:00"
     },
     {
       "id": "node/5341699522",
@@ -11866,10 +12938,31 @@
           "confidence": "automatic",
           "evidence": "Appenzeller IPA, bouteille 3.3dl 6.50",
           "alcoholFree": false
+        },
+        {
+          "name": "Stange Volta Bräu Lager 3dl/5dl",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-basel-rosental/menue-westhive-kitchen-basel-rosental/",
+          "observedAt": "2026-10-19T17:44:24.303817+00:00",
+          "confidence": "ai",
+          "evidence": "Stange Volta Bräu Lager 3dl/5dl 5.00 – 8.00",
+          "alcoholFree": false,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "beerType": "unknown",
+          "serving": "stange",
+          "sourceSha256": "0bad35ae43939de4632068b3fa6156471aaff78822fb294efbedd38a1d939952",
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Bezeichnung einer ausgeschenkten Bierportion",
+            "method": "rules"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:21.959598+00:00"
+      "checkedAt": "2026-10-19T16:03:21.959598+00:00",
+      "aiCheckedAt": "2026-10-19T17:45:44.982218+00:00"
     },
     {
       "id": "node/13543480945",
@@ -11942,7 +13035,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:05.386382+00:00"
+      "checkedAt": "2026-10-19T16:03:05.386382+00:00",
+      "aiCheckedAt": "2026-10-19T17:44:28.870129+00:00"
     },
     {
       "id": "node/6923434369",
@@ -12124,7 +13218,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:08:09.077313+00:00"
+      "checkedAt": "2026-10-19T16:08:09.077313+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:18.699218+00:00"
     },
     {
       "id": "node/14297566719",
@@ -12233,7 +13328,12 @@
           "observedAt": "2026-10-19T16:03:06.533341+00:00",
           "confidence": "automatic",
           "evidence": "Rothaus Pils Tannenzäpfle DE / 33 cl 6.0",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Rothaus Pils Tannenzäpfle wird typischerweise in 33-cl-Flaschen angeboten; ohne Ausschankhinweis nur als Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "San Miguel ES /",
@@ -12244,7 +13344,12 @@
           "observedAt": "2026-10-19T16:03:06.533341+00:00",
           "confidence": "automatic",
           "evidence": "San Miguel ES / 33 cl 6.0",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "San Miguel in 33 cl entspricht einer typischen Flaschengröße; ohne Ausschankhinweis nur als Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Peroni Nastro Azzurro IT /",
@@ -12255,7 +13360,12 @@
           "observedAt": "2026-10-19T16:03:06.533341+00:00",
           "confidence": "automatic",
           "evidence": "Peroni Nastro Azzurro IT / 33 cl 6.0",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Peroni Nastro Azzurro in 33 cl entspricht einer typischen Flaschengröße; ohne Ausschankhinweis nur als Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Augustiner Lagerbier DE / Hell /",
@@ -12277,7 +13387,12 @@
           "observedAt": "2026-10-19T16:03:06.533341+00:00",
           "confidence": "automatic",
           "evidence": "Waldschlössli Lagerbier / Oberwil / CH / 33 cl 6.0",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Waldschlössli Lagerbier in 33 cl entspricht einer typischen Flaschengröße; ohne Ausschankhinweis nur als Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Säntis Kristall Appenzell",
@@ -12455,7 +13570,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:03:06.533341+00:00"
+      "checkedAt": "2026-10-19T16:03:06.533341+00:00",
+      "aiCheckedAt": "2026-10-19T17:47:42.829017+00:00"
     },
     {
       "id": "node/698552423",
@@ -12513,7 +13629,12 @@
           "observedAt": "2026-10-19T16:34:09.403910+00:00",
           "confidence": "automatic",
           "evidence": "Ueli Old School Hops 33 cl 7.5",
-          "alcoholFree": false
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Ueli Old School Hops in 33 cl entspricht einer typischen Flaschengröße; ohne Ausschankhinweis nur als Schätzung.",
+            "method": "ai"
+          }
         },
         {
           "name": "Ueli Sorglos alkoholfrei",
@@ -12524,11 +13645,17 @@
           "observedAt": "2026-10-19T16:34:09.403910+00:00",
           "confidence": "automatic",
           "evidence": "Ueli Sorglos alkoholfrei 0.0% 33 cl 7",
-          "alcoholFree": true
+          "alcoholFree": true,
+          "beerTypeEstimate": {
+            "type": "bottle",
+            "reason": "Ueli Sorglos alkoholfrei in 33 cl; gleiches Produkt wie Eintrag 11 mit typischer Flaschengröße, aber ohne Ausschankhinweis nur als Schätzung.",
+            "method": "ai"
+          }
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:34:09.403910+00:00"
+      "checkedAt": "2026-10-19T16:34:09.403910+00:00",
+      "aiCheckedAt": "2026-10-19T17:44:05.383716+00:00"
     }
   ]
 }

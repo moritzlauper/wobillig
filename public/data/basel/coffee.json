@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T16:25:49.877925+00:00",
+  "generatedAt": "2026-10-19T17:49:12.351820+00:00",
   "discoveredAt": "2026-10-19T16:15:04.323534+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -102,7 +102,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:04.331900+00:00"
+      "checkedAt": "2026-10-19T16:15:04.331900+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:25.734834+00:00"
     },
     {
       "id": "node/9748222017",
@@ -196,7 +197,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:04.332147+00:00"
+      "checkedAt": "2026-10-19T16:15:04.332147+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:57.996529+00:00"
     },
     {
       "id": "node/6556102796",
@@ -298,7 +300,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:04.332531+00:00"
+      "checkedAt": "2026-10-19T16:15:04.332531+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:34.548892+00:00"
     },
     {
       "id": "node/1028007577",
@@ -308,14 +311,14 @@
       "type": "cafe",
       "address": "Klybeckstrasse 99",
       "postcode": "4057",
-      "addressSource": "https://www.openstreetmap.org/node/3215843535",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3215843535"
     },
     {
       "id": "node/5009932363",
@@ -439,7 +442,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:04.332815+00:00"
+      "checkedAt": "2026-10-19T16:15:04.332815+00:00",
+      "aiCheckedAt": "2026-10-19T17:31:32.523414+00:00"
     },
     {
       "id": "node/12707627770",
@@ -449,14 +453,14 @@
       "type": "cafe",
       "address": "Nachtigallenwäldeli 9",
       "postcode": "",
-      "addressSource": "https://www.openstreetmap.org/node/13650021071",
       "website": "https://www.kuppel-basel.ch",
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:20:29.562267+00:00"
+      "checkedAt": "2026-10-19T16:20:29.562267+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/13650021071"
     },
     {
       "id": "node/2434405556",
@@ -466,14 +470,74 @@
       "type": "cafe",
       "address": "Hüningerstrasse 84",
       "postcode": "4056",
-      "addressSource": "https://www.openstreetmap.org/node/12640122380",
       "website": "https://sv-group.com/de/barguette",
       "cuisine": [],
       "openingHours": "Mo-Th 07:30-16:00; Fr 07:30-15:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/12640122380"
+    },
+    {
+      "id": "node/4150413389",
+      "name": "Basso",
+      "lat": 47.5734205,
+      "lon": 7.5834511,
+      "type": "restaurant",
+      "address": "Elsässerrheinweg 101",
+      "postcode": "4056",
+      "website": "https://www.bassoverse.space/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "café crema / americano",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bassoverse.space/restaurant",
+          "observedAt": "2026-10-19T17:30:14.680437+00:00",
+          "confidence": "ai",
+          "evidence": "café crema / americano With coffee from the Kaffeemacher:innen from Basel 4.8",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "c75757aaf10c6f7f45f7885746c1ed27d4f1bc68e9744712b7407c1c704f4e75"
+        },
+        {
+          "name": "cappuccino",
+          "priceChf": 5.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bassoverse.space/restaurant",
+          "observedAt": "2026-10-19T17:30:14.680437+00:00",
+          "confidence": "ai",
+          "evidence": "cappuccino With coffee from the Kaffeemacher:innen from Basel 5.8",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "c75757aaf10c6f7f45f7885746c1ed27d4f1bc68e9744712b7407c1c704f4e75"
+        },
+        {
+          "name": "espresso",
+          "priceChf": 4.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bassoverse.space/restaurant",
+          "observedAt": "2026-10-19T17:30:14.680437+00:00",
+          "confidence": "ai",
+          "evidence": "espresso With coffee from the Kaffeemacher:innen from Basel 4",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "c75757aaf10c6f7f45f7885746c1ed27d4f1bc68e9744712b7407c1c704f4e75"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-19T16:33:23.066582+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:30.864633+00:00"
     },
     {
       "id": "node/3888944674",
@@ -594,7 +658,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:04.334847+00:00"
+      "checkedAt": "2026-10-19T16:15:04.334847+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:34.190863+00:00"
     },
     {
       "id": "node/1170699798",
@@ -713,7 +778,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:04.335257+00:00"
+      "checkedAt": "2026-10-19T16:15:04.335257+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:55.522923+00:00"
     },
     {
       "id": "node/4826835625",
@@ -891,7 +957,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:04.343527+00:00"
+      "checkedAt": "2026-10-19T16:15:04.343527+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:30.594156+00:00"
     },
     {
       "id": "node/2369538706",
@@ -1094,7 +1161,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:08.726951+00:00"
+      "checkedAt": "2026-10-19T16:15:08.726951+00:00",
+      "aiCheckedAt": "2026-10-19T17:31:07.527505+00:00"
     },
     {
       "id": "node/1936100732",
@@ -1177,7 +1245,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:10.123710+00:00"
+      "checkedAt": "2026-10-19T16:15:10.123710+00:00",
+      "aiCheckedAt": "2026-10-19T17:31:21.363386+00:00"
     },
     {
       "id": "node/13606442693",
@@ -1187,7 +1256,6 @@
       "type": "cafe",
       "address": "Grenzacherstrasse 97",
       "postcode": "",
-      "addressSource": "https://www.openstreetmap.org/way/317498044",
       "website": "https://bruspecialtycoffee.com",
       "cuisine": [
         "coffee_shop",
@@ -1197,7 +1265,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/317498044"
     },
     {
       "id": "node/13606447321",
@@ -1278,7 +1347,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:11.064465+00:00"
+      "checkedAt": "2026-10-19T16:15:11.064465+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:11.916103+00:00"
     },
     {
       "id": "node/9871385224",
@@ -1364,7 +1434,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:14.306112+00:00"
+      "checkedAt": "2026-10-19T16:15:14.306112+00:00",
+      "aiCheckedAt": "2026-10-19T17:31:15.202495+00:00"
     },
     {
       "id": "node/8016865752",
@@ -1422,14 +1493,14 @@
       "type": "cafe",
       "address": "Bruderholzallee 169",
       "postcode": "4059",
-      "addressSource": "https://www.openstreetmap.org/node/3397769856",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3397769856"
     },
     {
       "id": "node/10606474213",
@@ -1455,7 +1526,6 @@
       "type": "cafe",
       "address": "Rufacherstrasse 84",
       "postcode": "4055",
-      "addressSource": "https://www.openstreetmap.org/node/3238083581",
       "website": null,
       "cuisine": [
         "coffee_shop"
@@ -1464,7 +1534,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3238083581"
     },
     {
       "id": "node/7625132435",
@@ -1587,7 +1658,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:15.551253+00:00"
+      "checkedAt": "2026-10-19T16:15:15.551253+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:48.785488+00:00"
     },
     {
       "id": "node/11835158537",
@@ -1671,7 +1743,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:29.967696+00:00"
+      "checkedAt": "2026-10-19T16:15:29.967696+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:53.918395+00:00"
     },
     {
       "id": "node/1794707585",
@@ -1681,7 +1754,6 @@
       "type": "cafe",
       "address": "Auf dem Hummel 2",
       "postcode": "4059",
-      "addressSource": "https://www.openstreetmap.org/node/3392940976",
       "website": null,
       "cuisine": [
         "coffee_shop"
@@ -1690,7 +1762,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3392940976"
     },
     {
       "id": "node/11379700569",
@@ -1806,14 +1879,14 @@
       "type": "cafe",
       "address": "Hochbergerstrasse 112",
       "postcode": "4057",
-      "addressSource": "https://www.openstreetmap.org/node/3215471998",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3215471998"
     },
     {
       "id": "node/1639974798",
@@ -1823,14 +1896,14 @@
       "type": "cafe",
       "address": "Wasgenring 91",
       "postcode": "4055",
-      "addressSource": "https://www.openstreetmap.org/node/3247918014",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3247918014"
     },
     {
       "id": "node/592182051",
@@ -1872,7 +1945,6 @@
       "type": "cafe",
       "address": "Clarastrasse 23",
       "postcode": "4058",
-      "addressSource": "https://www.openstreetmap.org/node/3208777271",
       "website": null,
       "cuisine": [
         "coffee_shop"
@@ -1881,7 +1953,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3208777271"
     },
     {
       "id": "node/2434407900",
@@ -2065,7 +2138,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:32.631638+00:00"
+      "checkedAt": "2026-10-19T16:15:32.631638+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:05.377362+00:00"
     },
     {
       "id": "node/7638773385",
@@ -2091,7 +2165,6 @@
       "type": "cafe",
       "address": "Solothurnerstrasse 66",
       "postcode": "4053",
-      "addressSource": "https://www.openstreetmap.org/node/3420096584",
       "website": "https://kaffeemacher.ch/pages/sommer",
       "cuisine": [],
       "openingHours": "Mo-We,Su,PH 08:00-18:30; Th,Fr,Sa 08:00-20:00",
@@ -2121,7 +2194,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:35.669965+00:00"
+      "checkedAt": "2026-10-19T16:15:35.669965+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3420096584"
     },
     {
       "id": "node/13910592465",
@@ -2167,14 +2241,14 @@
       "type": "cafe",
       "address": "Muespacherstrasse 76",
       "postcode": "4055",
-      "addressSource": "https://www.openstreetmap.org/node/3247917978",
       "website": "https://www.human-gardening.ch/willkommencafezumgoldigevelo",
       "cuisine": [],
       "openingHours": "Tu,We,Fr 10:00-18:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:20:57.008234+00:00"
+      "checkedAt": "2026-10-19T16:20:57.008234+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3247917978"
     },
     {
       "id": "node/13200691848",
@@ -2272,7 +2346,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:36.788493+00:00"
+      "checkedAt": "2026-10-19T16:15:36.788493+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:27.089038+00:00"
     },
     {
       "id": "node/3890667961",
@@ -2298,14 +2373,14 @@
       "type": "cafe",
       "address": "Hebelstrasse 20",
       "postcode": "4056",
-      "addressSource": "https://www.openstreetmap.org/way/262235357",
       "website": "https://www.unispital-basel.ch/fr/das-universitaetsspital/bereiche/personal-betrieb/hotellerie/restauration/centro-centrino/",
       "cuisine": [],
       "openingHours": "Mo-Fr 08:00-16:30",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/262235357"
     },
     {
       "id": "node/13507438488",
@@ -2394,10 +2469,81 @@
           "confidence": "automatic",
           "evidence": "Cappuccino CHF 5.20",
           "alcoholFree": true
+        },
+        {
+          "name": "Kaffee crème oder Haag",
+          "priceChf": 4.6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
+          "observedAt": "2026-10-19T17:32:06.735483+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee crème oder Haag CHF 4.60",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "2007b343728eebbda828be3f5f7f459e63be27d53d2576941f75a5df9ba32f77"
+        },
+        {
+          "name": "Espresso oder Haag",
+          "priceChf": 4.7,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
+          "observedAt": "2026-10-19T17:32:06.735483+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso oder Haag CHF 4.70",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "2007b343728eebbda828be3f5f7f459e63be27d53d2576941f75a5df9ba32f77"
+        },
+        {
+          "name": "Ristretto oder Haag",
+          "priceChf": 4.7,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
+          "observedAt": "2026-10-19T17:32:06.735483+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto oder Haag CHF 4.70",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "2007b343728eebbda828be3f5f7f459e63be27d53d2576941f75a5df9ba32f77"
+        },
+        {
+          "name": "Doppelter Espresso oder Haag",
+          "priceChf": 6.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
+          "observedAt": "2026-10-19T17:32:06.735483+00:00",
+          "confidence": "ai",
+          "evidence": "Doppelter Espresso oder Haag CHF 6.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "2007b343728eebbda828be3f5f7f459e63be27d53d2576941f75a5df9ba32f77"
+        },
+        {
+          "name": "Schale (Milchkaffee) oder Haag",
+          "priceChf": 4.7,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
+          "observedAt": "2026-10-19T17:32:06.735483+00:00",
+          "confidence": "ai",
+          "evidence": "Schale (Milchkaffee) oder Haag CHF 4.70",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "2007b343728eebbda828be3f5f7f459e63be27d53d2576941f75a5df9ba32f77"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:43.607068+00:00"
+      "checkedAt": "2026-10-19T16:15:43.607068+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:11.843095+00:00"
     },
     {
       "id": "node/12230466535",
@@ -2441,7 +2587,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:15:44.579672+00:00"
+      "checkedAt": "2026-10-19T16:15:44.579672+00:00",
+      "aiCheckedAt": "2026-10-19T17:07:37.570222+00:00"
     },
     {
       "id": "node/4472355417",
@@ -2483,14 +2630,14 @@
       "type": "cafe",
       "address": "Blumenrain 1",
       "postcode": "4051",
-      "addressSource": "https://www.openstreetmap.org/node/5228942701",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/5228942701"
     },
     {
       "id": "node/13255498329",
@@ -2644,7 +2791,7 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T16:15:55.526958+00:00",
-      "aiCheckedAt": "2026-10-18T10:15:50.212671+00:00"
+      "aiCheckedAt": "2026-10-19T17:31:33.667528+00:00"
     },
     {
       "id": "node/14174002895",
@@ -2748,10 +2895,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: Matcha Latte 7",
           "alcoholFree": true
+        },
+        {
+          "name": "Milkcoffee",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/0854/1965/5515/files/RZ_MENU_CREAM.pdf?v=1789158021",
+          "observedAt": "2026-10-19T17:24:54.691258+00:00",
+          "confidence": "ai",
+          "evidence": "Milkcoffee 6.5",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "b786d91037b107abdd5efdb4dce6433c8729df508c066e526de71233cd565465"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:25.545497+00:00"
+      "checkedAt": "2026-10-19T16:20:25.545497+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:25.357639+00:00"
     },
     {
       "id": "node/5483369521",
@@ -2883,10 +3045,39 @@
           "confidence": "automatic",
           "evidence": "Doppio CHF 7",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso al volo / an der Bar",
+          "priceChf": 2.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.damatti.it/getraenke",
+          "observedAt": "2026-10-19T17:07:39.530646+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso al volo / an der Bar: CHF 2.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "6259812a6c498d4a06ed93699b184ede394eda8b540ac267fcd28c219cb32cdd"
+        },
+        {
+          "name": "Latte Macchiato / Freddo",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.damatti.it/getraenke",
+          "observedAt": "2026-10-19T17:07:39.530646+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato / Freddo CHF 6",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "6259812a6c498d4a06ed93699b184ede394eda8b540ac267fcd28c219cb32cdd"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:16:01.152404+00:00"
+      "checkedAt": "2026-10-19T16:16:01.152404+00:00",
+      "aiCheckedAt": "2026-10-19T17:07:48.975758+00:00"
     },
     {
       "id": "node/9612917396",
@@ -3055,7 +3246,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:16:45.405801+00:00"
+      "checkedAt": "2026-10-19T16:16:45.405801+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:46.985122+00:00"
     },
     {
       "id": "node/7747207685",
@@ -3115,10 +3307,25 @@
           "confidence": "automatic",
           "evidence": "Latte Macchiato CHF 5.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Capuccino",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurantdreirosen.ch/getraenke",
+          "observedAt": "2026-10-19T17:29:39.067588+00:00",
+          "confidence": "ai",
+          "evidence": "Capuccino CHF 4.80",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "fb6668246c315b20300195889bf46c73693a5a105b143a6c4fcf0660b765b97d"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:16:52.000625+00:00"
+      "checkedAt": "2026-10-19T16:16:52.000625+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:03.837216+00:00"
     },
     {
       "id": "node/7871792488",
@@ -3190,7 +3397,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:16:53.691922+00:00"
+      "checkedAt": "2026-10-19T16:16:53.691922+00:00",
+      "aiCheckedAt": "2026-10-19T17:32:00.584808+00:00"
     },
     {
       "id": "node/3811616609",
@@ -3298,7 +3506,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:16:55.641671+00:00"
+      "checkedAt": "2026-10-19T16:16:55.641671+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:49.197855+00:00"
     },
     {
       "id": "node/4346226796",
@@ -3378,7 +3587,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:16:55.774592+00:00"
+      "checkedAt": "2026-10-19T16:16:55.774592+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:37.743221+00:00"
     },
     {
       "id": "node/11268583746",
@@ -3493,7 +3703,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:01.207808+00:00"
+      "checkedAt": "2026-10-19T16:17:01.207808+00:00",
+      "aiCheckedAt": "2026-10-19T17:07:56.033251+00:00"
     },
     {
       "id": "node/459572235",
@@ -3519,14 +3730,14 @@
       "type": "cafe",
       "address": "Steinenvorstadt 26",
       "postcode": "4051",
-      "addressSource": "https://www.openstreetmap.org/node/2684248635",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Th 08:00-21:30; Fr-Sa 08:00-00:30; Su 11:00-21:30",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2684248635"
     },
     {
       "id": "node/13902829473",
@@ -3577,7 +3788,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:02.797691+00:00"
+      "checkedAt": "2026-10-19T16:17:02.797691+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:33.645178+00:00"
     },
     {
       "id": "node/8909431468",
@@ -3661,7 +3873,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:06.136259+00:00"
+      "checkedAt": "2026-10-19T16:17:06.136259+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:05.813869+00:00"
     },
     {
       "id": "node/9677739617",
@@ -3710,14 +3923,14 @@
       "type": "cafe",
       "address": "Rittergasse 21",
       "postcode": "4051",
-      "addressSource": "https://www.openstreetmap.org/node/3869318144",
       "website": "https://www.forartcafe-bar.ch/",
       "cuisine": [],
       "openingHours": "Tu,We 10:00-19:00; Th-Sa 10:00-20:00; Su 10:00-18:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:21:04.117130+00:00"
+      "checkedAt": "2026-10-19T16:21:04.117130+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3869318144"
     },
     {
       "id": "node/5744291513",
@@ -3727,14 +3940,14 @@
       "type": "cafe",
       "address": "Blumenrain 3",
       "postcode": "4051",
-      "addressSource": "https://www.openstreetmap.org/node/5228942699",
       "website": null,
       "cuisine": [],
       "openingHours": "Tu-Sa 11:30-18:30; Su 13:00-18:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/5228942699"
     },
     {
       "id": "node/14072918060",
@@ -3744,14 +3957,14 @@
       "type": "cafe",
       "address": "Birskopfweglein 7",
       "postcode": "4052",
-      "addressSource": "https://www.openstreetmap.org/node/3551876970",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3551876970"
     },
     {
       "id": "node/6644486813",
@@ -3761,14 +3974,14 @@
       "type": "cafe",
       "address": "Grenzacherstrasse 201",
       "postcode": "4058",
-      "addressSource": "https://www.openstreetmap.org/node/3237839053",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 07:00-14:30; Sa,Su,PH off",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3237839053"
     },
     {
       "id": "node/4826842622",
@@ -3810,14 +4023,14 @@
       "type": "cafe",
       "address": "Güterstrasse 207",
       "postcode": "4053",
-      "addressSource": "https://www.openstreetmap.org/node/3420192963",
       "website": null,
       "cuisine": [],
       "openingHours": "Tu-Sa 10:00-15:00,17:00-21:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3420192963"
     },
     {
       "id": "node/5698913601",
@@ -3894,7 +4107,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:14.458762+00:00"
+      "checkedAt": "2026-10-19T16:17:14.458762+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:54.539798+00:00"
     },
     {
       "id": "node/12014452761",
@@ -4045,7 +4259,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:20.749969+00:00"
+      "checkedAt": "2026-10-19T16:17:20.749969+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:59.042346+00:00"
     },
     {
       "id": "node/12032495846",
@@ -4055,14 +4270,14 @@
       "type": "cafe",
       "address": "Gempenstrasse 64",
       "postcode": "4053",
-      "addressSource": "https://www.openstreetmap.org/node/3418151786",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3418151786"
     },
     {
       "id": "node/593091353",
@@ -4199,7 +4414,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:29.664603+00:00"
+      "checkedAt": "2026-10-19T16:17:29.664603+00:00",
+      "aiCheckedAt": "2026-10-19T17:35:19.743153+00:00"
     },
     {
       "id": "node/13156808301",
@@ -4225,14 +4441,14 @@
       "type": "cafe",
       "address": "Hegenheimerstrasse 55",
       "postcode": "4055",
-      "addressSource": "https://www.openstreetmap.org/node/3238083332",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3238083332"
     },
     {
       "id": "node/12297162603",
@@ -4343,14 +4559,14 @@
       "type": "cafe",
       "address": "Burgfelderstrasse 70",
       "postcode": "4055",
-      "addressSource": "https://www.openstreetmap.org/node/5238483076",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/5238483076"
     },
     {
       "id": "node/13791838181",
@@ -4379,7 +4595,6 @@
       "type": "cafe",
       "address": "St. Johanns-Park 1",
       "postcode": "4056",
-      "addressSource": "https://www.openstreetmap.org/node/5294088443",
       "website": "https://kleinerwassermann.cafe/",
       "cuisine": [],
       "openingHours": "We-Su 10:00-18:00; Th-Fr 10:00-23:45",
@@ -4457,7 +4672,9 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:31.777312+00:00"
+      "checkedAt": "2026-10-19T16:17:31.777312+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/5294088443",
+      "aiCheckedAt": "2026-10-19T17:26:45.719493+00:00"
     },
     {
       "id": "node/13484845049",
@@ -4485,14 +4702,14 @@
       "type": "cafe",
       "address": "Fabrikstrasse 22",
       "postcode": "4056",
-      "addressSource": "https://www.openstreetmap.org/way/235374751",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 07:30-15:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/235374751"
     },
     {
       "id": "node/12017121002",
@@ -4647,7 +4864,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:34.632282+00:00"
+      "checkedAt": "2026-10-19T16:17:34.632282+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:59.020847+00:00"
     },
     {
       "id": "node/14078084801",
@@ -4760,7 +4978,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:34.999831+00:00"
+      "checkedAt": "2026-10-19T16:17:34.999831+00:00",
+      "aiCheckedAt": "2026-10-19T17:11:09.667059+00:00"
     },
     {
       "id": "node/10606177702",
@@ -4770,7 +4989,6 @@
       "type": "cafe",
       "address": "Güterstrasse 112",
       "postcode": "4053",
-      "addressSource": "https://www.openstreetmap.org/node/3418151709",
       "website": null,
       "cuisine": [
         "coffee_shop"
@@ -4779,7 +4997,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3418151709"
     },
     {
       "id": "node/5772876669",
@@ -4886,7 +5105,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:45.483568+00:00"
+      "checkedAt": "2026-10-19T16:17:45.483568+00:00",
+      "aiCheckedAt": "2026-10-19T17:28:54.190527+00:00"
     },
     {
       "id": "node/13061564803",
@@ -4958,7 +5178,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:55.035195+00:00"
+      "checkedAt": "2026-10-19T16:17:55.035195+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:44.154414+00:00"
     },
     {
       "id": "node/3888881365",
@@ -5042,7 +5263,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:17:56.239218+00:00"
+      "checkedAt": "2026-10-19T16:17:56.239218+00:00",
+      "aiCheckedAt": "2026-10-19T17:36:25.834492+00:00"
     },
     {
       "id": "node/5691850621",
@@ -5117,7 +5339,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:18:22.094231+00:00"
+      "checkedAt": "2026-10-19T16:18:22.094231+00:00",
+      "aiCheckedAt": "2026-10-19T17:36:25.644032+00:00"
     },
     {
       "id": "node/4144545589",
@@ -5158,7 +5381,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:18:22.254987+00:00"
+      "checkedAt": "2026-10-19T16:18:22.254987+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:21.340235+00:00"
     },
     {
       "id": "node/4447974700",
@@ -5261,7 +5485,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:18:30.225650+00:00"
+      "checkedAt": "2026-10-19T16:18:30.225650+00:00",
+      "aiCheckedAt": "2026-10-19T17:36:30.403549+00:00"
     },
     {
       "id": "node/9269725977",
@@ -5344,7 +5569,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:18:31.381357+00:00"
+      "checkedAt": "2026-10-19T16:18:31.381357+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:23.326211+00:00"
     },
     {
       "id": "node/6239202286",
@@ -5460,14 +5686,14 @@
       "type": "cafe",
       "address": "Andreasplatz 16",
       "postcode": "4051",
-      "addressSource": "https://www.openstreetmap.org/node/5224680202",
       "website": null,
       "cuisine": [],
       "openingHours": "We-Sa 11:00-18:00; Su 11:00-17:00; Mo,Tu off",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/5224680202"
     },
     {
       "id": "node/458833991",
@@ -5477,7 +5703,6 @@
       "type": "cafe",
       "address": "Bruderholzstrasse 104",
       "postcode": "4053",
-      "addressSource": "https://momobasel.ch/ueber-uns/kontakt.html",
       "website": "https://momobasel.ch/cafe-momo",
       "cuisine": [],
       "openingHours": "Mo-Sa 11:00-16:00; Su 11:00-17:00",
@@ -5518,7 +5743,9 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:18:34.252446+00:00"
+      "checkedAt": "2026-10-19T16:18:34.252446+00:00",
+      "addressSource": "https://momobasel.ch/ueber-uns/kontakt.html",
+      "aiCheckedAt": "2026-10-19T17:38:58.604919+00:00"
     },
     {
       "id": "node/593639067",
@@ -5622,7 +5849,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:18:36.907435+00:00"
+      "checkedAt": "2026-10-19T16:18:36.907435+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:16.650494+00:00"
     },
     {
       "id": "node/10686083519",
@@ -5632,14 +5860,14 @@
       "type": "cafe",
       "address": "Allschwilerstrasse 49",
       "postcode": "4055",
-      "addressSource": "https://www.openstreetmap.org/node/3242542190",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3242542190"
     },
     {
       "id": "node/252822648",
@@ -5665,14 +5893,14 @@
       "type": "cafe",
       "address": "Weinlagerstrasse 11",
       "postcode": "4056",
-      "addressSource": "https://www.openstreetmap.org/node/10678952126",
       "website": null,
       "cuisine": [],
       "openingHours": "Tu-Su,PH 09:00-22:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/10678952126"
     },
     {
       "id": "node/9910284672",
@@ -5729,7 +5957,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:18:39.496406+00:00"
+      "checkedAt": "2026-10-19T16:18:39.496406+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:54.877100+00:00"
     },
     {
       "id": "node/7810200918",
@@ -5792,7 +6021,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:18:42.744108+00:00"
+      "checkedAt": "2026-10-19T16:18:42.744108+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:18.423465+00:00"
     },
     {
       "id": "node/8909393066",
@@ -5877,7 +6107,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:18:53.103779+00:00"
+      "checkedAt": "2026-10-19T16:18:53.103779+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:21.080996+00:00"
     },
     {
       "id": "node/13130547170",
@@ -5957,7 +6188,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:05.647882+00:00"
+      "checkedAt": "2026-10-19T16:19:05.647882+00:00",
+      "aiCheckedAt": "2026-10-19T17:37:17.624981+00:00"
     },
     {
       "id": "node/2578294254",
@@ -6045,7 +6277,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:08.856681+00:00"
+      "checkedAt": "2026-10-19T16:19:08.856681+00:00",
+      "aiCheckedAt": "2026-10-19T17:38:21.102747+00:00"
     },
     {
       "id": "node/4417769694",
@@ -6163,7 +6396,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:09.908402+00:00"
+      "checkedAt": "2026-10-19T16:19:09.908402+00:00",
+      "aiCheckedAt": "2026-10-19T17:27:18.053492+00:00"
     },
     {
       "id": "node/3208777922",
@@ -6230,7 +6464,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:13.963299+00:00"
+      "checkedAt": "2026-10-19T16:19:13.963299+00:00",
+      "aiCheckedAt": "2026-10-19T17:25:14.333073+00:00"
     },
     {
       "id": "node/6047355929",
@@ -6294,7 +6529,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:17.852314+00:00"
+      "checkedAt": "2026-10-19T16:19:17.852314+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:14.582121+00:00"
     },
     {
       "id": "node/2624405472",
@@ -6349,7 +6585,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:23.681025+00:00"
+      "checkedAt": "2026-10-19T16:19:23.681025+00:00",
+      "aiCheckedAt": "2026-10-19T17:38:17.123491+00:00"
     },
     {
       "id": "node/582950406",
@@ -6443,7 +6680,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:25.835948+00:00"
+      "checkedAt": "2026-10-19T16:19:25.835948+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:07.775049+00:00"
     },
     {
       "id": "node/9832402717",
@@ -6532,7 +6770,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:26.554363+00:00"
+      "checkedAt": "2026-10-19T16:19:26.554363+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:05.536237+00:00"
     },
     {
       "id": "node/4601277651",
@@ -6585,7 +6824,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:27.219794+00:00"
+      "checkedAt": "2026-10-19T16:19:27.219794+00:00",
+      "aiCheckedAt": "2026-10-19T17:38:12.328249+00:00"
     },
     {
       "id": "node/273223709",
@@ -6676,7 +6916,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:30.961518+00:00"
+      "checkedAt": "2026-10-19T16:19:30.961518+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:35.856624+00:00"
     },
     {
       "id": "node/11757900217",
@@ -6737,7 +6978,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:32.743075+00:00"
+      "checkedAt": "2026-10-19T16:19:32.743075+00:00",
+      "aiCheckedAt": "2026-10-19T17:26:45.804453+00:00"
     },
     {
       "id": "node/5016417015",
@@ -6833,7 +7075,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:33.717188+00:00"
+      "checkedAt": "2026-10-19T16:19:33.717188+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:57.985155+00:00"
     },
     {
       "id": "node/6647636870",
@@ -6859,14 +7102,14 @@
       "type": "cafe",
       "address": "Hirzbrunnenstrasse 58",
       "postcode": "4058",
-      "addressSource": "https://www.openstreetmap.org/node/5378378189",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/5378378189"
     },
     {
       "id": "node/10116280190",
@@ -6963,7 +7206,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:35.459132+00:00"
+      "checkedAt": "2026-10-19T16:19:35.459132+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:51.571079+00:00"
     },
     {
       "id": "node/585047863",
@@ -7038,7 +7282,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:36.172360+00:00"
+      "checkedAt": "2026-10-19T16:19:36.172360+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:22.440137+00:00"
     },
     {
       "id": "node/6644516746",
@@ -7092,10 +7337,39 @@
           "confidence": "automatic",
           "evidence": "Cappuccino 5,50",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://shiro-basel.ch/speisekarte/",
+          "observedAt": "2026-10-19T17:42:31.015181+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso | Doppelt 4,80 | 7,00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "ca139ee1003b2d7d938822e6bcc2136cb021b39157de0cff60fc144ac0bc8257"
+        },
+        {
+          "name": "Latte Macchiatio",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://shiro-basel.ch/speisekarte/",
+          "observedAt": "2026-10-19T17:42:31.015181+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiatio 6,00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "ca139ee1003b2d7d938822e6bcc2136cb021b39157de0cff60fc144ac0bc8257"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:37.523154+00:00"
+      "checkedAt": "2026-10-19T16:19:37.523154+00:00",
+      "aiCheckedAt": "2026-10-19T17:42:43.721535+00:00"
     },
     {
       "id": "node/4278519394",
@@ -7206,7 +7480,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:41.228184+00:00"
+      "checkedAt": "2026-10-19T16:19:41.228184+00:00",
+      "aiCheckedAt": "2026-10-19T17:38:05.799288+00:00"
     },
     {
       "id": "node/14293160501",
@@ -7322,7 +7597,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:44.587790+00:00"
+      "checkedAt": "2026-10-19T16:19:44.587790+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:01.152539+00:00"
     },
     {
       "id": "node/4377355190",
@@ -7419,7 +7695,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:51.010999+00:00"
+      "checkedAt": "2026-10-19T16:19:51.010999+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:24.440388+00:00"
     },
     {
       "id": "node/11997975469",
@@ -7502,7 +7779,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:51.016041+00:00"
+      "checkedAt": "2026-10-19T16:19:51.016041+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:08.828572+00:00"
     },
     {
       "id": "node/6133118090",
@@ -7588,7 +7866,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:53.249399+00:00"
+      "checkedAt": "2026-10-19T16:19:53.249399+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:30.103247+00:00"
     },
     {
       "id": "node/3788956446",
@@ -7616,7 +7895,6 @@
       "type": "cafe",
       "address": "Rebgasse 2",
       "postcode": "4058",
-      "addressSource": "https://www.openstreetmap.org/way/315883218",
       "website": "https://www.starbucks.ch/store-locator/search/detail/1464",
       "cuisine": [
         "coffee_shop"
@@ -7625,7 +7903,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/315883218"
     },
     {
       "id": "node/2434407893",
@@ -7733,14 +8012,14 @@
       "type": "cafe",
       "address": "Beckenstrasse 10",
       "postcode": "",
-      "addressSource": "https://www.openstreetmap.org/node/10678952130",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/10678952130"
     },
     {
       "id": "node/6954999086",
@@ -7842,7 +8121,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:19:54.522968+00:00"
+      "checkedAt": "2026-10-19T16:19:54.522968+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:31.509822+00:00"
     },
     {
       "id": "node/11016416537",
@@ -7852,7 +8132,6 @@
       "type": "cafe",
       "address": "Tellstrasse 3",
       "postcode": "4053",
-      "addressSource": "https://www.openstreetmap.org/node/3420192988",
       "website": "https://teegarten-miniatures.ch/",
       "cuisine": [
         "teahouse"
@@ -7861,7 +8140,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T16:21:20.339368+00:00"
+      "checkedAt": "2026-10-19T16:21:20.339368+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3420192988"
     },
     {
       "id": "node/6647636871",
@@ -7975,7 +8255,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:00.061701+00:00"
+      "checkedAt": "2026-10-19T16:20:00.061701+00:00",
+      "aiCheckedAt": "2026-10-19T17:44:37.407582+00:00"
     },
     {
       "id": "node/10877220214",
@@ -8116,7 +8397,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:01.461457+00:00"
+      "checkedAt": "2026-10-19T16:20:01.461457+00:00",
+      "aiCheckedAt": "2026-10-19T17:42:31.205396+00:00"
     },
     {
       "id": "node/5765337053",
@@ -8126,14 +8408,14 @@
       "type": "cafe",
       "address": "Socinstrasse 2",
       "postcode": "4051",
-      "addressSource": "https://www.openstreetmap.org/node/2685105045",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 07:00-21:00; Sa 09:00-21:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2685105045"
     },
     {
       "id": "node/6318613814",
@@ -8230,7 +8512,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:03.001311+00:00"
+      "checkedAt": "2026-10-19T16:20:03.001311+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:41.913295+00:00"
     },
     {
       "id": "node/2381403155",
@@ -8299,10 +8582,53 @@
           "confidence": "automatic",
           "evidence": "Café Crème 4 . 90",
           "alcoholFree": true
+        },
+        {
+          "name": "Latte Freddo",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.mitte.ch/en/kaffeehaus/kaffeehaus-vorne/?from=menu",
+          "observedAt": "2026-10-19T17:47:02.578675+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Freddo 6 . —",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "a3c2fc501bad18e95a7ee56a329dba97815695a5ca29d55de7b2da5539ffaf12"
+        },
+        {
+          "name": "Batch Brew",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.mitte.ch/en/kaffeehaus/kaffeehaus-vorne/?from=menu",
+          "observedAt": "2026-10-19T17:47:02.578675+00:00",
+          "confidence": "ai",
+          "evidence": "Batch Brew it lasts as long as it lasts 5 . —",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "a3c2fc501bad18e95a7ee56a329dba97815695a5ca29d55de7b2da5539ffaf12"
+        },
+        {
+          "name": "LONG BLACK",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.mitte.ch/kaffeemobil/am-rhein/?from=menu",
+          "observedAt": "2026-10-19T17:48:34.549381+00:00",
+          "confidence": "ai",
+          "evidence": "LONG BLACK LONG BLACK 5 .—",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "americano",
+          "sourceSha256": "a28586cc205187a009ffa5b9a5c3dca3e5f36c12fb6946543cb5a8bf88294824"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:04.812758+00:00"
+      "checkedAt": "2026-10-19T16:20:04.812758+00:00",
+      "aiCheckedAt": "2026-10-19T17:49:12.282173+00:00"
     },
     {
       "id": "node/5377769532",
@@ -8361,7 +8687,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:09.406479+00:00"
+      "checkedAt": "2026-10-19T16:20:09.406479+00:00",
+      "aiCheckedAt": "2026-10-19T17:23:23.646845+00:00"
     },
     {
       "id": "node/364938305",
@@ -8466,7 +8793,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:09.554266+00:00"
+      "checkedAt": "2026-10-19T16:20:09.554266+00:00",
+      "aiCheckedAt": "2026-10-19T17:30:07.538751+00:00"
     },
     {
       "id": "node/4031088875",
@@ -8516,7 +8844,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:11.964934+00:00"
+      "checkedAt": "2026-10-19T16:20:11.964934+00:00",
+      "aiCheckedAt": "2026-10-19T17:44:24.954953+00:00"
     },
     {
       "id": "node/5341699522",
@@ -8607,7 +8936,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:14.461940+00:00"
+      "checkedAt": "2026-10-19T16:20:14.461940+00:00",
+      "aiCheckedAt": "2026-10-19T17:29:50.735547+00:00"
     },
     {
       "id": "node/3418151701",
@@ -8747,7 +9077,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:15.116318+00:00"
+      "checkedAt": "2026-10-19T16:20:15.116318+00:00",
+      "aiCheckedAt": "2026-10-19T17:45:44.982271+00:00"
     },
     {
       "id": "node/7784095495",
@@ -8773,14 +9104,14 @@
       "type": "cafe",
       "address": "Münsterberg 11",
       "postcode": "4051",
-      "addressSource": "https://www.openstreetmap.org/node/5238135801",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/5238135801"
     },
     {
       "id": "node/10116280189",
@@ -8806,7 +9137,6 @@
       "type": "cafe",
       "address": "Clarastrasse 26",
       "postcode": "4058",
-      "addressSource": "https://www.openstreetmap.org/way/315764384",
       "website": null,
       "cuisine": [
         "regional"
@@ -8815,7 +9145,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/315764384"
     },
     {
       "id": "node/6253646185",
@@ -8825,14 +9156,14 @@
       "type": "cafe",
       "address": "Riehenstrasse 235",
       "postcode": "4058",
-      "addressSource": "https://www.openstreetmap.org/node/5379195691",
       "website": null,
       "cuisine": [],
       "openingHours": "We-Su 11:00-20:00; Mo,Tu off",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/5379195691"
     },
     {
       "id": "node/584725541",
@@ -8955,7 +9286,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:16.588370+00:00"
+      "checkedAt": "2026-10-19T16:20:16.588370+00:00",
+      "aiCheckedAt": "2026-10-19T17:44:28.870147+00:00"
     },
     {
       "id": "node/1796023933",
@@ -9058,7 +9390,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:18.486100+00:00"
+      "checkedAt": "2026-10-19T16:20:18.486100+00:00",
+      "aiCheckedAt": "2026-10-19T17:43:18.699240+00:00"
     },
     {
       "id": "node/4601267408",
@@ -9146,7 +9479,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:20.822872+00:00"
+      "checkedAt": "2026-10-19T16:20:20.822872+00:00",
+      "aiCheckedAt": "2026-10-19T17:47:42.829053+00:00"
     },
     {
       "id": "node/698552423",
@@ -9197,7 +9531,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T16:20:23.665975+00:00"
+      "checkedAt": "2026-10-19T16:20:23.665975+00:00",
+      "aiCheckedAt": "2026-10-19T17:44:05.383728+00:00"
     },
     {
       "id": "node/4110058268",
