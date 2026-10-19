@@ -60,8 +60,8 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     const focused = document.activeElement;
     const order = rankedCategories(counts, pizzaAvailable);
     for (const category of categories) buttons[category].hidden = !order.includes(category);
-    primary.replaceChildren(...order.slice(0, 3).map(category => buttons[category]));
-    more.replaceChildren(...order.slice(3).map(category => buttons[category]));
+    primary.replaceChildren(...order.filter(category => !upcoming(category)).map(category => buttons[category]));
+    more.replaceChildren(...order.filter(upcoming).map(category => buttons[category]));
     // Retain the unavailable Pizza element for existing control synchronization.
     if (!pizzaAvailable) more.append(buttons.pizza);
     syncActive();

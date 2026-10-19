@@ -6,14 +6,14 @@ test.beforeEach(async ({ context }) => {
 });
 
 for (const width of [320, 390, 1280]) {
-  test(`More replaces the mobile collapse toggle and promotes Doner at ${width}px`, async ({ page, context }) => {
+  test(`Doner and Falafel stay in More regardless of popularity at ${width}px`, async ({ page, context }) => {
     await page.setViewportSize({ width, height: 844 });
     let counts = { coffee: 100, beer: 80, pizza: 5, doner: 4, falafel: 0 };
     const clicks: string[] = [];
     await context.route('**/api/categories', async route => {
       if (route.request().method() === 'POST') {
         clicks.push(route.request().postDataJSON().category);
-        counts = { ...counts, doner: 60 };
+        counts = { ...counts, doner: 200, falafel: 150 };
       }
       await route.fulfill({ json: { counts } });
     });
@@ -32,21 +32,29 @@ for (const width of [320, 390, 1280]) {
     await page.screenshot({ path: `/tmp/wobillig-categories-${width}.png` });
     await page.getByRole('button', { name: 'Döner · Bald verfügbar' }).click();
     await expect(page.getByRole('dialog', { name: 'Döner · Bald verfügbar' })).toBeVisible();
-    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Döner']);
+    await expect.poll(() => clicks).toEqual(['doner']);
+    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza Margherita']);
     expect(clicks).toEqual(['doner']);
     await page.getByRole('button', { name: 'Schliessen', exact: true }).click();
-    await expect(page.locator('#drink-doner')).toBeFocused();
+    await expect(page.locator('#categories-toggle')).toBeFocused();
+    await expect(page.locator('#drink-doner')).toBeHidden();
+    await expect(page.locator('#drink-falafel')).toBeHidden();
     await page.locator('#categories-toggle').click();
-    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Pizza Margherita', 'Falafel']);
+    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
+    await page.keyboard.press('Escape');
     await page.locator('#drink-pizza').click();
     await expect(page.locator('#map-title')).toHaveText('Pizzapreise Zürich');
-    await expect(page.locator('#categories-toggle')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('#categories-toggle')).toHaveAccessibleName('Weitere Kategorien: Pizza Margherita');
+    await expect(page.locator('#drink-pizza')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#categories-toggle')).toHaveAttribute('aria-pressed', 'false');
+    await expect(page.locator('#categories-toggle')).toHaveAccessibleName('Weitere Kategorien');
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
-    // The ranking is shared with a fresh page in another city, not local click history.
+    // Even in a city without Pizza, popular upcoming categories stay in More.
     const other = await context.newPage();
     await other.goto('/bern');
-    await expect(other.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Döner']);
+    await expect(other.locator('#count')).not.toHaveText('Laden …');
+    await expect(other.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier']);
+    await expect(other.locator('#drink-doner')).toBeHidden();
+    await expect(other.locator('#drink-falafel')).toBeHidden();
   });
 }
 
@@ -86,5 +94,7 @@ test('a delayed ranking does not move buttons while the menu is open', async ({ 
   await response;
   await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
   await page.keyboard.press('Escape');
-  await expect(page.locator('#primary-categories button')).toHaveText(['Döner', 'Kaffee', 'Bier']);
+  await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza Margherita']);
+  await expect(page.locator('#drink-doner')).toBeHidden();
+  await expect(page.locator('#drink-falafel')).toBeHidden();
 });
