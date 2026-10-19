@@ -1,5 +1,10 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  'Pizzasorte': 'Pizza type',
+  'Alle Pizzen': 'All pizzas',
+  'Pizzaname oder Zutat': 'Pizza name or ingredient',
+  'z. B. Prosciutto oder Pilze': 'e.g. Prosciutto or mushrooms',
+  'Pizzapreis': 'pizza price',
   'Weitere': 'More',
   'Weitere Kategorien': 'More categories',
   'Döner': 'Doner kebab',

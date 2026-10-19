@@ -12,7 +12,7 @@ export function cityAverage(bars: Bar[], f: Filters): { price: number; count: nu
 }
 
 export function hasDrinkPrice(bar: Bar, f: Filters): boolean {
-  return bar.offers.some(o => isCurrentOffer(o) && isComparableOffer(o) && offerCategory(o) === (f.drink || 'beer'));
+  return (f.drink === 'pizza' ? [...bar.offers, ...(bar.pizzaMenu || [])] : bar.offers).some(o => isCurrentOffer(o) && isComparableOffer(o) && offerCategory(o) === (f.drink || 'beer'));
 }
 
 export function missingPriceLabel(bar: Bar, f: Filters): string {
@@ -22,6 +22,6 @@ export function missingPriceLabel(bar: Bar, f: Filters): string {
 export function coverageLabel(bars: Bar[], f: Filters): string {
   const recorded = bars.filter(b => hasDrinkPrice(b, f)).length;
   const matching = bars.filter(b => bestOffer(b, f)).length;
-  const kind = f.drink === 'pizza' ? t('Margherita-Preis') : f.drink === 'coffee' ? t('Kaffeepreis') : t('Bierpreis');
+  const kind = f.drink === 'pizza' ? t('Pizzapreis') : f.drink === 'coffee' ? t('Kaffeepreis') : t('Bierpreis');
   return t('{venues} Lokale · {recorded} mit {kind} · {matching} passend zum Filter', { venues: bars.length, recorded, kind, matching });
 }

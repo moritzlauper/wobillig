@@ -11,10 +11,16 @@ export function drinkFromSearch(params: URLSearchParams): Drink {
 
 export function barLink(href: string, barId: string, drink: Drink, volume: string, beerType: Filters['beerType'] = 'all'): string {
   const url = new URL(href);
+  const pizzaSelection = url.searchParams.get('pizzaSelection');
+  const pizzaQuery = url.searchParams.get('pizzaQuery');
   url.search = '';
   url.hash = '';
   url.searchParams.set('bar', barId);
   url.searchParams.set('drink', drink);
+  if (drink === 'pizza') {
+    if (pizzaSelection === 'all') url.searchParams.set('pizzaSelection', pizzaSelection);
+    if (pizzaQuery) url.searchParams.set('pizzaQuery', pizzaQuery);
+  }
   if (drink === 'beer') {
     url.searchParams.set('size', volume);
     if (beerType && beerType !== 'all') url.searchParams.set('beerType', beerType);

@@ -6,7 +6,7 @@ export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bo
 export type Offer = {
   name: string;
   volumeMl: number | null;
-  pizzaType?: "margherita";
+  pizzaType?: "margherita" | "other";
   priceContext?: "online_menu";
   coffeeType?: string;
   serving?: "stange";
@@ -64,6 +64,8 @@ export type Dataset = {
   bars: Bar[];
 };
 export type Filters = {
+  pizzaSelection?: "all";
+  pizzaQuery?: string;
   drink?: "beer" | "coffee" | "pizza";
   coffeeType?: string;
   beerType?: BeerType | "all";
@@ -110,13 +112,23 @@ export function selectBeerSize(f: Filters, volume: string) {
   if (["stange", "300", "300-330"].includes(volume)) f.mode = "glass";
   if (volume === "300-330") f.beerType = "all";
 }
+// Search only sourced names and ingredients; do not infer missing ingredients.
+export function matchesPizza(o: Offer, f: Filters): boolean {
+  if (!o.pizzaType) return false;
+  const normalize = (text: string) => text.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase()
+    .replace(/\b(?:proscuito|proscuitto|prosciuto)\b/g, 'prosciutto');
+  const query = normalize(f.pizzaQuery || '').trim();
+  if (!query) return f.pizzaSelection === 'all' || o.pizzaType === 'margherita';
+  const text = normalize(`${o.name} ${o.ingredients || ''}`);
+  return query.split(/\s+/).every(word => text.includes(word));
+}
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
-  return bar.offers
+  return (f.drink === 'pizza' ? [...bar.offers, ...(bar.pizzaMenu || [])] : bar.offers)
     .filter(o => isCurrentOffer(o) && isComparableOffer(o))
     .filter(o => offerCategory(o) === (f.drink || "beer"))
     .filter(
       (o) =>
-        f.drink === "pizza" ? o.pizzaType === "margherita" :
+        f.drink === "pizza" ? matchesPizza(o, f) :
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree &&
@@ -184,7 +196,7 @@ export function filterBars(
       return (
         matchesSearch(b, f.query) &&
         (!f.outdoor || hasOutdoorSeating(b)) &&
-        (o ? cost(o, f.mode) <= f.max : f.unknown)
+        (o ? cost(o, f.mode) <= f.max : f.unknown && !(f.drink === "pizza" && f.pizzaQuery?.trim()))
       );
     })
     .sort((a, b) => {

@@ -12,6 +12,8 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
   const max = amount === 'all' ? Infinity : amount?.trim() && Number.isFinite(Number(amount)) && Number(amount) >= 0.5 ? Number(amount) : drink === 'pizza' ? 30 : 15;
   const filters: Filters = {
     drink,
+    ...(params.get('pizzaSelection') === 'all' ? { pizzaSelection: 'all' as const } : {}),
+    ...(params.get('pizzaQuery')?.trim() ? { pizzaQuery: params.get('pizzaQuery')!.trim().slice(0, 120) } : {}),
     coffeeType: choice(params, 'coffeeType', ['all', ...Object.keys(coffeeLabels)], 'cappuccino'),
     beerType: choice(params, 'beerType', ['all', ...Object.keys(beerTypeLabels)] as NonNullable<Filters['beerType']>[], 'all'),
     query: params.get('q') || '', max,
@@ -36,6 +38,7 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
     // Without a drink, size or beerType would be read as a legacy beer link.
     drink: drink !== 'coffee' || beerType || size ? drink : '',
     coffeeType: f.coffeeType && f.coffeeType !== 'cappuccino' ? f.coffeeType : '',
+    pizzaSelection: f.pizzaSelection || '', pizzaQuery: f.pizzaQuery?.trim() || '',
     beerType, q: f.query,
     max: f.max === (drink === 'pizza' ? 30 : 15) ? '' : Number.isFinite(f.max) ? String(f.max) : 'all',
     size, type: f.type, unknown: f.unknown ? '' : '0', outdoor: f.outdoor ? '1' : '',
