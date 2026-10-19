@@ -1,0 +1,402 @@
+{
+  "generatedAt": "2026-10-19T20:19:31.496215+00:00",
+  "discoveredAt": "2026-10-19T20:11:20.936721+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "bars": [
+    {
+      "id": "node/2251379755",
+      "name": "Bella Vita",
+      "lat": 46.9445122,
+      "lon": 7.4588956,
+      "type": "fast_food",
+      "address": "Muristrasse 4",
+      "postcode": "3006",
+      "website": "https://www.pizzabellavita.ch/",
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-19T20:14:27.170436+00:00"
+    },
+    {
+      "id": "node/7137642274",
+      "name": "Bern Kebab",
+      "lat": 46.9472354,
+      "lon": 7.4409047,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab",
+        "meze"
+      ],
+      "openingHours": "09:00+",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4601545799",
+      "name": "Bubenberg Take Away",
+      "lat": 46.9475781,
+      "lon": 7.438913,
+      "type": "fast_food",
+      "address": "Bubenbergplatz 4r",
+      "postcode": "3011",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/6080061544"
+    },
+    {
+      "id": "node/1722752400",
+      "name": "Bümpliz Express",
+      "lat": 46.9380206,
+      "lon": 7.3955265,
+      "type": "fast_food",
+      "address": "Bümplizstrasse 187",
+      "postcode": "3018",
+      "website": "https://www.buemplizexpress.ch",
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa,PH 10:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-19T20:11:22.447898+00:00"
+    },
+    {
+      "id": "node/6645659122",
+      "name": "City Pizzeria",
+      "lat": 46.9440145,
+      "lon": 7.4357364,
+      "type": "fast_food",
+      "address": "Monbijoustrasse 26",
+      "postcode": "3011",
+      "website": "https://city-pizzeria-bern.ch/",
+      "cuisine": [
+        "pizza",
+        "kebab",
+        "italian",
+        "chicken",
+        "greek"
+      ],
+      "openingHours": "Mo-Sa 10:30-20:45; Su 11:00-20:45",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-19T20:11:28.869935+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/443057449"
+    },
+    {
+      "id": "node/608998367",
+      "name": "Dal Capo",
+      "lat": 46.9512257,
+      "lon": 7.4302367,
+      "type": "fast_food",
+      "address": "Bühlstrasse 35",
+      "postcode": "3012",
+      "website": "https://dal-capo.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-14:00,17:00-23:00; Fr-Sa 11:00-14:00,17:00-23:30; Su 13:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Kebab-Dürüm im Fladenbrot",
+          "foodType": "doner",
+          "portionType": "wrap",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 13.0,
+          "sourceUrl": "https://dal-capo.ch/kebab-falafel/",
+          "observedAt": "2026-10-19T20:11:49.818580+00:00",
+          "confidence": "automatic",
+          "evidence": "71 Kebab-Dürüm im Fladenbrot 13,00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-19T20:13:07.811564+00:00"
+    },
+    {
+      "id": "node/836516188",
+      "name": "Delux Burger",
+      "lat": 46.944131,
+      "lon": 7.4326735,
+      "type": "fast_food",
+      "address": "Schwarztorstrasse 47",
+      "postcode": "3007",
+      "website": "https://deluxburger.ch/",
+      "cuisine": [
+        "pizza",
+        "kebab",
+        "oriental",
+        "turkish"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00, 17:00-22:30; Fr-Sa 11:00-14:00, 17:00-23:00; Su 12:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-19T20:11:23.445197+00:00"
+    },
+    {
+      "id": "node/679787438",
+      "name": "Effinger Pizz & Kebab",
+      "lat": 46.9456044,
+      "lon": 7.4282001,
+      "type": "fast_food",
+      "address": "Effingerstrasse 61",
+      "postcode": "3008",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/5809249909",
+      "name": "Engel",
+      "lat": 46.9509187,
+      "lon": 7.4357606,
+      "type": "fast_food",
+      "address": "Falkenplatz 10a",
+      "postcode": "3012",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Su-Fr 11:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/14065987442",
+      "name": "Flamme Kebab Grill Haus",
+      "lat": 46.94982,
+      "lon": 7.4437198,
+      "type": "fast_food",
+      "address": "Speichergasse 9",
+      "postcode": "3011",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-We,Su 11:00-23:30; Th 11:00-00:30; Fr,Sa 11:00-03:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/824792337",
+      "name": "Hemen's Take Away",
+      "lat": 46.9489861,
+      "lon": 7.4392119,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.hemenstakeaway.ch/",
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-19T20:11:49.818521+00:00"
+    },
+    {
+      "id": "node/602498809",
+      "name": "König Kebab & Pizza",
+      "lat": 46.9563367,
+      "lon": 7.451797,
+      "type": "fast_food",
+      "address": "Moserstrasse 15",
+      "postcode": "3014",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Sa 10:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "way/675305407",
+      "name": "La Place Orientale",
+      "lat": 46.9488201,
+      "lon": 7.4402772,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://laplaceorientale.ch",
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Th 09:00-23:00; Fr 09:00-24:00; Sa 00:00-24:00; Su 00:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-19T20:11:34.179547+00:00"
+    },
+    {
+      "id": "node/5450913810",
+      "name": "La Villa",
+      "lat": 46.9412197,
+      "lon": 7.4312476,
+      "type": "fast_food",
+      "address": "Eigerplatz 3a",
+      "postcode": "3007",
+      "website": null,
+      "cuisine": [
+        "kebab",
+        "tacos",
+        "burger"
+      ],
+      "openingHours": "Mo-Fr 08:00-19:00; Sa 09:00-17:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/1388177562"
+    },
+    {
+      "id": "node/6432399960",
+      "name": "La Villa Kebap",
+      "lat": 46.9436111,
+      "lon": 7.4093581,
+      "type": "fast_food",
+      "address": "Schlossstrasse 141",
+      "postcode": "3008",
+      "website": null,
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/6169667506",
+      "name": "Meet Point",
+      "lat": 46.9488212,
+      "lon": 7.4427848,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/813680128",
+      "name": "Pizzeria Länggasse",
+      "lat": 46.9523406,
+      "lon": 7.433518,
+      "type": "fast_food",
+      "address": "Länggassstrasse 19",
+      "postcode": "3012",
+      "website": "https://pizzeria-laenggasse.ch/?",
+      "cuisine": [
+        "pizza",
+        "kebab"
+      ],
+      "openingHours": "Mo-Fr 09:30-14:00,17:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-19T20:11:45.407755+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/6262746433"
+    },
+    {
+      "id": "node/507607736",
+      "name": "Pizzeria Ostring",
+      "lat": 46.9427854,
+      "lon": 7.4691126,
+      "type": "fast_food",
+      "address": "Ostring 30a",
+      "postcode": "3006",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "kebab"
+      ],
+      "openingHours": "Mo-Th 11:00-13:30, 17:00-22:30; Fr, Sa 11:00-13:30, 17:00-22:30; Su 16:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2319634309"
+    },
+    {
+      "id": "node/761255432",
+      "name": "Royal Kebab House",
+      "lat": 46.949666,
+      "lon": 7.4430699,
+      "type": "fast_food",
+      "address": "Aarbergergasse 26",
+      "postcode": "3011",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2510264183"
+    },
+    {
+      "id": "node/807635163",
+      "name": "Shah Kebab",
+      "lat": 46.9534821,
+      "lon": 7.4288742,
+      "type": "fast_food",
+      "address": "Muesmattstrasse 33c",
+      "postcode": "3012",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Fr 10:00-22:00; Sa 10:00-23:00; Su 12:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2620771836"
+    }
+  ]
+}
