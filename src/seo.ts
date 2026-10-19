@@ -7,7 +7,7 @@ export const cityIds = Object.keys(cities) as City[];
 export const guideTypes = ['espresso', 'cappuccino'] as const;
 export type GuideType = typeof guideTypes[number];
 const slugs: Record<City, string> = { zurich: 'zuerich', basel: 'basel', bern: 'bern' };
-export const guidePath = (city: City, type: GuideType) => `/${type}-${slugs[city]}`;
+export const guidePath = (city: City, type: GuideType, locale: Locale = 'de') => localizedPath(`/${type}-${slugs[city]}`, locale);
 export const cityPath = (city: City, locale: Locale = 'de') => localizedPath(cities[city].path, locale);
 export const localPath = (path: string, base = '/') => base.replace(/\/$/, '') + path;
 const money = (price: number) => `CHF ${price.toFixed(2)}`;
@@ -15,17 +15,16 @@ const dateLabel = (date: string, locale: Locale = 'de') => new Intl.DateTimeForm
 const cityName = (city: City, locale: Locale) => translate(locale, cities[city].name);
 const ogLocales: Record<Locale, string> = { de: 'de_CH', en: 'en_GB' };
 
-// The espresso and cappuccino guides are German-only; English covers the city pages.
 export function metadata(cityId: City, type?: GuideType, locale: Locale = 'de') {
   const city = cityName(cityId, locale);
-  const tr = (text: string) => translate(locale, text, { city });
+  const tr = (text: string) => translate(locale, text, { city, label: type ? translate(locale, coffeeLabels[type]) : '' });
   return {
-    title: type ? `${coffeeLabels[type]}-Preise ${city}: günstig vergleichen | wobillig` : tr('Kaffeepreise {city}: günstige Cafés finden | wobillig'),
+    title: type ? tr('{label}-Preise {city}: günstig vergleichen | wobillig') : tr('Kaffeepreise {city}: günstige Cafés finden | wobillig'),
     description: type
-      ? `${coffeeLabels[type]}-Preise in ${city} vergleichen: erfasste Preise in CHF, günstige Lokale, Adressen und Quellen. Finde dein Café auf der wobillig-Karte.`
+      ? tr('{label}-Preise in {city} vergleichen: erfasste Preise in CHF, günstige Lokale, Adressen und Quellen. Finde dein Café auf der wobillig-Karte.')
       : tr('Günstigen Kaffee in {city} finden: Espresso-, Cappuccino- und Café-crème-Preise vergleichen. Mit Karte, Preisquellen und weiteren Kaffee-, Bier- und Pizzapreisen.'),
-    heading: type ? `${coffeeLabels[type]}-Preise in ${city}` : tr('Kaffeepreise in {city} vergleichen'),
-    path: type ? guidePath(cityId, type) : cityPath(cityId, locale),
+    heading: type ? tr('{label}-Preise in {city}') : tr('Kaffeepreise in {city} vergleichen'),
+    path: type ? guidePath(cityId, type, locale) : cityPath(cityId, locale),
   };
 }
 
@@ -76,8 +75,7 @@ function methodology(dataset: Dataset, locale: Locale = 'de') {
 export function cityContent(cityId: City, dataset: Dataset, base = '/', locale: Locale = 'de') {
   const city = cityName(cityId, locale);
   const tr = (text: string, vars: Record<string, string | number> = {}) => translate(locale, text, { city, ...vars });
-  // English pages link to the map instead of the German-only guides.
-  const guideLink = (type: GuideType) => locale === 'de' ? localPath(guidePath(cityId, type), base) : mapLink(cityId, type, base, undefined, locale);
+  const guideLink = (type: GuideType) => localPath(guidePath(cityId, type, locale), base);
   const summary = Object.entries(coffeeLabels).flatMap(([type, label]) => {
     const rows = coffeePrices(dataset, type);
     if (!rows.length) return [];
@@ -94,21 +92,24 @@ export function cityContent(cityId: City, dataset: Dataset, base = '/', locale: 
     ${methodology(dataset, locale)}${cityNavigation(base, locale)}</section>`;
 }
 
-export function guideContent(cityId: City, type: GuideType, dataset: Dataset, base = '/') {
-  const city = cities[cityId].name, label = coffeeLabels[type];
+export function guideContent(cityId: City, type: GuideType, dataset: Dataset, base = '/', locale: Locale = 'de') {
+  const city = cityName(cityId, locale), label = translate(locale, coffeeLabels[type]);
+  const tr = (text: string, vars: Record<string, string | number> = {}) => translate(locale, text, { city, label, ...vars });
   const rows = coffeePrices(dataset, type);
   const average = rows.length ? rows.reduce((sum, row) => sum + row.offer.priceChf, 0) / rows.length : 0;
   const other = type === 'espresso' ? 'cappuccino' : 'espresso';
-  return `<header class="guide-header"><a href="${localPath(cities[cityId].path, base)}">wobillig · ${city}</a>${cityNavigation(base)}</header><main class="seo-content seo-guide">
-    <nav aria-label="Brotkrümel"><a href="${localPath(cities[cityId].path, base)}">Kaffeepreise ${city}</a> / ${label}</nav>
-    <h1>${label}-Preise in ${city}</h1><p>Vergleiche ${label} in ${city} nach dem Preis pro Getränk. Die Übersicht zeigt günstige erfasste Angebote mit Adresse und Preisquelle; auf der Karte findest du weitere Lokale und kannst Preise ergänzen.</p>
-    ${rows.length ? `<p class="seo-summary"><strong>${rows.length} Lokale mit ${label}-Preis</strong> · ab ${money(rows[0].offer.priceChf)} · Durchschnitt ${money(average)}</p>` : '<p>Noch keine vergleichbaren Preise erfasst.</p>'}
-    <p><a class="seo-cta" href="${e(mapLink(cityId, type, base))}">${label}-Preise auf der Karte öffnen</a></p>
-    <h2>Wo gibt es günstigen ${label} in ${city}?</h2>${priceTable(cityId, type, dataset, 25, base)}
-    <h2>Was kostet ein ${label} in ${city}?</h2><p>${rows.length ? `Die erfassten Preise reichen von ${money(rows[0].offer.priceChf)} bis ${money(rows[rows.length - 1].offer.priceChf)}. Der Durchschnitt von ${money(average)} basiert auf dem günstigsten passenden Angebot je Lokal.` : 'Sobald passende Preise vorliegen, findest du hier die Preisspanne und den Durchschnitt.'} Es handelt sich um einen Vergleich der vorhandenen Daten, nicht um eine vollständige Erhebung aller Cafés in ${city}.</p>
-    <h2>Welche Angebote sind vergleichbar?</h2><p>${type === 'espresso' ? 'Hier vergleichen wir einfachen Espresso. Doppelter Espresso, Ristretto und Americano sind eigene Sorten und fliessen nicht in diesen Vergleich ein.' : 'Hier vergleichen wir Cappuccino pro Getränk. Flat White, Milchkaffee und Latte macchiato sind eigene Sorten. Tassengrössen und mögliche Aufpreise für alternative Milch können je nach Lokal abweichen.'} Massgeblich bleibt die Getränkekarte des Lokals.</p>
-    ${methodology(dataset)}<h2>Weitere Kaffeepreise vergleichen</h2><p><a href="${localPath(guidePath(cityId, other), base)}">${coffeeLabels[other]}-Preise ${city}</a> · <a href="${localPath(cities[cityId].path, base)}">Alle Kaffeepreise ${city}</a></p>
-    <nav class="seo-links" aria-label="${label}-Preise nach Stadt">${cityIds.filter(id => id !== cityId).map(id => `<a href="${localPath(guidePath(id, type), base)}">${label}-Preise ${cities[id].name}</a>`).join('')}</nav>
+  const otherLocale: Locale = locale === 'de' ? 'en' : 'de';
+  const home = localPath(cityPath(cityId, locale), base);
+  return `<header class="guide-header"><a href="${home}">wobillig · ${city}</a><a class="language-switch" data-locale="${otherLocale}" href="${localPath(guidePath(cityId, type, otherLocale), base)}" hreflang="${htmlLang[otherLocale]}" lang="${htmlLang[otherLocale]}">${otherLocale === 'en' ? 'English' : 'Deutsch'}</a>${cityNavigation(base, locale)}</header><main class="seo-content seo-guide">
+    <nav aria-label="${tr('Brotkrümel')}"><a href="${home}">${tr('Kaffeepreise {city}')}</a> / ${label}</nav>
+    <h1>${tr('{label}-Preise in {city}')}</h1><p>${tr('Vergleiche {label} in {city} nach dem Preis pro Getränk. Die Übersicht zeigt günstige erfasste Angebote mit Adresse und Preisquelle; auf der Karte findest du weitere Lokale und kannst Preise ergänzen.')}</p>
+    ${rows.length ? `<p class="seo-summary"><strong>${tr('{count} Lokale mit {label}-Preis', { count: rows.length })}</strong> · ${tr('ab {price}', { price: money(rows[0].offer.priceChf) })} · ${tr('Durchschnitt')} ${money(average)}</p>` : `<p>${tr('Noch keine vergleichbaren Preise erfasst.')}</p>`}
+    <p><a class="seo-cta" href="${e(mapLink(cityId, type, base, undefined, locale))}">${tr('{label}-Preise auf der Karte öffnen')}</a></p>
+    <h2>${tr('Wo gibt es günstigen {label} in {city}?')}</h2>${priceTable(cityId, type, dataset, 25, base, locale)}
+    <h2>${tr('Was kostet ein {label} in {city}?')}</h2><p>${rows.length ? tr('Die erfassten Preise reichen von {min} bis {max}. Der Durchschnitt von {average} basiert auf dem günstigsten passenden Angebot je Lokal.', { min: money(rows[0].offer.priceChf), max: money(rows[rows.length - 1].offer.priceChf), average: money(average) }) : tr('Sobald passende Preise vorliegen, findest du hier die Preisspanne und den Durchschnitt.')} ${tr('Es handelt sich um einen Vergleich der vorhandenen Daten, nicht um eine vollständige Erhebung aller Cafés in {city}.')}</p>
+    <h2>${tr('Welche Angebote sind vergleichbar?')}</h2><p>${type === 'espresso' ? tr('Hier vergleichen wir einfachen Espresso. Doppelter Espresso, Ristretto und Americano sind eigene Sorten und fliessen nicht in diesen Vergleich ein.') : tr('Hier vergleichen wir Cappuccino pro Getränk. Flat White, Milchkaffee und Latte macchiato sind eigene Sorten. Tassengrössen und mögliche Aufpreise für alternative Milch können je nach Lokal abweichen.')} ${tr('Massgeblich bleibt die Getränkekarte des Lokals.')}</p>
+    ${methodology(dataset, locale)}<h2>${tr('Weitere Kaffeepreise vergleichen')}</h2><p><a href="${localPath(guidePath(cityId, other, locale), base)}">${tr('{label}-Preise {city}', { label: tr(coffeeLabels[other]) })}</a> · <a href="${home}">${tr('Alle Kaffeepreise {city}')}</a></p>
+    <nav class="seo-links" aria-label="${tr('{label}-Preise nach Stadt')}">${cityIds.filter(id => id !== cityId).map(id => `<a href="${localPath(guidePath(id, type, locale), base)}">${tr('{label}-Preise {city}', { city: cityName(id, locale) })}</a>`).join('')}</nav>
     </main>`;
 }
 
@@ -118,21 +119,22 @@ export function seoHead(cityId: City, origin = siteOrigin, type?: GuideType, loc
   const image = `${origin}/teaser/wobillig-teaser-wordmark-1180.png`;
   const graph: object[] = [
     { '@type': 'WebSite', '@id': `${origin}/#website`, url: `${origin}/`, name: 'wobillig', inLanguage: ['de-CH', 'en'] },
-    { '@type': 'CollectionPage', '@id': `${url}#webpage`, url, name: meta.title, description: meta.description, inLanguage: type ? 'de-CH' : htmlLang[locale], isPartOf: { '@id': `${origin}/#website` }, about: { '@type': 'City', name: city } },
+    { '@type': 'CollectionPage', '@id': `${url}#webpage`, url, name: meta.title, description: meta.description, inLanguage: htmlLang[locale], isPartOf: { '@id': `${origin}/#website` }, about: { '@type': 'City', name: city } },
   ];
   if (type) graph.push({ '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: `Kaffeepreise ${cities[cityId].name}`, item: origin + cities[cityId].path },
-    { '@type': 'ListItem', position: 2, name: `${coffeeLabels[type]}-Preise`, item: url },
+    { '@type': 'ListItem', position: 1, name: translate(locale, 'Kaffeepreise {city}', { city }), item: origin + cityPath(cityId, locale) },
+    { '@type': 'ListItem', position: 2, name: translate(locale, '{label}-Preise', { label: translate(locale, coffeeLabels[type]) }), item: url },
   ] });
-  // City pages exist in both languages; German stays the default for other visitors.
-  const alternates = type ? '' : `
-    <link rel="alternate" hreflang="de-CH" href="${e(origin + cityPath(cityId, 'de'))}" /><link rel="alternate" hreflang="en" href="${e(origin + cityPath(cityId, 'en'))}" /><link rel="alternate" hreflang="x-default" href="${e(origin + cityPath(cityId, 'de'))}" />
+  // Every page has both languages; German remains the default for other visitors.
+  const alternatePath = (target: Locale) => metadata(cityId, type, target).path;
+  const alternates = `
+    <link rel="alternate" hreflang="de-CH" href="${e(origin + alternatePath('de'))}" /><link rel="alternate" hreflang="en" href="${e(origin + alternatePath('en'))}" /><link rel="alternate" hreflang="x-default" href="${e(origin + alternatePath('de'))}" />
     <meta property="og:locale:alternate" content="${ogLocales[locale === 'de' ? 'en' : 'de']}" />`;
   return `<title>${e(meta.title)}</title>
     <meta name="description" content="${e(meta.description)}" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="${e(url)}" />${alternates}
-    <meta property="og:type" content="website" /><meta property="og:locale" content="${type ? ogLocales.de : ogLocales[locale]}" />
+    <meta property="og:type" content="website" /><meta property="og:locale" content="${ogLocales[locale]}" />
     <meta property="og:site_name" content="wobillig" /><meta property="og:title" content="${e(meta.title)}" />
     <meta property="og:description" content="${e(meta.description)}" /><meta property="og:url" content="${e(url)}" />
     <meta property="og:image" content="${e(image)}" /><meta property="og:image:alt" content="wobillig" />

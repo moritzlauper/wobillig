@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { cities } from '../src/cities';
 import { coffeePrices, cityIds, cityPath, guideContent, guidePath, guideTypes, metadata, siteOrigin } from '../src/seo';
 import type { Dataset } from '../src/data';
+import { locales } from '../src/i18n';
 
 describe('search-engine-visible production pages', () => {
   const files = new Map<string, string>();
@@ -15,12 +16,10 @@ describe('search-engine-visible production pages', () => {
     }
   });
 
-  it('ships unique titles, a single canonical and visible price content on all twelve pages without JavaScript', () => {
+  it('ships unique titles, a single canonical and visible price content on all eighteen pages without JavaScript', () => {
     const titles = new Set<string>();
-    const pages = cityIds.flatMap(city => [
-      ...[undefined, ...guideTypes].map(type => ({ meta: metadata(city, type), source: 'Preisquelle</a>' })),
-      { meta: metadata(city, undefined, 'en'), source: 'Price source</a>' },
-    ]);
+    const pages = cityIds.flatMap(city => locales.flatMap(locale =>
+      [undefined, ...guideTypes].map(type => ({ meta: metadata(city, type, locale), source: locale === 'en' ? 'Price source</a>' : 'Preisquelle</a>' }))));
     for (const { meta, source } of pages) {
       const html = files.get(meta.path === '/' ? 'index.html' : `${meta.path.slice(1)}/index.html`)!;
       expect(html).toBeTruthy();
@@ -36,7 +35,7 @@ describe('search-engine-visible production pages', () => {
       expect(data['@graph'].find((item: { '@type': string }) => item['@type'] === 'CollectionPage').url).toBe(siteOrigin + meta.path);
       titles.add(meta.title);
     }
-    expect(titles.size).toBe(12);
+    expect(titles.size).toBe(18);
   });
 
   it('serves each city map in English with language links in both directions', () => {
@@ -55,17 +54,51 @@ describe('search-engine-visible production pages', () => {
       expect(english).toContain('<meta property="og:locale" content="en_GB" />');
       expect(english).toContain(`<h1 id="map-title">Coffee prices in ${city === 'zurich' ? 'Zurich' : cities[city].name}</h1>`);
       expect(english).toContain('aria-label="Colour scheme"');
-      // English pages keep visitors on English map views instead of the German guides.
-      for (const type of guideTypes) expect(english).not.toContain(`href="${guidePath(city, type)}"`);
+      for (const type of guideTypes) {
+        expect(english).not.toContain(`href="${guidePath(city, type)}"`);
+        expect(english).toContain(`href="${guidePath(city, type, 'en')}"`);
+      }
       expect(english).toContain(`href="${cityPath(city, 'en')}?drink=coffee&amp;coffeeType=espresso`);
       expect(english).not.toMatch(/Kaffeepreise|Lokale mit|Preisquelle|Datenstand/);
+    }
+  });
+
+  it('translates every guide, its navigation and structured metadata with reciprocal language links', () => {
+    for (const city of cityIds) for (const type of guideTypes) {
+      const germanPath = guidePath(city, type), englishPath = guidePath(city, type, 'en');
+      const german = files.get(`${germanPath.slice(1)}/index.html`)!;
+      const english = files.get(`${englishPath.slice(1)}/index.html`)!;
+      expect(english).toContain('<html lang="en">');
+      expect(english).toContain(`<h1>${metadata(city, type, 'en').heading}</h1>`);
+      expect(english).toContain('Which offers can be compared?');
+      expect(english).toContain('Recorded prices range from');
+      expect(english).toContain('Data as of');
+      expect(english).toContain('aria-label="Breadcrumbs"');
+      expect(english).toContain('aria-label="Colour scheme"');
+      expect(english).not.toMatch(/Kaffeepreise|Lokale mit|Preisquelle|Datenstand|Brotkrümel|Welche Angebote|Durchschnitt|Massgeblich/);
+      expect(german).toContain(`data-locale="en" href="${englishPath}"`);
+      expect(english).toContain(`data-locale="de" href="${germanPath}"`);
+      for (const html of [german, english]) {
+        expect(html).toContain(`hreflang="de-CH" href="${siteOrigin}${germanPath}"`);
+        expect(html).toContain(`hreflang="en" href="${siteOrigin}${englishPath}"`);
+        expect(html).toContain(`hreflang="x-default" href="${siteOrigin}${germanPath}"`);
+      }
+      for (const [, href] of english.matchAll(/<a[^>]*href="([^"]+)"/g)) {
+        if (href.startsWith('/') && href !== germanPath) expect(href).toMatch(/^\/en(?:\/|\?|$)/);
+      }
+      const data = JSON.parse(english.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)![1]);
+      expect(data['@graph'].find((item: { '@type': string }) => item['@type'] === 'CollectionPage').inLanguage).toBe('en');
+      const crumbs = data['@graph'].find((item: { '@type': string }) => item['@type'] === 'BreadcrumbList').itemListElement;
+      expect(crumbs[0].item).toBe(siteOrigin + cityPath(city, 'en'));
+      expect(crumbs[0].name).toMatch(/^Coffee prices in /);
+      expect(crumbs[1].name).toMatch(/ prices$/);
     }
   });
 
   it('lists only canonical pages in the sitemap and gives every guide a deployed route and incoming city link', () => {
     const sitemap = files.get('sitemap.xml')!;
     const config = JSON.parse(readFileSync('vercel.json', 'utf8'));
-    expect(sitemap.match(/<loc>/g)).toHaveLength(12);
+    expect(sitemap.match(/<loc>/g)).toHaveLength(18);
     for (const [, url] of sitemap.matchAll(/<loc>(.*?)<\/loc>/g)) expect(new URL(url).search).toBe('');
     expect(files.get('robots.txt')).toContain(`Sitemap: ${siteOrigin}/sitemap.xml`);
     for (const city of cityIds) {
@@ -73,15 +106,17 @@ describe('search-engine-visible production pages', () => {
       expect(sitemap).toContain(`<loc>${siteOrigin}${english}</loc>`);
       expect(config.rewrites).toContainEqual({ source: english, destination: `${english}/index.html` });
       expect(config.redirects).toContainEqual({ source: `${english}/index.html`, destination: english, permanent: true });
-      const home = files.get(city === 'zurich' ? 'index.html' : `${city}/index.html`)!;
-      for (const type of guideTypes) {
-        const path = guidePath(city, type);
+      for (const locale of locales) for (const type of guideTypes) {
+        const homePath = cityPath(city, locale);
+        const home = files.get(homePath === '/' ? 'index.html' : `${homePath.slice(1)}/index.html`)!;
+        const path = guidePath(city, type, locale);
         expect(home).toContain(`href="${path}"`);
         expect(sitemap).toContain(`<loc>${siteOrigin}${path}</loc>`);
         expect(config.rewrites).toContainEqual({ source: path, destination: `${path}/index.html` });
+        expect(config.redirects).toContainEqual({ source: `${path}/index.html`, destination: path, permanent: true });
         const guide = files.get(`${path.slice(1)}/index.html`)!;
         expect(guide).toContain(`coffeeType=${type}`);
-        expect(guide).toContain(`href="${cities[city].path}"`);
+        expect(guide).toContain(`href="${homePath}"`);
       }
     }
   });
@@ -92,8 +127,11 @@ describe('search-engine-visible production pages', () => {
       for (const type of guideTypes) {
         const prices = coffeePrices(dataset, type);
         const html = files.get(`${guidePath(city, type).slice(1)}/index.html`)!;
+        const english = files.get(`${guidePath(city, type, 'en').slice(1)}/index.html`)!;
         expect(html).toContain(`${prices.length} Lokale mit`);
         expect(html).toContain(`ab CHF ${prices[0].offer.priceChf.toFixed(2)}`);
+        expect(english).toContain(`${prices.length} venues with a`);
+        expect(english).toContain(`from CHF ${prices[0].offer.priceChf.toFixed(2)}`);
       }
     }
   });
@@ -124,5 +162,20 @@ describe('static price selection', () => {
     expect(html).not.toContain('javascript:');
     expect(html).toContain('href="/wobillig/basel?');
     expect(html).toContain('href="/wobillig/espresso-bern"');
+    const english = guideContent('basel', 'espresso', dataset, '/wobillig/', 'en');
+    expect(english).toContain('href="/wobillig/en/basel?');
+    expect(english).toContain('href="/wobillig/en/espresso-bern"');
+    expect(english).toContain('href="/wobillig/espresso-basel"');
+    expect(english).toContain('No linked source');
+    expect(english).not.toContain('<script>');
+  });
+
+  it('translates empty guide states as well as populated tables', () => {
+    for (const type of guideTypes) {
+      const html = guideContent('zurich', type, { ...original, bars: [] }, '/', 'en');
+      expect(html).toContain('No comparable prices have been recorded yet.');
+      expect(html).toContain('The price range and average will appear here once matching prices are available.');
+      expect(html).not.toMatch(/Noch keine|Sobald passende|Für diese Sorte/);
+    }
   });
 });

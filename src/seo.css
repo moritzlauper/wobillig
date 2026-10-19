@@ -23,6 +23,7 @@
 .seo-content .seo-cta { display: inline-block; padding: 12px 18px; background: var(--primary); color: var(--on-primary); border-radius: 4px; text-decoration: none; }
 .guide-header { border-bottom: 1px solid var(--divider); padding-block: 16px; }
 .guide-header > a { font-size: 20px; font-weight: bold; text-decoration: none; }
+.guide-header > .language-switch { margin-left: 16px; font-size: 12px; font-weight: normal; text-decoration: underline; }
 .guide-header .seo-links { margin-top: 8px; }
 main.seo-guide { display: block; }
 @media (max-width: 600px) {
