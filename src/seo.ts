@@ -115,7 +115,7 @@ export function guideContent(cityId: City, type: GuideType, dataset: Dataset, ba
 export function seoHead(cityId: City, origin = siteOrigin, type?: GuideType, locale: Locale = 'de') {
   const meta = metadata(cityId, type, locale), url = origin + meta.path;
   const city = cityName(cityId, locale);
-  const image = `${origin}/teaser/wobillig-teaser-${cityId === 'zurich' ? 'kreis1' : cityId}-1180.jpg`;
+  const image = `${origin}/teaser/wobillig-teaser-wordmark-1180.png`;
   const graph: object[] = [
     { '@type': 'WebSite', '@id': `${origin}/#website`, url: `${origin}/`, name: 'wobillig', inLanguage: ['de-CH', 'en'] },
     { '@type': 'CollectionPage', '@id': `${url}#webpage`, url, name: meta.title, description: meta.description, inLanguage: type ? 'de-CH' : htmlLang[locale], isPartOf: { '@id': `${origin}/#website` }, about: { '@type': 'City', name: city } },
@@ -135,7 +135,7 @@ export function seoHead(cityId: City, origin = siteOrigin, type?: GuideType, loc
     <meta property="og:type" content="website" /><meta property="og:locale" content="${type ? ogLocales.de : ogLocales[locale]}" />
     <meta property="og:site_name" content="wobillig" /><meta property="og:title" content="${e(meta.title)}" />
     <meta property="og:description" content="${e(meta.description)}" /><meta property="og:url" content="${e(url)}" />
-    <meta property="og:image" content="${e(image)}" /><meta property="og:image:alt" content="${e(translate(locale, 'wobillig – Preisvergleich auf der Karte für {city}', { city }))}" />
+    <meta property="og:image" content="${e(image)}" /><meta property="og:image:alt" content="wobillig" />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c')}</script>`;
 }
