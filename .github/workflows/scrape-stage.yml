@@ -43,6 +43,7 @@ jobs:
       DISCOVERY_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50' || '10' }}
       COFFEE_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50' || '10' }}
       PIZZA_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50' || '20' }}
+      STREETFOOD_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50' || '20' }}
       AI_PAGES: ${{ inputs.exhaustive_scan && '60' || inputs.deep_scan && '20' || '8' }}
       AI_MINUTES: '330'
     steps:
@@ -89,6 +90,12 @@ jobs:
       - name: Discover pizza venues and prices
         if: ${{ inputs.stage == 'pizza' }}
         run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages "$PIZZA_PAGES"
+      - name: Discover Döner venues and prices
+        if: ${{ inputs.stage == 'doner' }}
+        run: python -m scraper.scrape_streetfood --category doner --discover --limit 0 --workers 8 --max-pages "$STREETFOOD_PAGES"
+      - name: Discover Falafel venues and prices
+        if: ${{ inputs.stage == 'falafel' }}
+        run: python -m scraper.scrape_streetfood --category falafel --discover --limit 0 --workers 8 --max-pages "$STREETFOOD_PAGES"
       - name: Claude menu and serving-format scan
         id: ai
         if: ${{ inputs.stage == 'ai' }}

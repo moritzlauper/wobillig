@@ -51,10 +51,36 @@ jobs:
       exhaustive_scan: ${{ inputs.exhaustive_scan }}
       deep_scan: ${{ inputs.deep_scan }}
       ai_budget_usd: ${{ inputs.ai_budget_usd }}
+  doner:
+    name: Döner
+    needs: pizza
+    if: ${{ !cancelled() && (inputs.scan_mode == 'full' || inputs.scan_mode == 'streetfood_only') }}
+    uses: ./.github/workflows/scrape-stage.yml
+    with:
+      stage: doner
+      city: ${{ inputs.city }}
+      city_count: ${{ inputs.city_count }}
+      scan_mode: ${{ inputs.scan_mode }}
+      exhaustive_scan: ${{ inputs.exhaustive_scan }}
+      deep_scan: ${{ inputs.deep_scan }}
+      ai_budget_usd: 0
+  falafel:
+    name: Falafel
+    needs: doner
+    if: ${{ !cancelled() && (inputs.scan_mode == 'full' || inputs.scan_mode == 'streetfood_only') }}
+    uses: ./.github/workflows/scrape-stage.yml
+    with:
+      stage: falafel
+      city: ${{ inputs.city }}
+      city_count: ${{ inputs.city_count }}
+      scan_mode: ${{ inputs.scan_mode }}
+      exhaustive_scan: ${{ inputs.exhaustive_scan }}
+      deep_scan: ${{ inputs.deep_scan }}
+      ai_budget_usd: 0
   ai:
     name: Claude menus and serving formats
-    needs: [drinks, pizza]
-    if: ${{ !cancelled() }}
+    needs: [drinks, pizza, doner, falafel]
+    if: ${{ !cancelled() && inputs.scan_mode != 'streetfood_only' }}
     uses: ./.github/workflows/scrape-stage.yml
     with:
       stage: ai

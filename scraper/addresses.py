@@ -121,7 +121,7 @@ def main():
         raw = response.json()
     if raw.get('remark') or not raw.get('elements'):
         raise ValueError('Incomplete OSM response; existing addresses were not changed')
-    paths = [DATA_DIR / f'{name}.json' for name in ('bars', 'coffee', 'pizza', 'locations') if (DATA_DIR / f'{name}.json').exists()]
+    paths = [DATA_DIR / f'{name}.json' for name in ('bars', 'coffee', 'pizza', 'doner', 'falafel', 'locations') if (DATA_DIR / f'{name}.json').exists()]
     datasets = [json.loads(p.read_text()) for p in paths]
     reviewed = json.loads(Path(__file__).with_name('reviewed_addresses.json').read_text())
     changed = enrich(datasets, AddressLookup(raw['elements']), reviewed)

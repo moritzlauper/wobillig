@@ -7,7 +7,7 @@ from pathlib import Path
 
 from scraper.cities import CITY, CITY_NAME, DATA_DIR
 
-FILES = {'beer': 'bars', 'coffee': 'coffee', 'pizza': 'pizza'}
+FILES = {'beer': 'bars', 'coffee': 'coffee', 'pizza': 'pizza', 'doner': 'doner', 'falafel': 'falafel'}
 
 
 def coverage(bars):
@@ -22,6 +22,7 @@ def coverage(bars):
             # Sources, timestamps and inferred serving formats are not new
             # products. Coffee varieties use their canonical category names.
             key = json.dumps([bar['id'], offer.get('coffeeType') or offer.get('pizzaType')
+                              or (':'.join([offer['foodType'], offer.get('portionType', 'unspecified'), offer.get('meatType', 'unspecified')]) if offer.get('foodType') else None)
                               or ' '.join(offer['name'].casefold().split()),
                               offer.get('volumeMl'), bool(offer.get('alcoholFree')),
                               offer.get('serving')], ensure_ascii=False)
@@ -29,7 +30,7 @@ def coverage(bars):
             kind = offer.get('beerType', 'unknown')
             if kind == 'unknown':
                 kind = offer.get('beerTypeEstimate', {}).get('type')
-            if kind == 'bottle' and not offer.get('coffeeType') and not offer.get('pizzaType'):
+            if kind == 'bottle' and not offer.get('coffeeType') and not offer.get('pizzaType') and not offer.get('foodType'):
                 bottles.add(bar['id'])
     return {'venues': len(bars), 'pricedVenues': len(priced), 'offers': offers,
             'products': len(products), 'bottleVenues': len(bottles),
@@ -38,8 +39,14 @@ def coverage(bars):
 
 
 def snapshot(directory=DATA_DIR):
+    def read_bars(name):
+        path = directory / (name + '.json')
+        # The new categories start with no file until their first crawl.
+        if name in ('doner', 'falafel') and not path.exists():
+            return []
+        return json.loads(path.read_text())['bars']
     return {'city': CITY, 'recordedAt': datetime.now(timezone.utc).isoformat(),
-            'categories': {category: coverage(json.loads((directory / (name + '.json')).read_text())['bars'])
+            'categories': {category: coverage(read_bars(name))
                            for category, name in FILES.items()}}
 
 
@@ -48,7 +55,7 @@ def compare(before, after):
         raise ValueError('Cannot compare different cities')
     result = {}
     for category in FILES:
-        a, b = before['categories'][category], after['categories'][category]
+        a, b = before['categories'].get(category, coverage([])), after['categories'].get(category, coverage([]))
         old, new = a['productPrices'], b['productPrices']
         result[category] = {
             'before': {k: a[k] for k in ('venues', 'pricedVenues', 'offers', 'products', 'bottleVenues')},
