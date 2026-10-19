@@ -1,10 +1,16 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { IncomingMessage, ServerResponse } from 'node:http';
+import type { Bar, Dataset } from '../src/data';
 
 const mocks = vi.hoisted(() => ({ readFile: vi.fn(), blobStore: vi.fn(), savePrice: vi.fn(), saveVenue: vi.fn() }));
 vi.mock('node:fs/promises', () => ({ readFile: mocks.readFile }));
 vi.mock('../server/prices.js', () => ({ blobStore: mocks.blobStore, savePrice: mocks.savePrice, saveVenue: mocks.saveVenue }));
 import handler from '../api/prices';
+
+function venue(id: string, name = 'Test'): Bar {
+  return { id, name, lat: 46.948, lon: 7.447, type: 'cafe', address: '', postcode: '', website: null,
+    openingHours: null, outdoor: false, offers: [], scrapeStatus: 'unavailable', checkedAt: null };
+}
 
 async function request(url: string, body?: unknown) {
   const req = { url, method: body ? 'POST' : 'GET', body, headers: { host: 'example.org', origin: 'https://example.org', 'content-type': 'application/json' }, socket: { remoteAddress: '127.0.0.1' } } as IncomingMessage & { body?: unknown };
@@ -18,7 +24,10 @@ beforeEach(() => {
   vi.stubEnv('VERCEL_ENV', 'production');
   vi.stubEnv('BLOB_READ_WRITE_TOKEN', 'test-secret');
   mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: { entries: [{ id: path }] } }) }));
-  mocks.readFile.mockImplementation(async (path: string) => JSON.stringify({ bars: [{ id: path.includes('/bern/') ? 'node/bern' : path.includes('/basel/') ? 'node/basel' : 'node/zurich', name: 'Test', offers: [] }] }));
+  mocks.readFile.mockImplementation(async (path: string) => JSON.stringify({
+    generatedAt: '', discoveredAt: '', attribution: '',
+    bars: [venue(path.includes('/bern/') ? 'node/bern' : path.includes('/basel/') ? 'node/basel' : 'node/zurich')],
+  } satisfies Dataset));
   mocks.savePrice.mockResolvedValue({ id: 'saved' });
   mocks.saveVenue.mockResolvedValue({ venue: { id: 'community/new' }, created: true });
 });
@@ -58,7 +67,7 @@ describe('city-scoped price API', () => {
 
   it('accepts prices for a community venue only from that city’s stored catalogue', async () => {
     mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: { entries: [],
-      venues: path.includes('/bern/') ? [{ id: 'community/new', name: 'New café', offers: [] }] : [] } }) }));
+      venues: path.includes('/bern/') ? [venue('community/new', 'New café')] : [] } }) }));
     const input = { barId: 'community/new', drink: 'coffee', coffeeType: 'espresso', name: 'Espresso', priceChf: 4.5,
       revision: 0, volumeMl: null, alcoholFree: true, observedAt: '2026-10-19', sourceUrl: '' };
     expect((await request('/api/prices?city=bern', input)).status).toBe(200);
