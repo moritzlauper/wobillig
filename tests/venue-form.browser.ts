@@ -1,5 +1,8 @@
+import { captureAnalytics, events, expectEvent } from './analytics-browser-helper';
 import { expect, test } from '@playwright/test';
 import type { Bar } from '../src/data';
+
+test.beforeEach(async ({ page }) => captureAnalytics(page));
 
 test('mobile visitors can create a venue, reload it and add a price', async ({ page }) => {
   const venues: Bar[] = [], entries: unknown[] = [];
@@ -28,6 +31,8 @@ test('mobile visitors can create a venue, reload it and add a price', async ({ p
   await dialog.getByRole('button', { name: 'Lokal speichern', exact: true }).click();
   await expect(dialog.getByRole('alert')).toContainText('Kartenposition');
   expect(venues).toHaveLength(0);
+  await expectEvent(page, 'venue_failed', { city: 'bern', language: 'de', stage: 'validation' });
+  expect((await events(page)).some(e => e.name === 'venue_saved')).toBe(false);
   await dialog.getByRole('button', { name: 'Adresse auf Karte suchen' }).click();
   await dialog.getByRole('button', { name: 'Testgasse 12 3011 Bern' }).click();
   await expect(dialog.locator('#venue-position')).toContainText('Position gewählt');
@@ -37,6 +42,9 @@ test('mobile visitors can create a venue, reload it and add a price', async ({ p
   await expect(dialog).not.toBeVisible();
   await expect(page.locator('#detail')).toContainText('Neues Testcafé');
   expect(venues).toHaveLength(1);
+  await expectEvent(page, 'venue_saved', { city: 'bern', language: 'de' });
+  expect((await events(page)).filter(e => e.name === 'venue_saved')).toHaveLength(1);
+  expect(JSON.stringify(await events(page))).not.toMatch(/Testgasse|Testcafé|3011/);
   await page.reload();
   await expect(page.locator('#detail')).toContainText('Neues Testcafé');
   await page.getByRole('button', { name: 'Preis hinzufügen', exact: true }).click();
@@ -51,6 +59,8 @@ test('mobile visitors can create a venue, reload it and add a price', async ({ p
   await dialog.getByRole('button', { name: 'Neues Testcafé · Testgasse 12' }).click();
   await expect(dialog).not.toBeVisible();
   expect(venues).toHaveLength(1);
+  await expectEvent(page, 'venue_existing_selected', { city: 'bern', language: 'de' });
+  expect((await events(page)).some(e => e.name === 'venue_saved')).toBe(false);
   await page.setViewportSize({ width: 320, height: 700 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
 });
@@ -72,6 +82,8 @@ test('manual map placement works when address search fails; save failure keeps t
   await dialog.getByRole('button', { name: 'Kartenmitte übernehmen' }).click();
   await dialog.getByRole('button', { name: 'Lokal speichern', exact: true }).click();
   await expect(dialog.getByRole('alert')).toHaveText('Speichern gerade nicht möglich.');
+  await expectEvent(page, 'venue_failed', { city: 'bern', language: 'de', stage: 'request' });
+  expect((await events(page)).some(e => e.name === 'venue_saved')).toBe(false);
   await expect(dialog.getByLabel('Name', { exact: true })).toHaveValue('Anderes Testcafé');
   await expect(dialog.getByRole('button', { name: 'Lokal speichern', exact: true })).toBeEnabled();
   await page.screenshot({ path: 'test-results/venue-form-desktop.png' });

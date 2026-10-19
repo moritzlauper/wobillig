@@ -381,3 +381,19 @@ Wenn ein direkter automatischer Bildabruf durch robots.txt ausgeschlossen ist, k
 OCR-Preise behalten den Fotolink, das Fotodatum, den Textbeleg und das separate Lesedatum. Unlesbare Ziffern, Strichlisten, Spenden, rückseitig durchscheinender Text und unklare Portionsgrössen werden nicht als Preise übernommen. Bestehende widersprechende Preise werden nicht automatisch ersetzt. Abgelaufene Fotoangebote verschwinden aus dem Kartenvergleich und der Detailansicht auch ohne neuen Scan; der nächste Scan entfernt sie aus dem Datensatz. Ein neuer Besucherpreis bleibt unabhängig davon erhalten.
 
 Im Biervergleich erscheinen Cafés nur mit einem aktuellen, vergleichbaren Bierangebot im Datensatz (einschliesslich Besucherbeiträgen). Öffnungszeiten führen nicht zum Ausschluss; auch tagsüber geöffnete Cafés mit Bierpreisen erscheinen. Diese Vorauswahl gilt für Liste, Karte und ausgewählte Lokale unabhängig von «Ohne passenden Preis anzeigen»; Kaffee und Pizza sind davon ausgenommen.
+
+
+## Vercel Custom Events
+
+Alle sechs Kartenseiten (DE/EN, Zürich/Bern/Basel) erfassen folgende Aktionen unter **Vercel → Analytics → Events**. Die Events erscheinen nach ihrer ersten Verwendung; im Dashboard ist keine separate Definition erforderlich.
+
+| Events | Bedeutung / Eigenschaften |
+| --- | --- |
+| `price_form_opened`, `price_submitted`, `price_saved`, `price_failed` | Preisdialog geöffnet, gültiger Speicherversuch, bestätigte Speicherung oder Fehler. `category`: `beer` / `coffee` / `pizza`, `action`: `add` / `edit`; Fehler mit `stage`: `validation` / `request`. |
+| `menu_upload_started`, `menu_upload_completed`, `menu_upload_failed` | Tatsächlich ausgewähltes Foto, erfolgreiche Scan-Antwort oder Fehler. Ergebnis zählt `added`, `unchanged`, `conflicts`, `skipped`; ein Scan ohne neue Preise hat `added=0`. Fehlerphase `preparation` / `request`. |
+| `venue_form_opened`, `venue_submitted`, `venue_saved`, `venue_existing_selected`, `venue_failed` | Lokalformular, gültiger Speicherversuch, neu angelegtes Lokal, erkanntes/ausgewähltes vorhandenes Lokal oder Fehler. Duplikate zählen nicht als neue Lokale. |
+| `category_changed`, `cheap_filter_changed` | Kategorie gewechselt beziehungsweise Günstig-Filter ein-/ausgeschaltet (`category`, `enabled`). |
+| `venue_shared` | Ergebnis der Teilen-Aktion (`category`, `result`: `shared`, `copied`, `manual`, `cancelled`). `manual` bedeutet nur, dass der Link angezeigt wurde. |
+| `data_downloaded` | Datenexport ausgelöst (`format`: `csv` / `json`). |
+
+Alle Events enthalten `city` und `language`. Es werden keine Formularinhalte, Lokalnamen/IDs, Adressen, Koordinaten, Suchbegriffe, Bilddaten, Dateinamen oder Fehlermeldungen als Event-Eigenschaften übermittelt. Der `beforeSend`-Hook entfernt Query und Fragment der an Vercel gesendeten Karten-URLs. Analytics-Ausfälle dürfen keine Nutzeraktion unterbrechen. Lokal verwendet der SDK den Entwicklungsmodus. Browser-Tests fangen Analytics und Schreib-APIs ab und erzeugen keine Produktionsdaten.

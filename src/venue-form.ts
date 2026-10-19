@@ -1,4 +1,5 @@
 import L from 'leaflet';
+import { trackEvent } from './analytics';
 import { cities, type City } from './cities';
 import { searchAddresses } from './address-search';
 import { type Bar } from './data';
@@ -51,7 +52,7 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
     const title = document.createElement('p'); title.textContent = t('Ist dein Lokal bereits dabei?'); el('venue-duplicates').append(title);
     for (const bar of matches) {
       const button = document.createElement('button'); button.type = 'button'; button.textContent = [bar.name, bar.address].filter(Boolean).join(' · ');
-      button.onclick = () => { dialog.close(); saved(bar, false); };
+      button.onclick = () => { trackEvent(cityId, 'venue_existing_selected', {}); dialog.close(); saved(bar, false); };
       el('venue-duplicates').append(button);
     }
   }
@@ -93,20 +94,27 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
   el<HTMLFormElement>('venue-form').onsubmit = async event => {
     event.preventDefault(); if (busy) return;
     el('venue-error').hidden = true;
+    let stage: 'validation' | 'request' = 'validation';
+    let completed = false;
     try {
       const input = validateVenue({ name: value('venue-name'), type: value('venue-type'), address: value('venue-address'), postcode: value('venue-postcode'),
         lat: point?.lat, lon: point?.lng, website: value('venue-website'), outdoor: el<HTMLInputElement>('venue-outdoor').checked }, cityId);
       const duplicate = duplicateVenue(input, known());
-      if (duplicate) { dialog.close(); saved(duplicate, false); return; }
+      if (duplicate) { trackEvent(cityId, 'venue_existing_selected', {}); dialog.close(); saved(duplicate, false); return; }
       cancelSearch(); busy = true; marker?.dragging?.disable();
       el<HTMLFieldSetElement>('venue-fields').disabled = true; el<HTMLButtonElement>('venue-close').disabled = true;
       el('venue-save').textContent = t('Speichern …');
+      stage = 'request';
+      trackEvent(cityId, 'venue_submitted', {});
       const response = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'addVenue', venue: input }), signal: AbortSignal.timeout(30000) });
       const result = await response.json().catch(() => { throw new Error(t('Speichern gerade nicht möglich. Bitte erneut versuchen.')); });
       if (!response.ok || !result.venue) throw new Error(result.error || t('Das Lokal konnte nicht gespeichert werden.'));
+      completed = true;
+      trackEvent(cityId, result.created ? 'venue_saved' : 'venue_existing_selected', {});
       dialog.close(); saved(result.venue, result.created);
     } catch (error) {
+      if (!completed) trackEvent(cityId, 'venue_failed', { stage });
       el('venue-error').textContent = error instanceof Error && !['TypeError', 'TimeoutError', 'AbortError'].includes(error.name)
         ? t(error.message) : t('Verbindung unterbrochen. Bitte erneut versuchen; derselbe Eintrag wird nicht doppelt angelegt.');
       el('venue-error').hidden = false;
@@ -121,6 +129,7 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
     el<HTMLInputElement>('venue-name').value = name; el('venue-error').hidden = true;
     el('venue-position').textContent = t('Noch keine Position gewählt.'); el('venue-search-status').textContent = ''; el('venue-addresses').replaceChildren();
     dialog.showModal();
+    trackEvent(cityId, 'venue_form_opened', {});
     if (!map) {
       map = L.map(el('venue-map'), { scrollWheelZoom: false }).setView(center, 16);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19,

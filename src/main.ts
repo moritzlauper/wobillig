@@ -1,6 +1,7 @@
 import { cities, cityFromPath, cityLink, type City } from './cities';
 import L from 'leaflet';
 import { inject } from '@vercel/analytics';
+import { analyticsBeforeSend, trackEvent } from './analytics';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
@@ -18,7 +19,7 @@ import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan'
 import { dateLocale, locale, localizedPath, t, type Locale } from './i18n';
 import { venueForm } from './venue-form';
 
-inject({ mode: import.meta.env.DEV ? 'development' : 'production' });
+inject({ mode: import.meta.env.DEV ? 'development' : 'production', beforeSend: analyticsBeforeSend });
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 const money = (n: number) => n.toFixed(2);
@@ -536,6 +537,7 @@ function detail(b: Bar) {
     button.disabled = true;
     try {
       const result = await shareLink({ title: `${b.name} · wobillig`, url });
+      trackEvent(cityId, 'venue_shared', { category: f.drink!, result });
       if (result === 'copied') toast(t('Link kopiert.'));
       if (result === 'manual') {
         $<HTMLInputElement>('share-url').value = url;
@@ -582,7 +584,7 @@ function showBar(b: Bar, zoom?: number) {
   scheduleBarReveal(zoom);
   $('detail').focus({ preventScroll: true });
 }
-function chooseDrink(drink: Drink) { budgets[f.drink!] = f.max; f.max = budgets[drink]; $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : ''; f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
+function chooseDrink(drink: Drink) { if (drink !== f.drink) trackEvent(cityId, 'category_changed', { category: drink }); budgets[f.drink!] = f.max; f.max = budgets[drink]; $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : ''; f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
 $('drink-beer').onclick = () => chooseDrink('beer'); $('drink-coffee').onclick = () => chooseDrink('coffee'); $('drink-pizza').onclick = () => chooseDrink('pizza');
 $('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
 $('toolbar-toggle').onclick = () => {
@@ -697,6 +699,7 @@ function locate(openNearby = false) {
 $('locate').onclick = () => locate(true);
 $('cheap').onclick = () => {
   cheapMode = !cheapMode;
+  trackEvent(cityId, 'cheap_filter_changed', { category: f.drink!, enabled: cheapMode });
   selected = undefined;
   render();
 };
@@ -710,6 +713,7 @@ $('data-info').onclick = () => {
 for (const format of ['csv', 'json'] as const) {
   $('download-' + format).onclick = () => {
     downloadExport(createExport(cityId, datasets, entries, communityReady, undefined, addedVenues), format);
+    trackEvent(cityId, 'data_downloaded', { format });
   };
 }
 $('close-info').onclick = () => $<HTMLDialogElement>('info').close();
@@ -763,6 +767,7 @@ function openPrice(bar: Bar, offer?: Offer) {
   $('form-error').hidden = true;
   entryFields();
   $<HTMLDialogElement>('price-dialog').showModal();
+  trackEvent(cityId, 'price_form_opened', { category: offer ? offerCategory(offer) : f.drink!, action: offer ? 'edit' : 'add' });
   // Focus the heading even when reopening after typing; inputs must never open
   // the phone keyboard until the visitor explicitly taps a field.
   $('form-title').focus({ preventScroll: true });
@@ -773,6 +778,9 @@ $('menu-photo').onchange = async () => {
   const file = picker.files?.[0];
   if (!file || saving) return;
   const barId = $<HTMLInputElement>('entry-bar').value;
+  let stage: 'preparation' | 'request' = 'preparation';
+  let completed = false;
+  trackEvent(cityId, 'menu_upload_started', {});
   saving = true;
   $<HTMLButtonElement>('scan-menu').disabled = true;
   $<HTMLButtonElement>('cancel-price').disabled = true;
@@ -782,12 +790,16 @@ $('menu-photo').onchange = async () => {
   $('scan-status').hidden = false; $('scan-status').textContent = t('Foto wird vorbereitet …');
   try {
     const image = await prepareMenuPhoto(file);
+    stage = 'request';
     $('scan-status').textContent = t('Karte wird gelesen und Preise werden gespeichert …');
     const response = await fetch(`/api/scan-menu?city=${cityId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ barId, image }), signal: AbortSignal.timeout(100000) });
     const result = await response.json().catch(() => { throw new Error(t('Der Scan ist gerade nicht verfügbar. Bitte später erneut versuchen.')); });
     if (!response.ok) throw new Error(result.error || t('Das Foto konnte nicht verarbeitet werden.'));
     const scanned = result as MenuScanResult;
+    const { added, unchanged, conflicts, skipped } = scanned;
+    completed = true;
+    trackEvent(cityId, 'menu_upload_completed', { added, unchanged, conflicts, skipped });
     const ids = new Set(scanned.entries.map(entry => entry.id));
     entries = [...entries.filter(entry => !ids.has(entry.id)), ...scanned.entries];
     if (scanned.entries.length && !scanned.entries.some(entry => entry.drink === f.drink)) f.drink = scanned.entries[0].drink;
@@ -797,6 +809,7 @@ $('menu-photo').onchange = async () => {
     if (bar) showBar(bar);
     toast(scanSummary(scanned));
   } catch (error) {
+    if (!completed) trackEvent(cityId, 'menu_upload_failed', { stage });
     $('scan-status').hidden = true;
     $('form-error').textContent = error instanceof Error && !['TypeError', 'TimeoutError', 'AbortError'].includes(error.name)
       ? t(error.message) : t('Verbindung unterbrochen. Bitte lade die Seite neu, um bereits gespeicherte Preise zu sehen.');
@@ -821,8 +834,11 @@ $('price-dialog').addEventListener('cancel', event => { if (saving) event.preven
 $('price-form').onsubmit = async event => {
   event.preventDefault(); if (saving) return;
   $('form-error').hidden = true;
+  const drink = $<HTMLSelectElement>('entry-drink').value as Drink;
+  const action = editing ? 'edit' : 'add';
+  let stage: 'validation' | 'request' = 'validation';
+  let saved = false;
   try {
-    const drink = $<HTMLSelectElement>('entry-drink').value as Drink;
     const input = validateInput({
       id: editing?.communityId, revision: editing?.revision || 0, targetKey: editing ? editing.originalKey || offerKey(editing) : undefined,
       barId: $<HTMLInputElement>('entry-bar').value, drink,
@@ -835,6 +851,8 @@ $('price-form').onsubmit = async event => {
       alcoholFree: drink !== 'beer' || $<HTMLInputElement>('entry-alcohol').checked,
       observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
     } satisfies PriceInput, selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f) && inSelectedDistrict(b)));
+    stage = 'request';
+    trackEvent(cityId, 'price_submitted', { category: drink, action });
     saving = true; $<HTMLButtonElement>('scan-menu').disabled = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = t('Speichern …');
     const response = await fetch(pricesApi, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
     const result = await response.json().catch(() => { throw new Error(t('Speichern gerade nicht möglich. Bitte erneut versuchen.')); });
@@ -843,6 +861,8 @@ $('price-form').onsubmit = async event => {
       throw new Error(result.error || t('Speichern fehlgeschlagen.'));
     }
     const entry = result.entry as PriceEntry;
+    saved = true;
+    trackEvent(cityId, 'price_saved', { category: drink, action });
     entries = [...entries.filter(x => x.id !== entry.id), entry];
     cheapMode = false;
     f.drink = drink; selected = input.barId;
@@ -859,6 +879,7 @@ $('price-form').onsubmit = async event => {
     const bar = bars.find(b => b.id === input.barId); if (bar) showBar(bar, 16);
     toast(t('Gespeichert. Für alle sichtbar.'));
   } catch (error) {
+    if (!saved) trackEvent(cityId, 'price_failed', { category: drink, action, stage });
     $('form-error').textContent = error instanceof Error && !['TypeError', 'TimeoutError', 'AbortError'].includes(error.name) ? t(error.message) : t('Speichern fehlgeschlagen. Bitte Verbindung prüfen und erneut versuchen.');
     $('form-error').hidden = false;
   } finally { saving = false; $<HTMLButtonElement>('scan-menu').disabled = false; $<HTMLButtonElement>('save-price').disabled = false; $<HTMLButtonElement>('cancel-price').disabled = false; $('save-price').textContent = t('Speichern'); }
