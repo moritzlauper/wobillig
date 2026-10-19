@@ -1,4 +1,5 @@
 import { matchesSearch } from './search.js';
+import { t } from './i18n.js';
 
 export type BeerType = "draft" | "bottle" | "can" | "unknown";
 export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bottle: "Flaschenbier", can: "Dosenbier", unknown: "Ausschankart unbekannt" };
@@ -69,7 +70,7 @@ export const coffeeLabels: Record<string, string> = {
   matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
-  return o.pizzaType ? "Pro Pizza Margherita" + (o.priceContext === "online_menu" ? " · Onlinepreis" : "") : o.coffeeType ? coffeeLabels[o.coffeeType] || "Kaffee" : o.volumeMl ? `${o.volumeMl / 100} dl` : "Stange · Grösse nicht angegeben";
+  return o.pizzaType ? t('Pro Pizza Margherita') + (o.priceContext === "online_menu" ? ` · ${t('Onlinepreis')}` : "") : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
 }
 export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" {
   return o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
@@ -85,7 +86,7 @@ export function effectiveBeerType(o: Offer): BeerType {
   return o.beerType && o.beerType !== "unknown" ? o.beerType : o.beerTypeEstimate?.type || "unknown";
 }
 export function beerTypeLabel(o: Offer) {
-  return offerCategory(o) !== "beer" ? "" : beerTypeLabels[effectiveBeerType(o)] + ((!o.beerType || o.beerType === "unknown") && o.beerTypeEstimate ? " · geschätzt" : "");
+  return offerCategory(o) !== "beer" ? "" : t(beerTypeLabels[effectiveBeerType(o)]) + ((!o.beerType || o.beerType === "unknown") && o.beerTypeEstimate ? ` · ${t('geschätzt')}` : "");
 }
 export function isStange(o: Offer) {
   return offerCategory(o) === "beer" && isComparableOffer(o) && effectiveBeerType(o) !== "bottle" && effectiveBeerType(o) !== "can" && (o.volumeMl === 300 || (o.serving === "stange" && (o.volumeMl === null || (o.volumeMl >= 300 && o.volumeMl <= 330))));

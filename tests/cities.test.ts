@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { cities, cityFromPath, cityLink, cityStoragePath } from '../src/cities';
 import { barLink } from '../src/sharing';
+import { localeFromPath } from '../src/i18n';
 
 describe('city navigation and storage isolation', () => {
   it('resolves direct and trailing-slash URLs, including a deployment base', () => {
@@ -9,6 +10,18 @@ describe('city navigation and storage isolation', () => {
     expect(cityFromPath('/basel/')).toBe('basel');
     expect(cityFromPath('/wobillig/bern/', '/wobillig/')).toBe('bern');
     expect(cityFromPath('/bern-other')).toBe('zurich');
+    expect(cityFromPath('/en')).toBe('zurich');
+    expect(cityFromPath('/en/basel/')).toBe('basel');
+    expect(cityFromPath('/wobillig/en/bern', '/wobillig/')).toBe('bern');
+    expect(cityFromPath('/english')).toBe('zurich');
+  });
+  it('keeps the language when switching cities', () => {
+    expect(cityLink('zurich', '?drink=beer', '/', 'en')).toBe('/en?drink=beer');
+    expect(cityLink('bern', '?bar=node%2F1', '/wobillig/', 'en')).toBe('/wobillig/en/bern');
+    expect(localeFromPath('/en/bern')).toBe('en');
+    expect(localeFromPath('/wobillig/en', '/wobillig/')).toBe('en');
+    expect(localeFromPath('/bern')).toBe('de');
+    expect(localeFromPath('/english')).toBe('de');
   });
   it('keeps category filters but drops a venue from the previous city', () => {
     expect(cityLink('basel', '?drink=coffee&bar=node%2F1')).toBe('/basel?drink=coffee');

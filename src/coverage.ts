@@ -1,3 +1,4 @@
+import { t } from './i18n';
 import { bestOffer, cost, filterBars, isCurrentOffer, isComparableOffer, offerCategory, type Bar, type Filters } from './data';
 
 export function cityAverage(bars: Bar[], f: Filters): { price: number; count: number } | undefined {
@@ -15,11 +16,12 @@ export function hasDrinkPrice(bar: Bar, f: Filters): boolean {
 }
 
 export function missingPriceLabel(bar: Bar, f: Filters): string {
-  return hasDrinkPrice(bar, f) ? 'Kein passender Preis' : 'Noch nicht erfasst';
+  return hasDrinkPrice(bar, f) ? t('Kein passender Preis') : t('Noch nicht erfasst');
 }
 
 export function coverageLabel(bars: Bar[], f: Filters): string {
   const recorded = bars.filter(b => hasDrinkPrice(b, f)).length;
   const matching = bars.filter(b => bestOffer(b, f)).length;
-  return `${bars.length} Lokale · ${recorded} mit ${f.drink === 'pizza' ? 'Margherita-Preis' : f.drink === 'coffee' ? 'Kaffeepreis' : 'Bierpreis'} · ${matching} passend zum Filter`;
+  const kind = f.drink === 'pizza' ? t('Margherita-Preis') : f.drink === 'coffee' ? t('Kaffeepreis') : t('Bierpreis');
+  return t('{venues} Lokale · {recorded} mit {kind} · {matching} passend zum Filter', { venues: bars.length, recorded, kind, matching });
 }

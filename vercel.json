@@ -31,6 +31,30 @@
       "destination": "/basel/index.html"
     },
     {
+      "source": "/en",
+      "destination": "/en/index.html"
+    },
+    {
+      "source": "/en/",
+      "destination": "/en/index.html"
+    },
+    {
+      "source": "/en/bern",
+      "destination": "/en/bern/index.html"
+    },
+    {
+      "source": "/en/bern/",
+      "destination": "/en/bern/index.html"
+    },
+    {
+      "source": "/en/basel",
+      "destination": "/en/basel/index.html"
+    },
+    {
+      "source": "/en/basel/",
+      "destination": "/en/basel/index.html"
+    },
+    {
       "source": "/espresso-zuerich",
       "destination": "/espresso-zuerich/index.html"
     },
@@ -70,6 +94,21 @@
     {
       "source": "/basel/index.html",
       "destination": "/basel",
+      "permanent": true
+    },
+    {
+      "source": "/en/index.html",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/en/bern/index.html",
+      "destination": "/en/bern",
+      "permanent": true
+    },
+    {
+      "source": "/en/basel/index.html",
+      "destination": "/en/basel",
       "permanent": true
     },
     {

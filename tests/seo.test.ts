@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { build } from 'vite';
 import { readFileSync } from 'node:fs';
 import { cities } from '../src/cities';
-import { coffeePrices, cityIds, guideContent, guidePath, guideTypes, metadata, siteOrigin } from '../src/seo';
+import { coffeePrices, cityIds, cityPath, guideContent, guidePath, guideTypes, metadata, siteOrigin } from '../src/seo';
 import type { Dataset } from '../src/data';
 
 describe('search-engine-visible production pages', () => {
@@ -15,36 +15,64 @@ describe('search-engine-visible production pages', () => {
     }
   });
 
-  it('ships unique titles, a single canonical and visible price content on all nine pages without JavaScript', () => {
+  it('ships unique titles, a single canonical and visible price content on all twelve pages without JavaScript', () => {
     const titles = new Set<string>();
-    for (const city of cityIds) {
-      for (const type of [undefined, ...guideTypes]) {
-        const meta = metadata(city, type);
-        const html = files.get(meta.path === '/' ? 'index.html' : `${meta.path.slice(1)}/index.html`)!;
-        expect(html).toBeTruthy();
-        expect(html.match(/<h1[ >]/g)).toHaveLength(1);
-        expect(html.match(/rel="canonical"/g)).toHaveLength(1);
-        expect(html).toContain(`href="${siteOrigin}${meta.path}"`);
-        expect(html).toContain(`<title>${meta.title}</title>`);
-        expect(html).toContain('<table>');
-        expect(html).toContain('Preisquelle</a>');
-        expect(html).not.toContain('<!-- SEO_');
-        expect(html).not.toContain('noindex');
-        const data = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)![1]);
-        expect(data['@graph'].find((item: { '@type': string }) => item['@type'] === 'CollectionPage').url).toBe(siteOrigin + meta.path);
-        titles.add(meta.title);
-      }
+    const pages = cityIds.flatMap(city => [
+      ...[undefined, ...guideTypes].map(type => ({ meta: metadata(city, type), source: 'Preisquelle</a>' })),
+      { meta: metadata(city, undefined, 'en'), source: 'Price source</a>' },
+    ]);
+    for (const { meta, source } of pages) {
+      const html = files.get(meta.path === '/' ? 'index.html' : `${meta.path.slice(1)}/index.html`)!;
+      expect(html).toBeTruthy();
+      expect(html.match(/<h1[ >]/g)).toHaveLength(1);
+      expect(html.match(/rel="canonical"/g)).toHaveLength(1);
+      expect(html).toContain(`href="${siteOrigin}${meta.path}"`);
+      expect(html).toContain(`<title>${meta.title}</title>`);
+      expect(html).toContain('<table>');
+      expect(html).toContain(source);
+      expect(html).not.toContain('<!-- SEO_');
+      expect(html).not.toContain('noindex');
+      const data = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)![1]);
+      expect(data['@graph'].find((item: { '@type': string }) => item['@type'] === 'CollectionPage').url).toBe(siteOrigin + meta.path);
+      titles.add(meta.title);
     }
-    expect(titles.size).toBe(9);
+    expect(titles.size).toBe(12);
+  });
+
+  it('serves each city map in English with language links in both directions', () => {
+    const page = (path: string) => files.get(path === '/' ? 'index.html' : `${path.slice(1)}/index.html`)!;
+    for (const city of cityIds) {
+      const german = page(cityPath(city)), english = page(cityPath(city, 'en'));
+      expect(german).toContain('<html lang="de-CH">');
+      expect(english).toContain('<html lang="en">');
+      for (const html of [german, english]) {
+        expect(html).toContain(`<link rel="alternate" hreflang="de-CH" href="${siteOrigin}${cityPath(city)}" />`);
+        expect(html).toContain(`<link rel="alternate" hreflang="en" href="${siteOrigin}${cityPath(city, 'en')}" />`);
+        expect(html).toContain(`hreflang="x-default" href="${siteOrigin}${cityPath(city)}"`);
+      }
+      expect(german).toContain(`data-locale="en" href="${cityPath(city, 'en')}"`);
+      expect(english).toContain(`data-locale="de" href="${cityPath(city)}"`);
+      expect(english).toContain('<meta property="og:locale" content="en_GB" />');
+      expect(english).toContain(`<h1 id="map-title">Coffee prices in ${city === 'zurich' ? 'Zurich' : cities[city].name}</h1>`);
+      expect(english).toContain('aria-label="Colour scheme"');
+      // English pages keep visitors on English map views instead of the German guides.
+      for (const type of guideTypes) expect(english).not.toContain(`href="${guidePath(city, type)}"`);
+      expect(english).toContain(`href="${cityPath(city, 'en')}?drink=coffee&amp;coffeeType=espresso`);
+      expect(english).not.toMatch(/Kaffeepreise|Lokale mit|Preisquelle|Datenstand/);
+    }
   });
 
   it('lists only canonical pages in the sitemap and gives every guide a deployed route and incoming city link', () => {
     const sitemap = files.get('sitemap.xml')!;
     const config = JSON.parse(readFileSync('vercel.json', 'utf8'));
-    expect(sitemap.match(/<loc>/g)).toHaveLength(9);
+    expect(sitemap.match(/<loc>/g)).toHaveLength(12);
     for (const [, url] of sitemap.matchAll(/<loc>(.*?)<\/loc>/g)) expect(new URL(url).search).toBe('');
     expect(files.get('robots.txt')).toContain(`Sitemap: ${siteOrigin}/sitemap.xml`);
     for (const city of cityIds) {
+      const english = cityPath(city, 'en');
+      expect(sitemap).toContain(`<loc>${siteOrigin}${english}</loc>`);
+      expect(config.rewrites).toContainEqual({ source: english, destination: `${english}/index.html` });
+      expect(config.redirects).toContainEqual({ source: `${english}/index.html`, destination: english, permanent: true });
       const home = files.get(city === 'zurich' ? 'index.html' : `${city}/index.html`)!;
       for (const type of guideTypes) {
         const path = guidePath(city, type);
