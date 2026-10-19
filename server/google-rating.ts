@@ -23,8 +23,12 @@ const genericNames = new Set(['restaurant', 'ristorante', 'pizzeria', 'pizza', '
 
 function sameName(a: string, b: string): boolean {
   const first = words(a).filter(word => !genericNames.has(word));
-  const second = new Set(words(b).filter(word => !genericNames.has(word)));
-  return first.length > 0 && first.filter(word => second.has(word)).length / first.length >= .8;
+  const secondWords = words(b).filter(word => !genericNames.has(word));
+  const second = new Set(secondWords);
+  // Brand spacing can differ ("Quartier 5" / "Quartier5"). Keep every
+  // significant letter and digit; address and distance are checked separately.
+  return first.length > 0 && (first.join('') === secondWords.join('')
+    || first.filter(word => second.has(word)).length / first.length >= .8);
 }
 
 function matchesVenue(bar: Bar, place: Place): boolean {

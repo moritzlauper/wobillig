@@ -13,6 +13,14 @@ afterEach(() => vi.unstubAllGlobals());
 it('matches a venue by name, full address and nearby coordinates', () => {
   expect(matchGoogleRating(bar, [place])).toEqual({ rating: 4.5, reviewCount: 123, mapsUrl: place.googleMapsUri, attributions: [] });
 });
+it('accepts brand spacing differences while preserving branch and address checks', () => {
+  const venue = { ...bar, name: 'Quartier 5 Restaurant & Bar' };
+  const match = { ...place, displayName: { text: 'Quartier5' } };
+  expect(matchGoogleRating(venue, [match])?.rating).toBe(4.5);
+  expect(matchGoogleRating(venue, [{ ...match, displayName: { text: 'Quartier50' } }])).toBeNull();
+  expect(matchGoogleRating(venue, [{ ...match, addressComponents: [] }])).toBeNull();
+  expect(matchGoogleRating(venue, [match, { ...match, id: 'another-branch' }])).toBeNull();
+});
 it('rejects a neighbouring branch, wrong name, distant venue, closed business and ambiguous results', () => {
   expect(matchGoogleRating(bar, [{ ...place, addressComponents: [{ longText: 'Kasernenstrasse', types: ['route'] }, { longText: '77', types: ['street_number'] }] }])).toBeNull();
   expect(matchGoogleRating(bar, [{ ...place, displayName: { text: 'Napoli' } }])).toBeNull();
