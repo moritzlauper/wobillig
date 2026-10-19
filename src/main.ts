@@ -685,6 +685,7 @@ $('coffeeType').onchange = () => { f.coffeeType = $<HTMLSelectElement>('coffeeTy
 $('beer-type').onchange = () => {
   f.beerType = $<HTMLSelectElement>('beer-type').value as Filters['beerType'];
   if (f.beerType === 'draft') selectBeerSize(f, 'stange');
+  else if (f.beerType === 'all') selectBeerSize(f, '300-330');
   else if (['bottle', 'can'].includes(f.beerType!) && f.volume === 'stange') f.volume = 'all';
   render();
 };
