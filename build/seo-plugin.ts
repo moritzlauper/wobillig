@@ -9,6 +9,8 @@ import { cityContent, cityIds, cityPath, guideContent, guidePath, guideTypes, lo
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const analyticsTag = '<script data-goatcounter="https://wobillig.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>';
+// Static guides do not load src/main.ts, so initialise Analytics directly.
+const guideAnalyticsTag = '<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer src="/_vercel/insights/script.js"></script>';
 const themeControl = (locale: Locale = 'de') => {
   const tr = (text: string) => translate(locale, text);
   return `<label class="theme-control" hidden>${tr('Design')} <select id="theme-select" aria-label="${tr('Farbschema')}"><option value="system">System</option><option value="light">${tr('Hell')}</option><option value="dark">${tr('Dunkel')}</option></select></label>`;
@@ -25,7 +27,7 @@ export function seoPlugin(): Plugin {
     const css = readFileSync(`${root}src/seo.css`, 'utf8');
     return {
       path: guidePath(city, type),
-      html: `<!doctype html><html lang="de-CH"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="theme-color" content="#ffffff" />${themeHead()}${seoHead(city, origin, type)}<link rel="icon" href="${localPath('/favicon.svg', base)}" type="image/svg+xml" /><style>${css}</style>${analyticsTag}</head><body>${guideContent(city, type, dataset(city), base).replace('<header class="guide-header">', `<header class="guide-header">${themeControl()}`)}</body></html>`,
+      html: `<!doctype html><html lang="de-CH"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="theme-color" content="#ffffff" />${themeHead()}${seoHead(city, origin, type)}<link rel="icon" href="${localPath('/favicon.svg', base)}" type="image/svg+xml" /><style>${css}</style>${analyticsTag}${guideAnalyticsTag}</head><body>${guideContent(city, type, dataset(city), base).replace('<header class="guide-header">', `<header class="guide-header">${themeControl()}`)}</body></html>`,
     };
   }));
   return {

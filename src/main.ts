@@ -1,12 +1,10 @@
-import { inject } from '@vercel/analytics';
 import { cities, cityFromPath, cityLink, type City } from './cities';
 import L from 'leaflet';
+import { inject } from '@vercel/analytics';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
 
-// Initialize Vercel Web Analytics
-inject();
 import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
@@ -19,6 +17,8 @@ import { searchAddresses, type AddressResult } from './address-search';
 import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan';
 import { dateLocale, locale, localizedPath, t, type Locale } from './i18n';
 import { venueForm } from './venue-form';
+
+inject({ mode: import.meta.env.DEV ? 'development' : 'production' });
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 const money = (n: number) => n.toFixed(2);
