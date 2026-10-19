@@ -1,8 +1,12 @@
+import { inject } from '@vercel/analytics';
 import { cities, cityFromPath, cityLink, type City } from './cities';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
+
+// Initialize Vercel Web Analytics
+inject();
 import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';

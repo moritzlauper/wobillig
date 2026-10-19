@@ -13,6 +13,7 @@
     "test:ocr": "RUN_MENU_OCR_LIVE=1 node --env-file=.env.local node_modules/vitest/vitest.mjs run tests/menu-ocr.live.test.ts"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "^2.8.2",
     "leaflet": "^1.9.4"
   },
