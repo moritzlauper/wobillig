@@ -339,6 +339,8 @@ export const en: Record<string, string> = {
   'Adresse noch nicht erfasst': 'Address not yet recorded',
   'Standort: {coordinates}': 'Location: {coordinates}',
   'In Google Maps öffnen': 'Open in Google Maps',
+  'Google-Bewertung: {rating} von 5': 'Google rating: {rating} out of 5',
+  '{count} Google-Bewertungen': '{count} Google reviews',
   'Preis hinzufügen': 'Add price',
   '{name} teilen': 'Share {name}',
   'Teilen': 'Share',
