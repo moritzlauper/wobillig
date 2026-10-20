@@ -47,12 +47,12 @@ describe('pizza name and ingredient filters', () => {
     expect(link.searchParams.get('pizzaSelection')).toBe('all');
     expect(new URL(barLink(link.href, venue.id, 'coffee', 'all')).searchParams.has('pizzaQuery')).toBe(false);
   });
-  it('lists recorded varieties once and matches the named pizza rather than its ingredients', () => {
+  it('lists ingredient groups once and still supports old exact-name links', () => {
     expect(pizzaNameKey('4 Formaggi')).toBe(pizzaNameKey('Pizza 4 Formaggi'));
     const duplicate = { ...venue, pizzaMenu: [{ ...venue.pizzaMenu![0], name: '019 Pizza PROSCIUTTO' }] };
     expect(pizzaVarieties([venue, duplicate])).toEqual([
-      { value: 'name:prosciutto', label: 'Prosciutto' },
-      { value: 'name:quattro stagioni', label: 'Quattro Stagioni' },
+      { value: 'group:prosciutto', label: 'Prosciutto' },
+      { value: 'group:quattro_stagioni', label: 'Quattro Stagioni' },
     ]);
     const filters = { ...defaults, pizzaSelection: 'name:prosciutto' as const };
     expect(bestOffer(duplicate, filters)?.priceChf).toBe(21);
@@ -60,6 +60,32 @@ describe('pizza name and ingredient filters', () => {
     expect(filterBars([onlyIngredients, venue], filters)).toEqual([venue]);
     expect(cityAverage([onlyIngredients, venue], filters)).toEqual({ price: 21, count: 1 });
     expect(filterBars([venue], { ...filters, max: 20 })).toEqual([]);
+  });
+  it('compares matching ingredients across house names and excludes unrelated venues', () => {
+    const house = { ...venue, id: 'house', pizzaMenu: [
+      { ...venue.pizzaMenu![0], name: 'Della casa', priceChf: 19 },
+    ] };
+    const filters = { ...defaults, pizzaSelection: 'group:prosciutto' as const, unknown: true };
+    expect(bestOffer(house, filters)?.priceChf).toBe(19);
+    expect(filterBars([{ ...venue, pizzaMenu: [] }, house, venue], filters)).toEqual([house, venue]);
+    expect(cityAverage([house, venue], filters)).toEqual({ price: 20, count: 2 });
+    expect(filterBars([house, venue], { ...filters, max: 20 })).toEqual([house]);
+  });
+  it('restores ingredient groups in URL filters and shared links', () => {
+    const filters = { ...defaults, pizzaSelection: 'group:vegetariana' as const };
+    const params = new URLSearchParams();
+    writeFilters(params, filters, false);
+    expect(filtersFromSearch(params)).toEqual(filters);
+    const link = new URL(barLink(`https://wobillig.ch/?${params}`, venue.id, 'pizza', 'all'));
+    expect(filtersFromSearch(link.searchParams).pizzaSelection).toBe('group:vegetariana');
+    expect(filtersFromSearch(new URLSearchParams('pizzaSelection=group:invalid')).pizzaSelection).toBeUndefined();
+  });
+  it('requires three distinct venues for Funghi and ignores invalid prices', () => {
+    const funghi = { ...venue.pizzaMenu![0], name: 'Bosco', ingredients: 'Tomaten, Mozzarella, Pilze' };
+    const bars = ['1', '2', '3'].map(id => ({ ...venue, id, offers: [], pizzaMenu: [funghi, funghi] }));
+    expect(pizzaVarieties(bars.slice(0, 2))).toEqual([]);
+    expect(pizzaVarieties(bars)).toEqual([{ value: 'group:funghi', label: 'Funghi' }]);
+    expect(pizzaVarieties([{ ...venue, offers: [], pizzaMenu: [{ ...funghi, priceChf: NaN }] }])).toEqual([]);
   });
   it('restores named varieties after reload and in shared links', () => {
     const filters = { ...defaults, pizzaSelection: 'name:quattro stagioni' as const };

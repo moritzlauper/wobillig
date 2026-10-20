@@ -2,18 +2,22 @@ import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import type { Dataset } from '../src/data';
 
-test('pizza selection remains available when prices are recorded for other varieties', async ({ page }) => {
+test('pizza groups compare house names by ingredients without a Margherita price', async ({ page }) => {
   const data = JSON.parse(readFileSync('public/data/pizza.json', 'utf8')) as Dataset;
   const source = data.bars.flatMap(bar => bar.offers)[0];
   data.bars = data.bars.slice(0, 20).map(bar => ({ ...bar, type: 'restaurant', offers: [],
-    pizzaMenu: [{ ...source, name: 'Prosciutto', pizzaType: 'other', priceChf: 21 }] }));
+    pizzaMenu: [{ ...source, name: 'Speciale della casa', pizzaType: 'other', priceChf: 21,
+      ingredients: 'Pomodoro, mozzarella, prosciutto cotto' }] }));
   await page.route('**/data/pizza.json', route => route.fulfill({ json: data }));
   await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.goto('/?drink=pizza&pizzaSelection=all');
   await expect(page.locator('#pizza-selection')).toBeVisible();
+  await expect(page.locator('#pizza-selection option')).toHaveCount(3);
   await page.locator('#pizza-selection').selectOption({ label: 'Prosciutto' });
   await expect(page.locator('#results .venue')).toHaveCount(20);
+  await expect(page.locator('#results .venue').first()).toContainText('Speciale della casa');
+  await expect(page.locator('#results .venue').first()).toContainText('21.00');
 });
 
 for (const width of [320, 1280]) {
@@ -37,7 +41,7 @@ for (const width of [320, 1280]) {
     await expect(page.locator('#results .venue')).toContainText('21.00');
     await expect(page.locator('#pizza-query')).toHaveValue('');
     await page.reload();
-    await expect(page.locator('#pizza-selection')).toHaveValue('name:prosciutto');
+    await expect(page.locator('#pizza-selection')).toHaveValue('group:prosciutto');
     await expect(page.locator('#results .venue')).toHaveCount(1);
     await page.getByRole('searchbox', { name: 'Pizzaname oder Zutat' }).fill('proscuito');
     await expect(page.locator('#pizza-selection')).toHaveValue('all');

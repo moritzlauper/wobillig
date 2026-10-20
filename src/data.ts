@@ -1,6 +1,6 @@
 import { matchesSearch } from './search.js';
 import { t } from './i18n.js';
-import { pizzaName, pizzaNameKey, type PizzaSelection } from './pizza-selection.js';
+import { pizzaGroup, pizzaGroupLabels, pizzaNameKey, type PizzaGroup, type PizzaSelection } from './pizza-selection.js';
 
 export type BeerType = "draft" | "bottle" | "can" | "unknown";
 export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bottle: "Flaschenbier", can: "Dosenbier", unknown: "Ausschankart unbekannt" };
@@ -114,14 +114,17 @@ export function selectBeerSize(f: Filters, volume: string) {
   if (volume === "300-330") f.beerType = "all";
 }
 export function pizzaVarieties(bars: Bar[]): { value: PizzaSelection; label: string }[] {
-  const names = new Map<string, string>();
+  const venues = new Map<PizzaGroup, Set<string>>();
   for (const bar of bars) for (const offer of [...bar.offers, ...(bar.pizzaMenu || [])]) {
-    if (offer.pizzaType !== 'other' || !isCurrentOffer(offer) || !Number.isFinite(offer.priceChf) || offer.priceChf <= 0) continue;
-    const key = pizzaNameKey(offer.name);
-    if (key && !names.has(key)) names.set(key, pizzaName(offer.name));
+    if (!isCurrentOffer(offer) || !Number.isFinite(offer.priceChf) || offer.priceChf <= 0) continue;
+    const group = pizzaGroup(offer);
+    if (!group) continue;
+    if (!venues.has(group)) venues.set(group, new Set());
+    venues.get(group)!.add(bar.id);
   }
-  return [...names].map(([key, label]) => ({ value: `name:${key}` as PizzaSelection, label }))
-    .sort((a, b) => a.label.localeCompare(b.label, 'de', { sensitivity: 'base' }));
+  return (Object.entries(pizzaGroupLabels) as [PizzaGroup, string][])
+    .filter(([group]) => (venues.get(group)?.size || 0) >= (group === 'funghi' ? 3 : 1))
+    .map(([group, label]) => ({ value: `group:${group}` as PizzaSelection, label }));
 }
 
 // Search only sourced names and ingredients; do not infer missing ingredients.
@@ -131,6 +134,7 @@ export function matchesPizza(o: Offer, f: Filters): boolean {
     .replace(/\b(?:proscuito|proscuitto|prosciuto)\b/g, 'prosciutto');
   const query = normalize(f.pizzaQuery || '').trim();
   if (!query) {
+    if (f.pizzaSelection?.startsWith('group:')) return pizzaGroup(o) === f.pizzaSelection.slice(6);
     if (f.pizzaSelection?.startsWith('name:')) return pizzaNameKey(o.name) === f.pizzaSelection.slice(5);
     return f.pizzaSelection === 'all' || o.pizzaType === 'margherita';
   }
@@ -211,7 +215,7 @@ export function filterBars(
       return (
         matchesSearch(b, f.query) &&
         (!f.outdoor || hasOutdoorSeating(b)) &&
-        (o ? cost(o, f.mode) <= f.max : f.unknown && !(f.drink === "pizza" && (f.pizzaQuery?.trim() || f.pizzaSelection?.startsWith('name:'))))
+        (o ? cost(o, f.mode) <= f.max : f.unknown && !(f.drink === "pizza" && (f.pizzaQuery?.trim() || (f.pizzaSelection && f.pizzaSelection !== 'all'))))
       );
     })
     .sort((a, b) => {

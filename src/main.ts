@@ -21,7 +21,7 @@ import { venueForm } from './venue-form';
 import { categoryNavigation } from './category-navigation';
 import { pizzaMenuContent } from './pizza-menu';
 import { pizzaVarieties } from './data';
-import { parsePizzaSelection } from './pizza-selection';
+import { parsePizzaSelection, pizzaGroupLabels, type PizzaGroup } from './pizza-selection';
 import { showGoogleRating, clearGoogleRating } from './google-rating';
 
 inject({ mode: import.meta.env.DEV ? 'development' : 'production', beforeSend: analyticsBeforeSend });
@@ -102,7 +102,7 @@ $('app').innerHTML = `
   </div>
   <select id="coffeeType" aria-label="${t('Kaffeesorte oder Matcha Latte')}" hidden><option value="all">${e(t('Alle Kaffees & Matcha Latte'))}</option>${coffeeOptions}</select>
   <div id="pizza-controls" class="pizza-controls" hidden>
-    <select id="pizza-selection" aria-label="${t('Pizzasorte')}"><option value="margherita">Margherita</option><option value="all">${t('Alle Pizzen')}</option></select>
+    <select id="pizza-selection" aria-label="${t('Pizzasorte')}" title="${t('Klassiker nach Zutaten gruppiert')}"><option value="margherita">Margherita</option><option value="all">${t('Alle Pizzen')}</option></select>
     <input id="pizza-query" type="search" maxlength="120" placeholder="${t('z. B. Prosciutto oder Pilze')}" aria-label="${t('Pizzaname oder Zutat')}">
   </div>
   <label class="budget">${t('Bis CHF')} <input id="price" aria-label="${t('Höchstpreis in CHF')}" type="number" min="0.5" max="50" step="0.5" value="15"></label>
@@ -355,9 +355,12 @@ function syncControls() {
   $('pizza-controls').hidden = !pizza();
   const pizzaSelect = $<HTMLSelectElement>('pizza-selection');
   const pizzaValue = f.pizzaQuery?.trim() ? 'all' : f.pizzaSelection || 'margherita';
-  const availablePizzas = [{ value: 'margherita', label: 'Margherita' }, { value: 'all', label: t('Alle Pizzen') }, ...pizzaOptions];
+  const availablePizzas = [{ value: 'margherita', label: 'Margherita' }, ...pizzaOptions, { value: 'all', label: t('Alle Pizzen') }];
   // Retain a shared selection when the destination city has no price for it.
-  if (!availablePizzas.some(option => option.value === pizzaValue)) availablePizzas.push({ value: pizzaValue, label: pizzaValue.slice(5) });
+  if (!availablePizzas.some(option => option.value === pizzaValue)) availablePizzas.push({
+    value: pizzaValue,
+    label: pizzaValue.startsWith('group:') ? pizzaGroupLabels[pizzaValue.slice(6) as PizzaGroup] : pizzaValue.slice(5),
+  });
   const pizzaOptionHtml = availablePizzas.map(({ value, label }) => `<option value="${e(value)}">${e(label)}</option>`).join('');
   if (pizzaSelect.innerHTML !== pizzaOptionHtml) pizzaSelect.innerHTML = pizzaOptionHtml;
   pizzaSelect.value = pizzaValue;
