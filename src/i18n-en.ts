@@ -1,5 +1,6 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  'GitHub-Repository': 'GitHub repository',
   'Kaffee bewerten': 'Rate coffee',
   'Kaffee: {rating} von 5, {count} Bewertungen': 'Coffee: {rating} out of 5, {count} ratings',
   '{score} von 5 Sternen': '{score} out of 5 stars',
