@@ -41,12 +41,12 @@ export function reviewCsv(rows) {
   return '\uFEFF' + values.map(row => row.map(csvCell).join(';')).join('\r\n');
 }
 
-function source(offer) {
+function source(offer, label = 'Quelle öffnen') {
   if (!offer?.sourceUrl) return '';
   try {
     const url = new URL(offer.sourceUrl);
     if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password) return '';
-    return `<a href="${escapeHtml(url.href)}" target="_blank" rel="noopener noreferrer">Quelle öffnen</a>`;
+    return `<a href="${escapeHtml(url.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
   } catch { return ''; }
 }
 
@@ -62,8 +62,8 @@ export function reviewHtml(rows, environment, generatedAt = new Date().toISOStri
       <details><summary>Details · Version ${r.revision}</summary><p>${escapeHtml(r.entryId)}</p>
       <strong>Vorher</strong><pre>${escapeHtml(r.before ? JSON.stringify(r.before, null, 2) : r.exact ? 'Kein bisheriges Angebot.' : 'Nicht historisch erfasst.')}</pre>${source(r.before)}
       <p><strong>Nachher</strong></p><pre>${escapeHtml(JSON.stringify(r.after, null, 2))}</pre>${source(r.after)}</details></td>
-      <td class="number">${r.before ? money(r.before.priceChf) : r.exact ? '—' : 'Unbekannt'}</td>
-      <td class="number"><strong>${money(r.after.priceChf)}</strong></td>
+      <td class="number">${r.before ? money(r.before.priceChf) : r.exact ? '—' : 'Unbekannt'}<small>${source(r.before, 'Quelle vorher') || 'Keine Quelle erfasst'}</small></td>
+      <td class="number"><strong>${money(r.after.priceChf)}</strong><small>${source(r.after, 'Quelle nachher') || 'Keine Quelle erfasst'}</small></td>
       <td class="number">${r.before ? `${r.after.priceChf > r.before.priceChf ? '+' : ''}${money(r.after.priceChf - r.before.priceChf)}` : '—'}</td>
       <td><span class="tag">${kind}</span>${!r.exact ? '<small>Rekonstruiert: gespeicherte Vorversion; damalige Anzeige nicht vollständig erfasst.</small>' : ''}</td></tr>`;
   }).join('');
