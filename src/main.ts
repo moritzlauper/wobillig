@@ -424,12 +424,14 @@ function render() {
     return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || cityName)}</small>${o && pizza() ? `<small>${e(o.name)}</small>` : o && unit(o) ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
   }).join('') : `<p class="empty">${t('Keine passenden Lokale.')}</p>`;
   layer.clearLayers();
+  const venueMarkers = new Map<string, { marker: L.Marker; zIndex: number }>();
   const selectedBar = selectedLocation();
   const mapped = selectedBar && !current.includes(selectedBar) ? [...current, selectedBar] : current;
   for (const b of mapped) {
     const o = bestOffer(b, f);
     const label = `${b.name}: ${o ? `CHF ${money(cost(o, f.mode))}${unit(o) ? ` / ${unit(o)}` : ''}` : t('kein passender Preis')}`;
-    L.marker([b.lat, b.lon], {
+    const zIndex = b.id === selected ? 2000 : o ? 1000 : 0;
+    const marker = L.marker([b.lat, b.lon], {
       icon: L.divIcon({
         className: `marker-wrap${o ? '' : ' unpriced-marker'}`,
         html: o
@@ -438,10 +440,35 @@ function render() {
         iconSize: o ? [54, 26] : [44, 44],
         iconAnchor: o ? [27, 13] : [22, 22],
       }),
-      title: label, alt: label, zIndexOffset: b.id === selected ? 2000 : o ? 1000 : 0,
+      title: label, alt: label, zIndexOffset: zIndex,
     }).addTo(layer).on('click', () => showBar(b));
+    venueMarkers.set(b.id, { marker, zIndex });
   }
-  $('results').querySelectorAll<HTMLButtonElement>('[data-bar]').forEach(button => button.onclick = () => showBar(bars.find(b => b.id === button.dataset.bar)!));
+  let hoveredVenue: string | undefined, focusedVenue: string | undefined;
+  let highlightedMarker: { marker: L.Marker; zIndex: number } | undefined;
+  const highlightVenue = () => {
+    const next = venueMarkers.get(hoveredVenue || focusedVenue || '');
+    if (next === highlightedMarker) return;
+    if (highlightedMarker) {
+      highlightedMarker.marker.getElement()?.classList.remove('highlighted');
+      highlightedMarker.marker.setZIndexOffset(highlightedMarker.zIndex);
+    }
+    highlightedMarker = next;
+    if (next) {
+      next.marker.getElement()?.classList.add('highlighted');
+      next.marker.setZIndexOffset(10000);
+    }
+  };
+  $('results').querySelectorAll<HTMLButtonElement>('[data-bar]').forEach(button => {
+    button.onclick = () => showBar(bars.find(b => b.id === button.dataset.bar)!);
+    button.onpointerenter = event => {
+      if (event.pointerType === 'touch') return;
+      hoveredVenue = button.dataset.bar; highlightVenue();
+    };
+    button.onpointerleave = () => { hoveredVenue = undefined; highlightVenue(); };
+    button.onfocus = () => { focusedVenue = button.dataset.bar; highlightVenue(); };
+    button.onblur = () => { focusedVenue = undefined; highlightVenue(); };
+  });
   if (selectedBar) detail(selectedBar); else { $('detail').hidden = true; clearGoogleRating(); }
   renderLocations();
   renderSearchSuggestions();
