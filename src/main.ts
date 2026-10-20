@@ -654,22 +654,17 @@ function revealBarInVisibleMap(b: Bar, zoom = map.getZoom()) {
     else visibleWidth = Math.max(0, detailRect.left - mapRect.left);
   }
   if (!visibleWidth || !visibleHeight) return;
-  // Leave a visible marker where it is, including at the current zoom level.
+  // Center the venue in the area left visible by the detail panel.
   const point = map.latLngToContainerPoint([b.lat, b.lon]);
-  const paddingX = Math.min(32, visibleWidth / 2), paddingY = Math.min(24, visibleHeight / 2);
-  const target = L.point(
-    Math.max(paddingX, Math.min(visibleWidth - paddingX, point.x)),
-    Math.max(paddingY, Math.min(visibleHeight - paddingY, point.y)),
-  );
+  const target = L.point(visibleWidth / 2, visibleHeight / 2);
   const delta = point.subtract(target);
-  if (Math.abs(delta.x) < 1 && Math.abs(delta.y) < 1) return;
+  if (zoom <= map.getZoom() && Math.abs(delta.x) < 1 && Math.abs(delta.y) < 1) return;
   const animate = !matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (zoom > map.getZoom()) {
     const offset = L.point((mapRect.width - visibleWidth) / 2, (mapRect.height - visibleHeight) / 2);
     const center = map.unproject(map.project([b.lat, b.lon], zoom).add(offset), zoom);
     map.flyTo(center, zoom, { animate, duration: .5 });
   } else {
-    // Move only as far as necessary to uncover the marker.
     map.panBy(delta, { animate, duration: .45 });
   }
 }
