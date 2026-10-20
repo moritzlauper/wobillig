@@ -374,6 +374,14 @@ vercel deploy --prod --yes
 
 `npm run test:storage` prüft den verbundenen Blob-Store mit temporären, anschliessend gelöschten Testobjekten. Dazu muss `.env.local` vorhanden sein. Der Test prüft aufeinanderfolgende und gleichzeitige Schreibvorgänge inklusive Versionskonflikten und wachsender Historie. Im normalen Testlauf wird dieser Integrationstest übersprungen.
 
+## Bestehende Lokale korrigieren
+
+In der Detailansicht jedes Lokals öffnet **«Lokal korrigieren» / “Correct venue details”** ein vorausgefülltes Formular für Name, Strasse, Postleitzahl und Website. Eine falsche Website kann ersetzt oder entfernt werden. Nur geänderte Felder werden übertragen; eine Website-Korrektur funktioniert auch bei einem Lokal ohne erfasste Adresse. Der Dialog «Lokal hinzufügen» verweist ebenfalls auf diese Möglichkeit. Ein erneuter Eintrag überschreibt kein bestehendes Lokal.
+
+Korrekturen erscheinen nach erfolgreicher Speicherung sofort, bleiben nach Neuladen und automatischen Datenupdates erhalten und fliessen in CSV-/JSON-Exporte ein. Es gibt keine Wartezeit von drei Wochen. Preise und Quellenlinks der einzelnen Angebote bleiben unverändert. Die Korrektur gilt für wobillig; sie ändert weder OpenStreetMap noch die Eingabequellen des separaten Scrapers.
+
+`POST /api/prices?city=bern` mit `{ "action": "correctVenue", "barId": "node/123", "revision": 0, "changes": { "website": "https://example.org" } }` speichert unter `venueCorrections` im jeweiligen Stadt-/Deployment-Store. `GET /api/prices` liefert diese Korrekturen; die privaten Vorherwerte und Änderungen in `venueCorrectionHistory` werden nicht ausgeliefert. Der Server prüft Lokal-ID, erlaubte Felder, Website-Protokoll und Version. Gleichzeitige Änderungen werden über ETags und Revisionen abgesichert; veraltete Korrekturen erhalten HTTP 409. Identische Wiederholungen legen keine Duplikate an. Es gelten die bestehenden Origin-/JSON-Prüfungen und eine Grenze von 20 Korrekturen pro Besucher und Stunde.
+
 ## Lokaladressen
 
 Der Import berücksichtigt neben `addr:street` auch OSM-Kontaktadressen. `WOBILLIG_CITY=bern python -m scraper.addresses` ergänzt fehlende Adressen in allen vier Stadt-Datensätzen; für Basel entsprechend `WOBILLIG_CITY=basel`. Der Refresh führt diesen Schritt vor der Veröffentlichung aus. Ein bestehender OSM-Export lässt sich mit `--osm-file` verwenden.

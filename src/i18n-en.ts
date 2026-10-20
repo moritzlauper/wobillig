@@ -1,5 +1,16 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  "Ungültige Lokalkorrektur.": "Invalid venue correction.",
+  "Bitte mindestens eine Angabe ändern.": "Please change at least one field.",
+  "Dieses Lokal wurde inzwischen geändert. Bitte neu laden und die Korrektur erneut prüfen.": "This venue has changed in the meantime. Please reload and review your correction.",
+  "Lokal korrigieren": "Correct venue details",
+  "Korrigiere die Angaben zu diesem Lokal. Deine Änderungen sind sofort für alle sichtbar und bleiben bei automatischen Datenupdates erhalten. Bitte keinen neuen Eintrag anlegen.": "Correct the details of this venue. Your changes are visible to everyone immediately and are preserved during automatic data updates. Please do not create a new listing.",
+  "Website (optional)": "Website (optional)",
+  "Eine falsche Website kannst du ersetzen oder das Feld leeren.": "You can replace an incorrect website or clear the field.",
+  "Korrektur speichern": "Save correction",
+  "Korrektur gespeichert. Für alle sichtbar.": "Correction saved. Visible to everyone.",
+  "Dieses Lokal ist bereits vorhanden. Du kannst hier Preise hinzufügen oder die Angaben über «Lokal korrigieren» ändern.": "This venue already exists. You can add prices here or change its details via “Correct venue details”.",
+  "Falsche Angaben bei einem bestehenden Lokal? Öffne das Lokal und wähle «Lokal korrigieren».": "Incorrect details for an existing venue? Open the venue and choose “Correct venue details”.",
   "Noch wenige Bewertungen · {count}": "Only a few ratings so far · {count}",
   "Foto von deinem Kaffee im Lokal": "Photo of your coffee at this venue",
   "Foto ausgewählt.": "Photo selected.",

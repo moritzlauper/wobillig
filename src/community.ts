@@ -1,5 +1,6 @@
 import { isBeerMix, coffeeLabels, beerTypeLabels, safeUrl, type BeerType, type Bar, type Dataset, type Offer } from './data.js';
 import { selectableLocations, withKnownAddress } from './locations.js';
+import { applyVenueCorrections, type VenueCorrection } from './venue-corrections.js';
 
 export type Drink = 'beer' | 'coffee' | 'pizza';
 export type PriceEntry = {
@@ -51,10 +52,10 @@ export function allVenues(datasets: Partial<Record<Drink | 'locations', Dataset>
     .sort((a, b) => a.name.localeCompare(b.name, 'de'));
 }
 // Persisted location snapshots keep contributions visible across catalogue updates.
-// Canonical scraper metadata wins when the location later joins a dataset.
-export function communityVenues(datasets: Partial<Record<Drink | 'locations', Dataset>>, entries: PriceEntry[], added: Bar[] = []): Bar[] {
-  return selectableLocations([...added.map(bar => ({ ...bar, offers: [] })), ...entries.flatMap(entry => entry.venue && entry.venue.id === entry.barId ? [{ ...entry.venue, offers: [] }] : []),
-    ...allVenues(datasets)], []);
+// Canonical scraper metadata wins over snapshots; explicit corrections apply last.
+export function communityVenues(datasets: Partial<Record<Drink | 'locations', Dataset>>, entries: PriceEntry[], added: Bar[] = [], corrections: VenueCorrection[] = []): Bar[] {
+  return applyVenueCorrections(selectableLocations([...added.map(bar => ({ ...bar, offers: [] })), ...entries.flatMap(entry => entry.venue && entry.venue.id === entry.barId ? [{ ...entry.venue, offers: [] }] : []),
+    ...allVenues(datasets)], []), corrections);
 }
 function verifiedWebsiteUpdate(offer: Offer, entry: PriceEntry): boolean {
   const proof = offer.verifiedMenuDate;
@@ -69,7 +70,7 @@ function verifiedWebsiteUpdate(offer: Offer, entry: PriceEntry): boolean {
   const cutoff = [submitted, entry.offer.observedAt.slice(0, 10)].sort().at(-1)!;
   return proof.date > cutoff;
 }
-export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Bar[], drink: Drink): Dataset {
+export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Bar[], drink: Drink, corrections: VenueCorrection[] = []): Dataset {
   // Drinks share locations; pizza only includes known pizza venues and pizza entries.
   const bars = new Map((drink === 'pizza' ? [] : venues).map(b => [b.id, { ...b, offers: [] as Offer[] }]));
   const knownVenues = new Map(venues.map(bar => [bar.id, bar]));
@@ -96,7 +97,7 @@ export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Ba
     bar.offers = bar.offers.filter(o => !matchesOfferKey(o, entry.targetKey, bar.offers) && offerKey(o) !== offerKey(entry.offer) && o.communityId !== entry.id);
     bar.offers.push(replacement);
   }
-  return { ...dataset, bars: [...bars.values()] };
+  return { ...dataset, bars: applyVenueCorrections([...bars.values()], corrections) };
 }
 export class InputError extends Error {
   constructor(message: string, public status = 400) { super(message); }

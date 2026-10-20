@@ -43,7 +43,7 @@ export async function saveCoffeeRating(
   const voter = ratingVoter(city, input.barId, proof.owner, secret);
   for (let attempt = 0; attempt < 4; attempt++) {
     const { state, etag } = await store.read();
-    const venue = communityVenues(datasets, state.entries, state.venues).find(bar => bar.id === input.barId);
+    const venue = communityVenues(datasets, state.entries, state.venues, state.venueCorrections).find(bar => bar.id === input.barId);
     // The coffee view also includes known venues without a recorded coffee price.
     if (!venue) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
     const votes = state.coffeeVotes?.[input.barId] || {};

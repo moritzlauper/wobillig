@@ -204,6 +204,8 @@ dialog::backdrop { background: var(--backdrop); }
 #venue-addresses button, #venue-duplicates button { text-align: left; }
 #venue-position, #venue-map-help, #venue-search-status { font-size: var(--font-meta); color: var(--secondary); }
 #venue-error { color: var(--text); }
+#venue-correction-dialog fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+#venue-correction-dialog label { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
 .new-venue-marker { display: grid; place-items: center; border-radius: 50%; background: #b34400; color: white; border: 2px solid white; font-size: 24px; box-shadow: 0 1px 4px #0006; }
 #add-venue { white-space: nowrap; }
 .dialog-top { margin-bottom: 18px; }

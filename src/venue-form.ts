@@ -13,6 +13,7 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
   dialog.innerHTML = `<form id="venue-form">
     <div class="dialog-top"><strong id="venue-title" tabindex="-1">${t('Lokal hinzufügen')}</strong><button id="venue-close" type="button">${t('Schliessen')}</button></div>
     <p>${t('Fehlt ein Lokal in {city}? Trage es hier ein. Es wird für alle sichtbar; Preise kannst du anschliessend ergänzen.', { city: t(city.name) })}</p>
+    <p>${t('Falsche Angaben bei einem bestehenden Lokal? Öffne das Lokal und wähle «Lokal korrigieren».')}</p>
     <fieldset id="venue-fields">
       <label>Name<input id="venue-name" maxlength="100" autocomplete="organization" required></label>
       <label>${t('Art des Lokals')}<select id="venue-type">${Object.entries(newVenueTypes).map(([key, label]) => `<option value="${key}">${t(label)}</option>`).join('')}</select></label>

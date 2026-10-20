@@ -50,7 +50,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     ] as const);
     const [beer, coffee, pizza, locations] = catalogues;
     const datasets = { beer, coffee, pizza, locations };
-    const bar = communityVenues(datasets, state.entries, state.venues).find(item => item.id === value.barId);
+    const bar = communityVenues(datasets, state.entries, state.venues, state.venueCorrections).find(item => item.id === value.barId);
     if (!bar) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
     const owner = browserIdentity(req, res, secret);
     const voter = ratingVoter(city, bar.id, owner, secret);

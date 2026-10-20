@@ -30,7 +30,7 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     if (!create && !existing) throw new InputError('Diese Map wurde nicht gefunden.', 404);
     const map: CustomMap = existing || { id: input.mapId, name: (input.name as string).trim(), createdAt: new Date(now).toISOString(), entries: [] };
     if (!create) {
-      const venue = communityVenues(datasets, [], state.venues).find(bar => bar.id === input.barId);
+      const venue = communityVenues(datasets, [], state.venues, state.venueCorrections).find(bar => bar.id === input.barId);
       if (!venue) throw new InputError('Bitte ein Lokal aus der Liste wählen.');
       const previous = map.entries.find(entry => entry.venue.id === venue.id);
       if ((previous?.revision || 0) !== input.revision) throw new InputError('Dieser Preis wurde inzwischen geändert. Bitte schliessen und erneut öffnen.', 409);

@@ -19,6 +19,8 @@ import { searchAddresses, type AddressResult } from './address-search';
 import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan';
 import { dateLocale, locale, localizedPath, t, type Locale } from './i18n';
 import { venueForm } from './venue-form';
+import { venueCorrectionForm } from './venue-correction-form';
+import { applyVenueCorrections, type VenueCorrection } from './venue-corrections';
 import { categoryNavigation } from './category-navigation';
 import { customMaps } from './custom-maps';
 import { pizzaMenuContent } from './pizza-menu';
@@ -80,6 +82,7 @@ let beerOptions: ReturnType<typeof beerVarieties> = [];
 let locationCatalogue: Bar[] = [];
 let customMapUI: ReturnType<typeof customMaps> | undefined;
 let addedVenues: Bar[] = [];
+let venueCorrections: VenueCorrection[] = [];
 let userMarker: L.CircleMarker | undefined;
 let suggestions: (Bar | AddressResult)[] = [], activeSuggestion = -1, searchOpen = false;
 let addressResults: AddressResult[] = [], addressSelection: AddressResult | undefined;
@@ -169,7 +172,14 @@ const openVenueForm = venueForm(cityId, pricesApi, () => selectableLocations(ven
   clearAddressSelection(); f.query = ''; f.type = 'all'; f.unknown = true; f.outdoor = false;
   districtState.selected = undefined; cheapMode = false; f.drink = 'coffee'; selected = bar.id;
   closeSearchSuggestions(); rebuild(); showBar(bar, 18);
-  toast(created ? t('Lokal gespeichert und für alle sichtbar. Du kannst jetzt Preise hinzufügen.') : t('Dieses Lokal ist bereits vorhanden. Du kannst hier Preise hinzufügen.'));
+  toast(created ? t('Lokal gespeichert und für alle sichtbar. Du kannst jetzt Preise hinzufügen.') : t('Dieses Lokal ist bereits vorhanden. Du kannst hier Preise hinzufügen oder die Angaben über «Lokal korrigieren» ändern.'));
+});
+const openVenueCorrection = venueCorrectionForm(pricesApi, correction => {
+  venueCorrections = [...venueCorrections.filter(item => item.barId !== correction.barId), correction];
+  rebuild();
+  const bar = bars.find(item => item.id === correction.barId) || venues.find(item => item.id === correction.barId);
+  if (bar) showBar(bar, map.getZoom());
+  toast(t('Korrektur gespeichert. Für alle sichtbar.'));
 });
 const addVenueButton = document.createElement('button');
 addVenueButton.id = 'add-venue'; addVenueButton.className = 'text-button'; addVenueButton.textContent = t('Lokal hinzufügen');
@@ -342,8 +352,10 @@ $('district-toggle').onchange = () => {
 $('district-select').onchange = () => chooseDistrict(Number($<HTMLSelectElement>('district-select').value) || undefined);
 function rebuild() {
   const catalogueById = new Map(locationCatalogue.map(bar => [bar.id, bar]));
-  venues = communityVenues(datasets, entries, addedVenues).map(bar => withKnownAddress(bar, catalogueById.get(bar.id)));
-  const pizzaBars = datasets.pizza ? applyEntries(datasets.pizza, entries, venues, 'pizza').bars : [];
+  const correctedIds = new Set(venueCorrections.map(item => item.barId));
+  venues = applyVenueCorrections(selectableLocations(communityVenues(datasets, entries, addedVenues), locationCatalogue.filter(bar => correctedIds.has(bar.id)))
+    .map(bar => withKnownAddress(bar, catalogueById.get(bar.id))), venueCorrections);
+  const pizzaBars = datasets.pizza ? applyEntries(datasets.pizza, entries, venues, 'pizza', venueCorrections).bars : [];
   pizzaOptions = pizzaVarieties(pizzaBars);
   // Count priced venues city-wide, including contributions, independently of UI filters.
   pizzaAvailable = pizzaBars.filter(b => [...b.offers, ...(b.pizzaMenu || [])]
@@ -353,7 +365,7 @@ function rebuild() {
     $<HTMLInputElement>('price').value = String(f.max);
   }
   const base = datasets[f.drink!];
-  bars = pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!).bars : [];
+  bars = pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!, venueCorrections).bars : [];
   if (beer()) beerOptions = beerVarieties(bars);
   render();
 }
@@ -647,7 +659,7 @@ function detail(b: Bar) {
   const other = b.offers.filter(o => isCurrentOffer(o) && isComparableOffer(o) && !matches.includes(o));
   const offers = [...matches, ...other];
   const additionalPizzas = pizza() ? pizzaMenuContent((b.pizzaMenu ?? datasets.pizza?.bars.find(venue => venue.id === b.id)?.pizzaMenu ?? []).filter(o => !matches.includes(o))) : '';
-  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">${t('Schliessen')}</button></div><p class="muted">${e(b.address ? [b.address, b.postcode, cityName].filter(Boolean).join(' ') : [b.postcode, cityName, t('Standort: {coordinates}', { coordinates: `${b.lat.toFixed(5)}, ${b.lon.toFixed(5)}` })].filter(Boolean).join(' · '))}</p>${b.outdoorPermit ? `<p class="muted">${e(permitLabel(b.outdoorPermit))}</p>` : ''}<div class="detail-actions"><button id="add-here" class="primary">${t('Preis hinzufügen')}</button><button id="share-bar" aria-label="${e(t('{name} teilen', { name: b.name }))}">${t('Teilen')}</button><span class="detail-maps"><a href="${e(googleMapsLink(b, city.name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div>${offerDescription(o, matches) ? `<div class="muted">${e(offerDescription(o, matches))}</div>` : ''}${o.pizzaType && o.ingredients ? `<p class="muted">${e(o.ingredients)}</p>` : ''}${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>${t('geschätzt')}</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `${t('Google-Maps-Foto')} · ${e(o.photoSource.date)} · ` : ''}${o.menuScan ? t('Foto-Upload') : o.confidence === 'community' ? t('Eingetragen') : o.confidence === 'reviewed' ? t('Manuell geprüft') : o.confidence === 'ai' ? t('KI-erkannt') : t('Automatisch erkannt')} · ${e(new Date(o.verifiedMenuDate?.date || o.observedAt).toLocaleDateString(dateLocale()))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('Quelle')}</a>` : ''}${o.pizzaType !== 'other' ? `<button data-edit="${i}">${t('Ändern')}</button>` : ''}</div></div>`).join('') : additionalPizzas ? '' : `<p>${t('Noch kein Preis eingetragen.')}</p>`}${additionalPizzas}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
+  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">${t('Schliessen')}</button></div><p class="muted">${e(b.address ? [b.address, b.postcode, cityName].filter(Boolean).join(' ') : [b.postcode, cityName, t('Standort: {coordinates}', { coordinates: `${b.lat.toFixed(5)}, ${b.lon.toFixed(5)}` })].filter(Boolean).join(' · '))}</p>${b.outdoorPermit ? `<p class="muted">${e(permitLabel(b.outdoorPermit))}</p>` : ''}<div class="detail-actions"><button id="add-here" class="primary">${t('Preis hinzufügen')}</button><button id="correct-venue">${t('Lokal korrigieren')}</button><button id="share-bar" aria-label="${e(t('{name} teilen', { name: b.name }))}">${t('Teilen')}</button><span class="detail-maps"><a href="${e(googleMapsLink(b, city.name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div>${offerDescription(o, matches) ? `<div class="muted">${e(offerDescription(o, matches))}</div>` : ''}${o.pizzaType && o.ingredients ? `<p class="muted">${e(o.ingredients)}</p>` : ''}${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>${t('geschätzt')}</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `${t('Google-Maps-Foto')} · ${e(o.photoSource.date)} · ` : ''}${o.menuScan ? t('Foto-Upload') : o.confidence === 'community' ? t('Eingetragen') : o.confidence === 'reviewed' ? t('Manuell geprüft') : o.confidence === 'ai' ? t('KI-erkannt') : t('Automatisch erkannt')} · ${e(new Date(o.verifiedMenuDate?.date || o.observedAt).toLocaleDateString(dateLocale()))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('Quelle')}</a>` : ''}${o.pizzaType !== 'other' ? `<button data-edit="${i}">${t('Ändern')}</button>` : ''}</div></div>`).join('') : additionalPizzas ? '' : `<p>${t('Noch kein Preis eingetragen.')}</p>`}${additionalPizzas}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
   $('detail').hidden = false;
   if (f.drink === 'coffee') showCoffeeRating($('detail').querySelector<HTMLElement>('.detail-actions')!, cityId, b.id, communityReady);
   if (pizzaVenue) showGoogleRating($('detail').querySelector<HTMLElement>('.detail-maps')!, cityId, b.id);
@@ -658,6 +670,10 @@ function detail(b: Bar) {
     render();
   };
   $('add-here').onclick = () => openPrice(b);
+  $('correct-venue').onclick = () => {
+    if (!communityReady) return toast(t('Gemeinsame Einträge sind gerade nicht verfügbar. Bitte neu laden.'));
+    openVenueCorrection(b, venueCorrections.find(item => item.barId === b.id)?.revision || 0);
+  };
   $('share-bar').onclick = async () => {
     const button = $<HTMLButtonElement>('share-bar');
     const url = barLink(location.href, b.id, f.drink!, f.volume, f.beerType);
@@ -859,7 +875,7 @@ $('data-info').onclick = () => {
 };
 for (const format of ['csv', 'json'] as const) {
   $('download-' + format).onclick = () => {
-    downloadExport(createExport(cityId, datasets, entries, communityReady, undefined, addedVenues), format);
+    downloadExport(createExport(cityId, datasets, entries, communityReady, undefined, addedVenues, venueCorrections), format);
     trackEvent(cityId, 'data_downloaded', { format });
   };
 }
@@ -1041,6 +1057,7 @@ async function loadCommunity() {
     const result = await response.json();
     if (!Array.isArray(result.entries)) throw new Error();
     entries = result.entries; addedVenues = Array.isArray(result.venues) ? result.venues : []; communityReady = true;
+    venueCorrections = Array.isArray(result.venueCorrections) ? result.venueCorrections : [];
     loadCoffeeRatings(result.coffeeRatings);
     return true;
   } catch { communityReady = false; return false; }

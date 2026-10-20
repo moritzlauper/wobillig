@@ -37,7 +37,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const [beer, coffee, pizza, locations] = await Promise.all(['bars', 'coffee', 'pizza', 'locations'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(v => JSON.parse(v) as Dataset)));
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     const { state } = await store.read();
-    const bar = communityVenues({ beer, coffee, pizza, locations }, state.entries, state.venues).find(b => b.id === data.barId);
+    const bar = communityVenues({ beer, coffee, pizza, locations }, state.entries, state.venues, state.venueCorrections).find(b => b.id === data.barId);
     if (!bar) throw new InputError('Bitte zuerst ein Lokal auswählen.');
     const originals = [beer, coffee, pizza].flatMap(d => d.bars.find(b => b.id === bar.id)?.offers || []);
     const edit = data.edit === undefined ? undefined : parseScanEdit(data.edit);

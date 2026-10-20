@@ -10,6 +10,7 @@ import { priceOwner, visiblePrices } from '../server/price-moderation.js';
 import { PriceCooldownError, withPriceCooldown } from '../server/price-cooldown.js';
 import { isMapId } from '../src/custom-map-data.js';
 import { saveCustomMap } from '../server/custom-maps.js';
+import { saveVenueCorrection } from '../server/venue-corrections.js';
 
 const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>>>> = {};
 function datasets(city: City) {
@@ -36,7 +37,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
         if (!map) throw new InputError('Diese Map wurde nicht gefunden.', 404);
         return reply(200, { map });
       }
-      return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], coffeeRatings: coffeeRatingSummaries(state) });
+      return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], venueCorrections: state.venueCorrections || [], coffeeRatings: coffeeRatingSummaries(state) });
     }
     const origin = req.headers.origin;
     if (!origin || new URL(origin).host !== req.headers.host || req.headers['sec-fetch-site'] === 'cross-site') return reply(403, { error: 'Bitte das Formular auf dieser Website verwenden.' });
@@ -65,9 +66,12 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     if (body && typeof body === 'object' && 'action' in body && body.action === 'addVenue') {
       return reply(200, await saveVenue(store, 'venue' in body ? body.venue : undefined, data, city, visitor));
     }
+    if (body && typeof body === 'object' && 'action' in body && body.action === 'correctVenue') {
+      return reply(200, await saveVenueCorrection(store, body, data, visitor));
+    }
     const { state } = await store.read();
     const owner = priceOwner(req, res, true)!;
-    const input = validateInput(body, communityVenues(data, visiblePrices(state, owner), state.venues));
+    const input = validateInput(body, communityVenues(data, visiblePrices(state, owner), state.venues, state.venueCorrections));
     // A stable HMAC prevents a midnight reset; timestamps expire after ten minutes.
     const cooldownIp = createHmac('sha256', secret).update(`price-cooldown:${ip}`).digest('hex');
     const cooldownStore = blobStore(`prices/cooldowns/${process.env.VERCEL_ENV === 'production' ? 'production' : 'development'}.json`);

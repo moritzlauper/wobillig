@@ -2,13 +2,14 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Bar, Dataset } from '../src/data';
 
-const mocks = vi.hoisted(() => ({ readFile: vi.fn(), blobStore: vi.fn(), savePrice: vi.fn(), saveVenue: vi.fn() }));
+const mocks = vi.hoisted(() => ({ readFile: vi.fn(), blobStore: vi.fn(), savePrice: vi.fn(), saveVenue: vi.fn(), saveVenueCorrection: vi.fn() }));
 vi.mock('node:fs/promises', () => ({ readFile: mocks.readFile }));
 vi.mock('../server/prices.js', () => ({ blobStore: mocks.blobStore, savePrice: mocks.savePrice, saveVenue: mocks.saveVenue }));
 vi.mock('../server/price-cooldown.js', async original => ({
   ...await original<typeof import('../server/price-cooldown')>(),
   withPriceCooldown: (_store: unknown, _ip: string, _owner: string, save: () => Promise<unknown>) => save(),
 }));
+vi.mock('../server/venue-corrections.js', () => ({ saveVenueCorrection: mocks.saveVenueCorrection }));
 import handler from '../api/prices';
 
 function venue(id: string, name = 'Test'): Bar {
@@ -51,7 +52,7 @@ describe('city-scoped price API', () => {
       entries: [], customMaps: [map, { id: 'another-map', name: 'Other' }], limits: { secret: {} },
     } }) });
     expect((await request(`/api/prices?city=bern&map=${map.id}`)).data).toEqual({ map });
-    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [], coffeeRatings: {} });
+    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: {} });
     expect((await request('/api/prices?map=invalid')).status).toBe(400);
     expect((await request('/api/prices?map=d268dbea-93cf-45de-9d17-2b5c74090237')).status).toBe(404);
   });
@@ -60,7 +61,7 @@ describe('city-scoped price API', () => {
       entries: [], history: [{ id: 'old' }], priceChanges: [{ id: 'private-change' }], limits: { visitor: { count: 1 } },
       coffeeVotes: { 'node/zurich': { 'private-voter': 4 } },
     } }) });
-    expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [], coffeeRatings: { 'node/zurich': { average: null, count: 1 } } });
+    expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: { 'node/zurich': { average: null, count: 1 } } });
   });
   it('saves a Bern venue only in Bern and rejects that ID in Basel', async () => {
     const input = { barId: 'node/bern', drink: 'beer', revision: 0, name: 'Lager', priceChf: 5, volumeMl: 300, alcoholFree: false, observedAt: '2026-10-14', sourceUrl: '' };
@@ -77,7 +78,23 @@ describe('city-scoped price API', () => {
     expect(mocks.saveVenue.mock.calls[0][3]).toBe('bern');
     expect(mocks.blobStore).toHaveBeenCalledWith('prices/bern/production.json');
     mocks.blobStore.mockReturnValue({ read: async () => ({ state: { entries: [], venues: [{ id: 'community/new' }] } }) });
-    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [{ id: 'community/new' }], coffeeRatings: {} });
+    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [{ id: 'community/new' }], venueCorrections: [], coffeeRatings: {} });
+  });
+
+  it('routes corrections to the selected city and publishes corrections without their audit history', async () => {
+    const correction = { barId: 'node/bern', revision: 1, changes: { website: 'https://correct.example/' }, updatedAt: '2026-10-20' };
+    mocks.saveVenueCorrection.mockResolvedValue({ correction });
+    const body = { action: 'correctVenue', barId: 'node/bern', revision: 0, changes: correction.changes };
+    expect(await request('/api/prices?city=bern', body)).toMatchObject({ status: 200, data: { correction } });
+    expect(mocks.blobStore).toHaveBeenCalledWith('prices/bern/production.json');
+    expect(mocks.saveVenueCorrection.mock.calls[0][1]).toEqual(body);
+    expect(mocks.saveVenueCorrection.mock.calls[0][2].coffee.bars[0].id).toBe('node/bern');
+    mocks.blobStore.mockReturnValue({ read: async () => ({ state: {
+      entries: [], venueCorrections: [correction], venueCorrectionHistory: [{ before: { website: 'private' } }],
+    } }) });
+    const read = await request('/api/prices?city=bern');
+    expect(read.data.venueCorrections).toEqual([correction]);
+    expect(read.data).not.toHaveProperty('venueCorrectionHistory');
   });
 
   it('accepts prices for a community venue only from that city’s stored catalogue', async () => {

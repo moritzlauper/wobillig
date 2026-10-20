@@ -1,11 +1,12 @@
 import { cities, type City } from './cities';
 import { applyEntries, communityVenues, type Drink, type PriceEntry } from './community';
 import { effectiveBeerType, isComparableOffer, isCurrentOffer, type Bar, type Dataset } from './data';
+import type { VenueCorrection } from './venue-corrections';
 
-export function createExport(city: City, datasets: Partial<Record<Drink, Dataset>>, entries: PriceEntry[], communityLoaded: boolean, exportedAt = new Date().toISOString(), added: Bar[] = []) {
-  const venues = communityVenues(datasets, entries, added);
+export function createExport(city: City, datasets: Partial<Record<Drink, Dataset>>, entries: PriceEntry[], communityLoaded: boolean, exportedAt = new Date().toISOString(), added: Bar[] = [], corrections: VenueCorrection[] = []) {
+  const venues = communityVenues(datasets, entries, added, corrections);
   const merged = Object.fromEntries(Object.entries(datasets).map(([drink, dataset]) =>
-    [drink, applyEntries(dataset, entries, venues, drink as Drink)])) as Partial<Record<Drink, Dataset>>;
+    [drink, applyEntries(dataset, entries, venues, drink as Drink, corrections)])) as Partial<Record<Drink, Dataset>>;
   return {
     schemaVersion: 1,
     city,

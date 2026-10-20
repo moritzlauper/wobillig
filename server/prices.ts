@@ -11,10 +11,11 @@ import { priceConcern, visiblePrices, type HeldPrice } from './price-moderation.
 import { checkPriceEdit } from './price-edit-rules.js';
 import type { PriceCooldowns } from './price-cooldown.js';
 import type { CustomMap } from '../src/custom-map-data.js';
+import type { VenueCorrection, VenueChanges } from '../src/venue-corrections.js';
 
 export type ScanReceipt = { ids: string[]; added: number; unchanged: number; conflicts: number; skipped: number; updated?: number };
 export type ScanRecord = { status: 'pending' | 'done' | 'failed'; expires: number; result?: ScanReceipt };
-export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes; coffeeVoteDetails?: CoffeeVoteDetails; coffeePhotoUses?: Record<string, { voter: string; barId: string }>; heldPrices?: HeldPrice[]; priceCooldowns?: PriceCooldowns; customMaps?: CustomMap[] };
+export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; venueCorrections?: VenueCorrection[]; venueCorrectionHistory?: { correction: VenueCorrection; before: VenueChanges }[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes; coffeeVoteDetails?: CoffeeVoteDetails; coffeePhotoUses?: Record<string, { voter: string; barId: string }>; heldPrices?: HeldPrice[]; priceCooldowns?: PriceCooldowns; customMaps?: CustomMap[] };
 export type Store = { read(): Promise<{ state: State; etag?: string }>; write(state: State, etag?: string): Promise<void> };
 export const emptyState = (): State => ({ entries: [], history: [], limits: {} });
 export class WriteConflict extends Error {}
@@ -59,7 +60,7 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     const limit = state.limits[visitor] || { count: 0, expires: now + 3600000 };
     if (limit.count >= 20) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[visitor] = { ...limit, count: limit.count + 1 };
-    const venue = communityVenues(datasets, state.entries, state.venues).find(b => b.id === input.barId);
+    const venue = communityVenues(datasets, state.entries, state.venues, state.venueCorrections).find(b => b.id === input.barId);
     if (!venue) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
     const entry: PriceEntry = { id: old?.id || randomUUID(), barId: input.barId, drink: input.drink, targetKey, revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString(), offer, venue: { ...venue, offers: [] } };
     const change = priceChange(entry, old, datasets[input.drink]);
@@ -87,7 +88,7 @@ export async function saveVenue(store: Store, value: unknown, datasets: Paramete
   const input = validateVenue(value, city);
   for (let attempt = 0; attempt < 4; attempt++) {
     const { state, etag } = await store.read();
-    const duplicate = duplicateVenue(input, communityVenues(datasets, state.entries, state.venues));
+    const duplicate = duplicateVenue(input, communityVenues(datasets, state.entries, state.venues, state.venueCorrections));
     // Retrying after a lost response must not create a second location.
     if (duplicate) return { venue: duplicate, created: false };
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
