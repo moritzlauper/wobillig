@@ -72,16 +72,20 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   const view = document.createElement('section');
   view.id = 'custom-map-view'; view.hidden = true;
   view.innerHTML = `<div class="custom-map-toolbar">
-    <button type="button" id="map-back">← ${t('Zurück')}</button>
-    <strong id="custom-map-name"></strong>
-    <button type="button" id="map-share">${t('Map teilen')}</button>
-    <div id="map-publish-control">
-      <button type="button" id="map-publish" aria-describedby="map-publish-help">${t('Für alle veröffentlichen')}</button>
-      <p id="map-publish-help" role="status" hidden></p>
+    <div class="custom-map-heading">
+      <button type="button" id="map-back">← ${t('Zurück')}</button>
+      <div class="custom-map-title"><h1 id="custom-map-name"></h1><p id="custom-map-summary" role="status"></p></div>
     </div>
-    <button type="button" id="map-withdraw" hidden>${t('Veröffentlichung zurückziehen')}</button>
-    <button type="button" class="primary" id="map-add-entry">+ ${t('Lokal und Preis hinzufügen')}</button>
-    </div><p id="custom-map-summary" role="status"></p><p id="custom-map-visibility" class="muted"></p>
+    <div class="custom-map-actions">
+      <button type="button" id="map-share">${t('Map teilen')}</button>
+      <div id="map-publish-control">
+        <button type="button" id="map-publish" aria-describedby="map-publish-help">${t('Für alle veröffentlichen')}</button>
+      </div>
+      <button type="button" id="map-withdraw" hidden>${t('Veröffentlichung zurückziehen')}</button>
+      <button type="button" class="primary" id="map-add-entry">+ ${t('Lokal und Preis hinzufügen')}</button>
+      <p id="map-publish-help" class="muted" role="status" hidden></p>
+    </div>
+    </div><p id="custom-map-visibility" class="muted"></p>
     <p id="custom-map-action-error" role="alert" hidden></p>
     <section id="automatic-map-details" hidden></section>
     <div id="custom-map-share" hidden><label>${t('Diesen Link kopieren und teilen:')}<input type="url" readonly></label></div>
@@ -200,16 +204,15 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   }
   function updatePublicationControl(saving = false) {
     if (!current) return;
-    if (current.automatic) { el('map-publish-control').hidden = true; return; }
+    if (current.automatic) { el('map-publish-control').hidden = true; el('map-publish-help').hidden = true; return; }
     const remaining = Math.max(0, PUBLIC_MAP_MIN_VENUES - mapVenueCount(current));
     const submitted = ['pending', 'approved'].includes(current.publication?.status || '');
     el('map-publish-control').hidden = submitted;
     el<HTMLButtonElement>('map-publish').disabled = saving || remaining > 0 || submitted;
     const help = el('map-publish-help');
-    help.hidden = !saving && remaining === 0;
+    help.hidden = submitted || (!saving && remaining === 0);
     help.textContent = saving ? t('Wird gespeichert …') : remaining > 0
-      ? t('Mindestens ein Ort mit Preis nötig.') + ' '
-        + (remaining === 1 ? t('Es fehlt noch 1 Ort.') : t('Es fehlen noch {count} Orte.', { count: remaining }))
+      ? t('Mindestens ein Ort mit Preis nötig.')
       : '';
   }
   function open(value: CustomMap) {
@@ -229,7 +232,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     view.querySelector<HTMLElement>('.custom-map-content')!.hidden = Boolean(automatic);
     el('map-add-entry').hidden = Boolean(automatic);
     if (automatic) {
-      el('map-publish-control').hidden = true; el('map-withdraw').hidden = true;
+      el('map-publish-control').hidden = true; el('map-publish-help').hidden = true; el('map-withdraw').hidden = true;
       el('custom-map-summary').textContent = t(automaticMapStatusLabels[automatic.status]);
       el('custom-map-visibility').textContent = t('Anfrage nur per Link erreichbar. Es werden noch keine Angebote importiert.');
       el('automatic-map-details').innerHTML = `<h2>${e(t('Gewünschte Angebote'))}</h2><p>${e(automatic.description)}</p>
