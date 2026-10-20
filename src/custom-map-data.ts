@@ -8,5 +8,12 @@ export type MapEntry = {
   updatedAt: string;
 };
 export type CustomMap = { id: string; name: string; createdAt: string; entries: MapEntry[] };
+export type PublicMap = Pick<CustomMap, 'id' | 'name'> & { venueCount: number };
+export const PUBLIC_MAP_MIN_VENUES = 5;
+export const mapVenueCount = (map: CustomMap) => new Set(map.entries.map(entry => entry.venue.id)).size;
+export function publicMapSummaries(maps: CustomMap[]): PublicMap[] {
+  return maps.map(map => ({ id: map.id, name: map.name, venueCount: mapVenueCount(map) }))
+    .filter(map => map.venueCount >= PUBLIC_MAP_MIN_VENUES);
+}
 export const isMapId = (value: unknown): value is string =>
   typeof value === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);

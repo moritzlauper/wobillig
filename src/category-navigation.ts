@@ -1,6 +1,7 @@
 import { categories, categoryCounts, emptyCategoryCounts, rankedCategories, streetfoodPriceCount, type Category } from './categories';
 import type { Drink } from './community';
 import { t } from './i18n';
+import type { PublicMap } from './custom-map-data';
 
 export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void, dataPath: string) {
   const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), pizza: 'Pizza', doner: t('Döner'), falafel: 'Falafel' };
@@ -22,6 +23,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   let clicked: Category = 'coffee';
   let requestVersion = 0;
   let pendingClicks = Promise.resolve();
+  let mapButtons: HTMLButtonElement[] = [], mapLibrary: HTMLButtonElement | undefined;
   const buttons = Object.fromEntries(categories.map(category => {
     const button = document.createElement('button');
     button.id = `drink-${category}`; button.type = 'button';
@@ -66,7 +68,9 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     more.replaceChildren(...order.filter(upcoming).map(category => buttons[category]));
     // Retain the unavailable Pizza element for existing control synchronization.
     if (!pizzaAvailable) more.append(buttons.pizza);
-    moreContainer.hidden = !order.some(upcoming);
+    more.append(...mapButtons);
+    if (mapLibrary) more.append(mapLibrary);
+    moreContainer.hidden = !order.some(upcoming) && !mapButtons.length && (!mapLibrary || mapLibrary.hidden);
     if (moreContainer.hidden) {
       more.hidden = true;
       toggle.setAttribute('aria-expanded', 'false');
@@ -120,6 +124,21 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   }
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') void refresh(); });
   return {
+    setCustomMaps(maps: PublicMap[], load: (id: string) => void) {
+      mapButtons = [...maps].sort((a, b) => a.name.localeCompare(b.name, 'de-CH')).map(map => {
+        const button = document.createElement('button'); button.type = 'button';
+        button.textContent = `${map.name} · ${t('{count} Lokale', { count: map.venueCount })}`;
+        button.dataset.customMap = map.id;
+        button.onclick = () => { close(); load(map.id); };
+        return button;
+      });
+      render();
+    },
+    setMapLibrary(button: HTMLButtonElement) {
+      mapLibrary = button;
+      render();
+    },
+    close,
     update(drink: Drink, hasPizza: boolean) {
       active = drink;
       if (pizzaAvailable !== hasPizza) { pizzaAvailable = hasPizza; render(); }

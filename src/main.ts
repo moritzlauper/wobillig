@@ -1059,6 +1059,7 @@ async function loadCommunity() {
     entries = result.entries; addedVenues = Array.isArray(result.venues) ? result.venues : []; communityReady = true;
     venueCorrections = Array.isArray(result.venueCorrections) ? result.venueCorrections : [];
     loadCoffeeRatings(result.coffeeRatings);
+    customMapUI?.updatePublicMaps(Array.isArray(result.publicMaps) ? result.publicMaps : []);
     return true;
   } catch { communityReady = false; return false; }
 }
@@ -1099,7 +1100,7 @@ async function init() {
     } else scheduleAddressSearch();
   }
 }
-customMapUI = customMaps(cityId, () => selectableLocations(venues, locationCatalogue), () => { render(); map.invalidateSize(); });
+customMapUI = customMaps(cityId, () => selectableLocations(venues, locationCatalogue), () => { render(); map.invalidateSize(); }, categoryNav);
 syncControls();
 void init();
 if (districtState.enabled) {

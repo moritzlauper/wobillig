@@ -9,6 +9,35 @@ test.beforeEach(async ({ page }) => {
 });
 
 for (const width of [320, 1280]) {
+  test(`public maps stay collapsed under More at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    const saved: CustomMap = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: 'Glace-Map', createdAt: new Date().toISOString(),
+      entries: Array.from({ length: 5 }, (_, i) => ({ venue: { ...venue, id: `node/${i}` }, product: 'Glace', priceChf: 5, revision: 1, updatedAt: new Date().toISOString() })) };
+    await page.route('**/api/prices?*', route => route.fulfill({ json: new URL(route.request().url()).searchParams.has('map')
+      ? { map: saved } : { entries: [], publicMaps: [{ id: saved.id, name: saved.name, venueCount: 5 },
+        { id: 'd268dbea-93cf-45de-9d17-2b5c74090237', name: 'Draft map', venueCount: 4 }] } }));
+    await page.goto('/');
+    await expect(page.locator('#count')).not.toHaveText('Laden …');
+    const shortcut = page.locator(`[data-custom-map="${saved.id}"]`);
+    await expect(shortcut).toBeHidden();
+    await expect(page.locator('#primary-categories [data-custom-map]')).toHaveCount(0);
+    await page.locator('#categories-toggle').click();
+    await expect(shortcut).toBeVisible();
+    await expect(shortcut).toHaveText('Glace-Map · 5 Lokale');
+    await expect(page.getByRole('button', { name: /Draft map/ })).toHaveCount(0);
+    const menu = await page.locator('#additional-categories').boundingBox();
+    expect(menu!.x).toBeGreaterThanOrEqual(0);
+    expect(menu!.x + menu!.width).toBeLessThanOrEqual(width);
+    await shortcut.click();
+    await expect(page.locator('#custom-map-name')).toHaveText('Glace-Map');
+    await expect(page.locator('#custom-map-visibility')).toHaveText('Öffentlich unter «Weitere» sichtbar.');
+    await page.locator('#map-back').click();
+    await expect(shortcut).toBeHidden();
+    await page.reload();
+    await expect(shortcut).toBeHidden();
+    await page.locator('#categories-toggle').click();
+    await expect(shortcut).toBeVisible();
+  });
   test(`create, contribute, share, reload and reopen a map at ${width}px`, async ({ page, context }) => {
     await page.setViewportSize({ width, height: 844 });
     let saved: CustomMap | undefined;
@@ -53,6 +82,8 @@ for (const width of [320, 1280]) {
     await page.locator('#map-back').click();
     await expect(page.locator('#drink-coffee')).toBeVisible();
     await expect(page).not.toHaveURL(/map=/);
+    await expect(page.locator('#my-maps')).toBeHidden();
+    await page.locator('#categories-toggle').click();
     await page.locator('#my-maps').click();
     await page.locator('#saved-maps').getByRole('button', { name: 'Döner-Map', exact: true }).click();
     await expect(page.locator('#custom-map-name')).toHaveText('Döner-Map');

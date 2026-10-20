@@ -1,7 +1,8 @@
 import L from 'leaflet';
 import { cities, type City } from './cities';
 import { escapeHtml as e, type Bar } from './data';
-import { isMapId, type CustomMap, type MapEntry } from './custom-map-data';
+import { isMapId, publicMapSummaries, PUBLIC_MAP_MIN_VENUES, mapVenueCount, type PublicMap, type CustomMap, type MapEntry } from './custom-map-data';
+import type { categoryNavigation } from './category-navigation';
 import { dateLocale, t } from './i18n';
 import { shareLink } from './sharing';
 import { venueForm } from './venue-form';
@@ -10,7 +11,7 @@ class MapRequestError extends Error {
   constructor(message: string, public status: number) { super(message); }
 }
 
-export function customMaps(city: City, known: () => Bar[], onClose: () => void) {
+export function customMaps(city: City, known: () => Bar[], onClose: () => void, navigation: ReturnType<typeof categoryNavigation>) {
   const app = document.getElementById('app')!;
   const nav = document.getElementById('category-navigation')!;
   const api = `/api/prices?city=${city}`;
@@ -23,6 +24,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void) 
   let current: CustomMap | undefined, map: L.Map | undefined, layer: L.LayerGroup | undefined;
   let createId = crypto.randomUUID(), busy = false, request = 0;
   let editing: MapEntry | undefined;
+  let publicMaps: PublicMap[] = [];
   const added: Bar[] = [];
   const venues = () => [...new Map([...known(), ...added].map(bar => [bar.id, bar])).values()];
   const plus = document.createElement('button');
@@ -31,7 +33,8 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void) 
   plus.innerHTML = '<span aria-hidden="true">+</span>';
   const mine = document.createElement('button');
   mine.id = 'my-maps'; mine.type = 'button'; mine.textContent = t('Meine Maps'); mine.hidden = !saved.length;
-  nav.append(mine, plus);
+  nav.append(plus);
+  navigation.setMapLibrary(mine);
   const create = document.createElement('dialog');
   create.id = 'create-map-dialog'; create.setAttribute('aria-labelledby', 'create-map-title');
   create.innerHTML = `<form class="custom-map-form">
@@ -39,6 +42,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void) 
     <p>${t('Döner, Glace oder dein Lieblingsessen: Erstelle eine Map und sammle Lokale mit Preisen.')}</p>
     <label>${t('Name der Map')}<input name="name" required maxlength="60" placeholder="${t('z. B. Döner-Map')}" autocomplete="off"></label>
     <p class="muted">${e(t(cities[city].name))} · ${t('Alle mit dem Link können Preise ansehen und ergänzen.')}</p>
+    <p class="muted">${t('Ab {count} verschiedenen Lokalen erscheint deine Map öffentlich unter «Weitere».', { count: PUBLIC_MAP_MIN_VENUES })}</p>
     <button class="primary" type="submit">${t('Map erstellen')}</button>
     <p role="alert" data-error hidden></p>
   </form><section id="saved-maps" hidden><h3>${t('Meine Maps')}</h3><div></div></section>`;
@@ -61,7 +65,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void) 
     <strong id="custom-map-name"></strong>
     <button type="button" id="map-share">${t('Map teilen')}</button>
     <button type="button" class="primary" id="map-add-entry">+ ${t('Lokal und Preis hinzufügen')}</button>
-    </div><p id="custom-map-summary" role="status"></p>
+    </div><p id="custom-map-summary" role="status"></p><p id="custom-map-visibility" class="muted"></p>
     <div id="custom-map-share" hidden><label>${t('Diesen Link kopieren und teilen:')}<input type="url" readonly></label></div>
     <div class="custom-map-content"><div id="custom-map-canvas" role="region" aria-label="${t('Eigene Map')}"></div><div id="custom-map-entries"></div></div>`;
   app.append(view);
@@ -88,8 +92,15 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void) 
     saved = [{ id: value.id, name: value.name }, ...saved.filter(item => item.id !== value.id)].slice(0, 20);
     try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch { /* Sharing remains available. */ }
     mine.hidden = false;
+    navigation.setMapLibrary(mine);
+    updatePublicMaps([...publicMaps.filter(item => item.id !== value.id), ...publicMapSummaries([value])]);
+  }
+  function updatePublicMaps(maps: PublicMap[]) {
+    publicMaps = maps.filter(item => isMapId(item.id) && item.venueCount >= PUBLIC_MAP_MIN_VENUES);
+    navigation.setCustomMaps(publicMaps, id => { void load(id); });
   }
   function showPicker() {
+    navigation.close();
     errorText(create, '');
     const section = create.querySelector<HTMLElement>('#saved-maps')!;
     section.hidden = !saved.length;
@@ -161,6 +172,10 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void) 
     const average = entries.length ? `CHF ${(entries.reduce((sum, item) => sum + item.priceChf, 0) / entries.length).toFixed(2)}` : '—';
     el('custom-map-summary').textContent = entries.length === 1 ? t('1 Lokal · Schnitt {price}', { price: average })
       : t('{count} Lokale · Schnitt {price}', { count: entries.length, price: average });
+    const count = mapVenueCount(value);
+    el('custom-map-visibility').textContent = count >= PUBLIC_MAP_MIN_VENUES
+      ? t('Öffentlich unter «Weitere» sichtbar.')
+      : t('Noch nicht öffentlich gelistet: {count} von {minimum} Lokalen. Über den Link bereits teilbar.', { count, minimum: PUBLIC_MAP_MIN_VENUES });
     el('custom-map-entries').replaceChildren();
     if (!entries.length) {
       const empty = document.createElement('p'); empty.className = 'empty';
@@ -251,5 +266,5 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void) 
     const target = new URL(location.href); target.searchParams.delete('map'); history.replaceState(null, '', target);
     onClose(); plus.focus();
   };
-  return { get isOpen() { return !view.hidden; }, load };
+  return { get isOpen() { return !view.hidden; }, load, updatePublicMaps };
 }

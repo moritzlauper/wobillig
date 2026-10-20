@@ -73,7 +73,7 @@ it('returns normal success and persists only the submitting browser’s view acr
   expect(own.data.entries).toEqual([saved.data.entry]);
   expect(own.headers['Cache-Control']).toBe('private, no-store');
   expect(own.headers.Vary).toBe('Cookie');
-  expect(Object.keys(own.data).filter(key => key !== 'venueCorrections').sort()).toEqual(['coffeeRatings', 'entries', 'venues']);
+  expect(Object.keys(own.data).filter(key => key !== 'venueCorrections').sort()).toEqual(['coffeeRatings', 'entries', 'publicMaps', 'venues']);
   const state = (await store.read()).state;
   expect(state.entries).toEqual([]);
   expect(state.history).toEqual([]);

@@ -49,10 +49,10 @@ describe('city-scoped price API', () => {
   it('loads only the requested custom map and does not list other maps or private storage', async () => {
     const map = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: 'Döner', entries: [] };
     mocks.blobStore.mockReturnValue({ read: async () => ({ state: {
-      entries: [], customMaps: [map, { id: 'another-map', name: 'Other' }], limits: { secret: {} },
+      entries: [], customMaps: [map, { id: 'another-map', name: 'Other', entries: [] }], limits: { secret: {} },
     } }) });
     expect((await request(`/api/prices?city=bern&map=${map.id}`)).data).toEqual({ map });
-    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: {} });
+    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: {}, publicMaps: [] });
     expect((await request('/api/prices?map=invalid')).status).toBe(400);
     expect((await request('/api/prices?map=d268dbea-93cf-45de-9d17-2b5c74090237')).status).toBe(404);
   });
@@ -61,7 +61,23 @@ describe('city-scoped price API', () => {
       entries: [], history: [{ id: 'old' }], priceChanges: [{ id: 'private-change' }], limits: { visitor: { count: 1 } },
       coffeeVotes: { 'node/zurich': { 'private-voter': 4 } },
     } }) });
-    expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: { 'node/zurich': { average: null, count: 1 } } });
+    expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: { 'node/zurich': { average: null, count: 1 } }, publicMaps: [] });
+  });
+  it('publicly lists only maps with at least five distinct venues in the selected city', async () => {
+    const entries = Array.from({ length: 6 }, (_, i) => ({ venue: { id: `node/${i}` }, priceChf: 12 }));
+    const maps = [
+      { id: 'four', name: 'Four', entries: entries.slice(0, 4) },
+      { id: 'five', name: 'Five', entries: entries.slice(0, 5) },
+      { id: 'six', name: 'Six', entries },
+      { id: 'duplicates', name: 'Duplicates', entries: Array(5).fill(entries[0]) },
+    ];
+    mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: {
+      entries: [], customMaps: path.includes('/bern/') ? maps : [],
+    } }) }));
+    expect((await request('/api/prices?city=bern')).data.publicMaps).toEqual([
+      { id: 'five', name: 'Five', venueCount: 5 }, { id: 'six', name: 'Six', venueCount: 6 },
+    ]);
+    expect((await request('/api/prices?city=basel')).data.publicMaps).toEqual([]);
   });
   it('saves a Bern venue only in Bern and rejects that ID in Basel', async () => {
     const input = { barId: 'node/bern', drink: 'beer', revision: 0, name: 'Lager', priceChf: 5, volumeMl: 300, alcoholFree: false, observedAt: '2026-10-14', sourceUrl: '' };
@@ -78,7 +94,7 @@ describe('city-scoped price API', () => {
     expect(mocks.saveVenue.mock.calls[0][3]).toBe('bern');
     expect(mocks.blobStore).toHaveBeenCalledWith('prices/bern/production.json');
     mocks.blobStore.mockReturnValue({ read: async () => ({ state: { entries: [], venues: [{ id: 'community/new' }] } }) });
-    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [{ id: 'community/new' }], venueCorrections: [], coffeeRatings: {} });
+    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [{ id: 'community/new' }], venueCorrections: [], coffeeRatings: {}, publicMaps: [] });
   });
 
   it('routes corrections to the selected city and publishes corrections without their audit history', async () => {

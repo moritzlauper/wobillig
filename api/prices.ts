@@ -8,7 +8,7 @@ import { blobStore, savePrice, saveVenue } from '../server/prices.js';
 import { coffeeRatingSummaries } from '../server/coffee-ratings.js';
 import { priceOwner, visiblePrices } from '../server/price-moderation.js';
 import { PriceCooldownError, withPriceCooldown } from '../server/price-cooldown.js';
-import { isMapId } from '../src/custom-map-data.js';
+import { isMapId, publicMapSummaries } from '../src/custom-map-data.js';
 import { saveCustomMap } from '../server/custom-maps.js';
 import { saveVenueCorrection } from '../server/venue-corrections.js';
 
@@ -37,7 +37,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
         if (!map) throw new InputError('Diese Map wurde nicht gefunden.', 404);
         return reply(200, { map });
       }
-      return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], venueCorrections: state.venueCorrections || [], coffeeRatings: coffeeRatingSummaries(state) });
+      return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], venueCorrections: state.venueCorrections || [], coffeeRatings: coffeeRatingSummaries(state), publicMaps: publicMapSummaries(state.customMaps || []) });
     }
     const origin = req.headers.origin;
     if (!origin || new URL(origin).host !== req.headers.host || req.headers['sec-fetch-site'] === 'cross-site') return reply(403, { error: 'Bitte das Formular auf dieser Website verwenden.' });

@@ -1,5 +1,6 @@
 import { expect, it } from 'vitest';
 import { saveCustomMap } from '../server/custom-maps';
+import { publicMapSummaries } from '../src/custom-map-data';
 import { emptyState, WriteConflict, type State, type Store } from '../server/prices';
 import type { Bar, Dataset } from '../src/data';
 
@@ -61,4 +62,19 @@ it('limits new maps per visitor and expires the limit', async () => {
   for (let i = 0; i < 5; i++) await saveCustomMap(store, { ...create, mapId: mapId.slice(0, -1) + i }, {}, 'v', 0);
   await expect(saveCustomMap(store, create, {}, 'v', 0)).rejects.toMatchObject({ status: 429 });
   await expect(saveCustomMap(store, create, {}, 'v', 3600001)).resolves.toMatchObject({ id: mapId });
+});
+
+it('publishes on the fifth venue, while editing an existing venue does not advance the count', async () => {
+  const store = memory();
+  const bars = Array.from({ length: 5 }, (_, i) => ({ ...bar, id: `node/${i}` }));
+  const datasets = { locations: { ...data, bars } };
+  let map = await saveCustomMap(store, create, datasets, 'v');
+  for (const venue of bars.slice(0, 4)) {
+    map = await saveCustomMap(store, { ...input, barId: venue.id }, datasets, 'v');
+    expect(publicMapSummaries([map])).toEqual([]);
+  }
+  map = await saveCustomMap(store, { ...input, barId: bars[0].id, revision: 1, priceChf: 13 }, datasets, 'v');
+  expect(publicMapSummaries([map])).toEqual([]);
+  map = await saveCustomMap(store, { ...input, barId: bars[4].id }, datasets, 'v');
+  expect(publicMapSummaries([map])).toEqual([{ id: mapId, name: 'Döner-Map', venueCount: 5 }]);
 });

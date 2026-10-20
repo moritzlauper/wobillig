@@ -23,6 +23,7 @@ a { color: var(--link); text-underline-offset: 2px; }
 .custom-map-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px; border-bottom: 1px solid var(--divider); }
 #custom-map-name { flex: 1; min-width: 100px; overflow-wrap: anywhere; }
 #custom-map-summary { margin: 0; padding: 10px; border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
+#custom-map-visibility { margin: 0; padding: 8px 10px; border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
 .custom-map-content { display: flex; flex: 1; min-height: 0; }
 #custom-map-canvas { flex: 1; min-width: 0; background: var(--map); }
 #custom-map-entries { width: 300px; overflow-y: auto; border-left: 1px solid var(--divider); }
@@ -58,6 +59,7 @@ a { color: var(--link); text-underline-offset: 2px; }
 #categories-toggle { display: flex; align-items: center; justify-content: center; gap: 10px; height: 100%; }
 #categories-toggle[aria-expanded=true] .filter-chevron { transform: translateY(2px) rotate(225deg); }
 #additional-categories { position: absolute; top: calc(100% + 4px); right: 0; z-index: 1700; min-width: 180px; padding: 4px; background: var(--surface); border: 1px solid var(--strong-border); border-radius: 4px; box-shadow: 0 4px 14px #0003; }
+#additional-categories { max-width: min(320px, calc(100vw - 24px)); max-height: 60dvh; overflow-y: auto; overflow-wrap: anywhere; }
 #additional-categories button { display: block; width: 100%; text-align: left; border: 0; min-height: 40px; }
 #additional-categories .category-description { display: inline; }
 .search-box { position: relative; flex: 1; min-width: 160px; }
