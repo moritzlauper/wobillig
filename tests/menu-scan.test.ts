@@ -73,7 +73,7 @@ describe('OCR calls and cost guard', () => {
       .mockResolvedValueOnce(Response.json({ input_tokens: 2000 }))
       .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(document()) }], usage: { input_tokens: 2000, output_tokens: 100 } }))
       .mockResolvedValueOnce(Response.json({ input_tokens: 2000 }))
-      .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ accepted: [], rejected: [{ id: 0, reason: 'Price digit is unclear' }] }) }], usage: { input_tokens: 2000, output_tokens: 30 } }));
+      .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ wrongVenue: false, venueEvidence: '', accepted: [], rejected: [{ id: 0, reason: 'Price digit is unclear' }] }) }], usage: { input_tokens: 2000, output_tokens: 30 } }));
     const result = await readMenu(image, bar, 'test', fetcher);
     expect(menuPrices(result.parsed, bar, '2026-10-16').prices).toEqual([]);
     expect(fetcher).toHaveBeenCalledTimes(4);
@@ -84,7 +84,7 @@ describe('OCR calls and cost guard', () => {
         .mockResolvedValueOnce(Response.json({ input_tokens: 2000 }))
         .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(document()) }] }))
         .mockResolvedValueOnce(Response.json({ input_tokens: 2000 }))
-        .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(check) }] }));
+        .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ wrongVenue: false, venueEvidence: '', ...check }) }] }));
       await expect(readMenu(image, bar, 'test', fetcher)).rejects.toMatchObject({ status: 422 });
     }
   });
@@ -92,6 +92,37 @@ describe('OCR calls and cost guard', () => {
     const fetcher = vi.fn().mockResolvedValueOnce(Response.json({ input_tokens: 2000 })).mockRejectedValueOnce(new Error('offline'));
     await expect(readMenu(image, bar, 'test', fetcher)).rejects.toMatchObject({ status: 503 });
     expect(fetcher).toHaveBeenCalledTimes(2);
+  });
+  it.each([
+    { wrongVenue: false, venueEvidence: '' },
+    { wrongVenue: true, venueEvidence: 'Restaurant Anders, Bundesplatz 1, 3011 Bern' },
+    { wrongVenue: true, venueEvidence: 'Mars Bar, Anderegasse 9, 4000 Basel' },
+  ])('checks restaurant identity again in the existing verification pass: %j', async identity => {
+    const fetcher = vi.fn()
+      .mockResolvedValueOnce(Response.json({ input_tokens: 2000 }))
+      .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(document()) }] }))
+      .mockResolvedValueOnce(Response.json({ input_tokens: 2000 }))
+      .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ ...identity, accepted: [0], rejected: [] }) }] }));
+    const result = await readMenu(image, bar, 'test', fetcher);
+    expect(result.parsed.wrongVenue).toBe(identity.wrongVenue);
+    if (identity.wrongVenue) {
+      expect(() => menuPrices(result.parsed, bar, '2026-10-16')).toThrow('anderen Lokal');
+    } else {
+      expect(menuPrices(result.parsed, bar, '2026-10-16').prices).toHaveLength(2);
+    }
+    expect(fetcher).toHaveBeenCalledTimes(4);
+    const verification = JSON.parse(fetcher.mock.calls[3][1].body);
+    const supplied = JSON.parse(verification.messages[0].content[1].text);
+    expect(supplied.selectedVenue).toEqual({ name: bar.name, address: bar.address, postcode: bar.postcode });
+    expect(verification.system).toContain('supplier');
+  });
+  it.each([{}, { wrongVenue: true, venueEvidence: '' }, { wrongVenue: 'false', venueEvidence: '' }])('rejects missing or unsupported venue verification: %j', async identity => {
+    const fetcher = vi.fn()
+      .mockResolvedValueOnce(Response.json({ input_tokens: 2000 }))
+      .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(document()) }] }))
+      .mockResolvedValueOnce(Response.json({ input_tokens: 2000 }))
+      .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ ...identity, accepted: [0], rejected: [] }) }] }));
+    await expect(readMenu(image, bar, 'test', fetcher)).rejects.toMatchObject({ status: 422 });
   });
 });
 

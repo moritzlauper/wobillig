@@ -7,10 +7,12 @@ import { duplicateVenue, validateVenue } from '../src/venue-contributions.js';
 import type { City } from '../src/cities.js';
 import { priceChange, type PriceChange } from './price-audit.js';
 import type { CoffeeVotes } from './coffee-ratings.js';
+import { priceConcern, visiblePrices, type HeldPrice } from './price-moderation.js';
+import type { PriceCooldowns } from './price-cooldown.js';
 
 export type ScanReceipt = { ids: string[]; added: number; unchanged: number; conflicts: number; skipped: number };
 export type ScanRecord = { status: 'pending' | 'done' | 'failed'; expires: number; result?: ScanReceipt };
-export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes };
+export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes; heldPrices?: HeldPrice[]; priceCooldowns?: PriceCooldowns };
 export type Store = { read(): Promise<{ state: State; etag?: string }>; write(state: State, etag?: string): Promise<void> };
 export const emptyState = (): State => ({ entries: [], history: [], limits: {} });
 export class WriteConflict extends Error {}
@@ -35,7 +37,7 @@ export function blobStore(path = process.env.VERCEL_ENV === 'production' ? 'pric
     },
   };
 }
-export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset> & Partial<Record<'pizza' | 'locations', Dataset>>, visitor: string, now = Date.now()) {
+export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset> & Partial<Record<'pizza' | 'locations', Dataset>>, visitor: string, now = Date.now(), owner = visitor) {
   const offer: Offer = {
     name: input.name, priceChf: input.priceChf, volumeMl: input.volumeMl, coffeeType: input.coffeeType, pizzaType: input.pizzaType,
     serving: input.serving, beerType: input.beerType, alcoholFree: input.alcoholFree, observedAt: input.observedAt,
@@ -43,12 +45,13 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
   };
   for (let attempt = 0; attempt < 4; attempt++) {
     const { state, etag } = await store.read();
-    const old = input.id ? state.entries.find(x => x.id === input.id) : state.entries.find(x => x.barId === input.barId && x.drink === input.drink && (x.targetKey === (input.targetKey || offerKey(offer)) || offerKey(x.offer) === offerKey(offer)));
+    const visible = visiblePrices(state, owner);
+    const old = input.id ? visible.find(x => x.id === input.id) : visible.find(x => x.barId === input.barId && x.drink === input.drink && (x.targetKey === (input.targetKey || offerKey(offer)) || offerKey(x.offer) === offerKey(offer)));
     if ((input.id && !old) || (old && (old.barId !== input.barId || old.drink !== input.drink)) || (old?.revision || 0) !== input.revision) throw new InputError('Dieser Preis wurde inzwischen geändert. Bitte schliessen und erneut öffnen.', 409);
     const targetKey = old?.targetKey || input.targetKey || offerKey(offer);
     const originals = datasets[input.drink]?.bars.find(b => b.id === input.barId)?.offers || [];
     if (!old && input.targetKey && !originals.some(o => matchesOfferKey(o, input.targetKey!, originals))) throw new InputError('Das ursprüngliche Angebot ist nicht mehr vorhanden. Bitte neu laden.', 409);
-    const duplicate = state.entries.find(x => x.id !== old?.id && x.barId === input.barId && x.drink === input.drink && offerKey(x.offer) === offerKey(offer));
+    const duplicate = visible.find(x => x.id !== old?.id && x.barId === input.barId && x.drink === input.drink && offerKey(x.offer) === offerKey(offer));
     if (duplicate) throw new InputError('Dieses Angebot wurde bereits eingetragen. Bitte den vorhandenen Preis ändern.', 409);
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
     const limit = state.limits[visitor] || { count: 0, expires: now + 3600000 };
@@ -57,10 +60,20 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     const venue = communityVenues(datasets, state.entries, state.venues).find(b => b.id === input.barId);
     if (!venue) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
     const entry: PriceEntry = { id: old?.id || randomUUID(), barId: input.barId, drink: input.drink, targetKey, revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString(), offer, venue: { ...venue, offers: [] } };
-    // The edit and its audit record commit atomically under the same ETag.
-    state.priceChanges = [...(state.priceChanges || []), priceChange(entry, old, datasets[input.drink])];
-    if (old) state.history.push(old);
-    state.entries = [...state.entries.filter(x => x.id !== entry.id), entry];
+    const change = priceChange(entry, old, datasets[input.drink]);
+    const held = state.heldPrices?.find(item => item.owner === owner && item.entry.id === old?.id);
+    // Continue a held offer privately, even if later edited to a plausible value.
+    // Its private revision must never overwrite a concurrent public correction.
+    const reason = held?.reason || priceConcern(entry, change.before);
+    if (reason) {
+      state.heldPrices = [...(state.heldPrices || []).filter(item => item !== held),
+        { owner, entry, reason, before: held ? held.before : change.before }];
+    } else {
+      // The public edit and its audit record commit atomically under the same ETag.
+      state.priceChanges = [...(state.priceChanges || []), change];
+      if (old) state.history.push(old);
+      state.entries = [...state.entries.filter(x => x.id !== entry.id), entry];
+    }
     try { await store.write(state, etag); return entry; }
     catch (error) { if (!(error instanceof WriteConflict)) throw error; }
   }

@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { loadCoffeeRatings, showCoffeeRating } from './coffee-rating';
 import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
-import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer, type OutdoorPermit } from './data';
+import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels as defaultCoffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer, type OutdoorPermit } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
 import { filtersFromSearch, writeFilters } from './filters';
@@ -31,9 +31,10 @@ const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getEleme
 const money = (n: number) => n.toFixed(2);
 const options = (values: Record<string, string>) => Object.entries(values).map(([value, label]) => `<option value="${value}">${e(label)}</option>`).join('');
 const translated = (labels: Record<string, string>) => Object.fromEntries(Object.entries(labels).map(([key, label]) => [key, t(label)]));
-const coffeeOptions = options(translated(coffeeLabels));
 const venueTypes = { '': t('Alle (ohne Imbiss)'), all: t('Alle (inkl. Imbiss)'), bar: 'Bar / Pub', restaurant: 'Restaurant', cafe: 'Café', fast_food: t('Imbiss') };
 const cityId = cityFromPath(location.pathname, import.meta.env.BASE_URL);
+const coffeeLabels = cityId === 'bern' ? { ...defaultCoffeeLabels, milk: 'Milchkaffee / Schale' } : defaultCoffeeLabels;
+const coffeeOptions = options(translated(coffeeLabels));
 const city = cities[cityId];
 const cityName = t(city.name);
 const dataPath = `${import.meta.env.BASE_URL}data/${city.data}`;
@@ -98,6 +99,7 @@ $('app').innerHTML = `
     <div id="search-dropdown" hidden><div id="search-history-heading" hidden><strong>${t('Letzte Suchen')}</strong><button id="search-history-clear" type="button">${t('Verlauf löschen')}</button></div><div id="search-suggestions" role="listbox" aria-label="${t('Suchvorschläge')}"></div><p id="search-empty" role="status" hidden></p></div>
   </div>
   <div id="beer-controls" class="beer-controls">
+    <input id="beer-query" type="search" maxlength="120" placeholder="${t('Bier suchen, z. B. Guinness')}" aria-label="${t('Biername oder Marke')}">
     <select id="beer-type" aria-label="${t('Ausschank')}">${options({ draft: t('Offenbier'), bottle: t('Flaschenbier'), all: t('Alle Ausschankarten'), can: t('Dosenbier'), unknown: t('Unbekannt') })}</select>
     <select id="volume" aria-label="${t('Biergrösse')}">${options({ stange: 'Stange / 3 dl', '300-330': '3 / 3.3 dl', '500': '5 dl', '330': '3.3 dl', '400': '4 dl', all: t('Alle Grössen') })}</select>
   </div>
@@ -366,6 +368,7 @@ function syncControls() {
   if (pizzaSelect.innerHTML !== pizzaOptionHtml) pizzaSelect.innerHTML = pizzaOptionHtml;
   pizzaSelect.value = pizzaValue;
   $<HTMLInputElement>('pizza-query').value = f.pizzaQuery || '';
+  $<HTMLInputElement>('beer-query').value = f.beerQuery || '';
   $<HTMLSelectElement>('volume').querySelector<HTMLOptionElement>('[value=stange]')!.disabled = ['bottle', 'can'].includes(f.beerType!);
   $<HTMLSelectElement>('beer-type').value = f.beerType || 'all';
   $('alcohol-label').hidden = !beer(); $('normalize-label').hidden = !beer() || ['stange', '300', '300-330'].includes(f.volume);
@@ -409,6 +412,10 @@ function render() {
   if (document.activeElement !== $('price')) $<HTMLInputElement>('price').value = Number.isFinite(activeFilters.max) && activeFilters.max > 0 ? String(activeFilters.max) : '';
   $<HTMLInputElement>('unknown').checked = activeFilters.unknown;
   current = filterBars(districtBars, activeFilters, addressSelection ? [addressSelection.lat, addressSelection.lon] : position);
+  if (beer() && f.beerQuery?.trim() && selected && !current.some(bar => bar.id === selected)) {
+    selected = undefined;
+    syncControls();
+  }
   renderDistricts();
   $('count').textContent = coverageLabel(current, f) + (addressSelection ? ` · ${t('Bezugspunkt: {label}', { label: addressSelection.label })}` : '');
   const average = cityAverage(bars, f);
@@ -417,12 +424,13 @@ function render() {
     size: f.volume === 'all' ? t('alle Grössen') : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`,
     mode: f.mode === 'half' ? t('auf 5 dl umgerechnet') : t('Portionspreis'),
   });
+  const productComparison = beer() && f.beerQuery?.trim() ? `${f.beerQuery.trim()} · ${comparison}` : comparison;
   $('city-average').title = average
-    ? t('{comparison}: Durchschnitt des günstigsten passenden Preises pro Lokal ({count} Lokale). Stadtweit, unabhängig von Suche, Preislimit, Günstig-Filter, Lokaltyp und Draussen-Filter.', { comparison, count: average.count })
-    : t('{comparison}: Noch keine passenden Preise für den Stadtdurchschnitt vorhanden.', { comparison });
+    ? t('{comparison}: Durchschnitt des günstigsten passenden Preises pro Lokal ({count} Lokale). Stadtweit, unabhängig von Suche, Preislimit, Günstig-Filter, Lokaltyp und Draussen-Filter.', { comparison: productComparison, count: average.count })
+    : t('{comparison}: Noch keine passenden Preise für den Stadtdurchschnitt vorhanden.', { comparison: productComparison });
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
-    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || cityName)}</small>${o && pizza() ? `<small>${e(o.name)}</small>` : o && unit(o) ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
+    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || cityName)}</small>${o && beer() && f.beerQuery?.trim() ? `<small>${e(o.name)}</small>` : ''}${o && pizza() ? `<small>${e(o.name)}</small>` : o && unit(o) ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
   }).join('') : `<p class="empty">${t('Keine passenden Lokale.')}</p>`;
   layer.clearLayers();
   const venueMarkers = new Map<string, { marker: L.Marker; zIndex: number }>();
@@ -581,6 +589,7 @@ function selectSearchSuggestion(index: number, remember = true) {
   showBar(bar, 17);
 }
 function mapLocations(): Bar[] {
+  if (beer() && f.beerQuery?.trim()) return current;
   // The pizza dataset includes confirmed pizzerias without prices and community
   // pizza entries. Do not add the general restaurant catalogue back to this map.
   const candidates = pizza() ? bars : selectableLocations(venues, locationCatalogue);
@@ -750,6 +759,13 @@ $('pizza-query').oninput = () => {
   if (f.pizzaQuery.trim()) f.pizzaSelection = 'all';
   render();
 };
+$('beer-query').oninput = () => {
+  const query = $<HTMLInputElement>('beer-query').value;
+  if (!f.beerQuery?.trim() && query.trim()) f.volume = 'all';
+  f.beerQuery = query;
+  selected = undefined;
+  render();
+};
 $('beer-type').onchange = () => {
   f.beerType = $<HTMLSelectElement>('beer-type').value as Filters['beerType'];
   if (f.beerType === 'draft') selectBeerSize(f, 'stange');
@@ -767,7 +783,7 @@ $('reset').onclick = () => {
   closeSearchSuggestions();
   cheapMode = false;
   districtState.enabled = false; districtState.selected = undefined;
-  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, query: '', max: pizza() ? 30 : 15, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerQuery: undefined, query: '', max: pizza() ? 30 : 15, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = String(f.max);
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
   for (const id of ['unknown', 'outdoor', 'alcohol-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
@@ -960,6 +976,9 @@ $('price-form').onsubmit = async event => {
     const result = await response.json().catch(() => { throw new Error(t('Speichern gerade nicht möglich. Bitte erneut versuchen.')); });
     if (!response.ok) {
       if (response.status === 409 && await loadCommunity()) rebuild();
+      if (response.status === 429 && Number.isFinite(result.retryAfter) && result.retryAfter > 0) {
+        throw new Error(t('Maximal 5 Preiseingaben pro 10 Minuten. Bitte warte noch {minutes} Min.', { minutes: Math.ceil(result.retryAfter / 60) }));
+      }
       throw new Error(result.error || t('Speichern fehlgeschlagen.'));
     }
     const entry = result.entry as PriceEntry;

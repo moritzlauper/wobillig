@@ -5,7 +5,7 @@ import { cities, isCity, cityStoragePath } from '../src/cities.js';
 import { communityVenues, InputError, zurichToday } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore } from '../server/prices.js';
-import { menuPrices, readMenu, validateScanImage } from '../server/menu-ocr.js';
+import { MENU_SCAN_VERSION, menuPrices, readMenu, validateScanImage } from '../server/menu-ocr.js';
 import { failScan, reserveScan, saveMenuScan } from '../server/menu-scan-store.js';
 
 const MAX_BODY = 2_800_000;
@@ -40,7 +40,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     if (!bar) throw new InputError('Bitte zuerst ein Lokal auswählen.');
     const key = process.env.ANTHROPIC_API_KEY, secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!key || !secret) throw new InputError('Karte scannen ist gerade nicht verfügbar. Du kannst Preise einzeln eintragen.', 503);
-    const hash = createHash('sha256').update(`menu-v2:${city}:${bar.id}:`).update(Buffer.from(image.data, 'base64')).digest('hex');
+    const hash = createHash('sha256').update(`${MENU_SCAN_VERSION}:${city}:${bar.id}:`).update(Buffer.from(image.data, 'base64')).digest('hex');
     const visitor = createHmac('sha256', secret).update(`${zurichToday()}:${req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown'}`).digest('hex');
     const cached = await reserveScan(store, hash, visitor);
     if (cached) return reply(200, cached);

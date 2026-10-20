@@ -6,6 +6,8 @@ import { communityVenues, validateInput, InputError } from '../src/community.js'
 import type { Dataset } from '../src/data.js';
 import { blobStore, savePrice, saveVenue } from '../server/prices.js';
 import { coffeeRatingSummaries, saveCoffeeRating } from '../server/coffee-ratings.js';
+import { priceOwner, visiblePrices } from '../server/price-moderation.js';
+import { PriceCooldownError, withPriceCooldown } from '../server/price-cooldown.js';
 
 const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>>>> = {};
 function datasets(city: City) {
@@ -14,7 +16,8 @@ function datasets(city: City) {
 }
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('Cache-Control', 'private, no-store');
+  res.setHeader('Vary', 'Cookie');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   const reply = (status: number, body: unknown) => { res.statusCode = status; res.end(JSON.stringify(body)); };
   if (!['GET', 'POST'].includes(req.method || '')) { res.setHeader('Allow', 'GET, POST'); return reply(405, { error: 'Methode nicht erlaubt.' }); }
@@ -24,7 +27,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     if (req.method === 'GET') {
       const { state } = await store.read();
-      return reply(200, { entries: state.entries, venues: state.venues || [], coffeeRatings: coffeeRatingSummaries(state) });
+      return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], coffeeRatings: coffeeRatingSummaries(state) });
     }
     const origin = req.headers.origin;
     if (!origin || new URL(origin).host !== req.headers.host || req.headers['sec-fetch-site'] === 'cross-site') return reply(403, { error: 'Bitte das Formular auf dieser Website verwenden.' });
@@ -51,10 +54,19 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       return reply(200, await saveVenue(store, 'venue' in body ? body.venue : undefined, data, city, visitor));
     }
     const { state } = await store.read();
-    const input = validateInput(body, communityVenues(data, state.entries, state.venues));
-    const entry = await savePrice(store, input, data, visitor);
+    const owner = priceOwner(req, res, true)!;
+    const input = validateInput(body, communityVenues(data, visiblePrices(state, owner), state.venues));
+    // A stable HMAC prevents a midnight reset; timestamps expire after ten minutes.
+    const cooldownIp = createHmac('sha256', secret).update(`price-cooldown:${ip}`).digest('hex');
+    const cooldownStore = blobStore(`prices/cooldowns/${process.env.VERCEL_ENV === 'production' ? 'production' : 'development'}.json`);
+    const entry = await withPriceCooldown(cooldownStore, cooldownIp, owner,
+      () => savePrice(store, input, data, visitor, Date.now(), owner));
     return reply(200, { entry });
   } catch (error) {
+    if (error instanceof PriceCooldownError) {
+      res.setHeader('Retry-After', String(error.retryAfter));
+      return reply(429, { error: error.message, retryAfter: error.retryAfter });
+    }
     if (error instanceof InputError) return reply(error.status, { error: error.message });
     console.error('Price storage failed', error instanceof Error ? error.name : 'UnknownError');
     return reply(503, { error: 'Preise können gerade nicht gespeichert oder geladen werden. Bitte später erneut versuchen.' });

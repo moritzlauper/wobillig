@@ -70,6 +70,7 @@ export type Filters = {
   drink?: "beer" | "coffee" | "pizza";
   coffeeType?: string;
   beerType?: BeerType | "all";
+  beerQuery?: string;
   query: string;
   max: number;
   volume: string;
@@ -146,6 +147,12 @@ export function matchesPizza(o: Offer, f: Filters): boolean {
   const text = normalize(`${o.name} ${o.ingredients || ''}`);
   return query.split(/\s+/).every(word => text.includes(word));
 }
+export function matchesBeerName(name: string, query = ''): boolean {
+  const normalize = (text: string) => text.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase()
+    .replace(/\bguiness\b/g, 'guinness').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+  const text = normalize(name);
+  return normalize(query).split(/\s+/).every(word => text.includes(word));
+}
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return (f.drink === 'pizza' ? [...bar.offers, ...(bar.pizzaMenu || [])] : bar.offers)
     .filter(o => isCurrentOffer(o) && isComparableOffer(o))
@@ -156,6 +163,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree &&
+        matchesBeerName(o.name, f.beerQuery) &&
         (!f.beerType || f.beerType === "all" || effectiveBeerType(o) === f.beerType) &&
         (f.mode !== "half" || Boolean(o.volumeMl)) &&
         (f.volume === "stange" ? isStange(o) : f.volume === "300-330" ? isStange(o) || o.volumeMl === 300 || o.volumeMl === 330 : f.volume === "all" || o.volumeMl === Number(f.volume)),
@@ -220,7 +228,9 @@ export function filterBars(
       return (
         matchesSearch(b, f.query) &&
         (!f.outdoor || hasOutdoorSeating(b)) &&
-        (o ? cost(o, f.mode) <= f.max : f.unknown && !(f.drink === "pizza" && (f.pizzaQuery?.trim() || (f.pizzaSelection && f.pizzaSelection !== 'all'))))
+        (o ? cost(o, f.mode) <= f.max : f.unknown &&
+          !((f.drink || "beer") === "beer" && f.beerQuery?.trim()) &&
+          !(f.drink === "pizza" && (f.pizzaQuery?.trim() || (f.pizzaSelection && f.pizzaSelection !== 'all'))))
       );
     })
     .sort((a, b) => {

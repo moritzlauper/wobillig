@@ -113,7 +113,8 @@ export function cityContent(cityId: City, dataset: Dataset, base = '/', locale: 
     ${([['stange', beer, 'bierpreise'], ['margherita', pizza, 'pizzapreise']] as const).map(([type, data, id]) => `<section id="${id}"><h2>${metadata(cityId, type, locale).heading}</h2><p>${rankingDescription(type, locale)}</p>${data ? priceTable(cityId, type, data, 5, base, locale) : ''}<p><a href="${e(guideLink(type))}">${tr('{label}-Preisvergleich {city} mit weiteren Lokalen', { label: tr(guideLabels[type]) })}</a></p></section>`).join('')}
     <section><h2>${tr('Wie finde ich günstige Cafés in {city}?')}</h2><p>${tr('Wähle auf der Karte Espresso, Cappuccino, Café crème oder eine andere Sorte und sortiere nach aufsteigendem Preis. Mit «Günstig» grenzt du die Auswahl auf die preiswerten erfassten Angebote ein. Adresse, Quelle und Erfassungsdatum helfen dir, das Angebot vor deinem Besuch einzuschätzen.')}</p><p><a href="${e(mapLink(cityId, 'cappuccino', base, undefined, locale))}">${tr('Cappuccino auf der Karte vergleichen')}</a> · <a href="${e(mapLink(cityId, 'espresso', base, undefined, locale))}">${tr('Espresso auf der Karte vergleichen')}</a></p></section>
     <section><h2>${tr('Weitere Preise in {city}')}</h2><p>${tr('Auf wobillig kannst du auch Bierpreise nach Glasgrösse und Ausschankart vergleichen. Der Vergleich für Pizza Margherita wird freigeschaltet, sobald genügend Lokale mit Preisen erfasst sind.')}</p><a href="${localPath(cityPath(cityId, locale), base)}?drink=beer#app">${tr('Bierpreise {city} auf der Karte')}</a></section>
-    ${methodology(dataset, locale)}${cityNavigation(base, locale)}</section>`;
+    ${methodology(dataset, locale)}${cityNavigation(base, locale)}
+    <p><small><a href="https://wasstudieren.ch/">wasstudieren.ch</a></small></p></section>`;
 }
 
 export function guideContent(cityId: City, type: GuideType, dataset: Dataset, base = '/', locale: Locale = 'de') {

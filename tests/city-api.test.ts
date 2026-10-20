@@ -5,6 +5,10 @@ import type { Bar, Dataset } from '../src/data';
 const mocks = vi.hoisted(() => ({ readFile: vi.fn(), blobStore: vi.fn(), savePrice: vi.fn(), saveVenue: vi.fn() }));
 vi.mock('node:fs/promises', () => ({ readFile: mocks.readFile }));
 vi.mock('../server/prices.js', () => ({ blobStore: mocks.blobStore, savePrice: mocks.savePrice, saveVenue: mocks.saveVenue }));
+vi.mock('../server/price-cooldown.js', async original => ({
+  ...await original<typeof import('../server/price-cooldown')>(),
+  withPriceCooldown: (_store: unknown, _ip: string, _owner: string, save: () => Promise<unknown>) => save(),
+}));
 import handler from '../api/prices';
 
 function venue(id: string, name = 'Test'): Bar {

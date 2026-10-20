@@ -69,5 +69,12 @@ it.skipIf(!enabled)('rejects a photo visibly belonging to another venue', async 
   const { result, bar } = await scan('tests/fixtures/menu-scan-table.jpg', 'Restaurant Anders, Bern');
   expect(() => menuPrices(result.parsed, bar, '2026-10-16')).toThrow();
 }, 90000);
+it.skipIf(!enabled)('rejects a matching restaurant name with a clearly different branch address', async () => {
+  const bar = { ...venue('Mars Bar'), address: 'Bundesplatz 1', postcode: '3011' };
+  const result = await readMenu({ data: readFileSync('tests/fixtures/menu-scan-table.jpg').toString('base64'), mediaType: 'image/jpeg' },
+    bar, process.env.ANTHROPIC_API_KEY!);
+  expect(result.usage.costUsd).toBeLessThanOrEqual(OCR_BUDGET_USD);
+  expect(() => menuPrices(result.parsed, bar, '2026-10-16')).toThrow('anderen Lokal');
+}, 90000);
 
 });

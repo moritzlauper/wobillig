@@ -1,4 +1,5 @@
 import { beforeEach, it, expect, vi } from 'vitest';
+import { createHmac } from 'node:crypto';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { emptyState, WriteConflict, type State, type Store } from '../server/prices';
 const mocks = vi.hoisted(() => ({ blobStore: vi.fn(), readMenu: vi.fn() }));
@@ -28,6 +29,38 @@ it('uploads a menu and returns both committed prices without additional fields',
   expect(mocks.blobStore).toHaveBeenCalledWith('prices/production.json');
   expect((await request()).data.entries).toEqual(result.data.entries);
   expect(mocks.readMenu).toHaveBeenCalledTimes(1);
+});
+it('stores 15 menu prices in one upload even when the manual editing quota is exhausted', async () => {
+  const { state, etag } = await store.read();
+  const visitor = createHmac('sha256', 'test').update(`${new Date().toISOString().slice(0, 10)}:127.0.0.1`).digest('hex');
+  state.limits[visitor] = { count: 20, expires: Date.now() + 3600000 };
+  state.priceCooldowns = { 'ip:exhausted': Array.from({ length: 5 }, (_, i) => ({ id: String(i), at: Date.now() })) };
+  const quota = structuredClone(state.priceCooldowns);
+  await store.write(state, etag);
+  mocks.readMenu.mockResolvedValue({ parsed: { menu: true, wrongVenue: false, currency: 'CHF',
+    rows: Array.from({ length: 15 }, (_, i) => ({
+      name: `Testbier ${i + 1}`, category: 'beer', sizes: ['3dl'], prices: ['5.20'],
+      beerType: 'draft', alcoholFree: false, clear: true,
+    })),
+  } });
+  const result = await request();
+  expect(result.status).toBe(200);
+  expect(result.data.added).toBe(15);
+  expect(result.data.entries).toHaveLength(15);
+  const saved = (await store.read()).state;
+  expect(saved.entries).toHaveLength(15);
+  expect(saved.priceCooldowns).toEqual(quota);
+  expect(saved.limits[visitor].count).toBe(20);
+  expect(mocks.blobStore.mock.calls.every(([path]) => path === 'prices/production.json')).toBe(true);
+  expect(Object.entries(saved.limits).filter(([key]) => key.startsWith('scan:') && key !== 'scan:daily').map(([, value]) => value.count)).toEqual([1]);
+});
+it('rejects a clearly wrong restaurant with a specific message and saves no prices', async () => {
+  mocks.readMenu.mockResolvedValue({ parsed: { menu: true, wrongVenue: true, currency: 'CHF', rows: [] } });
+  const result = await request();
+  expect(result.status).toBe(422);
+  expect(result.data.error).toContain('anderen Lokal');
+  expect((await store.read()).state.entries).toEqual([]);
+  expect(Object.values((await store.read()).state.menuScans!)[0].status).toBe('failed');
 });
 it('rejects foreign origins, unsupported files and non-existent city venues before OCR', async () => {
   expect((await request(photo, { headers: { host: 'example.org', origin: 'https://other.example', 'content-type': 'application/json' } })).status).toBe(403);

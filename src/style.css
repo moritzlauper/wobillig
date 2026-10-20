@@ -46,6 +46,7 @@ a { color: var(--link); text-underline-offset: 2px; }
 }
 .beer-controls { display: flex; gap: 8px; }
 .beer-controls select { min-width: 0; }
+#beer-query { width: 220px; min-width: 0; }
 .budget { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
 .budget input { width: 70px; }
 #filters-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
@@ -186,6 +187,7 @@ dialog::backdrop { background: var(--backdrop); }
   #additional-categories button { min-height: 44px; padding: 10px; }
   .beer-controls { order: 1; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
   .beer-controls select { width: 100%; }
+  #beer-query { grid-column: 1 / -1; width: 100%; }
   .search-box { order: 2; grid-column: 1; min-width: 0; }
   #search { padding-right: 7px; font-size: var(--font-control); }
   .search-box:has(#search-clear:not([hidden])) #search { padding-right: 30px; }

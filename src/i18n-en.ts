@@ -30,6 +30,7 @@ export const en: Record<string, string> = {
   'Café crème / Kaffee': 'Café crème / coffee',
   'Doppelter Espresso': 'Double espresso',
   'Milchkaffee': 'Milk coffee',
+  'Milchkaffee / Schale': 'Milk coffee / Schale',
   'Filterkaffee': 'Filter coffee',
   'Kaffee': 'Coffee',
   'Pro Pizza Margherita': 'Per Pizza Margherita',
@@ -165,6 +166,7 @@ export const en: Record<string, string> = {
   'Karte scannen ist gerade nicht verfügbar. Du kannst Preise einzeln eintragen.': 'Menu scanning is currently unavailable. You can enter prices individually.',
   'Keine eindeutigen Bier-, Kaffee- oder Margherita-Preise erkannt. Bitte einen näheren, scharfen Ausschnitt fotografieren.': 'No clear beer, coffee or Margherita prices found. Please take a closer, sharper photo.',
   'Keine passende, lesbare Karte erkannt. Bitte das Menü näher und scharf fotografieren.': 'No suitable, legible menu found. Please photograph the menu closer and in focus.',
+  'Diese Karte scheint zu einem anderen Lokal zu gehören. Bitte das passende Lokal wählen oder dessen Karte hochladen.': 'This menu appears to belong to another venue. Please select the matching venue or upload its menu.',
   'Methode nicht erlaubt.': 'Method not allowed.',
   'Preise können gerade nicht gespeichert oder geladen werden. Bitte später erneut versuchen.': 'Prices cannot be saved or loaded right now. Please try again later.',
   'Unbekannte Stadt.': 'Unknown city.',
@@ -179,6 +181,8 @@ export const en: Record<string, string> = {
   'Ungültiges Angebot.': 'Invalid offer.',
   'Ungültiges JSON.': 'Invalid JSON.',
   'Zu viele Einträge. Bitte in einer Stunde erneut versuchen.': 'Too many entries. Please try again in an hour.',
+  'Zu viele Preisänderungen. Bitte kurz warten und erneut versuchen.': 'Too many price changes. Please wait a little and try again.',
+  'Maximal 5 Preiseingaben pro 10 Minuten. Bitte warte noch {minutes} Min.': 'Maximum 5 price submissions per 10 minutes. Please wait another {minutes} min.',
 
   // Map app (src/main.ts)
   'Alle (ohne Imbiss)': 'All (excl. fast food)',
@@ -199,6 +203,8 @@ export const en: Record<string, string> = {
   'Alle Ausschankarten': 'All servings',
   'Unbekannt': 'Unknown',
   'Biergrösse': 'Beer size',
+  'Bier suchen, z. B. Guinness': 'Search beer, e.g. Guinness',
+  'Biername oder Marke': 'Beer name or brand',
   'Alle Grössen': 'All sizes',
   'Kaffeesorte oder Matcha Latte': 'Coffee type or matcha latte',
   'Alle Kaffees & Matcha Latte': 'All coffees & matcha latte',
