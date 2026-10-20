@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { bestOffer, cheapPriceLimit, filterBars, matchingOffers, type Bar, type Offer } from '../src/data';
+import { bestOffer, beerVarieties, cheapPriceLimit, filterBars, matchingOffers, type Bar, type Offer } from '../src/data';
+import { beerGroup } from '../src/beer-selection';
 import { cityAverage } from '../src/coverage';
 import { filtersFromSearch, writeFilters } from '../src/filters';
 import { cityLink } from '../src/cities';
@@ -73,5 +74,80 @@ describe('beer name filter', () => {
     const coffee = { ...filters, drink: 'coffee' as const, volume: '300-330' };
     writeFilters(params, coffee, false);
     expect(filtersFromSearch(params)).toEqual(coffee);
+  });
+});
+
+describe('beer dropdown groups', () => {
+  const quollfrisch = { ...lager, name: 'Appenzeller Quöllfrisch Naturtrüb', priceChf: 7, volumeMl: 500 };
+  const venue = { ...pub, offers: [lager, quollfrisch] };
+  const selected = filtersFromSearch(new URLSearchParams('beerSelection=quollfrisch'));
+
+  it.each([
+    ['Appenzeller Quöllfrisch Naturtrüb', 'quollfrisch'],
+    ['QUOELLFRISCH HELL', 'quollfrisch'],
+    ['Appenzeller Qöllfrisch', 'quollfrisch'],
+    ['Feldschlöschen Original', 'feldschlosschen'],
+    ['Feldschloesschen Bügel', 'feldschlosschen'],
+    ['Schneider Weissbier', 'schneider'],
+    ['Superbock', 'super_bock'],
+    ['Guiness Draught', 'guinness'],
+    ['Bärner Müntschi Felsenau', 'barner_muntschi'],
+    ['Berner Müntschi', 'barner_muntschi'],
+    ['Uelibier Reverenz', 'ueli'],
+    ['Kitchen Brew Everyday Blonde', 'kitchen_brew'],
+  ])('groups the sourced name %s', (name, group) => {
+    expect(beerGroup(name)).toBe(group);
+  });
+
+  it.each(['Stange', 'Lager', 'Amber', 'Weissbier', 'Appenzeller Naturtrüb', 'Heineken / Corona', 'Bärner Müntschi / Corona'])(
+    'does not infer a definite brand from %s', name => expect(beerGroup(name)).toBeUndefined(),
+  );
+
+  it('ranks groups by distinct venues and excludes stale or non-beer offers', () => {
+    const other = { ...pub, id: '2', offers: [{ ...quollfrisch, name: 'Quöllfrisch Hell' }] };
+    const duplicate = { ...venue, offers: [quollfrisch, ...Array(5).fill(guinness),
+      { ...lager, name: 'Feldschlösschen', priceChf: NaN },
+      { ...lager, name: 'Moretti Radler' },
+      { ...lager, name: 'Corona', coffeeType: 'espresso' },
+      { ...lager, name: 'Heineken', photoSource: { kind: 'google_maps_photo' as const, date: '2020-01-01',
+        dateEvidence: '', dateCheckedAt: '2020-01-01', validUntil: '2020-07-01' } },
+    ] };
+    expect(beerVarieties([duplicate, other])).toEqual([
+      { value: 'quollfrisch', label: 'Quöllfrisch' }, { value: 'guinness', label: 'Guinness' },
+    ]);
+  });
+
+  it('uses only matching beer prices and allows a free search to replace the group', () => {
+    expect(selected).toMatchObject({ drink: 'beer', volume: 'all', beerSelection: 'quollfrisch' });
+    expect(filterBars([pub, venue], selected)).toEqual([venue]);
+    expect(bestOffer(venue, selected)).toEqual(quollfrisch);
+    expect(cityAverage([pub, venue], selected)).toEqual({ price: 7, count: 1 });
+    expect(cheapPriceLimit([pub, venue], selected)).toBe(7);
+    expect(filterBars([venue], { ...selected, max: 6 })).toEqual([]);
+    expect(filterBars([venue], { ...selected, volume: '300-330' })).toEqual([]);
+    expect(filterBars([venue], { ...selected, alcoholFree: true })).toEqual([]);
+    expect(filterBars([pub], { ...selected, beerQuery: 'Guiness' })).toEqual([pub]);
+    expect(filterBars([pub], { ...selected, drink: 'coffee' })).toEqual([pub]);
+  });
+
+  it('preserves selections, including explicit small sizes, in city and shared links', () => {
+    for (const volume of ['all', '300-330']) {
+      const filters = { ...selected, volume };
+      const params = new URLSearchParams();
+      writeFilters(params, filters, false);
+      expect(filtersFromSearch(params)).toEqual(filters);
+      const city = new URL(cityLink('basel', params.toString()), 'https://wobillig.ch');
+      expect(filtersFromSearch(city.searchParams)).toEqual(filters);
+      const shared = new URL(barLink(city.href, pub.id, 'beer', volume));
+      expect(filtersFromSearch(shared.searchParams)).toMatchObject({ beerSelection: 'quollfrisch', volume });
+      expect(new URL(barLink(shared.href, pub.id, 'pizza', volume)).searchParams.has('beerSelection')).toBe(false);
+    }
+    expect(filtersFromSearch(new URLSearchParams('beerSelection=invalid')).beerSelection).toBeUndefined();
+    const params = new URLSearchParams();
+    const coffee = { ...selected, drink: 'coffee' as const, volume: '300-330' };
+    writeFilters(params, coffee, false);
+    expect(filtersFromSearch(params)).toEqual(coffee);
+    writeFilters(params, { ...coffee, beerSelection: undefined }, false);
+    expect(params.has('beerSelection')).toBe(false);
   });
 });

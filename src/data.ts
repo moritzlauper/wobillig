@@ -1,6 +1,7 @@
 import { matchesSearch } from './search.js';
 import { t } from './i18n.js';
 import { pizzaGroup, pizzaGroupLabels, pizzaNameKey, type PizzaGroup, type PizzaSelection } from './pizza-selection.js';
+import { beerGroup, beerGroupLabels, normalizeBeerName, type BeerSelection } from './beer-selection.js';
 
 export type BeerType = "draft" | "bottle" | "can" | "unknown";
 export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bottle: "Flaschenbier", can: "Dosenbier", unknown: "Ausschankart unbekannt" };
@@ -71,6 +72,7 @@ export type Filters = {
   coffeeType?: string;
   beerType?: BeerType | "all";
   beerQuery?: string;
+  beerSelection?: BeerSelection;
   query: string;
   max: number;
   volume: string;
@@ -148,10 +150,25 @@ export function matchesPizza(o: Offer, f: Filters): boolean {
   return query.split(/\s+/).every(word => text.includes(word));
 }
 export function matchesBeerName(name: string, query = ''): boolean {
-  const normalize = (text: string) => text.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase()
-    .replace(/\bguiness\b/g, 'guinness').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
-  const text = normalize(name);
-  return normalize(query).split(/\s+/).every(word => text.includes(word));
+  const text = normalizeBeerName(name);
+  return normalizeBeerName(query).split(/\s+/).every(word => text.includes(word));
+}
+export function hasBeerSelection(f: Filters): boolean {
+  return (f.drink || 'beer') === 'beer' && Boolean(f.beerSelection || f.beerQuery?.trim());
+}
+export function beerVarieties(bars: Bar[]): { value: BeerSelection; label: string }[] {
+  const venues = new Map<BeerSelection, Set<string>>();
+  for (const bar of bars) for (const offer of bar.offers) {
+    if (offerCategory(offer) !== 'beer' || !isCurrentOffer(offer) || !isComparableOffer(offer)
+      || !Number.isFinite(offer.priceChf) || offer.priceChf <= 0) continue;
+    const group = beerGroup(offer.name);
+    if (!group) continue;
+    if (!venues.has(group)) venues.set(group, new Set());
+    venues.get(group)!.add(bar.id);
+  }
+  return [...venues].sort(([a, idsA], [b, idsB]) => idsB.size - idsA.size
+    || beerGroupLabels[a].localeCompare(beerGroupLabels[b], 'de'))
+    .map(([value]) => ({ value, label: beerGroupLabels[value] }));
 }
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return (f.drink === 'pizza' ? [...bar.offers, ...(bar.pizzaMenu || [])] : bar.offers)
@@ -164,6 +181,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree &&
         matchesBeerName(o.name, f.beerQuery) &&
+        (f.beerQuery?.trim() || !f.beerSelection || beerGroup(o.name) === f.beerSelection) &&
         (!f.beerType || f.beerType === "all" || effectiveBeerType(o) === f.beerType) &&
         (f.mode !== "half" || Boolean(o.volumeMl)) &&
         (f.volume === "stange" ? isStange(o) : f.volume === "300-330" ? isStange(o) || o.volumeMl === 300 || o.volumeMl === 330 : f.volume === "all" || o.volumeMl === Number(f.volume)),
@@ -229,7 +247,7 @@ export function filterBars(
         matchesSearch(b, f.query) &&
         (!f.outdoor || hasOutdoorSeating(b)) &&
         (o ? cost(o, f.mode) <= f.max : f.unknown &&
-          !((f.drink || "beer") === "beer" && f.beerQuery?.trim()) &&
+          !hasBeerSelection(f) &&
           !(f.drink === "pizza" && (f.pizzaQuery?.trim() || (f.pizzaSelection && f.pizzaSelection !== 'all'))))
       );
     })
