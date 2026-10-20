@@ -242,7 +242,9 @@ export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
     .filter(price => Number.isFinite(price) && price > 0)
     .sort((a, b) => a - b);
   if (!prices.length) return undefined;
-  if (f.drink === "pizza") return 18;
+  // CHF 18 is the Margherita shortcut. Other varieties and ingredient searches
+  // use their own matching prices, just like the drink selections below.
+  if (f.drink === "pizza" && !f.pizzaSelection && !f.pizzaQuery?.trim()) return 18;
   const index = (prices.length - 1) * .2;
   const lower = Math.floor(index);
   const quintile = prices[lower] + (prices[Math.ceil(index)] - prices[lower]) * (index - lower);

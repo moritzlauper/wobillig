@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { bestOffer, filterBars, pizzaVarieties, type Bar, type Offer } from '../src/data';
+import { bestOffer, cheapPriceLimit, filterBars, pizzaVarieties, type Bar, type Offer } from '../src/data';
 import { filtersFromSearch, writeFilters } from '../src/filters';
 import { cityAverage } from '../src/coverage';
 import { barLink } from '../src/sharing';
@@ -14,6 +14,31 @@ const venue: Bar = { id: '1', name: 'Restaurant', type: 'restaurant', lat: 47, l
     { ...margherita, pizzaType: 'other', name: 'Quattro Stagioni', priceChf: 24, ingredients: 'Prosciutto cotto, Pilze, Oliven' },
   ] };
 const defaults = filtersFromSearch(new URLSearchParams('drink=pizza'));
+
+describe('cheap pizza selections', () => {
+  const bars = [18, 20, 22, 24, 26].map((priceChf, index) => ({
+    ...venue, id: String(index), pizzaMenu: [{
+      ...venue.pizzaMenu![0], name: 'Formaggi della casa', priceChf,
+      ingredients: 'Mozzarella, Gorgonzola, Taleggio, Parmesan',
+    }],
+  }));
+  it('uses the selected group prices independently of cheaper Margheritas and the budget', () => {
+    const filters = { ...defaults, pizzaSelection: 'group:quattro_formaggi' as const, max: 10 };
+    expect(cheapPriceLimit(bars, defaults)).toBe(18);
+    const max = cheapPriceLimit(bars, filters)!;
+    expect(max).toBe(19.6);
+    expect(filterBars(bars, { ...filters, max })).toEqual([bars[0]]);
+    expect(cheapPriceLimit(bars, { ...filters, pizzaSelection: 'all' })).toBe(16);
+  });
+  it('adapts to ingredient searches and legacy exact-name selections', () => {
+    expect(cheapPriceLimit(bars, { ...defaults, pizzaQuery: 'gorgonzola' })).toBe(19.6);
+    expect(cheapPriceLimit(bars, { ...defaults, pizzaSelection: 'name:formaggi della casa' })).toBe(19.6);
+    expect(cheapPriceLimit(bars, { ...defaults, pizzaQuery: 'ananas' })).toBeUndefined();
+  });
+  it('keeps a matching offer when a small sample costs more than CHF 18', () => {
+    expect(cheapPriceLimit([bars[4]], { ...defaults, pizzaSelection: 'group:quattro_formaggi' })).toBe(26);
+  });
+});
 
 describe('pizza name and ingredient filters', () => {
   it('keeps Margherita as default and compares the actual matching pizza prices', () => {

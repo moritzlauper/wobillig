@@ -2,6 +2,50 @@ import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import type { Dataset } from '../src/data';
 
+test('cheap prices follow pizza selection and search while the shortcut is active', async ({ page }) => {
+  const data = JSON.parse(readFileSync('public/data/pizza.json', 'utf8')) as Dataset;
+  const source = data.bars.flatMap(bar => bar.offers)[0];
+  data.bars = data.bars.slice(0, 20).map((bar, index) => ({
+    ...bar, type: 'restaurant', offers: [{ ...source, name: 'Margherita', priceChf: 16 }],
+    pizzaMenu: [
+      { ...source, name: 'Formaggi della casa', pizzaType: 'other', priceChf: index < 4 ? 20 : 24,
+        ingredients: 'Mozzarella, Gorgonzola, Taleggio, Parmesan' },
+      { ...source, name: 'Prosciutto', pizzaType: 'other', priceChf: index < 4 ? 22 : 26,
+        ingredients: 'Tomaten, Mozzarella, Schinken' },
+    ],
+  }));
+  await page.route('**/data/pizza.json', route => route.fulfill({ json: data }));
+  await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
+  await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
+  await page.goto('/?drink=pizza');
+  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 18');
+  await page.locator('#pizza-selection').selectOption('group:quattro_formaggi');
+  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 21.50');
+  await page.locator('#cheap').click();
+  await expect(page.locator('#price')).toHaveValue('21.5');
+  await expect(page.locator('#results .venue')).toHaveCount(4);
+  await page.locator('#pizza-selection').selectOption('group:prosciutto');
+  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 23.40');
+  await expect(page.locator('#price')).toHaveValue('23.4');
+  await expect(page.locator('#results .venue')).toHaveCount(4);
+  await page.reload();
+  await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#price')).toHaveValue('23.4');
+  await page.locator('#pizza-query').fill('gorgonzola');
+  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 21.50');
+  await expect(page.locator('#price')).toHaveValue('21.5');
+  await expect(page.locator('#results .venue')).toHaveCount(4);
+  await page.locator('#pizza-query').fill('unbekannte zutat');
+  await expect(page.locator('#cheap')).toHaveText('Günstig');
+  await expect(page.locator('#results .venue')).toHaveCount(0);
+  await page.locator('#pizza-selection').selectOption('margherita');
+  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 18');
+  await expect(page.locator('#price')).toHaveValue('18');
+  await expect(page.locator('#results .venue')).toHaveCount(20);
+  await page.locator('#cheap').click();
+  await expect(page.locator('#price')).toHaveValue('30');
+});
+
 test('pizza groups compare house names by ingredients without a Margherita price', async ({ page }) => {
   const data = JSON.parse(readFileSync('public/data/pizza.json', 'utf8')) as Dataset;
   const source = data.bars.flatMap(bar => bar.offers)[0];
