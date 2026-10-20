@@ -28,7 +28,7 @@ export function showCoffeeRating(actions: HTMLElement, city: City, barId: string
   const key = `${city}:${barId}`;
   const group = document.createElement('span');
   group.className = 'coffee-rating-control';
-  actions.querySelector('#add-here')!.after(group);
+  actions.querySelector('#share-bar')!.after(group);
   let expanded = false, message = '', failed = false;
   const render = () => {
     if (!group.isConnected) return;
