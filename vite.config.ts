@@ -16,6 +16,12 @@ export default defineConfig({
           await handler(req, res);
         } catch (error) { next(error); }
       });
+      server.middlewares.use('/api/prices', async (req, res, next) => {
+        try {
+          const { default: handler } = await server.ssrLoadModule('/api/prices.ts');
+          await handler(req, res);
+        } catch (error) { next(error); }
+      });
     },
   }],
   build: {

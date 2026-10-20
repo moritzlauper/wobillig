@@ -8,6 +8,8 @@ import { blobStore, savePrice, saveVenue } from '../server/prices.js';
 import { coffeeRatingSummaries, saveCoffeeRating } from '../server/coffee-ratings.js';
 import { priceOwner, visiblePrices } from '../server/price-moderation.js';
 import { PriceCooldownError, withPriceCooldown } from '../server/price-cooldown.js';
+import { isMapId } from '../src/custom-map-data.js';
+import { saveCustomMap } from '../server/custom-maps.js';
 
 const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>>>> = {};
 function datasets(city: City) {
@@ -27,6 +29,13 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     if (req.method === 'GET') {
       const { state } = await store.read();
+      const mapId = new URL(req.url || '/', 'http://localhost').searchParams.get('map');
+      if (mapId !== null) {
+        if (!isMapId(mapId)) throw new InputError('Ungültige Map.');
+        const map = state.customMaps?.find(item => item.id === mapId);
+        if (!map) throw new InputError('Diese Map wurde nicht gefunden.', 404);
+        return reply(200, { map });
+      }
       return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], coffeeRatings: coffeeRatingSummaries(state) });
     }
     const origin = req.headers.origin;
@@ -47,6 +56,9 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!secret) throw new Error('Missing storage secret');
     const visitor = createHmac('sha256', secret).update(`${new Date().toISOString().slice(0, 10)}:${ip}`).digest('hex');
+    if (body && typeof body === 'object' && 'action' in body && (body.action === 'createMap' || body.action === 'saveMapEntry')) {
+      return reply(200, { map: await saveCustomMap(store, body, data, visitor) });
+    }
     if (body && typeof body === 'object' && 'action' in body && body.action === 'rateCoffee') {
       return reply(200, { rating: await saveCoffeeRating(store, body, data, city, visitor, secret) });
     }

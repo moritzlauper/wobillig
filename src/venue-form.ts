@@ -6,10 +6,10 @@ import { type Bar } from './data';
 import { duplicateVenue, newVenueTypes, validateVenue } from './venue-contributions';
 import { t } from './i18n';
 
-export function venueForm(cityId: City, api: string, known: () => Bar[], saved: (bar: Bar, created: boolean) => void) {
+export function venueForm(cityId: City, api: string, known: () => Bar[], saved: (bar: Bar, created: boolean) => void, prefix = '') {
   const city = cities[cityId];
   const dialog = document.createElement('dialog');
-  dialog.id = 'venue-dialog'; dialog.setAttribute('aria-labelledby', 'venue-title');
+  dialog.id = prefix + 'venue-dialog'; dialog.setAttribute('aria-labelledby', prefix + 'venue-title');
   dialog.innerHTML = `<form id="venue-form">
     <div class="dialog-top"><strong id="venue-title" tabindex="-1">${t('Lokal hinzufügen')}</strong><button id="venue-close" type="button">${t('Schliessen')}</button></div>
     <p>${t('Fehlt ein Lokal in {city}? Trage es hier ein. Es wird für alle sichtbar; Preise kannst du anschliessend ergänzen.', { city: t(city.name) })}</p>
@@ -29,8 +29,9 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
       <button id="venue-save" type="submit" class="primary">${t('Lokal speichern')}</button>
     </fieldset><p id="venue-error" role="alert" tabindex="-1" hidden></p>
   </form>`;
+  if (prefix) dialog.innerHTML = dialog.innerHTML.replaceAll('id="venue-', `id="${prefix}venue-`).replaceAll('aria-describedby="venue-', `aria-describedby="${prefix}venue-`);
   document.body.append(dialog);
-  const el = <T extends HTMLElement = HTMLElement>(id: string) => dialog.querySelector<T>('#' + id)!;
+  const el = <T extends HTMLElement = HTMLElement>(id: string) => dialog.querySelector<T>('#' + prefix + id)!;
   const value = (id: string) => el<HTMLInputElement>(id).value;
   let map: L.Map | undefined, marker: L.Marker | undefined, point: L.LatLng | undefined;
   let busy = false, request = 0, controller: AbortController | undefined;

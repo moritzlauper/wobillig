@@ -45,6 +45,16 @@ describe('city-scoped price API', () => {
     expect((await request('/api/prices?city=../../private')).status).toBe(400);
     expect(mocks.blobStore).not.toHaveBeenCalled();
   });
+  it('loads only the requested custom map and does not list other maps or private storage', async () => {
+    const map = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: 'Döner', entries: [] };
+    mocks.blobStore.mockReturnValue({ read: async () => ({ state: {
+      entries: [], customMaps: [map, { id: 'another-map', name: 'Other' }], limits: { secret: {} },
+    } }) });
+    expect((await request(`/api/prices?city=bern&map=${map.id}`)).data).toEqual({ map });
+    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [], coffeeRatings: {} });
+    expect((await request('/api/prices?map=invalid')).status).toBe(400);
+    expect((await request('/api/prices?map=d268dbea-93cf-45de-9d17-2b5c74090237')).status).toBe(404);
+  });
   it('does not expose the private audit log, history or visitor limits', async () => {
     mocks.blobStore.mockReturnValue({ read: async () => ({ state: {
       entries: [], history: [{ id: 'old' }], priceChanges: [{ id: 'private-change' }], limits: { visitor: { count: 1 } },

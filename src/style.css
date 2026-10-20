@@ -16,6 +16,44 @@ a { color: var(--link); text-underline-offset: 2px; }
 .toolbar { font-size: var(--font-control); display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 10px; border-bottom: 1px solid var(--divider); }
 .switch { display: flex; gap: 4px; }
 .toolbar-heading { display: flex; align-items: stretch; gap: 6px; }
+.create-map-button { flex: 0 0 35px; width: 35px; padding: 0; font-size: 23px; line-height: 1; }
+#my-maps { white-space: nowrap; }
+#app.custom-map-active > :not(#custom-map-view) { display: none !important; }
+#custom-map-view { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.custom-map-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px; border-bottom: 1px solid var(--divider); }
+#custom-map-name { flex: 1; min-width: 100px; overflow-wrap: anywhere; }
+#custom-map-summary { margin: 0; padding: 10px; border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
+.custom-map-content { display: flex; flex: 1; min-height: 0; }
+#custom-map-canvas { flex: 1; min-width: 0; background: var(--map); }
+#custom-map-entries { width: 300px; overflow-y: auto; border-left: 1px solid var(--divider); }
+.custom-map-marker { background: var(--primary); color: var(--on-primary); border: 1px solid var(--surface); border-radius: 4px; text-align: center; line-height: 26px; font-weight: 600; box-shadow: 0 1px 4px #0004; }
+#custom-map-canvas .leaflet-tile-pane, #custom-venue-map .leaflet-tile-pane { filter: var(--tile-filter); }
+#custom-map-canvas .leaflet-bar a, #custom-map-canvas .leaflet-control-attribution,
+#custom-map-canvas .leaflet-popup-content-wrapper, #custom-map-canvas .leaflet-popup-tip { background: var(--surface); color: var(--text); }
+#custom-map-canvas .leaflet-control-attribution a, #custom-map-canvas .leaflet-popup-close-button { color: var(--link); }
+.custom-map-form > label, #custom-venue-fields > label:not(.check) { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.custom-map-form input, .custom-map-form select { width: 100%; min-width: 0; }
+.custom-map-form [data-error] { color: var(--error); }
+.custom-map-form > button[type=submit] { width: 100%; }
+#map-new-venue { margin-bottom: 14px; }
+#saved-maps { margin-top: 20px; border-top: 1px solid var(--divider); }
+#saved-maps > div { display: grid; gap: 6px; }
+#saved-maps button { text-align: left; overflow-wrap: anywhere; }
+#custom-map-share { padding: 10px; }
+#custom-map-share input { width: 100%; margin-top: 5px; }
+#custom-venue-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+#custom-venue-map { height: 230px; width: 100%; margin: 12px 0; z-index: 0; }
+#custom-venue-addresses, #custom-venue-duplicates { display: grid; gap: 6px; margin-bottom: 12px; }
+@media (max-width: 760px) {
+  .toolbar-heading .create-map-button { min-height: 30px; padding: 0; font-size: 23px; }
+  .toolbar-heading { flex-wrap: wrap; }
+  #my-maps { order: 3; }
+  .custom-map-content { flex-direction: column; overflow-y: auto; }
+  #custom-map-canvas { flex: 0 0 45dvh; min-height: 240px; }
+  #custom-map-entries { width: 100%; overflow: visible; border-left: 0; }
+  .custom-map-toolbar { gap: 6px; }
+  #map-add-entry { flex-basis: 100%; }
+}
 .more-categories { position: relative; }
 #categories-toggle { display: flex; align-items: center; justify-content: center; gap: 10px; height: 100%; }
 #categories-toggle[aria-expanded=true] .filter-chevron { transform: translateY(2px) rotate(225deg); }

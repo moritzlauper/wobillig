@@ -20,6 +20,7 @@ import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan'
 import { dateLocale, locale, localizedPath, t, type Locale } from './i18n';
 import { venueForm } from './venue-form';
 import { categoryNavigation } from './category-navigation';
+import { customMaps } from './custom-maps';
 import { pizzaMenuContent } from './pizza-menu';
 import { pizzaVarieties, beerVarieties, hasBeerSelection } from './data';
 import { beerGroupLabels, parseBeerSelection } from './beer-selection';
@@ -77,6 +78,7 @@ let cheapLimit: number | undefined;
 let pizzaOptions: ReturnType<typeof pizzaVarieties> = [];
 let beerOptions: ReturnType<typeof beerVarieties> = [];
 let locationCatalogue: Bar[] = [];
+let customMapUI: ReturnType<typeof customMaps> | undefined;
 let addedVenues: Bar[] = [];
 let userMarker: L.CircleMarker | undefined;
 let suggestions: (Bar | AddressResult)[] = [], activeSuggestion = -1, searchOpen = false;
@@ -355,6 +357,7 @@ function rebuild() {
   render();
 }
 function syncControls() {
+  if (customMapUI?.isOpen) return;
   const heading = beer() ? t('Bierpreise {city}', { city: cityName }) : pizza() ? t('Pizzapreise {city}', { city: cityName }) : t('Kaffeepreise {city}', { city: cityName });
   if ($('map-title').textContent !== heading) $('map-title').textContent = heading;
   document.title = coffee() ? coffeePageTitle : t('{heading} vergleichen | wobillig', { heading });
@@ -1061,6 +1064,7 @@ async function init() {
   const errors = [!beerResult ? t('Bierdaten konnten nicht geladen werden.') : '', !coffeeResult ? t('Kaffeedaten konnten nicht geladen werden.') : '', !pizzaResult ? t('Pizzadaten konnten nicht geladen werden.') : '', !locationsResult ? t('Zusätzliche Kartenlokale konnten nicht geladen werden. Bitte neu laden.') : ''].filter(Boolean);
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   rebuild();
+  if (initial.has('map')) await customMapUI?.load(initial.get('map')!);
   const linkedId = initial.get('bar');
   if (linkedId) {
     const linkedBar = bars.find(b => b.id === linkedId);
@@ -1077,6 +1081,7 @@ async function init() {
     } else scheduleAddressSearch();
   }
 }
+customMapUI = customMaps(cityId, () => selectableLocations(venues, locationCatalogue), () => { render(); map.invalidateSize(); });
 syncControls();
 void init();
 if (districtState.enabled) {
