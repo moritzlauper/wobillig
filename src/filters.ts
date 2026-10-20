@@ -1,5 +1,6 @@
 import { beerTypeLabels, coffeeLabels, type Filters } from './data';
 import { drinkFromSearch } from './sharing';
+import { parsePizzaSelection } from './pizza-selection';
 
 function choice<T extends string>(params: URLSearchParams, key: string, values: readonly T[], fallback: T): T {
   const value = params.get(key);
@@ -8,11 +9,12 @@ function choice<T extends string>(params: URLSearchParams, key: string, values: 
 
 export function filtersFromSearch(params: URLSearchParams): Filters {
   const drink = drinkFromSearch(params);
+  const pizzaSelection = parsePizzaSelection(params.get('pizzaSelection'));
   const amount = params.get('max');
   const max = amount === 'all' ? Infinity : amount?.trim() && Number.isFinite(Number(amount)) && Number(amount) >= 0.5 ? Number(amount) : drink === 'pizza' ? 30 : 15;
   const filters: Filters = {
     drink,
-    ...(params.get('pizzaSelection') === 'all' ? { pizzaSelection: 'all' as const } : {}),
+    ...(pizzaSelection ? { pizzaSelection } : {}),
     ...(params.get('pizzaQuery')?.trim() ? { pizzaQuery: params.get('pizzaQuery')!.trim().slice(0, 120) } : {}),
     coffeeType: choice(params, 'coffeeType', ['all', ...Object.keys(coffeeLabels)], 'cappuccino'),
     beerType: choice(params, 'beerType', ['all', ...Object.keys(beerTypeLabels)] as NonNullable<Filters['beerType']>[], 'all'),

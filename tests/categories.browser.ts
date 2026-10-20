@@ -63,7 +63,7 @@ for (const width of [320, 390, 1280]) {
     });
     await page.goto('/');
     await expect(page.locator('#count')).not.toHaveText('Laden …');
-    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza Margherita']);
+    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza']);
     expect(clicks).toEqual([]);
     await expect(page.locator('#toolbar-toggle')).toHaveCount(0);
     await page.getByRole('button', { name: 'Weitere Kategorien', exact: true }).click();
@@ -77,7 +77,7 @@ for (const width of [320, 390, 1280]) {
     await page.getByRole('button', { name: 'Döner · Bald verfügbar' }).click();
     await expect(page.getByRole('dialog', { name: 'Döner · Bald verfügbar' })).toBeVisible();
     await expect.poll(() => clicks).toEqual(['doner']);
-    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza Margherita']);
+    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza']);
     expect(clicks).toEqual(['doner']);
     await page.getByRole('button', { name: 'Schliessen', exact: true }).click();
     await expect(page.locator('#categories-toggle')).toBeFocused();
@@ -94,6 +94,9 @@ for (const width of [320, 390, 1280]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
     // Even in a city without Pizza, popular upcoming categories stay in More.
     const other = await context.newPage();
+    await other.route('**/data/bern/pizza.json', route => route.fulfill({ json: {
+      bars: [], generatedAt: '2026-10-20', discoveredAt: '2026-10-20', attribution: '',
+    } }));
     await other.goto('/bern');
     await expect(other.locator('#count')).not.toHaveText('Laden …');
     await expect(other.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier']);
@@ -138,7 +141,7 @@ test('a delayed ranking does not move buttons while the menu is open', async ({ 
   await response;
   await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
   await page.keyboard.press('Escape');
-  await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza Margherita']);
+  await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza']);
   await expect(page.locator('#drink-doner')).toBeHidden();
   await expect(page.locator('#drink-falafel')).toBeHidden();
 });

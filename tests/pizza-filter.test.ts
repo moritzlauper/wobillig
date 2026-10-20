@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { bestOffer, filterBars, type Bar, type Offer } from '../src/data';
+import { bestOffer, filterBars, pizzaVarieties, type Bar, type Offer } from '../src/data';
 import { filtersFromSearch, writeFilters } from '../src/filters';
 import { cityAverage } from '../src/coverage';
 import { barLink } from '../src/sharing';
+import { pizzaNameKey } from '../src/pizza-selection';
 
 const margherita: Offer = { name: 'Margherita', pizzaType: 'margherita', priceChf: 16, volumeMl: null,
   alcoholFree: true, confidence: 'reviewed', observedAt: '2026-10-19', sourceUrl: 'https://example.org/menu', evidence: '' };
@@ -45,5 +46,28 @@ describe('pizza name and ingredient filters', () => {
     expect(link.searchParams.get('pizzaQuery')).toBe(filters.pizzaQuery);
     expect(link.searchParams.get('pizzaSelection')).toBe('all');
     expect(new URL(barLink(link.href, venue.id, 'coffee', 'all')).searchParams.has('pizzaQuery')).toBe(false);
+  });
+  it('lists recorded varieties once and matches the named pizza rather than its ingredients', () => {
+    expect(pizzaNameKey('4 Formaggi')).toBe(pizzaNameKey('Pizza 4 Formaggi'));
+    const duplicate = { ...venue, pizzaMenu: [{ ...venue.pizzaMenu![0], name: '019 Pizza PROSCIUTTO' }] };
+    expect(pizzaVarieties([venue, duplicate])).toEqual([
+      { value: 'name:prosciutto', label: 'Prosciutto' },
+      { value: 'name:quattro stagioni', label: 'Quattro Stagioni' },
+    ]);
+    const filters = { ...defaults, pizzaSelection: 'name:prosciutto' as const };
+    expect(bestOffer(duplicate, filters)?.priceChf).toBe(21);
+    const onlyIngredients = { ...venue, pizzaMenu: [venue.pizzaMenu![1]] };
+    expect(filterBars([onlyIngredients, venue], filters)).toEqual([venue]);
+    expect(cityAverage([onlyIngredients, venue], filters)).toEqual({ price: 21, count: 1 });
+    expect(filterBars([venue], { ...filters, max: 20 })).toEqual([]);
+  });
+  it('restores named varieties after reload and in shared links', () => {
+    const filters = { ...defaults, pizzaSelection: 'name:quattro stagioni' as const };
+    const params = new URLSearchParams();
+    writeFilters(params, filters, false);
+    expect(filtersFromSearch(params)).toEqual(filters);
+    const link = new URL(barLink(`https://wobillig.ch/?${params}`, venue.id, 'pizza', 'all'));
+    expect(filtersFromSearch(link.searchParams).pizzaSelection).toBe(filters.pizzaSelection);
+    expect(filtersFromSearch(new URLSearchParams('pizzaSelection=name:')).pizzaSelection).toBeUndefined();
   });
 });

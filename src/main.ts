@@ -20,6 +20,8 @@ import { dateLocale, locale, localizedPath, t, type Locale } from './i18n';
 import { venueForm } from './venue-form';
 import { categoryNavigation } from './category-navigation';
 import { pizzaMenuContent } from './pizza-menu';
+import { pizzaVarieties } from './data';
+import { parsePizzaSelection } from './pizza-selection';
 import { showGoogleRating, clearGoogleRating } from './google-rating';
 
 inject({ mode: import.meta.env.DEV ? 'development' : 'production', beforeSend: analyticsBeforeSend });
@@ -69,6 +71,7 @@ let selected: string | undefined, position: [number, number] | undefined, editin
 let communityReady = false, saving = false, pizzaAvailable = false;
 let cheapMode = initial.get('cheap') === '1';
 let cheapLimit: number | undefined;
+let pizzaOptions: ReturnType<typeof pizzaVarieties> = [];
 let locationCatalogue: Bar[] = [];
 let addedVenues: Bar[] = [];
 let userMarker: L.CircleMarker | undefined;
@@ -330,8 +333,10 @@ function rebuild() {
   const catalogueById = new Map(locationCatalogue.map(bar => [bar.id, bar]));
   venues = communityVenues(datasets, entries, addedVenues).map(bar => withKnownAddress(bar, catalogueById.get(bar.id)));
   const pizzaBars = datasets.pizza ? applyEntries(datasets.pizza, entries, venues, 'pizza').bars : [];
+  pizzaOptions = pizzaVarieties(pizzaBars);
   // Count priced venues city-wide, including contributions, independently of UI filters.
-  pizzaAvailable = pizzaBars.filter(b => b.offers.some(o => o.pizzaType === 'margherita' && isCurrentOffer(o) && isComparableOffer(o))).length >= 20;
+  pizzaAvailable = pizzaBars.filter(b => [...b.offers, ...(b.pizzaMenu || [])]
+    .some(o => o.pizzaType && isCurrentOffer(o) && isComparableOffer(o))).length >= 20;
   if (pizza() && !pizzaAvailable) {
     f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
     $<HTMLInputElement>('price').value = String(f.max);
@@ -348,7 +353,14 @@ function syncControls() {
   $<HTMLSelectElement>('type').value = f.type;
   $('beer-controls').hidden = !beer(); $('coffeeType').hidden = !coffee();
   $('pizza-controls').hidden = !pizza();
-  $<HTMLSelectElement>('pizza-selection').value = f.pizzaQuery?.trim() ? 'all' : f.pizzaSelection || 'margherita';
+  const pizzaSelect = $<HTMLSelectElement>('pizza-selection');
+  const pizzaValue = f.pizzaQuery?.trim() ? 'all' : f.pizzaSelection || 'margherita';
+  const availablePizzas = [{ value: 'margherita', label: 'Margherita' }, { value: 'all', label: t('Alle Pizzen') }, ...pizzaOptions];
+  // Retain a shared selection when the destination city has no price for it.
+  if (!availablePizzas.some(option => option.value === pizzaValue)) availablePizzas.push({ value: pizzaValue, label: pizzaValue.slice(5) });
+  const pizzaOptionHtml = availablePizzas.map(({ value, label }) => `<option value="${e(value)}">${e(label)}</option>`).join('');
+  if (pizzaSelect.innerHTML !== pizzaOptionHtml) pizzaSelect.innerHTML = pizzaOptionHtml;
+  pizzaSelect.value = pizzaValue;
   $<HTMLInputElement>('pizza-query').value = f.pizzaQuery || '';
   $<HTMLSelectElement>('volume').querySelector<HTMLOptionElement>('[value=stange]')!.disabled = ['bottle', 'can'].includes(f.beerType!);
   $<HTMLSelectElement>('beer-type').value = f.beerType || 'all';
@@ -397,7 +409,7 @@ function render() {
   $('count').textContent = coverageLabel(current, f) + (addressSelection ? ` · ${t('Bezugspunkt: {label}', { label: addressSelection.label })}` : '');
   const average = cityAverage(bars, f);
   $('city-average').textContent = t('Schnitt {city} {value}', { city: cityName, value: average ? `CHF ${money(average.price)}` : '—' });
-  const comparison = pizza() ? (f.pizzaQuery?.trim() || (f.pizzaSelection === 'all' ? t('Alle Pizzen') : 'Pizza Margherita')) : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
+  const comparison = pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
     size: f.volume === 'all' ? t('alle Grössen') : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`,
     mode: f.mode === 'half' ? t('auf 5 dl umgerechnet') : t('Portionspreis'),
   });
@@ -702,7 +714,7 @@ $('price').oninput = () => { cheapMode = false; const n = $<HTMLInputElement>('p
 $('volume').onchange = () => { selectBeerSize(f, $<HTMLSelectElement>('volume').value); render(); };
 $('coffeeType').onchange = () => { f.coffeeType = $<HTMLSelectElement>('coffeeType').value; render(); };
 $('pizza-selection').onchange = () => {
-  f.pizzaSelection = $<HTMLSelectElement>('pizza-selection').value === 'all' ? 'all' : undefined;
+  f.pizzaSelection = parsePizzaSelection($<HTMLSelectElement>('pizza-selection').value);
   f.pizzaQuery = undefined;
   render();
 };

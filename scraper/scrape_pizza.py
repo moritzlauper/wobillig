@@ -142,7 +142,7 @@ def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
                 found=[] if reviewed else pizza_pdf(body,final,stamp)
                 links=[u for u in pdf_links(body) if re.search(r'\.(?:pdf|jpe?g|png|webp)$',urlparse(u).path,re.I)]
             elif 'html' in kind:
-                found=[] if reviewed else pizza_html(body,final,stamp)
+                found=[] if reviewed else pizza_html(body,final,stamp,all_pizzas=True)
                 soup = BeautifulSoup(body, 'html.parser')
                 title = soup.title.get_text(' ', strip=True) if soup.title else ''
                 if re.search(r'\bpizzeri[ae]\b', title, re.I):
@@ -161,7 +161,7 @@ def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
             elif kind.startswith('image/'):
                 found=[] if reviewed else pizza_image(body,final,stamp);links=[]
             elif url in online_feeds and 'json' in kind:
-                found=pizza_orderstar(body,final,stamp);links=[]
+                found=pizza_orderstar(body,final,stamp,all_pizzas=True);links=[]
             else:continue
             if not skip_source(final) and (not hints.get(bar['id']) or url in allowed):
                 digest = hashlib.sha256(body).hexdigest()
@@ -170,6 +170,7 @@ def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
                     offer['sourceSha256'] = digest
                     prior_ingredients = next((o.get('ingredients') for o in bar.get('offers', [])
                                               if o.get('sourceUrl') == final and o.get('sourceSha256') == digest
+                                              and o.get('name') == offer['name']
                                               and o['priceChf'] == offer['priceChf'] and o.get('ingredients')), None)
                     if prior_ingredients: offer['ingredients'] = prior_ingredients
                 # A text-parser miss cannot erase a still-identical visual source.
@@ -185,6 +186,7 @@ def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
                         menu.extend(o for o in extracted if o.get('pizzaType') == 'other')
                         regular = [o for o in extracted if o.get('pizzaType') == 'margherita']
                         for offer in offers + found:
+                            if offer.get('pizzaType') != 'margherita': continue
                             ingredient_match = next((o for o in regular if o['sourceUrl'] == offer['sourceUrl']
                                                      and o['priceChf'] == offer['priceChf'] and o.get('ingredients')), None)
                             if ingredient_match:
@@ -193,7 +195,8 @@ def crawl(bar,fetcher,hints,max_pages,reviews,ai=None,max_ai_documents=60):
                         if not reviewed: found.extend(regular)
                     except Exception as exc:
                         errors.append({'url':final,'error':'pizza_ai: '+type(exc).__name__})
-                offers.extend(found)
+                menu.extend(o for o in found if o.get('pizzaType') == 'other')
+                offers.extend(o for o in found if o.get('pizzaType') != 'other')
             # Hints scope shared websites to the confirmed location menu(s).
             if hints.get(bar['id']):links=[u for u in links if u in allowed]
             links=[u for u in links if u not in visited and not skip_source(u) and not SKIP_MENU.search(u)]

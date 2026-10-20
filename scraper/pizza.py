@@ -1,4 +1,4 @@
-"""Extract regular whole Margheritas; label online menu prices explicitly."""
+"""Extract whole pizzas from menu cards; keep the Margherita comparison separate."""
 from io import BytesIO
 import re
 import json
@@ -55,16 +55,49 @@ def pizza_row(raw, url, stamp):
              'sourceUrl':url,'observedAt':stamp,'confidence':'automatic','evidence':line[:400],'alcoholFree':True}]
 
 
+def other_pizza(row, url, stamp):
+    """Keep explicitly evidenced regular pizzas out of the Margherita offer list."""
+    name, evidence, price = row['name'].strip(), row['evidence'], row['priceChf']
+    normalize = lambda value: re.sub(r'\s+', '', value.casefold())
+    if row.get('isPizza') is not True or row.get('pizzaType') != 'other':
+        return []
+    if not re.search(r'\bpizz[ae]\b', row.get('menuSection', ''), re.I):
+        return []
+    if not 2 <= len(name) <= 100 or normalize(name) not in normalize(evidence):
+        return []
+    if re.search(r'kinder|bambin|baby|junior|piccol|mini\b|small\b|klein|famil|party|riesen|pinsa|calzone|slice|supplement|aufpreis|zuschlag|take[ -]?away|delivery|liefer|lunch|mittag|\b(?:pasta|spaghetti|risotto|salat|salad)\b', name+' '+evidence, re.I):
+        return []
+    sizes = re.findall(r'(?:[Øø⌀]\s*)?(\d{2})\s*cm\b', evidence, re.I)
+    if sizes and (len(sizes) != 1 or not 26 <= int(sizes[0]) <= 35):
+        return []
+    without_sizes = re.sub(r'(?:[Øø⌀]\s*)?\d{2}\s*cm\b', '', evidence, flags=re.I)
+    # A menu's product number belongs to its label, not to the price column.
+    number = re.match(r'^\d{1,3}[A-Za-z]?[.)]?\s+', name)
+    if number and without_sizes.startswith(number[0]):
+        without_sizes = without_sizes[len(number[0]):]
+    amounts = [float(re.sub(r'[–—-]', '0', match[1]).replace(' ', '').replace(',', '.'))
+               for match in PRICE.finditer(without_sizes)]
+    plausible = [amount for amount in amounts if 7 <= amount <= 60]
+    if len(plausible) != 1 or abs(plausible[0] - price) > .001:
+        return []
+    # Do not let misclassification create a second ordinary Margherita row.
+    if re.fullmatch(r'(?:pizza\s+)?margh?erita', name, re.I):
+        return []
+    return [{'name': name, 'pizzaType': 'other', 'volumeMl': None, 'priceChf': price,
+             'sourceUrl': url, 'observedAt': stamp, 'evidence': evidence,
+             'alcoholFree': True}]
+
+
 def extract_pizzas(text,url,stamp):
     return list({o['priceChf']:o for line in text.splitlines() for o in pizza_row(line,url,stamp)}.values())
 
 
-def pizza_html(body,url,stamp):
+def pizza_html(body,url,stamp, *, all_pizzas=False):
     soup=BeautifulSoup(body,'html.parser')
     title=soup.title.get_text(' ',strip=True) if soup.title else ''
     online=bool(re.search(r'/(?:online-ordering|bestellen|order|shop)(?:/|$)',urlparse(url).path,re.I) or re.search(r'online\s+bestellen|essen\s+bestellen|order\s+(?:food\s+)?online|food\s+delivery',title,re.I) or soup.select_one('.menu-toopen, .meal-wrapper, .add_to_cart_button'))
     for node in soup(['script','style','nav','footer','header']):node.decompose()
-    offers=product_card_pizzas(soup,url,stamp)
+    offers=product_card_pizzas(soup,url,stamp,all_pizzas=all_pizzas)
     for card in soup.select('.meal-wrapper, .wppizza-article, form[hx-get]'):card.decompose()
     for row in soup.select('tr,p,li,div,article,h2,h3,h4,h5,dt'):
         text=row.get_text(' ',strip=True)
@@ -85,16 +118,47 @@ def pizza_html(body,url,stamp):
         offers.extend(found)
     if online:
         for offer in offers: offer['priceContext']='online_menu'
-    return list({o['priceChf']:o for o in offers}.values())
+    return list({(o['name'],o['priceChf']):o for o in offers}.values())
 
 
 
-def product_card_pizzas(soup, url, stamp):
+def pizza_product(name, description, price, size, url, stamp, *, all_pizzas=False, section=''):
+    """Read a product's own price/selected size, never its extra toppings."""
+    name, description, price, size = (' '.join(value.split()) for value in (name, description, price, size))
+    if size and not re.fullmatch(r'(?:[Øø⌀]\s*)?(?:2[6-9]|3[0-5])\s*cm', size, re.I):
+        return []
+    line = ' '.join(filter(None, (name, size, description, price)))
+    found = pizza_row(line, url, stamp)
+    if not found and all_pizzas:
+        amount = PRICE.fullmatch(price)
+        if not amount:
+            return []
+        value = float(re.sub(r'[–—-]', '0', amount[1]).replace(' ', '').replace(',', '.'))
+        found = other_pizza({'name': name, 'evidence': line, 'priceChf': value,
+                             'pizzaType': 'other', 'isPizza': True,
+                             'menuSection': 'Pizza' if re.match(r'^pizza\s+', name, re.I) else section}, url, stamp)
+    for offer in found:
+        offer['confidence'] = 'automatic'
+        offer['priceContext'] = 'online_menu'
+        if description:
+            offer['ingredients'] = description
+    return found
+
+
+def product_card_pizzas(soup, url, stamp, *, all_pizzas=False):
     offers=[]
-    def add(name, description, price, size=''):
-        for offer in pizza_row(f'{name} {size} {description} {price}',url,stamp):
-            offer['priceContext']='online_menu'
-            offers.append(offer)
+    def add(name, description, price, size='', section=''):
+        # A product heading does not override an enclosing children's/lunch menu.
+        level = 7
+        for heading in card.find_all_previous(re.compile(r'^h[1-6]$')):
+            heading_level = int(heading.name[1])
+            if heading_level < level:
+                label = heading.get_text(' ', strip=True)
+                if CHILDREN.search(label) or re.search(r'take[ -]?away|delivery|liefer|famil|lunch|mittag', label, re.I):
+                    return
+                level = heading_level
+        offers.extend(pizza_product(name, description, price, size, url, stamp,
+                                    all_pizzas=all_pizzas, section=section))
     for card in soup.select('.meal-wrapper'):
         name=card.select_one('[itemprop="name"], .product-name')
         price=card.select_one('[itemprop="price"], .product-price')
@@ -105,18 +169,19 @@ def product_card_pizzas(soup, url, stamp):
             if category is None: category=card.find_previous(re.compile(r'^h[12]$'))
             size=category.get_text(' ',strip=True) if category else ''
             sizes=re.findall(r'(?<!\d)(\d{2})\s*cm',size,re.I)
-            if EXCLUDED.search(size) or CHILDREN.search(size) or (sizes and any(not 26<=int(n)<=35 for n in sizes)):continue
-            add(name.get_text(' ',strip=True),description.get_text(' ',strip=True) if description else '',price.get_text(' ',strip=True))
+            if EXCLUDED.search(size) or CHILDREN.search(size) or len(set(sizes))>1 or (sizes and any(not 26<=int(n)<=35 for n in sizes)):continue
+            add(name.get_text(' ',strip=True),description.get_text(' ',strip=True) if description else '',price.get_text(' ',strip=True),
+                sizes[0]+' cm' if sizes else '',section=size)
     for card in soup.select('.wppizza-article'):
         name=card.select_one('.wppizza-article-title')
-        if not name or not NAME.search(name.get_text()):continue
+        if not name or (not all_pizzas and not NAME.search(name.get_text())):continue
         desc=card.select_one('.wppizza-article-content')
         for variant in card.select('.wppizza-article-price'):
             size=variant.select_one('.wppizza-article-size');price=variant.select_one('span')
-            if size and price:add(name.get_text(' ',strip=True),desc.get_text(' ',strip=True) if desc else '',price.get_text(' ',strip=True),size.get_text(' ',strip=True))
+            if size and price:add(name.get_text(' ',strip=True),desc.get_text(' ',strip=True) if desc else '',price.get_text(' ',strip=True),size.get_text(' ',strip=True),section='Pizza')
     for card in soup.select('.product'):
         name=card.select_one('.name, .woocommerce-loop-product__title')
-        if not name or not NAME.search(name.get_text()):continue
+        if not name or (not all_pizzas and not NAME.search(name.get_text())):continue
         desc=card.select_one('.woocommerce-product-details__short-description')
         for variant in card.select('.lafka-variations-in-catalog'):
             label=variant.select_one('.lafka-list-variation-label');price=variant.select_one('.amount')
@@ -126,13 +191,17 @@ def product_card_pizzas(soup, url, stamp):
     for card in soup.select('form[hx-get]'):
         name=card.select_one('h3');price=card.select_one('[x-text="price"]')
         if not name or not price:continue
-        selected=card.select_one('input[name="size"][checked]')
+        selections=card.select('input[name="size"][checked]')
+        if len(selections)>1:continue
+        selected=selections[0] if selections else None
         size=card.find('label',attrs={'for':selected.get('id')}) if selected else None
         if card.select_one('input[name="size"]') and size is None:continue
-        add(name.get_text(' ',strip=True),'',price.get_text(' ',strip=True),size.get_text(' ',strip=True) if size else '')
+        description=card.select_one('.space-y-1')
+        add(name.get_text(' ',strip=True),description.get_text(' ',strip=True) if description else '',
+            price.get_text(' ',strip=True),size.get_text(' ',strip=True) if size else '')
     for name in soup.select('td > b'):
         label=name.get_text(' ',strip=True)
-        if not NAME.search(label):continue
+        if not all_pizzas and not NAME.search(label):continue
         card=name.parent
         price=card.select_one('.price')
         desc=card.select_one('.desc')
@@ -273,7 +342,7 @@ def orderstar_menu_url(body, url):
     return None
 
 
-def pizza_orderstar(body, url, stamp):
+def pizza_orderstar(body, url, stamp, *, all_pizzas=False):
     """Keep regular whole-pizza sizes; never use a delivery fee or discount."""
     data = json.loads(body)
     if data.get('isSuccessful') is not True: return []
@@ -282,16 +351,15 @@ def pizza_orderstar(body, url, stamp):
         if EXCLUDED.search(category.get('name', '')): continue
         for product in category.get('products', []):
             name = product.get('name', '')
-            if not re.fullmatch(r'(?:pizza\s+)?margh?erita', name, re.I): continue
+            if not all_pizzas and not re.fullmatch(r'(?:pizza\s+)?margh?erita', name, re.I): continue
             sizes = product.get('sizes') or [product]
             for size in sizes:
                 size_name = size.get('name', '') if size is not product else ''
                 if size_name and not re.fullmatch(r'(?:[Øø]\s*)?(?:2[6-9]|3[0-5])\s*cm', size_name, re.I): continue
                 price = size.get('price')
                 if isinstance(price, bool) or not isinstance(price, (int, float)): continue
-                line = f"{name} {size_name} {product.get('description') or ''} CHF {price:.2f}"
-                for offer in pizza_row(line, url, stamp):
-                    offer['priceContext'] = 'online_menu'
+                for offer in pizza_product(name, product.get('description') or '', f'CHF {price:.2f}',
+                                           size_name, url, stamp, all_pizzas=all_pizzas, section=category.get('name', '')):
                     offer['evidence'] = 'Öffentliche Online-Speisekarte: ' + offer['evidence']
                     offers.append(offer)
-    return list({o['priceChf']: o for o in offers}.values())
+    return list({(o['name'], o['priceChf']): o for o in offers}.values())

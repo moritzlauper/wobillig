@@ -3,7 +3,7 @@ import type { Drink } from './community';
 import { t } from './i18n';
 
 export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void, dataPath: string) {
-  const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), pizza: 'Pizza Margherita', doner: t('Döner'), falafel: 'Falafel' };
+  const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), pizza: 'Pizza', doner: t('Döner'), falafel: 'Falafel' };
   const upcoming = (category: Category) => category === 'doner' || category === 'falafel';
   root.innerHTML = `<div id="primary-categories" class="switch" role="group" aria-label="${t('Kategorie')}"></div>
     <div class="more-categories"><button id="categories-toggle" type="button" aria-expanded="false" aria-controls="additional-categories" aria-label="${t('Weitere Kategorien')}" title="${t('Weitere Kategorien')}"><span class="more-label">${t('Weitere')}</span><span class="filter-chevron" aria-hidden="true"></span></button>
@@ -26,8 +26,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     const button = document.createElement('button');
     button.id = `drink-${category}`; button.type = 'button';
     button.setAttribute('aria-label', upcoming(category) ? `${labels[category]} · ${t('Bald verfügbar')}` : labels[category]);
-    if (category === 'pizza') button.innerHTML = 'Pizza<span class="category-description"> Margherita</span>';
-    else button.textContent = labels[category];
+    button.textContent = labels[category];
     if (upcoming(category)) button.title = t('Bald verfügbar');
     button.onclick = () => {
       clicked = category;

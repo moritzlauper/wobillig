@@ -1,0 +1,40 @@
+<title>Menü · Da Amici 2</title>
+<form hx-get="/cart/add-item-form/">
+  <p x-text="price">CHF 15.00</p>
+  <h3>Pizza Margherita</h3>
+  <p>Wahl aus Extra Zutaten</p>
+  <fieldset>
+    <legend>Wähle deine Grösse</legend>
+    <input name="size" id="margherita-32" checked>
+    <label for="margherita-32">Ø32cm</label>
+    <input name="size" id="margherita-45">
+    <label for="margherita-45">Ø45cm</label>
+  </fieldset>
+</form>
+<form hx-get="/cart/add-item-form/">
+  <p x-text="price">CHF 18.00</p>
+  <h3>Pizza Prosciutto e Funghi</h3>
+  <div class="space-y-1"><p>Schinken, Pilze</p></div>
+  <p>Wahl aus Extra Zutaten</p>
+  <fieldset>
+    <legend>Wähle deine Grösse</legend>
+    <input name="size" id="funghi-32" checked>
+    <label for="funghi-32">Ø32cm</label>
+    <input name="size" id="funghi-45">
+    <label for="funghi-45">Ø45cm</label>
+  </fieldset>
+</form>
+<form hx-get="/cart/add-item-form/">
+  <p x-text="price">CHF 18.00</p>
+  <h3>Pizza Salami</h3>
+  <div class="space-y-1"><p>Scharfe Salami</p></div>
+  <input name="size" id="salami-32" checked>
+  <label for="salami-32">Ø32cm</label>
+  <input name="size" id="salami-45">
+  <label for="salami-45">Ø45cm</label>
+</form>
+<form hx-get="/cart/add-item-form/">
+  <p x-text="price">CHF 17.00</p>
+  <h3>Pide Spinat</h3>
+  <div class="space-y-1"><p>Mozzarella, Spinat</p></div>
+</form>

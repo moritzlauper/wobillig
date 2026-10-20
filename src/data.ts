@@ -1,5 +1,6 @@
 import { matchesSearch } from './search.js';
 import { t } from './i18n.js';
+import { pizzaName, pizzaNameKey, type PizzaSelection } from './pizza-selection.js';
 
 export type BeerType = "draft" | "bottle" | "can" | "unknown";
 export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bottle: "Flaschenbier", can: "Dosenbier", unknown: "Ausschankart unbekannt" };
@@ -64,7 +65,7 @@ export type Dataset = {
   bars: Bar[];
 };
 export type Filters = {
-  pizzaSelection?: "all";
+  pizzaSelection?: PizzaSelection;
   pizzaQuery?: string;
   drink?: "beer" | "coffee" | "pizza";
   coffeeType?: string;
@@ -112,13 +113,27 @@ export function selectBeerSize(f: Filters, volume: string) {
   if (["stange", "300", "300-330"].includes(volume)) f.mode = "glass";
   if (volume === "300-330") f.beerType = "all";
 }
+export function pizzaVarieties(bars: Bar[]): { value: PizzaSelection; label: string }[] {
+  const names = new Map<string, string>();
+  for (const bar of bars) for (const offer of [...bar.offers, ...(bar.pizzaMenu || [])]) {
+    if (offer.pizzaType !== 'other' || !isCurrentOffer(offer) || !Number.isFinite(offer.priceChf) || offer.priceChf <= 0) continue;
+    const key = pizzaNameKey(offer.name);
+    if (key && !names.has(key)) names.set(key, pizzaName(offer.name));
+  }
+  return [...names].map(([key, label]) => ({ value: `name:${key}` as PizzaSelection, label }))
+    .sort((a, b) => a.label.localeCompare(b.label, 'de', { sensitivity: 'base' }));
+}
+
 // Search only sourced names and ingredients; do not infer missing ingredients.
 export function matchesPizza(o: Offer, f: Filters): boolean {
   if (!o.pizzaType) return false;
   const normalize = (text: string) => text.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase()
     .replace(/\b(?:proscuito|proscuitto|prosciuto)\b/g, 'prosciutto');
   const query = normalize(f.pizzaQuery || '').trim();
-  if (!query) return f.pizzaSelection === 'all' || o.pizzaType === 'margherita';
+  if (!query) {
+    if (f.pizzaSelection?.startsWith('name:')) return pizzaNameKey(o.name) === f.pizzaSelection.slice(5);
+    return f.pizzaSelection === 'all' || o.pizzaType === 'margherita';
+  }
   const text = normalize(`${o.name} ${o.ingredients || ''}`);
   return query.split(/\s+/).every(word => text.includes(word));
 }
@@ -196,7 +211,7 @@ export function filterBars(
       return (
         matchesSearch(b, f.query) &&
         (!f.outdoor || hasOutdoorSeating(b)) &&
-        (o ? cost(o, f.mode) <= f.max : f.unknown && !(f.drink === "pizza" && f.pizzaQuery?.trim()))
+        (o ? cost(o, f.mode) <= f.max : f.unknown && !(f.drink === "pizza" && (f.pizzaQuery?.trim() || f.pizzaSelection?.startsWith('name:'))))
       );
     })
     .sort((a, b) => {
