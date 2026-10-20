@@ -66,7 +66,7 @@ for (const width of [320, 1280]) {
       entries: Array.from({ length: 5 }, (_, i) => ({ venue: { ...venue, id: `node/${i}` }, product: 'Glace', priceChf: 5, revision: 1, updatedAt: new Date().toISOString() })) };
     await page.route('**/api/prices?*', route => route.fulfill({ json: new URL(route.request().url()).searchParams.has('map')
       ? { map: saved } : { entries: [], publicMaps: [{ id: saved.id, name: saved.name, venueCount: 5 },
-        { id: 'd268dbea-93cf-45de-9d17-2b5c74090237', name: 'Draft map', venueCount: 4 }] } }));
+        { id: 'd268dbea-93cf-45de-9d17-2b5c74090237', name: 'Draft map', venueCount: 0 }] } }));
     await page.goto('/');
     await expect(page.locator('#count')).not.toHaveText('Laden …');
     const shortcut = page.locator(`[data-custom-map="${saved.id}"]`);
@@ -231,12 +231,13 @@ test('adds a shop from OpenStreetMap with its signed selection and a non-food pr
   await page.getByRole('spinbutton', { name: 'Preis in CHF' }).fill('3.90');
   await page.locator('#map-entry-dialog').getByRole('button', { name: 'Speichern', exact: true }).click();
   await expect(page.locator('#custom-map-entries')).toContainText('Tampons, Packung mit 16 Stück');
+  await expect(page.locator('#map-publish')).toBeEnabled();
   expect(submitted).toMatchObject({ barId: shop.id, placeToken: 'signed-shop', priceChf: 3.9 });
 });
 
-test('five places stay link-only until explicit publication and reviewer approval', async ({ page }) => {
+test('one place stays link-only until explicit publication and reviewer approval', async ({ page }) => {
   const saved: CustomMap = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: 'Tampon-Map', createdAt: new Date().toISOString(),
-    entries: Array.from({ length: 5 }, (_, i) => ({ venue: { ...venue, id: `node/${i}` }, product: 'Tampons, 16 Stück', priceChf: 4, revision: 1, updatedAt: new Date().toISOString() })) };
+    entries: Array.from({ length: 1 }, (_, i) => ({ venue: { ...venue, id: `node/${i}` }, product: 'Tampons, 16 Stück', priceChf: 4, revision: 1, updatedAt: new Date().toISOString() })) };
   await page.route('**/api/prices?*', route => {
     if (route.request().method() === 'POST') {
       expect(route.request().postDataJSON().action).toBe('requestMapPublication');
@@ -244,7 +245,7 @@ test('five places stay link-only until explicit publication and reviewer approva
       return route.fulfill({ json: { map: saved } });
     }
     return route.fulfill({ json: new URL(route.request().url()).searchParams.has('map') ? { map: saved } : { entries: [],
-      publicMaps: saved.publication?.status === 'approved' ? [{ id: saved.id, name: saved.name, venueCount: 5 }] : [] } });
+      publicMaps: saved.publication?.status === 'approved' ? [{ id: saved.id, name: saved.name, venueCount: 1 }] : [] } });
   });
   await page.goto(`/en?map=${saved.id}`);
   await expect(page.getByRole('button', { name: 'Share map', exact: true })).toBeEnabled();

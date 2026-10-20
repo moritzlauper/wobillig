@@ -36,7 +36,7 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     const map: CustomMap = existing || { id: input.mapId, name: (input.name as string).trim(), createdAt: new Date(now).toISOString(), entries: [] };
     if (visibility) {
       if (input.action === 'requestMapPublication') {
-        if (mapVenueCount(map) < PUBLIC_MAP_MIN_VENUES) throw new InputError('Zum Veröffentlichen bitte mindestens fünf verschiedene Orte eintragen.', 422);
+        if (mapVenueCount(map) < PUBLIC_MAP_MIN_VENUES) throw new InputError('Zum Veröffentlichen bitte mindestens einen Ort mit Preis eintragen.', 422);
         if (map.publication?.status === 'pending' || map.publication?.status === 'approved') return map;
         const fingerprint = mapFingerprint(map);
         if (map.publication?.status === 'rejected' && map.publication.fingerprint === fingerprint) throw new InputError('Bitte die Map vor einer erneuten Einreichung überarbeiten.', 422);

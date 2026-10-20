@@ -63,10 +63,11 @@ describe('city-scoped price API', () => {
     } }) });
     expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: { 'node/zurich': { average: null, count: 1 } }, publicMaps: [] });
   });
-  it('publicly lists only maps with at least five distinct venues in the selected city', async () => {
+  it('publicly lists only maps with at least one venue in the selected city', async () => {
     const entries = Array.from({ length: 6 }, (_, i) => ({ venue: { id: `node/${i}` }, priceChf: 12 }));
     const maps = [
-      { id: 'four', name: 'Four', entries: entries.slice(0, 4) },
+      { id: 'empty', name: 'Empty', publishedAt: '2026-10-20', publication: { status: 'approved' }, entries: [] },
+      { id: 'one', name: 'One', publishedAt: '2026-10-20', publication: { status: 'approved' }, entries: entries.slice(0, 1) },
       { id: 'five', name: 'Five', publishedAt: '2026-10-20', publication: { status: 'approved' }, entries: entries.slice(0, 5) },
       { id: 'six', name: 'Six', publishedAt: '2026-10-20', publication: { status: 'approved' }, entries },
       { id: 'duplicates', name: 'Duplicates', entries: Array(5).fill(entries[0]) },
@@ -75,7 +76,7 @@ describe('city-scoped price API', () => {
       entries: [], customMaps: path.includes('/bern/') ? maps : [],
     } }) }));
     expect((await request('/api/prices?city=bern')).data.publicMaps).toEqual([
-      { id: 'five', name: 'Five', venueCount: 5 }, { id: 'six', name: 'Six', venueCount: 6 },
+      { id: 'one', name: 'One', venueCount: 1 }, { id: 'five', name: 'Five', venueCount: 5 }, { id: 'six', name: 'Six', venueCount: 6 },
     ]);
     expect((await request('/api/prices?city=basel')).data.publicMaps).toEqual([]);
   });

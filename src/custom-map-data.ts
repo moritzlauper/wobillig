@@ -12,7 +12,7 @@ export type CustomMap = { id: string; name: string; createdAt: string; published
   entries: MapEntry[] };
 export type MapPlace = { venue: Bar; token: string };
 export type PublicMap = Pick<CustomMap, 'id' | 'name'> & { venueCount: number };
-export const PUBLIC_MAP_MIN_VENUES = 5;
+export const PUBLIC_MAP_MIN_VENUES = 1;
 export const mapVenueCount = (map: CustomMap) => new Set(map.entries.map(entry => entry.venue.id)).size;
 export function publicMapSummaries(maps: CustomMap[]): PublicMap[] {
   return maps.filter(map => map.publication?.status === 'approved' && Boolean(map.publishedAt)).map(map => ({ id: map.id, name: map.name, venueCount: mapVenueCount(map) }))

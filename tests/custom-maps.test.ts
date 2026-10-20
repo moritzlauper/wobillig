@@ -66,19 +66,14 @@ it('limits new maps per visitor and expires the limit', async () => {
   await expect(saveCustomMap(store, create, {}, 'v', 3600001)).resolves.toMatchObject({ id: mapId });
 });
 
-it('requires five venues, explicit submission and review before publication', async () => {
+it('requires one venue, explicit submission and review before publication', async () => {
   const store = memory();
-  const bars = Array.from({ length: 5 }, (_, i) => ({ ...bar, id: `node/${i}` }));
+  const bars = Array.from({ length: 1 }, (_, i) => ({ ...bar, id: `node/${i}` }));
   const datasets = { locations: { ...data, bars } };
   let map = await saveCustomMap(store, create, datasets, 'v');
-  for (const venue of bars.slice(0, 4)) {
-    map = await saveCustomMap(store, { ...input, barId: venue.id }, datasets, 'v');
-    expect(publicMapSummaries([map])).toEqual([]);
-    await expect(saveCustomMap(store, { action: 'requestMapPublication', mapId }, datasets, 'v')).rejects.toMatchObject({ status: 422 });
-  }
-  map = await saveCustomMap(store, { ...input, barId: bars[0].id, revision: 1, priceChf: 13 }, datasets, 'v');
   expect(publicMapSummaries([map])).toEqual([]);
-  map = await saveCustomMap(store, { ...input, barId: bars[4].id }, datasets, 'v');
+  await expect(saveCustomMap(store, { action: 'requestMapPublication', mapId }, datasets, 'v')).rejects.toMatchObject({ status: 422 });
+  map = await saveCustomMap(store, { ...input, barId: bars[0].id }, datasets, 'v');
   expect(publicMapSummaries([map])).toEqual([]);
   map = await saveCustomMap(store, { action: 'requestMapPublication', mapId }, datasets, 'v');
   expect(map.publication?.status).toBe('pending');
@@ -86,8 +81,8 @@ it('requires five venues, explicit submission and review before publication', as
   const fingerprint = mapFingerprint(map);
   await reviewMap(store, mapId, fingerprint, true);
   map = (await store.read()).state.customMaps![0];
-  expect(publicMapSummaries([map])).toEqual([{ id: mapId, name: 'Döner-Map', venueCount: 5 }]);
-  map = await saveCustomMap(store, { ...input, barId: bars[4].id, revision: 1, priceChf: 14 }, datasets, 'v');
+  expect(publicMapSummaries([map])).toEqual([{ id: mapId, name: 'Döner-Map', venueCount: 1 }]);
+  map = await saveCustomMap(store, { ...input, barId: bars[0].id, revision: 1, priceChf: 14 }, datasets, 'v');
   expect(map.publication).toBeUndefined();
   expect(publicMapSummaries([map])).toEqual([]);
   await expect(reviewMap(store, mapId, fingerprint, true)).rejects.toMatchObject({ status: 409 });

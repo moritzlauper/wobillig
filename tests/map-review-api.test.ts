@@ -9,7 +9,7 @@ vi.mock('../server/prices.js', async original => ({ ...await original<typeof imp
 import handler from '../api/map-review';
 const map: CustomMap = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: '<img src=x onerror=alert(1)>', createdAt: '2026-10-20',
   publication: { status: 'pending', requestedAt: '2026-10-20', fingerprint: '' },
-  entries: Array.from({ length: 5 }, (_, i) => ({ venue: { id: `node/${i}`, name: 'Shop', address: 'Test 1', postcode: '8001', lat: 47.378, lon: 8.535 },
+  entries: Array.from({ length: 1 }, (_, i) => ({ venue: { id: `node/${i}`, name: 'Shop', address: 'Test 1', postcode: '8001', lat: 47.378, lon: 8.535 },
     product: 'Tampons, 16 Stück', priceChf: 4, revision: 1, updatedAt: '2026-10-20' })) };
 let state = emptyState();
 beforeEach(() => {

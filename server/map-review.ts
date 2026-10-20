@@ -20,7 +20,7 @@ export async function reviewMap(store: Store, id: string, fingerprint: string, a
     if (!map || map.publication?.status !== 'pending' || mapFingerprint(map) !== fingerprint) {
       throw new InputError('Diese Map wurde inzwischen geändert. Bitte neu laden.', 409);
     }
-    if (approve && mapVenueCount(map) < PUBLIC_MAP_MIN_VENUES) throw new InputError('Zum Veröffentlichen bitte mindestens fünf verschiedene Orte eintragen.', 422);
+    if (approve && mapVenueCount(map) < PUBLIC_MAP_MIN_VENUES) throw new InputError('Zum Veröffentlichen bitte mindestens einen Ort mit Preis eintragen.', 422);
     map.publication = { ...map.publication, status: approve ? 'approved' : 'rejected', reviewedAt: new Date(now).toISOString(), fingerprint };
     if (approve) map.publishedAt = new Date(now).toISOString();
     else delete map.publishedAt;

@@ -44,7 +44,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     <p>${t('Ob Essen, Alltagsprodukte oder Dienstleistungen: Erstelle eine Map und sammle Orte mit Preisen.')}</p>
     <label>${t('Name der Map')}<input name="name" required maxlength="60" placeholder="${t('z. B. Döner-Map')}" autocomplete="off"></label>
     <p class="muted">${e(t(cities[city].name))} · ${t('Alle mit dem Link können Preise ansehen und ergänzen.')}</p>
-    <p class="muted">${t('Deine Map ist zunächst nur per Link erreichbar. Ab {count} verschiedenen Orten kannst du sie zur Veröffentlichung einreichen.', { count: PUBLIC_MAP_MIN_VENUES })}</p>
+    <p class="muted">${t('Deine Map ist zunächst nur per Link erreichbar. Ab einem Ort mit Preis kannst du sie zur Veröffentlichung einreichen.')}</p>
     <button class="primary" type="submit">${t('Map erstellen')}</button>
     <p role="alert" data-error hidden></p>
   </form><section id="saved-maps" hidden><h3>${t('Meine Maps')}</h3><div></div></section>`;
@@ -172,7 +172,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     const help = el('map-publish-help');
     help.hidden = !saving && remaining === 0;
     help.textContent = saving ? t('Wird gespeichert …') : remaining > 0
-      ? t('Mindestens {minimum} verschiedene Orte mit Preis nötig.', { minimum: PUBLIC_MAP_MIN_VENUES }) + ' '
+      ? t('Mindestens ein Ort mit Preis nötig.') + ' '
         + (remaining === 1 ? t('Es fehlt noch 1 Ort.') : t('Es fehlen noch {count} Orte.', { count: remaining }))
       : '';
   }
@@ -204,7 +204,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       : status === 'pending' ? t('Zur Prüfung eingereicht. Bis zur Freigabe bleibt die Map nur per Link erreichbar.')
       : status === 'rejected' ? t('Veröffentlichung abgelehnt. Du kannst die Map überarbeiten und erneut einreichen. Der Link bleibt nutzbar.')
       : count >= PUBLIC_MAP_MIN_VENUES ? t('Nur per Link erreichbar. Du kannst die Map jetzt zur Veröffentlichung einreichen.')
-      : t('Nur per Link erreichbar: {count} von {minimum} Orten für eine Veröffentlichungseinreichung.', { count, minimum: PUBLIC_MAP_MIN_VENUES });
+      : t('Nur per Link erreichbar. Zum Einreichen fehlt noch ein Ort mit Preis.');
     updatePublicationControl();
     el('map-withdraw').hidden = status !== 'pending' && status !== 'approved';
     el('custom-map-entries').replaceChildren();
