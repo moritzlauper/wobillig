@@ -60,7 +60,7 @@ describe('city-scoped price API', () => {
       entries: [], history: [{ id: 'old' }], priceChanges: [{ id: 'private-change' }], limits: { visitor: { count: 1 } },
       coffeeVotes: { 'node/zurich': { 'private-voter': 4 } },
     } }) });
-    expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [], coffeeRatings: { 'node/zurich': { average: 4, count: 1 } } });
+    expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [], coffeeRatings: { 'node/zurich': { average: null, count: 1 } } });
   });
   it('saves a Bern venue only in Bern and rejects that ID in Basel', async () => {
     const input = { barId: 'node/bern', drink: 'beer', revision: 0, name: 'Lager', priceChf: 5, volumeMl: 300, alcoholFree: false, observedAt: '2026-10-14', sourceUrl: '' };

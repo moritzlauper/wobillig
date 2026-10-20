@@ -6,7 +6,8 @@ import { communityVenues, InputError, zurichToday } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore } from '../server/prices.js';
 import { MENU_SCAN_VERSION, menuPrices, readMenu, validateScanImage } from '../server/menu-ocr.js';
-import { failScan, reserveScan, saveMenuScan } from '../server/menu-scan-store.js';
+import { failScan, parseScanEdit, reserveScan, resolveScanEdit, saveMenuScan, scanResult } from '../server/menu-scan-store.js';
+import { priceOwner } from '../server/price-moderation.js';
 
 const MAX_BODY = 2_800_000;
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
@@ -31,16 +32,23 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     }
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch { throw new InputError('Ungültiger Upload.'); } }
     if (!body || typeof body !== 'object' || Buffer.byteLength(JSON.stringify(body)) > MAX_BODY) throw new InputError('Ungültiger Upload.');
-    const data = body as { barId?: unknown; image?: unknown };
+    const data = body as { barId?: unknown; image?: unknown; edit?: unknown };
     const image = validateScanImage(data.image);
     const [beer, coffee, pizza, locations] = await Promise.all(['bars', 'coffee', 'pizza', 'locations'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(v => JSON.parse(v) as Dataset)));
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     const { state } = await store.read();
     const bar = communityVenues({ beer, coffee, pizza, locations }, state.entries, state.venues).find(b => b.id === data.barId);
     if (!bar) throw new InputError('Bitte zuerst ein Lokal auswählen.');
+    const originals = [beer, coffee, pizza].flatMap(d => d.bars.find(b => b.id === bar.id)?.offers || []);
+    const edit = data.edit === undefined ? undefined : parseScanEdit(data.edit);
     const key = process.env.ANTHROPIC_API_KEY, secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!key || !secret) throw new InputError('Karte scannen ist gerade nicht verfügbar. Du kannst Preise einzeln eintragen.', 503);
-    const hash = createHash('sha256').update(`${MENU_SCAN_VERSION}:${city}:${bar.id}:`).update(Buffer.from(image.data, 'base64')).digest('hex');
+    const hash = createHash('sha256').update(`${MENU_SCAN_VERSION}:${city}:${bar.id}:${JSON.stringify(edit || null)}:`).update(Buffer.from(image.data, 'base64')).digest('hex');
+    const previous = state.menuScans?.[hash];
+    if (previous?.status === 'done' && previous.result && previous.expires > Date.now()) {
+      return reply(200, scanResult(state, previous.result));
+    }
+    if (edit) resolveScanEdit(edit, bar, originals, state.entries);
     const visitor = createHmac('sha256', secret).update(`${zurichToday()}:${req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown'}`).digest('hex');
     const cached = await reserveScan(store, hash, visitor);
     if (cached) return reply(200, cached);
@@ -48,8 +56,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const result = await readMenu(image, bar, key);
     const { prices, skipped } = menuPrices(result.parsed, bar, zurichToday());
     if (!prices.length) throw new InputError('Keine eindeutigen Bier-, Kaffee- oder Margherita-Preise erkannt. Bitte einen näheren, scharfen Ausschnitt fotografieren.', 422);
-    const originals = [beer, coffee, pizza].flatMap(d => d.bars.find(b => b.id === bar.id)?.offers || []);
-    const saved = await saveMenuScan(store, hash, bar, originals, prices, skipped);
+    const saved = await saveMenuScan(store, hash, bar, originals, prices, skipped, Date.now(), edit, priceOwner(req, res));
     reserved = undefined;
     return reply(200, saved);
   } catch (error) {

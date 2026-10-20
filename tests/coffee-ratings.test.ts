@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { coffeeRatingSummaries, saveCoffeeRating } from '../server/coffee-ratings';
 import { emptyState, WriteConflict, type Store } from '../server/prices';
@@ -19,44 +19,54 @@ function memoryStore(): Store {
     },
   };
 }
-const save = (store: Store, value: unknown = input, visitor = 'visitor', now = 1000) =>
-  saveCoffeeRating(store, value, data, 'zurich', visitor, 'test-secret', now);
+const save = (store: Store, value: unknown = input, owner = 'visitor', now = 1000, photo = owner) =>
+  saveCoffeeRating(store, value, data, 'zurich', owner, 'test-secret', now,
+    { owner, photoHash: createHash('sha256').update(photo).digest('hex') });
 
 describe('shared coffee ratings', () => {
-  it('shows a rating after the first vote, deduplicates retries and replaces the same browser vote', async () => {
+  it('hides the average before three votes and ignores client identity tokens', async () => {
     const store = memoryStore();
     expect(coffeeRatingSummaries((await store.read()).state)).toEqual({});
-    expect(await save(store)).toEqual({ average: 4, count: 1 });
-    expect(await save(store)).toEqual({ average: 4, count: 1 });
-    expect(await save(store, { ...input, score: 2 })).toEqual({ average: 2, count: 1 });
-    expect(await save(store, { ...input, voterToken: randomUUID(), score: 5 }, 'other')).toEqual({ average: 3.5, count: 2 });
+    expect(await save(store)).toEqual({ average: null, count: 1 });
+    expect(await save(store, { ...input, voterToken: randomUUID() })).toEqual({ average: null, count: 1 });
+    expect(await save(store, { ...input, score: 2 }, 'second')).toEqual({ average: null, count: 2 });
+    expect(await save(store, { ...input, score: 3 }, 'third')).toEqual({ average: 3, count: 3 });
     const state = (await store.read()).state;
-    expect(coffeeRatingSummaries(state)).toEqual({ [bar.id]: { average: 3.5, count: 2 } });
     expect(JSON.stringify(state)).not.toContain(input.voterToken);
     expect(JSON.stringify(coffeeRatingSummaries(state))).not.toContain('visitor');
+  });
+  it('allows a retry but waits 24 hours before changing a vote, including races', async () => {
+    const store = memoryStore();
+    await save(store);
+    expect(await save(store)).toEqual({ average: null, count: 1 });
+    await expect(save(store, { ...input, score: 2 }, 'visitor', 86400999)).rejects.toHaveProperty('status', 429);
+    expect(await save(store, { ...input, score: 2 }, 'visitor', 86401000)).toEqual({ average: null, count: 1 });
+    const fresh = memoryStore();
+    const outcomes = await Promise.allSettled([save(fresh), save(fresh, { ...input, score: 2 })]);
+    expect(outcomes.filter(item => item.status === 'fulfilled')).toHaveLength(1);
   });
   it('preserves concurrent votes and unrelated state', async () => {
     const store = memoryStore();
     const initial = await store.read();
     initial.state.menuScans = { existing: { status: 'done', expires: 9000 } };
     await store.write(initial.state, initial.etag);
-    await Promise.all([save(store), save(store, { ...input, voterToken: randomUUID(), score: 2 }, 'other')]);
+    await Promise.all([save(store), save(store, { ...input, score: 2 }, 'other')]);
     const { state } = await store.read();
-    expect(coffeeRatingSummaries(state)[bar.id]).toEqual({ average: 3, count: 2 });
+    expect(coffeeRatingSummaries(state)[bar.id]).toEqual({ average: null, count: 2 });
     expect(state.menuScans).toEqual(initial.state.menuScans);
   });
   it.each([null, {}, { ...input, score: 0 }, { ...input, score: 6 }, { ...input, score: 2.5 },
-    { ...input, score: '5' }, { ...input, voterToken: 'anything' }, { ...input, barId: '__proto__' }])('rejects invalid ratings %j', async value => {
+    { ...input, score: '5' }, { ...input, barId: '__proto__' }])('rejects invalid ratings %j', async value => {
     const store = memoryStore();
     await expect(save(store, value)).rejects.toHaveProperty('status');
     expect(coffeeRatingSummaries((await store.read()).state)).toEqual({});
   });
-  it('limits writes, allows an identical retry and fails honestly on unavailable storage', async () => {
+  it('requires server proof and prevents identical photos being reused by another browser or venue', async () => {
     const store = memoryStore();
-    for (let i = 0; i < 20; i++) await save(store, { ...input, score: i % 2 + 1 });
-    expect(await save(store, { ...input, score: 2 })).toEqual({ average: 2, count: 1 });
-    await expect(save(store)).rejects.toHaveProperty('status', 429);
-    await expect(save(store, input, 'visitor', 3601001)).resolves.toEqual({ average: 4, count: 1 });
+    await expect(saveCoffeeRating(store, input, data, 'zurich', 'visitor', 'secret')).rejects.toHaveProperty('status', 422);
+    await save(store);
+    await expect(save(store, input, 'other', 1000, 'visitor')).rejects.toHaveProperty('status', 422);
+    await expect(save(store, { ...input, barId: coffee.bars[1].id }, 'visitor')).rejects.toHaveProperty('status', 422);
     const broken = memoryStore();
     broken.write = async () => { throw new Error('offline'); };
     await expect(save(broken)).rejects.toThrow('offline');

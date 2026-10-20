@@ -5,7 +5,7 @@ import { createHmac } from 'node:crypto';
 import { communityVenues, validateInput, InputError } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore, savePrice, saveVenue } from '../server/prices.js';
-import { coffeeRatingSummaries, saveCoffeeRating } from '../server/coffee-ratings.js';
+import { coffeeRatingSummaries } from '../server/coffee-ratings.js';
 import { priceOwner, visiblePrices } from '../server/price-moderation.js';
 import { PriceCooldownError, withPriceCooldown } from '../server/price-cooldown.js';
 import { isMapId } from '../src/custom-map-data.js';
@@ -60,7 +60,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       return reply(200, { map: await saveCustomMap(store, body, data, visitor) });
     }
     if (body && typeof body === 'object' && 'action' in body && body.action === 'rateCoffee') {
-      return reply(200, { rating: await saveCoffeeRating(store, body, data, city, visitor, secret) });
+      throw new InputError('Bitte ein Foto mit deinem Kaffee aus diesem Lokal hochladen.', 422);
     }
     if (body && typeof body === 'object' && 'action' in body && body.action === 'addVenue') {
       return reply(200, await saveVenue(store, 'venue' in body ? body.venue : undefined, data, city, visitor));

@@ -187,3 +187,33 @@ describe('atomic, repeat-safe scan storage', () => {
     expect(scanSummary({ entries: [], added: 0, unchanged: 2, conflicts: 0, skipped: 0 })).toBe('Keine neuen Preise gespeichert. 2 bereits vorhanden.');
   });
 });
+
+describe('photo-backed targeted corrections', () => {
+  it('updates the chosen offer with OCR evidence while unrelated prices remain untouched', async () => {
+    const store = memoryStore();
+    await reserveScan(store, 'initial', 'visitor');
+    const initial = await saveMenuScan(store, 'initial', bar, [], extract().prices, 0);
+    const target = initial.entries[0];
+    await reserveScan(store, 'correction', 'visitor');
+    const result = await saveMenuScan(store, 'correction', bar, [], extract([{ ...row, prices: ['9.20', '10.90'] }]).prices, 0,
+      Date.now(), { id: target.id, revision: target.revision, targetKey: target.targetKey, drink: 'beer' });
+    expect(result).toMatchObject({ updated: 1, conflicts: 1, added: 0 });
+    expect(result.entries[0]).toMatchObject({ id: target.id, revision: 2, offer: { priceChf: 9.2, confidence: 'ai' } });
+    const { state } = await store.read();
+    expect(state.entries.find(item => item.id === initial.entries[1].id)?.offer.priceChf).toBe(7.9);
+    expect(state.history).toEqual([target]);
+    expect(state.priceChanges?.[0]).toMatchObject({ source: 'menu-scan', before: { priceChf: 5.2 }, after: { priceChf: 9.2 } });
+  });
+  it('corrects a catalogue offer and refuses missing evidence or stale revisions without partial saves', async () => {
+    const store = memoryStore();
+    const original = { ...extract().prices[0].input, confidence: 'ai', evidence: '' } as Offer;
+    const edit = { revision: 0, targetKey: offerKey(original), drink: 'beer' as const };
+    await reserveScan(store, 'missing', 'visitor');
+    await expect(saveMenuScan(store, 'missing', bar, [original], extract([{ ...row, name: 'Other beer' }]).prices, 0, Date.now(), edit)).rejects.toHaveProperty('status', 422);
+    expect((await store.read()).state.entries).toEqual([]);
+    await reserveScan(store, 'valid', 'visitor');
+    expect((await saveMenuScan(store, 'valid', bar, [original], extract([{ ...row, prices: ['9.20', '7.90'] }]).prices, 0, Date.now(), edit)).updated).toBe(1);
+    await reserveScan(store, 'stale', 'visitor');
+    await expect(saveMenuScan(store, 'stale', bar, [original], extract().prices, 0, Date.now(), edit)).rejects.toHaveProperty('status', 409);
+  });
+});

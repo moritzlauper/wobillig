@@ -65,7 +65,7 @@ test('manual additions and existing-price editing still work', async ({ page }) 
   await expect(page.locator('#price-dialog')).not.toBeVisible(); expect(manual.priceChf).toBe(6.5);
   await expectEvent(page, 'price_saved', { city: 'zurich', language: 'de', category: 'beer', action: 'add' });
   await page.locator('#detail [data-edit]').first().click();
-  await expect(page.locator('#menu-scan')).not.toBeVisible(); await expect(page.locator('#entry-price')).toBeVisible();
+  await expect(page.locator('#menu-scan')).toBeVisible(); await expect(page.locator('#entry-price')).toBeVisible();
   await expect(page.locator('#form-title')).toBeFocused();
   await page.locator('#entry-price').click();
   await expect(page.locator('#entry-price')).toBeFocused();

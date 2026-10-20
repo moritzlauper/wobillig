@@ -16,6 +16,13 @@ export default defineConfig({
           await handler(req, res);
         } catch (error) { next(error); }
       });
+      process.env.ANTHROPIC_API_KEY ||= loadEnv(server.config.mode, process.cwd(), 'ANTHROPIC_API_KEY').ANTHROPIC_API_KEY;
+      for (const route of ['coffee-rating', 'scan-menu']) server.middlewares.use(`/api/${route}`, async (req, res, next) => {
+        try {
+          const { default: handler } = await server.ssrLoadModule(`/api/${route}.ts`);
+          await handler(req, res);
+        } catch (error) { next(error); }
+      });
       server.middlewares.use('/api/prices', async (req, res, next) => {
         try {
           const { default: handler } = await server.ssrLoadModule('/api/prices.ts');

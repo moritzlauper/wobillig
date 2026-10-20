@@ -12,7 +12,7 @@ export type PriceChange = {
   address: string;
   drink: PriceEntry['drink'];
   targetKey: string;
-  source: 'manual';
+  source: 'manual' | 'menu-scan';
   before: Offer | null;
   after: Offer;
 };

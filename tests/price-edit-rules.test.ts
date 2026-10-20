@@ -1,0 +1,27 @@
+import { expect, it } from 'vitest';
+import { checkPriceEdit } from '../server/price-edit-rules';
+import type { PriceChange } from '../server/price-audit';
+import { type PriceEntry } from '../src/community';
+import type { Offer } from '../src/data';
+const now = Date.parse('2026-10-20T12:00:00Z');
+const offer = (priceChf: number): Offer => ({ name: 'Cappuccino', priceChf, volumeMl: null, coffeeType: 'cappuccino', alcoholFree: true, observedAt: '2026-10-20', sourceUrl: '', confidence: 'community', evidence: '' });
+const entry = (price: number, time = now): PriceEntry => ({ id: 'one', barId: 'venue', drink: 'coffee', targetKey: 'key', revision: 1, offer: offer(price), updatedAt: new Date(time).toISOString() });
+const change = (before: number, after: number, time: number): PriceChange => ({ id: String(time), entryId: 'one', revision: 1, barId: 'venue', venueName: 'Example', address: '', drink: 'coffee', targetKey: 'key', source: 'manual', updatedAt: new Date(time).toISOString(), before: offer(before), after: offer(after) });
+it('allows small corrections and requires a photo only when both thresholds are met', () => {
+  for (const [before, after] of [[5, 6.99], [10, 13], [5, 3.01]]) expect(() => checkPriceEdit(entry(after), offer(before), [], now)).not.toThrow();
+  for (const [before, after] of [[5, 7], [10, 13.01], [5, 3]]) expect(() => checkPriceEdit(entry(after), offer(before), [], now)).toThrow('Menükarte');
+  expect(() => checkPriceEdit(entry(20), null, [], now)).not.toThrow();
+});
+it('combines smaller steps over 24 hours across visitors and permits only three price changes', () => {
+  const history = [change(5, 6, now - 1000)];
+  expect(() => checkPriceEdit(entry(7), offer(6), history, now)).toThrow('Menükarte');
+  const repeated = [change(5, 5.1, now - 3000), change(5.1, 5.2, now - 2000), change(5.2, 5.3, now - 1000)];
+  expect(() => checkPriceEdit(entry(5.4), offer(5.3), repeated, now)).toThrow('mehrfach');
+  expect(() => checkPriceEdit(entry(5.3), offer(5.3), repeated, now)).not.toThrow();
+  expect(() => checkPriceEdit(entry(5.4), offer(5.3), repeated, now + 86400000)).not.toThrow();
+});
+it('resets the cumulative baseline after a photo-confirmed correction and ignores other offers', () => {
+  const history = [change(5, 6, now - 3000), { ...change(6, 7, now - 2000), source: 'menu-scan' as const }];
+  expect(() => checkPriceEdit(entry(8), offer(7), history, now)).not.toThrow();
+  expect(() => checkPriceEdit({ ...entry(7), id: 'two', targetKey: 'different' }, offer(6), [change(5, 6, now - 1000)], now)).not.toThrow();
+});

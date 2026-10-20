@@ -4,6 +4,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
+    "api/coffee-rating.ts": {
+      "includeFiles": "public/data/**/*.json",
+      "maxDuration": 60
+    },
     "api/google-rating.ts": {
       "includeFiles": "public/data/**/pizza.json",
       "maxDuration": 15

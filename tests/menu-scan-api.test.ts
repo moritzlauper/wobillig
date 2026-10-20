@@ -95,3 +95,16 @@ it('allows scanning a newly contributed venue that is absent from the OSM catalo
   const result = await request({ ...photo, barId: 'community/new' });
   expect(result.status).toBe(200); expect(result.data.entries[0].venue.name).toBe('New café');
 });
+
+it('retries a completed targeted correction without re-running OCR or failing on the old revision', async () => {
+  const first = await request();
+  const entry = first.data.entries[0];
+  const edit = { id: entry.id, revision: entry.revision, targetKey: entry.targetKey, drink: 'beer' };
+  mocks.readMenu.mockResolvedValue({ parsed: { menu: true, wrongVenue: false, currency: 'CHF', rows: [{ name: 'Sprint', category: 'beer', sizes: ['3dl'], prices: ['9.20'], beerType: 'draft', alcoholFree: false, clear: true }] } });
+  const corrected = await request({ ...photo, edit });
+  expect(corrected.status).toBe(200);
+  expect(corrected.data.updated).toBe(1);
+  expect(corrected.data.entries[0].offer.priceChf).toBe(9.2);
+  expect((await request({ ...photo, edit })).data).toEqual(corrected.data);
+  expect(mocks.readMenu).toHaveBeenCalledTimes(2);
+});

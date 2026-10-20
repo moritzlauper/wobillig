@@ -10,7 +10,7 @@ const portion = offer => [offer.volumeMl ? `${offer.volumeMl / 100} dl` : offer.
   offer.alcoholFree && !offer.coffeeType && !offer.pizzaType ? 'alkoholfrei' : ''].filter(Boolean).join(' · ');
 
 export function reviewRows(state, city, venues = []) {
-  const changes = state.priceChanges || [];
+  const changes = (state.priceChanges || []).filter(change => change.source !== 'menu-scan');
   const logged = new Set(changes.map(c => `${c.entryId}:${c.revision}`));
   const versions = [...state.history, ...state.entries];
   const byVersion = new Map(versions.map(e => [`${e.id}:${e.revision}`, e]));

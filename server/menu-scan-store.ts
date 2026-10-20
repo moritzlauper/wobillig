@@ -1,8 +1,33 @@
 import { randomUUID } from 'node:crypto';
-import { InputError, offerKey, type PriceEntry } from '../src/community.js';
+import { InputError, matchesOfferKey, offerKey, type PriceEntry } from '../src/community.js';
 import { offerCategory, type Bar, type Offer } from '../src/data.js';
 import { WriteConflict, type Store, type State, type ScanReceipt } from './prices.js';
 import { OCR_MODEL, type ScannedPrice } from './menu-ocr.js';
+import { priceChange } from './price-audit.js';
+
+export type ScanEdit = { id?: string; revision: number; targetKey: string; drink: PriceEntry['drink'] };
+export function parseScanEdit(value: unknown): ScanEdit {
+  const edit = value as ScanEdit | null;
+  if (!edit || typeof edit.targetKey !== 'string' || edit.targetKey.length > 1000 ||
+      !Number.isInteger(edit.revision) || edit.revision < 0 ||
+      !['beer', 'coffee', 'pizza'].includes(edit.drink) || (edit.id !== undefined && typeof edit.id !== 'string')) {
+    throw new InputError('Ungültiges Angebot.');
+  }
+  return { id: edit.id, revision: edit.revision, targetKey: edit.targetKey, drink: edit.drink };
+}
+export function resolveScanEdit(value: unknown, bar: Bar, originals: Offer[], entries: PriceEntry[]) {
+  const edit = parseScanEdit(value);
+  const old = entries.find(entry => edit.id ? entry.id === edit.id :
+    entry.barId === bar.id && entry.drink === edit.drink && entry.targetKey === edit.targetKey);
+  if ((edit.id && !old) || old && (old.barId !== bar.id || old.drink !== edit.drink || old.targetKey !== edit.targetKey) ||
+      (old?.revision || 0) !== edit.revision) {
+    throw new InputError('Dieser Preis wurde inzwischen geändert. Bitte schliessen und erneut öffnen.', 409);
+  }
+  const offers = originals.filter(offer => offerCategory(offer) === edit.drink);
+  const offer = old?.offer || offers.find(offer => matchesOfferKey(offer, edit.targetKey, offers));
+  if (!offer) throw new InputError('Das ursprüngliche Angebot ist nicht mehr vorhanden. Bitte neu laden.', 409);
+  return { edit: { id: edit.id, revision: edit.revision, targetKey: edit.targetKey, drink: edit.drink }, old, offer };
+}
 
 async function change<T>(store: Store, update: (state: State) => T): Promise<T> {
   for (let attempt = 0; attempt < 4; attempt++) {
@@ -43,11 +68,12 @@ export async function failScan(store: Store, hash: string) {
 function identity(offer: Offer) {
   return offerKey({ ...offer, name: offer.name.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^\p{L}\p{N}]/gu, '') });
 }
-export async function saveMenuScan(store: Store, hash: string, bar: Bar, originals: Offer[], prices: ScannedPrice[], skipped: number, now = Date.now()) {
+export async function saveMenuScan(store: Store, hash: string, bar: Bar, originals: Offer[], prices: ScannedPrice[], skipped: number, now = Date.now(), edit?: ScanEdit, owner?: string) {
   return change(store, state => {
     const job = state.menuScans?.[hash];
     if (job?.status === 'done' && job.result) return scanResult(state, job.result);
     if (job?.status !== 'pending') throw new InputError('Der Scan ist nicht mehr verfügbar. Bitte erneut fotografieren.', 409);
+    const target = edit ? resolveScanEdit(edit, bar, originals, state.entries) : undefined;
     const receipt: ScanReceipt = { ids: [], added: 0, unchanged: 0, conflicts: 0, skipped };
     const grouped = new Map<string, { offer: Offer; drink: PriceEntry['drink'] }[]>();
     for (const { input, evidence } of prices) {
@@ -57,6 +83,12 @@ export async function saveMenuScan(store: Store, hash: string, bar: Bar, origina
       const key = identity(offer);
       grouped.set(key, [...(grouped.get(key) || []), { offer, drink: input.drink }]);
     }
+    if (target) {
+      const matches = grouped.get(identity(target.offer));
+      if (!matches || new Set(matches.map(row => row.offer.priceChf)).size !== 1) {
+        throw new InputError('Der zu ändernde Preis ist auf diesem Foto nicht eindeutig erkennbar. Bitte einen passenden Kartenausschnitt hochladen.', 422);
+      }
+    }
     for (const [key, group] of grouped) {
       if (new Set(group.map(g => g.offer.priceChf)).size > 1) { receipt.conflicts++; continue; }
       const { offer, drink } = group[0];
@@ -65,7 +97,19 @@ export async function saveMenuScan(store: Store, hash: string, bar: Bar, origina
       const prior = existing.length ? existing.map(e => e.offer) : scraped;
       if (prior.length) {
         if (prior.every(o => o.priceChf === offer.priceChf)) { receipt.unchanged++; receipt.ids.push(...existing.map(e => e.id)); }
-        else receipt.conflicts++;
+        else if (target && key === identity(target.offer)) {
+          const entry: PriceEntry = { id: target.old?.id || randomUUID(), barId: bar.id, drink,
+            targetKey: target.edit.targetKey, revision: (target.old?.revision || 0) + 1,
+            updatedAt: new Date(now).toISOString(), offer, venue: { ...bar, offers: [] } };
+          const audit = priceChange(entry, target.old, { generatedAt: '', discoveredAt: '', attribution: '', bars: [{ ...bar, offers: originals }] });
+          state.priceChanges = [...(state.priceChanges || []), { ...audit, source: 'menu-scan' }];
+          if (target.old) state.history.push(target.old);
+          state.entries = [...state.entries.filter(item => item.id !== entry.id), entry];
+          state.heldPrices = state.heldPrices?.filter(item => !(item.owner === owner && item.entry.barId === bar.id &&
+            item.entry.drink === drink && item.entry.targetKey === entry.targetKey));
+          receipt.ids.push(entry.id);
+          receipt.updated = (receipt.updated || 0) + 1;
+        } else receipt.conflicts++;
         continue;
       }
       const entry: PriceEntry = { id: randomUUID(), barId: bar.id, drink, targetKey: offerKey(offer), revision: 1,

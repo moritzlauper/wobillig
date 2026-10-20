@@ -1,6 +1,6 @@
 import type { PriceEntry } from './community';
 import { t } from './i18n';
-export type MenuScanResult = { entries: PriceEntry[]; added: number; unchanged: number; conflicts: number; skipped: number };
+export type MenuScanResult = { entries: PriceEntry[]; added: number; unchanged: number; conflicts: number; skipped: number; updated?: number };
 
 // Decode and re-encode locally: normalises phone orientation, removes EXIF/GPS,
 // bounds upload size and retains enough resolution for menu columns.
@@ -28,7 +28,8 @@ export async function prepareMenuPhoto(file: File): Promise<{ data: string; medi
   } finally { URL.revokeObjectURL(url); }
 }
 export function scanSummary(result: MenuScanResult): string {
-  const parts = [result.added === 1 ? t('1 Preis gespeichert.') : result.added ? t('{count} Preise gespeichert.', { count: result.added }) : t('Keine neuen Preise gespeichert.')];
+  const parts = result.updated && !result.added ? [] : [result.added === 1 ? t('1 Preis gespeichert.') : result.added ? t('{count} Preise gespeichert.', { count: result.added }) : t('Keine neuen Preise gespeichert.')];
+  if (result.updated) parts.push(t('{count} Preise anhand der Karte aktualisiert.', { count: result.updated }));
   if (result.unchanged) parts.push(t('{count} bereits vorhanden.', { count: result.unchanged }));
   if (result.conflicts) parts.push(t('{count} abweichende Preise ausgelassen; bestehende Preise kannst du unter «Ändern» korrigieren.', { count: result.conflicts }));
   if (result.skipped) parts.push(t('{count} unklare Zeilen ausgelassen.', { count: result.skipped }));

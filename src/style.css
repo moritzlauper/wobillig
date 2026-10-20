@@ -169,7 +169,12 @@ main { display: flex; flex: 1; min-height: 0; }
 .coffee-rating-control { display: contents; }
 .detail-actions .coffee-rate-toggle { border: 0; background: transparent; color: var(--muted); padding-inline: 3px; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; }
 .coffee-rating-summary { display: inline-flex; align-items: center; color: var(--muted); font-size: 12px; white-space: nowrap; }
-.coffee-rating-editor { flex-basis: 100%; order: 1; }
+.coffee-rating-editor { flex-basis: 100%; order: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
+.coffee-rating-editor[hidden] { display: none; }
+.coffee-rating-editor small { font-size: 12px; color: var(--muted); }
+.coffee-photo-label { display: flex; flex-direction: column; gap: 6px; max-width: 100%; font-size: 13px; }
+.coffee-photo { max-width: 100%; font: inherit; }
+.coffee-rating-stars button[aria-pressed="true"] { color: var(--teal); border-color: var(--teal); background: var(--surface); }
 .coffee-rating-stars { display: inline-flex; gap: 4px; }
 .detail-actions .coffee-rating-stars button { min-width: 36px; min-height: 36px; padding: 4px; font-size: 12px; }
 .coffee-rating-stars button:hover, .coffee-rating-stars button:focus-visible { color: var(--teal); border-color: var(--teal); }

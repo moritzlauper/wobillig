@@ -59,7 +59,8 @@ it('holds all three vandalism patterns, including submitted source URLs', () => 
 });
 
 it('returns normal success and persists only the submitting browser’s view across reloads and IP changes', async () => {
-  const saved = await request(input);
+  const newOffer = { ...input, targetKey: undefined, name: 'New cappuccino' };
+  const saved = await request(newOffer);
   expect(saved.status).toBe(200);
   expect(Object.keys(saved.data)).toEqual(['entry']);
   expect(saved.data.entry.offer.priceChf).toBe(20);
@@ -72,7 +73,7 @@ it('returns normal success and persists only the submitting browser’s view acr
   expect(own.data.entries).toEqual([saved.data.entry]);
   expect(own.headers['Cache-Control']).toBe('private, no-store');
   expect(own.headers.Vary).toBe('Cookie');
-  expect(Object.keys(own.data).sort()).toEqual(['coffeeRatings', 'entries', 'venues']);
+  expect(Object.keys(own.data).filter(key => key !== 'venueCorrections').sort()).toEqual(['coffeeRatings', 'entries', 'venues']);
   const state = (await store.read()).state;
   expect(state.entries).toEqual([]);
   expect(state.history).toEqual([]);
@@ -80,7 +81,7 @@ it('returns normal success and persists only the submitting browser’s view acr
   expect(state.heldPrices).toHaveLength(1);
   expect(JSON.stringify(state)).not.toContain(cookie.split('=')[1]);
   expect(reviewRows(state, 'zurich', [bar])).toEqual([]);
-  const edited = await request({ ...input, id: saved.data.entry.id, revision: 1, priceChf: 21 }, cookie);
+  const edited = await request({ ...newOffer, id: saved.data.entry.id, revision: 1, priceChf: 21 }, cookie);
   expect(edited.status).toBe(200);
   expect(edited.data.entry.revision).toBe(2);
   expect((await request(undefined, cookie)).data.entries[0].offer.priceChf).toBe(21);
@@ -88,29 +89,12 @@ it('returns normal success and persists only the submitting browser’s view acr
   expect((await request({ ...input, id: saved.data.entry.id, revision: 2 } )).status).toBe(409);
 });
 
-it('keeps public corrections and private revisions independent, including concurrent writes', async () => {
-  const normal = await savePrice(store, { ...input, priceChf: 5 }, data, 'normal');
-  await Promise.all([
-    savePrice(store, { ...input, id: normal.id, revision: 1 }, data, 'troll'),
-    savePrice(store, { ...input, id: normal.id, revision: 1, priceChf: 6 }, data, 'normal'),
-  ].map(promise => promise.catch(error => {
-    // A public revision winning the race can require the private client to reload.
-    if (error.status !== 409) throw error;
-  })));
-  let state = (await store.read()).state;
-  expect(state.entries[0].offer.priceChf).toBe(6);
-  if (!state.heldPrices?.length) {
-    await savePrice(store, { ...input, id: normal.id, revision: 2 }, data, 'troll');
-    state = (await store.read()).state;
-  }
-  const held = visiblePrices(state, 'troll')[0];
-  expect(held.offer.priceChf).toBe(20);
-  await savePrice(store, { ...input, id: held.id, revision: held.revision, priceChf: 5.5 }, data, 'troll');
-  state = (await store.read()).state;
-  expect(visiblePrices(state, 'troll')[0].offer.priceChf).toBe(5.5);
-  expect(visiblePrices(state, 'normal')[0].offer.priceChf).toBe(6);
-  expect(state.priceChanges).toHaveLength(2);
-  expect(state.history).toHaveLength(1);
+it('requires a menu photo for large changes and leaves public prices untouched', async () => {
+  await expect(savePrice(store, input, data, 'troll')).rejects.toMatchObject({ status: 422 });
+  expect((await store.read()).state.entries).toEqual([]);
+  const normal = await savePrice(store, { ...input, priceChf: offer.priceChf + .5 }, data, 'normal');
+  await expect(savePrice(store, { ...input, id: normal.id, revision: 1 }, data, 'troll')).rejects.toMatchObject({ status: 422 });
+  expect(visiblePrices((await store.read()).state, 'normal')[0]).toEqual(normal);
 });
 
 it('rate limits held prices and retries storage conflicts without leaking them to public state', async () => {
@@ -120,7 +104,7 @@ it('rate limits held prices and retries storage conflicts without leaking them t
     if (conflict) { conflict = false; throw new WriteConflict(); }
     await write(state, etag);
   };
-  let entry = await savePrice(store, input, data, 'troll');
+  let entry = await savePrice(store, { ...input, targetKey: undefined, name: 'New cappuccino' }, data, 'troll');
   for (let n = 1; n < 20; n++) entry = await savePrice(store, { ...input, id: entry.id, revision: entry.revision }, data, 'troll');
   await expect(savePrice(store, { ...input, id: entry.id, revision: entry.revision }, data, 'troll')).rejects.toMatchObject({ status: 429 });
   const state = (await store.read()).state;
@@ -130,7 +114,7 @@ it('rate limits held prices and retries storage conflicts without leaking them t
 });
 
 it('enforces the shared IP cooldown across cities even when cookies are discarded', async () => {
-  for (let i = 0; i < 5; i++) expect((await request(input)).status).toBe(200);
+  for (let i = 0; i < 5; i++) expect((await request({ ...input, targetKey: undefined, name: 'New cappuccino' })).status).toBe(200);
   const bern = JSON.parse(readFileSync('public/data/bern/coffee.json', 'utf8')) as Dataset;
   const venue = bern.bars.find(b => b.offers.some(o => o.coffeeType === 'espresso'))!;
   const espresso = venue.offers.find(o => o.coffeeType === 'espresso')!;
@@ -145,7 +129,7 @@ it('enforces the shared IP cooldown across cities even when cookies are discarde
 });
 
 it('enforces the browser cooldown even when IP addresses change', async () => {
-  const first = await request(input, undefined, 'ip-0');
+  const first = await request({ ...input, targetKey: undefined, name: 'New cappuccino' }, undefined, 'ip-0');
   const cookie = first.headers['Set-Cookie'].split(';')[0];
   let entry = first.data.entry;
   for (let i = 1; i < 5; i++) {
