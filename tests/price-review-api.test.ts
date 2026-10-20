@@ -13,10 +13,10 @@ function state(path: string) {
       barId: 'node/1', venueName: path.includes('bern') ? 'Berner Bar' : path.includes('basel') ? 'Basler Bar' : 'Zürcher Bar',
       address: 'Teststrasse 1', drink: 'beer', source: 'manual', before: { ...offer, priceChf: 8 }, after: offer }] };
 }
-async function request(url = '/output/price-review/production', method = 'GET') {
+async function request(url = '/output/price-review/production', method = 'GET', authorized = true) {
   const headers: Record<string, string> = {};
   let body = '';
-  const req = { url, method, headers: { authorization: 'Basic ' + Buffer.from('admin:review-secret').toString('base64') } } as IncomingMessage;
+  const req = { url, method, headers: { authorization: authorized ? 'Basic ' + Buffer.from('admin:review-secret').toString('base64') : undefined } } as IncomingMessage;
   const res = { statusCode: 0, setHeader: (key: string, value: string) => { headers[key] = value; },
     end: (value?: string) => { body = value || ''; } } as unknown as ServerResponse;
   await handler(req, res);
@@ -46,6 +46,26 @@ describe('online manual price review', () => {
     expect(response.headers['X-Robots-Tag']).toContain('noindex');
     await request();
     expect(mocks.blobStore).toHaveBeenCalledTimes(6);
+  });
+  it('shows all maps across cities, including empty drafts and every publication status', async () => {
+    mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: { ...state(path), customMaps:
+      [undefined, 'pending', 'approved', 'rejected'].map((status, i) => ({ id: `map-${i}`, name: `${path} <Map ${i}>`,
+        createdAt: `2026-10-${10 + i}T10:00:00Z`, entries: [], publication: status ? { status } : undefined })) } }) }));
+    const response = await request();
+    expect(response.status).toBe(200);
+    expect(response.body).toContain('12 Maps in allen Städten');
+    for (const status of ['Nur per Link', 'Zur Prüfung eingereicht', 'Freigegeben', 'Abgelehnt']) expect(response.body).toContain(status);
+    for (const path of ['/?map=map-0', '/bern?map=map-0', '/basel?map=map-0']) expect(response.body).toContain(`href="${path}"`);
+    expect(response.body).toContain('&lt;Map 0&gt;');
+    expect(response.body.match(/action="\/api\/map-review"/g)).toHaveLength(3);
+    expect(response.body).toContain('href="#map-review"');
+    expect((await request('/output/price-review/production?view=maps')).body).toContain('Alle erstellten Maps');
+    expect(response.body).not.toContain('<Map 0>');
+    vi.clearAllMocks();
+    const denied = await request(undefined, undefined, false);
+    expect(denied.status).toBe(401);
+    expect(denied.body).not.toContain('Map 0');
+    expect(mocks.blobStore).not.toHaveBeenCalled();
   });
   it('exports current CSV with no private visitor data', async () => {
     const response = await request('/api/price-review?format=csv');

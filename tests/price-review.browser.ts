@@ -27,3 +27,27 @@ test('filters the local review and opens the before/after details', async ({ pag
   await expect(visibleRows.locator('pre').last()).toContainText('"priceChf": 6');
   await expect(page.getByRole('link', { name: 'CSV · alle Einträge' })).toHaveAttribute('download', '');
 });
+
+
+test('shows all maps independently of price filters on mobile and desktop', async ({ page }) => {
+  const maps = [
+    { city: 'zurich' as const, map: { id: 'draft', name: 'Meine leere Map', createdAt: '2026-10-20T12:00:00Z', entries: [] } },
+    { city: 'bern' as const, map: { id: 'approved', name: 'Günstige Glace', createdAt: '2026-10-19T12:00:00Z', entries: [],
+      publication: { status: 'approved' as const, requestedAt: '2026-10-19', fingerprint: 'test' } } },
+  ];
+  await page.setContent(reviewHtml([], 'production', undefined, true, maps));
+  for (const width of [390, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    const overview = page.locator('#map-overview');
+    await expect(overview.getByRole('heading', { name: 'Alle erstellten Maps' })).toBeVisible();
+    await expect(overview.locator('tbody tr')).toHaveCount(2);
+    await expect(overview.locator('tbody tr').first()).toContainText('Meine leere Map');
+    await expect(overview).toContainText('Nur per Link');
+    await expect(overview).toContainText('Freigegeben');
+    await expect(overview.getByRole('link', { name: 'Günstige Glace' })).toHaveAttribute('href', '/bern?map=approved');
+    await page.getByLabel('Lokal / Angebot').fill('kein Treffer');
+    await expect(overview.locator('tbody tr:visible')).toHaveCount(2);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+    await page.screenshot({ path: `/tmp/wobillig-review-overview-${width}.png`, fullPage: true });
+  }
+});

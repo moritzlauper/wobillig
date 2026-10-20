@@ -32,7 +32,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       if (!form || typeof form.city !== 'string' || !isCity(form.city) || !isMapId(form.id) || typeof form.fingerprint !== 'string'
         || !/^[a-f0-9]{64}$/.test(form.fingerprint) || !['approve', 'reject'].includes(String(form.decision))) return fail(400, 'Ungültige Entscheidung.');
       await reviewMap(store(form.city), form.id, form.fingerprint, form.decision === 'approve');
-      res.statusCode = 303; res.setHeader('Location', '/output/price-review/production?view=maps'); res.end(); return;
+      res.statusCode = 303; res.setHeader('Location', '/output/price-review/production#map-review'); res.end(); return;
     }
     const rows = (await Promise.all((Object.keys(cities) as City[]).map(async city => {
       const { state } = await store(city).read();

@@ -4,8 +4,7 @@ import { cities, cityStoragePath, type City } from '../src/cities.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore } from '../server/prices.js';
 import { reviewRows, reviewHtml, reviewCsv } from '../server/price-review.mjs';
-import { authorizedMapReviewer } from '../server/map-review.js';
-import mapReview from './map-review.js';
+import { authorizedMapReviewer, mapReviewCards } from '../server/map-review.js';
 
 // Password-protected review area. Only price snapshots are exposed;
 // raw state, visitor hashes, limits and scan receipts never leave this handler.
@@ -27,7 +26,6 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     res.setHeader('WWW-Authenticate', 'Basic realm="Wobillig Map Review", charset="UTF-8"');
     return error(401, 'Bitte mit dem Prüfzugang anmelden.');
   }
-  if (new URL(req.url || '/', 'http://localhost').searchParams.get('view') === 'maps') return mapReview(req, res);
   if (!['GET', 'HEAD'].includes(req.method || '')) {
     res.setHeader('Allow', 'GET, HEAD');
     return error(405, 'Methode nicht erlaubt.');
@@ -40,15 +38,16 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         blobStore(cityStoragePath(city, true)).read(),
         readFile(`${process.cwd()}/public/data/${cities[city].data}locations.json`, 'utf8').then(text => JSON.parse(text) as Dataset),
       ]);
-      return reviewRows(state, city, catalogue.bars);
+      return { prices: reviewRows(state, city, catalogue.bars), maps: (state.customMaps || []).map(map => ({ city, map })) };
     }));
-    const rows = grouped.flat().sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || b.revision - a.revision);
+    const rows = grouped.flatMap(group => group.prices).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || b.revision - a.revision);
+    const maps = grouped.flatMap(group => group.maps);
     if (format === 'csv') {
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
       res.setHeader('Content-Disposition', 'attachment; filename="price-changes.csv"');
     }
     res.statusCode = 200;
-    res.end(req.method === 'HEAD' ? undefined : format === 'csv' ? reviewCsv(rows) : reviewHtml(rows, 'production', undefined, true));
+    res.end(req.method === 'HEAD' ? undefined : format === 'csv' ? reviewCsv(rows) : reviewHtml(rows, 'production', undefined, true, maps, mapReviewCards(maps)));
   } catch (cause) {
     console.error('Price review failed', cause instanceof Error ? cause.name : 'UnknownError');
     return error(503, 'Die Preisübersicht konnte nicht vollständig geladen werden. Bitte die Seite später erneut öffnen.');
