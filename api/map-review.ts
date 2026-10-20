@@ -4,6 +4,7 @@ import { isMapId } from '../src/custom-map-data.js';
 import { InputError } from '../src/community.js';
 import { blobStore } from '../server/prices.js';
 import { authorizedMapReviewer, mapReviewHtml, reviewMap } from '../server/map-review.js';
+import { reviewAutomaticMap } from '../server/automatic-map-review.js';
 
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
   res.setHeader('Cache-Control', 'private, no-store'); res.setHeader('Vary', 'Authorization');
@@ -29,6 +30,12 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       }
       if (typeof body === 'string' && body.length > 4096) return fail(413, 'Eintrag zu gross.');
       const form = typeof body === 'string' ? Object.fromEntries(new URLSearchParams(body)) : body as Record<string, unknown>;
+      if (form?.kind === 'automatic') {
+        if (typeof form.city !== 'string' || !isCity(form.city) || !isMapId(form.id) ||
+          !['reviewing', 'blocked', 'rejected'].includes(String(form.decision)) || typeof form.note !== 'string') return fail(400, 'Ungültige Entscheidung.');
+        await reviewAutomaticMap(store(form.city), form.id, Number(form.revision), form.decision as 'reviewing' | 'blocked' | 'rejected', form.note);
+        res.statusCode = 303; res.setHeader('Location', '/output/price-review/production#automatic-map-review'); res.end(); return;
+      }
       if (!form || typeof form.city !== 'string' || !isCity(form.city) || !isMapId(form.id) || typeof form.fingerprint !== 'string'
         || !/^[a-f0-9]{64}$/.test(form.fingerprint) || !['approve', 'reject'].includes(String(form.decision))) return fail(400, 'Ungültige Entscheidung.');
       await reviewMap(store(form.city), form.id, form.fingerprint, form.decision === 'approve');
@@ -36,8 +43,8 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     }
     const rows = (await Promise.all((Object.keys(cities) as City[]).map(async city => {
       const { state } = await store(city).read();
-      return (state.customMaps || []).filter(map => map.publication?.status === 'pending').map(map => ({ city, map }));
-    }))).flat().sort((a, b) => a.map.publication!.requestedAt.localeCompare(b.map.publication!.requestedAt));
+      return (state.customMaps || []).filter(map => map.publication?.status === 'pending' || map.automatic).map(map => ({ city, map }));
+    }))).flat().sort((a, b) => a.map.createdAt.localeCompare(b.map.createdAt));
     res.statusCode = 200; res.setHeader('Content-Type', 'text/html; charset=utf-8'); res.end(mapReviewHtml(rows));
   } catch (error) {
     if (error instanceof InputError) return fail(error.status, error.message);

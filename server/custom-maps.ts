@@ -10,14 +10,34 @@ function text(value: unknown, max: number) {
 }
 export const mapFingerprint = (map: CustomMap) => createHash('sha256').update(JSON.stringify({ name: map.name, entries: map.entries })).digest('hex');
 
+// Suggestions are stored for review only. Never fetch a visitor-supplied URL.
+export function automaticMapInput(input: Record<string, unknown>) {
+  const description = typeof input.description === 'string' ? input.description.replace(/\r\n?/g, '\n').trim() : '';
+  if (!text(description.replace(/\n/g, ' '), 600)) throw new InputError('Bitte beschreiben, welche Angebote die Map zeigen soll (höchstens 600 Zeichen).');
+  try {
+    if (!text(input.sourceUrl, 2000)) throw new Error();
+    const url = new URL((input.sourceUrl as string).trim());
+    if (url.protocol !== 'https:' || url.username || url.password) throw new Error();
+    url.hash = '';
+    return { sourceUrl: url.href, description };
+  } catch { throw new InputError('Bitte einen gültigen HTTPS-Link zur Angebotsseite eingeben.'); }
+}
+export function duplicateAutomaticMap(maps: CustomMap[], suggestion: { sourceUrl: string; description: string }) {
+  const normalize = (value: string) => value.toLocaleLowerCase('de-CH').replace(/\s+/g, ' ').trim();
+  return maps.find(map => map.automatic && map.automatic.status !== 'rejected' &&
+    map.automatic.sourceUrl === suggestion.sourceUrl && normalize(map.automatic.description) === normalize(suggestion.description));
+}
+
 export async function saveCustomMap(store: Store, value: unknown, datasets: Parameters<typeof communityVenues>[0], visitor: string, now = Date.now(), city: City = 'zurich'): Promise<CustomMap> {
   if (!value || typeof value !== 'object') throw new InputError('Ungültiger Eintrag.');
   const input = value as Record<string, unknown>;
   if (!isMapId(input.mapId)) throw new InputError('Ungültige Map.');
-  const create = input.action === 'createMap';
+  const automatic = input.action === 'requestAutomaticMap';
+  const create = input.action === 'createMap' || automatic;
   const visibility = input.action === 'requestMapPublication' || input.action === 'withdrawMapPublication';
   if (!create && !visibility && input.action !== 'saveMapEntry') throw new InputError('Ungültiger Eintrag.');
   if (create && !text(input.name, 60)) throw new InputError('Bitte einen Map-Namen mit höchstens 60 Zeichen eingeben.');
+  const suggestion = automatic ? automaticMapInput(input) : undefined;
   if (!create && !visibility && (!text(input.product, 100) || typeof input.priceChf !== 'number' || !Number.isFinite(input.priceChf) ||
     input.priceChf < 0.5 || input.priceChf > 500 || Math.abs(input.priceChf * 100 - Math.round(input.priceChf * 100)) > .00001 ||
     !Number.isSafeInteger(input.revision) || (input.revision as number) < 0)) {
@@ -29,11 +49,18 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     const existing = maps.find(map => map.id === input.mapId);
     // The client keeps the creation ID during retries after a lost response.
     if (create && existing) {
-      if (existing.name !== (input.name as string).trim()) throw new InputError('Ungültige Map.', 409);
+      if (existing.name !== (input.name as string).trim() || Boolean(existing.automatic) !== automatic ||
+        (suggestion && (existing.automatic?.sourceUrl !== suggestion.sourceUrl || existing.automatic?.description !== suggestion.description))) throw new InputError('Ungültige Map.', 409);
       return existing;
     }
+    if (suggestion) {
+      const duplicate = duplicateAutomaticMap(maps, suggestion);
+      if (duplicate) return duplicate;
+    }
     if (!create && !existing) throw new InputError('Diese Map wurde nicht gefunden.', 404);
+    if (!create && existing?.automatic) throw new InputError('Diese automatische Map wird vom Team geprüft. Manuelle Änderungen sind nicht möglich.', 409);
     const map: CustomMap = existing || { id: input.mapId, name: (input.name as string).trim(), createdAt: new Date(now).toISOString(), entries: [] };
+    if (suggestion) map.automatic = { ...suggestion, status: 'requested', revision: 1 };
     if (visibility) {
       if (input.action === 'requestMapPublication') {
         if (mapVenueCount(map) < PUBLIC_MAP_MIN_VENUES) throw new InputError('Zum Veröffentlichen bitte mindestens einen Ort mit Preis eintragen.', 422);

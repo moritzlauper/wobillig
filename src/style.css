@@ -37,7 +37,7 @@ a { color: var(--link); text-underline-offset: 2px; }
 #custom-map-canvas .leaflet-popup-content-wrapper, #custom-map-canvas .leaflet-popup-tip { background: var(--surface); color: var(--text); }
 #custom-map-canvas .leaflet-control-attribution a, #custom-map-canvas .leaflet-popup-close-button { color: var(--link); }
 .custom-map-form > label, #custom-venue-fields > label:not(.check) { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
-.custom-map-form input, .custom-map-form select { width: 100%; min-width: 0; }
+.custom-map-form input, .custom-map-form select, .custom-map-form textarea { width: 100%; min-width: 0; }
 .custom-map-form [data-error] { color: var(--error); }
 .custom-map-form > button[type=submit] { width: 100%; }
 #map-new-venue { margin-bottom: 14px; }
@@ -318,3 +318,9 @@ dialog::backdrop { background: var(--backdrop); }
 #map .leaflet-tooltip-left::before { border-left-color: var(--surface); }
 #map .leaflet-tooltip-right::before { border-right-color: var(--surface); }
 input::placeholder { color: var(--subtle); opacity: 1; }
+
+.custom-map-form fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.custom-map-form fieldset label { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.custom-map-form textarea { font: inherit; padding: 10px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 3px; resize: vertical; }
+#automatic-map-details { padding: 20px; overflow-y: auto; overflow-wrap: anywhere; max-width: 680px; }
+#automatic-map-details h2 { font-size: 20px; }

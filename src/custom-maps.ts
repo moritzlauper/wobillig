@@ -1,7 +1,7 @@
 import L from 'leaflet';
 import { cities, type City } from './cities';
 import { escapeHtml as e, type Bar } from './data';
-import { isMapId, publicMapSummaries, PUBLIC_MAP_MIN_VENUES, mapVenueCount, type MapPlace, type PublicMap, type CustomMap, type MapEntry } from './custom-map-data';
+import { isMapId, automaticMapStatusLabels, publicMapSummaries, PUBLIC_MAP_MIN_VENUES, mapVenueCount, type AutomaticMapRequest, type MapPlace, type PublicMap, type CustomMap, type MapEntry } from './custom-map-data';
 import type { categoryNavigation } from './category-navigation';
 import { dateLocale, t } from './i18n';
 import { shareLink } from './sharing';
@@ -17,7 +17,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   const nav = document.getElementById('category-navigation')!;
   const api = `/api/prices?city=${city}`;
   const storageKey = `wobillig:maps:${city}`;
-  let saved: { id: string; name: string }[] = [];
+  let saved: { id: string; name: string; automaticStatus?: AutomaticMapRequest['status'] }[] = [];
   try {
     const value: unknown = JSON.parse(localStorage.getItem(storageKey) || '[]');
     if (Array.isArray(value)) saved = value.filter(item => item && isMapId(item.id) && typeof item.name === 'string').slice(0, 20);
@@ -41,10 +41,16 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   create.id = 'create-map-dialog'; create.setAttribute('aria-labelledby', 'create-map-title');
   create.innerHTML = `<form class="custom-map-form">
     <div class="dialog-top"><strong id="create-map-title">${t('Eigene Map erstellen')}</strong><button type="button" data-close>${t('Schliessen')}</button></div>
-    <p>${t('Ob Essen, Alltagsprodukte oder Dienstleistungen: Erstelle eine Map und sammle Orte mit Preisen.')}</p>
+    <label>${t('Art der Map')}<select name="mode"><option value="manual">${t('Map selbst erstellen')}</option><option value="automatic">${t('Automatische Map anfragen')}</option></select></label>
+    <p data-manual>${t('Ob Essen, Alltagsprodukte oder Dienstleistungen: Erstelle eine Map und sammle Orte mit Preisen.')}</p>
     <label>${t('Name der Map')}<input name="name" required maxlength="60" placeholder="${t('z. B. Döner-Map')}" autocomplete="off"></label>
-    <p class="muted">${e(t(cities[city].name))} · ${t('Alle mit dem Link können Preise ansehen und ergänzen.')}</p>
-    <p class="muted">${t('Deine Map ist zunächst nur per Link erreichbar. Ab einem Ort mit Preis kannst du sie zur Veröffentlichung einreichen.')}</p>
+    <fieldset data-automatic hidden disabled>
+      <label>${t('Link zur Angebotsseite')}<input name="sourceUrl" type="url" maxlength="2000" placeholder="https://www.coop.ch/…" required></label>
+      <label>${t('Welche Angebote möchtest du sehen?')}<textarea name="description" rows="3" maxlength="600" required placeholder="${t('z. B. Kaffeeaktionen bei Coop in Zürich')}"></textarea></label>
+      <p class="muted">${t('Wir prüfen die Quelle und ob sich ihre Angebote zuverlässig übernehmen lassen. Die Anfrage startet noch keine automatische Map.')}</p>
+    </fieldset>
+    <p class="muted">${e(t(cities[city].name))} · <span data-manual>${t('Alle mit dem Link können Preise ansehen und ergänzen.')}</span><span data-automatic-copy hidden>${t('Den Status findest du unter «Meine Maps».')}</span></p>
+    <p class="muted" data-manual>${t('Deine Map ist zunächst nur per Link erreichbar. Ab einem Ort mit Preis kannst du sie zur Veröffentlichung einreichen.')}</p>
     <button class="primary" type="submit">${t('Map erstellen')}</button>
     <p role="alert" data-error hidden></p>
   </form><section id="saved-maps" hidden><h3>${t('Meine Maps')}</h3><div></div></section>`;
@@ -77,6 +83,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     <button type="button" class="primary" id="map-add-entry">+ ${t('Lokal und Preis hinzufügen')}</button>
     </div><p id="custom-map-summary" role="status"></p><p id="custom-map-visibility" class="muted"></p>
     <p id="custom-map-action-error" role="alert" hidden></p>
+    <section id="automatic-map-details" hidden></section>
     <div id="custom-map-share" hidden><label>${t('Diesen Link kopieren und teilen:')}<input type="url" readonly></label></div>
     <div class="custom-map-content"><div id="custom-map-canvas" role="region" aria-label="${t('Eigene Map')}"></div><div id="custom-map-entries"></div></div>`;
   app.append(view);
@@ -100,7 +107,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     return error instanceof Error && error.name === 'Error' ? error.message : t('Map konnte nicht geladen oder gespeichert werden. Bitte erneut versuchen.');
   }
   function remember(value: CustomMap) {
-    saved = [{ id: value.id, name: value.name }, ...saved.filter(item => item.id !== value.id)].slice(0, 20);
+    saved = [{ id: value.id, name: value.name, automaticStatus: value.automatic?.status }, ...saved.filter(item => item.id !== value.id)].slice(0, 20);
     try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch { /* Sharing remains available. */ }
     mine.hidden = false;
     navigation.setMapLibrary(mine);
@@ -110,19 +117,44 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     publicMaps = maps.filter(item => isMapId(item.id) && item.venueCount >= PUBLIC_MAP_MIN_VENUES);
     navigation.setCustomMaps(publicMaps, id => { void load(id); });
   }
-  function showPicker() {
-    navigation.close();
-    errorText(create, '');
+  function renderSavedMaps() {
     const section = create.querySelector<HTMLElement>('#saved-maps')!;
     section.hidden = !saved.length;
     const list = section.querySelector('div')!; list.replaceChildren();
     for (const item of saved) {
-      const button = document.createElement('button'); button.type = 'button'; button.textContent = item.name;
+      const button = document.createElement('button'); button.type = 'button';
+      button.textContent = item.name + (item.automaticStatus && Object.hasOwn(automaticMapStatusLabels, item.automaticStatus) ? ` · ${t(automaticMapStatusLabels[item.automaticStatus])}` : '');
       button.onclick = () => void load(item.id);
       list.append(button);
     }
-    create.showModal();
   }
+  function showPicker() {
+    navigation.close(); errorText(create, ''); renderSavedMaps(); create.showModal();
+    if (saved.length) void fetch(`${api}&mapStatuses=${saved.map(item => item.id).join(',')}`, { signal: AbortSignal.timeout(10000) })
+      .then(async response => {
+        if (!response.ok) return;
+        const result = await response.json();
+        if (!Array.isArray(result.maps)) return;
+        saved = saved.map(item => {
+          const fresh = result.maps.find((map: { id: string }) => map.id === item.id);
+          return fresh && typeof fresh.name === 'string' ? { id: item.id, name: fresh.name, automaticStatus: fresh.automaticStatus } : item;
+        });
+        try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch { /* Status remains available via the link. */ }
+        if (create.open) renderSavedMaps();
+      }).catch(() => { /* The last known status stays visible; opening a request retries. */ });
+  }
+  const mode = create.querySelector<HTMLSelectElement>('[name="mode"]')!;
+  function updateCreateMode() {
+    const automatic = mode.value === 'automatic';
+    create.querySelectorAll<HTMLElement>('[data-manual]').forEach(element => { element.hidden = automatic; });
+    const fields = create.querySelector<HTMLFieldSetElement>('[data-automatic]')!;
+    fields.hidden = !automatic; fields.disabled = !automatic || busy;
+    create.querySelector<HTMLElement>('[data-automatic-copy]')!.hidden = !automatic;
+    create.querySelector<HTMLElement>('#create-map-title')!.textContent = automatic ? t('Automatische Map anfragen') : t('Eigene Map erstellen');
+    create.querySelector<HTMLButtonElement>('[type="submit"]')!.textContent = automatic ? t('Anfrage einreichen') : t('Map erstellen');
+    create.querySelector<HTMLInputElement>('[name="name"]')!.placeholder = automatic ? t('z. B. Coop Aktionen Zürich') : t('z. B. Döner-Map');
+  }
+  mode.onchange = () => { createId = crypto.randomUUID(); errorText(create, ''); updateCreateMode(); };
   plus.onclick = mine.onclick = showPicker;
   for (const dialog of [create, entry]) {
     dialog.querySelector<HTMLButtonElement>('[data-close]')!.onclick = () => { if (!busy) dialog.close(); };
@@ -133,8 +165,9 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     busy = value;
     for (const dialog of [create, entry]) {
       dialog.setAttribute('aria-busy', String(value));
-      dialog.querySelectorAll<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>('button,input,select').forEach(control => { control.disabled = value; });
+      dialog.querySelectorAll<HTMLButtonElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('button,input,select,textarea').forEach(control => { control.disabled = value; });
     }
+    updateCreateMode();
     if (value) closeVenueSuggestions();
     if (!value && lockedVenue) field('search').disabled = true;
   }
@@ -143,8 +176,10 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     const name = create.querySelector<HTMLInputElement>('[name="name"]')!.value;
     setBusy(true); errorText(create, '');
     try {
-      const value = await call({ action: 'createMap', mapId: createId, name });
-      createId = crypto.randomUUID(); create.querySelector('form')!.reset(); create.close(); open(value);
+      const value = await call({ action: mode.value === 'automatic' ? 'requestAutomaticMap' : 'createMap', mapId: createId, name,
+        ...(mode.value === 'automatic' ? { sourceUrl: create.querySelector<HTMLInputElement>('[name="sourceUrl"]')!.value,
+          description: create.querySelector<HTMLTextAreaElement>('[name="description"]')!.value } : {}) });
+      createId = crypto.randomUUID(); create.querySelector('form')!.reset(); updateCreateMode(); create.close(); open(value);
     } catch (error) { errorText(create, failure(error)); }
     finally { setBusy(false); }
   };
@@ -165,6 +200,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   }
   function updatePublicationControl(saving = false) {
     if (!current) return;
+    if (current.automatic) { el('map-publish-control').hidden = true; return; }
     const remaining = Math.max(0, PUBLIC_MAP_MIN_VENUES - mapVenueCount(current));
     const submitted = ['pending', 'approved'].includes(current.publication?.status || '');
     el('map-publish-control').hidden = submitted;
@@ -188,6 +224,20 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     el('custom-map-name').textContent = value.name;
     el('custom-map-action-error').hidden = true;
     el('custom-map-share').hidden = true;
+    const automatic = value.automatic;
+    el('automatic-map-details').hidden = !automatic;
+    view.querySelector<HTMLElement>('.custom-map-content')!.hidden = Boolean(automatic);
+    el('map-add-entry').hidden = Boolean(automatic);
+    if (automatic) {
+      el('map-publish-control').hidden = true; el('map-withdraw').hidden = true;
+      el('custom-map-summary').textContent = t(automaticMapStatusLabels[automatic.status]);
+      el('custom-map-visibility').textContent = t('Anfrage nur per Link erreichbar. Es werden noch keine Angebote importiert.');
+      el('automatic-map-details').innerHTML = `<h2>${e(t('Gewünschte Angebote'))}</h2><p>${e(automatic.description)}</p>
+        <p><a href="${e(automatic.sourceUrl)}" target="_blank" rel="noopener noreferrer">${e(t('Vorgeschlagene Quelle ansehen'))}</a></p>
+        <p>${e(t('Wir prüfen die Quelle und ob sich ihre Angebote zuverlässig übernehmen lassen. Die Anfrage startet noch keine automatische Map.'))}</p>
+        ${automatic.note ? `<h3>${e(t('Rückmeldung vom Team'))}</h3><p>${e(automatic.note)}</p>` : ''}`;
+      el('map-back').focus(); return;
+    }
     if (!map) {
       map = L.map(el('custom-map-canvas')).setView(cities[city].center, 13);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);

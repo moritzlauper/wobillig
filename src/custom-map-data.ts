@@ -7,7 +7,20 @@ export type MapEntry = {
   revision: number;
   updatedAt: string;
 };
+export type AutomaticMapRequest = {
+  sourceUrl: string;
+  description: string;
+  status: 'requested' | 'reviewing' | 'blocked' | 'rejected';
+  revision: number;
+  reviewedAt?: string;
+  note?: string;
+};
+export const automaticMapStatusLabels: Record<AutomaticMapRequest['status'], string> = {
+  requested: 'Anfrage eingereicht', reviewing: 'Quelle wird geprüft',
+  blocked: 'Quelle noch nicht verfügbar', rejected: 'Anfrage abgelehnt',
+};
 export type CustomMap = { id: string; name: string; createdAt: string; publishedAt?: string;
+  automatic?: AutomaticMapRequest;
   publication?: { status: 'pending' | 'approved' | 'rejected'; requestedAt: string; reviewedAt?: string; fingerprint: string };
   entries: MapEntry[] };
 export type MapPlace = { venue: Bar; token: string };
@@ -15,7 +28,7 @@ export type PublicMap = Pick<CustomMap, 'id' | 'name'> & { venueCount: number };
 export const PUBLIC_MAP_MIN_VENUES = 1;
 export const mapVenueCount = (map: CustomMap) => new Set(map.entries.map(entry => entry.venue.id)).size;
 export function publicMapSummaries(maps: CustomMap[]): PublicMap[] {
-  return maps.filter(map => map.publication?.status === 'approved' && Boolean(map.publishedAt)).map(map => ({ id: map.id, name: map.name, venueCount: mapVenueCount(map) }))
+  return maps.filter(map => !map.automatic && map.publication?.status === 'approved' && Boolean(map.publishedAt)).map(map => ({ id: map.id, name: map.name, venueCount: mapVenueCount(map) }))
     .filter(map => map.venueCount >= PUBLIC_MAP_MIN_VENUES);
 }
 export const isMapId = (value: unknown): value is string =>

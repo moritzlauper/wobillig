@@ -9,7 +9,7 @@ import { coffeeRatingSummaries } from '../server/coffee-ratings.js';
 import { priceOwner, visiblePrices } from '../server/price-moderation.js';
 import { PriceCooldownError, withPriceCooldown } from '../server/price-cooldown.js';
 import { isMapId, publicMapSummaries } from '../src/custom-map-data.js';
-import { saveCustomMap, mapFingerprint } from '../server/custom-maps.js';
+import { saveCustomMap, mapFingerprint, automaticMapInput, duplicateAutomaticMap } from '../server/custom-maps.js';
 import { searchMapPlaces } from '../server/map-places.js';
 import { withMapQuota } from '../server/map-quota.js';
 import { saveVenueCorrection } from '../server/venue-corrections.js';
@@ -34,6 +34,14 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     if (req.method === 'GET') {
       const { state } = await store.read();
+      const statusIds = new URL(req.url || '/', 'http://localhost').searchParams.get('mapStatuses');
+      if (statusIds !== null) {
+        const ids = statusIds.split(',');
+        if (ids.length > 20 || !ids.every(isMapId)) throw new InputError('Ungültige Map.');
+        return reply(200, { maps: (state.customMaps || []).filter(map => ids.includes(map.id)).map(map => ({
+          id: map.id, name: map.name, automaticStatus: map.automatic?.status,
+        })) });
+      }
       const mapId = new URL(req.url || '/', 'http://localhost').searchParams.get('map');
       if (mapId !== null) {
         if (!isMapId(mapId)) throw new InputError('Ungültige Map.');
@@ -61,22 +69,27 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!secret) throw new Error('Missing storage secret');
     const visitor = createHmac('sha256', secret).update(`${new Date().toISOString().slice(0, 10)}:${ip}`).digest('hex');
-    if (body && typeof body === 'object' && 'action' in body && ['createMap', 'saveMapEntry', 'requestMapPublication', 'withdrawMapPublication'].includes(String(body.action))) {
+    if (body && typeof body === 'object' && 'action' in body && ['createMap', 'requestAutomaticMap', 'saveMapEntry', 'requestMapPublication', 'withdrawMapPublication'].includes(String(body.action))) {
       const input = body as Record<string, unknown>;
+      const creating = input.action === 'createMap' || input.action === 'requestAutomaticMap';
       const save = () => saveCustomMap(store, input, data, visitor, Date.now(), city);
-      if (input.action !== 'createMap' && input.action !== 'requestMapPublication') return reply(200, { map: await save() });
+      if (!creating && input.action !== 'requestMapPublication') return reply(200, { map: await save() });
       if (!isMapId(input.mapId)) throw new InputError('Ungültige Map.');
       const owner = priceOwner(req, res, true)!;
       const mapIp = createHmac('sha256', secret).update(`map-quota:${ip}`).digest('hex');
       const { state } = await store.read();
       const existing = state.customMaps?.find(map => map.id === input.mapId);
       // Retrying a completed operation must not consume another daily slot.
-      if (existing && (input.action === 'createMap' || ['pending', 'approved'].includes(existing.publication?.status || ''))) {
-        return reply(200, { map: input.action === 'createMap' ? await save() : existing });
+      if (existing && (creating || ['pending', 'approved'].includes(existing.publication?.status || ''))) {
+        return reply(200, { map: creating ? await save() : existing });
+      }
+      // Reopening an identical request is read-only, including after a lost response.
+      if (input.action === 'requestAutomaticMap' && duplicateAutomaticMap(state.customMaps || [], automaticMapInput(input))) {
+        return reply(200, { map: await save() });
       }
       const operation = `${city}:${input.mapId}:${input.action === 'requestMapPublication' && existing ? mapFingerprint(existing) : ''}`;
       const quotaStore = blobStore(`maps/quotas/${process.env.VERCEL_ENV === 'production' ? 'production' : 'development'}.json`);
-      return reply(200, { map: await withMapQuota(quotaStore, input.action === 'createMap' ? 'create' : 'publish', mapIp, owner, operation, save) });
+      return reply(200, { map: await withMapQuota(quotaStore, creating ? 'create' : 'publish', mapIp, owner, operation, save) });
     }
     if (body && typeof body === 'object' && 'action' in body && body.action === 'rateCoffee') {
       throw new InputError('Bitte ein Foto mit deinem Kaffee aus diesem Lokal hochladen.', 422);

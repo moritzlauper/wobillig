@@ -5,6 +5,7 @@ import { escapeHtml as e } from '../src/data.js';
 import { mapVenueCount, PUBLIC_MAP_MIN_VENUES, type CustomMap } from '../src/custom-map-data.js';
 import { mapFingerprint } from './custom-maps.js';
 import { WriteConflict, type Store } from './prices.js';
+import { automaticMapReviewCards } from './automatic-map-review.js';
 
 export function authorizedMapReviewer(header: string | undefined): boolean {
   const password = process.env.MAP_REVIEW_PASSWORD;
@@ -17,7 +18,7 @@ export async function reviewMap(store: Store, id: string, fingerprint: string, a
   for (let attempt = 0; attempt < 4; attempt++) {
     const { state, etag } = await store.read();
     const map = state.customMaps?.find(map => map.id === id);
-    if (!map || map.publication?.status !== 'pending' || mapFingerprint(map) !== fingerprint) {
+    if (!map || map.automatic || map.publication?.status !== 'pending' || mapFingerprint(map) !== fingerprint) {
       throw new InputError('Diese Map wurde inzwischen geändert. Bitte neu laden.', 409);
     }
     if (approve && mapVenueCount(map) < PUBLIC_MAP_MIN_VENUES) throw new InputError('Zum Veröffentlichen bitte mindestens einen Ort mit Preis eintragen.', 422);
@@ -30,10 +31,10 @@ export async function reviewMap(store: Store, id: string, fingerprint: string, a
   throw new InputError('Die Map wird gerade geändert. Bitte erneut versuchen.', 409);
 }
 export function mapReviewCards(rows: { city: City; map: CustomMap }[]): string {
-  const pending = rows.filter(row => row.map.publication?.status === 'pending');
-  return pending.map(({ city, map }) => `<article><h2>${e(map.name)}</h2><p>${e(cities[city].name)} · ${mapVenueCount(map)} Orte · <a href="${cities[city].path}?map=${encodeURIComponent(map.id)}" target="_blank" rel="noopener noreferrer">Map ansehen</a></p>
+  const pending = rows.filter(row => !row.map.automatic && row.map.publication?.status === 'pending');
+  return (pending.map(({ city, map }) => `<article><h2>${e(map.name)}</h2><p>${e(cities[city].name)} · ${mapVenueCount(map)} Orte · <a href="${cities[city].path}?map=${encodeURIComponent(map.id)}" target="_blank" rel="noopener noreferrer">Map ansehen</a></p>
     <div class="scroll"><table><thead><tr><th>Ort / Adresse</th><th>Produkt / Menge</th><th>CHF</th></tr></thead><tbody>${map.entries.map(entry => `<tr><td><strong>${e(entry.venue.name)}</strong><br>${e([entry.venue.address, entry.venue.postcode].filter(Boolean).join(' · '))}${/^(node|way|relation)\/\d+$/.test(entry.venue.id) ? `<br><a href="https://www.openstreetmap.org/${entry.venue.id}" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>` : ''}</td><td>${e(entry.product)}</td><td>${entry.priceChf.toFixed(2)}</td></tr>`).join('')}</tbody></table></div>
-    <form method="post" action="/api/map-review"><input type="hidden" name="city" value="${city}"><input type="hidden" name="id" value="${e(map.id)}"><input type="hidden" name="fingerprint" value="${mapFingerprint(map)}"><button name="decision" value="approve">Freigeben und veröffentlichen</button><button name="decision" value="reject">Ablehnen</button></form></article>`).join('') || '<p>Keine offenen Einreichungen.</p>';
+    <form method="post" action="/api/map-review"><input type="hidden" name="city" value="${city}"><input type="hidden" name="id" value="${e(map.id)}"><input type="hidden" name="fingerprint" value="${mapFingerprint(map)}"><button name="decision" value="approve">Freigeben und veröffentlichen</button><button name="decision" value="reject">Ablehnen</button></form></article>`).join('') || '<p>Keine offenen Einreichungen.</p>') + automaticMapReviewCards(rows);
 }
 export function mapReviewHtml(rows: { city: City; map: CustomMap }[]): string {
   const pending = rows.filter(row => row.map.publication?.status === 'pending');
