@@ -21,6 +21,9 @@ a { color: var(--link); text-underline-offset: 2px; }
 #app.custom-map-active > :not(#custom-map-view) { display: none !important; }
 #custom-map-view { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .custom-map-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px; border-bottom: 1px solid var(--divider); }
+#map-publish-control { display: flex; flex-direction: column; gap: 5px; max-width: 260px; }
+#map-publish-help { margin: 0; font-size: var(--font-control); }
+#map-publish:disabled { cursor: not-allowed; }
 #custom-map-name { flex: 1; min-width: 100px; overflow-wrap: anywhere; }
 #custom-map-summary { margin: 0; padding: 10px; border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
 #custom-map-visibility { margin: 0; padding: 8px 10px; border-bottom: 1px solid var(--divider); font-size: var(--font-control); }

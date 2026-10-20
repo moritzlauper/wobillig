@@ -69,7 +69,10 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     <button type="button" id="map-back">← ${t('Zurück')}</button>
     <strong id="custom-map-name"></strong>
     <button type="button" id="map-share">${t('Map teilen')}</button>
-    <button type="button" id="map-publish">${t('Für alle veröffentlichen')}</button>
+    <div id="map-publish-control">
+      <button type="button" id="map-publish" aria-describedby="map-publish-help">${t('Für alle veröffentlichen')}</button>
+      <p id="map-publish-help" role="status" hidden></p>
+    </div>
     <button type="button" id="map-withdraw" hidden>${t('Veröffentlichung zurückziehen')}</button>
     <button type="button" class="primary" id="map-add-entry">+ ${t('Lokal und Preis hinzufügen')}</button>
     </div><p id="custom-map-summary" role="status"></p><p id="custom-map-visibility" class="muted"></p>
@@ -160,6 +163,19 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     const result = new URL(location.href); result.search = ''; result.hash = ''; result.searchParams.set('map', id);
     return result.href;
   }
+  function updatePublicationControl(saving = false) {
+    if (!current) return;
+    const remaining = Math.max(0, PUBLIC_MAP_MIN_VENUES - mapVenueCount(current));
+    const submitted = ['pending', 'approved'].includes(current.publication?.status || '');
+    el('map-publish-control').hidden = submitted;
+    el<HTMLButtonElement>('map-publish').disabled = saving || remaining > 0 || submitted;
+    const help = el('map-publish-help');
+    help.hidden = !saving && remaining === 0;
+    help.textContent = saving ? t('Wird gespeichert …') : remaining > 0
+      ? t('Mindestens {minimum} verschiedene Orte mit Preis nötig.', { minimum: PUBLIC_MAP_MIN_VENUES }) + ' '
+        + (remaining === 1 ? t('Es fehlt noch 1 Ort.') : t('Es fehlen noch {count} Orte.', { count: remaining }))
+      : '';
+  }
   function open(value: CustomMap) {
     current = value; remember(value);
     view.hidden = false; app.classList.add('custom-map-active');
@@ -189,8 +205,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       : status === 'rejected' ? t('Veröffentlichung abgelehnt. Du kannst die Map überarbeiten und erneut einreichen. Der Link bleibt nutzbar.')
       : count >= PUBLIC_MAP_MIN_VENUES ? t('Nur per Link erreichbar. Du kannst die Map jetzt zur Veröffentlichung einreichen.')
       : t('Nur per Link erreichbar: {count} von {minimum} Orten für eine Veröffentlichungseinreichung.', { count, minimum: PUBLIC_MAP_MIN_VENUES });
-    el<HTMLButtonElement>('map-publish').disabled = count < PUBLIC_MAP_MIN_VENUES || status === 'pending' || status === 'approved';
-    el('map-publish').hidden = status === 'pending' || status === 'approved';
+    updatePublicationControl();
     el('map-withdraw').hidden = status !== 'pending' && status !== 'approved';
     el('custom-map-entries').replaceChildren();
     if (!entries.length) {
@@ -376,12 +391,13 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     busy = true; el('custom-map-action-error').hidden = true;
     const buttons = view.querySelectorAll<HTMLButtonElement>('.custom-map-toolbar button');
     buttons.forEach(button => { button.disabled = true; });
+    updatePublicationControl(true);
     try { open(await call({ action, mapId: id })); }
     catch (error) {
       el('custom-map-action-error').textContent = failure(error); el('custom-map-action-error').hidden = false;
     } finally {
       busy = false; buttons.forEach(button => { button.disabled = false; });
-      el<HTMLButtonElement>('map-publish').disabled = !current || mapVenueCount(current) < PUBLIC_MAP_MIN_VENUES || ['pending', 'approved'].includes(current.publication?.status || '');
+      updatePublicationControl();
     }
   }
   el('map-publish').onclick = () => { void publication('requestMapPublication'); };
