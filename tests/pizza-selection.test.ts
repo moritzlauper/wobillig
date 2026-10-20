@@ -7,8 +7,14 @@ describe('ingredient-based pizza classics', () => {
   it.each([
     ['Ortolana', 'Pomodoro, mozzarella, verdure di stagione', 'vegetariana'],
     ['Giardino', 'Tomaten, Mozzarella, Auberginen, Zucchetti', 'vegetariana'],
-    ['Amalfi Vegan', 'Tomatensauce, Zwiebeln, Aubergine, Zucchini, Kartoffeln', 'vegetariana'],
-    ['Vegetariana', 'Verschiedenes Gemüse, Oregano', 'vegetariana'],
+    ['Amalfi Vegan', 'Tomatensauce, Zwiebeln, Aubergine, Zucchini, Kartoffeln', 'vegan'],
+    ['Vegana', 'Tomatensauce, Zucchine, Auberginen, Peperoni, Artischockenherzen', 'vegan'],
+    ['Verdure', 'Mozzarella fior di latte, Artischocken-Crème, Artischockenherzen, Auberginen, Kirschtomaten und Basilikum', 'vegetariana'],
+    ['Verdura', 'Tomaten, Büffelmozzarella, Auberginen, Zucchini', 'vegetariana'],
+    ['Ortolana', 'Fiordilatte, verdure di stagione', 'vegetariana'],
+    ['Verdura (Vegan)', 'Veganer Käse, Tomatensauce, Aubergine, Broccoli, Champignons', 'vegan'],
+    ['Vegan Porcini', 'Tomatensauce, Steinpilzen, veganem Mozzarella', 'vegan'],
+    ['Giardino', 'veganer fior di latte, Aubergine, Datteltomaten, Mandeln', 'vegan'],
     ['Estate', 'Mozzarella, Peperoni, Pilze', 'vegetariana'],
     ['Bosco', 'Tomaten, Mozzarella, Champignons', 'funghi'],
     ['Della casa', 'Pomodoro, mozzarella, prosciutto cotto', 'prosciutto'],
@@ -39,6 +45,10 @@ describe('ingredient-based pizza classics', () => {
     ['Gorgonzola', 'Tomaten, Mozzarella, Gorgonzola'],
     ['Fiorentina', 'Tomaten, Mozzarella, Spinat, Ei'],
     ['Fantasia', 'Tomaten, Mozzarella'],
+    ['Vegetariana', 'Verschiedenes Gemüse, Oregano'],
+    ['Giardino', 'Tomaten, Auberginen, Zucchini'],
+    ['Verdure', 'Tomaten, Parmesan, Auberginen, Zucchini'],
+    ['Vegan', 'Tomaten, Auberginen, Schinken'],
   ])('does not put %s in an unsuitable classic', (name, ingredients) => {
     expect(pizzaGroup({ name, ingredients, pizzaType: 'other' })).toBeUndefined();
   });
@@ -48,15 +58,17 @@ describe('ingredient-based pizza classics', () => {
       expect(pizzaGroup({ name, pizzaType: 'other' })).toBe('quattro_formaggi');
     }
     expect(pizzaGroup({ name: 'Ortolana', pizzaType: 'other' })).toBe('vegetariana');
+    expect(pizzaGroup({ name: 'Verdura', pizzaType: 'other' })).toBe('vegetariana');
+    expect(pizzaGroup({ name: 'Vegana', pizzaType: 'other' })).toBe('vegan');
     expect(pizzaGroup({ name: 'Prosciutto & Funghi', pizzaType: 'other' })).toBe('prosciutto_funghi');
     expect(pizzaGroup({ name: 'La sorpresa', pizzaType: 'other' })).toBeUndefined();
     expect(pizzaGroup({ name: 'Prosciutto', pizzaType: 'margherita' })).toBeUndefined();
   });
 
-  it.each(['', 'basel/', 'bern/'])('keeps the %s city menu to ten classics including Margherita', city => {
+  it.each(['', 'basel/', 'bern/'])('keeps the %s city menu to ten classics plus a vegan category', city => {
     const data = JSON.parse(readFileSync(`public/data/${city}pizza.json`, 'utf8')) as Dataset;
     const options = pizzaVarieties(data.bars);
-    expect(options.length).toBeLessThanOrEqual(9);
+    expect(options.length).toBeLessThanOrEqual(10);
     expect(options.map(option => option.value)).toEqual(expect.arrayContaining([
       'group:vegetariana', 'group:funghi', 'group:prosciutto', 'group:quattro_stagioni',
     ]));

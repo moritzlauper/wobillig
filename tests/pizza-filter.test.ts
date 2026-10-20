@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { bestOffer, cheapPriceLimit, filterBars, pizzaVarieties, type Bar, type Offer } from '../src/data';
 import { filtersFromSearch, writeFilters } from '../src/filters';
 import { cityAverage } from '../src/coverage';
@@ -41,6 +42,22 @@ describe('cheap pizza selections', () => {
 });
 
 describe('pizza name and ingredient filters', () => {
+  it('compares Da Raffaele Verdure with mozzarella separately from Vegana', () => {
+    const data = JSON.parse(readFileSync('public/data/pizza.json', 'utf8'));
+    const raffaele = data.bars.find((bar: Bar) => bar.name === 'Da Raffaele') as Bar;
+    const vegetarian = { ...defaults, pizzaSelection: 'group:vegetariana' as const };
+    const vegan = { ...defaults, pizzaSelection: 'group:vegan' as const };
+    expect(bestOffer(raffaele, vegetarian)).toMatchObject({ name: 'Verdure', priceChf: 23.5 });
+    expect(bestOffer(raffaele, vegan)).toMatchObject({ name: 'Vegana', priceChf: 21.5 });
+    expect(filterBars([raffaele], { ...vegetarian, max: 21.7 })).toEqual([]);
+    expect(filterBars([raffaele], { ...vegan, max: 21.7 })).toEqual([raffaele]);
+    expect(pizzaVarieties([raffaele])).toContainEqual({ value: 'group:vegan', label: 'Vegan' });
+    const params = new URLSearchParams();
+    writeFilters(params, vegan, false);
+    expect(filtersFromSearch(params)).toEqual(vegan);
+    const link = new URL(barLink(`https://wobillig.ch/?${params}`, raffaele.id, 'pizza', 'all'));
+    expect(filtersFromSearch(link.searchParams).pizzaSelection).toBe('group:vegan');
+  });
   it('keeps Margherita as default and compares the actual matching pizza prices', () => {
     expect(bestOffer(venue, defaults)?.priceChf).toBe(16);
     const filters = { ...defaults, pizzaSelection: 'all' as const, pizzaQuery: 'prosciutto' };

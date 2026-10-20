@@ -5,6 +5,7 @@ export const pizzaGroupLabels = {
   salami: 'Salami',
   diavola: 'Diavola',
   vegetariana: 'Vegetariana / Verdura',
+  vegan: 'Vegan',
   quattro_formaggi: 'Quattro Formaggi',
   quattro_stagioni: 'Quattro Stagioni',
   tonno: 'Tonno',
@@ -20,13 +21,16 @@ export function pizzaGroup(item: { name: string; ingredients?: string; pizzaType
   if (item.pizzaType !== 'other') return undefined;
   const name = pizzaNameKey(item.name).replace(/[-&]+/g, ' ').trim();
   const ingredients = normalize(item.ingredients || '').trim();
+  // Use an explicit menu label; missing cheese alone does not establish vegan ingredients.
+  const vegan = /\bvegan\w*\b/.test(`${name} ${ingredients}`);
   if (!ingredients) {
+    if (vegan) return 'vegan';
     if (/^(?:al |ai )?(?:prosciutto|schinken)(?: e | und | +)(?:funghi|pilze)$/.test(name)) return 'prosciutto_funghi';
     if (/^(?:al )?(?:prosciutto(?: cotto)?|schinken)$/.test(name)) return 'prosciutto';
     if (/^(?:ai )?(?:funghi|champignons|pilze)$/.test(name)) return 'funghi';
     if (/^(?:salami|salame)$/.test(name)) return 'salami';
     if (/^diavol[ao]$/.test(name)) return 'diavola';
-    if (/^(?:vegetariana|vegetarisch|ortolana|verdure|4 verdure)$/.test(name)) return 'vegetariana';
+    if (/^(?:vegetariana|vegetarisch|ortolana|verdura|verdure|4 verdure)$/.test(name)) return 'vegetariana';
     if (/^(?:al )?(?:4|quattro|vier|four) (?:formaggi|kase|cheeses?)$/.test(name)) return 'quattro_formaggi';
     if (/^(?:4|quattro|vier|four) (?:stagion[ie]|jahreszeiten|seasons)$/.test(name)) return 'quattro_stagioni';
     if (/^(?:al )?(?:tonno|thon|thunfisch)(?: e cipolla)?$/.test(name)) return 'tonno';
@@ -53,10 +57,12 @@ export function pizzaGroup(item: { name: string; ingredients?: string; pizzaType
   const mixedVegetables = /\b(?:\w*gemuse|verdure|mixed vegetables|seasonal vegetables|grilled vegetables)\b/.test(ingredients);
   const meatFree = !ham && !salami && !tuna && !otherMeat && !seafood;
   const seasonsName = /\b(?:4|quattro|vier|four) (?:stagion[ie]|jahreszeiten|seasons)\b/.test(name);
+  const mozzarella = /\b(?:\w*mozzarella|bufala|fior ?di ?latte)\b/.test(ingredients);
 
+  if (vegan) return meatFree ? 'vegan' : undefined;
   if (otherMeat || seafood || special) return undefined;
   if (ham && mushrooms && (artichokes || seasonsName) && !tuna) return 'quattro_stagioni';
-  if (meatFree && (mixedVegetables || vegetables + Number(artichokes) + Number(mushrooms) >= 2)) return 'vegetariana';
+  if (meatFree && mozzarella && (mixedVegetables || vegetables + Number(artichokes) + Number(mushrooms) >= 2)) return 'vegetariana';
   if (vegetables || mixedVegetables || artichokes) return undefined;
   if (ham && !salami && !tuna) return mushrooms ? 'prosciutto_funghi' : 'prosciutto';
   if (salami && !ham && !tuna && !mushrooms) {
