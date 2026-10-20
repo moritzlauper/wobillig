@@ -124,6 +124,11 @@ export function pizzaVarieties(bars: Bar[]): { value: PizzaSelection; label: str
   }
   return (Object.entries(pizzaGroupLabels) as [PizzaGroup, string][])
     .filter(([group]) => (venues.get(group)?.size || 0) >= (group === 'funghi' ? 3 : 1))
+    .sort(([a, labelA], [b, labelB]) => {
+      if (a === 'vegetariana') return -1;
+      if (b === 'vegetariana') return 1;
+      return venues.get(b)!.size - venues.get(a)!.size || labelA.localeCompare(labelB, 'de');
+    })
     .map(([group, label]) => ({ value: `group:${group}` as PizzaSelection, label }));
 }
 

@@ -4,7 +4,7 @@ export const pizzaGroupLabels = {
   prosciutto_funghi: 'Prosciutto e Funghi',
   salami: 'Salami',
   diavola: 'Diavola',
-  vegetariana: 'Vegetariana',
+  vegetariana: 'Vegetariana / Verdura',
   quattro_formaggi: 'Quattro Formaggi',
   quattro_stagioni: 'Quattro Stagioni',
   tonno: 'Tonno',
