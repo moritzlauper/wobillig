@@ -1,0 +1,38 @@
+name: Refresh private promotion pilot
+on:
+  schedule:
+    - cron: '21 4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: private-promotion-import
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: scraper/requirements.txt
+      - run: npm ci
+      - run: pip install -r scraper/requirements.txt
+      - name: Extract public brochure into private staging
+        id: extract
+        run: python -m scraper.deals
+      - name: Save private preview
+        if: success()
+        run: node scripts/deals-import.mjs --production
+      - name: Preserve previous offers and record failure
+        if: failure() && steps.extract.outcome != 'skipped'
+        run: node scripts/deals-import.mjs --production --failure

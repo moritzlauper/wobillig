@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { defineConfig, loadEnv } from 'vite';
 import { seoPlugin } from './build/seo-plugin';
@@ -6,6 +7,7 @@ import { seoPlugin } from './build/seo-plugin';
 export default defineConfig({
   plugins: [seoPlugin(), {
     name: 'local-google-rating',
+    generateBundle() { this.emitFile({ type: 'asset', fileName: 'assets/deals-leaflet.css', source: readFileSync('node_modules/leaflet/dist/leaflet.css', 'utf8') }); },
     configureServer(server) {
       const env = loadEnv(server.config.mode, process.cwd(), 'GOOGLE_PLACES_');
       process.env.GOOGLE_PLACES_API_KEY ||= env.GOOGLE_PLACES_API_KEY;
@@ -21,7 +23,7 @@ export default defineConfig({
         } catch (error) { next(error); }
       });
       process.env.ANTHROPIC_API_KEY ||= loadEnv(server.config.mode, process.cwd(), 'ANTHROPIC_API_KEY').ANTHROPIC_API_KEY;
-      for (const route of ['coffee-rating', 'scan-menu', 'map-review']) server.middlewares.use(`/api/${route}`, async (req, res, next) => {
+      for (const route of ['coffee-rating', 'scan-menu', 'map-review', 'deals']) server.middlewares.use(`/api/${route}`, async (req, res, next) => {
         try {
           const { default: handler } = await server.ssrLoadModule(`/api/${route}.ts`);
           await handler(req, res);
@@ -37,7 +39,9 @@ export default defineConfig({
   }],
   build: {
     rollupOptions: {
+      output: { entryFileNames: chunk => chunk.name === 'dealsPreview' ? 'assets/deals-preview.js' : 'assets/[name]-[hash].js' },
       input: {
+        dealsPreview: fileURLToPath(new URL('./src/deal-preview.ts', import.meta.url)),
         zurich: fileURLToPath(new URL('./index.html', import.meta.url)),
         bern: fileURLToPath(new URL('./bern/index.html', import.meta.url)),
         basel: fileURLToPath(new URL('./basel/index.html', import.meta.url)),

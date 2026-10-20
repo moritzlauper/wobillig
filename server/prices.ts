@@ -1,3 +1,4 @@
+import type { DealPilot } from '../src/deal-data.js';
 import { randomUUID } from 'node:crypto';
 import { get, put, BlobPreconditionFailedError } from '@vercel/blob';
 import { InputError, allVenues, offerKey, matchesOfferKey, type PriceEntry, type PriceInput } from '../src/community.js';
@@ -16,7 +17,7 @@ import type { VenueCorrection, VenueChanges } from '../src/venue-corrections.js'
 
 export type ScanReceipt = { ids: string[]; added: number; unchanged: number; conflicts: number; skipped: number; updated?: number };
 export type ScanRecord = { status: 'pending' | 'done' | 'failed'; expires: number; result?: ScanReceipt };
-export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; venueCorrections?: VenueCorrection[]; venueCorrectionHistory?: { correction: VenueCorrection; before: VenueChanges }[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes; coffeeVoteDetails?: CoffeeVoteDetails; coffeePhotoUses?: Record<string, { voter: string; barId: string }>; heldPrices?: HeldPrice[]; priceCooldowns?: PriceCooldowns; customMaps?: CustomMap[]; mapQuotas?: MapQuotas };
+export type State = { dealPilot?: DealPilot; entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; venueCorrections?: VenueCorrection[]; venueCorrectionHistory?: { correction: VenueCorrection; before: VenueChanges }[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes; coffeeVoteDetails?: CoffeeVoteDetails; coffeePhotoUses?: Record<string, { voter: string; barId: string }>; heldPrices?: HeldPrice[]; priceCooldowns?: PriceCooldowns; customMaps?: CustomMap[]; mapQuotas?: MapQuotas };
 export type Store = { read(): Promise<{ state: State; etag?: string }>; write(state: State, etag?: string): Promise<void> };
 export const emptyState = (): State => ({ entries: [], history: [], limits: {} });
 export class WriteConflict extends Error {}

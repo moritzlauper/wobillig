@@ -1,0 +1,29 @@
+export const dealPreviewLink = '/api/deals?view=preview';
+export function dealReviewCard() {
+  return `<section id="deal-pilot" aria-labelledby="deal-pilot-title"><h2 id="deal-pilot-title">Aktionskarte · privater Pilot</h2>
+    <p>Coop Zürich: Angebote aus dem Aktionsprospekt, Suche und Ablaufdaten. Filialen sind zunächst ungeprüfte Kandidaten. Die Vorschau und alle Daten verlangen den Prüfzugang; es gibt keine öffentliche Freigabe.</p>
+    <p><a href="${dealPreviewLink}">Private Aktionskarte öffnen →</a></p></section>`;
+}
+export function dealPreviewHtml(development = false) {
+  return `<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Aktionskarte · Private Vorschau · wobillig</title>
+    <link rel="stylesheet" href="${development ? '/node_modules/leaflet/dist/leaflet.css' : '/assets/deals-leaflet.css'}">
+    <style>
+    :root{font:15px/1.5 system-ui;color:#173329;background:#f4f5f1}*{box-sizing:border-box}body{margin:0}a{color:#176b4d}button,input,select{font:inherit}button{cursor:pointer}button,input,select,textarea{border:1px solid #b9cac0;border-radius:6px;padding:9px;color:inherit;background:white;min-width:0}textarea{font:inherit;resize:vertical}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #d68f28;outline-offset:2px}button:disabled{opacity:.55;cursor:wait}header{max-width:1440px;margin:auto;padding:20px 24px 12px}h1{margin:10px 0;font-size:28px}h2{font-size:20px}h3{font-size:17px;margin:0 0 8px}p{margin:8px 0}.badge{display:inline-block;background:#e5ecdf;border:1px solid #bdcbb1;border-radius:20px;padding:3px 10px;font-size:12px;letter-spacing:.04em}.muted,small{color:#52665c}#status{min-height:24px}#error{padding:12px;background:#fff0e7;color:#7d2916}#filters{display:flex;gap:12px;flex-wrap:wrap;padding:12px 24px;border-block:1px solid #d3ddd5;background:#fff}label{display:grid;gap:4px;font-size:13px;font-weight:600}#filters label:first-child{flex:1;min-width:200px}#filters .check{display:flex;align-items:center;align-self:end;min-height:42px}.layout{display:grid;grid-template-columns:minmax(300px,1fr) minmax(320px,480px);max-width:1440px;margin:auto}#deal-map{height:650px;position:sticky;top:0;z-index:0}#offers{max-height:650px;overflow:auto;padding:14px}.deal{border:1px solid #d3ddd5;background:#fff;padding:18px;margin-bottom:12px;border-radius:10px;overflow-wrap:anywhere}.price{font-size:25px;font-weight:700}.old{color:#69756e;text-decoration:line-through;font-size:15px;margin-left:8px}.meta{font-size:13px;margin-top:8px}.deal details{margin-top:12px;border-top:1px solid #e0e5df;padding-top:10px}.deal summary{cursor:pointer;font-size:13px}.deal form{display:grid;gap:9px;margin-top:12px}.deal pre{white-space:pre-wrap;font-size:12px}.deal button{background:#173329;color:white}.deal .remove{background:#fff;color:#7d2916;font-size:12px;padding:5px}.deal-marker{border-radius:50%;background:#176b4d;color:white;text-align:center;font:bold 15px/30px system-ui;border:2px solid white;box-shadow:0 1px 5px #0004}.deal-marker.candidate{background:#6a736e}#source-details{max-width:1440px;margin:auto;padding:12px 24px 24px;font-size:13px;overflow-wrap:anywhere}#source-details p{margin:5px 0}.empty{padding:24px;background:#fff;border-radius:8px}.assignment{padding:8px 0;border-bottom:1px solid #ddd;font-size:13px}[hidden]{display:none!important}@media(max-width:760px){header{padding:16px}h1{font-size:24px}#filters{padding:12px 16px;gap:10px}#filters label{flex:1}#filters .check{flex:auto}.layout{display:flex;flex-direction:column}#deal-map{position:relative;height:300px;flex:none}#offers{max-height:none;padding:12px}#source-details{padding:12px 16px}}
+    </style></head><body>
+    <header><a href="/output/price-review/production#deal-pilot">← Zur Adminseite</a> <span class="badge">NUR ADMIN · NICHT VERÖFFENTLICHT</span>
+      <h1>Aktionen in Zürich</h1><p>Privater Pilot · Coop-Aktionsprospekt. Filialzuordnungen werden einzeln geprüft. Kein Nachweis des Lagerbestands.</p>
+      <p id="status" role="status">Aktionsdaten werden geladen …</p><p id="error" role="alert" hidden></p></header>
+    <section id="filters" aria-label="Aktionen filtern">
+      <label>Produkt oder Marke<input id="deal-query" type="search" placeholder="Zum Beispiel Zucker, Kaki oder Naturafarm" autocomplete="off"></label>
+      <label>Händler<select id="deal-chain"><option value="">Alle Händler</option><option value="coop">Coop</option><option value="migros">Migros</option></select></label>
+      <label>Kategorie<select id="deal-category"><option value="">Alle Kategorien</option><option value="food">Lebensmittel</option><option value="drinks">Getränke</option><option value="household">Haushalt</option><option value="other">Weitere</option></select></label>
+      <label>Sortierung<select id="deal-sort"><option value="ending">Endet zuerst</option><option value="price">Aktionspreis</option><option value="distance">Entfernung vom Standort</option></select></label>
+      <label class="check"><input id="deal-ending" type="checkbox">Endet heute oder morgen</label>
+      <label class="check"><input id="deal-candidates" type="checkbox" checked>Ungeprüfte Filialen zeigen</label>
+      <button id="deal-refresh" type="button">Neu laden</button>
+    </section>
+    <main class="layout"><div id="deal-map" role="region" aria-label="Filialkarte"></div><div id="offers" aria-label="Aktuelle Angebote"></div></main>
+    <section id="source-details" aria-label="Importstatus"></section>
+    <script type="module" src="${development ? '/src/deal-preview.ts' : '/assets/deals-preview.js'}"></script>
+    </body></html>`;
+}

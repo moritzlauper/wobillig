@@ -1,5 +1,19 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  "Prüfzugang noch nicht eingerichtet.": "Review access has not been configured yet.",
+  "Bitte mit dem Prüfzugang anmelden.": "Please sign in with the reviewer credentials.",
+  "Bitte die Prüfseite auf dieser Website verwenden.": "Please use the review page on this website.",
+
+  "Ungültiger Aktionsimport. Quelle, Preise, Gültigkeit und Filialdaten prüfen.": "Invalid promotion import. Check source, prices, validity and branch details.",
+  "Der Import enthält keine aktuell gültigen Angebote oder wurde nicht frisch abgerufen.": "The import has no currently valid offers or was not fetched recently.",
+  "Ein neuerer Aktionsimport ist bereits vorhanden.": "A more recent promotion import is already available.",
+  "Der Aktionspilot wird gerade geändert. Bitte erneut versuchen.": "The promotion pilot is being updated. Please try again.",
+  "Ungültige Filialzuordnung.": "Invalid branch assignment.",
+  "Der Aktionspilot wurde inzwischen geändert. Bitte neu laden.": "The promotion pilot has changed. Please reload.",
+  "Filiale oder aktuelles Angebot nicht gefunden.": "Branch or current offer not found.",
+  "Bitte einen Händlerlink und einen Beleg für die Gültigkeit in dieser Filiale angeben.": "Please provide a retailer link and evidence that the offer applies in this branch.",
+  "Die Aktionsvorschau konnte nicht geladen werden. Bitte erneut versuchen.": "The promotion preview could not be loaded. Please try again.",
+
   "Anfrage eingereicht": "Request submitted",
   "Quelle wird geprüft": "Source under review",
   "Quelle noch nicht verfügbar": "Source not yet available",
