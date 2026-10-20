@@ -72,7 +72,7 @@ export const en: Record<string, string> = {
   'Bitte eine kürzere Suche eingeben.': 'Please enter a shorter search.',
   'Zum Veröffentlichen bitte mindestens fünf verschiedene Orte eintragen.': 'Please add at least five different places before submitting for publication.',
   'Bitte die Map vor einer erneuten Einreichung überarbeiten.': 'Please revise the map before submitting it again.',
-  'Diese Map wurde inzwischen geändert. Bitte die Prüfseite neu laden.': 'This map has changed. Please reload the review page.',
+  'Diese Map wurde inzwischen geändert. Bitte neu laden.': 'This map has changed. Please reload.',
   'Pro IP und Browser ist nur eine neue Map innerhalb von 24 Stunden möglich.': 'Only one new map per IP address and browser is allowed within 24 hours.',
   'Pro IP und Browser ist nur eine Veröffentlichungseinreichung innerhalb von 24 Stunden möglich.': 'Only one publication submission per IP address and browser is allowed within 24 hours.',
   'Bitte Lokal wählen': 'Please select a place',

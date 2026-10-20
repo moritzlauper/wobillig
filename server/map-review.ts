@@ -18,7 +18,7 @@ export async function reviewMap(store: Store, id: string, fingerprint: string, a
     const { state, etag } = await store.read();
     const map = state.customMaps?.find(map => map.id === id);
     if (!map || map.publication?.status !== 'pending' || mapFingerprint(map) !== fingerprint) {
-      throw new InputError('Diese Map wurde inzwischen geändert. Bitte die Prüfseite neu laden.', 409);
+      throw new InputError('Diese Map wurde inzwischen geändert. Bitte neu laden.', 409);
     }
     if (approve && mapVenueCount(map) < PUBLIC_MAP_MIN_VENUES) throw new InputError('Zum Veröffentlichen bitte mindestens fünf verschiedene Orte eintragen.', 422);
     map.publication = { ...map.publication, status: approve ? 'approved' : 'rejected', reviewedAt: new Date(now).toISOString(), fingerprint };
