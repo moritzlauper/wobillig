@@ -1,5 +1,15 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  'Kaffee bewerten': 'Rate coffee',
+  'Kaffee: {rating} von 5, {count} Bewertungen': 'Coffee: {rating} out of 5, {count} ratings',
+  '{score} von 5 Sternen': '{score} out of 5 stars',
+  'Bewertungen sind gerade nicht verfügbar. Bitte neu laden.': 'Ratings are currently unavailable. Please reload.',
+  'Wird gespeichert …': 'Saving …',
+  'Danke für deine Bewertung.': 'Thanks for your rating.',
+  'Bewertung nicht gespeichert. Bitte erneut versuchen.': 'Rating was not saved. Please try again.',
+  'Bitte eine Bewertung von 1 bis 5 wählen.': 'Please choose a rating from 1 to 5.',
+  'Kaffeebewertungen werden gemeinsam gespeichert. Eine zufällige Kennung pro Lokal in deinem Browser ermöglicht dir, deine Bewertung später zu ändern. Öffentlich sichtbar sind nur Durchschnitt und Anzahl.': 'Coffee ratings are stored for everyone to see. A random identifier per venue in your browser lets you change your rating later. Only the average and count are public.',
+  'Gerade werden mehrere Bewertungen gespeichert. Bitte erneut versuchen.': 'Other ratings are being saved. Please try again.',
   'Pizzasorte': 'Pizza type',
   'Klassiker nach Zutaten gruppiert': 'Classics grouped by ingredients',
   'Alle Pizzen': 'All pizzas',

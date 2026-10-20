@@ -6,10 +6,11 @@ import { communityVenues } from '../src/community.js';
 import { duplicateVenue, validateVenue } from '../src/venue-contributions.js';
 import type { City } from '../src/cities.js';
 import { priceChange, type PriceChange } from './price-audit.js';
+import type { CoffeeVotes } from './coffee-ratings.js';
 
 export type ScanReceipt = { ids: string[]; added: number; unchanged: number; conflicts: number; skipped: number };
 export type ScanRecord = { status: 'pending' | 'done' | 'failed'; expires: number; result?: ScanReceipt };
-export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; priceChanges?: PriceChange[] };
+export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes };
 export type Store = { read(): Promise<{ state: State; etag?: string }>; write(state: State, etag?: string): Promise<void> };
 export const emptyState = (): State => ({ entries: [], history: [], limits: {} });
 export class WriteConflict extends Error {}

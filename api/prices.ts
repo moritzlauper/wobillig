@@ -5,6 +5,7 @@ import { createHmac } from 'node:crypto';
 import { communityVenues, validateInput, InputError } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore, savePrice, saveVenue } from '../server/prices.js';
+import { coffeeRatingSummaries, saveCoffeeRating } from '../server/coffee-ratings.js';
 
 const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>>>> = {};
 function datasets(city: City) {
@@ -23,7 +24,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     if (req.method === 'GET') {
       const { state } = await store.read();
-      return reply(200, { entries: state.entries, venues: state.venues || [] });
+      return reply(200, { entries: state.entries, venues: state.venues || [], coffeeRatings: coffeeRatingSummaries(state) });
     }
     const origin = req.headers.origin;
     if (!origin || new URL(origin).host !== req.headers.host || req.headers['sec-fetch-site'] === 'cross-site') return reply(403, { error: 'Bitte das Formular auf dieser Website verwenden.' });
@@ -43,6 +44,9 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!secret) throw new Error('Missing storage secret');
     const visitor = createHmac('sha256', secret).update(`${new Date().toISOString().slice(0, 10)}:${ip}`).digest('hex');
+    if (body && typeof body === 'object' && 'action' in body && body.action === 'rateCoffee') {
+      return reply(200, { rating: await saveCoffeeRating(store, body, data, city, visitor, secret) });
+    }
     if (body && typeof body === 'object' && 'action' in body && body.action === 'addVenue') {
       return reply(200, await saveVenue(store, 'venue' in body ? body.venue : undefined, data, city, visitor));
     }
