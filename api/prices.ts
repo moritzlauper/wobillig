@@ -9,7 +9,9 @@ import { coffeeRatingSummaries } from '../server/coffee-ratings.js';
 import { priceOwner, visiblePrices } from '../server/price-moderation.js';
 import { PriceCooldownError, withPriceCooldown } from '../server/price-cooldown.js';
 import { isMapId, publicMapSummaries } from '../src/custom-map-data.js';
-import { saveCustomMap } from '../server/custom-maps.js';
+import { saveCustomMap, mapFingerprint } from '../server/custom-maps.js';
+import { searchMapPlaces } from '../server/map-places.js';
+import { withMapQuota } from '../server/map-quota.js';
 import { saveVenueCorrection } from '../server/venue-corrections.js';
 
 const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>>>> = {};
@@ -27,6 +29,8 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
   try {
     const city = new URL(req.url || '/', 'http://localhost').searchParams.get('city') || 'zurich';
     if (!isCity(city)) throw new InputError('Unbekannte Stadt.');
+    const placeQuery = new URL(req.url || '/', 'http://localhost').searchParams.get('mapPlaces');
+    if (req.method === 'GET' && placeQuery !== null) return reply(200, { places: await searchMapPlaces(placeQuery, city) });
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     if (req.method === 'GET') {
       const { state } = await store.read();
@@ -57,8 +61,22 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!secret) throw new Error('Missing storage secret');
     const visitor = createHmac('sha256', secret).update(`${new Date().toISOString().slice(0, 10)}:${ip}`).digest('hex');
-    if (body && typeof body === 'object' && 'action' in body && (body.action === 'createMap' || body.action === 'saveMapEntry')) {
-      return reply(200, { map: await saveCustomMap(store, body, data, visitor) });
+    if (body && typeof body === 'object' && 'action' in body && ['createMap', 'saveMapEntry', 'requestMapPublication', 'withdrawMapPublication'].includes(String(body.action))) {
+      const input = body as Record<string, unknown>;
+      const save = () => saveCustomMap(store, input, data, visitor, Date.now(), city);
+      if (input.action !== 'createMap' && input.action !== 'requestMapPublication') return reply(200, { map: await save() });
+      if (!isMapId(input.mapId)) throw new InputError('Ungültige Map.');
+      const owner = priceOwner(req, res, true)!;
+      const mapIp = createHmac('sha256', secret).update(`map-quota:${ip}`).digest('hex');
+      const { state } = await store.read();
+      const existing = state.customMaps?.find(map => map.id === input.mapId);
+      // Retrying a completed operation must not consume another daily slot.
+      if (existing && (input.action === 'createMap' || ['pending', 'approved'].includes(existing.publication?.status || ''))) {
+        return reply(200, { map: input.action === 'createMap' ? await save() : existing });
+      }
+      const operation = `${city}:${input.mapId}:${input.action === 'requestMapPublication' && existing ? mapFingerprint(existing) : ''}`;
+      const quotaStore = blobStore(`maps/quotas/${process.env.VERCEL_ENV === 'production' ? 'production' : 'development'}.json`);
+      return reply(200, { map: await withMapQuota(quotaStore, input.action === 'createMap' ? 'create' : 'publish', mapIp, owner, operation, save) });
     }
     if (body && typeof body === 'object' && 'action' in body && body.action === 'rateCoffee') {
       throw new InputError('Bitte ein Foto mit deinem Kaffee aus diesem Lokal hochladen.', 422);

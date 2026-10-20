@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 
 const mocks = vi.hoisted(() => ({ readFile: vi.fn(), blobStore: vi.fn() }));
@@ -16,7 +16,7 @@ function state(path: string) {
 async function request(url = '/output/price-review/production', method = 'GET') {
   const headers: Record<string, string> = {};
   let body = '';
-  const req = { url, method } as IncomingMessage;
+  const req = { url, method, headers: { authorization: 'Basic ' + Buffer.from('admin:review-secret').toString('base64') } } as IncomingMessage;
   const res = { statusCode: 0, setHeader: (key: string, value: string) => { headers[key] = value; },
     end: (value?: string) => { body = value || ''; } } as unknown as ServerResponse;
   await handler(req, res);
@@ -24,9 +24,12 @@ async function request(url = '/output/price-review/production', method = 'GET') 
 }
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.stubEnv('MAP_REVIEW_PASSWORD', 'review-secret');
   mocks.readFile.mockResolvedValue(JSON.stringify({ bars: [] }));
   mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: state(path) }) }));
 });
+
+afterEach(() => vi.unstubAllEnvs());
 
 describe('online manual price review', () => {
   it('loads all production stores afresh and renders only price snapshots', async () => {

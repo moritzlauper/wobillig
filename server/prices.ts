@@ -10,12 +10,13 @@ import type { CoffeeVotes, CoffeeVoteDetails } from './coffee-ratings.js';
 import { priceConcern, visiblePrices, type HeldPrice } from './price-moderation.js';
 import { checkPriceEdit } from './price-edit-rules.js';
 import type { PriceCooldowns } from './price-cooldown.js';
+import type { MapQuotas } from './map-quota.js';
 import type { CustomMap } from '../src/custom-map-data.js';
 import type { VenueCorrection, VenueChanges } from '../src/venue-corrections.js';
 
 export type ScanReceipt = { ids: string[]; added: number; unchanged: number; conflicts: number; skipped: number; updated?: number };
 export type ScanRecord = { status: 'pending' | 'done' | 'failed'; expires: number; result?: ScanReceipt };
-export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; venueCorrections?: VenueCorrection[]; venueCorrectionHistory?: { correction: VenueCorrection; before: VenueChanges }[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes; coffeeVoteDetails?: CoffeeVoteDetails; coffeePhotoUses?: Record<string, { voter: string; barId: string }>; heldPrices?: HeldPrice[]; priceCooldowns?: PriceCooldowns; customMaps?: CustomMap[] };
+export type State = { entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; venueCorrections?: VenueCorrection[]; venueCorrectionHistory?: { correction: VenueCorrection; before: VenueChanges }[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes; coffeeVoteDetails?: CoffeeVoteDetails; coffeePhotoUses?: Record<string, { voter: string; barId: string }>; heldPrices?: HeldPrice[]; priceCooldowns?: PriceCooldowns; customMaps?: CustomMap[]; mapQuotas?: MapQuotas };
 export type Store = { read(): Promise<{ state: State; etag?: string }>; write(state: State, etag?: string): Promise<void> };
 export const emptyState = (): State => ({ entries: [], history: [], limits: {} });
 export class WriteConflict extends Error {}

@@ -4,11 +4,14 @@ import { cities, cityStoragePath, type City } from '../src/cities.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore } from '../server/prices.js';
 import { reviewRows, reviewHtml, reviewCsv } from '../server/price-review.mjs';
+import { authorizedMapReviewer } from '../server/map-review.js';
+import mapReview from './map-review.js';
 
-// Deliberately unlisted, not authenticated. Only price snapshots are exposed;
+// Password-protected review area. Only price snapshots are exposed;
 // raw state, visitor hashes, limits and scan receipts never leave this handler.
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
   res.setHeader('Cache-Control', 'private, no-store, max-age=0');
+  res.setHeader('Vary', 'Authorization');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'no-referrer');
@@ -19,6 +22,12 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     res.setHeader('Content-Type', 'text/plain; charset=utf-8');
     res.end(req.method === 'HEAD' ? undefined : message);
   };
+  if (!process.env.MAP_REVIEW_PASSWORD) return error(503, 'Prüfzugang noch nicht eingerichtet.');
+  if (!authorizedMapReviewer(req.headers.authorization)) {
+    res.setHeader('WWW-Authenticate', 'Basic realm="Wobillig Map Review", charset="UTF-8"');
+    return error(401, 'Bitte mit dem Prüfzugang anmelden.');
+  }
+  if (new URL(req.url || '/', 'http://localhost').searchParams.get('view') === 'maps') return mapReview(req, res);
   if (!['GET', 'HEAD'].includes(req.method || '')) {
     res.setHeader('Allow', 'GET, HEAD');
     return error(405, 'Methode nicht erlaubt.');

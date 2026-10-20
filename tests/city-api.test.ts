@@ -67,8 +67,8 @@ describe('city-scoped price API', () => {
     const entries = Array.from({ length: 6 }, (_, i) => ({ venue: { id: `node/${i}` }, priceChf: 12 }));
     const maps = [
       { id: 'four', name: 'Four', entries: entries.slice(0, 4) },
-      { id: 'five', name: 'Five', entries: entries.slice(0, 5) },
-      { id: 'six', name: 'Six', entries },
+      { id: 'five', name: 'Five', publishedAt: '2026-10-20', publication: { status: 'approved' }, entries: entries.slice(0, 5) },
+      { id: 'six', name: 'Six', publishedAt: '2026-10-20', publication: { status: 'approved' }, entries },
       { id: 'duplicates', name: 'Duplicates', entries: Array(5).fill(entries[0]) },
     ];
     mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: {

@@ -23,6 +23,9 @@
     "api/scan-menu.ts": {
       "includeFiles": "public/data/**/*.json",
       "maxDuration": 90
+    },
+    "api/map-review.ts": {
+      "maxDuration": 30
     }
   },
   "rewrites": [

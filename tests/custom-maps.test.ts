@@ -1,5 +1,7 @@
-import { expect, it } from 'vitest';
-import { saveCustomMap } from '../server/custom-maps';
+import { afterEach, expect, it, vi } from 'vitest';
+import { reviewMap } from '../server/map-review';
+import { signMapPlace } from '../server/map-places';
+import { saveCustomMap, mapFingerprint } from '../server/custom-maps';
 import { publicMapSummaries } from '../src/custom-map-data';
 import { emptyState, WriteConflict, type State, type Store } from '../server/prices';
 import type { Bar, Dataset } from '../src/data';
@@ -64,7 +66,7 @@ it('limits new maps per visitor and expires the limit', async () => {
   await expect(saveCustomMap(store, create, {}, 'v', 3600001)).resolves.toMatchObject({ id: mapId });
 });
 
-it('publishes on the fifth venue, while editing an existing venue does not advance the count', async () => {
+it('requires five venues, explicit submission and review before publication', async () => {
   const store = memory();
   const bars = Array.from({ length: 5 }, (_, i) => ({ ...bar, id: `node/${i}` }));
   const datasets = { locations: { ...data, bars } };
@@ -72,9 +74,44 @@ it('publishes on the fifth venue, while editing an existing venue does not advan
   for (const venue of bars.slice(0, 4)) {
     map = await saveCustomMap(store, { ...input, barId: venue.id }, datasets, 'v');
     expect(publicMapSummaries([map])).toEqual([]);
+    await expect(saveCustomMap(store, { action: 'requestMapPublication', mapId }, datasets, 'v')).rejects.toMatchObject({ status: 422 });
   }
   map = await saveCustomMap(store, { ...input, barId: bars[0].id, revision: 1, priceChf: 13 }, datasets, 'v');
   expect(publicMapSummaries([map])).toEqual([]);
   map = await saveCustomMap(store, { ...input, barId: bars[4].id }, datasets, 'v');
+  expect(publicMapSummaries([map])).toEqual([]);
+  map = await saveCustomMap(store, { action: 'requestMapPublication', mapId }, datasets, 'v');
+  expect(map.publication?.status).toBe('pending');
+  expect(publicMapSummaries([map])).toEqual([]);
+  const fingerprint = mapFingerprint(map);
+  await reviewMap(store, mapId, fingerprint, true);
+  map = (await store.read()).state.customMaps![0];
   expect(publicMapSummaries([map])).toEqual([{ id: mapId, name: 'Döner-Map', venueCount: 5 }]);
+  map = await saveCustomMap(store, { ...input, barId: bars[4].id, revision: 1, priceChf: 14 }, datasets, 'v');
+  expect(map.publication).toBeUndefined();
+  expect(publicMapSummaries([map])).toEqual([]);
+  await expect(reviewMap(store, mapId, fingerprint, true)).rejects.toMatchObject({ status: 409 });
+  map = await saveCustomMap(store, { action: 'requestMapPublication', mapId }, datasets, 'v');
+  await reviewMap(store, mapId, mapFingerprint(map), false);
+  expect(publicMapSummaries((await store.read()).state.customMaps!)).toEqual([]);
+  await expect(saveCustomMap(store, { action: 'requestMapPublication', mapId }, datasets, 'v')).rejects.toMatchObject({ status: 422 });
+});
+
+afterEach(() => vi.unstubAllEnvs());
+it('stores signed OSM shops only in their custom map and can edit them after tokens expire', async () => {
+  vi.stubEnv('BLOB_READ_WRITE_TOKEN', 'test-secret');
+  const store = memory();
+  await saveCustomMap(store, create, {}, 'v', 1000);
+  const shop = { ...bar, id: 'node/987', name: 'Drogerie', type: 'chemist' };
+  const { token } = signMapPlace(shop, 'zurich', 1000);
+  const body = { ...input, barId: shop.id, placeToken: token, product: 'Tampons, 16 Stück', venue: { ...shop, name: 'Forged' } };
+  await expect(saveCustomMap(store, body, {}, 'v', 2000, 'bern')).rejects.toMatchObject({ status: 422 });
+  let map = await saveCustomMap(store, body, {}, 'v', 2000, 'zurich');
+  expect(map.entries[0]).toMatchObject({ venue: { name: 'Drogerie' }, product: 'Tampons, 16 Stück' });
+  map = await saveCustomMap(store, { ...body, revision: 1, placeToken: undefined, priceChf: 6 }, {}, 'v', 90000000, 'zurich');
+  expect(map.entries[0].priceChf).toBe(6);
+  const state = (await store.read()).state;
+  expect(state.venues).toBeUndefined();
+  expect(state.entries).toEqual([]);
+  await expect(saveCustomMap(store, { action: 'setMapVisibility', mapId, published: true }, {}, 'v')).rejects.toMatchObject({ status: 400 });
 });

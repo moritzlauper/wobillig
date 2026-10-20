@@ -10,6 +10,10 @@ export default defineConfig({
       const env = loadEnv(server.config.mode, process.cwd(), 'GOOGLE_PLACES_');
       process.env.GOOGLE_PLACES_API_KEY ||= env.GOOGLE_PLACES_API_KEY;
       process.env.BLOB_READ_WRITE_TOKEN ||= loadEnv(server.config.mode, process.cwd(), 'BLOB_READ_WRITE_TOKEN').BLOB_READ_WRITE_TOKEN;
+      const reviewPassword = loadEnv(server.config.mode, process.cwd(), 'MAP_REVIEW_PASSWORD').MAP_REVIEW_PASSWORD;
+      if (reviewPassword) process.env.MAP_REVIEW_PASSWORD ||= reviewPassword;
+      const photonUrl = loadEnv(server.config.mode, process.cwd(), 'PHOTON_URL').PHOTON_URL;
+      if (photonUrl) process.env.PHOTON_URL ||= photonUrl;
       server.middlewares.use('/api/google-rating', async (req, res, next) => {
         try {
           const { default: handler } = await server.ssrLoadModule('/api/google-rating.ts');
@@ -17,7 +21,7 @@ export default defineConfig({
         } catch (error) { next(error); }
       });
       process.env.ANTHROPIC_API_KEY ||= loadEnv(server.config.mode, process.cwd(), 'ANTHROPIC_API_KEY').ANTHROPIC_API_KEY;
-      for (const route of ['coffee-rating', 'scan-menu']) server.middlewares.use(`/api/${route}`, async (req, res, next) => {
+      for (const route of ['coffee-rating', 'scan-menu', 'map-review']) server.middlewares.use(`/api/${route}`, async (req, res, next) => {
         try {
           const { default: handler } = await server.ssrLoadModule(`/api/${route}.ts`);
           await handler(req, res);

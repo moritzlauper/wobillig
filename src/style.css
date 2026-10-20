@@ -24,6 +24,7 @@ a { color: var(--link); text-underline-offset: 2px; }
 #custom-map-name { flex: 1; min-width: 100px; overflow-wrap: anywhere; }
 #custom-map-summary { margin: 0; padding: 10px; border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
 #custom-map-visibility { margin: 0; padding: 8px 10px; border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
+#custom-map-action-error { padding: 8px 10px; color: var(--error); }
 .custom-map-content { display: flex; flex: 1; min-height: 0; }
 #custom-map-canvas { flex: 1; min-width: 0; background: var(--map); }
 #custom-map-entries { width: 300px; overflow-y: auto; border-left: 1px solid var(--divider); }
@@ -37,6 +38,12 @@ a { color: var(--link); text-underline-offset: 2px; }
 .custom-map-form [data-error] { color: var(--error); }
 .custom-map-form > button[type=submit] { width: 100%; }
 #map-new-venue { margin-bottom: 14px; }
+#map-venue-suggestions { max-height: 220px; overflow-y: auto; border: 1px solid var(--border); border-radius: 3px; margin-top: -8px; }
+#map-venue-suggestions button { display: block; width: 100%; min-height: 48px; text-align: left; border: 0; border-bottom: 1px solid var(--divider); white-space: normal; overflow-wrap: anywhere; }
+#map-venue-suggestions button[aria-selected=true] { background: var(--suggestion); }
+#map-venue-suggestions small { display: block; margin-top: 4px; color: var(--muted); }
+#map-venue-search-help { font-size: var(--font-control); }
+.map-place-attribution { display: block; margin: 0 0 12px; color: var(--muted); }
 #saved-maps { margin-top: 20px; border-top: 1px solid var(--divider); }
 #saved-maps > div { display: grid; gap: 6px; }
 #saved-maps button { text-align: left; overflow-wrap: anywhere; }
