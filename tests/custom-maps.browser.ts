@@ -23,8 +23,8 @@ for (const width of [320, 1280]) {
     await expect(page.locator('#count')).not.toHaveText('Laden …');
     await page.locator('#categories-toggle').click();
     const menu = page.locator('#additional-categories');
-    await expect(menu.getByRole('group', { name: 'Meine Maps', exact: true }).getByRole('button')).toHaveText(own.name);
-    const publicGroup = menu.getByRole('group', { name: 'Öffentliche Maps', exact: true });
+    await expect(menu.getByRole('group', { name: 'Meine Maps', exact: true }).getByRole('button')).toHaveText(`${own.name} · Community-Map`);
+    const publicGroup = menu.getByRole('group', { name: 'Community-Maps', exact: true });
     await expect(publicGroup.getByRole('button')).toHaveText(`${other.name} · 1 Lokale`);
     await expect(publicGroup).toHaveCSS('border-top-width', '1px');
     await expect(menu.locator(`[data-custom-map="${own.id}"]`)).toHaveCount(1);
@@ -33,7 +33,7 @@ for (const width of [320, 1280]) {
     const bounds = await menu.boundingBox();
     expect(bounds!.x).toBeGreaterThanOrEqual(0);
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
-    await page.screenshot({ path: `/tmp/wobillig-map-dropdown-${width}.png` });
+    await page.screenshot({ path: test.info().outputPath('community-map-menu.png') });
     await menu.getByRole('button', { name: 'Automatische Map anfragen' }).click();
     const requestForm = page.locator('#create-map-dialog');
     await expect(requestForm.getByLabel('Art der Map')).toHaveValue('automatic');
@@ -41,7 +41,7 @@ for (const width of [320, 1280]) {
     await requestForm.getByRole('button', { name: 'Schliessen' }).click();
     await expect(page.locator('#categories-toggle')).toBeFocused();
     await page.locator('#categories-toggle').click();
-    await menu.getByRole('button', { name: own.name, exact: true }).click();
+    await menu.getByRole('button', { name: `${own.name} · Community-Map`, exact: true }).click();
     await expect(page.locator('#custom-map-name')).toHaveText(own.name);
     await expect(page.locator('#create-map-dialog')).toBeHidden();
   });
@@ -50,6 +50,15 @@ for (const width of [320, 1280]) {
     const lateVenue = { ...venue, id: 'node/zuribiss', name: 'Züribiss', address: 'Zähringerstrasse 999', postcode: '8001' };
     const catalogue = [...Array.from({ length: 120 }, (_, i) => ({ ...venue, id: `node/a${i}`, name: `A Lokal ${i}` })), lateVenue];
     await page.route('**/data/locations.json', route => route.fulfill({ json: { bars: catalogue } }));
+    let releaseLookup!: () => void, lookupStarted!: () => void;
+    const lookupGate = new Promise<void>(resolve => { releaseLookup = resolve; });
+    const lookupRequest = new Promise<void>(resolve => { lookupStarted = resolve; });
+    await page.route('**/api/prices?*mapPlaces=*', async route => {
+      if (new URL(route.request().url()).searchParams.get('mapPlaces') === '999 Zaehringerstr.') {
+        lookupStarted(); await lookupGate;
+      }
+      return route.fulfill({ json: { places: [] } });
+    });
     const saved: CustomMap = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: 'Döner-Map', createdAt: new Date().toISOString(), entries: [] };
     const submissions: any[] = [];
     await page.route('**/api/prices?*', route => {
@@ -75,6 +84,10 @@ for (const width of [320, 1280]) {
     await expect(dialog.getByRole('option', { name: /Züribiss/ })).toBeVisible();
     await page.screenshot({ path: `/tmp/wobillig-map-venue-search-${width}.png` });
     await search.press('ArrowDown');
+    await expect(search).toHaveAttribute('aria-activedescendant', 'map-venue-option-0');
+    await lookupRequest;
+    releaseLookup();
+    await expect(page.locator('#map-venue-search-help')).toHaveText('Bitte ein Lokal aus den Vorschlägen auswählen.');
     await expect(search).toHaveAttribute('aria-activedescendant', 'map-venue-option-0');
     await search.press('Enter');
     await expect(dialog.locator('[name=venue]')).toHaveValue(lateVenue.id);
@@ -116,7 +129,8 @@ for (const width of [320, 1280]) {
     expect(menu!.x + menu!.width).toBeLessThanOrEqual(width);
     await shortcut.click();
     await expect(page.locator('#custom-map-name')).toHaveText('Glace-Map');
-    await expect(page.locator('#custom-map-visibility')).toHaveText('Öffentlich unter «Weitere» sichtbar.');
+    await expect(page.locator('#custom-map-visibility')).toHaveText('Community-Map · Von der Community erstellt und öffentlich unter «Weitere» sichtbar.');
+    await page.screenshot({ path: test.info().outputPath('community-map-view.png') });
     await page.locator('#map-back').click();
     await expect(shortcut).toBeHidden();
     await page.reload();
@@ -302,7 +316,7 @@ test('one place stays link-only until explicit publication and reviewer approval
   await page.locator('#map-back').click();
   await page.locator('#categories-toggle').click();
   await expect(page.getByRole('group', { name: 'My maps', exact: true }).locator('[data-custom-map]')).toHaveCount(1);
-  await expect(page.getByRole('group', { name: 'Public maps', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('group', { name: 'Community maps', exact: true })).toHaveCount(0);
   await page.evaluate(() => localStorage.removeItem('wobillig:maps:zurich'));
   await page.reload();
   await expect(page.locator('[data-custom-map]')).toHaveCount(0);
@@ -310,6 +324,9 @@ test('one place stays link-only until explicit publication and reviewer approval
   await page.reload();
   await page.locator('#categories-toggle').click();
   await expect(page.locator(`[data-custom-map="${saved.id}"]`)).toBeVisible();
+  await expect(page.getByRole('group', { name: 'Community maps', exact: true })).toBeVisible();
+  await page.locator(`[data-custom-map="${saved.id}"]`).click();
+  await expect(page.locator('#custom-map-visibility')).toHaveText('Community map · Created by the community and publicly listed under “More”.');
 });
 
 for (const locale of ['de', 'en']) {

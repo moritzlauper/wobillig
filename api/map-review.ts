@@ -5,11 +5,13 @@ import { InputError } from '../src/community.js';
 import { blobStore } from '../server/prices.js';
 import { authorizedMapReviewer, mapReviewHtml, reviewMap } from '../server/map-review.js';
 import { reviewAutomaticMap } from '../server/automatic-map-review.js';
+import { sameOrigin } from '../server/community-security.js';
 
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
   res.setHeader('Cache-Control', 'private, no-store'); res.setHeader('Vary', 'Authorization');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive'); res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Referrer-Policy', 'no-referrer'); res.setHeader('X-Frame-Options', 'DENY');
+  // Form POSTs need their same-origin Origin header; no-referrer turns it into "null".
+  res.setHeader('Referrer-Policy', 'same-origin'); res.setHeader('X-Frame-Options', 'DENY');
   const fail = (status: number, message: string) => { res.statusCode = status; res.setHeader('Content-Type', 'text/plain; charset=utf-8'); res.end(message); };
   if (!process.env.MAP_REVIEW_PASSWORD) return fail(503, 'Prüfzugang noch nicht eingerichtet.');
   if (!authorizedMapReviewer(req.headers.authorization)) {
@@ -20,7 +22,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
   const store = (city: City) => blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
   try {
     if (req.method === 'POST') {
-      if (!req.headers.origin || new URL(req.headers.origin).host !== req.headers.host || req.headers['sec-fetch-site'] === 'cross-site') return fail(403, 'Bitte die Prüfseite auf dieser Website verwenden.');
+      if (!sameOrigin(req)) return fail(403, 'Bitte die Prüfseite auf dieser Website verwenden.');
       if (!req.headers['content-type']?.startsWith('application/x-www-form-urlencoded')) return fail(415, 'Formulardaten erwartet.');
       let body = req.body;
       if (body === undefined) {

@@ -11,7 +11,7 @@ import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
 import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels as defaultCoffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer, type OutdoorPermit } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
-import { filtersFromSearch, writeFilters } from './filters';
+import { cheapModeFromSearch, cheapPreferenceKey, filtersFromSearch, writeFilters } from './filters';
 import { createExport, downloadExport } from './export';
 import { googleMapsLink, withKnownAddress, locationAtPosition, nearbyLocations, selectableLocations } from './locations';
 import { createDistrictLookup, districtFromSearch, type Districts } from './districts';
@@ -90,7 +90,13 @@ const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
 let communityReady = false, saving = false, pizzaAvailable = false;
-let cheapMode = initial.get('cheap') === '1';
+let cheapPreference: string | null = null;
+try { cheapPreference = localStorage.getItem(cheapPreferenceKey); } catch { /* Storage can be blocked. */ }
+let cheapMode = cheapModeFromSearch(initial, cheapPreference);
+function rememberCheapMode(enabled: boolean) {
+  cheapMode = enabled;
+  try { localStorage.setItem(cheapPreferenceKey, enabled ? '1' : '0'); } catch { /* Keep the choice for this page. */ }
+}
 let cheapLimit: number | undefined;
 let pizzaOptions: ReturnType<typeof pizzaVarieties> = [];
 let beerOptions: ReturnType<typeof beerVarieties> = [];
@@ -149,7 +155,7 @@ $('app').innerHTML = `
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="${t('Lokale')}"><div class="list-tools"><a id="rankings-link" class="rankings-link" href="#kaffeepreise" aria-label="${t('Ranglisten und Quellen')}" title="${t('Ranglisten und Quellen')}">${t('Ranglisten')}</a><select id="sort" aria-label="${t('Sortierung')}">${options({ price: t('Preis aufsteigend'), price_desc: t('Preis absteigend'), name: 'Name A–Z', distance: t('Entfernung') })}</select></div><div id="results"></div></aside>
-  <section class="map-panel" aria-label="${t('Karte')}"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="${t('Standort anzeigen')}" title="${t('Standort anzeigen')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><button id="cheap" aria-pressed="false" disabled>${t('Günstig')}</button></div><section id="detail" aria-label="${t('Lokal und Preise')}" tabindex="-1" hidden></section>
+  <section class="map-panel" aria-label="${t('Karte')}"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="${t('Standort anzeigen')}" title="${t('Standort anzeigen')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><button id="cheap" aria-pressed="false" disabled>${t('Günstig')}</button><button id="show-all" hidden title="${t('Günstig-Filter aufheben')}">${t('Alle anzeigen')}</button></div><section id="detail" aria-label="${t('Lokal und Preise')}" tabindex="-1" hidden></section>
 <footer class="app-footer"><button id="tip-coffee" type="button" hidden></button><a href="mailto:hello@wobillig.ch">${t('Kontakt')}</a></footer>
   </section>
 </main>
@@ -215,7 +221,7 @@ addVenueButton.onclick = () => {
   openVenueForm(map.getCenter(), addressSelection ? '' : f.query.trim());
 };
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
-L.control.zoom({ position: 'bottomright' }).addTo(map);
+const zoomControl = L.control.zoom({ position: 'bottomright' }).addTo(map);
 let mapMoving = false;
 let revealFrame: number | undefined;
 let pendingReveal: { id: string; zoom?: number } | undefined;
@@ -464,7 +470,8 @@ function render() {
   cheapButton.textContent = cheapLimit === undefined ? t('Günstig') : t('Günstig bis CHF {price}', { price: Number.isInteger(cheapLimit) ? cheapLimit : cheapLimit.toFixed(2) });
   cheapButton.disabled = cheapLimit === undefined && !cheapMode;
   cheapButton.setAttribute('aria-pressed', String(cheapMode));
-  cheapButton.title = cheapLimit === undefined ? t('Keine passenden Preise vorhanden') : cheapMode ? t('Günstig-Filter aufheben') : t('Günstige Lokale für die aktuelle Auswahl anzeigen');
+  $('show-all').hidden = !cheapMode;
+  cheapButton.title = cheapMode ? t('Günstig-Filter aufheben') : cheapLimit === undefined ? t('Keine passenden Preise vorhanden') : t('Günstige Lokale für die aktuelle Auswahl anzeigen');
   const searchFilters = addressSelection ? { ...f, query: '' } : f;
   const activeFilters = cheapMode ? { ...searchFilters, max: cheapLimit ?? -Infinity, unknown: false } : searchFilters;
   $<HTMLInputElement>('unknown').checked = activeFilters.unknown;
@@ -544,6 +551,8 @@ function render() {
     button.onblur = () => { focusedVenue = undefined; highlightVenue(); };
   });
   if (selectedBar) detail(selectedBar); else { $('detail').hidden = true; clearGoogleRating(); }
+  const zoomPosition = selectedBar ? 'topleft' : 'bottomright';
+  if (zoomControl.getPosition() !== zoomPosition) zoomControl.setPosition(zoomPosition);
   renderLocations();
   renderSearchSuggestions();
 }
@@ -815,7 +824,7 @@ $('search').onkeydown = async event => {
     }
   }
 };
-$('price').oninput = () => { cheapMode = false; const n = $<HTMLInputElement>('price').valueAsNumber; f.max = Number.isFinite(n) ? n : Infinity; render(); };
+$('price').oninput = () => { rememberCheapMode(false); const n = $<HTMLInputElement>('price').valueAsNumber; f.max = Number.isFinite(n) ? n : Infinity; render(); };
 $('price').onblur = () => { if (!Number.isFinite(f.max)) render(); };
 $('volume').onchange = () => { selectBeerSize(f, $<HTMLSelectElement>('volume').value); render(); };
 $('coffeeType').onchange = () => { f.coffeeType = $<HTMLSelectElement>('coffeeType').value; render(); };
@@ -853,13 +862,13 @@ $('beer-type').onchange = () => {
 };
 $('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render(); };
 $('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position && !addressSelection) locate(); else render(); };
-for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree']] as const) $(id).onchange = () => { if (key === 'unknown') cheapMode = false; f[key] = $<HTMLInputElement>(id).checked; render(); };
+for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree']] as const) $(id).onchange = () => { if (key === 'unknown') rememberCheapMode(false); f[key] = $<HTMLInputElement>(id).checked; render(); };
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
 $('reset').onclick = () => {
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
-  cheapMode = false;
+  rememberCheapMode(false);
   districtState.enabled = false; districtState.selected = undefined;
   Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = '';
@@ -894,8 +903,14 @@ function locate(openNearby = false) {
 }
 $('locate').onclick = () => locate(true);
 $('cheap').onclick = () => {
-  cheapMode = !cheapMode;
+  rememberCheapMode(!cheapMode);
   trackEvent(cityId, 'cheap_filter_changed', { category: f.drink!, enabled: cheapMode });
+  selected = undefined;
+  render();
+};
+$('show-all').onclick = () => {
+  rememberCheapMode(false);
+  trackEvent(cityId, 'cheap_filter_changed', { category: f.drink!, enabled: false });
   selected = undefined;
   render();
 };

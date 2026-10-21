@@ -23,6 +23,9 @@ for (const width of [320, 1280]) {
       return route.fulfill({ json: { bars, generatedAt: '', discoveredAt: '', attribution: '' } });
     });
     await page.goto('/');
+    await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#results .venue')).toHaveCount(1);
+    await page.getByRole('button', { name: 'Alle anzeigen', exact: true }).click();
     const price = page.locator('#price');
     await expect(price).toHaveValue('18.75');
     await expect(page.locator('#results .venue-price')).toContainText(['4.25', '18.75', 'Noch nicht erfasst']);

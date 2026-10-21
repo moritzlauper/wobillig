@@ -71,7 +71,11 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     if (!pizzaAvailable) more.append(buttons.pizza);
     const savedIds = new Set(savedMapButtons.map(button => button.dataset.customMap));
     const publicButtons = mapButtons.filter(button => !savedIds.has(button.dataset.customMap));
-    for (const [label, items] of [[t('Meine Maps'), savedMapButtons], [t('Öffentliche Maps'), publicButtons]] as const) {
+    const publicIds = new Set(mapButtons.map(button => button.dataset.customMap));
+    for (const button of savedMapButtons) {
+      button.textContent = button.dataset.mapName! + (publicIds.has(button.dataset.customMap) ? ` · ${t('Community-Map')}` : '');
+    }
+    for (const [label, items] of [[t('Meine Maps'), savedMapButtons], [t('Community-Maps'), publicButtons]] as const) {
       if (!items.length) continue;
       const group = document.createElement('div');
       group.className = 'custom-map-menu-group';
@@ -159,7 +163,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     setSavedMaps(maps: { id: string; name: string }[], load: (id: string) => void) {
       savedMapButtons = maps.map(map => {
         const button = document.createElement('button'); button.type = 'button';
-        button.textContent = map.name; button.dataset.customMap = map.id;
+        button.textContent = map.name; button.dataset.mapName = map.name; button.dataset.customMap = map.id;
         button.onclick = () => { close(); load(map.id); };
         return button;
       });

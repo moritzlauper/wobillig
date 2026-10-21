@@ -5,6 +5,10 @@ import { seoPlugin } from './build/seo-plugin';
 
 // Each city needs metadata in the initial HTML for link-preview crawlers.
 export default defineConfig({
+  // Prebundle every browser dependency before serving pages. Discovering a new
+  // shared chunk mid-session otherwise reloads open maps and browser tests.
+  optimizeDeps: { noDiscovery: true, include: ['leaflet', '@vercel/analytics', '@stripe/stripe-js'] },
+  server: { watch: { ignored: ['**/test-results/**', '**/playwright-report/**'] } },
   plugins: [seoPlugin(), {
     name: 'local-google-rating',
     generateBundle() { this.emitFile({ type: 'asset', fileName: 'assets/deals-leaflet.css', source: readFileSync('node_modules/leaflet/dist/leaflet.css', 'utf8') }); },

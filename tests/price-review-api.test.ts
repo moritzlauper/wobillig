@@ -43,6 +43,7 @@ describe('online manual price review', () => {
     expect(response.body).toContain('Jetzt aktualisieren');
     expect(response.body).toContain('href="/output/price-review/production?format=csv"');
     expect(response.headers['Cache-Control']).toContain('no-store');
+    expect(response.headers['Referrer-Policy']).toBe('same-origin');
     expect(response.headers['X-Robots-Tag']).toContain('noindex');
     await request();
     expect(mocks.blobStore).toHaveBeenCalledTimes(10);

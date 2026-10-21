@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { filtersFromSearch, writeFilters } from '../src/filters';
+import { cheapModeFromSearch, filtersFromSearch, writeFilters } from '../src/filters';
 import { cityLink } from '../src/cities';
 import type { Filters } from '../src/data';
 
@@ -40,12 +40,13 @@ describe('filters across city navigation', () => {
       expect(filtersFromSearch(new URLSearchParams({ max })).max).toBe(Infinity);
     }
   });
-  it('keeps the default view at a bare URL', () => {
+  it('keeps only the explicit cheap choice for otherwise default filters', () => {
     const params = new URLSearchParams('drink=coffee&coffeeType=cappuccino&beerType=all&size=300-330&unknown=1&outdoor=0&alcoholFree=0&mode=glass&sort=price&cheap=0');
     writeFilters(params, filtersFromSearch(params), false);
-    expect(params.toString()).toBe('');
+    expect(params.toString()).toBe('cheap=0');
     writeFilters(params, { ...filtersFromSearch(new URLSearchParams()), drink: 'pizza', max: Infinity }, false);
-    expect(params.toString()).toBe('drink=pizza');
+    expect(params.get('drink')).toBe('pizza');
+    expect(params.get('cheap')).toBe('0');
     const coffee = { ...filtersFromSearch(new URLSearchParams()), beerType: 'draft' as const };
     writeFilters(params, coffee, false);
     expect(filtersFromSearch(params)).toEqual(coffee);
@@ -61,5 +62,26 @@ describe('filters across city navigation', () => {
     expect(filtersFromSearch(new URLSearchParams('drink=coffee&type=fast_food&coffeeType=matcha&sort=invalid')))
       .toMatchObject({ type: 'fast_food', coffeeType: 'cappuccino', sort: 'price' });
     expect(filtersFromSearch(new URLSearchParams('drink=beer&beerType=can&size=stange'))).toMatchObject({ volume: 'all' });
+  });
+});
+
+
+describe('initial cheap mode', () => {
+  it('defaults new visits and tracking links to cheap, respecting saved choices', () => {
+    for (const query of ['', 'utm_source=newsletter']) {
+      for (const preference of [null, '1', 'invalid']) {
+        expect(cheapModeFromSearch(new URLSearchParams(query), preference)).toBe(true);
+      }
+      expect(cheapModeFromSearch(new URLSearchParams(query), '0')).toBe(false);
+    }
+  });
+  it.each(['max=8', 'drink=beer', 'q=Cafe', 'bar=node/1', 'map=abc', 'kreis=2', 'coffeeType=espresso', 'unknown=1'])(
+    'preserves older selection links: %s', query => {
+      expect(cheapModeFromSearch(new URLSearchParams(query), '1')).toBe(false);
+    });
+  it.each([true, false])('preserves cheap=%s through sharing despite the recipient preference', cheap => {
+    const params = new URLSearchParams();
+    writeFilters(params, filtersFromSearch(params), cheap);
+    expect(cheapModeFromSearch(params, cheap ? '0' : '1')).toBe(cheap);
   });
 });

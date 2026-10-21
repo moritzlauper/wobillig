@@ -2,6 +2,20 @@ import { beerTypeLabels, coffeeLabels, type Filters } from './data';
 import { drinkFromSearch } from './sharing';
 import { parsePizzaSelection } from './pizza-selection';
 import { parseBeerSelection } from './beer-selection';
+import { cities } from './cities';
+
+export const cheapPreferenceKey = 'wobillig:cheap';
+
+export function cheapModeFromSearch(params: URLSearchParams, preference: string | null): boolean {
+  if (params.has('cheap')) return params.get('cheap') === '1';
+  // Links made before cheap became the default must retain their original view.
+  const selectionKeys = ['drink', 'coffeeType', 'beerType', 'beerSelection', 'beerQuery',
+    'pizzaSelection', 'pizzaQuery', 'q', 'max', 'size', 'type', 'unknown', 'outdoor',
+    'alcoholFree', 'mode', 'sort', 'bar', 'address', 'map',
+    ...Object.values(cities).flatMap(city => [city.districts.toggle, city.districts.param])];
+  if (selectionKeys.some(key => params.has(key))) return false;
+  return preference !== '0';
+}
 
 function choice<T extends string>(params: URLSearchParams, key: string, values: readonly T[], fallback: T): T {
   const value = params.get(key);
@@ -35,7 +49,7 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
 }
 
 // Persist the underlying filters, not the temporary price cap of cheap mode.
-// Only values that differ from the defaults are written, so the default view stays at a bare URL.
+// Always write cheap mode so shared links override the recipient's saved preference.
 export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean): void {
   const drink = f.drink || 'coffee';
   const beerType = f.beerType && f.beerType !== 'all' ? f.beerType : '';
@@ -49,7 +63,7 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
     max: Number.isFinite(f.max) ? String(f.max) : '',
     size, type: f.type, unknown: f.unknown ? '' : '0', outdoor: f.outdoor ? '1' : '',
     alcoholFree: f.alcoholFree ? '1' : '', mode: f.mode !== 'glass' ? f.mode : '',
-    sort: f.sort !== 'price' ? f.sort : '', cheap: cheap ? '1' : '',
+    sort: f.sort !== 'price' ? f.sort : '', cheap: cheap ? '1' : '0',
   };
   for (const [key, value] of Object.entries(values)) {
     if (value) params.set(key, value); else params.delete(key);

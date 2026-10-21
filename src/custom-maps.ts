@@ -54,7 +54,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     <div class="dialog-top"><strong id="create-map-title">${t('Eigene Map erstellen')}</strong><button type="button" data-close>${t('Schliessen')}</button></div>
     <label>${t('Art der Map')}<select name="mode"><option value="manual">${t('Map selbst erstellen')}</option><option value="automatic">${t('Automatische Map anfragen')}</option></select></label>
     <p data-manual>${t('Ob Essen, Alltagsprodukte oder Dienstleistungen: Erstelle eine Map und sammle Orte mit Preisen.')}</p>
-    <label>${t('Name der Map')}<input name="name" required maxlength="60" placeholder="${t('z. B. Döner-Map')}" autocomplete="off"></label>
+    <label>${t('Name der Map')}<input name="name" required maxlength="60" placeholder="${t('z. B. Brot-Map')}" autocomplete="off"></label>
     <fieldset data-automatic hidden disabled>
       <label>${t('Link zur Angebotsseite')}<input name="sourceUrl" type="url" maxlength="2000" placeholder="https://www.coop.ch/…" required></label>
       <label>${t('Welche Angebote möchtest du sehen?')}<textarea name="description" rows="3" maxlength="600" required placeholder="${t('z. B. Kaffeeaktionen bei Coop in Zürich')}"></textarea></label>
@@ -75,7 +75,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     <p id="map-venue-search-help" class="muted" role="status">${t('Suche im gesamten Bestand nach Name, Adresse oder PLZ und wähle ein Lokal aus.')}</p>
     <small class="map-place-attribution">${t('Orte aus')} <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> · <a href="https://photon.komoot.io" target="_blank" rel="noopener noreferrer">Photon</a></small>
     <button type="button" id="map-new-venue">${t('Lokal fehlt? Neu hinzufügen')}</button>
-    <label>${t('Produkt / Menge')}<input name="product" required maxlength="100" placeholder="${t('z. B. Tampons, Packung mit 16 Stück')}"></label>
+    <label>${t('Produkt / Menge')}<input name="product" required maxlength="100" placeholder="${t('z. B. Haferflocken, Packung mit 500 g')}"></label>
     <label>${t('Preis in CHF')}<input name="price" type="number" required min="0.5" max="500" step="0.01" inputmode="decimal"></label>
     <button class="primary" type="submit">${t('Speichern')}</button><p role="alert" data-error hidden></p>
   </form>`;
@@ -183,7 +183,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     create.querySelector<HTMLElement>('[data-automatic-copy]')!.hidden = !automatic;
     create.querySelector<HTMLElement>('#create-map-title')!.textContent = automatic ? t('Automatische Map anfragen') : t('Eigene Map erstellen');
     create.querySelector<HTMLButtonElement>('[type="submit"]')!.textContent = automatic ? t('Anfrage einreichen') : t('Map erstellen');
-    create.querySelector<HTMLInputElement>('[name="name"]')!.placeholder = automatic ? t('z. B. Coop Aktionen Zürich') : t('z. B. Döner-Map');
+    create.querySelector<HTMLInputElement>('[name="name"]')!.placeholder = automatic ? t('z. B. Coop Aktionen Zürich') : t('z. B. Brot-Map');
   }
   mode.onchange = () => { createId = crypto.randomUUID(); errorText(create, ''); updateCreateMode(); };
   plus.onclick = () => showPicker();
@@ -311,7 +311,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       : t('{count} Lokale · Schnitt {price}', { count: entries.length, price: average });
     const status = value.publication?.status;
     el('custom-map-visibility').hidden = !status;
-    el('custom-map-visibility').textContent = status === 'approved' ? t('Öffentlich unter «Weitere» sichtbar.')
+    el('custom-map-visibility').textContent = status === 'approved' ? t('Community-Map · Von der Community erstellt und öffentlich unter «Weitere» sichtbar.')
       : status === 'pending' ? t('Zur Prüfung eingereicht. Bis zur Freigabe bleibt die Map nur per Link erreichbar.')
       : status === 'rejected' ? t('Veröffentlichung abgelehnt. Du kannst die Map überarbeiten und erneut einreichen. Der Link bleibt nutzbar.')
       : '';
@@ -487,16 +487,19 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     venueSearchHelp.textContent = '';
     closeVenueSuggestions();
   }
-  function showVenueSuggestions() {
+  function showVenueSuggestions(preserveSelection = false) {
     if (busy || lockedVenue || field('venue').value) return;
+    const activeId = preserveSelection ? venueMatches[activeVenue]?.id : undefined;
     // Rank the complete catalogue before limiting the visible suggestions.
     const matches = [...new Map([...searchSuggestions(venues(), venueSearch.value, 9), ...remoteMatches].map(venue => [venue.id, venue])).values()];
-    venueMatches = matches.slice(0, 8); activeVenue = -1;
-    venueSearch.removeAttribute('aria-activedescendant');
+    venueMatches = matches.slice(0, 8);
+    activeVenue = activeId ? venueMatches.findIndex(venue => venue.id === activeId) : -1;
+    if (activeVenue >= 0) venueSearch.setAttribute('aria-activedescendant', `map-venue-option-${activeVenue}`);
+    else venueSearch.removeAttribute('aria-activedescendant');
     venueSuggestions.replaceChildren();
     for (const [index, venue] of venueMatches.entries()) {
       const button = document.createElement('button'); button.type = 'button'; button.tabIndex = -1;
-      button.id = `map-venue-option-${index}`; button.setAttribute('role', 'option'); button.setAttribute('aria-selected', 'false');
+      button.id = `map-venue-option-${index}`; button.setAttribute('role', 'option'); button.setAttribute('aria-selected', String(index === activeVenue));
       button.innerHTML = `<strong>${e(venue.name)}</strong><small>${e([venue.address, venue.postcode].filter(Boolean).join(' · '))}</small>${placeResults.has(venue.id) ? '<small>OpenStreetMap</small>' : ''}`;
       button.onmousedown = event => event.preventDefault();
       button.onclick = () => { chooseVenue(venue); field('product').focus(); };
@@ -534,7 +537,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
         placeStatus = 'error';
       } finally {
         clearTimeout(timeout);
-        if (version === placeSearchVersion && entry.open && document.activeElement === venueSearch) showVenueSuggestions();
+        if (version === placeSearchVersion && entry.open && document.activeElement === venueSearch) showVenueSuggestions(true);
       }
     }, 450);
   }
@@ -561,10 +564,10 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     schedulePlaceSearch();
     showVenueSuggestions();
   };
-  venueSearch.onfocus = showVenueSuggestions;
+  venueSearch.onfocus = () => showVenueSuggestions();
   venueSearch.onkeydown = event => {
     if (event.key === 'Escape' && !venueSuggestions.hidden) {
-      event.preventDefault(); event.stopPropagation(); closeVenueSuggestions();
+      event.preventDefault(); event.stopPropagation(); cancelPlaceSearch(); placeStatus = 'idle'; closeVenueSuggestions();
     } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       if (venueSuggestions.hidden) showVenueSuggestions();

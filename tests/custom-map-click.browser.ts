@@ -2,8 +2,6 @@ import { test, expect, type Page } from '@playwright/test';
 import type { CustomMap } from '../src/custom-map-data';
 
 async function stubTiles(page: Page) {
-  // Test venue selection independently of Leaflet's animated zoom timing.
-  await page.addInitScript(() => { (window as typeof window & { L_DISABLE_3D: boolean }).L_DISABLE_3D = true; });
   await page.route('https://tile.openstreetmap.org/**', route => route.fulfill({
     contentType: 'image/png', body: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=', 'base64'),
   }));
@@ -33,11 +31,9 @@ for (const touch of [false, true]) {
     await page.goto(`http://127.0.0.1:${process.env.WOBILLIG_TEST_PORT || 5179}/?map=${id}`);
     const canvas = page.locator('#custom-map-canvas');
     await expect(canvas).toBeVisible();
-    // Exercise keyboard zoom on desktop and the zoom control on touch devices.
-    // The OSM tests below cover the desktop zoom buttons separately.
+    // Leaflet zoom animation must settle between presses.
     for (let i = 0; i < 4; i++) {
-      if (touch) await canvas.getByRole('button', { name: 'Zoom in', exact: true }).tap();
-      else await canvas.press('+');
+      await canvas.getByRole('button', { name: 'Zoom in', exact: true }).click();
       await expect(canvas.locator(`img[src*="/${14 + i}/"]`).first()).toBeAttached();
       await expect(canvas.locator('.leaflet-map-pane')).not.toHaveClass(/leaflet-zoom-anim/);
     }

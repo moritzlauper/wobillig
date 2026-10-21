@@ -2,9 +2,32 @@ import { it, expect } from 'vitest';
 import { randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { del } from '@vercel/blob';
-import { blobStore, savePrice } from '../server/prices';
+import { blobStore, emptyState, savePrice } from '../server/prices';
+import { reviewMap } from '../server/map-review';
+import { mapFingerprint } from '../server/custom-maps';
+import { publicMapSummaries, type CustomMap } from '../src/custom-map-data';
 import { offerKey, type PriceInput } from '../src/community';
 import type { Dataset } from '../src/data';
+
+it.skipIf(process.env.RUN_BLOB_INTEGRATION !== '1')('persists map approval and rejection and lists only the approved map across store instances', async () => {
+  const path = `tests/map-review-${randomUUID()}.json`;
+  const maps: CustomMap[] = ['Approve test map', 'Reject test map'].map(name => ({
+    id: randomUUID(), name, createdAt: '2026-10-21T10:00:00Z',
+    publication: { status: 'pending', requestedAt: '2026-10-21T10:00:00Z', fingerprint: '' },
+    entries: [{ venue: { id: 'node/1', name: 'Test shop', address: 'Test 1', postcode: '8001', lat: 47.378, lon: 8.535 },
+      product: 'Test product', priceChf: 5, revision: 1, updatedAt: '2026-10-21T10:00:00Z' }],
+  }));
+  try {
+    await blobStore(path).write({ ...emptyState(), customMaps: maps });
+    for (const [index, map] of maps.entries()) await reviewMap(blobStore(path), map.id, mapFingerprint(map), index === 0);
+    const saved = (await blobStore(path).read()).state.customMaps!;
+    expect(saved[0].publication?.status).toBe('approved');
+    expect(saved[0].publishedAt).toBeTruthy();
+    expect(saved[1].publication?.status).toBe('rejected');
+    expect(saved[1].publishedAt).toBeUndefined();
+    expect(publicMapSummaries(saved)).toEqual([{ id: maps[0].id, name: maps[0].name, venueCount: 1 }]);
+  } finally { await del(path); }
+}, 60000);
 
 // Explicit opt-in; uses a temporary key, never either live dataset.
 it.skipIf(process.env.RUN_BLOB_INTEGRATION !== '1')('persists repeated edits and concurrent additions across store instances', async () => {

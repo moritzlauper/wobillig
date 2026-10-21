@@ -13,7 +13,8 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   res.setHeader('Vary', 'Authorization');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Referrer-Policy', 'no-referrer');
+  // Preserve Origin on the embedded review forms without sending referrers to other sites.
+  res.setHeader('Referrer-Policy', 'same-origin');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   const error = (status: number, message: string) => {

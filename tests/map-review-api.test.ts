@@ -33,13 +33,23 @@ it('protects the review queue and escapes submitted content', async () => {
   expect(response.status).toBe(200); expect(response.output).toContain('Tampons, 16 Stück');
   expect(response.output).not.toContain('<img src=x'); expect(response.output).toContain('&lt;img');
   expect(response.headers['Cache-Control']).toBe('private, no-store');
+  expect(response.headers['Referrer-Policy']).toBe('same-origin');
+});
+it.each(['null', 'not-a-url', 'https://other.example'])('rejects invalid origin %s without accessing storage', async origin => {
+  const body = new URLSearchParams({ city: 'zurich', id: map.id, fingerprint: mapFingerprint(map), decision: 'reject' }).toString();
+  expect((await request(true, body, origin)).status).toBe(403);
+  expect(mocks.store).not.toHaveBeenCalled();
+  expect(state.customMaps![0].publication?.status).toBe('pending');
 });
 it('publishes only an authenticated, same-origin decision for the reviewed snapshot', async () => {
   const body = new URLSearchParams({ city: 'zurich', id: map.id, fingerprint: mapFingerprint(map), decision: 'approve' }).toString();
   expect((await request(false, body)).status).toBe(401);
   expect((await request(true, body, 'https://other.example')).status).toBe(403);
   expect(publicMapSummaries(state.customMaps!)).toEqual([]);
-  expect((await request(true, body)).status).toBe(303);
+  const approved = await request(true, body);
+  expect(approved.status).toBe(303);
+  expect(approved.headers.Location).toBe('/output/price-review/production#map-review');
+  expect(state.customMaps![0].publishedAt).toBeTruthy();
   expect(publicMapSummaries(state.customMaps!)).toHaveLength(1);
   expect((await request(true, body)).status).toBe(409);
 });
@@ -47,7 +57,10 @@ it('refuses approval after changes and keeps rejected maps unlisted', async () =
   const body = { city: 'zurich', id: map.id, fingerprint: mapFingerprint(map), decision: 'approve' };
   state.customMaps![0].entries[0].priceChf = 7;
   expect((await request(true, new URLSearchParams(body).toString())).status).toBe(409);
-  expect((await request(true, new URLSearchParams({ ...body, fingerprint: mapFingerprint(state.customMaps![0]), decision: 'reject' }).toString())).status).toBe(303);
+  const rejected = await request(true, new URLSearchParams({ ...body, fingerprint: mapFingerprint(state.customMaps![0]), decision: 'reject' }).toString());
+  expect(rejected.status).toBe(303);
+  expect(rejected.headers.Location).toBe('/output/price-review/production#map-review');
+  expect(state.customMaps![0].publishedAt).toBeUndefined();
   expect(publicMapSummaries(state.customMaps!)).toEqual([]);
   expect(state.customMaps![0].publication?.status).toBe('rejected');
 });

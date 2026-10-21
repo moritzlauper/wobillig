@@ -9,7 +9,7 @@ import { claimLegacyMap, contributionReviewHtml, reviewContribution } from '../s
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
   res.setHeader('Cache-Control', 'private, no-store'); res.setHeader('Vary', 'Authorization');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow'); res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Referrer-Policy', 'no-referrer'); res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'same-origin'); res.setHeader('X-Frame-Options', 'DENY');
   const fail = (status: number, message: string) => { res.statusCode = status; res.setHeader('Content-Type', 'text/plain; charset=utf-8'); res.end(message); };
   if (!process.env.MAP_REVIEW_PASSWORD) return fail(503, 'Prüfzugang nicht eingerichtet.');
   if (!authorizedMapReviewer(req.headers.authorization)) { res.setHeader('WWW-Authenticate', 'Basic realm="Wobillig Map Review", charset="UTF-8"'); return fail(401, 'Bitte anmelden.'); }
