@@ -1,6 +1,573 @@
 {
-  "generatedAt": "2026-10-21T07:13:07.089763+00:00",
-  "discoveredAt": "2026-10-21T07:13:07.089775+00:00",
+  "generatedAt": "2026-10-21T09:48:20.932546+00:00",
+  "discoveredAt": "2026-10-21T09:27:42.570810+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
-  "bars": []
+  "bars": [
+    {
+      "id": "node/9794997268",
+      "name": "A La Turca",
+      "lat": 46.2003746,
+      "lon": 6.1313381,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Su,PH 07:00-24:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/9310136143",
+      "name": "Ali baba kebab",
+      "lat": 46.2154555,
+      "lon": 6.146781,
+      "type": "fast_food",
+      "address": "Rue de Lausanne 65",
+      "postcode": "1202",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Su 08:00-02:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12844396499",
+      "name": "Ali haydar",
+      "lat": 46.2121891,
+      "lon": 6.1450419,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Su 10:00-02:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/9228664890",
+      "name": "Alles Gut Gemüse Kebab",
+      "lat": 46.1937813,
+      "lon": 6.1399177,
+      "type": "fast_food",
+      "address": "Quai Ernest-Ansermet 2",
+      "postcode": "1205",
+      "website": "https://www.gemusekebab.ch",
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Apr-Oct: Mo-Fr 11:30-14:00,18:30-21:00; Apr-Oct: Sa 11:30-21:00; Nov-Mar: Mo-Fr 11:30-14:00,18:30-21:00; Nov-Mar: Sa 12:00-15:00,18:30-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T09:29:15.242365+00:00"
+    },
+    {
+      "id": "node/9783259610",
+      "name": "Ankara",
+      "lat": 46.2107042,
+      "lon": 6.1476557,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/2395622187",
+      "name": "Ates kebab",
+      "lat": 46.1960332,
+      "lon": 6.1504358,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1286683112",
+      "name": "Au bon kebab",
+      "lat": 46.1960771,
+      "lon": 6.1420608,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/13131305294",
+      "name": "Bodrum",
+      "lat": 46.1969409,
+      "lon": 6.1382792,
+      "type": "fast_food",
+      "address": "Boulevard Carl-Vogt 75",
+      "postcode": "1205",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-We 11:00-01:00, Th-Sa 11:00-02:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2175850061"
+    },
+    {
+      "id": "node/5807037461",
+      "name": "Champs Fréchets Doner Kebab, K. Coskun S.A.",
+      "lat": 46.2372039,
+      "lon": 6.0783847,
+      "type": "fast_food",
+      "address": "Promenade des Champs-Fréchets 17",
+      "postcode": "1217",
+      "website": "https://kebabgeneve.ch/",
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Sa 08:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-21T09:27:42.803376+00:00"
+    },
+    {
+      "id": "node/9642082651",
+      "name": "Chez Loan Kebab",
+      "lat": 46.2155382,
+      "lon": 6.1314788,
+      "type": "fast_food",
+      "address": "Rue du Grand-Pré 61",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Su 10:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2440334161"
+    },
+    {
+      "id": "node/582822243",
+      "name": "Constantine",
+      "lat": 46.1841662,
+      "lon": 6.1422171,
+      "type": "fast_food",
+      "address": "Rue Vautier 27",
+      "postcode": "1227",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/10996716212",
+      "name": "Deniz",
+      "lat": 46.2081141,
+      "lon": 6.1351112,
+      "type": "fast_food",
+      "address": "Rue Voltaire 29",
+      "postcode": "1201",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3672163255"
+    },
+    {
+      "id": "node/12229254930",
+      "name": "Döner kebap",
+      "lat": 46.2023213,
+      "lon": 6.1509912,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12534575701",
+      "name": "El Baraka",
+      "lat": 46.2010022,
+      "lon": 6.1297082,
+      "type": "fast_food",
+      "address": "Rue des Deux-Ponts 18",
+      "postcode": "1205",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Su-Th 11:00-02:00; Fr-Sa 11:00-06:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1936569509",
+      "name": "Ephese",
+      "lat": 46.1923649,
+      "lon": 6.1437793,
+      "type": "fast_food",
+      "address": "Rue de Carouge 76",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Su,PH 10:00-02:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2126273826"
+    },
+    {
+      "id": "node/4825677959",
+      "name": "Kebab du Marché",
+      "lat": 46.1917547,
+      "lon": 6.1033385,
+      "type": "fast_food",
+      "address": "Avenue des Grandes-Communes 27",
+      "postcode": "1213",
+      "website": null,
+      "cuisine": [
+        "turkish"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/2188913031",
+      "name": "Kebab House",
+      "lat": 46.2005413,
+      "lon": 6.1311,
+      "type": "fast_food",
+      "address": "Boulevard Carl-Vogt",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": "Mo-Su 07:00-24:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/6358767387",
+      "name": "Kinnik",
+      "lat": 46.1657109,
+      "lon": 6.1082098,
+      "type": "fast_food",
+      "address": "Chemin du Pré-Fleuri 14",
+      "postcode": "1228",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Fr 08:30-15:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12169543133",
+      "name": "Kisa Kebab",
+      "lat": 46.2037427,
+      "lon": 6.1579948,
+      "type": "fast_food",
+      "address": "Rue des Eaux-Vives 14",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2406735666"
+    },
+    {
+      "id": "node/14239929144",
+      "name": "La Broche",
+      "lat": 46.2001648,
+      "lon": 6.1668774,
+      "type": "fast_food",
+      "address": "Route de Chêne 19",
+      "postcode": "1207",
+      "website": "https://broche.ch",
+      "cuisine": [
+        "kebab",
+        "turkish"
+      ],
+      "openingHours": "Mo-Sa 11:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T09:27:56.279431+00:00"
+    },
+    {
+      "id": "node/4222276771",
+      "name": "Mezze du Liban",
+      "lat": 46.2114686,
+      "lon": 6.1339756,
+      "type": "fast_food",
+      "address": "Rue de la Servette 55",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Tu-Sa 09:00-02:00, Su,Mo 09:00-01:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1637560333",
+      "name": "Onex Kebap",
+      "lat": 46.1850114,
+      "lon": 6.100581,
+      "type": "fast_food",
+      "address": "Avenue du Bois-de-la-Chapelle 106",
+      "postcode": "1213",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "PH,Mo-Su 09:30-24:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/13236509612",
+      "name": "Pacha",
+      "lat": 46.2105782,
+      "lon": 6.1460727,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/2297208591",
+      "name": "Parfums de Beyrouth",
+      "lat": 46.209953,
+      "lon": 6.1458983,
+      "type": "fast_food",
+      "address": "Rue de Berne 18",
+      "postcode": "1201",
+      "website": "https://parfumsdebeyrouth.ch/",
+      "cuisine": [
+        "kebab",
+        "lebanese"
+      ],
+      "openingHours": "Su-Th 11:00-02:00; Fr-Sa 11:00-04:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T09:27:54.830566+00:00"
+    },
+    {
+      "id": "node/12137611423",
+      "name": "Pizza Presto",
+      "lat": 46.2147464,
+      "lon": 6.1338872,
+      "type": "fast_food",
+      "address": "Rue du Grand-Pré",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "kebab",
+        "arab"
+      ],
+      "openingHours": "Mo-Sa 09:00-23:00; Su 10:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12288331851",
+      "name": "Restaurant Kebap",
+      "lat": 46.2082341,
+      "lon": 6.1361618,
+      "type": "fast_food",
+      "address": "Rue Voltaire 26",
+      "postcode": "1201",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Th 08:00-24:00, Fr-Su 10:00-24:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/3672040430"
+    },
+    {
+      "id": "node/12303607526",
+      "name": "Silver Kebab",
+      "lat": 46.2082421,
+      "lon": 6.1278904,
+      "type": "fast_food",
+      "address": "Rue de Lyon 73",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/176982759"
+    },
+    {
+      "id": "node/4222276752",
+      "name": "Silver Kebab Gare",
+      "lat": 46.2097454,
+      "lon": 6.1379912,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Sa 10:00-23:00; Su off",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/13236500212",
+      "name": "Sultan Beyrouth",
+      "lat": 46.2103829,
+      "lon": 6.1459237,
+      "type": "fast_food",
+      "address": "Rue de Berne 29",
+      "postcode": "1201",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2092525111"
+    },
+    {
+      "id": "node/2033145590",
+      "name": "Tamaris Kebab",
+      "lat": 46.1731067,
+      "lon": 6.1230227,
+      "type": "fast_food",
+      "address": "Avenue des Communes-Réunies 66a",
+      "postcode": "1212",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/192150445"
+    },
+    {
+      "id": "node/8679498161",
+      "name": "Özer",
+      "lat": 46.188082,
+      "lon": 6.1123147,
+      "type": "fast_food",
+      "address": "Avenue des Morgines 1",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/2071648620"
+    }
+  ]
 }
