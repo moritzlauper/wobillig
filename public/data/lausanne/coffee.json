@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T13:07:57.610989+00:00",
+  "generatedAt": "2026-10-21T15:34:14.096608+00:00",
   "discoveredAt": "2026-10-21T12:47:36.949467+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -134,11 +134,26 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: Cappuccino 5.-",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso et café",
+          "priceChf": 4,
+          "volumeMl": null,
+          "sourceUrl": "https://beefor.ch/wp-content/uploads/2025/12/beef_menu_boissons_lausanne.pdf",
+          "observedAt": "2026-10-21T15:13:12.003190+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso et café 4.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "c4cc96da572b8e635ea380202574f5fbab4e2b02fd4dc4e20fc057ea62ea6a9a"
         }
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-21T12:48:37.096211+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/44385862"
+      "addressSource": "https://www.openstreetmap.org/way/44385862",
+      "aiCheckedAt": "2026-10-21T15:15:52.121662+00:00"
     },
     {
       "id": "node/9780147859",
@@ -250,7 +265,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:47:36.955066+00:00"
+      "checkedAt": "2026-10-21T12:47:36.955066+00:00",
+      "aiCheckedAt": "2026-10-21T15:13:30.782915+00:00"
     },
     {
       "id": "node/9610795818",
@@ -303,10 +319,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: Latte Macchiato* 5.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Expresso, café",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://brasseriebelleville.ch/wp-content/uploads/2026/10/MENU_BRASSERIE-BELLEVILLE_01102026.pdf",
+          "observedAt": "2026-10-21T14:30:42.491598+00:00",
+          "confidence": "ai",
+          "evidence": "Expresso, café 4.50",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "b31c5f8a3adeeda8b33b339b6b10e9a9d6c970be36fa4bd5d5d9810c946acdc8"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:49:16.248082+00:00"
+      "checkedAt": "2026-10-21T12:49:16.248082+00:00",
+      "aiCheckedAt": "2026-10-21T14:31:50.513425+00:00"
     },
     {
       "id": "node/13273705601",
@@ -405,9 +436,88 @@
       ],
       "openingHours": "Mo 11:30-00:00; Tu-Th 11:30-01:00; Fr, Sa 11:00-02:00; Su 17:00-00:00",
       "outdoor": true,
-      "offers": [],
+      "offers": [
+        {
+          "name": "Café, Espresso",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://files.brasserieduchateau.ch/Carte_site_b2e650c6dd.pdf",
+          "observedAt": "2026-10-21T14:31:54.515213+00:00",
+          "confidence": "ai",
+          "evidence": "BOISSONS CHAUDES CAFÉ, ESPRESSO 3.9",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "0ce14635c1d57474357563a607fda4156b24c1804b5ad89ef6a6bc21b84d70cc"
+        }
+      ],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T12:57:34.894019+00:00"
+      "checkedAt": "2026-10-21T12:57:34.894019+00:00",
+      "aiCheckedAt": "2026-10-21T14:32:25.130926+00:00"
+    },
+    {
+      "id": "node/9029831317",
+      "name": "Bufalà",
+      "lat": 46.5261234,
+      "lon": 6.6213277,
+      "type": "restaurant",
+      "address": "Avenue de France 38",
+      "postcode": "1004",
+      "website": "https://bufala-pizzeria.ch/",
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,18:30-22:30; Sa 18:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Espresso",
+          "priceChf": 3.5,
+          "volumeMl": null,
+          "sourceUrl": "https://bufala-pizzeria.ch/wp-content/uploads/2026/08/Menu-drink2RF.pdf",
+          "observedAt": "2026-10-21T14:31:58.599791+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 3.50-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "b2c04b993da9149ba0e76ddf760ff6dff02e60bd9538112efde069ad0f259549"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://bufala-pizzeria.ch/wp-content/uploads/2026/08/Menu-drink2RF.pdf",
+          "observedAt": "2026-10-21T14:31:58.599791+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 5.00-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "b2c04b993da9149ba0e76ddf760ff6dff02e60bd9538112efde069ad0f259549"
+        },
+        {
+          "name": "Caffè-latte",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://bufala-pizzeria.ch/wp-content/uploads/2026/08/Menu-drink2RF.pdf",
+          "observedAt": "2026-10-21T14:31:58.599791+00:00",
+          "confidence": "ai",
+          "evidence": "Caffè-latte 5.00-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "b2c04b993da9149ba0e76ddf760ff6dff02e60bd9538112efde069ad0f259549"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:32:06.540480+00:00"
     },
     {
       "id": "node/14076803416",
@@ -582,10 +692,39 @@
           "confidence": "automatic",
           "evidence": "PDF S. 3: MATCHA LATTE 7.50",
           "alcoholFree": true
+        },
+        {
+          "name": "RISTRETTO - ESPRESSO - CAFÉ",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://cafedeprelaz.ch/wp-content/uploads/2026/10/Carte-Boisson-Jimmy.pdf",
+          "observedAt": "2026-10-21T14:33:54.782751+00:00",
+          "confidence": "ai",
+          "evidence": "RISTRETTO - ESPRESSO - CAFÉ 3.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "5cda12796d18f86308a905a1610d4fd177083662ed8b575e955c046c48b0e085"
+        },
+        {
+          "name": "CAFÉ LATTE",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://cafedeprelaz.ch/wp-content/uploads/2026/10/Carte-Boisson-Jimmy.pdf",
+          "observedAt": "2026-10-21T14:33:54.782751+00:00",
+          "confidence": "ai",
+          "evidence": "CAFÉ LATTE 5.50",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "5cda12796d18f86308a905a1610d4fd177083662ed8b575e955c046c48b0e085"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:49:56.532735+00:00"
+      "checkedAt": "2026-10-21T12:49:56.532735+00:00",
+      "aiCheckedAt": "2026-10-21T14:34:42.243598+00:00"
     },
     {
       "id": "node/7257994957",
@@ -832,10 +971,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 1: Cappuccino 5.–",
           "alcoholFree": true
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.chezmario.ch/en/_files/ugd/8794d4_7ea0f747178d42afb75422589e00e802.pdf",
+          "observedAt": "2026-10-21T14:35:33.286029+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto . . . 3.9",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "d604cfc364a0168ce5bc502f5b5d468a6dae74c5bf0b6337d93d5b61bd086566"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:50:13.043158+00:00"
+      "checkedAt": "2026-10-21T12:50:13.043158+00:00",
+      "aiCheckedAt": "2026-10-21T14:35:54.791302+00:00"
     },
     {
       "id": "node/7148039525",
@@ -936,7 +1090,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:50:28.460987+00:00"
+      "checkedAt": "2026-10-21T12:50:28.460987+00:00",
+      "aiCheckedAt": "2026-10-21T15:16:47.400644+00:00"
     },
     {
       "id": "node/1117500731",
@@ -953,6 +1108,83 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-21T12:47:49.978752+00:00"
+    },
+    {
+      "id": "node/1433812391",
+      "name": "Crêperie d'Ouchy",
+      "lat": 46.5071933,
+      "lon": 6.6281182,
+      "type": "restaurant",
+      "address": "Place du Port 7",
+      "postcode": "1006",
+      "website": "https://www.ouchycrep.ch",
+      "cuisine": [
+        "crepe",
+        "french"
+      ],
+      "openingHours": "Mo-Fr 12:00-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Café - Coffee, espresso, ristretto, décaféiné",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://ouchycrep.ch/wp-content/uploads/sites/8/2025/10/OUCHY-menu-FR-et-EN-514-x-385-06-25-vecto-ok-web.pdf",
+          "observedAt": "2026-10-21T14:36:30.519751+00:00",
+          "confidence": "ai",
+          "evidence": "Café - Coffee, espresso, ristretto, décaféiné 4.10",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "bb7f6fb1398d06ebfde8183390d6a65eb075ec6a95c9518855333e5496772d14"
+        },
+        {
+          "name": "Double espresso",
+          "priceChf": 5.6,
+          "volumeMl": null,
+          "sourceUrl": "https://ouchycrep.ch/wp-content/uploads/sites/8/2025/10/OUCHY-menu-FR-et-EN-514-x-385-06-25-vecto-ok-web.pdf",
+          "observedAt": "2026-10-21T14:36:30.519751+00:00",
+          "confidence": "ai",
+          "evidence": "Double espresso 5.60",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "bb7f6fb1398d06ebfde8183390d6a65eb075ec6a95c9518855333e5496772d14"
+        },
+        {
+          "name": "Cappuccino, Latte Macchiato",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://ouchycrep.ch/wp-content/uploads/sites/8/2025/10/OUCHY-menu-FR-et-EN-514-x-385-06-25-vecto-ok-web.pdf",
+          "observedAt": "2026-10-21T14:36:30.519751+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino, Latte Macchiato 4.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "bb7f6fb1398d06ebfde8183390d6a65eb075ec6a95c9518855333e5496772d14"
+        },
+        {
+          "name": "Renversé - Latte",
+          "priceChf": 4.3,
+          "volumeMl": null,
+          "sourceUrl": "https://ouchycrep.ch/wp-content/uploads/sites/8/2025/10/OUCHY-menu-FR-et-EN-514-x-385-06-25-vecto-ok-web.pdf",
+          "observedAt": "2026-10-21T14:36:30.519751+00:00",
+          "confidence": "ai",
+          "evidence": "Renversé - Latte 4.30",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "bb7f6fb1398d06ebfde8183390d6a65eb075ec6a95c9518855333e5496772d14"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:36:47.664897+00:00"
     },
     {
       "id": "node/7235000083",
@@ -999,10 +1231,76 @@
           "confidence": "automatic",
           "evidence": "PDF S. 1: • Cappuccino, Latte Macchiato 4.90",
           "alcoholFree": true
+        },
+        {
+          "name": "Café, espresso, ristretto et décaféiné",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://creperiedesphilosophes.ch/wp-content/uploads/sites/11/2025/10/Menu-creperie-des-philosophes-QR.pdf",
+          "observedAt": "2026-10-21T14:35:57.721903+00:00",
+          "confidence": "ai",
+          "evidence": "Café, espresso, ristretto et décaféiné 3.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "7a0cebbd353f746890410f73fabedd8454befee86218933f1fee3a06560f0347"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:50:31.094349+00:00"
+      "checkedAt": "2026-10-21T12:50:31.094349+00:00",
+      "aiCheckedAt": "2026-10-21T14:36:24.870298+00:00"
+    },
+    {
+      "id": "node/1319951496",
+      "name": "Crêperie la Chandeleur",
+      "lat": 46.5215978,
+      "lon": 6.6347858,
+      "type": "restaurant",
+      "address": "Rue Mercerie 9",
+      "postcode": "1003",
+      "website": "https://www.lachandeleur.ch/",
+      "cuisine": [
+        "savory_pancakes",
+        "crepe",
+        "pancake",
+        "french"
+      ],
+      "openingHours": "Tu-Th 11:30-23:00; Fr, Sa 11:30-23:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Café espresso ou ristretto",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://lachandeleur.ch/assets/menus/web/ete-2026-4-thumb.png",
+          "observedAt": "2026-10-21T14:36:21.622983+00:00",
+          "confidence": "ai",
+          "evidence": "CAFE ESPRESSO OU RISTRETTO 3.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "9be02f7aef43ccf7edbd3dc25de69f7f92472ebbe736cb28dcbaeeb32acb360a"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://lachandeleur.ch/assets/menus/web/ete-2026-4-thumb.png",
+          "observedAt": "2026-10-21T14:36:21.622983+00:00",
+          "confidence": "ai",
+          "evidence": "CAPPUCCINO 4.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "9be02f7aef43ccf7edbd3dc25de69f7f92472ebbe736cb28dcbaeeb32acb360a"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:36:32.610663+00:00"
     },
     {
       "id": "node/2578271319",
@@ -1024,6 +1322,54 @@
       "addressSource": "https://www.openstreetmap.org/way/44385136"
     },
     {
+      "id": "node/11450063014",
+      "name": "Dong Fang",
+      "lat": 46.5171473,
+      "lon": 6.6337062,
+      "type": "restaurant",
+      "address": "Avenue de la Gare 20",
+      "postcode": "1003",
+      "website": "http://www.dong-fang.rest",
+      "cuisine": [
+        "chinese"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Expresso",
+          "priceChf": 3.3,
+          "volumeMl": null,
+          "sourceUrl": "http://www.dong-fang.rest/menus/carte_francais.pdf",
+          "observedAt": "2026-10-21T15:15:55.324133+00:00",
+          "confidence": "ai",
+          "evidence": "41 - Expresso.....3.30 CHF",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "7d43bffca03fe643c19ec7b60f6289c232e03178e5182e1c2e1b86f52fe6a53c"
+        },
+        {
+          "name": "Double Expresso",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "http://www.dong-fang.rest/menus/carte_francais.pdf",
+          "observedAt": "2026-10-21T15:15:55.324133+00:00",
+          "confidence": "ai",
+          "evidence": "43 - Double Expresso.....4.50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "7d43bffca03fe643c19ec7b60f6289c232e03178e5182e1c2e1b86f52fe6a53c"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T13:33:03.448946+00:00",
+      "aiCheckedAt": "2026-10-21T15:17:08.947316+00:00"
+    },
+    {
       "id": "node/3687479953",
       "name": "Downtown Lausanne",
       "lat": 46.5215056,
@@ -1039,9 +1385,185 @@
       ],
       "openingHours": "Th,Fr 07:30-24:00; Su 08:30-16:00; Sa 08:30-24:00; Mo 08:30-15:30; Tu,We 08:30-22:30",
       "outdoor": true,
-      "offers": [],
+      "offers": [
+        {
+          "name": "Espresso",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.downtownlausanne.ch/_files/ugd/0e068d_ea41a8d0e28447238dba6c9a4859aa66.pdf",
+          "observedAt": "2026-10-21T14:37:08.208574+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 30 ml 3.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "426b8272afef8c21cf30e6967b8a028ed8be3fdd8ebbe7247c388233286c1e77"
+        },
+        {
+          "name": "Café",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.downtownlausanne.ch/_files/ugd/0e068d_ea41a8d0e28447238dba6c9a4859aa66.pdf",
+          "observedAt": "2026-10-21T14:37:08.208574+00:00",
+          "confidence": "ai",
+          "evidence": "Café 120 ml 4.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "426b8272afef8c21cf30e6967b8a028ed8be3fdd8ebbe7247c388233286c1e77"
+        },
+        {
+          "name": "Long Black",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.downtownlausanne.ch/_files/ugd/0e068d_ea41a8d0e28447238dba6c9a4859aa66.pdf",
+          "observedAt": "2026-10-21T14:37:08.208574+00:00",
+          "confidence": "ai",
+          "evidence": "Long Black 275 ml 4.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "americano",
+          "sourceSha256": "426b8272afef8c21cf30e6967b8a028ed8be3fdd8ebbe7247c388233286c1e77"
+        },
+        {
+          "name": "Flat White",
+          "priceChf": 5.7,
+          "volumeMl": null,
+          "sourceUrl": "https://www.downtownlausanne.ch/_files/ugd/0e068d_ea41a8d0e28447238dba6c9a4859aa66.pdf",
+          "observedAt": "2026-10-21T14:37:08.208574+00:00",
+          "confidence": "ai",
+          "evidence": "Flat White 235 ml 5.70",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "flat_white",
+          "sourceSha256": "426b8272afef8c21cf30e6967b8a028ed8be3fdd8ebbe7247c388233286c1e77"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.downtownlausanne.ch/_files/ugd/0e068d_ea41a8d0e28447238dba6c9a4859aa66.pdf",
+          "observedAt": "2026-10-21T14:37:08.208574+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 235 ml 5.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "426b8272afef8c21cf30e6967b8a028ed8be3fdd8ebbe7247c388233286c1e77"
+        },
+        {
+          "name": "Latte",
+          "priceChf": 5.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.downtownlausanne.ch/_files/ugd/0e068d_ea41a8d0e28447238dba6c9a4859aa66.pdf",
+          "observedAt": "2026-10-21T14:37:08.208574+00:00",
+          "confidence": "ai",
+          "evidence": "Latte 350 ml 5.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "426b8272afef8c21cf30e6967b8a028ed8be3fdd8ebbe7247c388233286c1e77"
+        }
+      ],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T12:47:56.801466+00:00"
+      "checkedAt": "2026-10-21T12:47:56.801466+00:00",
+      "aiCheckedAt": "2026-10-21T14:37:32.336397+00:00"
+    },
+    {
+      "id": "node/12609537728",
+      "name": "DéCi comptoir gourmand",
+      "lat": 46.5151041,
+      "lon": 6.6324531,
+      "type": "restaurant",
+      "address": "Avenue d'Ouchy 8",
+      "postcode": "1006",
+      "website": "https://www.decicomptoirgourmand.ch/",
+      "cuisine": [
+        "fine_dining"
+      ],
+      "openingHours": "Mo-Tu 07:30-14:30; We-Fr 07:30-23:00; Sa 09:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Café (Cerutti)",
+          "priceChf": 3.8,
+          "volumeMl": null,
+          "sourceUrl": "https://64fb8d5c-a197-4c7c-96ca-160a7e15b667.filesusr.com/ugd/458e1b_5ce8a683fb774675b65e9dfc7b6310df.pdf",
+          "observedAt": "2026-10-21T14:37:16.323100+00:00",
+          "confidence": "ai",
+          "evidence": "CERUTTI Café | Espresso | Ristretto 3,80.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "bb0c803382cdb54fc929b17c2440029f7b6473b73e5be40d7821491f210939e8"
+        },
+        {
+          "name": "Ristretto (Cerutti)",
+          "priceChf": 3.8,
+          "volumeMl": null,
+          "sourceUrl": "https://64fb8d5c-a197-4c7c-96ca-160a7e15b667.filesusr.com/ugd/458e1b_5ce8a683fb774675b65e9dfc7b6310df.pdf",
+          "observedAt": "2026-10-21T14:37:16.323100+00:00",
+          "confidence": "ai",
+          "evidence": "CERUTTI Café | Espresso | Ristretto 3,80.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "bb0c803382cdb54fc929b17c2440029f7b6473b73e5be40d7821491f210939e8"
+        },
+        {
+          "name": "Double espresso (Cerutti)",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://64fb8d5c-a197-4c7c-96ca-160a7e15b667.filesusr.com/ugd/458e1b_5ce8a683fb774675b65e9dfc7b6310df.pdf",
+          "observedAt": "2026-10-21T14:37:16.323100+00:00",
+          "confidence": "ai",
+          "evidence": "Double espresso 4,80.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "bb0c803382cdb54fc929b17c2440029f7b6473b73e5be40d7821491f210939e8"
+        },
+        {
+          "name": "Cappuccino (Cerutti)",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://64fb8d5c-a197-4c7c-96ca-160a7e15b667.filesusr.com/ugd/458e1b_5ce8a683fb774675b65e9dfc7b6310df.pdf",
+          "observedAt": "2026-10-21T14:37:16.323100+00:00",
+          "confidence": "ai",
+          "evidence": "Cappucino | Renversé | Latte 4,50.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "bb0c803382cdb54fc929b17c2440029f7b6473b73e5be40d7821491f210939e8"
+        },
+        {
+          "name": "Latte (Cerutti)",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://64fb8d5c-a197-4c7c-96ca-160a7e15b667.filesusr.com/ugd/458e1b_5ce8a683fb774675b65e9dfc7b6310df.pdf",
+          "observedAt": "2026-10-21T14:37:16.323100+00:00",
+          "confidence": "ai",
+          "evidence": "Cappucino | Renversé | Latte 4,50.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "bb0c803382cdb54fc929b17c2440029f7b6473b73e5be40d7821491f210939e8"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:37:39.913653+00:00"
     },
     {
       "id": "node/1244874467",
@@ -1071,9 +1593,81 @@
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
-      "offers": [],
+      "offers": [
+        {
+          "name": "Espresso",
+          "priceChf": 4,
+          "volumeMl": null,
+          "sourceUrl": "https://www.fanfanconceptstore.com/about-3",
+          "observedAt": "2026-10-21T14:37:10.680936+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso Double espresso Café Latte Flat white Cappuccino Dirty chai latte 4 CHF 5.5 CHF 4.5 CHF 6 CHF 6.50 CHF 6 CHF 7 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "ae4b2b212c303b659222bc3c6b2dd78085eb0d2ac64ddad89d2827cb8f102ae3"
+        },
+        {
+          "name": "Double espresso",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.fanfanconceptstore.com/about-3",
+          "observedAt": "2026-10-21T14:37:10.680936+00:00",
+          "confidence": "ai",
+          "evidence": "Double espresso Café Latte Flat white Cappuccino Dirty chai latte 4 CHF 5.5 CHF 4.5 CHF 6 CHF 6.50 CHF 6 CHF 7 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "ae4b2b212c303b659222bc3c6b2dd78085eb0d2ac64ddad89d2827cb8f102ae3"
+        },
+        {
+          "name": "Latte",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.fanfanconceptstore.com/about-3",
+          "observedAt": "2026-10-21T14:37:10.680936+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Flat white Cappuccino Dirty chai latte 4 CHF 5.5 CHF 4.5 CHF 6 CHF 6.50 CHF 6 CHF 7 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "ae4b2b212c303b659222bc3c6b2dd78085eb0d2ac64ddad89d2827cb8f102ae3"
+        },
+        {
+          "name": "Flat white",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.fanfanconceptstore.com/about-3",
+          "observedAt": "2026-10-21T14:37:10.680936+00:00",
+          "confidence": "ai",
+          "evidence": "Flat white Cappuccino Dirty chai latte 6.50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "flat_white",
+          "sourceSha256": "ae4b2b212c303b659222bc3c6b2dd78085eb0d2ac64ddad89d2827cb8f102ae3"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.fanfanconceptstore.com/about-3",
+          "observedAt": "2026-10-21T14:37:10.680936+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino Dirty chai latte 6 CHF 7 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "ae4b2b212c303b659222bc3c6b2dd78085eb0d2ac64ddad89d2827cb8f102ae3"
+        }
+      ],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T12:47:56.886189+00:00"
+      "checkedAt": "2026-10-21T12:47:56.886189+00:00",
+      "aiCheckedAt": "2026-10-21T14:37:18.617937+00:00"
     },
     {
       "id": "node/13470344401",
@@ -1136,10 +1730,102 @@
           "confidence": "automatic",
           "evidence": "Café, espresso, ristretto 3.90",
           "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino, renversé",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://folievoltaire.ch/index.php/la-carte/",
+          "observedAt": "2026-10-21T15:15:55.248182+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino, renversé 5.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "ceab5af5b3ad6cef3a952f7b929bc50563ca22a902b4d2fbea4c772bfaeea96e"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:47:58.434768+00:00"
+      "checkedAt": "2026-10-21T12:47:58.434768+00:00",
+      "aiCheckedAt": "2026-10-21T15:16:04.089249+00:00"
+    },
+    {
+      "id": "node/1133646787",
+      "name": "Forbici",
+      "lat": 46.5209365,
+      "lon": 6.6297501,
+      "type": "restaurant",
+      "address": "Place de l'Europe 9",
+      "postcode": "1003",
+      "website": "https://forbici-flon.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 10:00-24:00; Fr-Sa 10:00-01:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Expresso",
+          "priceChf": 4,
+          "volumeMl": null,
+          "sourceUrl": "https://forbici-flon.ch/wp-content/uploads/2026/04/Carte-boissons-Forbici.pdf",
+          "observedAt": "2026-10-21T14:37:27.316496+00:00",
+          "confidence": "ai",
+          "evidence": "Café, Expresso, Ristretto Disponible en déca 4.-",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "7180c0d048994813dab55696e44518f16d47ba2f614b02f0dadc76ef870aea6a"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 4,
+          "volumeMl": null,
+          "sourceUrl": "https://forbici-flon.ch/wp-content/uploads/2026/04/Carte-boissons-Forbici.pdf",
+          "observedAt": "2026-10-21T14:37:27.316496+00:00",
+          "confidence": "ai",
+          "evidence": "Café, Expresso, Ristretto Disponible en déca 4.-",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "7180c0d048994813dab55696e44518f16d47ba2f614b02f0dadc76ef870aea6a"
+        },
+        {
+          "name": "Cappuccino, Renversé",
+          "priceChf": 5.3,
+          "volumeMl": null,
+          "sourceUrl": "https://forbici-flon.ch/wp-content/uploads/2026/04/Carte-boissons-Forbici.pdf",
+          "observedAt": "2026-10-21T14:37:27.316496+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino, Renversé 5.30.-",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "7180c0d048994813dab55696e44518f16d47ba2f614b02f0dadc76ef870aea6a"
+        },
+        {
+          "name": "Latte Macchiato",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://forbici-flon.ch/wp-content/uploads/2026/04/Carte-boissons-Forbici.pdf",
+          "observedAt": "2026-10-21T14:37:27.316496+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato 6.50.-",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "7180c0d048994813dab55696e44518f16d47ba2f614b02f0dadc76ef870aea6a"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:37:53.295624+00:00"
     },
     {
       "id": "node/12670346378",
@@ -1222,10 +1908,39 @@
           "confidence": "automatic",
           "evidence": "Matcha Latte 7.00 CHF",
           "alcoholFree": true
+        },
+        {
+          "name": "Café allongé",
+          "priceChf": 3.6,
+          "volumeMl": null,
+          "sourceUrl": "https://gegelausanne.ch/menu/",
+          "observedAt": "2026-10-21T15:15:55.077220+00:00",
+          "confidence": "ai",
+          "evidence": "Café allongé 3.60 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "americano",
+          "sourceSha256": "cbf8d61aee48fd2ee352cbbfbfb08d65867d7de81660734e4d053ea703788000"
+        },
+        {
+          "name": "Latte",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://gegelausanne.ch/menu/",
+          "observedAt": "2026-10-21T15:15:55.077220+00:00",
+          "confidence": "ai",
+          "evidence": "Latte 5.00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "cbf8d61aee48fd2ee352cbbfbfb08d65867d7de81660734e4d053ea703788000"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:50:49.316643+00:00"
+      "checkedAt": "2026-10-21T12:50:49.316643+00:00",
+      "aiCheckedAt": "2026-10-21T15:16:16.823618+00:00"
     },
     {
       "id": "node/9045400697",
@@ -1373,7 +2088,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:51:13.616367+00:00"
+      "checkedAt": "2026-10-21T12:51:13.616367+00:00",
+      "aiCheckedAt": "2026-10-21T14:41:32.332985+00:00"
     },
     {
       "id": "node/10033064263",
@@ -1398,10 +2114,53 @@
           "confidence": "automatic",
           "evidence": "PDF S. 4: Matcha Latte 5.50 CHF",
           "alcoholFree": true
+        },
+        {
+          "name": "Ristretto / Café / Expresso",
+          "priceChf": 3.5,
+          "volumeMl": null,
+          "sourceUrl": "https://jazz-corner.com/wp-content/uploads/2025/09/Menu-Jazz-Corner-nuovo.pdf",
+          "observedAt": "2026-10-21T15:17:21.010582+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto / Café /Expresso 3.50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "b4c5441b08f2c52433eafb5824758e26ec83f2d424f38a7dbf2fdd0e8ab43ecb"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://jazz-corner.com/wp-content/uploads/2025/09/Menu-Jazz-Corner-nuovo.pdf",
+          "observedAt": "2026-10-21T15:17:21.010582+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 4.50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "b4c5441b08f2c52433eafb5824758e26ec83f2d424f38a7dbf2fdd0e8ab43ecb"
+        },
+        {
+          "name": "Latte Spéculoos",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://jazz-corner.com/wp-content/uploads/2025/09/Menu-Jazz-Corner-nuovo.pdf",
+          "observedAt": "2026-10-21T15:17:21.010582+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Spéculoos 5.00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "b4c5441b08f2c52433eafb5824758e26ec83f2d424f38a7dbf2fdd0e8ab43ecb"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:47:36.955274+00:00"
+      "checkedAt": "2026-10-21T12:47:36.955274+00:00",
+      "aiCheckedAt": "2026-10-21T15:18:16.855151+00:00"
     },
     {
       "id": "node/603722682",
@@ -1459,10 +2218,25 @@
           "confidence": "automatic",
           "evidence": "DOUBLE ESPRESSO 6 CHF",
           "alcoholFree": true
+        },
+        {
+          "name": "CAPPUCCINO",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.kingsizepub.ch/carte-boissons?location=KING+SIZE+PUB&menu=caf%25C3%25A9teria--th%25C3%25A9s",
+          "observedAt": "2026-10-21T15:18:42.608446+00:00",
+          "confidence": "ai",
+          "evidence": "CAPPUCCINO Service jusqu'à 19h00 6 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "bcf46f8744eb90793d7c676799789fbceb14c5983e79a463ed5ed067ddd62918"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:57:24.016042+00:00"
+      "checkedAt": "2026-10-21T12:57:24.016042+00:00",
+      "aiCheckedAt": "2026-10-21T15:19:34.972859+00:00"
     },
     {
       "id": "node/4112145931",
@@ -1515,6 +2289,80 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/11700083919",
+      "name": "L'Echo",
+      "lat": 46.5204048,
+      "lon": 6.6345589,
+      "type": "restaurant",
+      "address": "Rue de Bourg 11",
+      "postcode": "1003",
+      "website": "https://www.restaurant-lecho.com/",
+      "cuisine": [],
+      "openingHours": "Mo-Sa 08:00-15:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "LE RISTRETTO",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurant-lecho.com/menu-1",
+          "observedAt": "2026-10-21T14:43:12.884790+00:00",
+          "confidence": "ai",
+          "evidence": "LE CAFÉ, L'ESPESSO, LE RISTRETTO 3,90 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "c65c8124f62350a97fcf98dd8d7e919b92411e4e9883621e5050aefaefbef73e"
+        },
+        {
+          "name": "LE CAFÉ AU LAIT",
+          "priceChf": 4.4,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurant-lecho.com/menu-1",
+          "observedAt": "2026-10-21T14:43:12.884790+00:00",
+          "confidence": "ai",
+          "evidence": "LE CAFÉ AU LAIT, LE CAFÉ MACCHIATO 4,40 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "c65c8124f62350a97fcf98dd8d7e919b92411e4e9883621e5050aefaefbef73e"
+        },
+        {
+          "name": "LE CAPPUCCINO",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurant-lecho.com/menu-1",
+          "observedAt": "2026-10-21T14:43:12.884790+00:00",
+          "confidence": "ai",
+          "evidence": "LE CAPPUCCINO 4,90 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "c65c8124f62350a97fcf98dd8d7e919b92411e4e9883621e5050aefaefbef73e"
+        },
+        {
+          "name": "LE LATTE MACCHIATO",
+          "priceChf": 5.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurant-lecho.com/menu-1",
+          "observedAt": "2026-10-21T14:43:12.884790+00:00",
+          "confidence": "ai",
+          "evidence": "LE LATTE MACCHIATO 5,90 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "c65c8124f62350a97fcf98dd8d7e919b92411e4e9883621e5050aefaefbef73e"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:43:21.784359+00:00"
     },
     {
       "id": "node/2977350133",
@@ -1616,11 +2464,26 @@
           "confidence": "automatic",
           "evidence": "Matcha Latte 6.00",
           "alcoholFree": true
+        },
+        {
+          "name": "Latte",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://limpressioncafe.com/menu/",
+          "observedAt": "2026-10-21T15:17:11.117184+00:00",
+          "confidence": "ai",
+          "evidence": "Latte 5.50 Espresso, mousse et crème de lait",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "0115be76c818f8b67036162b8f7f5e7808f18e6f9613bc49cff4585cfb1624b4"
         }
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-21T12:47:36.955461+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/46532146"
+      "addressSource": "https://www.openstreetmap.org/way/46532146",
+      "aiCheckedAt": "2026-10-21T15:18:21.429959+00:00"
     },
     {
       "id": "way/585616547",
@@ -1801,10 +2664,53 @@
           "confidence": "automatic",
           "evidence": "PDF S. 9: Double Espresso – CHF 8.00",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.lamammarestaurant.ch/_files/ugd/9b3293_bce5eaeaf1ed40078df7a0dc0cdfaf7a.pdf",
+          "observedAt": "2026-10-21T14:47:49.471459+00:00",
+          "confidence": "ai",
+          "evidence": "Café – Espresso – Thé – CHF 4.00",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "499bf557346d2fd42e89237fd1b6a85f78fb549ad1d9a8273b8546d46ae9fdd3"
+        },
+        {
+          "name": "Café au lait",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.lamammarestaurant.ch/_files/ugd/9b3293_bce5eaeaf1ed40078df7a0dc0cdfaf7a.pdf",
+          "observedAt": "2026-10-21T14:47:49.471459+00:00",
+          "confidence": "ai",
+          "evidence": "Café au lait – Cappuccino – CHF 5.00",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "499bf557346d2fd42e89237fd1b6a85f78fb549ad1d9a8273b8546d46ae9fdd3"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.lamammarestaurant.ch/_files/ugd/9b3293_bce5eaeaf1ed40078df7a0dc0cdfaf7a.pdf",
+          "observedAt": "2026-10-21T14:47:49.471459+00:00",
+          "confidence": "ai",
+          "evidence": "Café au lait – Cappuccino – CHF 5.00",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "499bf557346d2fd42e89237fd1b6a85f78fb549ad1d9a8273b8546d46ae9fdd3"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:52:00.346920+00:00"
+      "checkedAt": "2026-10-21T12:52:00.346920+00:00",
+      "aiCheckedAt": "2026-10-21T14:48:09.193008+00:00"
     },
     {
       "id": "node/11185650730",
@@ -1871,10 +2777,39 @@
           "confidence": "automatic",
           "evidence": "PDF S. 5: Latte macchiato....................... 4.90",
           "alcoholFree": true
+        },
+        {
+          "name": "Expresso",
+          "priceChf": 3.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.pinte-de-sauvabelin.ch/carte-pinte.pdf",
+          "observedAt": "2026-10-21T15:19:47.348901+00:00",
+          "confidence": "ai",
+          "evidence": "Cafétérie Expresso.... 3.80",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "eee5980fa39db6cda94470c9a92e8e1f3b832933035299d60336ae41aece3806"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 3.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.pinte-de-sauvabelin.ch/carte-pinte.pdf",
+          "observedAt": "2026-10-21T15:19:47.348901+00:00",
+          "confidence": "ai",
+          "evidence": "Cafétérie Ristretto.... 3.80",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "eee5980fa39db6cda94470c9a92e8e1f3b832933035299d60336ae41aece3806"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:52:10.528944+00:00"
+      "checkedAt": "2026-10-21T12:52:10.528944+00:00",
+      "aiCheckedAt": "2026-10-21T15:20:37.137554+00:00"
     },
     {
       "id": "node/10856140444",
@@ -1916,11 +2851,82 @@
           "confidence": "automatic",
           "evidence": "Latte Macchiato 6.00",
           "alcoholFree": true
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://brasserieriviera.com/",
+          "observedAt": "2026-10-21T15:19:37.230847+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto / Expresso 4.10",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "e81b27fb2ab15832b847f68469bf10d82eeaa069bae71feabd4b2f35c24fe19f"
+        },
+        {
+          "name": "Expresso",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://brasserieriviera.com/",
+          "observedAt": "2026-10-21T15:19:37.230847+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto / Expresso 4.10",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "e81b27fb2ab15832b847f68469bf10d82eeaa069bae71feabd4b2f35c24fe19f"
+        },
+        {
+          "name": "Café",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://brasserieriviera.com/",
+          "observedAt": "2026-10-21T15:19:37.230847+00:00",
+          "confidence": "ai",
+          "evidence": "Café / Café Décaféiné 4.10",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "e81b27fb2ab15832b847f68469bf10d82eeaa069bae71feabd4b2f35c24fe19f"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 4.3,
+          "volumeMl": null,
+          "sourceUrl": "https://brasserieriviera.com/",
+          "observedAt": "2026-10-21T15:19:37.230847+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino / Renversé 4.30",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "e81b27fb2ab15832b847f68469bf10d82eeaa069bae71feabd4b2f35c24fe19f"
+        },
+        {
+          "name": "Café",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://brasserieriviera.com/",
+          "observedAt": "2026-10-21T15:19:37.230847+00:00",
+          "confidence": "ai",
+          "evidence": "Café / Café Décaféiné 4.10",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "e81b27fb2ab15832b847f68469bf10d82eeaa069bae71feabd4b2f35c24fe19f"
         }
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-21T12:52:22.213398+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/44781677"
+      "addressSource": "https://www.openstreetmap.org/way/44781677",
+      "aiCheckedAt": "2026-10-21T15:21:03.625489+00:00"
     },
     {
       "id": "node/1082795812",
@@ -1995,7 +3001,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:52:30.010437+00:00"
+      "checkedAt": "2026-10-21T12:52:30.010437+00:00",
+      "aiCheckedAt": "2026-10-21T14:50:03.245369+00:00"
     },
     {
       "id": "node/7734829918",
@@ -2045,7 +3052,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:47:36.955981+00:00"
+      "checkedAt": "2026-10-21T12:47:36.955981+00:00",
+      "aiCheckedAt": "2026-10-21T14:50:14.532807+00:00"
     },
     {
       "id": "node/1061009918",
@@ -2072,10 +3080,157 @@
           "confidence": "automatic",
           "evidence": "PDF S. 18: Café au lait 4.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Café Expresso",
+          "priceChf": 3.8,
+          "volumeMl": null,
+          "sourceUrl": "http://www.leveche.ch/files/carte.pdf",
+          "observedAt": "2026-10-21T14:50:26.484497+00:00",
+          "confidence": "ai",
+          "evidence": "Café Expresso 3.80",
+          "alcoholFree": true,
+          "sourcePage": 18,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "2c619ba2b8ef3e96d6f16d98406dc2f258a0c5214b95d9257d352cfdd17b681e"
+        },
+        {
+          "name": "Café Ristretto",
+          "priceChf": 3.8,
+          "volumeMl": null,
+          "sourceUrl": "http://www.leveche.ch/files/carte.pdf",
+          "observedAt": "2026-10-21T14:50:26.484497+00:00",
+          "confidence": "ai",
+          "evidence": "Café Ristretto 3.80",
+          "alcoholFree": true,
+          "sourcePage": 18,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "2c619ba2b8ef3e96d6f16d98406dc2f258a0c5214b95d9257d352cfdd17b681e"
+        },
+        {
+          "name": "Café Capuccino",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "http://www.leveche.ch/files/carte.pdf",
+          "observedAt": "2026-10-21T14:50:26.484497+00:00",
+          "confidence": "ai",
+          "evidence": "Café Capuccino 4.50",
+          "alcoholFree": true,
+          "sourcePage": 18,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "2c619ba2b8ef3e96d6f16d98406dc2f258a0c5214b95d9257d352cfdd17b681e"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:52:39.733379+00:00"
+      "checkedAt": "2026-10-21T12:52:39.733379+00:00",
+      "aiCheckedAt": "2026-10-21T14:51:06.316522+00:00"
+    },
+    {
+      "id": "relation/1670235",
+      "name": "Le Castel",
+      "lat": 46.5581921,
+      "lon": 6.5889011,
+      "type": "restaurant",
+      "address": "Route du Bois-Genoud 36",
+      "postcode": "1023",
+      "website": "https://boisgenoud.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Tu-Sa 08:00-00:00; Su-Mo 08:00-18:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Expresso",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://boisgenoud.ch/wp-content/uploads/2026/10/MENU_AUTOMNE_CASTEL.pdf",
+          "observedAt": "2026-10-21T14:52:14.767243+00:00",
+          "confidence": "ai",
+          "evidence": "Café, expresso, ristretto I 3.90",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "f76e1f1e6771c55ba5d13a76aad69df10afdad66068dc63af0fbfd0b1f1c5368"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://boisgenoud.ch/wp-content/uploads/2026/10/MENU_AUTOMNE_CASTEL.pdf",
+          "observedAt": "2026-10-21T14:52:14.767243+00:00",
+          "confidence": "ai",
+          "evidence": "Café, expresso, ristretto I 3.90",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "f76e1f1e6771c55ba5d13a76aad69df10afdad66068dc63af0fbfd0b1f1c5368"
+        },
+        {
+          "name": "Américano",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://boisgenoud.ch/wp-content/uploads/2026/05/MENU_SALON_MARS.pdf",
+          "observedAt": "2026-10-21T14:52:36.866922+00:00",
+          "confidence": "ai",
+          "evidence": "Américano I 4.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "americano",
+          "sourceSha256": "663f099678b1499a22a09e44b9834105427ee1a37beb221631a03722a5bb13f0"
+        },
+        {
+          "name": "Double expresso",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://boisgenoud.ch/wp-content/uploads/2026/05/MENU_SALON_MARS.pdf",
+          "observedAt": "2026-10-21T14:52:36.866922+00:00",
+          "confidence": "ai",
+          "evidence": "Double expresso I 4.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "663f099678b1499a22a09e44b9834105427ee1a37beb221631a03722a5bb13f0"
+        },
+        {
+          "name": "Latte macchiato",
+          "priceChf": 5.9,
+          "volumeMl": null,
+          "sourceUrl": "https://boisgenoud.ch/wp-content/uploads/2026/05/MENU_SALON_MARS.pdf",
+          "observedAt": "2026-10-21T14:52:36.866922+00:00",
+          "confidence": "ai",
+          "evidence": "Latte macchiato I 5.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "663f099678b1499a22a09e44b9834105427ee1a37beb221631a03722a5bb13f0"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://boisgenoud.ch/wp-content/uploads/2026/05/MENU_SALON_MARS.pdf",
+          "observedAt": "2026-10-21T14:52:36.866922+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino I 5.50",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "663f099678b1499a22a09e44b9834105427ee1a37beb221631a03722a5bb13f0"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:52:51.728916+00:00"
     },
     {
       "id": "node/10068109426",
@@ -2124,10 +3279,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 3: CAPPUCINO 6",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.lecomptoirdebeaulieu.ch/wp-content/uploads/2026/10/Automne-26-Drinks-Le-comptoir-de-Beaulieu.V2-2.pdf",
+          "observedAt": "2026-10-21T14:51:20.662369+00:00",
+          "confidence": "ai",
+          "evidence": "CAFETERIE ESPRESSO 4.5",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "33f300086e692a29a79398c145882b29e6e5472a85b185ca751efd469e684335"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:52:55.127263+00:00"
+      "checkedAt": "2026-10-21T12:52:55.127263+00:00",
+      "aiCheckedAt": "2026-10-21T14:52:53.114502+00:00"
     },
     {
       "id": "node/4340128750",
@@ -2161,6 +3331,54 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/9868836862",
+      "name": "Le Marrakech",
+      "lat": 46.5272084,
+      "lon": 6.6411004,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://restaurant-lemarrakech.ch/",
+      "cuisine": [
+        "couscous"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Espresso",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://restaurant-lemarrakech.ch/wp-content/uploads/2024/04/Boisson-pdf.jpg",
+          "observedAt": "2026-10-21T14:54:59.714885+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 4.10.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "4df407f21acfff9a499a22397fdddd481d3dec01b95784f3a3416f5e0ece2dc9"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://restaurant-lemarrakech.ch/wp-content/uploads/2024/04/Boisson-pdf.jpg",
+          "observedAt": "2026-10-21T14:54:59.714885+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto 4.10.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "4df407f21acfff9a499a22397fdddd481d3dec01b95784f3a3416f5e0ece2dc9"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:56:01.381742+00:00"
     },
     {
       "id": "node/13413452034",
@@ -2228,6 +3446,132 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/6893953088",
+      "name": "Le Troubadour",
+      "lat": 46.5243859,
+      "lon": 6.6376872,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.troubadourlausanne.com/",
+      "cuisine": [],
+      "openingHours": "Mo-Th 11:00-22:00; Fr 11:00-00:00; Sa 10:00-00:00; Su 10:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Expresso",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/65ff28edcac8e13efad06266/t/678065eeb29f3831a3756e75/1736467950719/Carte_des_boissons_2024.pdf",
+          "observedAt": "2026-10-21T15:19:36.285882+00:00",
+          "confidence": "ai",
+          "evidence": "Café/Expresso/Ristretto/Décaféiné Fr. 3.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "12007aee1ed9d86b1ce9a001ce34e8d6c5915ba91eaf0a180839261de6e88c84"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/65ff28edcac8e13efad06266/t/678065eeb29f3831a3756e75/1736467950719/Carte_des_boissons_2024.pdf",
+          "observedAt": "2026-10-21T15:19:36.285882+00:00",
+          "confidence": "ai",
+          "evidence": "Café/Expresso/Ristretto/Décaféiné Fr. 3.90",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "12007aee1ed9d86b1ce9a001ce34e8d6c5915ba91eaf0a180839261de6e88c84"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 4.4,
+          "volumeMl": null,
+          "sourceUrl": "https://static1.squarespace.com/static/65ff28edcac8e13efad06266/t/678065eeb29f3831a3756e75/1736467950719/Carte_des_boissons_2024.pdf",
+          "observedAt": "2026-10-21T15:19:36.285882+00:00",
+          "confidence": "ai",
+          "evidence": "Renversé/Cappuccino Fr. 4.40",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "12007aee1ed9d86b1ce9a001ce34e8d6c5915ba91eaf0a180839261de6e88c84"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T13:23:09.292163+00:00",
+      "aiCheckedAt": "2026-10-21T15:20:17.014459+00:00"
+    },
+    {
+      "id": "node/13955271799",
+      "name": "Les Escapades Gourmandes",
+      "lat": 46.529779,
+      "lon": 6.6551903,
+      "type": "restaurant",
+      "address": "Chemin de Rovéréaz 23",
+      "postcode": "1012",
+      "website": "https://lesescapadesgourmandes.ch",
+      "cuisine": [],
+      "openingHours": "Su-Fr 12:00-14:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Renversé, cappuccino",
+          "priceChf": 4.6,
+          "volumeMl": null,
+          "sourceUrl": "https://lesescapadesgourmandes.ch/wp-content/uploads/2025/07/Carte_des_vins_juin.pdf",
+          "observedAt": "2026-10-21T14:59:28.603161+00:00",
+          "confidence": "ai",
+          "evidence": "Renversé, cappuccino 4.60",
+          "alcoholFree": true,
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "1f612c88c8defe23dfba07ae1e02da272634ad9f157aabe248d53321a295100a"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:59:42.885901+00:00"
+    },
+    {
+      "id": "node/7252805305",
+      "name": "Les Rues de Saigon",
+      "lat": 46.5232251,
+      "lon": 6.6411732,
+      "type": "restaurant",
+      "address": "Rue du Bugnon 24",
+      "postcode": "1005",
+      "website": "https://www.lesruesdesaigon.ch/",
+      "cuisine": [
+        "vietnamese"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00,18:00-22:00; Fr 11:30-14:00,18:00-23:00; Sa 18:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "CAFÉ (RISTRETO/ESPRESSO/CAFE)",
+          "priceChf": 4.2,
+          "volumeMl": null,
+          "sourceUrl": "https://www.lesruesdesaigon.ch/_files/ugd/502075_33f1d99c9ff14343868907ebb98001df.pdf",
+          "observedAt": "2026-10-21T15:21:26.432622+00:00",
+          "confidence": "ai",
+          "evidence": "CAFÉ (RISTRETO/ESPRESSO/CAFE) 4,20.-",
+          "alcoholFree": true,
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "56a65adc90d9a8410006dd1b7e440c0f02cfb325f704d17ea05c340468749f24"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T13:23:14.921177+00:00",
+      "aiCheckedAt": "2026-10-21T15:21:41.181916+00:00"
     },
     {
       "id": "node/12655821480",
@@ -2321,7 +3665,42 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:47:36.956418+00:00"
+      "checkedAt": "2026-10-21T12:47:36.956418+00:00",
+      "aiCheckedAt": "2026-10-21T15:00:12.073849+00:00"
+    },
+    {
+      "id": "node/9672729617",
+      "name": "Little Persia",
+      "lat": 46.5180556,
+      "lon": 6.6268775,
+      "type": "restaurant",
+      "address": "Avenue Louis-Ruchonnet 7",
+      "postcode": "1003",
+      "website": "https://www.little-persia.ch/",
+      "cuisine": [
+        "persian"
+      ],
+      "openingHours": "Mo-Su 11:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Espresso",
+          "priceChf": 3.5,
+          "volumeMl": null,
+          "sourceUrl": "https://little-persia.ch/menu/",
+          "observedAt": "2026-10-21T14:58:41.614115+00:00",
+          "confidence": "ai",
+          "evidence": "Les boissons chaudes: Espresso 3,50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "70fcb85011d10c04a09e299052842344191f79843be753ff305ce2cd1790247b"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T14:58:45.461898+00:00"
     },
     {
       "id": "node/9572678317",
@@ -2335,10 +3714,68 @@
       "cuisine": [],
       "openingHours": "Mo-Sa 08:30-17:30; Su off",
       "outdoor": false,
-      "offers": [],
+      "offers": [
+        {
+          "name": "Espresso (double +0.5)",
+          "priceChf": 3.5,
+          "volumeMl": null,
+          "sourceUrl": "https://madeleine-lausanne.ch/cafe/",
+          "observedAt": "2026-10-21T15:00:37.874680+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso (double +0.5) espresso du blend madeleine ou single origin 3.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "e132fa7abddc3c349b67bd2969dddd5326b8d4f7a531d4d6f2cdab680e71ede6"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5,
+          "volumeMl": null,
+          "sourceUrl": "https://madeleine-lausanne.ch/cafe/",
+          "observedAt": "2026-10-21T15:00:37.874680+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino espresso simple surmonté d'une micromousse de lait (2dl) 5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "e132fa7abddc3c349b67bd2969dddd5326b8d4f7a531d4d6f2cdab680e71ede6"
+        },
+        {
+          "name": "Flat White",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://madeleine-lausanne.ch/cafe/",
+          "observedAt": "2026-10-21T15:00:37.874680+00:00",
+          "confidence": "ai",
+          "evidence": "Flat White espresso double surmonté d'une micromousse de lait (2dl) 5.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "flat_white",
+          "sourceSha256": "e132fa7abddc3c349b67bd2969dddd5326b8d4f7a531d4d6f2cdab680e71ede6"
+        },
+        {
+          "name": "Latte",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://madeleine-lausanne.ch/cafe/",
+          "observedAt": "2026-10-21T15:00:37.874680+00:00",
+          "confidence": "ai",
+          "evidence": "Latte espresso double surmonté d'une micromousse de lait (3dl) 5.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "e132fa7abddc3c349b67bd2969dddd5326b8d4f7a531d4d6f2cdab680e71ede6"
+        }
+      ],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-21T12:48:03.155397+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/53013861"
+      "addressSource": "https://www.openstreetmap.org/way/53013861",
+      "aiCheckedAt": "2026-10-21T15:00:57.045160+00:00"
     },
     {
       "id": "node/7816286644",
@@ -2407,6 +3844,53 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-21T12:48:03.320023+00:00"
+    },
+    {
+      "id": "node/12518550321",
+      "name": "Maza",
+      "lat": 46.5213557,
+      "lon": 6.6398106,
+      "type": "restaurant",
+      "address": "Rue Marterey 29",
+      "postcode": "1005",
+      "website": "https://www.maza-restaurant.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Café / Espresso Torréfacteur Charbon",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.maza-restaurant.ch/menus?location=Maza&menu=carte-des-boissonss",
+          "observedAt": "2026-10-21T15:21:25.544612+00:00",
+          "confidence": "ai",
+          "evidence": "Café / Espresso Torréfacteur Charbon 4.5 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "a56e00a27a2c0a17cc8236779275c0932c20b953e75b3eef46262a3ad73a124d"
+        },
+        {
+          "name": "Espresso double / Cappuccino / Latte / Macchiato Torréfacteur Charbon",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.maza-restaurant.ch/menus?location=Maza&menu=carte-des-boissonss",
+          "observedAt": "2026-10-21T15:21:25.544612+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso double / Cappuccino / Latte / Macchiato Torréfacteur Charbon 5.5 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "a56e00a27a2c0a17cc8236779275c0932c20b953e75b3eef46262a3ad73a124d"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T13:23:23.192476+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/341298952",
+      "aiCheckedAt": "2026-10-21T15:21:48.656150+00:00"
     },
     {
       "id": "node/3526784896",
@@ -2515,10 +3999,25 @@
           "confidence": "automatic",
           "evidence": "Double Espresso 7,00",
           "alcoholFree": true
+        },
+        {
+          "name": "Milk Coffee / Flat White",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://mccarthysirishpub.ch/our-drinks/digestives/",
+          "observedAt": "2026-10-21T15:01:19.066981+00:00",
+          "confidence": "ai",
+          "evidence": "Milk Coffee / Flat White 5,00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "flat_white",
+          "sourceSha256": "3747459f81c604709d243af3f29a7d86d3c1283af4168231e54e80f05e485cf9"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:47:36.956708+00:00"
+      "checkedAt": "2026-10-21T12:47:36.956708+00:00",
+      "aiCheckedAt": "2026-10-21T15:02:32.705010+00:00"
     },
     {
       "id": "node/13839589001",
@@ -2570,7 +4069,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:55:00.074389+00:00"
+      "checkedAt": "2026-10-21T12:55:00.074389+00:00",
+      "aiCheckedAt": "2026-10-21T15:22:03.615764+00:00"
     },
     {
       "id": "node/4678901171",
@@ -2684,7 +4184,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:55:12.330644+00:00"
+      "checkedAt": "2026-10-21T12:55:12.330644+00:00",
+      "aiCheckedAt": "2026-10-21T15:03:16.538408+00:00"
     },
     {
       "id": "node/9883538810",
@@ -2822,6 +4323,96 @@
       "checkedAt": null
     },
     {
+      "id": "node/14284789950",
+      "name": "Restaurant hokkaido au lac",
+      "lat": 46.511686,
+      "lon": 6.6096153,
+      "type": "restaurant",
+      "address": "Avenue Emile-Henri-Jaques-Dalcroze 9",
+      "postcode": "1007",
+      "website": "https://www.hokkaidoaulac.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:15,18:00-22:10; Sa-Su 11:30-14:45,18:00-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "ESPRESSO",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://irp.cdn-website.com/8e870f13/files/uploaded/Hokkaido-%E8%8F%9C%E5%8D%95%E4%BF%AE%E6%94%B92026.pdf",
+          "observedAt": "2026-10-21T15:03:57.472440+00:00",
+          "confidence": "ai",
+          "evidence": "ESPRESSO CHF 4.50",
+          "alcoholFree": true,
+          "sourcePage": 50,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "5f86dcf7f55ddb46763d48801fb2b6bdfa35957eaa5334168f54799046d781ad"
+        },
+        {
+          "name": "RISTRETTO",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://irp.cdn-website.com/8e870f13/files/uploaded/Hokkaido-%E8%8F%9C%E5%8D%95%E4%BF%AE%E6%94%B92026.pdf",
+          "observedAt": "2026-10-21T15:03:57.472440+00:00",
+          "confidence": "ai",
+          "evidence": "RISTRETTO CHF 4.50",
+          "alcoholFree": true,
+          "sourcePage": 50,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "5f86dcf7f55ddb46763d48801fb2b6bdfa35957eaa5334168f54799046d781ad"
+        },
+        {
+          "name": "ESPRESSO DOUBLE",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://irp.cdn-website.com/8e870f13/files/uploaded/Hokkaido-%E8%8F%9C%E5%8D%95%E4%BF%AE%E6%94%B92026.pdf",
+          "observedAt": "2026-10-21T15:03:57.472440+00:00",
+          "confidence": "ai",
+          "evidence": "ESPRESSO DOUBLE CHF 6.50",
+          "alcoholFree": true,
+          "sourcePage": 50,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "5f86dcf7f55ddb46763d48801fb2b6bdfa35957eaa5334168f54799046d781ad"
+        },
+        {
+          "name": "CAPUCCINO",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://irp.cdn-website.com/8e870f13/files/uploaded/Hokkaido-%E8%8F%9C%E5%8D%95%E4%BF%AE%E6%94%B92026.pdf",
+          "observedAt": "2026-10-21T15:03:57.472440+00:00",
+          "confidence": "ai",
+          "evidence": "CAPUCCINO CHF 6.00",
+          "alcoholFree": true,
+          "sourcePage": 50,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "5f86dcf7f55ddb46763d48801fb2b6bdfa35957eaa5334168f54799046d781ad"
+        },
+        {
+          "name": "LATTE MACCHIATO",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://irp.cdn-website.com/8e870f13/files/uploaded/Hokkaido-%E8%8F%9C%E5%8D%95%E4%BF%AE%E6%94%B92026.pdf",
+          "observedAt": "2026-10-21T15:03:57.472440+00:00",
+          "confidence": "ai",
+          "evidence": "LATTE MACCHIATO CHF 6.00",
+          "alcoholFree": true,
+          "sourcePage": 50,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "5f86dcf7f55ddb46763d48801fb2b6bdfa35957eaa5334168f54799046d781ad"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T15:04:39.389232+00:00"
+    },
+    {
       "id": "way/46612740",
       "name": "Restaurant Le Milan",
       "lat": 46.5165231,
@@ -2882,7 +4473,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:55:53.533510+00:00"
+      "checkedAt": "2026-10-21T12:55:53.533510+00:00",
+      "aiCheckedAt": "2026-10-21T15:23:00.936045+00:00"
     },
     {
       "id": "node/3645869461",
@@ -2926,10 +4518,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 12: Café 4.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Café espresso",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.shanti-restaurant.ch/wp-content/uploads/2026/05/SHANTI_Menu_2026.pdf",
+          "observedAt": "2026-10-21T15:22:29.609162+00:00",
+          "confidence": "ai",
+          "evidence": "Café espresso 4.50",
+          "alcoholFree": true,
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "af6fcdcd73a6396fea73139b018bebc2db6642e891cece0599ce49ae5e6d67e9"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:56:04.169635+00:00"
+      "checkedAt": "2026-10-21T12:56:04.169635+00:00",
+      "aiCheckedAt": "2026-10-21T15:23:20.512552+00:00"
     },
     {
       "id": "node/7259971840",
@@ -2962,9 +4569,67 @@
       "cuisine": [],
       "openingHours": "Mo-Fr 07:00-16:00; Sa,Su 09:00-15:00",
       "outdoor": false,
-      "offers": [],
+      "offers": [
+        {
+          "name": "Espresso",
+          "priceChf": 4.2,
+          "volumeMl": null,
+          "sourceUrl": "https://sleepybearcoffee.ch",
+          "observedAt": "2026-10-21T15:07:42.084402+00:00",
+          "confidence": "ai",
+          "evidence": "01 Espresso Café court, crema dorée et soyeuse. CHF 4.20",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "ff538c37b063e7e1ac3779307e557f78d3f32d19a544584b31edb18c05f1e721"
+        },
+        {
+          "name": "Flat White",
+          "priceChf": 6.3,
+          "volumeMl": null,
+          "sourceUrl": "https://sleepybearcoffee.ch",
+          "observedAt": "2026-10-21T15:07:42.084402+00:00",
+          "confidence": "ai",
+          "evidence": "06 Flat White Double ristretto et micromousse veloutée — 25/75. CHF 6.30",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "flat_white",
+          "sourceSha256": "ff538c37b063e7e1ac3779307e557f78d3f32d19a544584b31edb18c05f1e721"
+        },
+        {
+          "name": "Latte",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://sleepybearcoffee.ch",
+          "observedAt": "2026-10-21T15:07:42.084402+00:00",
+          "confidence": "ai",
+          "evidence": "07 Latte Douceur lactée avec une belle couche de micromousse. CHF 6.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "ff538c37b063e7e1ac3779307e557f78d3f32d19a544584b31edb18c05f1e721"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.9,
+          "volumeMl": null,
+          "sourceUrl": "https://sleepybearcoffee.ch",
+          "observedAt": "2026-10-21T15:07:42.084402+00:00",
+          "confidence": "ai",
+          "evidence": "05 Cappuccino L'équilibre parfait entre espresso et mousse onctueuse. CHF 5.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "ff538c37b063e7e1ac3779307e557f78d3f32d19a544584b31edb18c05f1e721"
+        }
+      ],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T12:48:04.346001+00:00"
+      "checkedAt": "2026-10-21T12:48:04.346001+00:00",
+      "aiCheckedAt": "2026-10-21T15:07:50.575963+00:00"
     },
     {
       "id": "node/2844031146",
@@ -3037,6 +4702,54 @@
       "checkedAt": null
     },
     {
+      "id": "node/2961348214",
+      "name": "Taco's Bar",
+      "lat": 46.5213585,
+      "lon": 6.628565,
+      "type": "restaurant",
+      "address": "Rue du Port-Franc 6",
+      "postcode": "",
+      "website": "https://tacos-bar.ch/",
+      "cuisine": [
+        "mexican"
+      ],
+      "openingHours": "Mo-Th, Su 17:30-01:00; Fr, Sa 17:30-02:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Café, Expresso, Ristreto",
+          "priceChf": 4,
+          "volumeMl": null,
+          "sourceUrl": "https://tacos-bar.ch/assets/menus/carte-drinks.pdf",
+          "observedAt": "2026-10-21T15:08:05.344451+00:00",
+          "confidence": "ai",
+          "evidence": "CAFES Café, Expresso, Ristreto 4.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "c50d4a85421a6e72e80bb5f5bbbb255076e61259c23856007599d3d0f622c75b"
+        },
+        {
+          "name": "Capuccino",
+          "priceChf": 5,
+          "volumeMl": null,
+          "sourceUrl": "https://tacos-bar.ch/assets/menus/carte-drinks.pdf",
+          "observedAt": "2026-10-21T15:08:05.344451+00:00",
+          "confidence": "ai",
+          "evidence": "Capuccino 5.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "c50d4a85421a6e72e80bb5f5bbbb255076e61259c23856007599d3d0f622c75b"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-10-21T15:08:54.412606+00:00"
+    },
+    {
       "id": "node/13719406001",
       "name": "Tao",
       "lat": 46.5212669,
@@ -3094,10 +4807,39 @@
           "confidence": "automatic",
           "evidence": "Double Espresso 6.50 CHF",
           "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino lait de vache",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.taoloungebar.ch/carte-drinks?location=Tao+Bar+%26+Asian+Restaurant&menu=sans-alcool",
+          "observedAt": "2026-10-21T15:23:03.887790+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino Lait de vache 6 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "dd6202a42a29d0409bb1641a614f5c2a6d89ccd5cdd8bbbe83097a918e8453ae"
+        },
+        {
+          "name": "Latté Macchiato lait de vache",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.taoloungebar.ch/carte-drinks?location=Tao+Bar+%26+Asian+Restaurant&menu=sans-alcool",
+          "observedAt": "2026-10-21T15:23:03.887790+00:00",
+          "confidence": "ai",
+          "evidence": "Latté Macchiato Lait de vache 6 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "dd6202a42a29d0409bb1641a614f5c2a6d89ccd5cdd8bbbe83097a918e8453ae"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:56:22.485120+00:00"
+      "checkedAt": "2026-10-21T12:56:22.485120+00:00",
+      "aiCheckedAt": "2026-10-21T15:24:05.610184+00:00"
     },
     {
       "id": "node/9961037889",
@@ -3135,10 +4877,39 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: Cappuccino 5.00 CHF",
           "alcoholFree": true
+        },
+        {
+          "name": "Café blanc",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://taole.ch/app/uploads/2023/01/Taole_MenuBoisson_01-2023.pdf",
+          "observedAt": "2026-10-21T15:22:37.924343+00:00",
+          "confidence": "ai",
+          "evidence": "Café blanc 4.50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "b6cd488b7b53f8bd838f0df480c993fb0cd7a408feba8a289857d8fe81de796b"
+        },
+        {
+          "name": "Café",
+          "priceChf": 4.0,
+          "volumeMl": null,
+          "sourceUrl": "https://taole.ch/app/uploads/2023/01/Taole_MenuBoisson_01-2023.pdf",
+          "observedAt": "2026-10-21T15:22:37.924343+00:00",
+          "confidence": "ai",
+          "evidence": "Café 4.00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "b6cd488b7b53f8bd838f0df480c993fb0cd7a408feba8a289857d8fe81de796b"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:56:24.015112+00:00"
+      "checkedAt": "2026-10-21T12:56:24.015112+00:00",
+      "aiCheckedAt": "2026-10-21T15:33:36.838604+00:00"
     },
     {
       "id": "node/3524096435",
@@ -3168,9 +4939,95 @@
       "cuisine": [],
       "openingHours": "Th,Fr 07:30-15:00; Sa 08:00-16:00; Su 09:00-15:30",
       "outdoor": true,
-      "offers": [],
+      "offers": [
+        {
+          "name": "Ristretto 25 ml",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://thehideaway.ch/les-cafes%2C-thes-et-choco",
+          "observedAt": "2026-10-21T15:09:14.053249+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto 25 ml CHF 3.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "87bc46cf9ea81a297b9c2d9c8353d10e35c24ecb05c9fcf146d0539a3cae52a5"
+        },
+        {
+          "name": "Espresso 50 ml",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://thehideaway.ch/les-cafes%2C-thes-et-choco",
+          "observedAt": "2026-10-21T15:09:14.053249+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 50 ml CHF 3.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "87bc46cf9ea81a297b9c2d9c8353d10e35c24ecb05c9fcf146d0539a3cae52a5"
+        },
+        {
+          "name": "Flat White 235 ml",
+          "priceChf": 5.2,
+          "volumeMl": null,
+          "sourceUrl": "https://thehideaway.ch/les-cafes%2C-thes-et-choco",
+          "observedAt": "2026-10-21T15:09:14.053249+00:00",
+          "confidence": "ai",
+          "evidence": "Flat White 235 ml CHF 5.20",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "flat_white",
+          "sourceSha256": "87bc46cf9ea81a297b9c2d9c8353d10e35c24ecb05c9fcf146d0539a3cae52a5"
+        },
+        {
+          "name": "Cappuccino 235 ml",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://thehideaway.ch/les-cafes%2C-thes-et-choco",
+          "observedAt": "2026-10-21T15:09:14.053249+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 235 ml CHF 5.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "87bc46cf9ea81a297b9c2d9c8353d10e35c24ecb05c9fcf146d0539a3cae52a5"
+        },
+        {
+          "name": "Café Latte 400 ml",
+          "priceChf": 5.9,
+          "volumeMl": null,
+          "sourceUrl": "https://thehideaway.ch/les-cafes%2C-thes-et-choco",
+          "observedAt": "2026-10-21T15:09:14.053249+00:00",
+          "confidence": "ai",
+          "evidence": "Café Latte 400 ml CHF 5.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "87bc46cf9ea81a297b9c2d9c8353d10e35c24ecb05c9fcf146d0539a3cae52a5"
+        },
+        {
+          "name": "Long Black",
+          "priceChf": 4.2,
+          "volumeMl": null,
+          "sourceUrl": "https://thehideaway.ch/les-cafes%2C-thes-et-choco",
+          "observedAt": "2026-10-21T15:09:14.053249+00:00",
+          "confidence": "ai",
+          "evidence": "Long Black 235 ml CHF 4.20",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "americano",
+          "sourceSha256": "87bc46cf9ea81a297b9c2d9c8353d10e35c24ecb05c9fcf146d0539a3cae52a5"
+        }
+      ],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T12:48:05.834779+00:00"
+      "checkedAt": "2026-10-21T12:48:05.834779+00:00",
+      "aiCheckedAt": "2026-10-21T15:09:36.064767+00:00"
     },
     {
       "id": "node/2659762464",
@@ -3217,10 +5074,109 @@
           "confidence": "automatic",
           "evidence": "PDF S. 5: Americano 4.80",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-10-21T15:22:31.738574+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 4.50 | double 5.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Espresso double",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-10-21T15:22:31.738574+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 4.50 | double 5.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-10-21T15:22:31.738574+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto 4.10",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.4,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-10-21T15:22:31.738574+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 5.40 | grand 7.40",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Latte Macchiato 25 cl",
+          "priceChf": 6.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-10-21T15:22:31.738574+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato 25 cl 6.30 | 40cl 8.30",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Kaffee Crème",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-10-21T15:23:04.865159+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee Crème 4.80 | gross 6.00",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "98111ebb8217bfcbc41e48d892f12e72404efab8be97eda13db53da273b9bbf4"
+        },
+        {
+          "name": "Milchkaffee / Schale",
+          "priceChf": 5.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-10-21T15:23:04.865159+00:00",
+          "confidence": "ai",
+          "evidence": "Milchkaffee / Schale 5.30 | gross 7.00",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "98111ebb8217bfcbc41e48d892f12e72404efab8be97eda13db53da273b9bbf4"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:56:40.658810+00:00"
+      "checkedAt": "2026-10-21T12:56:40.658810+00:00",
+      "aiCheckedAt": "2026-10-21T15:25:44.082839+00:00"
     },
     {
       "id": "node/12760468895",
@@ -3311,10 +5267,25 @@
           "confidence": "automatic",
           "evidence": "matcha latte* 6.40",
           "alcoholFree": true
+        },
+        {
+          "name": "latte",
+          "priceChf": 6.4,
+          "volumeMl": null,
+          "sourceUrl": "https://traintrain.shop/",
+          "observedAt": "2026-10-21T15:33:39.692990+00:00",
+          "confidence": "ai",
+          "evidence": "latte* 6.40",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "78508a46697c938c1cfefbc0d6c85747cf053e8807e9a4101edca03e5b933101"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:47:37.774446+00:00"
+      "checkedAt": "2026-10-21T12:47:37.774446+00:00",
+      "aiCheckedAt": "2026-10-21T15:33:47.442322+00:00"
     },
     {
       "id": "node/2167296689",
@@ -3466,10 +5437,39 @@
           "confidence": "automatic",
           "evidence": "Matcha latte 5.5 CHF",
           "alcoholFree": true
+        },
+        {
+          "name": "Capuccino | Renversé",
+          "priceChf": 5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.yokocho.ch/menus?location=Yokoch%C5%8D&menu=boissons",
+          "observedAt": "2026-10-21T15:33:38.750214+00:00",
+          "confidence": "ai",
+          "evidence": "Capuccino | Renversé 5 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "851b671d565e744235320b376622bd5cacfd44df28d123589f2db2926cfb497f"
+        },
+        {
+          "name": "Latte Machiatto",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.yokocho.ch/menus?location=Yokoch%C5%8D&menu=boissons",
+          "observedAt": "2026-10-21T15:33:38.750214+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Machiatto 5.5 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "851b671d565e744235320b376622bd5cacfd44df28d123589f2db2926cfb497f"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T12:57:13.372279+00:00"
+      "checkedAt": "2026-10-21T12:57:13.372279+00:00",
+      "aiCheckedAt": "2026-10-21T15:34:14.059504+00:00"
     },
     {
       "id": "node/7185203988",
