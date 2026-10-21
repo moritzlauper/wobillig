@@ -523,6 +523,8 @@ Foto-Scans und Kaffeefotos teilen sich unabhängig von der Stadt ein dauerhaft g
 
 ### Aktivierung von Bot-Schutz und E-Mail
 
+Seit dem 21. Oktober 2026 ist Cloudflare Turnstile in Production aktiv (`CONTRIBUTION_PROTECTION=true`): Managed-Widget für `wobillig.ch` und `www.wobillig.ch`, ohne Pre-Clearance. Der Secret-Key liegt als Vercel Secret vor. DNS und Hosting bleiben unverändert. Die E-Mail-Bestätigung bleibt deaktiviert, bis SMTP eingerichtet und getestet ist.
+
 Alle Variablen in `.env.example` sind reine Servervariablen. Der öffentliche Turnstile-Site-Key wird gezielt über `/api/community-auth` ausgeliefert; Secrets bleiben auf dem Server.
 
 1. In Cloudflare Turnstile ein Managed-Widget für `www.wobillig.ch` und `wobillig.ch` einrichten. `TURNSTILE_SITE_KEY` und `TURNSTILE_SECRET_KEY` in Vercel setzen. Erst danach `CONTRIBUTION_PROTECTION=true` aktivieren und neu deployen. Der Server prüft Token, Hostname und Aktion, bevor ein Beitrag gespeichert oder KI aufgerufen wird. Ausfälle sperren die Eingabe, nicht die Karte.
