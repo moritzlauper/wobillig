@@ -60,3 +60,26 @@ test('shared map links are read-only without owner permission', async ({ page })
   await expect(page.locator('#map-add-entry')).toBeHidden(); await expect(page.locator('#map-publish-control')).toBeHidden(); await expect(page.locator('#map-withdraw')).toBeHidden();
   await expect(page.locator('#map-share')).toBeVisible();
 });
+
+test('optional verification is available without requiring an email for contributions', async ({ page }) => {
+  await fixture(page);
+  const authActions: string[] = [];
+  await page.route('**/api/community-auth', route => {
+    if (route.request().method() === 'GET') return route.fulfill({ json: { verified: false, emailRequired: false, mailReady: true, protection: false, paused: false } });
+    const body = route.request().postDataJSON(); authActions.push(body.action);
+    return route.fulfill({ json: body.action === 'request' ? { challenge: 'optional-test' } : { verified: true } });
+  });
+  await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [], venues: [], venueCorrections: [] } }));
+  await page.goto('/?drink=coffee&bar=node%2F123');
+  await page.locator('#close-detail').click();
+  await page.getByRole('button', { name: 'Beitragskonto', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'E-Mail einmalig bestätigen' });
+  await expect(dialog).toContainText('Die E-Mail-Bestätigung ist freiwillig.');
+  await expect(dialog).toContainText('Beiträge sind auch ohne Bestätigung möglich.');
+  await dialog.getByLabel('E-Mail-Adresse').fill('reader@example.org');
+  await dialog.getByRole('button', { name: 'Code senden' }).click();
+  await dialog.getByLabel('Sechsstelliger Code').fill('123456');
+  await dialog.getByRole('button', { name: 'Bestätigen und fortfahren' }).click();
+  await expect(dialog).toBeHidden();
+  expect(authActions).toEqual(['request', 'confirm']);
+});

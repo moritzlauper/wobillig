@@ -47,7 +47,9 @@ async function authPost(body: object) {
 }
 async function verifyEmail(settings: Config): Promise<void> {
   const dialog = modal(message('E-Mail einmalig bestätigen', 'Verify your email once'));
-  const explanation = document.createElement('p'); explanation.textContent = message('Zum Schutz vor Spam benötigen Beiträge eine bestätigte E-Mail-Adresse. Kein Newsletter. Dein Formular bleibt erhalten.', 'To prevent spam, contributions require a verified email address. No newsletter. Your form is preserved.');
+  const explanation = document.createElement('p'); explanation.textContent = settings.emailRequired
+    ? message('Zum Schutz vor Spam benötigen Beiträge eine bestätigte E-Mail-Adresse. Kein Newsletter. Dein Formular bleibt erhalten.', 'To prevent spam, contributions require a verified email address. No newsletter. Your form is preserved.')
+    : message('Die E-Mail-Bestätigung ist freiwillig. Damit kannst du deine eigenen Maps auch in einem anderen Browser bearbeiten. Kein Newsletter. Beiträge sind auch ohne Bestätigung möglich.', 'Email verification is optional. It lets you edit your own maps in another browser. No newsletter. You can contribute without verifying your email.');
   const form = document.createElement('form'), label = document.createElement('label'), input = document.createElement('input'), submit = document.createElement('button'), error = document.createElement('p');
   label.textContent = message('E-Mail-Adresse', 'Email address'); input.type = 'email'; input.required = true; input.autocomplete = 'email'; input.maxLength = 254; input.name = 'email';
   label.append(input); submit.type = 'submit'; submit.className = 'primary'; submit.textContent = message('Code senden', 'Send code'); error.setAttribute('role', 'status');
