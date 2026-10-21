@@ -314,7 +314,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     el('custom-map-entries').replaceChildren();
     if (!entries.length) {
       const empty = document.createElement('p'); empty.className = 'empty';
-      empty.textContent = t('Deine Map ist bereit. Füge das erste Lokal mit einem Preis hinzu.') + ' ' + t('Tippe dafür direkt auf die Karte oder auf «Hinzufügen».');
+      empty.textContent = value.canEdit === false ? t('Diese Map enthält noch keine Einträge.') : t('Deine Map ist bereit. Füge das erste Lokal mit einem Preis hinzu.') + ' ' + t('Tippe dafür direkt auf die Karte oder auf «Hinzufügen».');
       el('custom-map-entries').append(empty);
     }
     for (const item of entries) {

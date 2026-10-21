@@ -536,3 +536,5 @@ Alle Variablen in `.env.example` sind reine Servervariablen. Der öffentliche Tu
 - Nach dem Start: HTTP-429-/5xx-Raten, Warteschlange und Foto-/Mailbudget prüfen. Bei Missbrauch zuerst Eingaben oder Fotos pausieren, dann die betroffenen Änderungen in der Prüfseite zurücknehmen. Die Kartenansicht bleibt online.
 
 Tests: `npm test`, `npm run build`, `npx playwright test tests/community-security.browser.ts`. Die Sicherheitstests prüfen parallele Reservierungen, ungültige Bot-Token, E-Mail-Wiederverwendung, fremde Map-Zugriffe, Freigaben/Rücknahmen und 200 gleichzeitige öffentliche Lesezugriffe. Das ersetzt keinen realen Lasttest der Vercel-Infrastruktur.
+
+Ein begrenzter Live-Lesetest ist mit `node scripts/community-load-check.mjs https://www.wobillig.ch` wiederholbar: 40 GET-Anfragen, maximal acht gleichzeitig, keine Schreibzugriffe. Am 21. Oktober 2026: 40/40 erfolgreich, 32 CDN-Hits, Median 48 ms, 95. Perzentil 1’433 ms inklusive kalter Abrufe. Das bestehende Vercel-Team-Budget beträgt USD 200; Warnungen bei USD 100, 150 und 200, automatische Team-Pause aus.

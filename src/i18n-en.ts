@@ -1,5 +1,6 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  'Diese Map enthält noch keine Einträge.': 'This map has no entries yet.',
   'Fehlt ein Lokal in {city}? Trage es hier ein. Wir prüfen es vor der Veröffentlichung.': 'Is a venue in {city} missing? Add it here. We will review it before publication.',
   "Alle mit dem Link können die Map ansehen. Nur du kannst sie bearbeiten.": "Anyone with the link can view the map. Only you can edit it.",
   "Beiträge werden vor der Veröffentlichung geprüft. Die E-Mail-Bestätigung dient dem Spamschutz, nicht dem Newsletterversand. Für die Anmeldung wird ein Cookie für 30 Tage gesetzt. E-Mail-Adressen werden nur zum Versand verwendet; wobillig speichert eine geschützte Kennung. Die Sicherheitsprüfung erfolgt durch Cloudflare Turnstile.": "Contributions are reviewed before publication. Email verification prevents spam and does not subscribe you to a newsletter. A sign-in cookie lasts 30 days. Email addresses are used only for sending verification codes; wobillig stores a protected identifier. Security checks are provided by Cloudflare Turnstile.",

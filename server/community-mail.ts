@@ -13,7 +13,7 @@ export async function sendConfirmation(to: string, code: string, id: string) {
     disableFileAccess: true, disableUrlAccess: true, logger: false, debug: false,
   });
   try {
-    await transporter.sendMail({ from: process.env.COMMUNITY_EMAIL_FROM, to,
+    await transporter.sendMail({ from: process.env.COMMUNITY_EMAIL_FROM, to: { name: '', address: to },
       messageId: `<${id}@wobillig.ch>`, subject: 'Dein Bestätigungscode für wobillig',
       text: `Dein Code: ${code}\n\nGib ihn innerhalb von 10 Minuten im geöffneten wobillig-Fenster ein. Mit der Bestätigung kannst du Beiträge einreichen. Du erhältst keinen Newsletter.\n\nFalls du den Code nicht angefordert hast, ignoriere diese E-Mail.`,
     });
