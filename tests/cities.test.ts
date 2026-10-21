@@ -14,8 +14,8 @@ describe('city navigation and storage isolation', () => {
     expect(cityFromPath('/en/basel/')).toBe('basel');
     expect(cityFromPath('/wobillig/en/bern', '/wobillig/')).toBe('bern');
     expect(cityFromPath('/en/lausanne')).toBe('lausanne');
-    expect(cityFromPath('/de/genf/')).toBe('geneva');
-    expect(cityFromPath('/genf')).toBe('geneva');
+    expect(cityFromPath('/de/geneve/')).toBe('geneva');
+    expect(cityFromPath('/geneve')).toBe('geneva');
     expect(cityFromPath('/english')).toBe('zurich');
   });
   it('keeps the language when switching cities', () => {
@@ -43,6 +43,6 @@ it('opens the new cities in English by default and preserves explicit German lin
   expect(defaultCityLocale('lausanne', 'de')).toBe('en');
   expect(defaultCityLocale('geneva', 'de')).toBe('en');
   expect(defaultCityLocale('basel', 'de')).toBe('de');
-  expect(cityLink('geneva', '?drink=beer&bar=node%2F1', '/', 'en')).toBe('/en/genf?drink=beer');
+  expect(cityLink('geneva', '?drink=beer&bar=node%2F1', '/', 'en')).toBe('/en/geneve?drink=beer');
   expect(cityLink('lausanne', '', '/', 'de')).toBe('/de/lausanne');
 });

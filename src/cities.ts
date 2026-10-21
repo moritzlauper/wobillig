@@ -8,14 +8,14 @@ export const cities = {
   bern: { name: 'Bern', path: '/bern', data: 'bern/', center: [46.948, 7.447] as [number, number], districts: { toggle: 'stadtteile', param: 'stadtteil', count: 6 } },
   basel: { name: 'Basel', path: '/basel', data: 'basel/', center: [47.558, 7.589] as [number, number], districts: { toggle: 'quartiere', param: 'quartier', count: 19 } },
   lausanne: { name: 'Lausanne', path: '/lausanne', data: 'lausanne/', center: [46.5197, 6.6323] as [number, number], districts: { toggle: 'quartiers', param: 'quartierLausanne', count: 18, numbers: [...Array.from({ length: 17 }, (_, i) => i + 1), 90] } },
-  geneva: { name: 'Genf', path: '/genf', data: 'geneva/', center: [46.2044, 6.1432] as [number, number], districts: { toggle: 'quartiersGeneve', param: 'quartierGeneve', count: 8 } },
+  geneva: { name: 'Genf', path: '/geneve', data: 'geneva/', center: [46.2044, 6.1432] as [number, number], districts: { toggle: 'quartiersGeneve', param: 'quartierGeneve', count: 8 } },
 };
 export type City = keyof typeof cities;
 export function isCity(value: string): value is City { return Object.hasOwn(cities, value); }
 export function cityFromPath(path: string, base = '/'): City {
   const relative = path.startsWith(base) ? path.slice(base.length) : path;
   const slug = relative.replace(/^\/+|\/+$/g, '').replace(/^(?:en|de)(?:\/|$)/, '');
-  return slug === 'genf' ? 'geneva' : isCity(slug) ? slug : 'zurich';
+  return slug === 'geneve' || slug === 'genf' ? 'geneva' : isCity(slug) ? slug : 'zurich';
 }
 export function defaultCityLocale(city: City, current: Locale): Locale {
   return city === 'lausanne' || city === 'geneva' ? 'en' : current;

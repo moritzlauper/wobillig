@@ -55,7 +55,7 @@ describe('online manual price review', () => {
     expect(response.status).toBe(200);
     expect(response.body).toContain('20 Maps in allen Städten');
     for (const status of ['Nur per Link', 'Zur Prüfung eingereicht', 'Freigegeben', 'Abgelehnt']) expect(response.body).toContain(status);
-    for (const path of ['/?map=map-0', '/bern?map=map-0', '/basel?map=map-0', '/lausanne?map=map-0', '/genf?map=map-0']) expect(response.body).toContain(`href="${path}"`);
+    for (const path of ['/?map=map-0', '/bern?map=map-0', '/basel?map=map-0', '/lausanne?map=map-0', '/geneve?map=map-0']) expect(response.body).toContain(`href="${path}"`);
     expect(response.body).toContain('&lt;Map 0&gt;');
     expect(response.body.match(/action="\/api\/map-review"/g)).toHaveLength(5);
     expect(response.body).toContain('href="#map-review"');

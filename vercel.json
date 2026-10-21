@@ -256,20 +256,20 @@
       "destination": "/en/margherita-lausanne/index.html"
     },
     {
-      "source": "/de/genf",
-      "destination": "/de/genf/index.html"
+      "source": "/de/geneve",
+      "destination": "/de/geneve/index.html"
     },
     {
-      "source": "/de/genf/",
-      "destination": "/de/genf/index.html"
+      "source": "/de/geneve/",
+      "destination": "/de/geneve/index.html"
     },
     {
-      "source": "/en/genf",
-      "destination": "/en/genf/index.html"
+      "source": "/en/geneve",
+      "destination": "/en/geneve/index.html"
     },
     {
-      "source": "/en/genf/",
-      "destination": "/en/genf/index.html"
+      "source": "/en/geneve/",
+      "destination": "/en/geneve/index.html"
     },
     {
       "source": "/espresso-genf",
@@ -327,18 +327,18 @@
       "permanent": true
     },
     {
-      "source": "/de/genf/index.html",
-      "destination": "/de/genf",
+      "source": "/de/geneve/index.html",
+      "destination": "/de/geneve",
       "permanent": true
     },
     {
-      "source": "/genf/",
-      "destination": "/en/genf",
+      "source": "/geneve/",
+      "destination": "/en/geneve",
       "permanent": false
     },
     {
-      "source": "/genf",
-      "destination": "/en/genf",
+      "source": "/geneve",
+      "destination": "/en/geneve",
       "permanent": false
     },
     {
@@ -557,13 +557,13 @@
       "permanent": true
     },
     {
-      "source": "/genf/index.html",
-      "destination": "/en/genf",
+      "source": "/geneve/index.html",
+      "destination": "/en/geneve",
       "permanent": true
     },
     {
-      "source": "/en/genf/index.html",
-      "destination": "/en/genf",
+      "source": "/en/geneve/index.html",
+      "destination": "/en/geneve",
       "permanent": true
     },
     {
@@ -604,6 +604,51 @@
     {
       "source": "/en/margherita-genf/index.html",
       "destination": "/en/margherita-genf",
+      "permanent": true
+    },
+    {
+      "source": "/genf",
+      "destination": "/en/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/genf/",
+      "destination": "/en/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/genf/index.html",
+      "destination": "/en/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/en/genf",
+      "destination": "/en/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/en/genf/",
+      "destination": "/en/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/en/genf/index.html",
+      "destination": "/en/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/de/genf",
+      "destination": "/de/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/de/genf/",
+      "destination": "/de/geneve",
+      "permanent": true
+    },
+    {
+      "source": "/de/genf/index.html",
+      "destination": "/de/geneve",
       "permanent": true
     }
   ]

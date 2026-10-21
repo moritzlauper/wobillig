@@ -17,7 +17,7 @@ export function localeFromPath(path: string, base = '/'): Locale {
   return /^\/*en(?:\/|$)/.test(relative) ? 'en' : 'de';
 }
 export function localizedPath(path: string, target: Locale): string {
-  return target === 'en' ? `/en${path === '/' ? '' : path}` : /^\/(lausanne|genf)$/.test(path) ? `/de${path}` : path;
+  return target === 'en' ? `/en${path === '/' ? '' : path}` : /^\/(lausanne|geneve)$/.test(path) ? `/de${path}` : path;
 }
 
 export function translate(target: Locale, text: string, vars: Record<string, string | number> = {}): string {

@@ -58,7 +58,7 @@ export function reviewHtml(rows, environment, generatedAt = new Date().toISOStri
     <p>${maps.length} Maps in allen Städten · Neueste zuerst · Diese Übersicht ist nur mit dem Prüfzugang sichtbar.</p>
     <div class="table-wrap"><table><thead><tr><th>Map</th><th>Stadt</th><th>Einträge</th><th>Status</th><th>Erstellt</th></tr></thead><tbody>${[...maps]
       .sort((a, b) => b.map.createdAt.localeCompare(a.map.createdAt) || a.map.name.localeCompare(b.map.name, 'de-CH'))
-      .map(({ city, map }) => `<tr><td><a href="${city === 'zurich' ? '/' : city === 'geneva' ? '/genf' : '/' + city}?map=${encodeURIComponent(map.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(map.name)}</a></td>
+      .map(({ city, map }) => `<tr><td><a href="${city === 'zurich' ? '/' : city === 'geneva' ? '/geneve' : '/' + city}?map=${encodeURIComponent(map.id)}" target="_blank" rel="noopener noreferrer">${escapeHtml(map.name)}</a></td>
         <td>${escapeHtml(cities[city])}</td><td>${map.entries.length}</td><td>${map.automatic ? automaticStatuses[map.automatic.status] || 'Automatische Map' : mapStatuses[map.publication?.status] || 'Nur per Link'}</td><td class="nowrap">${date(map.createdAt)}</td></tr>`).join('')}</tbody></table>
     ${maps.length ? '' : '<p>Noch keine Maps erstellt.</p>'}</div></section>` : '';
   const body = rows.map(r => {

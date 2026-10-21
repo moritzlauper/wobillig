@@ -58,8 +58,11 @@ export function seoPlugin(): Plugin {
           res.end(legal.html);
           return;
         }
-        if (['/lausanne', '/genf'].some(alias => localPath(alias, base) === path)) {
-          res.writeHead(302, { Location: localPath(cityPath(cityFromPath(path, base), 'en'), base) + new URL(req.url || '/', 'http://localhost').search });
+        const legacyGeneva = ['/genf', '/en/genf', '/de/genf'].find(alias =>
+          [alias, `${alias}/index.html`].some(source => localPath(source, base) === path));
+        if (legacyGeneva || ['/lausanne', '/geneve'].some(alias => localPath(alias, base) === path)) {
+          const target = legacyGeneva ? cityPath('geneva', legacyGeneva.startsWith('/de/') ? 'de' : 'en') : cityPath(cityFromPath(path, base), 'en');
+          res.writeHead(legacyGeneva ? 308 : 302, { Location: localPath(target, base) + new URL(req.url || '/', 'http://localhost').search });
           res.end();
           return;
         }
@@ -79,8 +82,11 @@ export function seoPlugin(): Plugin {
       // clean routes so local preview tests the actual built city/guide HTML.
       server.middlewares.use((req, res, next) => {
         const path = new URL(req.url || '/', 'http://localhost').pathname.replace(/\/$/, '');
-        if (['/lausanne', '/genf'].some(alias => localPath(alias, base) === path)) {
-          res.writeHead(302, { Location: localPath(cityPath(cityFromPath(path, base), 'en'), base) + new URL(req.url || '/', 'http://localhost').search });
+        const legacyGeneva = ['/genf', '/en/genf', '/de/genf'].find(alias =>
+          [alias, `${alias}/index.html`].some(source => localPath(source, base) === path));
+        if (legacyGeneva || ['/lausanne', '/geneve'].some(alias => localPath(alias, base) === path)) {
+          const target = legacyGeneva ? cityPath('geneva', legacyGeneva.startsWith('/de/') ? 'de' : 'en') : cityPath(cityFromPath(path, base), 'en');
+          res.writeHead(legacyGeneva ? 308 : 302, { Location: localPath(target, base) + new URL(req.url || '/', 'http://localhost').search });
           res.end();
           return;
         }

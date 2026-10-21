@@ -13,7 +13,7 @@ test('Geneva includes cafes and bars in Carouge', async ({ page }) => {
     ['coffee', 'node/6312663914', 'Blue Balloon Café'],
     ['beer', 'node/5860680786', 'Bar du Nord'],
   ]) {
-    await page.goto(`/en/genf?drink=${drink}&bar=${encodeURIComponent(id)}`);
+    await page.goto(`/en/geneve?drink=${drink}&bar=${encodeURIComponent(id)}`);
     await expect(page.locator('#detail')).toBeVisible();
     await expect(page.locator('#detail')).toContainText(name);
     await expect(page.locator('#detail')).toContainText('1227');
@@ -28,7 +28,7 @@ for (const width of [320, 1280]) {
     await expect(menu.locator('a[data-city]').first()).toBeHidden();
     await menu.locator('summary').click();
     await expect(menu.locator('a[data-city="lausanne"]')).toBeVisible();
-    await expect(menu.locator('a[data-city="geneva"]')).toHaveAttribute('href', /\/en\/genf\?.*drink=beer/);
+    await expect(menu.locator('a[data-city="geneva"]')).toHaveAttribute('href', /\/en\/geneve\?.*drink=beer/);
     await expect(menu.locator('a').last()).toHaveAttribute('href', /^mailto:hello@wobillig.ch\?subject=/);
     await expect(menu.locator('a').last()).toHaveAccessibleName('Stadt wünschen');
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
@@ -44,7 +44,7 @@ for (const width of [320, 1280]) {
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('#map-title')).toContainText('Geneva');
     await page.locator('.seo-map-header [data-locale="de"]').click();
-    await expect(page).toHaveURL(/\/de\/genf\?/);
+    await expect(page).toHaveURL(/\/de\/geneve\?/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'de-CH');
     await expect(page.locator('#count')).not.toContainText('Laden');
     await page.locator('#city-more summary').click();
@@ -54,7 +54,7 @@ for (const width of [320, 1280]) {
 
 for (const [city, param, number, name] of [
   ['lausanne', 'quartierLausanne', '90', 'Zones foraines'],
-  ['genf', 'quartierGeneve', '4', 'Eaux-Vives Cité'],
+  ['geneve', 'quartierGeneve', '4', 'Eaux-Vives Cité'],
 ]) {
   test(`${city} direct links default to English and restore the official districts`, async ({ page }) => {
     await page.goto(`/${city}?${param}=${number}`);

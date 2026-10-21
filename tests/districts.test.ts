@@ -19,7 +19,7 @@ it('uses real Lausanne and Geneva boundaries and preserves Lausanne’s non-cont
   expect(inGeneva({ lat: 46.5226, lon: 6.6351 })).toBeUndefined();
   expect(districtFromSearch(new URLSearchParams('quartierLausanne=90'), 'lausanne')).toEqual({ enabled: true, selected: 90 });
   expect(districtFromSearch(new URLSearchParams('quartierLausanne=18'), 'lausanne')).toEqual({ enabled: false, selected: undefined });
-  expect(cityLink('geneva', '?quartiers=1&quartierLausanne=90&drink=beer', '/', 'en')).toBe('/en/genf?drink=beer');
+  expect(cityLink('geneva', '?quartiers=1&quartierLausanne=90&drink=beer', '/', 'en')).toBe('/en/geneve?drink=beer');
 });
 
 it('assigns known Zürich locations to official boundaries and excludes other cities', () => {
