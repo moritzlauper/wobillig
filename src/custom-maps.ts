@@ -11,6 +11,15 @@ import { venueForm } from './venue-form';
 import { searchSuggestions } from './search';
 import { googleMapsLink, nearbyLocations } from './locations';
 
+// Consume private recovery credentials before analytics and share links use the URL.
+const recoveryUrl = new URL(location.href);
+const recoveryMap = recoveryUrl.searchParams.get('map');
+let recoveryToken = new URLSearchParams(recoveryUrl.hash.slice(1)).get('recover');
+if (recoveryToken !== null) {
+  recoveryUrl.hash = '';
+  history.replaceState(history.state, '', recoveryUrl);
+}
+
 class MapRequestError extends Error {
   constructor(message: string, public status: number) { super(message); }
 }
@@ -217,7 +226,9 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     navigation.close();
     setBusy(true); errorText(create, '');
     try {
-      const value = await call(undefined, id);
+      const recovering = recoveryToken && recoveryMap === id;
+      const value = await call(recovering ? { action: 'recoverMap', mapId: id, recoveryToken } : undefined, id);
+      if (recovering) recoveryToken = null;
       if (version !== request) return;
       create.close(); open(value);
     } catch (error) {
@@ -352,7 +363,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       : t('Standort: {coordinates}', { coordinates: `${venue.lat.toFixed(5)}, ${venue.lon.toFixed(5)}` });
     detail.innerHTML = `<div class="detail-top"><strong>${e(venue.name)}</strong><button type="button" data-close>${t('Schliessen')}</button></div>
       <p class="muted">${e(address)}</p>
-      <div class="detail-actions"><button type="button" class="primary" data-add>${t('Preis hinzufügen')}</button><span class="detail-maps"><a href="${e(googleMapsLink(venue, cities[city].name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></div>
+      <div class="detail-actions"><button type="button" class="primary" data-add ${current?.canEdit === false ? 'hidden' : ''}>${t('Preis hinzufügen')}</button><span class="detail-maps"><a href="${e(googleMapsLink(venue, cities[city].name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></div>
       ${offers.map((offer, index) => `<div class="offer"><div class="offer-top"><strong>${e(offer.product)}</strong><strong class="nowrap">CHF ${offer.priceChf.toFixed(2)}</strong></div><div class="offer-meta"><span>${t('Eingetragen')} · ${e(new Date(offer.updatedAt).toLocaleDateString(dateLocale()))}</span><button type="button" data-edit="${index}" ${current?.canEdit === false ? 'hidden' : ''}>${t('Ändern')}</button></div></div>`).join('')}`;
     detail.hidden = false;
     const close = () => { detail.hidden = true; if (fromList) showView(true); trigger?.focus({ preventScroll: true }); };

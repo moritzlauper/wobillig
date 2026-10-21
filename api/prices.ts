@@ -80,7 +80,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!secret) throw new Error('Missing storage secret');
     const visitor = createHmac('sha256', secret).update(`${new Date().toISOString().slice(0, 10)}:${ip}`).digest('hex');
-    if (body && typeof body === 'object' && 'action' in body && ['createMap', 'requestAutomaticMap', 'saveMapEntry', 'requestMapPublication', 'withdrawMapPublication'].includes(String(body.action))) {
+    if (body && typeof body === 'object' && 'action' in body && ['createMap', 'requestAutomaticMap', 'recoverMap', 'saveMapEntry', 'requestMapPublication', 'withdrawMapPublication'].includes(String(body.action))) {
       const input = body as Record<string, unknown>;
       const creating = input.action === 'createMap' || input.action === 'requestAutomaticMap';
       const save = async () => {

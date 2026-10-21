@@ -1,9 +1,9 @@
 import { test, expect, type Page } from '@playwright/test';
 const venue = { id: 'node/123', name: 'Schutz Café', address: 'Teststrasse 1', postcode: '8004', website: 'https://old.example/', lat: 47.38, lon: 8.53, type: 'cafe', outdoor: false, openingHours: null, checkedAt: null, scrapeStatus: 'ok', offers: [{ name: 'Espresso', coffeeType: 'espresso', priceChf: 4, volumeMl: null, alcoholFree: true, confidence: 'automatic', sourceUrl: '', evidence: '', observedAt: '2026-10-21' }] };
-async function fixture(page: Page) {
+async function fixture(page: Page, venues = [venue]) {
   await page.route('**/api/tip?*', route => route.fulfill({ json: { enabled: false } }));
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
-  await page.route('**/data/*.json', route => route.fulfill({ json: { bars: /coffee|locations/.test(route.request().url()) ? [venue] : [], generatedAt: '', discoveredAt: '', attribution: '' } }));
+  await page.route('**/data/*.json', route => route.fulfill({ json: { bars: /coffee|locations/.test(route.request().url()) ? venues : [], generatedAt: '', discoveredAt: '', attribution: '' } }));
 }
 test('email verification preserves the form and pending corrections never become public in the UI', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 }); await fixture(page);
@@ -61,25 +61,52 @@ test('shared map links are read-only without owner permission', async ({ page })
   await expect(page.locator('#map-share')).toBeVisible();
 });
 
-test('optional verification is available without requiring an email for contributions', async ({ page }) => {
-  await fixture(page);
-  const authActions: string[] = [];
-  await page.route('**/api/community-auth', route => {
-    if (route.request().method() === 'GET') return route.fulfill({ json: { verified: false, emailRequired: false, mailReady: true, protection: false, paused: false } });
-    const body = route.request().postDataJSON(); authActions.push(body.action);
-    return route.fulfill({ json: body.action === 'request' ? { challenge: 'optional-test' } : { verified: true } });
+for (const width of [320, 390]) {
+  test(`legacy map recovery restores adding places and publication requests at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    const second = { ...venue, id: 'node/second', name: 'Zweites Café', lon: 8.535 };
+    await fixture(page, [venue, second]);
+    await page.route('**/api/community-auth', route => route.fulfill({ json: { verified: false, emailRequired: false, protection: false } }));
+    const map = { id: '52251319-7e51-44e3-b6c0-5f3105d2f22e', name: 'falafel', createdAt: '2026-10-20', canEdit: false,
+      entries: [{ venue, product: 'Falafel', priceChf: 4.59, revision: 1, updatedAt: '2026-10-20' }], publication: undefined as any };
+    const actions: string[] = [];
+    await page.route('**/api/prices?*', route => {
+      if (route.request().method() === 'POST') {
+        const body = route.request().postDataJSON(); actions.push(body.action);
+        if (body.action === 'recoverMap') {
+          expect(body).toMatchObject({ mapId: map.id, recoveryToken: 'private-recovery-token' });
+          map.canEdit = true;
+        } else if (body.action === 'saveMapEntry') {
+          expect(body.barId).toBe(second.id);
+          map.entries.push({ venue: second, product: body.product, priceChf: body.priceChf, revision: 1, updatedAt: '2026-10-21' });
+        } else if (body.action === 'requestMapPublication') {
+          map.publication = { status: 'pending', requestedAt: '2026-10-21', fingerprint: 'test' };
+        } else throw new Error(`Unexpected action: ${body.action}`);
+        return route.fulfill({ json: { map } });
+      }
+      return route.fulfill({ json: new URL(route.request().url()).searchParams.has('map') ? { map } : { entries: [] } });
+    });
+    await page.goto(`/?map=${map.id}#recover=private-recovery-token`);
+    await expect(page.locator('#map-add-entry')).toBeVisible();
+    await expect(page.locator('#map-publish')).toBeEnabled();
+    await expect(page).not.toHaveURL(/recover|private-recovery-token/);
+    expect(await page.locator('a[href*="private-recovery-token"]').count()).toBe(0);
+    await page.locator('#map-add-entry').click();
+    const entry = page.locator('#map-entry-dialog');
+    await entry.getByRole('combobox').fill('Zweites');
+    await page.locator('#map-venue-suggestions').getByRole('option').first().click();
+    await entry.getByLabel('Produkt / Menge').fill('Falafel');
+    await entry.getByLabel('Preis in CHF').fill('5.50');
+    await entry.getByRole('button', { name: 'Speichern', exact: true }).click();
+    await expect(entry).toBeHidden();
+    await expect(page.locator('#custom-map-summary')).toContainText('2 Lokale');
+    await page.reload();
+    await expect(page.locator('#map-add-entry')).toBeVisible();
+    await expect(page.locator('#map-publish')).toBeEnabled();
+    await page.screenshot({ path: `/tmp/wobillig-map-recovered-${width}.png` });
+    await page.locator('#map-publish').click();
+    await expect(page.locator('#custom-map-visibility')).toContainText('Zur Prüfung eingereicht');
+    expect(actions).toEqual(['recoverMap', 'saveMapEntry', 'requestMapPublication']);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
   });
-  await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [], venues: [], venueCorrections: [] } }));
-  await page.goto('/?drink=coffee&bar=node%2F123');
-  await page.locator('#close-detail').click();
-  await page.getByRole('button', { name: 'Beitragskonto', exact: true }).click();
-  const dialog = page.getByRole('dialog', { name: 'E-Mail einmalig bestätigen' });
-  await expect(dialog).toContainText('Die E-Mail-Bestätigung ist freiwillig.');
-  await expect(dialog).toContainText('Beiträge sind auch ohne Bestätigung möglich.');
-  await dialog.getByLabel('E-Mail-Adresse').fill('reader@example.org');
-  await dialog.getByRole('button', { name: 'Code senden' }).click();
-  await dialog.getByLabel('Sechsstelliger Code').fill('123456');
-  await dialog.getByRole('button', { name: 'Bestätigen und fortfahren' }).click();
-  await expect(dialog).toBeHidden();
-  expect(authActions).toEqual(['request', 'confirm']);
-});
+}

@@ -5,14 +5,17 @@ import { WriteConflict, type Store } from './prices.js';
 export type MapQuotas = Record<string, { id: string; operation: string; expires: number; done: boolean }>;
 const DAY = 86400000;
 export async function withMapQuota<T>(store: Store, action: 'create' | 'publish', ip: string, browser: string, operation: string, save: () => Promise<T>, now = Date.now()): Promise<T> {
-  const keys = [`${action}:ip:${ip}`, `${action}:browser:${browser}`], id = randomUUID();
+  const prefixes = [`${action}:ip:${ip}`, `${action}:browser:${browser}`], id = randomUUID();
+  const keys = prefixes.map(prefix => `${prefix}:${id}`);
+  const limit = action === 'create' ? 5 : 1;
   let reserved = false;
-  for (let attempt = 0; attempt < 4; attempt++) {
+  for (let attempt = 0; attempt < 8; attempt++) {
     const { state, etag } = await store.read();
     const quotas = Object.fromEntries(Object.entries(state.mapQuotas || {}).filter(([, quota]) => quota.expires > now));
-    const active = keys.flatMap(key => quotas[key] ? [quotas[key]] : []);
-    if (active.length) {
-      throw new InputError(action === 'create' ? 'Pro IP und Browser ist nur eine neue Map innerhalb von 24 Stunden möglich.'
+    // Each reservation expires independently. Count old single-slot records too.
+    const exhausted = prefixes.some(prefix => Object.keys(quotas).filter(key => key === prefix || key.startsWith(`${prefix}:`)).length >= limit);
+    if (exhausted) {
+      throw new InputError(action === 'create' ? 'Pro IP und Browser sind höchstens fünf neue Maps innerhalb von 24 Stunden möglich.'
         : 'Pro IP und Browser ist nur eine Veröffentlichungseinreichung innerhalb von 24 Stunden möglich.', 429);
     }
     for (const key of keys) quotas[key] = { id, operation, expires: now + DAY, done: false };

@@ -1,5 +1,5 @@
 import { legalPaths } from './legal-links';
-import { contributionFetch, accountControl } from './contribution-security';
+import { contributionFetch } from './contribution-security';
 import { cities, cityFromPath, cityLink, defaultCityLocale, type City } from './cities';
 import L from 'leaflet';
 import { inject } from '@vercel/analytics';
@@ -1137,5 +1137,3 @@ if (districtState.enabled) {
   $('filters').hidden = false; $('filters-toggle').setAttribute('aria-expanded', 'true');
   void loadDistricts();
 }
-
-accountControl(document.querySelector<HTMLElement>('.app-footer')!);

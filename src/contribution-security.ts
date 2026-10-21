@@ -45,8 +45,8 @@ async function authPost(body: object) {
   if (!response.ok) throw new Error(result.error ? t(result.error) : message('Bestätigung fehlgeschlagen.', 'Verification failed.'));
   return result;
 }
-async function verifyEmail(settings: Config): Promise<void> {
-  const dialog = modal(message('E-Mail einmalig bestätigen', 'Verify your email once'));
+async function verifyEmail(settings: Config, account = false): Promise<void> {
+  const dialog = modal(account ? message('Konto erstellen oder anmelden', 'Create an account or sign in') : message('E-Mail einmalig bestätigen', 'Verify your email once'));
   const explanation = document.createElement('p'); explanation.textContent = settings.emailRequired
     ? message('Zum Schutz vor Spam benötigen Beiträge eine bestätigte E-Mail-Adresse. Kein Newsletter. Dein Formular bleibt erhalten.', 'To prevent spam, contributions require a verified email address. No newsletter. Your form is preserved.')
     : message('Die E-Mail-Bestätigung ist freiwillig. Damit kannst du deine eigenen Maps auch in einem anderen Browser bearbeiten. Kein Newsletter. Beiträge sind auch ohne Bestätigung möglich.', 'Email verification is optional. It lets you edit your own maps in another browser. No newsletter. You can contribute without verifying your email.');
@@ -84,19 +84,29 @@ export async function contributionFetch(url: string, body: object, timeout = 300
   return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...body, botToken: token }), signal: AbortSignal.timeout(timeout) });
 }
 export function accountControl(container: HTMLElement) {
-  const button = document.createElement('button'); button.type = 'button'; button.textContent = message('Beitragskonto', 'Contributor account'); button.hidden = true; container.append(button);
-  void config().then(settings => { button.hidden = !settings.verified && !settings.emailRequired && !settings.mailReady; }).catch(() => { /* Reading remains available. */ });
+  const button = document.createElement('button'); button.type = 'button';
+  const updateLabel = (verified = false) => {
+    button.textContent = verified ? message('Mein Konto', 'My account') : message('Konto erstellen', 'Create account');
+    button.title = verified ? message('Mein Konto', 'My account') : message('Konto erstellen oder anmelden', 'Create an account or sign in');
+  };
+  updateLabel(); container.append(button);
+  void config().then(settings => updateLabel(settings.verified)).catch(() => { /* Keep the account entry visible during outages. */ });
   button.onclick = async () => {
     button.disabled = true;
     try {
       const settings = await config();
+      updateLabel(settings.verified);
       if (settings.verified) {
         const dialog = modal(message('E-Mail bestätigt', 'Email verified'));
         const logout = document.createElement('button'); logout.textContent = message('Abmelden', 'Sign out');
         logout.onclick = async () => { logout.disabled = true; try { await authPost({ action: 'logout' }); dialog.close(); location.reload(); } catch { logout.disabled = false; } };
         dialog.append(logout);
-      } else await verifyEmail(settings);
-    } catch (reason) { const dialog = modal(message('Beitragskonto', 'Contributor account')); const p = document.createElement('p'); p.textContent = reason instanceof Error ? reason.message : ''; dialog.append(p); }
+      } else {
+        if (!settings.mailReady && !settings.emailRequired) throw new Error(message('Die Kontoerstellung ist in dieser Umgebung noch nicht eingerichtet. Bitte verwende www.wobillig.ch.', 'Account creation is not configured in this environment yet. Please use www.wobillig.ch.'));
+        await verifyEmail(settings, true);
+        updateLabel(true);
+      }
+    } catch (reason) { const dialog = modal(message('Konto', 'Account')); const p = document.createElement('p'); p.textContent = reason instanceof Error ? reason.message : ''; dialog.append(p); }
     finally { button.disabled = false; }
   };
 }

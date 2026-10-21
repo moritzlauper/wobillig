@@ -204,7 +204,7 @@ export const en: Record<string, string> = {
   'Zum Veröffentlichen bitte mindestens einen Ort mit Preis eintragen.': 'Please add at least one place with a price before submitting for publication.',
   'Bitte die Map vor einer erneuten Einreichung überarbeiten.': 'Please revise the map before submitting it again.',
   'Diese Map wurde inzwischen geändert. Bitte neu laden.': 'This map has changed. Please reload.',
-  'Pro IP und Browser ist nur eine neue Map innerhalb von 24 Stunden möglich.': 'Only one new map per IP address and browser is allowed within 24 hours.',
+  'Pro IP und Browser sind höchstens fünf neue Maps innerhalb von 24 Stunden möglich.': 'Up to five new maps per IP address and browser are allowed within 24 hours.',
   'Pro IP und Browser ist nur eine Veröffentlichungseinreichung innerhalb von 24 Stunden möglich.': 'Only one publication submission per IP address and browser is allowed within 24 hours.',
   'Bitte Lokal wählen': 'Please select a place',
   'Deine Map ist bereit. Füge das erste Lokal mit einem Preis hinzu.': 'Your map is ready. Add the first place with a price.',
@@ -662,4 +662,5 @@ export const en: Record<string, string> = {
   'Die Website muss mit https:// oder http:// beginnen.': 'The website must start with https:// or http://.',
   'Zu viele neue Lokale. Bitte in einer Stunde erneut versuchen.': 'Too many new venues. Please try again in an hour.',
   'Gerade werden weitere Lokale gespeichert. Bitte erneut versuchen.': 'Other venues are being saved right now. Please try again.',
+  'Der Wiederherstellungslink ist ungültig oder abgelaufen.': 'The recovery link is invalid or has expired.',
 };

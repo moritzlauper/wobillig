@@ -5,6 +5,7 @@ import type { City } from '../src/cities.js';
 import { verifiedMapPlace } from './map-places.js';
 import { createHash } from 'node:crypto';
 import { WriteConflict, type Store } from './prices.js';
+import { validMapRecovery } from './map-recovery.js';
 
 function text(value: unknown, max: number) {
   return typeof value === 'string' && value.trim().length > 0 && value.trim().length <= max && !/[\x00-\x1f]/.test(value);
@@ -35,11 +36,13 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
   if (!isMapId(input.mapId)) throw new InputError('Ungültige Map.');
   const automatic = input.action === 'requestAutomaticMap';
   const create = input.action === 'createMap' || automatic;
+  const recover = input.action === 'recoverMap';
   const visibility = input.action === 'requestMapPublication' || input.action === 'withdrawMapPublication';
-  if (!create && !visibility && input.action !== 'saveMapEntry') throw new InputError('Ungültiger Eintrag.');
+  if (!create && !visibility && !recover && input.action !== 'saveMapEntry') throw new InputError('Ungültiger Eintrag.');
+  if (recover && !validMapRecovery(input.recoveryToken, city, input.mapId, now)) throw new InputError('Der Wiederherstellungslink ist ungültig oder abgelaufen.', 403);
   if (create && !text(input.name, 60)) throw new InputError('Bitte einen Map-Namen mit höchstens 60 Zeichen eingeben.');
   const suggestion = automatic ? automaticMapInput(input) : undefined;
-  if (!create && !visibility && (!text(input.product, 100) || typeof input.priceChf !== 'number' || !Number.isFinite(input.priceChf) ||
+  if (!create && !visibility && !recover && (!text(input.product, 100) || typeof input.priceChf !== 'number' || !Number.isFinite(input.priceChf) ||
     input.priceChf < 0.5 || input.priceChf > 500 || Math.abs(input.priceChf * 100 - Math.round(input.priceChf * 100)) > .00001 ||
     !Number.isSafeInteger(input.revision) || (input.revision as number) < 0)) {
     throw new InputError('Bitte Produkt und Preis zwischen CHF 0.50 und CHF 500 eingeben (maximal zwei Nachkommastellen).');
@@ -48,7 +51,9 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     const { state, etag } = await store.read();
     const maps = state.customMaps || [];
     const existing = maps.find(map => map.id === input.mapId);
-    if (existing && !canEditMap(state.mapOwners?.[existing.id], actor)) throw new InputError('Nur die Erstellerin oder der Ersteller kann diese Map bearbeiten.', 403);
+    const owner = existing && state.mapOwners?.[existing.id];
+    if (existing && !canEditMap(owner, actor) && !(recover && !owner)) throw new InputError('Nur die Erstellerin oder der Ersteller kann diese Map bearbeiten.', 403);
+    if (recover && owner) return existing!; // Retry after a lost response by the same owner.
     // The client keeps the creation ID during retries after a lost response.
     if (create && existing) {
       if (existing.name !== (input.name as string).trim() || Boolean(existing.automatic) !== automatic ||
@@ -60,7 +65,7 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
       if (duplicate) return duplicate;
     }
     if (!create && !existing) throw new InputError('Diese Map wurde nicht gefunden.', 404);
-    if (!create && existing?.automatic) throw new InputError('Diese automatische Map wird vom Team geprüft. Manuelle Änderungen sind nicht möglich.', 409);
+    if (!create && !recover && existing?.automatic) throw new InputError('Diese automatische Map wird vom Team geprüft. Manuelle Änderungen sind nicht möglich.', 409);
     const map: CustomMap = existing || { id: input.mapId, name: (input.name as string).trim(), createdAt: new Date(now).toISOString(), entries: [] };
     if (suggestion) map.automatic = { ...suggestion, status: 'requested', revision: 1 };
     if (visibility) {
@@ -72,7 +77,7 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
         map.publication = { status: 'pending', requestedAt: new Date(now).toISOString(), fingerprint };
       } else delete map.publication;
       delete map.publishedAt;
-    } else if (!create) {
+    } else if (!create && !recover) {
       const venue = communityVenues(datasets, [], state.venues, state.venueCorrections).find(bar => bar.id === input.barId)
         || map.entries.find(entry => entry.venue.id === input.barId)?.venue
         || (input.placeToken ? verifiedMapPlace(input.placeToken, city, input.barId, now) : undefined);
@@ -97,7 +102,7 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     if (limit.count >= (create ? 5 : 30)) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[key] = { ...limit, count: limit.count + 1 };
     state.mapOwners ||= {};
-    if (!existing) state.mapOwners[map.id] = actor;
+    if (!existing || recover) state.mapOwners[map.id] = actor;
     else if (actor.account && !state.mapOwners[map.id].account) state.mapOwners[map.id].account = actor.account;
     state.customMaps = [...maps.filter(other => other.id !== map.id), map];
     try { await store.write(state, etag); return map; }
