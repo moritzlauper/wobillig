@@ -1,12 +1,17 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import type { CustomMap } from '../src/custom-map-data';
+
+async function expandMapOptions(page: Page) {
+  const toggle = page.locator('#map-options-toggle');
+  if (await toggle.isVisible() && await toggle.getAttribute('aria-expanded') === 'false') await toggle.click();
+}
 
 const venue = { id: 'node/test-doner', name: 'Test Döner', address: 'Langstrasse 1', postcode: '8004', lat: 47.378, lon: 8.53,
   type: 'fast_food', offers: [], website: null, openingHours: null, outdoor: false, checkedAt: null, scrapeStatus: 'unavailable' };
-test.beforeEach(async ({ page }) => {
-  await page.route('**/api/prices?*mapPlaces=*', route => route.fulfill({ json: { places: [] } }));
-  await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
-  await page.route('**/data/locations.json', route => route.fulfill({ json: { bars: [venue] } }));
+test.beforeEach(async ({ context }) => {
+  await context.route('**/api/prices?*mapPlaces=*', route => route.fulfill({ json: { places: [] } }));
+  await context.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
+  await context.route('**/data/locations.json', route => route.fulfill({ json: { bars: [venue] } }));
 });
 
 for (const width of [320, 1280]) {
@@ -27,6 +32,7 @@ for (const width of [320, 1280]) {
       return route.fulfill({ json: new URL(route.request().url()).searchParams.has('map') ? { map: saved } : { entries: [] } });
     });
     await page.goto(`/?map=${saved.id}`);
+    await expandMapOptions(page);
     await page.locator('#map-add-entry').click();
     const dialog = page.locator('#map-entry-dialog');
     const search = dialog.getByRole('combobox', { name: 'Ort oder Geschäft suchen' });
@@ -109,6 +115,14 @@ for (const width of [320, 1280]) {
     await page.locator('#create-map-dialog').getByRole('button', { name: 'Map erstellen', exact: true }).click();
     await expect(page.locator('#custom-map-name')).toHaveText('Döner-Map');
     await expect(page.locator('#custom-map-entries')).toContainText('Deine Map ist bereit');
+    await expect(page.locator('#custom-map-created')).toContainText('Nur per Link erreichbar.');
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+    await page.locator('#custom-map-created').getByRole('button', { name: 'Link kopieren' }).click();
+    await expect(page.locator('#custom-map-created [role=status]')).toHaveText('Link kopiert.');
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(page.url());
+    await page.locator('#custom-map-created').getByRole('button', { name: 'Schliessen' }).click();
+    await expect(page.locator('#custom-map-created')).toBeHidden();
+    await expandMapOptions(page);
     await page.locator('#map-add-entry').click();
     await page.getByRole('combobox', { name: 'Ort oder Geschäft suchen' }).fill('Test Döner');
     await page.getByRole('option', { name: /Test Döner/ }).click();
@@ -119,7 +133,9 @@ for (const width of [320, 1280]) {
     await expect(page.locator('#custom-map-entries')).toContainText('CHF 12.50');
     await expect(page.locator('#custom-map-summary')).toHaveText('1 Lokal · Schnitt CHF 12.50');
     await page.locator('#custom-map-entries .venue').click();
-    await page.getByRole('button', { name: 'Preis ändern', exact: true }).click();
+    await expect(page.locator('#custom-map-detail')).toBeVisible();
+    await expect(page.getByRole('link', { name: 'In Google Maps öffnen' })).toHaveAttribute('href', /google\.com\/maps\/search/);
+    await page.locator('#custom-map-detail').getByRole('button', { name: 'Ändern', exact: true }).click();
     await page.getByRole('spinbutton', { name: 'Preis in CHF' }).fill('13');
     await page.locator('#map-entry-dialog').getByRole('button', { name: 'Speichern', exact: true }).click();
     await expect(page.locator('#custom-map-entries')).toContainText('CHF 13.00');
@@ -128,6 +144,7 @@ for (const width of [320, 1280]) {
     await expect(page.locator('#custom-map-share input')).toHaveValue(link);
     await page.reload();
     await expect(page.locator('#custom-map-name')).toHaveText('Döner-Map');
+    await expect(page.locator('#custom-map-created')).toBeHidden();
     await expect(page.locator('#custom-map-entries')).toContainText('CHF 13.00');
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
     await page.screenshot({ path: `/tmp/wobillig-custom-map-${width}.png` });
@@ -189,6 +206,7 @@ test('a missing venue can be added from an own map without losing the price form
     return route.fulfill({ json: new URL(route.request().url()).searchParams.has('map') ? { map: saved } : { entries: [] } });
   });
   await page.goto(`/?map=${saved.id}`);
+  await expandMapOptions(page);
   await page.locator('#map-add-entry').click();
   await page.getByRole('button', { name: 'Lokal fehlt? Neu hinzufügen' }).click();
   const dialog = page.locator('#custom-venue-dialog');
@@ -224,6 +242,7 @@ test('adds a shop from OpenStreetMap with its signed selection and a non-food pr
   await page.goto(`/?map=${saved.id}`);
   await expect(page.locator('#map-publish')).toBeDisabled();
   await expect(page.locator('#map-share')).toBeEnabled();
+  await expandMapOptions(page);
   await page.locator('#map-add-entry').click();
   await page.getByRole('combobox', { name: 'Ort oder Geschäft suchen' }).fill('Migros');
   await page.getByRole('option', { name: /Migros Testfiliale/ }).click();
@@ -248,9 +267,10 @@ test('one place stays link-only until explicit publication and reviewer approval
       publicMaps: saved.publication?.status === 'approved' ? [{ id: saved.id, name: saved.name, venueCount: 1 }] : [] } });
   });
   await page.goto(`/en?map=${saved.id}`);
+  await expandMapOptions(page);
   await expect(page.getByRole('button', { name: 'Share map', exact: true })).toBeEnabled();
   await expect(page.getByRole('button', { name: 'Publish map for everybody' })).toBeEnabled();
-  await expect(page.locator('#custom-map-visibility')).toContainText('only via its link');
+  await expect(page.locator('#custom-map-visibility')).toBeHidden();
   await page.getByRole('button', { name: 'Publish map for everybody' }).click();
   await expect(page.locator('#custom-map-visibility')).toContainText('Submitted for review');
   await page.locator('#map-back').click();
@@ -260,3 +280,51 @@ test('one place stays link-only until explicit publication and reviewer approval
   await page.locator('#categories-toggle').click();
   await expect(page.locator(`[data-custom-map="${saved.id}"]`)).toBeVisible();
 });
+
+for (const locale of ['de', 'en']) {
+  test(`compact mobile map options and venue details in ${locale}`, async ({ page }) => {
+    const saved: CustomMap = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: 'Falafel', createdAt: '2026-10-20',
+      entries: [{ venue, product: 'Falafel', priceChf: 4.59, revision: 1, updatedAt: '2026-10-20' }] };
+    await page.route('**/api/prices?*', route => route.fulfill({ json: new URL(route.request().url()).searchParams.has('map') ? { map: saved } : { entries: [] } }));
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto(`${locale === 'en' ? '/en' : '/'}?map=${saved.id}`);
+    const toggle = page.locator('#map-options-toggle');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.locator('#map-add-entry')).toBeHidden();
+    await expect(page.locator('#custom-map-visibility')).toBeHidden();
+    expect((await page.locator('.custom-map-toolbar').boundingBox())!.height).toBeLessThan(80);
+    await toggle.focus();
+    await page.keyboard.press('Enter');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    const buttons = await Promise.all(['map-share', 'map-publish', 'map-add-entry'].map(id => page.locator(`#${id}`).boundingBox()));
+    for (const button of buttons) {
+      expect(button!.y).toBe(buttons[0]!.y);
+      expect(button!.height).toBeLessThanOrEqual(36);
+    }
+    await page.screenshot({ path: `/tmp/wobillig-custom-options-${locale}.png` });
+    await toggle.click();
+    await page.locator('.custom-map-marker').click();
+    const detail = page.locator('#custom-map-detail');
+    await expect(detail).toBeVisible();
+    await expect(detail).toContainText('Langstrasse 1');
+    await expect(detail).toContainText('Falafel');
+    const mapsLink = detail.getByRole('link', { name: locale === 'en' ? 'Open in Google Maps' : 'In Google Maps öffnen' });
+    const mapsUrl = new URL((await mapsLink.getAttribute('href'))!);
+    expect(mapsUrl.searchParams.get('query')).toBe('Test Döner, Langstrasse 1, 8004, Zürich, Schweiz');
+    await expect(mapsLink).toHaveAttribute('target', '_blank');
+    await expect(page.locator('#map-entry-dialog')).toBeHidden();
+    await expect(page.locator('.leaflet-popup')).toHaveCount(0);
+    await page.screenshot({ path: `/tmp/wobillig-custom-detail-${locale}.png` });
+    await page.keyboard.press('Escape');
+    await expect(detail).toBeHidden();
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.screenshot({ path: `/tmp/wobillig-custom-collapsed-${locale}.png` });
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await expect(toggle).toBeHidden();
+    await expect(page.locator('#map-share')).toBeVisible();
+    await expect(page.locator('#map-add-entry')).toBeVisible();
+    await page.setViewportSize({ width: 320, height: 844 });
+    await expect(page.locator('#map-add-entry')).toBeHidden();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+  });
+}

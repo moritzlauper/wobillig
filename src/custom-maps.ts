@@ -7,6 +7,7 @@ import { dateLocale, t } from './i18n';
 import { shareLink } from './sharing';
 import { venueForm } from './venue-form';
 import { searchSuggestions } from './search';
+import { googleMapsLink } from './locations';
 
 class MapRequestError extends Error {
   constructor(message: string, public status: number) { super(message); }
@@ -50,7 +51,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       <p class="muted">${t('Wir prüfen die Quelle und ob sich ihre Angebote zuverlässig übernehmen lassen. Die Anfrage startet noch keine automatische Map.')}</p>
     </fieldset>
     <p class="muted">${e(t(cities[city].name))} · <span data-manual>${t('Alle mit dem Link können Preise ansehen und ergänzen.')}</span><span data-automatic-copy hidden>${t('Den Status findest du unter «Meine Maps».')}</span></p>
-    <p class="muted" data-manual>${t('Deine Map ist zunächst nur per Link erreichbar. Ab einem Ort mit Preis kannst du sie zur Veröffentlichung einreichen.')}</p>
+    <p class="muted" data-manual>${t('Nur per Link erreichbar.')}</p>
     <button class="primary" type="submit">${t('Map erstellen')}</button>
     <p role="alert" data-error hidden></p>
   </form><section id="saved-maps" hidden><h3>${t('Meine Maps')}</h3><div></div></section>`;
@@ -73,23 +74,25 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   view.id = 'custom-map-view'; view.hidden = true;
   view.innerHTML = `<div class="custom-map-toolbar">
     <div class="custom-map-heading">
-      <button type="button" id="map-back">← ${t('Zurück')}</button>
+      <button type="button" id="map-back" aria-label="${t('Zurück')}">←<span class="map-label-full"> ${t('Zurück')}</span></button>
       <div class="custom-map-title"><h1 id="custom-map-name"></h1><p id="custom-map-summary" role="status"></p></div>
+      <button type="button" id="map-options-toggle" aria-expanded="false" aria-controls="custom-map-actions custom-map-visibility custom-map-share">${t('Optionen')} <span class="filter-chevron" aria-hidden="true"></span></button>
     </div>
-    <div class="custom-map-actions">
-      <button type="button" id="map-share">${t('Map teilen')}</button>
+    <div class="custom-map-actions" id="custom-map-actions">
+      <button type="button" id="map-share" aria-label="${t('Map teilen')}"><span class="map-label-full">${t('Map teilen')}</span><span class="map-label-short" aria-hidden="true">${t('Teilen')}</span></button>
       <div id="map-publish-control">
-        <button type="button" id="map-publish" aria-describedby="map-publish-help">${t('Für alle veröffentlichen')}</button>
+        <button type="button" id="map-publish" aria-label="${t('Für alle veröffentlichen')}" aria-describedby="map-publish-help"><span class="map-label-full">${t('Für alle veröffentlichen')}</span><span class="map-label-short" aria-hidden="true">${t('Veröffentlichen')}</span></button>
       </div>
-      <button type="button" id="map-withdraw" hidden>${t('Veröffentlichung zurückziehen')}</button>
-      <button type="button" class="primary" id="map-add-entry">+ ${t('Lokal und Preis hinzufügen')}</button>
+      <button type="button" id="map-withdraw" aria-label="${t('Veröffentlichung zurückziehen')}" hidden><span class="map-label-full">${t('Veröffentlichung zurückziehen')}</span><span class="map-label-short" aria-hidden="true">${t('Zurückziehen')}</span></button>
+      <button type="button" class="primary" id="map-add-entry" aria-label="${t('Lokal und Preis hinzufügen')}"><span class="map-label-full">+ ${t('Lokal und Preis hinzufügen')}</span><span class="map-label-short" aria-hidden="true">+ ${t('Hinzufügen')}</span></button>
       <p id="map-publish-help" class="muted" role="status" hidden></p>
     </div>
-    </div><p id="custom-map-visibility" class="muted"></p>
+    </div><div id="custom-map-created" hidden><span role="status">${t('Nur per Link erreichbar.')}</span><button type="button" data-copy>${t('Link kopieren')}</button><button type="button" data-dismiss aria-label="${t('Schliessen')}">×</button></div>
+    <p id="custom-map-visibility" class="muted"></p>
     <p id="custom-map-action-error" role="alert" hidden></p>
     <section id="automatic-map-details" hidden></section>
     <div id="custom-map-share" hidden><label>${t('Diesen Link kopieren und teilen:')}<input type="url" readonly></label></div>
-    <div class="custom-map-content"><div id="custom-map-canvas" role="region" aria-label="${t('Eigene Map')}"></div><div id="custom-map-entries"></div></div>`;
+    <div class="custom-map-content"><div class="custom-map-panel"><div id="custom-map-canvas" role="region" aria-label="${t('Eigene Map')}"></div><section id="custom-map-detail" tabindex="-1" aria-label="${t('Lokal')}" hidden></section></div><div id="custom-map-entries"></div></div>`;
   app.append(view);
   const el = <T extends HTMLElement = HTMLElement>(id: string) => view.querySelector<T>('#' + id)!;
   const field = (name: string) => entry.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${name}"]`)!;
@@ -184,6 +187,8 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
         ...(mode.value === 'automatic' ? { sourceUrl: create.querySelector<HTMLInputElement>('[name="sourceUrl"]')!.value,
           description: create.querySelector<HTMLTextAreaElement>('[name="description"]')!.value } : {}) });
       createId = crypto.randomUUID(); create.querySelector('form')!.reset(); updateCreateMode(); create.close(); open(value);
+      el('custom-map-created').querySelector('[role=status]')!.textContent = t('Nur per Link erreichbar.');
+      el('custom-map-created').hidden = Boolean(value.automatic);
     } catch (error) { errorText(create, failure(error)); }
     finally { setBusy(false); }
   };
@@ -227,11 +232,14 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     el('custom-map-name').textContent = value.name;
     el('custom-map-action-error').hidden = true;
     el('custom-map-share').hidden = true;
+    el('custom-map-created').hidden = true;
+    el('custom-map-detail').hidden = true;
     const automatic = value.automatic;
     el('automatic-map-details').hidden = !automatic;
     view.querySelector<HTMLElement>('.custom-map-content')!.hidden = Boolean(automatic);
     el('map-add-entry').hidden = Boolean(automatic);
     if (automatic) {
+      el('custom-map-visibility').hidden = false;
       el('map-publish-control').hidden = true; el('map-publish-help').hidden = true; el('map-withdraw').hidden = true;
       el('custom-map-summary').textContent = t(automaticMapStatusLabels[automatic.status]);
       el('custom-map-visibility').textContent = t('Anfrage nur per Link erreichbar. Es werden noch keine Angebote importiert.');
@@ -251,13 +259,12 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     const average = entries.length ? `CHF ${(entries.reduce((sum, item) => sum + item.priceChf, 0) / entries.length).toFixed(2)}` : '—';
     el('custom-map-summary').textContent = entries.length === 1 ? t('1 Lokal · Schnitt {price}', { price: average })
       : t('{count} Lokale · Schnitt {price}', { count: entries.length, price: average });
-    const count = mapVenueCount(value);
     const status = value.publication?.status;
+    el('custom-map-visibility').hidden = !status;
     el('custom-map-visibility').textContent = status === 'approved' ? t('Öffentlich unter «Weitere» sichtbar.')
       : status === 'pending' ? t('Zur Prüfung eingereicht. Bis zur Freigabe bleibt die Map nur per Link erreichbar.')
       : status === 'rejected' ? t('Veröffentlichung abgelehnt. Du kannst die Map überarbeiten und erneut einreichen. Der Link bleibt nutzbar.')
-      : count >= PUBLIC_MAP_MIN_VENUES ? t('Nur per Link erreichbar. Du kannst die Map jetzt zur Veröffentlichung einreichen.')
-      : t('Nur per Link erreichbar. Zum Einreichen fehlt noch ein Ort mit Preis.');
+      : '';
     updatePublicationControl();
     el('map-withdraw').hidden = status !== 'pending' && status !== 'approved';
     el('custom-map-entries').replaceChildren();
@@ -271,13 +278,10 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
         icon: L.divIcon({ className: 'custom-map-marker', html: e(item.priceChf.toFixed(2)), iconSize: [52, 28], iconAnchor: [26, 14] }),
         title: `${item.venue.name}: CHF ${item.priceChf.toFixed(2)}`,
       }).addTo(layer!);
-      const content = document.createElement('div');
-      const label = document.createElement('p'); label.textContent = `${item.venue.name} · ${item.product} · CHF ${item.priceChf.toFixed(2)}`;
-      const edit = document.createElement('button'); edit.textContent = t('Preis ändern'); edit.onclick = () => openEntry(item);
-      content.append(label, edit); marker.bindPopup(content);
+      marker.on('click', () => showEntryDetail(item, marker.getElement()));
       const row = document.createElement('button'); row.type = 'button'; row.className = 'venue';
       row.innerHTML = `<span><strong>${e(item.venue.name)}</strong><small>${e(item.product)}</small><small>${e([item.venue.address, item.venue.postcode].filter(Boolean).join(', '))}</small><small>${e(t('Eingetragen'))} · ${e(new Date(item.updatedAt).toLocaleDateString(dateLocale()))}</small></span><span class="venue-price">CHF ${item.priceChf.toFixed(2)}</span>`;
-      row.onclick = () => { map!.setView([item.venue.lat, item.venue.lon], 16); marker.openPopup(); el('custom-map-canvas').scrollIntoView({ block: 'nearest' }); };
+      row.onclick = () => showEntryDetail(item, row);
       el('custom-map-entries').append(row);
     }
     requestAnimationFrame(() => {
@@ -285,7 +289,34 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       if (entries.length) map!.fitBounds(L.latLngBounds(entries.map(item => [item.venue.lat, item.venue.lon])), { padding: [35, 35], maxZoom: 16 });
       else map!.setView(cities[city].center, 13);
     });
-    el('map-add-entry').focus();
+    if (matchMedia('(max-width: 760px)').matches && el('map-options-toggle').getAttribute('aria-expanded') === 'false') el('map-back').focus();
+    else el('map-add-entry').focus();
+  }
+  function showEntryDetail(item: MapEntry, trigger?: HTMLElement) {
+    const detail = el('custom-map-detail');
+    const venue = item.venue;
+    detail.setAttribute('aria-label', venue.name);
+    const offers = current!.entries.filter(entry => entry.venue.id === venue.id);
+    const address = venue.address ? [venue.address, venue.postcode, t(cities[city].name)].filter(Boolean).join(' ')
+      : t('Standort: {coordinates}', { coordinates: `${venue.lat.toFixed(5)}, ${venue.lon.toFixed(5)}` });
+    detail.innerHTML = `<div class="detail-top"><strong>${e(venue.name)}</strong><button type="button" data-close>${t('Schliessen')}</button></div>
+      <p class="muted">${e(address)}</p>
+      <div class="detail-actions"><button type="button" class="primary" data-add>${t('Preis hinzufügen')}</button><span class="detail-maps"><a href="${e(googleMapsLink(venue, cities[city].name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></div>
+      ${offers.map((offer, index) => `<div class="offer"><div class="offer-top"><strong>${e(offer.product)}</strong><strong class="nowrap">CHF ${offer.priceChf.toFixed(2)}</strong></div><div class="offer-meta"><span>${t('Eingetragen')} · ${e(new Date(offer.updatedAt).toLocaleDateString(dateLocale()))}</span><button type="button" data-edit="${index}">${t('Ändern')}</button></div></div>`).join('')}`;
+    detail.hidden = false;
+    const close = () => { detail.hidden = true; trigger?.focus(); };
+    detail.querySelector<HTMLButtonElement>('[data-close]')!.onclick = close;
+    detail.onkeydown = event => { if (event.key === 'Escape') { event.preventDefault(); close(); } };
+    detail.querySelector<HTMLButtonElement>('[data-add]')!.onclick = () => { openEntry(); chooseVenue(venue); field('product').focus(); };
+    detail.querySelectorAll<HTMLButtonElement>('[data-edit]').forEach(button => {
+      button.onclick = () => openEntry(offers[Number(button.dataset.edit)]);
+    });
+    el('custom-map-canvas').scrollIntoView({ block: 'nearest' });
+    map!.setView([venue.lat, venue.lon], 16);
+    // Centre the marker in the part of the map that remains above/beside the detail sheet.
+    const sheet = detail.getBoundingClientRect();
+    map!.panBy(matchMedia('(max-width: 760px)').matches ? [0, sheet.height / 2] : [sheet.width / 2, 0], { animate: false });
+    detail.focus({ preventScroll: true });
   }
   const venueSearch = field('search') as HTMLInputElement;
   const venueSuggestions = entry.querySelector<HTMLElement>('#map-venue-suggestions')!;
@@ -427,6 +458,29 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       errorText(entry, failure(error));
     }
     finally { setBusy(false); }
+  };
+  el('map-options-toggle').onclick = () => {
+    const toggle = el('map-options-toggle');
+    toggle.setAttribute('aria-expanded', String(toggle.getAttribute('aria-expanded') !== 'true'));
+    map?.invalidateSize();
+  };
+  el('custom-map-created').querySelector<HTMLButtonElement>('[data-dismiss]')!.onclick = () => {
+    el('custom-map-created').hidden = true;
+    el('map-back').focus();
+    map?.invalidateSize();
+  };
+  el('custom-map-created').querySelector<HTMLButtonElement>('[data-copy]')!.onclick = async () => {
+    if (!current) return;
+    const href = url(current.id);
+    const result = await shareLink({ url: href }, { clipboard: navigator.clipboard });
+    if (result === 'copied') el('custom-map-created').querySelector('[role=status]')!.textContent = t('Link kopiert.');
+    else {
+      el('map-options-toggle').setAttribute('aria-expanded', 'true');
+      el('custom-map-share').hidden = false;
+      const input = el('custom-map-share').querySelector('input')!;
+      input.value = href; input.focus(); input.select();
+    }
+    map?.invalidateSize();
   };
   el('map-share').onclick = async () => {
     if (!current) return;

@@ -8,7 +8,7 @@ export function withKnownAddress(bar: Bar, known?: Bar): Bar {
   return address === bar.address && postcode === bar.postcode ? bar : { ...bar, address, postcode };
 }
 
-export function googleMapsLink(bar: Bar, city: string): string {
+export function googleMapsLink(bar: Pick<Bar, 'name' | 'address' | 'postcode' | 'lat' | 'lon'>, city: string): string {
   const query = bar.address.trim()
     ? [bar.name, bar.address, bar.postcode, city, 'Schweiz'].filter(Boolean).join(', ')
     : `${bar.lat},${bar.lon}`;

@@ -23,6 +23,7 @@ a { color: var(--link); text-underline-offset: 2px; }
 .custom-map-toolbar { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px 24px; padding: 16px; border-bottom: 1px solid var(--divider); }
 .custom-map-heading { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 180px; }
 #map-back { flex-shrink: 0; }
+#map-options-toggle, .map-label-short { display: none; }
 .custom-map-title { min-width: 0; }
 .custom-map-actions { display: flex; flex-wrap: wrap; align-items: stretch; justify-content: flex-end; gap: 8px; max-width: 100%; }
 #map-publish-control { display: flex; }
@@ -32,7 +33,12 @@ a { color: var(--link); text-underline-offset: 2px; }
 #custom-map-summary { margin: 4px 0 0; color: var(--muted); font-size: var(--font-control); line-height: 1.5; }
 #custom-map-visibility { margin: 0; padding: 10px 16px; background: var(--soft); border-bottom: 1px solid var(--divider); font-size: var(--font-control); line-height: 1.5; }
 #custom-map-action-error { padding: 8px 10px; color: var(--error); }
+#custom-map-created { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
+#custom-map-created [data-copy] { margin-left: auto; white-space: nowrap; }
+#custom-map-created button { min-height: 32px; padding: 4px 6px; }
+#custom-map-created [data-dismiss] { border: 0; font-size: 18px; }
 .custom-map-content { display: flex; flex: 1; min-height: 0; }
+.custom-map-panel { position: relative; display: flex; flex: 1; min-width: 0; min-height: 0; }
 #custom-map-canvas { flex: 1; min-width: 0; background: var(--map); }
 #custom-map-entries { width: 300px; overflow-y: auto; border-left: 1px solid var(--divider); }
 .custom-map-marker { background: var(--primary); color: var(--on-primary); border: 1px solid var(--surface); border-radius: 4px; text-align: center; line-height: 26px; font-weight: 600; box-shadow: 0 1px 4px #0004; }
@@ -64,16 +70,25 @@ a { color: var(--link); text-underline-offset: 2px; }
   .toolbar-heading { flex-wrap: wrap; }
   #my-maps { order: 3; }
   .custom-map-content { flex-direction: column; overflow-y: auto; }
-  #custom-map-canvas { flex: 0 0 45dvh; min-height: 240px; }
+  .custom-map-panel { flex: 0 0 45dvh; min-height: 240px; }
   #custom-map-entries { width: 100%; overflow: visible; border-left: 0; }
-  .custom-map-toolbar { gap: 12px; padding: 12px; }
-  .custom-map-heading { flex-basis: 100%; min-width: 0; }
-  .custom-map-actions { display: grid; grid-template-columns: auto minmax(0, 1fr); width: 100%; }
-  .custom-map-actions button { min-height: 40px; }
+  .custom-map-toolbar { gap: 8px; padding: 8px; }
+  .custom-map-heading { flex-basis: 100%; min-width: 0; gap: 8px; }
+  .custom-map-title { flex: 1; }
+  #custom-map-name { font-size: 16px; }
+  #custom-map-summary { margin-top: 2px; font-size: 11px; line-height: 1.3; }
+  .custom-map-toolbar button { min-height: 34px; padding: 5px 8px; }
+  #map-back { width: 34px; padding: 0; font-size: 20px; }
+  #map-options-toggle { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  #map-options-toggle[aria-expanded=true] .filter-chevron { transform: translateY(2px) rotate(225deg); }
+  .custom-map-toolbar .map-label-full { display: none; }
+  .custom-map-toolbar .map-label-short { display: inline; }
+  .custom-map-actions { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px; width: 100%; }
+  .custom-map-actions > button, #map-publish-control { flex: 1 1 auto; }
   #map-publish { width: 100%; }
-  #map-add-entry, #map-publish-help { grid-column: 1 / -1; }
   #map-publish-help { text-align: left; }
-  #custom-map-visibility { padding: 10px 12px; }
+  #custom-map-visibility { padding: 6px 8px; font-size: 11px; line-height: 1.4; }
+  #custom-map-view:has(#map-options-toggle[aria-expanded=false]) :is(.custom-map-actions, #custom-map-visibility, #custom-map-share) { display: none; }
 }
 .more-categories { position: relative; }
 #categories-toggle { display: flex; align-items: center; justify-content: center; gap: 10px; height: 100%; }
@@ -179,8 +194,8 @@ main { display: flex; flex: 1; min-height: 0; }
 .marker-wrap.highlighted .price-marker { background: var(--teal-active); color: #fff; border-color: #fff; outline: 2px solid var(--teal); box-shadow: 0 3px 10px #0005; transform: scale(1.15); }
 #map .unpriced-marker.highlighted { display: flex; }
 .unpriced-marker.highlighted .venue-marker-name { display: block; }
-#detail { position: absolute; top: 10px; right: 10px; bottom: 10px; width: min(390px, calc(100% - 20px)); background: var(--surface); border: 1px solid var(--strong-border); border-radius: 4px; z-index: 700; padding: 15px; overflow-y: auto; box-shadow: 0 2px 10px #0002; }
-#detail:focus { outline: none; }
+:is(#detail, #custom-map-detail) { position: absolute; top: 10px; right: 10px; bottom: 10px; width: min(390px, calc(100% - 20px)); background: var(--surface); border: 1px solid var(--strong-border); border-radius: 4px; z-index: 700; padding: 15px; overflow-y: auto; box-shadow: 0 2px 10px #0002; }
+:is(#detail, #custom-map-detail):focus { outline: none; }
 .detail-top, .dialog-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .detail-top > strong { font-size: 17px; }
 .detail-top > button, .dialog-top > button { font-size: var(--font-control); flex-shrink: 0; }
@@ -284,12 +299,12 @@ dialog::backdrop { background: var(--backdrop); }
   .list-panel { display: none; flex-basis: 100%; border: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .show-list .list-panel { display: block; }
   .show-list .map-panel { display: none; }
-  #detail { top: auto; bottom: 0; right: 0; width: 100%; max-height: 72%; border-radius: 4px 4px 0 0; padding: 13px; padding-bottom: calc(13px + env(safe-area-inset-bottom, 0px)); }
+  :is(#detail, #custom-map-detail) { top: auto; bottom: 0; right: 0; width: 100%; max-height: 72%; border-radius: 4px 4px 0 0; padding: 13px; padding-bottom: calc(13px + env(safe-area-inset-bottom, 0px)); }
   dialog { padding: 16px; }
   .leaflet-control-attribution { font-size: 9px; }
 }
 /* Keep the detail sheet above Leaflet's controls. */
-#detail { z-index: 1100; }
+:is(#detail, #custom-map-detail) { z-index: 1100; }
 @media (max-width: 360px) {
   .budget { gap: 4px; }
   .budget input { width: 48px; padding-inline: 4px; }
