@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-21T07:46:02.446315+00:00",
-  "discoveredAt": "2026-10-21T07:45:44.596755+00:00",
+  "generatedAt": "2026-10-21T08:43:18.781213+00:00",
+  "discoveredAt": "2026-10-21T07:47:49.129805+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -17,7 +17,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954353+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656082+00:00"
     },
     {
       "id": "node/5513764571",
@@ -33,7 +33,135 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954596+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656101+00:00"
+    },
+    {
+      "id": "node/10564958422",
+      "name": "Adretissimo",
+      "lat": 46.1871196,
+      "lon": 6.124144,
+      "type": "restaurant",
+      "address": "Place de Pont-Rouge 2",
+      "postcode": "1212",
+      "website": "https://www.adretissimo.ch/",
+      "cuisine": [
+        "italian",
+        "pizza",
+        "pasta"
+      ],
+      "openingHours": "Mo-Th 09:00-22:30; Fr 09:00-23:30; Sa 18:30-23:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Galaxy pils",
+          "volumeMl": 200,
+          "priceChf": 4.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://adretissimo.ch/menua/menu-adretissimo.html",
+          "observedAt": "2026-10-21T08:26:25.830770+00:00",
+          "confidence": "automatic",
+          "evidence": "Galaxy pils 4,9% 20cl 4,5 / 30cl 5,5 / 50cl 8.-",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Galaxy pils",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://adretissimo.ch/menua/menu-adretissimo.html",
+          "observedAt": "2026-10-21T08:26:25.830770+00:00",
+          "confidence": "automatic",
+          "evidence": "Galaxy pils 4,9% 20cl 4,5 / 30cl 5,5 / 50cl 8.-",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Galaxy pils",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://adretissimo.ch/menua/menu-adretissimo.html",
+          "observedAt": "2026-10-21T08:26:25.830770+00:00",
+          "confidence": "automatic",
+          "evidence": "Galaxy pils 4,9% 20cl 4,5 / 30cl 5,5 / 50cl 8.-",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Amber",
+          "volumeMl": 200,
+          "priceChf": 4.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://adretissimo.ch/menua/menu-adretissimo.html",
+          "observedAt": "2026-10-21T08:26:25.830770+00:00",
+          "confidence": "automatic",
+          "evidence": "Amber 4,9% 20cl 4,5 / 30cl 5,5 / 50cl 8.-",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Amber",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://adretissimo.ch/menua/menu-adretissimo.html",
+          "observedAt": "2026-10-21T08:26:25.830770+00:00",
+          "confidence": "automatic",
+          "evidence": "Amber 4,9% 20cl 4,5 / 30cl 5,5 / 50cl 8.-",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Amber",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://adretissimo.ch/menua/menu-adretissimo.html",
+          "observedAt": "2026-10-21T08:26:25.830770+00:00",
+          "confidence": "automatic",
+          "evidence": "Amber 4,9% 20cl 4,5 / 30cl 5,5 / 50cl 8.-",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Bleifrei Pale ale",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://adretissimo.ch/menua/menu-adretissimo.html",
+          "observedAt": "2026-10-21T08:26:25.830770+00:00",
+          "confidence": "automatic",
+          "evidence": "Bleifrei Pale ale 0,5% 33cl 6.-",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:26:25.830770+00:00"
     },
     {
       "id": "node/11045488758",
@@ -48,8 +176,8 @@
       "openingHours": "Th, Fr 17:00-21:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.645901+00:00"
     },
     {
       "id": "way/1525540290",
@@ -64,8 +192,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T08:40:54.646176+00:00"
     },
     {
       "id": "node/5454655721",
@@ -80,8 +208,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.646537+00:00"
     },
     {
       "id": "node/14133471361",
@@ -96,8 +224,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.647451+00:00"
     },
     {
       "id": "node/13390439168",
@@ -105,15 +233,16 @@
       "lat": 46.1921821,
       "lon": 6.1456739,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Alcide-Jentzer 9",
+      "postcode": "1205",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo, Tu 08:30-21:00; We-Fr 08:30-02:00; Sa 11:00-14:30, 17:00-02:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954581+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656092+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2217026225"
     },
     {
       "id": "node/12284893507",
@@ -121,15 +250,16 @@
       "lat": 46.208992,
       "lon": 6.1373934,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Lyon 14",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954636+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656110+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3671992205"
     },
     {
       "id": "node/4660104193",
@@ -145,7 +275,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954670+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656126+00:00"
     },
     {
       "id": "node/10770977705",
@@ -161,7 +291,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954642+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656118+00:00"
     },
     {
       "id": "node/5154321221",
@@ -179,7 +309,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:07.954786+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656146+00:00"
     },
     {
       "id": "node/4400790594",
@@ -195,7 +325,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954866+00:00"
+      "checkedAt": "2026-10-21T08:40:54.687978+00:00"
     },
     {
       "id": "node/12145747615",
@@ -203,7 +333,7 @@
       "lat": 46.2148923,
       "lon": 6.133395,
       "type": "bar",
-      "address": "",
+      "address": "Rue du Grand-Pré 47",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -211,7 +341,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954890+00:00"
+      "checkedAt": "2026-10-21T08:40:54.687996+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2320885346"
     },
     {
       "id": "node/7091568086",
@@ -227,7 +358,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954774+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656137+00:00"
     },
     {
       "id": "node/5860680786",
@@ -235,15 +366,16 @@
       "lat": 46.1809642,
       "lon": 6.1404731,
       "type": "bar",
-      "address": "",
-      "postcode": "1227",
+      "address": "Rue Ancienne 66",
+      "postcode": "",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 17:00-02:00; Sa 00:00-24:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.647483+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/184149602"
     },
     {
       "id": "node/9794980543",
@@ -251,7 +383,7 @@
       "lat": 46.200219,
       "lon": 6.1297366,
       "type": "bar",
-      "address": "",
+      "address": "Rue des Deux-Ponts 29",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -259,7 +391,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954999+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688017+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2188913063"
     },
     {
       "id": "node/1958230270",
@@ -267,15 +400,16 @@
       "lat": 46.1882725,
       "lon": 6.13706,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Louis-de-Montfalcon 2",
+      "postcode": "1227",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.647824+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2094988924"
     },
     {
       "id": "node/11770681081",
@@ -291,7 +425,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955013+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688027+00:00"
     },
     {
       "id": "node/4394209823",
@@ -299,7 +433,7 @@
       "lat": 46.2095548,
       "lon": 6.1392041,
       "type": "bar",
-      "address": "",
+      "address": "Rue du Cercle 6",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -307,7 +441,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955026+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688036+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/185699387"
     },
     {
       "id": "node/11034397947",
@@ -323,7 +458,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.954975+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688008+00:00"
     },
     {
       "id": "node/1454894922",
@@ -339,7 +474,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955097+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688044+00:00"
     },
     {
       "id": "node/4281443689",
@@ -347,15 +482,16 @@
       "lat": 46.2142314,
       "lon": 6.128937,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Route de Meyrin 4",
+      "postcode": "1202",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955162+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688086+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/180058867"
     },
     {
       "id": "node/5859603485",
@@ -371,7 +507,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955112+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688068+00:00"
     },
     {
       "id": "node/12020375125",
@@ -379,15 +515,16 @@
       "lat": 46.1918257,
       "lon": 6.1444585,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Place des Augustins 3",
+      "postcode": "1205",
       "website": null,
       "cuisine": [],
       "openingHours": "\"les soirs de semaine et vendredi midi\"",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955140+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688077+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2117800739"
     },
     {
       "id": "node/12265953097",
@@ -395,15 +532,16 @@
       "lat": 46.2025822,
       "lon": 6.1319096,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Quai du Rhône 2",
+      "postcode": "1205",
       "website": null,
       "cuisine": [],
       "openingHours": "Su-Th 10:30-01:00, Fr,Sa 16:00-02:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955103+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688059+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2173533390"
     },
     {
       "id": "node/6475658887",
@@ -411,15 +549,16 @@
       "lat": 46.2032374,
       "lon": 6.1479971,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Place du Molard 9",
+      "postcode": "1204",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955324+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688135+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/1293462751"
     },
     {
       "id": "node/10979195546",
@@ -435,7 +574,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955263+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688111+00:00"
     },
     {
       "id": "node/9467302317",
@@ -443,15 +582,16 @@
       "lat": 46.2089361,
       "lon": 6.1428961,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Place de Cornavin 6",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955311+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688127+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/1627295681"
     },
     {
       "id": "way/218168518",
@@ -466,8 +606,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.647847+00:00"
     },
     {
       "id": "way/1306109486",
@@ -483,7 +623,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955255+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688102+00:00"
     },
     {
       "id": "node/13236514885",
@@ -491,15 +631,16 @@
       "lat": 46.2107377,
       "lon": 6.1461877,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Berne 35",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955296+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688119+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092524996"
     },
     {
       "id": "node/2266462125",
@@ -507,7 +648,7 @@
       "lat": 46.2015177,
       "lon": 6.1396856,
       "type": "bar",
-      "address": "",
+      "address": "Rue de l'Arquebuse 27",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -515,7 +656,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955243+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688094+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2199189963"
     },
     {
       "id": "node/12319091501",
@@ -533,7 +675,66 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955484+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688202+00:00"
+    },
+    {
+      "id": "node/13589789061",
+      "name": "Café du Conservatoire",
+      "lat": 46.2009879,
+      "lon": 6.1424592,
+      "type": "cafe",
+      "address": "Place de Neuve 5",
+      "postcode": "1204",
+      "website": "https://www.cafeconservatoire.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Bière Moretti",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.cafeconservatoire.ch/_files/ugd/dc2f21_6834ded1e2a54ca690830098d22da182.pdf",
+          "observedAt": "2026-10-21T08:41:21.990562+00:00",
+          "confidence": "automatic",
+          "evidence": "Bière Moretti 33 cl 6.-",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:21.990562+00:00"
+    },
+    {
+      "id": "node/9456587509",
+      "name": "Café Le Jet d’Eau",
+      "lat": 46.2051895,
+      "lon": 6.160455,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.restaurant-pizzeria-jetdeau.ch/",
+      "cuisine": [
+        "italian",
+        "italian_pizza"
+      ],
+      "openingHours": "Mo-Sa 11:30-15:00, 18:30-00:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Super Bock/Heineken",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "beerType": "bottle",
+          "sourceUrl": "https://de.cdn-website.com/5dea1ef816d942b59f0e15747cd719d9/files/uploaded/MENU 8 BOISSONS sans alcool avec mention carafe.pdf",
+          "observedAt": "2026-10-21T08:27:14.345331+00:00",
+          "confidence": "automatic",
+          "evidence": "- Super Bock/Heineken 33cl 6.50-",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:27:14.345331+00:00"
     },
     {
       "id": "node/5704428421",
@@ -549,7 +750,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955438+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688157+00:00"
     },
     {
       "id": "node/2870199080",
@@ -565,7 +766,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955446+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688166+00:00"
     },
     {
       "id": "node/1434037675",
@@ -573,15 +774,96 @@
       "lat": 46.2078999,
       "lon": 6.137604,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Voltaire 16",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Th 06:00-01:00, Fr 06:00-02:00, Sa 07:00-02:00, Su 09:00-01:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955453+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688174+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3672029821"
+    },
+    {
+      "id": "node/1747162397",
+      "name": "Caps BBQ",
+      "lat": 46.1951466,
+      "lon": 6.1430003,
+      "type": "restaurant",
+      "address": "Boulevard du Pont-d'Arve 26",
+      "postcode": "1205",
+      "website": "https://capsbbq.ch/",
+      "cuisine": [
+        "barbecue"
+      ],
+      "openingHours": "Tu-Sa 12:00-14:30,18:30-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "ROOT BEER",
+          "volumeMl": 330,
+          "priceChf": 4.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://5da3966b-c3ed-4ca6-99e7-381e7f5311a2.filesusr.com/ugd/ca92d7_f51566aec7254623b5e4d31dafafd510.pdf",
+          "observedAt": "2026-10-21T08:41:22.648020+00:00",
+          "confidence": "automatic",
+          "evidence": "ROOT BEER | 33 CL............................. 4,5",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:22.648020+00:00"
+    },
+    {
+      "id": "node/13531815001",
+      "name": "Caracol",
+      "lat": 46.2005424,
+      "lon": 6.1665568,
+      "type": "restaurant",
+      "address": "Avenue de la Gare-des-Eaux-Vives 8",
+      "postcode": "1207",
+      "website": "https://www.caracol-restaurant.ch/",
+      "cuisine": [],
+      "openingHours": "Tu-Fr 11:30-14:00, 18:00-22:00; Sa 18:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "MODELO ESPECIAL LAGER[MX]",
+          "volumeMl": 350,
+          "priceChf": 9.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.caracol-restaurant.ch/_files/ugd/fc3d75_3e6cb156e7464eafaf01b5736383939d.pdf",
+          "observedAt": "2026-10-21T08:27:20.095606+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: MODELO ESPECIAL LAGER 4.6% [MX] 9 / 35CL",
+          "alcoholFree": false
+        },
+        {
+          "name": "NEGRA MODELO LAGER[MX]",
+          "volumeMl": 355,
+          "priceChf": 9.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.caracol-restaurant.ch/_files/ugd/fc3d75_3e6cb156e7464eafaf01b5736383939d.pdf",
+          "observedAt": "2026-10-21T08:27:20.095606+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: NEGRA MODELO LAGER 5.4% [MX] 9 / 35.5CL",
+          "alcoholFree": false
+        },
+        {
+          "name": "BIÈRE SANS ALCOOL APPENZELLER",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.caracol-restaurant.ch/_files/ugd/fc3d75_3e6cb156e7464eafaf01b5736383939d.pdf",
+          "observedAt": "2026-10-21T08:27:20.095606+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: BIÈRE SANS ALCOOL APPENZELLER 6 / 33CL",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:27:20.095606+00:00"
     },
     {
       "id": "node/13203242103",
@@ -589,15 +871,16 @@
       "lat": 46.2131038,
       "lon": 6.1492455,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Bâle 26",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955467+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688183+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2113384729"
     },
     {
       "id": "way/84072406",
@@ -612,8 +895,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.647857+00:00"
     },
     {
       "id": "node/14140563801",
@@ -629,7 +912,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955477+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688193+00:00"
     },
     {
       "id": "node/2184498167",
@@ -645,7 +928,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.955427+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688148+00:00"
     },
     {
       "id": "node/2401930406",
@@ -660,8 +943,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.650205+00:00"
     },
     {
       "id": "node/13200689119",
@@ -677,7 +960,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956033+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688211+00:00"
     },
     {
       "id": "node/13200719012",
@@ -685,15 +968,16 @@
       "lat": 46.2101085,
       "lon": 6.1468431,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Sismondi 13",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956386+00:00"
+      "checkedAt": "2026-10-21T08:40:54.942850+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092509267"
     },
     {
       "id": "node/12235992624",
@@ -709,7 +993,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956101+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688228+00:00"
     },
     {
       "id": "way/853308386",
@@ -725,7 +1009,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956142+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702218+00:00"
     },
     {
       "id": "node/7770742391",
@@ -741,7 +1025,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956238+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767876+00:00"
     },
     {
       "id": "node/2306589635",
@@ -749,7 +1033,7 @@
       "lat": 46.212339,
       "lon": 6.1425558,
       "type": "bar",
-      "address": "",
+      "address": "Rue des Gares 21",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -757,7 +1041,49 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956319+00:00"
+      "checkedAt": "2026-10-21T08:40:54.768005+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3677282235"
+    },
+    {
+      "id": "node/1528796172",
+      "name": "Chez Marino",
+      "lat": 46.203087,
+      "lon": 6.1570382,
+      "type": "restaurant",
+      "address": "Rue Muzy 22",
+      "postcode": "1207",
+      "website": "https://www.chez-marino.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Su 11:30-14:30, 18:30-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Small beer",
+          "volumeMl": 200,
+          "priceChf": 4.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.chez-marino.ch/images/menu_us.pdf",
+          "observedAt": "2026-10-21T08:27:22.638443+00:00",
+          "confidence": "automatic",
+          "evidence": "Small beer 4.8% 2dl 4.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Alcohol free beer",
+          "volumeMl": 330,
+          "priceChf": 5.5,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.chez-marino.ch/images/menu_us.pdf",
+          "observedAt": "2026-10-21T08:27:22.638443+00:00",
+          "confidence": "automatic",
+          "evidence": "Alcohol free beer 3.3dl 5.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:27:22.638443+00:00"
     },
     {
       "id": "node/4337412742",
@@ -773,7 +1099,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956198+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702353+00:00"
     },
     {
       "id": "node/11225506555",
@@ -781,7 +1107,7 @@
       "lat": 46.1979159,
       "lon": 6.1363015,
       "type": "bar",
-      "address": "",
+      "address": "Boulevard Carl-Vogt 63",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -789,7 +1115,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956043+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688219+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2188913110"
     },
     {
       "id": "node/13027945688",
@@ -810,7 +1137,7 @@
           "priceChf": 8.0,
           "beerType": "unknown",
           "sourceUrl": "https://www.concrete-geneva.com/menu?location=Quai+du+G%C3%A9n%C3%A9ral-Guisan&menu=bi%25C3%25A8re",
-          "observedAt": "2026-10-21T07:14:07.956051+00:00",
+          "observedAt": "2026-10-21T07:47:49.144816+00:00",
           "confidence": "automatic",
           "evidence": "La Nébuleuse, IPA sans alcool, 33cl 8 CHF",
           "alcoholFree": true
@@ -821,7 +1148,7 @@
           "priceChf": 8.0,
           "beerType": "unknown",
           "sourceUrl": "https://www.concrete-geneva.com/menu?location=Quai+du+G%C3%A9n%C3%A9ral-Guisan&menu=bi%25C3%25A8re",
-          "observedAt": "2026-10-21T07:14:07.956051+00:00",
+          "observedAt": "2026-10-21T07:47:49.144816+00:00",
           "confidence": "automatic",
           "evidence": "La Nébuleuse, Ultra Light Lager, 2.5%, 33cl 8 CHF",
           "alcoholFree": false
@@ -832,7 +1159,7 @@
           "priceChf": 7.0,
           "beerType": "draft",
           "sourceUrl": "https://www.concrete-geneva.com/menu?location=Quai+du+G%C3%A9n%C3%A9ral-Guisan&menu=bi%25C3%25A8re",
-          "observedAt": "2026-10-21T07:14:07.956051+00:00",
+          "observedAt": "2026-10-21T07:47:49.144816+00:00",
           "confidence": "automatic",
           "evidence": "Embuscade La Nébuleuse, IPA, 6.4% 30cl 7 CHF 50cl 11 CHF 1.5L 30 CHF",
           "alcoholFree": false
@@ -843,7 +1170,7 @@
           "priceChf": 11.0,
           "beerType": "draft",
           "sourceUrl": "https://www.concrete-geneva.com/menu?location=Quai+du+G%C3%A9n%C3%A9ral-Guisan&menu=bi%25C3%25A8re",
-          "observedAt": "2026-10-21T07:14:07.956051+00:00",
+          "observedAt": "2026-10-21T07:47:49.144816+00:00",
           "confidence": "automatic",
           "evidence": "Embuscade La Nébuleuse, IPA, 6.4% 30cl 7 CHF 50cl 11 CHF 1.5L 30 CHF",
           "alcoholFree": false
@@ -854,7 +1181,7 @@
           "priceChf": 6.5,
           "beerType": "draft",
           "sourceUrl": "https://www.concrete-geneva.com/menu?location=Quai+du+G%C3%A9n%C3%A9ral-Guisan&menu=bi%25C3%25A8re",
-          "observedAt": "2026-10-21T07:14:07.956051+00:00",
+          "observedAt": "2026-10-21T07:47:49.144816+00:00",
           "confidence": "automatic",
           "evidence": "La Vagabonde Brasserie des Vagabonds, Soft IPA, 6.5% 30cl 6,50 CHF 50cl 10 CHF 1.5L 28 CHF",
           "alcoholFree": false
@@ -865,7 +1192,7 @@
           "priceChf": 10.0,
           "beerType": "draft",
           "sourceUrl": "https://www.concrete-geneva.com/menu?location=Quai+du+G%C3%A9n%C3%A9ral-Guisan&menu=bi%25C3%25A8re",
-          "observedAt": "2026-10-21T07:14:07.956051+00:00",
+          "observedAt": "2026-10-21T07:47:49.144816+00:00",
           "confidence": "automatic",
           "evidence": "La Vagabonde Brasserie des Vagabonds, Soft IPA, 6.5% 30cl 6,50 CHF 50cl 10 CHF 1.5L 28 CHF",
           "alcoholFree": false
@@ -876,7 +1203,7 @@
           "priceChf": 8.0,
           "beerType": "bottle",
           "sourceUrl": "https://www.concrete-geneva.com/menu?location=Quai+du+G%C3%A9n%C3%A9ral-Guisan&menu=bi%25C3%25A8re",
-          "observedAt": "2026-10-21T07:14:07.956051+00:00",
+          "observedAt": "2026-10-21T07:47:49.144816+00:00",
           "confidence": "automatic",
           "evidence": "Diversion La Nébuleuse, IPA sans alcool, 33cl 8 CHF",
           "alcoholFree": true
@@ -887,14 +1214,14 @@
           "priceChf": 8.0,
           "beerType": "bottle",
           "sourceUrl": "https://www.concrete-geneva.com/menu?location=Quai+du+G%C3%A9n%C3%A9ral-Guisan&menu=bi%25C3%25A8re",
-          "observedAt": "2026-10-21T07:14:07.956051+00:00",
+          "observedAt": "2026-10-21T07:47:49.144816+00:00",
           "confidence": "automatic",
           "evidence": "Alternative La Nébuleuse, Ultra Light Lager, 2.5%, 33cl 8 CHF",
           "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:14:07.956051+00:00"
+      "checkedAt": "2026-10-21T07:47:49.144816+00:00"
     },
     {
       "id": "node/4365115849",
@@ -910,7 +1237,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956107+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688239+00:00"
     },
     {
       "id": "node/13442763788",
@@ -918,15 +1245,16 @@
       "lat": 46.2017921,
       "lon": 6.1458865,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Grand-Rue 24",
+      "postcode": "1204",
       "website": null,
       "cuisine": [],
       "openingHours": "Tu,We 17:00-01:00, Th-Sa 17:00-02:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956111+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688248+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/1221132490"
     },
     {
       "id": "node/13009960001",
@@ -942,7 +1270,165 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:07.956117+00:00"
+      "checkedAt": "2026-10-21T08:40:54.688257+00:00"
+    },
+    {
+      "id": "node/12041163090",
+      "name": "Dagli Amici",
+      "lat": 46.203664,
+      "lon": 6.1602865,
+      "type": "restaurant",
+      "address": "Rue Maunoir 16",
+      "postcode": "",
+      "website": "https://www.pizzeriadagliamici.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-14:30, 18:30-23:00; Fr 11:00-14:30, 18:30-00:00; Sa 18:30-00:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Paulaner",
+          "volumeMl": 250,
+          "priceChf": 4.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://pizzeriadagliamici.ch/",
+          "observedAt": "2026-10-21T08:41:29.022591+00:00",
+          "confidence": "automatic",
+          "evidence": "Paulaner (25cl) / 4.50CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Paulaner",
+          "volumeMl": 500,
+          "priceChf": 7.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://pizzeriadagliamici.ch/",
+          "observedAt": "2026-10-21T08:41:29.022591+00:00",
+          "confidence": "automatic",
+          "evidence": "Paulaner (50cl) / 7.50CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Paulaner Blanche",
+          "volumeMl": 250,
+          "priceChf": 4.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://pizzeriadagliamici.ch/",
+          "observedAt": "2026-10-21T08:41:29.022591+00:00",
+          "confidence": "automatic",
+          "evidence": "Paulaner Blanche (25cl) / 4.50CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Paulaner Blanche",
+          "volumeMl": 500,
+          "priceChf": 7.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://pizzeriadagliamici.ch/",
+          "observedAt": "2026-10-21T08:41:29.022591+00:00",
+          "confidence": "automatic",
+          "evidence": "Paulaner Blanche (50cl) / 7.50CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Superbock",
+          "volumeMl": 330,
+          "priceChf": 4.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://pizzeriadagliamici.ch/",
+          "observedAt": "2026-10-21T08:41:29.022591+00:00",
+          "confidence": "automatic",
+          "evidence": "Superbock (33cl) / 4CHF",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:29.022591+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2406735704"
+    },
+    {
+      "id": "node/13110507501",
+      "name": "Don Duarte",
+      "lat": 46.212338,
+      "lon": 6.1490043,
+      "type": "restaurant",
+      "address": "Rue du Môle 5",
+      "postcode": "1201",
+      "website": "https://donduarte.ch/",
+      "cuisine": [
+        "portuguese"
+      ],
+      "openingHours": "Mo-Th 07:00-01:00; Fr-Sa 07:00-02:00; Su 09:00-01:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Super Bock",
+          "volumeMl": 250,
+          "priceChf": 3.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://donduarte.ch/carte-vins/",
+          "observedAt": "2026-10-21T08:41:31.803999+00:00",
+          "confidence": "automatic",
+          "evidence": "Super Bock (2.5 dl) 3.50 Fr.",
+          "alcoholFree": false
+        },
+        {
+          "name": "Heineken",
+          "volumeMl": 250,
+          "priceChf": 5.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://donduarte.ch/carte-vins/",
+          "observedAt": "2026-10-21T08:41:31.803999+00:00",
+          "confidence": "automatic",
+          "evidence": "Heineken (2.5 dl) 5.00 Fr.",
+          "alcoholFree": false
+        },
+        {
+          "name": "Super Bock sans alcool",
+          "volumeMl": 330,
+          "priceChf": 4.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://donduarte.ch/carte-vins/",
+          "observedAt": "2026-10-21T08:41:31.803999+00:00",
+          "confidence": "automatic",
+          "evidence": "Super Bock sans alcool (3.3 dl) 4.00 Fr.",
+          "alcoholFree": true
+        },
+        {
+          "name": "Super Bock brune",
+          "volumeMl": 250,
+          "priceChf": 3.8,
+          "beerType": "unknown",
+          "sourceUrl": "https://donduarte.ch/carte-vins/",
+          "observedAt": "2026-10-21T08:41:31.803999+00:00",
+          "confidence": "automatic",
+          "evidence": "Super Bock brune (2.5 dl) 3.80 Fr.",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:31.803999+00:00"
     },
     {
       "id": "node/11766604924",
@@ -957,8 +1443,8 @@
       "openingHours": "Mo-Th 16:30-00:30; Fr, Sa 16:30-01:30; Su 16:30-00:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.650248+00:00"
     },
     {
       "id": "node/4161542589",
@@ -974,7 +1460,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956147+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702243+00:00"
     },
     {
       "id": "node/13232865320",
@@ -990,7 +1476,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956155+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702261+00:00"
     },
     {
       "id": "node/11824739161",
@@ -998,7 +1484,7 @@
       "lat": 46.2013138,
       "lon": 6.1388824,
       "type": "bar",
-      "address": "",
+      "address": "Boulevard de Saint-Georges 70",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1006,7 +1492,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956159+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702284+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2254302523"
     },
     {
       "id": "node/13163231728",
@@ -1014,15 +1501,16 @@
       "lat": 46.2103555,
       "lon": 6.1483759,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue des Pâquis 11",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956163+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702303+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092524966"
     },
     {
       "id": "node/13473321101",
@@ -1038,7 +1526,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956167+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702318+00:00"
     },
     {
       "id": "node/11879438334",
@@ -1046,7 +1534,7 @@
       "lat": 46.1945462,
       "lon": 6.1433787,
       "type": "bar",
-      "address": "",
+      "address": "Rue de Carouge 44",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1054,7 +1542,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956174+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702335+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2126273642"
     },
     {
       "id": "node/5220195755",
@@ -1062,7 +1551,7 @@
       "lat": 46.2033277,
       "lon": 6.1357288,
       "type": "bar",
-      "address": "",
+      "address": "Rue du Stand 9",
       "postcode": "",
       "website": "http://www.fmrbar.ch",
       "cuisine": [],
@@ -1075,14 +1564,43 @@
           "priceChf": 5.0,
           "beerType": "unknown",
           "sourceUrl": "https://www.funkymonkeyroom.ch/_files/ugd/0cf9f7_d01774072f2c4128b3ade62910b6208a.pdf",
-          "observedAt": "2026-10-21T07:14:07.956178+00:00",
+          "observedAt": "2026-10-21T08:40:54.645244+00:00",
           "confidence": "automatic",
           "evidence": "BIÈRE ASAHI 0.33l/5.-",
           "alcoholFree": false
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:14:07.956178+00:00"
+      "checkedAt": "2026-10-21T08:40:54.645244+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/179706247"
+    },
+    {
+      "id": "node/6359268927",
+      "name": "Genecand - restaurant",
+      "lat": 46.1866811,
+      "lon": 6.1288954,
+      "type": "restaurant",
+      "address": "Avenue de la Praille 55",
+      "postcode": "",
+      "website": "https://praille.genecand.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Super Bock",
+          "volumeMl": 250,
+          "priceChf": 5.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://praille.genecand.ch/",
+          "observedAt": "2026-10-21T08:41:39.909848+00:00",
+          "confidence": "automatic",
+          "evidence": "Super Bock 25 cl 5.50 CHF",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:39.909848+00:00"
     },
     {
       "id": "node/13097743320",
@@ -1090,7 +1608,7 @@
       "lat": 46.2124976,
       "lon": 6.1448704,
       "type": "bar",
-      "address": "",
+      "address": "Rue de Lausanne 29bis",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1098,7 +1616,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956203+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702370+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/179543600"
     },
     {
       "id": "node/13184035047",
@@ -1114,7 +1633,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956207+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702387+00:00"
     },
     {
       "id": "node/1720511406",
@@ -1130,7 +1649,97 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956211+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702405+00:00"
+    },
+    {
+      "id": "node/10079250380",
+      "name": "Hanae",
+      "lat": 46.2043595,
+      "lon": 6.1563109,
+      "type": "restaurant",
+      "address": "Rue des Pierres-du-Niton 5",
+      "postcode": "1207",
+      "website": "https://hanae-restaurant.ch/",
+      "cuisine": [
+        "spanish"
+      ],
+      "openingHours": "Tu-Sa 12:00-14:00,19:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Estrella Galicia",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://hanae-restaurant.ch/nos-boissons/",
+          "observedAt": "2026-10-21T08:41:43.832922+00:00",
+          "confidence": "automatic",
+          "evidence": "Estrella Galicia 30cl – 5.50 50cl – 9.5",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Estrella Galicia",
+          "volumeMl": 500,
+          "priceChf": 9.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://hanae-restaurant.ch/nos-boissons/",
+          "observedAt": "2026-10-21T08:41:43.832922+00:00",
+          "confidence": "automatic",
+          "evidence": "Estrella Galicia 30cl – 5.50 50cl – 9.5",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Estrella Galicia(sans alcool)",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://hanae-restaurant.ch/nos-boissons/",
+          "observedAt": "2026-10-21T08:41:43.832922+00:00",
+          "confidence": "automatic",
+          "evidence": "Estrella Galicia 0.0% (sans alcool) 30cl – 5.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:43.832922+00:00"
+    },
+    {
+      "id": "node/12486558888",
+      "name": "Home",
+      "lat": 46.2319791,
+      "lon": 6.0823338,
+      "type": "restaurant",
+      "address": "Avenue de Feuillasse 24",
+      "postcode": "1217",
+      "website": "http://www.home-restaurant.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "5 VALAISANNE",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://homebistrot.ch/medias/Carte-Boissons.pdf",
+          "observedAt": "2026-10-21T08:41:44.138422+00:00",
+          "confidence": "automatic",
+          "evidence": "33cl 5 VALAISANNE 0.0% 6",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:44.138422+00:00"
     },
     {
       "id": "node/9547737217",
@@ -1146,7 +1755,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956215+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702425+00:00"
     },
     {
       "id": "node/2082550210",
@@ -1162,7 +1771,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:14:07.956219+00:00"
+      "checkedAt": "2026-10-21T08:40:54.702445+00:00"
     },
     {
       "id": "node/13266898088",
@@ -1170,15 +1779,16 @@
       "lat": 46.2133446,
       "lon": 6.1485256,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Prieuré 5",
+      "postcode": "1202",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956243+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767897+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2113384633"
     },
     {
       "id": "node/12844380117",
@@ -1186,15 +1796,119 @@
       "lat": 46.2118996,
       "lon": 6.1459003,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Zurich 37",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Th 11:00-24:00, Fr,Sa 11:00-02:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956247+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767909+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2112116491"
+    },
+    {
+      "id": "node/2169156852",
+      "name": "Kiosque des Bastions",
+      "lat": 46.2007081,
+      "lon": 6.1445561,
+      "type": "restaurant",
+      "address": "Promenade des Bastions 1",
+      "postcode": "1204",
+      "website": "https://bastions.ch/",
+      "cuisine": [
+        "regional",
+        "french"
+      ],
+      "openingHours": "Mo-Sa 10:00-22:00, Su 10:00-18:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Heinekenbt",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://bastions.ch/wp-content/uploads/2026/10/CARTE_MIDI_oct26_FR.pdf",
+          "observedAt": "2026-10-21T08:28:39.464279+00:00",
+          "confidence": "automatic",
+          "evidence": "Heineken 0% bt 33cl 7.-",
+          "alcoholFree": true
+        },
+        {
+          "name": "Heineken 0° bt",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://bastions.ch/wp-content/uploads/2026/10/CARTE_BOISSON_oct26.pdf",
+          "observedAt": "2026-10-21T08:28:39.464279+00:00",
+          "confidence": "automatic",
+          "evidence": "Heineken 0° bt 33cl 7.-",
+          "alcoholFree": false
+        },
+        {
+          "name": "Heineken 4°",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "beerType": "draft",
+          "sourceUrl": "https://bastions.ch/wp-content/uploads/2026/10/CARTE_MIDI_oct26_EN.pdf",
+          "observedAt": "2026-10-21T08:28:39.464279+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: BEERS ON TAP 30cl 50cl / Heineken 4° 5.50 10.-",
+          "alcoholFree": false
+        },
+        {
+          "name": "Heineken 4°",
+          "volumeMl": 500,
+          "priceChf": 10.0,
+          "beerType": "draft",
+          "sourceUrl": "https://bastions.ch/wp-content/uploads/2026/10/CARTE_MIDI_oct26_EN.pdf",
+          "observedAt": "2026-10-21T08:28:39.464279+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: BEERS ON TAP 30cl 50cl / Heineken 4° 5.50 10.-",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:28:39.464279+00:00"
+    },
+    {
+      "id": "node/6475658197",
+      "name": "Kisaku Sushi",
+      "lat": 46.2026068,
+      "lon": 6.1459244,
+      "type": "restaurant",
+      "address": "Rue de la Rôtisserie 8",
+      "postcode": "",
+      "website": "https://kisakusushi.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Asahi",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://kisakusushi.ch/boissons.html",
+          "observedAt": "2026-10-21T08:41:46.097859+00:00",
+          "confidence": "automatic",
+          "evidence": "Asahi 33cl Fr. 6.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Kirin",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://kisakusushi.ch/boissons.html",
+          "observedAt": "2026-10-21T08:41:46.097859+00:00",
+          "confidence": "automatic",
+          "evidence": "Kirin 33cl Fr. 6.00",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:46.097859+00:00"
     },
     {
       "id": "node/4365117235",
@@ -1210,7 +1924,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956251+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767920+00:00"
     },
     {
       "id": "node/9590404069",
@@ -1226,7 +1940,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956255+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767930+00:00"
     },
     {
       "id": "node/13261044587",
@@ -1234,15 +1948,16 @@
       "lat": 46.2104869,
       "lon": 6.1469004,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Docteur-Alfred-Vincent 31",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956259+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767940+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092509326"
     },
     {
       "id": "node/9786807463",
@@ -1258,7 +1973,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956265+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767950+00:00"
     },
     {
       "id": "node/12033314691",
@@ -1266,7 +1981,7 @@
       "lat": 46.1929598,
       "lon": 6.1436865,
       "type": "bar",
-      "address": "",
+      "address": "Rue de Carouge 66",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1274,7 +1989,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956270+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767960+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2126273768"
     },
     {
       "id": "node/4143166189",
@@ -1290,7 +2006,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956274+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767970+00:00"
     },
     {
       "id": "node/4775232123",
@@ -1298,15 +2014,44 @@
       "lat": 46.1973914,
       "lon": 6.1387679,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ecole-de-Médecine 3",
+      "postcode": "1205",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Th 16:00-01:00, Fr,Sa 16:00-02:00, Su 16:00-23:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956278+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767980+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2175849995"
+    },
+    {
+      "id": "node/13589789062",
+      "name": "L'Olivier du Sacré-Cœur",
+      "lat": 46.2006023,
+      "lon": 6.1418689,
+      "type": "restaurant",
+      "address": "Rue du Général-Dufour 18",
+      "postcode": "",
+      "website": "https://olivier-sacre-coeur.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 10:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Boxer Chopfab Sans Alcool",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://olivier-sacre-coeur.ch/boissons",
+          "observedAt": "2026-10-21T08:41:49.167363+00:00",
+          "confidence": "automatic",
+          "evidence": "Boxer Chopfab Sans Alcool 33 cl CHF 8",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:49.167363+00:00"
     },
     {
       "id": "node/13197228404",
@@ -1314,15 +2059,16 @@
       "lat": 46.2109881,
       "lon": 6.1467653,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Berne 34",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:07.956282+00:00"
+      "checkedAt": "2026-10-21T08:40:54.767995+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092524971"
     },
     {
       "id": "node/2199189887",
@@ -1338,9 +2084,87 @@
       ],
       "openingHours": "Mo 09:00-01:00; Tu 09:00-01:00; We 08:00-01:00; Th 09:00-02:00; Fr 09:00-02:00; Sa 08:00-02:00; Su 17:00-12:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:07.956286+00:00"
+      "offers": [
+        {
+          "name": "Murphy’s (stout 5°)",
+          "volumeMl": 300,
+          "priceChf": 5.0,
+          "beerType": "draft",
+          "sourceUrl": "https://elephantdanslacanette.ch/carte-des-boissons/",
+          "observedAt": "2026-10-21T07:47:51.615802+00:00",
+          "confidence": "automatic",
+          "evidence": "Murphy’s (stout 5°) 3dl : 5.00 5dl : 8.00 1.5L : 23.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Murphy’s (stout 5°)",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "draft",
+          "sourceUrl": "https://elephantdanslacanette.ch/carte-des-boissons/",
+          "observedAt": "2026-10-21T07:47:51.615802+00:00",
+          "confidence": "automatic",
+          "evidence": "Murphy’s (stout 5°) 3dl : 5.00 5dl : 8.00 1.5L : 23.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Ittinger (ambrée suisse 5°)",
+          "volumeMl": 300,
+          "priceChf": 5.0,
+          "beerType": "draft",
+          "sourceUrl": "https://elephantdanslacanette.ch/carte-des-boissons/",
+          "observedAt": "2026-10-21T07:47:51.615802+00:00",
+          "confidence": "automatic",
+          "evidence": "Ittinger (ambrée suisse 5°) 3dl : 5.00 5dl : 8.00 1.5L : 23.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Ittinger (ambrée suisse 5°)",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "draft",
+          "sourceUrl": "https://elephantdanslacanette.ch/carte-des-boissons/",
+          "observedAt": "2026-10-21T07:47:51.615802+00:00",
+          "confidence": "automatic",
+          "evidence": "Ittinger (ambrée suisse 5°) 3dl : 5.00 5dl : 8.00 1.5L : 23.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Duvel (blonde 9°)",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://elephantdanslacanette.ch/carte-des-boissons/",
+          "observedAt": "2026-10-21T07:47:51.615802+00:00",
+          "confidence": "automatic",
+          "evidence": "Duvel (blonde 9°) 33cl : 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Curtius classic (blonde pale ale 7°)",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://elephantdanslacanette.ch/carte-des-boissons/",
+          "observedAt": "2026-10-21T07:47:51.615802+00:00",
+          "confidence": "automatic",
+          "evidence": "Curtius classic (blonde pale ale 7°) 33cl : 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Kitchen Brew (Neipa sans alcool 0°)",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://elephantdanslacanette.ch/carte-des-boissons/",
+          "observedAt": "2026-10-21T07:47:51.615802+00:00",
+          "confidence": "automatic",
+          "evidence": "Kitchen Brew (Neipa sans alcool 0°) 33cl : 8.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:47:51.615802+00:00"
     },
     {
       "id": "node/4376800617",
@@ -1359,7 +2183,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:07.956325+00:00"
+      "checkedAt": "2026-10-21T08:40:54.768014+00:00"
     },
     {
       "id": "node/3521894622",
@@ -1375,7 +2199,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-21T07:14:07.956395+00:00"
+      "checkedAt": "2026-10-21T08:40:54.942873+00:00"
     },
     {
       "id": "node/1932711351",
@@ -1391,7 +2215,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:08.048389+00:00"
+      "checkedAt": "2026-10-21T08:40:55.628182+00:00"
     },
     {
       "id": "node/5225952208",
@@ -1407,7 +2231,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:08.048406+00:00"
+      "checkedAt": "2026-10-21T08:40:55.628209+00:00"
     },
     {
       "id": "node/13111010201",
@@ -1423,7 +2247,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:10.385710+00:00"
+      "checkedAt": "2026-10-21T08:40:55.651649+00:00"
     },
     {
       "id": "node/5634616921",
@@ -1439,7 +2263,148 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:10.385724+00:00"
+      "checkedAt": "2026-10-21T08:40:55.651675+00:00"
+    },
+    {
+      "id": "node/2169156786",
+      "name": "La Cave Valaisanne",
+      "lat": 46.2009447,
+      "lon": 6.1407773,
+      "type": "restaurant",
+      "address": "Boulevard Georges-Favon 23",
+      "postcode": "1204",
+      "website": "https://cavevalaisanne.ch/",
+      "cuisine": [],
+      "openingHours": "\"fermé (incendie)\"",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Valaisanne Blanche IPA",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://cavevalaisanne.ch/carte-des-boissons-carte-des-vins/",
+          "observedAt": "2026-10-21T08:30:10.647827+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Blanche IPA 3.3dl 6.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Feldschlösschen Brune",
+          "volumeMl": 330,
+          "priceChf": 5.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://cavevalaisanne.ch/carte-des-boissons-carte-des-vins/",
+          "observedAt": "2026-10-21T08:30:10.647827+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen Brune 3.3dl 5.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Valaisanne sans alcool",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://cavevalaisanne.ch/carte-des-boissons-carte-des-vins/",
+          "observedAt": "2026-10-21T08:30:10.647827+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne sans alcool 3.3dl 6.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Valaisanne Blonde",
+          "volumeMl": 300,
+          "priceChf": 5.0,
+          "beerType": "draft",
+          "sourceUrl": "https://cavevalaisanne.ch/carte-des-boissons-carte-des-vins/",
+          "observedAt": "2026-10-21T08:30:10.647827+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Blonde 3dl 5.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Valaisanne Blonde",
+          "volumeMl": 500,
+          "priceChf": 7.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://cavevalaisanne.ch/carte-des-boissons-carte-des-vins/",
+          "observedAt": "2026-10-21T08:30:10.647827+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Blonde 5dl 7.00",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Valaisanne Pale Ale",
+          "volumeMl": 300,
+          "priceChf": 5.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://cavevalaisanne.ch/carte-des-boissons-carte-des-vins/",
+          "observedAt": "2026-10-21T08:30:10.647827+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Pale Ale 3dl 5.50",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Valaisanne Pale Ale",
+          "volumeMl": 500,
+          "priceChf": 7.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://cavevalaisanne.ch/carte-des-boissons-carte-des-vins/",
+          "observedAt": "2026-10-21T08:30:10.647827+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Pale Ale 5dl 7.50",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Valaisanne White IPA",
+          "volumeMl": 300,
+          "priceChf": 6.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://cavevalaisanne.ch/carte-des-boissons-carte-des-vins/",
+          "observedAt": "2026-10-21T08:30:10.647827+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne White IPA 3dl 6.00",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Valaisanne White IPA",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://cavevalaisanne.ch/carte-des-boissons-carte-des-vins/",
+          "observedAt": "2026-10-21T08:30:10.647827+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne White IPA 5dl 8.00",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:30:10.647827+00:00"
     },
     {
       "id": "node/14170709728",
@@ -1454,8 +2419,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.650269+00:00"
     },
     {
       "id": "node/12060673215",
@@ -1471,7 +2436,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:10.385730+00:00"
+      "checkedAt": "2026-10-21T08:40:55.651689+00:00"
     },
     {
       "id": "node/2153059886",
@@ -1487,7 +2452,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:11.897657+00:00"
+      "checkedAt": "2026-10-21T08:40:55.683619+00:00"
     },
     {
       "id": "node/13026914987",
@@ -1503,7 +2468,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:14:13.717736+00:00"
+      "checkedAt": "2026-10-21T08:40:56.094167+00:00"
     },
     {
       "id": "node/13200649960",
@@ -1519,7 +2484,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:13.788901+00:00"
+      "checkedAt": "2026-10-21T08:40:56.199776+00:00"
     },
     {
       "id": "node/1816392416",
@@ -1534,8 +2499,227 @@
       "openingHours": "Su-We 15:00-01:00; Th-Sa 15:00-02:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.650281+00:00"
+    },
+    {
+      "id": "node/12682198208",
+      "name": "La Fumisterie",
+      "lat": 46.1886995,
+      "lon": 6.1345598,
+      "type": "restaurant",
+      "address": "Rue des Noirettes 21",
+      "postcode": "1227",
+      "website": "https://la-fumisterie.ch/",
+      "cuisine": [
+        "italian",
+        "local"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:30; Tu-Fr 17:00-24:00; Sa 17:00-24:00, Su 00:00-01:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Valaisanne Lager",
+          "volumeMl": 300,
+          "priceChf": 5.4,
+          "beerType": "draft",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Lager 3dl 5,40 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "Valaisanne Monaco",
+          "volumeMl": 300,
+          "priceChf": 5.4,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Monaco 3dl 5,40 CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "1664 Blanche",
+          "volumeMl": 300,
+          "priceChf": 5.8,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "1664 Blanche 3dl 5,80 CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Grimbergen Ambrée",
+          "volumeMl": 300,
+          "priceChf": 5.8,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Grimbergen Ambrée 3dl 5,80 CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Valaisanne Lager",
+          "volumeMl": 500,
+          "priceChf": 9.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Lager 5dl 9,50 CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Valaisanne Monaco",
+          "volumeMl": 500,
+          "priceChf": 10.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Monaco 5dl 10 CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Valaisanne Gingembre",
+          "volumeMl": 500,
+          "priceChf": 10.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Gingembre 5dl 10 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "1664 Blanche",
+          "volumeMl": 500,
+          "priceChf": 10.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "1664 Blanche 5dl 10 CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Grimbergen Ambrée",
+          "volumeMl": 500,
+          "priceChf": 10.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Grimbergen Ambrée 5dl 10 CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Valaisanne Juicy IPA",
+          "volumeMl": 500,
+          "priceChf": 10.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Valaisanne Juicy IPA 5dl 10 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "Peroni Nastro Azzuro",
+          "volumeMl": 300,
+          "priceChf": 5.8,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Peroni Nastro Azzuro 3dl 5,80 CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Peroni Nastro Azzuro",
+          "volumeMl": 500,
+          "priceChf": 10.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Peroni Nastro Azzuro 5dl 10 CHF",
+          "alcoholFree": false,
+          "beerTypeEstimate": {
+            "type": "draft",
+            "reason": "Dasselbe Bier auf derselben Karte in mehreren Glasgrössen",
+            "method": "rules"
+          }
+        },
+        {
+          "name": "Peroni Nastro Azzurro",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Peroni Nastro Azzurro 3,3dl 6 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "Corona",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T08:30:16.758928+00:00",
+          "confidence": "automatic",
+          "evidence": "Corona 3.3dl 7 CHF",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:30:16.758928+00:00"
     },
     {
       "id": "node/4389042493",
@@ -1551,7 +2735,101 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:13.788915+00:00"
+      "checkedAt": "2026-10-21T08:40:56.199810+00:00"
+    },
+    {
+      "id": "node/4365115883",
+      "name": "La Grappe D'or",
+      "lat": 46.2108145,
+      "lon": 6.1486286,
+      "type": "restaurant",
+      "address": "Rue des Pâquis 19",
+      "postcode": "",
+      "website": "http://grappedor.ch",
+      "cuisine": [],
+      "openingHours": "Tu-Su 12:00-23:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Feldschlösschen sans alcool",
+          "volumeMl": 330,
+          "priceChf": 4.5,
+          "beerType": "unknown",
+          "sourceUrl": "http://grappedor.ch/wp-content/uploads/2024/10/2024.10 - Menu FR-ENG-FINAL_Version 3.2.1 MENU.pdf",
+          "observedAt": "2026-10-21T08:41:54.819495+00:00",
+          "confidence": "automatic",
+          "evidence": "Feldschlösschen sans alcool 33 cl 4.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Paulaner (pression)",
+          "volumeMl": 200,
+          "priceChf": 3.5,
+          "beerType": "draft",
+          "sourceUrl": "http://grappedor.ch/wp-content/uploads/2024/10/2024.10 - Menu FR-ENG-FINAL_Version 3.2.1 MENU.pdf",
+          "observedAt": "2026-10-21T08:41:54.819495+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: BIÈRES  Beers / 2 dl 2.5 dl 5 dl / Paulaner (pression) 3.50 4.00 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Paulaner (pression)",
+          "volumeMl": 250,
+          "priceChf": 4.0,
+          "beerType": "draft",
+          "sourceUrl": "http://grappedor.ch/wp-content/uploads/2024/10/2024.10 - Menu FR-ENG-FINAL_Version 3.2.1 MENU.pdf",
+          "observedAt": "2026-10-21T08:41:54.819495+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: BIÈRES  Beers / 2 dl 2.5 dl 5 dl / Paulaner (pression) 3.50 4.00 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Paulaner (pression)",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "draft",
+          "sourceUrl": "http://grappedor.ch/wp-content/uploads/2024/10/2024.10 - Menu FR-ENG-FINAL_Version 3.2.1 MENU.pdf",
+          "observedAt": "2026-10-21T08:41:54.819495+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: BIÈRES  Beers / 2 dl 2.5 dl 5 dl / Paulaner (pression) 3.50 4.00 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Paulaner (pression/draft)",
+          "volumeMl": 200,
+          "priceChf": 3.5,
+          "beerType": "draft",
+          "sourceUrl": "http://grappedor.ch/wp-content/uploads/2023/03/2023.03%20-%20Menu%20FR-ENG-FINAL.pdf",
+          "observedAt": "2026-10-21T08:41:54.819495+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: Beers 2 dl 2.5 dl 5 dl / Paulaner (pression/draft) 3.50 4.00 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Paulaner (pression/draft)",
+          "volumeMl": 250,
+          "priceChf": 4.0,
+          "beerType": "draft",
+          "sourceUrl": "http://grappedor.ch/wp-content/uploads/2023/03/2023.03%20-%20Menu%20FR-ENG-FINAL.pdf",
+          "observedAt": "2026-10-21T08:41:54.819495+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: Beers 2 dl 2.5 dl 5 dl / Paulaner (pression/draft) 3.50 4.00 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Paulaner (pression/draft)",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "draft",
+          "sourceUrl": "http://grappedor.ch/wp-content/uploads/2023/03/2023.03%20-%20Menu%20FR-ENG-FINAL.pdf",
+          "observedAt": "2026-10-21T08:41:54.819495+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: Beers 2 dl 2.5 dl 5 dl / Paulaner (pression/draft) 3.50 4.00 8.00",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:54.819495+00:00"
     },
     {
       "id": "node/7077022401",
@@ -1567,7 +2845,183 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:20.450642+00:00"
+      "checkedAt": "2026-10-21T08:40:56.671936+00:00"
+    },
+    {
+      "id": "node/11219789407",
+      "name": "La Kitchen by Westhive",
+      "lat": 46.1864796,
+      "lon": 6.126327,
+      "type": "restaurant",
+      "address": "Esplanade de Pont-Rouge 9A",
+      "postcode": "1212",
+      "website": "https://www.westhive.com/fr/restauration/la-kitchen-geneve-pont-rouge/",
+      "cuisine": [
+        "salad",
+        "pasta",
+        "regional",
+        "burger"
+      ],
+      "openingHours": "Mo-We 07:30-15:00; Th 07:30-19:00; Fr 07:30-15:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Boxer, Bouteille sans alcohol,",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/fr/restauration/la-kitchen-geneve-pont-rouge/carte-de-menu-de-westhive-kitchen-geneve-pont-rouge/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Boxer, Bouteille sans alcohol, 3.3dl 6.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Boxer, Flasche ohne Alkohol,",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/la-kitchen-genf-pont-rouge/menu-la-kitchen-genf-pont-rouge/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Boxer, Flasche ohne Alkohol, 3.3dl 6.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Appenzeller IPA, Flasche",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-stettbach/menue-westhive-kitchen-zuerich-stettbach/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller IPA, Flasche 3.3dl 6.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Amboss Weizen, Flasche",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-stettbach/menue-westhive-kitchen-zuerich-stettbach/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss Weizen, Flasche 5dl 8.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Tegernseer, Flasche",
+          "volumeMl": 330,
+          "priceChf": 6.3,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-stettbach/menue-westhive-kitchen-zuerich-stettbach/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Tegernseer, Flasche 3.3dl 6.30",
+          "alcoholFree": false
+        },
+        {
+          "name": "Sonnwendlig alkoholfrei, Flasche",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-stettbach/menue-westhive-kitchen-zuerich-stettbach/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Sonnwendlig alkoholfrei, Flasche 3,3dl 6.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Appenzeller IPA, bottle",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/menu-westhive-kitchen-zurich-stettbach/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller IPA, bottle 3.3dl 6.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Tegernseer, bottle",
+          "volumeMl": 330,
+          "priceChf": 6.3,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/menu-westhive-kitchen-zurich-stettbach/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Tegernseer, bottle 3.3dl 6.30",
+          "alcoholFree": false
+        },
+        {
+          "name": "Amboss blond bottle",
+          "volumeMl": 330,
+          "priceChf": 6.2,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-hardturm/menu-westhive-kitchen-zurich-hardturm/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss blond bottle 3.3dl 6.20",
+          "alcoholFree": false
+        },
+        {
+          "name": "Amboss blond Flasche",
+          "volumeMl": 330,
+          "priceChf": 6.2,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-hardturm/menue-westhive-kitchen-zuerich-hardturm/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss blond Flasche 3.3dl 6.20",
+          "alcoholFree": false
+        },
+        {
+          "name": "Sonnwendlig sans alcohol, Flasche",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/fr/restauration/westhive-kitchen-bale-rosental/menue-westhive-kitchen-bale-rosental/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Sonnwendlig sans alcohol, Flasche 3,3dl 6.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Tegernseer, bouteille",
+          "volumeMl": 330,
+          "priceChf": 6.3,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/fr/restauration/westhive-kitchen-bale-rosental/menue-westhive-kitchen-bale-rosental/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Tegernseer, bouteille 3.3dl 6.30",
+          "alcoholFree": false
+        },
+        {
+          "name": "Amboss blond bouteille",
+          "volumeMl": 330,
+          "priceChf": 6.2,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/fr/restauration/westhive-kitchen-zurich-hardturm/menue-westhive-kitchen-zurich-hardturm/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Amboss blond bouteille 3.3dl 6.20",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller IPA, bouteille",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.westhive.com/fr/restauration/westhive-kitchen-zurich-stettbach/menue-westhive-kitchen-zurich-stettbach/",
+          "observedAt": "2026-10-21T08:30:18.939195+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller IPA, bouteille 3.3dl 6.50",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:30:18.939195+00:00"
     },
     {
       "id": "node/4159936089",
@@ -1583,7 +3037,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:20.460634+00:00"
+      "checkedAt": "2026-10-21T08:40:57.243657+00:00"
     },
     {
       "id": "node/13266884817",
@@ -1591,15 +3045,16 @@
       "lat": 46.2105142,
       "lon": 6.1455669,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Neuchâtel 8",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:20.460648+00:00"
+      "checkedAt": "2026-10-21T08:40:57.243693+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092525166"
     },
     {
       "id": "node/6482909385",
@@ -1615,7 +3070,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:20.460654+00:00"
+      "checkedAt": "2026-10-21T08:40:57.243707+00:00"
     },
     {
       "id": "node/5804817553",
@@ -1631,7 +3086,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:20.460659+00:00"
+      "checkedAt": "2026-10-21T08:40:57.243720+00:00"
     },
     {
       "id": "node/1984266199",
@@ -1647,7 +3102,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:21.703977+00:00"
+      "checkedAt": "2026-10-21T08:40:57.700019+00:00"
     },
     {
       "id": "node/1641065299",
@@ -1662,8 +3117,8 @@
       "openingHours": "Mo-We 15:00-01:00; Th-Sa 15:00-02:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.650292+00:00"
     },
     {
       "id": "node/11537275399",
@@ -1679,7 +3134,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:21.832924+00:00"
+      "checkedAt": "2026-10-21T08:40:58.076943+00:00"
     },
     {
       "id": "node/12231212093",
@@ -1694,8 +3149,8 @@
       "openingHours": "Mo-Fr 16:30-22:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.650302+00:00"
     },
     {
       "id": "node/11964075732",
@@ -1703,7 +3158,7 @@
       "lat": 46.2008717,
       "lon": 6.1389601,
       "type": "pub",
-      "address": "",
+      "address": "Rue des Savoises 9",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1711,7 +3166,72 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:31.126039+00:00"
+      "checkedAt": "2026-10-21T08:41:01.230844+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/179706356"
+    },
+    {
+      "id": "node/1929157265",
+      "name": "La Tanière",
+      "lat": 46.1887903,
+      "lon": 6.1572562,
+      "type": "restaurant",
+      "address": "Avenue de Miremont 31ter",
+      "postcode": "1206",
+      "website": "https://www.lataniere.ch",
+      "cuisine": [
+        "french",
+        "local"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Appenzeller naturelle",
+          "volumeMl": 500,
+          "priceChf": 5.9,
+          "beerType": "unknown",
+          "sourceUrl": "https://lataniere.ch/wp-content/uploads/2020/05/Boissons-internet.pdf",
+          "observedAt": "2026-10-21T08:41:56.345269+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller naturelle 50cl 5.90.-",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller légère",
+          "volumeMl": 500,
+          "priceChf": 5.9,
+          "beerType": "unknown",
+          "sourceUrl": "https://lataniere.ch/wp-content/uploads/2020/05/Boissons-internet.pdf",
+          "observedAt": "2026-10-21T08:41:56.345269+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller légère 50cl 5.90.-",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller chanvre",
+          "volumeMl": 500,
+          "priceChf": 8.9,
+          "beerType": "unknown",
+          "sourceUrl": "https://lataniere.ch/wp-content/uploads/2020/05/Boissons-internet.pdf",
+          "observedAt": "2026-10-21T08:41:56.345269+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller chanvre 50cl 8.90.-",
+          "alcoholFree": false
+        },
+        {
+          "name": "Chopfab (ZH)",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://lataniere.ch/wp-content/uploads/2020/05/Boissons-internet.pdf",
+          "observedAt": "2026-10-21T08:41:56.345269+00:00",
+          "confidence": "automatic",
+          "evidence": "Chopfab (ZH) 33cl 7.50.-",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:41:56.345269+00:00"
     },
     {
       "id": "node/4193574691",
@@ -1727,7 +3247,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:31.126076+00:00"
+      "checkedAt": "2026-10-21T08:41:01.230874+00:00"
     },
     {
       "id": "node/13200699136",
@@ -1735,15 +3255,16 @@
       "lat": 46.2101442,
       "lon": 6.1467295,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Sismondi 13",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:31.126094+00:00"
+      "checkedAt": "2026-10-21T08:41:01.230890+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092509267"
     },
     {
       "id": "node/4376797476",
@@ -1751,15 +3272,16 @@
       "lat": 46.2038038,
       "lon": 6.1367829,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de la Coulouvrenière 26",
+      "postcode": "1204",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo, Tu 16:00-00:00; We, Th 16:00-01:00; Fr, Sa 16:00-02:00; Su 14:00-00:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:31.126149+00:00"
+      "checkedAt": "2026-10-21T08:41:01.230903+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3671280333"
     },
     {
       "id": "node/2399389129",
@@ -1775,7 +3297,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:31.126166+00:00"
+      "checkedAt": "2026-10-21T08:41:01.230915+00:00"
     },
     {
       "id": "node/13200721970",
@@ -1783,15 +3305,16 @@
       "lat": 46.2107512,
       "lon": 6.1466218,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Berne 30",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:31.287183+00:00"
+      "checkedAt": "2026-10-21T08:41:04.458437+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092524967"
     },
     {
       "id": "node/12475863538",
@@ -1806,8 +3329,8 @@
       "openingHours": "Tu-Fr 11:00-14:30,17:00-24:00; Sa 11:00-24:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T08:40:54.650320+00:00"
     },
     {
       "id": "node/13103654331",
@@ -1815,7 +3338,7 @@
       "lat": 46.2142757,
       "lon": 6.1459815,
       "type": "bar",
-      "address": "",
+      "address": "Rue de Lausanne 51",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1823,7 +3346,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:31.287199+00:00"
+      "checkedAt": "2026-10-21T08:41:04.458463+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/179543508"
     },
     {
       "id": "node/7912048209",
@@ -1831,15 +3355,16 @@
       "lat": 46.1967599,
       "lon": 6.13765,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ecole-de-Médecine 14",
+      "postcode": "1205",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:31.287205+00:00"
+      "checkedAt": "2026-10-21T08:41:04.458477+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2175849913"
     },
     {
       "id": "node/10137522512",
@@ -1847,15 +3372,16 @@
       "lat": 46.2095233,
       "lon": 6.1480376,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Rue des Pâquis 4",
+      "postcode": "1201",
       "website": "https://www.briseglace.ch",
       "cuisine": [],
       "openingHours": "Tu-Th 17:00-24:00, Fr,Sa 17:00-02:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:31.287210+00:00"
+      "checkedAt": "2026-10-21T08:41:04.458490+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2082550182"
     },
     {
       "id": "node/7022562306",
@@ -1863,7 +3389,7 @@
       "lat": 46.1952579,
       "lon": 6.1438673,
       "type": "pub",
-      "address": "",
+      "address": "Boulevard du Pont-d'Arve 20",
       "postcode": "",
       "website": "https://www.le-coyote-bar.com/",
       "cuisine": [],
@@ -1871,7 +3397,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-21T07:14:32.558108+00:00"
+      "checkedAt": "2026-10-21T08:41:05.146179+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/180757286"
     },
     {
       "id": "node/13296653001",
@@ -1886,8 +3413,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.650365+00:00"
     },
     {
       "id": "node/12137562674",
@@ -1903,7 +3430,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:32.662202+00:00"
+      "checkedAt": "2026-10-21T08:41:05.256591+00:00"
     },
     {
       "id": "node/7902714994",
@@ -1919,7 +3446,125 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:32.662223+00:00"
+      "checkedAt": "2026-10-21T08:41:05.256621+00:00"
+    },
+    {
+      "id": "node/4395019378",
+      "name": "Le Figuier",
+      "lat": 46.2136418,
+      "lon": 6.1248832,
+      "type": "restaurant",
+      "address": "Avenue De-Luserna 32",
+      "postcode": "1203",
+      "website": "https://www.le-figuier.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo,We-Su 11:30-14:30,19:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Lebanese beer ``Almaza``",
+          "volumeMl": 330,
+          "priceChf": 8.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://restaurant-lefiguier.ch/en/our-menu/",
+          "observedAt": "2026-10-21T08:42:10.058415+00:00",
+          "confidence": "automatic",
+          "evidence": "Lebanese beer ``Almaza`` 33cl CHF 8",
+          "alcoholFree": false
+        },
+        {
+          "name": "Unfiltered Lebanese beer ``Almaza``",
+          "volumeMl": 330,
+          "priceChf": 9.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://restaurant-lefiguier.ch/en/our-menu/",
+          "observedAt": "2026-10-21T08:42:10.058415+00:00",
+          "confidence": "automatic",
+          "evidence": "Unfiltered Lebanese beer ``Almaza`` 33cl CHF 9",
+          "alcoholFree": false
+        },
+        {
+          "name": "Draft beer “Feldschlösschen”",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "draft",
+          "sourceUrl": "https://restaurant-lefiguier.ch/en/our-menu/",
+          "observedAt": "2026-10-21T08:42:10.058415+00:00",
+          "confidence": "automatic",
+          "evidence": "Draft beer “Feldschlösschen” 33cl CHF 6",
+          "alcoholFree": false
+        },
+        {
+          "name": "Draft beer “Feldschlösschen”",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "beerType": "draft",
+          "sourceUrl": "https://restaurant-lefiguier.ch/en/our-menu/",
+          "observedAt": "2026-10-21T08:42:10.058415+00:00",
+          "confidence": "automatic",
+          "evidence": "Draft beer “Feldschlösschen” 50cl CHF 9",
+          "alcoholFree": false
+        },
+        {
+          "name": "mixed beer",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "beerType": "draft",
+          "sourceUrl": "https://restaurant-lefiguier.ch/en/our-menu/",
+          "observedAt": "2026-10-21T08:42:10.058415+00:00",
+          "confidence": "automatic",
+          "evidence": "33cl mixed beer CHF 7.5",
+          "alcoholFree": false
+        },
+        {
+          "name": "Monaco Beer",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://restaurant-lefiguier.ch/en/our-menu/",
+          "observedAt": "2026-10-21T08:42:10.058415+00:00",
+          "confidence": "automatic",
+          "evidence": "Monaco Beer 33cl CHF 7.5",
+          "alcoholFree": false
+        },
+        {
+          "name": "Biére sans alcool Heineken 0.0",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://restaurant-lefiguier.ch/notre-carte/",
+          "observedAt": "2026-10-21T08:42:10.058415+00:00",
+          "confidence": "automatic",
+          "evidence": "Biére sans alcool Heineken 0.0 33 cl CHF 7",
+          "alcoholFree": true
+        },
+        {
+          "name": "Bière pression «Feldschlösschen»",
+          "volumeMl": 330,
+          "priceChf": 6.0,
+          "beerType": "draft",
+          "sourceUrl": "https://restaurant-lefiguier.ch/notre-carte/",
+          "observedAt": "2026-10-21T08:42:10.058415+00:00",
+          "confidence": "automatic",
+          "evidence": "Bière pression «Feldschlösschen» 33cl CHF 6",
+          "alcoholFree": false
+        },
+        {
+          "name": "Bière pression «Feldschlösschen»",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "beerType": "draft",
+          "sourceUrl": "https://restaurant-lefiguier.ch/notre-carte/",
+          "observedAt": "2026-10-21T08:42:10.058415+00:00",
+          "confidence": "automatic",
+          "evidence": "Bière pression «Feldschlösschen» 50cl CHF 9",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:10.058415+00:00"
     },
     {
       "id": "node/13200714658",
@@ -1927,15 +3572,16 @@
       "lat": 46.2100608,
       "lon": 6.1469999,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Sismondi 11",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:32.741682+00:00"
+      "checkedAt": "2026-10-21T08:41:06.169343+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092509289"
     },
     {
       "id": "node/10317006311",
@@ -1950,8 +3596,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.650395+00:00"
     },
     {
       "id": "node/13131316201",
@@ -1969,7 +3615,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:32.741698+00:00"
+      "checkedAt": "2026-10-21T08:41:06.169370+00:00"
     },
     {
       "id": "node/4143119891",
@@ -1985,7 +3631,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:34.011808+00:00"
+      "checkedAt": "2026-10-21T08:41:06.268254+00:00"
     },
     {
       "id": "node/11112513545",
@@ -2001,7 +3647,46 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:34.011826+00:00"
+      "checkedAt": "2026-10-21T08:41:06.268280+00:00"
+    },
+    {
+      "id": "node/1015581939",
+      "name": "Le Nant d'Avril",
+      "lat": 46.2250434,
+      "lon": 6.0595092,
+      "type": "restaurant",
+      "address": "Route du Nant-d'Avril 107",
+      "postcode": "",
+      "website": "https://www.grill-house.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "BIERE BLANCHE",
+          "volumeMl": 250,
+          "priceChf": 5.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.grill-house.ch/le-nant-davril/menus/specialite-viande-grillade-geneve/",
+          "observedAt": "2026-10-21T08:42:12.375544+00:00",
+          "confidence": "automatic",
+          "evidence": "BIERE BLANCHE 2,5dl 5.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "SUPER BOCK",
+          "volumeMl": 300,
+          "priceChf": 4.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.grill-house.ch/le-nant-davril/menus/specialite-viande-grillade-geneve/",
+          "observedAt": "2026-10-21T08:42:12.375544+00:00",
+          "confidence": "automatic",
+          "evidence": "SUPER BOCK 3dl 4.00",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:12.375544+00:00"
     },
     {
       "id": "node/7856543261",
@@ -2017,7 +3702,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:34.011833+00:00"
+      "checkedAt": "2026-10-21T08:41:06.268293+00:00"
     },
     {
       "id": "node/4619839289",
@@ -2033,7 +3718,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:35.936513+00:00"
+      "checkedAt": "2026-10-21T08:41:06.466393+00:00"
     },
     {
       "id": "way/83210209",
@@ -2048,8 +3733,8 @@
       "openingHours": "May-Sep Mo-Su 17:00-21:30; May-Sep Sa 14:00-21:30",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-21T08:40:54.650415+00:00"
     },
     {
       "id": "node/6466692435",
@@ -2065,7 +3750,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:35.936529+00:00"
+      "checkedAt": "2026-10-21T08:41:06.466426+00:00"
     },
     {
       "id": "node/2724000351",
@@ -2081,7 +3766,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:35.936536+00:00"
+      "checkedAt": "2026-10-21T08:41:06.466441+00:00"
     },
     {
       "id": "node/13131315748",
@@ -2097,7 +3782,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:35.936569+00:00"
+      "checkedAt": "2026-10-21T08:41:06.466454+00:00"
     },
     {
       "id": "node/6198366185",
@@ -2113,7 +3798,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:35.936582+00:00"
+      "checkedAt": "2026-10-21T08:41:06.466465+00:00"
     },
     {
       "id": "node/3680214421",
@@ -2129,7 +3814,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:36.014827+00:00"
+      "checkedAt": "2026-10-21T08:41:06.962104+00:00"
     },
     {
       "id": "node/1168515253",
@@ -2145,7 +3830,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:36.014841+00:00"
+      "checkedAt": "2026-10-21T08:41:06.962131+00:00"
     },
     {
       "id": "node/12971454901",
@@ -2163,7 +3848,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.534270+00:00"
+      "checkedAt": "2026-10-21T08:41:07.050040+00:00"
     },
     {
       "id": "node/12222510480",
@@ -2179,7 +3864,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.534287+00:00"
+      "checkedAt": "2026-10-21T08:41:07.050068+00:00"
     },
     {
       "id": "node/2406735699",
@@ -2195,7 +3880,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.534293+00:00"
+      "checkedAt": "2026-10-21T08:41:07.050082+00:00"
     },
     {
       "id": "node/11738487669",
@@ -2211,7 +3896,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.534298+00:00"
+      "checkedAt": "2026-10-21T08:41:07.050094+00:00"
     },
     {
       "id": "node/12139774786",
@@ -2219,7 +3904,7 @@
       "lat": 46.2098245,
       "lon": 6.1378248,
       "type": "bar",
-      "address": "",
+      "address": "Rue de la Servette 21",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -2227,7 +3912,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.534303+00:00"
+      "checkedAt": "2026-10-21T08:41:07.050105+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/185539552"
     },
     {
       "id": "node/2399394919",
@@ -2235,15 +3921,16 @@
       "lat": 46.2028383,
       "lon": 6.1398513,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Boulevard Georges-Favon 16",
+      "postcode": "1204",
       "website": null,
       "cuisine": [],
       "openingHours": "Tu-Sa 18:00-02:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.534308+00:00"
+      "checkedAt": "2026-10-21T08:41:07.050116+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2126273452"
     },
     {
       "id": "node/9193028724",
@@ -2259,7 +3946,103 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-21T07:14:38.534313+00:00"
+      "checkedAt": "2026-10-21T08:41:07.050127+00:00"
+    },
+    {
+      "id": "node/9522633538",
+      "name": "Mangia Bene",
+      "lat": 46.1954536,
+      "lon": 6.140683,
+      "type": "restaurant",
+      "address": "Boulevard Carl-Vogt 99",
+      "postcode": "1205",
+      "website": "https://www.mangiabene-restaurant.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:45-14:00, 19:00-00:00; Sa 19:00-00:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Appenzeller (blonde en pression)",
+          "volumeMl": 300,
+          "priceChf": 6.5,
+          "beerType": "draft",
+          "sourceUrl": "https://cdn.prod.website-files.com/5548ce5c70e77eb74303597f/691b5b6d4bcd289830c70221_MENU%20MANGIA%20BENE.pdf",
+          "observedAt": "2026-10-21T08:42:17.134610+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller (blonde en pression) 30cl. 6.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Appenzeller (blonde en pression)",
+          "volumeMl": 500,
+          "priceChf": 8.5,
+          "beerType": "draft",
+          "sourceUrl": "https://cdn.prod.website-files.com/5548ce5c70e77eb74303597f/691b5b6d4bcd289830c70221_MENU%20MANGIA%20BENE.pdf",
+          "observedAt": "2026-10-21T08:42:17.134610+00:00",
+          "confidence": "automatic",
+          "evidence": "Appenzeller (blonde en pression) 50cl. 8.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Moretti Blonde",
+          "volumeMl": 500,
+          "priceChf": 7.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://cdn.prod.website-files.com/5548ce5c70e77eb74303597f/691b5b6d4bcd289830c70221_MENU%20MANGIA%20BENE.pdf",
+          "observedAt": "2026-10-21T08:42:17.134610+00:00",
+          "confidence": "automatic",
+          "evidence": "Moretti Blonde 50cl. 7.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Dr Gab’s** “Houleuse” (blanche)",
+          "volumeMl": 330,
+          "priceChf": 8.9,
+          "beerType": "unknown",
+          "sourceUrl": "https://cdn.prod.website-files.com/5548ce5c70e77eb74303597f/691b5b6d4bcd289830c70221_MENU%20MANGIA%20BENE.pdf",
+          "observedAt": "2026-10-21T08:42:17.134610+00:00",
+          "confidence": "automatic",
+          "evidence": "Dr Gab’s** “Houleuse” (blanche) 33cl. 8.90",
+          "alcoholFree": false
+        },
+        {
+          "name": "Dr Gab’s “Pépite” (blonde Pale Ale sans gluten)",
+          "volumeMl": 330,
+          "priceChf": 8.9,
+          "beerType": "unknown",
+          "sourceUrl": "https://cdn.prod.website-files.com/5548ce5c70e77eb74303597f/691b5b6d4bcd289830c70221_MENU%20MANGIA%20BENE.pdf",
+          "observedAt": "2026-10-21T08:42:17.134610+00:00",
+          "confidence": "automatic",
+          "evidence": "Dr Gab’s “Pépite” (blonde Pale Ale sans gluten) 33cl. 8.90",
+          "alcoholFree": false
+        },
+        {
+          "name": "Dr Gab’s “Ipanema” (indian Pale Ale)",
+          "volumeMl": 330,
+          "priceChf": 8.9,
+          "beerType": "unknown",
+          "sourceUrl": "https://cdn.prod.website-files.com/5548ce5c70e77eb74303597f/691b5b6d4bcd289830c70221_MENU%20MANGIA%20BENE.pdf",
+          "observedAt": "2026-10-21T08:42:17.134610+00:00",
+          "confidence": "automatic",
+          "evidence": "Dr Gab’s “Ipanema” (indian Pale Ale) 33cl. 8.90",
+          "alcoholFree": false
+        },
+        {
+          "name": "Dr Gab’s “Chameau” (ambrée)",
+          "volumeMl": 330,
+          "priceChf": 8.9,
+          "beerType": "unknown",
+          "sourceUrl": "https://cdn.prod.website-files.com/5548ce5c70e77eb74303597f/691b5b6d4bcd289830c70221_MENU%20MANGIA%20BENE.pdf",
+          "observedAt": "2026-10-21T08:42:17.134610+00:00",
+          "confidence": "automatic",
+          "evidence": "Dr Gab’s “Chameau” (ambrée) 33cl. 8.90",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:17.134610+00:00"
     },
     {
       "id": "node/13236508104",
@@ -2267,15 +4050,57 @@
       "lat": 46.2109918,
       "lon": 6.1465981,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Berne 34",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.754455+00:00"
+      "checkedAt": "2026-10-21T08:41:07.340563+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092524971"
+    },
+    {
+      "id": "node/7258074861",
+      "name": "Marcel",
+      "lat": 46.202789,
+      "lon": 6.1567456,
+      "type": "restaurant",
+      "address": "Rue des Eaux-Vives 3",
+      "postcode": "1207",
+      "website": "https://www.restaurantmarcel.ch/",
+      "cuisine": [
+        "breakfast"
+      ],
+      "openingHours": "Mo-Fr 10:00-23:00; Sa, Su 10:00-19:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Vedett IPA, IPA Belge, pression",
+          "volumeMl": 300,
+          "priceChf": 6.0,
+          "beerType": "draft",
+          "sourceUrl": "https://www.restaurantmarcel.ch/menus?location=Rue+des+Eaux-Vives&menu=boissons",
+          "observedAt": "2026-10-21T08:42:18.579382+00:00",
+          "confidence": "automatic",
+          "evidence": "Vedett IPA, IPA Belge, pression 30cl 6 CHF 50cl 9 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "Vedett IPA, IPA Belge, pression",
+          "volumeMl": 500,
+          "priceChf": 9.0,
+          "beerType": "draft",
+          "sourceUrl": "https://www.restaurantmarcel.ch/menus?location=Rue+des+Eaux-Vives&menu=boissons",
+          "observedAt": "2026-10-21T08:42:18.579382+00:00",
+          "confidence": "automatic",
+          "evidence": "Vedett IPA, IPA Belge, pression 30cl 6 CHF 50cl 9 CHF",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:18.579382+00:00"
     },
     {
       "id": "node/1936530944",
@@ -2291,7 +4116,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.754471+00:00"
+      "checkedAt": "2026-10-21T08:41:07.340602+00:00"
     },
     {
       "id": "node/12270624277",
@@ -2307,7 +4132,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.754477+00:00"
+      "checkedAt": "2026-10-21T08:41:07.340615+00:00"
     },
     {
       "id": "node/13061504679",
@@ -2322,8 +4147,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.655908+00:00"
     },
     {
       "id": "node/13197257803",
@@ -2331,15 +4156,99 @@
       "lat": 46.2104479,
       "lon": 6.1490422,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue De-Monthoux 16",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:38.754482+00:00"
+      "checkedAt": "2026-10-21T08:41:07.340627+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2082550185"
+    },
+    {
+      "id": "node/12048868904",
+      "name": "Montreux Jazz cafe",
+      "lat": 46.1868909,
+      "lon": 6.1248216,
+      "type": "cafe",
+      "address": "Place de Pont-Rouge 1",
+      "postcode": "1212",
+      "website": "https://www.montreuxjazzcafe.com/fr/locations/geneve-pont-rouge/",
+      "cuisine": [],
+      "openingHours": "Mo-We 09:30-20:00; Th 09:30-22:00; Fr 09:30-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Erdinger sans alcool",
+          "volumeMl": 330,
+          "priceChf": 5.5,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.montreuxjazzcafe.com/wp-content/uploads/2026/07/MJC-GVA-Menu-Aprem-Nov25-V3-WEB.pdf",
+          "observedAt": "2026-10-21T08:32:53.807975+00:00",
+          "confidence": "automatic",
+          "evidence": "Erdinger sans alcool 33 cl 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Super Bock",
+          "volumeMl": 250,
+          "priceChf": 4.5,
+          "beerType": "draft",
+          "sourceUrl": "https://www.montreuxjazzcafe.com/wp-content/uploads/2020/03/lausanne_carte_boissons_0.pdf",
+          "observedAt": "2026-10-21T08:32:53.807975+00:00",
+          "confidence": "automatic",
+          "evidence": "Super Bock 25cl 4.5",
+          "alcoholFree": false
+        },
+        {
+          "name": "Super Bock",
+          "volumeMl": 500,
+          "priceChf": 7.5,
+          "beerType": "draft",
+          "sourceUrl": "https://www.montreuxjazzcafe.com/wp-content/uploads/2020/03/lausanne_carte_boissons_0.pdf",
+          "observedAt": "2026-10-21T08:32:53.807975+00:00",
+          "confidence": "automatic",
+          "evidence": "Super Bock 50cl 7.5",
+          "alcoholFree": false
+        },
+        {
+          "name": "Celia Organic Glutenfree - lager",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.montreuxjazzcafe.com/wp-content/uploads/2020/03/lausanne_carte_boissons_0.pdf",
+          "observedAt": "2026-10-21T08:32:53.807975+00:00",
+          "confidence": "automatic",
+          "evidence": "Celia Organic Glutenfree - lager 33cl 7",
+          "alcoholFree": false
+        },
+        {
+          "name": "Brooklyn - Defender IPA",
+          "volumeMl": 355,
+          "priceChf": 8.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.montreuxjazzcafe.com/wp-content/uploads/2020/03/lausanne_carte_boissons_0.pdf",
+          "observedAt": "2026-10-21T08:32:53.807975+00:00",
+          "confidence": "automatic",
+          "evidence": "Brooklyn - Defender IPA 35.5cl 8",
+          "alcoholFree": false
+        },
+        {
+          "name": "Grimbergen - ambrée",
+          "volumeMl": 250,
+          "priceChf": 6.5,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.montreuxjazzcafe.com/wp-content/uploads/2020/03/lausanne_carte_boissons_0.pdf",
+          "observedAt": "2026-10-21T08:32:53.807975+00:00",
+          "confidence": "automatic",
+          "evidence": "Grimbergen - ambrée 25cl 6.5",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:32:53.807975+00:00"
     },
     {
       "id": "node/2048981394",
@@ -2355,7 +4264,48 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:38.754486+00:00"
+      "checkedAt": "2026-10-21T08:41:07.340638+00:00"
+    },
+    {
+      "id": "node/4287211195",
+      "name": "Muller's Factory",
+      "lat": 46.2011172,
+      "lon": 6.1397557,
+      "type": "cafe",
+      "address": "Place du Cirque 4",
+      "postcode": "1204",
+      "website": "https://www.mullersfactory.ch",
+      "cuisine": [
+        "crepe"
+      ],
+      "openingHours": "Mo-Su",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Bière suisse Quöllfrisch",
+          "volumeMl": 330,
+          "priceChf": 5.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://mullersfactory.ch/wp-content/uploads/menu_mtb_fr.pdf",
+          "observedAt": "2026-10-21T08:42:19.483960+00:00",
+          "confidence": "automatic",
+          "evidence": "Bière suisse Quöllfrisch 3.3dl / 5.00",
+          "alcoholFree": false
+        },
+        {
+          "name": "Bière suisse Quöllfrisch",
+          "volumeMl": 500,
+          "priceChf": 6.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://mullersfactory.ch/wp-content/uploads/menu_mtb_fr.pdf",
+          "observedAt": "2026-10-21T08:42:19.483960+00:00",
+          "confidence": "automatic",
+          "evidence": "Bière suisse Quöllfrisch 5dl / 6.00",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:19.483960+00:00"
     },
     {
       "id": "node/1121200543",
@@ -2363,15 +4313,16 @@
       "lat": 46.2071296,
       "lon": 6.1433642,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Rue De-Grenus 16",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Th 17:00-01:00, Fr,Sa 11:30-02:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.140759+00:00"
+      "checkedAt": "2026-10-21T08:41:07.821042+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/1450963276"
     },
     {
       "id": "node/13347342169",
@@ -2387,7 +4338,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.140777+00:00"
+      "checkedAt": "2026-10-21T08:41:07.821070+00:00"
     },
     {
       "id": "node/12184341880",
@@ -2395,7 +4346,7 @@
       "lat": 46.2091785,
       "lon": 6.1267653,
       "type": "bar",
-      "address": "",
+      "address": "Avenue Wendt 7",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -2403,7 +4354,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.140783+00:00"
+      "checkedAt": "2026-10-21T08:41:07.821085+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/176982753"
     },
     {
       "id": "node/13197234302",
@@ -2419,7 +4371,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.140788+00:00"
+      "checkedAt": "2026-10-21T08:41:07.821097+00:00"
     },
     {
       "id": "node/1765237413",
@@ -2435,7 +4387,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.140793+00:00"
+      "checkedAt": "2026-10-21T08:41:07.821108+00:00"
     },
     {
       "id": "node/11630275169",
@@ -2453,7 +4405,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:39.140798+00:00"
+      "checkedAt": "2026-10-21T08:41:07.821119+00:00"
     },
     {
       "id": "node/13266898333",
@@ -2461,15 +4413,16 @@
       "lat": 46.213198,
       "lon": 6.1481298,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Berne 58",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.516457+00:00"
+      "checkedAt": "2026-10-21T08:41:09.708737+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2113384874"
     },
     {
       "id": "node/4393923593",
@@ -2485,7 +4438,37 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.516475+00:00"
+      "checkedAt": "2026-10-21T08:41:09.708767+00:00"
+    },
+    {
+      "id": "node/6002040485",
+      "name": "Osteria della Bottega",
+      "lat": 46.2024514,
+      "lon": 6.1448027,
+      "type": "restaurant",
+      "address": "Grand-Rue 3",
+      "postcode": "1204",
+      "website": "https://www.osteriadellabottega.com/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 12:00-14:30,19:00-22:00; Sa,Su,PH 12:30-15:00,18:30-21:30; Sa 18:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Biere Italienne",
+          "volumeMl": 330,
+          "priceChf": 9.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.osteriadellabottega.com/wp-content/uploads/2026/01/Carta-Vini-Osteria-GENNAIO-2026-2.pdf",
+          "observedAt": "2026-10-21T08:42:24.043398+00:00",
+          "confidence": "automatic",
+          "evidence": "Biere Italienne 33cl CHF 9-",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:24.043398+00:00"
     },
     {
       "id": "node/2320168931",
@@ -2500,8 +4483,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.655934+00:00"
     },
     {
       "id": "node/13197240302",
@@ -2509,15 +4492,16 @@
       "lat": 46.2110992,
       "lon": 6.146971,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue De-Monthoux 46",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.516481+00:00"
+      "checkedAt": "2026-10-21T08:41:09.708780+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2110411536"
     },
     {
       "id": "node/10293580833",
@@ -2532,8 +4516,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.655948+00:00"
     },
     {
       "id": "node/3669299862",
@@ -2549,7 +4533,89 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.516487+00:00"
+      "checkedAt": "2026-10-21T08:41:09.708793+00:00"
+    },
+    {
+      "id": "node/12112471501",
+      "name": "Pasargades",
+      "lat": 46.2052679,
+      "lon": 6.158941,
+      "type": "restaurant",
+      "address": "Rue Du-Roveray 14",
+      "postcode": "",
+      "website": "https://www.restaurantpasargades.com",
+      "cuisine": [
+        "persian"
+      ],
+      "openingHours": "Tu-Sa 12:00-14:30, 18:30-23:00; Su 12:00-14:30, 18:30-22:00; Mo 18:30-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "SUPER BOCK",
+          "volumeMl": 330,
+          "priceChf": 5.0,
+          "beerType": "draft",
+          "sourceUrl": "https://www.restaurantpasargades.com/menu-1?location=Jet+d%27eau&menu=la-carte-des-boissons",
+          "observedAt": "2026-10-21T08:42:27.046295+00:00",
+          "confidence": "automatic",
+          "evidence": "SUPER BOCK 0.33L 5 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "CORONA EXTRA",
+          "volumeMl": 330,
+          "priceChf": 7.5,
+          "beerType": "draft",
+          "sourceUrl": "https://www.restaurantpasargades.com/menu-1?location=Jet+d%27eau&menu=la-carte-des-boissons",
+          "observedAt": "2026-10-21T08:42:27.046295+00:00",
+          "confidence": "automatic",
+          "evidence": "CORONA EXTRA 0.33L 7.50 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "HEINEKEN",
+          "volumeMl": 250,
+          "priceChf": 5.0,
+          "beerType": "draft",
+          "sourceUrl": "https://www.restaurantpasargades.com/menu-1?location=Jet+d%27eau&menu=la-carte-des-boissons",
+          "observedAt": "2026-10-21T08:42:27.046295+00:00",
+          "confidence": "automatic",
+          "evidence": "HEINEKEN 0.25L 5 CHF",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:27.046295+00:00"
+    },
+    {
+      "id": "node/4605036050",
+      "name": "Pasta People",
+      "lat": 46.201446,
+      "lon": 6.1497645,
+      "type": "restaurant",
+      "address": "Rue de la Fontaine 13",
+      "postcode": "",
+      "website": "https://www.pastapeople-geneve.ch",
+      "cuisine": [
+        "pasta"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Brasserie du Virage, GenèveSession IPA,",
+          "volumeMl": 330,
+          "priceChf": 9.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.pastapeople-geneve.ch",
+          "observedAt": "2026-10-21T08:42:33.719004+00:00",
+          "confidence": "automatic",
+          "evidence": "Brasserie du Virage, GenèveSession IPA, 3,8%33cl 9,00 CHF",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:33.719004+00:00"
     },
     {
       "id": "node/7879461293",
@@ -2564,8 +4630,71 @@
       "openingHours": "Mo-Fr 09:00-00:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.655959+00:00"
+    },
+    {
+      "id": "node/8818544417",
+      "name": "Pidé Factory",
+      "lat": 46.2012184,
+      "lon": 6.1336376,
+      "type": "restaurant",
+      "address": "Boulevard de Saint-Georges 30",
+      "postcode": "1205",
+      "website": "https://www.pidefactory.ch/",
+      "cuisine": [
+        "turkish"
+      ],
+      "openingHours": "Mo-Sa 06:00-23:00; Su 08:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pression Poretti",
+          "volumeMl": 300,
+          "priceChf": 6.0,
+          "beerType": "draft",
+          "sourceUrl": "https://f9d2b81c-1a40-4501-9e59-a6c45b337442.filesusr.com/ugd/87e8cd_53f5b4f1c94343a7acd3b8bcbc4bb6ec.pdf",
+          "observedAt": "2026-10-21T08:42:34.166534+00:00",
+          "confidence": "automatic",
+          "evidence": "Pression Poretti 30cl 6 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "Pression Grimbergen blanche",
+          "volumeMl": 300,
+          "priceChf": 6.0,
+          "beerType": "draft",
+          "sourceUrl": "https://f9d2b81c-1a40-4501-9e59-a6c45b337442.filesusr.com/ugd/87e8cd_53f5b4f1c94343a7acd3b8bcbc4bb6ec.pdf",
+          "observedAt": "2026-10-21T08:42:34.166534+00:00",
+          "confidence": "automatic",
+          "evidence": "Pression Grimbergen blanche 30cl 6 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "Pression Poretti",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "draft",
+          "sourceUrl": "https://f9d2b81c-1a40-4501-9e59-a6c45b337442.filesusr.com/ugd/87e8cd_53f5b4f1c94343a7acd3b8bcbc4bb6ec.pdf",
+          "observedAt": "2026-10-21T08:42:34.166534+00:00",
+          "confidence": "automatic",
+          "evidence": "Pression Poretti 50cl 8 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "Pression Canette Grimbergen",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "draft",
+          "sourceUrl": "https://f9d2b81c-1a40-4501-9e59-a6c45b337442.filesusr.com/ugd/87e8cd_53f5b4f1c94343a7acd3b8bcbc4bb6ec.pdf",
+          "observedAt": "2026-10-21T08:42:34.166534+00:00",
+          "confidence": "automatic",
+          "evidence": "Pression Canette Grimbergen 50cl 8 CHF",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:34.166534+00:00"
     },
     {
       "id": "node/13266884703",
@@ -2581,7 +4710,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.516492+00:00"
+      "checkedAt": "2026-10-21T08:41:09.708805+00:00"
     },
     {
       "id": "node/5855836685",
@@ -2597,7 +4726,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.516497+00:00"
+      "checkedAt": "2026-10-21T08:41:09.708816+00:00"
     },
     {
       "id": "node/3668869285",
@@ -2613,7 +4742,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.516501+00:00"
+      "checkedAt": "2026-10-21T08:41:09.708827+00:00"
     },
     {
       "id": "node/12229071135",
@@ -2629,7 +4758,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:39.516506+00:00"
+      "checkedAt": "2026-10-21T08:41:09.708838+00:00"
     },
     {
       "id": "node/2366976667",
@@ -2644,8 +4773,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.655998+00:00"
     },
     {
       "id": "node/8737922718",
@@ -2661,7 +4790,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:39.516669+00:00"
+      "checkedAt": "2026-10-21T08:41:09.708850+00:00"
     },
     {
       "id": "node/1949454579",
@@ -2676,8 +4805,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.656011+00:00"
     },
     {
       "id": "node/13200723903",
@@ -2685,15 +4814,16 @@
       "lat": 46.2104769,
       "lon": 6.1466208,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Pellegrino-Rossi 14",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.154723+00:00"
+      "checkedAt": "2026-10-21T08:41:09.757397+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092509247"
     },
     {
       "id": "node/13266904724",
@@ -2701,15 +4831,16 @@
       "lat": 46.2118144,
       "lon": 6.1485099,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de la Navigation 7",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.154740+00:00"
+      "checkedAt": "2026-10-21T08:41:09.757425+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2113384619"
     },
     {
       "id": "node/12077538169",
@@ -2725,7 +4856,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.154746+00:00"
+      "checkedAt": "2026-10-21T08:41:09.757438+00:00"
     },
     {
       "id": "node/1804876705",
@@ -2741,7 +4872,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.154751+00:00"
+      "checkedAt": "2026-10-21T08:41:09.757450+00:00"
     },
     {
       "id": "node/2112116508",
@@ -2759,7 +4890,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:41.154756+00:00"
+      "checkedAt": "2026-10-21T08:41:09.757461+00:00"
     },
     {
       "id": "node/13197242410",
@@ -2767,15 +4898,91 @@
       "lat": 46.2105376,
       "lon": 6.1482319,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue De-Monthoux 23",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.317633+00:00"
+      "checkedAt": "2026-10-21T08:41:11.344751+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092525001"
+    },
+    {
+      "id": "node/13060704801",
+      "name": "Shogun spécialités sushi",
+      "lat": 46.2041528,
+      "lon": 6.1589088,
+      "type": "restaurant",
+      "address": "Rue du 31-Décembre 16",
+      "postcode": "1207",
+      "website": "https://www.leshogun.ch/",
+      "cuisine": [
+        "japanese",
+        "sushi"
+      ],
+      "openingHours": "Mo 12:00-14:00; Tu-Sa 12:00-14:00, 19:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Bière ASAHI 5&,",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.leshogun.ch/boissons/",
+          "observedAt": "2026-10-21T08:34:29.967789+00:00",
+          "confidence": "automatic",
+          "evidence": "Bière ASAHI 5&, 33 cl 7 Chf",
+          "alcoholFree": false
+        },
+        {
+          "name": "Bière KIRIN,",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.leshogun.ch/boissons/",
+          "observedAt": "2026-10-21T08:34:29.967789+00:00",
+          "confidence": "automatic",
+          "evidence": "Bière KIRIN 5%, 33 cl 7 Chf",
+          "alcoholFree": false
+        },
+        {
+          "name": "KIRIN beer,",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.leshogun.ch/en/drinks/",
+          "observedAt": "2026-10-21T08:34:29.967789+00:00",
+          "confidence": "automatic",
+          "evidence": "KIRIN beer 5%, 33 cl 7 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "Heineken beer",
+          "volumeMl": 330,
+          "priceChf": 5.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.leshogun.ch/en/drinks/",
+          "observedAt": "2026-10-21T08:34:29.967789+00:00",
+          "confidence": "automatic",
+          "evidence": "Heineken beer 33 cl 5 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "ASAHI beer 5&,",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://www.leshogun.ch/en/drinks/",
+          "observedAt": "2026-10-21T08:34:29.967789+00:00",
+          "confidence": "automatic",
+          "evidence": "ASAHI beer 5&, 33 cl 7 CHF",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:34:29.967789+00:00"
     },
     {
       "id": "node/13203211656",
@@ -2783,15 +4990,16 @@
       "lat": 46.2129874,
       "lon": 6.1491585,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Bâle 16",
+      "postcode": "1201",
       "website": "https://www.sketchiz.ch/",
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:41.317649+00:00"
+      "checkedAt": "2026-10-21T08:41:11.344781+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2113384302"
     },
     {
       "id": "node/14133471367",
@@ -2806,8 +5014,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.656021+00:00"
     },
     {
       "id": "node/946440529",
@@ -2823,7 +5031,35 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-21T07:14:41.354602+00:00"
+      "checkedAt": "2026-10-21T08:41:18.797884+00:00"
+    },
+    {
+      "id": "node/8816643421",
+      "name": "Spinella",
+      "lat": 46.209457,
+      "lon": 6.1345913,
+      "type": "restaurant",
+      "address": "Rue Liotard 4",
+      "postcode": "",
+      "website": "https://www.spinella.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-We 10:00-15:00,17:00-24:00, Th,Fr 10:00-15:00,17:00-02:00, Sa 17:00-02:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Corona, Peroni ou Moretti ·",
+          "volumeMl": 330,
+          "priceChf": 7.0,
+          "beerType": "draft",
+          "sourceUrl": "https://spinella.ch/menu",
+          "observedAt": "2026-10-21T08:42:35.646807+00:00",
+          "confidence": "automatic",
+          "evidence": "Corona, Peroni ou Moretti · 33 cl CHF 7",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:35.646807+00:00"
     },
     {
       "id": "node/14133338714",
@@ -2838,8 +5074,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.656036+00:00"
     },
     {
       "id": "node/13098504828",
@@ -2855,7 +5091,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.804762+00:00"
+      "checkedAt": "2026-10-21T08:41:21.701814+00:00"
     },
     {
       "id": "node/13163230345",
@@ -2871,7 +5107,71 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.804780+00:00"
+      "checkedAt": "2026-10-21T08:41:21.701847+00:00"
+    },
+    {
+      "id": "node/12922818601",
+      "name": "Terra Rossa",
+      "lat": 46.2121604,
+      "lon": 6.1425239,
+      "type": "restaurant",
+      "address": "Rue des Gares 19",
+      "postcode": "1202",
+      "website": "https://terrarossa-restaurant.ch",
+      "cuisine": [
+        "italian",
+        "italian_pizza"
+      ],
+      "openingHours": "Mo-Fr 09:00-15:00, 17:30-23:00; Sa 18:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "BIÈRE PERONI",
+          "volumeMl": 330,
+          "priceChf": 4.0,
+          "beerType": "bottle",
+          "sourceUrl": "https://terrarossa-restaurant.ch/wp-content/uploads/2026/04/BOISSSONS-TERRA-ROSSA-PRINTEMPS-2026.pdf",
+          "observedAt": "2026-10-21T08:34:48.771984+00:00",
+          "confidence": "automatic",
+          "evidence": "BIÈRE PERONI 33CL / 4.-",
+          "alcoholFree": false
+        },
+        {
+          "name": "BIÈRES PRESSION PORETTI 4 LUPPOLI",
+          "volumeMl": 300,
+          "priceChf": 5.0,
+          "beerType": "draft",
+          "sourceUrl": "https://terrarossa-restaurant.ch/wp-content/uploads/2026/04/BOISSSONS-TERRA-ROSSA-PRINTEMPS-2026.pdf",
+          "observedAt": "2026-10-21T08:34:48.771984+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: BIÈRES PRESSION PORETTI 4 LUPPOLI / 30CL / 5 CHF | 50CL / 8 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "BIÈRES PRESSION PORETTI 4 LUPPOLI",
+          "volumeMl": 500,
+          "priceChf": 8.0,
+          "beerType": "draft",
+          "sourceUrl": "https://terrarossa-restaurant.ch/wp-content/uploads/2026/04/BOISSSONS-TERRA-ROSSA-PRINTEMPS-2026.pdf",
+          "observedAt": "2026-10-21T08:34:48.771984+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: BIÈRES PRESSION PORETTI 4 LUPPOLI / 30CL / 5 CHF | 50CL / 8 CHF",
+          "alcoholFree": false
+        },
+        {
+          "name": "BIÈRE SANS ALCOOL: MORETTI ZERO",
+          "volumeMl": 330,
+          "priceChf": 4.0,
+          "beerType": "unknown",
+          "sourceUrl": "https://terrarossa-restaurant.ch/wp-content/uploads/2026/04/BOISSSONS-TERRA-ROSSA-PRINTEMPS-2026.pdf",
+          "observedAt": "2026-10-21T08:34:48.771984+00:00",
+          "confidence": "automatic",
+          "evidence": "BIÈRE SANS ALCOOL: MORETTI ZERO 33CL / 4.-",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:34:48.771984+00:00"
     },
     {
       "id": "node/11569461335",
@@ -2887,7 +5187,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-21T07:14:41.804787+00:00"
+      "checkedAt": "2026-10-21T08:41:21.701864+00:00"
     },
     {
       "id": "node/13294023749",
@@ -2895,15 +5195,16 @@
       "lat": 46.2096032,
       "lon": 6.149061,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Philippe-Plantamour 8",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826832+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990348+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2082550215"
     },
     {
       "id": "node/13197238925",
@@ -2919,7 +5220,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826847+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990382+00:00"
     },
     {
       "id": "node/4557711391",
@@ -2935,7 +5236,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826853+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990397+00:00"
     },
     {
       "id": "node/6700078574",
@@ -2951,7 +5252,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826858+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990411+00:00"
     },
     {
       "id": "node/9671390278",
@@ -2967,7 +5268,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826864+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990423+00:00"
     },
     {
       "id": "node/10302102877",
@@ -2975,7 +5276,7 @@
       "lat": 46.2028722,
       "lon": 6.1598744,
       "type": "pub",
-      "address": "",
+      "address": "Rue de Montchoisy 12",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -2983,7 +5284,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826869+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990434+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/178167173"
     },
     {
       "id": "node/14102521552",
@@ -2999,7 +5301,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826873+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990445+00:00"
     },
     {
       "id": "node/11945968069",
@@ -3007,23 +5309,7 @@
       "lat": 46.221449,
       "lon": 6.0819186,
       "type": "bar",
-      "address": "",
-      "postcode": "",
-      "website": null,
-      "cuisine": [],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/13200699135",
-      "name": "Vera Cruz",
-      "lat": 46.2100816,
-      "lon": 6.1469213,
-      "type": "bar",
-      "address": "",
+      "address": "Route du Nant-d'Avril 58",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -3031,7 +5317,25 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826879+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656046+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/87345745"
+    },
+    {
+      "id": "node/13200699135",
+      "name": "Vera Cruz",
+      "lat": 46.2100816,
+      "lon": 6.1469213,
+      "type": "bar",
+      "address": "Rue Sismondi 11",
+      "postcode": "1201",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:41:21.990457+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2092509289"
     },
     {
       "id": "node/5454023224",
@@ -3046,8 +5350,50 @@
       "openingHours": "Mo-Fr 17:00-02:00; Sa 12:00-02:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:40:54.656058+00:00"
+    },
+    {
+      "id": "node/1997357256",
+      "name": "Vieux-Bois",
+      "lat": 46.226886,
+      "lon": 6.1381441,
+      "type": "restaurant",
+      "address": "Avenue de la Paix 12",
+      "postcode": "",
+      "website": "https://www.ehg.ch/concept-de-restauration-a-geneve/restaurant-vieux-bois-a-geneve/cartes-et-menus-du-restaurant-vieux-bois/",
+      "cuisine": [
+        "international"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Beer of the moment",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.signeehg.ch/en/restaurant-le-trinquet/",
+          "observedAt": "2026-10-21T08:42:36.037174+00:00",
+          "confidence": "automatic",
+          "evidence": "Beer of the moment 33 CL 6.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Alcohol-free beer",
+          "volumeMl": 330,
+          "priceChf": 4.6,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.signeehg.ch/en/restaurant-le-trinquet/",
+          "observedAt": "2026-10-21T08:42:36.037174+00:00",
+          "confidence": "automatic",
+          "evidence": "Alcohol-free beer 33 CL 4.60",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:36.037174+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/189088496"
     },
     {
       "id": "node/7879306585",
@@ -3055,23 +5401,7 @@
       "lat": 46.1762761,
       "lon": 6.1294232,
       "type": "bar",
-      "address": "",
-      "postcode": "",
-      "website": null,
-      "cuisine": [],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/11228567900",
-      "name": "Volt",
-      "lat": 46.1970866,
-      "lon": 6.1380178,
-      "type": "pub",
-      "address": "",
+      "address": "Route des Jeunes 105",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -3079,7 +5409,25 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826883+00:00"
+      "checkedAt": "2026-10-21T08:40:54.656069+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/195448399"
+    },
+    {
+      "id": "node/11228567900",
+      "name": "Volt",
+      "lat": 46.1970866,
+      "lon": 6.1380178,
+      "type": "pub",
+      "address": "Rue de l'Ecole-de-Médecine 12",
+      "postcode": "1205",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": "2026-10-21T08:41:21.990468+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2175849900"
     },
     {
       "id": "node/13200722193",
@@ -3095,7 +5443,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826888+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990479+00:00"
     },
     {
       "id": "node/13202043982",
@@ -3103,15 +5451,16 @@
       "lat": 46.2115594,
       "lon": 6.1476821,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Zurich 12",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826892+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990490+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2113384541"
     },
     {
       "id": "node/4143135489",
@@ -3127,7 +5476,48 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826897+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990531+00:00"
+    },
+    {
+      "id": "node/9181295917",
+      "name": "Yvonne's Noodles",
+      "lat": 46.2007667,
+      "lon": 6.1355513,
+      "type": "restaurant",
+      "address": "Rue du Village-Suisse 11",
+      "postcode": "1205",
+      "website": "https://www.yvonnes.ch/",
+      "cuisine": [
+        "noodle"
+      ],
+      "openingHours": "Mo-Fr 11:00-14:00,18:30-22:00; Sa 18:00-22:30; Su 11:00-15:00,18:30-21:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Peroni",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.yvonnes.ch/_files/ugd/7a8099_11cc2549cc7d4ca79badeda4e95d9d3e.pdf",
+          "observedAt": "2026-10-21T08:42:38.795111+00:00",
+          "confidence": "automatic",
+          "evidence": "Peroni 33cl 6.50",
+          "alcoholFree": false
+        },
+        {
+          "name": "Asahi",
+          "volumeMl": 330,
+          "priceChf": 6.5,
+          "beerType": "unknown",
+          "sourceUrl": "https://www.yvonnes.ch/_files/ugd/7a8099_11cc2549cc7d4ca79badeda4e95d9d3e.pdf",
+          "observedAt": "2026-10-21T08:42:38.795111+00:00",
+          "confidence": "automatic",
+          "evidence": "Asahi 33cl 6.50",
+          "alcoholFree": false
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:42:38.795111+00:00"
     },
     {
       "id": "node/13202077983",
@@ -3135,15 +5525,16 @@
       "lat": 46.211623,
       "lon": 6.1474913,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Zurich 12",
+      "postcode": "1201",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": "2026-10-21T07:14:41.826902+00:00"
+      "checkedAt": "2026-10-21T08:41:21.990550+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2113384541"
     },
     {
       "id": "node/9262910720",
@@ -3164,14 +5555,14 @@
           "priceChf": 7.0,
           "beerType": "unknown",
           "sourceUrl": "https://lezinzou.ch/wp-content/uploads/2023/11/Menu-Drinks.pdf",
-          "observedAt": "2026-10-21T07:14:41.826907+00:00",
+          "observedAt": "2026-10-21T08:40:54.645594+00:00",
           "confidence": "automatic",
           "evidence": "Bière IPA sans alcool 33 cl 7.00",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:14:41.826907+00:00"
+      "checkedAt": "2026-10-21T08:40:54.645594+00:00"
     }
   ]
 }
