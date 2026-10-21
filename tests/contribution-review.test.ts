@@ -13,6 +13,20 @@ function memory(): Store { let state = emptyState(), version = 0; return { read:
 let store: Store;
 beforeEach(() => { store = memory(); vi.stubEnv('COMMUNITY_REVIEW_REQUIRED', 'true'); });
 afterEach(() => vi.unstubAllEnvs());
+it('publishes normal prices, photo scans, venues and corrections directly when review is disabled', async () => {
+  vi.stubEnv('COMMUNITY_REVIEW_REQUIRED', 'false');
+  await savePrice(store, input, data, 'visitor');
+  await reserveScan(store, 'photo', 'visitor');
+  const scan = await saveMenuScan(store, 'photo', bar, [], [{ input: { ...input, name: 'Cappuccino', coffeeType: 'cappuccino' }, evidence: 'menu' }], 0);
+  expect(scan.pending).not.toBe(true); expect(scan.entries).toHaveLength(1);
+  const venue = await saveVenue(store, { ...bar, name: 'New cafe', website: '' }, data, 'zurich', 'visitor');
+  expect(venue.pending).not.toBe(true);
+  const correction = await saveVenueCorrection(store, { barId: bar.id, revision: 0, changes: { website: 'https://example.org' } }, data, 'visitor');
+  expect(correction.pending).not.toBe(true);
+  const { state } = await store.read();
+  expect(state.entries).toHaveLength(2); expect(state.venues).toHaveLength(1); expect(state.venueCorrections).toHaveLength(1);
+  expect(state.heldPrices || []).toEqual([]);
+});
 it('holds plausible prices, rejects stale reviews and supports exact undo', async () => {
   const entry = await savePrice(store, input, data, 'visitor', Date.now(), 'owner');
   let state = (await store.read()).state;

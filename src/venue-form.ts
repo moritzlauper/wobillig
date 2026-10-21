@@ -13,7 +13,7 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
   dialog.id = prefix + 'venue-dialog'; dialog.setAttribute('aria-labelledby', prefix + 'venue-title');
   dialog.innerHTML = `<form id="venue-form">
     <div class="dialog-top"><strong id="venue-title" tabindex="-1">${t('Lokal hinzufügen')}</strong><button id="venue-close" type="button">${t('Schliessen')}</button></div>
-    <p>${t('Fehlt ein Lokal in {city}? Trage es hier ein. Wir prüfen es vor der Veröffentlichung.', { city: t(city.name) })}</p>
+    <p>${t('Fehlt ein Lokal in {city}? Trage es hier ein. Gespeicherte Angaben sind öffentlich sichtbar.', { city: t(city.name) })}</p>
     <p>${t('Falsche Angaben bei einem bestehenden Lokal? Öffne das Lokal und wähle «Lokal korrigieren».')}</p>
     <fieldset id="venue-fields">
       <label>Name<input id="venue-name" maxlength="100" autocomplete="organization" required></label>

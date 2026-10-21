@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { menuPrices, parseMenuPrice, outputTokenBudget, readMenu, validateScanImage, OCR_BUDGET_USD } from '../server/menu-ocr';
-import { reserveScan, saveMenuScan, failScan } from '../server/menu-scan-store';
+import { reserveScan, saveMenuScan, failScan, scanResult } from '../server/menu-scan-store';
 import { emptyState, WriteConflict, type State, type Store } from '../server/prices';
 import { applyEntries, offerKey } from '../src/community';
 import { scanSummary } from '../src/menu-scan';
@@ -180,6 +180,15 @@ describe('OCR calls and cost guard', () => {
 });
 
 describe('atomic, repeat-safe scan storage', () => {
+  it('reports a previously pending photo as published after all its prices are released', () => {
+    const state = emptyState();
+    const entry = { id: 'published-price' } as any;
+    const receipt = { pending: true, ids: [entry.id], added: 1, unchanged: 0, conflicts: 0, skipped: 0 };
+    expect(scanResult(state, receipt).pending).toBe(true);
+    state.entries.push(entry);
+    expect(scanResult(state, receipt)).toMatchObject({ pending: false, entries: [entry] });
+    expect(scanResult(state, { ...receipt, ids: [entry.id, 'still-pending'] }).pending).toBe(true);
+  });
   it('saves both sizes once, remembers the receipt and preserves AI attribution', async () => {
     const store = memoryStore(); await reserveScan(store, 'photo', 'visitor');
     const { prices, skipped } = extract();

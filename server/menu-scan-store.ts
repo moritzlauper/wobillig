@@ -41,7 +41,9 @@ async function change<T>(store: Store, update: (state: State) => T): Promise<T> 
   throw new InputError('Gerade werden weitere Preise gespeichert. Bitte später erneut versuchen.', 409);
 }
 export function scanResult(state: State, receipt: ScanReceipt) {
-  return { ...receipt, entries: state.entries.filter(e => receipt.ids.includes(e.id)) };
+  const entries = state.entries.filter(e => receipt.ids.includes(e.id));
+  const published = receipt.ids.length > 0 && receipt.ids.every(id => entries.some(entry => entry.id === id));
+  return { ...receipt, ...(receipt.pending && published ? { pending: false } : {}), entries };
 }
 export async function reserveScan(store: Store, hash: string, visitor: string, now = Date.now()) {
   // Limits and deduplication use conditional writes, shared across server instances.

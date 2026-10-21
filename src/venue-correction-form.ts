@@ -9,7 +9,7 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
   dialog.setAttribute('aria-labelledby', 'venue-correction-title');
   dialog.innerHTML = `<form>
     <div class="dialog-top"><strong id="venue-correction-title" tabindex="-1">${t('Lokal korrigieren')}</strong><button type="button" id="venue-correction-close">${t('Schliessen')}</button></div>
-    <p>${t('Korrigiere die Angaben zu diesem Lokal. Deine Änderungen werden vor der Veröffentlichung geprüft. Bitte keinen neuen Eintrag anlegen.')}</p>
+    <p>${t('Korrigiere die Angaben zu diesem Lokal. Gespeicherte Änderungen sind öffentlich sichtbar. Bitte keinen neuen Eintrag anlegen.')}</p>
     <fieldset>
       <label>Name<input name="name" maxlength="100" autocomplete="organization" required></label>
       <label>${t('Strasse und Hausnummer')}<input name="address" maxlength="160" autocomplete="street-address"></label>
