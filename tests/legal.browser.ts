@@ -29,7 +29,7 @@ test('legal pages work without JavaScript, link both languages and make no third
   await context.close();
 });
 
-test('mobile footer stays available in map, venue details, list and shared map views', async ({ page }) => {
+test('legal links stay reachable at the page bottom in all mobile views without a duplicate map footer', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 });
   await page.route('**/*', async route => {
     if (new URL(route.request().url()).hostname !== '127.0.0.1') return route.abort();
@@ -41,13 +41,14 @@ test('mobile footer stays available in map, venue details, list and shared map v
     if (url.searchParams.has('map')) return route.fulfill({ json: { map: { id: url.searchParams.get('map'), name: 'Geteilte Map', canEdit: false, entries: [] } } });
     return route.fulfill({ json: { entries: [], venues: [], venueCorrections: [], counts: {} } });
   });
-  const footer = page.locator('.app-footer');
+  const footer = page.locator('.site-legal-footer');
   const assertLinks = async () => {
+    await expect(page.locator('.app-footer .legal-link')).toHaveCount(0);
+    await footer.scrollIntoViewIfNeeded();
     await expect(footer.getByRole('link', { name: 'Impressum', exact: true })).toBeInViewport();
     await expect(footer.getByRole('link', { name: 'Datenschutz', exact: true })).toBeInViewport();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    const bounds = await footer.boundingBox();
-    expect(Math.abs(bounds!.y + bounds!.height - 740)).toBeLessThan(2);
+    await page.evaluate(() => window.scrollTo(0, 0));
   };
   await page.goto('/');
   await assertLinks();
