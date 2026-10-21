@@ -150,7 +150,7 @@ $('app').innerHTML = `
 <main>
   <aside class="list-panel" aria-label="${t('Lokale')}"><div class="list-tools"><a id="rankings-link" class="rankings-link" href="#kaffeepreise" aria-label="${t('Ranglisten und Quellen')}" title="${t('Ranglisten und Quellen')}">${t('Ranglisten')}</a><select id="sort" aria-label="${t('Sortierung')}">${options({ price: t('Preis aufsteigend'), price_desc: t('Preis absteigend'), name: 'Name A–Z', distance: t('Entfernung') })}</select></div><div id="results"></div></aside>
   <section class="map-panel" aria-label="${t('Karte')}"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="${t('Standort anzeigen')}" title="${t('Standort anzeigen')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><button id="cheap" aria-pressed="false" disabled>${t('Günstig')}</button></div><section id="detail" aria-label="${t('Lokal und Preise')}" tabindex="-1" hidden></section>
-<footer class="app-footer"><button id="tip-coffee" type="button" hidden></button><a href="mailto:team@wobillig.ch?subject=${encodeURIComponent(t('Wunsch für wobillig'))}&amp;body=${encodeURIComponent(t('für wobillig wünsche ich mir:') + '\r\n\r\n')}">${t('Wunsch mitteilen')}</a></footer>
+<footer class="app-footer"><button id="tip-coffee" type="button" hidden></button><a href="mailto:team@wobillig.ch">${t('Kontakt')}</a></footer>
   </section>
 </main>
 
