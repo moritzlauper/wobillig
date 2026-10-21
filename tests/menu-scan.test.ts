@@ -46,6 +46,20 @@ describe('menu interpretation', () => {
     const result = extract([{ ...row, name: 'Cappuccino', category: 'cappuccino', sizes: [''], prices: ['5.50'] }, { ...row, name: 'Margherita', category: 'pizza_margherita', sizes: [''], prices: ['18.-'] }]);
     expect(result.prices.map(p => [p.input.drink, p.input.volumeMl, p.input.priceChf])).toEqual([['coffee', null, 5.5], ['pizza', null, 18]]);
   });
+  it('uses the printed medium coffee column, even when columns are reversed', () => {
+    for (const sizes of [['S (2 dl)', 'M (3 dl)', 'L (4 dl)'], ['L (4 dl)', 'M (3 dl)', 'S (2 dl)']]) {
+      const prices = sizes[0].startsWith('S') ? ['4.8', '5.3', '5.8'] : ['5.8', '5.3', '4.8'];
+      const result = extract([{ ...row, name: 'Flat White', category: 'flat_white', sizes, prices }]);
+      expect(result.prices.map(p => p.input)).toMatchObject([{ name: 'Flat White (M, 3 dl)', coffeeType: 'flat_white', priceChf: 5.3, volumeMl: null }]);
+      expect(result.prices).toHaveLength(1);
+    }
+    expect(extract([{ ...row, name: 'Flat White', category: 'flat_white', sizes: ['S', 'M', 'L'], prices: ['4.8', '?', '5.8'] }]).prices).toEqual([]);
+  });
+  it('does not turn iced drinks, tea or extras into standard coffee', () => {
+    for (const name of ['Iced Cappuccino', 'Iced Americano', 'Iced Matcha Latte', 'Chai Latte', 'Hot Chocolate', 'Extra shot', 'Espresso Macchiato']) {
+      expect(extract([{ ...row, name, category: 'cappuccino', sizes: [''], prices: ['5.3'] }]).prices).toEqual([]);
+    }
+  });
   it.each([{ menu: false }, { wrongVenue: true }, { currency: 'other' }, { rows: null }])('rejects a non-matching document %j', patch => {
     expect(() => menuPrices({ ...document(), ...patch }, bar, '2026-10-16')).toThrow();
   });
@@ -58,15 +72,54 @@ describe('OCR calls and cost guard', () => {
     for (const value of [null, { ...image, data: 'not-an-image' }, { ...image, mediaType: 'image/png' }, { ...image, data: 'A'.repeat(2_700_000) }]) expect(() => validateScanImage(value)).toThrow();
   });
   it('keeps maximum input plus output cost inside the cap', () => {
-    for (const input of [0, 1500, 3000, 5000]) expect((input + 256) * .1 / 1e6 + outputTokenBudget(input) * .5 / 1e6).toBeLessThanOrEqual(OCR_BUDGET_USD);
-    for (const input of [NaN, -1, 10001, 9500]) expect(() => outputTokenBudget(input)).toThrow();
+    for (const input of [0, 1500, 3000, 5000, 9500, 50000]) expect((input + 256) * .1 / 1e6 + outputTokenBudget(input) * .5 / 1e6).toBeLessThanOrEqual(OCR_BUDGET_USD);
+    for (const input of [NaN, -1, 50001]) expect(() => outputTokenBudget(input)).toThrow();
+    expect(() => outputTokenBudget(5000, 0.0001)).toThrow();
   });
-  it('counts first, makes one paid request and refuses truncated output', async () => {
-    const fetcher = vi.fn().mockResolvedValueOnce(Response.json({ input_tokens: 3000 })).mockResolvedValueOnce(Response.json({ stop_reason: 'max_tokens', content: [{ type: 'text', text: JSON.stringify(document()) }] }));
-    await expect(readMenu(image, bar, 'test', fetcher)).rejects.toMatchObject({ status: 422 });
-    expect(fetcher).toHaveBeenCalledTimes(2);
+  it('automatically retries a cutoff with more output space and checks only the complete result', async () => {
+    const fetcher = vi.fn()
+      .mockResolvedValueOnce(Response.json({ input_tokens: 3000 }))
+      .mockResolvedValueOnce(Response.json({ stop_reason: 'max_tokens', content: [{ type: 'text', text: '{"menu":true,"rows":[{"name":"broken' }], usage: { input_tokens: 3000, output_tokens: 4096 } }))
+      .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(document()) }], usage: { input_tokens: 3000, output_tokens: 100 } }))
+      .mockResolvedValueOnce(Response.json({ input_tokens: 3000 }))
+      .mockResolvedValueOnce(Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ wrongVenue: false, venueEvidence: '', accepted: [0], rejected: [] }) }], usage: { input_tokens: 3000, output_tokens: 30 } }));
+    const result = await readMenu(image, bar, 'test', fetcher);
+    expect(menuPrices(result.parsed, bar, '2026-10-21').prices).toHaveLength(2);
+    expect(fetcher).toHaveBeenCalledTimes(5);
     expect(String(fetcher.mock.calls[0][0])).toContain('count_tokens');
     expect(JSON.parse(fetcher.mock.calls[1][1].body).max_tokens).toBe(outputTokenBudget(3000));
+    expect(JSON.parse(fetcher.mock.calls[2][1].body).max_tokens).toBe(8192);
+    expect(result.usage).toMatchObject({ inputTokens: 9000, outputTokens: 4226 });
+    expect(result.usage.costUsd).toBeLessThanOrEqual(OCR_BUDGET_USD);
+  });
+  it('checks a menu with more than forty rows in batches and maps rejections back correctly', async () => {
+    const rows = Array.from({ length: 45 }, (_, i) => ({ ...row, name: `Beer ${i}` }));
+    const fetcher = vi.fn().mockImplementation(async (url, options) => {
+      if (String(url).endsWith('count_tokens')) return Response.json({ input_tokens: 3000 });
+      const body = JSON.parse(options.body);
+      const text = body.messages[0].content[1].text;
+      const candidates = text.startsWith('{') ? JSON.parse(text).candidates : undefined;
+      const doc = candidates ? { wrongVenue: false, venueEvidence: '',
+        accepted: candidates.filter((c: any) => c.row.name !== 'Beer 20').map((c: any) => c.id),
+        rejected: candidates.filter((c: any) => c.row.name === 'Beer 20').map((c: any) => ({ id: c.id, reason: 'Unclear' })),
+      } : document(rows);
+      return Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(doc) }] });
+    });
+    const result = await readMenu(image, bar, 'test', fetcher);
+    const parsed = menuPrices(result.parsed, bar, '2026-10-21');
+    expect(parsed.prices).toHaveLength(88);
+    expect(parsed.skipped).toBe(1);
+    expect(parsed.prices.some(p => p.input.name === 'Beer 20')).toBe(false);
+    expect(parsed.prices.some(p => p.input.name === 'Beer 44')).toBe(true);
+    expect(fetcher).toHaveBeenCalledTimes(8);
+  });
+  it('bounds repeated cutoffs without accepting partial data', async () => {
+    const fetcher = vi.fn().mockResolvedValueOnce(Response.json({ input_tokens: 3000 }))
+      .mockImplementation(async () => Response.json({ stop_reason: 'max_tokens', content: [{ type: 'text', text: JSON.stringify(document()) }] }));
+    await expect(readMenu(image, bar, 'test', fetcher)).rejects.toMatchObject({ status: 503 });
+    expect(fetcher).toHaveBeenCalledTimes(4);
+    const reserved = fetcher.mock.calls.slice(1).reduce((sum, call) => sum + 3256 * .1 / 1e6 + JSON.parse(call[1].body).max_tokens * .5 / 1e6, 0);
+    expect(reserved).toBeLessThanOrEqual(OCR_BUDGET_USD);
   });
   it('discards an extracted price if the image check rejects it', async () => {
     const fetcher = vi.fn()
@@ -168,7 +221,15 @@ describe('atomic, repeat-safe scan storage', () => {
     const results = await Promise.allSettled([reserveScan(store, 'same', 'a'), reserveScan(store, 'same', 'b')]);
     expect(results.filter(r => r.status === 'fulfilled')).toHaveLength(1);
     await failScan(store, 'same');
-    await expect(reserveScan(store, 'same', 'a')).rejects.toMatchObject({ status: 422 });
+    await expect(reserveScan(store, 'same', 'a')).rejects.toMatchObject({ status: 429 });
+  });
+  it('allows the same photo again after a short failed-scan cooldown and keeps charging attempt limits', async () => {
+    const store = memoryStore(), now = 1000;
+    await reserveScan(store, 'same', 'a', now);
+    await failScan(store, 'same', now);
+    await expect(reserveScan(store, 'same', 'a', now + 29999)).rejects.toMatchObject({ status: 429 });
+    await expect(reserveScan(store, 'same', 'a', now + 30001)).resolves.toBeUndefined();
+    expect((await store.read()).state.limits['scan:a'].count).toBe(2);
   });
   it('limits paid attempts across instances and expires the limit', async () => {
     const store = memoryStore(), now = 1000;

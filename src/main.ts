@@ -981,7 +981,7 @@ $('menu-photo').onchange = async () => {
     const image = await prepareMenuPhoto(file);
     stage = 'request';
     $('scan-status').textContent = t('Karte wird gelesen und Preise werden gespeichert …');
-    const response = await contributionFetch(`/api/scan-menu?city=${cityId}`, { barId, image, ...(editing ? { edit: { id: editing.communityId, revision: editing.revision || 0, targetKey: editing.originalKey || offerKey(editing), drink: offerCategory(editing) } } : {}) }, 100000);
+    const response = await contributionFetch(`/api/scan-menu?city=${cityId}`, { barId, image, ...(editing ? { edit: { id: editing.communityId, revision: editing.revision || 0, targetKey: editing.originalKey || offerKey(editing), drink: offerCategory(editing) } } : {}) }, 190000);
     const result = await response.json().catch(() => { throw new Error(t('Der Scan ist gerade nicht verfügbar. Bitte später erneut versuchen.')); });
     if (!response.ok) throw new Error(result.error || t('Das Foto konnte nicht verarbeitet werden.'));
     const scanned = result as MenuScanResult;

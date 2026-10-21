@@ -6,6 +6,16 @@ import type { Bar } from '../src/data';
 const enabled = process.env.RUN_MENU_OCR_LIVE === '1';
 const venue = (name: string) => ({ id: 'node/test', name, address: '', postcode: '', offers: [] } as unknown as Bar);
 const reports: unknown[] = [];
+it.skipIf(!enabled || !process.env.OCR_VICAFE_PHOTO)('reads the complete ViCAFE phone photo without asking for a crop', async () => {
+  const { result, bar } = await scan(process.env.OCR_VICAFE_PHOTO!, 'ViCAFE Campus Rondell (UZH Hauptgebäude)');
+  const { prices } = menuPrices(result.parsed, bar, '2026-10-21');
+  expect(prices.map(p => [p.input.coffeeType, p.input.priceChf])).toEqual(expect.arrayContaining([
+    ['espresso', 3.6], ['double', 4], ['americano', 4.5], ['flat_white', 5.3], ['matcha_latte', 5.3],
+  ]));
+  expect(prices.every(p => p.input.drink === 'coffee')).toBe(true);
+  expect(prices.some(p => /iced|chai|chocolate|extra shot/i.test(p.input.name))).toBe(false);
+  expect(prices.some(p => [4.8, 5.8].includes(p.input.priceChf))).toBe(false);
+}, 180000);
 async function scan(path: string, name: string) {
   const bar = venue(name), started = Date.now();
   const result = await readMenu({ data: readFileSync(path).toString('base64'), mediaType: 'image/jpeg' }, bar, process.env.ANTHROPIC_API_KEY!);

@@ -78,9 +78,9 @@ it('ignores injected prices and venue coordinates in the request', async () => {
   expect(result.data.entries[0].offer.priceChf).toBe(5.2);
   expect(result.data.entries[0].venue.name).toBe('Mars Bar');
 });
-it('leaves the store unchanged for unreadable photos and does not charge another call on retry', async () => {
+it('leaves the store unchanged for unreadable photos and does not charge an immediate retry', async () => {
   mocks.readMenu.mockResolvedValue({ parsed: { menu: false, wrongVenue: false, currency: 'unspecified', rows: [] } });
-  expect((await request()).status).toBe(422); expect((await request()).status).toBe(422);
+  expect((await request()).status).toBe(422); expect((await request()).status).toBe(429);
   expect((await store.read()).state.entries).toEqual([]); expect(mocks.readMenu).toHaveBeenCalledTimes(1);
 });
 it('handles missing API configuration without sending the photo or claiming success', async () => {

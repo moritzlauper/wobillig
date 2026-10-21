@@ -71,15 +71,14 @@ export async function protectContribution(req: IncomingMessage, res: ServerRespo
   }
   return actor;
 }
-export async function reservePhotoBudget() {
+export async function reservePhotoBudget(maxCostUsd = 0.01) {
   // Global across all cities, both photo endpoints and all server instances.
   // Reserve before any paid call; failed requests keep their reservation.
   const dollars = Number(process.env.COMMUNITY_PHOTO_DAILY_USD || '2');
   await reserveLimits((await import('./prices.js')).blobStore(securityPath()), [
     { key: 'photos:hour', max: Number(process.env.COMMUNITY_PHOTO_HOURLY_LIMIT || '100'), ms: 3600000 },
     { key: 'photos:day', max: Number(process.env.COMMUNITY_PHOTO_DAILY_LIMIT || '1000'), ms: 86400000 },
-    // Conservatively allocate one US cent per photo; the current model's bounded
-    // token calls cost less. Review this allocation whenever the model changes.
-    { key: 'photos:budget-cents', max: Math.floor(dollars * 100), cost: 1, ms: 86400000 },
+    // Reserve the endpoint's entire ceiling, including bounded scan retries.
+    { key: 'photos:budget-cents', max: Math.floor(dollars * 100), cost: Math.max(1, Math.ceil(maxCostUsd * 100)), ms: 86400000 },
   ]);
 }

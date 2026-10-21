@@ -46,6 +46,13 @@ it('shares the photo budget between every endpoint and city and counts failed wo
   await expect(reservePhotoBudget()).rejects.toMatchObject({ status: 429 });
   expect(mocks.store).toHaveBeenCalledWith('security/production.json');
 });
+it('reserves the full menu-scan retry ceiling from the shared daily budget', async () => {
+  vi.stubEnv('COMMUNITY_PHOTO_DAILY_USD', '0.03');
+  await reservePhotoBudget(0.02);
+  await expect(reservePhotoBudget(0.02)).rejects.toMatchObject({ status: 429 });
+  await reservePhotoBudget();
+  expect((await store.read()).state.securityCounters!['photos:budget-cents'].count).toBe(3);
+});
 it('rejects missing, failed, replayed, wrong-host and wrong-action Turnstile results', async () => {
   vi.stubEnv('CONTRIBUTION_PROTECTION', 'true'); vi.stubEnv('TURNSTILE_SITE_KEY', 'site'); vi.stubEnv('TURNSTILE_SECRET_KEY', 'secret');
   const fetcher = vi.fn(); vi.stubGlobal('fetch', fetcher);

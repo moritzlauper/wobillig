@@ -6,7 +6,7 @@ import { cities, isCity, cityStoragePath } from '../src/cities.js';
 import { communityVenues, InputError, zurichToday } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore } from '../server/prices.js';
-import { MENU_SCAN_VERSION, menuPrices, readMenu, validateScanImage } from '../server/menu-ocr.js';
+import { MENU_SCAN_VERSION, OCR_BUDGET_USD, menuPrices, readMenu, validateScanImage } from '../server/menu-ocr.js';
 import { failScan, parseScanEdit, reserveScan, resolveScanEdit, saveMenuScan, scanResult } from '../server/menu-scan-store.js';
 import { priceOwner } from '../server/price-moderation.js';
 
@@ -55,7 +55,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const cached = await reserveScan(store, hash, visitor);
     if (cached) return reply(200, cached);
     reserved = { store, hash };
-    await reservePhotoBudget();
+    await reservePhotoBudget(OCR_BUDGET_USD);
     const result = await readMenu(image, bar, key);
     const { prices, skipped } = menuPrices(result.parsed, bar, zurichToday());
     if (!prices.length) throw new InputError('Keine eindeutigen Bier-, Kaffee- oder Margherita-Preise erkannt. Bitte einen näheren, scharfen Ausschnitt fotografieren.', 422);
