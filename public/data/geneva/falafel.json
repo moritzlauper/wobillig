@@ -1,6 +1,80 @@
 {
-  "generatedAt": "2026-10-21T07:13:07.089763+00:00",
-  "discoveredAt": "2026-10-21T07:13:07.089775+00:00",
+  "generatedAt": "2026-10-21T10:10:45.079749+00:00",
+  "discoveredAt": "2026-10-21T09:49:50.316819+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
-  "bars": []
+  "bars": [
+    {
+      "id": "node/3669276964",
+      "name": "Al Amir",
+      "lat": 46.2108166,
+      "lon": 6.1462452,
+      "type": "fast_food",
+      "address": "Rue de Berne 37",
+      "postcode": "1201",
+      "website": null,
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Su 10:00-02:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12471445601",
+      "name": "Chez le libanais",
+      "lat": 46.2301666,
+      "lon": 6.0685925,
+      "type": "fast_food",
+      "address": "Route de Meyrin 304a",
+      "postcode": "1217",
+      "website": "https://www.chez-le-libanais-geneve.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Su 11:30-14:00, 17:30-21:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T09:49:53.135870+00:00"
+    },
+    {
+      "id": "node/6402506385",
+      "name": "Fouad Le Snack",
+      "lat": 46.203101,
+      "lon": 6.1578075,
+      "type": "fast_food",
+      "address": "Rue de la Mairie 6",
+      "postcode": "",
+      "website": "https://fouadtraiteur.ch/snack_accueil.html",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Sa 11:00-00:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T09:50:24.659120+00:00"
+    },
+    {
+      "id": "node/2297208591",
+      "name": "Parfums de Beyrouth",
+      "lat": 46.209953,
+      "lon": 6.1458983,
+      "type": "fast_food",
+      "address": "Rue de Berne 18",
+      "postcode": "1201",
+      "website": "https://parfumsdebeyrouth.ch/",
+      "cuisine": [
+        "kebab",
+        "lebanese"
+      ],
+      "openingHours": "Su-Th 11:00-02:00; Fr-Sa 11:00-04:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T09:50:02.195921+00:00"
+    }
+  ]
 }
