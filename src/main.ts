@@ -501,7 +501,7 @@ function render() {
     const zIndex = b.id === selected ? 2000 : o ? 1000 : 0;
     const marker = L.marker([b.lat, b.lon], {
       icon: L.divIcon({
-        className: `marker-wrap${o ? '' : ' unpriced-marker'}`,
+        className: `marker-wrap${o ? '' : ' unpriced-marker'}${b.id === selected ? ' selected-marker' : ''}`,
         html: o
           ? `<span class="price-marker ${b.id === selected ? 'active' : ''}">${money(cost(o, f.mode))}</span>`
           : `<span class="price-marker unknown ${b.id === selected ? 'active' : ''}">·</span><span class="venue-marker-name">${e(b.name)}</span>`,
@@ -1116,7 +1116,7 @@ async function init() {
   const linkedId = initial.get('bar');
   if (linkedId) {
     const linkedBar = bars.find(b => b.id === linkedId);
-    if (linkedBar) showBar(linkedBar);
+    if (linkedBar) showBar(linkedBar, detailMarkersMinZoom);
     else toast(t('Das geteilte Lokal ist gerade nicht verfügbar.'));
   } else if (f.query.trim() && f.query === initial.get('q')) {
     searchOpen = true;

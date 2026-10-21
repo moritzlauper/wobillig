@@ -198,9 +198,12 @@ main { display: flex; flex: 1; min-height: 0; }
 .price-marker.unknown { border: 1px solid var(--strong-border); color: var(--muted); padding: 0; height: 14px; width: 14px; font-size: 13px; line-height: 10px; border-radius: 50%; }
 .unpriced-marker { display: none; flex-direction: column; align-items: center; padding-top: 15px; cursor: pointer; }
 #map.show-unpriced-markers .unpriced-marker { display: flex; }
+#map .unpriced-marker.selected-marker { display: flex; }
 .unpriced-marker .unknown { flex-shrink: 0; }
+.unpriced-marker.selected-marker .unknown { background: var(--primary); color: var(--on-primary); border: 2px solid var(--surface); outline: 2px solid var(--primary); transform: scale(1.3); }
 .venue-marker-name { display: none; flex-shrink: 0; width: max-content; max-width: 132px; margin-top: 2px; padding: 2px 4px; border: 1px solid var(--border); border-radius: 3px; background: var(--overlay); color: var(--marker-border); font: 11px/14px Arial, sans-serif; text-align: center; }
 #map.show-venue-names .venue-marker-name { display: block; }
+.selected-marker .venue-marker-name { display: block; max-width: 180px; font-weight: bold; border-color: var(--primary); }
 .unpriced-marker:hover .unknown, .unpriced-marker:focus-visible .unknown { outline: 2px solid var(--focus); }
 .unpriced-marker:hover .venue-marker-name { border-color: var(--marker-border); }
 .marker-wrap.highlighted .price-marker { background: var(--teal-active); color: #fff; border-color: #fff; outline: 2px solid var(--teal); box-shadow: 0 3px 10px #0005; transform: scale(1.15); }
