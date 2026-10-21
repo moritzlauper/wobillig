@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-21T07:46:02.451333+00:00",
-  "discoveredAt": "2026-10-21T07:45:44.596755+00:00",
+  "generatedAt": "2026-10-21T09:26:06.330871+00:00",
+  "discoveredAt": "2026-10-21T08:45:04.610439+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -19,7 +19,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-21T07:14:07.957469+00:00",
+      "checkedAt": "2026-10-21T08:45:16.441925+00:00",
       "pizzaMenu": []
     },
     {
@@ -38,7 +38,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-21T07:14:07.957589+00:00",
+      "checkedAt": "2026-10-21T08:45:16.866278+00:00",
       "pizzaMenu": []
     },
     {
@@ -58,7 +58,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-21T07:14:07.957843+00:00",
+      "checkedAt": "2026-10-21T08:45:20.027136+00:00",
       "pizzaMenu": []
     },
     {
@@ -77,9 +77,23 @@
       ],
       "openingHours": "Mo-Th 09:00-22:30; Fr 09:00-23:30; Sa 18:30-23:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://adretissimo.ch/menua/menu-adretissimo.html",
+          "observedAt": "2026-10-21T08:45:04.654618+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 17.-",
+          "alcoholFree": true,
+          "sourceSha256": "7b7603f173e8a6f68eba551ed3d94f788925042e35dc61aa4e4171edd23738ab"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:45:04.654618+00:00",
+      "pizzaMenu": []
     },
     {
       "id": "node/994392629",
@@ -99,6 +113,42 @@
       "scrapeStatus": "pending",
       "checkedAt": null,
       "addressSource": "https://www.openstreetmap.org/node/1933508026"
+    },
+    {
+      "id": "node/4346039505",
+      "name": "Al quadrato",
+      "lat": 46.2130016,
+      "lon": 6.1477549,
+      "type": "restaurant",
+      "address": "Rue de Berne 55",
+      "postcode": "1201",
+      "website": "https://www.alquadrato.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00, 18:30-23:00; Su 18:30-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "https://www.alquadrato.ch/carte",
+          "observedAt": "2026-10-21T08:46:45.198265+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 15",
+          "alcoholFree": true,
+          "sourceSha256": "df39c623971cef2b0eb8b91acc99f99aa05d547973bb1c14badbb7ef218eb2e9"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:46:45.198265+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.alquadrato.ch/vins",
+        "evidence": "Nos Vins — Al Quadrato · Ristorante & Pizzeria Italiana · Genève"
+      }
     },
     {
       "id": "node/3783830167",
@@ -229,6 +279,30 @@
       "addressSource": "https://www.openstreetmap.org/way/79885384"
     },
     {
+      "id": "node/9456587509",
+      "name": "Café Le Jet d’Eau",
+      "lat": 46.2051895,
+      "lon": 6.160455,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.restaurant-pizzeria-jetdeau.ch/",
+      "cuisine": [
+        "italian",
+        "italian_pizza"
+      ],
+      "openingHours": "Mo-Sa 11:30-15:00, 18:30-00:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-21T08:51:17.485815+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.restaurant-pizzeria-jetdeau.ch/",
+        "evidence": "Restaurant Pizzeria Café du jet d'eau à Genève"
+      }
+    },
+    {
       "id": "node/12534154701",
       "name": "Café-Restaurant du Rhône",
       "lat": 46.2011484,
@@ -301,6 +375,38 @@
       "addressSource": "https://www.openstreetmap.org/node/2390681537"
     },
     {
+      "id": "node/460448894",
+      "name": "Chez Nina",
+      "lat": 46.2283206,
+      "lon": 6.120049,
+      "type": "restaurant",
+      "address": "Rue Sonnex 17bis",
+      "postcode": "1218",
+      "website": "https://restaurant-cheznina.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:30-15:00,18:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://restaurant-cheznina.ch/wp-content/uploads/2020/04/CARTE-COMPLETE-av.-desserts-sugg-2.pdf",
+          "observedAt": "2026-10-21T08:51:50.617479+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: Margherita 17.-",
+          "alcoholFree": true,
+          "sourceSha256": "07c293fbf5d75da97367eb75ba025b9341d34154a201aeac5f5b8729929426cf"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:51:50.617479+00:00",
+      "pizzaMenu": []
+    },
+    {
       "id": "node/2303458090",
       "name": "Cinecitta",
       "lat": 46.2033207,
@@ -316,7 +422,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:14:07.957955+00:00",
+      "checkedAt": "2026-10-21T08:45:26.379274+00:00",
       "pizzaMenu": []
     },
     {
@@ -334,8 +440,13 @@
       "openingHours": "Mo 07:00-14:30; Tu-Fr 08:00-14:30; Sa 09:00-14:30; Mo, Tu, Th-Sa 17:30-00:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null,
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T08:45:04.654924+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://d-ka.ch/MenuSpecialites",
+        "evidence": "Menu Specialites | D'Ka Restaurant Pizzeria"
+      },
       "addressSource": "https://www.openstreetmap.org/node/2131156164"
     },
     {
@@ -373,7 +484,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:07.958065+00:00",
+      "checkedAt": "2026-10-21T08:45:26.598100+00:00",
       "pizzaMenu": []
     },
     {
@@ -428,8 +539,13 @@
       "openingHours": "Mo-Sa 11:00-14:00,18:00-23:00; Su 18:00-23:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T08:45:04.761419+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://pizzeria-davinci.ch/menu-midi/",
+        "evidence": "Menu midi | Pizzeria - Da Vinci"
+      }
     },
     {
       "id": "node/12041163090",
@@ -447,7 +563,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:08.006132+00:00",
+      "checkedAt": "2026-10-21T08:45:34.243682+00:00",
       "pizzaMenu": [],
       "pizzaEvidence": {
         "sourceUrl": "https://pizzeriadagliamici.ch/",
@@ -587,7 +703,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:08.013550+00:00",
+      "checkedAt": "2026-10-21T08:45:44.156936+00:00",
       "pizzaMenu": []
     },
     {
@@ -682,7 +798,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:14:14.244919+00:00",
+      "checkedAt": "2026-10-21T08:45:51.252601+00:00",
       "pizzaMenu": []
     },
     {
@@ -721,7 +837,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-21T07:14:14.257047+00:00",
+      "checkedAt": "2026-10-21T08:45:51.426883+00:00",
       "pizzaMenu": []
     },
     {
@@ -805,6 +921,27 @@
       "checkedAt": null
     },
     {
+      "id": "node/3750859336",
+      "name": "L'Italia",
+      "lat": 46.1974746,
+      "lon": 6.1435181,
+      "type": "restaurant",
+      "address": "Boulevard des Philosophes 4",
+      "postcode": "1205",
+      "website": "https://www.restaurant-pizzeria-italia-geneve.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Sa 11:30-14:00,18:30-23:30, Su off",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T08:46:20.093378+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.restaurant-pizzeria-italia-geneve.ch/",
+        "evidence": "L'Italia : un restaurant et une pizzeria à Plainpalais"
+      }
+    },
+    {
       "id": "node/13369286238",
       "name": "La Baracca Pizzeria",
       "lat": 46.1974432,
@@ -817,8 +954,46 @@
       "openingHours": "Tu-Su 17:30-22:30",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "ambiguous_prices",
+      "checkedAt": "2026-10-21T08:45:04.651311+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/11380016670",
+      "name": "La Cantinella",
+      "lat": 46.2025653,
+      "lon": 6.1446625,
+      "type": "restaurant",
+      "address": "Rue de la Tour-de-Boël 2",
+      "postcode": "1204",
+      "website": "https://www.la-cantinella-geneve.ch/",
+      "cuisine": [
+        "italian",
+        "italian_pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://41453dd0-00c8-4ca8-820d-fe9e0e4505d5.filesusr.com/ugd/802594_65733b7427f749eab9512a00139e1b90.pdf",
+          "observedAt": "2026-10-21T09:00:46.184430+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: MARGHERITA  17 .-",
+          "alcoholFree": true,
+          "sourceSha256": "cfe121025dd6452ce93107524129c1e239747c068d2035fe97f91da5c1a4016a"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:00:46.184430+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.la-cantinella-geneve.ch/restaurant",
+        "evidence": "La Cantinella, Pizzeria, Restaurant, vieille ville de Genève"
+      }
     },
     {
       "id": "node/528517477",
@@ -872,10 +1047,65 @@
       ],
       "openingHours": "Mo-Fr 09:30-14:30, 17:30-22:30; Sa 10:00-14:30, 17:30-22:30; Su 17:30-22:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://lafontenette.ch/",
+          "observedAt": "2026-10-21T08:45:04.771109+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita Sauce tomate, mozzarella, basilic. 17.00 CHF",
+          "alcoholFree": true,
+          "sourceSha256": "8657663cf49d9ea0f43296d37aece61692f057e83ce016d9b04312e01f27a329"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:45:04.771109+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://lafontenette.ch/",
+        "evidence": "La Fontenette — Pizzeria italienne à Carouge, Genève"
+      },
       "addressSource": "https://www.openstreetmap.org/way/183229653"
+    },
+    {
+      "id": "node/12682198208",
+      "name": "La Fumisterie",
+      "lat": 46.1886995,
+      "lon": 6.1345598,
+      "type": "restaurant",
+      "address": "Rue des Noirettes 21",
+      "postcode": "1227",
+      "website": "https://la-fumisterie.ch/",
+      "cuisine": [
+        "italian",
+        "local"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:30; Tu-Fr 17:00-24:00; Sa 17:00-24:00, Su 00:00-01:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://www.la-fumisterie.ch/la-fumisterie-chez-ernest/carte",
+          "observedAt": "2026-10-21T09:01:24.441518+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 17 CHF",
+          "alcoholFree": true,
+          "sourceSha256": "dedc3708e20a6526115a1e5531008819bec186cf98316cdd74b300d1edafe882"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:01:24.441518+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.la-fumisterie.ch/",
+        "evidence": "La Fumisterie Carouge | Restaurant Pizzeria Lounge Bar"
+      }
     },
     {
       "id": "node/3670446653",
@@ -893,7 +1123,42 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:14:17.442915+00:00",
+      "checkedAt": "2026-10-21T08:45:51.467098+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/11219789407",
+      "name": "La Kitchen by Westhive",
+      "lat": 46.1864796,
+      "lon": 6.126327,
+      "type": "restaurant",
+      "address": "Esplanade de Pont-Rouge 9A",
+      "postcode": "1212",
+      "website": "https://www.westhive.com/fr/restauration/la-kitchen-geneve-pont-rouge/",
+      "cuisine": [
+        "salad",
+        "pasta",
+        "regional",
+        "burger"
+      ],
+      "openingHours": "Mo-We 07:30-15:00; Th 07:30-19:00; Fr 07:30-15:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 14.9,
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/after-work/",
+          "observedAt": "2026-10-21T09:02:00.898490+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita * Tomato sauce, mozzarella, basil. 14.90",
+          "alcoholFree": true,
+          "sourceSha256": "c5c4ceeee6254eaf813cc6870a7240e1bfbd31cf6f8ff69b17b814772bb150d7"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:02:00.898490+00:00",
       "pizzaMenu": []
     },
     {
@@ -916,6 +1181,63 @@
       "addressSource": "https://www.openstreetmap.org/node/3658924930"
     },
     {
+      "id": "node/10928715517",
+      "name": "La Perla",
+      "lat": 46.2151479,
+      "lon": 6.1337609,
+      "type": "restaurant",
+      "address": "Rue du Grand-Pré 52",
+      "postcode": "",
+      "website": "https://www.laperlaristorante.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 11:30-14:00,18:30-22:30; Su 18:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://laperlaristorante.ch/",
+          "observedAt": "2026-10-21T09:02:28.532388+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 17.- CHF",
+          "alcoholFree": true,
+          "sourceSha256": "b99fe50a19cfd44dcbf78e201a6e122190861137572978229016bce556e086a7"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:02:28.532388+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://laperlaristorante.ch/",
+        "evidence": "Ristorante Pizzeria La Perla"
+      }
+    },
+    {
+      "id": "node/4502591790",
+      "name": "La Pignata",
+      "lat": 46.2003558,
+      "lon": 6.139729,
+      "type": "restaurant",
+      "address": "Avenue du Mail 3",
+      "postcode": "1204",
+      "website": "https://lapignata.ch/",
+      "cuisine": [
+        "italian_pizza"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:00,18:30-22:30; Su 18:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T09:02:30.590117+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.lapignata.ch/",
+        "evidence": "La Pignata | Pizzeria Restaurant Italien à Genève"
+      }
+    },
+    {
       "id": "node/12889351443",
       "name": "La Pizzeria du Coin",
       "lat": 46.1876526,
@@ -932,8 +1254,9 @@
       "openingHours": "Mo-Sa 09:00-23:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T08:45:04.652168+00:00",
+      "pizzaMenu": []
     },
     {
       "id": "node/2284327864",
@@ -953,7 +1276,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:17.500547+00:00",
+      "checkedAt": "2026-10-21T08:45:51.680187+00:00",
       "pizzaMenu": []
     },
     {
@@ -972,8 +1295,44 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-21T07:14:22.583414+00:00",
+      "checkedAt": "2026-10-21T08:45:52.289044+00:00",
       "pizzaMenu": []
+    },
+    {
+      "id": "node/929127624",
+      "name": "La Romana",
+      "lat": 46.2190855,
+      "lon": 6.1376074,
+      "type": "restaurant",
+      "address": "Rue de Vermont 37",
+      "postcode": "1202",
+      "website": "https://www.la-romana-geneve.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,18:30-22:00; Sa 18:30-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://la-romana-geneve.ch/pizza-a-emporter-geneve/",
+          "observedAt": "2026-10-21T09:02:43.487903+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita // 16.-",
+          "alcoholFree": true,
+          "sourceSha256": "8de7d5daf9e43ea518f0985f59ba9ff3b8e64d489351748c3bf57555015b2492"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:02:43.487903+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://la-romana-geneve.ch/pizzeria-geneve/",
+        "evidence": "La Meilleure Pizzeria Genevoise - LA ROMANA"
+      }
     },
     {
       "id": "node/11755331872",
@@ -990,9 +1349,23 @@
       ],
       "openingHours": "Mo-Fr 11:40-14:00; Mo-Sa 18:30-22:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "https://www.restaurantlaruota.com/_files/ugd/9e7243_808c976c05b34f29b086d0c694fc9dec.pdf",
+          "observedAt": "2026-10-21T08:45:08.196660+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: Margherita 15.00",
+          "alcoholFree": true,
+          "sourceSha256": "d6d9d3603fd169849aeef932753ac7f47ea7a3437c44eaf1781f190b055b336f"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T08:45:08.196660+00:00",
+      "pizzaMenu": []
     },
     {
       "id": "node/13266873540",
@@ -1031,7 +1404,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-21T07:14:35.698293+00:00",
+      "checkedAt": "2026-10-21T08:45:59.767372+00:00",
       "pizzaMenu": [],
       "pizzaEvidence": {
         "sourceUrl": "https://www.grand-bleu.ch/",
@@ -1058,6 +1431,50 @@
       "addressSource": "https://www.openstreetmap.org/node/2217025845"
     },
     {
+      "id": "node/1015581939",
+      "name": "Le Nant d'Avril",
+      "lat": 46.2250434,
+      "lon": 6.0595092,
+      "type": "restaurant",
+      "address": "Route du Nant-d'Avril 107",
+      "postcode": "",
+      "website": "https://www.grill-house.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-21T09:05:31.824902+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.grill-house.ch/",
+        "evidence": "Restaurant Grill House | Pizzeria et Pizza au feu de bois à Meyrin"
+      }
+    },
+    {
+      "id": "node/5180942221",
+      "name": "Le Vieux Pressoir",
+      "lat": 46.1764661,
+      "lon": 6.1378728,
+      "type": "restaurant",
+      "address": "Route de Drize 6",
+      "postcode": "1227",
+      "website": "https://levieuxpressoir.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 08:00-22:00; Sa 09:00-22:00; Su 09:00-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T09:05:55.024725+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://levieuxpressoir.ch/",
+        "evidence": "Le Vieux Pressoir - Restaurant & Pizzeria à Carouge"
+      }
+    },
+    {
       "id": "way/192773086",
       "name": "Les Marroniers",
       "lat": 46.1687881,
@@ -1073,8 +1490,9 @@
       "openingHours": "Mo-Sa 11:45-14:00, 18:45-22:30",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-21T08:45:10.990658+00:00",
+      "pizzaMenu": []
     },
     {
       "id": "node/3747387938",
@@ -1116,6 +1534,40 @@
       "checkedAt": null
     },
     {
+      "id": "node/12549557901",
+      "name": "Maison Marani",
+      "lat": 46.2076953,
+      "lon": 6.1238542,
+      "type": "restaurant",
+      "address": "Avenue d'Aïre 24",
+      "postcode": "1203",
+      "website": "https://www.maisonmarani.ch/",
+      "cuisine": [
+        "georgian",
+        "italian",
+        "italian_pizza"
+      ],
+      "openingHours": "Tu-Fr 12:00-14:30, 18:30-23:00; Sa 18:30-23:00; Su 12:00-14:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://www.maisonmarani.ch/wa_files/carte%20mm.pdf",
+          "observedAt": "2026-10-21T09:09:00.723768+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 10: 1. Margherita CHF 17.-",
+          "alcoholFree": true,
+          "sourceSha256": "f39b50dc9ca20f1d7d8452530a8f166c11dc16dd1c106a1cbf97f21263cc1bba"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:09:00.723768+00:00",
+      "pizzaMenu": []
+    },
+    {
       "id": "node/2352167035",
       "name": "Mamma Corleone",
       "lat": 46.2069866,
@@ -1134,6 +1586,43 @@
       "checkedAt": null
     },
     {
+      "id": "node/9522633538",
+      "name": "Mangia Bene",
+      "lat": 46.1954536,
+      "lon": 6.140683,
+      "type": "restaurant",
+      "address": "Boulevard Carl-Vogt 99",
+      "postcode": "1205",
+      "website": "https://www.mangiabene-restaurant.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:45-14:00, 19:00-00:00; Sa 19:00-00:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/5548ce5c70e77eb74303597f/5d4beee35c89801102be0861_pizza-MANGIABENE.jpg",
+          "observedAt": "2026-10-21T09:09:31.355292+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: Margherita V 16.50",
+          "alcoholFree": true,
+          "extractionMethod": "ocr",
+          "sourceSha256": "012969245374c981943bc27aff7c7bd219b0b378ccce4526e552eff540ffbe72"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:09:31.355292+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.mangiabene-restaurant.ch",
+        "evidence": "Mangia Bene | Restaurant et Pizzeria Italien | Genève"
+      }
+    },
+    {
       "id": "node/6475660589",
       "name": "Molino Pizzeria Ristorante",
       "lat": 46.2033515,
@@ -1150,7 +1639,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-21T07:14:07.957284+00:00",
+      "checkedAt": "2026-10-21T08:45:04.654108+00:00",
       "pizzaMenu": [],
       "pizzaEvidence": {
         "sourceUrl": "https://molino.ch/en/",
@@ -1174,8 +1663,13 @@
       "openingHours": "Mo 12:00-14:00; Tu-We 12:00-14:00, 19:00-21:30; Th 12:00-14:00, 17:30-22:00; Fr 12:00-14:00, 18:30-22:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "ambiguous_prices",
+      "checkedAt": "2026-10-21T08:45:11.412443+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://reservation.nocinopizzeria.com/copy-of-menu-à-emporter",
+        "evidence": "L'EMPORTER à PETITS PRIX | Nocino Pizzeria"
+      }
     },
     {
       "id": "node/2395622180",
@@ -1194,7 +1688,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:36.629481+00:00",
+      "checkedAt": "2026-10-21T08:46:04.249995+00:00",
       "pizzaMenu": []
     },
     {
@@ -1229,7 +1723,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:14:42.548237+00:00",
+      "checkedAt": "2026-10-21T08:46:37.592872+00:00",
       "pizzaMenu": []
     },
     {
@@ -1375,8 +1869,9 @@
       "openingHours": "Mo-Fr 11:30-14:30,18:30-00:00; Sa 11:30-15:30,18:30-00:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-21T08:45:04.652481+00:00",
+      "pizzaMenu": []
     },
     {
       "id": "node/13261087013",
@@ -1518,8 +2013,13 @@
       "openingHours": "Mo-Fr 08:00-23:30; Sa-Su 11:00-15:00,17:30-23:30",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-21T08:45:04.652797+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.pizzeria-les-ormeaux.ch",
+        "evidence": "Les Ormeaux Petit-Lancy - Café Restaurant Pizzeria"
+      }
     },
     {
       "id": "node/4868409621",
@@ -1594,7 +2094,39 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:14:07.957398+00:00",
+      "checkedAt": "2026-10-21T08:45:04.654350+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/9671451981",
+      "name": "Restaurant L'Ambiance",
+      "lat": 46.2114857,
+      "lon": 6.1261186,
+      "type": "restaurant",
+      "address": "Rue Châtelain 5",
+      "postcode": "",
+      "website": "https://www.ambiance-restaurant.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Su 11:00-15:00,18:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 14.0,
+          "sourceUrl": "https://ambiance-restaurant.ch/notre-carte/",
+          "observedAt": "2026-10-21T09:15:57.509868+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita (Tomates, mozzarella) 14.-",
+          "alcoholFree": true,
+          "sourceSha256": "c0177cdad31c35911bc0c0b73f89e2afc3c76c338243dda27517ff7bf0d01e28"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:15:57.509868+00:00",
       "pizzaMenu": []
     },
     {
@@ -1701,6 +2233,29 @@
       "addressSource": "https://www.openstreetmap.org/way/180369014"
     },
     {
+      "id": "node/8987593637",
+      "name": "Spaghetti d'Oro",
+      "lat": 46.1937174,
+      "lon": 6.143534,
+      "type": "restaurant",
+      "address": "Rue de Carouge 56",
+      "postcode": "1205",
+      "website": "https://www.spaghettidoro.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:00,18:30-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T09:18:21.316870+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.spaghettidoro.ch",
+        "evidence": "Pizzeria | Spaghetti d'Oro | Genève"
+      }
+    },
+    {
       "id": "node/12021850286",
       "name": "SPARK",
       "lat": 46.1674965,
@@ -1718,6 +2273,74 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/12922818601",
+      "name": "Terra Rossa",
+      "lat": 46.2121604,
+      "lon": 6.1425239,
+      "type": "restaurant",
+      "address": "Rue des Gares 19",
+      "postcode": "1202",
+      "website": "https://terrarossa-restaurant.ch",
+      "cuisine": [
+        "italian",
+        "italian_pizza"
+      ],
+      "openingHours": "Mo-Fr 09:00-15:00, 17:30-23:00; Sa 18:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "https://terrarossa-restaurant.ch/wp-content/uploads/2026/09/MENU-TERRA-ROSSA-AUTOMNE-2026-web.pdf",
+          "observedAt": "2026-10-21T09:18:40.708781+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: MARGHERITA 15 CHF",
+          "alcoholFree": true,
+          "sourceSha256": "0c406529e04644684b72bd4fe37c74eb9dad0ac3d1f4843478e156a590cb83ba"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:18:40.708781+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/9547235517",
+      "name": "Vicolo39",
+      "lat": 46.1814295,
+      "lon": 6.14106,
+      "type": "restaurant",
+      "address": "Rue Ancienne 39",
+      "postcode": "1227",
+      "website": "https://www.vicolo39.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.vicolo39.ch/it/menu-pizzeria/",
+          "observedAt": "2026-10-21T09:20:11.452502+00:00",
+          "confidence": "automatic",
+          "evidence": "MARGHERITA 18.-",
+          "alcoholFree": true,
+          "sourceSha256": "46e82feb1fdc78de5adcb83d6cd8e5d2fb96af4927c3302b7acad0571987dc1b"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T09:20:11.452502+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.vicolo39.ch/it/menu-pizzeria/",
+        "evidence": "Menù Pizzeria - VICOLO39"
+      },
+      "addressSource": "https://www.openstreetmap.org/way/184149609"
     }
   ]
 }
