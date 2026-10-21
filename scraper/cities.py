@@ -11,7 +11,23 @@ CITY_NAME, WIKIDATA = CITIES[CITY]
 DATA_DIR = ROOT / 'public/data' / ('' if CITY == 'zurich' else CITY)
 STATE_DIR = ROOT / 'scraper' / ('' if CITY == 'zurich' else f'cities/{CITY}')
 CACHE_DIR = ROOT / 'scraper/cache' / CITY
-AREA = f'area["name"="{CITY_NAME}"]["admin_level"="8"]["wikidata"="{WIKIDATA}"]->.city;'
+# Geneva covers the Swiss urban surroundings as well as the central municipality.
+# Explicit municipal areas keep French neighbours and the rural canton out.
+# All discovery/address queries share this area set.
+GENEVA_MUNICIPALITIES = (
+    ('Genève', 'Q71'), ('Carouge', 'Q69364'), ('Lancy', 'Q64065'),
+    ('Vernier', 'Q63922'), ('Meyrin', 'Q68230'), ('Onex', 'Q68240'),
+    ('Le Grand-Saconnex', 'Q69714'), ('Pregny-Chambésy', 'Q69822'),
+    ('Cologny', 'Q69245'), ('Chêne-Bougeries', 'Q69530'),
+    ('Chêne-Bourg', 'Q69035'), ('Thônex', 'Q68201'),
+    ('Veyrier', 'Q69587'), ('Troinex', 'Q69817'),
+    ('Plan-les-Ouates', 'Q65273'), ('Vandœuvres', 'Q65522'),
+)
+MUNICIPALITIES = GENEVA_MUNICIPALITIES if CITY == 'geneva' else ((CITY_NAME, WIKIDATA),)
+AREA = '(' + ''.join(
+    f'area["name"="{name}"]["admin_level"="8"]["wikidata"="{wikidata}"];'
+    for name, wikidata in MUNICIPALITIES
+) + ')->.city;'
 
 
 def venue_query(amenities):

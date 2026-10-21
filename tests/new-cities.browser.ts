@@ -8,6 +8,18 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/api/tip?*', route => route.fulfill({ status: 503, json: {} }));
 });
 
+test('Geneva includes cafes and bars in Carouge', async ({ page }) => {
+  for (const [drink, id, name] of [
+    ['coffee', 'node/6312663914', 'Blue Balloon Café'],
+    ['beer', 'node/5860680786', 'Bar du Nord'],
+  ]) {
+    await page.goto(`/en/genf?drink=${drink}&bar=${encodeURIComponent(id)}`);
+    await expect(page.locator('#detail')).toBeVisible();
+    await expect(page.locator('#detail')).toContainText(name);
+    await expect(page.locator('#detail')).toContainText('1227');
+  }
+});
+
 for (const width of [320, 1280]) {
   test(`compact city menu, English defaults and city requests at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });

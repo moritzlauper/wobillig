@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-21T07:17:00.371069+00:00",
-  "discoveredAt": "2026-10-21T07:13:07.089775+00:00",
+  "generatedAt": "2026-10-21T07:46:02.451333+00:00",
+  "discoveredAt": "2026-10-21T07:45:44.596755+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -62,6 +62,26 @@
       "pizzaMenu": []
     },
     {
+      "id": "node/10564958422",
+      "name": "Adretissimo",
+      "lat": 46.1871196,
+      "lon": 6.124144,
+      "type": "restaurant",
+      "address": "Place de Pont-Rouge 2",
+      "postcode": "1212",
+      "website": "https://www.adretissimo.ch/",
+      "cuisine": [
+        "italian",
+        "pizza",
+        "pasta"
+      ],
+      "openingHours": "Mo-Th 09:00-22:30; Fr 09:00-23:30; Sa 18:30-23:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/994392629",
       "name": "Age d'Or",
       "lat": 46.2080041,
@@ -74,6 +94,24 @@
         "pizza"
       ],
       "openingHours": "Mo-Sa 10:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/3783830167",
+      "name": "Al Volo",
+      "lat": 46.2309981,
+      "lon": 6.1100514,
+      "type": "restaurant",
+      "address": "Route de la Vorge",
+      "postcode": "1215",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Su 09:00-23:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
@@ -205,6 +243,24 @@
       "checkedAt": null
     },
     {
+      "id": "node/3469265093",
+      "name": "Caroll",
+      "lat": 46.1913389,
+      "lon": 6.1091934,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/4747113121",
       "name": "Chaupan Kebab Pizza",
       "lat": 46.2034255,
@@ -256,6 +312,24 @@
       "scrapeStatus": "fetch_failed",
       "checkedAt": "2026-10-21T07:14:07.957955+00:00",
       "pizzaMenu": []
+    },
+    {
+      "id": "node/10964357361",
+      "name": "D'Ka",
+      "lat": 46.1739335,
+      "lon": 6.1238294,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://d-ka.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo 07:00-14:30; Tu-Fr 08:00-14:30; Sa 09:00-14:30; Mo, Tu, Th-Sa 17:30-00:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
     },
     {
       "id": "node/10880597537",
@@ -333,6 +407,24 @@
       "checkedAt": null
     },
     {
+      "id": "node/9556845921",
+      "name": "Da Vinci",
+      "lat": 46.2297076,
+      "lon": 6.0620713,
+      "type": "fast_food",
+      "address": "Route du Mandement 12",
+      "postcode": "1217",
+      "website": "https://pizzeria-davinci.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 11:00-14:00,18:00-23:00; Su 18:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/12041163090",
       "name": "Dagli Amici",
       "lat": 46.203664,
@@ -356,6 +448,44 @@
       }
     },
     {
+      "id": "node/12785373159",
+      "name": "Dal Pazzo",
+      "lat": 46.1904727,
+      "lon": 6.1343091,
+      "type": "restaurant",
+      "address": "Route des Acacias 36",
+      "postcode": "1227",
+      "website": null,
+      "cuisine": [
+        "italian",
+        "pasta",
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 09:00-23:30; Su 09:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/5796660079",
+      "name": "Domino's",
+      "lat": 46.1881113,
+      "lon": 6.1385525,
+      "type": "fast_food",
+      "address": "Rue Caroline 49",
+      "postcode": "1227",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-13:30, 17:00-23:00; Fr 11:00-13:30, 17:00-23:59; Sa 11:00-23:59; Su 11:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/4513562643",
       "name": "Domino's Pizza",
       "lat": 46.2142631,
@@ -368,6 +498,42 @@
         "pizza"
       ],
       "openingHours": "Mo-Th 11:00-13:30,17:00-22:15; Fr,Sa 11:00-22:45; Su 11:00-22:15",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/10068691787",
+      "name": "Domino's pizza",
+      "lat": 46.1759462,
+      "lon": 6.1199337,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-13:30, 17:00-22:30; Fr 11:00-13:30, 17:00-23:00; Sa 11:00-23:00; Su 11:00-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/8588438478",
+      "name": "Formule 10",
+      "lat": 46.2160716,
+      "lon": 6.1182178,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:00-14:00, Su-Th 17:30-22:30, Fr,Sa 17:30-23:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
@@ -414,6 +580,24 @@
       "pizzaMenu": []
     },
     {
+      "id": "node/528517476",
+      "name": "I Sapori",
+      "lat": 46.2364546,
+      "lon": 6.1266914,
+      "type": "restaurant",
+      "address": "Route de Colovrex 22",
+      "postcode": "1218",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/13083798591",
       "name": "Il Fornello Napoletano",
       "lat": 46.2142358,
@@ -444,6 +628,26 @@
         "pizza"
       ],
       "openingHours": "Mo-Su 06:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/707091080",
+      "name": "Il Vesuvio",
+      "lat": 46.2191524,
+      "lon": 6.0924702,
+      "type": "restaurant",
+      "address": "Route de Vernier 161",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "italian",
+        "pizza",
+        "pasta"
+      ],
+      "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
@@ -509,6 +713,48 @@
       "pizzaMenu": []
     },
     {
+      "id": "way/24927565",
+      "name": "L'Epic",
+      "lat": 46.1684293,
+      "lon": 6.1045583,
+      "type": "restaurant",
+      "address": "Chemin des Aulx 10",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "french",
+        "sandwich",
+        "pizza",
+        "burger"
+      ],
+      "openingHours": "Mo-Fr 09:00-17:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/9862863747",
+      "name": "L'Essentiel",
+      "lat": 46.1658425,
+      "lon": 6.1026819,
+      "type": "restaurant",
+      "address": "Route de la Galaise 21a",
+      "postcode": "1228",
+      "website": null,
+      "cuisine": [
+        "sandwich",
+        "salad",
+        "pizza",
+        "french"
+      ],
+      "openingHours": "Mo-Fr 06:30-20:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/6576684085",
       "name": "L'Etna",
       "lat": 46.2052587,
@@ -547,6 +793,41 @@
       "checkedAt": null
     },
     {
+      "id": "node/13369286238",
+      "name": "La Baracca Pizzeria",
+      "lat": 46.1974432,
+      "lon": 6.1945022,
+      "type": "fast_food",
+      "address": "Avenue de Bel-Air 13",
+      "postcode": "",
+      "website": "https://www.labaracca-pizzeria.ch/",
+      "cuisine": [],
+      "openingHours": "Tu-Su 17:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/528517477",
+      "name": "La Colombière",
+      "lat": 46.2338358,
+      "lon": 6.1230294,
+      "type": "restaurant",
+      "address": "Route de Ferney 171",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/12229286530",
       "name": "La Conca d'Oro",
       "lat": 46.2007246,
@@ -559,6 +840,25 @@
         "pizza"
       ],
       "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1935993965",
+      "name": "La Fontenette",
+      "lat": 46.185176,
+      "lon": 6.1463767,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://lafontenette.ch/",
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 09:30-14:30, 17:30-22:30; Sa 10:00-14:30, 17:30-22:30; Su 17:30-22:30",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
@@ -582,6 +882,44 @@
       "scrapeStatus": "fetch_failed",
       "checkedAt": "2026-10-21T07:14:17.442915+00:00",
       "pizzaMenu": []
+    },
+    {
+      "id": "node/2247299076",
+      "name": "La Mamma",
+      "lat": 46.1729599,
+      "lon": 6.1227881,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 06:30-14:30, 18:00-23:00; Sa 09:00-14:30, 18:00-23:00; Su 09:00-14:30, 18:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12889351443",
+      "name": "La Pizzeria du Coin",
+      "lat": 46.1876526,
+      "lon": 6.1386138,
+      "type": "restaurant",
+      "address": "Place d'Armes 8",
+      "postcode": "1227",
+      "website": "https://www.ubereats.com/ch/store/cafe–pizzeria-du-coin/tGPZA3E9Uya7KBrJELWo-g",
+      "cuisine": [
+        "pizza",
+        "kebab",
+        "chicken"
+      ],
+      "openingHours": "Mo-Sa 09:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
     },
     {
       "id": "node/2284327864",
@@ -622,6 +960,25 @@
       "scrapeStatus": "partial",
       "checkedAt": "2026-10-21T07:14:22.583414+00:00",
       "pizzaMenu": []
+    },
+    {
+      "id": "node/11755331872",
+      "name": "La Ruota",
+      "lat": 46.1895303,
+      "lon": 6.1345911,
+      "type": "restaurant",
+      "address": "Avenue Industrielle 10",
+      "postcode": "1227",
+      "website": "https://www.restaurantlaruota.com/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:40-14:00; Mo-Sa 18:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
     },
     {
       "id": "node/13266873540",
@@ -686,6 +1043,25 @@
       "checkedAt": null
     },
     {
+      "id": "way/192773086",
+      "name": "Les Marroniers",
+      "lat": 46.1687881,
+      "lon": 6.1182954,
+      "type": "restaurant",
+      "address": "Route de Saint-Julien 138",
+      "postcode": "1228",
+      "website": "https://www.restaurantlesmaronniers.ch",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 11:45-14:00, 18:45-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/3747387938",
       "name": "Luigia",
       "lat": 46.2242591,
@@ -703,6 +1079,26 @@
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-21T07:14:07.956804+00:00",
       "pizzaMenu": []
+    },
+    {
+      "id": "way/958344607",
+      "name": "Luigia Academy",
+      "lat": 46.226884,
+      "lon": 6.057613,
+      "type": "restaurant",
+      "address": "Route du Nant-d'Avril 148",
+      "postcode": "1217",
+      "website": "https://www.luigia.ch",
+      "cuisine": [
+        "italian",
+        "pizza",
+        "dessert"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,18:00-22:30; Sa 12:00-15:00, 18:00-23:00; Su 12:00-15:00, 18:00-22:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
     },
     {
       "id": "node/2352167035",
@@ -747,6 +1143,26 @@
       }
     },
     {
+      "id": "node/9081744917",
+      "name": "Nocino",
+      "lat": 46.1857362,
+      "lon": 6.1242329,
+      "type": "restaurant",
+      "address": "Chemin des Mérinos 4",
+      "postcode": "1212",
+      "website": "https://www.nocinopizzeria.com/menu",
+      "cuisine": [
+        "pizza",
+        "italian",
+        "pasta"
+      ],
+      "openingHours": "Mo 12:00-14:00; Tu-We 12:00-14:00, 19:00-21:30; Th 12:00-14:00, 17:30-22:00; Fr 12:00-14:00, 18:30-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/2395622180",
       "name": "Osteria Zaza",
       "lat": 46.1925456,
@@ -765,6 +1181,22 @@
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-21T07:14:36.629481+00:00",
       "pizzaMenu": []
+    },
+    {
+      "id": "node/2321259363",
+      "name": "Paradox Pizza",
+      "lat": 46.2211166,
+      "lon": 6.1096806,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
     },
     {
       "id": "node/2995673677",
@@ -797,6 +1229,24 @@
       "cuisine": [],
       "openingHours": "Mo-Su 08:00-14:30,18:00-23:30",
       "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1871628929",
+      "name": "Pizza d'Oro",
+      "lat": 46.2290297,
+      "lon": 6.0710369,
+      "type": "restaurant",
+      "address": "Route de Meyrin 307",
+      "postcode": "1217",
+      "website": null,
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": null,
+      "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
@@ -876,6 +1326,43 @@
       "checkedAt": null
     },
     {
+      "id": "node/13055719140",
+      "name": "Pizza Veloce",
+      "lat": 46.2372343,
+      "lon": 6.0782656,
+      "type": "restaurant",
+      "address": "Promenade des Champs-Fréchets 17",
+      "postcode": "1217",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 10:30-14:00,17:30-22:30; Fr 10:30-14:00,17:30-23:00; Sa 10:30-14:00,17:30-22:45; Su 10:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/9570418234",
+      "name": "Pizza Vino",
+      "lat": 46.1858075,
+      "lon": 6.1399643,
+      "type": "restaurant",
+      "address": "Rue Saint-Victor 10",
+      "postcode": "1227",
+      "website": "https://www.pizza-vino.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:30,18:30-00:00; Sa 11:30-15:30,18:30-00:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/13261087013",
       "name": "Pizza!",
       "lat": 46.2102707,
@@ -928,6 +1415,42 @@
       "checkedAt": null
     },
     {
+      "id": "node/11233408937",
+      "name": "Pizzeria Cocco",
+      "lat": 46.2352584,
+      "lon": 6.1254579,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/3169035968",
+      "name": "Pizzeria Da Ettore",
+      "lat": 46.2374787,
+      "lon": 6.0789178,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/4069953512",
       "name": "Pizzeria da Gianni",
       "lat": 46.2171646,
@@ -946,6 +1469,42 @@
       "checkedAt": null
     },
     {
+      "id": "node/870490712",
+      "name": "Pizzeria de La Place",
+      "lat": 46.229101,
+      "lon": 6.0717255,
+      "type": "restaurant",
+      "address": "Route de Meyrin 286",
+      "postcode": "1217",
+      "website": null,
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:00,19:00-23:00; Su 19:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/364784696",
+      "name": "Pizzeria des Ormeaux",
+      "lat": 46.1898296,
+      "lon": 6.1187821,
+      "type": "restaurant",
+      "address": "Route de Chancy 25",
+      "postcode": "1213",
+      "website": "https://www.pizzeria-les-ormeaux.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 08:00-23:30; Sa-Su 11:00-15:00,17:30-23:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
       "id": "node/4868409621",
       "name": "Pizzeria Europa",
       "lat": 46.2173178,
@@ -958,6 +1517,24 @@
         "italian_pizza"
       ],
       "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00,18:30-23:00; Sa 18:30-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/460451239",
+      "name": "Pizzeria le Pommier",
+      "lat": 46.2288899,
+      "lon": 6.1207276,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
@@ -1099,6 +1676,25 @@
         "pizza"
       ],
       "openingHours": "Tu, Fr 14:00-05:00; Sa 15:00-03:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12021850286",
+      "name": "SPARK",
+      "lat": 46.1674965,
+      "lon": 6.1093345,
+      "type": "restaurant",
+      "address": "Chemin du Champ-des-Filles 4/6",
+      "postcode": "1228",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "regional"
+      ],
+      "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",

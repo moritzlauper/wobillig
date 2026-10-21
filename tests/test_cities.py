@@ -15,6 +15,27 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class CityTests(unittest.TestCase):
+    def test_geneva_discovery_includes_swiss_urban_neighbours(self):
+        script = '''
+import json
+from scraper import cities, scrape, enrich, scrape_pizza, scrape_streetfood, locations
+print(json.dumps({'municipalities': cities.MUNICIPALITIES,
+    'queries': [scrape.QUERY, enrich.QUERY, scrape_pizza.QUERY, scrape_streetfood.QUERY, locations.QUERY]}))
+'''
+        data = json.loads(subprocess.check_output(
+            [sys.executable, '-c', script], cwd=ROOT,
+            env={**os.environ, 'WOBILLIG_CITY': 'geneva'}, text=True))
+        municipalities = dict(data['municipalities'])
+        self.assertEqual(len(municipalities), 16)
+        self.assertEqual(municipalities['Carouge'], 'Q69364')
+        self.assertEqual(municipalities['Lancy'], 'Q64065')
+        for query in data['queries']:
+            for name, wikidata in municipalities.items():
+                self.assertIn(f'area["name"="{name}"]["admin_level"="8"]["wikidata"="{wikidata}"];', query)
+            self.assertIn(')->.city;', query)
+            self.assertNotIn('Annemasse', query)
+            self.assertNotIn('Satigny', query)
+
     def test_each_scraper_uses_the_selected_city(self):
         script = '''
 import json
