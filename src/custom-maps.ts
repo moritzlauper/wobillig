@@ -257,6 +257,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       : '';
   }
   function open(value: CustomMap) {
+    cancelViewportPlaces();
     current = value; remember(value);
     view.hidden = false; app.classList.add('custom-map-active');
     showView(false);
@@ -291,28 +292,16 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       map = L.map(el('custom-map-canvas')).setView(cities[city].center, 13);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
       layer = L.layerGroup().addTo(map);
+      map.on('movestart', cancelViewportPlaces);
+      map.on('moveend', scheduleViewportPlaces);
       map.on('click', event => {
         if (busy || !current || current.automatic || current.canEdit === false || entry.open) return;
         el('custom-map-detail').hidden = true;
         // Raster tile labels are not clickable features. Match against the full
         // location catalogue only when zoomed in enough to distinguish places.
         const choices = map!.getZoom() >= 17
-          ? nearbyLocations(venues(), event.containerPoint, bar => map!.latLngToContainerPoint([bar.lat, bar.lon])) : [];
-        const select = (venue?: Bar) => {
-          map!.closePopup(); openEntry(undefined, event.latlng);
-          if (venue) { chooseVenue(venue); field('product').focus(); }
-        };
-        if (choices.length < 2) { select(choices[0]); return; }
-        const content = document.createElement('div'); content.className = 'location-choices';
-        const title = document.createElement('strong'); title.textContent = t('Für welches Lokal?'); content.append(title);
-        for (const venue of choices) {
-          const button = document.createElement('button'); button.type = 'button';
-          button.textContent = [venue.name, venue.address].filter(Boolean).join(' · ');
-          button.onclick = () => select(venue); content.append(button);
-        }
-        const other = document.createElement('button'); other.type = 'button'; other.textContent = t('Anderen Ort hinzufügen');
-        other.onclick = () => select(); content.append(other);
-        L.popup().setLatLng(event.latlng).setContent(content).openOn(map!);
+          ? nearbyLocations(mapVenues(), event.containerPoint, bar => map!.latLngToContainerPoint([bar.lat, bar.lon])) : [];
+        showPlaceChoices(event.latlng, choices);
       });
     }
     layer!.clearLayers();
@@ -349,6 +338,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       map!.invalidateSize();
       if (entries.length) map!.fitBounds(L.latLngBounds(entries.map(item => [item.venue.lat, item.venue.lon])), { padding: [35, 35], maxZoom: 16 });
       else map!.setView(cities[city].center, 13);
+      scheduleViewportPlaces();
     });
     el('map-add-entry').focus();
   }
@@ -387,6 +377,95 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   let remoteMatches: Bar[] = [], placeSearchVersion = 0, placeSearchTimer: ReturnType<typeof setTimeout> | undefined;
   let placeController: AbortController | undefined, placeStatus: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
   const placeResults = new Map<string, MapPlace>();
+  let placesLayer: L.LayerGroup | undefined, viewportPlaces: Bar[] = [];
+  let viewportTimer: ReturnType<typeof setTimeout> | undefined, viewportController: AbortController | undefined;
+  let viewportVersion = 0, loadedBounds: L.LatLngBounds | undefined, loadedAt = 0;
+  const placeStatusBox = document.createElement('div');
+  placeStatusBox.className = 'custom-map-place-status'; placeStatusBox.hidden = true;
+  const placeStatusText = document.createElement('span'); placeStatusText.setAttribute('role', 'status');
+  const retryPlaces = document.createElement('button'); retryPlaces.type = 'button'; retryPlaces.textContent = t('Erneut versuchen');
+  retryPlaces.onclick = () => scheduleViewportPlaces();
+  placeStatusBox.append(placeStatusText, retryPlaces); el('custom-map-canvas').after(placeStatusBox);
+  const mapVenues = () => [...new Map([...viewportPlaces, ...venues()].map(venue => [venue.id, venue])).values()];
+  function showPlaceChoices(position: L.LatLng, choices: Bar[]) {
+    const select = (venue?: Bar) => {
+      map!.closePopup(); openEntry(undefined, position);
+      if (venue) { chooseVenue(venue); field('product').focus(); }
+    };
+    if (choices.length < 2) { select(choices[0]); return; }
+    const content = document.createElement('div'); content.className = 'location-choices';
+    const title = document.createElement('strong'); title.textContent = t('Für welches Lokal?'); content.append(title);
+    for (const venue of choices) {
+      const button = document.createElement('button'); button.type = 'button';
+      button.textContent = [venue.name, venue.address].filter(Boolean).join(' · ');
+      button.onclick = () => select(venue); content.append(button);
+    }
+    const other = document.createElement('button'); other.type = 'button'; other.textContent = t('Anderen Ort hinzufügen');
+    other.onclick = () => select(); content.append(other);
+    L.popup().setLatLng(position).setContent(content).openOn(map!);
+  }
+  function renderPlaceMarkers() {
+    placesLayer?.clearLayers();
+    if (!map || view.hidden || current?.automatic || map.getZoom() < 17) return;
+    placesLayer ||= L.layerGroup().addTo(map);
+    const priced = new Set(current?.entries.map(item => item.venue.id));
+    const labels: L.Bounds[] = [];
+    for (const venue of mapVenues()) {
+      if (priced.has(venue.id) || !map.getBounds().contains([venue.lat, venue.lon])) continue;
+      const point = map.latLngToContainerPoint([venue.lat, venue.lon]);
+      const width = Math.min(132, venue.name.length * 6 + 10);
+      const labelBounds = L.bounds([point.x - width / 2 - 4, point.y + 12], [point.x + width / 2 + 4, point.y + 46]);
+      const showName = !labels.some(bounds => bounds.intersects(labelBounds));
+      if (showName) labels.push(labelBounds);
+      const marker = L.marker([venue.lat, venue.lon], {
+        icon: L.divIcon({ className: `unpriced-marker custom-map-place-marker${showName ? ' show-place-name' : ''}`,
+          html: `<span class="price-marker unknown">·</span><span class="venue-marker-name">${e(venue.name)}</span>`,
+          iconSize: [20, 20], iconAnchor: [10, 10] }), title: venue.name, zIndexOffset: -1000,
+      }).addTo(placesLayer);
+      marker.getElement()?.setAttribute('aria-label', venue.name);
+      marker.on('click', () => {
+        if (busy || entry.open) return;
+        if (current?.canEdit === false) {
+          const label = document.createElement('span'); label.textContent = venue.name;
+          marker.bindPopup(label).openPopup(); return;
+        }
+        el('custom-map-detail').hidden = true;
+        const neighbours = nearbyLocations(mapVenues(), map!.latLngToContainerPoint(marker.getLatLng()),
+          bar => map!.latLngToContainerPoint([bar.lat, bar.lon]), 20);
+        showPlaceChoices(marker.getLatLng(), [venue, ...neighbours.filter(bar => bar.id !== venue.id)]);
+      });
+    }
+  }
+  function cancelViewportPlaces() {
+    viewportVersion++; clearTimeout(viewportTimer); viewportController?.abort();
+    placeStatusBox.hidden = true;
+  }
+  function scheduleViewportPlaces() {
+    cancelViewportPlaces(); renderPlaceMarkers();
+    if (!map || view.hidden || current?.automatic || map.getZoom() < 17) return;
+    if (loadedBounds?.contains(map.getBounds()) && Date.now() - loadedAt < 300000) return;
+    const version = viewportVersion, bounds = map.getBounds().pad(0.15);
+    viewportTimer = setTimeout(async () => {
+      const controller = new AbortController(); viewportController = controller;
+      const timeout = setTimeout(() => controller.abort(), 20000);
+      placeStatusText.textContent = t('Orte werden geladen …'); retryPlaces.hidden = true; placeStatusBox.hidden = false;
+      try {
+        const coordinates = [bounds.getSouth(), bounds.getWest(), bounds.getNorth(), bounds.getEast()].join(',');
+        const response = await fetch(`${api}&mapPlaceBounds=${encodeURIComponent(coordinates)}`, { signal: controller.signal });
+        const result = await response.json();
+        if (!response.ok || !Array.isArray(result.places)) throw new Error('Places unavailable');
+        if (version !== viewportVersion) return;
+        viewportPlaces = result.places.filter((place: MapPlace) => place?.venue?.id && typeof place.token === 'string').map((place: MapPlace) => {
+          placeResults.set(place.venue.id, place); return place.venue;
+        });
+        loadedBounds = bounds; loadedAt = Date.now(); renderPlaceMarkers(); placeStatusBox.hidden = true;
+      } catch {
+        if (version !== viewportVersion) return;
+        placeStatusText.textContent = t('OpenStreetMap-Orte konnten nicht geladen werden. Bitte erneut versuchen.');
+        retryPlaces.hidden = false;
+      } finally { clearTimeout(timeout); }
+    }, 400);
+  }
   function cancelPlaceSearch() {
     placeSearchVersion++; clearTimeout(placeSearchTimer); placeController?.abort();
   }
@@ -399,6 +478,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   function chooseVenue(venue: MapEntry['venue']) {
     cancelPlaceSearch();
     field('venue').value = venue.id;
+    entry.querySelector<HTMLElement>('#map-new-venue')!.hidden = true;
     venueSearch.value = [venue.name, venue.address, venue.postcode].filter(Boolean).join(' · ');
     venueSearch.setCustomValidity('');
     editing = current?.entries.find(item => item.venue.id === venue.id);
@@ -464,6 +544,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     editing = item; lockedVenue = Boolean(item); entryPosition = position;
     cancelPlaceSearch(); remoteMatches = []; placeStatus = 'idle';
     entry.querySelector('form')!.reset(); field('venue').value = ''; errorText(entry, '');
+    entry.querySelector<HTMLElement>('#map-new-venue')!.hidden = false;
     if (item) chooseVenue(item.venue);
     field('product').value = item?.product || '';
     field('price').value = item ? String(item.priceChf) : '';
@@ -475,6 +556,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   }
   venueSearch.oninput = () => {
     field('venue').value = ''; editing = undefined;
+    entry.querySelector<HTMLElement>('#map-new-venue')!.hidden = false;
     venueSearch.setCustomValidity(t('Bitte ein Lokal aus den Vorschlägen auswählen.'));
     schedulePlaceSearch();
     showVenueSuggestions();
@@ -570,6 +652,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   el('map-publish').onclick = () => { void publication('requestMapPublication'); };
   el('map-withdraw').onclick = () => { void publication('withdrawMapPublication'); };
   el('map-back').onclick = () => {
+    cancelViewportPlaces();
     request++; current = undefined; view.hidden = true; app.classList.remove('custom-map-active');
     const target = new URL(location.href); target.searchParams.delete('map'); history.replaceState(null, '', target);
     onClose(); plus.focus();

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
-import { searchMapPlaces, signMapPlace, verifiedMapPlace } from '../server/map-places';
+import { mapPlacesInBounds, searchMapPlaces, signMapPlace, verifiedMapPlace } from '../server/map-places';
 import type { Bar } from '../src/data';
 
 beforeEach(() => vi.stubEnv('BLOB_READ_WRITE_TOKEN', 'test-map-secret'));
@@ -45,4 +45,37 @@ it('distinguishes unavailable search from no results and does not cache a failur
   expect(fetcher).toHaveBeenCalledTimes(2);
   await expect(searchMapPlaces('x', 'bern')).resolves.toEqual([]);
   await expect(searchMapPlaces('x'.repeat(161), 'bern')).rejects.toMatchObject({ status: 400 });
+});
+
+it('loads and signs nearby OSM points and building centres, reusing rounded viewports', async () => {
+  const pharmacy = { type: 'node', id: 123, lat: 47.384, lon: 8.531, tags: { name: 'Apotheke am Limmatplatz', amenity: 'pharmacy', 'addr:street': 'Limmatstrasse', 'addr:housenumber': '118' } };
+  const fetcher = vi.fn().mockResolvedValue({ ok: true, json: async () => ({ elements: [pharmacy,
+    { type: 'way', id: 456, center: { lat: 47.383, lon: 8.532 }, tags: { name: 'Geschäft', shop: 'supermarket' } },
+    { ...pharmacy, id: 789, lon: 0 }, { ...pharmacy, id: 321, lat: '47.384' }, pharmacy,
+  ] }) });
+  vi.stubGlobal('fetch', fetcher);
+  const places = await mapPlacesInBounds('47.381,8.526,47.389,8.539', 'zurich', 1000);
+  expect(places).toHaveLength(2);
+  expect(verifiedMapPlace(places[0].token, 'zurich', 'node/123', 1001)).toMatchObject({ name: pharmacy.tags.name, address: 'Limmatstrasse 118' });
+  expect(places[1].venue).toMatchObject({ id: 'way/456', lat: 47.383 });
+  expect(fetcher.mock.calls[0][0].searchParams.get('data')).toContain('(47.38,8.525,47.39,8.54)');
+  await mapPlacesInBounds('47.382,8.527,47.388,8.538', 'zurich', 2000);
+  expect(fetcher).toHaveBeenCalledTimes(1);
+});
+
+it('rejects invalid or oversized viewports before querying OSM', async () => {
+  const fetcher = vi.fn(); vi.stubGlobal('fetch', fetcher);
+  for (const bounds of ['', '47,8,48,9', '0,0,0.01,0.01', '47.38,8.53,47.37,8.54', '47.38,8.53,47.39,8.54);out;', '47.38,8.53,NaN,8.54']) {
+    await expect(mapPlacesInBounds(bounds, 'zurich')).rejects.toMatchObject({ status: 400 });
+  }
+  expect(fetcher).not.toHaveBeenCalled();
+});
+
+it('does not cache incomplete OSM viewport results and allows a retry', async () => {
+  const fetcher = vi.fn().mockResolvedValueOnce({ ok: true, json: async () => ({ elements: [], remark: 'runtime error: timeout' }) })
+    .mockResolvedValue({ ok: true, json: async () => ({ elements: [] }) });
+  vi.stubGlobal('fetch', fetcher);
+  await expect(mapPlacesInBounds('47.371,8.521,47.374,8.524', 'zurich', 1000)).rejects.toMatchObject({ status: 503 });
+  await expect(mapPlacesInBounds('47.371,8.521,47.374,8.524', 'zurich', 2000)).resolves.toEqual([]);
+  expect(fetcher).toHaveBeenCalledTimes(2);
 });

@@ -122,6 +122,26 @@ it('keeps browser and email cookies together, and rejects cross-origin email req
   const result = res(); await auth(bad, result.value);
   expect(result.value.statusCode).toBe(403); expect(mocks.send).not.toHaveBeenCalled();
 });
+it('completes the account API flow and clears the secure session on logout', async () => {
+  vi.stubEnv('CONTRIBUTION_PROTECTION', 'true');
+  vi.stubEnv('TURNSTILE_SITE_KEY', 'site'); vi.stubEnv('TURNSTILE_SECRET_KEY', 'secret');
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => ({ success: true, hostname: 'example.org', action: 'email' }) }));
+  const start = req(); start.body = { action: 'request', email: 'person@example.org', botToken: 'token' };
+  const requested = res(); await auth(start, requested.value);
+  expect(requested.value.statusCode).toBe(200);
+  const confirm = req(requested.cookie()); confirm.body = { action: 'confirm', challenge: requested.data().challenge, code: mocks.send.mock.calls[0][1] };
+  const confirmed = res(); await auth(confirm, confirmed.value);
+  expect(confirmed.data()).toEqual({ verified: true });
+  expect([confirmed.headers['Set-Cookie']].flat().join(';')).toMatch(/HttpOnly.*SameSite=Lax.*Secure/);
+  const status = req(confirmed.cookie()); status.method = 'GET';
+  const account = res(); await auth(status, account.value);
+  expect(account.data()).toMatchObject({ verified: true, mailReady: true });
+  const logout = req(confirmed.cookie()); logout.body = { action: 'logout' };
+  const signedOut = res(); await auth(logout, signedOut.value);
+  expect(signedOut.data()).toEqual({ verified: false });
+  expect([signedOut.headers['Set-Cookie']].flat().join(';')).toContain('Max-Age=0');
+  expect(verifiedAccount(req(signedOut.cookie()))).toBeUndefined();
+});
 it('allows collaboration on owned maps without replacing creator attribution', async () => {
   const id = 'd268dbea-93cf-45de-9d17-2b5c74090236';
   const map = await saveCustomMap(store, { action: 'createMap', mapId: id, name: 'Test' }, {}, 'visitor', 0, 'zurich', { browser: 'a', account: 'owner' });

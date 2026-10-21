@@ -5,6 +5,51 @@ async function fixture(page: Page, venues = [venue]) {
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.route('**/data/*.json', route => route.fulfill({ json: { bars: /coffee|locations/.test(route.request().url()) ? venues : [], generatedAt: '', discoveredAt: '', attribution: '' } }));
 }
+test('account security dialogs stay distinct, wrong codes can be retried, and logout handles failure', async ({ page }) => {
+  await fixture(page);
+  await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
+  await page.route('https://challenges.cloudflare.com/turnstile/v0/api.js?*', route => route.fulfill({ contentType: 'application/javascript', body: `window.turnstile = { render(container, options) { const button = document.createElement('button'); button.textContent = 'Testprüfung abschliessen'; button.onclick = () => options.callback('email-token'); container.append(button); return 'widget'; }, remove() {} };` }));
+  let verified = false, logoutAttempts = 0;
+  await page.route('**/api/community-auth', route => {
+    if (route.request().method() === 'GET') return route.fulfill({ json: { verified, mailReady: true, protection: true, siteKey: 'test-site', emailRequired: false } });
+    const body = route.request().postDataJSON();
+    if (body.action === 'request') {
+      expect(body.botToken).toBe('email-token');
+      return route.fulfill({ json: { challenge: 'challenge' } });
+    }
+    if (body.action === 'confirm') {
+      if (body.code !== '123456') return route.fulfill({ status: 401, json: { error: 'Der Code stimmt nicht. Bitte erneut eingeben.' } });
+      verified = true;
+    }
+    if (body.action === 'logout') {
+      if (++logoutAttempts === 1) return route.fulfill({ status: 503, json: { error: 'Bestätigung gerade nicht verfügbar. Bitte erneut versuchen.' } });
+      verified = false;
+    }
+    return route.fulfill({ json: { verified } });
+  });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Konto erstellen', exact: true }).click();
+  const account = page.getByRole('dialog', { name: 'Konto erstellen oder anmelden', exact: true });
+  await account.getByLabel('E-Mail-Adresse').fill('reader@example.org');
+  await account.getByRole('button', { name: 'Code senden' }).click();
+  const security = page.getByRole('dialog', { name: 'Kurze Sicherheitsprüfung', exact: true });
+  await expect(security).toBeVisible();
+  await security.getByRole('button', { name: 'Testprüfung abschliessen' }).click();
+  await account.getByLabel('Sechsstelliger Code').fill('000000');
+  await account.getByRole('button', { name: 'Bestätigen und fortfahren' }).click();
+  await expect(account.getByRole('status')).toContainText('Der Code stimmt nicht');
+  await account.getByLabel('Sechsstelliger Code').fill('123456');
+  await account.getByRole('button', { name: 'Bestätigen und fortfahren' }).click();
+  await expect(page.locator('dialog.contribution-security')).toHaveCount(0);
+  await page.reload();
+  await page.getByRole('button', { name: 'Mein Konto', exact: true }).click();
+  const details = page.getByRole('dialog', { name: 'E-Mail bestätigt' });
+  await details.getByRole('button', { name: 'Abmelden' }).click();
+  await expect(details.getByRole('status')).toContainText('Bitte erneut versuchen');
+  await details.getByRole('button', { name: 'Abmelden' }).click();
+  await expect(page.getByRole('button', { name: 'Konto erstellen', exact: true })).toBeVisible();
+  await expect(page.locator('dialog.contribution-security')).toHaveCount(0);
+});
 for (const width of [320, 1280]) {
   test(`footer account entry supports optional email sign-in at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });

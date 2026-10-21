@@ -11,9 +11,10 @@ async function config(): Promise<Config> {
 }
 function modal(title: string) {
   const dialog = document.createElement('dialog'); dialog.className = 'contribution-security';
-  const heading = document.createElement('h2'); heading.textContent = title; heading.id = 'contribution-security-title'; dialog.setAttribute('aria-labelledby', heading.id);
+  const heading = document.createElement('h2'); heading.textContent = title; heading.id = `contribution-security-${crypto.randomUUID()}`; dialog.setAttribute('aria-labelledby', heading.id);
   const close = document.createElement('button'); close.type = 'button'; close.textContent = t('Schliessen'); close.onclick = () => dialog.close();
   const top = document.createElement('div'); top.className = 'dialog-top'; top.append(heading, close); dialog.append(top);
+  dialog.addEventListener('close', () => dialog.remove(), { once: true });
   document.body.append(dialog); dialog.showModal(); return dialog;
 }
 async function botToken(settings: Config, action: string): Promise<string | undefined> {
@@ -98,9 +99,14 @@ export function accountControl(container: HTMLElement) {
       updateLabel(settings.verified);
       if (settings.verified) {
         const dialog = modal(message('E-Mail bestätigt', 'Email verified'));
+        const error = document.createElement('p'); error.setAttribute('role', 'status');
         const logout = document.createElement('button'); logout.textContent = message('Abmelden', 'Sign out');
-        logout.onclick = async () => { logout.disabled = true; try { await authPost({ action: 'logout' }); dialog.close(); location.reload(); } catch { logout.disabled = false; } };
-        dialog.append(logout);
+        logout.onclick = async () => {
+          logout.disabled = true; error.textContent = '';
+          try { await authPost({ action: 'logout' }); dialog.close(); location.reload(); }
+          catch (reason) { error.textContent = reason instanceof Error ? reason.message : message('Bitte erneut versuchen.', 'Please try again.'); logout.disabled = false; }
+        };
+        dialog.append(logout, error);
       } else {
         if (!settings.mailReady && !settings.emailRequired) throw new Error(message('Die Kontoerstellung ist in dieser Umgebung noch nicht eingerichtet. Bitte verwende www.wobillig.ch.', 'Account creation is not configured in this environment yet. Please use www.wobillig.ch.'));
         await verifyEmail(settings, true);

@@ -199,6 +199,12 @@ main { display: flex; flex: 1; min-height: 0; }
 .price-marker.unknown { border: 1px solid var(--strong-border); color: var(--muted); padding: 0; height: 14px; width: 14px; font-size: 13px; line-height: 10px; border-radius: 50%; }
 .unpriced-marker { display: none; flex-direction: column; align-items: center; padding-top: 15px; cursor: pointer; }
 #map.show-unpriced-markers .unpriced-marker { display: flex; }
+#custom-map-canvas .custom-map-place-marker { display: flex; padding-top: 3px; }
+#custom-map-canvas .custom-map-place-marker .venue-marker-name { pointer-events: none; }
+#custom-map-canvas .custom-map-place-marker.show-place-name .venue-marker-name,
+#custom-map-canvas .custom-map-place-marker:focus-visible .venue-marker-name { display: block; }
+.custom-map-place-status { position: absolute; bottom: 24px; left: 10px; z-index: 600; max-width: calc(100% - 20px); padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); color: var(--text); font-size: 12px; }
+.custom-map-place-status button { margin-left: 8px; }
 #map .unpriced-marker.selected-marker { display: flex; }
 .unpriced-marker .unknown { flex-shrink: 0; }
 .unpriced-marker.selected-marker .unknown { background: var(--primary); color: var(--on-primary); border: 2px solid var(--surface); outline: 2px solid var(--primary); transform: scale(1.3); }

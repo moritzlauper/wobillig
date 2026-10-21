@@ -44,7 +44,7 @@ export function seoPlugin(): Plugin {
         const city = cityFromPath(page), locale = localeFromPath(page);
         const other: Locale = locale === 'de' ? 'en' : 'de';
         const languageLink = `<a class="language-switch" data-locale="${other}" href="${localPath(cityPath(city, other), base)}" hreflang="${htmlLang[other]}" lang="${htmlLang[other]}">${other === 'en' ? 'English' : 'Deutsch'}</a>`;
-        return html.replace('<!-- SEO_HEAD -->', `${themeHead()}${seoHead(city, origin, undefined, locale)}${analyticsTag}`)
+        return html.replace('<!-- SEO_HEAD -->', `${themeHead()}<script src="${localPath('/map-navigation.js', base)}"></script>${seoHead(city, origin, undefined, locale)}${analyticsTag}`)
           .replace('<!-- SEO_HEADING -->', `<header class="seo-map-header"><h1 id="map-title">${translate(locale, 'Kaffeepreise {city}', { city: translate(locale, cities[city].name) })}</h1>${languageLink}${themeControl(locale)}</header>`)
           .replace('<!-- SEO_CONTENT -->', cityContent(city, dataset(city), base, locale, dataset(city, 'bars'), dataset(city, 'pizza')) + `<footer class="site-legal-footer">${legalLinks(locale, base)}</footer>`);
       },

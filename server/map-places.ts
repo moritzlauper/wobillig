@@ -5,6 +5,7 @@ import { distance, type Bar } from '../src/data.js';
 import type { MapEntry, MapPlace } from '../src/custom-map-data.js';
 
 const cache = new Map<string, { at: number; result: Promise<Bar[]> }>();
+const viewportCache = new Map<string, { at: number; result: Promise<Bar[]> }>();
 const clean = (value: unknown, max: number) => typeof value === 'string' ? value.replace(/[\x00-\x1f\x7f]/g, '').trim().slice(0, max) : '';
 const signature = (payload: string) => {
   const secret = process.env.BLOB_READ_WRITE_TOKEN;
@@ -80,4 +81,56 @@ export async function searchMapPlaces(query: string, city: City, now = Date.now(
     if (error instanceof InputError) throw error;
     throw new InputError('OpenStreetMap-Suche gerade nicht verfügbar. Bitte erneut versuchen oder einen bekannten Ort wählen.', 503);
   }
+}
+
+// A small, rounded viewport keeps Overpass queries bounded and reusable while
+// panning. Coordinates use Overpass's south, west, north, east order.
+export async function mapPlacesInBounds(bounds: string, city: City, now = Date.now()): Promise<MapPlace[]> {
+  const parts = bounds.split(',');
+  const [south, west, north, east] = parts.map(Number);
+  if (parts.length !== 4 || parts.some(part => !part.trim()) || ![south, west, north, east].every(Number.isFinite)
+    || south < -90 || north > 90 || west < -180 || east > 180
+    || south >= north || west >= east || north - south > 0.04 || east - west > 0.06
+    || distance(cities[city].center, [(south + north) / 2, (west + east) / 2]) > 15) {
+    throw new InputError('Bitte näher an die Stadt heranzoomen.');
+  }
+  const rounded = [Math.floor(south * 200) / 200, Math.floor(west * 200) / 200,
+    Math.ceil(north * 200) / 200, Math.ceil(east * 200) / 200];
+  const key = `${city}:${rounded.join(',')}`;
+  for (const [key, entry] of viewportCache) if (entry.at + 300000 < now) viewportCache.delete(key);
+  let cached = viewportCache.get(key);
+  if (!cached) {
+    if (viewportCache.size >= 100) viewportCache.delete(viewportCache.keys().next().value!);
+    const result = (async () => {
+      const query = `[out:json][timeout:12];nwr[~"^(shop|amenity|craft|office|tourism|leisure|healthcare)$"~"."][name](${rounded.join(',')});out center;`;
+      const url = new URL('https://overpass.osm.ch/api/interpreter');
+      url.searchParams.set('data', query);
+      const response = await fetch(url, {
+        signal: AbortSignal.timeout(15000),
+        headers: { 'User-Agent': 'wobillig.ch custom map places', Accept: 'application/json' },
+      });
+      if (!response.ok) throw new Error('OSM places unavailable');
+      const body = await response.json();
+      if (!Array.isArray(body.elements) || body.remark) throw new Error('Incomplete OSM places');
+      const venues = new Map<string, Bar>();
+      for (const element of body.elements) {
+        const tags = element?.tags, lat = element?.lat ?? element?.center?.lat, lon = element?.lon ?? element?.center?.lon;
+        const name = clean(tags?.name, 100);
+        if (!name || !['node', 'way', 'relation'].includes(element.type) || !Number.isSafeInteger(element.id) || element.id <= 0
+          || !Number.isFinite(lat) || !Number.isFinite(lon) || lat < rounded[0] || lat > rounded[2] || lon < rounded[1] || lon > rounded[3]
+          || distance(cities[city].center, [lat, lon]) > 15) continue;
+        const id = `${element.type}/${element.id}`;
+        venues.set(id, { id, name, lat, lon,
+          address: [clean(tags['addr:street'], 120), clean(tags['addr:housenumber'], 20)].filter(Boolean).join(' '),
+          postcode: clean(tags['addr:postcode'], 12),
+          type: clean(tags.shop || tags.amenity || tags.craft || tags.office || tags.tourism || tags.leisure || tags.healthcare, 60) || 'place',
+          offers: [], website: null, openingHours: null, outdoor: false, checkedAt: null, scrapeStatus: 'osm' });
+      }
+      return [...venues.values()];
+    })();
+    cached = { at: now, result }; viewportCache.set(key, cached);
+    result.catch(() => { if (viewportCache.get(key)?.result === result) viewportCache.delete(key); });
+  }
+  try { return (await cached.result).map(venue => signMapPlace(venue, city, now)); }
+  catch { throw new InputError('OpenStreetMap-Orte konnten nicht geladen werden. Bitte erneut versuchen.', 503); }
 }

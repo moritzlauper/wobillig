@@ -4,14 +4,14 @@ import { captureAnalytics } from './analytics-browser-helper';
 
 test.describe('English comparison pages without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
-  test('all six guides have readable content and matching language links', async ({ page }) => {
+  test('all comparison guides have readable content and matching language links', async ({ page }) => {
     for (const city of cityIds) for (const type of guideTypes) {
       const response = await page.goto(guidePath(city, type, 'en'));
       expect(response?.status()).toBe(200);
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
       await expect(page.locator('h1')).toHaveText(metadata(city, type, 'en').heading);
       await expect(page.getByRole('columnheader', { name: 'Venue / address' })).toBeVisible();
-      await expect(page.getByRole('heading', { name: 'Which offers can be compared?' })).toBeVisible();
+      await expect(page.getByRole('heading', { name: ['espresso', 'cappuccino'].includes(type) ? 'Which offers can be compared?' : 'Price range' })).toBeVisible();
       await page.getByRole('link', { name: 'Deutsch', exact: true }).click();
       await expect(page.locator('html')).toHaveAttribute('lang', 'de-CH');
       await expect(page.locator('h1')).toHaveText(metadata(city, type).heading);

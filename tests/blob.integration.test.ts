@@ -19,10 +19,12 @@ it.skipIf(process.env.RUN_BLOB_INTEGRATION !== '1')('persists repeated edits and
     const entry = await savePrice(store, input, { beer, coffee }, 'test');
     // History grows past the compression threshold, exercising strong ETags on reads.
     for (let revision = 1; revision < 6; revision++) {
-      await savePrice(secondInstance, { ...input, id: entry.id, revision, priceChf: 5 + revision }, { beer, coffee }, 'test');
+      // Spread small edits over separate days to respect the real anti-abuse rules.
+      const priceChf = Math.round((offer.priceChf + revision / 10) * 100) / 100;
+      await savePrice(secondInstance, { ...input, id: entry.id, revision, priceChf }, { beer, coffee }, 'test', Date.now() + revision * 86400001);
       const saved = (await store.read()).state.entries[0];
       expect(saved.revision).toBe(revision + 1);
-      expect(saved.offer.priceChf).toBe(5 + revision);
+      expect(saved.offer.priceChf).toBe(priceChf);
     }
     await Promise.all(['A', 'B'].map(name => savePrice(blobStore(path), { ...input, name, targetKey: undefined }, { beer, coffee }, name)));
     const state = (await secondInstance.read()).state;

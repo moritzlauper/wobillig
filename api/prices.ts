@@ -13,7 +13,7 @@ import { priceOwner, visiblePrices } from '../server/price-moderation.js';
 import { PriceCooldownError, withPriceCooldown } from '../server/price-cooldown.js';
 import { isMapId, publicMapSummaries } from '../src/custom-map-data.js';
 import { saveCustomMap, mapFingerprint, automaticMapInput, duplicateAutomaticMap } from '../server/custom-maps.js';
-import { searchMapPlaces } from '../server/map-places.js';
+import { mapPlacesInBounds, searchMapPlaces } from '../server/map-places.js';
 import { withMapQuota } from '../server/map-quota.js';
 import { saveVenueCorrection } from '../server/venue-corrections.js';
 
@@ -34,6 +34,8 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     if (!isCity(city)) throw new InputError('Unbekannte Stadt.');
     const placeQuery = new URL(req.url || '/', 'http://localhost').searchParams.get('mapPlaces');
     if (req.method === 'GET' && placeQuery !== null) return reply(200, { places: await searchMapPlaces(placeQuery, city) });
+    const placeBounds = new URL(req.url || '/', 'http://localhost').searchParams.get('mapPlaceBounds');
+    if (req.method === 'GET' && placeBounds !== null) return reply(200, { places: await mapPlacesInBounds(placeBounds, city) });
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     if (req.method === 'GET') {
       const params = new URL(req.url || '/', 'http://localhost').searchParams;

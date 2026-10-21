@@ -8,15 +8,27 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/api/tip?*', route => route.fulfill({ status: 503, json: {} }));
 });
 
+test('language links preserve filters before the map module loads and exclude payment credentials', async ({ page }) => {
+  await page.route('**/src/main.ts*', route => route.abort());
+  await page.goto('/en/geneve?drink=beer&size=500&bar=node%2F5860680786&payment_intent=pi_test&payment_intent_client_secret=private-test&redirect_status=succeeded');
+  const link = page.locator('.seo-map-header [data-locale="de"]');
+  await expect(link).toHaveAttribute('href', /drink=beer/);
+  await expect(link).not.toHaveAttribute('href', /payment_intent|private-test|redirect_status/);
+  await link.click();
+  const params = new URL(page.url()).searchParams;
+  expect(params.get('drink')).toBe('beer'); expect(params.get('size')).toBe('500');
+  expect(params.get('bar')).toBe('node/5860680786');
+});
+
 test('Geneva includes cafes and bars in Carouge', async ({ page }) => {
-  for (const [drink, id, name] of [
-    ['coffee', 'node/6312663914', 'Blue Balloon Café'],
-    ['beer', 'node/5860680786', 'Bar du Nord'],
+  for (const [drink, id, name, address] of [
+    ['coffee', 'node/6312663914', 'Blue Balloon Café', 'Rue Ancienne 41'],
+    ['beer', 'node/5860680786', 'Bar du Nord', 'Rue Ancienne 66'],
   ]) {
     await page.goto(`/en/geneve?drink=${drink}&bar=${encodeURIComponent(id)}`);
     await expect(page.locator('#detail')).toBeVisible();
     await expect(page.locator('#detail')).toContainText(name);
-    await expect(page.locator('#detail')).toContainText('1227');
+    await expect(page.locator('#detail')).toContainText(address);
   }
 });
 
