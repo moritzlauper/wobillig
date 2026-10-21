@@ -43,7 +43,7 @@ test('cheap prices follow pizza selection and search while the shortcut is activ
   await expect(page.locator('#price')).toHaveValue('18');
   await expect(page.locator('#results .venue')).toHaveCount(20);
   await page.locator('#cheap').click();
-  await expect(page.locator('#price')).toHaveValue('30');
+  await expect(page.locator('#price')).toHaveValue('16');
 });
 
 test('pizza groups compare house names by ingredients without a Margherita price', async ({ page }) => {

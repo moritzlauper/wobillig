@@ -13,7 +13,7 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
   const pizzaSelection = parsePizzaSelection(params.get('pizzaSelection'));
   const beerSelection = parseBeerSelection(params.get('beerSelection'));
   const amount = params.get('max');
-  const max = amount === 'all' ? Infinity : amount?.trim() && Number.isFinite(Number(amount)) && Number(amount) >= 0.5 ? Number(amount) : drink === 'pizza' ? 30 : 15;
+  const max = amount?.trim() && Number.isFinite(Number(amount)) && Number(amount) >= 0.5 ? Number(amount) : Infinity;
   const filters: Filters = {
     drink,
     ...(pizzaSelection ? { pizzaSelection } : {}),
@@ -46,7 +46,7 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
     coffeeType: f.coffeeType && f.coffeeType !== 'cappuccino' ? f.coffeeType : '',
     pizzaSelection: f.pizzaSelection || '', pizzaQuery: f.pizzaQuery?.trim() || '',
     beerType, beerSelection: f.beerSelection || '', beerQuery: f.beerQuery?.trim() || '', q: f.query,
-    max: f.max === (drink === 'pizza' ? 30 : 15) ? '' : Number.isFinite(f.max) ? String(f.max) : 'all',
+    max: Number.isFinite(f.max) ? String(f.max) : '',
     size, type: f.type, unknown: f.unknown ? '' : '0', outdoor: f.outdoor ? '1' : '',
     alcoholFree: f.alcoholFree ? '1' : '', mode: f.mode !== 'glass' ? f.mode : '',
     sort: f.sort !== 'price' ? f.sort : '', cheap: cheap ? '1' : '',

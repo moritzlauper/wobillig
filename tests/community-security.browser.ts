@@ -1,6 +1,9 @@
 import { test, expect, type Page } from '@playwright/test';
 const venue = { id: 'node/123', name: 'Schutz Café', address: 'Teststrasse 1', postcode: '8004', website: 'https://old.example/', lat: 47.38, lon: 8.53, type: 'cafe', outdoor: false, openingHours: null, checkedAt: null, scrapeStatus: 'ok', offers: [{ name: 'Espresso', coffeeType: 'espresso', priceChf: 4, volumeMl: null, alcoholFree: true, confidence: 'automatic', sourceUrl: '', evidence: '', observedAt: '2026-10-21' }] };
 async function fixture(page: Page, venues = [venue]) {
+  await page.route('https://tile.openstreetmap.org/**', route => route.fulfill({
+    contentType: 'image/png', body: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=', 'base64'),
+  }));
   await page.route('**/api/tip?*', route => route.fulfill({ json: { enabled: false } }));
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.route('**/data/*.json', route => route.fulfill({ json: { bars: /coffee|locations/.test(route.request().url()) ? venues : [], generatedAt: '', discoveredAt: '', attribution: '' } }));

@@ -2,6 +2,8 @@ import { test, expect, type Page } from '@playwright/test';
 import type { CustomMap } from '../src/custom-map-data';
 
 async function stubTiles(page: Page) {
+  // Test venue selection independently of Leaflet's animated zoom timing.
+  await page.addInitScript(() => { (window as typeof window & { L_DISABLE_3D: boolean }).L_DISABLE_3D = true; });
   await page.route('https://tile.openstreetmap.org/**', route => route.fulfill({
     contentType: 'image/png', body: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=', 'base64'),
   }));
