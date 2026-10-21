@@ -1,3 +1,4 @@
+import { contributionFetch } from './contribution-security';
 import type { Bar } from './data';
 import { t } from './i18n';
 import { validateVenueCorrection, type VenueCorrection } from './venue-corrections';
@@ -8,7 +9,7 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
   dialog.setAttribute('aria-labelledby', 'venue-correction-title');
   dialog.innerHTML = `<form>
     <div class="dialog-top"><strong id="venue-correction-title" tabindex="-1">${t('Lokal korrigieren')}</strong><button type="button" id="venue-correction-close">${t('Schliessen')}</button></div>
-    <p>${t('Korrigiere die Angaben zu diesem Lokal. Deine Änderungen sind sofort für alle sichtbar und bleiben bei automatischen Datenupdates erhalten. Bitte keinen neuen Eintrag anlegen.')}</p>
+    <p>${t('Korrigiere die Angaben zu diesem Lokal. Deine Änderungen werden vor der Veröffentlichung geprüft. Bitte keinen neuen Eintrag anlegen.')}</p>
     <fieldset>
       <label>Name<input name="name" maxlength="100" autocomplete="organization" required></label>
       <label>${t('Strasse und Hausnummer')}<input name="address" maxlength="160" autocomplete="street-address"></label>
@@ -41,10 +42,10 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
       validateVenueCorrection(raw);
       busy = true; fields.disabled = true; close.disabled = true;
       submit.textContent = t('Speichern …');
-      const response = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'correctVenue', ...raw }), signal: AbortSignal.timeout(30000) });
+      const response = await contributionFetch(api, { action: 'correctVenue', ...raw });
       const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.correction) throw new Error(result.error || t('Speichern gerade nicht möglich. Bitte erneut versuchen.'));
+      if (result.pending) { error.textContent = t('Danke. Dein Beitrag wird vor der Veröffentlichung geprüft.'); error.hidden = false; return; }
       dialog.close();
       saved(result.correction);
     } catch (reason) {

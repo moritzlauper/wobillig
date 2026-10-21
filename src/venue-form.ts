@@ -1,3 +1,4 @@
+import { contributionFetch } from './contribution-security';
 import L from 'leaflet';
 import { trackEvent } from './analytics';
 import { cities, type City } from './cities';
@@ -12,7 +13,7 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
   dialog.id = prefix + 'venue-dialog'; dialog.setAttribute('aria-labelledby', prefix + 'venue-title');
   dialog.innerHTML = `<form id="venue-form">
     <div class="dialog-top"><strong id="venue-title" tabindex="-1">${t('Lokal hinzufügen')}</strong><button id="venue-close" type="button">${t('Schliessen')}</button></div>
-    <p>${t('Fehlt ein Lokal in {city}? Trage es hier ein. Es wird für alle sichtbar; Preise kannst du anschliessend ergänzen.', { city: t(city.name) })}</p>
+    <p>${t('Fehlt ein Lokal in {city}? Trage es hier ein. Wir prüfen es vor der Veröffentlichung.', { city: t(city.name) })}</p>
     <p>${t('Falsche Angaben bei einem bestehenden Lokal? Öffne das Lokal und wähle «Lokal korrigieren».')}</p>
     <fieldset id="venue-fields">
       <label>Name<input id="venue-name" maxlength="100" autocomplete="organization" required></label>
@@ -108,10 +109,10 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
       el('venue-save').textContent = t('Speichern …');
       stage = 'request';
       trackEvent(cityId, 'venue_submitted', {});
-      const response = await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'addVenue', venue: input }), signal: AbortSignal.timeout(30000) });
+      const response = await contributionFetch(api, { action: 'addVenue', venue: input });
       const result = await response.json().catch(() => { throw new Error(t('Speichern gerade nicht möglich. Bitte erneut versuchen.')); });
       if (!response.ok || !result.venue) throw new Error(result.error || t('Das Lokal konnte nicht gespeichert werden.'));
+      if (result.pending) { completed = true; el('venue-error').textContent = t('Danke. Dein Beitrag wird vor der Veröffentlichung geprüft.'); el('venue-error').hidden = false; return; }
       completed = true;
       trackEvent(cityId, result.created ? 'venue_saved' : 'venue_existing_selected', {});
       dialog.close(); saved(result.venue, result.created);

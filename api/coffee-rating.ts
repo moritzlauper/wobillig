@@ -1,3 +1,4 @@
+import { protectContribution, reservePhotoBudget } from '../server/community-security.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { createHash, createHmac } from 'node:crypto';
@@ -5,7 +6,6 @@ import { cities, cityStoragePath, isCity } from '../src/cities.js';
 import { communityVenues, InputError } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore } from '../server/prices.js';
-import { browserIdentity } from '../server/browser-identity.js';
 import { checkRatingChange, coffeeRatingSummaries, ratingVoter, saveCoffeeRating } from '../server/coffee-ratings.js';
 import { reserveCoffeePhoto, verifyCoffeePhoto } from '../server/coffee-photo.js';
 import { validateScanImage } from '../server/menu-ocr.js';
@@ -36,6 +36,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     }
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch { throw new InputError('Ungültiger Upload.'); } }
     if (!body || typeof body !== 'object' || Array.isArray(body) || Buffer.byteLength(JSON.stringify(body)) > MAX_BODY) throw new InputError('Ungültiger Upload.');
+    const actor = await protectContribution(req, res, 'botToken' in body ? body.botToken : undefined, true);
     const value = body as { barId?: unknown; score?: unknown; image?: unknown };
     if (typeof value.barId !== 'string' || value.barId.length > 100 || typeof value.score !== 'number' ||
         !Number.isInteger(value.score) || value.score < 1 || value.score > 5) throw new InputError('Bitte eine Bewertung von 1 bis 5 wählen.');
@@ -52,7 +53,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const datasets = { beer, coffee, pizza, locations };
     const bar = communityVenues(datasets, state.entries, state.venues, state.venueCorrections).find(item => item.id === value.barId);
     if (!bar) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
-    const owner = browserIdentity(req, res, secret);
+    const owner = actor.account || actor.browser;
     const voter = ratingVoter(city, bar.id, owner, secret);
     const photoHash = createHash('sha256').update(Buffer.from(image.data, 'base64')).digest('hex');
     const used = state.coffeePhotoUses?.[photoHash];
@@ -63,6 +64,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     }
     const ip = createHmac('sha256', secret).update(`coffee-ip:${req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown'}`).digest('hex');
     await reserveCoffeePhoto(blobStore(`prices/coffee-photo-limits/${production ? 'production' : 'development'}.json`), ip, owner);
+    await reservePhotoBudget();
     await verifyCoffeePhoto(image, bar, apiKey);
     const rating = await saveCoffeeRating(store, value, datasets, city, ip, secret, Date.now(), { owner, photoHash });
     return reply(200, { rating });

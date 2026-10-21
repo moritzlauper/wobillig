@@ -1,3 +1,4 @@
+import type { Actor } from './community-security.js';
 import { communityVenues, InputError } from '../src/community.js';
 import { isMapId, mapVenueCount, PUBLIC_MAP_MIN_VENUES, type CustomMap } from '../src/custom-map-data.js';
 import type { City } from '../src/cities.js';
@@ -28,7 +29,7 @@ export function duplicateAutomaticMap(maps: CustomMap[], suggestion: { sourceUrl
     map.automatic.sourceUrl === suggestion.sourceUrl && normalize(map.automatic.description) === normalize(suggestion.description));
 }
 
-export async function saveCustomMap(store: Store, value: unknown, datasets: Parameters<typeof communityVenues>[0], visitor: string, now = Date.now(), city: City = 'zurich'): Promise<CustomMap> {
+export async function saveCustomMap(store: Store, value: unknown, datasets: Parameters<typeof communityVenues>[0], visitor: string, now = Date.now(), city: City = 'zurich', actor: Actor = { browser: visitor }): Promise<CustomMap> {
   if (!value || typeof value !== 'object') throw new InputError('Ungültiger Eintrag.');
   const input = value as Record<string, unknown>;
   if (!isMapId(input.mapId)) throw new InputError('Ungültige Map.');
@@ -47,6 +48,7 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     const { state, etag } = await store.read();
     const maps = state.customMaps || [];
     const existing = maps.find(map => map.id === input.mapId);
+    if (existing && !canEditMap(state.mapOwners?.[existing.id], actor)) throw new InputError('Nur die Erstellerin oder der Ersteller kann diese Map bearbeiten.', 403);
     // The client keeps the creation ID during retries after a lost response.
     if (create && existing) {
       if (existing.name !== (input.name as string).trim() || Boolean(existing.automatic) !== automatic ||
@@ -94,9 +96,16 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     const limit = state.limits[key] || { count: 0, expires: now + 3600000 };
     if (limit.count >= (create ? 5 : 30)) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[key] = { ...limit, count: limit.count + 1 };
+    state.mapOwners ||= {};
+    if (!existing) state.mapOwners[map.id] = actor;
+    else if (actor.account && !state.mapOwners[map.id].account) state.mapOwners[map.id].account = actor.account;
     state.customMaps = [...maps.filter(other => other.id !== map.id), map];
     try { await store.write(state, etag); return map; }
     catch (error) { if (!(error instanceof WriteConflict)) throw error; }
   }
   throw new InputError('Die Map wird gerade geändert. Bitte erneut versuchen.', 409);
+}
+
+export function canEditMap(owner: Actor | undefined, actor: Actor): boolean {
+  return Boolean(owner && (owner.account ? owner.account === actor.account : owner.browser === actor.browser));
 }

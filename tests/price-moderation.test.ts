@@ -62,7 +62,8 @@ it('returns normal success and persists only the submitting browser’s view acr
   const newOffer = { ...input, targetKey: undefined, name: 'New cappuccino' };
   const saved = await request(newOffer);
   expect(saved.status).toBe(200);
-  expect(Object.keys(saved.data)).toEqual(['entry']);
+  expect(Object.keys(saved.data)).toEqual(['entry', 'pending']);
+  expect(saved.data.pending).toBe(true);
   expect(saved.data.entry.offer.priceChf).toBe(20);
   expect(saved.headers['Set-Cookie']).toContain('HttpOnly; SameSite=Lax');
   expect(saved.headers['Set-Cookie']).toContain('; Secure');

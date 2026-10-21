@@ -1,3 +1,6 @@
+import { publicCommunity } from '../server/public-community.js';
+import { actorFor, protectContribution } from '../server/community-security.js';
+import { canEditMap } from '../server/custom-maps.js';
 import { cities, isCity, cityStoragePath, type City } from '../src/cities.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { readFile } from 'node:fs/promises';
@@ -33,6 +36,13 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     if (req.method === 'GET' && placeQuery !== null) return reply(200, { places: await searchMapPlaces(placeQuery, city) });
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     if (req.method === 'GET') {
+      const params = new URL(req.url || '/', 'http://localhost').searchParams;
+      if (params.get('view') === 'public' && !params.has('map') && !params.has('mapStatuses')) {
+        const data = await publicCommunity(cityStoragePath(city, process.env.VERCEL_ENV === 'production'), store);
+        res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=30, stale-while-revalidate=60');
+        res.removeHeader?.('Vary');
+        return reply(200, data);
+      }
       const { state } = await store.read();
       const statusIds = new URL(req.url || '/', 'http://localhost').searchParams.get('mapStatuses');
       if (statusIds !== null) {
@@ -47,7 +57,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
         if (!isMapId(mapId)) throw new InputError('Ungültige Map.');
         const map = state.customMaps?.find(item => item.id === mapId);
         if (!map) throw new InputError('Diese Map wurde nicht gefunden.', 404);
-        return reply(200, { map });
+        return reply(200, { map: { ...map, canEdit: canEditMap(state.mapOwners?.[map.id], actorFor(req, res)) } });
       }
       return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], venueCorrections: state.venueCorrections || [], coffeeRatings: coffeeRatingSummaries(state), publicMaps: publicMapSummaries(state.customMaps || []) });
     }
@@ -63,6 +73,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     }
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch { throw new InputError('Ungültiges JSON.'); } }
     if (JSON.stringify(body)?.length > 8192) throw new InputError('Eintrag zu gross.', 413);
+    const actor = await protectContribution(req, res, body && typeof body === 'object' && 'botToken' in body ? body.botToken : undefined);
     const data = await datasets(city);
     // Vercel overwrites this header. Only a daily salted hash is kept, never the IP address.
     const ip = req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown';
@@ -72,16 +83,20 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     if (body && typeof body === 'object' && 'action' in body && ['createMap', 'requestAutomaticMap', 'saveMapEntry', 'requestMapPublication', 'withdrawMapPublication'].includes(String(body.action))) {
       const input = body as Record<string, unknown>;
       const creating = input.action === 'createMap' || input.action === 'requestAutomaticMap';
-      const save = () => saveCustomMap(store, input, data, visitor, Date.now(), city);
+      const save = async () => {
+        const map = await saveCustomMap(store, input, data, visitor, Date.now(), city, actor);
+        return { ...map, canEdit: canEditMap((await store.read()).state.mapOwners?.[map.id], actor) };
+      };
       if (!creating && input.action !== 'requestMapPublication') return reply(200, { map: await save() });
       if (!isMapId(input.mapId)) throw new InputError('Ungültige Map.');
       const owner = priceOwner(req, res, true)!;
       const mapIp = createHmac('sha256', secret).update(`map-quota:${ip}`).digest('hex');
       const { state } = await store.read();
       const existing = state.customMaps?.find(map => map.id === input.mapId);
+      if (existing && !canEditMap(state.mapOwners?.[existing.id], actor)) throw new InputError('Diese Map kann nur vom Ersteller bearbeitet werden.', 403);
       // Retrying a completed operation must not consume another daily slot.
       if (existing && (creating || ['pending', 'approved'].includes(existing.publication?.status || ''))) {
-        return reply(200, { map: creating ? await save() : existing });
+        return reply(200, { map: creating ? await save() : { ...existing, canEdit: true } });
       }
       // Reopening an identical request is read-only, including after a lost response.
       if (input.action === 'requestAutomaticMap' && duplicateAutomaticMap(state.customMaps || [], automaticMapInput(input))) {
@@ -89,7 +104,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       }
       const operation = `${city}:${input.mapId}:${input.action === 'requestMapPublication' && existing ? mapFingerprint(existing) : ''}`;
       const quotaStore = blobStore(`maps/quotas/${process.env.VERCEL_ENV === 'production' ? 'production' : 'development'}.json`);
-      return reply(200, { map: await withMapQuota(quotaStore, creating ? 'create' : 'publish', mapIp, owner, operation, save) });
+      return reply(200, { map: await withMapQuota(quotaStore, creating ? 'create' : 'publish', mapIp, actor.account || owner, operation, save) });
     }
     if (body && typeof body === 'object' && 'action' in body && body.action === 'rateCoffee') {
       throw new InputError('Bitte ein Foto mit deinem Kaffee aus diesem Lokal hochladen.', 422);
@@ -106,9 +121,10 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     // A stable HMAC prevents a midnight reset; timestamps expire after ten minutes.
     const cooldownIp = createHmac('sha256', secret).update(`price-cooldown:${ip}`).digest('hex');
     const cooldownStore = blobStore(`prices/cooldowns/${process.env.VERCEL_ENV === 'production' ? 'production' : 'development'}.json`);
-    const entry = await withPriceCooldown(cooldownStore, cooldownIp, owner,
+    const entry = await withPriceCooldown(cooldownStore, cooldownIp, actor.account || owner,
       () => savePrice(store, input, data, visitor, Date.now(), owner));
-    return reply(200, { entry });
+    const after = (await store.read()).state;
+    return reply(200, { entry, ...(after.heldPrices?.some(row => row.entry.id === entry.id && row.owner === owner) ? { pending: true } : {}) });
   } catch (error) {
     if (error instanceof PriceCooldownError) {
       res.setHeader('Retry-After', String(error.retryAfter));

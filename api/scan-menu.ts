@@ -1,3 +1,4 @@
+import { protectContribution, reservePhotoBudget } from '../server/community-security.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { createHash, createHmac } from 'node:crypto';
@@ -32,6 +33,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     }
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch { throw new InputError('Ungültiger Upload.'); } }
     if (!body || typeof body !== 'object' || Buffer.byteLength(JSON.stringify(body)) > MAX_BODY) throw new InputError('Ungültiger Upload.');
+    await protectContribution(req, res, 'botToken' in body ? body.botToken : undefined, true);
     const data = body as { barId?: unknown; image?: unknown; edit?: unknown };
     const image = validateScanImage(data.image);
     const [beer, coffee, pizza, locations] = await Promise.all(['bars', 'coffee', 'pizza', 'locations'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(v => JSON.parse(v) as Dataset)));
@@ -53,10 +55,11 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const cached = await reserveScan(store, hash, visitor);
     if (cached) return reply(200, cached);
     reserved = { store, hash };
+    await reservePhotoBudget();
     const result = await readMenu(image, bar, key);
     const { prices, skipped } = menuPrices(result.parsed, bar, zurichToday());
     if (!prices.length) throw new InputError('Keine eindeutigen Bier-, Kaffee- oder Margherita-Preise erkannt. Bitte einen näheren, scharfen Ausschnitt fotografieren.', 422);
-    const saved = await saveMenuScan(store, hash, bar, originals, prices, skipped, Date.now(), edit, priceOwner(req, res));
+    const saved = await saveMenuScan(store, hash, bar, originals, prices, skipped, Date.now(), edit, priceOwner(req, res, true));
     reserved = undefined;
     return reply(200, saved);
   } catch (error) {

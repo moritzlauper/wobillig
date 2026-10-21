@@ -1,6 +1,6 @@
 import type { PriceEntry } from './community';
 import { t } from './i18n';
-export type MenuScanResult = { entries: PriceEntry[]; added: number; unchanged: number; conflicts: number; skipped: number; updated?: number };
+export type MenuScanResult = { pending?: boolean; entries: PriceEntry[]; added: number; unchanged: number; conflicts: number; skipped: number; updated?: number };
 
 // Decode and re-encode locally: normalises phone orientation, removes EXIF/GPS,
 // bounds upload size and retains enough resolution for menu columns.

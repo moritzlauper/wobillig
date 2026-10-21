@@ -34,8 +34,8 @@ async function request(body?: object, options: { admin?: boolean; auth?: boolean
     headers: { host: 'example.org', origin: options.origin || 'https://example.org', cookie: options.cookie,
       authorization: options.auth ? 'Basic ' + Buffer.from('admin:review-secret').toString('base64') : undefined,
       'content-type': admin ? 'application/x-www-form-urlencoded' : 'application/json' }, socket: { remoteAddress: options.ip || 'ip-1' } } as IncomingMessage & { body?: unknown };
-  const headers: Record<string, string> = {}; let output = '';
-  const res = { statusCode: 0, setHeader: (key: string, value: string) => { headers[key] = value; }, end: (value = '') => { output = value; } } as unknown as ServerResponse;
+  const headers: Record<string, any> = {}; let output = '';
+  const res = { statusCode: 0, getHeader: (key: string) => headers[key], setHeader: (key: string, value: string) => { headers[key] = value; }, end: (value = '') => { output = value; } } as unknown as ServerResponse;
   await (admin ? review : prices)(req, res);
   return { status: res.statusCode, headers, output, data: admin ? undefined : JSON.parse(output) };
 }
@@ -43,8 +43,8 @@ it('stores requests without fetching their URLs, deduplicates retries and shares
   const fetch = vi.fn(); vi.stubGlobal('fetch', fetch);
   const first = await request({ ...suggestion, automatic: { status: 'active' } });
   expect(first.status).toBe(200); expect(first.data.map.automatic).toMatchObject({ status: 'requested', revision: 1 });
-  const cookie = first.headers['Set-Cookie'].split(';')[0];
-  expect((await request(suggestion)).status).toBe(200);
+  const cookie = [first.headers['Set-Cookie']].flat().map((s: string) => s.split(';')[0]).join('; ');
+  expect((await request(suggestion, { cookie })).status).toBe(200);
   const duplicate = await request({ ...suggestion, mapId: otherId, name: 'Coop Kaffee', description: ' KAFFEEAKTIONEN ', sourceUrl: suggestion.sourceUrl + '#offers' });
   expect(duplicate.status).toBe(200); expect(duplicate.data.map.id).toBe(id);
   expect((await request({ action: 'createMap', mapId: otherId, name: 'Map' }, { query: 'city=bern', ip: 'ip-2', cookie })).status).toBe(429);
@@ -58,10 +58,11 @@ it('rejects unsafe URLs and oversized descriptions without reserving the daily s
   }
   expect((await request({ ...suggestion, description: 'x'.repeat(601) })).status).toBe(400);
   const created = await request({ ...suggestion, description: 'Kaffeeaktionen\nIn Zürich' });
+  const cookie = [created.headers['Set-Cookie']].flat().map((s: string) => s.split(';')[0]).join('; ');
   expect(created.status).toBe(200); expect(created.data.map.automatic.description).toContain('\n');
-  expect((await request({ ...suggestion, action: 'createMap' })).status).toBe(409);
-  expect((await request({ action: 'requestMapPublication', mapId: id })).status).toBe(409);
-  expect((await request({ action: 'saveMapEntry', mapId: id, product: 'Coffee', priceChf: 5, revision: 0 })).status).toBe(409);
+  expect((await request({ ...suggestion, action: 'createMap' }, { cookie })).status).toBe(409);
+  expect((await request({ action: 'requestMapPublication', mapId: id }, { cookie })).status).toBe(409);
+  expect((await request({ action: 'saveMapEntry', mapId: id, product: 'Coffee', priceChf: 5, revision: 0 }, { cookie })).status).toBe(409);
 });
 it('requires an authenticated same-origin review and rejects stale or unsupported decisions', async () => {
   await request(suggestion);

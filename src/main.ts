@@ -1,3 +1,4 @@
+import { contributionFetch, accountControl } from './contribution-security';
 import { cities, cityFromPath, cityLink, defaultCityLocale, type City } from './cities';
 import L from 'leaflet';
 import { inject } from '@vercel/analytics';
@@ -176,7 +177,7 @@ $('app').innerHTML = `
   </fieldset></details>
   <p id="form-error" role="alert" hidden></p>
 </form></dialog>
-<dialog id="info" aria-label="${t('Daten')}"><div class="dialog-top"><strong>${t('Daten')}</strong><button id="close-info">${t('Schliessen')}</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">${e(t('Daten für {city} herunterladen', { city: cityName }))}</strong><p>${t('Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.')}</p><div class="download-actions"><button id="download-csv" class="primary" disabled>${t('CSV herunterladen')}</button><button id="download-json" disabled>${t('JSON herunterladen')}</button></div><p class="muted">${t('CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.')}</p><p id="download-status" class="muted" role="status">${t('Daten werden geladen …')}</p></section><p><a href="https://github.com/moritzlauper/wobillig" target="_blank" rel="noopener noreferrer">${t('GitHub-Repository')}</a></p><p id="coverage"></p><p>${t('Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.')}</p><p>${districtTexts.info} ${districtTexts.source} <a href="${districtTexts.sourceUrl}" target="_blank" rel="noopener noreferrer">${districtTexts.sourceName}</a>.</p>${cityId === 'basel' ? `<p>${t('Draussen sitzen: In Basel zählen neben den Angaben aus OpenStreetMap auch Lokale mit einer gültigen Boulevard-Bewilligung des Kantons. Zugeordnet sind nur Bewilligungen, deren Name und Standort eindeutig zu einem Lokal passen. Saisonbewilligungen zählen nur während der bewilligten Zeit.')} ${t('Bewilligungen:')} <a href="https://data.bs.ch/explore/dataset/100018/" target="_blank" rel="noopener noreferrer">${t('Kanton Basel-Stadt, Allmendbewilligungen (CC BY 4.0)')}</a>.</p>` : ''}<p>${t('Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise und Foto-Uploads behalten Vorrang, ausser eine belegbar neuere Website-Karte nennt einen abweichenden Preis. Quelle, Menge und Datum stehen beim Angebot.')}</p><p>${t('Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.')}</p><p>${t('Bier: Cafés erscheinen mit einem erfassten, aktuellen Bierangebot unabhängig von ihren Öffnungszeiten. Cafés ohne Bierangebot werden auch bei «Ohne passenden Preis anzeigen» ausgeblendet.')}</p><p>${t('Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.')}</p><p>${t('Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.')}</p><p>${t('Eine Kaffeebewertung pro Browser und Lokal, änderbar nach 24 Stunden. Ein Cookie erkennt deinen Browser wieder. Der Durchschnitt erscheint ab drei Stimmen. Dein Kaffeefoto wird zur Prüfung an Anthropic gesendet und von wobillig nicht gespeichert; gespeichert bleiben nur ein Fingerabdruck des Fotos, die Bewertung und der Zeitpunkt.')}</p><p>${t('Standorte und Karte:')} <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">${t('© OpenStreetMap-Mitwirkende, ODbL')}</a>.</p></dialog>`;
+<dialog id="info" aria-label="${t('Daten')}"><div class="dialog-top"><strong>${t('Daten')}</strong><button id="close-info">${t('Schliessen')}</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">${e(t('Daten für {city} herunterladen', { city: cityName }))}</strong><p>${t('Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.')}</p><div class="download-actions"><button id="download-csv" class="primary" disabled>${t('CSV herunterladen')}</button><button id="download-json" disabled>${t('JSON herunterladen')}</button></div><p class="muted">${t('CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.')}</p><p id="download-status" class="muted" role="status">${t('Daten werden geladen …')}</p></section><p><a href="https://github.com/moritzlauper/wobillig" target="_blank" rel="noopener noreferrer">${t('GitHub-Repository')}</a></p><p id="coverage"></p><p>${t('Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig», Lokaltyp und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.')}</p><p>${districtTexts.info} ${districtTexts.source} <a href="${districtTexts.sourceUrl}" target="_blank" rel="noopener noreferrer">${districtTexts.sourceName}</a>.</p>${cityId === 'basel' ? `<p>${t('Draussen sitzen: In Basel zählen neben den Angaben aus OpenStreetMap auch Lokale mit einer gültigen Boulevard-Bewilligung des Kantons. Zugeordnet sind nur Bewilligungen, deren Name und Standort eindeutig zu einem Lokal passen. Saisonbewilligungen zählen nur während der bewilligten Zeit.')} ${t('Bewilligungen:')} <a href="https://data.bs.ch/explore/dataset/100018/" target="_blank" rel="noopener noreferrer">${t('Kanton Basel-Stadt, Allmendbewilligungen (CC BY 4.0)')}</a>.</p>` : ''}<p>${t('Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise und Foto-Uploads behalten Vorrang, ausser eine belegbar neuere Website-Karte nennt einen abweichenden Preis. Quelle, Menge und Datum stehen beim Angebot.')}</p><p>${t('Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.')}</p><p>${t('Bier: Cafés erscheinen mit einem erfassten, aktuellen Bierangebot unabhängig von ihren Öffnungszeiten. Cafés ohne Bierangebot werden auch bei «Ohne passenden Preis anzeigen» ausgeblendet.')}</p><p>${t('Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.')}</p><p>${t('Neue Einträge und Korrekturen werden gemeinsam gespeichert. Zum Begrenzen von Spam wird kurzzeitig eine nicht rücklesbare Kennung aus der IP-Adresse gespeichert. Dein Standort bleibt im Browser.')}</p><p>${t('Eine Kaffeebewertung pro Browser und Lokal, änderbar nach 24 Stunden. Ein Cookie erkennt deinen Browser wieder. Der Durchschnitt erscheint ab drei Stimmen. Dein Kaffeefoto wird zur Prüfung an Anthropic gesendet und von wobillig nicht gespeichert; gespeichert bleiben nur ein Fingerabdruck des Fotos, die Bewertung und der Zeitpunkt.')}</p><p>${t('Beiträge werden vor der Veröffentlichung geprüft. Die E-Mail-Bestätigung dient dem Spamschutz, nicht dem Newsletterversand. Für die Anmeldung wird ein Cookie für 30 Tage gesetzt. E-Mail-Adressen werden nur zum Versand verwendet; wobillig speichert eine geschützte Kennung. Die Sicherheitsprüfung erfolgt durch Cloudflare Turnstile.')}<br>${t('Standorte und Karte:')} <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">${t('© OpenStreetMap-Mitwirkende, ODbL')}</a>.</p></dialog>`;
 
 const categoryNav = categoryNavigation($('category-navigation'), chooseDrink, dataPath);
 const cityMenu = $<HTMLDetailsElement>('city-more');
@@ -978,8 +979,7 @@ $('menu-photo').onchange = async () => {
     const image = await prepareMenuPhoto(file);
     stage = 'request';
     $('scan-status').textContent = t('Karte wird gelesen und Preise werden gespeichert …');
-    const response = await fetch(`/api/scan-menu?city=${cityId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ barId, image, ...(editing ? { edit: { id: editing.communityId, revision: editing.revision || 0, targetKey: editing.originalKey || offerKey(editing), drink: offerCategory(editing) } } : {}) }), signal: AbortSignal.timeout(100000) });
+    const response = await contributionFetch(`/api/scan-menu?city=${cityId}`, { barId, image, ...(editing ? { edit: { id: editing.communityId, revision: editing.revision || 0, targetKey: editing.originalKey || offerKey(editing), drink: offerCategory(editing) } } : {}) }, 100000);
     const result = await response.json().catch(() => { throw new Error(t('Der Scan ist gerade nicht verfügbar. Bitte später erneut versuchen.')); });
     if (!response.ok) throw new Error(result.error || t('Das Foto konnte nicht verarbeitet werden.'));
     const scanned = result as MenuScanResult;
@@ -993,7 +993,7 @@ $('menu-photo').onchange = async () => {
     $<HTMLDialogElement>('price-dialog').close(); rebuild();
     const bar = bars.find(b => b.id === barId) || locationCatalogue.find(b => b.id === barId);
     if (bar) showBar(bar);
-    toast(scanSummary(scanned));
+    toast(scanned.pending ? t('Danke. Dein Beitrag wird vor der Veröffentlichung geprüft.') : scanSummary(scanned));
   } catch (error) {
     if (!completed) trackEvent(cityId, 'menu_upload_failed', { stage });
     $('scan-status').hidden = true;
@@ -1040,7 +1040,7 @@ $('price-form').onsubmit = async event => {
     stage = 'request';
     trackEvent(cityId, 'price_submitted', { category: drink, action });
     saving = true; $<HTMLButtonElement>('scan-menu').disabled = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = t('Speichern …');
-    const response = await fetch(pricesApi, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal: AbortSignal.timeout(30000) });
+    const response = await contributionFetch(pricesApi, input);
     const result = await response.json().catch(() => { throw new Error(t('Speichern gerade nicht möglich. Bitte erneut versuchen.')); });
     if (!response.ok) {
       if (response.status === 409 && await loadCommunity()) rebuild();
@@ -1048,6 +1048,10 @@ $('price-form').onsubmit = async event => {
         throw new Error(t('Maximal 5 Preiseingaben pro 10 Minuten. Bitte warte noch {minutes} Min.', { minutes: Math.ceil(result.retryAfter / 60) }));
       }
       throw new Error(result.error || t('Speichern fehlgeschlagen.'));
+    }
+    if (result.pending) {
+      saved = true; $<HTMLDialogElement>('price-dialog').close();
+      toast(t('Danke. Dein Beitrag wird vor der Veröffentlichung geprüft.')); return;
     }
     const entry = result.entry as PriceEntry;
     saved = true;
@@ -1066,7 +1070,7 @@ $('price-form').onsubmit = async event => {
     $<HTMLInputElement>('alcohol-free').checked = f.alcoholFree;
     $<HTMLDialogElement>('price-dialog').close(); rebuild(); showView(false);
     const bar = bars.find(b => b.id === input.barId); if (bar) showBar(bar, 16);
-    toast(t('Gespeichert. Für alle sichtbar.'));
+    toast(result.pending ? t('Danke. Dein Beitrag wird vor der Veröffentlichung geprüft.') : t('Gespeichert. Für alle sichtbar.'));
   } catch (error) {
     if (!saved) trackEvent(cityId, 'price_failed', { category: drink, action, stage });
     $('form-error').textContent = error instanceof Error && !['TypeError', 'TimeoutError', 'AbortError'].includes(error.name) ? t(error.message) : t('Speichern fehlgeschlagen. Bitte Verbindung prüfen und erneut versuchen.');
@@ -1075,7 +1079,7 @@ $('price-form').onsubmit = async event => {
 };
 async function loadCommunity() {
   try {
-    const response = await fetch(pricesApi, { cache: 'no-store', signal: AbortSignal.timeout(20000) });
+    const response = await fetch(pricesApi + '&view=public', { credentials: 'omit', signal: AbortSignal.timeout(20000) });
     if (!response.ok) throw new Error();
     const result = await response.json();
     if (!Array.isArray(result.entries)) throw new Error();
@@ -1131,3 +1135,5 @@ if (districtState.enabled) {
   $('filters').hidden = false; $('filters-toggle').setAttribute('aria-expanded', 'true');
   void loadDistricts();
 }
+
+accountControl(document.querySelector<HTMLElement>('.app-footer')!);

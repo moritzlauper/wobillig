@@ -1,3 +1,6 @@
+import { randomUUID } from 'node:crypto';
+import { reviewRequired } from './community-policy.js';
+import { checkReviewCapacity } from './community-policy.js';
 import { communityVenues, InputError } from '../src/community.js';
 import { validateVenueCorrection, type VenueCorrection } from '../src/venue-corrections.js';
 import { WriteConflict, type Store } from './prices.js';
@@ -19,6 +22,13 @@ export async function saveVenueCorrection(store: Store, value: unknown, datasets
     state.limits[key] = { ...limit, count: limit.count + 1 };
     const correction: VenueCorrection = { barId: input.barId, changes: { ...old?.changes, ...input.changes },
       revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString() };
+    if (reviewRequired()) {
+      checkReviewCapacity(state);
+      const duplicate = state.pendingCorrections?.find(row => row.correction.barId === correction.barId && JSON.stringify(row.correction.changes) === JSON.stringify(correction.changes));
+      if (duplicate) return { correction: duplicate.correction, pending: true };
+      state.pendingCorrections = [...(state.pendingCorrections || []), { id: randomUUID(), correction, before: old || null, submittedAt: new Date(now).toISOString() }];
+      try { await store.write(state, etag); return { correction, pending: true }; } catch (error) { if (!(error instanceof WriteConflict)) throw error; continue; }
+    }
     state.venueCorrections = [...(state.venueCorrections || []).filter(item => item.barId !== input.barId), correction];
     state.venueCorrectionHistory = [...(state.venueCorrectionHistory || []), { correction, before: {
       name: venue.name, address: venue.address, postcode: venue.postcode, website: venue.website,

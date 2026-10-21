@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => captureAnalytics(page));
 
 test('mobile visitors can create a venue, reload it and add a price', async ({ page }) => {
   const venues: Bar[] = [], entries: unknown[] = [];
-  await page.route('**/api/prices?city=bern', async route => {
+  await page.route('**/api/prices?city=bern*', async route => {
     if (route.request().method() === 'GET') return route.fulfill({ json: { venues, entries } });
     const body = route.request().postDataJSON();
     if (body.action === 'addVenue') {

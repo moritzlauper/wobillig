@@ -9,6 +9,8 @@ export default defineConfig({
     name: 'local-google-rating',
     generateBundle() { this.emitFile({ type: 'asset', fileName: 'assets/deals-leaflet.css', source: readFileSync('node_modules/leaflet/dist/leaflet.css', 'utf8') }); },
     configureServer(server) {
+      const securityEnv = loadEnv(server.config.mode, process.cwd(), ['COMMUNITY_', 'CONTRIBUTION_', 'TURNSTILE_', 'EMAIL_', 'SMTP_']);
+      for (const [key, value] of Object.entries(securityEnv)) process.env[key] ||= value;
       const env = loadEnv(server.config.mode, process.cwd(), 'GOOGLE_PLACES_');
       process.env.GOOGLE_PLACES_API_KEY ||= env.GOOGLE_PLACES_API_KEY;
       process.env.BLOB_READ_WRITE_TOKEN ||= loadEnv(server.config.mode, process.cwd(), 'BLOB_READ_WRITE_TOKEN').BLOB_READ_WRITE_TOKEN;
@@ -25,7 +27,7 @@ export default defineConfig({
       process.env.ANTHROPIC_API_KEY ||= loadEnv(server.config.mode, process.cwd(), 'ANTHROPIC_API_KEY').ANTHROPIC_API_KEY;
       process.env.STRIPE_SECRET_KEY ||= loadEnv(server.config.mode, process.cwd(), 'STRIPE_SECRET_KEY').STRIPE_SECRET_KEY;
       process.env.STRIPE_PUBLISHABLE_KEY ||= loadEnv(server.config.mode, process.cwd(), 'STRIPE_PUBLISHABLE_KEY').STRIPE_PUBLISHABLE_KEY;
-      for (const route of ['coffee-rating', 'scan-menu', 'map-review', 'deals', 'tip']) server.middlewares.use(`/api/${route}`, async (req, res, next) => {
+      for (const route of ['coffee-rating', 'scan-menu', 'map-review', 'community-auth', 'community-review', 'price-review', 'deals', 'tip']) server.middlewares.use(`/api/${route}`, async (req, res, next) => {
         try {
           const { default: handler } = await server.ssrLoadModule(`/api/${route}.ts`);
           await handler(req, res);

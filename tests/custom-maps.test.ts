@@ -28,8 +28,8 @@ it('persists arbitrary maps and canonical venues, supports edits, and rejects st
   expect(await saveCustomMap(store, create, {}, 'visitor')).toEqual(map);
   const saved = await saveCustomMap(store, { ...input, venue: { name: 'Forged', lat: 0 } }, { locations: data }, 'visitor');
   expect(saved.entries[0]).toMatchObject({ venue: { id: bar.id, name: bar.name, lat: bar.lat }, priceChf: 12.5, revision: 1 });
-  await expect(saveCustomMap(store, input, { locations: data }, 'other')).rejects.toMatchObject({ status: 409 });
-  expect((await saveCustomMap(store, { ...input, revision: 1, priceChf: 13 }, { locations: data }, 'other')).entries).toHaveLength(1);
+  await expect(saveCustomMap(store, input, { locations: data }, 'visitor')).rejects.toMatchObject({ status: 409 });
+  expect((await saveCustomMap(store, { ...input, revision: 1, priceChf: 13 }, { locations: data }, 'visitor')).entries).toHaveLength(1);
   expect((await store.read()).state.customMaps![0].entries[0].priceChf).toBe(13);
 });
 
@@ -51,8 +51,8 @@ it('merges simultaneous additions and preserves existing price data', async () =
   await saveCustomMap(store, create, {}, 'v');
   const datasets = { locations: { ...data, bars: [bar, { ...bar, id: 'node/2' }] } };
   await Promise.all([
-    saveCustomMap(store, input, datasets, 'a'),
-    saveCustomMap(store, { ...input, barId: 'node/2' }, datasets, 'b'),
+    saveCustomMap(store, input, datasets, 'v'),
+    saveCustomMap(store, { ...input, barId: 'node/2' }, datasets, 'v'),
   ]);
   const { state } = await store.read();
   expect(state.customMaps![0].entries).toHaveLength(2);

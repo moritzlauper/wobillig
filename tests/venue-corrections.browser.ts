@@ -22,7 +22,7 @@ for (const language of ['de', 'en']) {
   test(`${language}: correct a website on mobile, reload, edit again and remove the link`, async ({ page }) => {
     await fixture(page);
     const corrections: VenueCorrection[] = [], submissions: any[] = [];
-    await page.route('**/api/prices?city=bern', route => {
+    await page.route('**/api/prices?city=bern*', route => {
       if (route.request().method() === 'GET') return route.fulfill({ json: { entries: [], venues: [], venueCorrections: corrections } });
       const body = route.request().postDataJSON(); submissions.push(body);
       const correction = { barId: body.barId, revision: corrections.length + 1, updatedAt: '2026-10-20',
@@ -66,7 +66,7 @@ for (const language of ['de', 'en']) {
 test('failed corrections keep the input, and cancelling makes no write', async ({ page }) => {
   await fixture(page);
   let writes = 0;
-  await page.route('**/api/prices?city=bern', route => {
+  await page.route('**/api/prices?city=bern*', route => {
     if (route.request().method() === 'GET') return route.fulfill({ json: { entries: [], venues: [] } });
     writes++;
     return route.fulfill({ status: 409, json: { error: 'Dieses Lokal wurde inzwischen geändert. Bitte neu laden und die Korrektur erneut prüfen.' } });

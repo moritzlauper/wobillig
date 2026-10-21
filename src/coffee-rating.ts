@@ -1,3 +1,4 @@
+import { contributionFetch } from './contribution-security';
 import type { City } from './cities.js';
 import { escapeHtml as e } from './data.js';
 import { dateLocale, t } from './i18n.js';
@@ -54,11 +55,7 @@ export function showCoffeeRating(actions: HTMLElement, city: City, barId: string
         pending.add(key); message = t('Wird gespeichert …'); failed = false; render();
         try {
           const image = await prepareMenuPhoto(photo);
-          const response = await fetch(`/api/coffee-rating?city=${city}`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ barId, score, image }),
-            signal: AbortSignal.timeout(65000),
-          });
+          const response = await contributionFetch(`/api/coffee-rating?city=${city}`, { barId, score, image }, 65000);
           const result = await response.json();
           if (!response.ok) throw new Error(typeof result.error === 'string' ? t(result.error) : t('Bewertung nicht gespeichert. Bitte erneut versuchen.'));
           if (!isCoffeeRating(result.rating)) throw new Error(t('Bewertung nicht gespeichert. Bitte erneut versuchen.'));

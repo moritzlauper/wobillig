@@ -51,7 +51,7 @@ it('stores 15 menu prices in one upload even when the manual editing quota is ex
   expect(saved.entries).toHaveLength(15);
   expect(saved.priceCooldowns).toEqual(quota);
   expect(saved.limits[visitor].count).toBe(20);
-  expect(mocks.blobStore.mock.calls.every(([path]) => path === 'prices/production.json')).toBe(true);
+  expect(mocks.blobStore.mock.calls.every(([path]) => ['prices/production.json', 'security/production.json'].includes(path))).toBe(true);
   expect(Object.entries(saved.limits).filter(([key]) => key.startsWith('scan:') && key !== 'scan:daily').map(([, value]) => value.count)).toEqual([1]);
 });
 it('rejects a clearly wrong restaurant with a specific message and saves no prices', async () => {

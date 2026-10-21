@@ -1,3 +1,5 @@
+import { reviewRequired } from './community-policy.js';
+import { checkReviewCapacity } from './community-policy.js';
 import { randomUUID } from 'node:crypto';
 import { InputError, matchesOfferKey, offerKey, type PriceEntry } from '../src/community.js';
 import { offerCategory, type Bar, type Offer } from '../src/data.js';
@@ -74,6 +76,7 @@ export async function saveMenuScan(store: Store, hash: string, bar: Bar, origina
     if (job?.status === 'done' && job.result) return scanResult(state, job.result);
     if (job?.status !== 'pending') throw new InputError('Der Scan ist nicht mehr verfügbar. Bitte erneut fotografieren.', 409);
     const target = edit ? resolveScanEdit(edit, bar, originals, state.entries) : undefined;
+    const originalEntries = [...state.entries], originalHistory = [...state.history], originalChanges = [...(state.priceChanges || [])];
     const receipt: ScanReceipt = { ids: [], added: 0, unchanged: 0, conflicts: 0, skipped };
     const grouped = new Map<string, { offer: Offer; drink: PriceEntry['drink'] }[]>();
     for (const { input, evidence } of prices) {
@@ -115,6 +118,16 @@ export async function saveMenuScan(store: Store, hash: string, bar: Bar, origina
       const entry: PriceEntry = { id: randomUUID(), barId: bar.id, drink, targetKey: offerKey(offer), revision: 1,
         updatedAt: new Date(now).toISOString(), offer, venue: { ...bar, offers: [] } };
       state.entries.push(entry); receipt.ids.push(entry.id); receipt.added++;
+    }
+    if (reviewRequired()) {
+      for (const entry of state.entries) {
+        const base = originalEntries.find(row => row.id === entry.id);
+        if (entry === base) continue;
+        checkReviewCapacity(state);
+        state.heldPrices = [...(state.heldPrices || []), { owner: owner || '', entry, reason: 'menu-review-required', before: base?.offer || originals.find(offer => identity(offer) === identity(entry.offer)) || null, baseEntry: base || null }];
+      }
+      state.entries = originalEntries; state.history = originalHistory; state.priceChanges = originalChanges;
+      receipt.pending = true;
     }
     // Price entries and the completed receipt commit together; no partial menus.
     job.status = 'done'; job.result = receipt;

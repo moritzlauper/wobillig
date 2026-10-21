@@ -1,9 +1,10 @@
+import { appendCookie } from './http-cookies.js';
 import { createHmac, randomBytes } from 'node:crypto';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { offerKey, type PriceEntry } from '../src/community.js';
 import type { Offer } from '../src/data.js';
 
-export type HeldPrice = { owner: string; entry: PriceEntry; reason: string; before: Offer | null };
+export type HeldPrice = { baseEntry?: PriceEntry | null; owner: string; entry: PriceEntry; reason: string; before: Offer | null };
 const cookieName = 'wobillig-price-view';
 
 // A browser secret, never an IP address. Only its HMAC is stored with held prices.
@@ -12,7 +13,7 @@ export function priceOwner(req: IncomingMessage, res: ServerResponse, create = f
   if (!token || !/^[a-f0-9]{64}$/.test(token)) {
     if (!create) return;
     token = randomBytes(32).toString('hex');
-    res.setHeader('Set-Cookie', `${cookieName}=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=31536000${process.env.VERCEL_ENV === 'production' || req.headers.origin?.startsWith('https:') ? '; Secure' : ''}`);
+    appendCookie(res, `${cookieName}=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=31536000${process.env.VERCEL_ENV === 'production' || req.headers.origin?.startsWith('https:') ? '; Secure' : ''}`);
   }
   const secret = process.env.BLOB_READ_WRITE_TOKEN;
   if (!secret) throw new Error('Missing storage secret');

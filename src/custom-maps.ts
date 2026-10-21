@@ -1,3 +1,4 @@
+import { contributionFetch } from './contribution-security';
 import L from 'leaflet';
 import { offerTip } from './tip';
 import { cities, type City } from './cities';
@@ -50,7 +51,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       <label>${t('Welche Angebote möchtest du sehen?')}<textarea name="description" rows="3" maxlength="600" required placeholder="${t('z. B. Kaffeeaktionen bei Coop in Zürich')}"></textarea></label>
       <p class="muted">${t('Wir prüfen die Quelle und ob sich ihre Angebote zuverlässig übernehmen lassen. Die Anfrage startet noch keine automatische Map.')}</p>
     </fieldset>
-    <p class="muted">${e(t(cities[city].name))} · <span data-manual>${t('Alle mit dem Link können Preise ansehen und ergänzen.')}</span><span data-automatic-copy hidden>${t('Den Status findest du unter «Meine Maps».')}</span></p>
+    <p class="muted">${e(t(cities[city].name))} · <span data-manual>${t('Alle mit dem Link können die Map ansehen. Nur du kannst sie bearbeiten.')}</span><span data-automatic-copy hidden>${t('Den Status findest du unter «Meine Maps».')}</span></p>
     <p class="muted" data-manual>${t('Nur per Link erreichbar.')}</p>
     <button class="primary" type="submit">${t('Map erstellen')}</button>
     <p role="alert" data-error hidden></p>
@@ -111,10 +112,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     target.textContent = message; target.hidden = !message;
   };
   async function call(body?: object, id?: string): Promise<CustomMap> {
-    const response = await fetch(api + (id ? `&map=${encodeURIComponent(id)}` : ''), {
-      ...(body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {}),
-      signal: AbortSignal.timeout(20000),
-    });
+    const response = body ? await contributionFetch(api, body) : await fetch(api + (id ? `&map=${encodeURIComponent(id)}` : ''), { signal: AbortSignal.timeout(20000) });
     const result = await response.json();
     if (!response.ok) throw new MapRequestError(result.error ? t(result.error) : t('Map konnte nicht geladen oder gespeichert werden. Bitte erneut versuchen.'), response.status);
     if (!result.map || !isMapId(result.map.id) || !Array.isArray(result.map.entries)) throw new Error(t('Map konnte nicht geladen oder gespeichert werden. Bitte erneut versuchen.'));
@@ -230,7 +228,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   }
   function updatePublicationControl(saving = false) {
     if (!current) return;
-    if (current.automatic) { el('map-publish-control').hidden = true; el('map-publish-help').hidden = true; return; }
+    if (current.automatic || current.canEdit === false) { el('map-publish-control').hidden = true; el('map-publish-help').hidden = true; return; }
     const remaining = Math.max(0, PUBLIC_MAP_MIN_VENUES - mapVenueCount(current));
     const submitted = ['pending', 'approved'].includes(current.publication?.status || '');
     el('map-publish-control').hidden = submitted;
@@ -260,7 +258,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     el('custom-map-view-switch').hidden = Boolean(automatic);
     el('automatic-map-details').hidden = !automatic;
     view.querySelector<HTMLElement>('.custom-map-content')!.hidden = Boolean(automatic);
-    el('map-add-entry').hidden = Boolean(automatic);
+    el('map-add-entry').hidden = Boolean(automatic) || value.canEdit === false;
     if (automatic) {
       el('custom-map-visibility').hidden = false;
       el('map-publish-control').hidden = true; el('map-publish-help').hidden = true; el('map-withdraw').hidden = true;
@@ -277,7 +275,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
       layer = L.layerGroup().addTo(map);
       map.on('click', event => {
-        if (busy || !current || current.automatic || entry.open) return;
+        if (busy || !current || current.automatic || current.canEdit === false || entry.open) return;
         el('custom-map-detail').hidden = true;
         // Raster tile labels are not clickable features. Match against the full
         // location catalogue only when zoomed in enough to distinguish places.
@@ -312,7 +310,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       : status === 'rejected' ? t('Veröffentlichung abgelehnt. Du kannst die Map überarbeiten und erneut einreichen. Der Link bleibt nutzbar.')
       : '';
     updatePublicationControl();
-    el('map-withdraw').hidden = status !== 'pending' && status !== 'approved';
+    el('map-withdraw').hidden = value.canEdit === false || status !== 'pending' && status !== 'approved';
     el('custom-map-entries').replaceChildren();
     if (!entries.length) {
       const empty = document.createElement('p'); empty.className = 'empty';
@@ -349,7 +347,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     detail.innerHTML = `<div class="detail-top"><strong>${e(venue.name)}</strong><button type="button" data-close>${t('Schliessen')}</button></div>
       <p class="muted">${e(address)}</p>
       <div class="detail-actions"><button type="button" class="primary" data-add>${t('Preis hinzufügen')}</button><span class="detail-maps"><a href="${e(googleMapsLink(venue, cities[city].name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></div>
-      ${offers.map((offer, index) => `<div class="offer"><div class="offer-top"><strong>${e(offer.product)}</strong><strong class="nowrap">CHF ${offer.priceChf.toFixed(2)}</strong></div><div class="offer-meta"><span>${t('Eingetragen')} · ${e(new Date(offer.updatedAt).toLocaleDateString(dateLocale()))}</span><button type="button" data-edit="${index}">${t('Ändern')}</button></div></div>`).join('')}`;
+      ${offers.map((offer, index) => `<div class="offer"><div class="offer-top"><strong>${e(offer.product)}</strong><strong class="nowrap">CHF ${offer.priceChf.toFixed(2)}</strong></div><div class="offer-meta"><span>${t('Eingetragen')} · ${e(new Date(offer.updatedAt).toLocaleDateString(dateLocale()))}</span><button type="button" data-edit="${index}" ${current?.canEdit === false ? 'hidden' : ''}>${t('Ändern')}</button></div></div>`).join('')}`;
     detail.hidden = false;
     const close = () => { detail.hidden = true; if (fromList) showView(true); trigger?.focus({ preventScroll: true }); };
     detail.querySelector<HTMLButtonElement>('[data-close]')!.onclick = close;
@@ -444,6 +442,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     }, 450);
   }
   function openEntry(item?: MapEntry, position?: L.LatLng) {
+    if (current?.canEdit === false) return;
     if (!current) return;
     editing = item; lockedVenue = Boolean(item); entryPosition = position;
     cancelPlaceSearch(); remoteMatches = []; placeStatus = 'idle';

@@ -368,7 +368,7 @@ Zusätzlich sind höchstens **5 manuelle Preiseingaben in jedem gleitenden 10-Mi
 - Validierung: bekanntes Lokal, gültige Sorte/Menge, CHF 0.50–50, echtes Datum bis heute und optionale HTTP(S)-Quelle. Keine Umrechnung beim Eintragen.
 - Gleichzeitige Schreibvorgänge verwenden ETags; überholte Formularversionen erhalten HTTP 409 statt Änderungen zu überschreiben. Frühere Versionen bleiben intern in `history` erhalten.
 - 20 Schreibvorgänge pro Stunde und Besucherkennung. Kennungen sind mit dem Speichergeheimnis und Tagesdatum abgeleitete IP-Hashes; keine IP-Adressen im gespeicherten JSON. Abgelaufene Kennungen werden beim nächsten Schreiben entfernt.
-- Kein Login und keine Vorabmoderation. Öffentliche Einträge sind als «Eingetragen» sichtbar.
+- Bei aktiviertem Medienschutz werden neue Beiträge vorab moderiert. E-Mail-Bestätigung und Bot-Prüfung werden nach Einrichtung der Zugänge zugeschaltet (siehe «Schutz vor dem Medienstart»). Freigegebene Einträge sind als «Eingetragen» sichtbar.
 
 Lokale Entwicklung mit API:
 
@@ -392,7 +392,7 @@ vercel deploy --prod --yes
 
 In der Detailansicht jedes Lokals öffnet **«Lokal korrigieren» / “Correct venue details”** ein vorausgefülltes Formular für Name, Strasse, Postleitzahl und Website. Eine falsche Website kann ersetzt oder entfernt werden. Nur geänderte Felder werden übertragen; eine Website-Korrektur funktioniert auch bei einem Lokal ohne erfasste Adresse. Der Dialog «Lokal hinzufügen» verweist ebenfalls auf diese Möglichkeit. Ein erneuter Eintrag überschreibt kein bestehendes Lokal.
 
-Korrekturen erscheinen nach erfolgreicher Speicherung sofort, bleiben nach Neuladen und automatischen Datenupdates erhalten und fliessen in CSV-/JSON-Exporte ein. Es gibt keine Wartezeit von drei Wochen. Preise und Quellenlinks der einzelnen Angebote bleiben unverändert. Die Korrektur gilt für wobillig; sie ändert weder OpenStreetMap noch die Eingabequellen des separaten Scrapers.
+Korrekturen erscheinen bei aktivierter Vorabmoderation erst nach der Freigabe, bleiben nach Neuladen und automatischen Datenupdates erhalten und fliessen in CSV-/JSON-Exporte ein. Es gibt keine Wartezeit von drei Wochen. Preise und Quellenlinks der einzelnen Angebote bleiben unverändert. Die Korrektur gilt für wobillig; sie ändert weder OpenStreetMap noch die Eingabequellen des separaten Scrapers.
 
 `POST /api/prices?city=bern` mit `{ "action": "correctVenue", "barId": "node/123", "revision": 0, "changes": { "website": "https://example.org" } }` speichert unter `venueCorrections` im jeweiligen Stadt-/Deployment-Store. `GET /api/prices` liefert diese Korrekturen; die privaten Vorherwerte und Änderungen in `venueCorrectionHistory` werden nicht ausgeliefert. Der Server prüft Lokal-ID, erlaubte Felder, Website-Protokoll und Version. Gleichzeitige Änderungen werden über ETags und Revisionen abgesichert; veraltete Korrekturen erhalten HTTP 409. Identische Wiederholungen legen keine Duplikate an. Es gelten die bestehenden Origin-/JSON-Prüfungen und eine Grenze von 20 Korrekturen pro Besucher und Stunde.
 
@@ -506,3 +506,33 @@ Die private Vorschau bietet Produkt-/Markensuche, Händler- und Kategoriefilter,
 Abgelaufene Angebote verschwinden nach dem letzten Gültigkeitstag in Europe/Zurich aus API, Suche und Markern; auch eine offen gebliebene Vorschau aktualisiert sich. Zukünftige Angebote bleiben bis zum Startdatum ausgeblendet. Fehlgeschlagene Abrufe erhalten die alten Daten und Enddaten und zeigen den Fehler sowie den letzten erfolgreichen Stand.
 
 Import: `.venv/bin/python -m scraper.deals`, danach `node --env-file=.env.local scripts/deals-import.mjs --production`. Ohne `--production` wird nur der Entwicklungsblob beschrieben. `--failure` vermerkt einen fehlgeschlagenen Abruf. Staging unter `output/deals/` wird nicht eingecheckt oder öffentlich bereitgestellt. Der tägliche GitHub-Workflow `deals.yml` benötigt `BLOB_READ_WRITE_TOKEN` als Repository-Secret; er schreibt keine Angebotsdaten ins Repository und veröffentlicht keine Artefakte.
+
+## Schutz vor dem Medienstart
+
+Die neue Freigabe gilt bei `COMMUNITY_REVIEW_REQUIRED=true` auch für plausible Preise und Foto-Scans. Neue Lokale und Änderungen an Name, Adresse und Website bleiben bis zur Prüfung privat. Prüfen unter `/api/community-review` mit dem bestehenden Prüfzugang (`admin` / `MAP_REVIEW_PASSWORD`). Freigaben können dort zurückgenommen werden; inzwischen geänderte Daten werden dabei nicht überschrieben. Öffentliche Daten können nach Freigaben bis zu 105 Sekunden hinterherhinken (15 Sekunden Servercache, 30 Sekunden CDN, bis zu 60 Sekunden stale-while-revalidate).
+
+Manuelle Maps sind nur durch ihren Ersteller bearbeitbar. Ein öffentlicher Map-Link gewährt keine Schreibberechtigung. Bestätigte Konten können ihre Maps auch in einem anderen Browser bearbeiten; ohne E-Mail-Anmeldung bleibt die Berechtigung an den signierten Browser-Cookie gebunden. Alte Maps ohne gespeicherten Besitzer sind zunächst schreibgeschützt. Der Administrator kann sie auf `/api/community-review` ausdrücklich seinem aktuellen Konto/Browser zuweisen. Die alten Local-Storage-Listen sind kein Eigentumsnachweis.
+
+`GET /api/prices?city=zurich&view=public` liefert ausschliesslich öffentliche Felder, ohne persönliche Preisentwürfe, Besitzer, Limits oder Authentifizierungsdaten. Private Ansichten und Map-Berechtigungen bleiben `private, no-store`. Die Anwendung nutzt für den öffentlichen Abruf keine Cookies.
+
+Foto-Scans und Kaffeefotos teilen sich unabhängig von der Stadt ein dauerhaft gespeichertes Limit: standardmässig 100 pro Stunde, 1'000 pro 24 Stunden und eine konservative Budgetreservierung von USD 0.01 je Aufruf bei USD 2 pro 24 Stunden (somit normalerweise höchstens 200 Fotos). Reservierung erfolgt atomar vor bezahlten Anfragen, auch fehlgeschlagene Aufrufe zählen. Die USD-Reservierung ist eine interne Kostenschätzung für das aktuell begrenzte Modell, keine Garantie für externe Preisänderungen. Provider-Limits separat setzen. Bei Modellwechsel die Reservierung und Tokenlimits überprüfen.
+
+### Aktivierung von Bot-Schutz und E-Mail
+
+Alle Variablen in `.env.example` sind reine Servervariablen. Der öffentliche Turnstile-Site-Key wird gezielt über `/api/community-auth` ausgeliefert; Secrets bleiben auf dem Server.
+
+1. In Cloudflare Turnstile ein Managed-Widget für `www.wobillig.ch` und `wobillig.ch` einrichten. `TURNSTILE_SITE_KEY` und `TURNSTILE_SECRET_KEY` in Vercel setzen. Erst danach `CONTRIBUTION_PROTECTION=true` aktivieren und neu deployen. Der Server prüft Token, Hostname und Aktion, bevor ein Beitrag gespeichert oder KI aufgerufen wird. Ausfälle sperren die Eingabe, nicht die Karte.
+2. SMTP: `mail.infomaniak.com`, Port 465 mit TLS, Benutzer und Absender `team@wobillig.ch`. `SMTP_PASSWORD` als Secret hinterlegen. Ein abweichender Mailanbieter kann über die SMTP-Variablen konfiguriert werden. Vor Aktivierung einen Code an eine eigene Testadresse senden und die Zustellung prüfen.
+3. `EMAIL_VERIFICATION_REQUIRED=true` aktivieren und neu deployen. Sechsstellige Codes gelten zehn Minuten, maximal fünf Versuche, einmalig und an den anfordernden Browser gebunden. Versand höchstens einmal pro Minute und dreimal pro Stunde je Adresse, fünfmal pro Stunde je IP sowie standardmässig 200-mal pro 24 Stunden insgesamt. Fehlgeschlagene Versandversuche zählen mit. Keine Newsletter-Anmeldung. Die Community speichert HMAC-Kennungen statt Klartextadressen; der SMTP-Anbieter verarbeitet die Empfängeradresse zum Versand.
+4. Sessions halten 30 Tage, sind signiert und `HttpOnly`, `Secure` in Vercel, `SameSite=Lax`. Abmelden über «Beitragskonto». Ein optionaler `COMMUNITY_AUTH_SECRET` muss vor dem ersten Konto gesetzt und dauerhaft beibehalten werden; eine Rotation invalidiert Sessions und verändert Konto-Kennungen. Ohne diesen Wert wird der bestehende Blob-Token verwendet.
+
+### Betrieb und Notfall
+
+- `COMMUNITY_PHOTOS_PAUSED=true`: nur Foto-Funktionen pausieren.
+- `COMMUNITY_WRITES_PAUSED=true`: sämtliche Community-Beiträge und neue Bestätigungsmails pausieren. Lesen bleibt möglich. Env-Änderungen benötigen ein neues Deployment.
+- Firewall-Regeln auf Projektebene: POST `/api/*` maximal 60/min/IP; GET `/api/*` maximal 300/min/IP. Normale Seiten und statische Dateien bleiben frei. Limits bei vielen legitimen Besuchern aus demselben Netz beobachten.
+- Vor Veröffentlichung und vor grösseren Datenänderungen: `node --env-file=.env.local scripts/community-backup.mjs`. Snapshot-Dateien sind privat, mit Prüfsummen und Dateirechten 0600. `output/community-backups/` ist von Git und Vercel-Uploads ausgeschlossen. Keine automatische Wiederherstellung über laufende Daten: im Notfall Schreibzugriffe pausieren und Änderungen seit dem Snapshot zuerst abgleichen.
+- Vercel-Kostenalarme unter Team → Settings → Billing → Spend Management prüfen. Ein Budget allein stoppt keine Kosten. Eine automatische Team-Pause betrifft auch die anderen Projekte dieses Teams; deshalb nicht unbemerkt für wobillig aktivieren. API-/Hostingkosten und Anthropic-Limits sind getrennt.
+- Nach dem Start: HTTP-429-/5xx-Raten, Warteschlange und Foto-/Mailbudget prüfen. Bei Missbrauch zuerst Eingaben oder Fotos pausieren, dann die betroffenen Änderungen in der Prüfseite zurücknehmen. Die Kartenansicht bleibt online.
+
+Tests: `npm test`, `npm run build`, `npx playwright test tests/community-security.browser.ts`. Die Sicherheitstests prüfen parallele Reservierungen, ungültige Bot-Token, E-Mail-Wiederverwendung, fremde Map-Zugriffe, Freigaben/Rücknahmen und 200 gleichzeitige öffentliche Lesezugriffe. Das ersetzt keinen realen Lasttest der Vercel-Infrastruktur.

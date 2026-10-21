@@ -374,3 +374,10 @@ input::placeholder { color: var(--subtle); opacity: 1; }
 
 .tip-backdrop { position: fixed; inset: 0; z-index: 10000; background: var(--backdrop); }
 #tip-dialog[open] { position: fixed; inset: 0; margin: auto; z-index: 10001; }
+
+.contribution-security { max-width: 420px; width: calc(100vw - 48px); }
+.contribution-security h2 { font-size: 1.15rem; margin: 0; }
+.contribution-security form { display: grid; gap: 16px; }
+.contribution-security label { display: grid; gap: 8px; }
+.contribution-security input { width: 100%; box-sizing: border-box; padding: 12px; font: inherit; }
+.contribution-security p { line-height: 1.5; }

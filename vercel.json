@@ -33,6 +33,13 @@
     },
     "api/deals.ts": {
       "maxDuration": 30
+    },
+    "api/community-auth.ts": {
+      "maxDuration": 60
+    },
+    "api/community-review.ts": {
+      "maxDuration": 30,
+      "includeFiles": "public/data/**/*.json"
     }
   },
   "rewrites": [

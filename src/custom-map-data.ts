@@ -19,7 +19,7 @@ export const automaticMapStatusLabels: Record<AutomaticMapRequest['status'], str
   requested: 'Anfrage eingereicht', reviewing: 'Quelle wird geprüft',
   blocked: 'Quelle noch nicht verfügbar', rejected: 'Anfrage abgelehnt',
 };
-export type CustomMap = { id: string; name: string; createdAt: string; publishedAt?: string;
+export type CustomMap = { canEdit?: boolean; id: string; name: string; createdAt: string; publishedAt?: string;
   automatic?: AutomaticMapRequest;
   publication?: { status: 'pending' | 'approved' | 'rejected'; requestedAt: string; reviewedAt?: string; fingerprint: string };
   entries: MapEntry[] };
