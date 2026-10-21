@@ -144,4 +144,4 @@ class PizzaAITests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         city = (root/'.github/workflows/scrape-city.yml').read_text()
         self.assertIn("inputs.scan_mode == 'full' || inputs.scan_mode == 'pizza_only'", city)
-        self.assertIn("inputs.scan_mode != 'streetfood_only' && inputs.scan_mode != 'pizza_only'", city)
+        self.assertIn("inputs.scan_mode != 'pizza_only'", city)

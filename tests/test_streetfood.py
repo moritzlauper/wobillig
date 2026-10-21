@@ -232,16 +232,17 @@ class StreetfoodPipelineTests(unittest.TestCase):
         offers = food_row('Kebab im Brot 12', URL, STAMP, 'doner') + food_row('Dürüm 13', URL, STAMP, 'doner')
         self.assertEqual(coverage([{'id': '1', 'offers': offers}])['products'], 1)
 
-    def test_full_schedule_and_streetfood_only_mode_include_both_stages(self):
+    def test_github_actions_exclude_streetfood(self):
         workflow = (ROOT / '.github/workflows/scrape.yml').read_text()
         city = (ROOT / '.github/workflows/scrape-city.yml').read_text()
         stage = (ROOT / '.github/workflows/scrape-stage.yml').read_text()
-        self.assertIn('streetfood_only', workflow)
-        self.assertEqual(city.count("inputs.scan_mode == 'full' || inputs.scan_mode == 'streetfood_only'"), 2)
+        self.assertNotIn('streetfood_only', workflow)
+        self.assertIn('needs: [drinks, pizza]', city)
         for category in ('doner', 'falafel'):
-            self.assertIn(f'stage: {category}', city)
-            self.assertIn(f'--category {category} --discover --limit 0', stage)
-        self.assertIn("STREETFOOD_PAGES: ${{ inputs.exhaustive_scan && '120' || inputs.deep_scan && '50'", stage)
+            self.assertNotIn(f'stage: {category}', city)
+            self.assertNotIn(f'--category {category}', stage)
+        self.assertNotIn('scraper.scrape_streetfood', stage)
+        self.assertNotIn('STREETFOOD_PAGES', stage)
 
     def test_new_food_files_merge_without_overwriting_concurrent_changes(self):
         base = {'bars': [{'id': '1', 'name': 'Test', 'offers': []}]}

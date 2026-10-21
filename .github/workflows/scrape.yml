@@ -1,5 +1,5 @@
 name: Refresh city prices
-run-name: "${{ inputs.scan_mode == 'pizza_only' && 'Pizza menus' || inputs.scan_mode == 'streetfood_only' && 'Döner + Falafel' || 'City prices' }} · ${{ inputs.city || 'all' }} · ${{ inputs.exhaustive_scan && 'extra-deep scan' || (github.event_name == 'schedule' || inputs.deep_scan) && 'deep scan' || inputs.scan_mode || 'scheduled refresh' }}"
+run-name: "${{ inputs.scan_mode == 'pizza_only' && 'Pizza menus' || 'City prices' }} · ${{ inputs.city || 'all' }} · ${{ inputs.exhaustive_scan && 'extra-deep scan' || (github.event_name == 'schedule' || inputs.deep_scan) && 'deep scan' || inputs.scan_mode || 'scheduled refresh' }}"
 on:
   schedule:
     # The cadence job runs every third Monday to keep a true 21-day interval.
@@ -14,7 +14,7 @@ on:
       scan_mode:
         description: Scan mode
         type: choice
-        options: [full, pizza_only, streetfood_only, ai_only, estimates_only, photos_only]
+        options: [full, pizza_only, ai_only, estimates_only, photos_only]
         default: full
       ai_budget_usd:
         description: Haiku 5.5 API budget per city in USD (default 5.00, hard cap 20.00; no request cap)
