@@ -29,10 +29,18 @@ for (const width of [320, 1280]) {
     await expect(publicGroup).toHaveCSS('border-top-width', '1px');
     await expect(menu.locator(`[data-custom-map="${own.id}"]`)).toHaveCount(1);
     await expect(menu.getByRole('button', { name: 'Meine Maps', exact: true })).toHaveCount(0);
+    await expect(menu.getByRole('button').last()).toHaveText('Automatische Map anfragen');
     const bounds = await menu.boundingBox();
     expect(bounds!.x).toBeGreaterThanOrEqual(0);
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
     await page.screenshot({ path: `/tmp/wobillig-map-dropdown-${width}.png` });
+    await menu.getByRole('button', { name: 'Automatische Map anfragen' }).click();
+    const requestForm = page.locator('#create-map-dialog');
+    await expect(requestForm.getByLabel('Art der Map')).toHaveValue('automatic');
+    await expect(requestForm.getByLabel('Link zur Angebotsseite')).toBeVisible();
+    await requestForm.getByRole('button', { name: 'Schliessen' }).click();
+    await expect(page.locator('#categories-toggle')).toBeFocused();
+    await page.locator('#categories-toggle').click();
     await menu.getByRole('button', { name: own.name, exact: true }).click();
     await expect(page.locator('#custom-map-name')).toHaveText(own.name);
     await expect(page.locator('#create-map-dialog')).toBeHidden();

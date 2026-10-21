@@ -147,7 +147,9 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       list.append(button);
     }
   }
-  function showPicker() {
+  let createReturnFocus: HTMLElement = plus;
+  function showPicker(trigger: HTMLElement = plus) {
+    createReturnFocus = trigger;
     navigation.close(); errorText(create, ''); renderSavedMaps(); create.showModal();
     if (saved.length) void fetch(`${api}&mapStatuses=${saved.map(item => item.id).join(',')}`, { signal: AbortSignal.timeout(10000) })
       .then(async response => {
@@ -175,12 +177,16 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     create.querySelector<HTMLInputElement>('[name="name"]')!.placeholder = automatic ? t('z. B. Coop Aktionen Zürich') : t('z. B. Döner-Map');
   }
   mode.onchange = () => { createId = crypto.randomUUID(); errorText(create, ''); updateCreateMode(); };
-  plus.onclick = showPicker;
+  plus.onclick = () => showPicker();
+  navigation.setAutomaticMapRequest(trigger => {
+    if (mode.value !== 'automatic') createId = crypto.randomUUID();
+    mode.value = 'automatic'; updateCreateMode(); showPicker(trigger);
+  });
   for (const dialog of [create, entry]) {
     dialog.querySelector<HTMLButtonElement>('[data-close]')!.onclick = () => { if (!busy) dialog.close(); };
     dialog.addEventListener('cancel', event => { if (busy) event.preventDefault(); });
   }
-  create.addEventListener('close', () => { if (view.hidden) plus.focus(); });
+  create.addEventListener('close', () => { if (view.hidden) createReturnFocus.focus(); });
   function setBusy(value: boolean) {
     busy = value;
     for (const dialog of [create, entry]) {
