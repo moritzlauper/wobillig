@@ -1,4 +1,4 @@
-import { cities, type City } from './cities';
+import { cities, defaultCityLocale, type City } from './cities';
 import { coffeeLabels, escapeHtml as e, isCurrentOffer, isStange, effectiveBeerType, type Bar, type Dataset, type Offer } from './data';
 import { dateLocale, htmlLang, localizedPath, translate, type Locale } from './i18n';
 
@@ -9,7 +9,7 @@ export const guideTypes = [...coffeeGuideTypes, 'stange', 'margherita'] as const
 export type GuideType = typeof guideTypes[number];
 const guideLabels: Record<string, string> = { ...coffeeLabels, stange: 'Stange', margherita: 'Pizza Margherita' };
 export const guideDataset = (type: GuideType) => type === 'stange' ? 'bars' : type === 'margherita' ? 'pizza' : 'coffee';
-const slugs: Record<City, string> = { zurich: 'zuerich', basel: 'basel', bern: 'bern' };
+const slugs: Record<City, string> = { zurich: 'zuerich', basel: 'basel', bern: 'bern', lausanne: 'lausanne', geneva: 'genf' };
 export const guidePath = (city: City, type: GuideType, locale: Locale = 'de') => localizedPath(`/${type}-${slugs[city]}`, locale);
 export const cityPath = (city: City, locale: Locale = 'de') => localizedPath(cities[city].path, locale);
 export const localPath = (path: string, base = '/') => base.replace(/\/$/, '') + path;
@@ -175,10 +175,10 @@ export function seoHead(cityId: City, origin = siteOrigin, type?: GuideType, loc
     { '@type': 'ListItem', position: 1, name: translate(locale, 'Kaffeepreise {city}', { city }), item: origin + cityPath(cityId, locale) },
     { '@type': 'ListItem', position: 2, name: translate(locale, '{label}-Preise', { label: translate(locale, guideLabels[type]) }), item: url },
   ] });
-  // Every page has both languages; German remains the default for other visitors.
+  // Lausanne and Geneva default to English; existing cities keep German.
   const alternatePath = (target: Locale) => metadata(cityId, type, target).path;
   const alternates = `
-    <link rel="alternate" hreflang="de-CH" href="${e(origin + alternatePath('de'))}" /><link rel="alternate" hreflang="en" href="${e(origin + alternatePath('en'))}" /><link rel="alternate" hreflang="x-default" href="${e(origin + alternatePath('de'))}" />
+    <link rel="alternate" hreflang="de-CH" href="${e(origin + alternatePath('de'))}" /><link rel="alternate" hreflang="en" href="${e(origin + alternatePath('en'))}" /><link rel="alternate" hreflang="x-default" href="${e(origin + alternatePath(defaultCityLocale(cityId, 'de')))}" />
     <meta property="og:locale:alternate" content="${ogLocales[locale === 'de' ? 'en' : 'de']}" />`;
   return `<title>${e(meta.title)}</title>
     <meta name="description" content="${e(meta.description)}" />

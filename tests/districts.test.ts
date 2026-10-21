@@ -8,6 +8,20 @@ import type { Dataset, Filters } from '../src/data';
 const load = (path: string) => JSON.parse(readFileSync(new URL(`../public/data/${path}`, import.meta.url), 'utf8')) as Districts;
 const districts = load('districts.json');
 
+it('uses real Lausanne and Geneva boundaries and preserves Lausanne’s non-contiguous official IDs', () => {
+  const lausanne = load('lausanne/districts.json'), geneva = load('geneva/districts.json');
+  expect(lausanne.features.map(d => d.properties.number)).toEqual([...Array.from({ length: 17 }, (_, i) => i + 1), 90]);
+  expect(geneva.features).toHaveLength(8);
+  const inLausanne = createDistrictLookup(lausanne), inGeneva = createDistrictLookup(geneva);
+  expect(inLausanne({ lat: 46.5226, lon: 6.6351 })).toBe(1); // Cathedral, Centre
+  expect(inGeneva({ lat: 46.201, lon: 6.149 })).toBe(4); // Old town, Eaux-Vives Cité
+  expect(inLausanne({ lat: 46.201, lon: 6.149 })).toBeUndefined();
+  expect(inGeneva({ lat: 46.5226, lon: 6.6351 })).toBeUndefined();
+  expect(districtFromSearch(new URLSearchParams('quartierLausanne=90'), 'lausanne')).toEqual({ enabled: true, selected: 90 });
+  expect(districtFromSearch(new URLSearchParams('quartierLausanne=18'), 'lausanne')).toEqual({ enabled: false, selected: undefined });
+  expect(cityLink('geneva', '?quartiers=1&quartierLausanne=90&drink=beer', '/', 'en')).toBe('/en/genf?drink=beer');
+});
+
 it('assigns known Zürich locations to official boundaries and excludes other cities', () => {
   expect(districts.features.map(d => d.properties.number)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
   const lookup = createDistrictLookup(districts);

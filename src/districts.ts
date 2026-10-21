@@ -1,14 +1,16 @@
 import type { Feature, FeatureCollection, Polygon, MultiPolygon, Position } from 'geojson';
 import { cities, type City } from './cities';
 
-// Zürich's Kreise are labelled by number; Basel and Bern features carry their official name.
+// Zürich's Kreise are labelled by number; other cities carry their official name.
 export type District = Feature<Polygon | MultiPolygon, { number: number; name?: string }>;
 export type Districts = FeatureCollection<Polygon | MultiPolygon, { number: number; name?: string }>;
 
 export function districtFromSearch(params: URLSearchParams, city: City) {
-  const { toggle, param, count } = cities[city].districts;
+  const config = cities[city].districts;
+  const { toggle, param, count } = config;
   const number = Number(params.get(param));
-  const selected = Number.isInteger(number) && number >= 1 && number <= count ? number : undefined;
+  const valid = 'numbers' in config ? config.numbers.includes(number) : number >= 1 && number <= count;
+  const selected = Number.isInteger(number) && valid ? number : undefined;
   return { enabled: params.get(toggle) === '1' || selected !== undefined, selected };
 }
 

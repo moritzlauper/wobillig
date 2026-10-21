@@ -31,14 +31,14 @@ beforeEach(() => {
   mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: { entries: [{ id: path }] } }) }));
   mocks.readFile.mockImplementation(async (path: string) => JSON.stringify({
     generatedAt: '', discoveredAt: '', attribution: '',
-    bars: [venue(path.includes('/bern/') ? 'node/bern' : path.includes('/basel/') ? 'node/basel' : 'node/zurich')],
+    bars: [venue(path.includes('/lausanne/') ? 'node/lausanne' : path.includes('/geneva/') ? 'node/geneva' : path.includes('/bern/') ? 'node/bern' : path.includes('/basel/') ? 'node/basel' : 'node/zurich')],
   } satisfies Dataset));
   mocks.savePrice.mockResolvedValue({ id: 'saved' });
   mocks.saveVenue.mockResolvedValue({ venue: { id: 'community/new' }, created: true });
 });
 describe('city-scoped price API', () => {
   it('keeps old clients on the Zürich store and reads only the requested city', async () => {
-    for (const [query, path] of [['', 'prices/production.json'], ['?city=bern', 'prices/bern/production.json'], ['?city=basel', 'prices/basel/production.json']]) {
+    for (const [query, path] of [['', 'prices/production.json'], ['?city=bern', 'prices/bern/production.json'], ['?city=basel', 'prices/basel/production.json'], ['?city=lausanne', 'prices/lausanne/production.json'], ['?city=geneva', 'prices/geneva/production.json']]) {
       expect((await request('/api/prices' + query)).data.entries).toEqual([{ id: path }]);
     }
   });
@@ -124,4 +124,11 @@ describe('city-scoped price API', () => {
     expect(mocks.savePrice).toHaveBeenCalledTimes(1);
   });
 
+  it.each(['lausanne', 'geneva'])('isolates saved prices for %s from existing cities', async city => {
+    const input = { barId: `node/${city}`, drink: 'beer', revision: 0, name: 'Lager', priceChf: 5, volumeMl: 300, alcoholFree: false, observedAt: '2026-10-21', sourceUrl: '' };
+    expect((await request(`/api/prices?city=${city}`, input)).status).toBe(200);
+    expect(mocks.blobStore).toHaveBeenCalledWith(`prices/${city}/production.json`);
+    expect((await request('/api/prices?city=basel', input)).status).toBe(400);
+    expect(mocks.savePrice).toHaveBeenCalledTimes(1);
+  });
 });

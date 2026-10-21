@@ -11,6 +11,16 @@ from test_pdf import document
 
 
 class CoffeeTests(unittest.TestCase):
+    def test_french_double_and_filter_coffee(self):
+        self.assertEqual(coffee_types('Espresso double'), ['double'])
+        self.assertEqual(coffee_types('Café filtre'), ['filter'])
+
+    def test_americano_aperitif_is_not_coffee(self):
+        body=document([(20,450,'AMERICANO'),(20,435,'10.-'),(20,420,'Vermouth, Campari, club soda'),
+                       (20,380,'BOISSONS CHAUDES'),(20,360,'Americano 4.50')])
+        offers=coffee_pdf(body,'https://example.com/carte.pdf','2026-10-21')
+        self.assertEqual([(o['coffeeType'],o['priceChf']) for o in offers], [('americano',4.5)])
+
     def parse(self, text):
         return extract_coffees(text, 'https://example.com/menu', '2026-10-15')
 

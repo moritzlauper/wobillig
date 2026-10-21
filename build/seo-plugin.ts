@@ -49,6 +49,11 @@ export function seoPlugin(): Plugin {
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const path = new URL(req.url || '/', 'http://localhost').pathname.replace(/\/$/, '');
+        if (['/lausanne', '/genf'].some(alias => localPath(alias, base) === path)) {
+          res.writeHead(302, { Location: localPath(cityPath(cityFromPath(path, base), 'en'), base) + new URL(req.url || '/', 'http://localhost').search });
+          res.end();
+          return;
+        }
         if (appPaths.some(page => page !== '/' && localPath(page, base) === path)) {
           req.url = req.url!.replace(/^[^?]*/, `${path}/index.html`);
           return next();
@@ -65,6 +70,11 @@ export function seoPlugin(): Plugin {
       // clean routes so local preview tests the actual built city/guide HTML.
       server.middlewares.use((req, res, next) => {
         const path = new URL(req.url || '/', 'http://localhost').pathname.replace(/\/$/, '');
+        if (['/lausanne', '/genf'].some(alias => localPath(alias, base) === path)) {
+          res.writeHead(302, { Location: localPath(cityPath(cityFromPath(path, base), 'en'), base) + new URL(req.url || '/', 'http://localhost').search });
+          res.end();
+          return;
+        }
         const routes = [...appPaths, ...guidePages.map(page => page.path)];
         const route = routes.find(route => route !== '/' && localPath(route, base) === path);
         if (!route) return next();

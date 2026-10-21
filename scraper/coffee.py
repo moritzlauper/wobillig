@@ -11,13 +11,13 @@ LABELS = {'creme':'Café crème', 'espresso':'Espresso', 'double':'Doppelter Esp
           'matcha_latte':'Matcha Latte'}
 ALIASES = {
     'matcha_latte':r'matcha[\s-]*latte',
-    'double':r'(?:doppelter? espresso|doppel[ -]espresso|espresso dopp(?:io|elt)|double espresso|doppio(?: espresso)?)',
+    'double':r'(?:doppelter? espresso|doppel[ -]espresso|espresso (?:dopp(?:io|elt)|double)|double espresso|doppio(?: espresso)?)',
     'flat_white':r'flat\s*white',
     'latte':r'latte\s*macchiato',
     'milk':r'milchkaffee?|schale|cafe au lait|(?:cafe|caffe|coffee)\s*latte',
     'cappuccino':r'cappucc?ino',
     'americano':r'(?:(?:caffe?|coffee|kaffee)\s+)?americano|long black',
-    'filter':r'filterkaffee|filter coffee|batch brew',
+    'filter':r'filterkaffee|filter coffee|cafe filtre|batch brew',
     'ristretto':r'ristretto',
     'espresso':r'espresso',
     'creme':r'(?:kaffee|kafi|cafe|caffe|coffee)(?:\s*(?:creme|crema|nature))?',
@@ -157,6 +157,11 @@ def coffee_pdf(body,url,stamp):
                         if (following['top'] < page.height * .92 and (below or beside) and
                             re.fullmatch(PRICE,amount,re.I)):
                             found=extract_coffees(text+' '+amount,url,stamp)
+                    # Americano also names an aperitif. Ingredient evidence in
+                    # the adjacent description disambiguates it from coffee.
+                    nearby=' '.join(r['text'] for r in rows[index:index+4])
+                    if re.search(r'\b(?:campari|vermouth)\b',nearby,re.I):
+                        found=[o for o in found if o['coffeeType']!='americano']
                     found=list({(o['coffeeType'],o['priceChf']):o for o in found}.values())
                     for o in found:
                         o['evidence']=f'PDF S. {number}: '+o['evidence']

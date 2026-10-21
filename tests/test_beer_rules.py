@@ -2,7 +2,7 @@ import copy
 import json
 from pathlib import Path
 import unittest
-from scraper.beer_rules import is_beer_mix
+from scraper.beer_rules import is_beer_mix, eligible_offer
 from scraper.estimates import estimate_types
 from scraper.extract import extract_offers
 from scraper.ai import clean_offers
@@ -16,6 +16,14 @@ import test_ai
 CASES = json.loads((Path(__file__).parent / 'fixtures/beer-mixes.json').read_text())
 
 class BeerRulesTests(unittest.TestCase):
+    def test_french_cider_water_and_cocktails_are_not_beer(self):
+        for name in ["Cidre Crafty Dr Gab's, Cidre Artisanal", 'Calanda Aqua Gaz',
+                     'Calanda Aqua Naturelle', 'MOJITO CORONA',
+                     'Rhum blanc, Citron vert, Feuilles de menthe, Corona']:
+            self.assertFalse(eligible_offer({'name': name}), name)
+        for name in ['Calanda Lager', 'Corona', 'Bière IPA sans alcool']:
+            self.assertTrue(eligible_offer({'name': name}), name)
+
     def test_shared_product_cases(self):
         for name in CASES['excluded']:
             self.assertTrue(is_beer_mix(name), name)

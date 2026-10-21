@@ -45,7 +45,7 @@ REVIEWED_ADDRESSES = json.loads((ROOT / 'scraper/reviewed_addresses.json').read_
 # Beer halls and restaurants can be useful beer destinations without an OSM bar tag.
 EXTRA_QUERY = ''.join(f'{kind}({int(id)})(area.city);' for kind, id in (key.split('/') for key in EXTRA_VENUES))
 QUERY = '[out:json][timeout:90];' + AREA + '(nwr["amenity"~"^(bar|pub|biergarten)$"](area.city);' + (EXTRA_QUERY if CITY == 'zurich' else '') + ');out center tags;'
-MENU = re.compile(r'men[uü]|karte|getr(?:[aä]|ae)nk|trinken|drink|beer|bier|bar.?card|coffee|kaffee|cocktail|beverage|angebot', re.I)
+MENU = re.compile(r'men[uü]|karte|carte|boissons?|getr(?:[aä]|ae)nk|trinken|drink|beer|bi[eè]re?|bar.?card|coffee|kaffee|cocktail|beverage|angebot', re.I)
 SKIP_MENU = re.compile(r'catering|bankett|sitzung|seminar|tagung|meeting|conference|ap[eé]ro.?vorschl|event.?menu|event[._ -](?:wein|getr)|gruppen|anlass|checkliste|vision|mission|geschichte|datenschutz|impressum|zeitung|newspaper|(?:^|[/_. -])press(?:e)?(?:[/_. -]|$)', re.I)
 ORDER_MENU = re.compile(r'/(?:bestellen|online-bestellen|online-order|delivery|takeaway|take-away|shop|order)(?:/|\?|$)', re.I)
 MAX_BYTES = 8 * 1024 * 1024

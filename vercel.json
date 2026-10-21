@@ -179,10 +179,136 @@
     {
       "source": "/en/margherita-bern",
       "destination": "/en/margherita-bern/index.html"
+    },
+    {
+      "source": "/de/lausanne",
+      "destination": "/de/lausanne/index.html"
+    },
+    {
+      "source": "/de/lausanne/",
+      "destination": "/de/lausanne/index.html"
+    },
+    {
+      "source": "/en/lausanne",
+      "destination": "/en/lausanne/index.html"
+    },
+    {
+      "source": "/en/lausanne/",
+      "destination": "/en/lausanne/index.html"
+    },
+    {
+      "source": "/espresso-lausanne",
+      "destination": "/espresso-lausanne/index.html"
+    },
+    {
+      "source": "/cappuccino-lausanne",
+      "destination": "/cappuccino-lausanne/index.html"
+    },
+    {
+      "source": "/en/espresso-lausanne",
+      "destination": "/en/espresso-lausanne/index.html"
+    },
+    {
+      "source": "/en/cappuccino-lausanne",
+      "destination": "/en/cappuccino-lausanne/index.html"
+    },
+    {
+      "source": "/stange-lausanne",
+      "destination": "/stange-lausanne/index.html"
+    },
+    {
+      "source": "/margherita-lausanne",
+      "destination": "/margherita-lausanne/index.html"
+    },
+    {
+      "source": "/en/stange-lausanne",
+      "destination": "/en/stange-lausanne/index.html"
+    },
+    {
+      "source": "/en/margherita-lausanne",
+      "destination": "/en/margherita-lausanne/index.html"
+    },
+    {
+      "source": "/de/genf",
+      "destination": "/de/genf/index.html"
+    },
+    {
+      "source": "/de/genf/",
+      "destination": "/de/genf/index.html"
+    },
+    {
+      "source": "/en/genf",
+      "destination": "/en/genf/index.html"
+    },
+    {
+      "source": "/en/genf/",
+      "destination": "/en/genf/index.html"
+    },
+    {
+      "source": "/espresso-genf",
+      "destination": "/espresso-genf/index.html"
+    },
+    {
+      "source": "/cappuccino-genf",
+      "destination": "/cappuccino-genf/index.html"
+    },
+    {
+      "source": "/en/espresso-genf",
+      "destination": "/en/espresso-genf/index.html"
+    },
+    {
+      "source": "/en/cappuccino-genf",
+      "destination": "/en/cappuccino-genf/index.html"
+    },
+    {
+      "source": "/stange-genf",
+      "destination": "/stange-genf/index.html"
+    },
+    {
+      "source": "/margherita-genf",
+      "destination": "/margherita-genf/index.html"
+    },
+    {
+      "source": "/en/stange-genf",
+      "destination": "/en/stange-genf/index.html"
+    },
+    {
+      "source": "/en/margherita-genf",
+      "destination": "/en/margherita-genf/index.html"
     }
   ],
   "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/de/genf/index.html",
+      "destination": "/de/genf",
+      "permanent": true
+    },
+    {
+      "source": "/genf/",
+      "destination": "/en/genf",
+      "permanent": false
+    },
+    {
+      "source": "/genf",
+      "destination": "/en/genf",
+      "permanent": false
+    },
+    {
+      "source": "/de/lausanne/index.html",
+      "destination": "/de/lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/lausanne/",
+      "destination": "/en/lausanne",
+      "permanent": false
+    },
+    {
+      "source": "/lausanne",
+      "destination": "/en/lausanne",
+      "permanent": false
+    },
     {
       "source": "/index.html",
       "destination": "/",
@@ -331,6 +457,106 @@
     {
       "source": "/en/margherita-bern/index.html",
       "destination": "/en/margherita-bern",
+      "permanent": true
+    },
+    {
+      "source": "/lausanne/index.html",
+      "destination": "/en/lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/en/lausanne/index.html",
+      "destination": "/en/lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/espresso-lausanne/index.html",
+      "destination": "/espresso-lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/cappuccino-lausanne/index.html",
+      "destination": "/cappuccino-lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/en/espresso-lausanne/index.html",
+      "destination": "/en/espresso-lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/en/cappuccino-lausanne/index.html",
+      "destination": "/en/cappuccino-lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/stange-lausanne/index.html",
+      "destination": "/stange-lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/margherita-lausanne/index.html",
+      "destination": "/margherita-lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/en/stange-lausanne/index.html",
+      "destination": "/en/stange-lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/en/margherita-lausanne/index.html",
+      "destination": "/en/margherita-lausanne",
+      "permanent": true
+    },
+    {
+      "source": "/genf/index.html",
+      "destination": "/en/genf",
+      "permanent": true
+    },
+    {
+      "source": "/en/genf/index.html",
+      "destination": "/en/genf",
+      "permanent": true
+    },
+    {
+      "source": "/espresso-genf/index.html",
+      "destination": "/espresso-genf",
+      "permanent": true
+    },
+    {
+      "source": "/cappuccino-genf/index.html",
+      "destination": "/cappuccino-genf",
+      "permanent": true
+    },
+    {
+      "source": "/en/espresso-genf/index.html",
+      "destination": "/en/espresso-genf",
+      "permanent": true
+    },
+    {
+      "source": "/en/cappuccino-genf/index.html",
+      "destination": "/en/cappuccino-genf",
+      "permanent": true
+    },
+    {
+      "source": "/stange-genf/index.html",
+      "destination": "/stange-genf",
+      "permanent": true
+    },
+    {
+      "source": "/margherita-genf/index.html",
+      "destination": "/margherita-genf",
+      "permanent": true
+    },
+    {
+      "source": "/en/stange-genf/index.html",
+      "destination": "/en/stange-genf",
+      "permanent": true
+    },
+    {
+      "source": "/en/margherita-genf/index.html",
+      "destination": "/en/margherita-genf",
       "permanent": true
     }
   ]

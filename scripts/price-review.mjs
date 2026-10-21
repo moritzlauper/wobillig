@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 
 import { reviewRows, reviewHtml, reviewCsv } from '../server/price-review.mjs';
 export { reviewRows, reviewHtml, reviewCsv } from '../server/price-review.mjs';
-const cities = { zurich: 'Zürich', bern: 'Bern', basel: 'Basel' };
+const cities = { zurich: 'Zürich', bern: 'Bern', basel: 'Basel', lausanne: 'Lausanne', geneva: 'Genf' };
 
 export async function main(args = process.argv.slice(2)) {
   if (args.some(arg => !['--development', '--production'].includes(arg)) || (args.includes('--development') && args.includes('--production'))) {

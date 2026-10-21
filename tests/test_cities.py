@@ -24,7 +24,7 @@ print(json.dumps({
     'queries': [scrape.QUERY, enrich.QUERY, scrape_pizza.QUERY, locations.QUERY]
 }))
 '''
-        for city, name in [('zurich', 'Zürich'), ('bern', 'Bern'), ('basel', 'Basel')]:
+        for city, name in [('zurich', 'Zürich'), ('bern', 'Bern'), ('basel', 'Basel'), ('lausanne', 'Lausanne'), ('geneva', 'Genève')]:
             with self.subTest(city=city):
                 output = subprocess.check_output([sys.executable, '-c', script], cwd=ROOT, env={**os.environ, 'WOBILLIG_CITY': city}, text=True)
                 data = json.loads(output)
@@ -37,7 +37,7 @@ print(json.dumps({
         base = {'bars': [{'id': 'node/1', 'name': 'Test', 'offers': []}]}
         scan = {'bars': [{'id': 'node/1', 'name': 'Test', 'offers': [{'priceChf': 5}]}]}
         latest = {'bars': [{'id': 'node/1', 'name': 'Test', 'offers': [{'priceChf': 6}]}]}
-        for city in ['bern', 'basel']:
+        for city in ['bern', 'basel', 'lausanne', 'geneva']:
             self.assertEqual(merge_file(f'public/data/{city}/bars.json', base, scan, latest), (latest, 1))
 
     def test_real_workflow_cadence_across_year_boundary_and_manual_run(self):

@@ -62,7 +62,7 @@ def skip_source(url):
     if any(re.search(r'cart|wishlist|checkout|nonce|action|remove|delete',key,re.I) for key in parse_qs(parsed.query)):return True
     path=unquote(parsed.path)
     if re.search(r'/(?:cart|warenkorb|checkout|kasse|mein-konto|my-account)(?:/|$)',path,re.I):return True
-    if re.search(r'take[ _-]?away|mitnehmen|delivery|liefer|kinder|bambini|lunch|mittag|wochen|tagesmen',path,re.I):
+    if re.search(r'take[ _-]?away|mitnehmen|delivery|liefer|kinder|bambini|lunch|mittag|wochen|tagesmen|menu[ _/-](?:du[ _-]jour|de[ _-]la[ _-]semaine|del[ _-]giorno)|plat[ _-]du[ _-]jour',path,re.I):
         return True
     return bool(SKIP.search(path) and not re.search(r'speise|pizza|food|essen|menu|karte',path,re.I))
 

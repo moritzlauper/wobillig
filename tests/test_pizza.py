@@ -25,6 +25,8 @@ class PizzaCrawlTests(unittest.TestCase):
         from scraper.scrape_pizza import crawl, skip_source
         takeaway='https://example.org/Pizze%20Mitnehmen%202025.jpg'
         self.assertTrue(skip_source(takeaway))
+        for path in ['menu-du-jour', 'menu-de-la-semaine', 'menu-del-giorno-fr', 'plat-du-jour']:
+            self.assertTrue(skip_source('https://example.org/fr/' + path + '/'))
         self.assertTrue(skip_source('https://example.org/Take%20away.pdf'))
         class Fetcher:
             def get(self,url):

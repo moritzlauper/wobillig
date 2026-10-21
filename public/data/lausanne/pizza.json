@@ -1,0 +1,943 @@
+{
+  "generatedAt": "2026-10-21T07:25:30.873566+00:00",
+  "discoveredAt": "2026-10-21T07:11:20.753472+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "bars": [
+    {
+      "id": "node/9272119967",
+      "name": "10' dieci",
+      "lat": 46.5272574,
+      "lon": 6.6067078,
+      "type": "restaurant",
+      "address": "Avenue de Morges 74",
+      "postcode": "1004",
+      "website": "https://dieci.ch/fr/livraison-pizza-lausanne-ouest",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-13:30,17:00-22:00; Fr 11:00-13:30,17:00-23:00; Sa 11:30-14:00,17:00-23:00; Su 11:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:12:02.231214+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/1432508164",
+      "name": "Al Dente",
+      "lat": 46.540911,
+      "lon": 6.6267154,
+      "type": "restaurant",
+      "address": "Chemin de Maillefer 121",
+      "postcode": "1018",
+      "website": "https://www.restaurantaldente.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 10:00-15:00, Mo-Th 18:00-23:00, Fr,Sa 18:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "https://www.restaurantaldente.ch/wp-content/uploads/2026/01/Menu-Pizza.2026.pdf",
+          "observedAt": "2026-10-21T07:12:25.251454+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: MARGHERITA 15.-",
+          "alcoholFree": true,
+          "sourceSha256": "a371bb604d06adbfaa878c07704816d10ed7cadb5d032a8a413d9768f8b5b08b"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:12:25.251454+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/3530953650",
+      "name": "Au Solstice",
+      "lat": 46.5214124,
+      "lon": 6.6470076,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/886598383",
+      "name": "Bella Vita",
+      "lat": 46.5174069,
+      "lon": 6.6305517,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.restaurant-bellavita.com/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "PH,Mo-Su 09:00-24:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-21T07:12:02.231279+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.restaurant-bellavita.com/",
+        "evidence": "Pizzeria | Restaurant | Bella Vita |  Lausanne"
+      }
+    },
+    {
+      "id": "node/497304844",
+      "name": "Boccalino",
+      "lat": 46.5071714,
+      "lon": 6.6271334,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.boccalino.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00, 18:00-22:00; Sa 11:30-22:00; Su 09:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://5f0c53f2-b4b5-4dba-995e-02dcebd0e9b2.filesusr.com/ugd/a6375f_9e7eb55ff91d4851a6994b7764b642a0.pdf",
+          "observedAt": "2026-10-21T07:12:07.992565+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: MARGHERITA 16",
+          "alcoholFree": true,
+          "sourceSha256": "7c9b6ceafab9a31ade05d428441a2486cbeebe37324f5de4e1d91c3c1cd9cc0f"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:12:07.992565+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.boccalino.ch/pizzeria-saint-sulpice",
+        "evidence": "Pizzeria proche de Saint-Sulpice | Boccalino – Pizzas maison à Ouchy Lausanne"
+      }
+    },
+    {
+      "id": "way/107059432",
+      "name": "Brasserie du Château",
+      "lat": 46.5247295,
+      "lon": 6.6345995,
+      "type": "pub",
+      "address": "Place du Tunnel 1",
+      "postcode": "1005",
+      "website": "https://brasserieduchateau.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo 11:30-00:00; Tu-Th 11:30-01:00; Fr, Sa 11:00-02:00; Su 17:00-00:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:12:10.751197+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/9029831317",
+      "name": "Bufalà",
+      "lat": 46.5261234,
+      "lon": 6.6213277,
+      "type": "restaurant",
+      "address": "Avenue de France 38",
+      "postcode": "1004",
+      "website": "https://bufala-pizzeria.ch/",
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,18:30-22:30; Sa 18:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://bufala-pizzeria.ch/menu-1/",
+          "observedAt": "2026-10-21T07:12:12.641122+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita CHF18",
+          "alcoholFree": true,
+          "sourceSha256": "d16a8c28ec4cdc56b1227c5b616323fe0aa79c6b5792e458e45fad3e81163bdb"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:12:12.641122+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://bufala-pizzeria.ch/",
+        "evidence": "Pizzeria Bufala Lausanne"
+      }
+    },
+    {
+      "id": "node/4141751989",
+      "name": "Chez Mario",
+      "lat": 46.519869,
+      "lon": 6.6362795,
+      "type": "restaurant",
+      "address": "Rue de Bourg 28",
+      "postcode": "1003",
+      "website": "https://www.chezmario.ch/",
+      "cuisine": [
+        "italian",
+        "italian_pizza"
+      ],
+      "openingHours": "Su-Th 11:30-14:00, 18:30-22:00; Fr-Sa 11:30-14:00, 18:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.chezmario.ch/en/menu?location=Rue+de+Bourg&menu=nos-pizzas--piu",
+          "observedAt": "2026-10-21T07:14:41.275282+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita Sauce tomate, mozzarella fior di latte, basilic CHF 16",
+          "alcoholFree": true,
+          "sourceSha256": "00bccd4d3bcb3377dc3c0db0d94d89dd39bd17cd9968e195c593ac563c0190d7"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:14:41.275282+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.chezmario.ch/",
+        "evidence": "Pizzeria Lausanne- Chez Mario"
+      }
+    },
+    {
+      "id": "node/11850727456",
+      "name": "Cut Pizza",
+      "lat": 46.5205523,
+      "lon": 6.6400467,
+      "type": "restaurant",
+      "address": "Rue Charles-Augustin-Sainte-Beuve 9",
+      "postcode": "1005",
+      "website": "https://cutpizza.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 11:30-15:00,17:30-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:12:02.230366+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/4861630225",
+      "name": "Diabolo Pizza",
+      "lat": 46.5153667,
+      "lon": 6.625589,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": "Mo-Sa 11:00-14:00,18:00-24:00; Su 12:00-24:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/9883538812",
+      "name": "Domani Pizza",
+      "lat": 46.5188319,
+      "lon": 6.6315954,
+      "type": "fast_food",
+      "address": "Rue du Petit-Chêne 9",
+      "postcode": "1003",
+      "website": "https://www.domanipizza.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-14:00,17:00-21:30; Fr-Sa 11:00-21:30; Su 18:00-21:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:12:02.230836+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.domanipizza.ch/prestations/pizzeria",
+        "evidence": "Pizzeria"
+      }
+    },
+    {
+      "id": "node/7095861350",
+      "name": "Domino's",
+      "lat": 46.5211636,
+      "lon": 6.6163313,
+      "type": "fast_food",
+      "address": "Avenue de Tivoli 70",
+      "postcode": "1007",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:00-13:30,17:00-22:00; Sa,Su 11:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1133646787",
+      "name": "Forbici",
+      "lat": 46.5209365,
+      "lon": 6.6297501,
+      "type": "restaurant",
+      "address": "Place de l'Europe 9",
+      "postcode": "1003",
+      "website": "https://forbici-flon.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 10:00-24:00; Fr-Sa 10:00-01:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://forbici-flon.ch/",
+          "observedAt": "2026-10-21T07:12:15.905801+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 18.00 CHF",
+          "alcoholFree": true,
+          "sourceSha256": "78b26c2aee13a7b330d3cd10cd058f5144fdd61305686c4edb83daf829ea99ca"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:12:15.905801+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "way/46785028",
+      "name": "Gare Z par le Collectif 52",
+      "lat": 46.5166974,
+      "lon": 6.6314982,
+      "type": "restaurant",
+      "address": "Lausanne-Gare",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "burger",
+        "grill"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1383599684",
+      "name": "Holy Monkey",
+      "lat": 46.5232589,
+      "lon": 6.6352453,
+      "type": "pub",
+      "address": "Rue Cité-Devant 6",
+      "postcode": "",
+      "website": "https://holymonkey.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu-Th 18:00-24:00, Fr-Sa 18:00-02:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:12:20.466430+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "way/44771838",
+      "name": "Kebab Ouchy",
+      "lat": 46.5081171,
+      "lon": 6.6231964,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.kebabouchy.ch/",
+      "cuisine": [
+        "kebab",
+        "pizza",
+        "tacos",
+        "hot_dog",
+        "burger",
+        "crepe"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-21T07:12:20.532651+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/3359093216",
+      "name": "L'Orée des Bois",
+      "lat": 46.5929703,
+      "lon": 6.6582501,
+      "type": "restaurant",
+      "address": "Route de Montheron 63",
+      "postcode": "1053",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/11163528122",
+      "name": "La Carillère",
+      "lat": 46.5615182,
+      "lon": 6.6955917,
+      "type": "restaurant",
+      "address": "Route du Jorat 73",
+      "postcode": "1000",
+      "website": "https://lacarillere.ch",
+      "cuisine": [],
+      "openingHours": "Tu-Su 10:00-14:30,18:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://lacarillere.ch",
+          "observedAt": "2026-10-21T07:16:11.274268+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 16.–",
+          "alcoholFree": true,
+          "sourceSha256": "7e6210e75da88e2d12727bf41ec77ee73e997b9e02307a63e324f5136fcdc712"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:16:11.274268+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/918612290",
+      "name": "La Nonna",
+      "lat": 46.5247077,
+      "lon": 6.6257858,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.pizzeria-lanonna.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 09:00-15:00, 18:00-00:00; Sa 11:00-15:15, 18:00-00:00; Su 17:45-00:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-21T07:12:20.577450+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/12181099004",
+      "name": "La Rive",
+      "lat": 46.5136403,
+      "lon": 6.6115467,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.restaurantlarive.ch/bienvenue/vidy",
+      "cuisine": [
+        "mediterranean"
+      ],
+      "openingHours": "Mo-Su 08:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:16:44.116982+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.restaurantlarive.ch/menu-morges",
+        "evidence": "Menu Morges — Restaurant Bar Pizzeria La Rive"
+      }
+    },
+    {
+      "id": "node/4365115965",
+      "name": "Le 44",
+      "lat": 46.5250545,
+      "lon": 6.6126448,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 06:00-24:00; Sa,Su 07:00-24:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "way/44157827",
+      "name": "Le Carrousel de Vidy",
+      "lat": 46.5128587,
+      "lon": 6.6061327,
+      "type": "restaurant",
+      "address": "Allée du Bornan 8",
+      "postcode": "",
+      "website": "https://www.restaurant-carrousel-vidy.ch/",
+      "cuisine": [],
+      "openingHours": "Tu-Su 11:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 22.0,
+          "sourceUrl": "https://assets.zyrosite.com/0EjlhxGbl28rRPCG/menu-_automne-5sI9tXXIzYokzhtt.pdf",
+          "observedAt": "2026-10-21T07:17:08.529485+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 4: Margherita 22.00",
+          "alcoholFree": true,
+          "sourceSha256": "13ba0e721c1978245261db6aa0627453674e5156383459f9a2d234a80dd6cad7"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:17:08.529485+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "way/44772670",
+      "name": "Le Lacustre",
+      "lat": 46.504925,
+      "lon": 6.6276291,
+      "type": "restaurant",
+      "address": "Quai Jean-Pascal-Delamuraz 1",
+      "postcode": "1006",
+      "website": "https://www.thelacustre.com",
+      "cuisine": [
+        "barbecue",
+        "burger",
+        "grill",
+        "italian_pizza"
+      ],
+      "openingHours": "We 14:00-00:00; Th 14:00-01:00; Fr 14:00-02:00; Sa 11:00-02:00; Su 11:00-00:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://images.squarespace-cdn.com/content/v1/5cc1ae5d7d0c91738bc756b5/ce5e0d49-9a47-4876-8ba5-2775759a64ac/lacustre_menu_octobre_2026_VERSIONBlanche_v2_Plan+de+travail+1+copie+3.jpg",
+          "observedAt": "2026-10-21T07:17:45.023280+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 1: MARGHERITA 17.-",
+          "alcoholFree": true,
+          "extractionMethod": "ocr",
+          "sourceSha256": "5e44c578565a7be2f969bb8df696d33a737d1ad05c9fe0a69272144b2089d9d4"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:17:45.023280+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/2472290007",
+      "name": "Le Rialto",
+      "lat": 46.5220019,
+      "lon": 6.6468535,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/6075675105",
+      "name": "Los Pizzas Hermanos",
+      "lat": 46.5284779,
+      "lon": 6.6039885,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu-Sa 11:30-14:00, 18:30-22:00; Su 12:30-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/8446230198",
+      "name": "Mami Pizza",
+      "lat": 46.5244669,
+      "lon": 6.6131904,
+      "type": "fast_food",
+      "address": "Avenue de Sévelin 13f",
+      "postcode": "1004",
+      "website": "https://www.mamipizza.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-14:00, 17:30-22:30; Fr-Sa 11:00-14:00, 17:30-23:30; Su 10:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:12:02.230917+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/13994460601",
+      "name": "Mauro",
+      "lat": 46.5371269,
+      "lon": 6.6175134,
+      "type": "fast_food",
+      "address": "Avenue de Gratta-Paille 2",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "focaccia"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/652559287",
+      "name": "Pasta e Sfizi",
+      "lat": 46.5164356,
+      "lon": 6.6335973,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://pastaesfizi.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,18:30-23:00; Sa 18:30-24:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:20:21.352412+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/5747554937",
+      "name": "Pizza Fratel",
+      "lat": 46.5236313,
+      "lon": 6.6293485,
+      "type": "restaurant",
+      "address": "Rue de la Tour 8",
+      "postcode": "1004",
+      "website": "https://www.pizzafratel.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-21T07:12:02.231001+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.pizzafratel.ch/",
+        "evidence": "Pizza Fratel e Napule | Pizzeria Lausanne & Crissier"
+      }
+    },
+    {
+      "id": "node/3325076945",
+      "name": "Pizza Milan",
+      "lat": 46.5244967,
+      "lon": 6.626654,
+      "type": "fast_food",
+      "address": "Chemin des Cèdres 2b",
+      "postcode": "1004",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Su 10:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/10972645913",
+      "name": "Pizza&Kebab du Maupas",
+      "lat": 46.5252124,
+      "lon": 6.6250871,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/9757039297",
+      "name": "Pizza-avenue",
+      "lat": 46.5236802,
+      "lon": 6.6012176,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1263754506",
+      "name": "Pizzeria Bellevaux",
+      "lat": 46.5329746,
+      "lon": 6.6311569,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/919676194",
+      "name": "Pizzeria La Torre",
+      "lat": 46.5236987,
+      "lon": 6.6277798,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 08:00-24:00; Su,PH off",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/5727243623",
+      "name": "Pz pizza",
+      "lat": 46.5212465,
+      "lon": 6.6318007,
+      "type": "restaurant",
+      "address": "Rue Grand-Saint-Jean 5",
+      "postcode": "1003",
+      "website": "http://www.pzpizza.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 11:30-14:30, Mo-Sa 18:00-22:30, Sa 11:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:12:02.231070+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/6959946487",
+      "name": "Restaurant de l'Etoile",
+      "lat": 46.5261508,
+      "lon": 6.6097928,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://restaurant-letoile.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Th 11:45-13:30, 18:45-22:00; Fr, Sa 11:45-13:30, 18:45-22:30; Su 11:30-13:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://www.restaurant-letoile.ch/pizzas/",
+          "observedAt": "2026-10-21T07:20:27.637043+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 17.—",
+          "alcoholFree": true,
+          "sourceSha256": "c86b67bc53ff8c4f14bed6ec56b790e9a2955d91cf3942333484d5d7515bd2b7"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:20:27.637043+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "way/46612740",
+      "name": "Restaurant Le Milan",
+      "lat": 46.5165231,
+      "lon": 6.6258452,
+      "type": "restaurant",
+      "address": "Boulevard de Grancy 54",
+      "postcode": "1006",
+      "website": "https://www.lemilan.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Tu-Sa 08:00-24:00, Su 09:00-24:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:20:43.727449+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.lemilan.ch/",
+        "evidence": "Accueil - Restaurant et Pizzeria Le Milan - Lausanne"
+      }
+    },
+    {
+      "id": "way/212649470",
+      "name": "Restaurant Pizzeria du Stand de Vernand",
+      "lat": 46.5683473,
+      "lon": 6.6126951,
+      "type": "restaurant",
+      "address": "Route de la Blécherette 2",
+      "postcode": "1032",
+      "website": null,
+      "cuisine": [],
+      "openingHours": "Mo-Sa 08:00-24:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1078573246",
+      "name": "Ristorante il Lido",
+      "lat": 46.5117494,
+      "lon": 6.6093232,
+      "type": "restaurant",
+      "address": "Avenue Emile-Henri-Jaques-Dalcroze 9",
+      "postcode": "1007",
+      "website": "https://www.il-lido.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Su 08:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.il-lido.ch/wp-content/uploads/2023/02/il-lido-carte-ete-2026-1.pdf",
+          "observedAt": "2026-10-21T07:12:20.712152+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 2: MARGHERITA: (Sauce Tomate, Mozzarella) CHF 16.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr",
+          "sourceSha256": "2f9834a30484a6fb8f37ce6506e5b06a6c87dd3aaa0de93ada6df601f35cc49e"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T07:12:20.712152+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/5223601321",
+      "name": "Slice Pizza",
+      "lat": 46.5244889,
+      "lon": 6.6312213,
+      "type": "restaurant",
+      "address": "Rue du Valentin 23",
+      "postcode": "1004",
+      "website": "https://www.slicepizza.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu-Su 18:00+",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T07:12:02.231136+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.slicepizza.ch/",
+        "evidence": "Slice Pizza | Pizzeria artisanale à Lausanne"
+      }
+    },
+    {
+      "id": "node/847533632",
+      "name": "Votra Lausanne",
+      "lat": 46.5435509,
+      "lon": 6.6475651,
+      "type": "restaurant",
+      "address": "Chemin Isabelle-de-Montolieu 113",
+      "postcode": "1010",
+      "website": "https://votralausanne.ch",
+      "cuisine": [
+        "regional",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-21T07:12:20.692703+00:00",
+      "pizzaMenu": []
+    }
+  ]
+}

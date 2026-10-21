@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { build } from 'vite';
 import { readFileSync } from 'node:fs';
-import { cities } from '../src/cities';
+import { cities, defaultCityLocale } from '../src/cities';
 import { coffeePrices, guidePrices, guideDataset, cityIds, cityPath, guideContent, guidePath, guideTypes, metadata, siteOrigin, mapLink } from '../src/seo';
 import type { Dataset } from '../src/data';
 import { locales } from '../src/i18n';
@@ -16,26 +16,28 @@ describe('search-engine-visible production pages', () => {
     }
   });
 
-  it('ships unique titles, a single canonical and visible price content on all thirty pages without JavaScript', () => {
+  it('ships unique titles, a single canonical and visible price content on all city and guide pages without JavaScript', () => {
     const titles = new Set<string>();
     const pages = cityIds.flatMap(city => locales.flatMap(locale =>
-      [undefined, ...guideTypes].map(type => ({ meta: metadata(city, type, locale), source: locale === 'en' ? 'Price source</a>' : 'Preisquelle</a>' }))));
-    for (const { meta, source } of pages) {
+      [undefined, ...guideTypes].map(type => ({ meta: metadata(city, type, locale), source: locale === 'en' ? 'Price source</a>' : 'Preisquelle</a>', priced: !type || guidePrices(JSON.parse(readFileSync(`public/data/${cities[city].data}${guideDataset(type)}.json`, 'utf8')), type).length > 0 }))));
+    for (const { meta, source, priced } of pages) {
       const html = files.get(meta.path === '/' ? 'index.html' : `${meta.path.slice(1)}/index.html`)!;
       expect(html).toBeTruthy();
       expect(html.match(/<h1[ >]/g)).toHaveLength(1);
       expect(html.match(/rel="canonical"/g)).toHaveLength(1);
       expect(html).toContain(`href="${siteOrigin}${meta.path}"`);
       expect(html).toContain(`<title>${meta.title}</title>`);
-      expect(html).toContain('<table>');
-      expect(html).toContain(source);
+      if (priced) {
+        expect(html).toContain('<table>');
+        expect(html).toContain(source);
+      } else expect(html).toMatch(/Noch keine vergleichbaren Preise erfasst\.|No comparable prices have been recorded yet\./);
       expect(html).not.toContain('<!-- SEO_');
       expect(html).not.toContain('noindex');
       const data = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)![1]);
       expect(data['@graph'].find((item: { '@type': string }) => item['@type'] === 'CollectionPage').url).toBe(siteOrigin + meta.path);
       titles.add(meta.title);
     }
-    expect(titles.size).toBe(30);
+    expect(titles.size).toBe(cityIds.length * locales.length * (guideTypes.length + 1));
   });
 
   it('serves each city map in English with language links in both directions', () => {
@@ -47,12 +49,12 @@ describe('search-engine-visible production pages', () => {
       for (const html of [german, english]) {
         expect(html).toContain(`<link rel="alternate" hreflang="de-CH" href="${siteOrigin}${cityPath(city)}" />`);
         expect(html).toContain(`<link rel="alternate" hreflang="en" href="${siteOrigin}${cityPath(city, 'en')}" />`);
-        expect(html).toContain(`hreflang="x-default" href="${siteOrigin}${cityPath(city)}"`);
+        expect(html).toContain(`hreflang="x-default" href="${siteOrigin}${cityPath(city, defaultCityLocale(city, 'de'))}"`);
       }
       expect(german).toContain(`data-locale="en" href="${cityPath(city, 'en')}"`);
       expect(english).toContain(`data-locale="de" href="${cityPath(city)}"`);
       expect(english).toContain('<meta property="og:locale" content="en_GB" />');
-      expect(english).toContain(`<h1 id="map-title">Coffee prices in ${city === 'zurich' ? 'Zurich' : cities[city].name}</h1>`);
+      expect(english).toContain(`<h1 id="map-title">Coffee prices in ${city === 'zurich' ? 'Zurich' : city === 'geneva' ? 'Geneva' : cities[city].name}</h1>`);
       expect(english).toContain('aria-label="Colour scheme"');
       for (const type of guideTypes) {
         expect(english).not.toContain(`href="${guidePath(city, type)}"`);
@@ -71,7 +73,8 @@ describe('search-engine-visible production pages', () => {
       expect(english).toContain('<html lang="en">');
       expect(english).toContain(`<h1>${metadata(city, type, 'en').heading}</h1>`);
       if (type === 'espresso' || type === 'cappuccino') expect(english).toContain('Which offers can be compared?');
-      expect(english).toContain('Recorded prices range from');
+      const prices = guidePrices(JSON.parse(readFileSync(`public/data/${cities[city].data}${guideDataset(type)}.json`, 'utf8')), type);
+      expect(english).toContain(prices.length ? 'Recorded prices range from' : 'No comparable prices have been recorded yet.');
       expect(english).toContain('Data as of');
       expect(english).toContain('aria-label="Breadcrumbs"');
       expect(english).toContain('aria-label="Colour scheme"');
@@ -81,7 +84,7 @@ describe('search-engine-visible production pages', () => {
       for (const html of [german, english]) {
         expect(html).toContain(`hreflang="de-CH" href="${siteOrigin}${germanPath}"`);
         expect(html).toContain(`hreflang="en" href="${siteOrigin}${englishPath}"`);
-        expect(html).toContain(`hreflang="x-default" href="${siteOrigin}${germanPath}"`);
+        expect(html).toContain(`hreflang="x-default" href="${siteOrigin}${defaultCityLocale(city, 'de') === 'en' ? englishPath : germanPath}"`);
       }
       for (const [, href] of english.matchAll(/<a[^>]*href="([^"]+)"/g)) {
         if (href.startsWith('/') && href !== germanPath) expect(href).toMatch(/^\/en(?:\/|\?|$)/);
@@ -98,7 +101,7 @@ describe('search-engine-visible production pages', () => {
   it('lists only canonical pages in the sitemap and gives every guide a deployed route and incoming city link', () => {
     const sitemap = files.get('sitemap.xml')!;
     const config = JSON.parse(readFileSync('vercel.json', 'utf8'));
-    expect(sitemap.match(/<loc>/g)).toHaveLength(30);
+    expect(sitemap.match(/<loc>/g)).toHaveLength(cityIds.length * locales.length * (guideTypes.length + 1));
     for (const [, url] of sitemap.matchAll(/<loc>(.*?)<\/loc>/g)) expect(new URL(url).search).toBe('');
     expect(files.get('robots.txt')).toContain(`Sitemap: ${siteOrigin}/sitemap.xml`);
     for (const city of cityIds) {
@@ -128,6 +131,11 @@ describe('search-engine-visible production pages', () => {
         const prices = guidePrices(dataset, type);
         const html = files.get(`${guidePath(city, type).slice(1)}/index.html`)!;
         const english = files.get(`${guidePath(city, type, 'en').slice(1)}/index.html`)!;
+        if (!prices.length) {
+          expect(html).toContain('Noch keine vergleichbaren Preise erfasst.');
+          expect(english).toContain('No comparable prices have been recorded yet.');
+          continue;
+        }
         expect(html).toContain(`${prices.length} Lokale mit`);
         expect(html).toContain(`ab CHF ${prices[0].offer.priceChf.toFixed(2)}`);
         expect(english).toContain(`${prices.length} venues with a`);
