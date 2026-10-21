@@ -33,9 +33,11 @@ for (const touch of [false, true]) {
     await page.goto(`http://127.0.0.1:${process.env.WOBILLIG_TEST_PORT || 5179}/?map=${id}`);
     const canvas = page.locator('#custom-map-canvas');
     await expect(canvas).toBeVisible();
-    // Leaflet zoom animation must settle between presses.
+    // Exercise keyboard zoom on desktop and the zoom control on touch devices.
+    // The OSM tests below cover the desktop zoom buttons separately.
     for (let i = 0; i < 4; i++) {
-      await canvas.getByRole('button', { name: 'Zoom in', exact: true }).click();
+      if (touch) await canvas.getByRole('button', { name: 'Zoom in', exact: true }).tap();
+      else await canvas.press('+');
       await expect(canvas.locator(`img[src*="/${14 + i}/"]`).first()).toBeAttached();
       await expect(canvas.locator('.leaflet-map-pane')).not.toHaveClass(/leaflet-zoom-anim/);
     }

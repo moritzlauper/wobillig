@@ -1115,7 +1115,7 @@ async function init() {
   const hasData = Object.keys(datasets).length > 0;
   for (const format of ['csv', 'json']) $<HTMLButtonElement>('download-' + format).disabled = !hasData;
   $('download-status').textContent = !hasData ? t('Download nicht verfügbar. Bitte lade die Seite erneut.') : missing.length ? t('Unvollständiger Export: {missing} konnten nicht geladen werden. Bitte lade die Seite erneut für einen vollständigen Export.', { missing: missing.join(', ') }) : t('Gemeinsame Einträge und Korrekturen sind enthalten.');
-  $<HTMLInputElement>('price').value = String(f.max);
+  $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
   const errors = [!beerResult ? t('Bierdaten konnten nicht geladen werden.') : '', !coffeeResult ? t('Kaffeedaten konnten nicht geladen werden.') : '', !pizzaResult ? t('Pizzadaten konnten nicht geladen werden.') : '', !locationsResult ? t('Zusätzliche Kartenlokale konnten nicht geladen werden. Bitte neu laden.') : ''].filter(Boolean);
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   rebuild();
