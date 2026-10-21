@@ -1,7 +1,7 @@
-// Public contact details approved by the operator. No postal address is published.
+// Public contact details approved by the operator.
 export const legalOperator = {
   name: 'Moritz Lauper',
-  address: [] as string[],
+  address: ['Nussbaumstrasse 4', '8003 Zürich'],
   email: 'team@wobillig.ch',
   phone: { label: '079 786 73 07', href: '+41797867307' },
 };
