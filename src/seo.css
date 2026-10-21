@@ -32,6 +32,7 @@ main.seo-guide { display: block; }
   .seo-content table { font-size: 13px; }
 }
 
-.site-legal-footer { max-width: 1040px; margin: 0 auto; padding: 16px 24px 24px; border-top: 1px solid var(--divider); display: flex; flex-wrap: wrap; gap: 12px 24px; font: 14px Arial, Helvetica, sans-serif; }
-.site-legal-footer a { color: var(--link); text-underline-offset: 3px; }
+.site-legal-footer { max-width: 1040px; margin: 0 auto; padding: 16px 24px 24px; border-top: 1px solid var(--divider); display: flex; flex-wrap: wrap; gap: 12px 24px; font: 12px Arial, Helvetica, sans-serif; }
+.site-legal-footer a { display: inline-flex; align-items: center; min-height: 24px; color: var(--muted); text-decoration: none; text-underline-offset: 3px; }
+.site-legal-footer a:hover, .site-legal-footer a:focus-visible { text-decoration: underline; }
 .site-legal-footer a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }

@@ -7,5 +7,5 @@ export const legalPaths = (locale: Locale) => locale === 'en'
 export function legalLinks(locale: Locale, base = '/') {
   const paths = legalPaths(locale);
   const prefix = base.replace(/\/$/, '');
-  return `<a href="${prefix}${paths.imprint}">${translate(locale, 'Impressum')}</a><a href="${prefix}${paths.privacy}">${translate(locale, 'Datenschutz')}</a>`;
+  return `<a class="legal-link" href="${prefix}${paths.imprint}">${translate(locale, 'Impressum')}</a><a class="legal-link" href="${prefix}${paths.privacy}">${translate(locale, 'Datenschutz')}</a>`;
 }

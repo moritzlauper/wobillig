@@ -8,6 +8,7 @@ test('legal pages work without JavaScript, link both languages and make no third
   for (const [path, title] of [['/impressum', 'Impressum'], ['/datenschutz', 'Datenschutz'], ['/en/imprint', 'Imprint'], ['/en/privacy', 'Privacy']]) {
     const response = await page.goto(`${baseURL}${path}`);
     expect(response?.status()).toBe(200);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, follow');
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
     await expect(page.locator('address')).toContainText('Moritz Lauper');
     await expect(page.locator('address a[href="tel:+41797867307"]')).toHaveText('079 786 73 07');

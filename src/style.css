@@ -171,6 +171,8 @@ main { display: flex; flex: 1; min-height: 0; }
 .app-footer { order: 1; flex-shrink: 0; padding: 3px max(8px, env(safe-area-inset-right, 0px)) max(3px, env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); border-top: 1px solid var(--divider); background: var(--surface); font-size: 11px; }
 .app-footer a, .app-footer button { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 5px; border: 0; border-radius: 3px; background: var(--overlay); color: var(--secondary); font: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .app-footer { display: flex; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
+.app-footer .legal-link { background: transparent; color: var(--muted); text-decoration: none; }
+.app-footer .legal-link:hover, .app-footer .legal-link:focus-visible { text-decoration: underline; }
 .list-panel { flex: 0 0 300px; overflow-y: auto; border-right: 1px solid var(--strong-border); }
 .list-tools { padding: 8px; border-bottom: 1px solid var(--divider); }
 .list-tools select { width: 100%; }

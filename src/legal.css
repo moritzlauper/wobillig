@@ -14,4 +14,6 @@ code { overflow-wrap: anywhere; font-size: .9em; }
 ul { padding-left: 22px; }
 li + li { margin-top: 8px; }
 footer { display: flex; flex-wrap: wrap; gap: 12px 24px; border-top: 1px solid var(--divider); margin-top: 24px; padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+footer .legal-link { display: inline-flex; align-items: center; min-height: 24px; color: var(--muted); font-size: 12px; text-decoration: none; }
+footer .legal-link:hover, footer .legal-link:focus-visible { text-decoration: underline; }
 @media (max-width: 480px) { header, main, footer { padding-inline: 16px; } }
