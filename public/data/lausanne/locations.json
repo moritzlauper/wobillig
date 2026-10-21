@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-21T13:07:57.630719+00:00",
-  "discoveredAt": "2026-10-21T07:11:20.753472+00:00",
+  "discoveredAt": "2026-10-21T12:46:39.060168+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -19,7 +19,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/4394471954",
@@ -27,15 +28,16 @@
       "lat": 46.524942,
       "lon": 6.6131216,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Genève 87",
+      "postcode": "1004",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 07:00-22:00; Sa 10:00-22:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52565745"
     },
     {
       "id": "node/8431877828",
@@ -196,7 +198,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/13305896887",
@@ -324,15 +327,16 @@
       "lat": 46.5215555,
       "lon": 6.6342187,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Mercerie 14",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": "Tu-Sa 10:00-16:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53042800"
     },
     {
       "id": "node/1252267327",
@@ -358,8 +362,8 @@
       "lat": 46.5255177,
       "lon": 6.6521982,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Chailly 13",
+      "postcode": "1012",
       "website": "http://www.pizza-charbon.ch/",
       "cuisine": [
         "italian"
@@ -368,7 +372,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/50440801"
     },
     {
       "id": "node/1640716272",
@@ -376,7 +381,7 @@
       "lat": 46.5176298,
       "lon": 6.6372396,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue Beau-Séjour 27",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -384,7 +389,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53159479"
     },
     {
       "id": "node/3210622721",
@@ -444,8 +450,8 @@
       "lat": 46.5214124,
       "lon": 6.6470076,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin du Levant 1",
+      "postcode": "1005",
       "website": null,
       "cuisine": [
         "pizza"
@@ -454,7 +460,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/48500829"
     },
     {
       "id": "node/2472724085",
@@ -496,8 +503,8 @@
       "lat": 46.515806,
       "lon": 6.629938,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Simplon 19",
+      "postcode": "1006",
       "website": null,
       "cuisine": [
         "asian"
@@ -506,7 +513,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53222009"
     },
     {
       "id": "node/2673005709",
@@ -565,8 +573,8 @@
       "lat": 46.5232658,
       "lon": 6.6295335,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ale 6",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "açaí"
@@ -575,7 +583,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52995993"
     },
     {
       "id": "node/8448253695",
@@ -617,15 +626,16 @@
       "lat": 46.5217122,
       "lon": 6.6360188,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Pont Charles-Bessières 1",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53215680"
     },
     {
       "id": "node/8116585304",
@@ -737,15 +747,16 @@
       "lat": 46.5204497,
       "lon": 6.6350251,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Rôtillon 12",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52151881"
     },
     {
       "id": "node/9418183817",
@@ -753,7 +764,7 @@
       "lat": 46.5194802,
       "lon": 6.6242386,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue Louis-Ruchonnet 26",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -763,7 +774,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52578915"
     },
     {
       "id": "node/5949713429",
@@ -819,8 +831,8 @@
       "lat": 46.5187138,
       "lon": 6.6309998,
       "type": "restaurant",
-      "address": "",
-      "postcode": "1003",
+      "address": "Rue du Petit-Chêne 28",
+      "postcode": "",
       "website": "https://beefor.ch/lausanne/",
       "cuisine": [
         "steak_house"
@@ -829,7 +841,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44385862"
     },
     {
       "id": "node/9611153817",
@@ -930,8 +943,8 @@
       "lat": 46.5174069,
       "lon": 6.6305517,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de la Gare 52",
+      "postcode": "1003",
       "website": "https://www.restaurant-bellavita.com/",
       "cuisine": [
         "italian",
@@ -941,7 +954,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.restaurant-bellavita.com/",
+        "evidence": "Pizzeria | Restaurant | Bella Vita |  Lausanne"
+      },
+      "addressSource": "https://www.openstreetmap.org/way/44180379"
     },
     {
       "id": "node/5574582945",
@@ -949,15 +968,16 @@
       "lat": 46.5158719,
       "lon": 6.6141412,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 99",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53725402"
     },
     {
       "id": "node/13405314701",
@@ -1017,15 +1037,16 @@
       "lat": 46.5218195,
       "lon": 6.6313348,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Place Grand-Saint-Jean 2",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 11:00-15:00, Sa 11:00-15:00+, Mo-Fr 17:30-20:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53003639"
     },
     {
       "id": "node/568735352",
@@ -1083,7 +1104,7 @@
       "lat": 46.5259193,
       "lon": 6.6350269,
       "type": "bar",
-      "address": "",
+      "address": "Place du Tunnel 9",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1091,7 +1112,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/107059436"
     },
     {
       "id": "node/14011389401",
@@ -1138,8 +1160,8 @@
       "lat": 46.5258364,
       "lon": 6.635171,
       "type": "restaurant",
-      "address": "",
-      "postcode": "1005",
+      "address": "Place du Tunnel 8",
+      "postcode": "",
       "website": "https://blackmarketramen.com/",
       "cuisine": [
         "japanese",
@@ -1149,7 +1171,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/131222860"
     },
     {
       "id": "node/12531359534",
@@ -1157,15 +1180,16 @@
       "lat": 46.5201113,
       "lon": 6.637578,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Jenny-Enning 10",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44422846"
     },
     {
       "id": "node/2350751342",
@@ -1173,15 +1197,16 @@
       "lat": 46.5201097,
       "lon": 6.637723,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Jenny-Enning 10",
+      "postcode": "1003",
       "website": "https://bleu-lezard.ch/",
       "cuisine": [],
       "openingHours": "Mo, We, Th 07:30-00:00, 09:00-18:00; Tu, Fr 07:30-01:00; Sa 08:00-01:00; Su 09:30-00:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44422846"
     },
     {
       "id": "node/6640587812",
@@ -1205,8 +1230,8 @@
       "lat": 46.5071714,
       "lon": 6.6271334,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue d'Ouchy 76",
+      "postcode": "1006",
       "website": "https://www.boccalino.ch/",
       "cuisine": [
         "italian",
@@ -1216,7 +1241,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.boccalino.ch/pizzeria-saint-sulpice",
+        "evidence": "Pizzeria proche de Saint-Sulpice | Boccalino – Pizzas maison à Ouchy Lausanne"
+      },
+      "addressSource": "https://www.openstreetmap.org/node/8851375026"
     },
     {
       "id": "node/13171739901",
@@ -1293,15 +1324,16 @@
       "lat": 46.5154316,
       "lon": 6.6160216,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 73",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 06:00-19:00; Sa 07:00-17:00; Su 06:30-17:00; PH 06:30-17:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44741415"
     },
     {
       "id": "node/12042198548",
@@ -1325,7 +1357,7 @@
       "lat": 46.5216693,
       "lon": 6.6461858,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue de Béthusy 27",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1333,7 +1365,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46832141"
     },
     {
       "id": "node/2464429521",
@@ -1375,15 +1408,16 @@
       "lat": 46.5295433,
       "lon": 6.6318076,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de la Borde 31",
+      "postcode": "1018",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/198229914"
     },
     {
       "id": "node/3463500913",
@@ -1391,7 +1425,7 @@
       "lat": 46.5315762,
       "lon": 6.6288308,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue de la Pontaise 52",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1399,7 +1433,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47360291"
     },
     {
       "id": "node/2850354167",
@@ -1473,7 +1508,7 @@
       "lat": 46.5304045,
       "lon": 6.6195384,
       "type": "pub",
-      "address": "",
+      "address": "Avenue des Bergieres 42",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1481,7 +1516,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46957323"
     },
     {
       "id": "node/2368737807",
@@ -1489,7 +1525,7 @@
       "lat": 46.5362001,
       "lon": 6.6199923,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue du Grey 58",
       "postcode": "",
       "website": "https://brasserie-des-sauges.com",
       "cuisine": [],
@@ -1497,7 +1533,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46929355"
     },
     {
       "id": "way/107059432",
@@ -1515,7 +1552,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/919701908",
@@ -1523,15 +1561,16 @@
       "lat": 46.5231056,
       "lon": 6.6298388,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Neuve 13",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo 11:30-14:15,18:30-20:45; Tu-Th 11:30-14:15,18:30-21:45; Fr,Sa 11:30-14:15,18:30-22:15; Su 12:00-20:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52782123"
     },
     {
       "id": "node/3271076966",
@@ -1539,15 +1578,16 @@
       "lat": 46.522396,
       "lon": 6.6312908,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Saint-Laurent 16",
+      "postcode": "1003",
       "website": "http://www.brasserie-saint-Laurent.ch",
       "cuisine": [],
       "openingHours": "Mo-Tu, Th-Fr 08:30-23:00; We, Sa 07:30-23:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52783145"
     },
     {
       "id": "node/11859336903",
@@ -1618,7 +1658,12 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://bufala-pizzeria.ch/",
+        "evidence": "Pizzeria Bufala Lausanne"
+      }
     },
     {
       "id": "node/2110461496",
@@ -1626,8 +1671,8 @@
       "lat": 46.5332977,
       "lon": 6.63361,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Route Aloys-Fauquez 38",
+      "postcode": "1018",
       "website": null,
       "cuisine": [
         "kebab"
@@ -1636,7 +1681,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47258044"
     },
     {
       "id": "node/4190617087",
@@ -1698,8 +1744,8 @@
       "lat": 46.5153753,
       "lon": 6.6172101,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 67",
+      "postcode": "1007",
       "website": null,
       "cuisine": [
         "vietnamese"
@@ -1708,7 +1754,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44741428"
     },
     {
       "id": "node/13390472001",
@@ -1734,15 +1781,16 @@
       "lat": 46.523487,
       "lon": 6.6411638,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Bugnon 42",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 10:00-22:00; Sa 10:00-22:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46829275"
     },
     {
       "id": "node/11432111355",
@@ -1855,15 +1903,16 @@
       "lat": 46.5071414,
       "lon": 6.6270934,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue d'Ouchy 76",
+      "postcode": "1006",
       "website": null,
       "cuisine": [],
       "openingHours": "We-Fr 07:30-16:00; Sa,Su 09:00-17:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/8851375026"
     },
     {
       "id": "node/560715501",
@@ -1871,15 +1920,16 @@
       "lat": 46.5268037,
       "lon": 6.6272755,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Alexandre-Vinet 39",
+      "postcode": "1004",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 06:00-18:00, Sa 06:30-12:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53205899"
     },
     {
       "id": "node/1539636449",
@@ -1887,8 +1937,8 @@
       "lat": 46.5152658,
       "lon": 6.6286248,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue du Rond-Point 1",
+      "postcode": "1006",
       "website": "https://www.cafedegrancy.ch/",
       "cuisine": [
         "french"
@@ -1897,7 +1947,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/48012910"
     },
     {
       "id": "node/13329815621",
@@ -1905,15 +1956,16 @@
       "lat": 46.5227124,
       "lon": 6.6215708,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Genève 57",
+      "postcode": "1004",
       "website": "https://arsenic.ch/cafe-restaurant/",
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44361822"
     },
     {
       "id": "node/1628256031",
@@ -1937,8 +1989,8 @@
       "lat": 46.5222269,
       "lon": 6.6323076,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Place de la Palud 10",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "regional"
@@ -1947,7 +1999,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/107072365"
     },
     {
       "id": "node/3233153499",
@@ -2121,15 +2174,16 @@
       "lat": 46.5185804,
       "lon": 6.6336608,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de la Grotte 2",
+      "postcode": "1003",
       "website": "https://www.mozartcafe.ch/",
       "cuisine": [],
       "openingHours": "Mo 08:30-17:30; Tu-Fr 08:30-23:00; Sa 09:00-18:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44505081"
     },
     {
       "id": "node/11854120495",
@@ -2137,15 +2191,16 @@
       "lat": 46.5390021,
       "lon": 6.6198271,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Germaine-Ernst 9",
+      "postcode": "1018",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Su,PH 09:00-22:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/11420749715"
     },
     {
       "id": "node/603706610",
@@ -2219,15 +2274,16 @@
       "lat": 46.5383051,
       "lon": 6.6340512,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Route Aloys-Fauquez 110",
+      "postcode": "1018",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47005147"
     },
     {
       "id": "node/441149835",
@@ -2251,7 +2307,7 @@
       "lat": 46.5234787,
       "lon": 6.634022,
       "type": "cafe",
-      "address": "",
+      "address": "Place de la Riponne 6",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -2259,7 +2315,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53013854"
     },
     {
       "id": "node/846884838",
@@ -2402,8 +2459,8 @@
       "lat": 46.5154367,
       "lon": 6.6166596,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 69",
+      "postcode": "1007",
       "website": "https://www.chezaom.com/",
       "cuisine": [
         "thai"
@@ -2412,7 +2469,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53746092"
     },
     {
       "id": "node/13981956501",
@@ -2457,7 +2515,7 @@
       "lat": 46.5189038,
       "lon": 6.6315093,
       "type": "fast_food",
-      "address": "",
+      "address": "Rue du Petit-Chêne 22",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -2467,7 +2525,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44385135"
     },
     {
       "id": "node/5161579822",
@@ -2494,15 +2553,16 @@
       "lat": 46.5183952,
       "lon": 6.6331345,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Midi 14",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 07:45-15:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53159869"
     },
     {
       "id": "node/9610795517",
@@ -2510,7 +2570,7 @@
       "lat": 46.5152657,
       "lon": 6.6176699,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue de Cour 63",
       "postcode": "1007",
       "website": "https://resto-chezloic.ch/",
       "cuisine": [
@@ -2520,7 +2580,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53746096"
     },
     {
       "id": "node/12309101162",
@@ -2555,7 +2616,12 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.chezmario.ch/",
+        "evidence": "Pizzeria Lausanne- Chez Mario"
+      }
     },
     {
       "id": "node/13016994902",
@@ -2699,7 +2765,7 @@
       "lat": 46.5199442,
       "lon": 6.6364727,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue de Bourg 51",
       "postcode": "",
       "website": "https://www.restaurant-churrasco-lausanne.ch",
       "cuisine": [
@@ -2709,7 +2775,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53219903"
     },
     {
       "id": "node/1230808910",
@@ -2717,7 +2784,7 @@
       "lat": 46.506718,
       "lon": 6.6276147,
       "type": "restaurant",
-      "address": "",
+      "address": "Place du Port 2",
       "postcode": "",
       "website": "https://www.chateaudouchy.ch/en/restaurants-bars/",
       "cuisine": [],
@@ -2725,7 +2792,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44772362"
     },
     {
       "id": "node/5525705821",
@@ -2769,7 +2837,7 @@
       "lat": 46.5176788,
       "lon": 6.6377776,
       "type": "fast_food",
-      "address": "",
+      "address": "Avenue Georgette 2",
       "postcode": "",
       "website": "https://classicfood.ch/",
       "cuisine": [
@@ -2779,7 +2847,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44444961"
     },
     {
       "id": "node/1117500731",
@@ -2942,15 +3011,16 @@
       "lat": 46.515243,
       "lon": 6.63118,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Simplon 3A",
+      "postcode": "1006",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47988918"
     },
     {
       "id": "node/7235000083",
@@ -2995,8 +3065,8 @@
       "lat": 46.519064,
       "lon": 6.631669,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Petit-Chêne 20",
+      "postcode": "1003",
       "website": "https://www.cuppins.ch/",
       "cuisine": [
         "cake"
@@ -3005,7 +3075,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44385136"
     },
     {
       "id": "node/1244874486",
@@ -3041,7 +3112,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/7257976731",
@@ -3153,15 +3225,16 @@
       "lat": 46.5154459,
       "lon": 6.6162614,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 71B",
+      "postcode": "1007",
       "website": "https://delafood.ch/",
       "cuisine": [],
       "openingHours": "Mo-Fr 11:00-19:00; Sa-Su off",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44741417"
     },
     {
       "id": "node/9176770189",
@@ -3185,7 +3258,7 @@
       "lat": 46.5067399,
       "lon": 6.6264394,
       "type": "fast_food",
-      "address": "",
+      "address": "Place de la Navigation 1",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -3197,7 +3270,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44681235"
     },
     {
       "id": "node/4861630225",
@@ -3250,7 +3324,12 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.domanipizza.ch/prestations/pizzeria",
+        "evidence": "Pizzeria"
+      }
     },
     {
       "id": "node/7095861350",
@@ -3380,7 +3459,7 @@
       "lat": 46.520243,
       "lon": 6.632309,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue Pépinet 3",
       "postcode": "",
       "website": "https://www.eat-me.ch/",
       "cuisine": [
@@ -3390,7 +3469,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53217387"
     },
     {
       "id": "node/6350244432",
@@ -3416,15 +3496,16 @@
       "lat": 46.5302845,
       "lon": 6.6357768,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Route du Pavement 3",
+      "postcode": "1018",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47316925"
     },
     {
       "id": "node/1244874467",
@@ -3500,7 +3581,7 @@
       "lat": 46.5116148,
       "lon": 6.6260278,
       "type": "pub",
-      "address": "",
+      "address": "Avenue Frédéric-César-de-La-Harpe 19",
       "postcode": "1007",
       "website": null,
       "cuisine": [],
@@ -3508,7 +3589,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/55339375"
     },
     {
       "id": "node/13470344401",
@@ -3566,7 +3648,7 @@
       "lat": 46.5223366,
       "lon": 6.6368223,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue Saint-Martin 9",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -3576,7 +3658,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/347619283"
     },
     {
       "id": "node/1133646787",
@@ -3595,7 +3678,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/9979671326",
@@ -3621,15 +3705,16 @@
       "lat": 46.5118326,
       "lon": 6.6287692,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin de la Joliette 5",
+      "postcode": "1006",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 06:30-19:00; Sa 10:30-18:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47986214"
     },
     {
       "id": "node/13665325962",
@@ -3637,7 +3722,7 @@
       "lat": 46.5200722,
       "lon": 6.6333585,
       "type": "cafe",
-      "address": "",
+      "address": "Place Saint-François 6",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -3645,7 +3730,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53217423"
     },
     {
       "id": "node/12048973115",
@@ -3653,8 +3739,8 @@
       "lat": 46.5266539,
       "lon": 6.651981,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Chailly 3",
+      "postcode": "1012",
       "website": "https://fryburger.ch/",
       "cuisine": [
         "burger"
@@ -3663,7 +3749,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/239912248"
     },
     {
       "id": "node/5057709540",
@@ -3743,8 +3830,8 @@
       "lat": 46.5184219,
       "lon": 6.6329923,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Midi 12",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "chinese"
@@ -3753,7 +3840,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53159857"
     },
     {
       "id": "node/6893967337",
@@ -3795,8 +3883,8 @@
       "lat": 46.5233068,
       "lon": 6.6297126,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ale 2",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "sandwich"
@@ -3805,7 +3893,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52996000"
     },
     {
       "id": "node/9460065917",
@@ -3897,15 +3986,16 @@
       "lat": 46.5217086,
       "lon": 6.6302409,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Grand-Pont 12",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 09:30-16:30; Sa 10:00-16:30",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52781575"
     },
     {
       "id": "node/4232065391",
@@ -3961,8 +4051,8 @@
       "lat": 46.5206014,
       "lon": 6.635168,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Sophie-Mercier 8",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "sushi",
@@ -3972,7 +4062,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/375289874"
     },
     {
       "id": "node/2162536768",
@@ -4052,7 +4143,7 @@
       "lat": 46.5251013,
       "lon": 6.6527064,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue de Chailly 19",
       "postcode": "",
       "website": "https://www.hokaidolausanne.ch/",
       "cuisine": [
@@ -4062,7 +4153,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/50440853"
     },
     {
       "id": "node/1628551965",
@@ -4116,7 +4208,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/7740463253",
@@ -4143,15 +4236,16 @@
       "lat": 46.5152979,
       "lon": 6.631292,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Simplon 3A",
+      "postcode": "1006",
       "website": "https://www.hungrybearfood.ch/",
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47988918"
     },
     {
       "id": "node/312013494",
@@ -4193,8 +4287,8 @@
       "lat": 46.5260451,
       "lon": 6.6238128,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Maupas 42",
+      "postcode": "1004",
       "website": null,
       "cuisine": [
         "italian"
@@ -4203,7 +4297,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53637557"
     },
     {
       "id": "node/1628258295",
@@ -4211,15 +4306,16 @@
       "lat": 46.5158781,
       "lon": 6.6279684,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Boulevard de Grancy 32",
+      "postcode": "1006",
       "website": "https://inglewood.ch/",
       "cuisine": [],
       "openingHours": "Mo-Su 11:30-14:00,18:30-21:30",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47988268"
     },
     {
       "id": "node/3680217388",
@@ -4245,15 +4341,16 @@
       "lat": 46.5247497,
       "lon": 6.6234641,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de France 18A",
+      "postcode": "1004",
       "website": "https://www.iris-restaurant.ch/",
       "cuisine": [],
       "openingHours": "Mo-Fr 08:00-23:00; Sa 18:00-23:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46910663"
     },
     {
       "id": "node/6640587809",
@@ -4392,7 +4489,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/1552814775",
@@ -4524,8 +4622,8 @@
       "lat": 46.5217838,
       "lon": 6.6307023,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Adrien-Pichard 18",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "donut"
@@ -4534,7 +4632,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52781612"
     },
     {
       "id": "node/3002335033",
@@ -4542,7 +4641,7 @@
       "lat": 46.5232886,
       "lon": 6.6291632,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue de l'Ale 16",
       "postcode": "1003",
       "website": "https://www.kungfucuisine.ch/",
       "cuisine": [
@@ -4552,7 +4651,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/86286564"
     },
     {
       "id": "node/3366793950",
@@ -4578,8 +4678,8 @@
       "lat": 46.5315108,
       "lon": 6.6461103,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de la Sallaz 31",
+      "postcode": "1010",
       "website": null,
       "cuisine": [
         "italian"
@@ -4588,7 +4688,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44620872"
     },
     {
       "id": "node/3687461622",
@@ -4700,7 +4801,7 @@
       "lat": 46.518365,
       "lon": 6.626028,
       "type": "cafe",
-      "address": "",
+      "address": "Avenue Louis-Ruchonnet 15",
       "postcode": "1003",
       "website": "https://www.limpressioncafe.com/",
       "cuisine": [],
@@ -4708,7 +4809,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46532146"
     },
     {
       "id": "node/919689233",
@@ -4716,8 +4818,8 @@
       "lat": 46.5232854,
       "lon": 6.628513,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ale 25",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "asian"
@@ -4726,7 +4828,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52976426"
     },
     {
       "id": "node/3359093216",
@@ -4880,7 +4983,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/1640336585",
@@ -4922,7 +5026,7 @@
       "lat": 46.5116352,
       "lon": 6.6297073,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue d'Ouchy 43",
       "postcode": "1006",
       "website": "https://restaurant-croix-d-ouchy.ch/",
       "cuisine": [
@@ -4932,7 +5036,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47986216"
     },
     {
       "id": "node/3871115488",
@@ -4972,7 +5077,7 @@
       "lat": 46.5177546,
       "lon": 6.6444685,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue des Mousquines 1",
       "postcode": "1005",
       "website": "https://la-esquina.ch/",
       "cuisine": [
@@ -4982,7 +5087,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53627575"
     },
     {
       "id": "node/2507678569",
@@ -4990,7 +5096,7 @@
       "lat": 46.5251826,
       "lon": 6.6454662,
       "type": "cafe",
-      "address": "",
+      "address": "Avenue de Beaumont 22",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -4998,7 +5104,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/48580533"
     },
     {
       "id": "node/6254262886",
@@ -5006,7 +5113,7 @@
       "lat": 46.5207425,
       "lon": 6.6364527,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue Cheneau-de-Bourg 3",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -5016,7 +5123,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/359984433"
     },
     {
       "id": "node/11107294725",
@@ -5125,8 +5233,8 @@
       "lat": 46.5211312,
       "lon": 6.6167027,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Tivoli 68",
+      "postcode": "1007",
       "website": "https://molisana.ch/",
       "cuisine": [
         "italian"
@@ -5135,7 +5243,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44860546"
     },
     {
       "id": "node/4743570059",
@@ -5161,8 +5270,8 @@
       "lat": 46.5198991,
       "lon": 6.6347198,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Bourg 10",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "buffet",
@@ -5173,7 +5282,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52160873"
     },
     {
       "id": "node/10682996783",
@@ -5229,7 +5339,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/13664131336",
@@ -5271,8 +5382,8 @@
       "lat": 46.5214715,
       "lon": 6.645779,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Béthusy 25",
+      "postcode": "1005",
       "website": null,
       "cuisine": [
         "sandwich"
@@ -5281,7 +5392,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/240707518"
     },
     {
       "id": "node/912517814",
@@ -5289,15 +5401,16 @@
       "lat": 46.5232853,
       "lon": 6.6296038,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ale 4",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 09:30-24:00, Sa 08:30-24:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52996018"
     },
     {
       "id": "way/44742439",
@@ -5341,15 +5454,16 @@
       "lat": 46.5208557,
       "lon": 6.6116436,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin de Montelly 20",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44698778"
     },
     {
       "id": "node/10856140444",
@@ -5357,15 +5471,16 @@
       "lat": 46.5298104,
       "lon": 6.6252546,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Promenade du Bois-de-Beaulieu 4",
+      "postcode": "1018",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-We 09:00-20:00; Th-Sa 09:00-22:00; Su 10:00-20:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/48993060"
     },
     {
       "id": "node/11931168369",
@@ -5389,8 +5504,8 @@
       "lat": 46.5136403,
       "lon": 6.6115467,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Emile-Henri-Jaques-Dalcroze 1",
+      "postcode": "1007",
       "website": "https://www.restaurantlarive.ch/bienvenue/vidy",
       "cuisine": [
         "mediterranean"
@@ -5399,7 +5514,13 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.restaurantlarive.ch/menu-morges",
+        "evidence": "Menu Morges — Restaurant Bar Pizzeria La Rive"
+      },
+      "addressSource": "https://www.openstreetmap.org/way/965146755"
     },
     {
       "id": "node/1230806994",
@@ -5407,7 +5528,7 @@
       "lat": 46.5071717,
       "lon": 6.6263109,
       "type": "restaurant",
-      "address": "",
+      "address": "Place de la Navigation 8",
       "postcode": "",
       "website": "https://www.brasserieriviera.com",
       "cuisine": [],
@@ -5415,7 +5536,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44781677"
     },
     {
       "id": "node/1082795812",
@@ -5423,15 +5545,16 @@
       "lat": 46.5328266,
       "lon": 6.6474109,
       "type": "cafe",
-      "address": "",
-      "postcode": "1010",
+      "address": "Avenue du Temple 65",
+      "postcode": "",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Sa 07:00-23:00; Su 09:00-23:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44620910"
     },
     {
       "id": "node/9537392017",
@@ -5551,8 +5674,8 @@
       "lat": 46.5167319,
       "lon": 6.6059057,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue des Figuiers 39",
+      "postcode": "1007",
       "website": null,
       "cuisine": [
         "asian"
@@ -5561,7 +5684,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44738262"
     },
     {
       "id": "node/9061613313",
@@ -5723,8 +5847,8 @@
       "lat": 46.5250545,
       "lon": 6.6126448,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Genève 91",
+      "postcode": "1004",
       "website": null,
       "cuisine": [
         "pizza"
@@ -5733,7 +5857,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/45731416"
     },
     {
       "id": "node/4728984076",
@@ -5757,7 +5882,7 @@
       "lat": 46.5272792,
       "lon": 6.6217699,
       "type": "bar",
-      "address": "",
+      "address": "Avenue Collonges 1",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -5765,7 +5890,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/4127495493"
     },
     {
       "id": "node/9275344621",
@@ -5773,15 +5899,16 @@
       "lat": 46.5224115,
       "lon": 6.6340718,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Escaliers du Marché 27",
+      "postcode": "1003",
       "website": "https://www.lebarbare.ch/",
       "cuisine": [],
       "openingHours": "Tu, We 08:00-00:00; Th, Fr 08:00-01:00; Sa 09:00-01:00; Su 10:00-18:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53020185"
     },
     {
       "id": "node/13555636801",
@@ -5857,8 +5984,8 @@
       "lat": 46.5112215,
       "lon": 6.6368592,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Jurigoz 20B",
+      "postcode": "1006",
       "website": "https://www.cafe-des-avenues.ch/",
       "cuisine": [
         "regional"
@@ -5867,7 +5994,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53290396"
     },
     {
       "id": "node/2350751343",
@@ -5875,15 +6003,16 @@
       "lat": 46.5200358,
       "lon": 6.6375251,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Jenny-Enning 8",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/375406089"
     },
     {
       "id": "node/6153096943",
@@ -5891,15 +6020,16 @@
       "lat": 46.5216542,
       "lon": 6.6082455,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin de Montelly 43a",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Sa 06:30-22:00; Sa 08:00-20:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44696945"
     },
     {
       "id": "node/3787938321",
@@ -5907,15 +6037,16 @@
       "lat": 46.540437,
       "lon": 6.6480764,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin Isabelle-de-Montolieu 19",
+      "postcode": "1010",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/12326812103"
     },
     {
       "id": "way/44157827",
@@ -5931,7 +6062,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/9061642215",
@@ -5939,15 +6071,16 @@
       "lat": 46.5267872,
       "lon": 6.6180869,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue d'Echallens 41",
+      "postcode": "1004",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46581545"
     },
     {
       "id": "relation/1670235",
@@ -5991,8 +6124,8 @@
       "lat": 46.5209843,
       "lon": 6.6329685,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Centrale 9b",
+      "postcode": "1003",
       "website": "https://www.lecinq.ch/",
       "cuisine": [
         "french"
@@ -6001,7 +6134,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53011043"
     },
     {
       "id": "node/10068109426",
@@ -6043,15 +6177,16 @@
       "lat": 46.5137008,
       "lon": 6.6125096,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Rhodanie 46a",
+      "postcode": "1007",
       "website": "https://www.lecozy.ch/",
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/964489236"
     },
     {
       "id": "node/912526808",
@@ -6109,15 +6244,16 @@
       "lat": 46.52166,
       "lon": 6.6315787,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Ruelle Grand-Saint-Jean 9",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53003615"
     },
     {
       "id": "node/4988129459",
@@ -6157,15 +6293,16 @@
       "lat": 46.5154042,
       "lon": 6.6170807,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 67",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 07:00-23:00; Sa 09:00-23:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44741428"
     },
     {
       "id": "node/1276218812",
@@ -6207,8 +6344,8 @@
       "lat": 46.5117854,
       "lon": 6.6260319,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Frédéric-César-de-La-Harpe 17A",
+      "postcode": "1007",
       "website": "https://www.lekotchi.ch/",
       "cuisine": [
         "sushi"
@@ -6217,7 +6354,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/55339376"
     },
     {
       "id": "node/9606424417",
@@ -6225,7 +6363,7 @@
       "lat": 46.5219513,
       "lon": 6.6360327,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue Louis-Auguste-Curtat 6",
       "postcode": "1005",
       "website": "https://lekotchi.ch/",
       "cuisine": [],
@@ -6233,7 +6371,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53215683"
     },
     {
       "id": "way/44772670",
@@ -6254,7 +6393,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/826027336",
@@ -6415,7 +6555,7 @@
       "lat": 46.5255314,
       "lon": 6.6340313,
       "type": "fast_food",
-      "address": "",
+      "address": "Place du Tunnel 23",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -6423,7 +6563,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/107064923"
     },
     {
       "id": "node/728370371",
@@ -6465,15 +6606,16 @@
       "lat": 46.5180382,
       "lon": 6.6248378,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Place de la Gare 16",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/421614066"
     },
     {
       "id": "node/1105820425",
@@ -6500,15 +6642,16 @@
       "lat": 46.5249755,
       "lon": 6.6205623,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue d'Echallens 17",
+      "postcode": "1004",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46891038"
     },
     {
       "id": "node/2961348213",
@@ -6516,15 +6659,16 @@
       "lat": 46.520896,
       "lon": 6.6330015,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Centrale 9",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53011065"
     },
     {
       "id": "node/1671947248",
@@ -6550,15 +6694,16 @@
       "lat": 46.52072,
       "lon": 6.6347906,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Ruelle du Flon 1",
+      "postcode": "1003",
       "website": "https://www.perroquet-bar.ch",
       "cuisine": [],
       "openingHours": "Tu, We 17:00-23:00; Th 17:00-00:00; Fr, Sa 17:00-01:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/298634584"
     },
     {
       "id": "node/5395613251",
@@ -6566,15 +6711,16 @@
       "lat": 46.5406613,
       "lon": 6.6573139,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Route de Berne 144",
+      "postcode": "1010",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/442695818"
     },
     {
       "id": "node/4768063722",
@@ -6648,15 +6794,16 @@
       "lat": 46.517214,
       "lon": 6.6050526,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Montoie 53",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44734337"
     },
     {
       "id": "node/4395835227",
@@ -6698,8 +6845,8 @@
       "lat": 46.5220019,
       "lon": 6.6468535,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Béthusy 29",
+      "postcode": "1012",
       "website": null,
       "cuisine": [
         "pizza"
@@ -6708,7 +6855,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/48501417"
     },
     {
       "id": "node/8175783836",
@@ -6716,15 +6864,16 @@
       "lat": 46.5154051,
       "lon": 6.6492945,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue du Léman 36",
+      "postcode": "1005",
       "website": "https://restaurantlerossignol.ch/",
       "cuisine": [],
       "openingHours": "Tu-We 12:00-14:30,19:00-22:30; Th-Fr 12:00-14:30,19:00-23:00; Sa 19:00-23:00; Su-Mo off",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47041882"
     },
     {
       "id": "node/3522220739",
@@ -6732,7 +6881,7 @@
       "lat": 46.519998,
       "lon": 6.6330732,
       "type": "restaurant",
-      "address": "",
+      "address": "Place Saint-François 5",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -6740,7 +6889,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53217385"
     },
     {
       "id": "node/4232085290",
@@ -6748,15 +6898,16 @@
       "lat": 46.5184131,
       "lon": 6.6340115,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de la Grotte 3",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/9812713889"
     },
     {
       "id": "node/10682996786",
@@ -6866,15 +7017,16 @@
       "lat": 46.5234148,
       "lon": 6.6352989,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Cité-Devant 10",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/131222863"
     },
     {
       "id": "node/3210514145",
@@ -6898,7 +7050,7 @@
       "lat": 46.5312772,
       "lon": 6.6291332,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue de la Pontaise 48",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -6906,7 +7058,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47360295"
     },
     {
       "id": "node/14223041702",
@@ -7060,15 +7213,16 @@
       "lat": 46.5211467,
       "lon": 6.6270636,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue des Côtes-de-Montbenon 20",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/314968016"
     },
     {
       "id": "node/7252805305",
@@ -7128,8 +7282,8 @@
       "lat": 46.5163429,
       "lon": 6.6146007,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin du Reposoir 24",
+      "postcode": "1007",
       "website": null,
       "cuisine": [
         "lebanese"
@@ -7138,7 +7292,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46763626"
     },
     {
       "id": "node/12655821480",
@@ -7198,15 +7353,16 @@
       "lat": 46.5269977,
       "lon": 6.6183431,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue d'Echallens 48",
+      "postcode": "1004",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46912285"
     },
     {
       "id": "node/13974017431",
@@ -7266,8 +7422,8 @@
       "lat": 46.523276,
       "lon": 6.6285481,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ale 25",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "japanese"
@@ -7276,7 +7432,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52976426"
     },
     {
       "id": "node/1319940000",
@@ -7369,15 +7526,16 @@
       "lat": 46.5243846,
       "lon": 6.605445,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin du Martinet 29",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/232343092"
     },
     {
       "id": "node/1433812390",
@@ -7385,7 +7543,7 @@
       "lat": 46.5072597,
       "lon": 6.6283971,
       "type": "restaurant",
-      "address": "",
+      "address": "Place du Port 9",
       "postcode": "",
       "website": "https://www.angleterre-residence.ch/restaurants/laccademia/",
       "cuisine": [
@@ -7395,7 +7553,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/55341991"
     },
     {
       "id": "node/4127523276",
@@ -7419,15 +7578,16 @@
       "lat": 46.5269445,
       "lon": 6.641069,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin des Falaises 1",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 07:30-20:00; Sa 07:30-18:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46824439"
     },
     {
       "id": "node/3668569677",
@@ -7451,15 +7611,16 @@
       "lat": 46.5223186,
       "lon": 6.632938,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Madeleine 3",
+      "postcode": "1003",
       "website": "https://madeleine-lausanne.ch/",
       "cuisine": [],
       "openingHours": "Mo-Sa 08:30-17:30; Su off",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53013861"
     },
     {
       "id": "node/6464693670",
@@ -7483,15 +7644,16 @@
       "lat": 46.5291706,
       "lon": 6.6214203,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue des Bergières 20",
+      "postcode": "1004",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46953417"
     },
     {
       "id": "node/8446230198",
@@ -7509,7 +7671,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/7816286644",
@@ -7551,15 +7714,16 @@
       "lat": 46.5211787,
       "lon": 6.6396952,
       "type": "fast_food",
-      "address": "",
-      "postcode": "1005",
+      "address": "Rue Marterey 56",
+      "postcode": "",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 09:00-14:30,17:00-22:00; Sa 11:00-15:00,17:00-22:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/341305110"
     },
     {
       "id": "node/13289283890",
@@ -7602,15 +7766,16 @@
       "lat": 46.5213557,
       "lon": 6.6398106,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Marterey 29",
+      "postcode": "1005",
       "website": "https://www.maza-restaurant.ch/",
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/341298952"
     },
     {
       "id": "node/3526784896",
@@ -7652,8 +7817,8 @@
       "lat": 46.523125,
       "lon": 6.6271238,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue des Terreaux 22",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "burger"
@@ -7662,7 +7827,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52976365"
     },
     {
       "id": "node/292175964",
@@ -7847,15 +8013,16 @@
       "lat": 46.5141256,
       "lon": 6.6334346,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Montchoisi 5",
+      "postcode": "1006",
       "website": "https://cafemogadorlausanne.com/",
       "cuisine": [],
       "openingHours": "Tu-Fr 08:30-23:00; Sa 10:00-23:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53290772"
     },
     {
       "id": "node/912520467",
@@ -7863,15 +8030,16 @@
       "lat": 46.5234405,
       "lon": 6.6278242,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ale 39",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52976402"
     },
     {
       "id": "node/3011686012",
@@ -7897,15 +8065,16 @@
       "lat": 46.5187933,
       "lon": 6.640547,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Mon-Repos 14",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44423565"
     },
     {
       "id": "node/5029337722",
@@ -7929,15 +8098,16 @@
       "lat": 46.5105143,
       "lon": 6.6347629,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Antoine-Michel-Servan 36",
+      "postcode": "1006",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47986856"
     },
     {
       "id": "node/6421323943",
@@ -7945,15 +8115,16 @@
       "lat": 46.5215929,
       "lon": 6.6093252,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin de Montelly 48",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 11:30-14:00,17:30-22:00; Su 16:00-22:00; Sa 12:30-22:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44698756"
     },
     {
       "id": "node/13725443345",
@@ -8013,7 +8184,7 @@
       "lat": 46.5223726,
       "lon": 6.6369932,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue Saint-Martin 9",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -8024,7 +8195,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/347619283"
     },
     {
       "id": "node/9979671327",
@@ -8068,7 +8240,7 @@
       "lat": 46.5182065,
       "lon": 6.6263778,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue Louis-Ruchonnet 11",
       "postcode": "1003",
       "website": "https://www.nandanam.ch/",
       "cuisine": [
@@ -8078,7 +8250,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46532145"
     },
     {
       "id": "node/5651561579",
@@ -8122,15 +8295,16 @@
       "lat": 46.5160412,
       "lon": 6.6289813,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Simplon 27",
+      "postcode": "1006",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Su 09:00-22:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53646722"
     },
     {
       "id": "node/2167291594",
@@ -8226,7 +8400,7 @@
       "lat": 46.5196937,
       "lon": 6.6381476,
       "type": "fast_food",
-      "address": "",
+      "address": "Avenue du Tribunal-Fédéral 5",
       "postcode": "",
       "website": "https://www.non-solo.ch/",
       "cuisine": [
@@ -8236,7 +8410,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/375410415"
     },
     {
       "id": "node/12339382789",
@@ -8296,15 +8471,16 @@
       "lat": 46.5211317,
       "lon": 6.6278756,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue des Côtes-de-Montbenon 12",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": "Tu,We 11:00-24:00, Th 11:00-01:00, Fr,Sa 11:00-02:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44296004"
     },
     {
       "id": "node/629119177",
@@ -8312,8 +8488,8 @@
       "lat": 46.5167265,
       "lon": 6.6358505,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de la Gare 29",
+      "postcode": "1003",
       "website": "https://ohliban.ch/",
       "cuisine": [
         "lebanese"
@@ -8322,7 +8498,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46785371"
     },
     {
       "id": "node/6001015895",
@@ -8348,7 +8525,7 @@
       "lat": 46.5213187,
       "lon": 6.6215674,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue de Tivoli 8",
       "postcode": "1007",
       "website": "https://www.oniwa-sushi.com/",
       "cuisine": [
@@ -8358,7 +8535,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44860522"
     },
     {
       "id": "node/9883538810",
@@ -8382,7 +8560,7 @@
       "lat": 46.5118185,
       "lon": 6.6256924,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue Frédéric-César-de-La-Harpe 16",
       "postcode": "1007",
       "website": "https://lupaia.ch",
       "cuisine": [
@@ -8392,7 +8570,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44779983"
     },
     {
       "id": "node/652559287",
@@ -8410,7 +8589,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/12251099039",
@@ -8503,8 +8683,8 @@
       "lat": 46.515613,
       "lon": 6.6172328,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 38A",
+      "postcode": "1007",
       "website": null,
       "cuisine": [
         "chinese"
@@ -8513,7 +8693,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53746098"
     },
     {
       "id": "node/2967693770",
@@ -8537,7 +8718,7 @@
       "lat": 46.5208653,
       "lon": 6.6202001,
       "type": "bar",
-      "address": "",
+      "address": "Avenue de Tivoli 9",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -8545,7 +8726,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/1434538667"
     },
     {
       "id": "node/5747554937",
@@ -8563,7 +8745,12 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.pizzafratel.ch/",
+        "evidence": "Pizza Fratel e Napule | Pizzeria Lausanne & Crissier"
+      }
     },
     {
       "id": "node/3325076945",
@@ -8589,15 +8776,16 @@
       "lat": 46.5252124,
       "lon": 6.6250871,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Maupas 33",
+      "postcode": "1004",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53646389"
     },
     {
       "id": "node/9757039297",
@@ -8605,8 +8793,8 @@
       "lat": 46.5236802,
       "lon": 6.6012176,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue du Chablais 42",
+      "postcode": "1007",
       "website": null,
       "cuisine": [
         "pizza"
@@ -8615,7 +8803,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/1062507056"
     },
     {
       "id": "node/1263754506",
@@ -8641,8 +8830,8 @@
       "lat": 46.5236987,
       "lon": 6.6277798,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ale 44",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "italian"
@@ -8651,7 +8840,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52990768"
     },
     {
       "id": "node/1230801026",
@@ -8775,15 +8965,16 @@
       "lat": 46.5210941,
       "lon": 6.6299053,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Place de l'Europe 9",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/128551805"
     },
     {
       "id": "node/11500669861",
@@ -8791,15 +8982,16 @@
       "lat": 46.5221177,
       "lon": 6.6352459,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Place de la Cathédrale 6",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44176010"
     },
     {
       "id": "node/5727243623",
@@ -8815,7 +9007,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/7071696119",
@@ -8891,8 +9084,8 @@
       "lat": 46.5160911,
       "lon": 6.6143739,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 74",
+      "postcode": "1007",
       "website": "https://www.rani-indian.ch/",
       "cuisine": [
         "indian"
@@ -8901,7 +9094,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46763974"
     },
     {
       "id": "node/1263305519",
@@ -8909,8 +9103,8 @@
       "lat": 46.5235895,
       "lon": 6.6288881,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de la Tour 17",
+      "postcode": "1004",
       "website": null,
       "cuisine": [
         "erithrean"
@@ -8919,7 +9113,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52990719"
     },
     {
       "id": "node/13305915750",
@@ -8927,8 +9122,8 @@
       "lat": 46.5270998,
       "lon": 6.621943,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Maupas 87",
+      "postcode": "1004",
       "website": null,
       "cuisine": [
         "chinese"
@@ -8937,7 +9132,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46910982"
     },
     {
       "id": "node/423792903",
@@ -8945,15 +9141,16 @@
       "lat": 46.5414613,
       "lon": 6.617506,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue du Grey 117",
+      "postcode": "1018",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Su,PH 08:00-23:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46887287"
     },
     {
       "id": "node/6959946487",
@@ -8961,8 +9158,8 @@
       "lat": 46.5261508,
       "lon": 6.6097928,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Genève 102",
+      "postcode": "1004",
       "website": "https://restaurant-letoile.ch/",
       "cuisine": [
         "italian"
@@ -8971,7 +9168,9 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/53627946"
     },
     {
       "id": "node/5090615676",
@@ -8995,15 +9194,16 @@
       "lat": 46.5107408,
       "lon": 6.6341663,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Antoine-Michel-Servan 32",
+      "postcode": "1006",
       "website": "https://www.restaurant-ppmontchoisi.ch/",
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53290693"
     },
     {
       "id": "node/5332987922",
@@ -9043,7 +9243,7 @@
       "lat": 46.5147317,
       "lon": 6.6086513,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue de Rhodanie 53",
       "postcode": "1007",
       "website": "http://restaurantdutennislausanne.ch/",
       "cuisine": [
@@ -9054,7 +9254,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44684103"
     },
     {
       "id": "node/14284789950",
@@ -9124,7 +9325,12 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.lemilan.ch/",
+        "evidence": "Accueil - Restaurant et Pizzeria Le Milan - Lausanne"
+      }
     },
     {
       "id": "node/1594450071",
@@ -9261,7 +9467,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/3645869461",
@@ -9269,15 +9476,16 @@
       "lat": 46.5212365,
       "lon": 6.6442686,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Béthusy 19",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": "We-Fr 08:30-17:30; Sa,Su 08:30-16:30",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46832139"
     },
     {
       "id": "node/8241637905",
@@ -9339,15 +9547,16 @@
       "lat": 46.5236059,
       "lon": 6.6010536,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue du Chablais 42",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": "Fr,Sa 15:30-02:00; Mo-Th 15:30-24:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/1062507056"
     },
     {
       "id": "node/10682996780",
@@ -9355,15 +9564,16 @@
       "lat": 46.5257235,
       "lon": 6.635799,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de la Barre 5",
+      "postcode": "1014",
       "website": "https://sardinelausanne.ch",
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/156948563"
     },
     {
       "id": "node/5574606169",
@@ -9441,8 +9651,8 @@
       "lat": 46.5247703,
       "lon": 6.6328568,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Tunnel 7",
+      "postcode": "1005",
       "website": null,
       "cuisine": [
         "coffee_shop"
@@ -9451,7 +9661,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46881367"
     },
     {
       "id": "node/5574658501",
@@ -9485,7 +9696,12 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.slicepizza.ch/",
+        "evidence": "Slice Pizza | Pizzeria artisanale à Lausanne"
+      }
     },
     {
       "id": "node/8480403931",
@@ -9563,8 +9779,8 @@
       "lat": 46.5211441,
       "lon": 6.6386319,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Caroline 12",
+      "postcode": "1003",
       "website": "https://sopoong-lausanne.ch/",
       "cuisine": [
         "korean"
@@ -9573,7 +9789,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/341311610"
     },
     {
       "id": "node/2844026519",
@@ -9672,7 +9889,7 @@
       "lat": 46.5177767,
       "lon": 6.6290481,
       "type": "fast_food",
-      "address": "",
+      "address": "Rue du Petit-Chêne 38",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -9682,7 +9899,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/8524689457"
     },
     {
       "id": "node/1263690648",
@@ -9779,7 +9997,7 @@
       "lat": 46.5200549,
       "lon": 6.6373501,
       "type": "restaurant",
-      "address": "",
+      "address": "Rue Jenny-Enning 6",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -9789,7 +10007,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/375406088"
     },
     {
       "id": "node/9413024752",
@@ -9797,15 +10016,16 @@
       "lat": 46.5159481,
       "lon": 6.6284942,
       "type": "pub",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Simplon 35",
+      "postcode": "1006",
       "website": "https://tacave.ch/",
       "cuisine": [],
       "openingHours": "Mo-We 17:00-24:00, Th-Sa 17:00-18:00+",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53646721"
     },
     {
       "id": "node/2961348214",
@@ -9847,7 +10067,7 @@
       "lat": 46.5087759,
       "lon": 6.6274864,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue d'Ouchy 58",
       "postcode": "1006",
       "website": "https://www.takayama-sushibar-lausanne.ch/",
       "cuisine": [
@@ -9857,7 +10077,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44781671"
     },
     {
       "id": "node/12707458386",
@@ -9865,15 +10086,16 @@
       "lat": 46.5266283,
       "lon": 6.6520591,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Chailly 3",
+      "postcode": "1012",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 10:00-22:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/239912248"
     },
     {
       "id": "node/1541130285",
@@ -9969,8 +10191,8 @@
       "lat": 46.5181639,
       "lon": 6.6380019,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue du Théâtre 7",
+      "postcode": "1005",
       "website": null,
       "cuisine": [
         "japanese"
@@ -9979,7 +10201,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53159464"
     },
     {
       "id": "node/3524096435",
@@ -10056,7 +10279,7 @@
       "lat": 46.5119255,
       "lon": 6.6090754,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue Emile-Henri-Jaques-Dalcroze 9",
       "postcode": "",
       "website": "https://thaiaulac.ch/",
       "cuisine": [
@@ -10066,7 +10289,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/26571638"
     },
     {
       "id": "node/603722681",
@@ -10195,15 +10419,16 @@
       "lat": 46.5201705,
       "lon": 6.6362501,
       "type": "bar",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Bourg 43",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/375305180"
     },
     {
       "id": "node/919711603",
@@ -10279,8 +10504,8 @@
       "lat": 46.5177866,
       "lon": 6.6281576,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Place de la Gare 12",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "italian"
@@ -10289,7 +10514,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/45758526"
     },
     {
       "id": "node/5516228975",
@@ -10331,15 +10557,16 @@
       "lat": 46.518088,
       "lon": 6.626749,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Louis-Ruchonnet 7",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46532158"
     },
     {
       "id": "node/1041063963",
@@ -10399,7 +10626,7 @@
       "lat": 46.5253274,
       "lon": 6.6351965,
       "type": "restaurant",
-      "address": "",
+      "address": "Place du Tunnel 5",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -10410,7 +10637,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/107059442"
     },
     {
       "id": "node/4086380601",
@@ -10434,7 +10662,7 @@
       "lat": 46.5163402,
       "lon": 6.6264041,
       "type": "restaurant",
-      "address": "",
+      "address": "Boulevard de Grancy 46",
       "postcode": "1006",
       "website": "https://www.umamido.ch/locations-pages/umamido-beurs-gtd3c-gn7jb",
       "cuisine": [
@@ -10445,7 +10673,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52938555"
     },
     {
       "id": "node/8880782377",
@@ -10537,7 +10766,7 @@
       "lat": 46.519408,
       "lon": 6.5995132,
       "type": "restaurant",
-      "address": "",
+      "address": "Chemin du Bois-de-Vaux 20",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -10547,7 +10776,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44137453"
     },
     {
       "id": "verified/vicafe-st-francois",
@@ -10600,7 +10830,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "pizzaMenu": []
     },
     {
       "id": "node/6640587807",
@@ -10626,7 +10857,7 @@
       "lat": 46.5078598,
       "lon": 6.6272187,
       "type": "restaurant",
-      "address": "",
+      "address": "Avenue d'Ouchy 66",
       "postcode": "1006",
       "website": "https://whitehorse.ch/",
       "cuisine": [],
@@ -10634,7 +10865,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "location_only",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44781674"
     },
     {
       "id": "node/3710884641",

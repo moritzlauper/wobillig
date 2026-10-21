@@ -60,8 +60,8 @@
       "lat": 46.5214124,
       "lon": 6.6470076,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin du Levant 1",
+      "postcode": "1005",
       "website": null,
       "cuisine": [
         "pizza"
@@ -70,7 +70,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/48500829"
     },
     {
       "id": "node/886598383",
@@ -78,8 +79,8 @@
       "lat": 46.5174069,
       "lon": 6.6305517,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de la Gare 52",
+      "postcode": "1003",
       "website": "https://www.restaurant-bellavita.com/",
       "cuisine": [
         "italian",
@@ -94,7 +95,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.restaurant-bellavita.com/",
         "evidence": "Pizzeria | Restaurant | Bella Vita |  Lausanne"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/way/44180379"
     },
     {
       "id": "node/497304844",
@@ -102,8 +104,8 @@
       "lat": 46.5071714,
       "lon": 6.6271334,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue d'Ouchy 76",
+      "postcode": "1006",
       "website": "https://www.boccalino.ch/",
       "cuisine": [
         "italian",
@@ -131,7 +133,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.boccalino.ch/pizzeria-saint-sulpice",
         "evidence": "Pizzeria proche de Saint-Sulpice | Boccalino – Pizzas maison à Ouchy Lausanne"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/node/8851375026"
     },
     {
       "id": "way/107059432",
@@ -472,8 +475,8 @@
       "lat": 46.5136403,
       "lon": 6.6115467,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Emile-Henri-Jaques-Dalcroze 1",
+      "postcode": "1007",
       "website": "https://www.restaurantlarive.ch/bienvenue/vidy",
       "cuisine": [
         "mediterranean"
@@ -487,7 +490,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.restaurantlarive.ch/menu-morges",
         "evidence": "Menu Morges — Restaurant Bar Pizzeria La Rive"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/way/965146755"
     },
     {
       "id": "node/4365115965",
@@ -495,8 +499,8 @@
       "lat": 46.5250545,
       "lon": 6.6126448,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Genève 91",
+      "postcode": "1004",
       "website": null,
       "cuisine": [
         "pizza"
@@ -505,7 +509,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/45731416"
     },
     {
       "id": "way/44157827",
@@ -579,8 +584,8 @@
       "lat": 46.5220019,
       "lon": 6.6468535,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Béthusy 29",
+      "postcode": "1012",
       "website": null,
       "cuisine": [
         "pizza"
@@ -589,7 +594,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/48501417"
     },
     {
       "id": "node/6075675105",
@@ -713,15 +719,16 @@
       "lat": 46.5252124,
       "lon": 6.6250871,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Maupas 33",
+      "postcode": "1004",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53646389"
     },
     {
       "id": "node/9757039297",
@@ -729,8 +736,8 @@
       "lat": 46.5236802,
       "lon": 6.6012176,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue du Chablais 42",
+      "postcode": "1007",
       "website": null,
       "cuisine": [
         "pizza"
@@ -739,7 +746,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/1062507056"
     },
     {
       "id": "node/1263754506",
@@ -765,8 +773,8 @@
       "lat": 46.5236987,
       "lon": 6.6277798,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de l'Ale 44",
+      "postcode": "1003",
       "website": null,
       "cuisine": [
         "italian"
@@ -775,7 +783,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52990768"
     },
     {
       "id": "node/5727243623",
@@ -800,8 +809,8 @@
       "lat": 46.5261508,
       "lon": 6.6097928,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Genève 102",
+      "postcode": "1004",
       "website": "https://restaurant-letoile.ch/",
       "cuisine": [
         "italian"
@@ -824,7 +833,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-21T07:20:27.637043+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/53627946"
     },
     {
       "id": "way/46612740",

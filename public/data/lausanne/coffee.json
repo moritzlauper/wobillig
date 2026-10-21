@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-21T13:07:57.610989+00:00",
-  "discoveredAt": "2026-10-21T07:11:20.753472+00:00",
+  "discoveredAt": "2026-10-21T12:47:36.949467+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -37,7 +37,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-21T07:11:45.533627+00:00"
+      "checkedAt": "2026-10-21T12:47:41.288955+00:00"
     },
     {
       "id": "node/5574658500",
@@ -72,7 +72,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:45.533978+00:00"
+      "checkedAt": "2026-10-21T12:47:46.491249+00:00"
     },
     {
       "id": "node/11101065476",
@@ -98,15 +98,47 @@
       "lat": 46.5217122,
       "lon": 6.6360188,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Pont Charles-Bessières 1",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53215680"
+    },
+    {
+      "id": "node/12186236001",
+      "name": "Beef'Or",
+      "lat": 46.5187138,
+      "lon": 6.6309998,
+      "type": "restaurant",
+      "address": "Rue du Petit-Chêne 28",
+      "postcode": "",
+      "website": "https://beefor.ch/lausanne/",
+      "cuisine": [
+        "steak_house"
+      ],
+      "openingHours": "Mo-Su 12:00-14:30, 18:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://beefor.ch/wp-content/uploads/2025/12/beef_menu_boissons_lausanne.pdf",
+          "observedAt": "2026-10-21T12:48:37.096211+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: Cappuccino 5.-",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:48:37.096211+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/44385862"
     },
     {
       "id": "node/9780147859",
@@ -138,7 +170,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:45.534187+00:00"
+      "checkedAt": "2026-10-21T12:47:47.763960+00:00"
     },
     {
       "id": "node/13171739901",
@@ -178,7 +210,7 @@
           "volumeMl": null,
           "priceChf": 4.0,
           "sourceUrl": "https://bongustoitaliano.com",
-          "observedAt": "2026-10-21T07:11:45.534261+00:00",
+          "observedAt": "2026-10-21T12:47:36.955066+00:00",
           "confidence": "automatic",
           "evidence": "Espresso CHF 4,00",
           "alcoholFree": true
@@ -189,7 +221,7 @@
           "volumeMl": null,
           "priceChf": 5.8,
           "sourceUrl": "https://bongustoitaliano.com",
-          "observedAt": "2026-10-21T07:11:45.534261+00:00",
+          "observedAt": "2026-10-21T12:47:36.955066+00:00",
           "confidence": "automatic",
           "evidence": "Espresso doppio CHF 5,80",
           "alcoholFree": true
@@ -200,7 +232,7 @@
           "volumeMl": null,
           "priceChf": 5.8,
           "sourceUrl": "https://bongustoitaliano.com",
-          "observedAt": "2026-10-21T07:11:45.534261+00:00",
+          "observedAt": "2026-10-21T12:47:36.955066+00:00",
           "confidence": "automatic",
           "evidence": "Cappuccino CHF 5,80",
           "alcoholFree": true
@@ -211,14 +243,14 @@
           "volumeMl": null,
           "priceChf": 5.0,
           "sourceUrl": "https://bongustoitaliano.com",
-          "observedAt": "2026-10-21T07:11:45.534261+00:00",
+          "observedAt": "2026-10-21T12:47:36.955066+00:00",
           "confidence": "automatic",
           "evidence": "Latte macchiato CHF 5,00",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:11:45.534261+00:00"
+      "checkedAt": "2026-10-21T12:47:36.955066+00:00"
     },
     {
       "id": "node/9610795818",
@@ -226,15 +258,138 @@
       "lat": 46.5154316,
       "lon": 6.6160216,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 73",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 06:00-19:00; Sa 07:00-17:00; Su 06:30-17:00; PH 06:30-17:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44741415"
+    },
+    {
+      "id": "node/12042198548",
+      "name": "Brasserie Belleville",
+      "lat": 46.5218787,
+      "lon": 6.6275929,
+      "type": "restaurant",
+      "address": "Rue de Genève 21",
+      "postcode": "1003",
+      "website": "https://brasseriebelleville.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Su,PH 08:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Cappuccino*",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://brasseriebelleville.ch/wp-content/uploads/2026/10/MENU_BRASSERIE-BELLEVILLE_01102026.pdf",
+          "observedAt": "2026-10-21T12:49:16.248082+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: Cappuccino* 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte Macchiato*",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://brasseriebelleville.ch/wp-content/uploads/2026/10/MENU_BRASSERIE-BELLEVILLE_01102026.pdf",
+          "observedAt": "2026-10-21T12:49:16.248082+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: Latte Macchiato* 5.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:49:16.248082+00:00"
+    },
+    {
+      "id": "node/13273705601",
+      "name": "Brasserie de Montelly",
+      "lat": 46.5207425,
+      "lon": 6.6128432,
+      "type": "restaurant",
+      "address": "Chemin de Montelly 1",
+      "postcode": "1007",
+      "website": "https://lemontelly.ch/",
+      "cuisine": [],
+      "openingHours": "Mo 08:30-16:00; Tu-Sa 08:30-00:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 3.8,
+          "sourceUrl": "https://lemontelly.ch/storage/menus/boissons.pdf",
+          "observedAt": "2026-10-21T12:49:25.972586+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: caFé, eSPreSSo,riStrettO 3.8",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 3.8,
+          "sourceUrl": "https://lemontelly.ch/storage/menus/boissons.pdf",
+          "observedAt": "2026-10-21T12:49:25.972586+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: caFé, eSPreSSo,riStrettO 3.8",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 3.8,
+          "sourceUrl": "https://lemontelly.ch/storage/menus/boissons.pdf",
+          "observedAt": "2026-10-21T12:49:25.972586+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: caFé, eSPreSSo,riStrettO 3.8",
+          "alcoholFree": true
+        },
+        {
+          "name": "caPPUcCino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 4.8,
+          "sourceUrl": "https://lemontelly.ch/storage/menus/boissons.pdf",
+          "observedAt": "2026-10-21T12:49:25.972586+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: caPPUcCino 4.8",
+          "alcoholFree": true
+        },
+        {
+          "name": "LattéMacCHiatO",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://lemontelly.ch/storage/menus/boissons.pdf",
+          "observedAt": "2026-10-21T12:49:25.972586+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: LattéMacCHiatO 5.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "doUBLe eSPreSSo",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://lemontelly.ch/storage/menus/boissons.pdf",
+          "observedAt": "2026-10-21T12:49:25.972586+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: doUBLe eSPreSSo 6",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:49:25.972586+00:00"
     },
     {
       "id": "way/107059432",
@@ -252,7 +407,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:16:29.359913+00:00"
+      "checkedAt": "2026-10-21T12:57:34.894019+00:00"
     },
     {
       "id": "node/14076803416",
@@ -313,15 +468,16 @@
       "lat": 46.5071414,
       "lon": 6.6270934,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue d'Ouchy 76",
+      "postcode": "1006",
       "website": null,
       "cuisine": [],
       "openingHours": "We-Fr 07:30-16:00; Sa,Su 09:00-17:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/node/8851375026"
     },
     {
       "id": "node/560715501",
@@ -329,15 +485,16 @@
       "lat": 46.5268037,
       "lon": 6.6272755,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Alexandre-Vinet 39",
+      "postcode": "1004",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 06:00-18:00, Sa 06:30-12:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53205899"
     },
     {
       "id": "node/13329815621",
@@ -345,15 +502,90 @@
       "lat": 46.5227124,
       "lon": 6.6215708,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue de Genève 57",
+      "postcode": "1004",
       "website": "https://arsenic.ch/cafe-restaurant/",
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:45.534351+00:00"
+      "checkedAt": "2026-10-21T12:47:48.686926+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/44361822"
+    },
+    {
+      "id": "node/3233153499",
+      "name": "Café de Prélaz",
+      "lat": 46.5262089,
+      "lon": 6.6128807,
+      "type": "restaurant",
+      "address": "Avenue de Morges 141",
+      "postcode": "1004",
+      "website": "https://cafedeprelaz.ch/#section-2077",
+      "cuisine": [
+        "french"
+      ],
+      "openingHours": "Mo 08:00-16:00; Tu-Th 08:00-23:00; Fr 08:00-00:00; Sa 09:00-00:00; Su 09:00-16:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "DOUBLE ESPRESSO",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.3,
+          "sourceUrl": "https://cafedeprelaz.ch/wp-content/uploads/2026/10/Carte-Boisson-Jimmy.pdf",
+          "observedAt": "2026-10-21T12:49:56.532735+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: DOUBLE ESPRESSO 6.30",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAPPUCCINO",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.9,
+          "sourceUrl": "https://cafedeprelaz.ch/wp-content/uploads/2026/10/Carte-Boisson-Jimmy.pdf",
+          "observedAt": "2026-10-21T12:49:56.532735+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: CAPPUCCINO 5.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "FLAT WHITE",
+          "coffeeType": "flat_white",
+          "volumeMl": null,
+          "priceChf": 6.7,
+          "sourceUrl": "https://cafedeprelaz.ch/wp-content/uploads/2026/10/Carte-Boisson-Jimmy.pdf",
+          "observedAt": "2026-10-21T12:49:56.532735+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: FLAT WHITE 6.70",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAFÉ LATTE",
+          "coffeeType": "milk",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://cafedeprelaz.ch/wp-content/uploads/2026/10/Carte-Boisson-Jimmy.pdf",
+          "observedAt": "2026-10-21T12:49:56.532735+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: CAFÉ LATTE 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "MATCHA LATTE",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 7.5,
+          "sourceUrl": "https://cafedeprelaz.ch/wp-content/uploads/2026/10/Carte-Boisson-Jimmy.pdf",
+          "observedAt": "2026-10-21T12:49:56.532735+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: MATCHA LATTE 7.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:49:56.532735+00:00"
     },
     {
       "id": "node/7257994957",
@@ -433,7 +665,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:45.534423+00:00"
+      "checkedAt": "2026-10-21T12:47:49.648885+00:00"
     },
     {
       "id": "node/11752468153",
@@ -489,15 +721,16 @@
       "lat": 46.5383051,
       "lon": 6.6340512,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Route Aloys-Fauquez 110",
+      "postcode": "1018",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47005147"
     },
     {
       "id": "node/441149835",
@@ -521,7 +754,7 @@
       "lat": 46.5234787,
       "lon": 6.634022,
       "type": "cafe",
-      "address": "",
+      "address": "Place de la Riponne 6",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -529,7 +762,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53013854"
     },
     {
       "id": "node/5161579822",
@@ -551,6 +785,59 @@
       "checkedAt": null
     },
     {
+      "id": "node/4141751989",
+      "name": "Chez Mario",
+      "lat": 46.519869,
+      "lon": 6.6362795,
+      "type": "restaurant",
+      "address": "Rue de Bourg 28",
+      "postcode": "1003",
+      "website": "https://www.chezmario.ch/",
+      "cuisine": [
+        "italian",
+        "italian_pizza"
+      ],
+      "openingHours": "Su-Th 11:30-14:00, 18:30-22:00; Fr-Sa 11:30-14:00, 18:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://www.chezmario.ch/en/_files/ugd/8794d4_7ea0f747178d42afb75422589e00e802.pdf",
+          "observedAt": "2026-10-21T12:50:13.043158+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Espresso 3.9",
+          "alcoholFree": true
+        },
+        {
+          "name": "Double Espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.chezmario.ch/en/_files/ugd/8794d4_7ea0f747178d42afb75422589e00e802.pdf",
+          "observedAt": "2026-10-21T12:50:13.043158+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Double Espresso 5.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.chezmario.ch/en/_files/ugd/8794d4_7ea0f747178d42afb75422589e00e802.pdf",
+          "observedAt": "2026-10-21T12:50:13.043158+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Cappuccino 5.–",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:50:13.043158+00:00"
+    },
+    {
       "id": "node/7148039525",
       "name": "ChuChu Bubblea Tea Taiwan",
       "lat": 46.5213012,
@@ -567,6 +854,91 @@
       "checkedAt": null
     },
     {
+      "id": "node/5525705821",
+      "name": "Cipriano Bar",
+      "lat": 46.5213192,
+      "lon": 6.627827,
+      "type": "restaurant",
+      "address": "Rue du Port-Franc 11",
+      "postcode": "1003",
+      "website": "https://cipriano-bar.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-We 07:30-24:00, Th 07:30-01:00, Fr,Sa 07:30-02:00, Su 11:00-24:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Americano",
+          "coffeeType": "americano",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://cipriano-bar.ch/wp-content/uploads/2026/04/Cipriano_Menukarte_165x297_V2.pdf",
+          "observedAt": "2026-10-21T12:50:28.460987+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 15: ESPRESSO, RISTRETTO, AMERICANO 4.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://cipriano-bar.ch/wp-content/uploads/2026/04/Cipriano_Menukarte_165x297_V2.pdf",
+          "observedAt": "2026-10-21T12:50:28.460987+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 15: ESPRESSO, RISTRETTO, AMERICANO 4.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://cipriano-bar.ch/wp-content/uploads/2026/04/Cipriano_Menukarte_165x297_V2.pdf",
+          "observedAt": "2026-10-21T12:50:28.460987+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 15: ESPRESSO, RISTRETTO, AMERICANO 4.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAFÉ",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://cipriano-bar.ch/wp-content/uploads/2026/04/Cipriano_Menukarte_165x297_V2.pdf",
+          "observedAt": "2026-10-21T12:50:28.460987+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 15: CAFÉ 4.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAPPUCINO",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://cipriano-bar.ch/wp-content/uploads/2026/04/Cipriano_Menukarte_165x297_V2.pdf",
+          "observedAt": "2026-10-21T12:50:28.460987+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 15: CAPPUCINO 5.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "LATTE MACCHIATO",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 7.0,
+          "sourceUrl": "https://cipriano-bar.ch/wp-content/uploads/2026/04/Cipriano_Menukarte_165x297_V2.pdf",
+          "observedAt": "2026-10-21T12:50:28.460987+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 15: LATTE MACCHIATO 7.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:50:28.460987+00:00"
+    },
+    {
       "id": "node/1117500731",
       "name": "Coffee page",
       "lat": 46.5183076,
@@ -580,7 +952,57 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:45.534521+00:00"
+      "checkedAt": "2026-10-21T12:47:49.978752+00:00"
+    },
+    {
+      "id": "node/7235000083",
+      "name": "Crêperie des Philosophes",
+      "lat": 46.5212754,
+      "lon": 6.6325327,
+      "type": "restaurant",
+      "address": "Place Pepinet 1",
+      "postcode": "1003",
+      "website": "https://creperiedesphilosophes.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Sa 12:00-21:00; Su 12:00-20:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Double espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 5.6,
+          "sourceUrl": "https://creperiedesphilosophes.ch/wp-content/uploads/sites/11/2025/10/Menu-creperie-des-philosophes-QR.pdf",
+          "observedAt": "2026-10-21T12:50:31.094349+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: • Double espresso 5.60",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 4.9,
+          "sourceUrl": "https://creperiedesphilosophes.ch/wp-content/uploads/sites/11/2025/10/Menu-creperie-des-philosophes-QR.pdf",
+          "observedAt": "2026-10-21T12:50:31.094349+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: • Cappuccino, Latte Macchiato 4.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 4.9,
+          "sourceUrl": "https://creperiedesphilosophes.ch/wp-content/uploads/sites/11/2025/10/Menu-creperie-des-philosophes-QR.pdf",
+          "observedAt": "2026-10-21T12:50:31.094349+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: • Cappuccino, Latte Macchiato 4.90",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:50:31.094349+00:00"
     },
     {
       "id": "node/2578271319",
@@ -588,8 +1010,8 @@
       "lat": 46.519064,
       "lon": 6.631669,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Petit-Chêne 20",
+      "postcode": "1003",
       "website": "https://www.cuppins.ch/",
       "cuisine": [
         "cake"
@@ -598,7 +1020,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-21T07:11:45.534584+00:00"
+      "checkedAt": "2026-10-21T12:47:55.780449+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/44385136"
     },
     {
       "id": "node/3687479953",
@@ -618,7 +1041,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:46.022915+00:00"
+      "checkedAt": "2026-10-21T12:47:56.801466+00:00"
     },
     {
       "id": "node/1244874467",
@@ -650,7 +1073,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:47.200827+00:00"
+      "checkedAt": "2026-10-21T12:47:56.886189+00:00"
     },
     {
       "id": "node/13470344401",
@@ -680,9 +1103,43 @@
       "cuisine": [],
       "openingHours": "\"si le temps est sec\"",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:48.015470+00:00"
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://folievoltaire.ch/index.php/la-carte/",
+          "observedAt": "2026-10-21T12:47:58.434768+00:00",
+          "confidence": "automatic",
+          "evidence": "Café, espresso, ristretto 3.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://folievoltaire.ch/index.php/la-carte/",
+          "observedAt": "2026-10-21T12:47:58.434768+00:00",
+          "confidence": "automatic",
+          "evidence": "Café, espresso, ristretto 3.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://folievoltaire.ch/index.php/la-carte/",
+          "observedAt": "2026-10-21T12:47:58.434768+00:00",
+          "confidence": "automatic",
+          "evidence": "Café, espresso, ristretto 3.90",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:47:58.434768+00:00"
     },
     {
       "id": "node/12670346378",
@@ -690,15 +1147,16 @@
       "lat": 46.5118326,
       "lon": 6.6287692,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin de la Joliette 5",
+      "postcode": "1006",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 06:30-19:00; Sa 10:30-18:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47986214"
     },
     {
       "id": "node/13665325962",
@@ -706,7 +1164,7 @@
       "lat": 46.5200722,
       "lon": 6.6333585,
       "type": "cafe",
-      "address": "",
+      "address": "Place Saint-François 6",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -714,7 +1172,60 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/53217423"
+    },
+    {
+      "id": "node/6893967337",
+      "name": "Gege Izakaya",
+      "lat": 46.5237167,
+      "lon": 6.6368985,
+      "type": "restaurant",
+      "address": "Rue Louis-Auguste-Curtat 13",
+      "postcode": "1005",
+      "website": "https://gegelausanne.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Sa 11:00-14:00, 18:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 4.5,
+          "sourceUrl": "https://gegelausanne.ch/menu/",
+          "observedAt": "2026-10-21T12:50:49.316643+00:00",
+          "confidence": "automatic",
+          "evidence": "Cappuccino 4.50 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 3.6,
+          "sourceUrl": "https://gegelausanne.ch/menu/",
+          "observedAt": "2026-10-21T12:50:49.316643+00:00",
+          "confidence": "automatic",
+          "evidence": "Espresso 3.60 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Matcha Latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 7.0,
+          "sourceUrl": "https://gegelausanne.ch/menu/",
+          "observedAt": "2026-10-21T12:50:49.316643+00:00",
+          "confidence": "automatic",
+          "evidence": "Matcha Latte 7.00 CHF",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:50:49.316643+00:00"
     },
     {
       "id": "node/9045400697",
@@ -722,15 +1233,16 @@
       "lat": 46.5217086,
       "lon": 6.6302409,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Grand-Pont 12",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 09:30-16:30; Sa 10:00-16:30",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/52781575"
     },
     {
       "id": "node/13503378901",
@@ -747,6 +1259,121 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/2167334876",
+      "name": "Holy Cow",
+      "lat": 46.5201863,
+      "lon": 6.6363424,
+      "type": "restaurant",
+      "address": "Rue Cheneau-de-Bourg 17",
+      "postcode": "",
+      "website": "https://www.holycow.ch/",
+      "cuisine": [
+        "burger"
+      ],
+      "openingHours": "Mo-We, Su 11:00-22:00; Th-Sa 11:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "KAFFEE",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-10-21T12:51:04.101849+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: KAFFEE 3.90",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:51:04.101849+00:00"
+    },
+    {
+      "id": "node/6640587809",
+      "name": "Istanbul",
+      "lat": 46.5213018,
+      "lon": 6.6270249,
+      "type": "restaurant",
+      "address": "Rue des Côtes-de-Montbenon 20",
+      "postcode": "1003",
+      "website": "https://www.istanbul-grill.ch/",
+      "cuisine": [
+        "turkish"
+      ],
+      "openingHours": "Mo-We 08:00-00:00; Th 08:00-01:00; Fr,Sa 08:00-02:00; Su 08:00-24:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "http://www.istanbul-grill.ch/wp-content/uploads/2022/07/Menu_Istanbul.pdf",
+          "observedAt": "2026-10-21T12:51:13.616367+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: CAFÉ, ESPRESSO, RISTRETTO 4",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "http://www.istanbul-grill.ch/wp-content/uploads/2022/07/Menu_Istanbul.pdf",
+          "observedAt": "2026-10-21T12:51:13.616367+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: CAFÉ, ESPRESSO, RISTRETTO 4",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "http://www.istanbul-grill.ch/wp-content/uploads/2022/07/Menu_Istanbul.pdf",
+          "observedAt": "2026-10-21T12:51:13.616367+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: CAFÉ, ESPRESSO, RISTRETTO 4",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAPPUCINO",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "http://www.istanbul-grill.ch/wp-content/uploads/2022/07/Menu_Istanbul.pdf",
+          "observedAt": "2026-10-21T12:51:13.616367+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: CAPPUCINO 5.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "DOUBLE ESPRESSO",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "http://www.istanbul-grill.ch/wp-content/uploads/2022/07/Menu_Istanbul.pdf",
+          "observedAt": "2026-10-21T12:51:13.616367+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: DOUBLE ESPRESSO 6",
+          "alcoholFree": true
+        },
+        {
+          "name": "LATTE MACCHIATO",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "http://www.istanbul-grill.ch/wp-content/uploads/2022/07/Menu_Istanbul.pdf",
+          "observedAt": "2026-10-21T12:51:13.616367+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: LATTE MACCHIATO 6",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:51:13.616367+00:00"
     },
     {
       "id": "node/10033064263",
@@ -767,14 +1394,75 @@
           "volumeMl": null,
           "priceChf": 5.5,
           "sourceUrl": "https://jazz-corner.com/wp-content/uploads/2025/09/Menu-Jazz-Corner-nuovo.pdf",
-          "observedAt": "2026-10-21T07:11:48.892383+00:00",
+          "observedAt": "2026-10-21T12:47:36.955274+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 4: Matcha Latte 5.50 CHF",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:11:48.892383+00:00"
+      "checkedAt": "2026-10-21T12:47:36.955274+00:00"
+    },
+    {
+      "id": "node/603722682",
+      "name": "King Size pub",
+      "lat": 46.5219023,
+      "lon": 6.6269377,
+      "type": "pub",
+      "address": "Rue du Port-Franc 16",
+      "postcode": "1002",
+      "website": "https://www.kingsizepub.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Th 11:30-01:00; Fr,Sa 11:30-02:00; Su 11:30-01:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://0e00acf6-b944-4cda-993a-f133e567425d.filesusr.com/ugd/5921ba_3076fa5576404a228a641fc812564792.pdf",
+          "observedAt": "2026-10-21T12:57:24.016042+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 4: RISTRETTO / ESPRESSO / CAFÉ 4.-",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://0e00acf6-b944-4cda-993a-f133e567425d.filesusr.com/ugd/5921ba_3076fa5576404a228a641fc812564792.pdf",
+          "observedAt": "2026-10-21T12:57:24.016042+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 4: RISTRETTO / ESPRESSO / CAFÉ 4.-",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://0e00acf6-b944-4cda-993a-f133e567425d.filesusr.com/ugd/5921ba_3076fa5576404a228a641fc812564792.pdf",
+          "observedAt": "2026-10-21T12:57:24.016042+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 4: RISTRETTO / ESPRESSO / CAFÉ 4.-",
+          "alcoholFree": true
+        },
+        {
+          "name": "DOUBLE ESPRESSO",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.kingsizepub.ch/carte-boissons?location=KING+SIZE+PUB&menu=caf%25C3%25A9teria--th%25C3%25A9s",
+          "observedAt": "2026-10-21T12:57:24.016042+00:00",
+          "confidence": "automatic",
+          "evidence": "DOUBLE ESPRESSO 6 CHF",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:57:24.016042+00:00"
     },
     {
       "id": "node/4112145931",
@@ -792,7 +1480,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:49.643434+00:00"
+      "checkedAt": "2026-10-21T12:48:00.037086+00:00"
     },
     {
       "id": "node/3366793950",
@@ -810,7 +1498,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:11:50.010030+00:00"
+      "checkedAt": "2026-10-21T12:48:01.576901+00:00"
     },
     {
       "id": "way/53725396",
@@ -834,7 +1522,7 @@
       "lat": 46.518365,
       "lon": 6.626028,
       "type": "cafe",
-      "address": "",
+      "address": "Avenue Louis-Ruchonnet 15",
       "postcode": "1003",
       "website": "https://www.limpressioncafe.com/",
       "cuisine": [],
@@ -847,7 +1535,7 @@
           "volumeMl": null,
           "priceChf": 3.9,
           "sourceUrl": "https://limpressioncafe.com/menu/",
-          "observedAt": "2026-10-21T07:11:50.947748+00:00",
+          "observedAt": "2026-10-21T12:47:36.955461+00:00",
           "confidence": "automatic",
           "evidence": "Cafe 3.90",
           "alcoholFree": true
@@ -858,7 +1546,7 @@
           "volumeMl": null,
           "priceChf": 3.9,
           "sourceUrl": "https://limpressioncafe.com/menu/",
-          "observedAt": "2026-10-21T07:11:50.947748+00:00",
+          "observedAt": "2026-10-21T12:47:36.955461+00:00",
           "confidence": "automatic",
           "evidence": "Espresso 3.90",
           "alcoholFree": true
@@ -869,7 +1557,7 @@
           "volumeMl": null,
           "priceChf": 4.7,
           "sourceUrl": "https://limpressioncafe.com/menu/",
-          "observedAt": "2026-10-21T07:11:50.947748+00:00",
+          "observedAt": "2026-10-21T12:47:36.955461+00:00",
           "confidence": "automatic",
           "evidence": "Double espresso 4.70",
           "alcoholFree": true
@@ -880,7 +1568,7 @@
           "volumeMl": null,
           "priceChf": 3.9,
           "sourceUrl": "https://limpressioncafe.com/menu/",
-          "observedAt": "2026-10-21T07:11:50.947748+00:00",
+          "observedAt": "2026-10-21T12:47:36.955461+00:00",
           "confidence": "automatic",
           "evidence": "Ristretto 3.90",
           "alcoholFree": true
@@ -891,7 +1579,7 @@
           "volumeMl": null,
           "priceChf": 4.2,
           "sourceUrl": "https://limpressioncafe.com/menu/",
-          "observedAt": "2026-10-21T07:11:50.947748+00:00",
+          "observedAt": "2026-10-21T12:47:36.955461+00:00",
           "confidence": "automatic",
           "evidence": "Americano 4.20",
           "alcoholFree": true
@@ -902,7 +1590,7 @@
           "volumeMl": null,
           "priceChf": 5.5,
           "sourceUrl": "https://limpressioncafe.com/menu/",
-          "observedAt": "2026-10-21T07:11:50.947748+00:00",
+          "observedAt": "2026-10-21T12:47:36.955461+00:00",
           "confidence": "automatic",
           "evidence": "Flat white 5.50",
           "alcoholFree": true
@@ -913,7 +1601,7 @@
           "volumeMl": null,
           "priceChf": 5.2,
           "sourceUrl": "https://limpressioncafe.com/menu/",
-          "observedAt": "2026-10-21T07:11:50.947748+00:00",
+          "observedAt": "2026-10-21T12:47:36.955461+00:00",
           "confidence": "automatic",
           "evidence": "Cappuccino 5.20",
           "alcoholFree": true
@@ -924,14 +1612,15 @@
           "volumeMl": null,
           "priceChf": 6.0,
           "sourceUrl": "https://limpressioncafe.com/menu/",
-          "observedAt": "2026-10-21T07:11:50.947748+00:00",
+          "observedAt": "2026-10-21T12:47:36.955461+00:00",
           "confidence": "automatic",
           "evidence": "Matcha Latte 6.00",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:11:50.947748+00:00"
+      "checkedAt": "2026-10-21T12:47:36.955461+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/46532146"
     },
     {
       "id": "way/585616547",
@@ -968,7 +1657,7 @@
           "volumeMl": null,
           "priceChf": 3.7,
           "sourceUrl": "https://www.couronnedor.ch/_files/ugd/30ce0c_787e0a26087146179068ceebed6ab0bc.pdf",
-          "observedAt": "2026-10-21T07:11:50.969083+00:00",
+          "observedAt": "2026-10-21T12:47:36.955701+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: ESPRESSO/RISTRETTO 3.7",
           "alcoholFree": true
@@ -979,7 +1668,7 @@
           "volumeMl": null,
           "priceChf": 3.7,
           "sourceUrl": "https://www.couronnedor.ch/_files/ugd/30ce0c_787e0a26087146179068ceebed6ab0bc.pdf",
-          "observedAt": "2026-10-21T07:11:50.969083+00:00",
+          "observedAt": "2026-10-21T12:47:36.955701+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: ESPRESSO/RISTRETTO 3.7",
           "alcoholFree": true
@@ -990,7 +1679,7 @@
           "volumeMl": null,
           "priceChf": 4.3,
           "sourceUrl": "https://www.couronnedor.ch/_files/ugd/30ce0c_787e0a26087146179068ceebed6ab0bc.pdf",
-          "observedAt": "2026-10-21T07:11:50.969083+00:00",
+          "observedAt": "2026-10-21T12:47:36.955701+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: CAFÉ / DOUBLE ESPRESSO 4.3",
           "alcoholFree": true
@@ -1001,7 +1690,7 @@
           "volumeMl": null,
           "priceChf": 4.3,
           "sourceUrl": "https://www.couronnedor.ch/_files/ugd/30ce0c_787e0a26087146179068ceebed6ab0bc.pdf",
-          "observedAt": "2026-10-21T07:11:50.969083+00:00",
+          "observedAt": "2026-10-21T12:47:36.955701+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: CAFÉ / DOUBLE ESPRESSO 4.3",
           "alcoholFree": true
@@ -1012,7 +1701,7 @@
           "volumeMl": null,
           "priceChf": 5.0,
           "sourceUrl": "https://www.couronnedor.ch/_files/ugd/30ce0c_787e0a26087146179068ceebed6ab0bc.pdf",
-          "observedAt": "2026-10-21T07:11:50.969083+00:00",
+          "observedAt": "2026-10-21T12:47:36.955701+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: CAPPUCINO 5",
           "alcoholFree": true
@@ -1023,7 +1712,7 @@
           "volumeMl": null,
           "priceChf": 5.0,
           "sourceUrl": "https://www.couronnedor.ch/_files/ugd/30ce0c_787e0a26087146179068ceebed6ab0bc.pdf",
-          "observedAt": "2026-10-21T07:11:50.969083+00:00",
+          "observedAt": "2026-10-21T12:47:36.955701+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: FLATWHITE 5",
           "alcoholFree": true
@@ -1034,14 +1723,14 @@
           "volumeMl": null,
           "priceChf": 6.5,
           "sourceUrl": "https://www.couronnedor.ch/_files/ugd/30ce0c_787e0a26087146179068ceebed6ab0bc.pdf",
-          "observedAt": "2026-10-21T07:11:50.969083+00:00",
+          "observedAt": "2026-10-21T12:47:36.955701+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: MATCHALATTE 6.5",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:11:50.969083+00:00"
+      "checkedAt": "2026-10-21T12:47:36.955701+00:00"
     },
     {
       "id": "node/3871115488",
@@ -1065,7 +1754,7 @@
       "lat": 46.5251826,
       "lon": 6.6454662,
       "type": "cafe",
-      "address": "",
+      "address": "Avenue de Beaumont 22",
       "postcode": "",
       "website": null,
       "cuisine": [],
@@ -1073,7 +1762,49 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/48580533"
+    },
+    {
+      "id": "node/4111161679",
+      "name": "La Mamma Osteria",
+      "lat": 46.5184434,
+      "lon": 6.6300991,
+      "type": "restaurant",
+      "address": "Rue du Petit-Chêne 34",
+      "postcode": "1003",
+      "website": "https://www.lamammarestaurant.ch",
+      "cuisine": [
+        "brasserie"
+      ],
+      "openingHours": "Mo-Su 06:30-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.lamammarestaurant.ch/_files/ugd/9b3293_bce5eaeaf1ed40078df7a0dc0cdfaf7a.pdf",
+          "observedAt": "2026-10-21T12:52:00.346920+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 9: Latte Macchiato – CHF 5.00",
+          "alcoholFree": true
+        },
+        {
+          "name": "Double Espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 8.0,
+          "sourceUrl": "https://www.lamammarestaurant.ch/_files/ugd/9b3293_bce5eaeaf1ed40078df7a0dc0cdfaf7a.pdf",
+          "observedAt": "2026-10-21T12:52:00.346920+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 9: Double Espresso – CHF 8.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:52:00.346920+00:00"
     },
     {
       "id": "node/11185650730",
@@ -1094,20 +1825,102 @@
       "checkedAt": "2026-10-21T07:11:51.265844+00:00"
     },
     {
+      "id": "way/44742439",
+      "name": "La Pinte de Sauvabelin",
+      "lat": 46.5371557,
+      "lon": 6.6390138,
+      "type": "restaurant",
+      "address": "Chemin des Celtes 1",
+      "postcode": "1018",
+      "website": "https://www.pinte-de-sauvabelin.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Mo-Sa 09:00-22:00  \"summer/été\"; Su 09:00-21:00 \"summer/été\"",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Café",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 3.8,
+          "sourceUrl": "https://www.pinte-de-sauvabelin.ch/carte-pinte.pdf",
+          "observedAt": "2026-10-21T12:52:10.528944+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: Café............................................. 3.80",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.pinte-de-sauvabelin.ch/carte-pinte.pdf",
+          "observedAt": "2026-10-21T12:52:10.528944+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: Cappuccino.............................. 4.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Latte macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.pinte-de-sauvabelin.ch/carte-pinte.pdf",
+          "observedAt": "2026-10-21T12:52:10.528944+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: Latte macchiato....................... 4.90",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:52:10.528944+00:00"
+    },
+    {
       "id": "node/10856140444",
       "name": "La Riguenette",
       "lat": 46.5298104,
       "lon": 6.6252546,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Promenade du Bois-de-Beaulieu 4",
+      "postcode": "1018",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-We 09:00-20:00; Th-Sa 09:00-22:00; Su 10:00-20:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/48993060"
+    },
+    {
+      "id": "node/1230806994",
+      "name": "La Riviera",
+      "lat": 46.5071717,
+      "lon": 6.6263109,
+      "type": "restaurant",
+      "address": "Place de la Navigation 8",
+      "postcode": "",
+      "website": "https://www.brasserieriviera.com",
+      "cuisine": [],
+      "openingHours": "Mo-Su 10:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Latte Macchiato",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://brasserieriviera.com/",
+          "observedAt": "2026-10-21T12:52:22.213398+00:00",
+          "confidence": "automatic",
+          "evidence": "Latte Macchiato 6.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:52:22.213398+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/44781677"
     },
     {
       "id": "node/1082795812",
@@ -1115,15 +1928,16 @@
       "lat": 46.5328266,
       "lon": 6.6474109,
       "type": "cafe",
-      "address": "",
-      "postcode": "1010",
+      "address": "Avenue du Temple 65",
+      "postcode": "",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Sa 07:00-23:00; Su 09:00-23:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44620910"
     },
     {
       "id": "node/1244874494",
@@ -1140,6 +1954,48 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/14256583073",
+      "name": "Laus'Angeles",
+      "lat": 46.5206002,
+      "lon": 6.6374203,
+      "type": "restaurant",
+      "address": "Rue Philippe-François-de-Langallerie 1",
+      "postcode": "1003",
+      "website": "https://laus-angeles.ch/",
+      "cuisine": [
+        "afghan",
+        "persian"
+      ],
+      "openingHours": "Mo-Sa 11:30-22:00; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coffee",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.5,
+          "sourceUrl": "https://laus-angeles.ch/en/menu/",
+          "observedAt": "2026-10-21T12:52:30.010437+00:00",
+          "confidence": "automatic",
+          "evidence": "Coffee 4.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 3.5,
+          "sourceUrl": "https://laus-angeles.ch/en/menu/",
+          "observedAt": "2026-10-21T12:52:30.010437+00:00",
+          "confidence": "automatic",
+          "evidence": "Espresso 3.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:52:30.010437+00:00"
     },
     {
       "id": "node/7734829918",
@@ -1160,7 +2016,7 @@
           "volumeMl": null,
           "priceChf": 5.0,
           "sourceUrl": "https://www.lausanne-cocktail-club.ch/_files/ugd/552e3a_5e6cd52eca7844bb8729f6b5b3cd0108.pdf",
-          "observedAt": "2026-10-21T07:12:37.060011+00:00",
+          "observedAt": "2026-10-21T12:47:36.955981+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 12: Café, Espresso, Ristretto 5.00",
           "alcoholFree": true
@@ -1171,7 +2027,7 @@
           "volumeMl": null,
           "priceChf": 5.0,
           "sourceUrl": "https://www.lausanne-cocktail-club.ch/_files/ugd/552e3a_5e6cd52eca7844bb8729f6b5b3cd0108.pdf",
-          "observedAt": "2026-10-21T07:12:37.060011+00:00",
+          "observedAt": "2026-10-21T12:47:36.955981+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 12: Café, Espresso, Ristretto 5.00",
           "alcoholFree": true
@@ -1182,14 +2038,96 @@
           "volumeMl": null,
           "priceChf": 5.0,
           "sourceUrl": "https://www.lausanne-cocktail-club.ch/_files/ugd/552e3a_5e6cd52eca7844bb8729f6b5b3cd0108.pdf",
-          "observedAt": "2026-10-21T07:12:37.060011+00:00",
+          "observedAt": "2026-10-21T12:47:36.955981+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 12: Café, Espresso, Ristretto 5.00",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:12:37.060011+00:00"
+      "checkedAt": "2026-10-21T12:47:36.955981+00:00"
+    },
+    {
+      "id": "node/1061009918",
+      "name": "Le Café de l'Evêché",
+      "lat": 46.5217863,
+      "lon": 6.6360667,
+      "type": "restaurant",
+      "address": "Rue Louis-Auguste-Curtat 4",
+      "postcode": "1005",
+      "website": "https://leveche.ch",
+      "cuisine": [
+        "swiss"
+      ],
+      "openingHours": "Mo-Fr 07:00-00:00; Sa 11:30-00:00; Su 12:00-00:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Café au lait",
+          "coffeeType": "milk",
+          "volumeMl": null,
+          "priceChf": 4.5,
+          "sourceUrl": "http://www.leveche.ch/files/carte.pdf",
+          "observedAt": "2026-10-21T12:52:39.733379+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 18: Café au lait 4.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:52:39.733379+00:00"
+    },
+    {
+      "id": "node/10068109426",
+      "name": "Le Comptoir de Beaulieu",
+      "lat": 46.5285941,
+      "lon": 6.622914,
+      "type": "restaurant",
+      "address": "Avenue des Bergières 10",
+      "postcode": "1004",
+      "website": "https://www.lecomptoirdebeaulieu.ch/",
+      "cuisine": [
+        "brasserie"
+      ],
+      "openingHours": "Tu-Sa 11:00-00:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "RISTRETTO",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.lecomptoirdebeaulieu.ch/wp-content/uploads/2026/10/Automne-26-Drinks-Le-comptoir-de-Beaulieu.V2-2.pdf",
+          "observedAt": "2026-10-21T12:52:55.127263+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: RISTRETTO 4.5",
+          "alcoholFree": true
+        },
+        {
+          "name": "LATTE MACCHIATO",
+          "coffeeType": "latte",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.lecomptoirdebeaulieu.ch/wp-content/uploads/2026/10/Automne-26-Drinks-Le-comptoir-de-Beaulieu.V2-2.pdf",
+          "observedAt": "2026-10-21T12:52:55.127263+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: LATTE MACCHIATO 5",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAPPUCINO",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.lecomptoirdebeaulieu.ch/wp-content/uploads/2026/10/Automne-26-Drinks-Le-comptoir-de-Beaulieu.V2-2.pdf",
+          "observedAt": "2026-10-21T12:52:55.127263+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: CAPPUCINO 6",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:52:55.127263+00:00"
     },
     {
       "id": "node/4340128750",
@@ -1197,15 +2135,16 @@
       "lat": 46.5154042,
       "lon": 6.6170807,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Cour 67",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 07:00-23:00; Sa 09:00-23:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44741428"
     },
     {
       "id": "way/44421305",
@@ -1229,15 +2168,16 @@
       "lat": 46.5180382,
       "lon": 6.6248378,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Place de la Gare 16",
+      "postcode": "1003",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/421614066"
     },
     {
       "id": "node/1671947248",
@@ -1255,7 +2195,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:11:53.056437+00:00"
+      "checkedAt": "2026-10-21T12:48:02.214345+00:00"
     },
     {
       "id": "node/4768063722",
@@ -1271,7 +2211,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-21T07:11:53.570895+00:00"
+      "checkedAt": "2026-10-21T12:48:03.014890+00:00"
     },
     {
       "id": "node/12192597042",
@@ -1308,7 +2248,7 @@
           "volumeMl": null,
           "priceChf": 3.9,
           "sourceUrl": "https://lilybar.ch/wp-content/uploads/2026/10/10.2026_Carte_MIDI_LILY.pdf",
-          "observedAt": "2026-10-21T07:12:46.531418+00:00",
+          "observedAt": "2026-10-21T12:47:36.956418+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: Espresso, Ristretto, Café CHF 3,9",
           "alcoholFree": true
@@ -1319,7 +2259,7 @@
           "volumeMl": null,
           "priceChf": 3.9,
           "sourceUrl": "https://lilybar.ch/wp-content/uploads/2026/10/10.2026_Carte_MIDI_LILY.pdf",
-          "observedAt": "2026-10-21T07:12:46.531418+00:00",
+          "observedAt": "2026-10-21T12:47:36.956418+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: Espresso, Ristretto, Café CHF 3,9",
           "alcoholFree": true
@@ -1330,7 +2270,7 @@
           "volumeMl": null,
           "priceChf": 3.9,
           "sourceUrl": "https://lilybar.ch/wp-content/uploads/2026/10/10.2026_Carte_MIDI_LILY.pdf",
-          "observedAt": "2026-10-21T07:12:46.531418+00:00",
+          "observedAt": "2026-10-21T12:47:36.956418+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: Espresso, Ristretto, Café CHF 3,9",
           "alcoholFree": true
@@ -1341,7 +2281,7 @@
           "volumeMl": null,
           "priceChf": 4.9,
           "sourceUrl": "https://lilybar.ch/wp-content/uploads/2026/10/10.2026_Carte_MIDI_LILY.pdf",
-          "observedAt": "2026-10-21T07:12:46.531418+00:00",
+          "observedAt": "2026-10-21T12:47:36.956418+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: Double Espresso CHF 4,9",
           "alcoholFree": true
@@ -1352,7 +2292,7 @@
           "volumeMl": null,
           "priceChf": 5.5,
           "sourceUrl": "https://lilybar.ch/wp-content/uploads/2026/10/10.2026_Carte_MIDI_LILY.pdf",
-          "observedAt": "2026-10-21T07:12:46.531418+00:00",
+          "observedAt": "2026-10-21T12:47:36.956418+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: Cappuccino CHF 5,5",
           "alcoholFree": true
@@ -1363,7 +2303,7 @@
           "volumeMl": null,
           "priceChf": 5.5,
           "sourceUrl": "https://lilybar.ch/wp-content/uploads/2026/10/10.2026_Carte_MIDI_LILY.pdf",
-          "observedAt": "2026-10-21T07:12:46.531418+00:00",
+          "observedAt": "2026-10-21T12:47:36.956418+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: Latte Macchiato CHF 5,5",
           "alcoholFree": true
@@ -1374,14 +2314,14 @@
           "volumeMl": null,
           "priceChf": 6.5,
           "sourceUrl": "https://lilybar.ch/wp-content/uploads/2026/10/10.2026_Carte_MIDI_LILY.pdf",
-          "observedAt": "2026-10-21T07:12:46.531418+00:00",
+          "observedAt": "2026-10-21T12:47:36.956418+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: Matcha Latte CHF 6,5",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:12:46.531418+00:00"
+      "checkedAt": "2026-10-21T12:47:36.956418+00:00"
     },
     {
       "id": "node/9572678317",
@@ -1389,15 +2329,68 @@
       "lat": 46.5223186,
       "lon": 6.632938,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue Madeleine 3",
+      "postcode": "1003",
       "website": "https://madeleine-lausanne.ch/",
       "cuisine": [],
       "openingHours": "Mo-Sa 08:30-17:30; Su off",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:53.598270+00:00"
+      "checkedAt": "2026-10-21T12:48:03.155397+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/53013861"
+    },
+    {
+      "id": "node/7816286644",
+      "name": "Man'Ouchy",
+      "lat": 46.5247721,
+      "lon": 6.6378193,
+      "type": "restaurant",
+      "address": "Rue Dr-César-Roux 9",
+      "postcode": "",
+      "website": "https://manouchy.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Fr 10:30-14:30,17:00-22:00; Sa,Su 11:00-14:30,17:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://manouchy.ch/carte-de-boissons.pdf",
+          "observedAt": "2026-10-21T12:54:45.139146+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Ristretto, Espresso, Café 4.-",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://manouchy.ch/carte-de-boissons.pdf",
+          "observedAt": "2026-10-21T12:54:45.139146+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Ristretto, Espresso, Café 4.-",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://manouchy.ch/carte-de-boissons.pdf",
+          "observedAt": "2026-10-21T12:54:45.139146+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Ristretto, Espresso, Café 4.-",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:54:45.139146+00:00"
     },
     {
       "id": "node/13289283890",
@@ -1412,8 +2405,8 @@
       "openingHours": "Mo 10:00-18:00; Tu-Fr 10:00-19:00; Sa 11:30-18:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:11:53.657294+00:00"
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-21T12:48:03.320023+00:00"
     },
     {
       "id": "node/3526784896",
@@ -1452,7 +2445,7 @@
           "volumeMl": null,
           "priceChf": 4.0,
           "sourceUrl": "https://mccarthysirishpub.ch/our-drinks/digestives/",
-          "observedAt": "2026-10-21T07:12:50.026721+00:00",
+          "observedAt": "2026-10-21T12:47:36.956708+00:00",
           "confidence": "automatic",
           "evidence": "Coffee, Espresso, Ristretto 4,00",
           "alcoholFree": true
@@ -1463,7 +2456,7 @@
           "volumeMl": null,
           "priceChf": 4.0,
           "sourceUrl": "https://mccarthysirishpub.ch/our-drinks/digestives/",
-          "observedAt": "2026-10-21T07:12:50.026721+00:00",
+          "observedAt": "2026-10-21T12:47:36.956708+00:00",
           "confidence": "automatic",
           "evidence": "Coffee, Espresso, Ristretto 4,00",
           "alcoholFree": true
@@ -1474,7 +2467,7 @@
           "volumeMl": null,
           "priceChf": 4.0,
           "sourceUrl": "https://mccarthysirishpub.ch/our-drinks/digestives/",
-          "observedAt": "2026-10-21T07:12:50.026721+00:00",
+          "observedAt": "2026-10-21T12:47:36.956708+00:00",
           "confidence": "automatic",
           "evidence": "Coffee, Espresso, Ristretto 4,00",
           "alcoholFree": true
@@ -1485,7 +2478,7 @@
           "volumeMl": null,
           "priceChf": 5.0,
           "sourceUrl": "https://mccarthysirishpub.ch/our-drinks/digestives/",
-          "observedAt": "2026-10-21T07:12:50.026721+00:00",
+          "observedAt": "2026-10-21T12:47:36.956708+00:00",
           "confidence": "automatic",
           "evidence": "Americano 5,00",
           "alcoholFree": true
@@ -1496,7 +2489,7 @@
           "volumeMl": null,
           "priceChf": 5.5,
           "sourceUrl": "https://mccarthysirishpub.ch/our-drinks/digestives/",
-          "observedAt": "2026-10-21T07:12:50.026721+00:00",
+          "observedAt": "2026-10-21T12:47:36.956708+00:00",
           "confidence": "automatic",
           "evidence": "Cappuccino 5,50",
           "alcoholFree": true
@@ -1507,7 +2500,7 @@
           "volumeMl": null,
           "priceChf": 6.0,
           "sourceUrl": "https://mccarthysirishpub.ch/our-drinks/digestives/",
-          "observedAt": "2026-10-21T07:12:50.026721+00:00",
+          "observedAt": "2026-10-21T12:47:36.956708+00:00",
           "confidence": "automatic",
           "evidence": "Latte Macchiato 6,00",
           "alcoholFree": true
@@ -1518,14 +2511,66 @@
           "volumeMl": null,
           "priceChf": 7.0,
           "sourceUrl": "https://mccarthysirishpub.ch/our-drinks/digestives/",
-          "observedAt": "2026-10-21T07:12:50.026721+00:00",
+          "observedAt": "2026-10-21T12:47:36.956708+00:00",
           "confidence": "automatic",
           "evidence": "Double Espresso 7,00",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:12:50.026721+00:00"
+      "checkedAt": "2026-10-21T12:47:36.956708+00:00"
+    },
+    {
+      "id": "node/13839589001",
+      "name": "Mexicana Grill",
+      "lat": 46.5212852,
+      "lon": 6.626573,
+      "type": "restaurant",
+      "address": "Rue des Côtes-de-Montbenon 22",
+      "postcode": "1003",
+      "website": "https://www.mexicana-grill.ch",
+      "cuisine": [
+        "mexican"
+      ],
+      "openingHours": "Mo-Th 18:00-23:00; Fr-Sa 18:00-01:00; Su 17:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.mexicana-grill.ch/assets/docs/carte-mexicana-grill.pdf",
+          "observedAt": "2026-10-21T12:55:00.074389+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 18: Ristretto 4",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.mexicana-grill.ch/assets/docs/carte-mexicana-grill.pdf",
+          "observedAt": "2026-10-21T12:55:00.074389+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 18: Espresso 4",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.mexicana-grill.ch/assets/docs/carte-mexicana-grill.pdf",
+          "observedAt": "2026-10-21T12:55:00.074389+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 18: Café 4",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:55:00.074389+00:00"
     },
     {
       "id": "node/4678901171",
@@ -1533,15 +2578,16 @@
       "lat": 46.5141256,
       "lon": 6.6334346,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Montchoisi 5",
+      "postcode": "1006",
       "website": "https://cafemogadorlausanne.com/",
       "cuisine": [],
       "openingHours": "Tu-Fr 08:30-23:00; Sa 10:00-23:00",
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-21T07:11:54.920560+00:00"
+      "checkedAt": "2026-10-21T12:48:03.874309+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/53290772"
     },
     {
       "id": "node/5241143177",
@@ -1549,15 +2595,16 @@
       "lat": 46.5105143,
       "lon": 6.6347629,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue Antoine-Michel-Servan 36",
+      "postcode": "1006",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/47986856"
     },
     {
       "id": "node/6421323943",
@@ -1565,15 +2612,79 @@
       "lat": 46.5215929,
       "lon": 6.6093252,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Chemin de Montelly 48",
+      "postcode": "1007",
       "website": null,
       "cuisine": [],
       "openingHours": "Mo-Fr 11:30-14:00,17:30-22:00; Su 16:00-22:00; Sa 12:30-22:00",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44698756"
+    },
+    {
+      "id": "node/11286436869",
+      "name": "Nau",
+      "lat": 46.5169188,
+      "lon": 6.6400062,
+      "type": "restaurant",
+      "address": "Avenue Gabriel-de-Rumine 22",
+      "postcode": "1005",
+      "website": "https://nau-resto.ch/",
+      "cuisine": [
+        "fine_dining"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "RISTRETTO",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.nau-resto.ch/_files/ugd/6fe37c_da953ffce81642eb8b83d72cd6def096.pdf",
+          "observedAt": "2026-10-21T12:55:12.330644+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: RISTRETTO 4.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "ESPRESSO",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.nau-resto.ch/_files/ugd/6fe37c_da953ffce81642eb8b83d72cd6def096.pdf",
+          "observedAt": "2026-10-21T12:55:12.330644+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: ESPRESSO 4.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAFE • COFFEE",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.nau-resto.ch/_files/ugd/6fe37c_da953ffce81642eb8b83d72cd6def096.pdf",
+          "observedAt": "2026-10-21T12:55:12.330644+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: CAFE • COFFEE 4.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAPPUCCINO",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.nau-resto.ch/_files/ugd/6fe37c_da953ffce81642eb8b83d72cd6def096.pdf",
+          "observedAt": "2026-10-21T12:55:12.330644+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: CAPPUCCINO 6.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:55:12.330644+00:00"
     },
     {
       "id": "node/9883538810",
@@ -1589,7 +2700,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:54.939986+00:00"
+      "checkedAt": "2026-10-21T12:48:03.920176+00:00"
     },
     {
       "id": "node/12341071783",
@@ -1613,15 +2724,16 @@
       "lat": 46.5221177,
       "lon": 6.6352459,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Place de la Cathédrale 6",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/44176010"
     },
     {
       "id": "node/7071696119",
@@ -1639,7 +2751,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:55.547505+00:00"
+      "checkedAt": "2026-10-21T12:48:04.133171+00:00"
     },
     {
       "id": "node/1129155319",
@@ -1660,7 +2772,7 @@
           "volumeMl": null,
           "priceChf": 3.5,
           "sourceUrl": "https://www.qwertz.gg/carte.pdf",
-          "observedAt": "2026-10-21T07:13:02.302218+00:00",
+          "observedAt": "2026-10-21T12:47:36.974708+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 1: Café,Espresso,Ristretto 3.50",
           "alcoholFree": true
@@ -1671,7 +2783,7 @@
           "volumeMl": null,
           "priceChf": 3.5,
           "sourceUrl": "https://www.qwertz.gg/carte.pdf",
-          "observedAt": "2026-10-21T07:13:02.302218+00:00",
+          "observedAt": "2026-10-21T12:47:36.974708+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 1: Café,Espresso,Ristretto 3.50",
           "alcoholFree": true
@@ -1682,14 +2794,14 @@
           "volumeMl": null,
           "priceChf": 3.5,
           "sourceUrl": "https://www.qwertz.gg/carte.pdf",
-          "observedAt": "2026-10-21T07:13:02.302218+00:00",
+          "observedAt": "2026-10-21T12:47:36.974708+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 1: Café,Espresso,Ristretto 3.50",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:13:02.302218+00:00"
+      "checkedAt": "2026-10-21T12:47:36.974708+00:00"
     },
     {
       "id": "node/3667337167",
@@ -1710,20 +2822,114 @@
       "checkedAt": null
     },
     {
+      "id": "way/46612740",
+      "name": "Restaurant Le Milan",
+      "lat": 46.5165231,
+      "lon": 6.6258452,
+      "type": "restaurant",
+      "address": "Boulevard de Grancy 54",
+      "postcode": "1006",
+      "website": "https://www.lemilan.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Tu-Sa 08:00-24:00, Su 09:00-24:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://de.cdn-website.com/83a0753d37ce4473b1e4de34632f3ce4/files/uploaded/Carte_Milan_2025.pdf",
+          "observedAt": "2026-10-21T12:55:53.533510+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Café, espresso, ristretto 3.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://de.cdn-website.com/83a0753d37ce4473b1e4de34632f3ce4/files/uploaded/Carte_Milan_2025.pdf",
+          "observedAt": "2026-10-21T12:55:53.533510+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Café, espresso, ristretto 3.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://de.cdn-website.com/83a0753d37ce4473b1e4de34632f3ce4/files/uploaded/Carte_Milan_2025.pdf",
+          "observedAt": "2026-10-21T12:55:53.533510+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Café, espresso, ristretto 3.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "cappucino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://de.cdn-website.com/83a0753d37ce4473b1e4de34632f3ce4/files/uploaded/Carte des boissons Milan.pdf",
+          "observedAt": "2026-10-21T12:55:53.533510+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: cappucino 4.00",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:55:53.533510+00:00"
+    },
+    {
       "id": "node/3645869461",
       "name": "Romain C. - Salon de thé",
       "lat": 46.5212365,
       "lon": 6.6442686,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Avenue de Béthusy 19",
+      "postcode": "1005",
       "website": null,
       "cuisine": [],
       "openingHours": "We-Fr 08:30-17:30; Sa,Su 08:30-16:30",
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46832139"
+    },
+    {
+      "id": "node/4935349839",
+      "name": "Shanti",
+      "lat": 46.5170787,
+      "lon": 6.6356229,
+      "type": "restaurant",
+      "address": "Avenue de la Gare 10",
+      "postcode": "1003",
+      "website": "https://www.shanti-restaurant.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:00,18:30-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Café",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.shanti-restaurant.ch/wp-content/uploads/2026/05/SHANTI_Menu_2026.pdf",
+          "observedAt": "2026-10-21T12:56:04.169635+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 12: Café 4.50",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:56:04.169635+00:00"
     },
     {
       "id": "node/7259971840",
@@ -1731,8 +2937,8 @@
       "lat": 46.5247703,
       "lon": 6.6328568,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Rue du Tunnel 7",
+      "postcode": "1005",
       "website": null,
       "cuisine": [
         "coffee_shop"
@@ -1741,7 +2947,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/46881367"
     },
     {
       "id": "node/5574658501",
@@ -1757,7 +2964,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:57.661483+00:00"
+      "checkedAt": "2026-10-21T12:48:04.346001+00:00"
     },
     {
       "id": "node/2844031146",
@@ -1830,6 +3037,110 @@
       "checkedAt": null
     },
     {
+      "id": "node/13719406001",
+      "name": "Tao",
+      "lat": 46.5212669,
+      "lon": 6.6271598,
+      "type": "restaurant",
+      "address": "Rue des Côtes-de-Montbenon 20",
+      "postcode": "1003",
+      "website": "https://www.taoloungebar.ch/",
+      "cuisine": [
+        "asian"
+      ],
+      "openingHours": "Mo-Tu 11:00-23:00; We 11:00-00:00; Th 11:00-01:00; Fr-Sa 11:00-02:00; Su 11:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.taoloungebar.ch/carte-drinks?location=Tao+Bar+%26+Asian+Restaurant&menu=sans-alcool",
+          "observedAt": "2026-10-21T12:56:22.485120+00:00",
+          "confidence": "automatic",
+          "evidence": "Ristretto | Espresso | Café 4 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.taoloungebar.ch/carte-drinks?location=Tao+Bar+%26+Asian+Restaurant&menu=sans-alcool",
+          "observedAt": "2026-10-21T12:56:22.485120+00:00",
+          "confidence": "automatic",
+          "evidence": "Ristretto | Espresso | Café 4 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.taoloungebar.ch/carte-drinks?location=Tao+Bar+%26+Asian+Restaurant&menu=sans-alcool",
+          "observedAt": "2026-10-21T12:56:22.485120+00:00",
+          "confidence": "automatic",
+          "evidence": "Ristretto | Espresso | Café 4 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Double Espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.taoloungebar.ch/carte-drinks?location=Tao+Bar+%26+Asian+Restaurant&menu=sans-alcool",
+          "observedAt": "2026-10-21T12:56:22.485120+00:00",
+          "confidence": "automatic",
+          "evidence": "Double Espresso 6.50 CHF",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:56:22.485120+00:00"
+    },
+    {
+      "id": "node/9961037889",
+      "name": "Taolé",
+      "lat": 46.5183519,
+      "lon": 6.637181,
+      "type": "restaurant",
+      "address": "Avenue du Théâtre 1",
+      "postcode": "1005",
+      "website": "https://taole.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:00, 18:30-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Café",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 4.0,
+          "sourceUrl": "https://taole.ch/app/uploads/2023/01/Taole_MenuBoisson_01-2023.pdf",
+          "observedAt": "2026-10-21T12:56:24.015112+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: Café 4.00 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://taole.ch/app/uploads/2023/01/Taole_MenuBoisson_01-2023.pdf",
+          "observedAt": "2026-10-21T12:56:24.015112+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: Cappuccino 5.00 CHF",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:56:24.015112+00:00"
+    },
+    {
       "id": "node/3524096435",
       "name": "Tekoe",
       "lat": 46.5170397,
@@ -1859,7 +3170,57 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:11:58.400019+00:00"
+      "checkedAt": "2026-10-21T12:48:05.834779+00:00"
+    },
+    {
+      "id": "node/2659762464",
+      "name": "Tibits",
+      "lat": 46.5171856,
+      "lon": 6.6281226,
+      "type": "restaurant",
+      "address": "Place de la Gare 11",
+      "postcode": "1003",
+      "website": "https://www.tibits.ch/fr/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 07:00-22:00; Sa 06:30-22:30; Su 08:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Americano",
+          "coffeeType": "americano",
+          "volumeMl": null,
+          "priceChf": 4.6,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-10-21T12:56:40.658810+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: Americano 4.60",
+          "alcoholFree": true
+        },
+        {
+          "name": "Flat White",
+          "coffeeType": "flat_white",
+          "volumeMl": null,
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-10-21T12:56:40.658810+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: Flat White 6.50",
+          "alcoholFree": true
+        },
+        {
+          "name": "Americano",
+          "coffeeType": "americano",
+          "volumeMl": null,
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-10-21T12:56:40.658810+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: Americano 4.80",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:56:40.658810+00:00"
     },
     {
       "id": "node/12760468895",
@@ -1880,7 +3241,7 @@
           "volumeMl": null,
           "priceChf": 3.8,
           "sourceUrl": "https://traintrain.shop/",
-          "observedAt": "2026-10-21T07:12:00.969268+00:00",
+          "observedAt": "2026-10-21T12:47:37.774446+00:00",
           "confidence": "automatic",
           "evidence": "espresso 3.80",
           "alcoholFree": true
@@ -1891,7 +3252,7 @@
           "volumeMl": null,
           "priceChf": 4.9,
           "sourceUrl": "https://traintrain.shop/",
-          "observedAt": "2026-10-21T07:12:00.969268+00:00",
+          "observedAt": "2026-10-21T12:47:37.774446+00:00",
           "confidence": "automatic",
           "evidence": "double espresso 4.90",
           "alcoholFree": true
@@ -1902,9 +3263,20 @@
           "volumeMl": null,
           "priceChf": 4.9,
           "sourceUrl": "https://traintrain.shop/",
-          "observedAt": "2026-10-21T07:12:00.969268+00:00",
+          "observedAt": "2026-10-21T12:47:37.774446+00:00",
           "confidence": "automatic",
           "evidence": "café* 4.90",
+          "alcoholFree": true
+        },
+        {
+          "name": "café filtre",
+          "coffeeType": "filter",
+          "volumeMl": null,
+          "priceChf": 5.2,
+          "sourceUrl": "https://traintrain.shop/",
+          "observedAt": "2026-10-21T12:47:37.774446+00:00",
+          "confidence": "automatic",
+          "evidence": "café filtre 5.20",
           "alcoholFree": true
         },
         {
@@ -1913,7 +3285,7 @@
           "volumeMl": null,
           "priceChf": 5.6,
           "sourceUrl": "https://traintrain.shop/",
-          "observedAt": "2026-10-21T07:12:00.969268+00:00",
+          "observedAt": "2026-10-21T12:47:37.774446+00:00",
           "confidence": "automatic",
           "evidence": "cappuccino 5.60",
           "alcoholFree": true
@@ -1924,7 +3296,7 @@
           "volumeMl": null,
           "priceChf": 6.1,
           "sourceUrl": "https://traintrain.shop/",
-          "observedAt": "2026-10-21T07:12:00.969268+00:00",
+          "observedAt": "2026-10-21T12:47:37.774446+00:00",
           "confidence": "automatic",
           "evidence": "flat white 6.10",
           "alcoholFree": true
@@ -1935,14 +3307,77 @@
           "volumeMl": null,
           "priceChf": 6.4,
           "sourceUrl": "https://traintrain.shop/",
-          "observedAt": "2026-10-21T07:12:00.969268+00:00",
+          "observedAt": "2026-10-21T12:47:37.774446+00:00",
           "confidence": "automatic",
           "evidence": "matcha latte* 6.40",
           "alcoholFree": true
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-21T07:12:00.969268+00:00"
+      "checkedAt": "2026-10-21T12:47:37.774446+00:00"
+    },
+    {
+      "id": "node/2167296689",
+      "name": "Vasano",
+      "lat": 46.5176553,
+      "lon": 6.6293048,
+      "type": "restaurant",
+      "address": "Place de la Gare 4",
+      "postcode": "",
+      "website": "https://vasanoristorante.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Su 10:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "ESPRESSO",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://vasanoristorante.ch/menu/",
+          "observedAt": "2026-10-21T12:57:01.199589+00:00",
+          "confidence": "automatic",
+          "evidence": "ESPRESSO 3,90",
+          "alcoholFree": true
+        },
+        {
+          "name": "DOUBLE ESPRESSO",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 6.0,
+          "sourceUrl": "https://vasanoristorante.ch/menu/",
+          "observedAt": "2026-10-21T12:57:01.199589+00:00",
+          "confidence": "automatic",
+          "evidence": "DOUBLE ESPRESSO 6,00",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAPPUCCINO*",
+          "coffeeType": "cappuccino",
+          "volumeMl": null,
+          "priceChf": 5.0,
+          "sourceUrl": "https://vasanoristorante.ch/menu/",
+          "observedAt": "2026-10-21T12:57:01.199589+00:00",
+          "confidence": "automatic",
+          "evidence": "CAPPUCCINO* 5,00",
+          "alcoholFree": true
+        },
+        {
+          "name": "CAFÉ",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://vasanoristorante.ch/menu/",
+          "observedAt": "2026-10-21T12:57:01.199589+00:00",
+          "confidence": "automatic",
+          "evidence": "CAFÉ 3,90",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:57:01.199589+00:00"
     },
     {
       "id": "verified/vicafe-st-francois",
@@ -1963,6 +3398,80 @@
       "checkedAt": null
     },
     {
+      "id": "node/13712003901",
+      "name": "Yokochō",
+      "lat": 46.5121786,
+      "lon": 6.6273472,
+      "type": "restaurant",
+      "address": "Avenue du Grammont 6",
+      "postcode": "1007",
+      "website": "https://www.yokocho.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Th 11:30-23:00; Fr 11:30-00:00; Sa 11:00-00:00; Su 11:00-16:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ristretto",
+          "coffeeType": "ristretto",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://www.yokocho.ch/menus?location=Yokoch%C5%8D&menu=boissons",
+          "observedAt": "2026-10-21T12:57:13.372279+00:00",
+          "confidence": "automatic",
+          "evidence": "Espresso | Ristretto | Café 3.9 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "coffeeType": "espresso",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://www.yokocho.ch/menus?location=Yokoch%C5%8D&menu=boissons",
+          "observedAt": "2026-10-21T12:57:13.372279+00:00",
+          "confidence": "automatic",
+          "evidence": "Espresso | Ristretto | Café 3.9 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Café crème",
+          "coffeeType": "creme",
+          "volumeMl": null,
+          "priceChf": 3.9,
+          "sourceUrl": "https://www.yokocho.ch/menus?location=Yokoch%C5%8D&menu=boissons",
+          "observedAt": "2026-10-21T12:57:13.372279+00:00",
+          "confidence": "automatic",
+          "evidence": "Espresso | Ristretto | Café 3.9 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Double Espresso",
+          "coffeeType": "double",
+          "volumeMl": null,
+          "priceChf": 4.7,
+          "sourceUrl": "https://www.yokocho.ch/menus?location=Yokoch%C5%8D&menu=boissons",
+          "observedAt": "2026-10-21T12:57:13.372279+00:00",
+          "confidence": "automatic",
+          "evidence": "Double Espresso 4.7 CHF",
+          "alcoholFree": true
+        },
+        {
+          "name": "Matcha latte",
+          "coffeeType": "matcha_latte",
+          "volumeMl": null,
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.yokocho.ch/menus?location=Yokoch%C5%8D&menu=boissons",
+          "observedAt": "2026-10-21T12:57:13.372279+00:00",
+          "confidence": "automatic",
+          "evidence": "Matcha latte 5.5 CHF",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-21T12:57:13.372279+00:00"
+    },
+    {
       "id": "node/7185203988",
       "name": "À côté de la plaque",
       "lat": 46.5239189,
@@ -1980,7 +3489,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "robots_blocked",
-      "checkedAt": "2026-10-21T07:12:02.126581+00:00"
+      "checkedAt": "2026-10-21T12:48:07.996649+00:00"
     },
     {
       "id": "node/8440786094",
@@ -1998,7 +3507,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-21T07:12:02.572847+00:00"
+      "checkedAt": "2026-10-21T12:48:10.039061+00:00"
     }
   ]
 }
