@@ -126,7 +126,7 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
       el<HTMLButtonElement>('venue-close').disabled = false; el('venue-save').textContent = t('Lokal speichern');
     }
   };
-  return (center: L.LatLng, name = '') => {
+  return (center: L.LatLng, name = '', selectPosition = false) => {
     el<HTMLFormElement>('venue-form').reset(); point = undefined; marker?.remove(); marker = undefined;
     el<HTMLInputElement>('venue-name').value = name; el('venue-error').hidden = true;
     el('venue-position').textContent = t('Noch keine Position gewählt.'); el('venue-search-status').textContent = ''; el('venue-addresses').replaceChildren();
@@ -138,6 +138,8 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
       map.on('click', event => { if (!busy) place(event.latlng); });
     }
-    map.invalidateSize(); map.setView(center, 16); duplicates(); el('venue-title').focus();
+    map.invalidateSize(); map.setView(center, 16);
+    if (selectPosition) place(center);
+    duplicates(); el('venue-title').focus();
   };
 }

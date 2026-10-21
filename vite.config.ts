@@ -23,7 +23,9 @@ export default defineConfig({
         } catch (error) { next(error); }
       });
       process.env.ANTHROPIC_API_KEY ||= loadEnv(server.config.mode, process.cwd(), 'ANTHROPIC_API_KEY').ANTHROPIC_API_KEY;
-      for (const route of ['coffee-rating', 'scan-menu', 'map-review', 'deals']) server.middlewares.use(`/api/${route}`, async (req, res, next) => {
+      process.env.STRIPE_SECRET_KEY ||= loadEnv(server.config.mode, process.cwd(), 'STRIPE_SECRET_KEY').STRIPE_SECRET_KEY;
+      process.env.STRIPE_PUBLISHABLE_KEY ||= loadEnv(server.config.mode, process.cwd(), 'STRIPE_PUBLISHABLE_KEY').STRIPE_PUBLISHABLE_KEY;
+      for (const route of ['coffee-rating', 'scan-menu', 'map-review', 'deals', 'tip']) server.middlewares.use(`/api/${route}`, async (req, res, next) => {
         try {
           const { default: handler } = await server.ssrLoadModule(`/api/${route}.ts`);
           await handler(req, res);

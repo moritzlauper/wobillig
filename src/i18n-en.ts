@@ -1,5 +1,22 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  'Anderen Ort hinzufügen': 'Add another place',
+  'Tippe dafür direkt auf die Karte oder auf «Hinzufügen».': 'Tap directly on the map or use “Add”.',
+
+  "Deine Anfrage ist eingereicht.": "Your request has been submitted.",
+  "Deine Map ist zur Prüfung eingereicht.": "Your map has been submitted for review.",
+  "Magst du wobillig einen Cappuccino spendieren? Deine Unterstützung ist freiwillig und hat keinen Einfluss auf die Prüfung.": "Would you like to buy wobillig a cappuccino? Your support is voluntary and does not affect the review.",
+  "Nicht jetzt": "Not now",
+
+  "Danke für den Cappuccino!": "Thank you for the cappuccino!",
+  "Deine Zahlung wird verarbeitet. Vielen Dank!": "Your payment is being processed. Thank you!",
+  "Die Zahlung wurde nicht abgeschlossen. Du kannst es erneut versuchen.": "The payment was not completed. You can try again.",
+  "Ein Cappuccino für wobillig · CHF {price}": "A cappuccino for wobillig · CHF {price}",
+  "CHF {price} bezahlen": "Pay CHF {price}",
+  "Zahlung wird geladen …": "Loading payment …",
+  "Zahlung wird verarbeitet …": "Processing payment …",
+  "Der Zahlungsstatus konnte nicht geladen werden. Bitte vor einer erneuten Zahlung in TWINT oder bei deiner Bank prüfen.": "Could not check your payment status. Please check TWINT or your bank before paying again.",
+
   "Stadt wünschen": "Request a city",
   "Diese Stadt wünsche ich mir auf wobillig:": "I would like this city on wobillig:",
   "Neue Stadt für wobillig": "New city for wobillig",
@@ -20,6 +37,11 @@ export const en: Record<string, string> = {
   "Quartiere anzeigen": "Show districts",
   "Lausanne": "Lausanne",
   "Genf": "Geneva",
+  'Kaffee spendieren · CHF {price} (TWINT/Karte)': 'Buy me a coffee · CHF {price} (TWINT/card)',
+  'Test': 'Test',
+  'Ein Cappuccino zum «Günstig»-Preis dieser Stadt für wobillig.': 'A cappuccino for wobillig at this city’s affordable price.',
+  'Der Kaffeepreis hat sich geändert. Bitte erneut wählen.': 'The coffee price has changed. Please choose again.',
+  'Die Zahlung konnte nicht geöffnet werden. Bitte später erneut versuchen.': 'Could not open the payment page. Please try again later.',
   "Prüfzugang noch nicht eingerichtet.": "Review access has not been configured yet.",
   "Bitte mit dem Prüfzugang anmelden.": "Please sign in with the reviewer credentials.",
   "Bitte die Prüfseite auf dieser Website verwenden.": "Please use the review page on this website.",
@@ -88,6 +110,7 @@ export const en: Record<string, string> = {
   "Eine Kaffeebewertung pro Browser und Lokal, änderbar nach 24 Stunden. Ein Cookie erkennt deinen Browser wieder. Der Durchschnitt erscheint ab drei Stimmen. Dein Kaffeefoto wird zur Prüfung an Anthropic gesendet und von wobillig nicht gespeichert; gespeichert bleiben nur ein Fingerabdruck des Fotos, die Bewertung und der Zeitpunkt.": "One coffee rating per browser and venue, editable after 24 hours. A cookie recognises your browser. The average appears after three votes. Your coffee photo is sent to Anthropic for checking and is not stored by wobillig; only a photo fingerprint, the rating and its timestamp are stored.",
   'Map erstellen': 'Create map',
   'Meine Maps': 'My maps',
+  'Öffentliche Maps': 'Public maps',
   '{count} Lokale': '{count} places',
   'Ab {count} verschiedenen Lokalen erscheint deine Map öffentlich unter «Weitere».': 'Once it has {count} different places, your map will be publicly listed under “More”.',
   'Öffentlich unter «Weitere» sichtbar.': 'Publicly listed under “More”.',

@@ -1,4 +1,5 @@
 import L from 'leaflet';
+import { offerTip } from './tip';
 import { cities, type City } from './cities';
 import { escapeHtml as e, type Bar } from './data';
 import { isMapId, automaticMapStatusLabels, publicMapSummaries, PUBLIC_MAP_MIN_VENUES, mapVenueCount, type AutomaticMapRequest, type MapPlace, type PublicMap, type CustomMap, type MapEntry } from './custom-map-data';
@@ -7,7 +8,7 @@ import { dateLocale, t } from './i18n';
 import { shareLink } from './sharing';
 import { venueForm } from './venue-form';
 import { searchSuggestions } from './search';
-import { googleMapsLink } from './locations';
+import { googleMapsLink, nearbyLocations } from './locations';
 
 class MapRequestError extends Error {
   constructor(message: string, public status: number) { super(message); }
@@ -27,6 +28,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   let createId = crypto.randomUUID(), busy = false, request = 0;
   let editing: MapEntry | undefined;
   let lockedVenue = false;
+  let entryPosition: L.LatLng | undefined;
   let publicMaps: PublicMap[] = [];
   const added: Bar[] = [];
   const venues = () => [...new Map([...known(), ...added].map(bar => [bar.id, bar])).values()];
@@ -34,10 +36,8 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   plus.id = 'create-map'; plus.type = 'button'; plus.className = 'create-map-button';
   plus.setAttribute('aria-label', t('Map erstellen')); plus.title = t('Map erstellen');
   plus.innerHTML = '<span aria-hidden="true">+</span>';
-  const mine = document.createElement('button');
-  mine.id = 'my-maps'; mine.type = 'button'; mine.textContent = t('Meine Maps'); mine.hidden = !saved.length;
   nav.append(plus);
-  navigation.setMapLibrary(mine);
+  updateSavedMaps();
   const create = document.createElement('dialog');
   create.id = 'create-map-dialog'; create.setAttribute('aria-labelledby', 'create-map-title');
   create.innerHTML = `<form class="custom-map-form">
@@ -126,13 +126,17 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   function remember(value: CustomMap) {
     saved = [{ id: value.id, name: value.name, automaticStatus: value.automatic?.status }, ...saved.filter(item => item.id !== value.id)].slice(0, 20);
     try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch { /* Sharing remains available. */ }
-    mine.hidden = false;
-    navigation.setMapLibrary(mine);
+    updateSavedMaps();
     updatePublicMaps([...publicMaps.filter(item => item.id !== value.id), ...publicMapSummaries([value])]);
   }
   function updatePublicMaps(maps: PublicMap[]) {
     publicMaps = maps.filter(item => isMapId(item.id) && item.venueCount >= PUBLIC_MAP_MIN_VENUES);
     navigation.setCustomMaps(publicMaps, id => { void load(id); });
+  }
+  function updateSavedMaps() {
+    navigation.setSavedMaps(saved.map(item => ({ id: item.id, name: item.name +
+      (item.automaticStatus && Object.hasOwn(automaticMapStatusLabels, item.automaticStatus) ? ` · ${t(automaticMapStatusLabels[item.automaticStatus])}` : '') })),
+    id => { void load(id); });
   }
   function renderSavedMaps() {
     const section = create.querySelector<HTMLElement>('#saved-maps')!;
@@ -157,6 +161,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
           return fresh && typeof fresh.name === 'string' ? { id: item.id, name: fresh.name, automaticStatus: fresh.automaticStatus } : item;
         });
         try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch { /* Status remains available via the link. */ }
+        updateSavedMaps();
         if (create.open) renderSavedMaps();
       }).catch(() => { /* The last known status stays visible; opening a request retries. */ });
   }
@@ -172,7 +177,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     create.querySelector<HTMLInputElement>('[name="name"]')!.placeholder = automatic ? t('z. B. Coop Aktionen Zürich') : t('z. B. Döner-Map');
   }
   mode.onchange = () => { createId = crypto.randomUUID(); errorText(create, ''); updateCreateMode(); };
-  plus.onclick = mine.onclick = showPicker;
+  plus.onclick = showPicker;
   for (const dialog of [create, entry]) {
     dialog.querySelector<HTMLButtonElement>('[data-close]')!.onclick = () => { if (!busy) dialog.close(); };
     dialog.addEventListener('cancel', event => { if (busy) event.preventDefault(); });
@@ -199,18 +204,24 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       createId = crypto.randomUUID(); create.querySelector('form')!.reset(); updateCreateMode(); create.close(); open(value);
       el('custom-map-created').querySelector('[role=status]')!.textContent = t('Nur per Link erreichbar.');
       el('custom-map-created').hidden = Boolean(value.automatic);
+      if (value.automatic) offerTip('automatic', value.id);
     } catch (error) { errorText(create, failure(error)); }
     finally { setBusy(false); }
   };
   async function load(id: string) {
     const version = ++request;
-    if (!create.open) showPicker();
+    navigation.close();
     setBusy(true); errorText(create, '');
     try {
       const value = await call(undefined, id);
       if (version !== request) return;
       create.close(); open(value);
-    } catch (error) { if (version === request) errorText(create, failure(error)); }
+    } catch (error) {
+      if (version === request) {
+        if (!create.open) showPicker();
+        errorText(create, failure(error));
+      }
+    }
     finally { if (version === request) setBusy(false); }
   }
   function url(id: string) {
@@ -265,6 +276,29 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       map = L.map(el('custom-map-canvas')).setView(cities[city].center, 13);
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
       layer = L.layerGroup().addTo(map);
+      map.on('click', event => {
+        if (busy || !current || current.automatic || entry.open) return;
+        el('custom-map-detail').hidden = true;
+        // Raster tile labels are not clickable features. Match against the full
+        // location catalogue only when zoomed in enough to distinguish places.
+        const choices = map!.getZoom() >= 17
+          ? nearbyLocations(venues(), event.containerPoint, bar => map!.latLngToContainerPoint([bar.lat, bar.lon])) : [];
+        const select = (venue?: Bar) => {
+          map!.closePopup(); openEntry(undefined, event.latlng);
+          if (venue) { chooseVenue(venue); field('product').focus(); }
+        };
+        if (choices.length < 2) { select(choices[0]); return; }
+        const content = document.createElement('div'); content.className = 'location-choices';
+        const title = document.createElement('strong'); title.textContent = t('Für welches Lokal?'); content.append(title);
+        for (const venue of choices) {
+          const button = document.createElement('button'); button.type = 'button';
+          button.textContent = [venue.name, venue.address].filter(Boolean).join(' · ');
+          button.onclick = () => select(venue); content.append(button);
+        }
+        const other = document.createElement('button'); other.type = 'button'; other.textContent = t('Anderen Ort hinzufügen');
+        other.onclick = () => select(); content.append(other);
+        L.popup().setLatLng(event.latlng).setContent(content).openOn(map!);
+      });
     }
     layer!.clearLayers();
     const entries = [...value.entries].sort((a, b) => a.priceChf - b.priceChf);
@@ -282,7 +316,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     el('custom-map-entries').replaceChildren();
     if (!entries.length) {
       const empty = document.createElement('p'); empty.className = 'empty';
-      empty.textContent = t('Deine Map ist bereit. Füge das erste Lokal mit einem Preis hinzu.');
+      empty.textContent = t('Deine Map ist bereit. Füge das erste Lokal mit einem Preis hinzu.') + ' ' + t('Tippe dafür direkt auf die Karte oder auf «Hinzufügen».');
       el('custom-map-entries').append(empty);
     }
     for (const item of entries) {
@@ -409,11 +443,11 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       }
     }, 450);
   }
-  function openEntry(item?: MapEntry) {
+  function openEntry(item?: MapEntry, position?: L.LatLng) {
     if (!current) return;
-    editing = item; lockedVenue = Boolean(item);
+    editing = item; lockedVenue = Boolean(item); entryPosition = position;
     cancelPlaceSearch(); remoteMatches = []; placeStatus = 'idle';
-    entry.querySelector('form')!.reset(); errorText(entry, '');
+    entry.querySelector('form')!.reset(); field('venue').value = ''; errorText(entry, '');
     if (item) chooseVenue(item.venue);
     field('product').value = item?.product || '';
     field('price').value = item ? String(item.priceChf) : '';
@@ -456,7 +490,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   const addVenue = venueForm(city, api, venues, bar => {
     added.push(bar); lockedVenue = false; venueSearch.disabled = false; chooseVenue(bar); field('product').focus();
   }, 'custom-');
-  entry.querySelector<HTMLButtonElement>('#map-new-venue')!.onclick = () => addVenue(map?.getCenter() || L.latLng(cities[city].center));
+  entry.querySelector<HTMLButtonElement>('#map-new-venue')!.onclick = () => addVenue(entryPosition || map?.getCenter() || L.latLng(cities[city].center), '', Boolean(entryPosition));
   el('map-add-entry').onclick = () => openEntry();
   entry.querySelector('form')!.onsubmit = async event => {
     event.preventDefault(); if (busy || !current) return;
@@ -506,7 +540,10 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     const buttons = view.querySelectorAll<HTMLButtonElement>('.custom-map-toolbar button');
     buttons.forEach(button => { button.disabled = true; });
     updatePublicationControl(true);
-    try { open(await call({ action, mapId: id })); }
+    try {
+      open(await call({ action, mapId: id }));
+      if (action === 'requestMapPublication') offerTip('publication', id);
+    }
     catch (error) {
       el('custom-map-action-error').textContent = failure(error); el('custom-map-action-error').hidden = false;
     } finally {

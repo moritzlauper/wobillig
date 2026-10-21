@@ -8,7 +8,8 @@ import { htmlLang, localeFromPath, locales, translate, type Locale } from '../sr
 import { cityContent, cityIds, cityPath, guideContent, guidePath, guideTypes, guideDataset, localPath, seoHead, siteOrigin } from '../src/seo';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const analyticsTag = '<script data-goatcounter="https://wobillig.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>';
+// Skip the async counter on payment returns: it can run before main.ts scrubs the secret.
+const analyticsTag = '<script>if(new URLSearchParams(location.search).has("payment_intent_client_secret"))window.goatcounter={no_onload:true};</script><script data-goatcounter="https://wobillig.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>';
 // Static guides do not load src/main.ts, so initialise Analytics directly.
 const guideAnalyticsTag = '<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer src="/_vercel/insights/script.js"></script>';
 const themeControl = (locale: Locale = 'de') => {

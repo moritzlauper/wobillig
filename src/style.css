@@ -17,7 +17,6 @@ a { color: var(--link); text-underline-offset: 2px; }
 .switch { display: flex; gap: 4px; }
 .toolbar-heading { display: flex; align-items: stretch; gap: 6px; }
 .create-map-button { flex: 0 0 35px; width: 35px; padding: 0; font-size: 23px; line-height: 1; }
-#my-maps { white-space: nowrap; }
 #app.custom-map-active > :not(#custom-map-view) { display: none !important; }
 #custom-map-view { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .custom-map-toolbar { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px 24px; padding: 16px; border-bottom: 1px solid var(--divider); }
@@ -68,7 +67,6 @@ a { color: var(--link); text-underline-offset: 2px; }
 @media (max-width: 760px) {
   .toolbar-heading .create-map-button { min-height: 30px; padding: 0; font-size: 23px; }
   .toolbar-heading { flex-wrap: wrap; }
-  #my-maps { order: 3; }
   .custom-map-content { flex-direction: column; overflow: hidden; }
   .custom-map-panel { flex: 1; min-height: 0; }
   #custom-map-entries { display: none; flex: 1; min-height: 0; width: 100%; overflow-y: auto; border-left: 0; }
@@ -96,6 +94,9 @@ a { color: var(--link); text-underline-offset: 2px; }
 #additional-categories { position: absolute; top: calc(100% + 4px); right: 0; z-index: 1700; min-width: 180px; padding: 4px; background: var(--surface); border: 1px solid var(--strong-border); border-radius: 4px; box-shadow: 0 4px 14px #0003; }
 #additional-categories { max-width: min(320px, calc(100vw - 24px)); max-height: 60dvh; overflow-y: auto; overflow-wrap: anywhere; }
 #additional-categories button { display: block; width: 100%; text-align: left; border: 0; min-height: 40px; }
+#additional-categories .custom-map-menu-group { padding: 4px 0; }
+#additional-categories > :not([hidden]) ~ .custom-map-menu-group { margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--divider); }
+.custom-map-menu-label { padding: 4px 10px; color: var(--muted); font-size: 12px; font-weight: 600; }
 #additional-categories .category-description { display: inline; }
 .search-box { position: relative; flex: 1; min-width: 160px; }
 #search { width: 100%; min-width: 0; padding-right: 44px; }
@@ -168,7 +169,8 @@ a { color: var(--link); text-underline-offset: 2px; }
 #load-error { background: var(--warning); padding: 8px 12px; font-size: var(--font-control); }
 main { display: flex; flex: 1; min-height: 0; }
 .app-footer { position: absolute; right: calc(52px + env(safe-area-inset-right, 0px)); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); z-index: 500; font-size: var(--font-meta); }
-.app-footer a { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 5px; border-radius: 3px; background: var(--overlay); color: var(--secondary); }
+.app-footer a, .app-footer button { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 5px; border: 0; border-radius: 3px; background: var(--overlay); color: var(--secondary); font: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.app-footer { display: flex; gap: 2px; flex-wrap: wrap; justify-content: flex-end; max-width: calc(100% - 64px); }
 .list-panel { flex: 0 0 300px; overflow-y: auto; border-right: 1px solid var(--strong-border); }
 .list-tools { padding: 8px; border-bottom: 1px solid var(--divider); }
 .list-tools select { width: 100%; }
@@ -362,3 +364,13 @@ input::placeholder { color: var(--subtle); opacity: 1; }
 .custom-map-form textarea { font: inherit; padding: 10px; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 3px; resize: vertical; }
 #automatic-map-details { padding: 20px; overflow-y: auto; overflow-wrap: anywhere; max-width: 680px; }
 #automatic-map-details h2 { font-size: 20px; }
+
+#tip-dialog { color-scheme: light; background: #fff; color: #262626; }
+#tip-dialog .tip-description { margin: 0 0 20px; }
+#tip-dialog .tip-pay { width: 100%; margin-top: 20px; background: #262626; color: #fff; }
+#tip-dialog .tip-status { margin: 16px 0 0; font-size: 14px; }
+#tip-dialog .tip-status:empty { display: none; }
+#tip-dialog .tip-close { background: #fff; color: #262626; border-color: #ddd; }
+
+.tip-backdrop { position: fixed; inset: 0; z-index: 10000; background: var(--backdrop); }
+#tip-dialog[open] { position: fixed; inset: 0; margin: auto; z-index: 10001; }

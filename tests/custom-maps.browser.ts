@@ -4,12 +4,39 @@ import type { CustomMap } from '../src/custom-map-data';
 const venue = { id: 'node/test-doner', name: 'Test Döner', address: 'Langstrasse 1', postcode: '8004', lat: 47.378, lon: 8.53,
   type: 'fast_food', offers: [], website: null, openingHours: null, outdoor: false, checkedAt: null, scrapeStatus: 'unavailable' };
 test.beforeEach(async ({ context }) => {
+  await context.route('**/api/tip?*', route => route.fulfill({ json: { enabled: false } }));
   await context.route('**/api/prices?*mapPlaces=*', route => route.fulfill({ json: { places: [] } }));
   await context.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await context.route('**/data/locations.json', route => route.fulfill({ json: { bars: [venue] } }));
 });
 
 for (const width of [320, 1280]) {
+  test(`saved maps open directly and are separated from other public maps at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    const own = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: 'Meine Glace-Map' };
+    const other = { id: 'd268dbea-93cf-45de-9d17-2b5c74090237', name: 'Öffentliche Matcha-Map' };
+    await page.addInitScript(map => localStorage.setItem('wobillig:maps:zurich', JSON.stringify([map])), own);
+    await page.route('**/api/prices?*', route => route.fulfill({ json: new URL(route.request().url()).searchParams.has('map')
+      ? { map: { ...own, createdAt: new Date().toISOString(), entries: [] } }
+      : { entries: [], publicMaps: [own, other].map(map => ({ ...map, venueCount: 1 })) } }));
+    await page.goto('/');
+    await expect(page.locator('#count')).not.toHaveText('Laden …');
+    await page.locator('#categories-toggle').click();
+    const menu = page.locator('#additional-categories');
+    await expect(menu.getByRole('group', { name: 'Meine Maps', exact: true }).getByRole('button')).toHaveText(own.name);
+    const publicGroup = menu.getByRole('group', { name: 'Öffentliche Maps', exact: true });
+    await expect(publicGroup.getByRole('button')).toHaveText(`${other.name} · 1 Lokale`);
+    await expect(publicGroup).toHaveCSS('border-top-width', '1px');
+    await expect(menu.locator(`[data-custom-map="${own.id}"]`)).toHaveCount(1);
+    await expect(menu.getByRole('button', { name: 'Meine Maps', exact: true })).toHaveCount(0);
+    const bounds = await menu.boundingBox();
+    expect(bounds!.x).toBeGreaterThanOrEqual(0);
+    expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
+    await page.screenshot({ path: `/tmp/wobillig-map-dropdown-${width}.png` });
+    await menu.getByRole('button', { name: own.name, exact: true }).click();
+    await expect(page.locator('#custom-map-name')).toHaveText(own.name);
+    await expect(page.locator('#create-map-dialog')).toBeHidden();
+  });
   test(`venue autocomplete searches beyond the first 80 places at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
     const lateVenue = { ...venue, id: 'node/zuribiss', name: 'Züribiss', address: 'Zähringerstrasse 999', postcode: '8001' };
@@ -145,10 +172,10 @@ for (const width of [320, 1280]) {
     await page.locator('#map-back').click();
     await expect(page.locator('#drink-coffee')).toBeVisible();
     await expect(page).not.toHaveURL(/map=/);
-    await expect(page.locator('#my-maps')).toBeHidden();
+    await expect(page.locator('#additional-categories')).toBeHidden();
     await page.locator('#categories-toggle').click();
-    await page.locator('#my-maps').click();
-    await page.locator('#saved-maps').getByRole('button', { name: 'Döner-Map', exact: true }).click();
+    await page.locator('#additional-categories').getByRole('button', { name: 'Döner-Map', exact: true }).click();
+    await expect(page.locator('#create-map-dialog')).toBeHidden();
     await expect(page.locator('#custom-map-name')).toHaveText('Döner-Map');
     // A new visitor can open the link without the creator's local saved list.
     const other = await context.newPage();
@@ -265,6 +292,11 @@ test('one place stays link-only until explicit publication and reviewer approval
   await page.getByRole('button', { name: 'Publish map for everybody' }).click();
   await expect(page.locator('#custom-map-visibility')).toContainText('Submitted for review');
   await page.locator('#map-back').click();
+  await page.locator('#categories-toggle').click();
+  await expect(page.getByRole('group', { name: 'My maps', exact: true }).locator('[data-custom-map]')).toHaveCount(1);
+  await expect(page.getByRole('group', { name: 'Public maps', exact: true })).toHaveCount(0);
+  await page.evaluate(() => localStorage.removeItem('wobillig:maps:zurich'));
+  await page.reload();
   await expect(page.locator('[data-custom-map]')).toHaveCount(0);
   saved.publication!.status = 'approved'; saved.publishedAt = new Date().toISOString();
   await page.reload();

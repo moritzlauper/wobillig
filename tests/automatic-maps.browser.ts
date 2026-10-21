@@ -3,6 +3,10 @@ import type { CustomMap } from '../src/custom-map-data';
 import { mapReviewCards } from '../server/map-review';
 import { reviewHtml } from '../server/price-review.mjs';
 
+test.beforeEach(async ({ context }) => {
+  await context.route('**/api/tip?*', route => route.fulfill({ json: { enabled: false } }));
+});
+
 for (const width of [320, 1280]) {
   test(`request, reopen and see review feedback at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -39,9 +43,8 @@ for (const width of [320, 1280]) {
     saved!.automatic = { ...saved!.automatic!, status: 'blocked', revision: 2, note: 'Coop blockiert derzeit automatische Abrufe.' };
     await page.locator('#map-back').click();
     await page.locator('#categories-toggle').click();
-    await page.locator('#my-maps').click();
-    await expect(form.locator('#saved-maps')).toContainText('Quelle noch nicht verfügbar');
-    await form.locator('#saved-maps button').click();
+    await page.locator('#additional-categories').getByRole('button', { name: /Coop Aktionen Zürich/ }).click();
+    await expect(form).toBeHidden();
     await expect(page.locator('#automatic-map-details')).toContainText('Coop blockiert derzeit automatische Abrufe.');
     await page.reload();
     await expect(page.locator('#custom-map-summary')).toHaveText('Quelle noch nicht verfügbar');

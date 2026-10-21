@@ -49,7 +49,7 @@ test('mobile visitors can create a venue, reload it and add a price', async ({ p
   await expect(page.locator('#detail')).toContainText('Neues Testcafé');
   await page.getByRole('button', { name: 'Preis hinzufügen', exact: true }).click();
   await page.getByText('Preis von Hand eintragen', { exact: true }).click();
-  await page.getByLabel('Preis in CHF', { exact: true }).fill('5.20');
+  await page.locator('#price-dialog').getByLabel('Preis in CHF', { exact: true }).fill('5.20');
   await page.getByRole('button', { name: 'Speichern', exact: true }).click();
   await expect(page.locator('#detail')).toContainText('CHF 5.20');
   expect(entries).toHaveLength(1);

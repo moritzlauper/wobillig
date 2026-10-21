@@ -23,7 +23,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   let clicked: Category = 'coffee';
   let requestVersion = 0;
   let pendingClicks = Promise.resolve();
-  let mapButtons: HTMLButtonElement[] = [], mapLibrary: HTMLButtonElement | undefined;
+  let mapButtons: HTMLButtonElement[] = [], savedMapButtons: HTMLButtonElement[] = [];
   const buttons = Object.fromEntries(categories.map(category => {
     const button = document.createElement('button');
     button.id = `drink-${category}`; button.type = 'button';
@@ -68,9 +68,18 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     more.replaceChildren(...order.filter(upcoming).map(category => buttons[category]));
     // Retain the unavailable Pizza element for existing control synchronization.
     if (!pizzaAvailable) more.append(buttons.pizza);
-    more.append(...mapButtons);
-    if (mapLibrary) more.append(mapLibrary);
-    moreContainer.hidden = !order.some(upcoming) && !mapButtons.length && (!mapLibrary || mapLibrary.hidden);
+    const savedIds = new Set(savedMapButtons.map(button => button.dataset.customMap));
+    const publicButtons = mapButtons.filter(button => !savedIds.has(button.dataset.customMap));
+    for (const [label, items] of [[t('Meine Maps'), savedMapButtons], [t('Öffentliche Maps'), publicButtons]] as const) {
+      if (!items.length) continue;
+      const group = document.createElement('div');
+      group.className = 'custom-map-menu-group';
+      group.setAttribute('role', 'group'); group.setAttribute('aria-label', label);
+      const heading = document.createElement('div');
+      heading.className = 'custom-map-menu-label'; heading.textContent = label;
+      group.append(heading, ...items); more.append(group);
+    }
+    moreContainer.hidden = !order.some(upcoming) && !mapButtons.length && !savedMapButtons.length;
     if (moreContainer.hidden) {
       more.hidden = true;
       toggle.setAttribute('aria-expanded', 'false');
@@ -134,8 +143,13 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
       });
       render();
     },
-    setMapLibrary(button: HTMLButtonElement) {
-      mapLibrary = button;
+    setSavedMaps(maps: { id: string; name: string }[], load: (id: string) => void) {
+      savedMapButtons = maps.map(map => {
+        const button = document.createElement('button'); button.type = 'button';
+        button.textContent = map.name; button.dataset.customMap = map.id;
+        button.onclick = () => { close(); load(map.id); };
+        return button;
+      });
       render();
     },
     close,
