@@ -16,6 +16,7 @@ from urllib.parse import urlparse
 from scraper.scrape import ROOT,discover,scrape_task,now
 from scraper.scan_logging import log_result, log_summary
 from scraper.enrich import QUERY,candidates,host,AuditFetcher
+from scraper.verified_venues import include_verified_coffee_venues
 
 DATA=DATA_DIR/'coffee.json'
 CHECKS=STATE_DIR/'coffee_checks.json'
@@ -101,6 +102,7 @@ def main():
     hints=json.loads((ROOT/'scraper/menu_urls.json').read_text())
     hints.update(json.loads((ROOT/'scraper/coffee_menu_urls.json').read_text()))
     discovered=discover(previous,args.osm_file,query=QUERY) if args.discover or args.osm_file or not old else previous
+    discovered=include_verified_coffee_venues(discovered)
     all_bars={b['id']:b for b in beer['bars']+discovered['bars']}
     selected=select_venues(list(all_bars.values()),old,hints,checks,args.limit,args.only,args.missing_only)
     fetcher=ArchiveFetcher(args.archive_dir) if args.archive_dir else AuditFetcher(args.audit_dir)
@@ -108,7 +110,7 @@ def main():
     include_cafes(output, discovered['bars'])
     def flush():
         dataset={'generatedAt':now(),'discoveredAt':discovered['discoveredAt'],'attribution':beer['attribution'],'bars':sorted(output.values(),key=lambda b:b['name'].casefold())}
-        save(DATA,dataset);save(CHECKS,checks)
+        save(DATA,include_verified_coffee_venues(dataset));save(CHECKS,checks)
     statuses=Counter();offer_count=0
     print(f'[coffee] Checking {len(selected)} venues for coffee prices only; up to {args.max_pages} documents per venue.',flush=True)
     with ThreadPoolExecutor(max_workers=max(1,min(args.workers,8))) as pool:

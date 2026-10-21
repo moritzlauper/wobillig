@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 from scraper.scrape import discover
 from scraper.scrape_coffee import save
+from scraper.verified_venues import include_verified_coffee_venues
 
 QUERY = venue_query('restaurant|cafe|fast_food|bar|pub|biergarten')
 
@@ -34,9 +35,9 @@ def main():
     existing = [b for name in ('bars', 'coffee', 'pizza')
                 if (DATA_DIR / f'{name}.json').exists()
                 for b in json.loads((DATA_DIR / f'{name}.json').read_text())['bars']]
-    output = catalogue(found, existing)
+    output = catalogue(include_verified_coffee_venues(catalogue(found, existing)), [])
     save(DATA_DIR / 'locations.json', output)
-    print(f"Saved {len(output['bars'])} selectable OSM locations")
+    print(f"Saved {len(output['bars'])} selectable locations")
 
 
 if __name__ == '__main__':
