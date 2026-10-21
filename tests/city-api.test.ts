@@ -51,7 +51,7 @@ describe('city-scoped price API', () => {
     mocks.blobStore.mockReturnValue({ read: async () => ({ state: {
       entries: [], customMaps: [map, { id: 'another-map', name: 'Other', entries: [] }], limits: { secret: {} },
     } }) });
-    expect((await request(`/api/prices?city=bern&map=${map.id}`)).data).toEqual({ map: { ...map, canEdit: false } });
+    expect((await request(`/api/prices?city=bern&map=${map.id}`)).data).toEqual({ map: { ...map, canEdit: true } });
     expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: {}, publicMaps: [] });
     expect((await request('/api/prices?map=invalid')).status).toBe(400);
     expect((await request('/api/prices?map=d268dbea-93cf-45de-9d17-2b5c74090237')).status).toBe(404);

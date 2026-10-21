@@ -6,6 +6,9 @@ import { emptyState, WriteConflict, type Store } from '../server/prices';
 const mocks = vi.hoisted(() => ({ store: vi.fn() }));
 vi.mock('../server/prices.js', async original => ({ ...await original<typeof import('../server/prices')>(), blobStore: mocks.store }));
 import handler from '../api/prices';
+import { signMapPlace } from '../server/map-places';
+import { sessionCookie } from '../server/email-auth';
+import type { City } from '../src/cities';
 
 const id = '52251319-7e51-44e3-b6c0-5f3105d2f22e';
 const venue = { id: 'node/legacy-falafel', name: 'Falafel', lat: 47.38, lon: 8.53, address: '', postcode: '' };
@@ -33,8 +36,8 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllEnvs());
 
-async function request(body?: object, cookie?: string) {
-  const req = { url: `/api/prices?city=zurich${body ? '' : `&map=${id}`}`, method: body ? 'POST' : 'GET', body,
+async function request(body?: object, cookie?: string, city: City = 'zurich') {
+  const req = { url: `/api/prices?city=${city}${body ? '' : `&map=${id}`}`, method: body ? 'POST' : 'GET', body,
     headers: { host: 'example.org', origin: 'https://example.org', 'content-type': 'application/json', cookie },
     socket: { remoteAddress: 'test-ip' } } as IncomingMessage & { body?: unknown };
   const headers: Record<string, any> = {}; let data: any;
@@ -45,20 +48,20 @@ async function request(body?: object, cookie?: string) {
   return { status: res.statusCode, data, cookie: [headers['Set-Cookie'] || []].flat().map((value: string) => value.split(';')[0]).join('; ') };
 }
 
-it('restores a legacy map, preserves its entry, and permits owner edits after reload', async () => {
+it('restores a legacy map, preserves its entry, and retains collaborative edits after reload', async () => {
   const before = await request();
-  expect(before.data.map.canEdit).toBe(false);
+  expect(before.data.map.canEdit).toBe(true);
   const recoveryToken = token();
-  const restored = await request({ action: 'recoverMap', mapId: id, recoveryToken }, before.cookie);
+  const restored = await request({ action: 'recoverMap', mapId: id, recoveryToken });
   expect(restored.status).toBe(200);
   expect(restored.data.map).toEqual({ ...legacy, canEdit: true });
-  expect((await request(undefined, before.cookie)).data.map.canEdit).toBe(true);
-  expect((await request({ action: 'recoverMap', mapId: id, recoveryToken }, before.cookie)).status).toBe(200);
-  const edit = await request({ action: 'saveMapEntry', mapId: id, barId: venue.id, product: 'Falafel', priceChf: 5, revision: 1 }, before.cookie);
+  expect((await request(undefined, restored.cookie)).data.map.canEdit).toBe(true);
+  expect((await request({ action: 'recoverMap', mapId: id, recoveryToken }, restored.cookie)).status).toBe(200);
+  const edit = await request({ action: 'saveMapEntry', mapId: id, barId: venue.id, product: 'Falafel', priceChf: 5, revision: 1 }, restored.cookie);
   expect(edit.status).toBe(200);
   expect(edit.data.map.entries[0]).toMatchObject({ priceChf: 5, revision: 2 });
   const other = await request();
-  expect(other.data.map.canEdit).toBe(false);
+  expect(other.data.map.canEdit).toBe(true);
   expect((await request({ action: 'recoverMap', mapId: id, recoveryToken }, other.cookie)).status).toBe(403);
 });
 
@@ -70,7 +73,7 @@ it('rejects public IDs, expired, modified, wrong-city and wrong-map recovery lin
   expect((await store.read()).state.customMaps).toEqual([legacy]);
 });
 
-it('cannot overwrite an existing owner and grants only one browser access during competing claims', async () => {
+it('cannot overwrite an existing owner and retains the first creator attribution during competing claims', async () => {
   const recoveryToken = token();
   const results = await Promise.all([
     request({ action: 'recoverMap', mapId: id, recoveryToken }),
@@ -80,3 +83,32 @@ it('cannot overwrite an existing owner and grants only one browser access during
   const winner = results.find(result => result.status === 200)!;
   expect((await request(undefined, winner.cookie)).data.map.canEdit).toBe(true);
 });
+
+for (const city of ['zurich', 'bern', 'basel', 'lausanne', 'geneva'] as const) {
+  for (const owner of [undefined, { browser: 'original' }, { browser: 'original', account: 'original-account' }]) {
+    it(`allows anonymous and signed-in contributors to edit ${city} maps with ${owner ? owner.account ? 'account' : 'browser' : 'no'} creator`, async () => {
+      const { state, etag } = await store.read();
+      if (owner) state.mapOwners = { [id]: owner };
+      await store.write(state, etag);
+      const before = await request(undefined, undefined, city);
+      expect(before.data.map.canEdit).toBe(true);
+      const edited = await request({ action: 'saveMapEntry', mapId: id, barId: venue.id, product: 'Falafel', priceChf: 5, revision: 1 }, undefined, city);
+      expect(edited.status).toBe(200);
+      expect(edited.data.map.entries[0]).toMatchObject({ priceChf: 5, revision: 2 });
+      let accountCookie = '';
+      sessionCookie({ getHeader: () => undefined, setHeader: (_key: string, value: string) => { accountCookie = value.split(';')[0]; } } as unknown as ServerResponse, 'a'.repeat(64));
+      const addedVenue = { ...venue, id: 'node/new-place', name: 'New place' };
+      const place = signMapPlace({ ...addedVenue, type: 'cafe', offers: [], website: null, openingHours: null, outdoor: false, checkedAt: null, scrapeStatus: 'osm' }, city);
+      const added = await request({ action: 'saveMapEntry', mapId: id, barId: addedVenue.id, placeToken: place.token, product: 'Falafel', priceChf: 6, revision: 0 }, accountCookie, city);
+      expect(added.status).toBe(200);
+      expect(added.data.map.entries).toHaveLength(2);
+      expect((await store.read()).state.mapOwners?.[id]).toEqual(owner);
+      expect((await request(undefined, undefined, city)).data.map.canEdit).toBe(true);
+      const stale = await request({ action: 'saveMapEntry', mapId: id, barId: venue.id, product: 'Falafel', priceChf: 7, revision: 1 }, undefined, city);
+      expect(stale.status).toBe(409);
+      const publication = await request({ action: 'requestMapPublication', mapId: id }, accountCookie, city);
+      expect(publication.status).toBe(200);
+      expect(publication.data.map.publication.status).toBe('pending');
+    });
+  }
+}

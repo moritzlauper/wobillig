@@ -60,7 +60,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       <label>${t('Welche Angebote möchtest du sehen?')}<textarea name="description" rows="3" maxlength="600" required placeholder="${t('z. B. Kaffeeaktionen bei Coop in Zürich')}"></textarea></label>
       <p class="muted">${t('Wir prüfen die Quelle und ob sich ihre Angebote zuverlässig übernehmen lassen. Die Anfrage startet noch keine automatische Map.')}</p>
     </fieldset>
-    <p class="muted">${e(t(cities[city].name))} · <span data-manual>${t('Alle mit dem Link können die Map ansehen. Nur du kannst sie bearbeiten.')}</span><span data-automatic-copy hidden>${t('Den Status findest du unter «Meine Maps».')}</span></p>
+    <p class="muted">${e(t(cities[city].name))} · <span data-manual>${t('Alle mit dem Link können die Map ansehen und gemeinsam bearbeiten.')}</span><span data-automatic-copy hidden>${t('Den Status findest du unter «Meine Maps».')}</span></p>
     <p class="muted" data-manual>${t('Nur per Link erreichbar.')}</p>
     <button class="primary" type="submit">${t('Map erstellen')}</button>
     <p role="alert" data-error hidden></p>

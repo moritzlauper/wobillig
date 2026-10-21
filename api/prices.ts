@@ -1,5 +1,5 @@
 import { publicCommunity } from '../server/public-community.js';
-import { actorFor, protectContribution } from '../server/community-security.js';
+import { protectContribution } from '../server/community-security.js';
 import { canEditMap } from '../server/custom-maps.js';
 import { cities, isCity, cityStoragePath, type City } from '../src/cities.js';
 import type { IncomingMessage, ServerResponse } from 'node:http';
@@ -57,7 +57,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
         if (!isMapId(mapId)) throw new InputError('Ungültige Map.');
         const map = state.customMaps?.find(item => item.id === mapId);
         if (!map) throw new InputError('Diese Map wurde nicht gefunden.', 404);
-        return reply(200, { map: { ...map, canEdit: canEditMap(state.mapOwners?.[map.id], actorFor(req, res)) } });
+        return reply(200, { map: { ...map, canEdit: canEditMap(map) } });
       }
       return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], venueCorrections: state.venueCorrections || [], coffeeRatings: coffeeRatingSummaries(state), publicMaps: publicMapSummaries(state.customMaps || []) });
     }
@@ -85,7 +85,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       const creating = input.action === 'createMap' || input.action === 'requestAutomaticMap';
       const save = async () => {
         const map = await saveCustomMap(store, input, data, visitor, Date.now(), city, actor);
-        return { ...map, canEdit: canEditMap((await store.read()).state.mapOwners?.[map.id], actor) };
+        return { ...map, canEdit: canEditMap(map) };
       };
       if (!creating && input.action !== 'requestMapPublication') return reply(200, { map: await save() });
       if (!isMapId(input.mapId)) throw new InputError('Ungültige Map.');
@@ -93,7 +93,6 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       const mapIp = createHmac('sha256', secret).update(`map-quota:${ip}`).digest('hex');
       const { state } = await store.read();
       const existing = state.customMaps?.find(map => map.id === input.mapId);
-      if (existing && !canEditMap(state.mapOwners?.[existing.id], actor)) throw new InputError('Diese Map kann nur vom Ersteller bearbeitet werden.', 403);
       // Retrying a completed operation must not consume another daily slot.
       if (existing && (creating || ['pending', 'approved'].includes(existing.publication?.status || ''))) {
         return reply(200, { map: creating ? await save() : { ...existing, canEdit: true } });

@@ -5,6 +5,38 @@ async function fixture(page: Page, venues = [venue]) {
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.route('**/data/*.json', route => route.fulfill({ json: { bars: /coffee|locations/.test(route.request().url()) ? venues : [], generatedAt: '', discoveredAt: '', attribution: '' } }));
 }
+for (const width of [320, 1280]) {
+  test(`footer account entry supports optional email sign-in at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    await fixture(page);
+    await page.route('**/api/tip?*', route => route.fulfill({ json: { enabled: true, amount: 550, publishableKey: 'pk_test_public' } }));
+    await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
+    let verified = false;
+    const actions: string[] = [];
+    await page.route('**/api/community-auth', route => {
+      if (route.request().method() === 'GET') return route.fulfill({ json: { mailReady: true, verified, emailRequired: false, protection: false, paused: false } });
+      const body = route.request().postDataJSON(); actions.push(body.action);
+      if (body.action === 'confirm') verified = true;
+      return route.fulfill({ json: body.action === 'request' ? { challenge: 'test-challenge' } : { verified } });
+    });
+    await page.goto('/');
+    const account = page.locator('.app-footer').getByRole('button', { name: 'Konto erstellen', exact: true });
+    await expect(account).toBeVisible();
+    await expect(page.locator('#tip-coffee')).toHaveText('Kaffee spendieren · CHF 5.50');
+    expect(await page.locator('.app-footer').evaluate(el => el.scrollWidth > el.clientWidth)).toBe(false);
+    await page.screenshot({ path: `/tmp/wobillig-footer-account-${width}.png` });
+    await account.click();
+    const dialog = page.getByRole('dialog', { name: 'Konto erstellen oder anmelden' });
+    await expect(dialog).toContainText('Die E-Mail-Bestätigung ist freiwillig.');
+    await dialog.getByLabel('E-Mail-Adresse').fill('reader@example.org');
+    await dialog.getByRole('button', { name: 'Code senden' }).click();
+    await dialog.getByLabel('Sechsstelliger Code').fill('123456');
+    await dialog.getByRole('button', { name: 'Bestätigen und fortfahren' }).click();
+    await expect(dialog).toBeHidden();
+    await expect(page.locator('.app-footer').getByRole('button', { name: 'Mein Konto', exact: true })).toBeVisible();
+    expect(actions).toEqual(['request', 'confirm']);
+  });
+}
 test('email verification preserves the form and pending corrections never become public in the UI', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 }); await fixture(page);
   const authActions: any[] = [], writes: any[] = [];
@@ -51,13 +83,15 @@ test('cancelling verification preserves form input and does not submit it', asyn
   await expect(form.getByLabel('Website (optional)')).toHaveValue('https://new.example/');
   await expect(form.getByRole('button', { name: 'Korrektur speichern' })).toBeEnabled(); expect(writes).toBe(0);
 });
-test('shared map links are read-only without owner permission', async ({ page }) => {
+test('shared manual maps show editing controls for visitors without an account', async ({ page }) => {
   await fixture(page);
-  const map = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: 'Geteilte Map', createdAt: '', canEdit: false, entries: [] };
+  const map = { id: 'd268dbea-93cf-45de-9d17-2b5c74090236', name: 'Geteilte Map', createdAt: '', canEdit: true, entries: [] };
   await page.route('**/api/prices?*', route => route.fulfill({ json: new URL(route.request().url()).searchParams.has('map') ? { map } : { entries: [] } }));
   await page.goto(`/?map=${map.id}`);
   await expect(page.locator('#custom-map-name')).toHaveText(map.name);
-  await expect(page.locator('#map-add-entry')).toBeHidden(); await expect(page.locator('#map-publish-control')).toBeHidden(); await expect(page.locator('#map-withdraw')).toBeHidden();
+  await expect(page.locator('#map-add-entry')).toBeVisible();
+  await page.locator('#map-add-entry').click();
+  await expect(page.locator('#map-entry-dialog')).toBeVisible();
   await expect(page.locator('#map-share')).toBeVisible();
 });
 

@@ -85,7 +85,7 @@ export async function setupTip(button: HTMLButtonElement, city: City, notify: (t
     const quote = await response.json() as { enabled?: boolean; amount?: number; test?: boolean; publishableKey?: string };
     if (!quote.enabled || !quote.publishableKey?.startsWith('pk_') || !Number.isInteger(quote.amount) || quote.amount! < 100 || quote.amount! > 2000) return;
     const price = (quote.amount! / 100).toFixed(2);
-    const label = t('Kaffee spendieren · CHF {price} (TWINT/Karte)', { price });
+    const label = t('Kaffee spendieren · CHF {price}', { price });
     button.textContent = quote.test ? `${label} (${t('Test')})` : label;
     button.title = t('Ein Cappuccino zum «Günstig»-Preis dieser Stadt für wobillig.');
     button.hidden = false;

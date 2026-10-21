@@ -47,6 +47,9 @@ it('stores requests without fetching their URLs, deduplicates retries and shares
   expect((await request(suggestion, { cookie })).status).toBe(200);
   const duplicate = await request({ ...suggestion, mapId: otherId, name: 'Coop Kaffee', description: ' KAFFEEAKTIONEN ', sourceUrl: suggestion.sourceUrl + '#offers' });
   expect(duplicate.status).toBe(200); expect(duplicate.data.map.id).toBe(id);
+  for (let i = 0; i < 4; i++) {
+    expect((await request({ action: 'createMap', mapId: `d268dbea-93cf-45de-9d17-2b5c7409023${i}`, name: 'Map' }, { cookie })).status).toBe(200);
+  }
   expect((await request({ action: 'createMap', mapId: otherId, name: 'Map' }, { query: 'city=bern', ip: 'ip-2', cookie })).status).toBe(429);
   expect((await request({ ...suggestion, mapId: otherId, description: 'Andere Angebote' })).status).toBe(429);
   expect(fetch).not.toHaveBeenCalled();

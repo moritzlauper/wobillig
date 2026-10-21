@@ -71,7 +71,7 @@ export function contributionReviewHtml(groups: { city: City; state: State }[]) {
   for (const { city, state } of groups) {
     for (const map of state.customMaps || []) {
       if (map.automatic || state.mapOwners?.[map.id]) continue;
-      cards.push(`<article><h2>Bestehende Map: ${e(map.name)}</h2><p>${e(cities[city].name)} · Bisher ohne Bearbeitungsberechtigung. Nur als Administrator kannst du sie deinem aktuellen Konto oder Browser zuweisen.</p><form method="post"><input type="hidden" name="city" value="${city}"><input type="hidden" name="kind" value="legacy-map"><input type="hidden" name="id" value="${e(map.id)}"><input type="hidden" name="fingerprint" value="${fingerprint(map)}"><button name="decision" value="claim">Bearbeitung diesem Konto / Browser zuweisen</button></form></article>`);
+      cards.push(`<article><h2>Bestehende Map: ${e(map.name)}</h2><p>${e(cities[city].name)} · Gemeinsam über den Link bearbeitbar. Die Zuordnung zum Ersteller ändert diese gemeinsame Bearbeitung nicht.</p><form method="post"><input type="hidden" name="city" value="${city}"><input type="hidden" name="kind" value="legacy-map"><input type="hidden" name="id" value="${e(map.id)}"><input type="hidden" name="fingerprint" value="${fingerprint(map)}"><button name="decision" value="claim">Ersteller diesem Konto / Browser zuordnen</button></form></article>`);
     }
     for (const row of state.heldPrices || []) card(city, 'price', row.entry.id, row, row.entry.venue?.name || 'Preis', { vorher: row.before, nachher: row.entry.offer, grund: row.reason });
     for (const row of state.pendingVenues || []) card(city, 'venue', row.id, row, 'Neues Lokal', row.venue);

@@ -122,13 +122,13 @@ it('keeps browser and email cookies together, and rejects cross-origin email req
   const result = res(); await auth(bad, result.value);
   expect(result.value.statusCode).toBe(403); expect(mocks.send).not.toHaveBeenCalled();
 });
-it('protects map ownership, locks legacy maps, and supports the verified owner on another browser', async () => {
+it('allows collaboration on owned maps without replacing creator attribution', async () => {
   const id = 'd268dbea-93cf-45de-9d17-2b5c74090236';
-  await saveCustomMap(store, { action: 'createMap', mapId: id, name: 'Test' }, {}, 'visitor', 0, 'zurich', { browser: 'a', account: 'owner' });
-  await expect(saveCustomMap(store, { action: 'withdrawMapPublication', mapId: id }, {}, 'other', 0, 'zurich', { browser: 'b', account: 'intruder' })).rejects.toMatchObject({ status: 403 });
-  await expect(saveCustomMap(store, { action: 'withdrawMapPublication', mapId: id }, {}, 'other', 0, 'zurich', { browser: 'b', account: 'owner' })).resolves.toMatchObject({ id });
-  expect(canEditMap(undefined, { browser: 'a' })).toBe(false);
-  expect(canEditMap({ browser: 'a', account: 'owner' }, { browser: 'a' })).toBe(false);
+  const map = await saveCustomMap(store, { action: 'createMap', mapId: id, name: 'Test' }, {}, 'visitor', 0, 'zurich', { browser: 'a', account: 'owner' });
+  await expect(saveCustomMap(store, { action: 'withdrawMapPublication', mapId: id }, {}, 'other', 0, 'zurich', { browser: 'b', account: 'collaborator' })).resolves.toMatchObject({ id });
+  await expect(saveCustomMap(store, { action: 'withdrawMapPublication', mapId: id }, {}, 'anonymous', 0, 'zurich', { browser: 'c' })).resolves.toMatchObject({ id });
+  expect(canEditMap(map)).toBe(true);
+  expect((await store.read()).state.mapOwners?.[id]).toEqual({ browser: 'a', account: 'owner' });
 });
 it('coalesces a burst of 200 public reads without exposing private state and expires the cache', async () => {
   const { state, etag } = await store.read(); state.emailChallenges = { private: { account: 'secret', hash: 'secret', browser: 'secret', expires: 1, attempts: 0 } }; state.mapOwners = { private: { browser: 'secret' } }; await store.write(state, etag);

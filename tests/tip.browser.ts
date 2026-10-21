@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 for (const [path, city, amount] of [['/', 'zurich', 550], ['/bern', 'bern', 500], ['/basel', 'basel', 530]] as const) {
-  test(`small coffee tip beside the wish link in ${city}`, async ({ page }) => {
+  test(`small coffee tip beside the contact link in ${city}`, async ({ page }) => {
     await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
     const posts: string[] = [];
     await page.route('**/api/tip?*', route => {
@@ -14,8 +14,8 @@ for (const [path, city, amount] of [['/', 'zurich', 550], ['/bern', 'bern', 500]
       return route.fulfill({ json: { enabled: true, amount, currency: 'chf', test: false, publishableKey: 'pk_test_public' } });
     });
     await page.goto(path);
-    const tip = page.locator('#tip-coffee'), wish = page.getByRole('link', { name: 'Wunsch mitteilen' });
-    await expect(tip).toHaveText(`Kaffee spendieren · CHF ${(amount / 100).toFixed(2)} (TWINT/Karte)`);
+    const tip = page.locator('#tip-coffee'), wish = page.getByRole('link', { name: 'Kontakt', exact: true });
+    await expect(tip).toHaveText(`Kaffee spendieren · CHF ${(amount / 100).toFixed(2)}`);
     await expect(tip).toHaveCSS('font-size', '10px');
     await expect(wish).toHaveCSS('font-size', '10px');
     const a = await tip.boundingBox(), b = await wish.boundingBox();
@@ -23,7 +23,7 @@ for (const [path, city, amount] of [['/', 'zurich', 550], ['/bern', 'bern', 500]
     expect(Math.abs(a!.y - b!.y)).toBeLessThan(2);
     expect(a!.x + a!.width).toBeLessThanOrEqual(b!.x);
     await page.getByLabel('Kaffeesorte oder Matcha Latte').selectOption('espresso');
-    await expect(tip).toHaveText(`Kaffee spendieren · CHF ${(amount / 100).toFixed(2)} (TWINT/Karte)`);
+    await expect(tip).toHaveText(`Kaffee spendieren · CHF ${(amount / 100).toFixed(2)}`);
     await tip.click();
     await expect(page.locator('#toast')).toContainText('Die Zahlung konnte nicht geöffnet werden.');
     await expect(tip).toBeEnabled();

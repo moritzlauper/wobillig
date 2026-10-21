@@ -52,8 +52,11 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     const maps = state.customMaps || [];
     const existing = maps.find(map => map.id === input.mapId);
     const owner = existing && state.mapOwners?.[existing.id];
-    if (existing && !canEditMap(owner, actor) && !(recover && !owner)) throw new InputError('Nur die Erstellerin oder der Ersteller kann diese Map bearbeiten.', 403);
-    if (recover && owner) return existing!; // Retry after a lost response by the same owner.
+    // Recovery only changes creator attribution; normal collaboration needs no owner permission.
+    if (recover && owner) {
+      if (owner.account ? owner.account !== actor.account : owner.browser !== actor.browser) throw new InputError('Diese Map ist bereits einem Ersteller zugeordnet.', 403);
+      return existing!;
+    }
     // The client keeps the creation ID during retries after a lost response.
     if (create && existing) {
       if (existing.name !== (input.name as string).trim() || Boolean(existing.automatic) !== automatic ||
@@ -103,7 +106,7 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     state.limits[key] = { ...limit, count: limit.count + 1 };
     state.mapOwners ||= {};
     if (!existing || recover) state.mapOwners[map.id] = actor;
-    else if (actor.account && !state.mapOwners[map.id].account) state.mapOwners[map.id].account = actor.account;
+    else if (owner?.browser === actor.browser && actor.account && !owner.account) state.mapOwners[map.id].account = actor.account;
     state.customMaps = [...maps.filter(other => other.id !== map.id), map];
     try { await store.write(state, etag); return map; }
     catch (error) { if (!(error instanceof WriteConflict)) throw error; }
@@ -111,6 +114,7 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
   throw new InputError('Die Map wird gerade geändert. Bitte erneut versuchen.', 409);
 }
 
-export function canEditMap(owner: Actor | undefined, actor: Actor): boolean {
-  return Boolean(owner && (owner.account ? owner.account === actor.account : owner.browser === actor.browser));
+export function canEditMap(map: CustomMap): boolean {
+  // Manual maps are collaborative, including maps with older creator records.
+  return !map.automatic;
 }
