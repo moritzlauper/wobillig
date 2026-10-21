@@ -1,5 +1,8 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  'Impressum': 'Imprint',
+  'Datenschutz': 'Privacy',
+  'Wie wobillig deine Daten verarbeitet': 'How wobillig processes your data',
   'Diese Map enthält noch keine Einträge.': 'This map has no entries yet.',
   'Fehlt ein Lokal in {city}? Trage es hier ein. Wir prüfen es vor der Veröffentlichung.': 'Is a venue in {city} missing? Add it here. We will review it before publication.',
   "Alle mit dem Link können die Map ansehen. Nur du kannst sie bearbeiten.": "Anyone with the link can view the map. Only you can edit it.",

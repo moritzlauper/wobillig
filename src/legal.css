@@ -1,0 +1,17 @@
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.7 Arial, Helvetica, sans-serif; }
+header, main, footer { max-width: 800px; margin: 0 auto; padding: 24px; }
+header { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--divider); }
+.brand { color: var(--text); font-size: 22px; font-weight: bold; text-decoration: none; }
+h1 { font-size: clamp(30px, 6vw, 42px); line-height: 1.2; margin: 12px 0; }
+h2 { font-size: 21px; line-height: 1.4; margin: 34px 0 12px; }
+p, ul { margin: 12px 0; }
+a { color: var(--link); text-underline-offset: 3px; overflow-wrap: anywhere; }
+a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+address { font-style: normal; }
+.updated { color: var(--muted); font-size: 14px; }
+code { overflow-wrap: anywhere; font-size: .9em; }
+ul { padding-left: 22px; }
+li + li { margin-top: 8px; }
+footer { display: flex; flex-wrap: wrap; gap: 12px 24px; border-top: 1px solid var(--divider); margin-top: 24px; padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+@media (max-width: 480px) { header, main, footer { padding-inline: 16px; } }

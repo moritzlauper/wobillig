@@ -44,6 +44,22 @@
   },
   "rewrites": [
     {
+      "source": "/impressum",
+      "destination": "/impressum/index.html"
+    },
+    {
+      "source": "/datenschutz",
+      "destination": "/datenschutz/index.html"
+    },
+    {
+      "source": "/en/imprint",
+      "destination": "/en/imprint/index.html"
+    },
+    {
+      "source": "/en/privacy",
+      "destination": "/en/privacy/index.html"
+    },
+    {
       "source": "/output/price-review/production",
       "destination": "/api/price-review"
     },
@@ -290,6 +306,26 @@
   ],
   "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/impressum/index.html",
+      "destination": "/impressum",
+      "permanent": true
+    },
+    {
+      "source": "/datenschutz/index.html",
+      "destination": "/datenschutz",
+      "permanent": true
+    },
+    {
+      "source": "/en/imprint/index.html",
+      "destination": "/en/imprint",
+      "permanent": true
+    },
+    {
+      "source": "/en/privacy/index.html",
+      "destination": "/en/privacy",
+      "permanent": true
+    },
     {
       "source": "/de/genf/index.html",
       "destination": "/de/genf",

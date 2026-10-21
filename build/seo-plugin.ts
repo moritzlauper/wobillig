@@ -6,6 +6,8 @@ import { cities, cityFromPath, type City } from '../src/cities';
 import type { Dataset } from '../src/data';
 import { htmlLang, localeFromPath, locales, translate, type Locale } from '../src/i18n';
 import { cityContent, cityIds, cityPath, guideContent, guidePath, guideTypes, guideDataset, localPath, seoHead, siteOrigin } from '../src/seo';
+import { legalPages } from './legal-pages';
+import { legalLinks } from '../src/legal-links';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 // Skip the async counter on payment returns: it can run before main.ts scrubs the secret.
@@ -29,7 +31,7 @@ export function seoPlugin(): Plugin {
     const css = readFileSync(`${root}src/seo.css`, 'utf8');
     return {
       path,
-      html: `<!doctype html><html lang="${htmlLang[locale]}"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="theme-color" content="#ffffff" />${themeHead()}${seoHead(city, origin, type, locale)}<link rel="icon" href="${localPath('/favicon.svg', base)}" type="image/svg+xml" /><style>${css}</style>${analyticsTag}${guideAnalyticsTag}</head><body>${guideContent(city, type, dataset(city, guideDataset(type)), base, locale).replace('<header class="guide-header">', `<header class="guide-header">${themeControl(locale)}`)}</body></html>`,
+      html: `<!doctype html><html lang="${htmlLang[locale]}"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="theme-color" content="#ffffff" />${themeHead()}${seoHead(city, origin, type, locale)}<link rel="icon" href="${localPath('/favicon.svg', base)}" type="image/svg+xml" /><style>${css}</style>${analyticsTag}${guideAnalyticsTag}</head><body>${guideContent(city, type, dataset(city, guideDataset(type)), base, locale).replace('<header class="guide-header">', `<header class="guide-header">${themeControl(locale)}`)}<footer class="site-legal-footer">${legalLinks(locale, base)}</footer></body></html>`,
     };
   });
   return {
@@ -44,12 +46,18 @@ export function seoPlugin(): Plugin {
         const languageLink = `<a class="language-switch" data-locale="${other}" href="${localPath(cityPath(city, other), base)}" hreflang="${htmlLang[other]}" lang="${htmlLang[other]}">${other === 'en' ? 'English' : 'Deutsch'}</a>`;
         return html.replace('<!-- SEO_HEAD -->', `${themeHead()}${seoHead(city, origin, undefined, locale)}${analyticsTag}`)
           .replace('<!-- SEO_HEADING -->', `<header class="seo-map-header"><h1 id="map-title">${translate(locale, 'Kaffeepreise {city}', { city: translate(locale, cities[city].name) })}</h1>${languageLink}${themeControl(locale)}</header>`)
-          .replace('<!-- SEO_CONTENT -->', cityContent(city, dataset(city), base, locale, dataset(city, 'bars'), dataset(city, 'pizza')));
+          .replace('<!-- SEO_CONTENT -->', cityContent(city, dataset(city), base, locale, dataset(city, 'bars'), dataset(city, 'pizza')) + `<footer class="site-legal-footer">${legalLinks(locale, base)}</footer>`);
       },
     },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const path = new URL(req.url || '/', 'http://localhost').pathname.replace(/\/$/, '');
+        const legal = legalPages(base, origin).find(page => localPath(page.path, base) === path || localPath(`${page.path}/index.html`, base) === path);
+        if (legal) {
+          res.setHeader('Content-Type', 'text/html; charset=utf-8');
+          res.end(legal.html);
+          return;
+        }
         if (['/lausanne', '/genf'].some(alias => localPath(alias, base) === path)) {
           res.writeHead(302, { Location: localPath(cityPath(cityFromPath(path, base), 'en'), base) + new URL(req.url || '/', 'http://localhost').search });
           res.end();
@@ -76,7 +84,7 @@ export function seoPlugin(): Plugin {
           res.end();
           return;
         }
-        const routes = [...appPaths, ...guidePages.map(page => page.path)];
+        const routes = [...appPaths, ...guidePages.map(page => page.path), ...legalPages(base, origin).map(page => page.path)];
         const route = routes.find(route => route !== '/' && localPath(route, base) === path);
         if (!route) return next();
         res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -84,6 +92,7 @@ export function seoPlugin(): Plugin {
       });
     },
     generateBundle() {
+      for (const page of legalPages(base, origin)) this.emitFile({ type: 'asset', fileName: `${page.path.slice(1)}/index.html`, source: page.html });
       for (const page of guides()) this.emitFile({ type: 'asset', fileName: `${page.path.slice(1)}/index.html`, source: page.html });
       const paths = [...appPaths, ...guidePages.map(page => page.path)];
       // No invented lastmod: content and code can change independently of the data timestamp.

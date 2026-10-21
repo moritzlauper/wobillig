@@ -538,3 +538,11 @@ Alle Variablen in `.env.example` sind reine Servervariablen. Der öffentliche Tu
 Tests: `npm test`, `npm run build`, `npx playwright test tests/community-security.browser.ts`. Die Sicherheitstests prüfen parallele Reservierungen, ungültige Bot-Token, E-Mail-Wiederverwendung, fremde Map-Zugriffe, Freigaben/Rücknahmen und 200 gleichzeitige öffentliche Lesezugriffe. Das ersetzt keinen realen Lasttest der Vercel-Infrastruktur.
 
 Ein begrenzter Live-Lesetest ist mit `node scripts/community-load-check.mjs https://www.wobillig.ch` wiederholbar: 40 GET-Anfragen, maximal acht gleichzeitig, keine Schreibzugriffe. Am 21. Oktober 2026: 40/40 erfolgreich, 32 CDN-Hits, Median 48 ms, 95. Perzentil 1’433 ms inklusive kalter Abrufe. Das bestehende Vercel-Team-Budget beträgt USD 200; Warnungen bei USD 100, 150 und 200, automatische Team-Pause aus.
+
+### Impressum und Datenschutz
+
+Die statischen Seiten `/impressum`, `/datenschutz`, `/en/imprint` und `/en/privacy` werden aus `build/legal-pages.ts` erzeugt und funktionieren ohne JavaScript oder externe Ressourcen. Die Links stehen im App-Footer sowie unter den statischen Städte- und Preisübersichten. Der App-Footer bleibt auch in der mobilen Listenansicht, in Lokaldetails und in eigenen Maps erreichbar.
+
+Öffentliche Betreiberangaben werden zentral in `build/legal-operator.ts` gepflegt. Veröffentlicht werden auf ausdrücklichen Wunsch des Betreibers Name, E-Mail und Telefonnummer, keine Postadresse. Das ist keine Aussage zur Erfüllung einer allfälligen gesetzlichen Impressumspflicht: Wo eine Postadresse vorgeschrieben ist, ersetzt die Telefonnummer diese nicht. Solange der Name fehlt, zeigt die lokale Vorschau einen Entwurfshinweis; ein Production-Build auf Vercel bricht ab. Nur ausdrücklich zur Veröffentlichung bestimmte Angaben eintragen.
+
+Die Datenschutzerklärung beschreibt den Stand vom 21. Oktober 2026. Vor der Aktivierung von E-Mail-Bestätigung oder Turnstile Abschnitt 9 in beiden Sprachen aktualisieren. Änderungen an Diensten, Cookies, Datenempfängern, Analyseereignissen, Speicherfristen oder Freigabeverfahren müssen ebenfalls in beiden Sprachfassungen nachgeführt werden. Technische Grundlage sind die Implementierung und die im Text verlinkten Anbieterinformationen; die Inhalte ersetzen keine individuelle rechtliche Prüfung.
