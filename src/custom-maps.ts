@@ -76,7 +76,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     <div class="custom-map-heading">
       <button type="button" id="map-back" aria-label="${t('Zurück')}">←<span class="map-label-full"> ${t('Zurück')}</span></button>
       <div class="custom-map-title"><h1 id="custom-map-name"></h1><p id="custom-map-summary" role="status"></p></div>
-      <button type="button" id="map-options-toggle" aria-expanded="false" aria-controls="custom-map-actions custom-map-visibility custom-map-share">${t('Optionen')} <span class="filter-chevron" aria-hidden="true"></span></button>
+      <div id="custom-map-view-switch" class="mobile-switch" role="group" aria-label="${t('Ansicht')}"><button type="button" id="custom-view-map" aria-pressed="true" aria-controls="custom-map-canvas">${t('Karte')}</button><button type="button" id="custom-view-list" aria-pressed="false" aria-controls="custom-map-entries">${t('Liste')}</button></div>
     </div>
     <div class="custom-map-actions" id="custom-map-actions">
       <button type="button" id="map-share" aria-label="${t('Map teilen')}"><span class="map-label-full">${t('Map teilen')}</span><span class="map-label-short" aria-hidden="true">${t('Teilen')}</span></button>
@@ -96,6 +96,16 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   app.append(view);
   const el = <T extends HTMLElement = HTMLElement>(id: string) => view.querySelector<T>('#' + id)!;
   const field = (name: string) => entry.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${name}"]`)!;
+  function showView(list: boolean) {
+    view.classList.toggle('custom-map-show-list', list);
+    el('custom-view-map').setAttribute('aria-pressed', String(!list));
+    el('custom-view-list').setAttribute('aria-pressed', String(list));
+    if (list) el('custom-map-detail').hidden = true;
+    view.scrollIntoView({ block: 'end' });
+    map?.invalidateSize();
+  }
+  el('custom-view-map').onclick = () => showView(false);
+  el('custom-view-list').onclick = () => showView(true);
   const errorText = (dialog: HTMLDialogElement, message: string) => {
     const target = dialog.querySelector<HTMLElement>('[data-error]')!;
     target.textContent = message; target.hidden = !message;
@@ -223,6 +233,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   function open(value: CustomMap) {
     current = value; remember(value);
     view.hidden = false; app.classList.add('custom-map-active');
+    showView(false);
     history.replaceState(null, '', url(value.id));
     document.querySelectorAll<HTMLAnchorElement>('[data-locale]').forEach(link => {
       const target = new URL(link.href); target.search = `?map=${value.id}`; link.href = target.href;
@@ -235,6 +246,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     el('custom-map-created').hidden = true;
     el('custom-map-detail').hidden = true;
     const automatic = value.automatic;
+    el('custom-map-view-switch').hidden = Boolean(automatic);
     el('automatic-map-details').hidden = !automatic;
     view.querySelector<HTMLElement>('.custom-map-content')!.hidden = Boolean(automatic);
     el('map-add-entry').hidden = Boolean(automatic);
@@ -289,10 +301,11 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       if (entries.length) map!.fitBounds(L.latLngBounds(entries.map(item => [item.venue.lat, item.venue.lon])), { padding: [35, 35], maxZoom: 16 });
       else map!.setView(cities[city].center, 13);
     });
-    if (matchMedia('(max-width: 760px)').matches && el('map-options-toggle').getAttribute('aria-expanded') === 'false') el('map-back').focus();
-    else el('map-add-entry').focus();
+    el('map-add-entry').focus();
   }
   function showEntryDetail(item: MapEntry, trigger?: HTMLElement) {
+    const fromList = view.classList.contains('custom-map-show-list');
+    showView(false);
     const detail = el('custom-map-detail');
     const venue = item.venue;
     detail.setAttribute('aria-label', venue.name);
@@ -304,19 +317,19 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       <div class="detail-actions"><button type="button" class="primary" data-add>${t('Preis hinzufügen')}</button><span class="detail-maps"><a href="${e(googleMapsLink(venue, cities[city].name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></div>
       ${offers.map((offer, index) => `<div class="offer"><div class="offer-top"><strong>${e(offer.product)}</strong><strong class="nowrap">CHF ${offer.priceChf.toFixed(2)}</strong></div><div class="offer-meta"><span>${t('Eingetragen')} · ${e(new Date(offer.updatedAt).toLocaleDateString(dateLocale()))}</span><button type="button" data-edit="${index}">${t('Ändern')}</button></div></div>`).join('')}`;
     detail.hidden = false;
-    const close = () => { detail.hidden = true; trigger?.focus(); };
+    const close = () => { detail.hidden = true; if (fromList) showView(true); trigger?.focus({ preventScroll: true }); };
     detail.querySelector<HTMLButtonElement>('[data-close]')!.onclick = close;
     detail.onkeydown = event => { if (event.key === 'Escape') { event.preventDefault(); close(); } };
     detail.querySelector<HTMLButtonElement>('[data-add]')!.onclick = () => { openEntry(); chooseVenue(venue); field('product').focus(); };
     detail.querySelectorAll<HTMLButtonElement>('[data-edit]').forEach(button => {
       button.onclick = () => openEntry(offers[Number(button.dataset.edit)]);
     });
-    el('custom-map-canvas').scrollIntoView({ block: 'nearest' });
     map!.setView([venue.lat, venue.lon], 16);
     // Centre the marker in the part of the map that remains above/beside the detail sheet.
     const sheet = detail.getBoundingClientRect();
     map!.panBy(matchMedia('(max-width: 760px)').matches ? [0, sheet.height / 2] : [sheet.width / 2, 0], { animate: false });
     detail.focus({ preventScroll: true });
+    view.scrollIntoView({ block: 'end' });
   }
   const venueSearch = field('search') as HTMLInputElement;
   const venueSuggestions = entry.querySelector<HTMLElement>('#map-venue-suggestions')!;
@@ -459,11 +472,6 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     }
     finally { setBusy(false); }
   };
-  el('map-options-toggle').onclick = () => {
-    const toggle = el('map-options-toggle');
-    toggle.setAttribute('aria-expanded', String(toggle.getAttribute('aria-expanded') !== 'true'));
-    map?.invalidateSize();
-  };
   el('custom-map-created').querySelector<HTMLButtonElement>('[data-dismiss]')!.onclick = () => {
     el('custom-map-created').hidden = true;
     el('map-back').focus();
@@ -475,7 +483,6 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     const result = await shareLink({ url: href }, { clipboard: navigator.clipboard });
     if (result === 'copied') el('custom-map-created').querySelector('[role=status]')!.textContent = t('Link kopiert.');
     else {
-      el('map-options-toggle').setAttribute('aria-expanded', 'true');
       el('custom-map-share').hidden = false;
       const input = el('custom-map-share').querySelector('input')!;
       input.value = href; input.focus(); input.select();
