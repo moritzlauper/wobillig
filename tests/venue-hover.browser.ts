@@ -66,6 +66,8 @@ for (const colorScheme of ['light', 'dark'] as const) {
   });
 }
 
+test.describe('touch-capable browser', () => {
+test.use({ hasTouch: true });
 test('hover preserves a selected venue and touch does not leave a highlight', async ({ page }) => {
   await page.goto('/?drink=coffee&bar=hover-0');
   const alpha = page.locator('.marker-wrap[title^="Alpha:"]');
@@ -80,8 +82,9 @@ test('hover preserves a selected venue and touch does not leave a highlight', as
   await expect(alpha.locator('.price-marker')).toHaveClass(/active/);
   await betaRow.dispatchEvent('pointerenter', { pointerType: 'touch' });
   await expect(beta).not.toHaveClass(/highlighted/);
-  await betaRow.click();
+  await betaRow.tap();
   await expect(page.locator('#detail .detail-top')).toContainText('Beta');
   await expect(beta.locator('.price-marker')).toHaveClass(/active/);
   await expect(page.locator('.marker-wrap.highlighted')).toHaveCount(0);
+});
 });

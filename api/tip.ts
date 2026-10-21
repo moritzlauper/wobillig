@@ -7,7 +7,7 @@ function allowed(ip: string): boolean {
   const now = Date.now();
   for (const [key, value] of limits) if (value.until <= now) limits.delete(key);
   const value = limits.get(ip) || { count: 0, until: now + 60000 };
-  if (value.count >= 5 || (!limits.has(ip) && limits.size >= 1000)) return false;
+  if (value.count >= 10 || (!limits.has(ip) && limits.size >= 1000)) return false;
   value.count++; limits.set(ip, value); return true;
 }
 

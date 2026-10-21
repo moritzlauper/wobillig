@@ -20,8 +20,8 @@ for (const language of ['de', 'en']) {
     await page.locator('#entry-price').fill('5.00');
     await page.locator('#save-price').click();
     await expect(page.locator('#form-error')).toHaveText(language === 'en'
-      ? 'Maximum 5 price submissions per 10 minutes. Please wait another 3 min.'
-      : 'Maximal 5 Preiseingaben pro 10 Minuten. Bitte warte noch 3 Min.');
+      ? 'Maximum 10 price submissions per 10 minutes. Please wait another 3 min.'
+      : 'Maximal 10 Preiseingaben pro 10 Minuten. Bitte warte noch 3 Min.');
     await expect(page.locator('#price-dialog')).toBeVisible();
     await expect(page.locator('#entry-price')).toHaveValue('5.00');
     await expect(page.locator('#save-price')).toBeEnabled();

@@ -74,9 +74,9 @@ describe('venue corrections', () => {
   });
   it('limits writes and propagates storage failures without claiming success', async () => {
     const store = memoryStore(), now = Date.now();
-    for (let revision = 0; revision < 20; revision++) await saveVenueCorrection(store, { ...input, revision, changes: { name: `Name ${revision}` } }, data, 'visitor', now);
-    await expect(saveVenueCorrection(store, { ...input, revision: 20 }, data, 'visitor', now)).rejects.toMatchObject({ status: 429 });
-    await expect(saveVenueCorrection(store, { ...input, revision: 20 }, data, 'visitor', now + 3600001)).resolves.toHaveProperty('correction.revision', 21);
+    for (let revision = 0; revision < 40; revision++) await saveVenueCorrection(store, { ...input, revision, changes: { name: `Name ${revision}` } }, data, 'visitor', now);
+    await expect(saveVenueCorrection(store, { ...input, revision: 40 }, data, 'visitor', now)).rejects.toMatchObject({ status: 429 });
+    await expect(saveVenueCorrection(store, { ...input, revision: 40 }, data, 'visitor', now + 3600001)).resolves.toHaveProperty('correction.revision', 41);
     const broken = memoryStore(); broken.write = async () => { throw new Error('Offline'); };
     await expect(saveVenueCorrection(broken, input, data, 'visitor')).rejects.toThrow('Offline');
     expect((await broken.read()).state.venueCorrections).toBeUndefined();

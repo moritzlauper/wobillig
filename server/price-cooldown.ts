@@ -4,7 +4,8 @@ import { WriteConflict, type Store } from './prices.js';
 
 export type PriceCooldowns = Record<string, { id: string; at: number }[]>;
 export const PRICE_WINDOW_MS = 10 * 60 * 1000;
-export const PRICE_WINDOW_LIMIT = 5;
+export const PRICE_WINDOW_LIMIT = 10;
+export const PRICE_IP_WINDOW_LIMIT = 30;
 
 export class PriceCooldownError extends InputError {
   constructor(public retryAfter: number) {
@@ -18,7 +19,7 @@ async function reserve(store: Store, keys: string[], id: string, now: number) {
     const active = Object.fromEntries(Object.entries(state.priceCooldowns || {})
       .map(([key, entries]) => [key, entries.filter(entry => entry.at > now - PRICE_WINDOW_MS)] as const)
       .filter(([, entries]) => entries.length));
-    const waits = keys.filter(key => (active[key]?.length || 0) >= PRICE_WINDOW_LIMIT)
+    const waits = keys.filter(key => (active[key]?.length || 0) >= (key.startsWith('ip:') ? PRICE_IP_WINDOW_LIMIT : PRICE_WINDOW_LIMIT))
       .map(key => Math.min(...active[key].map(entry => entry.at)) + PRICE_WINDOW_MS - now);
     if (waits.length) throw new PriceCooldownError(Math.max(1, Math.ceil(Math.max(...waits) / 1000)));
     for (const key of keys) active[key] = [...(active[key] || []), { id, at: now }];

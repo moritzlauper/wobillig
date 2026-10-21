@@ -18,7 +18,7 @@ export async function saveVenueCorrection(store: Store, value: unknown, datasets
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
     const key = `venue-correction:${visitor}`;
     const limit = state.limits[key] || { count: 0, expires: now + 3600000 };
-    if (limit.count >= 20) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
+    if (limit.count >= 40) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[key] = { ...limit, count: limit.count + 1 };
     const correction: VenueCorrection = { barId: input.barId, changes: { ...old?.changes, ...input.changes },
       revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString() };

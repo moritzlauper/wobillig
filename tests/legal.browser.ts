@@ -16,11 +16,11 @@ test('legal pages work without JavaScript, link both languages and make no third
     await expect(page.locator('footer a')).toHaveCount(3);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     if (path === '/datenschutz') {
-      await expect(page.locator('main')).toContainText('Konto erstellen');
+      await expect(page.locator('main')).toContainText('Konto-Schaltflächen sind vorerst ausgeblendet');
       await expect(page.locator('main')).toContainText('wobillig-account');
       await expect(page.locator('main')).toContainText('30 Tage');
       await expect(page.locator('main')).toContainText('sechsstelligen, zehn Minuten gültigen Code');
-      await expect(page.locator('main')).toContainText('löscht aber keine Maps');
+      await expect(page.locator('main')).toContainText('löscht keine Maps');
       await expect(page.locator('main')).toContainText('Betrag in CHF, die ausgewählte Stadt');
       await expect(page.locator('a[href="https://www.cloudflare.com/turnstile-privacy-policy/"]')).toHaveCount(1);
       await expect(page.locator('a[href="https://stripe.com/legal/dta"]')).toHaveCount(1);
@@ -30,7 +30,7 @@ test('legal pages work without JavaScript, link both languages and make no third
       await expect(page).toHaveURL(/\/en\/privacy$/);
     }
     if (path === '/en/privacy') {
-      await expect(page.locator('main')).toContainText('Create account');
+      await expect(page.locator('main')).toContainText('account buttons are temporarily hidden');
       await expect(page.locator('main')).toContainText('wobillig-account');
       await expect(page.locator('main')).toContainText('does not delete maps');
       await expect(page.locator('main')).toContainText('six-digit code');

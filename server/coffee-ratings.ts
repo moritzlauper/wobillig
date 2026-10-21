@@ -18,8 +18,8 @@ export function ratingVoter(city: string, barId: string, owner: string, secret: 
 
 export function checkRatingChange(state: State, barId: string, voter: string, score: number, now: number) {
   const previous = state.coffeeVoteDetails?.[barId]?.[voter];
-  if (previous && state.coffeeVotes?.[barId]?.[voter] !== score && now < previous.updatedAt + 86400000) {
-    throw new InputError('Du kannst deine Bewertung für dieses Lokal erst nach 24 Stunden wieder ändern.', 429);
+  if (previous && state.coffeeVotes?.[barId]?.[voter] !== score && now < previous.updatedAt + 43200000) {
+    throw new InputError('Du kannst deine Bewertung für dieses Lokal erst nach 12 Stunden wieder ändern.', 429);
   }
 }
 
@@ -54,7 +54,7 @@ export async function saveCoffeeRating(
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
     const key = `coffee-rating:${visitor}`;
     const limit = state.limits[key] || { count: 0, expires: now + 3600000 };
-    if (limit.count >= 20) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
+    if (limit.count >= 40) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[key] = { ...limit, count: limit.count + 1 };
     const next = { ...votes, [voter]: input.score };
     state.coffeeVotes = { ...state.coffeeVotes, [input.barId]: next };

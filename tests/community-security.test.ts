@@ -98,11 +98,11 @@ it('uses single-use email codes bound to the requesting browser and stores no pl
   expect(results.filter(result => result.status === 'fulfilled')).toHaveLength(1);
   await expect(confirmEmailCode('browser-a', challenge, code)).rejects.toMatchObject({ status: 401 });
 });
-it('locks codes after five attempts and expires them after ten minutes', async () => {
+it('locks codes after eight attempts and expires them after ten minutes', async () => {
   vi.useFakeTimers();
   const { challenge } = await requestEmailCode(req(), 'browser-a', 'person@example.org');
   const [, code] = mocks.send.mock.calls[0]; const wrong = code === '111111' ? '222222' : '111111';
-  for (let i = 0; i < 5; i++) await expect(confirmEmailCode('browser-a', challenge, wrong)).rejects.toMatchObject({ status: 401 });
+  for (let i = 0; i < 8; i++) await expect(confirmEmailCode('browser-a', challenge, wrong)).rejects.toMatchObject({ status: 401 });
   await expect(confirmEmailCode('browser-a', challenge, code)).rejects.toMatchObject({ status: 401 });
   const second = await requestEmailCode(req(), 'browser-b', 'other@example.org');
   vi.advanceTimersByTime(600001);

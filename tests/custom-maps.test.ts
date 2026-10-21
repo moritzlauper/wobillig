@@ -61,7 +61,7 @@ it('merges simultaneous additions and preserves existing price data', async () =
 
 it('limits new maps per visitor and expires the limit', async () => {
   const store = memory();
-  for (let i = 0; i < 5; i++) await saveCustomMap(store, { ...create, mapId: mapId.slice(0, -1) + i }, {}, 'v', 0);
+  for (let i = 0; i < 10; i++) await saveCustomMap(store, { ...create, mapId: mapId.slice(0, -2) + String(i).padStart(2, '0') }, {}, 'v', 0);
   await expect(saveCustomMap(store, create, {}, 'v', 0)).rejects.toMatchObject({ status: 429 });
   await expect(saveCustomMap(store, create, {}, 'v', 3600001)).resolves.toMatchObject({ id: mapId });
 });

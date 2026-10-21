@@ -54,7 +54,7 @@ export async function reserveScan(store: Store, hash: string, visitor: string, n
     if (old?.status === 'pending') throw new InputError('Dieses Foto wird bereits verarbeitet. Bitte kurz warten.', 409);
     if (old?.status === 'failed') throw new InputError('Der letzte Scan ist fehlgeschlagen. Bitte kurz warten und dasselbe Foto erneut hochladen.', 429);
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, value]) => value.expires > now));
-    for (const [key, max, ttl] of [[`scan:${visitor}`, 6, 3600000], ['scan:daily', 1000, 86400000]] as const) {
+    for (const [key, max, ttl] of [[`scan:${visitor}`, 12, 3600000], ['scan:daily', 1000, 86400000]] as const) {
       const oldLimit = state.limits[key] || { count: 0, expires: now + ttl };
       if (oldLimit.count >= max) throw new InputError('Das Scan-Limit ist erreicht. Bitte später erneut versuchen oder Preise einzeln eintragen.', 429);
       state.limits[key] = { ...oldLimit, count: oldLimit.count + 1 };
@@ -66,7 +66,7 @@ export async function reserveScan(store: Store, hash: string, visitor: string, n
 export async function failScan(store: Store, hash: string, now = Date.now()) {
   await change(store, state => {
     const job = state.menuScans?.[hash];
-    if (job?.status === 'pending') { job.status = 'failed'; job.expires = now + 30000; }
+    if (job?.status === 'pending') { job.status = 'failed'; job.expires = now + 15000; }
   });
 }
 function identity(offer: Offer) {

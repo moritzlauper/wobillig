@@ -65,7 +65,7 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     if (duplicate) throw new InputError('Dieses Angebot wurde bereits eingetragen. Bitte den vorhandenen Preis ändern.', 409);
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
     const limit = state.limits[visitor] || { count: 0, expires: now + 3600000 };
-    if (limit.count >= 20) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
+    if (limit.count >= 40) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[visitor] = { ...limit, count: limit.count + 1 };
     const venue = communityVenues(datasets, state.entries, state.venues, state.venueCorrections).find(b => b.id === input.barId);
     if (!venue) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
@@ -102,7 +102,7 @@ export async function saveVenue(store: Store, value: unknown, datasets: Paramete
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
     const key = `venue:${visitor}`;
     const limit = state.limits[key] || { count: 0, expires: now + 3600000 };
-    if (limit.count >= 5) throw new InputError('Zu viele neue Lokale. Bitte in einer Stunde erneut versuchen.', 429);
+    if (limit.count >= 10) throw new InputError('Zu viele neue Lokale. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[key] = { ...limit, count: limit.count + 1 };
     const venue: Bar = { ...input, id: `community/${randomUUID()}`, website: input.website || null,
       openingHours: null, offers: [], scrapeStatus: 'community', checkedAt: new Date(now).toISOString() };

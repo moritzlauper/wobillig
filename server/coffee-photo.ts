@@ -7,9 +7,9 @@ export async function reserveCoffeePhoto(store: Store, ip: string, owner: string
   for (let attempt = 0; attempt < 4; attempt++) {
     const { state, etag } = await store.read();
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
-    for (const key of [`coffee-photo:ip:${ip}`, `coffee-photo:browser:${owner}`]) {
+    for (const [key, max] of [[`coffee-photo:ip:${ip}`, 30], [`coffee-photo:browser:${owner}`, 10]] as const) {
       const limit = state.limits[key] || { count: 0, expires: now + 3600000 };
-      if (limit.count >= 5) throw new InputError('Maximal 5 Kaffeebewertungen pro Stunde. Bitte später erneut versuchen.', 429);
+      if (limit.count >= max) throw new InputError('Das Limit für Kaffeefotos ist erreicht: 10 pro Browser und 30 pro IP pro Stunde. Bitte später erneut versuchen.', 429);
       state.limits[key] = { ...limit, count: limit.count + 1 };
     }
     try { await store.write(state, etag); return; }

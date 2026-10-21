@@ -33,8 +33,8 @@ it('uploads a menu and returns both committed prices without additional fields',
 it('stores 15 menu prices in one upload even when the manual editing quota is exhausted', async () => {
   const { state, etag } = await store.read();
   const visitor = createHmac('sha256', 'test').update(`${new Date().toISOString().slice(0, 10)}:127.0.0.1`).digest('hex');
-  state.limits[visitor] = { count: 20, expires: Date.now() + 3600000 };
-  state.priceCooldowns = { 'ip:exhausted': Array.from({ length: 5 }, (_, i) => ({ id: String(i), at: Date.now() })) };
+  state.limits[visitor] = { count: 40, expires: Date.now() + 3600000 };
+  state.priceCooldowns = { 'ip:exhausted': Array.from({ length: 10 }, (_, i) => ({ id: String(i), at: Date.now() })) };
   const quota = structuredClone(state.priceCooldowns);
   await store.write(state, etag);
   mocks.readMenu.mockResolvedValue({ parsed: { menu: true, wrongVenue: false, currency: 'CHF',
@@ -50,7 +50,7 @@ it('stores 15 menu prices in one upload even when the manual editing quota is ex
   const saved = (await store.read()).state;
   expect(saved.entries).toHaveLength(15);
   expect(saved.priceCooldowns).toEqual(quota);
-  expect(saved.limits[visitor].count).toBe(20);
+  expect(saved.limits[visitor].count).toBe(40);
   expect(mocks.blobStore.mock.calls.every(([path]) => ['prices/production.json', 'security/production.json'].includes(path))).toBe(true);
   expect(Object.entries(saved.limits).filter(([key]) => key.startsWith('scan:') && key !== 'scan:daily').map(([, value]) => value.count)).toEqual([1]);
 });

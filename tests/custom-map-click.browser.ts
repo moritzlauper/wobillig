@@ -1,5 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import type { CustomMap } from '../src/custom-map-data';
+
+async function stubTiles(page: Page) {
+  await page.route('https://tile.openstreetmap.org/**', route => route.fulfill({
+    contentType: 'image/png', body: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=', 'base64'),
+  }));
+}
 
 const id = 'd268dbea-93cf-45de-9d17-2b5c74090236';
 const venue = { id: 'node/click-test', name: 'Klick-Café', address: 'Testgasse 1', postcode: '8004', lat: 47.378, lon: 8.535,
@@ -9,6 +15,7 @@ for (const touch of [false, true]) {
   test(`map ${touch ? 'tap' : 'click'} selects a venue and saves an entry`, async ({ browser }) => {
     const context = await browser.newContext({ hasTouch: touch, viewport: { width: touch ? 390 : 1280, height: 844 } });
     const page = await context.newPage();
+    await stubTiles(page);
     const saved: CustomMap = { id, name: 'Klick-Map', createdAt: '2026-10-21', entries: [] };
     const posts: any[] = [];
     await page.route('**/api/tip?*', route => route.fulfill({ json: { enabled: false } }));
@@ -51,6 +58,7 @@ for (const touch of [false, true]) {
 }
 
 test('ambiguous map click offers nearby venues; blank space retains a position for a new place', async ({ page }) => {
+  await stubTiles(page);
   const second = { ...venue, id: 'node/neighbour', name: 'Nachbar-Café', lon: 8.5351 };
   await page.route('**/api/tip?*', route => route.fulfill({ json: { enabled: false } }));
   await page.route('**/data/*.json', route => route.fulfill({ json: { bars: route.request().url().endsWith('locations.json') ? [venue, second] : [] } }));
@@ -86,6 +94,7 @@ for (const touch of [false, true]) {
   test(`OSM pharmacy appears on zoom and can be saved on ${touch ? 'mobile' : 'desktop'}`, async ({ browser }) => {
     const context = await browser.newContext({ hasTouch: touch, viewport: { width: touch ? 390 : 1280, height: 844 } });
     const page = await context.newPage();
+    await stubTiles(page);
     // The pharmacy is absent from the local catalogue, as in production.
     const pharmacy = { ...venue, id: 'node/12345', name: 'Apotheke am Limmatplatz', type: 'pharmacy' };
     const saved: CustomMap = { id, name: 'Apotheken', createdAt: '2026-10-21', entries: [] };
@@ -126,6 +135,8 @@ for (const touch of [false, true]) {
     await expect(marker).toContainText(pharmacy.name);
     await canvas.getByRole('button', { name: 'Zoom out', exact: true }).click();
     await expect(canvas.locator('.custom-map-place-marker')).toHaveCount(0);
+    await expect(canvas.locator('img[src*="/16/"]').first()).toBeAttached();
+    await expect(canvas.locator('.leaflet-map-pane')).not.toHaveClass(/leaflet-zoom-anim/);
     await canvas.getByRole('button', { name: 'Zoom in', exact: true }).click();
     await expect(marker).toBeVisible();
     expect(viewportRequests).toBe(2);

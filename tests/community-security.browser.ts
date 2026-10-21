@@ -5,6 +5,16 @@ async function fixture(page: Page, venues = [venue]) {
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.route('**/data/*.json', route => route.fulfill({ json: { bars: /coffee|locations/.test(route.request().url()) ? venues : [], generatedAt: '', discoveredAt: '', attribution: '' } }));
 }
+// Keep testing the dormant account flow without exposing it in the application.
+async function mountAccount(page: Page) {
+  await expect(page.locator('.app-footer')).toBeVisible();
+  await expect(page.getByRole('button', { name: /^(Konto erstellen|Mein Konto|Create account|My account)$/ })).toHaveCount(0);
+  await page.evaluate(async () => {
+    const modulePath = '/src/contribution-security.ts';
+    const { accountControl } = await import(modulePath);
+    accountControl(document.querySelector('.app-footer'));
+  });
+}
 test('account security dialogs stay distinct, wrong codes can be retried, and logout handles failure', async ({ page }) => {
   await fixture(page);
   await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
@@ -28,6 +38,7 @@ test('account security dialogs stay distinct, wrong codes can be retried, and lo
     return route.fulfill({ json: { verified } });
   });
   await page.goto('/');
+  await mountAccount(page);
   await page.getByRole('button', { name: 'Konto erstellen', exact: true }).click();
   const account = page.getByRole('dialog', { name: 'Konto erstellen oder anmelden', exact: true });
   await account.getByLabel('E-Mail-Adresse').fill('reader@example.org');
@@ -42,16 +53,18 @@ test('account security dialogs stay distinct, wrong codes can be retried, and lo
   await account.getByRole('button', { name: 'Bestätigen und fortfahren' }).click();
   await expect(page.locator('dialog.contribution-security')).toHaveCount(0);
   await page.reload();
+  await mountAccount(page);
   await page.getByRole('button', { name: 'Mein Konto', exact: true }).click();
   const details = page.getByRole('dialog', { name: 'E-Mail bestätigt' });
   await details.getByRole('button', { name: 'Abmelden' }).click();
   await expect(details.getByRole('status')).toContainText('Bitte erneut versuchen');
-  await details.getByRole('button', { name: 'Abmelden' }).click();
-  await expect(page.getByRole('button', { name: 'Konto erstellen', exact: true })).toBeVisible();
+  await Promise.all([page.waitForEvent('load'), details.getByRole('button', { name: 'Abmelden' }).click()]);
+  expect(verified).toBe(false);
+  await expect(page.getByRole('button', { name: /^(Konto erstellen|Mein Konto)$/ })).toHaveCount(0);
   await expect(page.locator('dialog.contribution-security')).toHaveCount(0);
 });
 for (const width of [320, 1280]) {
-  test(`footer account entry supports optional email sign-in at ${width}px`, async ({ page }) => {
+  test(`dormant account control supports optional email sign-in at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
     await fixture(page);
     await page.route('**/api/tip?*', route => route.fulfill({ json: { enabled: true, amount: 550, publishableKey: 'pk_test_public' } }));
@@ -65,6 +78,7 @@ for (const width of [320, 1280]) {
       return route.fulfill({ json: body.action === 'request' ? { challenge: 'test-challenge' } : { verified } });
     });
     await page.goto('/');
+    await mountAccount(page);
     const account = page.locator('.app-footer').getByRole('button', { name: 'Konto erstellen', exact: true });
     await expect(account).toBeVisible();
     await expect(page.locator('#tip-coffee')).toHaveText('Kaffee spendieren · CHF 5.50');

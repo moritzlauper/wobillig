@@ -102,7 +102,7 @@ export async function saveCustomMap(store: Store, value: unknown, datasets: Para
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, limit]) => limit.expires > now));
     const key = `${create ? 'create-map' : 'map-entry'}:${visitor}`;
     const limit = state.limits[key] || { count: 0, expires: now + 3600000 };
-    if (limit.count >= (create ? 5 : 30)) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
+    if (limit.count >= (create ? 10 : 60)) throw new InputError('Zu viele Einträge. Bitte in einer Stunde erneut versuchen.', 429);
     state.limits[key] = { ...limit, count: limit.count + 1 };
     state.mapOwners ||= {};
     if (!existing || recover) state.mapOwners[map.id] = actor;

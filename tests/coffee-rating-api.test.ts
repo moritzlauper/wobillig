@@ -69,9 +69,9 @@ it('does not accept reused images with a discarded or forged browser cookie', as
 });
 it('counts failed photo checks towards the shared IP quota, including discarded cookies', async () => {
   mocks.verify.mockRejectedValue(new Error('unavailable'));
-  for (let n = 0; n < 5; n++) expect((await request()).status).toBe(503);
+  for (let n = 0; n < 30; n++) expect((await request()).status).toBe(503);
   expect((await request()).status).toBe(429);
-  expect(mocks.verify).toHaveBeenCalledTimes(5);
+  expect(mocks.verify).toHaveBeenCalledTimes(30);
   expect((await request('GET', undefined, {}, pricesHandler)).data.coffeeRatings).toEqual({});
 });
 it('does not send photos when the API configuration is missing', async () => {

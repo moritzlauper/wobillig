@@ -51,7 +51,7 @@ describe('new community venues', () => {
   });
   it('limits submissions and reports failed storage instead of a successful save', async () => {
     const store = memoryStore(), now = Date.now();
-    for (let n = 0; n < 5; n++) await saveVenue(store, { ...input, name: `Lokal ${n}` }, data, 'bern', 'a', now);
+    for (let n = 0; n < 10; n++) await saveVenue(store, { ...input, name: `Lokal ${n}` }, data, 'bern', 'a', now);
     await expect(saveVenue(store, input, data, 'bern', 'a', now)).rejects.toMatchObject({ status: 429 });
     await expect(saveVenue(store, input, data, 'bern', 'a', now + 3600001)).resolves.toHaveProperty('created', true);
     const broken = memoryStore(); broken.write = async () => { throw new Error('Offline'); };

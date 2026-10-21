@@ -35,12 +35,12 @@ describe('shared coffee ratings', () => {
     expect(JSON.stringify(state)).not.toContain(input.voterToken);
     expect(JSON.stringify(coffeeRatingSummaries(state))).not.toContain('visitor');
   });
-  it('allows a retry but waits 24 hours before changing a vote, including races', async () => {
+  it('allows a retry but waits 12 hours before changing a vote, including races', async () => {
     const store = memoryStore();
     await save(store);
     expect(await save(store)).toEqual({ average: null, count: 1 });
-    await expect(save(store, { ...input, score: 2 }, 'visitor', 86400999)).rejects.toHaveProperty('status', 429);
-    expect(await save(store, { ...input, score: 2 }, 'visitor', 86401000)).toEqual({ average: null, count: 1 });
+    await expect(save(store, { ...input, score: 2 }, 'visitor', 43200999)).rejects.toHaveProperty('status', 429);
+    expect(await save(store, { ...input, score: 2 }, 'visitor', 43201000)).toEqual({ average: null, count: 1 });
     const fresh = memoryStore();
     const outcomes = await Promise.allSettled([save(fresh), save(fresh, { ...input, score: 2 })]);
     expect(outcomes.filter(item => item.status === 'fulfilled')).toHaveLength(1);

@@ -5,6 +5,7 @@ import { emptyState, WriteConflict, type Store } from '../server/prices';
 const mocks = vi.hoisted(() => ({ store: vi.fn() }));
 vi.mock('../server/prices.js', async original => ({ ...await original<typeof import('../server/prices')>(), blobStore: mocks.store }));
 import handler from '../api/prices';
+import { MAP_DAILY_LIMITS } from '../server/map-quota';
 beforeEach(() => {
   vi.stubEnv('BLOB_READ_WRITE_TOKEN', 'test-secret'); vi.stubEnv('VERCEL_ENV', 'production');
   const stores = new Map<string, Store>();
@@ -32,10 +33,10 @@ it('enforces the real creation API across cities, cookies and IPs while retainin
   expect(first.status).toBe(200);
   const cookie = [first.headers['Set-Cookie']].flat().map((s: string) => s.split(';')[0]).join('; ');
   expect((await request(firstId, 'ip-1', cookie)).status).toBe(200);
-  for (let i = 0; i < 4; i++) {
-    expect((await request(`d268dbea-93cf-45de-9d17-2b5c7409023${i}`, 'ip-1', cookie, i % 2 ? 'bern' : 'basel')).status).toBe(200);
+  for (let i = 0; i < MAP_DAILY_LIMITS.create.browser - 1; i++) {
+    expect((await request(`d268dbea-93cf-45de-9d17-2b5c74090${String(i).padStart(3, '0')}`, 'ip-1', cookie, i % 2 ? 'bern' : 'basel')).status).toBe(200);
   }
-  expect((await request(otherId, 'ip-1', undefined, 'bern')).status).toBe(429);
+  expect((await request(otherId, 'ip-1', undefined, 'bern')).status).toBe(200);
   expect((await request(otherId, 'ip-2', cookie, 'basel')).status).toBe(429);
   expect((await request(firstId, 'ip-1', cookie)).status).toBe(200);
   expect(mocks.store).toHaveBeenCalledWith('maps/quotas/production.json');

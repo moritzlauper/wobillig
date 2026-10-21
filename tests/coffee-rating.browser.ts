@@ -15,7 +15,7 @@ for (const width of [320, 1280]) {
     await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [], coffeeRatings: rating ? { [venue.id]: rating } : {} } }));
     await page.route('**/api/coffee-rating?*', async route => {
       writes++;
-      if (fail) return route.fulfill({ status: 429, json: { error: 'Du kannst deine Bewertung für dieses Lokal erst nach 24 Stunden wieder ändern.' } });
+      if (fail) return route.fulfill({ status: 429, json: { error: 'Du kannst deine Bewertung für dieses Lokal erst nach 12 Stunden wieder ändern.' } });
       const body = route.request().postDataJSON();
       expect(body.barId).toBe(venue.id);
       expect(body).not.toHaveProperty('voterToken');
@@ -48,7 +48,7 @@ for (const width of [320, 1280]) {
     await detail.getByRole('button', { name: '2 out of 5 stars' }).click();
     await detail.locator('.coffee-photo').setInputFiles('tests/fixtures/menu-scan-table.jpg');
     await save.click();
-    await expect(detail.getByRole('alert')).toHaveText('You can change your rating for this venue after 24 hours.');
+    await expect(detail.getByRole('alert')).toHaveText('You can change your rating for this venue after 12 hours.');
     await expect(detail.locator('.coffee-rating-summary')).toHaveText('Only a few ratings so far · 1');
     expect(await detail.evaluate(el => el.scrollWidth > el.clientWidth)).toBe(false);
     await page.screenshot({ path: `/tmp/wobillig-coffee-photo-${width}.png` });

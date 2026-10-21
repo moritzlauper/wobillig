@@ -12,10 +12,11 @@ it('allows small corrections and requires a photo only when both thresholds are 
   for (const [before, after] of [[5, 7], [10, 13.01], [5, 3]]) expect(() => checkPriceEdit(entry(after), offer(before), [], now)).toThrow('Menükarte');
   expect(() => checkPriceEdit(entry(20), null, [], now)).not.toThrow();
 });
-it('combines smaller steps over 24 hours across visitors and permits only three price changes', () => {
+it('combines smaller steps over 24 hours across visitors and permits six price changes', () => {
   const history = [change(5, 6, now - 1000)];
   expect(() => checkPriceEdit(entry(7), offer(6), history, now)).toThrow('Menükarte');
-  const repeated = [change(5, 5.1, now - 3000), change(5.1, 5.2, now - 2000), change(5.2, 5.3, now - 1000)];
+  const repeated = Array.from({ length: 6 }, (_, i) => change(5 + i / 10, 5 + (i + 1) / 10, now - (6 - i) * 1000));
+  expect(() => checkPriceEdit(entry(5.4), offer(5.3), repeated.slice(0, 3), now)).not.toThrow();
   expect(() => checkPriceEdit(entry(5.4), offer(5.3), repeated, now)).toThrow('mehrfach');
   expect(() => checkPriceEdit(entry(5.3), offer(5.3), repeated, now)).not.toThrow();
   expect(() => checkPriceEdit(entry(5.4), offer(5.3), repeated, now + 86400000)).not.toThrow();

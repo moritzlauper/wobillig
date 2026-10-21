@@ -17,7 +17,7 @@ export function checkPriceEdit(entry: PriceEntry, before: Offer | null, changes:
   });
   if (large) throw new InputError('Für grössere Preisänderungen bitte eine aktuelle Menükarte hochladen.', 422);
   if (entry.offer.priceChf !== before.priceChf &&
-      recent.filter(change => change.before && change.before.priceChf !== change.after.priceChf).length >= 3) {
+      recent.filter(change => change.before && change.before.priceChf !== change.after.priceChf).length >= 6) {
     throw new InputError('Dieser Preis wurde heute schon mehrfach geändert. Bitte eine aktuelle Menükarte hochladen.', 422);
   }
 }

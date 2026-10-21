@@ -236,13 +236,13 @@ describe('atomic, repeat-safe scan storage', () => {
     const store = memoryStore(), now = 1000;
     await reserveScan(store, 'same', 'a', now);
     await failScan(store, 'same', now);
-    await expect(reserveScan(store, 'same', 'a', now + 29999)).rejects.toMatchObject({ status: 429 });
-    await expect(reserveScan(store, 'same', 'a', now + 30001)).resolves.toBeUndefined();
+    await expect(reserveScan(store, 'same', 'a', now + 14999)).rejects.toMatchObject({ status: 429 });
+    await expect(reserveScan(store, 'same', 'a', now + 15001)).resolves.toBeUndefined();
     expect((await store.read()).state.limits['scan:a'].count).toBe(2);
   });
   it('limits paid attempts across instances and expires the limit', async () => {
     const store = memoryStore(), now = 1000;
-    for (let i = 0; i < 6; i++) await reserveScan(store, `photo-${i}`, 'a', now);
+    for (let i = 0; i < 12; i++) await reserveScan(store, `photo-${i}`, 'a', now);
     await expect(reserveScan(store, 'blocked', 'a', now)).rejects.toMatchObject({ status: 429 });
     await expect(reserveScan(store, 'later', 'a', now + 3600001)).resolves.toBeUndefined();
   });

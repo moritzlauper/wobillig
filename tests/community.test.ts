@@ -98,9 +98,9 @@ describe('persistent edits', () => {
   });
   it('limits repeated writes across requests, then expires the limit', async () => {
     const store = memoryStore(); const now = Date.now();
-    for (let n = 0; n < 20; n++) await savePrice(store, { ...input, name: 'Bier ' + n, targetKey: undefined }, data, 'a', now);
+    for (let n = 0; n < 40; n++) await savePrice(store, { ...input, name: 'Bier ' + n, targetKey: undefined }, data, 'a', now);
     await expect(savePrice(store, input, data, 'a', now)).rejects.toMatchObject({ status: 429 });
-    expect((await store.read()).state.entries).toHaveLength(20);
+    expect((await store.read()).state.entries).toHaveLength(40);
     await expect(savePrice(store, input, data, 'a', now + 3600001)).resolves.toHaveProperty('revision', 1);
   });
   it('does not accept storage errors as a successful save', async () => {

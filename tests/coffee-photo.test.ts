@@ -40,11 +40,13 @@ it('enforces both IP and browser quotas atomically and expires them after one ho
     async read() { return { state: structuredClone(state), etag: String(version) }; },
     async write(next, etag) { if (etag !== String(version)) throw new WriteConflict(); state = structuredClone(next); version++; },
   };
-  for (let n = 0; n < 4; n++) await reserveCoffeePhoto(store, 'ip', 'browser', 1000);
+  for (let n = 0; n < 9; n++) await reserveCoffeePhoto(store, 'ip', 'browser', 1000);
   const attempts = await Promise.allSettled([reserveCoffeePhoto(store, 'ip', 'browser', 1000), reserveCoffeePhoto(store, 'ip', 'browser', 1000)]);
   expect(attempts.filter(attempt => attempt.status === 'fulfilled')).toHaveLength(1);
   await expect(reserveCoffeePhoto(store, 'new-ip', 'browser', 1000)).rejects.toHaveProperty('status', 429);
-  await expect(reserveCoffeePhoto(store, 'ip', 'new-browser', 1000)).rejects.toHaveProperty('status', 429);
+  await expect(reserveCoffeePhoto(store, 'ip', 'new-browser', 1000)).resolves.toBeUndefined();
+  for (let n = 11; n < 30; n++) await reserveCoffeePhoto(store, 'ip', `browser-${n}`, 1000);
+  await expect(reserveCoffeePhoto(store, 'ip', 'another-browser', 1000)).rejects.toHaveProperty('status', 429);
   await expect(reserveCoffeePhoto(store, 'ip', 'browser', 3601000)).resolves.toBeUndefined();
 });
 it('signs browser cookies and replaces forged signatures', () => {

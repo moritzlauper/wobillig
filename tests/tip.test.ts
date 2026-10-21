@@ -72,6 +72,6 @@ it('creates a server-priced PaymentIntent and rejects malformed responses and St
 });
 it('limits payment creation per visitor', async () => {
   vi.stubGlobal('fetch', vi.fn().mockImplementation(() => Promise.resolve(new Response(JSON.stringify({ client_secret: 'pi_example_secret_example' })))));
-  for (let n = 0; n < 5; n++) expect((await request(undefined, 'POST', {}, 'limited')).status).toBe(200);
+  for (let n = 0; n < 10; n++) expect((await request(undefined, 'POST', {}, 'limited')).status).toBe(200);
   expect((await request(undefined, 'POST', {}, 'limited')).status).toBe(429);
 });

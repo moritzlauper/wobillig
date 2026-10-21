@@ -29,9 +29,9 @@ export async function requestEmailCode(req: IncomingMessage, browser: string, em
   const normalized = email.trim().toLowerCase(), account = securityHash(`account:${normalized}`);
   const store = (await import('./prices.js')).blobStore(securityPath());
   await reserveLimits(store, [
-    { key: `email:minute:${account}`, max: 1, ms: 60000 },
-    { key: `email:hour:${account}`, max: 3, ms: 3600000 },
-    { key: `email:ip:${requestIp(req)}`, max: 5, ms: 3600000 },
+    { key: `email:minute:${account}`, max: 1, ms: 30000 },
+    { key: `email:hour:${account}`, max: 6, ms: 3600000 },
+    { key: `email:ip:${requestIp(req)}`, max: 20, ms: 3600000 },
     { key: 'email:global', max: Number(process.env.COMMUNITY_EMAIL_DAILY_LIMIT || '200'), ms: 86400000 },
   ]);
   const id = randomBytes(24).toString('hex'), code = String(randomInt(100000, 1000000));
@@ -53,7 +53,7 @@ export async function confirmEmailCode(browser: string, id: unknown, code: unkno
   for (let i = 0; i < 8; i++) {
     const { state, etag } = await store.read();
     const challenge = state.emailChallenges?.[id];
-    if (!challenge || challenge.browser !== browser || challenge.expires <= Date.now() || challenge.attempts >= 5) throw new InputError('Code abgelaufen. Bitte einen neuen Code anfordern.', 401);
+    if (!challenge || challenge.browser !== browser || challenge.expires <= Date.now() || challenge.attempts >= 8) throw new InputError('Code abgelaufen. Bitte einen neuen Code anfordern.', 401);
     const valid = timingSafeEqual(Buffer.from(challenge.hash, 'hex'), Buffer.from(securityHash(`code:${id}:${code}`), 'hex'));
     challenge.attempts++;
     if (valid) delete state.emailChallenges![id];

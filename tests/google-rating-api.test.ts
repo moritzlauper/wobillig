@@ -66,7 +66,7 @@ it('coalesces concurrent requests and reuses the durable cache afterwards', asyn
   expect(mocks.fetch).toHaveBeenCalledTimes(1);
 });
 it('limits repeated endpoint requests from one visitor', async () => {
-  for (let i = 0; i < 30; i++) expect((await request(query, 'GET', {}, 'limited-visitor')).status).toBe(200);
+  for (let i = 0; i < 60; i++) expect((await request(query, 'GET', {}, 'limited-visitor')).status).toBe(200);
   expect((await request(query, 'GET', {}, 'limited-visitor')).status).toBe(429);
   expect(mocks.fetch).toHaveBeenCalledTimes(1);
 });

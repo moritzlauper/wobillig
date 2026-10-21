@@ -1,5 +1,5 @@
 import { legalPaths } from './legal-links';
-import { contributionFetch, accountControl } from './contribution-security';
+import { contributionFetch } from './contribution-security';
 import { cities, cityFromPath, cityLink, defaultCityLocale, type City } from './cities';
 import L from 'leaflet';
 import { inject } from '@vercel/analytics';
@@ -1047,7 +1047,7 @@ $('price-form').onsubmit = async event => {
     if (!response.ok) {
       if (response.status === 409 && await loadCommunity()) rebuild();
       if (response.status === 429 && Number.isFinite(result.retryAfter) && result.retryAfter > 0) {
-        throw new Error(t('Maximal 5 Preiseingaben pro 10 Minuten. Bitte warte noch {minutes} Min.', { minutes: Math.ceil(result.retryAfter / 60) }));
+        throw new Error(t('Maximal 10 Preiseingaben pro 10 Minuten. Bitte warte noch {minutes} Min.', { minutes: Math.ceil(result.retryAfter / 60) }));
       }
       throw new Error(result.error || t('Speichern fehlgeschlagen.'));
     }
@@ -1133,7 +1133,7 @@ customMapUI = customMaps(cityId, () => selectableLocations(venues, locationCatal
 syncControls();
 void init();
 void setupTip($<HTMLButtonElement>('tip-coffee'), cityId, toast);
-accountControl(document.querySelector<HTMLElement>('.app-footer')!);
+// Account entry is temporarily hidden; contribution verification remains available.
 if (districtState.enabled) {
   $('filters').hidden = false; $('filters-toggle').setAttribute('aria-expanded', 'true');
   void loadDistricts();

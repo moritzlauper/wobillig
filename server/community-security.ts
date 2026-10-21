@@ -64,8 +64,8 @@ export async function protectContribution(req: IncomingMessage, res: ServerRespo
   if (process.env.EMAIL_VERIFICATION_REQUIRED === 'true' && !actor.account) throw new InputError('Bitte zuerst deine E-Mail-Adresse bestätigen.', 401);
   if (protectionEnabled()) {
     await reserveLimits((await import('./prices.js')).blobStore(securityPath()), [
-      { key: `write:ip:${requestIp(req)}`, max: 30, ms: 600000 },
-      { key: `write:actor:${actor.account || actor.browser}`, max: 30, ms: 600000 },
+      { key: `write:ip:${requestIp(req)}`, max: 120, ms: 600000 },
+      { key: `write:actor:${actor.account || actor.browser}`, max: 60, ms: 600000 },
     ]);
     await checkBot(req, token, 'contribute');
   }

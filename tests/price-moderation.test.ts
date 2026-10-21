@@ -106,16 +106,16 @@ it('rate limits held prices and retries storage conflicts without leaking them t
     await write(state, etag);
   };
   let entry = await savePrice(store, { ...input, targetKey: undefined, name: 'New cappuccino' }, data, 'troll');
-  for (let n = 1; n < 20; n++) entry = await savePrice(store, { ...input, id: entry.id, revision: entry.revision }, data, 'troll');
+  for (let n = 1; n < 40; n++) entry = await savePrice(store, { ...input, id: entry.id, revision: entry.revision }, data, 'troll');
   await expect(savePrice(store, { ...input, id: entry.id, revision: entry.revision }, data, 'troll')).rejects.toMatchObject({ status: 429 });
   const state = (await store.read()).state;
   expect(state.entries).toEqual([]);
   expect(state.heldPrices).toHaveLength(1);
-  expect(state.heldPrices![0].entry.revision).toBe(20);
+  expect(state.heldPrices![0].entry.revision).toBe(40);
 });
 
 it('enforces the shared IP cooldown across cities even when cookies are discarded', async () => {
-  for (let i = 0; i < 5; i++) expect((await request({ ...input, targetKey: undefined, name: 'New cappuccino' })).status).toBe(200);
+  for (let i = 0; i < 30; i++) expect((await request({ ...input, targetKey: undefined, name: 'New cappuccino' })).status).toBe(200);
   const bern = JSON.parse(readFileSync('public/data/bern/coffee.json', 'utf8')) as Dataset;
   const venue = bern.bars.find(b => b.offers.some(o => o.coffeeType === 'espresso'))!;
   const espresso = venue.offers.find(o => o.coffeeType === 'espresso')!;
@@ -124,7 +124,7 @@ it('enforces the shared IP cooldown across cities even when cookies are discarde
   expect(result.status).toBe(429);
   expect(result.data.retryAfter).toBeGreaterThan(590);
   expect(result.headers['Retry-After']).toBe(String(result.data.retryAfter));
-  expect((await store.read()).state.heldPrices).toHaveLength(5);
+  expect((await store.read()).state.heldPrices).toHaveLength(30);
   expect(mocks.store).toHaveBeenCalledWith('prices/cooldowns/production.json');
   expect((await request()).data).not.toHaveProperty('priceCooldowns');
 });
@@ -133,7 +133,7 @@ it('enforces the browser cooldown even when IP addresses change', async () => {
   const first = await request({ ...input, targetKey: undefined, name: 'New cappuccino' }, undefined, 'ip-0');
   const cookie = first.headers['Set-Cookie'].split(';')[0];
   let entry = first.data.entry;
-  for (let i = 1; i < 5; i++) {
+  for (let i = 1; i < 10; i++) {
     const next = await request({ ...input, id: entry.id, revision: entry.revision }, cookie, `ip-${i}`);
     expect(next.status).toBe(200);
     entry = next.data.entry;
