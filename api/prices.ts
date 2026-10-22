@@ -16,6 +16,7 @@ import { saveCustomMap, mapFingerprint, automaticMapInput, duplicateAutomaticMap
 import { mapPlacesInBounds, searchMapPlaces } from '../server/map-places.js';
 import { withMapQuota } from '../server/map-quota.js';
 import { saveVenueCorrection } from '../server/venue-corrections.js';
+import { notifyMapRequest } from '../server/community-mail.js';
 
 const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset>>>> = {};
 function datasets(city: City) {
@@ -105,7 +106,9 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       }
       const operation = `${city}:${input.mapId}:${input.action === 'requestMapPublication' && existing ? mapFingerprint(existing) : ''}`;
       const quotaStore = blobStore(`maps/quotas/${process.env.VERCEL_ENV === 'production' ? 'production' : 'development'}.json`);
-      return reply(200, { map: await withMapQuota(quotaStore, creating ? 'create' : 'publish', mapIp, actor.account || owner, operation, save) });
+      const map = await withMapQuota(quotaStore, creating ? 'create' : 'publish', mapIp, actor.account || owner, operation, save);
+      if (input.action !== 'createMap') await notifyMapRequest(city, map);
+      return reply(200, { map });
     }
     if (body && typeof body === 'object' && 'action' in body && body.action === 'rateCoffee') {
       throw new InputError('Bitte ein Foto mit deinem Kaffee aus diesem Lokal hochladen.', 422);

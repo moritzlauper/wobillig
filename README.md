@@ -129,7 +129,7 @@ Neue Oberflächentexte stehen auf Deutsch in `t('…')` und brauchen einen Eintr
 
 Das Vercel-Projekt `wobillig` ist mit diesem Repository verbunden. Jeder Push auf `main` geht direkt in Production, auch die Daten-Commits des Scrapers. Hauptdomain ist `wobillig.ch`, `www.wobillig.ch` leitet dorthin weiter. Canonical-URLs, hreflang, Sitemap und `robots.txt` verwenden deshalb `https://wobillig.ch` (`siteOrigin` in `src/seo.ts`, beim Build per `SITE_URL` überschreibbar). Wer die Hauptdomain oder die Weiterleitung in Vercel ändert, muss `siteOrigin` anpassen. Cookies und Browserspeicher gelten nur für den jeweiligen Hostnamen.
 
-Community-Daten liegen in einem privaten Vercel-Blob-Store, getrennt nach Stadt und nach Production und Entwicklung. Der Browser bekommt nie einen Blob-Token. IP-Adressen und Browserkennungen werden nur als HMAC gespeichert. Gültige Beiträge erscheinen nach automatischen Prüfungen ohne manuelle Freigabe, wegen Server- und CDN-Cache mit bis zu zwei Minuten Verzögerung. Auffällige Preisänderungen werden zurückgehalten. Die Prüfseiten für zurückgehaltene Beiträge und eingereichte Maps sind passwortgeschützt.
+Community-Daten liegen in einem privaten Vercel-Blob-Store, getrennt nach Stadt und nach Production und Entwicklung. Der Browser bekommt nie einen Blob-Token. IP-Adressen und Browserkennungen werden nur als HMAC gespeichert. Gültige Beiträge erscheinen nach automatischen Prüfungen ohne manuelle Freigabe, wegen Server- und CDN-Cache mit bis zu zwei Minuten Verzögerung. Auffällige Preisänderungen werden zurückgehalten. Die Prüfseiten für zurückgehaltene Beiträge und eingereichte Maps sind passwortgeschützt. Neue Anfragen für automatische Maps und Einreichungen zur Veröffentlichung meldet der Server per E-Mail an hello@wobillig.ch, höchstens 50 pro Tag. Ohne SMTP-Variablen entfällt die E-Mail, die Prüfseite listet die Anfragen trotzdem.
 
 Stand 22. Oktober 2026 in Production: Cloudflare Turnstile prüft jeden Beitrag, die manuelle Freigabe ist aus, die Konto-Schaltflächen sind ausgeblendet und eine E-Mail-Bestätigung ist nicht nötig.
 
@@ -148,7 +148,7 @@ Alle Werte sind Servervariablen und bekommen nie ein `VITE_`-Präfix. Die Vorlag
 | `COMMUNITY_PHOTO_DAILY_USD`, `COMMUNITY_PHOTO_DAILY_LIMIT`, `COMMUNITY_PHOTO_HOURLY_LIMIT` | Gemeinsames Budget aller Foto-Prüfungen (Standard USD 2 pro 24 Stunden) |
 | `COMMUNITY_REVIEW_REQUIRED` | `true` hält alle Beiträge bis zur manuellen Freigabe zurück |
 | `COMMUNITY_WRITES_PAUSED`, `COMMUNITY_PHOTOS_PAUSED` | Notschalter, siehe unten |
-| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `COMMUNITY_EMAIL_FROM`, `COMMUNITY_EMAIL_DAILY_LIMIT` | Versand der Bestätigungscodes über Infomaniak |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `COMMUNITY_EMAIL_FROM`, `COMMUNITY_EMAIL_DAILY_LIMIT` | Versand der Bestätigungscodes und der Hinweise auf neue Map-Anfragen über Infomaniak |
 | `EMAIL_VERIFICATION_REQUIRED`, `COMMUNITY_AUTH_SECRET` | Pflicht-Bestätigung und Signatur der Konto-Sessions |
 | `PHOTON_URL`, `SITE_URL` | Optional: eigener Photon-Endpunkt, abweichende Domain |
 
