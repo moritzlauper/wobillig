@@ -292,9 +292,9 @@ export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
   // Districts without a Margherita up to CHF 18 still keep their cheapest venues.
   if (f.drink === "pizza" && !f.pizzaSelection && !f.pizzaQuery?.trim()) return Math.max(18, limit);
   // Tightly clustered prices can put the third just below the average shown next
-  // to the button. Stay at least 5% below it while the minimum of venues remains.
+  // to the button. Stay at least 3% below it while the minimum of venues remains.
   const average = prices.reduce((sum, price) => sum + price, 0) / prices.length;
-  const belowAverage = prices.filter(price => price <= Math.min(limit, average * .95));
+  const belowAverage = prices.filter(price => price <= Math.min(limit, average * .97));
   return belowAverage.length >= minimum ? belowAverage[belowAverage.length - 1] : limit;
 }
 

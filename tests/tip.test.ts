@@ -18,7 +18,7 @@ afterEach(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 
 it('uses each city’s affordable cappuccino amount in cents', async () => {
   expect(await cappuccinoTipAmount('zurich')).toBe(550);
-  expect(await cappuccinoTipAmount('bern')).toBe(510);
+  expect(await cappuccinoTipAmount('bern')).toBe(520);
   expect(await cappuccinoTipAmount('basel')).toBe(550);
 });
 it('keeps branding and product metadata specific to wobillig, with no subscription', () => {

@@ -366,7 +366,7 @@ describe("cheap price shortcut", () => {
     // A cheap filter that keeps every venue would not filter anything.
     expect(cheapPriceLimit(venues([...Array(4).fill(5), ...Array(16).fill(6)]), f)).toBe(5);
   });
-  it("stays at least 5% below the average while ten venues remain", () => {
+  it("stays at least 3% below the average while ten venues remain", () => {
     // Like Bern: the third ends just below a common standard price near the average.
     const clustered = venues([...Array(24).fill(5), ...Array(16).fill(5.4), ...Array(76).fill(5.6)]);
     const max = cheapPriceLimit(clustered, f)!;
