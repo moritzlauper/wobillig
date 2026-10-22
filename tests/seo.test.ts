@@ -40,14 +40,16 @@ describe('search-engine-visible production pages', () => {
     expect(titles.size).toBe(cityIds.length * locales.length * (guideTypes.length + 1));
   });
 
-  it('names the served www host as canonical origin and the brand as site name', () => {
-    // wobillig.ch redirects to www.wobillig.ch; a canonical pointing at the redirect splits indexing signals.
-    expect(siteOrigin).toBe('https://www.wobillig.ch');
+  it('names the served apex host as canonical origin and the brand as site name', () => {
+    // www.wobillig.ch redirects to wobillig.ch; a canonical pointing at the redirect splits indexing signals.
+    expect(siteOrigin).toBe('https://wobillig.ch');
     const html = files.get('index.html')!;
-    expect(html).toContain('<link rel="canonical" href="https://www.wobillig.ch/" />');
-    expect(html).not.toMatch(/https:\/\/wobillig\.ch/);
+    expect(html).toContain('<link rel="canonical" href="https://wobillig.ch/" />');
+    expect(html).not.toContain('www.wobillig.ch');
+    expect(files.get('sitemap.xml')).not.toContain('www.wobillig.ch');
+    expect(files.get('datenschutz/index.html')).toContain('<link rel="canonical" href="https://wobillig.ch/datenschutz">');
     const data = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)![1]);
-    expect(data['@graph'].find((item: { '@type': string }) => item['@type'] === 'WebSite')).toMatchObject({ url: 'https://www.wobillig.ch/', name: 'wobillig', alternateName: ['wobillig.ch'] });
+    expect(data['@graph'].find((item: { '@type': string }) => item['@type'] === 'WebSite')).toMatchObject({ url: 'https://wobillig.ch/', name: 'wobillig', alternateName: ['wobillig.ch'] });
   });
 
   it('serves each city map in English with language links in both directions', () => {

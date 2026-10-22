@@ -1,6 +1,6 @@
 # wobillig
 
-wobillig ist eine Karte, auf der du Kaffee-, Bier- und Pizzapreise in Zürich, Bern, Basel, Lausanne und Genf vergleichst. Die Website läuft unter **[www.wobillig.ch](https://www.wobillig.ch)**. Sie ist kostenlos und funktioniert ohne Konto.
+wobillig ist eine Karte, auf der du Kaffee-, Bier- und Pizzapreise in Zürich, Bern, Basel, Lausanne und Genf vergleichst. Die Website läuft unter **[wobillig.ch](https://wobillig.ch)**. Sie ist kostenlos und funktioniert ohne Konto.
 
 Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der Lokale und aus Einträgen von Besucherinnen und Besuchern. Jedes Angebot nennt seine Quelle und das Erfassungsdatum. Ein Scraper liest die Karten alle drei Wochen neu ein. Fehlende Preise werden nie geschätzt.
 
@@ -127,7 +127,7 @@ Neue Oberflächentexte stehen auf Deutsch in `t('…')` und brauchen einen Eintr
 
 ## Betrieb
 
-Das Vercel-Projekt `wobillig` ist mit diesem Repository verbunden. Jeder Push auf `main` geht direkt in Production, auch die Daten-Commits des Scrapers. Hauptdomain ist `www.wobillig.ch`, `wobillig.ch` leitet dorthin weiter. Canonical-URLs, hreflang, Sitemap und `robots.txt` verwenden deshalb `https://www.wobillig.ch` (`siteOrigin` in `src/seo.ts`, beim Build per `SITE_URL` überschreibbar). Wer die Hauptdomain in Vercel ändert, muss `siteOrigin` anpassen.
+Das Vercel-Projekt `wobillig` ist mit diesem Repository verbunden. Jeder Push auf `main` geht direkt in Production, auch die Daten-Commits des Scrapers. Hauptdomain ist `wobillig.ch`, `www.wobillig.ch` leitet dorthin weiter. Canonical-URLs, hreflang, Sitemap und `robots.txt` verwenden deshalb `https://wobillig.ch` (`siteOrigin` in `src/seo.ts`, beim Build per `SITE_URL` überschreibbar). Wer die Hauptdomain oder die Weiterleitung in Vercel ändert, muss `siteOrigin` anpassen. Cookies und Browserspeicher gelten nur für den jeweiligen Hostnamen.
 
 Community-Daten liegen in einem privaten Vercel-Blob-Store, getrennt nach Stadt und nach Production und Entwicklung. Der Browser bekommt nie einen Blob-Token. IP-Adressen und Browserkennungen werden nur als HMAC gespeichert. Gültige Beiträge erscheinen nach automatischen Prüfungen ohne manuelle Freigabe, wegen Server- und CDN-Cache mit bis zu zwei Minuten Verzögerung. Auffällige Preisänderungen werden zurückgehalten. Die Prüfseiten für zurückgehaltene Beiträge und eingereichte Maps sind passwortgeschützt.
 
@@ -179,11 +179,11 @@ Die Workflows brauchen die Repository-Secrets `ANTHROPIC_API_KEY` und `BLOB_READ
 
 ## Suchmaschinen
 
-Damit Google `www.wobillig.ch` als Hauptadresse führt:
+Damit Google `wobillig.ch` als Hauptadresse führt:
 
 1. In der [Google Search Console](https://search.google.com/search-console) eine Domain-Property für `wobillig.ch` anlegen. Die DNS-Bestätigung deckt `www` mit ab.
-2. Die Sitemap `https://www.wobillig.ch/sitemap.xml` einreichen.
-3. `https://www.wobillig.ch/` mit der URL-Prüfung zur Indexierung anmelden.
+2. Die Sitemap `https://wobillig.ch/sitemap.xml` einreichen.
+3. `https://wobillig.ch/` mit der URL-Prüfung zur Indexierung anmelden.
 
 Jede Seite liefert Titel, Beschreibung, Canonical, hreflang und strukturierte Daten (`WebSite` mit dem Namen «wobillig», `CollectionPage`). Impressum und Datenschutz sind auf `noindex` gesetzt.
 

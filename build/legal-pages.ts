@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { htmlLang, type Locale } from '../src/i18n';
 import { legalLinks, legalPaths } from '../src/legal-links';
 import { legalOperator } from './legal-operator';
+import { siteOrigin } from '../src/seo';
 
 const escape = (text: string) => text.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 const link = (url: string, label: string) => `<a href="${url}">${label}</a>`;
@@ -67,7 +68,7 @@ function privacy(locale: Locale) {
     <h2>11. Speicherdauer und deine Rechte</h2><p>Zur Wiederherstellung nach Datenverlust sichern wir Community-Daten zusätzlich zugriffsgeschützt im privaten Vercel-Speicher. Automatische Sicherungen werden bei regulärem Betrieb nach ungefähr acht Tagen überschrieben; zusätzliche manuelle Sicherungen können zur Behebung von Vorfällen aufbewahrt werden. Bestätigungscodes und kurzlebige Sicherheitszähler werden nicht mitgesichert.</p><p>Nach erfolgreicher Bestätigung wird der zugehörige Code-Prüfdatensatz gelöscht. Ungenutzte oder abgelaufene Codes sind nach zehn Minuten nicht mehr verwendbar; die gespeicherten Prüfdaten werden erst bei späteren Code-Anfragen bereinigt, nicht sofort bei Ablauf. Mit Maps verknüpfte Kontokennungen bleiben bis zur Entfernung der Zuordnung beziehungsweise Bearbeitung eines Löschbegehrens erhalten.</p><p>Öffentliche Beiträge, Maps, Prüfverläufe und Erstellerkennungen haben derzeit keine automatische Löschfrist; sie bleiben für den Betrieb und die Nachvollziehbarkeit von Änderungen erhalten. Begrenzungszähler und Menü-Scan-Quittungen verlieren nach ihrem jeweiligen kurzen Zeitfenster, meist zehn Minuten bis 24 Stunden, ihre Wirkung. Abgelaufene Datensätze werden bei späteren Schreibvorgängen bereinigt, nicht durch einen zeitgesteuerten Löschlauf. Die Gültigkeit der Browser-Cookies steht oben. Sicherungskopien können frühere Datenstände enthalten.</p><p>Korrespondenz bewahren wir auf, soweit sie zur Bearbeitung des Anliegens und für gesetzliche Pflichten erforderlich ist. Für Zahlungsunterlagen können gesetzliche Aufbewahrungspflichten gelten. Für Anbieterprotokolle und Statistiken gelten die jeweiligen Aufbewahrungsregeln der Anbieter.</p><p>Du kannst nach dem anwendbaren Recht Auskunft, Berichtigung oder Löschung verlangen und weitere Datenschutzrechte geltend machen. Schreibe an ${mail()} mit Angaben, anhand derer wir den betreffenden Beitrag oder die Map finden können. Wir können einen Identitätsnachweis benötigen und erläutern gegebenenfalls gesetzliche Gründe für eine weitere Aufbewahrung. Eine Standortfreigabe kannst du im Browser widerrufen. Du kannst dich auch an den ${link('https://www.edoeb.admin.ch/', 'Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB)')} wenden.</p>`;
 }
 
-export function legalPages(base = '/', origin = 'https://www.wobillig.ch') {
+export function legalPages(base = '/', origin = siteOrigin) {
   if (process.env.VERCEL_ENV === 'production' && !legalOperator.name.trim()) {
     throw new Error('Complete the public operator name in build/legal-operator.ts before production deployment.');
   }

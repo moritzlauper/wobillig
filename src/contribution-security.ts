@@ -108,7 +108,7 @@ export function accountControl(container: HTMLElement) {
         };
         dialog.append(logout, error);
       } else {
-        if (!settings.mailReady && !settings.emailRequired) throw new Error(message('Die Kontoerstellung ist in dieser Umgebung noch nicht eingerichtet. Bitte verwende www.wobillig.ch.', 'Account creation is not configured in this environment yet. Please use www.wobillig.ch.'));
+        if (!settings.mailReady && !settings.emailRequired) throw new Error(message('Die Kontoerstellung ist in dieser Umgebung noch nicht eingerichtet. Bitte verwende wobillig.ch.', 'Account creation is not configured in this environment yet. Please use wobillig.ch.'));
         await verifyEmail(settings, true);
         updateLabel(true);
       }

@@ -2,9 +2,9 @@ import { cities, defaultCityLocale, type City } from './cities';
 import { coffeeLabels, escapeHtml as e, isCurrentOffer, isStange, effectiveBeerType, type Bar, type Dataset, type Offer } from './data';
 import { dateLocale, htmlLang, localizedPath, translate, type Locale } from './i18n';
 
-// Vercel serves the site on www and redirects the apex domain there. Canonicals,
-// hreflang and the sitemap must name the final URL, not a redirect.
-export const siteOrigin = 'https://www.wobillig.ch';
+// Vercel serves the apex domain and redirects www there. Canonicals, hreflang
+// and the sitemap must name the final URL, not a redirect.
+export const siteOrigin = 'https://wobillig.ch';
 export const cityIds = Object.keys(cities) as City[];
 export const coffeeGuideTypes = ['espresso', 'cappuccino'] as const;
 export const guideTypes = [...coffeeGuideTypes, 'stange', 'margherita'] as const;

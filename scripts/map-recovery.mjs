@@ -17,7 +17,7 @@ if (!state.customMaps?.some(map => map.id === mapId)) throw new Error('Map nicht
 if (state.mapOwners?.[mapId]) throw new Error('Diese Map hat bereits einen Besitzer. Keine Wiederherstellung für alte Maps nötig.');
 const expires = Date.now() + 86400000;
 const signature = createHmac('sha256', secret).update(`map-recovery:${city}:${mapId}:${expires}`).digest('hex');
-const url = new URL(city === 'zurich' ? '/' : city === 'geneva' ? '/geneve' : `/${city}`, 'https://www.wobillig.ch');
+const url = new URL(city === 'zurich' ? '/' : city === 'geneva' ? '/geneve' : `/${city}`, 'https://wobillig.ch');
 url.searchParams.set('map', mapId);
 url.hash = `recover=${expires}.${signature}`;
 console.log('Privater Wiederherstellungslink (24 Stunden gültig). Nur an den bestätigten Ersteller weitergeben:');

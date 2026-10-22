@@ -28,7 +28,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   try {
     const summary = await checkReviewQueue();
     console.log(`Pending reviews: ${summary.pending}; waiting at least 24 hours or missing a timestamp: ${summary.overdue}.`);
-    console.log('Review privately at https://www.wobillig.ch/api/community-review and /api/map-review.');
+    console.log('Review privately at https://wobillig.ch/api/community-review and /api/map-review.');
     if (summary.overdue || summary.pending >= 100) process.exitCode = 1;
   } catch { console.error('Review queue monitoring failed. No contribution details are logged.'); process.exitCode = 1; }
 }
