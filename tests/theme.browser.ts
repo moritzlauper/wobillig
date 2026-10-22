@@ -66,7 +66,7 @@ test('invalid preferences fall back to system and guides work without JavaScript
   await expect(page.getByLabel('Farbschema')).toHaveValue('system');
   const context = await browser.newContext({ javaScriptEnabled: false, colorScheme: 'dark', viewport: { width: 320, height: 700 } });
   const guide = await context.newPage();
-  await guide.goto('http://127.0.0.1:5179/espresso-zuerich');
+  await guide.goto(new URL('/espresso-zuerich', page.url()).href);
   await expect(guide.locator('html')).toHaveCSS('color-scheme', 'dark');
   await expect(guide.locator('html')).toHaveCSS('background-color', 'rgb(25, 29, 34)');
   await expect(guide.locator('h1')).toBeVisible();

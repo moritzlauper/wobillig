@@ -2,7 +2,9 @@ import { cities, defaultCityLocale, type City } from './cities';
 import { coffeeLabels, escapeHtml as e, isCurrentOffer, isStange, effectiveBeerType, type Bar, type Dataset, type Offer } from './data';
 import { dateLocale, htmlLang, localizedPath, translate, type Locale } from './i18n';
 
-export const siteOrigin = 'https://wobillig.ch';
+// Vercel serves the site on www and redirects the apex domain there. Canonicals,
+// hreflang and the sitemap must name the final URL, not a redirect.
+export const siteOrigin = 'https://www.wobillig.ch';
 export const cityIds = Object.keys(cities) as City[];
 export const coffeeGuideTypes = ['espresso', 'cappuccino'] as const;
 export const guideTypes = [...coffeeGuideTypes, 'stange', 'margherita'] as const;
@@ -168,7 +170,7 @@ export function seoHead(cityId: City, origin = siteOrigin, type?: GuideType, loc
   const city = cityName(cityId, locale);
   const image = `${origin}/teaser/wobillig-teaser-wordmark-1180.png`;
   const graph: object[] = [
-    { '@type': 'WebSite', '@id': `${origin}/#website`, url: `${origin}/`, name: 'wobillig', inLanguage: ['de-CH', 'en'] },
+    { '@type': 'WebSite', '@id': `${origin}/#website`, url: `${origin}/`, name: 'wobillig', alternateName: ['wobillig.ch'], inLanguage: ['de-CH', 'en'] },
     { '@type': 'CollectionPage', '@id': `${url}#webpage`, url, name: meta.title, description: meta.description, inLanguage: htmlLang[locale], isPartOf: { '@id': `${origin}/#website` }, about: { '@type': 'City', name: city } },
   ];
   if (type) graph.push({ '@type': 'BreadcrumbList', itemListElement: [
