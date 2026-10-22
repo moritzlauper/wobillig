@@ -1,572 +1,205 @@
-# wobillig 
+# wobillig
 
-Eine einfache Karte für Bier-, Kaffee- und Pizza-Margherita-Preise in Zürich, Bern, Basel, Lausanne und Genf. TypeScript, Leaflet, Python-Scraper und eine Vercel-API für gemeinsam gespeicherte Preise. Keine Registrierung erforderlich.
+wobillig ist eine Karte, auf der du Kaffee-, Bier- und Pizzapreise in Zürich, Bern, Basel, Lausanne und Genf vergleichst. Die Website läuft unter **[www.wobillig.ch](https://www.wobillig.ch)**. Sie ist kostenlos und funktioniert ohne Konto.
 
-Über das kleine **Plus neben den Kategorien** lassen sich eigene Maps erstellen, etwa für Brot oder günstige Haferflocken. Sie gehören zur aktuellen Stadt und sammeln frei benannte Produkte mit Mengen und Preisen pro Ort. Die Suche kombiniert den gesamten lokalen Bestand mit [Photon/OpenStreetMap](https://github.com/komoot/photon/blob/master/docs/api-v1.md): Geschäfte, Supermärkte, Drogerien, Apotheken und andere indexierte Orte, ohne Gastronomie-Filter, innerhalb von 15 km um die Stadt. Suchanfragen werden verzögert und serverseitig fünf Minuten zwischengespeichert. `PHOTON_URL` kann optional einen eigenen Photon-Endpunkt festlegen. Der Server signiert die gefundenen OSM-Orte für 24 Stunden; Speichern prüft Signatur, Stadt und OSM-ID. Shops werden nur als Snapshot in der eigenen Map gespeichert, nicht in den regulären Kaffee-/Bier-/Pizza-Bestand übernommen.
+Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der Lokale und aus Einträgen von Besucherinnen und Besuchern. Jedes Angebot nennt seine Quelle und das Erfassungsdatum. Ein Scraper liest die Karten alle drei Wochen neu ein. Fehlende Preise werden nie geschätzt.
 
-**Automatische Maps anfragen:** Im Plus-Dialog kann zwischen «Map selbst erstellen» und «Automatische Map anfragen» gewählt werden. Für eine Anfrage sind Name, HTTPS-Link zur Angebotsseite und eine Beschreibung (maximal 600 Zeichen) nötig; die aktuelle Stadt wird übernommen. Die Anfrage bleibt per Link erreichbar und erscheint unter «Meine Maps» mit aktuellem Status. Identische Quellen und Beschreibungen innerhalb derselben Stadt werden zu einer bestehenden, nicht abgelehnten Anfrage zusammengeführt. Die Erstellung teilt das Limit von zehn neuen Maps pro Browser und 30 pro IP innerhalb von 24 Stunden. Vorgeschlagene URLs werden beim Einreichen niemals abgerufen.
+## Funktionen
 
-Auf der bestehenden Adminseite `/output/price-review/production` stehen alle Anfragen im Bereich **«Automatische Maps»**, zusätzlich zur allgemeinen Map-Übersicht. Mit dem vorhandenen Prüfzugang können sie in Prüfung genommen, wegen einer noch nicht verfügbaren Quelle zurückgestellt oder abgelehnt werden. Rückstellungen und Ablehnungen benötigen eine kurze Begründung, die für alle mit dem Anfragelink sichtbar ist. Revisionen verhindern das Überschreiben zwischenzeitlicher Entscheidungen. Anfragen können weder manuell mit Preisen befüllt noch über die normale Map-Freigabe veröffentlicht werden.
+- Kaffee ist die Startansicht. Verglichen wird pro Getränk und Sorte, zum Beispiel Espresso, Cappuccino, Café crème, Flat White oder Matcha Latte, ohne Umrechnung auf eine Tassengrösse.
+- Bier lässt sich nach Grösse (Stange/3 dl, 3.3 dl, 5 dl), Ausschank (Offen-, Flaschen- oder Dosenbier) und Marke filtern. Auf Wunsch rechnet die Karte auf 5 dl um.
+- Pizza Margherita erscheint in einer Stadt erst ab 20 Lokalen mit aktuellem Margherita-Preis. Weitere Klassiker wie Diavola oder Quattro Stagioni sind über eine eigene Auswahl erreichbar.
+- Preise lassen sich von Hand eintragen und korrigieren oder per Foto der Karte erfassen. Der Foto-Scan liest die Preise mit Claude Haiku 5.5 aus und speichert sie direkt beim gewählten Lokal. Das Bild selbst wird nicht gespeichert.
+- Fehlende Lokale können ergänzt und bestehende korrigiert werden (Name, Adresse, Website).
+- Kaffee lässt sich mit Sternen und einem Foto bewerten. Der Durchschnitt erscheint ab drei Stimmen.
+- Über das Plus neben den Kategorien entstehen eigene Maps, etwa für Brot oder Haferflocken. Wer den Link hat, kann eine Map ansehen und bearbeiten. Nach einer Prüfung kann sie öffentlich unter «Weitere» erscheinen. Automatische Maps lassen sich bereits anfragen, ein Import dafür ist aber noch nicht aktiv.
+- Unter «Filter» stehen die Zürcher Stadtkreise, die Basler Wohnviertel, die Berner Stadtteile und die Quartiere von Lausanne und Genf zur Auswahl, jeweils mit eigenem Durchschnittspreis.
+- Das Fenster «Daten» exportiert den Bestand der Stadt als CSV oder JSON.
+- Lokale lassen sich per Link teilen. Es gibt einen Hell- und einen Dunkelmodus sowie eine deutsche und eine englische Oberfläche.
+- «Kaffee spendieren» ist eine freiwillige Zahlung per TWINT oder Karte über Stripe. Der Betrag entspricht einem günstigen Cappuccino der Stadt, aktuell CHF 5.50 in Zürich und Basel, CHF 5.40 in Bern und CHF 4.90 in Lausanne und Genf.
 
-**Stand der Quellenanbindung:** Dieser Anfrage- und Prüfablauf startet noch keinen Scraper. Der direkte Testabruf der Coop-Aktionsseite lieferte HTTP 403; deshalb ist kein unbestätigter Coop-Import und kein Zeitplan aktiviert. Für die spätere Aktivierung fehlen ein verlässlich abrufbarer, geprüfter Quellenadapter, belegte Filial-/Regionszuordnung, Angebotsgültigkeit und ein erfolgreicher Vorschauimport. Eine Änderung des Anfragestatus ersetzt diese Schritte nicht.
+### Günstig-Filter
 
-**Teilen und Veröffentlichen:** Neue Maps sind standardmässig nur per Link (`?map=<UUID>`) erreichbar. Alle mit dem Link können sie ansehen und bearbeiten. «Map teilen» ist sofort verfügbar; «Für alle veröffentlichen» reicht eine Map ab einem Ort mit Preis zur Prüfung ein. Erst nach Freigabe wird sie öffentlich unter «Weitere» sichtbar. Gespeicherte Maps erscheinen mit ihrem Namen direkt unter «Meine Maps» im standardmässig eingeklappten Menü. Andere öffentliche Maps stehen darunter in einem durch eine Trennlinie abgegrenzten Bereich; bereits gespeicherte Maps werden nicht doppelt angezeigt. Änderungen an eingereichten oder freigegebenen Inhalten heben die Einreichung/Freigabe auf; die Map muss erneut eingereicht werden. «Veröffentlichung zurückziehen» nimmt sie wieder aus der öffentlichen Liste.
+Neue Aufrufe ohne konkrete Filter starten mit «Günstig», «Alle anzeigen» hebt den Filter auf. Die Wahl bleibt im Browser gespeichert. Geteilte Links enthalten sie als `cheap=1` oder `cheap=0`.
 
-Die passwortgeschützte Prüfseite unter `/output/price-review/production` zeigt alle erstellten Maps aus allen Städten direkt zusammen mit den manuellen Preisänderungen. Die Map-Übersicht enthält auch leere und nur per Link erreichbare Maps, jeweils mit Stadt, Anzahl Einträgen, Status, Erstellungsdatum und Link. Eingereichte Maps lassen sich auf derselben Seite prüfen, freigeben oder ablehnen. Nach einer Entscheidung kehrt die Seite zum Freigabebereich zurück.
+Die Grenze von «Günstig» richtet sich nach den Lokalen mit Preis in der aktuellen Auswahl, also nach Kategorie, Sorte, Grösse, Suche und Quartier. Angezeigt wird das günstigste Drittel, mindestens aber zehn Lokale. Bei weniger als 20 Lokalen ist es die günstigere Hälfte. Lokale mit genau dem Grenzpreis kommen alle dazu. Teilen sich viele Lokale diesen Preis, gilt die nächsttiefere Preisstufe, sofern ihre Anzahl relativ mindestens so nah am Ziel liegt oder sonst alle Lokale angezeigt würden. Für Pizza Margherita liegt die Grenze bei mindestens CHF 18.
 
+Das Feld «Bis CHF» zeigt ohne eigene Eingabe den höchsten Preis der passenden Liste. Eine eigene Grenze bleibt bei weiteren Filteränderungen und in geteilten Links erhalten.
 
-**Limits:** Höchstens zehn neue Maps und drei Veröffentlichungseinreichungen pro Browser sowie 30 neue Maps und neun Veröffentlichungseinreichungen pro IP innerhalb rollender 24 Stunden, gemeinsam über alle Städte. Ein bestehendes HttpOnly-Cookie identifiziert den Browser, stabile HMACs identifizieren die IP ohne Roh-IP-Speicherung. Atomare Reservierungen im separaten gemeinsamen Blob `maps/quotas/<environment>.json` verhindern parallele Umgehungen; fehlgeschlagene Speicherungen geben die Reservierung frei. Das Löschen des Cookies allein oder ein IP-Wechsel allein setzt das Limit nicht zurück; wer beides wechselt, kann ohne Anmeldung nicht zuverlässig wiedererkannt werden. Weiterhin höchstens 60 Preiseinträge pro Besucher/Stunde und 500 Orte pro Map.
+## Städte und Seiten
 
-In der Bieransicht stehen unter «Filter» ein Dropdown für gängige Biere und eine ergänzende Suche mit dem Beispiel «Quöllfrisch». Die anhand der erfassten Menübezeichnungen kuratierten Gruppen fassen Schreibweisen und Varianten zusammen, etwa «Appenzeller Quöllfrisch» und «Quöllfrisch Naturtrüb». Die Auswahl enthält nur Gruppen mit aktuellen Angeboten in der Stadt, nach Anzahl unterschiedlicher Lokale sortiert. Allgemeine Namen wie «Lager» oder «Stange» werden keiner Marke zugeordnet. Weitere Biere lassen sich im Suchfeld finden; Suche und Dropdown lösen einander ab. Karte und Liste zeigen nur Lokale mit passenden aktuellen Angeboten; Preis, Stadtdurchschnitt und Günstig-Filter beziehen sich auf diese Biere. Bei einer neuen Auswahl werden alle Grössen ausgewählt; anschliessend lassen sich Grösse, Ausschank und weitere Filter eingrenzen. Die Auswahl bleibt beim Neuladen, Stadt- und Sprachwechsel sowie in geteilten Bierlinks erhalten (`beerSelection`, `beerQuery`). Ein geteilter Eintrag bleibt auch dann auswählbar, wenn die Zielstadt dafür keine Angebote hat.
+| Stadt | Deutsch | Englisch |
+| --- | --- | --- |
+| Zürich | `/` | `/en` |
+| Bern | `/bern` | `/en/bern` |
+| Basel | `/basel` | `/en/basel` |
+| Lausanne | `/de/lausanne` | `/en/lausanne` |
+| Genf | `/de/geneve` | `/en/geneve` |
 
-Custom Maps laden ab Zoomstufe 17 zusätzlich benannte OSM-Orte im sichtbaren Kartenausschnitt über den Schweizer Overpass-Dienst (`overpass.osm.ch`). Dazu gehören Geschäfte, Apotheken, Dienstleistungen und weitere Einrichtungen. Begrenzte, gerundete Ausschnitte werden fünf Minuten zwischengespeichert. Die Orte sind anklickbar; dicht nebeneinanderliegende Orte bieten eine Auswahl, Beschriftungen vermeiden Überlappungen. Die Auswahl nutzt dieselben signierten OSM-Snapshots wie die Suche. «Lokal fehlt?» verschwindet bei einer Auswahl und erscheint wieder, wenn der Suchtext geändert wird.
+Lausanne und Genf öffnen standardmässig auf Englisch. `/lausanne` und `/geneve` leiten dorthin weiter, ebenso ältere `/genf`-Links. Genf umfasst neben der Stadt 15 Nachbargemeinden wie Carouge, Lancy und Vernier, französische Gemeinden gehören nicht dazu.
 
-Neue Kartenaufrufe ohne konkrete Filter starten mit «Günstig». «Alle anzeigen» hebt diesen Filter auf. Umschalten, manuelles Preislimit, die Auswahl für fehlende Preise und Zurücksetzen speichern die Wahl lokal im Browser (`wobillig:cheap`). Geteilte Links enthalten immer `cheap=1` oder `cheap=0` und haben Vorrang vor der gespeicherten Wahl; ältere Links mit konkreter Auswahl ohne `cheap` bleiben ungefiltert durch den Günstig-Modus.
+Zu jeder Stadt gibt es vier Ranglisten, die auch ohne JavaScript lesbar sind: `/espresso-<stadt>`, `/cappuccino-<stadt>`, `/stange-<stadt>` und `/margherita-<stadt>` mit den Kürzeln `zuerich`, `bern`, `basel`, `lausanne` und `genf`, auf Englisch mit vorangestelltem `/en`. Sie zeigen die 25 günstigsten erfassten Lokale mit Quelle und Datum. Die Stangen-Liste zählt nur Offenbier, die Margherita-Liste nur Restaurants ohne Imbisse und Takeaways. Zusammen mit den Stadtseiten stehen 50 Seiten in der Sitemap.
 
-## Kaffee für wobillig
+## Datenstand
 
-Neben «Kontakt» steht ein gleich kleiner Link «Kaffee spendieren · CHF …». `GET /api/tip?city=…` berechnet den Betrag serverseitig mit `cheapPriceLimit` aus dem veröffentlichten Cappuccino-Katalog der jeweiligen Stadt, unabhängig von der aktuellen Kategorie, Suche oder Quartierauswahl. Aktuell: Zürich CHF 5.50, Bern CHF 5.00, Basel CHF 5.30. Aktualisierte Kataloge passen den Betrag automatisch an. Noch nicht veröffentlichte Community-Korrekturen ändern diesen Unterstützungsbetrag nicht.
+Datensätze vom 19. bis 21. Oktober 2026, ohne Community-Einträge:
 
-`POST /api/tip` erstellt einen einmaligen Stripe PaymentIntent in CHF mit TWINT und Karte. Ein kleines Zahlungsfenster direkt auf wobillig verwendet Stripe Payment Element ohne E-Mail-Abfrage oder Link-Anmeldung. Der angezeigte Betrag muss mit dem aktuellen Serverbetrag übereinstimmen; andernfalls wird vor einer Zahlung neu geladen. Zahlungsdaten bleiben im Stripe-Iframe. Metadaten `site=wobillig` und `product=wobillig_tip` trennen diese Zahlungen von whatshouldistudy. Das Zahlungsfenster trägt wobillig-Branding; globale Stripe-Einstellungen bleiben unverändert. Die Händleridentität in Zahlungs-Apps kann weiterhin die Kontodaten verwenden. Nach einer TWINT-Rückkehr wird der Status bei Stripe geprüft und der Client-Secret sofort aus der URL entfernt.
+| Stadt | Kaffee: Lokale / Angebote | Bier: Lokale / Angebote | Pizza: Lokale mit Margherita-Preis | Lokale im OSM-Katalog |
+| --- | ---: | ---: | ---: | ---: |
+| Zürich | 300 / 1'539 | 312 / 2'402 | 83 | 2'198 |
+| Bern | 132 / 730 | 127 / 981 | 23 | 715 |
+| Basel | 90 / 467 | 84 / 760 | 19 | 784 |
+| Lausanne | 59 / 252 | 57 / 521 | 10 | 630 |
+| Genf | 74 / 284 | 73 / 426 | 16 | 1'561 |
 
-Benötigt `STRIPE_SECRET_KEY` und den dazugehörigen öffentlichen `STRIPE_PUBLISHABLE_KEY` im Vercel-Projekt **wobillig**, für Production dauerhafte Live-Schlüssel desselben Stripe-Kontos mit Berechtigung zum Erstellen von PaymentIntents. TWINT muss dort freigeschaltet sein. Ohne passende Konfiguration bleibt der Link ausgeblendet; Testschlüssel werden in Production abgewiesen. Lokal werden Testzahlungen als «Test» gekennzeichnet. Geheime Schlüssel niemals ins Frontend oder Repository übernehmen. Nach Änderungen an Vercel-Umgebungsvariablen neu deployen. Ein zusätzlicher Webhook ist für freiwillige Trinkgelder ohne Freischaltung nicht erforderlich.
+Mit den Scraper-Daten allein erreichen nur Zürich und Bern die Schwelle von 20 Pizza-Lokalen. Für Döner und Falafel gibt es Datensätze, die Kategorien erscheinen aber erst ab 50 Dürüm-Angeboten pro Stadt und sind derzeit überall ausgeblendet.
 
-Nach einer erfolgreich eingereichten Anfrage für eine automatische Map oder zur Veröffentlichung erscheint eine schliessbare Kaffee-Einladung. Erst ein Klick auf die Einladung öffnet die Zahlung. Sie ist freiwillig, beeinflusst die Prüfung nicht und erscheint pro Map und Anlass höchstens einmal je Browsersitzung. Fehlgeschlagene Anfragen lösen sie nicht aus.
+Vollständig ist die Karte nicht. Viele Lokale veröffentlichen keine maschinenlesbare Karte, und OpenStreetMap kennt nicht jedes Lokal. Das Erfassungsdatum sagt, wann eine Quelle gelesen wurde, nicht, wie alt die Karte selbst ist.
 
-## Städte und Aktualisierung
+## Woher die Preise kommen
 
-**Lausanne und Genf:** Die beiden Städte stehen im kleinen Dropdown-Pfeil direkt neben Basel. Sie öffnen standardmässig auf Englisch unter `/en/lausanne` und `/en/geneve`; `/lausanne` und `/geneve` leiten dorthin weiter und behalten Suchparameter. Alte `/genf`-, `/en/genf`- und `/de/genf`-Links leiten dauerhaft auf die entsprechenden `/geneve`-Pfade weiter. Der ausdrückliche Wechsel zu Deutsch führt nach `/de/lausanne` beziehungsweise `/de/geneve`. Das Plus am Ende des Dropdowns öffnet eine E-Mail für einen Stadtwunsch an den bestehenden Wobillig-Kontakt. Alle Filter bleiben beim Stadtwechsel erhalten, ausgewählte Lokale und stadtfremde Quartiere werden entfernt.
+Die Standorte kommen aus OpenStreetMap, abgefragt über Overpass (`overpass.osm.ch`, Ersatz `overpass-api.de`) innerhalb der jeweiligen Stadtgrenze. Geprüfte Ergänzungen stehen in `scraper/additional_venues.json` und `scraper/verified_coffee_venues.json`.
 
-Die unabhängigen Bestände liegen unter `public/data/lausanne/` und `public/data/geneva/`; für API, Scraper und Blob-Speicherung lautet der Genfer Schlüssel `geneva`. Beide Städte verwenden die bisherigen Freischaltgrenzen für Pizza, Döner und Falafel. Der erste Bestand enthält echte OSM-Lokale und automatisch aus verlinkten Menüs erfasste Preise; er ist keine vollständige Preisaufnahme. Der reguläre Dreiwochenlauf ergänzt und aktualisiert beide Städte mit denselben Regeln.
+Der Python-Scraper folgt der Website eines Lokals und liest HTML-Seiten, PDF-Karten und mit Tesseract-OCR auch Bildkarten. Er hält sich an `robots.txt` und Crawl-Delay, wartet pro Host mindestens eine Sekunde und umgeht keine Logins, Captchas oder Sperren. Übernommen wird ein Preis nur, wenn Produkt, Menge und Preis eindeutig zusammengehören. Karten, die nur visuell eindeutig sind, liegen geprüft mit SHA-256-Prüfsumme in `scraper/reviewed_*.json` und gelten nur, solange sich die Datei nicht ändert.
 
-**Genfer Einzugsgebiet:** Die Genfer Daten umfassen Genève sowie Carouge, Lancy, Vernier, Meyrin, Onex, Le Grand-Saconnex, Pregny-Chambésy, Cologny, Chêne-Bougeries, Chêne-Bourg, Thônex, Veyrier, Troinex, Plan-les-Ouates und Vandœuvres. `scraper/cities.py` vereinigt deren eindeutige OSM-Gemeindegebiete für sämtliche Standort-, Menü- und Adressimporte. Französische Nachbarorte und die übrigen Landgemeinden sind nicht enthalten. Die Quartierauswahl bleibt auf die acht Quartiere der Stadt Genf beschränkt; ohne Quartierfilter sind auch die umliegenden Gemeinden sichtbar.
+Was der Parser nicht lesen kann, etwa gescannte PDF-Seiten oder Menübilder, geht an Claude Haiku 5.5. Das Budget dafür liegt bei 5 USD pro Stadt und Lauf. Solche Preise sind als «KI-erkannt» markiert. Einträge von Besucherinnen und Besuchern haben Vorrang vor Scraper-Preisen, ausser eine nachweislich neuere Karte nennt für dasselbe Produkt einen anderen Preis.
 
-Quartiergrenzen: Lausanne verwendet die 18 statistischen Quartiere der [Stadt Lausanne](https://viageo.ch/md/29cfd252-6b51-4798-92af-6f9aaf229dcc), mit den offiziellen Nummern 1–17 und 90 (Zones foraines). Die Quelle erlaubt nichtkommerzielle Nutzung mit Quellenangabe; kommerzielle Nutzung benötigt die Genehmigung des Anbieters. Genf verwendet die acht Stadtquartiere der [Ville de Genève / SITG](https://sitg.ge.ch/donnees/vdg-quartier-ville). Aktualisierung: `npm run districts -- lausanne geneva` nach Installation von `scraper/requirements.txt`. Die Quellen und Nutzungsbedingungen stehen auch in den GeoJSON-Dateien. Beide Städte nutzen eigene Quartierparameter, damit die Auswahl beim Stadtwechsel nicht versehentlich übernommen wird.
+## Lokal entwickeln
 
-### Suchmaschinen und Search Console
-
-`npm run build` erzeugt bereits lesbares HTML für Zürich (`/`), Basel (`/basel`), Bern (`/bern`), Lausanne (`/en/lausanne`) und Genf (`/en/geneve`): eindeutige Titel und Beschreibungen, H1, Preisübersichten mit Quellen, Canonical-URLs, Social-Metadaten und strukturierte Daten (`WebSite`, `CollectionPage`). Eine 26 Pixel hohe, auch mobil einzeilige Kopfzeile zeigt die Kategorie und Stadt. Der Link «Ranglisten» zur Preisübersicht der gewählten Kategorie steht in der Listenansicht oberhalb der Sortierung; mobil wird er nach einem Klick auf «Liste» sichtbar. Bei einem Wechsel auf Bier oder Pizza passen sich die Überschrift und der Browser-Seitentitel an; bei Kaffee gilt wieder der SEO-Seitentitel. Die Preisübersichten bleiben auch nach dem Start der interaktiven Karte sichtbar.
-
-Zusätzlich entstehen zehn direkt verlinkte, ohne JavaScript nutzbare Preisvergleichsseiten je Sprache. Die deutschen Pfade sind: `/espresso-zuerich`, `/cappuccino-zuerich`, `/espresso-basel`, `/cappuccino-basel`, `/espresso-bern`, `/cappuccino-bern`, `/espresso-lausanne`, `/cappuccino-lausanne`, `/espresso-genf`, `/cappuccino-genf`. Sie zeigen je Sorte die günstigsten 25 erfassten Lokale, Anzahl, Preisspanne, Durchschnitt und Quellen. Die Auswahl verwendet dieselben Kaffeesorten und Gültigkeitsregeln wie die Karte; pro Lokal zählt ein Preis. Es wird keine vollständige Marktabdeckung behauptet. Community-Korrekturen werden in der Karte laufend geladen; die statischen Übersichten verwenden die JSON-Daten des Builds.
-
-Zusätzlich gibt es «Günstigste Stange» und «Günstigste Pizza Margherita» für jede Stadt und Sprache, zum Beispiel `/stange-zuerich` und `/margherita-zuerich` (Englisch mit `/en`). Die Stangen-Rangliste verwendet den Offenbier- und Stangenfilter zum tatsächlichen Portionspreis; Flaschen, Dosen, alkoholfreies Bier und Biermischgetränke sind ausgeschlossen. Geschätzte Ausschankarten sind gekennzeichnet. Die Pizza-Rangliste enthält ausschliesslich Restaurants und weist ausdrücklich auf den Ausschluss von Imbissen und Takeaways hin. Beide Ranglisten zeigen bis zu 25 Lokale, Quellen und Erfassungsdaten. Insgesamt entstehen zwanzig Vergleichsseiten je Sprache.
-
-Die Kartenlinks der Preisübersichten aktivieren mit `cheap=1` den normalen Günstig-Filter für die gewählte Kaffeesorte. Die Karte verwendet dessen dynamische Preisgrenze; die Auswahl ist nicht auf 25 Lokale begrenzt.
-
-Die öffentliche Hauptdomain ist `https://wobillig.ch` (`src/seo.ts`); bei einem Domainwechsel kann `SITE_URL` beim Build einen anderen HTTPS-Origin vorgeben. `dist/sitemap.xml` enthält alle 50 kanonischen Seiten; `dist/robots.txt` verweist darauf. Filter- und Lokal-URLs bleiben bedienbar und verweisen per Canonical auf ihre Stadtseite. Vercel leitet `/index.html`-Varianten und abschliessende Slashes auf die sauberen URLs weiter.
-
-Nach dem Deployment in Google Search Console die Domain bestätigen und `https://wobillig.ch/sitemap.xml` einreichen. Mit der URL-Prüfung `/`, `/basel`, `/bern`, die drei englischen Stadtseiten und die sechs Preisvergleichsseiten in beiden Sprachen prüfen. Die Sitemap und das HTML entstehen automatisch bei jedem Build; ein Daten-Refresh mit anschliessendem Deployment aktualisiert auch die statischen Preise. Indexierung und Rankings entscheidet die Suchmaschine.
-
-Zürich liegt unter `/`, Bern unter `/bern`, Basel unter `/basel` (auch mit abschliessendem Slash). Die kleinen Stadtlinks in der Statuszeile wechseln die Stadt und behalten alle Filter sowie die Sortierung bei: Kategorie, Kaffeesorte, Suchtext, Preislimit, Biergrösse, Ausschank, Lokaltyp, fehlende Preise, Draussen, Alkoholfrei, Preisumrechnung und Günstig-Modus. Die Auswahl wird in der URL gespeichert; ein ausgewähltes Lokal wird beim Stadtwechsel verworfen. «Günstig» berechnet seine Preisgrenze in der Zielstadt neu. Standortkoordinaten werden nicht in die URL geschrieben; für Entfernungssortierung ist dort erneut ein Standort nötig. Pizza Margherita erscheint erst ab 20 Lokalen mit einem aktuellen Margherita-Preis in der jeweiligen Stadt (inklusive gemeinsamer Einträge, unabhängig von Suchfiltern). Bei weniger Ergebnissen wechseln Pizza-Direktlinks auf Kaffee; der Scraper erfasst weiter Preise. Dort steht auch «Wird alle 3 Wochen aktualisiert».
-
-### Kategorien und «Weitere»
-
-Kaffee ist die Standardkategorie und steht unabhängig von Klickzahlen immer an erster Stelle. Bier und die verfügbare Pizza-Kategorie stehen ebenfalls direkt in der Leiste; ihre Reihenfolge richtet sich nach Beliebtheit. Döner und Falafel liegen unter «Weitere» und erscheinen dort jeweils ab 50 erfassten Dürüm-Angeboten als «Bald verfügbar». Auf dem Handy öffnet der Pfeil rechts dieses Menü, Suche und Filter bleiben sichtbar. Pizza bleibt wie bisher erst ab 20 passenden Lokalen einer Stadt auswählbar.
-
-`/api/categories` zählt die Auswahl gemeinsam über alle Städte und Sprachen. Hinter dem fest platzierten Kaffee basiert die Rangfolge auf den letzten 30 UTC-Kalendertagen, bei Gleichstand gilt Bier → Pizza → Döner → Falafel. Pro täglich gehashter IP und Kategorie zählt höchstens ein Klick pro Tag. Tageszahlen und nur die aktuellen Tageskennungen liegen separat in privatem Vercel Blob (`categories/production.json`, sonst `categories/development.json`); konkurrierende Schreibvorgänge werden über ETags zusammengeführt. Die API liefert ausschliesslich Summen. Die Leiste lädt die Rangfolge beim Öffnen und bei Rückkehr zur Seite, nach Klicks wird sie aktualisiert. Ein offenes Menü bleibt bis zum Schliessen stabil. Ohne Statistikdienst funktionieren die Kategorien in der Standardreihenfolge weiter.
-
-### Englische Version
-
-Alle öffentlichen Karten- und Kaffee-Vergleichsseiten gibt es auch auf Englisch. Die Karten: Zürich unter `/en`, Bern unter `/en/bern` und Basel unter `/en/basel`. Der Link «English» beziehungsweise «Deutsch» in der Kopfzeile wechselt die Sprache und behält Filter, Sortierung und ein ausgewähltes Lokal bei. Die englischen Seiten haben eigene Titel, Beschreibungen und Preisübersichten und verweisen per `hreflang` gegenseitig auf die deutsche Fassung, `x-default` bleibt Deutsch. Die sechs Espresso- und Cappuccino-Vergleichsseiten gibt es ebenfalls auf Englisch unter `/en/espresso-zuerich`, `/en/cappuccino-zuerich`, `/en/espresso-bern`, `/en/cappuccino-bern`, `/en/espresso-basel` und `/en/cappuccino-basel`. Überschriften, Erläuterungen, Preisübersichten, Quellenhinweise, Navigation und Metadaten sind übersetzt. Stadtseiten, Vergleichsseiten und Kartenlinks bleiben in der gewählten Sprache; der Sprachwechsel führt jeweils auf die entsprechende andere Fassung. Auch ohne JavaScript sind beide Sprachfassungen vollständig lesbar.
-
-Übersetzt wird nach dem Muster von gettext. Der deutsche Text steht weiterhin im Code und dient als Schlüssel; `t('…')` aus `src/i18n.ts` liefert auf englischen Seiten den Eintrag aus `src/i18n-en.ts` und sonst den deutschen Text. Die Sprache einer Seite steht in `<html lang>`, dafür gibt es unter `en/` eigene HTML-Einstiege. Fehlermeldungen der API bleiben deutsch und werden erst im Browser übersetzt. `tests/i18n.test.ts` schlägt fehl, wenn ein Text in `t('…')` oder eine Meldung aus `InputError` keine englische Fassung hat. Neue Texte gehören deshalb in `t('…')` und zusätzlich in `src/i18n-en.ts`.
-
-Für Übersichtsseiten anderer Websites liegt ein schlichtes Teaserbild mit zentriertem W-Logo oben und «wobillig» darunter unter `public/teaser/wobillig-teaser-wordmark-1180.png`. Es hat dasselbe Format wie die bisherigen Teaser (1180×822) und liegt als `wobillig-teaser-wordmark-2360.png` auch in doppelter Auflösung vor. Alle Seiten verwenden dieses Motiv als Social-Vorschaubild. Die bestehenden Wordmark-URLs bleiben erhalten. Die SVG-Vorlage liegt daneben; `node scripts/render-teaser.mjs` erzeugt beide PNG-Grössen neu.
-
-Alle fünf Städte werden durch denselben vollständigen Workflow aktualisiert: alle 21 Tage montags um 04:23 UTC, erstmals am 19. Oktober 2026, danach am 9. und 30. November. Die Städte laufen in eigenen Jobs in der festen Reihenfolge **Zürich → Basel → Bern → Lausanne → Genf**; ein Fehler in einer Stadt verhindert die anderen nicht. Jede Stadt hat **5 USD KI-Budget ohne Anfragelimit**, insgesamt maximal **25 USD pro geplantem Durchlauf**. Der Zeitplan wird aktiv, sobald die Workflow-Änderung im Standardbranch liegt.
-
-`WOBILLIG_CITY=bern` bzw. `WOBILLIG_CITY=basel` wählt die Stadt für **alle** Scraper-Module; ohne Variable bleibt Zürich aktiv. Beispiel:
-
-```sh
-WOBILLIG_CITY=bern python -m scraper.scrape --discover
-WOBILLIG_CITY=bern python -m scraper.enrich --limit 0 --max-pages 10
-WOBILLIG_CITY=bern python -m scraper.scrape --missing-bottles --max-pages 20
-WOBILLIG_CITY=bern python -m scraper.scrape_coffee --discover --limit 0
-WOBILLIG_CITY=bern python -m scraper.scrape_pizza --discover --limit 0
-WOBILLIG_CITY=bern python -m scraper.locations
-```
-
-Die neuen Datensätze liegen unter `public/data/bern/` und `public/data/basel/`; Prüfstände unter `scraper/cities/<stadt>/`. Vorhandene Zürich-Pfade bleiben bestehen. Community-Einträge werden pro Stadt in eigenen Blob-Dateien gespeichert; Zürich verwendet weiterhin seine bisherigen Dateien. Vercel bedient die Stadtpfade direkt über `index.html`.
-
-Die vertiefte Flaschenbier-Nachsuche (`--missing-bottles`) prüft auch Lokale, die bereits Offenbierpreise haben. Sie läuft im vollständigen Refresh für alle drei Städte. Die Biersuche nutzt zusätzlich die bereits einem Lokal zugeordneten Getränkekarten aus dem Kaffee-Datensatz, unter Beachtung beider Quellenbeschränkungen. Beschriftete Getränkelinks haben auch bei undurchsichtigen Dateinamen Vorrang. Regionale Namen wie Felsenau, Bärner Müntschi, Ueli und Kitchen Brew, die Überschrift «Fläsche», Ausschankangaben in einzelnen HTML-Produktkarten und eingerückte PDF-Überschriften werden erkannt. Preise und Mengen müssen weiterhin ausdrücklich in der Quelle stehen.
-
-Die Nachsuche vom **17. Oktober 2026** erhöht die erfassten Flaschenbierangebote in Basel von 59 auf 115 (19 → 28 Lokale) und in Bern von 75 auf 123 (21 → 37 Lokale), jeweils über alle Grössen und inklusive alkoholfreier Angebote. Mit **Flaschenbier, 3.3 dl, alkoholhaltig, bis CHF 15** ergeben die Frontend-Filter 23 statt 14 passende Lokale in Basel und 25 statt 17 in Bern. Diese Zahlen beziehen sich auf die JSON-Datensätze ohne zusätzliche Community-Einträge.
-
-Prüfung am **18. Oktober 2026** nach dem vollständigen Basel-Lauf: Bier **54 → 77 Lokale / 689 Angebote**, Kaffee **58 → 84 Lokale / 427 Angebote**, Pizza **11 → 18 Lokale**. Der KI-Abschnitt endete regulär nach 1’034 Anfragen und rund **1.05 USD** von 5 USD Budget, nicht wegen eines Kosten- oder Zeitlimits. Die Standardansicht zeigte **72 Lokale mit Bierpreis** (nach der damaligen, inzwischen entfernten Öffnungszeiten-Regel waren fünf Tagescafés ausgeschlossen), davon 69 passend zur voreingestellten Grösse. Bern enthält 126 Bierlokale / 974 Angebote. Im Standortkatalog besitzen in Basel 431 von 783 Lokalen eine Website, in Bern 545 von 714; ein längerer Lauf kann fehlende Websites nicht automatisch ersetzen.
-
-Die Nachprüfung ergänzt Ackermannshof mit drei belegten Bierangeboten (**78 Basler Bierlokale / 692 Angebote**). Die Website von Huefysebar wird dauerhaft hinterlegt; ihre vorhandenen Preise wurden bestätigt. Weitere Website-Ergänzungen betreffen Mr Pickwick Basel und Cargo Bar. Der Crawler folgt für Bier und Kaffee jetzt auch vorgeschalteten «Bar», «Lounge» und «Restaurant»-Seiten, weiterhin nur auf derselben Website.
-
-Zürich hatte vor dieser Nachprüfung 81 bepreiste Pizza-Lokale, davon 71 in der Standardansicht ohne Takeaways. Gegenüber dem dokumentierten Bestand von 82 gab es vier neue Treffer, vier zurückgezogene Preise (Celia: widersprüchliche Karten; Grottino 83: Restaurant-/Mitnahme-Karten vermischt; Margheri: geänderter Prüfbeleg; Ristorante 99: OCR ohne Treffer) sowie den ausdrücklich gewünschten Ausschluss von La Pizza Buona. Die Suche schliesst nun auch URL-kodierte «Mitnehmen»-/«Take away»-Karten aus; Grottino 83 wurde frisch mit CHF 19 bestätigt. Die Preise werden bei widersprüchlichen Quellen nicht allein zur Erhöhung der Trefferzahl wiederhergestellt.
-
-
-## Was drin ist
-
-«Bis CHF» zeigt standardmässig den höchsten Preis der aktuell passenden Liste. Suche, Sorte, Kategorie und Stadt bestimmen diesen Wert; ohne passende Preise bleibt das Feld leer. Eine manuell gesetzte Preisgrenze bleibt bei weiteren Filteränderungen und über geteilte Links erhalten. Leeren oder Zurücksetzen stellt die automatische Grenze wieder her.
-
-- **Lokal hinzufügen:** Über den gleichnamigen Button lassen sich fehlende Lokale ohne E-Mail oder Registrierung ergänzen. Name, Art, Adresse und Kartenpunkt sind erforderlich; Website und Aussenplätze optional. Die Adresssuche bietet passende Schweizer Adressen an, alternativ lässt sich der Punkt direkt auf der Karte setzen oder deren Mitte übernehmen. Neue Lokale werden je Stadt im bestehenden gemeinsamen Speicher unter `venues` abgelegt, erscheinen auch ohne Preis und bleiben von Scraper-Updates unabhängig. Danach können Preise manuell oder per Menüfoto ergänzt werden. Ähnliche Namen werden vorab angezeigt; gleiche Namen innerhalb von 100 Metern oder an derselben Adresse werden beim Speichern auch bei gleichzeitigen Anfragen zusammengeführt. Der Server prüft Eingaben und eine Entfernung von höchstens 15 km zum jeweiligen Stadtzentrum; pro Besucher sind zehn neue Lokale pro Stunde möglich.
-- **Pinprinza, Bern (19. Oktober 2026):** Cafébar Pinprinza, Bümplizstrasse 97a, 3018 Bern, ergänzt als OSM `way/460523809`, mit acht Kaffee-/Matcha-Preisen und sieben Bierangeboten aus der offiziellen Getränkekarte. Die geprüften PDF-Angebote und der Menülink sind für spätere Scans hinterlegt. Die aktuelle Website nennt vorübergehend Donnerstag bis Sonntag 9–17 Uhr. Öffnungszeiten beeinflussen die Sichtbarkeit im Biervergleich nicht. Der OSM-Eintrag erhielt Name und Café-Kategorie erst am 19. Oktober um 07:56 UTC, nach dem Standortimport vom 17. Oktober. Ein frischer OSM-Abgleich ergibt nach Entfernung von drei doppelten Einträgen 715 Lokale; mit Pinprinza fehlt davon keines im Standortkatalog. Das ist keine vollständige Erhebung aller tatsächlich bestehenden Betriebe.
-
-- Darkmode für Karte, Liste, Formulare und Preisübersichten. Über **Design → System / Hell / Dunkel** wählbar; die Auswahl bleibt lokal gespeichert und gilt für alle Städte und Ranglisten. «System» folgt Änderungen des Gerätefarbschemas automatisch. Ohne JavaScript folgen die statischen Übersichten ebenfalls dem Gerätefarbschema.
-- Umschalter **Kaffee / Bier / Pizza Margherita**. Kaffee ist in allen Städten die Standardansicht und steht links; Cappuccino ist vorausgewählt und wird beim Zurücksetzen wieder gewählt; direkte Kategorienlinks verwenden `?drink=coffee`, `?drink=beer` oder `?drink=pizza`. Ältere Bierlinks mit `?size=…` bzw. `?beerType=…` bleiben gültig.
-- Kaffee nach Sorte vergleichen: Café crème/Kaffee, Espresso, doppelter Espresso, Ristretto, Cappuccino, Latte macchiato, Milchkaffee/Caffè latte, Flat White, Americano und Filterkaffee. Preise gelten **pro Getränk**, ohne erfundene Tassengrössen oder 5-dl-Umrechnung.
-- Interaktive Karte und synchronisierte Liste mit echten OpenStreetMap-Standorten.
-- Suche nach Bar, Strasse und Postleitzahl; Filter für Preis, Portionsgrösse, Bar/Pub/Biergarten/Restaurant/Café, Terrasse und alkoholfreies Bier.
-- **Amtliche Gebiete:** Unter «Filter» lassen sich in Zürich die 12 Stadtkreise, in Basel die 19 Wohnviertel der Stadt (ohne Riehen und Bettingen, die der Scraper nicht abdeckt) und in Bern die 6 Stadtteile einblenden. Ein Gebiet wird per Karte oder Auswahlfeld gewählt; die Statuszeile zeigt dann zusätzlich seinen Durchschnitt, berechnet wie der Stadtdurchschnitt. Direktlinks: `/?kreise=1&kreis=4`, `/basel?quartiere=1&quartier=12`, `/bern?stadtteile=1&stadtteil=1`. Beim Stadtwechsel fallen die Gebietsparameter der anderen Städte weg. Die Grenzen liegen in `public/data/[basel/|bern/]districts.json`; `npm run districts` lädt Basel und Bern neu.
-- **Boulevard-Bewilligungen Basel:** `WOBILLIG_CITY=basel python -m scraper.outdoor_permits` lädt die gültigen Boulevard-Bewilligungen aus den Allmendbewilligungen des Kantons (data.bs.ch, Datensatz 100018) und ordnet sie über Name und Distanz (höchstens 60 m) den Lokalen zu. Unklare Fälle bleiben ohne Zuordnung. Stand 19. Oktober 2026 passen 271 von 396 gültigen Bewilligungen zu 261 Lokalen. Die Zuordnung steht in `scraper/cities/basel/outdoor_permits.json`, die Lokale erhalten `outdoorPermit` mit Saison (`year`, `seasonal` mit `from`/`until` oder `unspecified`) und Fläche. «Draussen sitzen» zählt Lokale mit OSM-Aussenplätzen oder Bewilligung, Saisonbewilligungen nur innerhalb der bewilligten Zeit. Damit findet der Filter in Basel bei Bier 130 statt 112 und bei Kaffee 159 statt 148 Lokale. Die Lokaldetails nennen die Bewilligung, der CSV-Export hat die Spalte `outdoor_permit`. Der Workflow gleicht Basel vor jedem Snapshot neu ab; ist data.bs.ch nicht erreichbar, bleibt die gespeicherte Zuordnung bestehen.
-- Grössenfilter **Stange / 3 dl** und **5 dl**. Die Stangen-Auswahl zeigt den tatsächlichen Glaspreis und ist unter `?size=stange` direkt verlinkbar. Sie enthält 3-dl-Angebote sowie ausdrücklich als Stange bezeichnete 3–3.3-dl-Portionen oder Angebote ohne Mengenangabe. Bekannte 2-dl-Portionen sowie alle als Flaschen- oder Dosenbier gekennzeichneten Angebote gehören nicht dazu, auch bei 3 dl.
-- **3 / 3.3 dl** zeigt kleine Offenbiere und Flaschen gemeinsam: 3- und 3.3-dl-Angebote sowie Stangen gemäss Stangenfilter, auch ohne Mengenangabe. Die Auswahl aktiviert alle Ausschankarten und den tatsächlichen Portionspreis. Danach lässt sich der Ausschank separat einschränken. Direktlink: `?size=300-330`.
-- Bieransicht mit **allen Ausschankarten, 3 / 3.3 dl und maximal CHF 15**, einschliesslich Lokalen ohne passenden Preis. Zurücksetzen stellt diese Standardfilter wieder her. Ausschank und Grösse sind direkt oben wählbar, auf dem Handy in zwei nebeneinanderliegenden Feldern. Bei Flaschen- oder Dosenbier wechselt eine aktive Stangen-Auswahl auf „Alle Grössen“.
-- Standardvergleich nach **tatsächlichem Glaspreis**, optional auf 5 dl umgerechnet. Ein kleineres Glas wird damit nicht automatisch zum besseren Deal. Die Stangen-Direktwahl und der 3-dl-Filter wechseln automatisch zum Glaspreis. Stangen ohne Mengenangabe zeigen „Grösse nicht angegeben“ und werden aus dem rechnerischen 5-dl-Vergleich ausgeschlossen.
-- **Schnitt Zürich / Bern / Basel CHF …** steht prominent in der Statuszeile. Der stadtweite Durchschnitt zählt den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse, Ausschankart und Alkoholfrei-Auswahl; die 5-dl-Umrechnung wird berücksichtigt. Suche, Preislimit, Günstig-Modus, Lokaltyp und Draussen-Filter verändern diesen Vergleichswert nicht. Fehlende oder abgelaufene Preise zählen nicht mit; ohne Treffer erscheint ein Strich. Der Hinweis am Wert und «Daten» erklären die Berechnung.
-- Sortierung nach Preis, Name oder Entfernung nach freiwilliger Standortfreigabe. Der Standort bleibt im Browser.
-- **Offenbier / Flaschenbier / Dosenbier / Ausschankart unbekannt** in der Liste und in den Preisdetails. Die Kartenmarker zeigen nur den Preis. Ausschank-Filter und Auswahl beim Eintragen oder Korrigieren eines Bierpreises.
-- Quellenlink, Portionsgrösse und Abrufdatum für jedes gefundene Angebot.
-- **Daten herunterladen** im Datenfenster: CSV (UTF-8 mit BOM, Semikolon, eine Zeile je Angebot) und JSON für die aktuelle Stadt, alle Kategorien ohne UI-Filter. Originalpreise, Mengen, Quellen, Datum, Prüfstatus und gemeinsame Korrekturen sind enthalten. CSV kennzeichnet abgelaufene und nicht vergleichbare Angebote sowie geschätzte Ausschankarten; JSON bewahrt vollständige Angebotsdetails und Lokale ohne Preise. Fehlende Kategorien oder nicht geladene gemeinsame Einträge werden im Fenster und Export ausgewiesen. Standortattribution bleibt enthalten.
-- **Teilen** in den Lokaldetails öffnet das native Teilen-Menü. Der Direktlink öffnet das Lokal samt Karte und Preisen; Kaffee- und Stangenansicht bleiben erhalten. Ohne native Unterstützung wird der Link kopiert oder zum manuellen Kopieren angezeigt.
-- Bars ohne passenden Preis bleiben optional auf der Karte sichtbar.
-- Mobile Karten-/Listenansicht, Tastaturbedienung und Datenabdeckung.
-- Ein Lokal auf der Karte oder in der Liste anklicken, dann **Preis hinzufügen** oder **Ändern**: Bier, Kaffee und Pizza Margherita ergänzen oder korrigieren. Das Lokal ist im Formular bereits festgelegt. Alle Besucher sehen die gespeicherten Preise. Änderungen werden getrennt vom Scraper gespeichert und als «Eingetragen» beziehungsweise «Foto-Upload» gekennzeichnet. Sie behalten Vorrang vor Website-Preisen. Nur ein abweichender Preis für dasselbe Produkt und dieselbe Portion aus einer nachweislich neueren Website-Karte darf in der Anzeige vorgehen; der ursprüngliche Eintrag bleibt gespeichert und bearbeitbar.
-- **Lokale direkt auf der Karte auswählen:** Im Nahzoom (ab Stufe 17) markieren orange Plus-Symbole weitere OSM-Lokale. Auch die grauen Punkte für Lokale ohne passenden Preis erscheinen erst ab dieser Zoomstufe, für alle Kategorien und Sorten. Preisbeschriftungen bleiben auch in der Übersicht sichtbar. Ein Klick auf ein orangefarbenes Plus öffnet das Preisformular mit Name und Standort. Auch ein Klick auf den Namen im Kartenbild sucht nahe Lokale; bei mehreren Treffern erscheint eine Auswahl. Bier, Kaffee und Pizza Margherita sind im selben Formular wählbar.
-- Scraping-Workflow alle drei Wochen, CI und optionaler GitHub-Pages-Workflow.
-
-## Ehrlicher Datenstand
-
-Der Datenstand vom **15. Oktober 2026** enthält **430 Locations** in der administrativen Stadt Zürich und **1’385 Bierangebote bei 194 Locations**. Unter den **229 als Bar erfassten Lokalen haben 44 einen Bierpreis** (vor der gezielten Bar-Nachsuche: 28); 32 davon haben einen alkoholhaltigen 5-dl-Preis bis CHF 15. Dazu kommen 18 von 61 Pubs mit Preisen. Die Nachsuche prüft zusätzlich Restaurants und Cafés aus OpenStreetMap. Mehrdeutige Mengen-/Preistabellen und doppelte Produktvarianten wurden bereinigt; grafische Karten wurden anhand des PDF-Layouts geprüft. Dies sind Quellendaten, keine Demo-Preise. Die Zahlen ändern sich bei späteren Läufen.
-
-Die Bar-Nachsuche ergänzt 181 Angebote bei 16 Bars und drei Pubs, unter anderem Bar 63, Cinchona, Kasheme, Kunsthaus Bar, Widder, Metropol und Terrasse. Fehlende oder veraltete Website-Adressen und direkte Menülinks sind für folgende Läufe hinterlegt. Kombinierte Wein-/Getränkekarten, Cocktail-Unterseiten, www-Weiterleitungen, grössere PDFs bis 24 MiB und zusätzliche HTML-/Tabellenformate werden berücksichtigt. Bekannte Quellen werden erneut geprüft; bei nicht erreichbaren oder im begrenzten Lauf nicht besuchten Quellen bleiben ihre bisherigen Preise mit dem ursprünglichen Abrufdatum erhalten. Die verbleibenden 185 Bars ohne Preis werden nicht mit Schätzpreisen aufgefüllt.
-
-Beispiele für echte 5-dl-Portionen aus den Originalkarten: Rheinfelder Bierhalle CHF 6.80, New Bombay (Erdinger) CHF 6.90, Amara CHF 6.80, Zum Guten Glück (Adler Lager) CHF 6.80 und La Stazione in Oerlikon CHF 5.50. Im El Lokal erkennt der Parser jetzt auch das Appenzeller vom Fass für CHF 8.50. Die Quellen sind direkt beim jeweiligen Angebot verlinkt.
-
-„Möglichst jede Bar“ umfasst alle benannten OSM-Objekte mit `amenity=bar`, `pub` oder `biergarten` innerhalb der Stadtgrenze. Ergänzend werden ausgewählte Bierhallen, Restaurants und Cafés aus `scraper/additional_venues.json` bei jedem OSM-Import berücksichtigt. Koordinaten und Typ kommen weiterhin aus OSM; optional ergänzte Websites sind in dieser Datei erkennbar. Die zusätzliche Suche in `scraper/enrich.py` prüft systematisch Restaurants und Cafés mit eigener Website innerhalb derselben Stadtgrenze. Gemeinsame Websites mehrerer Standorte werden ohne expliziten Menühinweis ausgelassen. Nachtclubs werden nicht flächendeckend erfasst. OSM ist unvollständig; ein Standort kann veraltet oder falsch klassifiziert sein. Preise sind nur für einen Teil öffentlich maschinenlesbar. **Vollständigkeit und aktuelle Ausschankpreise sind nicht garantiert.**
-
-Der Scraper folgt auch eingebetteten PDFs, PDF-Inhaltsverzeichnissen und verlinkten Lunchgate-Menüs. Er priorisiert Getränkekarten vor anderen Dokumenten. Der PDF-Parser trennt klare Spalten, liest Grössenüberschriften und ordnet Preise anhand der Textpositionen zu. Explizite Portionsgrössen direkt beim Produkt haben Vorrang. Einheiten, parallele Grössen-/Preislisten, umgebrochene Bierzeilen und Alkoholangaben werden ebenfalls ausgewertet. Auch Preis-vor-Menge-Zeilen und Einheiten mit Schluss-Punkt werden erkannt. Ein Flaschenabschnitt beendet die vorherige Fassbier-Mengenzuordnung; fehlende Flaschengrössen werden nicht übernommen.
-
-Grafische oder mehrdeutige Originalkarten sind zusätzlich in `scraper/reviewed_menus.json` visuell geprüft hinterlegt. Diese Angebote erscheinen als **manuell geprüft** und werden nur bei identischer SHA-256-Prüfsumme der erneut abgerufenen Quelle übernommen. Bei als exklusiv markierten Prüfungen ersetzen diese Einträge die automatische Erkennung für dieselbe Karte. Eine geänderte Datei verlangt eine erneute Prüfung; alte geprüfte Preise daraus werden nicht blind übernommen. Für den Vorrang gegenüber Einträgen und Foto-Uploads braucht die geprüfte Karte zusätzlich `menuDate: {"date": "YYYY-MM-DD", "evidence": "Datumsbeleg aus der Karte"}`. Das Datum wird nur bei passender Dokument-Prüfsumme als `verifiedMenuDate` veröffentlicht. Es muss nach dem Upload beziehungsweise der letzten Änderung liegen (Schweizer Kalendertag); gleichzeitige widersprüchliche Karten behalten den Besuchereintrag. Abrufdatum, Dateiname und HTTP-Zeitstempel genügen nicht als Beleg. Uploads erfordern keine manuelle Prüfung. `source_scopes.json` verhindert bei bekannten gemeinsamen Websites, dass Karten anderer Filialen oder archivierte Menüs zugeordnet werden.
-
-Mehrdeutige Tabellen, nicht geprüfte Bilder, reine JavaScript-Menüs, fehlende Grössen (ausser ausdrücklich als Stange bepreiste Portionen), Ginger Beer, Mineralwasser gleicher Marken, Catering-Karten, erkannte Liefer-/Bestellseiten, Take-away-Abschnitte und bedingte Angebote werden ausgelassen. 5 dl umfasst Fass-, Flaschen- und gegebenenfalls Dosenbier. Der Ausschank-Filter trennt diese Angebote. Belegte Ausschankarten stammen aus ausdrücklichen Angaben beim Getränk oder einer eindeutig zugeordneten Menüüberschrift. Fehlen solche Angaben, wird die Art separat anhand von Bezeichnung, Grössenvarianten und typischen Gebinden geschätzt. Die Oberfläche zeigt dann «geschätzt» und eine Begründung; der Ausschank-Filter berücksichtigt diese Vermutung. Eine Schätzung überschreibt niemals das ursprüngliche Quellenfeld. Ein Teil der Angebote hat keine eindeutige Angabe in der Quelle. Diese bekommen nach Möglichkeit eine separate Schätzung; nur Angebote ohne plausible Zuordnung bleiben im Filter „Ausschankart unbekannt“. Automatisch erkannte Preise sind als solche markiert. Das Abrufdatum sagt, wann die Quelle gelesen wurde; eine alte PDF kann weiterhin online stehen. Alkoholfrei umfasst entsprechend bezeichnete Produkte und explizite Alkoholangaben bis 0.5 %, nicht ausschliesslich 0.0 %. Die Oberfläche trennt Gesamtangebote von den Locations mit einem zu den aktuellen Filtern passenden Preis.
-
-Auch Bezeichnungen wie **Grosses / Großes** und **Herrgöttli** werden mit ausdrücklich gedruckter Menge und Preis innerhalb eines Bierabschnitts erkannt. Bei PDF-Faltkarten berücksichtigt die Erkennung ungleich breite Spalten, doppelt gezeichnete Überschriften und unmittelbar darunterstehende Brauerei- oder Alkoholfrei-Angaben. Eine Nachprüfung von 37 entsprechenden archivierten Karten ergänzte bzw. korrigierte Angebote bei Mythos, Gertrudhof, Eisenhof und Gabbiano; die ursprünglichen Abrufdaten der wiederverwendeten Quellen bleiben erhalten.
-
-### Stangenpreise
-
-Die Stangen-Auswahl umfasst **204 Angebote**; **97 Locations** haben einen passenden alkoholhaltigen Preis. Die gezielte Stangen-Nachsuche ergänzte 17 Angebote aus Originalkarten, etwa bei Gabbiano, Hot Pasta und Tramblu (je 3 dl für CHF 4.80), Handelshof (3 dl für CHF 5.50) und La Stazione (Stange für CHF 4.50, Menge nicht angegeben). Weitere Stangenpreise stammen aus der Bar-Nachsuche. Die Abrufdaten der wiederverwendeten Originaldokumente bleiben erhalten. Der reguläre Scraper erkennt diese Formate bei künftigen Läufen ebenfalls.
-
-### Pizza Margherita
-
-Karte und Liste zeigen in dieser Kategorie erfasste Pizza-Lokale und Lokale mit einem gemeinsamen Pizza-Preiseintrag. Auch die orangefarbenen Plus-Marker und die Lokalauswahl per Kartenklick sind auf diese Pizzerien beschränkt; der allgemeine Restaurantkatalog wird in der Pizzaansicht nicht eingeblendet. Die Erkennung berücksichtigt OSM-`cuisine=pizza`, den Namen, bestätigte Pizzeria-Webseitentitel und gefundene Pizza-Angebote. Bekannte Pizzerien bleiben auch ohne Website oder erkannten Preis sichtbar. Reine Getränke-Lokale werden auch bei «Ohne passenden Preis anzeigen» nicht eingeblendet.
-
-`public/data/pizza.json` enthält nach dem vertieften Zürcher Neulauf am **16. Oktober 2026** **182 erfasste Pizza-Lokale, davon 82 mit belegtem Margherita-Preis** (vor der OCR- und Menüsuche-Erweiterung: 55 mit Preis; **27 zusätzliche Treffer, +49 %**). Der vorausgehende Discovery-Lauf prüfte **952 Websites** aus 2’187 OSM-Standorten. Anschliessend wurden die Pizzerien ohne Preis mit der erweiterten Auslese erneut geprüft. OSM kennzeichnet 144 Standorte ausdrücklich mit `cuisine=pizza`; diese Information bleibt jetzt erhalten. Alle zuvor erfassten Preis-Lokale blieben enthalten. Fehlgeschlagene oder gesperrte Abrufe zählen nicht als erfolgreiche Preisermittlung. Das Prüfprotokoll steht in `scraper/pizza_checks.json`. `scraper/pizza_exclusions.json` enthält ausdrücklich ausgeschlossene Lokale; diese werden auch bei neuen Discovery- und Retry-Läufen nicht wieder veröffentlicht. La Pizza Buona wurde auf Nutzerwunsch aus der Pizzaansicht entfernt.
-
-Verglichen wird eine **ganze, normale Pizza Margherita**. Restaurantkarten liefern Vor-Ort-Preise. Unterstützte öffentliche Online-Speisekarten (u. a. Orderstar, WordPress-Pizzakarten und Bestellkarten mit separaten Grössen) werden ebenfalls ausgelesen und ausdrücklich als **Onlinepreis** gekennzeichnet; daraus wird kein Vor-Ort-Preis abgeleitet. Kinderpizzen, kleine/halbe Portionen, Familienpizzen, separate Spezialvarianten, reine Pinsa-Angebote, bedingte Mittagsangebote sowie Liefer-/Take-away-Sonderpreise werden nicht übernommen. Die Standardgrösse kann je nach Restaurant variieren; eine fehlende Durchmesserangabe wird nicht erfunden. Preisfilter und Sortierung gelten pro Pizza, ohne Getränke- oder Volumenfilter. Die Pizzaansicht startet bei CHF 30; der Preisfilter bleibt je Kategorie erhalten. Einträge und Korrekturen nutzen dieselbe gemeinsame Speicherung wie Getränke.
-
-Die Pizzasorten-Auswahl zeigt höchstens zehn Klassiker. Margherita steht zuerst, «Vegetariana / Verdura» direkt danach. Prosciutto, Funghi, Prosciutto e Funghi, Salami, Diavola, Quattro Formaggi, Quattro Stagioni und Tonno folgen absteigend nach der Anzahl erfasster Lokale in der Stadt (jedes Lokal zählt pro Sorte einmal; Gleichstände alphabetisch). «Alle Pizzen» steht am Ende. Weitere Sorten werden anhand der belegten deutschen, italienischen oder englischen Zutaten zugeordnet, auch bei unterschiedlichen Hausnamen: etwa Ortolana mit gemischtem Gemüse zu Vegetariana oder Capricciosa mit Schinken, Pilzen und Artischocken zu Quattro Stagioni. Vegetariana benötigt gemischtes Gemüse oder mindestens zwei erkannte Gemüse-/Pilzarten; Tomaten und Kräuter allein reichen nicht. Fleisch, Fisch und erkannte Spezialbeläge schliessen unpassende Gruppen aus. Nur bei fehlenden Zutaten dienen eindeutige klassische Namen als Ersatz. Angezeigt werden Gruppen mit Preisen in der Stadt, Funghi erst ab drei verschiedenen Lokalen. Preisvergleich, Karte und Schnitt verwenden den günstigsten passenden Menüeintrag mit seinem Originalnamen. Spezialpizzen bleiben über «Alle Pizzen» und die freie Namens-/Zutatensuche erreichbar. Gruppen bleiben beim Neuladen, Teilen und Stadtwechsel erhalten; ältere Links auf einzelne Namen funktionieren weiterhin. Die Zuordnung läuft lokal ohne zusätzliche KI-Anfrage.
-
-Strukturierte Online-Produktkarten und Orderstar-Menüs speichern alle eindeutig zugeordneten regulären Pizzasorten auch ohne KI. Margherita bleibt unter `offers`, weitere Sorten stehen mit Preis, ausdrücklich angegebenen Zutaten und Quellen-Hash unter `pizzaMenu`. Gleich teure Sorten bleiben getrennt. Bei Grössenwahlen zählt nur eine eindeutig ausgewählte normale Grösse (26–35 cm); Familiengrössen und Zusatz-Zutaten werden nicht als Produktpreis übernommen. Beispiel: Da Amici 2 enthält 20 Pizzen, davon 19 zusätzliche Sorten neben Margherita.
-
-Der Scraper liest HTML, PDF-Karten, standortbezogene Schema.org-Menülinks und öffentliche Orderstar-Produktdaten. **Bild-PDFs und Menübilder werden lokal mit Tesseract OCR gelesen**, einschliesslich hochauflösender Originalbilder statt Wix-Vorschaubildern. Name und zugehöriger Preis müssen mit ausreichender OCR-Sicherheit erkannt werden; der Quellenlink und ein OCR-Beleg bleiben erhalten. Die Bildverarbeitung wird nach Inhalts-Hash zwischengespeichert. Pro Lokal werden standardmässig bis zu **20 Dokumente statt 6** geprüft, mit Vorrang für Pizza- und Speisekarten. PDF-Zeilenumbrüche, nebeneinander gedruckte Gerichte und Preisfelder vor dem Namen werden unterstützt. Bei Grössenvarianten werden nur normale ganze Pizzen mit 26–35 cm berücksichtigt. Unterschiedliche OSM-Filialseiten derselben Domain werden getrennt geprüft; fremde Filialkarten bleiben ausgeschlossen. Vor-Ort-Karten haben Vorrang vor ausdrücklich gekennzeichneten Onlinepreisen; widersprüchliche Preise innerhalb desselben Kontexts werden zurückgehalten. Eine nicht vorhandene `robots.txt` (4xx ausser 408/429) blockiert öffentliche Dokumente nicht; ausdrückliche Disallow-Regeln, Rate-Limits und Serverfehler werden weiterhin beachtet ([RFC 9309, Abschnitt 2.3.1.3](https://www.rfc-editor.org/rfc/rfc9309.html#section-2.3.1.3)). `pizza_menu_urls.json` enthält gezielt zugeordnete Originalkarten. Visuell geprüfte Bildkarten, Grössenspalten und mehrdeutige Layouts stehen mit SHA-256-Prüfsumme in `reviewed_pizza_menus.json`; bei einer Änderung werden sie erneut prüfpflichtig. Beispiele: Pizza Züri CHF 17.50 für 1/1 statt CHF 14.50 für 1/2; Il Grappolo CHF 19 für 30 cm statt CHF 14 für die Kinderpizza; Santa Lucia je nach Filialkarte CHF 18 oder CHF 19; Grottino 77 CHF 19 aus der visuell geprüften Bildkarte. Regressionfälle für die erweiterten Auslesewege sind Alba Wiedikon CHF 23 und Alba Triemli/Stampfenbach CHF 20 aus den standorteigenen Schema.org-Menülinks sowie Bella Napoli CHF 17 für 32 cm aus der dynamischen Online-Speisekarte (40 cm für CHF 32 ausgeschlossen). Das Abrufdatum belegt den Quellenabruf und garantiert nicht, dass die Karte selbst neu ist. Es wird keine vollständige Marktabdeckung behauptet.
-
-Für die lokale Bildauslese muss `tesseract` installiert sein (`brew install tesseract` bzw. `sudo apt-get install tesseract-ocr`). Die Prüf- und Scraping-Workflows installieren es automatisch. Zusätzliche OCR-Beispiele: Da Michelangelo CHF 18, Cucina CHF 18, Freihof Etna CHF 15.90, Il Salento CHF 16.50 und Ristorante 99 CHF 16.80. Die neuen Bildbelege wurden zusätzlich visuell kontrolliert.
-
-```bash
-# Bekannte Standorte aktualisieren und weitere Zürcher Restaurants prüfen
-python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages 20
-# Gezielt einzelne Lokale erneut prüfen
-python -m scraper.scrape_pizza --discover --only 'Santa Lucia|Margheri'
-# Archivierte Dokumente mit ihrem ursprünglichen Abrufdatum auswerten
-python -m scraper.scrape_pizza --venues-file scraper/cache/zurich/pizza-venues.json --archive-dir scraper/cache/zurich/pizza --archive-dir scraper/cache/pizza
-```
-
-Der vorhandene dreiwöchentliche Vollscan aktualisiert zusätzlich den Pizza-Datensatz. Der reine KI-Scan bleibt auf seine bisherigen Getränkedaten begrenzt.
-
-### Kaffee
-
-Kaffee ist seit dem 16. Oktober 2026 die Standardkategorie in Zürich, Bern und Basel. Die separate Sorte „Matcha“ wurde entfernt; „Matcha Latte“ bleibt auswählbar. Eine gezielte Nachsuche ergänzt sieben Standorte mit belegtem Matcha-Latte-Preis: Schminkbar und beide Maru-Filialen in Zürich, Café Racer und Queen's Bread in Bern sowie Café Nona und Pförtnerhaus in Basel. Damit enthalten die Datensätze 23, 10 und 9 Standorte mit Matcha Latte (zuvor 20, 8 und 7; vor dem Lokaltypfilter). Originalquellen, Abrufdaten und bei manuell geprüften Karten SHA-256-Prüfsummen sind hinterlegt. Reiner Matcha wird weder neu erfasst noch als Matcha Latte umetikettiert.
-
-`public/data/coffee.json` enthält am **15. Oktober 2026** **880 Kaffeeangebote bei 193 Locations** sowie weitere Cafés ohne belegten Preis: insgesamt **542 Standorte** einschliesslich Plüsch. Die Erweiterung durchsucht aktuelle Originalseiten direkt und wertet vorhandene Dokumente erneut aus. Die Anzahl bezieht sich auf alle Sorten; der aktuelle Sortenfilter zeigt die dazu passenden Preise. Der Kaffee-Scraper prüft neben Bars auch Restaurants und Cafés innerhalb der Zürcher Stadtgrenze. Er übernimmt nur vollständig erkannte Kaffeenamen mit eindeutigem Preis (CHF 2–12). Einfache und doppelte Espressi bleiben getrennt; Caffè latte wird als Milchkaffee klassifiziert. Allgemein als „Kaffee“ bezeichnete Angebote sind mit Café crème gruppiert; der Originalname bleibt sichtbar. Eisgetränke, alkoholische Kaffees, Aufpreise und Kombiangebote werden nicht als Standardkaffee aufgenommen. Fehlende Sorten können als „Preis offen“ angezeigt werden. Die Kaffeeansicht enthält zusätzlich alle gefundenen OSM-Cafés, auch ohne öffentliche Preise. Diese bleiben als „Preis offen“ sichtbar und können von Besuchern ergänzt werden; fehlende Preise werden nicht erfunden. Neue Restaurants werden erst mit belegten Kaffeepreisen aufgenommen. Der Lokalfilter startet in allen Städten und Kategorien mit «Alle (ohne Imbiss)». Imbisse (`fast_food`) werden damit auch aus Suche und zusätzlichen Kartenlokalen ausgeschlossen. «Alle (inkl. Imbiss)» und «Imbiss» können ausdrücklich gewählt werden; die Auswahl bleibt beim Kategorien- und Stadtwechsel erhalten. Zurücksetzen stellt «Alle (ohne Imbiss)» wieder her. Bars und Pubs bleiben enthalten. Bars und Pubs bilden in allen Kategorien eine gemeinsame Lokalauswahl «Bar / Pub».
-
-`scraper/verified_coffee_venues.json` ergänzt unabhängig von OSM geprüfte Kaffeestandorte. Die Kaffee- und Standortimporte wenden diese Metadaten bei jedem Lauf erneut an; vorhandene IDs, Preise und deren Beobachtungsdatum bleiben erhalten. Am 21. Oktober 2026 wurden die 18 aktuellen ViCAFE-Filialen in Zürich, Basel und Lausanne mit der [offiziellen Standortliste](https://vicafe.ch/de/pages/espresso-bars) abgeglichen, darunter Campus Rondell im UZH-Hauptgebäude und Campus Irchel. Die UZH-Öffnungszeiten stammen von der [Universität Zürich](https://www.mensa.uzh.ch/de/Standorte-und-Verpflegung/vicafe.html). Ohne belegte Getränkepreise bleiben die Angebote leer. Eglisau liegt ausserhalb der unterstützten Städte. Neue Standorte erhalten eine stabile `verified/`-ID, bestehende behalten ihre OSM-ID.
-
-Der Parser liest HTML und PDF-Text mit Positionen, erkennt CHF-/Fr.-Schreibweisen, hochgestellte Rappen, getrennte HTML-Preisspalten mit übereinstimmender Zeilenzahl, eingebettete Stadttabellen, gemeinsame Preise und eindeutige parallele Alternativen (`Espresso / Doppio 4.70 / 5.70`). Er schützt vor Seitenzahlen als Preisen, trennt bekannte Filialkarten über `coffee_source_scopes.json` und lässt Wochen-/Mittagsmenüs aus. Geprüfte Bildkarten und komplexe Layouts stehen in `reviewed_coffee_menus.json` mit SHA-256-Prüfsumme. Der optionale Claude-Scan ergänzt PDF- und Menübilder; nicht zugängliche JavaScript-Karten und unklare Zuordnungen benötigen weiterhin gesonderte Erfassung; die Karte beansprucht keine vollständige Abdeckung.
-
-## Lokal starten
-
-Voraussetzung: Node.js 22.12+ und Python 3.12+.
+Voraussetzungen: Node.js 22.12 oder neuer und Python 3.12 oder neuer.
 
 ```sh
 npm ci
-npm run dev
+npm run dev        # http://127.0.0.1:5173
 ```
 
-Die App läuft unter `http://127.0.0.1:5173`. Der eingecheckte Datenbestand funktioniert ohne laufenden Scraper. Kartenkacheln brauchen eine Internetverbindung. Die Oberfläche verwendet Systemschriften. Gemeinsame Einträge benötigen die Vercel-API; ohne sie bleibt der statische Datenbestand nutzbar, das Speichern ist deaktiviert.
+Ohne Servervariablen läuft die Karte mit den eingecheckten Daten, Speichern ist dann deaktiviert. Mit `vercel env pull .env.local` und `vercel dev` läuft die API lokal gegen den Entwicklungsspeicher.
 
 ```sh
-npm test
-npm run build
-npm run preview
-```
-
-`dist/` enthält das statische Frontend. Die vollständige App benötigt zusätzlich `api/prices.ts`. Für einen Unterpfad: `npm run build -- --base=/wobillig/`.
-
-## Scraper starten
-
-```sh
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r scraper/requirements.txt
+npm test                                          # Vitest: Datenlogik, API, SEO, Sicherheit
+npm run build                                     # Typprüfung und Produktionsbuild
+npx playwright install chromium && npm run test:browser
 python -m unittest discover -s tests -p 'test_*.py'
+```
 
-# Standorte neu aus OSM laden und alle verlinkten Menüs prüfen
-python -m scraper.scrape --discover
+`npm run test:ocr` (echte, kostenpflichtige Erkennung) und `npm run test:storage` (temporäre Objekte im echten Blob-Speicher, danach gelöscht) laufen nur auf ausdrücklichen Aufruf und brauchen `.env.local`.
 
-# Vertiefte Nachsuche für Bars/Pubs ohne Preise (auch im regulären Workflow)
-python -m scraper.scrape --type bar --type pub --type biergarten --missing-prices --max-pages 20
+## Scraper
 
-# Nur Standortimport
-python -m scraper.scrape --discover --discover-only
+```sh
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r scraper/requirements.txt           # zusätzlich: brew install tesseract
 
-# Zusätzliche Restaurants/Cafés suchen; älteste Prüfungen zuerst
-python -m scraper.enrich --limit 200
-# Vollständige Suche / erneute Prüfung fehlgeschlagener Kandidaten
-python -m scraper.enrich --limit 0
-python -m scraper.enrich --retry-failed --limit 200
-
-# Kaffee: bekannte Locations aktualisieren und bis zu 200 neue Kandidaten prüfen
-python -m scraper.scrape_coffee --discover --limit 200
-# Alle zusätzlichen Kaffee-Kandidaten prüfen
+python -m scraper.scrape --discover               # Standorte aus OSM, Bierpreise
 python -m scraper.scrape_coffee --discover --limit 0
-
-# Bestehende Standorte, begrenzter Durchlauf / einzelne Bar
-python -m scraper.scrape --limit 20 --workers 4
-python -m scraper.scrape --name 'Bar Rossi'
+python -m scraper.scrape_pizza --discover --limit 0
+python -m scraper.locations                       # nur Standortkatalog
+python -m scraper.ai_scan --discover              # KI-Scan, braucht ANTHROPIC_API_KEY
 ```
 
-`--max-pages 8` (Standard) begrenzt die Dokumente pro Bar, `--workers` die Parallelität (maximal 8). Begrenzte Läufe beginnen mit den am längsten nicht geprüften Bars. `OVERPASS_URL` überschreibt den primären Overpass-Endpunkt. Standard ist `overpass.osm.ch`, Fallback `overpass-api.de`. `--osm-file /path/response.json` importiert eine gespeicherte vollständige Overpass-Antwort.
+`WOBILLIG_CITY=bern`, `basel`, `lausanne` oder `geneva` wählt die Stadt, ohne Variable gilt Zürich. Einzelne Lokale prüft `--name 'Bar Rossi'` beim Bier und `--only 'Name|Name'` bei Kaffee und Pizza. `--max-pages` begrenzt die Dokumente pro Lokal, `--limit` die Zahl neuer Kandidaten.
 
-Beim Kaffee ergänzt `scraper/coffee_menu_urls.json` die allgemeinen Menühinweise. `scraper/coffee_checks.json` sorgt für rotierende Kandidaten. `--archive-dir /pfad/archiv` kann wiederholt angegeben werden, um zuvor mit dem Crawler abgerufene Dokumente offline neu auszuwerten; die ursprünglichen Abrufdaten bleiben erhalten. Der veröffentlichte Erstbestand nutzt auch diese Originaldokumente.
-
-Die gezielte Kaffee-Nachsuche vom 15. Oktober ergänzt **89 Angebote bei 20 weiteren Locations**. Unter den 391 Cafés haben nun **44 statt 38** mindestens einen Kaffeepreis, davon **27 statt 24** einen Café-crème-/Kaffeepreis. Neue Café-Treffer sind Ahoi!, Babu’s an der Theaterstrasse, Glückbar Café, Kafi Mühli, Klara’s Kitchen und Mont Martre. Die Quellen bleiben beim jeweiligen Angebot verlinkt; ein Abrufdatum macht eine ältere Menükarte nicht automatisch aktuell.
-
-Der Kaffee-Crawler folgt auch Café-/Bistro-/Restaurant-Unterseiten und priorisiert Getränkekarten anhand von Linktext und URL vor Shops, Weinlisten und anderen Dokumenten. Hochgestellte Rappen mit abweichender PDF-Schriftkodierung werden anhand der Zeichenpositionen gelesen; gewöhnliche dreistellige Zahlen bleiben ausgeschlossen. Sitzungskarten und bekannte Karten anderer Standorte werden nicht übernommen. Der KI-Scan berücksichtigt zusätzlich verzögert geladene Menübilder in `data-src`; hierfür wurde bei dieser Nachsuche kein kostenpflichtiger KI-Lauf gestartet.
-
-Begrenzte Kaffee-Läufe aktualisieren bekannte Preise und prüfen zusätzlich höchstens `--limit` noch preislose Locations, zuerst Cafés und darin die am längsten nicht geprüften Quellen. Das Limit gilt auch für bereits auf der Karte sichtbare Cafés ohne Preise. Gezielte Nachsuche und Quellenarchiv:
-
-```bash
-python -m scraper.scrape_coffee --missing-only --limit 50 --workers 8 --audit-dir /tmp/coffee-audit
-python -m scraper.scrape_coffee --only 'Mont Martre|Babu' --max-pages 10
-```
-
-### Ablauf und Rücksichtnahme
-
-1. OSM-Stadtgrenze und Standorte per Overpass abfragen; doppelte Node-/Way-Einträge desselben Namens in unmittelbarer Nähe zusammenführen.
-2. Hinterlegte Website und zusätzliche Original-Menülinks aus `scraper/menu_urls.json` verwenden.
-3. `robots.txt` lesen und respektieren. Bei Fehlern oder unklarer Erlaubnis wird die Website ausgelassen. Crawl-Delay und Request-Rate werden berücksichtigt, mindestens eine Sekunde Pause pro Host. Keine Login-, CAPTCHA- oder Zugriffsschutz-Umgehung.
-4. Begrenzt HTML-Menüseiten, eingebettete PDFs und in PDFs verlinkte Unterkarten lesen. Externe Navigation nur für direkt verlinkte PDF-Dateien und den ausdrücklich verlinkten Menüanbieter `api2.lunchgate.ch`; jeder Redirect wird erneut geprüft. Private/Loopback-Adressen und ungewöhnliche Ports werden abgewiesen.
-5. Nur Bierzeilen mit expliziter Grösse und zuordenbarem Preis übernehmen; bei ausdrücklich als Stange bepreisten Portionen darf die Grösse fehlen. Dann wird `volumeMl: null` mit `serving: "stange"` gespeichert, niemals eine Menge ergänzt. CHF 2–25 und 100–1000 ml sind Plausibilitätsgrenzen. Fehlende Preise werden nie geschätzt.
-6. `public/data/bars.json` atomar schreiben. Ein fehlgeschlagener Abruf erhält den letzten bekannten Preis samt ursprünglichem Datum; erfolgreich gelesene, aber preislose Karten können alte Angebote entfernen. Bei teilweise fehlgeschlagenen Crawls können einzelne Angebote fehlen.
-
-`scraper/discovery_checks.json` speichert den Prüfstand der zusätzlichen Kandidaten, damit begrenzte Läufe rotieren. Bereits aufgenommene Restaurants bleiben beim nächsten Standortimport erhalten. `venue_type_overrides.json` korrigiert Lokaltypen anhand der OSM-ID dauerhaft beim Import (Millennium an der Limmatstrasse 125: `fast_food` / Imbiss). `website_overrides.json` ergänzt geprüfte offizielle Websites, wenn OSM keine oder eine veraltete URL enthält. `--audit-dir /tmp/beer-audit --review-only` archiviert die abgerufenen Originaldokumente und speichert neue Treffer zur Prüfung, ohne die veröffentlichte Karte zu verändern.
-
-Weitere Menülinks ergänzen:
-
-```json
-{
-  "node/5803645580": ["https://www.bar-rossi.ch/menue/"]
-}
-```
-
-Der Schlüssel ist die bestehende OSM-ID. Preise oder Koordinaten müssen dafür nicht manuell erfunden werden. Fehlende Locations und Websites können direkt in OpenStreetMap ergänzt werden; der nächste Import übernimmt sie.
-
-## GitHub Actions
-
-- **Checks:** Frontend-Tests, TypeScript/Produktionsbuild und Python-Tests bei Push und Pull Request.
-- **Refresh city prices:** alle drei Wochen montags um 04:23 UTC (ab 19. Oktober 2026) und jederzeit manuell unter Actions. Aktualisiert Standorte und bekannte Preise, prüft danach alle eindeutig zuordenbaren Gastronomie-Websites für Bier und Kaffee standardmässig im Deep Scan mit bis zu 50 Dokumenten pro Kandidat. Kaffee und zusätzliche Bier-Locations verwenden maximal acht parallele Abrufe; robots.txt, Pausen und Grössenlimits gelten weiterhin. Über `city` sind Zürich, Bern, Basel, Lausanne und Genf einzeln oder gemeinsam (`all`) startbar. Die eigenen Stadt-Jobs laufen durch ausdrückliche Abhängigkeiten in der Reihenfolge Zürich → Basel → Bern → Lausanne → Genf. Jede Stadt erhält 5 USD KI-Budget und durchläuft separate Jobs für Bier/Kaffee, Pizza und KI, mit jeweils 360 Minuten Zeitbudget (manuell reduzierter Scan: 180 Minuten). Jeder abgeschlossene Abschnitt committet seine Daten und sichert einen Snapshot; folgende Abschnitte starten mit dem aktuellen Branch-Stand. Benötigt die im Workflow deklarierte Schreibberechtigung für Repository-Inhalte. Private Repositories verwenden das Actions-Kontingent des Accounts.
-- **Deploy to GitHub Pages (manual):** optional. Zuerst unter Settings → Pages die Quelle „GitHub Actions“ aktivieren, dann den Workflow starten. Für Pages aus privaten Repositories ist ein passender GitHub-Tarif erforderlich; das Repository wird nicht automatisch öffentlich gemacht. Nach Datenupdates muss dieser manuelle Deployment-Workflow erneut gestartet werden.
+| Datei | Zweck |
+| --- | --- |
+| `scraper/menu_urls.json`, `coffee_menu_urls.json`, `pizza_menu_urls.json` | Zusätzliche Menülinks pro OSM-ID |
+| `scraper/reviewed_menus.json`, `reviewed_coffee_menus.json`, `reviewed_pizza_menus.json` | Visuell geprüfte Karten mit Prüfsumme |
+| `scraper/source_scopes.json`, `coffee_source_scopes.json` | Grenzt Karten anderer Filialen und Archivkarten aus |
+| `scraper/website_overrides.json` | Geprüfte Websites, wenn OSM keine oder eine falsche nennt |
+| `scraper/venue_type_overrides.json` | Korrigierte Lokaltypen |
+| `scraper/pizza_exclusions.json` | Dauerhaft ausgeschlossene Pizza-Lokale |
+| `scraper/menu_photos.json` | Einzeln geprüfte, datierte Menüfotos |
+| `scraper/cities/<stadt>/` | Prüfprotokolle pro Stadt, Zürich liegt im Stammordner |
 
 ## Aufbau
 
 ```text
-src/main.ts                  Oberfläche, Karte und Interaktionen
-src/data.ts                  Filter, Preisnormalisierung, sichere Links
-src/districts.ts             Stadtkreise, Wohnviertel und Stadtteile
-src/style.css                Responsive Gestaltung
-public/data/bars.json        Versionierte Bierpreise
-public/data/coffee.json      Versionierte Kaffeepreise
-scraper/coffee.py            Erkennung von Kaffeesorten und Einzelpreisen
-scraper/scrape_coffee.py     Kaffee-Import und optionale Offline-Auswertung
-scraper/scrape.py            Standortimport, höflicher Crawler, PDF/HTML
-scraper/extract.py           Konservative Preisextraktion
-scraper/beer_type.py         Ausschankart aus ausdrücklichen Quellenangaben
-scraper/pdf_extract.py       PDF-Spalten, Grössenüberschriften und Textpositionen
-scraper/reviewed_menus.json   Geprüfte Bierkarten mit Inhalts-Prüfsummen
-scraper/reviewed_coffee_menus.json Geprüfte Kaffeekarten mit Inhalts-Prüfsummen
-scraper/source_scopes.json   Abgrenzung von Filial- und Archivkarten
-scraper/menu_urls.json       Zusätzliche Original-Menülinks pro OSM-ID
-scraper/additional_venues.json Ausgewählte weitere OSM-Locations und Websites
-scraper/outdoor_permits.py   Basler Boulevard-Bewilligungen den Lokalen zuordnen
-scripts/districts.mjs        Grenzen von Basel und Bern laden
-tests/                      Preis-, Filter- und Parser-Regressionstests
-.github/workflows/          CI, Dreiwochenimport, optionales Deployment
+src/           Oberfläche (TypeScript, Leaflet), Filter- und Preislogik, Übersetzungen
+server/        Speicher, Limits, Moderation, Foto-Scan, Zahlungen
+api/           Vercel-Funktionen, etwa /api/prices, /api/scan-menu, /api/tip
+build/         Statische SEO-Seiten, Impressum und Datenschutz
+public/data/   Veröffentlichte Datensätze, Zürich im Stammordner, sonst pro Stadt
+scraper/       Python-Scraper, Prüflisten und Overrides
+scripts/       Backups, Health-Check, Quartiergrenzen, Teaserbild
+tests/         Vitest (*.test.ts), Playwright (*.browser.ts), Python (test_*.py)
 ```
 
-## Quellen und Nutzung
+Neue Oberflächentexte stehen auf Deutsch in `t('…')` und brauchen einen Eintrag in `src/i18n-en.ts`. `tests/i18n.test.ts` schlägt sonst fehl.
 
-Standorte: [© OpenStreetMap-Mitwirkende](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Die OSM-abgeleiteten Standortdaten bleiben unter dieser Datenbanklizenz. Basiskarte: [OpenStreetMap](https://operations.osmfoundation.org/policies/tiles/). Getränkepreise stammen aus den im Datensatz verlinkten Originalkarten. Gespeichert werden strukturierte Preisfakten und kurze Belegzeilen, keine vollständigen Speisekarten. Es werden keine externen Schriften geladen.
+## Betrieb
 
-Gebietsgrenzen: [Stadt Zürich, Stadtkreise](https://data.stadt-zuerich.ch/dataset/geo_stadtkreise) (CC0), [Kanton Basel-Stadt, Statistische Raumeinheiten: Wohnviertel](https://data.bs.ch/explore/dataset/100042/) (CC BY 4.0) und [Stadt Bern, Stadtteile](https://opendata.swiss/de/dataset/stadtteile) (freie Nutzung). Boulevard-Bewilligungen: [Kanton Basel-Stadt, Allmendbewilligungen](https://data.bs.ch/explore/dataset/100018/) (CC BY 4.0). Das Datenfenster und der Export nennen die jeweilige Quelle.
+Das Vercel-Projekt `wobillig` ist mit diesem Repository verbunden. Jeder Push auf `main` geht direkt in Production, auch die Daten-Commits des Scrapers. Hauptdomain ist `www.wobillig.ch`, `wobillig.ch` leitet dorthin weiter. Canonical-URLs, hreflang, Sitemap und `robots.txt` verwenden deshalb `https://www.wobillig.ch` (`siteOrigin` in `src/seo.ts`, beim Build per `SITE_URL` überschreibbar). Wer die Hauptdomain in Vercel ändert, muss `siteOrigin` anpassen.
 
-Vor öffentlichem Betrieb die Nutzungsbedingungen und Kapazitätsgrenzen der Kartenanbieter sowie die Anforderungen der eigenen Bereitstellung prüfen. Der Code steht unter MIT; Rechte an den Quelldaten und fremden Inhalten bleiben separat.
+Community-Daten liegen in einem privaten Vercel-Blob-Store, getrennt nach Stadt und nach Production und Entwicklung. Der Browser bekommt nie einen Blob-Token. IP-Adressen und Browserkennungen werden nur als HMAC gespeichert. Gültige Beiträge erscheinen nach automatischen Prüfungen ohne manuelle Freigabe, wegen Server- und CDN-Cache mit bis zu zwei Minuten Verzögerung. Auffällige Preisänderungen werden zurückgehalten. Die Prüfseiten für zurückgehaltene Beiträge und eingereichte Maps sind passwortgeschützt.
 
-## Vercel
+Stand 22. Oktober 2026 in Production: Cloudflare Turnstile prüft jeden Beitrag, die manuelle Freigabe ist aus, die Konto-Schaltflächen sind ausgeblendet und eine E-Mail-Bestätigung ist nicht nötig.
 
-Deployment mit der Vercel CLI:
+### Umgebungsvariablen
 
-```sh
-vercel link --project wobillig
-vercel --prod
-```
+Alle Werte sind Servervariablen und bekommen nie ein `VITE_`-Präfix. Die Vorlage steht in `.env.example`. Nach einer Änderung in Vercel braucht es ein neues Deployment.
 
-`vercel.json` konfiguriert den Vite-Build. Der Scraper läuft weiterhin in GitHub Actions; Vercel liefert den eingecheckten Datenbestand statisch aus. Nach Datenupdates erneut deployen oder die GitHub-Integration in Vercel verbinden. `.vercelignore` hält die lokale Python-Umgebung und den Scraper aus dem Deployment-Upload.
-
-## Karte scannen und Preise automatisch speichern
-
-Unter **Preis hinzufügen → Karte scannen / hochladen** öffnet sich die Fotoauswahl des Geräts (auf Mobilgeräten auch die Kamera). Nach der Auswahl werden lesbare Bier-, Kaffee- und normale Margherita-Preise automatisch dem bereits ausgewählten Lokal zugeordnet und gemeinsam gespeichert. Es gibt keine weiteren Pflichtfelder oder Bestätigungsrunde. Die manuelle Erfassung bleibt unter «Preis von Hand eintragen» verfügbar; «Ändern» öffnet weiterhin direkt die bisherigen Felder.
-
-Der Browser korrigiert die Fotoausrichtung beim Decodieren, entfernt beim JPEG-Neucodieren EXIF-/GPS-Metadaten und begrenzt das Bild auf 2 Megapixel, 2000 px Kantenlänge und weniger als 2 MB. JPG/PNG und weitere vom Browser lesbare Bildformate werden unterstützt; HEIC hängt vom Browser ab. PDFs werden hier nicht angenommen. Das Bild wird nur zur Erkennung an Anthropic übermittelt, weder in Blob noch im Repository oder in Logs gespeichert. Gespeichert werden die Preisangaben, kurze Textbelege, das Erfassungsdatum und der Scan-Hash. Die Detailansicht kennzeichnet diese Angebote als «Foto-Upload»; der Uploadtag ist kein Beleg für das Aufnahmedatum einer älteren Karte.
-
-`api/scan-menu.ts` verwendet `claude-haiku-5-5` für strukturierte Erkennung und eine unabhängige Prüfung der Bildstellen gegen die Kandidaten. Die Erkennung beginnt mit 4096 Ausgabetokens. Bei `max_tokens` wird automatisch mit 8192, dann höchstens 16384 Tokens erneut gelesen; abgebrochenes JSON wird nie gespeichert. Die Bildprüfung verarbeitet jeweils höchstens 16 Zeilen und vergrössert bei Bedarf ebenfalls ihr Antwortlimit. Das frühere Limit von 40 Menüzeilen entfällt. Alle Gruppen müssen vollständig geprüft sein, bevor gespeichert wird.
-
-Bei Kaffee mit eindeutig beschrifteten S/M/L-Spalten gilt **M als Standardpreis**; S und L werden dann nicht in den Preisvergleich übernommen. Die Portionsangabe bleibt im Namen sichtbar, beispielsweise «Flat White (M, 3 dl)». Biergrössen bleiben getrennte Angebote. Spaltenzuordnung und sämtliche Preise einer Zeile müssen lesbar sein. Alkoholprozente sind keine Mengen; Offenbier, Flaschen und Dosen werden nicht aus dem Markennamen geraten. Eisgetränke, Chai, Schokolade und Extras werden nicht als normale Kaffeepreise gespeichert. Unklare Zeilen werden ausgelassen. Die Prüfung reduziert Fehler, garantiert aber keine fehlerfreie Erkennung beliebiger Fotos.
-
-Beide Durchläufe erhalten Name, Adresse und Postleitzahl des ausgewählten Lokals. Auch die zweite Bildprüfung prüft ausdrücklich auf einen klar widersprechenden Lokalnamen oder eine andere Filialadresse und verlangt dafür einen kurzen sichtbaren Textbeleg. Brauereien, Röstereien, Lieferanten und Produktmarken gelten nicht als Lokalname. Namenlose Kartenausschnitte und harmlose Schreibvarianten bleiben erlaubt. Bei einem klaren Widerspruch wird nichts gespeichert und das Formular bittet um das passende Lokal beziehungsweise dessen Karte. Die Identitätsprüfung gehört zu jeder Prüfgruppe und benötigt keinen separaten Aufruf. Der Scan-Hash ist versioniert, damit alte Scan-Quittungen diese Prüfung nicht umgehen. Ohne sichtbare Identitätsangaben lässt sich die Zugehörigkeit nicht sicher prüfen.
-
-Ein Upload darf **15 oder mehr lesbare Preise** gemeinsam speichern; das manuelle Limit von 10 Preiseingaben pro 10 Minuten gilt dafür nicht und wird durch den Upload nicht verbraucht. Pro Foto zählt ein Scan-Versuch zum separaten Scan-Limit. Umfangreichere Karten erhalten automatisch mehr Antwortplatz und mehrere Prüfgruppen, ohne erneute Fotoauswahl. Bildgrösse, Gesamtlaufzeit und das gemeinsame Kostenlimit bleiben begrenzt.
-
-Alle Preise eines Uploads und die Scan-Quittung werden in **einem** bedingten Blob-Schreibvorgang gespeichert. Identische Fotos beim selben Lokal werden 24 Stunden lang ohne weiteren KI-Aufruf beantwortet. Bereits vorhandene identische Angebote werden nicht verdoppelt; abweichende Preise überschreiben bestehende Einträge nicht automatisch. Die Rückmeldung nennt gespeicherte, bereits vorhandene und ausgelassene Angaben. Bestehende Preise lassen sich gezielt über «Ändern» korrigieren. Der Server begrenzt neue Scans auf zwölf pro Besucherkennung/Stunde und 1000 pro Stadt/24 Stunden; Foto-Hash und Verarbeitungssperre schützen auch gegen gleichzeitige Wiederholungen. Nach einem Fehler kann dasselbe Foto nach 15 Sekunden erneut versucht werden; jeder neue Versuch zählt weiterhin zu den Limits. Es werden keine IP-Adressen gespeichert.
-
-**Konfiguration:** `ANTHROPIC_API_KEY` und `BLOB_READ_WRITE_TOKEN` müssen auf dem Server gesetzt sein, niemals mit `VITE_`-Präfix. Ohne Schlüssel bleibt die manuelle Eingabe verfügbar und der Scan meldet einen verständlichen Fehler. Die Vercel-Funktion hat 180 Sekunden Laufzeit, die Erkennung selbst höchstens 160 Sekunden. Der Client wartet höchstens 190 Sekunden. Nur abgeschnittene Modellantworten werden automatisch wiederholt; Netzwerkfehler und Ablehnungen nicht. Es gibt keinen Modellwechsel.
-
-**Kosten:** Vor jeder neuen Anfrageform zählt die kostenlose Token-API den vollständigen Input. Eine gemeinsame Reservierung begrenzt sämtliche Erkennungsversuche und Prüfgruppen zusammen auf **0.02 USD pro Scan**, ohne Infrastruktur-/Speicherkosten. Jede Generierung reserviert ihre maximale Ausgabe plus 256 Inputtokens; nur valide Nutzungsangaben geben ungenutzte Reservierung frei. Grundlage sind [Haiku-5.5-Preise](https://platform.claude.com/docs/en/models/haiku-5-5/overview) von 0.10/0.50 USD je Million Input-/Outputtokens; der Scan lässt höchstens 50’000 Inputtokens pro Anfrage zu. Das globale Foto-Tagesbudget reserviert für einen Menüscan entsprechend zwei US-Cent statt einem. Das Tagesbudget selbst bleibt unverändert. Das vollständige ViCAFE-Testfoto kostete am 21. Oktober 2026 rund 0.0011 USD für Erkennung und Prüfung. Die Aufrufe verwenden [Vision](https://platform.claude.com/docs/en/build-with-claude/vision) und [strukturierte Ausgaben](https://platform.claude.com/docs/en/build-with-claude/structured-outputs).
-
-Tests:
-
-- `npm test`: Erkennungsregeln, API-Validierung, Kostengrenzen, atomare Speicherung, Konflikte, Wiederholungen und unveränderte manuelle Erfassung.
-- `npx playwright install chromium && npm run test:browser`: mobiler Uploadablauf, Fehlermeldungen und manuelle Eingabe. Mit installiertem Chrome geht auch `PLAYWRIGHT_CHANNEL=chrome npm run test:browser`.
-- `npm run test:ocr`: echte, kostenpflichtige Erkennung mit dem Schlüssel aus `.env.local`; ein echtes 169-West-Menüfoto, eine aus den Marsbar-Werten nachgebaute Tabelle, gemischte Kategorien mit irreführender Bildanweisung, ein unlesbares Bild und ein falsches Lokal. `OCR_LIVE_REPEATS=3 npm run test:ocr` wiederholt alle Fälle; Messwerte landen in `/tmp/wobillig-ocr-live-results.json`. Mit `OCR_VICAFE_PHOTO=/lokaler/pfad/zum/foto.jpeg` läuft zusätzlich der Regressionstest für das vollständige ViCAFE-Handyfoto und die M-Preise; das Foto wird nicht ins Repository übernommen.
-- `npm run test:storage`: echte Speicherung ausschliesslich unter temporären `tests/`-Blob-Schlüsseln, die danach gelöscht werden.
-- `RUN_MENU_UPLOAD_LIVE=1 node --env-file=.env.local node_modules/vitest/vitest.mjs run tests/menu-upload.live.test.ts`: echte Upload-API inklusive OCR, Kontrolllauf, Speicherung und Wiederholung; ebenfalls ausschliesslich in einem anschliessend gelöschten Testspeicher.
-
-Teststand 16. Oktober 2026: 224 reguläre Tests, drei Browserfälle, zwei echte Speichertests und ein vollständiger Uploadtest bestanden. Die finale OCR-Reihe bestand alle 15 Fälle (fünf Bild-/Zuordnungsfälle in drei Durchläufen): jeweils 10/10 Angebote auf dem echten 169-West-Foto, 10/10 in der nachgebauten Marsbar-Tabelle und 9/9 im gemischten Testmenü; unlesbare bzw. fremde Karten lieferten keine speicherbaren Preise. Die lesbaren Bilder benötigten inklusive Kontrolllauf 0.000833–0.001026 USD pro Upload. Diese Ergebnisse beziehen sich auf diesen begrenzten Testbestand.
-
-## Gemeinsame Preise
-
-Der Standortknopf fordert eine aktuelle, möglichst genaue Position an und zoomt auf mindestens Stufe 18 (mit Lokalnamen). Ein Lokal öffnet sich automatisch, wenn die gemeldete Genauigkeit höchstens 20 m beträgt, sein Kartenpunkt höchstens 15 m entfernt liegt und Entfernung plus Genauigkeit höchstens 25 m ergeben. Zum zweitnächsten Lokal muss der Abstandsvorsprung grösser als 20 m und als der doppelte Genauigkeitsradius sein. Dafür zählen auch ausgefilterte Nachbarn aus dem Standortkatalog; ohne geladenen Katalog wird nichts automatisch geöffnet. Kategorie und Kreisauswahl bleiben berücksichtigt. Ungenaue oder mehrdeutige Positionen zeigen nur den Standort. Die Entfernungssortierung öffnet kein Lokal automatisch.
-
-`public/data/locations.json` ergänzt einen separaten Katalog von **2’192 OSM-Lokalen** für Kartenauswahl und serverseitige Prüfung. Er enthält keine Preise und füllt die Preislisten nicht mit zusätzlichen leeren Lokalen. Name, Koordinaten und OSM-ID kommen aus diesem Katalog bzw. den bestehenden Datensätzen; der Server akzeptiert keine frei übermittelten Standortangaben. Mit einem Preiseintrag wird eine Standortkopie gespeichert, sodass das neue Lokal auch nach dem Neuladen oder einer späteren Katalogänderung erhalten bleibt. Bestehende Einträge ohne Standortkopie bleiben kompatibel.
-
-`python -m scraper.locations` aktualisiert den Katalog innerhalb der Zürcher Stadtgrenze ohne Menüabrufe; der vollständige Refresh-Workflow führt diesen Schritt ebenfalls aus und veröffentlicht die Datei zusammen mit den Preisen. Der Erstbestand verwendet den vorhandenen OSM-Import vom 15. Oktober 2026. Noch nicht im Katalog enthaltene oder umbenannte OSM-Orte stehen nach einem späteren Import zur Verfügung. Kartenbeschriftungen und OSM-Daten können zeitlich voneinander abweichen.
-
-Die API unter `/api/prices` liest und schreibt in einem privaten Vercel-Blob-Store. Ausschliesslich der Server erhält `BLOB_READ_WRITE_TOKEN`; es gibt keinen öffentlichen Upload-Token. Die veröffentlichte API gibt nur Preise zurück, keine internen Rate-Limit-Daten oder Historie.
-
-Manuelle Preisänderungen werden serverseitig auf extreme Werte geprüft: Kaffee unter CHF 1 oder über CHF 12, Margherita unter CHF 5 oder über CHF 35, Bier unter CHF 1. Bei gleicher Portion und Produktart werden ausserdem mindestens eine Verdoppelung mit mindestens CHF 5 Aufschlag oder eine Senkung auf höchstens 40 % mit mindestens CHF 3 Abschlag zurückgehalten. Teure Spezialbierflaschen sind nicht pauschal gesperrt. Ein Quellenlink umgeht diese Prüfung nicht.
-
-Zurückgehaltene Eingaben erhalten die normale Speicherantwort, liegen aber ausschliesslich in `heldPrices` im privaten Stadtspeicher. Öffentliche Preise und Historie bleiben davon unberührt. Nur der einreichende Browser sieht seine Eingabe auch nach dem Neuladen: Das zufällige HttpOnly-/SameSite-Cookie `wobillig-price-view` gilt ein Jahr; gespeichert wird nur sein HMAC, keine zusätzliche IP-Adresse. Personalisierte Antworten sind `private, no-store` und variieren nach Cookie. Ohne dieses Cookie sieht man die öffentlichen Preise. Weitere Bearbeitungen desselben zurückgehaltenen Angebots bleiben privat, damit private Versionen keine öffentlichen Korrekturen überschreiben. Das bestehende Stundenlimit gilt auch für diese Eingaben. Die privaten Datensätze enthalten den Prüfgrund und den ursprünglichen Preis für eine spätere manuelle Prüfung; es gibt keine automatische Freigabe.
-
-Zusätzlich sind höchstens **5 manuelle Preiseingaben in jedem gleitenden 10-Minuten-Fenster** erlaubt, sowohl pro IP als auch pro Browserkennung. Neue Preise, Änderungen und zurückgehaltene Eingaben zählen gemeinsam, über alle Städte und Kategorien hinweg. Der private Store `prices/cooldowns/{production|development}.json` reserviert Plätze mit bedingten ETag-Schreibvorgängen; fehlgeschlagene Änderungen geben ihren Platz wieder frei. Gespeichert werden nur HMAC-Kennungen und kurzlebige Zeitstempel, keine Klartext-IP-Adressen. Veraltete Zeitstempel werden bei der nächsten erfolgreichen Reservierung entfernt. Cookie-Löschen umgeht die IP-Grenze nicht; ein IP-Wechsel umgeht die Browsergrenze nicht. HTTP 429 liefert `Retry-After` und `retryAfter` in Sekunden, das Formular zeigt die aufgerundete restliche Wartezeit in Minuten. Gemeinsame WLANs teilen sich die IP-Grenze. Foto-Scans behalten ihr separates bestehendes Scan-Limit.
-
-- Produktion: `prices/production.json`; Entwicklung und Vorschau: `prices/development.json`.
-- Korrekturen ersetzen das passende Angebot in der Anzeige, ohne die ursprünglichen JSON-Dateien zu verändern. Die Zuordnung hängt nicht am bisherigen Preis oder Quellenlink. Offen- und Flaschenbier mit demselben Namen und derselben Menge haben getrennte Einträge. Ältere Korrekturen ohne Ausschankart werden nur bei eindeutiger Zuordnung auf ein inzwischen klassifiziertes Angebot angewendet. Ein erneuter Scraper-Lauf überschreibt diese Korrekturen deshalb nicht.
-- Validierung: bekanntes Lokal, gültige Sorte/Menge, CHF 0.50–50, echtes Datum bis heute und optionale HTTP(S)-Quelle. Keine Umrechnung beim Eintragen.
-- Gleichzeitige Schreibvorgänge verwenden ETags; überholte Formularversionen erhalten HTTP 409 statt Änderungen zu überschreiben. Frühere Versionen bleiben intern in `history` erhalten.
-- 20 Schreibvorgänge pro Stunde und Besucherkennung. Kennungen sind mit dem Speichergeheimnis und Tagesdatum abgeleitete IP-Hashes; keine IP-Adressen im gespeicherten JSON. Abgelaufene Kennungen werden beim nächsten Schreiben entfernt.
-- Bei aktiviertem Medienschutz werden neue Beiträge vorab moderiert. E-Mail-Bestätigung und Bot-Prüfung werden nach Einrichtung der Zugänge zugeschaltet (siehe «Schutz vor dem Medienstart»). Freigegebene Einträge sind als «Eingetragen» sichtbar.
-
-Lokale Entwicklung mit API:
-
-```sh
-vercel env pull .env.local
-vercel dev
-```
-
-Speicher für eine neue Installation verbinden:
-
-```sh
-vercel blob create-store wobillig-prices --access private --region fra1 --yes
-vercel deploy --prod --yes
-```
-
-`.env.local` bleibt ignoriert. GitHub Pages kann nur den statischen Datenbestand darstellen; für öffentlich gespeicherte Einträge ist das Vercel-Deployment erforderlich.
-
-`npm run test:storage` prüft den verbundenen Blob-Store mit temporären, anschliessend gelöschten Testobjekten. Dazu muss `.env.local` vorhanden sein. Der Test prüft aufeinanderfolgende und gleichzeitige Schreibvorgänge inklusive Versionskonflikten und wachsender Historie. Im normalen Testlauf wird dieser Integrationstest übersprungen.
-
-## Bestehende Lokale korrigieren
-
-In der Detailansicht jedes Lokals öffnet **«Lokal korrigieren» / “Correct venue details”** ein vorausgefülltes Formular für Name, Strasse, Postleitzahl und Website. Eine falsche Website kann ersetzt oder entfernt werden. Nur geänderte Felder werden übertragen; eine Website-Korrektur funktioniert auch bei einem Lokal ohne erfasste Adresse. Der Dialog «Lokal hinzufügen» verweist ebenfalls auf diese Möglichkeit. Ein erneuter Eintrag überschreibt kein bestehendes Lokal.
-
-Korrekturen erscheinen bei aktivierter Vorabmoderation erst nach der Freigabe, bleiben nach Neuladen und automatischen Datenupdates erhalten und fliessen in CSV-/JSON-Exporte ein. Es gibt keine Wartezeit von drei Wochen. Preise und Quellenlinks der einzelnen Angebote bleiben unverändert. Die Korrektur gilt für wobillig; sie ändert weder OpenStreetMap noch die Eingabequellen des separaten Scrapers.
-
-`POST /api/prices?city=bern` mit `{ "action": "correctVenue", "barId": "node/123", "revision": 0, "changes": { "website": "https://example.org" } }` speichert unter `venueCorrections` im jeweiligen Stadt-/Deployment-Store. `GET /api/prices` liefert diese Korrekturen; die privaten Vorherwerte und Änderungen in `venueCorrectionHistory` werden nicht ausgeliefert. Der Server prüft Lokal-ID, erlaubte Felder, Website-Protokoll und Version. Gleichzeitige Änderungen werden über ETags und Revisionen abgesichert; veraltete Korrekturen erhalten HTTP 409. Identische Wiederholungen legen keine Duplikate an. Es gelten die bestehenden Origin-/JSON-Prüfungen und eine Grenze von 20 Korrekturen pro Besucher und Stunde.
-
-## Lokaladressen
-
-Der Import berücksichtigt neben `addr:street` auch OSM-Kontaktadressen. `WOBILLIG_CITY=bern python -m scraper.addresses` ergänzt fehlende Adressen in allen vier Stadt-Datensätzen; für Basel entsprechend `WOBILLIG_CITY=basel`. Der Refresh führt diesen Schritt vor der Veröffentlichung aus. Ein bestehender OSM-Export lässt sich mit `--osm-file` verwenden.
-
-Gebäudeadressen werden nur übernommen, wenn das Lokal innerhalb des Gebäudes liegt und dessen Adressangaben eindeutig sind. Es wird keine nächstgelegene Hausnummer geraten. Manuell auf den Lokal-Websites geprüfte Ergänzungen stehen mit Quelle in `scraper/reviewed_addresses.json`; ergänzte Datensätze speichern `addressSource`. Bestehende Adressen bleiben erhalten. Ohne belegbare Adresse zeigt die Detailansicht «Adresse noch nicht erfasst» in der grauen Adresszeile.
-
-## Döner- und Falafel-Scrapes
-
-Die Kategorien erscheinen ausschliesslich unter «Weitere», sobald der jeweilige Stadt-Datensatz mindestens 50 aktuelle Dürüm-Angebote von Imbissen (`type=fast_food`) mit gültigem, positivem Preis enthält. Die Schwelle gilt für Döner und Falafel getrennt und ist unabhängig von Klickzahlen und Suchfiltern. Fehlende Datensätze halten die Kategorie verborgen; ohne verfügbare Zusatzkategorie wird auch «Weitere» ausgeblendet.
-
-Döner und Falafel haben je Stadt eigene Datensätze (`public/data/[bern|basel/]doner.json` bzw. `falafel.json`) und Prüfprotokolle (`scraper/[cities/bern|cities/basel/]doner_checks.json` bzw. `falafel_checks.json`). Die Dateien entstehen beim ersten Lauf; Zürich liegt jeweils direkt im Stammordner. Der dreistädtische Dreiwochen-Workflow enthält beide Kategorien automatisch. Zusätzliche Aufträge können mit `scan_mode=streetfood_only`, `exhaustive_scan=true` und der gewünschten Stadt gestartet werden. Das sind zwei getrennte Abschnitte pro Stadt, mit allen Kandidaten und bis zu 120 Menüseiten je Lokal; regulär gelten 50 Seiten.
-
-`python -m scraper.scrape_streetfood --category doner --discover --limit 0 --max-pages 120` bzw. `--category falafel` führt denselben Scan lokal aus. `WOBILLIG_CITY=zurich|bern|basel` wählt die Stadt. Erfasst werden HTML-Karten, PDF-Text und per lokaler Tesseract-OCR lesbare Bildkarten, ausserdem direkt zugeordnete öffentliche Orderstar-Menüs. Für diese beiden Abschnitte fallen keine KI-API-Aufrufe an. Das vorhandene KI-Stadtbudget bleibt unverändert.
-
-Gescannt werden ausschliesslich Imbisse mit `type=fast_food`, keine Restaurants, Cafés, Bars oder Pubs – auch dann nicht, wenn Name oder Küche Döner/Falafel erwähnen. Verglichen werden nur normale Döner-Dürüm und Falafel-Dürüm (explizit als Dürüm, Wrap, Yufka oder gleichwertig bezeichnet). Jedes Angebot behält Quelle, Beobachtungsdatum, Textbeleg sowie `foodType`, `portionType=wrap` und `meatType`. Taschenbrot, Sandwiches und unbestimmte Portionen, Teller, Boxen, Kombi-Menüs, Kinder-/Sondergrössen und mehrdeutige Preise werden ausgelassen. Beim nächsten Lauf werden alte Restaurant-Einträge und andere Portionsformen auch aus dem übernommenen Bestand entfernt. Unterschiedliche Preise derselben Portions-/Fleischart bleiben im Prüfprotokoll, bis sie geklärt sind. Online-Bestellpreise sind separat gekennzeichnet; vorhandene reguläre Menüpreise haben Vorrang. Gemeinsame Ketten-Websites brauchen eigene Filialseiten oder explizite Einträge in `scraper/streetfood_menu_urls.json`. Ein fehlgeschlagener Abruf darf alte Beobachtungen erhalten, bestätigt aber nicht ihr Datum. Die Veröffentlichung der Datensätze schaltet die künftigen Kategorien noch nicht im Frontend frei.
-
-## Claude-Scans in GitHub Actions
-
-`pizza_only` startet einen eigenständigen Pizza-Scan für die gewählte Stadt. Mit `exhaustive_scan=true` werden alle geeigneten Websites und bis zu 120 Dokumente je Lokal frisch geprüft. Haiku liest innerhalb eines gemeinsamen Budgets von höchstens 5 USD alle regulären Pizzasorten mit ausdrücklich gedruckten Preisen; Zutaten werden nur als belegte Textbeschreibung übernommen. Auch Karten mit bereits erkanntem Margherita-Preis werden vollständig gelesen. Bis zu 60 Dokumente pro Lokal, kleine PDF-/Textabschnitte und derselbe Kosten-Lock begrenzen die KI-Suche. Andere Kategorien und deren KI-Jobs werden übersprungen. Quellen-/Filialbeschränkungen und manuelle Prüfungen bleiben wirksam. Margherita-Angebote bleiben unter `offers`; weitere Sorten liegen unter `pizzaMenu` und erscheinen im Lokal unter «Weitere Pizzen». Sie verändern weder Margherita-Rangliste noch Kartenpreis. Widersprüchliche Preise werden je Pizzaname zurückgehalten. Zutaten fehlen, wenn die Quelle sie nicht ausdrücklich nennt. Onlinepreise bleiben gekennzeichnet. Der Bericht zählt zusätzliche Sorten separat als `pizza_menu`; `pizza-ai-report` enthält Kosten und Abbruchgrund. Unveränderte, per Hash belegte Angaben bleiben bei späteren Textscans erhalten. «Günstig» verwendet für die Margherita-Standardauswahl fest CHF 18. Für andere Pizzagruppen, einzelne Sorten, «Alle Pizzen» und die Zutatensuche berechnet sich die Grenze aus den jeweils passenden Preisen (günstigstes Fünftel, mindestens 7 % unter dem Schnitt; bei kleinen Stichproben mindestens der günstigste Preis). Beim Wechsel der Auswahl wird auch ein aktiver Günstig-Filter neu berechnet; die redundante Zeile «Pro Pizza Margherita» entfällt. Kaffee und Bier behalten ihre dynamische Grenze.
-
-Beim normalen Getränke-Refresh bleiben KI-erkannte Preise samt ursprünglichem Beobachtungsdatum und Metadaten erhalten, wenn die neu geladene Quelle denselben `sourceSha256` hat. Ein leerer Textparser-Befund darf diese visuell erkannten Preise nicht entfernen. Geänderte oder nicht per Hash verifizierbare KI-Quellen werden ohne neue Preistreffer als `review_required` markiert; ihre alten Preise werden nicht als weiterhin bestätigt übernommen. Exklusive manuelle Prüfungen sowie Quellen-, Filial- und Produktausschlüsse gelten weiterhin.
-
-Die normalen Getränkescans kennzeichnen jede Logzeile mit `beer` oder `coffee`. Die zusätzliche Restaurants-/Café-Suche (`scraper.enrich`) sucht ausschliesslich Bierpreise und schliesst bereits bekannte Bierlokale aus. `no_prices` bedeutet daher keine erkannten Preise der jeweiligen Kategorie, nicht einen leeren Gesamtbestand. Die Logs nennen geladene HTML-/PDF-Dokumente, nicht unterstützte Formate, Laufzeit, erreichte Dokumentlimits sowie Abruf- und Parserfehler mit Quellen-URL. URL-Abfrageparameter werden in diesen Diagnosen weggelassen. Kaffee- und Discovery-Prüfprotokolle behalten die Diagnosedetails; jeder Getränkeschritt gibt eine Zusammenfassung aus. Erfolgreiche HTTP-Abrufe werden innerhalb desselben Actions-Jobs über `WOBILLIG_HTTP_CACHE` zwischen den Suchschritten wiederverwendet. Fehler werden nicht zwischengespeichert. Jeder neue Lauf bzw. Wiederholungsversuch verwendet einen eigenen Cache; lokal ist dieser Cache ohne die Umgebungsvariable ausgeschaltet. Suchumfang und Extraktionsregeln bleiben unverändert.
-
-Das Repository-Secret `ANTHROPIC_API_KEY` wird ausschliesslich dem KI-Scan-Schritt übergeben. Es gehört weder in den Browser noch in Vercel oder die Daten-Dateien. `Refresh city prices` aktualisiert Bier, Kaffee, Pizza, Döner und Falafel **alle drei Wochen montags um 04:23 UTC**, beginnend am **19. Oktober 2026**, und führt nach der normalen Suche den Claude-Scan aus. Der wöchentliche Zeitplan führt den Scan nur jeden dritten Montag in einem festen 21-Tage-Rhythmus aus, auch über Jahreswechsel hinweg. Manuelle Läufe sind jederzeit möglich; auswählbar sind `full`, `streetfood_only`, `ai_only`, `estimates_only` und `photos_only` sowie unter `city` die Werte `all`, `zurich`, `bern` und `basel`. Bei den drei reinen KI-Modi werden die Bier/Kaffee-, Pizza-, Döner- und Falafel-Jobs übersprungen. `streetfood_only` führt nur Döner und Falafel aus, ohne KI-Aufrufe.
-
-`python -m scraper.ai_scan --discover` sucht zusätzliche Zürcher Restaurants/Cafés, folgt Menülinks und liest HTML, PDF-Seiten samt Bildern sowie direkt verlinkte Menübilder. Derselbe Aufruf sammelt Bier und Kaffee. Ausschliesslich Claude Haiku 5.5 (`claude-haiku-5-5`) liefert strukturierte Ergebnisse; Mengen, Preise, Quellenzuordnung und Preisbelege werden zusätzlich validiert. Bestehende widersprechende Preise werden nicht automatisch ersetzt. Neue KI-Preise tragen «KI-erkannt», Quellenlink, Abrufdatum, Dokument-Hash und gegebenenfalls PDF-Seite. KI-Erkennung kann dennoch fehlerhaft sein.
-
-Unbekannte Ausschankarten erhalten `beerTypeEstimate` (Typ, konkrete Begründung, Methode), während `beerType` unverändert bleibt. Der KI-Scan übergibt bei HTML-Menüs zusätzlich bis zu zwölf eindeutig einer bepreisten Bierzeile zugeordnete Produktbilder (höchstens 6 MB insgesamt). Bildgestützte Schätzungen speichern `sourceImage` und haben Vorrang vor Mengen-Heuristiken; Nachbarprodukte, mehrdeutige Bildzuordnungen und fehlgeschlagene Bildabrufe dürfen keinen Bildnachweis liefern. Preis, Menge und Alternativen dienen als zusätzliche Hinweise, ein einzelnes günstiges 5-dl-Bier belegt kein Offenbier. Die konkrete KI-Begründung bleibt erhalten. Preise und Mengen werden nicht geschätzt. Biermischgetränke (Panaché/Panash, Henaché, Radler, Shandy usw.) sind vom Biervergleich ausgeschlossen, auch unter einer Offenbier-Überschrift. Gemischte Angebotszeilen wie „Lager / Panaché“ werden vorsichtshalber ebenfalls ausgelassen. Der Ausschluss gilt für Extraktion, geprüfte Menüs, bestehende Daten, Besucherbeiträge und Anzeige. Offenbier-Schätzungen brauchen eine konkrete Ausschankangabe, eine benannte Bierportion oder passende Grössen desselben Biers auf derselben Karte ohne widersprechenden Verpackungsbeleg. Unbelegte KI-Offenbier-Schätzungen werden bei der Aktualisierung entfernt. Häufigkeiten einer Portionsgrösse in anderen Lokalen rechtfertigen keine Ausschank-Schätzung. Besucherkorrekturen haben Vorrang, ihre Angebotsschlüssel hängen nicht an einer Schätzung.
-
-Standardbudget pro Stadt: **5.00 USD API-Tokenkosten**, gemeinsam für ihre KI-Schritte. Geplante Dreiwochenläufe starten eigene Stadt-Jobs in der festen Reihenfolge **Zürich → Basel → Bern → Lausanne → Genf** und haben damit insgesamt höchstens **25.00 USD KI-Budget**. Das Budget wird nicht mehr durch die Anzahl Städte geteilt. Bei manuellen Läufen gilt `ai_budget_usd` ebenfalls je Stadt, standardmässig 5 USD; es kann ausdrücklich bis zur Client-Obergrenze von 20 USD je Stadt geändert werden. Eine explizite Null bleibt Null. **Es gibt kein festes Anfragelimit mehr**, weder 333 pro Stadt noch 1000 insgesamt. Die KI arbeitet die vorgesehenen Kandidaten innerhalb des Dollarbudgets ab. Auch direkte CLI-Läufe sind auf 20 USD gedeckelt; `--max-requests` ist nur noch eine optionale lokale Begrenzung und wird im Workflow nicht gesetzt. Nur **Haiku 5.5**, kein anderes Modell und kein Fallback. Weitere Grenzen: im Deep Scan bis zu 20 Dokumente pro Lokal und 330 Minuten für den gesamten KI-Abschnitt einer Stadt, damit vor GitHubs Sechsstundenlimit noch Zeit für Speicherung und Veröffentlichung bleibt. Der Bericht nennt `maxRequests: null` und unterscheidet mit `stopReason` zwischen `completed`, `budget_limit`, `request_limit`, `time_limit` und `api_error`. Vor jeder Generierung werden Tokens gezählt und maximale Kosten unter einem gemeinsamen Lock reserviert. Fehlgeschlagene Requests behalten ihre Reservierung; Generierungen werden nicht automatisch wiederholt. Prompts über 100’000 Tokens werden abgelehnt. Preisbasis: [Haiku 5.5](https://platform.claude.com/docs/en/models/haiku-5-5/overview), 0.10 USD / Mio. Eingabe- und 0.50 USD / Mio. Ausgabetokens bis 100’000 Eingabetokens, ohne Steuern. Die Reservierung verwendet vorsichtshalber sogar den höheren Tarif (0.50 / 2.50 USD) plus Tokenpuffer. Historische Quellen behalten ihre damalige Modellangabe. Öffentliche Quellen und Extrakte werden an Anthropic gesendet; keine Besucher- oder Community-Daten. Der Anbieter-Schlüssel wird nur an `api.anthropic.com` gesendet.
-
-Geplante Läufe alle drei Wochen verwenden immer `deep_scan=true`; auch bei manuellen Starts ist der Deep Scan vorausgewählt (`scan_mode=full`). Für einen bewusst kleineren manuellen Lauf kann `deep_scan` ausgeschaltet werden. Dieser Modus prüft alle geeigneten Kandidaten, bis zu 50 Menüseiten pro Lokal für Bier, Kaffee, Pizza, Döner und Falafel sowie bis zu 20 Dokumente pro Lokal und 330 Minuten pro Stadt im KI-Abschnitt. Bier/Kaffee, Pizza, Döner, Falafel und KI laufen pro Stadt in fünf aufeinanderfolgenden Jobs mit jeweils bis zu sechs Stunden Laufzeit. Dadurch verbraucht die vorherige Getränkesuche nicht das Zeitbudget der Pizza- oder KI-Suche. Ein einzelner Abschnitt kann weiterhin sein Limit erreichen; bereits veröffentlichte Abschnitte bleiben erhalten. Auch nach einem fehlgeschlagenen Abschnitt werden die übrigen Abschnitte versucht, sofern der Lauf nicht abgebrochen wurde. Die Städte laufen weiterhin nacheinander; `cancel-in-progress: false` schützt den aktiven Lauf vor einem neu gestarteten Lauf. `queue: max` reiht zusätzlich angeforderte Stadtläufe in der Reihenfolge ihres Eintritts in die Warteschlange ein, statt wartende Läufe zu ersetzen. Bereits laufende Jobs behalten ihre ursprüngliche Aufteilung und Zeitlimits. Die Kaffee-Suche läuft vor der Bier-Erweiterung, damit neu gefundene Getränkekarten sofort wiederverwendet werden. Das Dollarbudget bleibt unabhängig vom Suchumfang: standardmässig maximal 5 USD je Stadt und 25 USD für alle fünf Städte zusammen. Die Artefakte `scan-coverage-<stadt>-<abschnitt>-<versuch>` und die Laufzusammenfassung vergleichen den Bestand jeweils vor und nach dem Abschnitt (`drinks`, `pizza`, `doner`, `falafel`, `ai`); neue Produkte/Portionen, Preisänderungen, erstmals bepreiste Lokale und entfernte Angebote werden getrennt gezählt. Reine Abrufdatums- und Quellenänderungen gelten nicht als zusätzliche Produkte. Die Zahlen beschreiben den Scan vor dem Abgleich mit zwischenzeitlichen Branch-Änderungen.
-
-Für eine ausdrücklich grössere manuelle Nachsuche gibt es zusätzlich **`exhaustive_scan=true`**: alle Kandidaten, bis zu **120 statt 50 Menüseiten** je Lokal für Bier/Kaffee/Pizza/Döner/Falafel und **60 statt 20 Dokumente** im KI-Abschnitt. Dieser Modus aktiviert auch die langen Abschnittsbudgets und erscheint als «extra-deep scan». Die regulären Dreiwochenläufe behalten ihre bisherigen Limits. Das KI-Budget bleibt separat einstellbar (standardmässig 5 USD); mehr Suchumfang bedeutet keine garantierte Anzahl neuer Preise.
-
-
-Textreiche PDF-Abschnitte ohne Hinweise auf Bier, Kaffee oder passende Portionsgrössen werden übersprungen; Seiten ohne brauchbaren Text gehen an die Bilderkennung. Identische Dokumente werden pro Lokal nur einmal verarbeitet. Cafés ohne Kaffeepreise werden zuerst geprüft. Ein Inhalts-Cache verhindert erneute API-Kosten für identische Dokumente/Prompts. `scraper/ai_checks.json` lässt spätere Läufe zu noch nicht geprüften Lokalen weitergehen. Ein Bericht mit Kosten, Treffern und Fehlern steht im Actions-Lauf und als Artefakt. Bei fehlendem Schlüssel bleibt der normale Scraper verwendbar; bei API-/Netzwerkfehlern werden vorhandene Angebote erhalten. Robots-Regeln und bestehende Filial-/Quellenbeschränkungen gelten weiterhin.
-
-Beim Veröffentlichen wird der Scan auf den neuesten Branch-Stand angewendet, ohne JSON-Dateien per Git-Rebase zusammenzuführen. Lokale und Prüfprotokolle werden anhand ihrer Lokal-ID abgeglichen: Hat sich derselbe Datensatz seit Scanbeginn auf dem Branch geändert oder wurde er gelöscht, bleibt die Branch-Version erhalten. Die übrigen Scan-Ergebnisse werden übernommen. Bei einem zwischenzeitlichen Push wird die Zusammenführung bis zu dreimal frisch versucht, ohne Force-Push. Das Actions-Artefakt `refreshed-dataset-<stadt>-<abschnitt>-<versuch>` sichert vor dem Veröffentlichen den Ausgangsstand und sämtliche erzeugten Daten des Abschnitts. Bei einem fehlgeschlagenen Abschnitt wird der verfügbare Zwischenstand ebenfalls als Artefakt gesichert, soweit der Runner die Aufräumschritte noch ausführen kann; bei einem harten Timeout ist das nicht garantiert. Es erlaubt einen erneuten Veröffentlichungsversuch ohne erneutes Scraping: `python -m scraper.publish --snapshot /pfad/refresh-snapshot.json --branch main`.
-
-## Datierte Google-Maps-Menüfotos
-
-Der OCR-Scan verarbeitet zusätzlich die einzeln geprüften Quellen in `scraper/menu_photos.json`. Er nutzt denselben Haiku-5.5-Client und **dasselbe gemeinsame Stadtbudget (standardmässig 5.00 USD; geplante Läufe maximal 5.00 USD je Stadt)** wie die übrige KI-Suche. `photos_only` in Actions bzw. `python -m scraper.ai_scan --photos-only` prüft nur diese Fotos.
-
-Die Suche und Datumsprüfung in Google Maps sind derzeit **manuell**, die anschliessende OCR und Übernahme laufen automatisch. Die [offizielle Photo-API](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Photo) bietet kein Foto-Datumsfeld; sie kann die Sechsmonatsgrenze nicht allein belegen. Dies ist kein flächendeckender Google-Maps-Crawler. Nur am einzelnen Foto geprüfte Datumsangaben zählen, niemals das Datum einer Rezension, das Abrufdatum oder ein vom Modell geratenes Datum. Stimmen Aufnahme- und Veröffentlichungsangabe nicht überein, ist die ältere Angabe massgeblich.
-
-Pro Quelle: OSM-`barId`, direkter Maps-Fotolink, beobachtete `imageUrl`, `photoDate` (`YYYY-MM-DD` oder `YYYY-MM`), `dateEvidence`, `dateCheckedAt`, `venueConfirmed: true`, `isMenu: true`. Die Zuordnung wird am Lokalnamen und Standort geprüft. Bei Monatsangaben zählt vorsichtshalber der Monatserste: am 15.10.2026 ist ein Foto vom 15.04.2026 zulässig, ein nur mit „April 2026“ datiertes Foto hingegen nicht. Fehlende, zukünftige und zu alte Datierungen werden **vor** dem Bildabruf und jeder API-Anfrage verworfen.
-
-Wenn ein direkter automatischer Bildabruf durch robots.txt ausgeschlossen ist, kann ein einzeln im Browser ausgewähltes Foto als `imagePath` unter `scraper/photo_inputs/` mit passender `sha256` importiert werden. Diese Dateien sind von Vercel ausgeschlossen und werden nicht auf der Website gespiegelt. Quellen dürfen keine Zugangssperren umgehen. Der erste importierte Beleg ist die vom Lokal veröffentlichte Kaffeekarte von 169 West, datiert September 2026.
-
-OCR-Preise behalten den Fotolink, das Fotodatum, den Textbeleg und das separate Lesedatum. Unlesbare Ziffern, Strichlisten, Spenden, rückseitig durchscheinender Text und unklare Portionsgrössen werden nicht als Preise übernommen. Bestehende widersprechende Preise werden nicht automatisch ersetzt. Abgelaufene Fotoangebote verschwinden aus dem Kartenvergleich und der Detailansicht auch ohne neuen Scan; der nächste Scan entfernt sie aus dem Datensatz. Ein neuer Besucherpreis bleibt unabhängig davon erhalten.
-
-Im Biervergleich erscheinen Cafés nur mit einem aktuellen, vergleichbaren Bierangebot im Datensatz (einschliesslich Besucherbeiträgen). Öffnungszeiten führen nicht zum Ausschluss; auch tagsüber geöffnete Cafés mit Bierpreisen erscheinen. Diese Vorauswahl gilt für Liste, Karte und ausgewählte Lokale unabhängig von «Ohne passenden Preis anzeigen»; Kaffee und Pizza sind davon ausgenommen.
-
-
-## Vercel Custom Events
-
-Alle sechs Kartenseiten (DE/EN, Zürich/Bern/Basel) erfassen folgende Aktionen unter **Vercel → Analytics → Events**. Die Events erscheinen nach ihrer ersten Verwendung; im Dashboard ist keine separate Definition erforderlich.
-
-| Events | Bedeutung / Eigenschaften |
+| Variable | Zweck |
 | --- | --- |
-| `price_form_opened`, `price_submitted`, `price_saved`, `price_failed` | Preisdialog geöffnet, gültiger Speicherversuch, bestätigte Speicherung oder Fehler. `category`: `beer` / `coffee` / `pizza`, `action`: `add` / `edit`; Fehler mit `stage`: `validation` / `request`. |
-| `menu_upload_started`, `menu_upload_completed`, `menu_upload_failed` | Tatsächlich ausgewähltes Foto, erfolgreiche Scan-Antwort oder Fehler. Ergebnis zählt `added`, `unchanged`, `conflicts`, `skipped`; ein Scan ohne neue Preise hat `added=0`. Fehlerphase `preparation` / `request`. |
-| `venue_form_opened`, `venue_submitted`, `venue_saved`, `venue_existing_selected`, `venue_failed` | Lokalformular, gültiger Speicherversuch, neu angelegtes Lokal, erkanntes/ausgewähltes vorhandenes Lokal oder Fehler. Duplikate zählen nicht als neue Lokale. |
-| `category_changed`, `cheap_filter_changed` | Kategorie gewechselt beziehungsweise Günstig-Filter ein-/ausgeschaltet (`category`, `enabled`). |
-| `venue_shared` | Ergebnis der Teilen-Aktion (`category`, `result`: `shared`, `copied`, `manual`, `cancelled`). `manual` bedeutet nur, dass der Link angezeigt wurde. |
-| `data_downloaded` | Datenexport ausgelöst (`format`: `csv` / `json`). |
+| `BLOB_READ_WRITE_TOKEN` | Privater Speicher für Beiträge, Limits und Backups |
+| `ANTHROPIC_API_KEY` | Foto-Scan und Kaffeefoto-Prüfung, als GitHub-Secret auch für den KI-Scan |
+| `GOOGLE_PLACES_API_KEY` | Google-Bewertungen für Pizzerien, höchstens 1'000 Anfragen pro Monat |
+| `MAP_REVIEW_PASSWORD` | Zugang zu den Prüfseiten |
+| `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` | Kaffee-Spende. Ohne Live-Schlüssel bleibt der Link in Production ausgeblendet |
+| `CONTRIBUTION_PROTECTION`, `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | Bot-Schutz vor Beiträgen |
+| `COMMUNITY_PHOTO_DAILY_USD`, `COMMUNITY_PHOTO_DAILY_LIMIT`, `COMMUNITY_PHOTO_HOURLY_LIMIT` | Gemeinsames Budget aller Foto-Prüfungen (Standard USD 2 pro 24 Stunden) |
+| `COMMUNITY_REVIEW_REQUIRED` | `true` hält alle Beiträge bis zur manuellen Freigabe zurück |
+| `COMMUNITY_WRITES_PAUSED`, `COMMUNITY_PHOTOS_PAUSED` | Notschalter, siehe unten |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `COMMUNITY_EMAIL_FROM`, `COMMUNITY_EMAIL_DAILY_LIMIT` | Versand der Bestätigungscodes über Infomaniak |
+| `EMAIL_VERIFICATION_REQUIRED`, `COMMUNITY_AUTH_SECRET` | Pflicht-Bestätigung und Signatur der Konto-Sessions |
+| `PHOTON_URL`, `SITE_URL` | Optional: eigener Photon-Endpunkt, abweichende Domain |
 
-Alle Events enthalten `city` und `language`. Es werden keine Formularinhalte, Lokalnamen/IDs, Adressen, Koordinaten, Suchbegriffe, Bilddaten, Dateinamen oder Fehlermeldungen als Event-Eigenschaften übermittelt. Der `beforeSend`-Hook entfernt Query und Fragment der an Vercel gesendeten Karten-URLs. Analytics-Ausfälle dürfen keine Nutzeraktion unterbrechen. Lokal verwendet der SDK den Entwicklungsmodus. Browser-Tests fangen Analytics und Schreib-APIs ab und erzeugen keine Produktionsdaten.
+### Notfall
 
-## Google-Maps-Bewertungen für Pizzerien
+Bei missbräuchlichen Beiträgen `COMMUNITY_WRITES_PAUSED=true` setzen und neu deployen. Die Karte bleibt lesbar, Beiträge sind pausiert. Betrifft das Problem nur Fotos, reicht `COMMUNITY_PHOTOS_PAUSED=true`. Einzelne Beiträge lassen sich auf der Prüfseite zurücknehmen. Vor jeder Datenreparatur einen Snapshot ziehen:
 
-`GOOGLE_PLACES_API_KEY` wird ausschliesslich serverseitig gelesen. Lokal liegt der Wert in `.env.local`; `npm run dev` bedient `/api/google-rating` über Vite. Für die veröffentlichte Website muss dieselbe Variable in der jeweiligen Vercel-Umgebung gesetzt sein. Im Google-Cloud-Projekt müssen Places API (New) und Abrechnung aktiviert sein; der Schlüssel sollte auf diese API beschränkt werden.
+```sh
+node --env-file=.env.local scripts/community-backup.mjs
+```
 
-Beim Öffnen eines Lokals aus dem Pizza-Katalog fragt der Server dessen Google-Bewertung ab. Name, vollständige Strassenadresse und Koordinaten müssen zusammenpassen; mehrdeutige Treffer werden verworfen. Das Ergebnis erscheint als `4.5/5` neben dem direkten Google-Maps-Link. Fehlende Bewertungen und API-Ausfälle lassen den bisherigen Suchlink bestehen. Kaffee-/Bierlokale ohne Eintrag im Pizza-Katalog lösen keine Abfrage aus.
+Snapshots nie blind zurückspielen. Beiträge, die nach dem Snapshot eingegangen sind, gingen sonst verloren.
 
-Bewertungen werden auf ausdrücklichen Betreiberwunsch sieben Tage lang im privaten Vercel-Blob `google-ratings/state.json` gecacht, auch wenn Google für das Lokal kein eindeutig zuordenbares Rating liefert. Erneutes Öffnen, Neuladen und andere Besucher verwenden während dieser Frist denselben Wert. Abgelaufene Bewertungen werden nicht mehr angezeigt. Die Google-Bedingungen zur Speicherung und Verwendung der Inhalte bleiben davon unberührt; der Cache stellt keine Freigabe durch Google dar.
+### GitHub Actions
 
-Alle Städte und alle Deployments mit demselben `BLOB_READ_WRITE_TOKEN` teilen ein festes Budget von **1’000 Google-Anfragen pro Kalendermonat in America/Los_Angeles**, passend zu Googles Freikontingent. Vor jeder Google-Anfrage wird der Zähler per ETag-Bedingung atomar erhöht. Fehlgeschlagene Anfragen und abgebrochene Reservierungen zählen vorsichtshalber mit. Parallele Anfragen für dasselbe Lokal teilen eine Anfrage oder werden durch eine kurze Reservierung abgefangen. Bei erreichtem Limit werden nur noch gültige Cache-Einträge ausgeliefert; sonst bleibt der Google-Maps-Link ohne Bewertung. Speicherfehler blockieren neue Google-Aufrufe. Es gibt keine ungezählten Fallbacks oder automatischen Google-Retries.
+| Workflow | Zeitplan | Zweck |
+| --- | --- | --- |
+| Checks | Push und Pull Request | Vitest, Build, Playwright und Python-Tests |
+| Refresh city prices | alle 21 Tage montags 04:23 UTC, nächste Läufe 9. und 30. November 2026 | Preise aller Städte neu einlesen und auf `main` committen |
+| Production health | zweimal pro Stunde | Startseite, Rechtsseiten, Bot-Schutz und öffentliche APIs aller Städte prüfen, nur lesend |
+| Private community backup | alle 6 Stunden | Community-Daten im privaten Blob sichern (32 rotierende Stände, rund acht Tage) und die Prüfwarteschlange kontrollieren |
+| Refresh private promotion pilot | täglich | Privater Aktionspilot mit dem Coop-Prospekt, nur auf der Prüfseite sichtbar |
+| Deploy to GitHub Pages | manuell | Optionale statische Kopie ohne API |
 
-`BLOB_READ_WRITE_TOKEN` muss lokal und in Vercel auf denselben privaten Store zeigen, damit das Limit gemeinsam gilt. Den Budget-Blob nicht löschen oder durch einen älteren Stand ersetzen: Dadurch könnte der Zähler zurückgesetzt werden. Bei einer Migration muss die bereits verbrauchte Monatsnutzung übernommen werden. Das Limit erfasst nur diese Funktion, nicht andere Anwendungen, direkte API-Aufrufe oder andere Google-Projekte desselben Abrechnungskontos. Es garantiert daher keine kostenlose Gesamtrechnung; auch Blob-Speicher und Hosting haben eigene Tarife. Zusätzlich gilt pro Serverinstanz eine Besuchergrenze von 30 Endpoint-Anfragen pro Minute.
+Der Preis-Refresh arbeitet die Städte nacheinander ab (Zürich, Basel, Bern, Lausanne, Genf), jeweils in drei Abschnitten für Getränke, Pizza und KI. Ein Fehler in einer Stadt hält die anderen nicht auf. Manuell lassen sich `city`, `scan_mode` (`full`, `pizza_only`, `ai_only`, `estimates_only`, `photos_only`), `ai_budget_usd` (Standard 5, höchstens 20 pro Stadt), `deep_scan` und `exhaustive_scan` wählen. Scheitert die Veröffentlichung eines Abschnitts, enthält das Artefakt `refreshed-dataset-…` den Stand, und `python -m scraper.publish --snapshot <datei> --branch main` veröffentlicht ihn ohne neuen Scan.
 
-Verwendet wird Text Search Enterprise (`rating`): laut [Google-Preisliste](https://developers.google.com/maps/billing-and-pricing/pricing) am 19.10.2026 1’000 kostenlose Abrufe pro Monat, danach 35 USD pro 1’000 bis zur nächsten Mengenstaffel, ohne Steuern. Das Freikontingent kann mit anderer Nutzung desselben Abrechnungskontos geteilt sein. Siehe auch [Text Search](https://developers.google.com/maps/documentation/places/web-service/text-search) und [Attributionsregeln](https://developers.google.com/maps/documentation/places/web-service/policies).
+Die Workflows brauchen die Repository-Secrets `ANTHROPIC_API_KEY` und `BLOB_READ_WRITE_TOKEN`. Solange das Repository öffentlich ist, kosten die Actions-Minuten nichts. Ein einzelner Refresh läuft rund acht Stunden, privat würde das Freikontingent von GitHub schnell aufgebraucht.
 
-## Kaffeebewertungen
+## Suchmaschinen
 
-In der Kaffeeansicht öffnet «Kaffee bewerten» die Sterneauswahl und einen Foto-Upload. Ein Foto mit sichtbarem Kaffee genügt; Quittung, Datum, E-Mail und manuelle Freigabe sind nicht nötig. Der Durchschnitt erscheint ab drei Stimmen, davor nur die Anzahl. Bestehende Stimmen bleiben erhalten und wurden nicht nachträglich fotografisch geprüft.
+Damit Google `www.wobillig.ch` als Hauptadresse führt:
 
-`POST /api/coffee-rating` prüft das lokal verkleinerte, von EXIF befreite Foto über Anthropic und speichert die Bewertung atomar im privaten Stadt-Blob. Explizit fremde Lokalnamen werden abgewiesen; ein nahes Kaffeefoto ohne lesbaren Lokalnamen ist erlaubt. Dies ist eine Plausibilitätsprüfung, kein Nachweis von Besuch, Eigentum oder Aufnahmezeit. wobillig speichert das Bild nicht, nur seinen SHA-256-Fingerabdruck zur Erkennung identischer Wiederverwendungen. Anders zugeschnittene oder fremde Fotos können diese Prüfung umgehen. Der alte `rateCoffee`-Aufruf ohne Foto wird abgewiesen.
+1. In der [Google Search Console](https://search.google.com/search-console) eine Domain-Property für `wobillig.ch` anlegen. Die DNS-Bestätigung deckt `www` mit ab.
+2. Die Sitemap `https://www.wobillig.ch/sitemap.xml` einreichen.
+3. `https://www.wobillig.ch/` mit der URL-Prüfung zur Indexierung anmelden.
 
-Ein signiertes HttpOnly-Cookie identifiziert den Browser; pro Browser und Lokal gibt es eine Stimme, änderbar nach 12 Stunden. Clientseitige `voterToken` werden ignoriert. `GET /api/prices` liefert nur Anzahl und Durchschnitt. Gelöschte Cookies und andere Browser ermöglichen weitere Stimmen; daher gelten zusätzlich städteübergreifend höchstens zehn Fotoprüfungen pro Stunde je Browser und 30 je IP. Fehlgeschlagene Prüfungen zählen mit. Identische erfolgreiche Wiederholungen verursachen keine erneute Fotoprüfung. Keine Fotos, Einzelstimmen oder Kennungen werden öffentlich ausgeliefert.
+Jede Seite liefert Titel, Beschreibung, Canonical, hreflang und strukturierte Daten (`WebSite` mit dem Namen «wobillig», `CollectionPage`). Impressum und Datenschutz sind auf `noindex` gesetzt.
 
-## Grössere Preiskorrekturen
+## Recht und Datenschutz
 
-Kleine Korrekturen werden weiterhin direkt übernommen. Änderungen um mehr als 30 Prozent und mindestens CHF 2 benötigen eine aktuelle Menükarte. Die Grenze gilt auch kumuliert über 24 Stunden; nach sechs manuellen Preisänderungen desselben Angebots innerhalb dieser Zeit ist ebenfalls ein Foto nötig. Eine per Karte bestätigte Korrektur setzt die Vergleichsbasis zurück. Neu hinzugefügte, offensichtlich unplausible Preise bleiben weiterhin nur im Browser des Eintragenden sichtbar.
+`/impressum`, `/datenschutz`, `/en/imprint` und `/en/privacy` entstehen beim Build aus `build/legal-pages.ts`. Die veröffentlichten Betreiberangaben stehen in `build/legal-operator.ts`. Fehlt dort der Name, bricht der Production-Build ab.
 
-Unter «Ändern» kann eine Karte hochgeladen werden. Der Server übernimmt ausschliesslich eindeutig erkannte Preise und prüft Lokal sowie Angebotsidentität; eine fremde oder unklare Zeile kann den gewählten Preis nicht ersetzen. Revisionen schützen gleichzeitige Änderungen. Der normale Kartenimport darf weiterhin 15 oder mehr Preise auf einmal hinzufügen und belastet das manuelle Limit von zehn Änderungen pro Browser und 30 pro IP innerhalb von zehn Minuten nicht.
+Wer einen Dienst, ein Cookie, einen Datenempfänger, ein Analyse-Ereignis oder eine Speicherfrist ändert, passt die Datenschutzerklärung in beiden Sprachen an und setzt das Datum «Stand» neu. Die Erklärung ersetzt keine rechtliche Prüfung.
 
-## Privater Aktionspilot
+Für Statistiken laufen Vercel Web Analytics und GoatCounter, beide ohne Cookies. Die eigenen Ereignisse in `src/analytics.ts` übermitteln nur Kategorie, Stadt, Sprache und das Ergebnis einer Aktion, keine Formularinhalte, Lokalnamen, Suchbegriffe oder Koordinaten.
 
-Die Adminseite verlinkt unter «Aktionskarte · privater Pilot» auf `/api/deals?view=preview`. HTML, JSON und Zuordnungsänderungen verlangen denselben Prüfzugang (`MAP_REVIEW_PASSWORD`); Antworten sind `private, no-store`. Die Aktionsdaten liegen ausschliesslich im privaten Blob `deals/production.json` (lokal/Vorschau: `deals/development.json`). Keine öffentlichen Maps, Hauptkategorien, Suche, Sitemap oder Preis-APIs enthalten diese Daten.
+## Quellen und Lizenzen
 
-Der erste Adapter liest die fünf Angebote der Titelseite des öffentlichen Coop-Aktionsprospekts (Ausgabe ZZ). Preise, Bedingungen wie «ab 3 Stück», Preisbasis, Packungsgrösse und beide Gültigkeitsdaten werden aus dem PDF übernommen. Er ist bewusst auf das geprüfte Layout beschränkt und bricht bei unbekannten Layouts, unklaren Angaben oder fehlenden aktuellen Angeboten ab. Das ist kein vollständiges Aktionssortiment. OSM/Photon liefert ausschliesslich ungeprüfte Zürcher Supermarkt-Kandidaten; Pronto, Apotheken und fehlende Adressen werden ausgeschlossen.
+Der Code steht unter der MIT-Lizenz (`LICENSE`). Rechte an Quelldaten und fremden Inhalten bleiben davon getrennt.
 
-Die private Vorschau bietet Produkt-/Markensuche, Händler- und Kategoriefilter, «Endet heute oder morgen», Sortierung nach Ablauf, Preis oder Entfernung zu **bestätigt zugeordneten** Filialen. Graue Fragezeichen markieren unbestätigte Filialen. Zuordnungen werden pro Angebot und Filiale mit Händlerlink und Begründung bestätigt und können wieder entfernt werden. Das bestätigt keine Lagerbestände. Jede Änderung des importierten Inhalts verwirft die Zuordnungen zur erneuten Prüfung; unveränderte Abrufe erhalten sie. Es gibt absichtlich keine öffentliche Freigabe.
-
-Abgelaufene Angebote verschwinden nach dem letzten Gültigkeitstag in Europe/Zurich aus API, Suche und Markern; auch eine offen gebliebene Vorschau aktualisiert sich. Zukünftige Angebote bleiben bis zum Startdatum ausgeblendet. Fehlgeschlagene Abrufe erhalten die alten Daten und Enddaten und zeigen den Fehler sowie den letzten erfolgreichen Stand.
-
-Import: `.venv/bin/python -m scraper.deals`, danach `node --env-file=.env.local scripts/deals-import.mjs --production`. Ohne `--production` wird nur der Entwicklungsblob beschrieben. `--failure` vermerkt einen fehlgeschlagenen Abruf. Staging unter `output/deals/` wird nicht eingecheckt oder öffentlich bereitgestellt. Der tägliche GitHub-Workflow `deals.yml` benötigt `BLOB_READ_WRITE_TOKEN` als Repository-Secret; er schreibt keine Angebotsdaten ins Repository und veröffentlicht keine Artefakte.
-
-## Schutz vor dem Medienstart
-
-Seit dem 21. Oktober 2026 ist `COMMUNITY_REVIEW_REQUIRED=false`: gültige Preise, erfolgreich geprüfte Foto-Scans, neue Lokale und Lokalkorrekturen werden direkt veröffentlicht. Automatische Eingabe-, Foto-, Änderungs- und Spamprüfungen bleiben aktiv; auffällige manuelle Preise können weiterhin zurückgehalten werden. Mit `COMMUNITY_REVIEW_REQUIRED=true` lässt sich bei Bedarf wieder eine manuelle Freigabe für alle Beiträge aktivieren. Prüfen unter `/api/community-review` mit dem bestehenden Prüfzugang (`admin` / `MAP_REVIEW_PASSWORD`). Freigaben können dort zurückgenommen werden; inzwischen geänderte Daten werden dabei nicht überschrieben. Öffentliche Daten können nach Freigaben bis zu 105 Sekunden hinterherhinken (15 Sekunden Servercache, 30 Sekunden CDN, bis zu 60 Sekunden stale-while-revalidate).
-
-Alle manuellen Custom Maps sind gemeinsam bearbeitbar: Wer den Link kennt, kann Orte und Preise ergänzen, ändern und eine Veröffentlichung anfragen. Das gilt für alte Maps ohne Erstellerzuordnung ebenso wie für neue Maps und Maps mit bestehender Browser-/Kontozuordnung. Eine Anmeldung oder ein Wiederherstellungslink ist dafür nicht erforderlich. Vorhandene Erstellerkennungen bleiben intern erhalten, begrenzen den Schreibzugriff aber nicht. Fremde Beiträge überschreiben diese Zuordnung nicht. Automatische Map-Anfragen bleiben im Prüfablauf ohne manuelle Einträge.
-
-Ältere signierte Wiederherstellungslinks können noch eine Erstellerzuordnung setzen, sind für die Bearbeitung aber nicht mehr nötig. Die Veröffentlichung im öffentlichen Menü bleibt eine Betreiberprüfung.
-
-`GET /api/prices?city=zurich&view=public` liefert ausschliesslich öffentliche Felder, ohne persönliche Preisentwürfe, Besitzer, Limits oder Authentifizierungsdaten. Private Ansichten und einzelne Map-Abrufe bleiben `private, no-store`. Die Anwendung nutzt für den öffentlichen Abruf keine Cookies.
-
-Foto-Scans und Kaffeefotos teilen sich unabhängig von der Stadt ein dauerhaft gespeichertes Limit: standardmässig 100 pro Stunde, 1'000 pro 24 Stunden und eine konservative Budgetreservierung von USD 0.02 je Menüscan beziehungsweise USD 0.01 je Kaffeefoto bei USD 2 pro 24 Stunden (höchstens 100 reine Menüscans beziehungsweise 200 reine Kaffeefotos). Reservierung erfolgt atomar vor bezahlten Anfragen, auch fehlgeschlagene Aufrufe zählen. Die USD-Reservierung ist eine interne Kostenschätzung für das aktuell begrenzte Modell, keine Garantie für externe Preisänderungen. Provider-Limits separat setzen. Bei Modellwechsel die Reservierung und Tokenlimits überprüfen.
-
-### Aktivierung von Bot-Schutz und E-Mail
-
-Seit dem 21. Oktober 2026 ist Cloudflare Turnstile in Production aktiv (`CONTRIBUTION_PROTECTION=true`): Managed-Widget für `wobillig.ch` und `www.wobillig.ch`, ohne Pre-Clearance. Der Secret-Key liegt als Vercel Secret vor. DNS und Hosting bleiben unverändert. Der SMTP-Versand über `hello@wobillig.ch` ist eingerichtet. Die Konto-Schaltflächen «Konto erstellen» und «Mein Konto» sind vorerst ausgeblendet; `EMAIL_VERIFICATION_REQUIRED=false` bleibt bestehen. Beiträge verlangen weiterhin keine E-Mail-Bestätigung.
-
-Alle Variablen in `.env.example` sind reine Servervariablen. Der öffentliche Turnstile-Site-Key wird gezielt über `/api/community-auth` ausgeliefert; Secrets bleiben auf dem Server.
-
-1. In Cloudflare Turnstile ein Managed-Widget für `www.wobillig.ch` und `wobillig.ch` einrichten. `TURNSTILE_SITE_KEY` und `TURNSTILE_SECRET_KEY` in Vercel setzen. Erst danach `CONTRIBUTION_PROTECTION=true` aktivieren und neu deployen. Der Server prüft Token, Hostname und Aktion, bevor ein Beitrag gespeichert oder KI aufgerufen wird. Ausfälle sperren die Eingabe, nicht die Karte.
-2. SMTP: `mail.infomaniak.com`, Port 465 mit TLS, Benutzer `hello@wobillig.ch`, Absender `Wobillig <hello@wobillig.ch>`. `SMTP_PASSWORD` als Secret hinterlegen. Ein abweichender Mailanbieter kann über die SMTP-Variablen konfiguriert werden. Für die Implementierung heissen die Variablen `SMTP_PASSWORD` und `COMMUNITY_EMAIL_FROM`; `SMTP_PASS`, `SMTP_ADMIN_EMAIL` und `SMTP_SENDER_NAME` werden nicht ausgewertet. Der SMTP-Testversand an die eigene Testadresse war erfolgreich. Vor einer Pflichtaktivierung den vollständigen Code-Ablauf im Browser prüfen.
-3. Erst wenn eine verpflichtende Bestätigung gewünscht ist, `EMAIL_VERIFICATION_REQUIRED=true` aktivieren, Datenschutztexte anpassen und neu deployen. Sechsstellige Codes gelten zehn Minuten, maximal acht Versuche, einmalig und an den anfordernden Browser gebunden. Versand höchstens einmal pro 30 Sekunden und sechsmal pro Stunde je Adresse, 20-mal pro Stunde je IP sowie standardmässig 200-mal pro 24 Stunden insgesamt. Fehlgeschlagene Versandversuche zählen mit. Keine Newsletter-Anmeldung. Die Community speichert HMAC-Kennungen statt Klartextadressen; der SMTP-Anbieter verarbeitet die Empfängeradresse zum Versand.
-4. Sessions halten 30 Tage, sind signiert und `HttpOnly`, `Secure` in Vercel, `SameSite=Lax`. Der freiwillige Kontozugang ist vorerst ausgeblendet; die bestehenden Sessions und die serverseitigen Kontofunktionen bleiben erhalten. Ein optionaler `COMMUNITY_AUTH_SECRET` muss vor dem ersten Konto gesetzt und dauerhaft beibehalten werden; eine Rotation invalidiert Sessions und verändert Konto-Kennungen. Ohne diesen Wert wird der bestehende Blob-Token verwendet.
-
-### Betrieb und Notfall
-
-- `COMMUNITY_PHOTOS_PAUSED=true`: nur Foto-Funktionen pausieren.
-- `COMMUNITY_WRITES_PAUSED=true`: sämtliche Community-Beiträge und neue Bestätigungsmails pausieren. Lesen bleibt möglich. Env-Änderungen benötigen ein neues Deployment.
-- Firewall-Regeln auf Projektebene: POST `/api/*` maximal 60/min/IP; GET `/api/*` maximal 300/min/IP. Normale Seiten und statische Dateien bleiben frei. Limits bei vielen legitimen Besuchern aus demselben Netz beobachten.
-- Vor Veröffentlichung und vor grösseren Datenänderungen: `node --env-file=.env.local scripts/community-backup.mjs`. Snapshot-Dateien sind privat, mit Prüfsummen und Dateirechten 0600. `output/community-backups/` ist von Git und Vercel-Uploads ausgeschlossen. Keine automatische Wiederherstellung über laufende Daten: im Notfall Schreibzugriffe pausieren und Änderungen seit dem Snapshot zuerst abgleichen.
-- Vercel-Kostenalarme unter Team → Settings → Billing → Spend Management prüfen. Ein Budget allein stoppt keine Kosten. Eine automatische Team-Pause betrifft auch die anderen Projekte dieses Teams; deshalb nicht unbemerkt für wobillig aktivieren. API-/Hostingkosten und Anthropic-Limits sind getrennt.
-- Nach dem Start: HTTP-429-/5xx-Raten, Warteschlange und Foto-/Mailbudget prüfen. Bei Missbrauch zuerst Eingaben oder Fotos pausieren, dann die betroffenen Änderungen in der Prüfseite zurücknehmen. Die Kartenansicht bleibt online.
-
-Tests: `npm test`, `npm run build`, `npx playwright test tests/community-security.browser.ts`. Die Sicherheitstests prüfen parallele Reservierungen, ungültige Bot-Token, E-Mail-Wiederverwendung, fremde Map-Zugriffe, Freigaben/Rücknahmen und 200 gleichzeitige öffentliche Lesezugriffe. Das ersetzt keinen realen Lasttest der Vercel-Infrastruktur.
-
-Ein begrenzter Live-Lesetest ist mit `node scripts/community-load-check.mjs https://www.wobillig.ch` wiederholbar: 40 GET-Anfragen, maximal acht gleichzeitig, keine Schreibzugriffe. Am 21. Oktober 2026: 40/40 erfolgreich, 32 CDN-Hits, Median 48 ms, 95. Perzentil 1’433 ms inklusive kalter Abrufe. Das bestehende Vercel-Team-Budget beträgt USD 200; Warnungen bei USD 100, 150 und 200, automatische Team-Pause aus.
-
-### Release-Betrieb
-
-- `Production health` prüft alle 30 Minuten Startseite, Rechtsseiten, aktiven Bot-Schutz und die öffentlichen Community-APIs aller fünf Städte. Drei Versuche pro Prüfung fangen kurze Netzwerkfehler ab; danach schlägt der GitHub-Actions-Lauf fehl. Der Check ist rein lesend. GitHub-Zeitpläne können verspätet starten und sind kein sekundengenauer Verfügbarkeitsdienst. Unter GitHub → Settings → Notifications → Actions E-Mail/Web-Benachrichtigungen für fehlgeschlagene Läufe einschalten; Benachrichtigungen für geplante Läufe gehen an den letzten Bearbeiter des Cron-Zeitplans. Keine Beitragsinhalte erscheinen in Logs.
-- `Private community backup` sichert alle sechs Stunden Community-Daten im bestehenden **privaten** Blob-Store. 32 rotierende Slots halten bei regulärem Betrieb ungefähr acht Tage vor. Erst werden alle Städte eingelesen und validiert, dann ein vollständiger Snapshot atomar geschrieben und erneut gelesen; SHA-256-Prüfsummen erkennen Beschädigungen. Bedingte Schreibzugriffe verhindern konkurrierendes Überschreiben. Keine öffentlichen GitHub-Artefakte, keine E-Mail-Codes oder Sicherheitszähler; Eigentümerkennungen und Prüfverläufe bleiben für eine Wiederherstellung erhalten. Manuell: `node --env-file=.env.local scripts/community-snapshot.mjs`.
-- Anschliessend kontrolliert derselbe Workflow die Prüfwarteschlange. Ab 100 offenen Beiträgen oder einem mehr als 24 Stunden alten/undatierten Beitrag wird der Lauf als fehlgeschlagen markiert. Im Log stehen nur Summen und Links zur geschützten Prüfung, keine Namen, Preise oder Besitzerkennungen. Normale Beiträge werden weiterhin direkt veröffentlicht.
-- Der externe Kartendienst bleibt OpenStreetMap ohne Verfügbarkeitsgarantie. Keine automatischen Lasttests gegen dessen Kachelserver. Ein Anbieterwechsel benötigt ein passendes Konto/Kontingent und eine Aktualisierung der Datenschutzerklärung.
-- Das Foto-Budget bleibt bewusst bei USD 2 je 24 Stunden. Bei ausgeschöpftem Budget bleiben Karte und manuelle Eingaben verfügbar. Erhöhungen sind eine bewusste Kostenentscheidung.
-
-Bei einem Vorfall: zuerst Fehler/429 und den betroffenen Dienst prüfen. Falls nur Fotos betroffen sind, `COMMUNITY_PHOTOS_PAUSED=true` setzen und neu deployen. Bei missbräuchlichen Beiträgen gegebenenfalls `COMMUNITY_WRITES_PAUSED=true` setzen und neu deployen; Lesen bleibt verfügbar. Vor Datenreparaturen einen zusätzlichen lokalen Snapshot mit `scripts/community-backup.mjs` erstellen. Einen Snapshot unter `backups/community/v1/` nur mit privatem Blob-Zugriff laden und mit `verifySnapshot` aus `scripts/community-snapshot.mjs` prüfen. Niemals blind den ganzen Live-Stand zurückspielen: nach dem Snapshot erfolgte Beiträge und Eigentümeränderungen müssen erhalten bleiben. Sicherheits-/Budgetzähler und E-Mail-Codes werden nicht zurückgesetzt. Schreibpause erst nach Prüfung wieder aufheben und deployen.
-
-### Impressum und Datenschutz
-
-Die statischen Seiten `/impressum`, `/datenschutz`, `/en/imprint` und `/en/privacy` werden aus `build/legal-pages.ts` erzeugt und funktionieren ohne JavaScript oder externe Ressourcen. Die Rechtslinks stehen einmalig am Seitenende unter den statischen Städte- und Preisübersichten und bleiben auch beim Nutzen von Listenansicht, Lokaldetails und eigenen Maps durch Scrollen erreichbar. Über der Karte stehen wie zuvor nur die kleinen Unterstützungs- und Kontaktlinks. Die Rechtslinks sind dezent gestaltet, bleiben aber klar bezeichnet und direkt erreichbar. Impressum und Datenschutz tragen in beiden Sprachen `noindex, follow`, da beide Seiten Betreiberangaben enthalten; das ist eine Bitte an Suchmaschinen, keine Zugriffssperre oder Garantie einer sofortigen Entfernung bestehender Treffer.
-
-Öffentliche Betreiberangaben werden zentral in `build/legal-operator.ts` gepflegt. Veröffentlicht werden auf ausdrücklichen Wunsch des Betreibers Name, Nussbaumstrasse 4, 8003 Zürich, E-Mail und Telefonnummer. Solange der Name fehlt, zeigt die lokale Vorschau einen Entwurfshinweis; ein Production-Build auf Vercel bricht ab. Nur ausdrücklich zur Veröffentlichung bestimmte Angaben eintragen.
-
-Die Datenschutzerklärung beschreibt den Stand vom 21. Oktober 2026. Vor der Aktivierung von E-Mail-Bestätigung oder Turnstile Abschnitt 9 in beiden Sprachen aktualisieren. Änderungen an Diensten, Cookies, Datenempfängern, Analyseereignissen, Speicherfristen oder Freigabeverfahren müssen ebenfalls in beiden Sprachfassungen nachgeführt werden. Technische Grundlage sind die Implementierung und die im Text verlinkten Anbieterinformationen; die Inhalte ersetzen keine individuelle rechtliche Prüfung.
+- Standorte: [© OpenStreetMap-Mitwirkende](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Kartenkacheln von openstreetmap.org gemäss [Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/).
+- Quartiergrenzen: [Stadt Zürich](https://data.stadt-zuerich.ch/dataset/geo_stadtkreise) (CC0), [Kanton Basel-Stadt](https://data.bs.ch/explore/dataset/100042/) (CC BY 4.0), [Stadt Bern](https://opendata.swiss/de/dataset/stadtteile), [Stadt Lausanne](https://viageo.ch/md/29cfd252-6b51-4798-92af-6f9aaf229dcc) (nichtkommerziell mit Quellenangabe) und [Ville de Genève / SITG](https://sitg.ge.ch/donnees/vdg-quartier-ville). `npm run districts` lädt sie neu.
+- Boulevard-Bewilligungen Basel: [Kanton Basel-Stadt](https://data.bs.ch/explore/dataset/100018/) (CC BY 4.0).
+- Preise: die beim Angebot verlinkten Originalkarten der Lokale. Gespeichert werden Preisangaben und kurze Belegzeilen, keine vollständigen Karten.
