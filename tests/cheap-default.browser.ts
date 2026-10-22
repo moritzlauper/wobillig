@@ -12,17 +12,15 @@ for (const width of [320, 1280]) {
     const cheap = page.locator('#cheap');
     await expect(cheap).toHaveAttribute('aria-pressed', 'true');
     await expect(cheap).toContainText('Günstig bis CHF');
-    await expect(page.locator('#show-all')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
-    await page.locator('#show-all').click();
+    await cheap.click();
     await expect(cheap).toHaveAttribute('aria-pressed', 'false');
-    await expect(page.locator('#show-all')).toBeHidden();
     await expect(page).toHaveURL(/cheap=0/);
     await page.goto('/');
     await expect(cheap).toHaveAttribute('aria-pressed', 'false');
     await page.goto('/en/bern?cheap=1');
     await expect(cheap).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.getByRole('button', { name: 'Show all', exact: true })).toBeVisible();
+    await expect(page.locator('#cheap')).toHaveAttribute('title', 'Remove the cheap filter');
     // Merely opening a shared link does not change the saved preference.
     await page.goto('/');
     await expect(cheap).toHaveAttribute('aria-pressed', 'false');
@@ -42,7 +40,7 @@ test('cheap mode works when browser storage is blocked and can be removed withou
   await page.route('**/data/coffee.json', route => route.fulfill({ json: { bars: [], generatedAt: '', discoveredAt: '', attribution: '' } }));
   await page.goto('/');
   await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
-  await page.locator('#show-all').click();
+  await page.locator('#cheap').click();
   await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'false');
   await page.reload();
   await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'false');

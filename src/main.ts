@@ -155,7 +155,7 @@ $('app').innerHTML = `
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="${t('Lokale')}"><div class="list-tools"><a id="rankings-link" class="rankings-link" href="#kaffeepreise" aria-label="${t('Ranglisten und Quellen')}" title="${t('Ranglisten und Quellen')}">${t('Ranglisten')}</a><select id="sort" aria-label="${t('Sortierung')}">${options({ price: t('Preis aufsteigend'), price_desc: t('Preis absteigend'), name: 'Name A–Z', distance: t('Entfernung') })}</select></div><div id="results"></div></aside>
-  <section class="map-panel" aria-label="${t('Karte')}"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="${t('Standort anzeigen')}" title="${t('Standort anzeigen')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><button id="cheap" aria-pressed="false" disabled>${t('Günstig')}</button><button id="show-all" hidden title="${t('Günstig-Filter aufheben')}">${t('Alle anzeigen')}</button></div><section id="detail" aria-label="${t('Lokal und Preise')}" tabindex="-1" hidden></section>
+  <section class="map-panel" aria-label="${t('Karte')}"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="${t('Standort anzeigen')}" title="${t('Standort anzeigen')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><button id="cheap" aria-pressed="false" disabled>${t('Günstig')}</button></div><section id="detail" aria-label="${t('Lokal und Preise')}" tabindex="-1" hidden></section>
 <footer class="app-footer"><button id="tip-coffee" type="button" hidden></button><a href="mailto:hello@wobillig.ch">${t('Kontakt')}</a></footer>
   </section>
 </main>
@@ -470,7 +470,6 @@ function render() {
   cheapButton.textContent = cheapLimit === undefined ? t('Günstig') : t('Günstig bis CHF {price}', { price: Number.isInteger(cheapLimit) ? cheapLimit : cheapLimit.toFixed(2) });
   cheapButton.disabled = cheapLimit === undefined && !cheapMode;
   cheapButton.setAttribute('aria-pressed', String(cheapMode));
-  $('show-all').hidden = !cheapMode;
   cheapButton.title = cheapMode ? t('Günstig-Filter aufheben') : cheapLimit === undefined ? t('Keine passenden Preise vorhanden') : t('Günstige Lokale für die aktuelle Auswahl anzeigen');
   const searchFilters = addressSelection ? { ...f, query: '' } : f;
   const activeFilters = cheapMode ? { ...searchFilters, max: cheapLimit ?? -Infinity, unknown: false } : searchFilters;
@@ -905,12 +904,6 @@ $('locate').onclick = () => locate(true);
 $('cheap').onclick = () => {
   rememberCheapMode(!cheapMode);
   trackEvent(cityId, 'cheap_filter_changed', { category: f.drink!, enabled: cheapMode });
-  selected = undefined;
-  render();
-};
-$('show-all').onclick = () => {
-  rememberCheapMode(false);
-  trackEvent(cityId, 'cheap_filter_changed', { category: f.drink!, enabled: false });
   selected = undefined;
   render();
 };

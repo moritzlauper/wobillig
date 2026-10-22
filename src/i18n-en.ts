@@ -562,7 +562,6 @@ export const en: Record<string, string> = {
   '{heading} vergleichen | wobillig': '{heading}: compare venues | wobillig',
   'Günstig bis CHF {price}': 'Cheap: up to CHF {price}',
   'Keine passenden Preise vorhanden': 'No matching prices available',
-  'Alle anzeigen': 'Show all',
   'Günstig-Filter aufheben': 'Remove the cheap filter',
   'Günstige Lokale für die aktuelle Auswahl anzeigen': 'Show cheap venues for the current selection',
   'Bezugspunkt: {label}': 'Reference point: {label}',
