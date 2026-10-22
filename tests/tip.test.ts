@@ -25,7 +25,7 @@ it('keeps branding and product metadata specific to wobillig, with no subscripti
   const params = tipPaymentParams('bern', 500);
   expect(params.get('amount')).toBe('500');
   expect(params.get('currency')).toBe('chf');
-  expect(params.get('description')).toBe('wobillig – Cappuccino – Bern');
+  expect(params.get('description')).toBe('wobillig – Plattformkosten – Bern');
   expect(params.get('metadata[product]')).toBe('wobillig_tip');
   expect(params.has('receipt_email')).toBe(false);
   expect(params.has('customer')).toBe(false);

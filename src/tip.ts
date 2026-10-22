@@ -11,7 +11,7 @@ if (returnedSecret) {
 }
 
 function paymentMessage(intent?: PaymentIntent): string {
-  if (intent?.status === 'succeeded') return t('Danke für den Cappuccino!');
+  if (intent?.status === 'succeeded') return t('Danke für deinen Beitrag an die Plattformkosten!');
   if (intent?.status === 'processing') return t('Deine Zahlung wird verarbeitet. Vielen Dank!');
   return t('Die Zahlung wurde nicht abgeschlossen. Du kannst es erneut versuchen.');
 }
@@ -26,7 +26,7 @@ async function paymentDialog(stripe: Stripe, clientSecret: string, price: string
   dialog.innerHTML = '<div class="dialog-top"><strong id="tip-title">wobillig</strong><button type="button" class="tip-close"></button></div><p class="tip-description"></p><form><div class="tip-element"></div><button class="primary tip-pay" type="submit" disabled></button></form><p class="tip-status" role="status" tabindex="-1"></p>';
   const close = dialog.querySelector<HTMLButtonElement>('.tip-close')!;
   close.textContent = t('Schliessen');
-  dialog.querySelector('.tip-description')!.textContent = t('Ein Cappuccino für wobillig · CHF {price}', { price }) + (test ? ` (${t('Test')})` : '');
+  dialog.querySelector('.tip-description')!.textContent = t('Beitrag an die Plattformkosten in der Höhe eines günstigen Cappuccinos · CHF {price}', { price }) + (test ? ` (${t('Test')})` : '');
   const form = dialog.querySelector('form')!;
   const pay = dialog.querySelector<HTMLButtonElement>('.tip-pay')!;
   pay.textContent = t('CHF {price} bezahlen', { price });
@@ -85,9 +85,9 @@ export async function setupTip(button: HTMLButtonElement, city: City, notify: (t
     const quote = await response.json() as { enabled?: boolean; amount?: number; test?: boolean; publishableKey?: string };
     if (!quote.enabled || !quote.publishableKey?.startsWith('pk_') || !Number.isInteger(quote.amount) || quote.amount! < 100 || quote.amount! > 2000) return;
     const price = (quote.amount! / 100).toFixed(2);
-    const label = t('Kaffee spendieren · CHF {price}', { price });
+    const label = t('Plattformkosten stützen · CHF {price}', { price });
     button.textContent = quote.test ? `${label} (${t('Test')})` : label;
-    button.title = t('Ein Cappuccino zum «Günstig»-Preis dieser Stadt für wobillig.');
+    button.title = t('Der Betrag entspricht einem Cappuccino zum «Günstig»-Preis dieser Stadt und hilft, die Plattformkosten zu decken.');
     button.hidden = false;
     const getStripe = async () => {
       const { loadStripe } = await import('@stripe/stripe-js/pure');
@@ -110,7 +110,7 @@ export async function setupTip(button: HTMLButtonElement, city: City, notify: (t
       try {
         const response = await fetch(`/api/tip?${params}`, { method: 'POST' });
         if (response.status === 409) {
-          notify(t('Der Kaffeepreis hat sich geändert. Bitte erneut wählen.'));
+          notify(t('Der Cappuccino-Preis hat sich geändert und damit auch der Betrag. Bitte erneut wählen.'));
           await setupTip(button, city, notify); return;
         }
         if (!response.ok) throw new Error('Payment unavailable');
@@ -133,7 +133,7 @@ export function offerTip(context: 'automatic' | 'publication', mapId: string) {
   dialog.id = 'tip-invitation'; dialog.setAttribute('aria-labelledby', 'tip-invitation-title');
   dialog.innerHTML = '<div class="dialog-top"><strong id="tip-invitation-title"></strong><button type="button" class="tip-dismiss"></button></div><p></p><button type="button" class="primary tip-accept"></button>';
   dialog.querySelector('strong')!.textContent = context === 'automatic' ? t('Deine Anfrage ist eingereicht.') : t('Deine Map ist zur Prüfung eingereicht.');
-  dialog.querySelector('p')!.textContent = t('Magst du wobillig einen Cappuccino spendieren? Deine Unterstützung ist freiwillig und hat keinen Einfluss auf die Prüfung.');
+  dialog.querySelector('p')!.textContent = t('Magst du die Plattformkosten von wobillig mit dem Preis eines günstigen Cappuccinos stützen? Der Beitrag ist freiwillig und hat keinen Einfluss auf die Prüfung.');
   const dismiss = dialog.querySelector<HTMLButtonElement>('.tip-dismiss')!;
   dismiss.textContent = t('Nicht jetzt'); dismiss.onclick = () => dialog.close();
   const accept = dialog.querySelector<HTMLButtonElement>('.tip-accept')!;

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 for (const [path, city, amount] of [['/', 'zurich', 550], ['/bern', 'bern', 500], ['/basel', 'basel', 530]] as const) {
-  test(`small coffee tip beside the contact link in ${city}`, async ({ page }) => {
+  test(`small platform-cost contribution beside the contact link in ${city}`, async ({ page }) => {
     await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
     const posts: string[] = [];
     await page.route('**/api/tip?*', route => {
@@ -15,7 +15,7 @@ for (const [path, city, amount] of [['/', 'zurich', 550], ['/bern', 'bern', 500]
     });
     await page.goto(path);
     const tip = page.locator('#tip-coffee'), wish = page.getByRole('link', { name: 'Kontakt', exact: true });
-    await expect(tip).toHaveText(`Kaffee spendieren · CHF ${(amount / 100).toFixed(2)}`);
+    await expect(tip).toHaveText(`Plattformkosten stützen · CHF ${(amount / 100).toFixed(2)}`);
     await expect(tip).toHaveCSS('font-size', '10px');
     await expect(wish).toHaveCSS('font-size', '10px');
     const a = await tip.boundingBox(), b = await wish.boundingBox();
@@ -23,7 +23,7 @@ for (const [path, city, amount] of [['/', 'zurich', 550], ['/bern', 'bern', 500]
     expect(Math.abs(a!.y - b!.y)).toBeLessThan(2);
     expect(a!.x + a!.width).toBeLessThanOrEqual(b!.x);
     await page.getByLabel('Kaffeesorte oder Matcha Latte').selectOption('espresso');
-    await expect(tip).toHaveText(`Kaffee spendieren · CHF ${(amount / 100).toFixed(2)}`);
+    await expect(tip).toHaveText(`Plattformkosten stützen · CHF ${(amount / 100).toFixed(2)}`);
     await tip.click();
     await expect(page.locator('#toast')).toContainText('Die Zahlung konnte nicht geöffnet werden.');
     await expect(tip).toBeEnabled();
@@ -44,7 +44,7 @@ test('removes Stripe return credentials while preserving map filters', async ({ 
 });
 
 for (const kind of ['automatic', 'publication'] as const) {
-  test(`optional coffee invitation follows successful ${kind} submission only`, async ({ page }) => {
+  test(`optional contribution invitation follows successful ${kind} submission only`, async ({ page }) => {
     const mapId = 'd268dbea-93cf-45de-9d17-2b5c74090236';
     const map: any = { id: mapId, name: 'Test-Map', createdAt: new Date().toISOString(), entries: [{
       venue: { id: 'node/test', name: 'Test Café', address: 'Teststrasse 1', lat: 47.378, lon: 8.53 },

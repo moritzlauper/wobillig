@@ -20,7 +20,7 @@ export function tipPaymentParams(city: City, amount: number): URLSearchParams {
     amount: String(amount), currency: 'chf',
     'payment_method_types[0]': 'twint', 'payment_method_types[1]': 'card',
     'metadata[site]': 'wobillig', 'metadata[product]': 'wobillig_tip', 'metadata[city]': city,
-    description: `wobillig – Cappuccino – ${cities[city].name}`,
+    description: `wobillig – Plattformkosten – ${cities[city].name}`,
     statement_descriptor_suffix: 'WOBILLIG',
   });
 }

@@ -16,7 +16,7 @@ Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der
 - Unter «Filter» stehen die Zürcher Stadtkreise, die Basler Wohnviertel, die Berner Stadtteile und die Quartiere von Lausanne und Genf zur Auswahl, jeweils mit eigenem Durchschnittspreis.
 - Das Fenster «Daten» exportiert den Bestand der Stadt als CSV oder JSON.
 - Lokale lassen sich per Link teilen. Es gibt einen Hell- und einen Dunkelmodus sowie eine deutsche und eine englische Oberfläche.
-- «Kaffee spendieren» ist eine freiwillige Zahlung per TWINT oder Karte über Stripe. Der Betrag entspricht einem günstigen Cappuccino der Stadt, aktuell CHF 5.50 in Zürich und Basel, CHF 5.20 in Bern und CHF 4.90 in Lausanne und Genf.
+- «Plattformkosten stützen» ist ein freiwilliger Beitrag an Hosting, Speicher und KI-Scan, bezahlt per TWINT oder Karte über Stripe. Der Betrag entspricht einem günstigen Cappuccino der Stadt, aktuell CHF 5.50 in Zürich und Basel, CHF 5.20 in Bern und CHF 4.90 in Lausanne und Genf.
 
 ### Günstig-Filter
 
@@ -143,7 +143,7 @@ Alle Werte sind Servervariablen und bekommen nie ein `VITE_`-Präfix. Die Vorlag
 | `ANTHROPIC_API_KEY` | Foto-Scan und Kaffeefoto-Prüfung, als GitHub-Secret auch für den KI-Scan |
 | `GOOGLE_PLACES_API_KEY` | Google-Bewertungen für Pizzerien, höchstens 1'000 Anfragen pro Monat |
 | `MAP_REVIEW_PASSWORD` | Zugang zu den Prüfseiten |
-| `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` | Kaffee-Spende. Ohne Live-Schlüssel bleibt der Link in Production ausgeblendet |
+| `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` | Beitrag an die Plattformkosten. Ohne Live-Schlüssel bleibt der Button in Production ausgeblendet |
 | `CONTRIBUTION_PROTECTION`, `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | Bot-Schutz vor Beiträgen |
 | `COMMUNITY_PHOTO_DAILY_USD`, `COMMUNITY_PHOTO_DAILY_LIMIT`, `COMMUNITY_PHOTO_HOURLY_LIMIT` | Gemeinsames Budget aller Foto-Prüfungen (Standard USD 2 pro 24 Stunden) |
 | `COMMUNITY_REVIEW_REQUIRED` | `true` hält alle Beiträge bis zur manuellen Freigabe zurück |

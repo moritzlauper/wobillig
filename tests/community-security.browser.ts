@@ -84,7 +84,7 @@ for (const width of [320, 1280]) {
     await mountAccount(page);
     const account = page.locator('.app-footer').getByRole('button', { name: 'Konto erstellen', exact: true });
     await expect(account).toBeVisible();
-    await expect(page.locator('#tip-coffee')).toHaveText('Kaffee spendieren · CHF 5.50');
+    await expect(page.locator('#tip-coffee')).toHaveText('Plattformkosten stützen · CHF 5.50');
     expect(await page.locator('.app-footer').evaluate(el => el.scrollWidth > el.clientWidth)).toBe(false);
     await page.screenshot({ path: `/tmp/wobillig-footer-account-${width}.png` });
     await account.click();

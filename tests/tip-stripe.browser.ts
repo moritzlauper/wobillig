@@ -19,5 +19,5 @@ test('bank authentication completes a card tip without an email address', async 
   await expect.poll(() => page.frames().find(frame => /3d_secure_2.*test/.test(frame.url()))?.url(), { timeout: 30000 }).toBeTruthy();
   const bankFrame = page.frames().find(frame => /3d_secure_2.*test/.test(frame.url()))!;
   await bankFrame.getByRole('button', { name: /Complete/ }).click();
-  await expect(page.locator('#tip-dialog')).toContainText('Danke für den Cappuccino!', { timeout: 30000 });
+  await expect(page.locator('#tip-dialog')).toContainText('Danke für deinen Beitrag an die Plattformkosten!', { timeout: 30000 });
 });

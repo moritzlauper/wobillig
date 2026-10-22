@@ -29,12 +29,12 @@ function operator(locale: Locale) {
 function imprint(locale: Locale, prefix: string) {
   return locale === 'de' ? `
     <h2>Betreiber und Kontakt</h2>${operator(locale)}
-    <h2>Über wobillig</h2><p>wobillig vergleicht erfasste Preise von Lokalen in Schweizer Städten. Die Nutzung ist kostenlos. Freiwillige Unterstützungszahlungen helfen beim Betrieb der Website.</p>
+    <h2>Über wobillig</h2><p>wobillig vergleicht erfasste Preise von Lokalen in Schweizer Städten. Die Nutzung ist kostenlos. Freiwillige Beiträge an die Plattformkosten helfen beim Betrieb der Website.</p>
     <h2>Preise und Korrekturen</h2><p>Preise können sich ändern. Massgeblich ist das aktuelle Angebot des jeweiligen Lokals. Quellen, Erfassungsdatum und Prüfstatus stehen bei den Angeboten. Hinweise auf Fehler kannst du über «Lokal korrigieren» oder per E-Mail melden.</p>
     <h2>Datenquellen</h2><p>Standort- und Kartendaten stammen unter anderem von ${link('https://www.openstreetmap.org/copyright', 'OpenStreetMap-Mitwirkenden (ODbL)')}. Weitere Quellen und Lizenzhinweise findest du beim jeweiligen Angebot und unter «Daten» auf der Karte.</p>
     <p>Informationen zur Verarbeitung personenbezogener Daten findest du in der ${link(`${prefix}/datenschutz`, 'Datenschutzerklärung')}.</p>` : `
     <h2>Operator and contact</h2>${operator(locale)}
-    <h2>About wobillig</h2><p>wobillig compares recorded venue prices in Swiss cities. The site is free to use. Voluntary contributions help fund its operation.</p>
+    <h2>About wobillig</h2><p>wobillig compares recorded venue prices in Swiss cities. The site is free to use. Voluntary contributions to the platform costs help fund its operation.</p>
     <h2>Prices and corrections</h2><p>Prices may change. The venue’s current offer is decisive. Sources, collection dates and verification status are shown alongside offers. Report errors using “Correct venue details” or by email.</p>
     <h2>Data sources</h2><p>Location and map data include contributions from ${link('https://www.openstreetmap.org/copyright', 'OpenStreetMap contributors (ODbL)')}. Further sources and licence notices appear with each offer and under “Data” on the map.</p>
     <p>Read our ${link(`${prefix}/en/privacy`, 'privacy notice')} for information about personal data.</p>`;
