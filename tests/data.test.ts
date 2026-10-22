@@ -366,6 +366,14 @@ describe("cheap price shortcut", () => {
     // A cheap filter that keeps every venue would not filter anything.
     expect(cheapPriceLimit(venues([...Array(4).fill(5), ...Array(16).fill(6)]), f)).toBe(5);
   });
+  it("stays at least 5% below the average while ten venues remain", () => {
+    // Like Bern: the third ends just below a common standard price near the average.
+    const clustered = venues([...Array(24).fill(5), ...Array(16).fill(5.4), ...Array(76).fill(5.6)]);
+    const max = cheapPriceLimit(clustered, f)!;
+    expect(max).toBe(5);
+    expect(filterBars(clustered, { ...f, max, unknown: false })).toHaveLength(24);
+    expect(cheapPriceLimit(venues([...Array(5).fill(5), ...Array(35).fill(5.4), ...Array(76).fill(5.6)]), f)).toBe(5.4);
+  });
   it("includes the common cheap cappuccino price without requiring a 15% discount", () => {
     const bars = venues([...Array(21).fill(5), ...Array(65).fill(5.5), ...Array(159).fill(6.21)]);
     const max = cheapPriceLimit(bars, f)!;

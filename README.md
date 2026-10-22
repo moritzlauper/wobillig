@@ -16,13 +16,13 @@ Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der
 - Unter «Filter» stehen die Zürcher Stadtkreise, die Basler Wohnviertel, die Berner Stadtteile und die Quartiere von Lausanne und Genf zur Auswahl, jeweils mit eigenem Durchschnittspreis.
 - Das Fenster «Daten» exportiert den Bestand der Stadt als CSV oder JSON.
 - Lokale lassen sich per Link teilen. Es gibt einen Hell- und einen Dunkelmodus sowie eine deutsche und eine englische Oberfläche.
-- «Kaffee spendieren» ist eine freiwillige Zahlung per TWINT oder Karte über Stripe. Der Betrag entspricht einem günstigen Cappuccino der Stadt, aktuell CHF 5.50 in Zürich und Basel, CHF 5.40 in Bern und CHF 4.90 in Lausanne und Genf.
+- «Kaffee spendieren» ist eine freiwillige Zahlung per TWINT oder Karte über Stripe. Der Betrag entspricht einem günstigen Cappuccino der Stadt, aktuell CHF 5.50 in Zürich und Basel, CHF 5.10 in Bern und CHF 4.90 in Lausanne und Genf.
 
 ### Günstig-Filter
 
 Neue Aufrufe ohne konkrete Filter starten mit «Günstig». Ein Klick auf das ✕ im aktiven Günstig-Button hebt den Filter auf. Die Wahl bleibt im Browser gespeichert. Geteilte Links enthalten sie als `cheap=1` oder `cheap=0`.
 
-Die Grenze von «Günstig» richtet sich nach den Lokalen mit Preis in der aktuellen Auswahl, also nach Kategorie, Sorte, Grösse, Suche und Quartier. Angezeigt wird das günstigste Drittel, mindestens aber zehn Lokale. Bei weniger als 20 Lokalen ist es die günstigere Hälfte. Lokale mit genau dem Grenzpreis kommen alle dazu. Teilen sich viele Lokale diesen Preis, gilt die nächsttiefere Preisstufe, sofern ihre Anzahl relativ mindestens so nah am Ziel liegt oder sonst alle Lokale angezeigt würden. Für Pizza Margherita liegt die Grenze bei mindestens CHF 18.
+Die Grenze von «Günstig» richtet sich nach den Lokalen mit Preis in der aktuellen Auswahl, also nach Kategorie, Sorte, Grösse, Suche und Quartier. Angezeigt wird das günstigste Drittel, mindestens aber zehn Lokale. Bei weniger als 20 Lokalen ist es die günstigere Hälfte. Lokale mit genau dem Grenzpreis kommen alle dazu. Teilen sich viele Lokale diesen Preis, gilt die nächsttiefere Preisstufe, sofern ihre Anzahl relativ mindestens so nah am Ziel liegt oder sonst alle Lokale angezeigt würden. Ausserdem liegt die Grenze mindestens 5% unter dem Durchschnitt der Auswahl, solange dabei die genannte Mindestzahl an Lokalen übrig bleibt. Für Pizza Margherita liegt die Grenze bei mindestens CHF 18.
 
 Das Feld «Bis CHF» zeigt ohne eigene Eingabe den höchsten Preis der passenden Liste. Eine eigene Grenze bleibt bei weiteren Filteränderungen und in geteilten Links erhalten.
 

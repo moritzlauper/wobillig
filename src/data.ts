@@ -277,7 +277,8 @@ export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
   if (!prices.length) return undefined;
   // Cheap mode is on by default, so it must not leave a sparse map. Target the
   // cheapest third, but at least ten venues or, for small selections, the cheaper half.
-  const target = Math.max(Math.ceil(prices.length / 3), Math.min(10, Math.ceil(prices.length / 2)));
+  const minimum = Math.min(10, Math.ceil(prices.length / 2));
+  const target = Math.max(Math.ceil(prices.length / 3), minimum);
   const boundary = prices[target - 1];
   const included = prices.filter(price => price <= boundary).length;
   const below = prices.filter(price => price < boundary);
@@ -289,7 +290,12 @@ export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
   // CHF 18 is the Margherita shortcut. Other varieties and ingredient searches
   // use their own matching prices, just like the drink selections above.
   // Districts without a Margherita up to CHF 18 still keep their cheapest venues.
-  return f.drink === "pizza" && !f.pizzaSelection && !f.pizzaQuery?.trim() ? Math.max(18, limit) : limit;
+  if (f.drink === "pizza" && !f.pizzaSelection && !f.pizzaQuery?.trim()) return Math.max(18, limit);
+  // Tightly clustered prices can put the third just below the average shown next
+  // to the button. Stay at least 5% below it while the minimum of venues remains.
+  const average = prices.reduce((sum, price) => sum + price, 0) / prices.length;
+  const belowAverage = prices.filter(price => price <= Math.min(limit, average * .95));
+  return belowAverage.length >= minimum ? belowAverage[belowAverage.length - 1] : limit;
 }
 
 export function escapeHtml(s: string) {
