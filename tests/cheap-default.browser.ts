@@ -13,6 +13,11 @@ for (const width of [320, 1280]) {
     await expect(cheap).toHaveAttribute('aria-pressed', 'true');
     await expect(cheap).toContainText('Günstig bis CHF');
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+    // The default view is shared as a plain link, also from older cheap=1 links.
+    await page.goto('/?cheap=1');
+    await expect(cheap).toHaveAttribute('aria-pressed', 'true');
+    await expect.poll(() => new URL(page.url()).search).toBe('');
+    await expect(page.locator('a[data-city="bern"]')).toHaveAttribute('href', '/bern');
     await cheap.click();
     await expect(cheap).toHaveAttribute('aria-pressed', 'false');
     await expect(page).toHaveURL(/cheap=0/);

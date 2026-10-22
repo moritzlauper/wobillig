@@ -11,7 +11,7 @@ import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
 import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels as defaultCoffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer, type OutdoorPermit } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
-import { cheapModeFromSearch, cheapPreferenceKey, filtersFromSearch, writeFilters } from './filters';
+import { cheapModeFromSearch, cheapPreferenceKey, dropDefaultCheap, filtersFromSearch, writeFilters } from './filters';
 import { createExport, downloadExport } from './export';
 import { googleMapsLink, withKnownAddress, locationAtPosition, nearbyLocations, selectableLocations } from './locations';
 import { createDistrictLookup, districtFromSearch, type Districts } from './districts';
@@ -451,8 +451,14 @@ function syncControls() {
   if (districtState.enabled) url.searchParams.set(city.districts.toggle, '1'); else url.searchParams.delete(city.districts.toggle);
   if (districtState.enabled && districtState.selected) url.searchParams.set(city.districts.param, String(districtState.selected)); else url.searchParams.delete(city.districts.param);
   if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
+  dropDefaultCheap(url.searchParams);
   history.replaceState(null, '', url);
-  document.querySelectorAll<HTMLAnchorElement>('[data-city]').forEach(link => { link.href = cityLink(link.dataset.city as City, url.search, import.meta.env.BASE_URL, defaultCityLocale(link.dataset.city as City, locale())); });
+  document.querySelectorAll<HTMLAnchorElement>('[data-city]').forEach(link => {
+    // City links drop the venue, which can leave cheap=1 as the only parameter.
+    const target = new URL(cityLink(link.dataset.city as City, url.search, import.meta.env.BASE_URL, defaultCityLocale(link.dataset.city as City, locale())), location.origin);
+    dropDefaultCheap(target.searchParams);
+    link.href = target.pathname + target.search;
+  });
   // The language switch keeps the whole view, including the selected venue.
   document.querySelectorAll<HTMLAnchorElement>('[data-locale]').forEach(link => { link.href = import.meta.env.BASE_URL.replace(/\/$/, '') + localizedPath(city.path, link.dataset.locale as Locale) + url.search; });
 }

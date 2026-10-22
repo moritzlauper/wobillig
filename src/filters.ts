@@ -49,7 +49,8 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
 }
 
 // Persist the underlying filters, not the temporary price cap of cheap mode.
-// Always write cheap mode so shared links override the recipient's saved preference.
+// Write cheap mode so shared links override the recipient's saved preference;
+// dropDefaultCheap later removes it where a plain link already opens in cheap mode.
 export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean): void {
   const drink = f.drink || 'coffee';
   const beerType = f.beerType && f.beerType !== 'all' ? f.beerType : '';
@@ -68,4 +69,11 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
   for (const [key, value] of Object.entries(values)) {
     if (value) params.set(key, value); else params.delete(key);
   }
+}
+
+// Keep shared default views as plain wobillig.ch or wobillig.ch/bern links.
+export function dropDefaultCheap(params: URLSearchParams): void {
+  const rest = new URLSearchParams(params);
+  rest.delete('cheap');
+  if (params.get('cheap') === '1' && cheapModeFromSearch(rest, null)) params.delete('cheap');
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cheapModeFromSearch, filtersFromSearch, writeFilters } from '../src/filters';
+import { cheapModeFromSearch, dropDefaultCheap, filtersFromSearch, writeFilters } from '../src/filters';
 import { cityLink } from '../src/cities';
 import type { Filters } from '../src/data';
 
@@ -78,6 +78,15 @@ describe('initial cheap mode', () => {
   it.each(['max=8', 'drink=beer', 'q=Cafe', 'bar=node/1', 'map=abc', 'kreis=2', 'coffeeType=espresso', 'unknown=1'])(
     'preserves older selection links: %s', query => {
       expect(cheapModeFromSearch(new URLSearchParams(query), '1')).toBe(false);
+    });
+  it.each([['cheap=1', ''], ['utm_source=newsletter&cheap=1', 'utm_source=newsletter'], ['cheap=0', 'cheap=0'],
+    ['bar=node%2F1&cheap=1', 'bar=node%2F1&cheap=1'], ['coffeeType=espresso&cheap=1', 'coffeeType=espresso&cheap=1'], ['kreis=2&cheap=1', 'kreis=2&cheap=1']])(
+    'keeps default cheap links plain: %s', (query, expected) => {
+      const params = new URLSearchParams(query);
+      const cheap = cheapModeFromSearch(params, null);
+      dropDefaultCheap(params);
+      expect(params.toString()).toBe(expected);
+      expect(cheapModeFromSearch(params, null)).toBe(cheap);
     });
   it.each([true, false])('preserves cheap=%s through sharing despite the recipient preference', cheap => {
     const params = new URLSearchParams();
