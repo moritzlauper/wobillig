@@ -20,7 +20,7 @@ Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der
 
 ### Günstig-Filter
 
-Neue Aufrufe ohne konkrete Filter starten mit «Günstig», «Alle anzeigen» hebt den Filter auf. Die Wahl bleibt im Browser gespeichert. Geteilte Links enthalten sie als `cheap=1` oder `cheap=0`.
+Neue Aufrufe ohne konkrete Filter starten mit «Günstig». Ein Klick auf das ✕ im aktiven Günstig-Button hebt den Filter auf. Die Wahl bleibt im Browser gespeichert. Geteilte Links enthalten sie als `cheap=1` oder `cheap=0`.
 
 Die Grenze von «Günstig» richtet sich nach den Lokalen mit Preis in der aktuellen Auswahl, also nach Kategorie, Sorte, Grösse, Suche und Quartier. Angezeigt wird das günstigste Drittel, mindestens aber zehn Lokale. Bei weniger als 20 Lokalen ist es die günstigere Hälfte. Lokale mit genau dem Grenzpreis kommen alle dazu. Teilen sich viele Lokale diesen Preis, gilt die nächsttiefere Preisstufe, sofern ihre Anzahl relativ mindestens so nah am Ziel liegt oder sonst alle Lokale angezeigt würden. Für Pizza Margherita liegt die Grenze bei mindestens CHF 18.
 
