@@ -1,4 +1,4 @@
-# wobillig 🍻 ☕
+# wobillig 
 
 Eine einfache Karte für Bier-, Kaffee- und Pizza-Margherita-Preise in Zürich, Bern, Basel, Lausanne und Genf. TypeScript, Leaflet, Python-Scraper und eine Vercel-API für gemeinsam gespeicherte Preise. Keine Registrierung erforderlich.
 
