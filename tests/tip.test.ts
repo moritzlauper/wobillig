@@ -18,8 +18,8 @@ afterEach(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 
 it('uses each city’s affordable cappuccino amount in cents', async () => {
   expect(await cappuccinoTipAmount('zurich')).toBe(550);
-  expect(await cappuccinoTipAmount('bern')).toBe(500);
-  expect(await cappuccinoTipAmount('basel')).toBe(530);
+  expect(await cappuccinoTipAmount('bern')).toBe(540);
+  expect(await cappuccinoTipAmount('basel')).toBe(550);
 });
 it('keeps branding and product metadata specific to wobillig, with no subscription', () => {
   const params = tipPaymentParams('bern', 500);
@@ -33,7 +33,7 @@ it('keeps branding and product metadata specific to wobillig, with no subscripti
 });
 it('quotes amounts without creating payments, and hides unavailable or production test checkouts', async () => {
   const fetcher = vi.fn(); vi.stubGlobal('fetch', fetcher);
-  expect((await request('city=basel', 'GET')).data).toEqual({ enabled: true, amount: 530, currency: 'chf', test: true, publishableKey: 'pk_test_public' });
+  expect((await request('city=basel', 'GET')).data).toEqual({ enabled: true, amount: 550, currency: 'chf', test: true, publishableKey: 'pk_test_public' });
   vi.stubEnv('VERCEL_ENV', 'production');
   expect((await request('', 'GET')).data).toEqual({ enabled: false });
   expect((await request()).status).toBe(503);

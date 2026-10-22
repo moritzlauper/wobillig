@@ -275,17 +275,21 @@ export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
     .filter(price => Number.isFinite(price) && price > 0)
     .sort((a, b) => a - b);
   if (!prices.length) return undefined;
+  // Cheap mode is on by default, so it must not leave a sparse map. Target the
+  // cheapest third, but at least ten venues or, for small selections, the cheaper half.
+  const target = Math.max(Math.ceil(prices.length / 3), Math.min(10, Math.ceil(prices.length / 2)));
+  const boundary = prices[target - 1];
+  const included = prices.filter(price => price <= boundary).length;
+  const below = prices.filter(price => price < boundary);
+  // Many venues often share the boundary price. Use the next lower price when
+  // its count is relatively at least as close to the target as including all ties,
+  // or when the ties would otherwise keep every venue.
+  const stepDown = below.length > 0 && (included === prices.length || below.length * included >= target ** 2);
+  const limit = stepDown ? below[below.length - 1] : boundary;
   // CHF 18 is the Margherita shortcut. Other varieties and ingredient searches
-  // use their own matching prices, just like the drink selections below.
-  if (f.drink === "pizza" && !f.pizzaSelection && !f.pizzaQuery?.trim()) return 18;
-  const index = (prices.length - 1) * .2;
-  const lower = Math.floor(index);
-  const quintile = prices[lower] + (prices[Math.ceil(index)] - prices[lower]) * (index - lower);
-  const average = prices.reduce((sum, price) => sum + price, 0) / prices.length;
-  // Target the cheapest fifth and at least 7% below the selection's average.
-  // Round down to CHF 0.10 so a common, near-average price cannot slip back in.
-  // For small or uniform samples, keep the cheapest price without rounding it up.
-  return Math.max(Math.floor(Math.min(quintile, average * .93) * 10) / 10, prices[0]);
+  // use their own matching prices, just like the drink selections above.
+  // Districts without a Margherita up to CHF 18 still keep their cheapest venues.
+  return f.drink === "pizza" && !f.pizzaSelection && !f.pizzaQuery?.trim() ? Math.max(18, limit) : limit;
 }
 
 export function escapeHtml(s: string) {

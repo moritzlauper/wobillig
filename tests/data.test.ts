@@ -339,16 +339,32 @@ describe("cheap price shortcut", () => {
   const venues = (prices: number[], volumeMl = 300): Bar[] => prices.map((priceChf, i) => ({
     ...b, id: String(i), offers: [{ ...b.offers[0], priceChf, volumeMl }],
   }));
-  it("targets the cheapest fifth, rounds down to CHF 0.10 and ignores the active budget", () => {
-    expect(cheapPriceLimit(venues([4, 5.2, 6, 7, 8]), { ...f, max: 1 })).toBe(4.9);
-    expect(cheapPriceLimit(venues([4, 5.3, 6, 7, 8]), f)).toBe(5);
-    expect(cheapPriceLimit(venues([4, 5, 7, 9]), f)).toBe(4.6);
+  const ladder = (count: number) => venues(Array.from({ length: count }, (_, i) => 4 + i / 10));
+  it("targets the cheapest third and ignores the active budget", () => {
+    const bars = ladder(45);
+    const max = cheapPriceLimit(bars, { ...f, max: 1 })!;
+    expect(max).toBe(5.4);
+    expect(filterBars(bars, { ...f, max, unknown: false })).toHaveLength(15);
   });
-  it("excludes a common price only slightly below average", () => {
-    const bars = venues([3, ...Array(19).fill(4), ...Array(115).fill(4.5), ...Array(152).fill(5)]);
+  it("keeps at least ten venues, or the cheaper half of small selections", () => {
+    const bars = ladder(20);
     const max = cheapPriceLimit(bars, f)!;
-    expect(max).toBe(4.3);
-    expect(filterBars(bars, { ...f, max, unknown: false })).toHaveLength(20);
+    expect(max).toBe(4.9);
+    expect(filterBars(bars, { ...f, max, unknown: false })).toHaveLength(10);
+    expect(cheapPriceLimit(venues([4, 5.2, 6, 7, 8]), f)).toBe(6);
+    expect(cheapPriceLimit(venues([4, 5, 7, 9]), f)).toBe(5);
+  });
+  it("steps below a common boundary price only when that is closer to a third", () => {
+    const stepped = venues([...Array(10).fill(4.5), ...Array(20).fill(5), ...Array(50).fill(5.5), ...Array(20).fill(6)]);
+    const max = cheapPriceLimit(stepped, f)!;
+    expect(max).toBe(5);
+    expect(filterBars(stepped, { ...f, max, unknown: false })).toHaveLength(30);
+    // Dropping to three venues would leave the map nearly empty.
+    const common = venues([...Array(3).fill(4.5), ...Array(77).fill(5), ...Array(20).fill(6)]);
+    expect(cheapPriceLimit(common, f)).toBe(5);
+    expect(filterBars(common, { ...f, max: 5, unknown: false })).toHaveLength(80);
+    // A cheap filter that keeps every venue would not filter anything.
+    expect(cheapPriceLimit(venues([...Array(4).fill(5), ...Array(16).fill(6)]), f)).toBe(5);
   });
   it("includes the common cheap cappuccino price without requiring a 15% discount", () => {
     const bars = venues([...Array(21).fill(5), ...Array(65).fill(5.5), ...Array(159).fill(6.21)]);
@@ -365,18 +381,27 @@ describe("cheap price shortcut", () => {
     expect(max).toBe(18);
     expect(filterBars(bars, { ...filters, max, unknown: false })).toHaveLength(5);
   });
+  it("raises the Margherita shortcut where no venue offers one up to CHF 18", () => {
+    const bars = venues([19, 20, 22]).map(bar => ({
+      ...bar, offers: bar.offers.map(offer => ({ ...offer, volumeMl: null, pizzaType: 'margherita' as const })),
+    }));
+    const filters: Filters = { ...f, drink: 'pizza' };
+    const max = cheapPriceLimit(bars, filters)!;
+    expect(max).toBe(20);
+    expect(filterBars(bars, { ...filters, max, unknown: false })).toHaveLength(2);
+  });
   it("counts each venue once and leaves missing prices out", () => {
     const bars = venues([4, 5, 6, 7, 8]);
     bars[0].offers.push(...Array.from({ length: 20 }, () => ({ ...b.offers[0], priceChf: 4.1 })));
     bars.push({ ...b, offers: [] });
-    expect(cheapPriceLimit(bars, f)).toBe(4.8);
+    expect(cheapPriceLimit(bars, f)).toBe(6);
   });
   it("adapts to size, normalized prices and other filters", () => {
     const bars = [...venues([4, 5, 6, 7, 8]), ...venues([6, 7, 8, 9, 10], 500).map(bar => ({ ...bar, id: 'large-' + bar.id, outdoor: false }))];
-    expect(cheapPriceLimit(bars, { ...f, volume: 'stange' })).toBe(4.8);
-    expect(cheapPriceLimit(bars, { ...f, volume: '500' })).toBe(6.8);
-    expect(cheapPriceLimit(bars, { ...f, volume: '300', mode: 'half' })).toBe(8);
-    expect(cheapPriceLimit(bars, { ...f, outdoor: true })).toBe(4.8);
+    expect(cheapPriceLimit(bars, { ...f, volume: 'stange' })).toBe(6);
+    expect(cheapPriceLimit(bars, { ...f, volume: '500' })).toBe(8);
+    expect(cheapPriceLimit(bars, { ...f, volume: '300', mode: 'half' })).toBe(10);
+    expect(cheapPriceLimit(bars, { ...f, outdoor: true })).toBe(6);
     expect(cheapPriceLimit(bars, { ...f, beerType: 'bottle' })).toBeUndefined();
     expect(cheapPriceLimit(bars, { ...f, query: 'no such venue' })).toBeUndefined();
   });
@@ -384,7 +409,7 @@ describe("cheap price shortcut", () => {
     const bars = venues([4, 5, 6, 7, 8]).map(bar => ({ ...bar, offers: bar.offers.map(offer => ({
       ...offer, volumeMl: null, ...(drink === 'coffee' ? { coffeeType: 'espresso' } : { pizzaType: 'margherita' as const }),
     })) }));
-    expect(cheapPriceLimit(bars, { ...f, drink, coffeeType: 'espresso' })).toBe(drink === 'pizza' ? 18 : 4.8);
+    expect(cheapPriceLimit(bars, { ...f, drink, coffeeType: 'espresso' })).toBe(drink === 'pizza' ? 18 : 6);
     expect(cheapPriceLimit(bars, { ...f, drink: 'coffee', coffeeType: 'latte' })).toBeUndefined();
   });
   it("handles empty data and keeps a result when rounding a small sample", () => {

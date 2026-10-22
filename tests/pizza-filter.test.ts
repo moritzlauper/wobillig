@@ -27,13 +27,13 @@ describe('cheap pizza selections', () => {
     const filters = { ...defaults, pizzaSelection: 'group:quattro_formaggi' as const, max: 10 };
     expect(cheapPriceLimit(bars, defaults)).toBe(18);
     const max = cheapPriceLimit(bars, filters)!;
-    expect(max).toBe(19.6);
-    expect(filterBars(bars, { ...filters, max })).toEqual([bars[0]]);
+    expect(max).toBe(22);
+    expect(filterBars(bars, { ...filters, max })).toEqual(bars.slice(0, 3));
     expect(cheapPriceLimit(bars, { ...filters, pizzaSelection: 'all' })).toBe(16);
   });
   it('adapts to ingredient searches and legacy exact-name selections', () => {
-    expect(cheapPriceLimit(bars, { ...defaults, pizzaQuery: 'gorgonzola' })).toBe(19.6);
-    expect(cheapPriceLimit(bars, { ...defaults, pizzaSelection: 'name:formaggi della casa' })).toBe(19.6);
+    expect(cheapPriceLimit(bars, { ...defaults, pizzaQuery: 'gorgonzola' })).toBe(22);
+    expect(cheapPriceLimit(bars, { ...defaults, pizzaSelection: 'name:formaggi della casa' })).toBe(22);
     expect(cheapPriceLimit(bars, { ...defaults, pizzaQuery: 'ananas' })).toBeUndefined();
   });
   it('keeps a matching offer when a small sample costs more than CHF 18', () => {
