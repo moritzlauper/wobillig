@@ -13,6 +13,8 @@ export default defineConfig({
     name: 'local-google-rating',
     generateBundle() { this.emitFile({ type: 'asset', fileName: 'assets/deals-leaflet.css', source: readFileSync('node_modules/leaflet/dist/leaflet.css', 'utf8') }); },
     configureServer(server) {
+      // Vitest runs this hook too. Tests must not receive secrets from .env.local, or they send real mail.
+      if (process.env.VITEST) return;
       const securityEnv = loadEnv(server.config.mode, process.cwd(), ['COMMUNITY_', 'CONTRIBUTION_', 'TURNSTILE_', 'EMAIL_', 'SMTP_']);
       for (const [key, value] of Object.entries(securityEnv)) process.env[key] ||= value;
       const env = loadEnv(server.config.mode, process.cwd(), 'GOOGLE_PLACES_');
