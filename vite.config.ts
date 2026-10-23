@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { defineConfig, loadEnv } from 'vite';
@@ -8,6 +9,7 @@ export default defineConfig({
   // Prebundle every browser dependency before serving pages. Discovering a new
   // shared chunk mid-session otherwise reloads open maps and browser tests.
   optimizeDeps: { noDiscovery: true, include: ['leaflet', '@vercel/analytics', '@stripe/stripe-js'] },
+  test: { setupFiles: ['tests/setup.ts'] },
   server: { watch: { ignored: ['**/test-results/**', '**/playwright-report/**'] } },
   plugins: [seoPlugin(), {
     name: 'local-google-rating',
