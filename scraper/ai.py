@@ -179,7 +179,9 @@ def documents(body, kind, *, page_filter=drink_page, pdf_chunk_pages=4, text_chu
             for page in pages: writer.add_page(page)
             output = io.BytesIO(); writer.write(output); raw = output.getvalue()
             if len(raw) > 15_000_000: continue
-            yield [{'type': 'document', 'source': {'type': 'base64', 'media_type': 'application/pdf', 'data': base64.b64encode(raw).decode()}}], start, len(pages), ''
+            # Text layer of the chunk: empty for scans, which skip the text check in clean_offers.
+            text = '\n'.join(page.extract_text() or '' for page in pages)
+            yield [{'type': 'document', 'source': {'type': 'base64', 'media_type': 'application/pdf', 'data': base64.b64encode(raw).decode()}}], start, len(pages), text
     elif kind.split(';')[0] in ('image/jpeg', 'image/png', 'image/gif', 'image/webp'):
         if len(body) <= 4_500_000:
             yield [{'type': 'image', 'source': {'type': 'base64', 'media_type': kind.split(';')[0], 'data': base64.b64encode(body).decode()}}], 0, 1, ''
