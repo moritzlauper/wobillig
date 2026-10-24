@@ -25,10 +25,9 @@ for (const [path, city, amount] of [['/', 'zurich', 550], ['/bern', 'bern', 500]
     await page.getByLabel('Kaffeesorte oder Matcha Latte').selectOption('espresso');
     await expect(tip).toHaveText(`Plattformkosten stützen · CHF ${(amount / 100).toFixed(2)}`);
     await tip.click();
-    await expect(page.locator('#toast')).toContainText('Die Zahlung konnte nicht geöffnet werden.');
-    await expect(tip).toBeEnabled();
-    expect(posts).toHaveLength(1);
-    expect(new URL(posts[0]).searchParams.get('amount')).toBe(String(amount));
+    // Opening the dialog creates no payment; only submitting does.
+    await page.waitForTimeout(500);
+    expect(posts).toHaveLength(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
   });
 }

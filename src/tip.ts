@@ -16,7 +16,12 @@ function paymentMessage(intent?: PaymentIntent): string {
   return t('Die Zahlung wurde nicht abgeschlossen. Du kannst es erneut versuchen.');
 }
 
-async function paymentDialog(stripe: Stripe, clientSecret: string, price: string, test: boolean) {
+// The payment is created on the server only after the visitor submits, so opening and closing the dialog leaves nothing behind in Stripe.
+class PriceChanged extends Error {}
+
+type TipDialog = { price: string; amount: number; test: boolean; createIntent: () => Promise<string>; onPriceChanged: () => void };
+
+async function paymentDialog(stripe: Stripe, { price, amount, test, createIntent, onPriceChanged }: TipDialog) {
   const overlay = document.createElement('div');
   overlay.className = 'tip-backdrop'; overlay.hidden = true;
   const dialog = document.createElement('dialog');
@@ -32,7 +37,8 @@ async function paymentDialog(stripe: Stripe, clientSecret: string, price: string
   pay.textContent = t('CHF {price} bezahlen', { price });
   const status = dialog.querySelector<HTMLElement>('.tip-status')!;
   status.textContent = t('Zahlung wird geladen …');
-  const elements = stripe.elements({ clientSecret, locale: locale(), appearance: {
+  // Must match payment_method_types in tipPaymentParams, or the server-created intent rejects the chosen method.
+  const elements = stripe.elements({ mode: 'payment', amount, currency: 'chf', allowedPaymentMethodTypes: ['twint', 'card'], locale: locale(), appearance: {
     theme: 'stripe', variables: { colorPrimary: '#262626', borderRadius: '4px', fontFamily: 'Arial, sans-serif' },
   } });
   const payment = elements.create('payment', {
@@ -58,17 +64,26 @@ async function paymentDialog(stripe: Stripe, clientSecret: string, price: string
     // Stripe mounts bank authentication outside our dialog. Leave the browser's
     // top layer while confirming so its 3-D Secure frame stays visible and usable.
     overlay.hidden = false; dialog.close(); dialog.show();
+    let changed = false;
     try {
-      const result = await stripe.confirmPayment({ elements,
+      const { error: invalid } = await elements.submit();
+      if (invalid) throw invalid;
+      const clientSecret = await createIntent();
+      const result = await stripe.confirmPayment({ elements, clientSecret,
         confirmParams: { return_url: window.location.href }, redirect: 'if_required' });
       if (result.error) status.textContent = result.error.message || t('Die Zahlung wurde nicht abgeschlossen. Du kannst es erneut versuchen.');
       else {
         status.textContent = paymentMessage(result.paymentIntent);
         if (['succeeded', 'processing'].includes(result.paymentIntent.status)) form.hidden = true;
       }
-    } catch { status.textContent = t('Die Zahlung wurde nicht abgeschlossen. Du kannst es erneut versuchen.'); }
+    } catch (error) {
+      if (error instanceof PriceChanged) changed = true;
+      else status.textContent = (error as { message?: string }).message || t('Die Zahlung wurde nicht abgeschlossen. Du kannst es erneut versuchen.');
+    }
     finally {
-      dialog.close(); dialog.showModal(); overlay.hidden = true;
+      overlay.hidden = true;
+      if (changed) { dialog.close(); onPriceChanged(); return; }
+      dialog.close(); dialog.showModal();
       paying = false; pay.disabled = false; close.disabled = false; status.focus();
     }
   };
@@ -104,19 +119,23 @@ export async function setupTip(button: HTMLButtonElement, city: City, notify: (t
       } catch { notify(t('Der Zahlungsstatus konnte nicht geladen werden. Bitte vor einer erneuten Zahlung in TWINT oder bei deiner Bank prüfen.')); }
     }
     params.set('amount', String(quote.amount));
+    const createIntent = async () => {
+      const response = await fetch(`/api/tip?${params}`, { method: 'POST' });
+      if (response.status === 409) throw new PriceChanged();
+      if (!response.ok) throw new Error('Payment unavailable');
+      const { clientSecret } = await response.json() as { clientSecret?: string };
+      if (!clientSecret || !/^pi_[A-Za-z0-9]+_secret_[A-Za-z0-9]+$/.test(clientSecret)) throw new Error('Invalid payment');
+      return clientSecret;
+    };
+    const onPriceChanged = () => {
+      notify(t('Der Cappuccino-Preis hat sich geändert und damit auch der Betrag. Bitte erneut wählen.'));
+      void setupTip(button, city, notify);
+    };
     button.onclick = async () => {
       if (button.disabled || document.getElementById('tip-dialog')) return;
       button.disabled = true;
       try {
-        const response = await fetch(`/api/tip?${params}`, { method: 'POST' });
-        if (response.status === 409) {
-          notify(t('Der Cappuccino-Preis hat sich geändert und damit auch der Betrag. Bitte erneut wählen.'));
-          await setupTip(button, city, notify); return;
-        }
-        if (!response.ok) throw new Error('Payment unavailable');
-        const { clientSecret } = await response.json() as { clientSecret?: string };
-        if (!clientSecret || !/^pi_[A-Za-z0-9]+_secret_[A-Za-z0-9]+$/.test(clientSecret)) throw new Error('Invalid payment');
-        await paymentDialog(await getStripe(), clientSecret, price, !!quote.test);
+        await paymentDialog(await getStripe(), { price, amount: quote.amount!, test: !!quote.test, createIntent, onPriceChanged });
       } catch { notify(t('Die Zahlung konnte nicht geöffnet werden. Bitte später erneut versuchen.')); }
       finally { button.disabled = false; }
     };
