@@ -6,7 +6,7 @@ import { parseBeerSelection } from './beer-selection';
 // Old shared beer links used only size/beerType; keep those entry points working.
 export function drinkFromSearch(params: URLSearchParams): Drink {
   const drink = params.get('drink');
-  if (drink === 'beer' || drink === 'coffee' || drink === 'pizza') return drink;
+  if (drink === 'beer' || drink === 'coffee' || drink === 'pizza' || drink === 'ramen') return drink;
   if (!drink && (params.has('size') || params.has('beerType') || params.has('beerQuery') || params.has('beerSelection'))) return 'beer';
   return 'coffee';
 }

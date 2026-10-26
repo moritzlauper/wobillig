@@ -37,10 +37,11 @@ export function priceConcern(entry: PriceEntry, before: Offer | null): string | 
   const offer = entry.offer, price = offer.priceChf;
   if (entry.drink === 'coffee' && (price < 1 || price > 12)) return 'coffee-range';
   if (entry.drink === 'pizza' && (price < 5 || price > 35)) return 'pizza-range';
+  if (entry.drink === 'ramen' && (price < 8 || price > 45)) return 'ramen-range';
   if (entry.drink === 'beer' && price < 1) return 'beer-range';
   // Specialty bottles can legitimately cost much more than ordinary beer.
   if (before && offer.volumeMl === before.volumeMl && offer.coffeeType === before.coffeeType &&
-      offer.pizzaType === before.pizzaType && offer.alcoholFree === before.alcoholFree &&
+      offer.pizzaType === before.pizzaType && offer.ramenType === before.ramenType && offer.alcoholFree === before.alcoholFree &&
       (offer.beerType || 'unknown') === (before.beerType || 'unknown')) {
     if (price >= before.priceChf * 2 && price - before.priceChf >= 5) return 'large-increase';
     if (price <= before.priceChf * .4 && before.priceChf - price >= 3) return 'large-decrease';

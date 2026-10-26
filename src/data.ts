@@ -9,6 +9,7 @@ export type Offer = {
   name: string;
   volumeMl: number | null;
   pizzaType?: "margherita" | "other";
+  ramenType?: "ramen";
   priceContext?: "online_menu";
   coffeeType?: string;
   serving?: "stange";
@@ -68,7 +69,7 @@ export type Dataset = {
 export type Filters = {
   pizzaSelection?: PizzaSelection;
   pizzaQuery?: string;
-  drink?: "beer" | "coffee" | "pizza";
+  drink?: "beer" | "coffee" | "pizza" | "ramen";
   coffeeType?: string;
   beerType?: BeerType | "all";
   beerQuery?: string;
@@ -90,10 +91,10 @@ export const coffeeLabels: Record<string, string> = {
   matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
-  return o.pizzaType ? (o.priceContext === "online_menu" ? t('Onlinepreis') : "") : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
+  return o.pizzaType ? (o.priceContext === "online_menu" ? t('Onlinepreis') : "") : o.ramenType ? t('Standardportion') : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
 }
-export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" {
-  return o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
+export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" | "ramen" {
+  return o.ramenType ? "ramen" : o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
 }
 // Keep in sync with scraper/beer_rules.py.
 export function isBeerMix(name: string): boolean {
@@ -177,6 +178,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
     .filter(
       (o) =>
         f.drink === "pizza" ? matchesPizza(o, f) :
+        f.drink === "ramen" ? Boolean(o.ramenType) :
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree &&

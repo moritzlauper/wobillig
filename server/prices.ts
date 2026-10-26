@@ -47,9 +47,9 @@ export function blobStore(path = process.env.VERCEL_ENV === 'production' ? 'pric
     },
   };
 }
-export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset> & Partial<Record<'pizza' | 'locations', Dataset>>, visitor: string, now = Date.now(), owner = visitor) {
+export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset> & Partial<Record<'pizza' | 'ramen' | 'locations', Dataset>>, visitor: string, now = Date.now(), owner = visitor) {
   const offer: Offer = {
-    name: input.name, priceChf: input.priceChf, volumeMl: input.volumeMl, coffeeType: input.coffeeType, pizzaType: input.pizzaType,
+    name: input.name, priceChf: input.priceChf, volumeMl: input.volumeMl, coffeeType: input.coffeeType, pizzaType: input.pizzaType, ramenType: input.ramenType,
     serving: input.serving, beerType: input.beerType, alcoholFree: input.alcoholFree, observedAt: input.observedAt,
     sourceUrl: input.sourceUrl, confidence: 'community', evidence: '',
   };

@@ -1,5 +1,13 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  'Ramen': 'Ramen',
+  'Ramenpreis': 'Ramen price',
+  'Ramenpreise {city} · Community': 'Ramen prices in {city} · Community',
+  'Standardportion': 'Standard portion',
+  'z. B. Shoyu Ramen': 'e.g. Shoyu Ramen',
+  'Bitte Bier, Kaffee, Ramen oder Pizza Margherita wählen.': 'Please choose beer, coffee, ramen or Pizza Margherita.',
+  'Bitte eine Ramen-Sorte wie Shoyu Ramen oder Tantanmen eintragen.': 'Please enter a ramen type such as Shoyu Ramen or Tantanmen.',
+  'Bitte eine Ramen-Sorte ohne Getränkeangaben eintragen.': 'Please enter a ramen type without drink details.',
   'Impressum': 'Imprint',
   'Datenschutz': 'Privacy',
   'Wie wobillig deine Daten verarbeitet': 'How wobillig processes your data',

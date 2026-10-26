@@ -2,7 +2,7 @@ import { isBeerMix, coffeeLabels, beerTypeLabels, safeUrl, type BeerType, type B
 import { selectableLocations, withKnownAddress } from './locations.js';
 import { applyVenueCorrections, type VenueCorrection } from './venue-corrections.js';
 
-export type Drink = 'beer' | 'coffee' | 'pizza';
+export type Drink = 'beer' | 'coffee' | 'pizza' | 'ramen';
 export type PriceEntry = {
   id: string;
   barId: string;
@@ -26,6 +26,7 @@ export type PriceInput = {
   beerType?: BeerType;
   coffeeType?: string;
   pizzaType?: 'margherita';
+  ramenType?: 'ramen';
   alcoholFree: boolean;
   observedAt: string;
   sourceUrl: string;
@@ -35,6 +36,7 @@ export type PriceInput = {
 export function offerKey(o: Offer) {
   const key: (string | number | boolean | null)[] = [o.name.trim().toLocaleLowerCase('de-CH'), o.volumeMl, o.coffeeType || '', o.alcoholFree];
   if (o.pizzaType) key.push(o.pizzaType);
+  if (o.ramenType) key.push(o.ramenType);
   if (!o.coffeeType && o.beerType && o.beerType !== 'unknown') key.push(o.beerType);
   return JSON.stringify(key);
 }
@@ -72,7 +74,7 @@ function verifiedWebsiteUpdate(offer: Offer, entry: PriceEntry): boolean {
 }
 export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Bar[], drink: Drink, corrections: VenueCorrection[] = []): Dataset {
   // Drinks share locations; pizza only includes known pizza venues and pizza entries.
-  const bars = new Map((drink === 'pizza' ? [] : venues).map(b => [b.id, { ...b, offers: [] as Offer[] }]));
+  const bars = new Map((drink === 'pizza' || drink === 'ramen' ? [] : venues).map(b => [b.id, { ...b, offers: [] as Offer[] }]));
   const knownVenues = new Map(venues.map(bar => [bar.id, bar]));
   for (const b of dataset.bars) bars.set(b.id, { ...withKnownAddress(b, knownVenues.get(b.id)), offers: [...b.offers] });
   for (const entry of entries.filter(x => x.drink === drink)) {
@@ -106,7 +108,7 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new InputError('Ungültiger Eintrag.');
   const x = value as Record<string, unknown>;
   if (typeof x.barId !== 'string' || !venues.some(b => b.id === x.barId)) throw new InputError('Bitte ein Lokal aus der Liste wählen.');
-  if (x.drink !== 'beer' && x.drink !== 'coffee' && x.drink !== 'pizza') throw new InputError('Bitte Bier, Kaffee oder Pizza Margherita wählen.');
+  if (x.drink !== 'beer' && x.drink !== 'coffee' && x.drink !== 'pizza' && x.drink !== 'ramen') throw new InputError('Bitte Bier, Kaffee, Ramen oder Pizza Margherita wählen.');
   if (typeof x.name !== 'string' || !x.name.trim() || x.name.trim().length > 100 || /[\x00-\x1f]/.test(x.name)) throw new InputError('Bitte eine Bezeichnung mit höchstens 100 Zeichen eingeben.');
   if (typeof x.priceChf !== 'number' || !Number.isFinite(x.priceChf) || x.priceChf < .5 || x.priceChf > 50 || Math.abs(x.priceChf * 100 - Math.round(x.priceChf * 100)) > 0.00001) throw new InputError('Der Preis muss zwischen CHF 0.50 und CHF 50 liegen (maximal zwei Nachkommastellen).');
   if (typeof x.observedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(x.observedAt) || !Number.isFinite(Date.parse(x.observedAt)) || new Date(x.observedAt).toISOString().slice(0,10) !== x.observedAt || x.observedAt < '2020-01-01' || x.observedAt > today) throw new InputError('Bitte ein gültiges Datum bis heute wählen.');
@@ -127,6 +129,9 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
   if (x.drink === 'pizza') {
     if (x.pizzaType !== 'margherita' || x.volumeMl !== null || x.coffeeType !== undefined || x.beerType !== undefined || x.serving !== undefined) throw new InputError('Bitte eine ganze Pizza Margherita ohne Getränkeangaben eintragen.');
     if (!/^(?:pizza\s+)?margh?erita$/i.test(x.name.trim())) throw new InputError('Hier werden nur normale Pizza Margherita verglichen.');
+  } else if (x.drink === 'ramen') {
+    if (!/ramen|tantan|tsukemen|mazemen/i.test(x.name.trim())) throw new InputError('Bitte eine Ramen-Sorte wie Shoyu Ramen oder Tantanmen eintragen.');
+    if (x.beerType !== undefined || x.coffeeType !== undefined || x.serving !== undefined || x.volumeMl !== null) throw new InputError('Bitte eine Ramen-Sorte ohne Getränkeangaben eintragen.');
   } else if (x.drink === 'coffee') {
     if (x.beerType !== undefined) throw new InputError('Kaffee hat keine Bier-Ausschankart.');
     if (typeof x.coffeeType !== 'string' || !Object.hasOwn(coffeeLabels, x.coffeeType) || x.volumeMl !== null || x.serving !== undefined) throw new InputError('Bitte eine gültige Kaffeesorte wählen.');
@@ -143,7 +148,7 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
     targetKey: x.targetKey as string | undefined, name: x.drink === 'pizza' ? 'Pizza Margherita' : x.name.trim(), priceChf: x.priceChf,
     volumeMl: x.volumeMl as number | null, serving: x.serving as 'stange' | undefined,
     beerType: x.drink === 'beer' ? (x.beerType as BeerType | undefined) || 'unknown' : undefined,
-    coffeeType: x.coffeeType as string | undefined, pizzaType: x.drink === 'pizza' ? 'margherita' : undefined, alcoholFree: x.drink !== 'beer' || x.alcoholFree,
+    coffeeType: x.coffeeType as string | undefined, pizzaType: x.drink === 'pizza' ? 'margherita' : undefined, ramenType: x.drink === 'ramen' ? 'ramen' : undefined, alcoholFree: x.drink !== 'beer' || x.alcoholFree,
     observedAt: x.observedAt, sourceUrl,
   };
 }

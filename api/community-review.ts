@@ -30,7 +30,8 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
         res.statusCode = 303; res.setHeader('Location', '/api/community-review'); res.end(); return;
       }
       const [beer, coffee, pizza] = await Promise.all(['bars', 'coffee', 'pizza'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse)));
-      await reviewContribution(store(city), form.kind, form.id, form.fingerprint, form.decision, { beer, coffee, pizza });
+      const ramen = await readFile(`${process.cwd()}/public/data/${cities[city].data}ramen.json`, 'utf8').then(JSON.parse, () => undefined);
+      await reviewContribution(store(city), form.kind, form.id, form.fingerprint, form.decision, { beer, coffee, pizza, ramen });
       res.statusCode = 303; res.setHeader('Location', '/api/community-review'); res.end(); return;
     }
     if (req.method !== 'GET') { res.setHeader('Allow', 'GET, POST'); return fail(405, 'Methode nicht erlaubt.'); }

@@ -95,7 +95,7 @@ let districtsLoading = false;
 const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
-let communityReady = false, saving = false, pizzaAvailable = false;
+let communityReady = false, saving = false, pizzaAvailable = false, ramenAvailable = false;
 let cheapPreference: string | null = null;
 try { cheapPreference = localStorage.getItem(cheapPreferenceKey); } catch { /* Storage can be blocked. */ }
 let cheapMode = cheapModeFromSearch(initial, cheapPreference);
@@ -121,7 +121,10 @@ const searchHistory = createSearchHistory(cityId);
 const coffee = () => f.drink === 'coffee';
 const pizza = () => f.drink === 'pizza';
 const beer = () => f.drink === 'beer';
-const budgets: Record<Drink, number> = { beer: Infinity, coffee: Infinity, pizza: Infinity };
+const ramen = () => f.drink === 'ramen';
+// Ramen appears only once enough venues have a current price, like pizza.
+const RAMEN_MIN_VENUES = 5;
+const budgets: Record<Drink, number> = { beer: Infinity, coffee: Infinity, pizza: Infinity, ramen: Infinity };
 const unit = (o: Offer) => offerCategory(o) !== 'beer' ? portion(o) : `${f.mode === 'half' ? `5 dl${o.volumeMl === 500 ? '' : ` · ${t('umgerechnet')}`}` : portion(o)} · ${beerTypeLabel(o)}`;
 
 $('app').innerHTML = `
@@ -180,7 +183,7 @@ $('app').innerHTML = `
     <p id="scan-status" role="status" hidden></p>
   </section>
   <details id="manual-entry"><summary>${t('Preis von Hand eintragen')}</summary><fieldset id="manual-fields">
-  <div class="form-row"><label>${t('Kategorie')}<select id="entry-drink"><option value="coffee">${t('Kaffee')}</option><option value="beer">${t('Bier')}</option><option value="pizza">Pizza Margherita</option></select></label><label id="entry-coffee-label" hidden>${t('Sorte')}<select id="entry-coffee">${coffeeOptions}</select></label></div>
+  <div class="form-row"><label>${t('Kategorie')}<select id="entry-drink"><option value="coffee">${t('Kaffee')}</option><option value="beer">${t('Bier')}</option><option value="ramen">${t('Ramen')}</option><option value="pizza">Pizza Margherita</option></select></label><label id="entry-coffee-label" hidden>${t('Sorte')}<select id="entry-coffee">${coffeeOptions}</select></label></div>
   <label>${t('Bezeichnung')}<input id="entry-name" maxlength="100" placeholder="${t('z. B. Lager oder Espresso')}" required></label>
   <div id="entry-beer-fields"><label>${t('Ausschank')}<select id="entry-beer-type">${options(translated(beerTypeLabels))}</select></label><small id="entry-type-hint" class="muted" hidden>${t('Diese Vorauswahl ist geschätzt. Bitte prüfen.')}</small><div class="form-row"><label>${t('Menge in dl')}<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label class="check"><input id="entry-size-unknown" type="checkbox"> ${t('Menge nicht angegeben (nur Stange)')}</label><label class="check"><input id="entry-alcohol" type="checkbox"> ${t('Alkoholfrei')}</label></div>
   <div class="form-row"><label>${t('Preis in CHF')}<input id="entry-price" type="number" min="0.5" max="50" step="0.01" inputmode="decimal" required></label><label>${t('Preis gesehen am')}<input id="entry-date" type="date" min="2020-01-01" required></label></div>
@@ -402,14 +405,20 @@ function rebuild() {
     f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
     $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
   }
+  const ramenBars = datasets.ramen ? applyEntries(datasets.ramen, entries, venues, 'ramen', venueCorrections).bars : [];
+  ramenAvailable = ramenBars.filter(b => b.offers.some(o => offerCategory(o) === 'ramen' && isCurrentOffer(o) && isComparableOffer(o))).length >= RAMEN_MIN_VENUES;
+  if (ramen() && !ramenAvailable) {
+    f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
+    $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
+  }
   const base = datasets[f.drink!];
-  bars = pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!, venueCorrections).bars : [];
+  bars = ramen() ? ramenBars : pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!, venueCorrections).bars : [];
   if (beer()) beerOptions = beerVarieties(bars);
   render();
 }
 function syncControls() {
   if (customMapUI?.isOpen) return;
-  const heading = beer() ? t('Bierpreise {city}', { city: cityName }) : pizza() ? t('Pizzapreise {city}', { city: cityName }) : t('Kaffeepreise {city}', { city: cityName });
+  const heading = beer() ? t('Bierpreise {city}', { city: cityName }) : ramen() ? t('Ramenpreise {city} · Community', { city: cityName }) : pizza() ? t('Pizzapreise {city}', { city: cityName }) : t('Kaffeepreise {city}', { city: cityName });
   if ($('map-title').textContent !== heading) $('map-title').textContent = heading;
   document.title = coffee() ? coffeePageTitle : t('{heading} vergleichen | wobillig', { heading });
   $<HTMLSelectElement>('type').innerHTML = options(venueTypes);
@@ -445,7 +454,7 @@ function syncControls() {
   $<HTMLSelectElement>('volume').value = f.volume;
   $<HTMLSelectElement>('coffeeType').value = f.coffeeType!;
   $<HTMLInputElement>('normalize').checked = f.mode === 'half';
-  categoryNav.update(f.drink!, pizzaAvailable);
+  categoryNav.update(f.drink!, pizzaAvailable, ramenAvailable);
   $<HTMLInputElement>('search').value = f.query;
   $('search-clear').hidden = f.query.length === 0;
   $<HTMLSelectElement>('sort').value = f.sort;
@@ -502,7 +511,7 @@ function render() {
   $('count').textContent = coverageLabel(current, f) + (addressSelection ? ` · ${t('Bezugspunkt: {label}', { label: addressSelection.label })}` : '');
   const average = cityAverage(bars, f);
   $('city-average').textContent = t('Schnitt {city} {value}', { city: cityName, value: average ? `CHF ${money(average.price)}` : '—' });
-  const comparison = pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
+  const comparison = pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
     size: f.volume === 'all' ? t('alle Grössen') : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`,
     mode: f.mode === 'half' ? t('auf 5 dl umgerechnet') : t('Portionspreis'),
   });
@@ -677,7 +686,7 @@ function mapLocations(): Bar[] {
   if (hasBeerSelection(f)) return current;
   // The pizza dataset includes confirmed pizzerias without prices and community
   // pizza entries. Do not add the general restaurant catalogue back to this map.
-  const candidates = pizza() ? bars : selectableLocations(venues, locationCatalogue);
+  const candidates = pizza() || ramen() ? bars : selectableLocations(venues, locationCatalogue);
   return candidates.filter(b => matchesVenueType(b, f) && inSelectedDistrict(b));
 }
 function renderLocations() {
@@ -921,7 +930,7 @@ $('cheap').onclick = () => {
 };
 $('data-info').onclick = () => {
   $('coverage').textContent = Object.entries(datasets).map(([drink, data]) => t('{category}: {offers} Angebote aus Karten bei {venues} Lokalen', {
-    category: drink === 'pizza' ? 'Pizza Margherita' : drink === 'beer' ? t('Bier') : t('Kaffee'),
+    category: drink === 'pizza' ? 'Pizza Margherita' : drink === 'ramen' ? t('Ramen') : drink === 'beer' ? t('Bier') : t('Kaffee'),
     offers: data.bars.reduce((n, b) => n + b.offers.length, 0), venues: data.bars.filter(b => b.offers.length).length,
   })).join('. ') + `. ${t('{count} gemeinsame Einträge/Korrekturen.', { count: entries.length })}`;
   $<HTMLDialogElement>('info').showModal();
@@ -944,7 +953,7 @@ function entryFields() {
   name.readOnly = category === 'pizza';
   if (category === 'pizza') name.value = 'Pizza Margherita';
   else if (name.value === 'Pizza Margherita') name.value = '';
-  name.placeholder = category === 'coffee' ? t('z. B. Espresso') : t('z. B. Lager');
+  name.placeholder = category === 'coffee' ? t('z. B. Espresso') : category === 'ramen' ? t('z. B. Shoyu Ramen') : t('z. B. Lager');
   const packaged = ['bottle', 'can'].includes($<HTMLSelectElement>('entry-beer-type').value);
   if (packaged) { $<HTMLInputElement>('entry-stange').checked = false; $<HTMLInputElement>('entry-size-unknown').checked = false; }
   $<HTMLInputElement>('entry-size-unknown').disabled = packaged;
@@ -1120,16 +1129,19 @@ async function loadCommunity() {
   } catch { communityReady = false; return false; }
 }
 async function init() {
-  const [beerResult, coffeeResult, pizzaResult, loadedCommunity, locationsResult] = await Promise.all([
+  const [beerResult, coffeeResult, pizzaResult, ramenResult, loadedCommunity, locationsResult] = await Promise.all([
     fetch(`${dataPath}bars.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${dataPath}coffee.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${dataPath}pizza.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    fetch(`${dataPath}ramen.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     loadCommunity(),
     fetch(`${dataPath}locations.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
   ]);
   if (beerResult) datasets.beer = beerResult;
   if (coffeeResult) datasets.coffee = coffeeResult;
   if (pizzaResult) datasets.pizza = pizzaResult;
+  // Ramen is optional: cities without a scraped ramen file simply hide the category.
+  if (ramenResult) datasets.ramen = ramenResult;
   locationCatalogue = locationsResult?.bars || [];
   const missing = [!beerResult ? t('Bier') : '', !coffeeResult ? t('Kaffee') : '', !pizzaResult ? 'Pizza' : '', !loadedCommunity ? t('gemeinsame Einträge') : ''].filter(Boolean);
   const hasData = Object.keys(datasets).length > 0;

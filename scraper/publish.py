@@ -11,7 +11,7 @@ import subprocess
 import tempfile
 
 FILES = (
-    'public/data/bars.json', 'public/data/coffee.json', 'public/data/pizza.json', 'public/data/locations.json',
+    'public/data/bars.json', 'public/data/coffee.json', 'public/data/pizza.json', 'public/data/ramen.json', 'public/data/locations.json',
     'scraper/discovery_checks.json', 'scraper/coffee_checks.json',
     'scraper/pizza_checks.json', 'scraper/ai_checks.json',
 ) + tuple(f'public/data/{city}/{name}.json' for city in ('bern', 'basel', 'lausanne', 'geneva', 'winterthur') for name in ('bars', 'coffee', 'pizza', 'locations')) + tuple(f'scraper/cities/{city}/{name}_checks.json' for city in ('bern', 'basel', 'lausanne', 'geneva', 'winterthur') for name in ('discovery', 'coffee', 'pizza', 'ai')) + tuple(
