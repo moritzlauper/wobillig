@@ -5,8 +5,9 @@ import { cities, type City } from './cities';
 export type District = Feature<Polygon | MultiPolygon, { number: number; name?: string }>;
 export type Districts = FeatureCollection<Polygon | MultiPolygon, { number: number; name?: string }>;
 
-export function districtFromSearch(params: URLSearchParams, city: City) {
+export function districtFromSearch(params: URLSearchParams, city: City): { enabled: boolean; selected?: number } {
   const config = cities[city].districts;
+  if (!config) return { enabled: false, selected: undefined };
   const { toggle, param, count } = config;
   const number = Number(params.get(param));
   const valid = 'numbers' in config ? config.numbers.includes(number) : number >= 1 && number <= count;

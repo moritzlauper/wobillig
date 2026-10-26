@@ -34,12 +34,13 @@ Das Feld «Bis CHF» zeigt ohne eigene Eingabe den höchsten Preis der passenden
 | Bern | `/bern` | `/en/bern` |
 | Basel | `/basel` | `/en/basel` |
 | Winterthur | `/winterthur` | `/en/winterthur` |
+| Olten | `/olten` | `/en/olten` |
 | Lausanne | `/de/lausanne` | `/en/lausanne` |
 | Genf | `/de/geneve` | `/en/geneve` |
 
 Lausanne und Genf öffnen standardmässig auf Englisch. `/lausanne` und `/geneve` leiten dorthin weiter, ebenso ältere `/genf`-Links. Genf umfasst neben der Stadt 15 Nachbargemeinden wie Carouge, Lancy und Vernier, französische Gemeinden gehören nicht dazu.
 
-Zu jeder Stadt gibt es vier Ranglisten, die auch ohne JavaScript lesbar sind: `/espresso-<stadt>`, `/cappuccino-<stadt>`, `/stange-<stadt>` und `/margherita-<stadt>` mit den Kürzeln `zuerich`, `bern`, `basel`, `winterthur`, `lausanne` und `genf`, auf Englisch mit vorangestelltem `/en`. Sie zeigen die 25 günstigsten erfassten Lokale mit Quelle und Datum. Die Stangen-Liste zählt nur Offenbier, die Margherita-Liste nur Restaurants ohne Imbisse und Takeaways. Zusammen mit den Stadtseiten stehen 60 Seiten in der Sitemap.
+Zu jeder Stadt gibt es vier Ranglisten, die auch ohne JavaScript lesbar sind: `/espresso-<stadt>`, `/cappuccino-<stadt>`, `/stange-<stadt>` und `/margherita-<stadt>` mit den Kürzeln `zuerich`, `bern`, `basel`, `winterthur`, `olten`, `lausanne` und `genf`, auf Englisch mit vorangestelltem `/en`. Sie zeigen die 25 günstigsten erfassten Lokale mit Quelle und Datum. Die Stangen-Liste zählt nur Offenbier, die Margherita-Liste nur Restaurants ohne Imbisse und Takeaways. Zusammen mit den Stadtseiten stehen 70 Seiten in der Sitemap.
 
 ## Datenstand
 
@@ -99,7 +100,7 @@ python -m scraper.locations                       # nur Standortkatalog
 python -m scraper.ai_scan --discover              # KI-Scan, braucht ANTHROPIC_API_KEY
 ```
 
-`WOBILLIG_CITY=bern`, `basel`, `winterthur`, `lausanne` oder `geneva` wählt die Stadt, ohne Variable gilt Zürich. Einzelne Lokale prüft `--name 'Bar Rossi'` beim Bier und `--only 'Name|Name'` bei Kaffee und Pizza. `--max-pages` begrenzt die Dokumente pro Lokal, `--limit` die Zahl neuer Kandidaten.
+`WOBILLIG_CITY=bern`, `basel`, `winterthur`, `olten`, `lausanne` oder `geneva` wählt die Stadt, ohne Variable gilt Zürich. Einzelne Lokale prüft `--name 'Bar Rossi'` beim Bier und `--only 'Name|Name'` bei Kaffee und Pizza. `--max-pages` begrenzt die Dokumente pro Lokal, `--limit` die Zahl neuer Kandidaten.
 
 | Datei | Zweck |
 | --- | --- |
@@ -186,7 +187,7 @@ Snapshots nie blind zurückspielen. Beiträge, die nach dem Snapshot eingegangen
 | Refresh private promotion pilot | täglich | Privater Aktionspilot mit dem Coop-Prospekt, nur auf der Prüfseite sichtbar |
 | Deploy to GitHub Pages | manuell | Optionale statische Kopie ohne API |
 
-Der Preis-Refresh arbeitet die Städte nacheinander ab (Zürich, Basel, Bern, Lausanne, Genf, Winterthur), jeweils in drei Abschnitten für Getränke, Pizza und KI. Ein Fehler in einer Stadt hält die anderen nicht auf. Manuell lassen sich `city`, `scan_mode` (`full`, `pizza_only`, `ai_only`, `estimates_only`, `photos_only`), `ai_budget_usd` (Standard 5, höchstens 20 pro Stadt), `deep_scan` und `exhaustive_scan` wählen. Scheitert die Veröffentlichung eines Abschnitts, enthält das Artefakt `refreshed-dataset-…` den Stand, und `python -m scraper.publish --snapshot <datei> --branch main` veröffentlicht ihn ohne neuen Scan.
+Der Preis-Refresh arbeitet die Städte nacheinander ab (Zürich, Basel, Bern, Lausanne, Genf, Winterthur, Olten), jeweils in drei Abschnitten für Getränke, Pizza und KI. Ein Fehler in einer Stadt hält die anderen nicht auf. Manuell lassen sich `city`, `scan_mode` (`full`, `pizza_only`, `ai_only`, `estimates_only`, `photos_only`), `ai_budget_usd` (Standard 5, höchstens 20 pro Stadt), `deep_scan` und `exhaustive_scan` wählen. Scheitert die Veröffentlichung eines Abschnitts, enthält das Artefakt `refreshed-dataset-…` den Stand, und `python -m scraper.publish --snapshot <datei> --branch main` veröffentlicht ihn ohne neuen Scan.
 
 Die Workflows brauchen die Repository-Secrets `ANTHROPIC_API_KEY` und `BLOB_READ_WRITE_TOKEN`. Solange das Repository öffentlich ist, kosten die Actions-Minuten nichts. Ein einzelner Refresh läuft rund acht Stunden, privat würde das Freikontingent von GitHub schnell aufgebraucht.
 

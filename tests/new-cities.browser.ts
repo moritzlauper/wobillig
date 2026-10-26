@@ -37,8 +37,10 @@ for (const width of [320, 1280]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/basel?drink=beer&size=500');
     const menu = page.locator('#city-more');
+    await expect(menu).not.toHaveAttribute('open', '');
     await expect(menu.locator('a[data-city]').first()).toBeHidden();
     await menu.locator('summary').click();
+    await expect(menu.locator('a[data-city="olten"]')).toHaveAttribute('href', /^\/olten\?.*drink=beer/);
     await expect(menu.locator('a[data-city="lausanne"]')).toBeVisible();
     await expect(menu.locator('a[data-city="winterthur"]')).toHaveAttribute('href', /^\/winterthur\?.*drink=beer/);
     await expect(menu.locator('a[data-city="geneva"]')).toHaveAttribute('href', /\/en\/geneve\?.*drink=beer/);

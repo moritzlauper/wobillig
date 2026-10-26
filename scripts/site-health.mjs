@@ -7,7 +7,7 @@ export async function checkSite(base = 'https://wobillig.ch', fetcher = fetch) {
     ['/impressum', text => text.includes('Nussbaumstrasse 4')],
     ['/datenschutz', text => text.includes('Cloudflare')],
     ['/api/community-auth', text => { const c = JSON.parse(text); return c.protection === true && Boolean(c.siteKey) && c.paused === false; }],
-    ...['zurich', 'bern', 'basel', 'lausanne', 'geneva', 'winterthur'].map(city => [`/api/prices?city=${city}&view=public`, text => {
+    ...['zurich', 'bern', 'basel', 'lausanne', 'geneva', 'winterthur', 'olten'].map(city => [`/api/prices?city=${city}&view=public`, text => {
       const data = JSON.parse(text);
       return Array.isArray(data.entries) && !privateFields.some(key => key in data);
     }]),

@@ -88,12 +88,20 @@
       "destination": "/winterthur/index.html"
     },
     {
+      "source": "/olten",
+      "destination": "/olten/index.html"
+    },
+    {
       "source": "/basel/",
       "destination": "/basel/index.html"
     },
     {
       "source": "/winterthur/",
       "destination": "/winterthur/index.html"
+    },
+    {
+      "source": "/olten/",
+      "destination": "/olten/index.html"
     },
     {
       "source": "/en",
@@ -120,12 +128,20 @@
       "destination": "/en/winterthur/index.html"
     },
     {
+      "source": "/en/olten",
+      "destination": "/en/olten/index.html"
+    },
+    {
       "source": "/en/basel/",
       "destination": "/en/basel/index.html"
     },
     {
       "source": "/en/winterthur/",
       "destination": "/en/winterthur/index.html"
+    },
+    {
+      "source": "/en/olten/",
+      "destination": "/en/olten/index.html"
     },
     {
       "source": "/espresso-zuerich",
@@ -144,12 +160,20 @@
       "destination": "/espresso-winterthur/index.html"
     },
     {
+      "source": "/espresso-olten",
+      "destination": "/espresso-olten/index.html"
+    },
+    {
       "source": "/cappuccino-basel",
       "destination": "/cappuccino-basel/index.html"
     },
     {
       "source": "/cappuccino-winterthur",
       "destination": "/cappuccino-winterthur/index.html"
+    },
+    {
+      "source": "/cappuccino-olten",
+      "destination": "/cappuccino-olten/index.html"
     },
     {
       "source": "/espresso-bern",
@@ -176,12 +200,20 @@
       "destination": "/en/espresso-winterthur/index.html"
     },
     {
+      "source": "/en/espresso-olten",
+      "destination": "/en/espresso-olten/index.html"
+    },
+    {
       "source": "/en/cappuccino-basel",
       "destination": "/en/cappuccino-basel/index.html"
     },
     {
       "source": "/en/cappuccino-winterthur",
       "destination": "/en/cappuccino-winterthur/index.html"
+    },
+    {
+      "source": "/en/cappuccino-olten",
+      "destination": "/en/cappuccino-olten/index.html"
     },
     {
       "source": "/en/espresso-bern",
@@ -208,12 +240,20 @@
       "destination": "/stange-winterthur/index.html"
     },
     {
+      "source": "/stange-olten",
+      "destination": "/stange-olten/index.html"
+    },
+    {
       "source": "/margherita-basel",
       "destination": "/margherita-basel/index.html"
     },
     {
       "source": "/margherita-winterthur",
       "destination": "/margherita-winterthur/index.html"
+    },
+    {
+      "source": "/margherita-olten",
+      "destination": "/margherita-olten/index.html"
     },
     {
       "source": "/stange-bern",
@@ -240,12 +280,20 @@
       "destination": "/en/stange-winterthur/index.html"
     },
     {
+      "source": "/en/stange-olten",
+      "destination": "/en/stange-olten/index.html"
+    },
+    {
       "source": "/en/margherita-basel",
       "destination": "/en/margherita-basel/index.html"
     },
     {
       "source": "/en/margherita-winterthur",
       "destination": "/en/margherita-winterthur/index.html"
+    },
+    {
+      "source": "/en/margherita-olten",
+      "destination": "/en/margherita-olten/index.html"
     },
     {
       "source": "/en/stange-bern",
@@ -425,6 +473,11 @@
       "permanent": true
     },
     {
+      "source": "/olten/index.html",
+      "destination": "/olten",
+      "permanent": true
+    },
+    {
       "source": "/en/index.html",
       "destination": "/en",
       "permanent": true
@@ -442,6 +495,11 @@
     {
       "source": "/en/winterthur/index.html",
       "destination": "/en/winterthur",
+      "permanent": true
+    },
+    {
+      "source": "/en/olten/index.html",
+      "destination": "/en/olten",
       "permanent": true
     },
     {
@@ -465,6 +523,11 @@
       "permanent": true
     },
     {
+      "source": "/espresso-olten/index.html",
+      "destination": "/espresso-olten",
+      "permanent": true
+    },
+    {
       "source": "/cappuccino-basel/index.html",
       "destination": "/cappuccino-basel",
       "permanent": true
@@ -472,6 +535,11 @@
     {
       "source": "/cappuccino-winterthur/index.html",
       "destination": "/cappuccino-winterthur",
+      "permanent": true
+    },
+    {
+      "source": "/cappuccino-olten/index.html",
+      "destination": "/cappuccino-olten",
       "permanent": true
     },
     {
@@ -505,6 +573,11 @@
       "permanent": true
     },
     {
+      "source": "/en/espresso-olten/index.html",
+      "destination": "/en/espresso-olten",
+      "permanent": true
+    },
+    {
       "source": "/en/cappuccino-basel/index.html",
       "destination": "/en/cappuccino-basel",
       "permanent": true
@@ -512,6 +585,11 @@
     {
       "source": "/en/cappuccino-winterthur/index.html",
       "destination": "/en/cappuccino-winterthur",
+      "permanent": true
+    },
+    {
+      "source": "/en/cappuccino-olten/index.html",
+      "destination": "/en/cappuccino-olten",
       "permanent": true
     },
     {
@@ -545,6 +623,11 @@
       "permanent": true
     },
     {
+      "source": "/stange-olten/index.html",
+      "destination": "/stange-olten",
+      "permanent": true
+    },
+    {
       "source": "/margherita-basel/index.html",
       "destination": "/margherita-basel",
       "permanent": true
@@ -552,6 +635,11 @@
     {
       "source": "/margherita-winterthur/index.html",
       "destination": "/margherita-winterthur",
+      "permanent": true
+    },
+    {
+      "source": "/margherita-olten/index.html",
+      "destination": "/margherita-olten",
       "permanent": true
     },
     {
@@ -585,6 +673,11 @@
       "permanent": true
     },
     {
+      "source": "/en/stange-olten/index.html",
+      "destination": "/en/stange-olten",
+      "permanent": true
+    },
+    {
       "source": "/en/margherita-basel/index.html",
       "destination": "/en/margherita-basel",
       "permanent": true
@@ -592,6 +685,11 @@
     {
       "source": "/en/margherita-winterthur/index.html",
       "destination": "/en/margherita-winterthur",
+      "permanent": true
+    },
+    {
+      "source": "/en/margherita-olten/index.html",
+      "destination": "/en/margherita-olten",
       "permanent": true
     },
     {

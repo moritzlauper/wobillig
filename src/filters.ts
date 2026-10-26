@@ -12,7 +12,7 @@ export function cheapModeFromSearch(params: URLSearchParams, preference: string 
   const selectionKeys = ['drink', 'coffeeType', 'beerType', 'beerSelection', 'beerQuery',
     'pizzaSelection', 'pizzaQuery', 'q', 'max', 'size', 'type', 'unknown', 'outdoor',
     'alcoholFree', 'mode', 'sort', 'bar', 'address', 'map',
-    ...Object.values(cities).flatMap(city => [city.districts.toggle, city.districts.param])];
+    ...Object.values(cities).flatMap(city => city.districts ? [city.districts.toggle, city.districts.param] : [])];
   if (selectionKeys.some(key => params.has(key))) return false;
   return preference !== '0';
 }

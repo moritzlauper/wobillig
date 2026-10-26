@@ -13,7 +13,7 @@ export function pendingSummary(state, now = Date.now()) {
 }
 export async function checkReviewQueue(fetchBlob = get, now = Date.now()) {
   const totals = { pending: 0, overdue: 0 };
-  for (const city of ['zurich', 'bern', 'basel', 'lausanne', 'geneva', 'winterthur']) {
+  for (const city of ['zurich', 'bern', 'basel', 'lausanne', 'geneva', 'winterthur', 'olten']) {
     const r = await fetchBlob(`prices/${city === 'zurich' ? '' : city + '/'}production.json`, { access: 'private', useCache: false });
     if (!r) continue;
     if (r.statusCode !== 200) throw new Error('Review queue could not be read');

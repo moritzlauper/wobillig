@@ -36,8 +36,8 @@ it('protects snapshot replacement against concurrent writes and detects failed v
 it('health check retries temporary failures, rejects disabled protection and leaked private fields', async () => {
   const fetcher = vi.fn(async (url: URL) => new Response(url.pathname === '/' ? '<div id="app">' : url.pathname === '/impressum' ? 'Nussbaumstrasse 4' : url.pathname === '/datenschutz' ? 'Cloudflare' : JSON.stringify(url.pathname === '/api/community-auth' ? { protection: true, siteKey: 'site', paused: false } : { entries: [] })));
   fetcher.mockRejectedValueOnce(new Error('network'));
-  expect(await checkSite('https://example.org', fetcher)).toBe(10);
-  expect(fetcher).toHaveBeenCalledTimes(11);
+  expect(await checkSite('https://example.org', fetcher)).toBe(11);
+  expect(fetcher).toHaveBeenCalledTimes(12);
   for (const bad of [{ protection: false, paused: false }, { entries: [], heldPrices: [] }]) {
     await expect(checkSite('https://example.org', async (url: URL) => url.pathname === (bad.entries ? '/api/prices' : '/api/community-auth') ? new Response(JSON.stringify(bad)) : fetcher(url))).rejects.toThrow(/Health check/);
   }

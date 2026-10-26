@@ -35,6 +35,7 @@ it('uses the seven Winterthur Stadtkreise without Zürich’s Kreise from the sh
   expect(districtFromSearch(new URLSearchParams('stadtkreis=7'), 'winterthur')).toEqual({ enabled: true, selected: 7 });
   expect(districtFromSearch(new URLSearchParams('stadtkreis=8'), 'winterthur')).toEqual({ enabled: false, selected: undefined });
   expect(districtFromSearch(new URLSearchParams('kreis=5'), 'winterthur')).toEqual({ enabled: false, selected: undefined });
+  expect(districtFromSearch(new URLSearchParams('stadtkreis=3&stadtkreise=1'), 'olten')).toEqual({ enabled: false, selected: undefined });
   expect(cityLink('winterthur', '?kreise=1&kreis=5&drink=beer')).toBe('/winterthur?drink=beer');
   expect(cityLink('zurich', '?stadtkreise=1&stadtkreis=5&drink=beer')).toBe('/?drink=beer');
 });

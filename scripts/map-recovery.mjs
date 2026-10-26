@@ -4,7 +4,7 @@ import { get } from '@vercel/blob';
 // Operator-only: issue a private link after confirming who created a legacy map.
 // node --env-file=.env.local scripts/map-recovery.mjs zurich MAP_ID
 const [city, mapId, ...extra] = process.argv.slice(2);
-if (extra.length || !['zurich', 'bern', 'basel', 'lausanne', 'geneva', 'winterthur'].includes(city) ||
+if (extra.length || !['zurich', 'bern', 'basel', 'lausanne', 'geneva', 'winterthur', 'olten'].includes(city) ||
     !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(mapId || '')) {
   throw new Error('Aufruf: node --env-file=.env.local scripts/map-recovery.mjs STADT MAP_ID');
 }

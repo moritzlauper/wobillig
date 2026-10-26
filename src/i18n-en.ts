@@ -90,6 +90,8 @@ export const en: Record<string, string> = {
   "Genf": "Geneva",
   "Winterthur": "Winterthur",
   "Bitte eine Kartenposition in oder um Winterthur wählen.": "Please choose a map position in or around Winterthur.",
+  "Olten": "Olten",
+  "Bitte eine Kartenposition in oder um Olten wählen.": "Please choose a map position in or around Olten.",
   "Stadtkreise anzeigen": "Show districts",
   "Stadtkreis": "District",
   "Winterthurer Stadtkreis": "Winterthur district",

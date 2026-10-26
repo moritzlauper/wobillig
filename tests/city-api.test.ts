@@ -31,7 +31,7 @@ beforeEach(() => {
   mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: { entries: [{ id: path }] } }) }));
   mocks.readFile.mockImplementation(async (path: string) => JSON.stringify({
     generatedAt: '', discoveredAt: '', attribution: '',
-    bars: [venue(path.includes('data/winterthur/') ? 'node/winterthur' : path.includes('/lausanne/') ? 'node/lausanne' : path.includes('/geneva/') ? 'node/geneva' : path.includes('/bern/') ? 'node/bern' : path.includes('/basel/') ? 'node/basel' : 'node/zurich')],
+    bars: [venue(path.includes('data/winterthur/') ? 'node/winterthur' : path.includes('data/olten/') ? 'node/olten' : path.includes('/lausanne/') ? 'node/lausanne' : path.includes('/geneva/') ? 'node/geneva' : path.includes('/bern/') ? 'node/bern' : path.includes('/basel/') ? 'node/basel' : 'node/zurich')],
   } satisfies Dataset));
   mocks.savePrice.mockResolvedValue({ id: 'saved' });
   mocks.saveVenue.mockResolvedValue({ venue: { id: 'community/new' }, created: true });
@@ -124,7 +124,7 @@ describe('city-scoped price API', () => {
     expect(mocks.savePrice).toHaveBeenCalledTimes(1);
   });
 
-  it.each(['lausanne', 'geneva', 'winterthur'])('isolates saved prices for %s from existing cities', async city => {
+  it.each(['lausanne', 'geneva', 'winterthur', 'olten'])('isolates saved prices for %s from existing cities', async city => {
     const input = { barId: `node/${city}`, drink: 'beer', revision: 0, name: 'Lager', priceChf: 5, volumeMl: 300, alcoholFree: false, observedAt: '2026-10-21', sourceUrl: '' };
     expect((await request(`/api/prices?city=${city}`, input)).status).toBe(200);
     expect(mocks.blobStore).toHaveBeenCalledWith(`prices/${city}/production.json`);
