@@ -16,7 +16,7 @@ Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der
 - Unter «Filter» stehen die Zürcher und Winterthurer Stadtkreise, die Basler Wohnviertel, die Berner Stadtteile und die Quartiere von Lausanne und Genf zur Auswahl, jeweils mit eigenem Durchschnittspreis.
 - Das Fenster «Daten» exportiert den Bestand der Stadt als CSV oder JSON.
 - Lokale lassen sich per Link teilen. Es gibt einen Hell- und einen Dunkelmodus sowie eine deutsche und eine englische Oberfläche.
-- «Plattformkosten stützen» ist ein freiwilliger Beitrag an Hosting, Speicher und KI-Scan, bezahlt per TWINT oder Karte über Stripe. Der Betrag entspricht einem günstigen Cappuccino der Stadt, aktuell CHF 5.50 in Zürich, Basel und Winterthur, CHF 5.20 in Bern und CHF 4.90 in Lausanne und Genf.
+- «Plattformkosten stützen» ist ein freiwilliger Beitrag an Hosting, Speicher und KI-Scan, bezahlt per TWINT oder Karte über Stripe. Der Betrag entspricht einem günstigen Cappuccino der Stadt, aktuell CHF 5.50 in Zürich und Basel, CHF 5.40 in Winterthur, CHF 5.20 in Bern und CHF 4.90 in Lausanne und Genf.
 
 ### Günstig-Filter
 
@@ -50,7 +50,7 @@ Datensätze vom 19. bis 21. Oktober 2026, für Winterthur vom 26. Oktober 2026, 
 | Zürich | 300 / 1'539 | 312 / 2'402 | 83 | 2'198 |
 | Bern | 132 / 730 | 127 / 981 | 23 | 715 |
 | Basel | 90 / 467 | 84 / 760 | 19 | 784 |
-| Winterthur | 50 / 237 | 48 / 289 | 14 | 388 |
+| Winterthur | 56 / 291 | 56 / 432 | 14 | 388 |
 | Lausanne | 59 / 252 | 57 / 521 | 10 | 630 |
 | Genf | 74 / 284 | 73 / 426 | 16 | 1'561 |
 

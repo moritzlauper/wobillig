@@ -125,7 +125,7 @@
       "lat": 47.5052219,
       "lon": 8.7097444,
       "type": "restaurant",
-      "address": "",
+      "address": "Blumenaustrasse 24",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -135,7 +135,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/61898144"
     },
     {
       "id": "node/3124969715",
@@ -237,8 +238,8 @@
       "lat": 47.5049501,
       "lon": 8.717907,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Wülflingerstrasse 27",
+      "postcode": "8400",
       "website": "https://www.dominos.ch/",
       "cuisine": [
         "pizza"
@@ -248,7 +249,8 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-26T16:51:06.905729+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/30606465"
     },
     {
       "id": "node/12536140729",
@@ -256,8 +258,8 @@
       "lat": 47.4980708,
       "lon": 8.7277886,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Steinberggasse 51",
+      "postcode": "8400",
       "website": "https://pizzeriadoncamillo.ch/",
       "cuisine": [
         "pizza"
@@ -284,7 +286,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.pizzeriadoncamillo.ch/",
         "evidence": "Pizzeria Don Camillo - Winterthur"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/way/138604444"
     },
     {
       "id": "node/4095987426",
@@ -704,8 +707,8 @@
       "lat": 47.4912931,
       "lon": 8.7340645,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Langgasse 40",
+      "postcode": "8400",
       "website": "http://www.incontropizza.ch/",
       "cuisine": [
         "italian",
@@ -716,7 +719,8 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-26T16:51:18.946189+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/22964147"
     },
     {
       "id": "node/7826688994",
@@ -1142,7 +1146,7 @@
       "lat": 47.4984908,
       "lon": 8.7362107,
       "type": "fast_food",
-      "address": "",
+      "address": "St. Gallerstrasse 27",
       "postcode": "",
       "website": "https://www.miradakurier.ch/",
       "cuisine": [
@@ -1154,7 +1158,8 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-26T16:51:31.648029+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/61898146"
     },
     {
       "id": "node/4395329573",
@@ -1289,8 +1294,8 @@
       "lat": 47.5077003,
       "lon": 8.7554769,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Römerstrasse 181",
+      "postcode": "8404",
       "website": null,
       "cuisine": [
         "pizza"
@@ -1299,7 +1304,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/104034715"
     },
     {
       "id": "node/12262755595",
@@ -1326,8 +1332,8 @@
       "lat": 47.4941104,
       "lon": 8.714503,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Agnesstrasse 5",
+      "postcode": "8406",
       "website": null,
       "cuisine": [
         "pizza",
@@ -1337,7 +1343,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/43856374"
     },
     {
       "id": "node/14214035655",
@@ -1433,7 +1440,7 @@
       "lat": 47.5019996,
       "lon": 8.7185647,
       "type": "restaurant",
-      "address": "",
+      "address": "Wartstrasse 35",
       "postcode": "8400",
       "website": "https://www.restaurant-merano.ch",
       "cuisine": [
@@ -1457,7 +1464,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-26T16:57:07.227572+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/39359939"
     },
     {
       "id": "node/2424718821",
@@ -1465,7 +1473,7 @@
       "lat": 47.5063228,
       "lon": 8.7571254,
       "type": "restaurant",
-      "address": "",
+      "address": "Frauenfelderstrasse 42",
       "postcode": "",
       "website": null,
       "cuisine": [
@@ -1475,7 +1483,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/113580617"
     },
     {
       "id": "node/11725796522",
@@ -1483,8 +1492,8 @@
       "lat": 47.4935234,
       "lon": 8.7155047,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Tössfeldstrasse 10",
+      "postcode": "8406",
       "website": "https://www.ristorante-larosa.ch/",
       "cuisine": [
         "italian"
@@ -1507,7 +1516,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-26T16:51:50.801747+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/91979535"
     },
     {
       "id": "node/359683408",
@@ -1645,8 +1655,8 @@
       "lat": 47.4963916,
       "lon": 8.7458858,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Oberer Deutweg 4",
+      "postcode": "8400",
       "website": null,
       "cuisine": [
         "pizza"
@@ -1655,7 +1665,8 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/22917832"
     },
     {
       "id": "node/5219634725",
@@ -1704,8 +1715,8 @@
       "lat": 47.4907272,
       "lon": 8.7471475,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Weberstrasse 93",
+      "postcode": "8400",
       "website": null,
       "cuisine": [
         "pizza"
@@ -1714,7 +1725,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_website",
-      "checkedAt": null
+      "checkedAt": null,
+      "addressSource": "https://www.openstreetmap.org/way/50097202"
     },
     {
       "id": "node/4434577593",
