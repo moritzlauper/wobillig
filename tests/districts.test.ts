@@ -107,6 +107,8 @@ it('computes the Kreis average only from its matching venues without a budget or
   const average = cityAverage(bars, f);
   expect(average?.count).toBeGreaterThan(0);
   expect(average?.count).toBeLessThan(cityAverage(coffee.bars, f)!.count);
-  expect(cityAverage(bars, { ...f, query: 'no results', max: 1, outdoor: true, type: 'bar' })).toEqual(average);
+  expect(cityAverage(bars, { ...f, query: 'no results', max: 1, outdoor: true })).toEqual(average);
+  // The venue type is part of the benchmark, so the Kreis average changes with it.
+  expect(cityAverage(bars, { ...f, type: 'bar' })).not.toEqual(average);
   expect(cityAverage([], f)).toBeUndefined();
 });

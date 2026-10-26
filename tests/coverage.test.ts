@@ -22,7 +22,7 @@ it('does not count old mixed-drink offers as beer coverage', () => {
   expect(coverageLabel([mixed], f)).toBe('1 Lokale · 0 mit Bierpreis · 0 passend zum Filter');
 });
 
-it('averages one cheapest matching price per venue, independently of list filters', () => {
+it('averages one cheapest matching price per venue, following the venue type but not search or outdoor filters', () => {
   const coffee = { ...offer, coffeeType: 'cappuccino', volumeMl: null, priceChf: 5 };
   const venues = [
     bar([coffee, { ...coffee, priceChf: 8 }]),
@@ -32,8 +32,11 @@ it('averages one cheapest matching price per venue, independently of list filter
     { ...bar([{ ...coffee, coffeeType: 'espresso', priceChf: 2 }]), id: '5' },
     { ...bar([{ ...coffee, priceChf: 3, photoSource: { kind: 'google_maps_photo' as const, date: '2020-01-01', dateEvidence: '', dateCheckedAt: '', validUntil: '2020-07-01' } }]), id: '6' },
   ];
-  expect(cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', max: 1, query: 'no match', outdoor: true, type: 'cafe' }))
+  // Search, price ceiling and outdoor filter do not change the benchmark; the venue type does.
+  expect(cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', max: 1, query: 'no match', outdoor: true, type: 'bar' }))
     .toEqual({ price: 5.5, count: 2 });
+  expect(cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', type: 'fast_food' })).toEqual({ price: 1, count: 1 });
+  expect(cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', type: 'cafe' })).toBeUndefined();
 });
 
 it('uses the chosen beer size, serving format and price comparison', () => {
