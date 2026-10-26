@@ -84,7 +84,7 @@ it('cannot overwrite an existing owner and retains the first creator attribution
   expect((await request(undefined, winner.cookie)).data.map.canEdit).toBe(true);
 });
 
-for (const city of ['zurich', 'bern', 'basel', 'lausanne', 'geneva'] as const) {
+for (const city of ['zurich', 'bern', 'basel', 'lausanne', 'geneva', 'winterthur'] as const) {
   for (const owner of [undefined, { browser: 'original' }, { browser: 'original', account: 'original-account' }]) {
     it(`allows anonymous and signed-in contributors to edit ${city} maps with ${owner ? owner.account ? 'account' : 'browser' : 'no'} creator`, async () => {
       const { state, etag } = await store.read();

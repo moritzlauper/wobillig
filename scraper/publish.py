@@ -14,10 +14,10 @@ FILES = (
     'public/data/bars.json', 'public/data/coffee.json', 'public/data/pizza.json', 'public/data/locations.json',
     'scraper/discovery_checks.json', 'scraper/coffee_checks.json',
     'scraper/pizza_checks.json', 'scraper/ai_checks.json',
-) + tuple(f'public/data/{city}/{name}.json' for city in ('bern', 'basel', 'lausanne', 'geneva') for name in ('bars', 'coffee', 'pizza', 'locations')) + tuple(f'scraper/cities/{city}/{name}_checks.json' for city in ('bern', 'basel', 'lausanne', 'geneva') for name in ('discovery', 'coffee', 'pizza', 'ai')) + tuple(
+) + tuple(f'public/data/{city}/{name}.json' for city in ('bern', 'basel', 'lausanne', 'geneva', 'winterthur') for name in ('bars', 'coffee', 'pizza', 'locations')) + tuple(f'scraper/cities/{city}/{name}_checks.json' for city in ('bern', 'basel', 'lausanne', 'geneva', 'winterthur') for name in ('discovery', 'coffee', 'pizza', 'ai')) + tuple(
     f'{root}/{prefix}{category}{suffix}.json'
     for root, suffix in [('public/data', ''), ('scraper', '_checks')]
-    for prefix in (('', 'bern/', 'basel/', 'lausanne/', 'geneva/') if root == 'public/data' else ('', 'cities/bern/', 'cities/basel/', 'cities/lausanne/', 'cities/geneva/'))
+    for prefix in (('', 'bern/', 'basel/', 'lausanne/', 'geneva/', 'winterthur/') if root == 'public/data' else ('', 'cities/bern/', 'cities/basel/', 'cities/lausanne/', 'cities/geneva/', 'cities/winterthur/'))
     for category in ('doner', 'falafel')
 ) + ('scraper/cities/basel/outdoor_permits.json',)
 MISSING = object()

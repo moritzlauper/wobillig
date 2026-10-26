@@ -8,7 +8,7 @@ import { resolve } from 'node:path';
 const directory = resolve(process.argv[2] || `output/community-backups/${new Date().toISOString().replaceAll(':', '-')}`);
 await mkdir(directory, { recursive: true, mode: 0o700 }); await chmod(directory, 0o700);
 const manifest = { createdAt: new Date().toISOString(), files: [] };
-for (const city of ['zurich', 'bern', 'basel', 'lausanne', 'geneva']) {
+for (const city of ['zurich', 'bern', 'basel', 'lausanne', 'geneva', 'winterthur']) {
   const path = `prices/${city === 'zurich' ? '' : `${city}/`}production.json`;
   const response = await get(path, { access: 'private', useCache: false });
   if (!response) { manifest.files.push({ city, path, missing: true }); continue; }

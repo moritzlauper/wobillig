@@ -22,6 +22,23 @@ it('uses real Lausanne and Geneva boundaries and preserves Lausanne’s non-cont
   expect(cityLink('geneva', '?quartiers=1&quartierLausanne=90&drink=beer', '/', 'en')).toBe('/en/geneve?drink=beer');
 });
 
+it('uses the seven Winterthur Stadtkreise without Zürich’s Kreise from the shared cantonal layer', () => {
+  const winterthur = load('winterthur/districts.json');
+  expect(winterthur.features.map(d => d.properties.name)).toEqual(['Winterthur-Stadt', 'Oberwinterthur', 'Seen', 'Töss', 'Veltheim', 'Wülflingen', 'Mattenbach']);
+  const lookup = createDistrictLookup(winterthur);
+  expect(lookup({ lat: 47.5003, lon: 8.7237 })).toBe(1); // Hauptbahnhof
+  expect(lookup({ lat: 47.5096, lon: 8.7614 })).toBe(2); // Bahnhof Oberwinterthur
+  expect(lookup({ lat: 47.4885, lon: 8.7105 })).toBe(4); // Töss
+  expect(lookup({ lat: 47.5101, lon: 8.6878 })).toBe(6); // Wülflingen
+  expect(lookup({ lat: 47.3717, lon: 8.5422 })).toBeUndefined();
+  expect(createDistrictLookup(districts)({ lat: 47.5003, lon: 8.7237 })).toBeUndefined();
+  expect(districtFromSearch(new URLSearchParams('stadtkreis=7'), 'winterthur')).toEqual({ enabled: true, selected: 7 });
+  expect(districtFromSearch(new URLSearchParams('stadtkreis=8'), 'winterthur')).toEqual({ enabled: false, selected: undefined });
+  expect(districtFromSearch(new URLSearchParams('kreis=5'), 'winterthur')).toEqual({ enabled: false, selected: undefined });
+  expect(cityLink('winterthur', '?kreise=1&kreis=5&drink=beer')).toBe('/winterthur?drink=beer');
+  expect(cityLink('zurich', '?stadtkreise=1&stadtkreis=5&drink=beer')).toBe('/?drink=beer');
+});
+
 it('assigns known Zürich locations to official boundaries and excludes other cities', () => {
   expect(districts.features.map(d => d.properties.number)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
   const lookup = createDistrictLookup(districts);

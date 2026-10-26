@@ -1,4 +1,4 @@
-const cities = { zurich: 'Zürich', bern: 'Bern', basel: 'Basel', lausanne: 'Lausanne', geneva: 'Genf' };
+const cities = { zurich: 'Zürich', bern: 'Bern', basel: 'Basel', lausanne: 'Lausanne', geneva: 'Genf', winterthur: 'Winterthur' };
 const drinks = { beer: 'Bier', coffee: 'Kaffee', pizza: 'Pizza' };
 const coffeeLabels = { creme: 'Café crème / Kaffee', espresso: 'Espresso', double: 'Doppelter Espresso', ristretto: 'Ristretto',
   cappuccino: 'Cappuccino', latte: 'Latte macchiato', milk: 'Milchkaffee', flat_white: 'Flat White', americano: 'Americano', filter: 'Filterkaffee', matcha_latte: 'Matcha Latte' };

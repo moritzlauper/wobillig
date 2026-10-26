@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CITIES = {'zurich': ('Zürich', 'Q72'), 'bern': ('Bern', 'Q70'), 'basel': ('Basel', 'Q78'), 'lausanne': ('Lausanne', 'Q807'), 'geneva': ('Genève', 'Q71')}
+CITIES = {'zurich': ('Zürich', 'Q72'), 'bern': ('Bern', 'Q70'), 'basel': ('Basel', 'Q78'), 'lausanne': ('Lausanne', 'Q807'), 'geneva': ('Genève', 'Q71'), 'winterthur': ('Winterthur', 'Q9125')}
 CITY = os.environ.get('WOBILLIG_CITY', 'zurich')
 if CITY not in CITIES:
     raise ValueError(f'Unknown WOBILLIG_CITY: {CITY}')

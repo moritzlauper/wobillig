@@ -1,0 +1,1752 @@
+{
+  "generatedAt": "2026-10-26T17:01:15.898895+00:00",
+  "discoveredAt": "2026-10-26T16:51:06.891714+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "bars": [
+    {
+      "id": "node/2570468652",
+      "name": "Al Giardino",
+      "lat": 47.4943016,
+      "lon": 8.7399559,
+      "type": "restaurant",
+      "address": "Tösstalstrasse 70",
+      "postcode": "8400",
+      "website": "https://algiardino.ch/",
+      "cuisine": [
+        "italian",
+        "french",
+        "spanish"
+      ],
+      "openingHours": "Tu-Th 11:30-14:00,17:30-23:30; Fr 11:30-14:00,17:30-24:00; Sa 17:30-24:00; Su,Mo off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 23.0,
+          "sourceUrl": "https://www.algiardino.ch/speisekarte/",
+          "observedAt": "2026-10-26T16:51:58.168214+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 23.-",
+          "alcoholFree": true,
+          "sourceSha256": "9266d49f86d81274884ac31e1556669256d53f9ae6f52d437daaadbd6e583f36"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:51:58.168214+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/4095987433",
+      "name": "Bocciodromo Pizzeria",
+      "lat": 47.5076476,
+      "lon": 8.7084093,
+      "type": "restaurant",
+      "address": "Flüelistrasse 9",
+      "postcode": "",
+      "website": "https://bocciodromo.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu-Fr 14:00-23:00; Sa-Su 11:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://bocciodromo.ch/.cm4all/uproc.php/0/2025%20Speise-%20und%20Getr%C3%A4nkekarte.pdf?cdp=a&_=1941cb9a8c8",
+          "observedAt": "2026-10-26T16:51:06.904902+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 1: Margherita Mozzarella, Tomaten, Oregano 17.00",
+          "alcoholFree": true,
+          "sourceSha256": "5818f140a89db6721c16a384a52bbf4c3073dd24bb0471aac74e87827bbe5052"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:51:06.904902+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/7845978713",
+      "name": "Bombay Darbar",
+      "lat": 47.4970473,
+      "lon": 8.7010077,
+      "type": "restaurant",
+      "address": "Schlosstalstrasse 68",
+      "postcode": "8406",
+      "website": "http://bombaydarbar.ch/index.html",
+      "cuisine": [
+        "indian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,17:30-22:00; Sa,Su 17:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-26T16:51:08.214871+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "way/68254705",
+      "name": "Bruderhaus",
+      "lat": 47.4771355,
+      "lon": 8.7262346,
+      "type": "restaurant",
+      "address": "Bruderhausstrasse 1",
+      "postcode": "8400",
+      "website": "https://www.restaurant-bruderhaus.ch",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://restaurant-bruderhaus.ch/wp-content/uploads/2026/03/Menukarte_Bruderhaus_2026_DE_web.pdf",
+          "observedAt": "2026-10-26T16:52:35.452126+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: 1 MARGHERITA* 18.00",
+          "alcoholFree": true,
+          "sourceSha256": "6b47c30c2b928d916e000c3174874e867f61c8856b6619a21e604014f8092aeb"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:52:35.452126+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/3976628874",
+      "name": "Caliente",
+      "lat": 47.5052219,
+      "lon": 8.7097444,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/3124969715",
+      "name": "City Bistro",
+      "lat": 47.4992989,
+      "lon": 8.7241073,
+      "type": "fast_food",
+      "address": "Bahnhofplatz 4",
+      "postcode": "8400",
+      "website": "https://www.just-eat.ch/speisekarte/city-bistro-3",
+      "cuisine": [
+        "kebab",
+        "pizza",
+        "soup"
+      ],
+      "openingHours": "Mo-Su 10:30-24:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-26T16:51:08.289583+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/4816412579",
+      "name": "Da Cosimo e Anna",
+      "lat": 47.5109301,
+      "lon": 8.6937446,
+      "type": "restaurant",
+      "address": "Lindenplatz 3a",
+      "postcode": "8408",
+      "website": "https://www.pizzeria-cosimo-anna.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu-Fr 11:00-14:00, 18:00-22:00; Sa-Su 18:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.pizzeria-cosimo-anna.ch/Speisekarte/Pizza.htm",
+          "observedAt": "2026-10-26T16:51:08.826337+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita Tomaten, Mozzarella, Oregano CHF 16.00",
+          "alcoholFree": true,
+          "sourceSha256": "f05f5a426fdc81c6cd65ec865b091b0c42789d4b7ce9aef86fdec76d878bd40f"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:51:08.826337+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.pizzeria-cosimo-anna.ch/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Speisekarte/Pizza.htm",
+        "evidence": "Restaurant Pizzeria Wülflingen Winterthur Restaurante Pizza Take Away - Speisekarte - Speisekarte"
+      }
+    },
+    {
+      "id": "node/4095987428",
+      "name": "Dieci Pizzakurier",
+      "lat": 47.4984106,
+      "lon": 8.7373286,
+      "type": "fast_food",
+      "address": "St. Gallerstrasse 35",
+      "postcode": "8400",
+      "website": "https://dieci.ch/de/pizzakurier-winterthur",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-13:30,17:00-22:00; Fr,Sa 11:00-13:30,17:00-23:00; Su 11:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-26T16:51:06.905524+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/6063274104",
+      "name": "Domino's",
+      "lat": 47.4951468,
+      "lon": 8.7505642,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:00-13:30,17:00-24:00; Sa 11:00-24:00; Su 11:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4417689793",
+      "name": "Domino's Pizza",
+      "lat": 47.5049501,
+      "lon": 8.717907,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.dominos.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-13:30, 17:00-23:00; Fr 11:00-13:30, 17:00-23:55; Sa 11:00-23:55; Su 11:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-26T16:51:06.905729+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/12536140729",
+      "name": "Don Camillo",
+      "lat": 47.4980708,
+      "lon": 8.7277886,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://pizzeriadoncamillo.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:00, 18:00-22:30; Sa 12:00-14:30, 18:00-22:30; Mo 18:00-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.pizzeriadoncamillo.ch/media/menu_a5_10-2026.pdf",
+          "observedAt": "2026-10-26T16:51:09.372987+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: Margherita 19.5",
+          "alcoholFree": true,
+          "sourceSha256": "a8a73a0482360d497fa5a8bd1a3745fa89451b9b990d8636b05ac8acb9be0fe2"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:51:09.372987+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.pizzeriadoncamillo.ch/",
+        "evidence": "Pizzeria Don Camillo - Winterthur"
+      }
+    },
+    {
+      "id": "node/4095987426",
+      "name": "Euro Pizza",
+      "lat": 47.5148496,
+      "lon": 8.7591591,
+      "type": "restaurant",
+      "address": "Sonnenblickstrasse 1",
+      "postcode": "8404",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu-Fr 11:00-13:30, Tu-Sa 17:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12451614650",
+      "name": "Friedtal",
+      "lat": 47.5093301,
+      "lon": 8.7232947,
+      "type": "restaurant",
+      "address": "Lindstrasse 40",
+      "postcode": "8400",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 08:30-24:00; Sa 10:00-24:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4095987418",
+      "name": "Gastronomie am Gleis",
+      "lat": 47.501673,
+      "lon": 8.7235598,
+      "type": "restaurant",
+      "address": "Rudolfstrasse 21",
+      "postcode": "8400",
+      "website": "https://www.gastronomieamgleiswinterthur.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Th 09:00-23:00, Fr 09:00-00:30, Sa 09:00-00:30, Su 13:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita 32 cm Tomaten, Mozzarella 16,00 CHF",
+          "alcoholFree": true,
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:53:25.688039+00:00",
+      "pizzaMenu": [
+        {
+          "name": "Pizza Calabrese",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Calabrese 32 cm Tomaten, Mozzarella, Salami \"Ventricina\" 19,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, Salami \"Ventricina\"",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Crudo",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 23.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Crudo 32 cm Tomaten, Mozzarella, italienischer Rohschinken, Parmesan, Rucola 23,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, italienischer Rohschinken, Parmesan, Rucola",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Crudo Bufala",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 28.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Crudo Bufala Tomaten, Mozzarella, italienischer Rohschinken, Datteltomaten, Rucola, ganzer Büffelmozzarella 28,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, italienischer Rohschinken, Datteltomaten, Rucola, ganzer Büffelmozzarella",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Funghi",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Funghi 32 cm Tomaten, Mozzarella, Champignons 18,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, Champignons",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Gorgonzola",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Gorgonzola 32 cm Tomaten, Mozzarella, Gorgonzola, Zwiebeln 19,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, Gorgonzola, Zwiebeln",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Hawaii",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 20.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Hawaii 32 cm Tomaten, Mozzarella, bester Hinterschinken, Ananas 20,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, bester Hinterschinken, Ananas",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Italia Bufala",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 26.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Italia Bufala Tomaten, Mozzarella, Mascarpone, Parmesan, Datteltomaten, Rucola, ganzer Büffelmozzarella 26,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, Mascarpone, Parmesan, Datteltomaten, Rucola, ganzer Büffelmozzarella",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Madras",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 22.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Madras 32 cm Tomaten, Mozzarella, Schweizer Pouletbruststreifen mit Curry und Ananas 22,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, Schweizer Pouletbruststreifen mit Curry und Ananas",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Margherita Bufala",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 21.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Margherita Bufala Tomaten, Datteltomaten, Büffelmozzarella 21,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Datteltomaten, Büffelmozzarella",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Milano",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Milano 32 cm Tomaten, Mozzarella, milde Salami \"Typo Milano\" 19,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, milde Salami \"Typo Milano\"",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Napoli",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Napoli 32 cm Tomaten, Mozzarella, Sardellen, Kapern 18,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, Sardellen, Kapern",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza-Brot Pesto",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 7.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza-Brot Pesto 26 cm Zubereitet mit hausgemachtem Pesto 7,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Zubereitet mit hausgemachtem Pesto",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Prosciutto",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Prosciutto 32 cm Tomaten, Mozzarella, bester Hinterschinken 18,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, bester Hinterschinken",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Prosciutto Bufala",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 26.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Prosciutto Bufala Tomaten, Mozzarella, bester hauchdünn aufgeschnittener Hinterschinken, Datteltomaten, Rucola, ganzer Büffelmozzarella 26,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, bester hauchdünn aufgeschnittener Hinterschinken, Datteltomaten, Rucola, ganzer Büffelmozzarella",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Prosciutto Funghi",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 20.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Prosciutto Funghi 32 cm Tomaten, Mozzarella, bester Hinterschinken, Champignons 20,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, bester Hinterschinken, Champignons",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Quattro Stagioni",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 21.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Quattro Stagioni 32 cm Tomaten, Mozzarella, bester Hinterschinken, Champignons, Artischocken, Peperoni, Oliven 21,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, bester Hinterschinken, Champignons, Artischocken, Peperoni, Oliven",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Salame picante Bufala",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 24.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Salame picante Bufala Tomaten, Mozzarella, Salami \"Ventricina\", Oliven, Zwiebeln, Büffelmozzarella 24,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, Salami \"Ventricina\", Oliven, Zwiebeln, Büffelmozzarella",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Speciale Bufala",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 24.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Speciale Bufala Tomaten, Mozzarella, bester Hinterschinken, Mascarpone, hausgemachtes Pesto, Büffelmozzarella 24,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, bester Hinterschinken, Mascarpone, hausgemachtes Pesto, Büffelmozzarella",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Tonno",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Tonno 32 cm Tomaten, Mozzarella, Thunfisch, Zwiebeln 19,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, Thunfisch, Zwiebeln",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        },
+        {
+          "name": "Pizza Vegetariana",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 20.0,
+          "sourceUrl": "https://www.gastronomieamgleiswinterthur.ch/",
+          "observedAt": "2026-10-26T16:53:25.688039+00:00",
+          "evidence": "Pizza Vegetariana 32 cm Tomaten, Mozzarella, Broccoli, Peperoni, Artischocken, Zwiebeln 20,00 CHF",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Tomaten, Mozzarella, Broccoli, Peperoni, Artischocken, Zwiebeln",
+          "sourceSha256": "1eec2c6ce888ebbbe651ae0496775d56d8c3576d745efde5b37e2b69920965ec"
+        }
+      ]
+    },
+    {
+      "id": "node/4095400192",
+      "name": "Gianni's",
+      "lat": 47.4913296,
+      "lon": 8.7497603,
+      "type": "restaurant",
+      "address": "Scheideggstrasse 6",
+      "postcode": "8400",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:00-14:00,17:00-22:00; Sa,Su 17:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4095400191",
+      "name": "Gutschick",
+      "lat": 47.4917711,
+      "lon": 8.7502515,
+      "type": "restaurant",
+      "address": "Scheideggstrasse 10",
+      "postcode": "8400",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 08:30-23:00; Su 09:30-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4095987434",
+      "name": "Il Sapore",
+      "lat": 47.4891927,
+      "lon": 8.7028247,
+      "type": "restaurant",
+      "address": "Zürcherstrasse 208",
+      "postcode": "8406",
+      "website": "https://www.ilsapore.ch",
+      "cuisine": [
+        "swiss",
+        "italian",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-26T16:51:10.400519+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.sapore-holzofen.ch/karte",
+        "evidence": "Karte | Schweiz | Restaurant Pizzeria il Sapore"
+      }
+    },
+    {
+      "id": "node/5205863978",
+      "name": "Incontro",
+      "lat": 47.4912931,
+      "lon": 8.7340645,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "http://www.incontropizza.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo off; Tu, We, Fr 11:30-13:30, 17:30-21:00; Th, Su 17:30-21:00; Sa 11:30-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-26T16:51:18.946189+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/7826688994",
+      "name": "Industriehalle",
+      "lat": 47.4937731,
+      "lon": 8.7106155,
+      "type": "restaurant",
+      "address": "Untere Briggerstrasse 79",
+      "postcode": "8406",
+      "website": "https://industriehalle-kurier.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu-Su 12:00-04:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-26T16:51:31.646216+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/7439496294",
+      "name": "Kebab Treff",
+      "lat": 47.5105886,
+      "lon": 8.6951108,
+      "type": "restaurant",
+      "address": "Wülflingerstrasse 247",
+      "postcode": "8408",
+      "website": "https://www.wuelflingen.kebaptreff.com/info",
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Su-Th 10:00-22:00; Fr-Sa 10:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 14.0,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "confidence": "automatic",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Margherita Sugo, Mozzarella, Oregano CHF 14.00",
+          "alcoholFree": true,
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:54:18.968017+00:00",
+      "pizzaMenu": [
+        {
+          "name": "Pizza Al Tonno",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 17.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Al Tonno Sugo, Mozzarella, Oregano, Thon, Zwiebeln, Kapern CHF 17.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Thon, Zwiebeln, Kapern",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Bilo",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 22.0,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Bilo Sugo, Mozzarella, Oregano, Lammgeschnetz, Spinat, Pilze, scharfe Peperoncini CHF 22.00",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Lammgeschnetz, Spinat, Pilze, scharfe Peperoncini",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Buure",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Buure Sugo, Mozzarella, Oregano, Champignons, Speck, Ei, Zwiebeln CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Champignons, Speck, Ei, Zwiebeln",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Calabrese",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 17.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Calabrese Sugo, Mozzarella, Oregano, scharfe Salami CHF 17.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, scharfe Salami",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Crevetten",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 20.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Crevetten Sugo, Mozzarella, Oregano, Crevetten, Zwiebeln, Knoblauc CHF 20.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Crevetten, Zwiebeln, Knoblauc",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Diavola",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Diavola Sugo, Mozzarella, Oregano, Zwiebeln, Knoblauch, Salami, scharfe Paprika CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Zwiebeln, Knoblauch, Salami, scharfe Paprika",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Fiorentina",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 17.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Fiorentina Sugo, Mozzarella, Oregano, Spinat, Ei CHF 17.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Spinat, Ei",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Funghi",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Funghi Sugo, Mozzarella, Oregano, Champignons CHF 17.00",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Champignons",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Gorgonzola",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Gorgonzola Sugo, Mozzarella, Oregano, Gorgonzola CHF 17.00",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Gorgonzola",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Hawaii",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Hawaii Sugo, Mozzarella, Oregano, Ananas, Hinterschinken CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Ananas, Hinterschinken",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Italia",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 21.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Italia Sugo, Mozzarella, Oregano, Rucola, Parmesan, Parmaschinken, Cherry Tomaten CHF 21.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Rucola, Parmesan, Parmaschinken, Cherry Tomaten",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Kebap",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Kebap Sugo, Mozzarella, Oregano, Kebapfleisch CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Kebapfleisch",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Mafiosa",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Mafiosa Sugo, Mozzarella, Oregano, Salami, Hinterschinken, Knoblauch, scharf CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Salami, Hinterschinken, Knoblauch, scharf",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Marinara",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 20.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Marinara Sugo, Mozzarella, Oregano, Meeresfrüchte CHF 20.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Meeresfrüchte",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Napoli",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 17.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Napoli Sugo, Mozzarella, Oregano, Sardellen, Kapern CHF 17.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Sardellen, Kapern",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Padrone",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 22.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Padrone Sugo, Mozzarella, Oregano, Kalbgeschnetzeltes, Zwiebeln, Knoblauch CHF 22.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Kalbgeschnetzeltes, Zwiebeln, Knoblauch",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Pollo",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Pollo Sugo, Mozzarella, Oregano, Pouletfleisch CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Pouletfleisch",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Prosciutto",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 17.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Prosciutto Sugo, Mozzarella, Oregano, Hinterschinken CHF 17.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Hinterschinken",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Prosciutto e Funghi",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Prosciutto e Funghi Sugo, Mozzarella, Oregano, Hinterschinken, Champignons CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Hinterschinken, Champignons",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Quattro Formaggi",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Quattro Formaggi Sugo, Mozzarella, Oregano, Mozzarella, Gorgonzola, Parmesan, Feta CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Mozzarella, Gorgonzola, Parmesan, Feta",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Quattro Stagioni",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Quattro Stagioni Sugo, Mozzarella, Oregano, Salami, Hinterschinken, Artischocken, Champignons CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Salami, Hinterschinken, Artischocken, Champignons",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Rustica",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Rustica Sugo, Mozzarella, Oregano, Speck, Zwiebeln, Gorgonzola CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Speck, Zwiebeln, Gorgonzola",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Siciliana",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Siciliana Sugo, Mozzarella, Oregano, Hinterschinken, Champignons, Ei CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Hinterschinken, Champignons, Ei",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Sucuk",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 20.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Sucuk Sugo, Mozzarella, Oregano, Türk. Salami, Spinat, Pilze, Zwiebeln CHF 20.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Türk. Salami, Spinat, Pilze, Zwiebeln",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Toscana",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Toscana Sugo, Mozzarella, Oregano, Salami, Peperoni, Oliven CHF 19.50",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Salami, Peperoni, Oliven",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        },
+        {
+          "name": "Pizza Vegetaria",
+          "pizzaType": "other",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.wuelflingen.kebaptreff.com/Home/GetHomeData",
+          "observedAt": "2026-10-26T16:54:18.968017+00:00",
+          "evidence": "Öffentliche Online-Speisekarte: Pizza Vegetaria Sugo, Mozzarella, Oregano, Gemüse CHF 18.00",
+          "alcoholFree": true,
+          "confidence": "automatic",
+          "priceContext": "online_menu",
+          "ingredients": "Sugo, Mozzarella, Oregano, Gemüse",
+          "sourceSha256": "8385fd6c156527a498afc8631b4d02efff75a85af10d38e089d408b502278ef3"
+        }
+      ]
+    },
+    {
+      "id": "node/14191187816",
+      "name": "La Mirada",
+      "lat": 47.4984908,
+      "lon": 8.7362107,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.miradakurier.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 17:00-02:00; Sa 11:00-02:00; Su 11:00-22:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-26T16:51:31.648029+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/4395329573",
+      "name": "La Pizza Pasta",
+      "lat": 47.4930072,
+      "lon": 8.7433443,
+      "type": "fast_food",
+      "address": "Tösstalstrasse 89",
+      "postcode": "8400",
+      "website": "https://lapizzapasta.ch",
+      "cuisine": [
+        "kebab",
+        "pizza",
+        "pasta"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-26T16:51:06.905952+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/5144542839",
+      "name": "Mira Mare",
+      "lat": 47.5017958,
+      "lon": 8.7535976,
+      "type": "fast_food",
+      "address": "Hegistrasse 35b",
+      "postcode": "8404",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/471628000",
+      "name": "Molino",
+      "lat": 47.4994389,
+      "lon": 8.7277569,
+      "type": "restaurant",
+      "address": "Marktgasse 45",
+      "postcode": "8400",
+      "website": "https://molino.ch/de/restaurant/pizzeria-ristorante-molino-winterthur/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Su 10:00-23:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-26T16:51:06.906228+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://molino.ch/de/",
+        "evidence": "Italianità per tutti – Pizzeria Ristorante Molino"
+      }
+    },
+    {
+      "id": "node/5715924417",
+      "name": "Monte Civetta",
+      "lat": 47.5089085,
+      "lon": 8.6921959,
+      "type": "restaurant",
+      "address": "Wieshofstrasse 44",
+      "postcode": "8408",
+      "website": "https://monte-civetta.ch/",
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:00-14:00, 17:00-22:00; Sa 17:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-26T16:51:43.059238+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://monte-civetta.ch/speisekarte",
+        "evidence": "Restaurant Pizzeria Monte-Civetta"
+      }
+    },
+    {
+      "id": "node/359700824",
+      "name": "Notfall Kebab",
+      "lat": 47.5073743,
+      "lon": 8.725867,
+      "type": "fast_food",
+      "address": "Brunngasse 41",
+      "postcode": "8400",
+      "website": "https://www.notfall-kebab.ch/",
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 19:00-22:00; Sa-Su 10:30-21:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-26T16:51:47.979275+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/359695274",
+      "name": "Piazza",
+      "lat": 47.5052041,
+      "lon": 8.7172595,
+      "type": "restaurant",
+      "address": "Walkestrasse 23",
+      "postcode": "8400",
+      "website": "https://www.piazzapizza.ch/",
+      "cuisine": [
+        "pizza",
+        "kebab"
+      ],
+      "openingHours": "Mo-Th 17:00-22:30, Fr 17:00-23:00, Sa 12:00-23:00, Su 12:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "ambiguous_prices",
+      "checkedAt": "2026-10-26T16:51:48.132943+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/8519878955",
+      "name": "Pizza Oberi",
+      "lat": 47.5077003,
+      "lon": 8.7554769,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Tu-Th 11:00-13:00,17:00-22:00; Fr 11:00-13:30,17:00-23:00; Sa 17:00-23:00; Su,PH 12:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12262755595",
+      "name": "Pizzeria Corsaro",
+      "lat": 47.4850662,
+      "lon": 8.7097381,
+      "type": "restaurant",
+      "address": "Auwiesenstrasse 2",
+      "postcode": "8406",
+      "website": "https://www.pizzacorsaro.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-26T16:51:06.906611+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/556746551",
+      "name": "Pizzeria Schwanen",
+      "lat": 47.4941104,
+      "lon": 8.714503,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "pasta"
+      ],
+      "openingHours": "Mo-Fr 08:30-14:00,17:00-24:00; Sa 17:00-23:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/14214035655",
+      "name": "Prima Pizza",
+      "lat": 47.4897077,
+      "lon": 8.7033474,
+      "type": "restaurant",
+      "address": "Zürcherstrasse 198",
+      "postcode": "8406",
+      "website": "https://prima-pizza.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 11:30-13:30,17:00-22:00; Su 17:00-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-26T16:51:06.907169+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/282655581",
+      "name": "Pulcinella",
+      "lat": 47.498689,
+      "lon": 8.727701,
+      "type": "restaurant",
+      "address": "Metzggasse 11",
+      "postcode": "8400",
+      "website": "https://pulcinella-winterthur.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Th 11:30-24:00, Fr 11:00-02:00, Sa 14:00-02:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 20.5,
+          "sourceUrl": "https://pulcinella-winterthur.ch/wp-content/uploads/2026/06/Carta-aggiornata_0626.pdf",
+          "observedAt": "2026-10-26T16:56:26.271908+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 6: 1 Margherita 20.50",
+          "alcoholFree": true,
+          "extractionMethod": "ocr",
+          "sourceSha256": "52cb618818c05ec0e1c62f82ad85d49e76ed950d8d8ba1a5676afd96075f6fda"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:56:26.271908+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://pulcinella-winterthur.ch/",
+        "evidence": "Pulcinella Winterthur - Pizzeria Pulcinella"
+      }
+    },
+    {
+      "id": "node/2457539648",
+      "name": "Restaurant Kafi Burehus",
+      "lat": 47.4866133,
+      "lon": 8.7594559,
+      "type": "restaurant",
+      "address": "Schwerzenbachstrasse 1",
+      "postcode": "8405",
+      "website": "https://www.restaurant-kafi-burehus.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Tu-Sa 08:30-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.restaurant-kafi-burehus.ch/wp-content/uploads/Speisekarte_Restaurant_Burehus.pdf",
+          "observedAt": "2026-10-26T16:57:05.347185+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: Pizza Margherita: 16.-",
+          "alcoholFree": true,
+          "sourceSha256": "2dd27a71ea4902276348e7bb9412035eb68c973323da0f05cd17c9bbe96ce972"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:57:05.347185+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/359692440",
+      "name": "Restaurant Merano",
+      "lat": 47.5019996,
+      "lon": 8.7185647,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "8400",
+      "website": "https://www.restaurant-merano.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 10:00-14:00,17:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.5,
+          "sourceUrl": "https://de.cdn-website.com/43ceee43ba0a4f8e914e69f898baec70/files/uploaded/Merano-20Speisen-20--20Getr-C3-A4nke.pdf",
+          "observedAt": "2026-10-26T16:57:07.227572+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 3: Pizza Margherita 17.50",
+          "alcoholFree": true,
+          "sourceSha256": "6f76680994e6901d0d57224400adf7671dfea4b9218ced531cfe5fb3ce4b197f"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:57:07.227572+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/2424718821",
+      "name": "Restaurant Pizzeria Schmiede",
+      "lat": 47.5063228,
+      "lon": 8.7571254,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:00-13:00, 17:00-22:00; Sa-Su 17:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/11725796522",
+      "name": "Ristorante La Rosa",
+      "lat": 47.4935234,
+      "lon": 8.7155047,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.ristorante-larosa.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Tu-Fr 11:00-14:00,18:00-23:00; Sa 16:00-23:00; Su 11:00-17:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 16.0,
+          "sourceUrl": "https://ristorante-larosa.ch/speisekarte",
+          "observedAt": "2026-10-26T16:51:50.801747+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita CHF 16.00 Tomatensauce, Mozzarella, Oregano",
+          "alcoholFree": true,
+          "sourceSha256": "70730acc8029f0318c64f1d19f0effdc5f8637e856139511c4d68b3ce4ff0f07"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:51:50.801747+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/359683408",
+      "name": "Ristorante Pizzeria al Agi-M",
+      "lat": 47.4963918,
+      "lon": 8.7402957,
+      "type": "restaurant",
+      "address": "Pflanzschulstrasse 23",
+      "postcode": "8400",
+      "website": "https://al-agi-m.ch/",
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 11:00-14:00,17:00-22:30; PH closed",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 9.9,
+          "sourceUrl": "https://al-agi-m.ch/wp-content/uploads/2024/10/230330_al-Agi-M_Falzflyer-2_241029_134753.pdf",
+          "observedAt": "2026-10-26T16:51:06.907308+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: 1 Margherita CHF 9.90",
+          "alcoholFree": true,
+          "sourceSha256": "67af09d1522968cce296d704d6152c8106b62633ea9fd3a399e8020a74dc2160"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:51:06.907308+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://al-agi-m.ch/karte/",
+        "evidence": "Karte – Ristorante & Pizzeria al-Agi-M"
+      }
+    },
+    {
+      "id": "node/498891528",
+      "name": "San Remo",
+      "lat": 47.507148,
+      "lon": 8.7257511,
+      "type": "restaurant",
+      "address": "Brunngasse 35",
+      "postcode": "8400",
+      "website": "https://www.san-remo.ch",
+      "cuisine": [
+        "italian",
+        "persian"
+      ],
+      "openingHours": "Mo-Su 11:30-14:30,17:30-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.5,
+          "sourceUrl": "https://9a2c6e46-728d-4678-aa2e-0956b4e8be0e.filesusr.com/ugd/ea31a3_00a5a869b0d242b4b10aaeef59865b97.pdf",
+          "observedAt": "2026-10-26T16:57:44.924206+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: Margherita 18.50",
+          "alcoholFree": true,
+          "sourceSha256": "a241a370006d468e982dd1958e142de588b65c68b7e12eef52e3e914dd05924a"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:57:44.924206+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.san-remo.ch",
+        "evidence": "Restaurant Pizzeria San Remo Winterthur"
+      }
+    },
+    {
+      "id": "node/2451641185",
+      "name": "SanSiro",
+      "lat": 47.5044596,
+      "lon": 8.7636097,
+      "type": "restaurant",
+      "address": "Else-Züblin-Strasse",
+      "postcode": "8404",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Su 10:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/359687037",
+      "name": "Santa Lucia",
+      "lat": 47.5009387,
+      "lon": 8.7252033,
+      "type": "restaurant",
+      "address": "Bahnhofplatz 12",
+      "postcode": "8400",
+      "website": "https://www.bindella.ch/de/santa-lucia-winterthur.html",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,17:30-22:30; Sa,Su 11:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-26T16:51:06.965401+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/4879747524",
+      "name": "Santa Rosa",
+      "lat": 47.5018878,
+      "lon": 8.7734895,
+      "type": "restaurant",
+      "address": "Stegackerstrasse 14",
+      "postcode": "8409",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/5770385052",
+      "name": "Sherazad",
+      "lat": 47.4963916,
+      "lon": 8.7458858,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/5219634725",
+      "name": "Terracina",
+      "lat": 47.4984412,
+      "lon": 8.72724,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "italian",
+        "noodle",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12546601316",
+      "name": "Top 1",
+      "lat": 47.4837338,
+      "lon": 8.7601794,
+      "type": "restaurant",
+      "address": "Bollstrasse 7",
+      "postcode": "8405",
+      "website": "https://top-1.ch/",
+      "cuisine": [
+        "pizza",
+        "pasta",
+        "sandwich"
+      ],
+      "openingHours": "Tu-Sa 10:30-14:00, 17:30-22:30; Su 14:30-22:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-26T16:51:48.419131+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/4395329576",
+      "name": "Victoria",
+      "lat": 47.4907272,
+      "lon": 8.7471475,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 08:00-22:00; Su 10:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4434577593",
+      "name": "Villa Duchessa",
+      "lat": 47.5002649,
+      "lon": 8.7266443,
+      "type": "restaurant",
+      "address": "Stadthausstrasse 12",
+      "postcode": "8400",
+      "website": "https://villa-duchessa-winterthur.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 10:00-23:30; Su 10:30-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://villa-duchessa-winterthur.ch/wp-content/uploads/2026/04/Menuekarte_Villa-Duchessa_2026_DE_web.pdf",
+          "observedAt": "2026-10-26T16:58:27.578213+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 2: 1 MARGHERITA* 18.00",
+          "alcoholFree": true,
+          "sourceSha256": "7a84ef9f05549a70173c76c749a918085733325da8ec4e7456ca7cfd4e859cfb"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-26T16:58:27.578213+00:00",
+      "pizzaMenu": []
+    }
+  ]
+}

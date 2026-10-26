@@ -40,6 +40,7 @@ for (const width of [320, 1280]) {
     await expect(menu.locator('a[data-city]').first()).toBeHidden();
     await menu.locator('summary').click();
     await expect(menu.locator('a[data-city="lausanne"]')).toBeVisible();
+    await expect(menu.locator('a[data-city="winterthur"]')).toHaveAttribute('href', /^\/winterthur\?.*drink=beer/);
     await expect(menu.locator('a[data-city="geneva"]')).toHaveAttribute('href', /\/en\/geneve\?.*drink=beer/);
     await expect(menu.locator('a').last()).toHaveAttribute('href', /^mailto:hello@wobillig.ch\?subject=/);
     await expect(menu.locator('a').last()).toHaveAccessibleName('Stadt wünschen');

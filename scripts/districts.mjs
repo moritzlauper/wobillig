@@ -27,6 +27,13 @@ const sources = {
     license: 'Open use (opendata.swiss terms_open)',
     feature: p => ({ number: Number(p.Nummer), name: p.Name }),
   },
+  // The cantonal layer also holds Zürich's Kreise; keep only Winterthur (BFS 230).
+  winterthur: {
+    url: 'https://maps.zh.ch/wfs/OGDZHWFS?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=ms:ogd-0278_arv_basis_up_stadtkreise_f&OUTPUTFORMAT=geojson&SRSNAME=EPSG:4326',
+    source: 'https://opendata.swiss/de/dataset/stadtkreise-und-quartiere-zurich-und-winterthur',
+    license: 'Open use (opendata.swiss terms_open); Kanton Zürich, Amt für Raumentwicklung',
+    feature: p => p.bfs === 230 && { number: Number(p.stadtkreisnummer), name: p.stadtkreisname },
+  },
 };
 
 const round = value => Array.isArray(value) ? value.map(round) : Math.round(value * 1e6) / 1e6;

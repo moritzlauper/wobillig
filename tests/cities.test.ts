@@ -16,6 +16,8 @@ describe('city navigation and storage isolation', () => {
     expect(cityFromPath('/en/lausanne')).toBe('lausanne');
     expect(cityFromPath('/de/geneve/')).toBe('geneva');
     expect(cityFromPath('/geneve')).toBe('geneva');
+    expect(cityFromPath('/winterthur/')).toBe('winterthur');
+    expect(cityFromPath('/en/winterthur')).toBe('winterthur');
     expect(cityFromPath('/english')).toBe('zurich');
   });
   it('keeps the language when switching cities', () => {
@@ -43,6 +45,10 @@ it('opens the new cities in English by default and preserves explicit German lin
   expect(defaultCityLocale('lausanne', 'de')).toBe('en');
   expect(defaultCityLocale('geneva', 'de')).toBe('en');
   expect(defaultCityLocale('basel', 'de')).toBe('de');
+  expect(defaultCityLocale('winterthur', 'de')).toBe('de');
+  expect(defaultCityLocale('winterthur', 'en')).toBe('en');
+  expect(cityLink('winterthur', '?drink=beer&bar=node%2F1')).toBe('/winterthur?drink=beer');
+  expect(cityLink('winterthur', '', '/', 'en')).toBe('/en/winterthur');
   expect(cityLink('geneva', '?drink=beer&bar=node%2F1', '/', 'en')).toBe('/en/geneve?drink=beer');
   expect(cityLink('lausanne', '', '/', 'de')).toBe('/de/lausanne');
 });

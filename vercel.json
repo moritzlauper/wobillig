@@ -84,8 +84,16 @@
       "destination": "/basel/index.html"
     },
     {
+      "source": "/winterthur",
+      "destination": "/winterthur/index.html"
+    },
+    {
       "source": "/basel/",
       "destination": "/basel/index.html"
+    },
+    {
+      "source": "/winterthur/",
+      "destination": "/winterthur/index.html"
     },
     {
       "source": "/en",
@@ -108,8 +116,16 @@
       "destination": "/en/basel/index.html"
     },
     {
+      "source": "/en/winterthur",
+      "destination": "/en/winterthur/index.html"
+    },
+    {
       "source": "/en/basel/",
       "destination": "/en/basel/index.html"
+    },
+    {
+      "source": "/en/winterthur/",
+      "destination": "/en/winterthur/index.html"
     },
     {
       "source": "/espresso-zuerich",
@@ -124,8 +140,16 @@
       "destination": "/espresso-basel/index.html"
     },
     {
+      "source": "/espresso-winterthur",
+      "destination": "/espresso-winterthur/index.html"
+    },
+    {
       "source": "/cappuccino-basel",
       "destination": "/cappuccino-basel/index.html"
+    },
+    {
+      "source": "/cappuccino-winterthur",
+      "destination": "/cappuccino-winterthur/index.html"
     },
     {
       "source": "/espresso-bern",
@@ -148,8 +172,16 @@
       "destination": "/en/espresso-basel/index.html"
     },
     {
+      "source": "/en/espresso-winterthur",
+      "destination": "/en/espresso-winterthur/index.html"
+    },
+    {
       "source": "/en/cappuccino-basel",
       "destination": "/en/cappuccino-basel/index.html"
+    },
+    {
+      "source": "/en/cappuccino-winterthur",
+      "destination": "/en/cappuccino-winterthur/index.html"
     },
     {
       "source": "/en/espresso-bern",
@@ -172,8 +204,16 @@
       "destination": "/stange-basel/index.html"
     },
     {
+      "source": "/stange-winterthur",
+      "destination": "/stange-winterthur/index.html"
+    },
+    {
       "source": "/margherita-basel",
       "destination": "/margherita-basel/index.html"
+    },
+    {
+      "source": "/margherita-winterthur",
+      "destination": "/margherita-winterthur/index.html"
     },
     {
       "source": "/stange-bern",
@@ -196,8 +236,16 @@
       "destination": "/en/stange-basel/index.html"
     },
     {
+      "source": "/en/stange-winterthur",
+      "destination": "/en/stange-winterthur/index.html"
+    },
+    {
       "source": "/en/margherita-basel",
       "destination": "/en/margherita-basel/index.html"
+    },
+    {
+      "source": "/en/margherita-winterthur",
+      "destination": "/en/margherita-winterthur/index.html"
     },
     {
       "source": "/en/stange-bern",
@@ -372,6 +420,11 @@
       "permanent": true
     },
     {
+      "source": "/winterthur/index.html",
+      "destination": "/winterthur",
+      "permanent": true
+    },
+    {
       "source": "/en/index.html",
       "destination": "/en",
       "permanent": true
@@ -384,6 +437,11 @@
     {
       "source": "/en/basel/index.html",
       "destination": "/en/basel",
+      "permanent": true
+    },
+    {
+      "source": "/en/winterthur/index.html",
+      "destination": "/en/winterthur",
       "permanent": true
     },
     {
@@ -402,8 +460,18 @@
       "permanent": true
     },
     {
+      "source": "/espresso-winterthur/index.html",
+      "destination": "/espresso-winterthur",
+      "permanent": true
+    },
+    {
       "source": "/cappuccino-basel/index.html",
       "destination": "/cappuccino-basel",
+      "permanent": true
+    },
+    {
+      "source": "/cappuccino-winterthur/index.html",
+      "destination": "/cappuccino-winterthur",
       "permanent": true
     },
     {
@@ -432,8 +500,18 @@
       "permanent": true
     },
     {
+      "source": "/en/espresso-winterthur/index.html",
+      "destination": "/en/espresso-winterthur",
+      "permanent": true
+    },
+    {
       "source": "/en/cappuccino-basel/index.html",
       "destination": "/en/cappuccino-basel",
+      "permanent": true
+    },
+    {
+      "source": "/en/cappuccino-winterthur/index.html",
+      "destination": "/en/cappuccino-winterthur",
       "permanent": true
     },
     {
@@ -462,8 +540,18 @@
       "permanent": true
     },
     {
+      "source": "/stange-winterthur/index.html",
+      "destination": "/stange-winterthur",
+      "permanent": true
+    },
+    {
       "source": "/margherita-basel/index.html",
       "destination": "/margherita-basel",
+      "permanent": true
+    },
+    {
+      "source": "/margherita-winterthur/index.html",
+      "destination": "/margherita-winterthur",
       "permanent": true
     },
     {
@@ -492,8 +580,18 @@
       "permanent": true
     },
     {
+      "source": "/en/stange-winterthur/index.html",
+      "destination": "/en/stange-winterthur",
+      "permanent": true
+    },
+    {
       "source": "/en/margherita-basel/index.html",
       "destination": "/en/margherita-basel",
+      "permanent": true
+    },
+    {
+      "source": "/en/margherita-winterthur/index.html",
+      "destination": "/en/margherita-winterthur",
       "permanent": true
     },
     {

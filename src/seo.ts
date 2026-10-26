@@ -11,7 +11,7 @@ export const guideTypes = [...coffeeGuideTypes, 'stange', 'margherita'] as const
 export type GuideType = typeof guideTypes[number];
 const guideLabels: Record<string, string> = { ...coffeeLabels, stange: 'Stange', margherita: 'Pizza Margherita' };
 export const guideDataset = (type: GuideType) => type === 'stange' ? 'bars' : type === 'margherita' ? 'pizza' : 'coffee';
-const slugs: Record<City, string> = { zurich: 'zuerich', basel: 'basel', bern: 'bern', lausanne: 'lausanne', geneva: 'genf' };
+const slugs: Record<City, string> = { zurich: 'zuerich', basel: 'basel', bern: 'bern', lausanne: 'lausanne', geneva: 'genf', winterthur: 'winterthur' };
 export const guidePath = (city: City, type: GuideType, locale: Locale = 'de') => localizedPath(`/${type}-${slugs[city]}`, locale);
 export const cityPath = (city: City, locale: Locale = 'de') => localizedPath(cities[city].path, locale);
 export const localPath = (path: string, base = '/') => base.replace(/\/$/, '') + path;

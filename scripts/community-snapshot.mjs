@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { get, put } from '@vercel/blob';
 
-const cityNames = ['zurich', 'bern', 'basel', 'lausanne', 'geneva'];
+const cityNames = ['zurich', 'bern', 'basel', 'lausanne', 'geneva', 'winterthur'];
 const slotMs = 6 * 60 * 60 * 1000;
 const digest = text => createHash('sha256').update(text).digest('hex');
 export function verifySnapshot(snapshot) {

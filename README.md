@@ -1,6 +1,6 @@
 # wobillig
 
-wobillig ist eine Karte, auf der du Kaffee-, Bier- und Pizzapreise in Zürich, Bern, Basel, Lausanne und Genf vergleichst. Die Website läuft unter **[wobillig.ch](https://wobillig.ch)**. Sie ist kostenlos und funktioniert ohne Konto.
+wobillig ist eine Karte, auf der du Kaffee-, Bier- und Pizzapreise in Zürich, Bern, Basel, Winterthur, Lausanne und Genf vergleichst. Die Website läuft unter **[wobillig.ch](https://wobillig.ch)**. Sie ist kostenlos und funktioniert ohne Konto.
 
 Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der Lokale und aus Einträgen von Besucherinnen und Besuchern. Jedes Angebot nennt seine Quelle und das Erfassungsdatum. Ein Scraper liest die Karten alle drei Wochen neu ein. Fehlende Preise werden nie geschätzt.
 
@@ -13,10 +13,10 @@ Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der
 - Fehlende Lokale können ergänzt und bestehende korrigiert werden (Name, Adresse, Website).
 - Kaffee lässt sich mit Sternen und einem Foto bewerten. Der Durchschnitt erscheint ab drei Stimmen.
 - Über das Plus neben den Kategorien entstehen eigene Maps, etwa für Brot oder Haferflocken. Wer den Link hat, kann eine Map ansehen und bearbeiten. Nach einer Prüfung kann sie öffentlich unter «Weitere» erscheinen. Automatische Maps lassen sich bereits anfragen, ein Import dafür ist aber noch nicht aktiv.
-- Unter «Filter» stehen die Zürcher Stadtkreise, die Basler Wohnviertel, die Berner Stadtteile und die Quartiere von Lausanne und Genf zur Auswahl, jeweils mit eigenem Durchschnittspreis.
+- Unter «Filter» stehen die Zürcher und Winterthurer Stadtkreise, die Basler Wohnviertel, die Berner Stadtteile und die Quartiere von Lausanne und Genf zur Auswahl, jeweils mit eigenem Durchschnittspreis.
 - Das Fenster «Daten» exportiert den Bestand der Stadt als CSV oder JSON.
 - Lokale lassen sich per Link teilen. Es gibt einen Hell- und einen Dunkelmodus sowie eine deutsche und eine englische Oberfläche.
-- «Plattformkosten stützen» ist ein freiwilliger Beitrag an Hosting, Speicher und KI-Scan, bezahlt per TWINT oder Karte über Stripe. Der Betrag entspricht einem günstigen Cappuccino der Stadt, aktuell CHF 5.50 in Zürich und Basel, CHF 5.20 in Bern und CHF 4.90 in Lausanne und Genf.
+- «Plattformkosten stützen» ist ein freiwilliger Beitrag an Hosting, Speicher und KI-Scan, bezahlt per TWINT oder Karte über Stripe. Der Betrag entspricht einem günstigen Cappuccino der Stadt, aktuell CHF 5.50 in Zürich, Basel und Winterthur, CHF 5.20 in Bern und CHF 4.90 in Lausanne und Genf.
 
 ### Günstig-Filter
 
@@ -33,22 +33,24 @@ Das Feld «Bis CHF» zeigt ohne eigene Eingabe den höchsten Preis der passenden
 | Zürich | `/` | `/en` |
 | Bern | `/bern` | `/en/bern` |
 | Basel | `/basel` | `/en/basel` |
+| Winterthur | `/winterthur` | `/en/winterthur` |
 | Lausanne | `/de/lausanne` | `/en/lausanne` |
 | Genf | `/de/geneve` | `/en/geneve` |
 
 Lausanne und Genf öffnen standardmässig auf Englisch. `/lausanne` und `/geneve` leiten dorthin weiter, ebenso ältere `/genf`-Links. Genf umfasst neben der Stadt 15 Nachbargemeinden wie Carouge, Lancy und Vernier, französische Gemeinden gehören nicht dazu.
 
-Zu jeder Stadt gibt es vier Ranglisten, die auch ohne JavaScript lesbar sind: `/espresso-<stadt>`, `/cappuccino-<stadt>`, `/stange-<stadt>` und `/margherita-<stadt>` mit den Kürzeln `zuerich`, `bern`, `basel`, `lausanne` und `genf`, auf Englisch mit vorangestelltem `/en`. Sie zeigen die 25 günstigsten erfassten Lokale mit Quelle und Datum. Die Stangen-Liste zählt nur Offenbier, die Margherita-Liste nur Restaurants ohne Imbisse und Takeaways. Zusammen mit den Stadtseiten stehen 50 Seiten in der Sitemap.
+Zu jeder Stadt gibt es vier Ranglisten, die auch ohne JavaScript lesbar sind: `/espresso-<stadt>`, `/cappuccino-<stadt>`, `/stange-<stadt>` und `/margherita-<stadt>` mit den Kürzeln `zuerich`, `bern`, `basel`, `winterthur`, `lausanne` und `genf`, auf Englisch mit vorangestelltem `/en`. Sie zeigen die 25 günstigsten erfassten Lokale mit Quelle und Datum. Die Stangen-Liste zählt nur Offenbier, die Margherita-Liste nur Restaurants ohne Imbisse und Takeaways. Zusammen mit den Stadtseiten stehen 60 Seiten in der Sitemap.
 
 ## Datenstand
 
-Datensätze vom 19. bis 21. Oktober 2026, ohne Community-Einträge:
+Datensätze vom 19. bis 21. Oktober 2026, für Winterthur vom 26. Oktober 2026, ohne Community-Einträge:
 
 | Stadt | Kaffee: Lokale / Angebote | Bier: Lokale / Angebote | Pizza: Lokale mit Margherita-Preis | Lokale im OSM-Katalog |
 | --- | ---: | ---: | ---: | ---: |
 | Zürich | 300 / 1'539 | 312 / 2'402 | 83 | 2'198 |
 | Bern | 132 / 730 | 127 / 981 | 23 | 715 |
 | Basel | 90 / 467 | 84 / 760 | 19 | 784 |
+| Winterthur | 50 / 237 | 48 / 289 | 14 | 388 |
 | Lausanne | 59 / 252 | 57 / 521 | 10 | 630 |
 | Genf | 74 / 284 | 73 / 426 | 16 | 1'561 |
 
@@ -97,7 +99,7 @@ python -m scraper.locations                       # nur Standortkatalog
 python -m scraper.ai_scan --discover              # KI-Scan, braucht ANTHROPIC_API_KEY
 ```
 
-`WOBILLIG_CITY=bern`, `basel`, `lausanne` oder `geneva` wählt die Stadt, ohne Variable gilt Zürich. Einzelne Lokale prüft `--name 'Bar Rossi'` beim Bier und `--only 'Name|Name'` bei Kaffee und Pizza. `--max-pages` begrenzt die Dokumente pro Lokal, `--limit` die Zahl neuer Kandidaten.
+`WOBILLIG_CITY=bern`, `basel`, `winterthur`, `lausanne` oder `geneva` wählt die Stadt, ohne Variable gilt Zürich. Einzelne Lokale prüft `--name 'Bar Rossi'` beim Bier und `--only 'Name|Name'` bei Kaffee und Pizza. `--max-pages` begrenzt die Dokumente pro Lokal, `--limit` die Zahl neuer Kandidaten.
 
 | Datei | Zweck |
 | --- | --- |
@@ -184,7 +186,7 @@ Snapshots nie blind zurückspielen. Beiträge, die nach dem Snapshot eingegangen
 | Refresh private promotion pilot | täglich | Privater Aktionspilot mit dem Coop-Prospekt, nur auf der Prüfseite sichtbar |
 | Deploy to GitHub Pages | manuell | Optionale statische Kopie ohne API |
 
-Der Preis-Refresh arbeitet die Städte nacheinander ab (Zürich, Basel, Bern, Lausanne, Genf), jeweils in drei Abschnitten für Getränke, Pizza und KI. Ein Fehler in einer Stadt hält die anderen nicht auf. Manuell lassen sich `city`, `scan_mode` (`full`, `pizza_only`, `ai_only`, `estimates_only`, `photos_only`), `ai_budget_usd` (Standard 5, höchstens 20 pro Stadt), `deep_scan` und `exhaustive_scan` wählen. Scheitert die Veröffentlichung eines Abschnitts, enthält das Artefakt `refreshed-dataset-…` den Stand, und `python -m scraper.publish --snapshot <datei> --branch main` veröffentlicht ihn ohne neuen Scan.
+Der Preis-Refresh arbeitet die Städte nacheinander ab (Zürich, Basel, Bern, Lausanne, Genf, Winterthur), jeweils in drei Abschnitten für Getränke, Pizza und KI. Ein Fehler in einer Stadt hält die anderen nicht auf. Manuell lassen sich `city`, `scan_mode` (`full`, `pizza_only`, `ai_only`, `estimates_only`, `photos_only`), `ai_budget_usd` (Standard 5, höchstens 20 pro Stadt), `deep_scan` und `exhaustive_scan` wählen. Scheitert die Veröffentlichung eines Abschnitts, enthält das Artefakt `refreshed-dataset-…` den Stand, und `python -m scraper.publish --snapshot <datei> --branch main` veröffentlicht ihn ohne neuen Scan.
 
 Die Workflows brauchen die Repository-Secrets `ANTHROPIC_API_KEY` und `BLOB_READ_WRITE_TOKEN`. Solange das Repository öffentlich ist, kosten die Actions-Minuten nichts. Ein einzelner Refresh läuft rund acht Stunden, privat würde das Freikontingent von GitHub schnell aufgebraucht.
 
@@ -211,6 +213,6 @@ Für Statistiken laufen Vercel Web Analytics und GoatCounter, beide ohne Cookies
 Der Code steht unter der MIT-Lizenz (`LICENSE`). Rechte an Quelldaten und fremden Inhalten bleiben davon getrennt.
 
 - Standorte: [© OpenStreetMap-Mitwirkende](https://www.openstreetmap.org/copyright), [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Kartenkacheln von openstreetmap.org gemäss [Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/).
-- Quartiergrenzen: [Stadt Zürich](https://data.stadt-zuerich.ch/dataset/geo_stadtkreise) (CC0), [Kanton Basel-Stadt](https://data.bs.ch/explore/dataset/100042/) (CC BY 4.0), [Stadt Bern](https://opendata.swiss/de/dataset/stadtteile), [Stadt Lausanne](https://viageo.ch/md/29cfd252-6b51-4798-92af-6f9aaf229dcc) (nichtkommerziell mit Quellenangabe) und [Ville de Genève / SITG](https://sitg.ge.ch/donnees/vdg-quartier-ville). `npm run districts` lädt sie neu.
+- Quartiergrenzen: [Stadt Zürich](https://data.stadt-zuerich.ch/dataset/geo_stadtkreise) (CC0), [Kanton Basel-Stadt](https://data.bs.ch/explore/dataset/100042/) (CC BY 4.0), [Stadt Bern](https://opendata.swiss/de/dataset/stadtteile), [Stadt Lausanne](https://viageo.ch/md/29cfd252-6b51-4798-92af-6f9aaf229dcc) (nichtkommerziell mit Quellenangabe), [Ville de Genève / SITG](https://sitg.ge.ch/donnees/vdg-quartier-ville) und für Winterthur der [Kanton Zürich](https://opendata.swiss/de/dataset/stadtkreise-und-quartiere-zurich-und-winterthur) (freie Nutzung). `npm run districts` lädt sie neu.
 - Boulevard-Bewilligungen Basel: [Kanton Basel-Stadt](https://data.bs.ch/explore/dataset/100018/) (CC BY 4.0).
 - Preise: die beim Angebot verlinkten Originalkarten der Lokale. Gespeichert werden Preisangaben und kurze Belegzeilen, keine vollständigen Karten.

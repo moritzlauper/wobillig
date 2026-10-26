@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       city:
-        description: City to refresh (all runs the five cities in sequence)
+        description: City to refresh (all runs the six cities in sequence)
         type: choice
-        options: [all, zurich, bern, basel, lausanne, geneva]
+        options: [all, zurich, bern, basel, lausanne, geneva, winterthur]
         default: all
       scan_mode:
         description: Scan mode
@@ -121,6 +121,21 @@ jobs:
     uses: ./.github/workflows/scrape-city.yml
     with:
       city: geneva
+      # Each city has its own budget; do not divide it across the city jobs.
+      city_count: 1
+      scan_mode: ${{ inputs.scan_mode || 'full' }}
+      exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
+      deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
+      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
+    secrets:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  winterthur:
+    name: Winterthur
+    needs: [cadence, geneva]
+    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (github.event_name == 'schedule' || inputs.city == 'all' || inputs.city == 'winterthur') }}
+    uses: ./.github/workflows/scrape-city.yml
+    with:
+      city: winterthur
       # Each city has its own budget; do not divide it across the city jobs.
       city_count: 1
       scan_mode: ${{ inputs.scan_mode || 'full' }}
