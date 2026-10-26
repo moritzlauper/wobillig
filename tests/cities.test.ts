@@ -47,6 +47,10 @@ it('opens the new cities in English by default and preserves explicit German lin
   expect(defaultCityLocale('basel', 'de')).toBe('de');
   expect(defaultCityLocale('winterthur', 'de')).toBe('de');
   expect(defaultCityLocale('winterthur', 'en')).toBe('en');
+  // Coming back from Lausanne or Geneva restores German; other German cities keep the chosen language.
+  expect(defaultCityLocale('zurich', 'en', 'lausanne')).toBe('de');
+  expect(defaultCityLocale('bern', 'en', 'geneva')).toBe('de');
+  expect(defaultCityLocale('zurich', 'en', 'zurich')).toBe('en');
   expect(cityLink('winterthur', '?drink=beer&bar=node%2F1')).toBe('/winterthur?drink=beer');
   expect(cityLink('winterthur', '', '/', 'en')).toBe('/en/winterthur');
   expect(cityLink('geneva', '?drink=beer&bar=node%2F1', '/', 'en')).toBe('/en/geneve?drink=beer');

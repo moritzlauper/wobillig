@@ -470,7 +470,7 @@ function syncControls() {
   history.replaceState(null, '', url);
   document.querySelectorAll<HTMLAnchorElement>('[data-city]').forEach(link => {
     // City links drop the venue, which can leave cheap=1 as the only parameter.
-    const target = new URL(cityLink(link.dataset.city as City, url.search, import.meta.env.BASE_URL, defaultCityLocale(link.dataset.city as City, locale())), location.origin);
+    const target = new URL(cityLink(link.dataset.city as City, url.search, import.meta.env.BASE_URL, defaultCityLocale(link.dataset.city as City, locale(), cityId)), location.origin);
     dropDefaultCheap(target.searchParams);
     link.href = target.pathname + target.search;
   });

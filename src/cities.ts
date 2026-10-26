@@ -18,8 +18,10 @@ export function cityFromPath(path: string, base = '/'): City {
   const slug = relative.replace(/^\/+|\/+$/g, '').replace(/^(?:en|de)(?:\/|$)/, '');
   return slug === 'geneve' || slug === 'genf' ? 'geneva' : isCity(slug) ? slug : 'zurich';
 }
-export function defaultCityLocale(city: City, current: Locale): Locale {
-  return city === 'lausanne' || city === 'geneva' ? 'en' : current;
+// French-speaking cities default to English; leaving them returns to the German default.
+export function defaultCityLocale(city: City, current: Locale, from: City = city): Locale {
+  if (city === 'lausanne' || city === 'geneva') return 'en';
+  return from === 'lausanne' || from === 'geneva' ? 'de' : current;
 }
 export function cityLink(city: City, search: string, base = '/', locale: Locale = 'de'): string {
   const params = new URLSearchParams(search);
