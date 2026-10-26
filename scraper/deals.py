@@ -18,7 +18,7 @@ import requests
 
 SOURCE = 'https://epaper.coop.ch/catalogs/AM_AKMA_W{week:02}_{year}_DE_ZZ--SHORTTERM/pdf/save/bk_1.pdf'
 # Reviewed front-page layout: headline offer, two middle offers, two bottom offers.
-SLOTS = [((35, 145, 125, 235), (235, 335, 565, 365)),
+SLOTS = [((35, 145, 125, 255), (235, 335, 565, 365)),
          ((200, 380, 290, 475), (35, 535, 290, 565)),
          ((465, 380, 565, 475), (300, 535, 565, 565)),
          ((200, 575, 290, 665), (35, 720, 290, 760)),
@@ -58,7 +58,7 @@ def parse_pdf(data, source_url, fetched_at):
             if not 0 < current < old or abs(100 * (1 - current / old) - int(discount[0])) > 1.1:
                 raise ValueError('Price and discount disagree')
             per_100 = 'per 100 g' in prices
-            quantity = re.search(r'\d+\s*[×x]\s*\d+(?:[.,]\d+)?\s*(?:kg|g|cl|ml|l)\b|\d+ Stück, ca\. \d+ g|per Stück', description)
+            quantity = re.search(r'\d+\s*[×x]\s*\d+(?:[.,]\d+)?\s*(?:kg|g|cl|ml|l)\b|\d+ Stück, ca\. \d+ g|ca\. \d+ g|per Stück|per kg', description)
             if not quantity:
                 raise ValueError('Unclear pack size or quantity')
             quantity = quantity.group(0)
@@ -74,6 +74,8 @@ def parse_pdf(data, source_url, fetched_at):
                 unit = {'amount': round(current * 10, 2), 'unit': 'kg'}
             elif quantity == 'per Stück':
                 unit = {'amount': current, 'unit': 'piece'}
+            elif quantity == 'per kg':
+                unit = {'amount': current, 'unit': 'kg'}
             else:
                 pack = re.fullmatch(r'(\d+)\s*[×x]\s*(\d+(?:[.,]\d+)?)\s*(kg|g|cl|ml|l)', quantity)
                 if pack:
@@ -83,8 +85,8 @@ def parse_pdf(data, source_url, fetched_at):
             offers.append({
                 'id': hashlib.sha256(f'coop-zz:{product}:{start}:{end}'.encode()).hexdigest()[:24],
                 'chain': 'coop', 'product': product, 'quantity': quantity,
-                'category': 'drinks' if re.search(r'Amarone|\bWein\b|\bBier\b', product) else 'food',
-                'priceChf': current, 'previousPriceChf': old, 'priceBasis': 'pro 100 g' if per_100 else 'pro Stück' if quantity == 'per Stück' else 'pro Packung',
+                'category': 'drinks' if re.search(r'Amarone|\bVino\b|\bWein\b|\bBier\b', product) else 'food',
+                'priceChf': current, 'previousPriceChf': old, 'priceBasis': 'pro 100 g' if per_100 else 'pro Stück' if quantity == 'per Stück' else 'pro kg' if quantity == 'per kg' else 'pro Packung',
                 **({'unitPrice': unit} if unit else {}), 'conditions': ' · '.join(conditions),
                 'validFrom': start.isoformat(), 'validThrough': end.isoformat(),
                 'sourceUrl': source_url, 'sourcePage': 1, 'evidence': prices + '\n' + description,

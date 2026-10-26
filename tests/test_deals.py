@@ -35,6 +35,27 @@ class DealTests(unittest.TestCase):
                 parse_pdf(b'pdf', 'https://epaper.coop.ch/test.pdf', '2026-10-20T12:00:00Z')
 
 
+    def test_current_front_page_reads_headline_per_kilo_and_weight_packs(self):
+        page = MagicMock(width=595.276, height=841.89)
+        page.extract_text.return_value = 'Donnerstag bis Mittwoch, 22.10. – 28.10.2026 ' + 'statt ' * 5
+        pairs = [('32%\n3.35\nstatt 4.95', 'Primagusto Trauben Uva Italia, Italien,\nim Offenverkauf, per kg'),
+                 ('45%\nper 100 g\n1.45\nstatt 2.65', 'Coop Pouletbrust, Slowenien,\nin Selbstbedienung, ca. 850 g'),
+                 ('40%\nper 100 g\n2.60\nstatt 4.35', 'Coop Schweinsfilet, Schweiz,\nin Selbstbedienung, ca. 480 g'),
+                 ('33%\n4.80\nstatt 7.20', 'Coop Mandeln, gemahlen,\n2 × 200 g, Duo (100 g = 1.20)'),
+                 ('50%\n59.85\nstatt 119.70', 'Vino Tinto Gran Reserva\nMendoza Argentina Bodega Septima\n2022, 6 × 75 cl (10 cl = 1.33)')]
+        page.crop.side_effect = [MagicMock(extract_text=MagicMock(return_value=text)) for pair in pairs for text in pair]
+        document = MagicMock()
+        document.__enter__.return_value.pages = [page]
+        with patch('scraper.deals.pdfplumber.open', return_value=document):
+            batch = parse_pdf(b'pdf', 'https://epaper.coop.ch/test.pdf', '2026-10-20T12:00:00Z')
+        offers = batch['offers']
+        self.assertEqual([o['quantity'] for o in offers], ['per kg', 'ca. 850 g', 'ca. 480 g', '2 × 200 g', '6 × 75 cl'])
+        self.assertEqual(offers[0]['unitPrice'], {'amount': 3.35, 'unit': 'kg'})
+        self.assertEqual(offers[1]['priceBasis'], 'pro 100 g')
+        self.assertEqual(offers[3]['unitPrice'], {'amount': 12.0, 'unit': 'kg'})
+        self.assertEqual(offers[4]['category'], 'drinks')
+
+
 TILE = {'id': '1000706021', 'path': '/de/weine/alle-weine/rotweine/rioja-doca-crianza-cune/p/1000706021', 'cat': 'rotweine',
         'label': 'Rioja DOCa Crianza Cune 34% Aktion 7.85 CHF statt 11.95 CHF',
         'lines': ['75cl', 'Rioja DOCa Crianza Cune', 'Spanien, 2022', 'Rated of 5', '(271)', '34%', '34%',
