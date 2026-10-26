@@ -17,7 +17,8 @@ export function venueForm(cityId: City, api: string, known: () => Bar[], saved: 
     <p>${t('Falsche Angaben bei einem bestehenden Lokal? Öffne das Lokal und wähle «Lokal korrigieren».')}</p>
     <fieldset id="venue-fields">
       <label>Name<input id="venue-name" maxlength="100" autocomplete="organization" required></label>
-      <label>${t('Art des Lokals')}<select id="venue-type">${Object.entries(newVenueTypes).map(([key, label]) => `<option value="${key}">${t(label)}</option>`).join('')}</select></label>
+      <label>${t('Art des Lokals')}<select id="venue-type" required><option value="">${t('Bitte wählen')}</option>${Object.entries(newVenueTypes).map(([key, label]) => `<option value="${key}">${t(label)}</option>`).join('')}</select></label>
+      <p class="muted">${t('Imbiss: Schnellservice oder Take-away, zum Beispiel ein Pizza- oder Döner-Laden. Imbisse sind in der Standardansicht ausgeblendet und erscheinen bei «Alle (inkl. Imbiss)».')}</p>
       <label>${t('Strasse und Hausnummer')}<input id="venue-address" maxlength="160" autocomplete="street-address" placeholder="${t('z. B. Bümplizstrasse 97a')}" required></label>
       <label>${t('Postleitzahl')}<input id="venue-postcode" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="postal-code" required></label>
       <button id="venue-search" type="button">${t('Adresse auf Karte suchen')}</button>

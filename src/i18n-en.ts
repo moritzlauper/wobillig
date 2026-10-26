@@ -1,5 +1,7 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
+  'Bitte wählen': 'Please choose',
+  'Imbiss: Schnellservice oder Take-away, zum Beispiel ein Pizza- oder Döner-Laden. Imbisse sind in der Standardansicht ausgeblendet und erscheinen bei «Alle (inkl. Imbiss)».': 'Imbiss: quick service or takeaway, for example a pizza or döner takeaway. Imbiss venues are hidden in the default view and appear under “All (incl. Imbiss)”.',
   'Ramen': 'Ramen',
   'Ramenpreis': 'Ramen price',
   'Ramenpreise {city} · Community': 'Ramen prices in {city} · Community',
