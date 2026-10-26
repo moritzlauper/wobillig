@@ -397,7 +397,7 @@ function rebuild() {
   pizzaOptions = pizzaVarieties(pizzaBars);
   // Count priced venues city-wide, including contributions, independently of UI filters.
   pizzaAvailable = pizzaBars.filter(b => [...b.offers, ...(b.pizzaMenu || [])]
-    .some(o => o.pizzaType && isCurrentOffer(o) && isComparableOffer(o))).length >= 20;
+    .some(o => o.pizzaType && isCurrentOffer(o) && isComparableOffer(o))).length >= 14;
   if (pizza() && !pizzaAvailable) {
     f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
     $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';

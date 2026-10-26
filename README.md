@@ -8,7 +8,7 @@ Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der
 
 - Kaffee ist die Startansicht. Verglichen wird pro Getränk und Sorte, zum Beispiel Espresso, Cappuccino, Café crème, Flat White oder Matcha Latte, ohne Umrechnung auf eine Tassengrösse.
 - Bier lässt sich nach Grösse (Stange/3 dl, 3.3 dl, 5 dl), Ausschank (Offen-, Flaschen- oder Dosenbier) und Marke filtern. Auf Wunsch rechnet die Karte auf 5 dl um.
-- Pizza Margherita erscheint in einer Stadt erst ab 20 Lokalen mit aktuellem Margherita-Preis. Weitere Klassiker wie Diavola oder Quattro Stagioni sind über eine eigene Auswahl erreichbar.
+- Pizza erscheint in einer Stadt ab 14 Lokalen mit aktuellem Pizzapreis, gezählt wird jede Sorte. Voreingestellt ist die Margherita, weitere Klassiker wie Diavola oder Quattro Stagioni sind über eine eigene Auswahl erreichbar.
 - Preise lassen sich von Hand eintragen und korrigieren oder per Foto der Karte erfassen. Der Foto-Scan liest die Preise mit Claude Haiku 5.5 aus und speichert sie direkt beim gewählten Lokal. Das Bild selbst wird nicht gespeichert.
 - Fehlende Lokale können ergänzt und bestehende korrigiert werden (Name, Adresse, Website).
 - Kaffee lässt sich mit Sternen und einem Foto bewerten. Der Durchschnitt erscheint ab drei Stimmen.
@@ -54,7 +54,7 @@ Datensätze vom 19. bis 21. Oktober 2026, für Winterthur vom 26. Oktober 2026, 
 | Lausanne | 59 / 252 | 57 / 521 | 10 | 630 |
 | Genf | 74 / 284 | 73 / 426 | 16 | 1'561 |
 
-Mit den Scraper-Daten allein erreichen nur Zürich und Bern die Schwelle von 20 Pizza-Lokalen. Für Döner und Falafel gibt es Datensätze, die Kategorien erscheinen aber erst ab 50 Dürüm-Angeboten pro Stadt und sind derzeit überall ausgeblendet.
+Mit den Scraper-Daten allein erreichen alle Städte ausser Lausanne (10 Lokale) die Schwelle von 14 Pizza-Lokalen. Für Döner und Falafel gibt es Datensätze, die Kategorien erscheinen aber erst ab 50 Dürüm-Angeboten pro Stadt und sind derzeit überall ausgeblendet.
 
 Vollständig ist die Karte nicht. Viele Lokale veröffentlichen keine maschinenlesbare Karte, und OpenStreetMap kennt nicht jedes Lokal. Das Erfassungsdatum sagt, wann eine Quelle gelesen wurde, nicht, wie alt die Karte selbst ist.
 
