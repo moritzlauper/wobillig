@@ -1,6 +1,7 @@
 import { contributionFetch } from './contribution-security';
 import type { Bar } from './data';
 import { t } from './i18n';
+import { newVenueTypes } from './venue-contributions';
 import { validateVenueCorrection, type VenueCorrection } from './venue-corrections';
 
 export function venueCorrectionForm(api: string, saved: (correction: VenueCorrection) => void) {
@@ -15,6 +16,8 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
       <label>${t('Strasse und Hausnummer')}<input name="address" maxlength="160" autocomplete="street-address"></label>
       <label>${t('Postleitzahl')}<input name="postcode" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" autocomplete="postal-code"></label>
       <label>${t('Website (optional)')}<input name="website" type="url" maxlength="1500" placeholder="https://…"></label>
+      <label>${t('Art des Lokals')}<select name="type"><option value="">${t('Bitte wählen')}</option>${Object.entries(newVenueTypes).map(([key, label]) => `<option value="${key}">${t(label)}</option>`).join('')}</select></label>
+      <p class="muted">${t('Imbiss: Schnellservice oder Take-away, zum Beispiel ein Pizza- oder Döner-Laden. Imbisse sind in der Standardansicht ausgeblendet und erscheinen bei «Alle (inkl. Imbiss)».')}</p>
       <p class="muted">${t('Eine falsche Website kannst du ersetzen oder das Feld leeren.')}</p>
       <button type="submit" class="primary">${t('Korrektur speichern')}</button>
     </fieldset>
@@ -27,6 +30,7 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
   const submit = dialog.querySelector<HTMLButtonElement>('[type="submit"]')!;
   const error = dialog.querySelector<HTMLElement>('[role="alert"]')!;
   const input = (name: string) => form.elements.namedItem(name) as HTMLInputElement;
+  const typeSelect = () => form.elements.namedItem('type') as HTMLSelectElement;
   let current: Bar, revision = 0, busy = false;
   close.onclick = () => dialog.close();
   dialog.addEventListener('cancel', event => { if (busy) event.preventDefault(); });
@@ -38,6 +42,8 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
       const changes = Object.fromEntries(['name', 'address', 'postcode', 'website']
         .filter(key => input(key).value.trim() !== (current[key as keyof Bar] || ''))
         .map(key => [key, input(key).value]));
+      // An empty choice keeps the current type, so venues with an unlisted OSM type stay correctable.
+      if (typeSelect().value && typeSelect().value !== current.type) changes.type = typeSelect().value;
       const raw = { barId: current.id, revision, changes };
       validateVenueCorrection(raw);
       busy = true; fields.disabled = true; close.disabled = true;
@@ -60,6 +66,7 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
   return (bar: Bar, version: number) => {
     current = bar; revision = version; form.reset(); error.hidden = true;
     for (const key of ['name', 'address', 'postcode', 'website'] as const) input(key).value = bar[key] || '';
+    typeSelect().value = Object.hasOwn(newVenueTypes, bar.type) ? bar.type : '';
     dialog.showModal();
     dialog.querySelector<HTMLElement>('#venue-correction-title')!.focus();
   };

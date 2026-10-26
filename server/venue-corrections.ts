@@ -31,7 +31,7 @@ export async function saveVenueCorrection(store: Store, value: unknown, datasets
     }
     state.venueCorrections = [...(state.venueCorrections || []).filter(item => item.barId !== input.barId), correction];
     state.venueCorrectionHistory = [...(state.venueCorrectionHistory || []), { correction, before: {
-      name: venue.name, address: venue.address, postcode: venue.postcode, website: venue.website,
+      name: venue.name, address: venue.address, postcode: venue.postcode, website: venue.website, type: venue.type,
     } }];
     try { await store.write(state, etag); return { correction }; }
     catch (error) { if (!(error instanceof WriteConflict)) throw error; }

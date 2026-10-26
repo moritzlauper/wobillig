@@ -72,6 +72,18 @@ describe('venue corrections', () => {
     { changes: { postcode: '123' } }, { changes: { id: 'node/2' } }, { changes: { offers: [] } }, { revision: -1 }])('rejects invalid corrections %j', patch => {
     expect(() => validateVenueCorrection({ ...input, ...patch })).toThrow();
   });
+  it('accepts a listed venue type such as Imbiss and rejects unknown types', () => {
+    expect(validateVenueCorrection({ ...input, changes: { type: 'fast_food' } }).changes).toEqual({ type: 'fast_food' });
+    expect(() => validateVenueCorrection({ ...input, changes: { type: 'pizzeria' } })).toThrow('Lokalart');
+    expect(() => validateVenueCorrection({ ...input, changes: { type: '' } })).toThrow('Lokalart');
+  });
+  it('stores the corrected type and keeps it in the correction history', async () => {
+    const store = memoryStore();
+    await saveVenueCorrection(store, { ...input, changes: { type: 'fast_food' } }, data, 'visitor');
+    const state = (await store.read()).state;
+    expect(state.venueCorrections?.[0].changes).toEqual({ type: 'fast_food' });
+    expect(state.venueCorrectionHistory?.at(-1)?.before).toHaveProperty('type', 'cafe');
+  });
   it('limits writes and propagates storage failures without claiming success', async () => {
     const store = memoryStore(), now = Date.now();
     for (let revision = 0; revision < 40; revision++) await saveVenueCorrection(store, { ...input, revision, changes: { name: `Name ${revision}` } }, data, 'visitor', now);
