@@ -9,7 +9,8 @@ const wine = byId<HTMLSelectElement>('deal-wine'), stock = byId<HTMLSelectElemen
 const ending = byId<HTMLInputElement>('deal-ending'), candidates = byId<HTMLInputElement>('deal-candidates');
 const map = L.map('deal-map').setView([47.378, 8.535], 12), markers = L.layerGroup().addTo(map);
 // The page sends no-referrer for privacy. Tiles still send the origin, which OpenStreetMap's tile policy asks for.
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, referrerPolicy: 'strict-origin-when-cross-origin',
+// Tiles load once the map stops moving, so zooming does not fire a burst of requests at the volunteer servers.
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, referrerPolicy: 'strict-origin-when-cross-origin', updateWhenIdle: true,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
 let data: DealPreview | undefined, location: [number, number] | undefined, version = 0, busy = false;
 let displayedDay = swissDay(), fitted = false, selected: string | undefined, sweepSeen = false;
