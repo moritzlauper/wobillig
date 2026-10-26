@@ -1,5 +1,5 @@
 import L from 'leaflet';
-import { currentDeal, searchDeals, swissDay, unknownEndDays, wineTypeLabels, type DealPreview, type Deal, type DealBranch } from './deal-data';
+import { currentDeal, searchDeals, swissDay, unknownEndDays, wineFilterMatches, wineTypeLabels, type DealPreview, type Deal, type DealBranch } from './deal-data';
 import { escapeHtml as e, distance } from './data';
 
 const byId = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
@@ -8,7 +8,8 @@ const category = byId<HTMLSelectElement>('deal-category'), sort = byId<HTMLSelec
 const wine = byId<HTMLSelectElement>('deal-wine'), stock = byId<HTMLSelectElement>('deal-stock');
 const ending = byId<HTMLInputElement>('deal-ending'), candidates = byId<HTMLInputElement>('deal-candidates');
 const map = L.map('deal-map').setView([47.378, 8.535], 12), markers = L.layerGroup().addTo(map);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19,
+// The page sends no-referrer for privacy. Tiles still send the origin, which OpenStreetMap's tile policy asks for.
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, referrerPolicy: 'strict-origin-when-cross-origin',
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
 let data: DealPreview | undefined, location: [number, number] | undefined, version = 0, busy = false;
 let displayedDay = swissDay(), fitted = false, selected: string | undefined, sweepSeen = false;
@@ -59,7 +60,7 @@ function render() {
   const branches = [...sweep?.branches || [], ...batch?.branches || []];
   if (selected && !branches.some(b => b.id === selected)) selected = undefined;
   let offers = searchDeals([...(batch?.offers || []).filter(offer => !duplicate(offer)), ...sweepOffers], query.value, chain.value, category.value, ending.checked);
-  offers = offers.filter(offer => (!wine.value || offer.wineType === wine.value) &&
+  offers = offers.filter(offer => wineFilterMatches(offer, wine.value) &&
     (stock.value !== 'branch' || branchesFor(offer).size > 0) && (stock.value !== 'online' || onlineOnly(offer)) &&
     (!selected || branchesFor(offer).has(selected)));
   const unit = (offer: Deal) => offer.unitPrice?.unit === 'l' ? offer.unitPrice.amount : Infinity;
@@ -107,7 +108,7 @@ function render() {
   for (const offer of offers.slice(0, 200)) {
     const article = document.createElement('article'); article.className = 'deal'; article.id = `offer-${offer.id}`;
     const nearest = distanceFor(offer, branches), shop = offer.sourcePage === undefined;
-    const kind = [offer.chain === 'coop' ? 'Coop' : 'Migros', offer.quantity, offer.wineType && wineTypeLabels[offer.wineType], offer.origin].filter(Boolean).join(' · ');
+    const kind = [offer.chain === 'coop' ? 'Coop' : 'Migros', offer.quantity, offer.wineType && wineTypeLabels[offer.wineType], offer.natural && 'Naturwein', offer.origin].filter(Boolean).join(' · ');
     article.innerHTML = `<small>${e(kind)}</small><h2>${e(offer.product)}</h2>
       <p><span class="price">CHF ${offer.priceChf.toFixed(2)}</span><span class="old">${offer.previousPriceChf.toFixed(2)}</span> <small>${e(offer.priceBasis)} · −${discount(offer)}%</small></p>
       ${offer.unitPrice ? `<p class="meta">CHF ${offer.unitPrice.amount.toFixed(2)} / ${e(offer.unitPrice.unit === 'piece' ? 'Stück' : offer.unitPrice.unit)}</p>` : ''}

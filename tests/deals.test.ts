@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { currentDeal, searchDeals, visibleDealPreview, type DealBatch } from '../src/deal-data';
+import { currentDeal, searchDeals, visibleDealPreview, wineFilterMatches, type DealBatch } from '../src/deal-data';
 import { importDeals, importDealSweep, assignDeal, recordDealFailure } from '../server/deals';
 import { emptyState, WriteConflict, type Store } from '../server/prices';
 import handler from '../api/deals';
@@ -15,6 +15,13 @@ function memory(): Store { let state = emptyState(), revision = 0; return {
   write: async (next, etag) => { if (etag !== String(revision)) throw new WriteConflict(); state = structuredClone(next); revision++; },
 }; }
 afterEach(() => vi.unstubAllEnvs());
+it('filters Naturwein by its own flag and not by wine type', () => {
+  const natural = { wineType: 'red' as const, natural: true }, plain = { wineType: 'red' as const };
+  expect(wineFilterMatches(natural, 'natural')).toBe(true);
+  expect(wineFilterMatches(plain, 'natural')).toBe(false);
+  expect(wineFilterMatches(plain, 'red')).toBe(true);
+  expect(wineFilterMatches(plain, '')).toBe(true);
+});
 it('expires at Swiss midnight and searches only current offers', () => {
   const offer = batch.offers[0];
   expect(currentDeal(offer, Date.parse('2026-10-21T21:59:59Z'))).toBe(true);

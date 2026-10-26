@@ -50,7 +50,7 @@ export function validateDealBatch(value: unknown, now = Date.now()): DealBatch {
       // Without a published end date the listing only proves the price on the day it was read.
       ![undefined, true].includes(offer.endUnknown) || (offer.endUnknown && (!shop || offer.validFrom !== offer.validThrough || offer.brochure)) ||
       ![undefined, true].includes(offer.onlineOnly) || (offer.onlineOnly && offer.availableAt?.length) ||
-      (offer.wineType !== undefined && !(offer.wineType in wineTypeLabels)) || (offer.origin !== undefined && !string(offer.origin, 100)) ||
+      (offer.wineType !== undefined && !(offer.wineType in wineTypeLabels)) || ![undefined, true].includes(offer.natural) || (offer.origin !== undefined && !string(offer.origin, 100)) ||
       (offer.availableAt !== undefined && (!Array.isArray(offer.availableAt) || offer.availableAt.length > 150 ||
         new Set(offer.availableAt).size !== offer.availableAt.length || offer.availableAt.some(id => !branchIds.has(id)))) ||
       (offer.brochure !== undefined && (!shop || !sourceUrl(offer.brochure.url, brochureHosts[source.chain]) || !page(offer.brochure.page)))) throw bad();
@@ -61,7 +61,7 @@ export function validateDealBatch(value: unknown, now = Date.now()): DealBatch {
       conditions: offer.conditions, validFrom: offer.validFrom, validThrough: offer.validThrough,
       sourceUrl: offer.sourceUrl, ...(shop ? {} : { sourcePage: offer.sourcePage }), evidence: offer.evidence,
       ...(offer.endUnknown ? { endUnknown: true } : {}), ...(offer.onlineOnly ? { onlineOnly: true } : {}),
-      ...(offer.wineType ? { wineType: offer.wineType } : {}), ...(offer.origin ? { origin: offer.origin } : {}),
+      ...(offer.wineType ? { wineType: offer.wineType } : {}), ...(offer.natural ? { natural: true } : {}), ...(offer.origin ? { origin: offer.origin } : {}),
       ...(offer.availableAt ? { availableAt: [...offer.availableAt] } : {}),
       ...(offer.brochure ? { brochure: { url: offer.brochure.url, page: offer.brochure.page } } : {}) };
   });

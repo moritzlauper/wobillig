@@ -1,6 +1,8 @@
 export type DealChain = 'coop' | 'migros';
 export type WineType = 'red' | 'white' | 'rose' | 'sparkling' | 'dessert';
 export const wineTypeLabels: Record<WineType, string> = { red: 'Rotwein', white: 'Weisswein', rose: 'Roséwein', sparkling: 'Schaumwein', dessert: 'Süsswein' };
+// Naturwein is a winemaking style, so it is a flag on the offer and not a wine type.
+export const wineFilterMatches = (offer: Pick<Deal, 'wineType' | 'natural'>, value: string) => !value || (value === 'natural' ? offer.natural === true : offer.wineType === value);
 export type Deal = {
   id: string; chain: DealChain; product: string; quantity: string;
   category: 'food' | 'drinks' | 'household' | 'other';
@@ -9,7 +11,7 @@ export type Deal = {
   conditions: string; validFrom: string; validThrough: string;
   sourceUrl: string; sourcePage?: number; evidence: string;
   // Shop listings: no published end date, validThrough is the day the listing was read.
-  endUnknown?: boolean; onlineOnly?: boolean; wineType?: WineType; origin?: string;
+  endUnknown?: boolean; onlineOnly?: boolean; wineType?: WineType; natural?: boolean; origin?: string;
   // Branches the retailer's own store search reported as stocking the product.
   availableAt?: string[];
   // Brochure page that prints the same promotion; its dates then replace the unknown end date.
