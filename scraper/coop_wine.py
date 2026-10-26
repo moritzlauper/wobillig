@@ -69,7 +69,7 @@ def parse_tile(tile):
     conditions = ['Aktionspreis im Onlineshop' + (', nur online' if online else ''),
                   *([f'ab {minimum.group(1)} Stück'] if minimum else []),
                   *(['online derzeit kein Bestand'] if 'kein Bestand' in rest else []),
-                  'Filialpreise können laut Coop abweichen']
+                  *([] if online else ['Filialpreise können laut Coop abweichen'])]
     evidence = ' · '.join([volume.group(0), name, *([origin] if origin else []), rest.split(' Aktion')[0], prices, f'{unit / 10:.2f}/10cl'])
     return {'product': name, 'quantity': quantity, 'priceChf': price, 'previousPriceChf': previous,
             'discount': discount, 'priceBasis': 'pro Packung' if count > 1 else 'pro Flasche',

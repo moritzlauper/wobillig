@@ -16,6 +16,8 @@ const phone = matchMedia('(max-width: 760px)');
 const date = (day: string) => new Date(day + 'T12:00:00Z').toLocaleDateString('de-CH', { timeZone: 'Europe/Zurich' });
 const time = (value?: string) => value ? new Date(value).toLocaleString('de-CH', { timeZone: 'Europe/Zurich' }) : 'Noch kein erfolgreicher Import';
 const discount = (offer: Deal) => Math.round(100 * (1 - offer.priceChf / offer.previousPriceChf));
+// Store promotions the store search finds in no branch (mostly six-bottle cartons) can only be ordered online.
+const onlineOnly = (offer: Deal) => offer.onlineOnly || offer.availableAt?.length === 0;
 function error(message = '') { byId('error').textContent = message; byId('error').hidden = !message; }
 async function load() {
   const request = ++version;
@@ -58,7 +60,7 @@ function render() {
   if (selected && !branches.some(b => b.id === selected)) selected = undefined;
   let offers = searchDeals([...(batch?.offers || []).filter(offer => !duplicate(offer)), ...sweepOffers], query.value, chain.value, category.value, ending.checked);
   offers = offers.filter(offer => (!wine.value || offer.wineType === wine.value) &&
-    (stock.value !== 'branch' || branchesFor(offer).size > 0) && (stock.value !== 'online' || offer.onlineOnly) &&
+    (stock.value !== 'branch' || branchesFor(offer).size > 0) && (stock.value !== 'online' || onlineOnly(offer)) &&
     (!selected || branchesFor(offer).has(selected)));
   const unit = (offer: Deal) => offer.unitPrice?.unit === 'l' ? offer.unitPrice.amount : Infinity;
   offers.sort((a, b) => (sort.value === 'price' ? a.priceChf - b.priceChf : sort.value === 'discount' ? discount(b) - discount(a) :
@@ -110,7 +112,7 @@ function render() {
       <p><span class="price">CHF ${offer.priceChf.toFixed(2)}</span><span class="old">${offer.previousPriceChf.toFixed(2)}</span> <small>${e(offer.priceBasis)} · −${discount(offer)}%</small></p>
       ${offer.unitPrice ? `<p class="meta">CHF ${offer.unitPrice.amount.toFixed(2)} / ${e(offer.unitPrice.unit === 'piece' ? 'Stück' : offer.unitPrice.unit)}</p>` : ''}
       <p class="meta"><strong>${e(offer.conditions)}</strong></p><p class="meta">${e(validity(offer))}</p>
-      <p class="meta">${offer.onlineOnly ? '<span class="tag">Nur online</span>' : shop ? (offer.availableAt ? `In ${offer.availableAt.length} von ${total} Zürcher Filialen verfügbar (coop.ch-Filialsuche, ohne Gewähr)${selected ? ' · auch in der gewählten Filiale' : ''}` : 'Filialverfügbarkeit nicht geprüft')
+      <p class="meta">${offer.onlineOnly ? '<span class="tag">Nur online</span>' : onlineOnly(offer) ? '<span class="tag">Nur online</span> Laut coop.ch-Filialsuche in keiner Zürcher Filiale erhältlich' : shop ? (offer.availableAt ? `In ${offer.availableAt.length} von ${total} Zürcher Filialen verfügbar (coop.ch-Filialsuche, ohne Gewähr)${selected ? ' · auch in der gewählten Filiale' : ''}` : 'Filialverfügbarkeit nicht geprüft')
         : branchesFor(offer).size ? `${branchesFor(offer).size} Filialzuordnungen geprüft` : 'Filialzuordnung noch ungeprüft'}</p>
       ${Number.isFinite(nearest) ? `<p class="meta">Nächste Filiale mit diesem Angebot: ${nearest.toFixed(1)} km</p>` : ''}
       ${shop ? `<a href="${e(offer.sourceUrl)}" target="_blank" rel="noopener noreferrer">Produktseite auf coop.ch</a>${offer.brochure ? ` · <a href="${e(offer.brochure.url)}" target="_blank" rel="noopener noreferrer">Prospekt · Seite ${offer.brochure.page}</a>` : ''}
