@@ -1,6 +1,6 @@
 import { afterEach, expect, it, vi } from 'vitest';
 import { currentDeal, searchDeals, visibleDealPreview, type DealBatch } from '../src/deal-data';
-import { importDeals, assignDeal, recordDealFailure } from '../server/deals';
+import { importDeals, importDealSweep, assignDeal, recordDealFailure } from '../server/deals';
 import { emptyState, WriteConflict, type Store } from '../server/prices';
 import handler from '../api/deals';
 import type { IncomingMessage, ServerResponse } from 'node:http';
@@ -50,6 +50,37 @@ it('rejects invalid dates, sources, stale data and duplicate IDs', async () => {
     { ...batch, offers: [batch.offers[0], batch.offers[0]] },
   ]) await expect(importDeals(memory(), modified, now)).rejects.toMatchObject({ status: 400 });
   await expect(importDeals(memory(), batch, now + 3 * 86400000)).rejects.toMatchObject({ status: 422 });
+});
+const shopUrl = 'https://www.coop.ch/de/weine/alle-weine/rotweine/rioja-doca-crianza-cune/p/1000706021';
+const sweep: DealBatch = { source: { id: 'coop-wine-shop', chain: 'coop', kind: 'shop', label: 'coop.ch · Weinaktionen', url: 'https://www.coop.ch/de/weine/aktionen/c/SPECIAL_OFFERS_WINE', sha256: 'b'.repeat(64), fetchedAt: new Date(now).toISOString(), scopeLabel: 'Onlineshop-Aktionen' }, offers: [
+  { id: 'rioja', chain: 'coop', product: 'Rioja DOCa Crianza Cune', quantity: '75 cl', category: 'drinks', priceChf: 7.85, previousPriceChf: 11.95, priceBasis: 'pro Flasche', unitPrice: { amount: 10.5, unit: 'l' }, conditions: 'Aktionspreis im Onlineshop', validFrom: '2026-10-20', validThrough: '2026-10-20', endUnknown: true, wineType: 'red', origin: 'Spanien, 2022', availableAt: ['coop/1905'], sourceUrl: shopUrl, evidence: '75cl · Rioja DOCa Crianza Cune · 34% · CHF 7.85 statt CHF 11.95' },
+  { id: 'loco', chain: 'coop', product: 'Loco Malbec Mendoza Selection Dieter Meier', quantity: '75 cl', category: 'drinks', priceChf: 9.7, previousPriceChf: 14.95, priceBasis: 'pro Flasche', conditions: 'Auch im Coop-Prospekt', validFrom: '2026-10-15', validThrough: '2026-10-21', brochure: { url: sourceUrl, page: 12 }, availableAt: [], sourceUrl: shopUrl, evidence: 'Loco 9.70 statt 14.95' },
+], branches: [{ id: 'coop/1905', chain: 'coop', name: 'Coop Supermarkt Zürich Bahnhofbrücke', address: 'Bahnhofbrücke 1', postcode: '8001', lat: 47.3767, lon: 8.5421, sourceUrl: 'https://www.coop.ch/de/standorte/coop-supermarkt-zuerich-bahnhofbruecke/1905_POS' }] };
+it('keeps a shop sweep beside the brochure pilot and hides listings without end date after two days', async () => {
+  const store = memory();
+  await importDeals(store, batch, now);
+  await importDealSweep(store, sweep, now);
+  const brochure = await importDeals(store, { ...batch, source: { ...batch.source, fetchedAt: new Date(now + 1000).toISOString() } }, now + 1000);
+  const { state } = await store.read();
+  expect(state.dealSweep?.offers).toHaveLength(2); expect(brochure.batch?.offers).toHaveLength(1);
+  expect(visibleDealPreview(state.dealPilot!, now, state.dealSweep).sweep?.offers.map(o => o.id)).toEqual(['rioja', 'loco']);
+  expect(visibleDealPreview(state.dealPilot!, Date.parse('2026-10-22T21:59:59Z'), state.dealSweep).sweep?.offers.map(o => o.id)).toEqual(['rioja']);
+  expect(visibleDealPreview(state.dealPilot!, Date.parse('2026-10-22T22:00:00Z'), state.dealSweep).sweep?.offers).toEqual([]);
+  expect(searchDeals(sweep.offers, '', '', '', true, now).map(o => o.id)).toEqual(['loco']);
+  await expect(importDealSweep(store, { ...sweep, source: { ...sweep.source, fetchedAt: new Date(now - 1000).toISOString() } }, now)).rejects.toMatchObject({ status: 409 });
+});
+it('rejects shop sweeps with unknown branches, stock for online-only offers or a wrong source type', async () => {
+  const [rioja] = sweep.offers;
+  for (const modified of [
+    { ...sweep, offers: [{ ...rioja, availableAt: ['coop/9999'] }] },
+    { ...sweep, offers: [{ ...rioja, onlineOnly: true }] },
+    { ...sweep, offers: [{ ...rioja, validThrough: '2026-10-21' }] },
+    { ...sweep, offers: [{ ...rioja, sourcePage: 1 }] },
+    { ...sweep, offers: [{ ...rioja, sourceUrl: 'https://epaper.coop.ch/x.pdf' }] },
+    { ...sweep, branches: [{ ...sweep.branches[0], sourceUrl: 'https://www.coop.ch/de/aktionen' }] },
+  ]) await expect(importDealSweep(memory(), modified, now)).rejects.toMatchObject({ status: 400 });
+  await expect(importDealSweep(memory(), batch, now)).rejects.toMatchObject({ status: 400 });
+  await expect(importDeals(memory(), sweep, now)).rejects.toMatchObject({ status: 400 });
 });
 it('requires reviewer authentication for HTML, JSON and writes before reading storage', async () => {
   vi.stubEnv('MAP_REVIEW_PASSWORD', 'test');

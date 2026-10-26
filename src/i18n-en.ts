@@ -90,6 +90,8 @@ export const en: Record<string, string> = {
   "Ungültiger Aktionsimport. Quelle, Preise, Gültigkeit und Filialdaten prüfen.": "Invalid promotion import. Check source, prices, validity and branch details.",
   "Der Import enthält keine aktuell gültigen Angebote oder wurde nicht frisch abgerufen.": "The import has no currently valid offers or was not fetched recently.",
   "Ein neuerer Aktionsimport ist bereits vorhanden.": "A more recent promotion import is already available.",
+  "Ein neuerer Sweep ist bereits vorhanden.": "A more recent sweep is already available.",
+  "Falsche Importart für diese Quelle.": "Wrong import type for this source.",
   "Der Aktionspilot wird gerade geändert. Bitte erneut versuchen.": "The promotion pilot is being updated. Please try again.",
   "Ungültige Filialzuordnung.": "Invalid branch assignment.",
   "Der Aktionspilot wurde inzwischen geändert. Bitte neu laden.": "The promotion pilot has changed. Please reload.",

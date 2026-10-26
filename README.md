@@ -110,6 +110,17 @@ python -m scraper.ai_scan --discover              # KI-Scan, braucht ANTHROPIC_A
 | `scraper/menu_photos.json` | Einzeln geprüfte, datierte Menüfotos |
 | `scraper/cities/<stadt>/` | Prüfprotokolle pro Stadt, Zürich liegt im Stammordner |
 
+### Privater Aktionspilot
+
+Die Prüfseite verlinkt eine private Aktionskarte für Zürich (`/api/deals?view=preview`, nur mit Prüfzugang). Sie zeigt die Titelseite des Coop-Prospekts, die der Workflow täglich einliest, und die Weinaktionen von coop.ch mit der Verfügbarkeit in den Filialen der Stadt Zürich. coop.ch blockiert automatisierte Abrufe. Aktionsliste und Filialsuche werden deshalb manuell in einem normalen Browser gelesen, mit dem Crawl-Delay von 5 Sekunden aus der robots.txt. Den Export wandelt man so um und speichert ihn:
+
+```sh
+python -m scraper.coop_wine output/deals/coop-wine-raw.json
+node --env-file=.env.local scripts/deals-import.mjs --sweep output/deals/coop-wine.json --production
+```
+
+Übernommen werden nur Angebote mit gedrucktem Statt-Preis. Steht derselbe Preis im aktuellen Prospekt, gilt dessen Gültigkeit. Sonst nennt coop.ch kein Enddatum, und das Angebot verschwindet zwei Tage nach dem Abruf. Die Verfügbarkeit pro Filiale stammt aus der coop.ch-Filialsuche und gilt ohne Gewähr. Der Sweep liegt neben dem Prospektimport und wird von diesem nicht überschrieben.
+
 ## Aufbau
 
 ```text

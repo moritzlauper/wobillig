@@ -34,10 +34,11 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       }
       if (typeof body === 'string') { if (body.length > 8192) throw new InputError('Eintrag zu gross.', 413); try { body = JSON.parse(body); } catch { throw new InputError('Ungültiges JSON.'); } }
       if (!body || typeof body !== 'object' || Array.isArray(body) || JSON.stringify(body).length > 8192) throw new InputError('Ungültige Filialzuordnung.');
-      return reply(200, visibleDealPreview(await assignDeal(store, body as Record<string, unknown>)));
+      const pilot = await assignDeal(store, body as Record<string, unknown>), { state } = await store.read();
+      return reply(200, visibleDealPreview(pilot, Date.now(), state.dealSweep));
     }
     const { state } = await store.read();
-    return reply(200, visibleDealPreview(state.dealPilot || emptyDealPilot()));
+    return reply(200, visibleDealPreview(state.dealPilot || emptyDealPilot(), Date.now(), state.dealSweep));
   } catch (error) {
     if (error instanceof InputError) return reply(error.status, { error: error.message });
     console.error('Private deal preview failed', error instanceof Error ? error.name : 'UnknownError');

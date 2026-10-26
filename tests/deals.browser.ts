@@ -14,7 +14,7 @@ for (const width of [390, 1280]) test(`private promotion preview searches and ex
   await page.goto('/api/deals?view=preview');
   await expect(page.locator('header')).toContainText('NICHT VERÖFFENTLICHT');
   await expect(page.locator('#offers')).toContainText('Zucker');
-  await expect(page.locator('#status')).toContainText('0 zugeordnete Filialen');
+  await expect(page.locator('#status')).toContainText('0 Filialen mit passenden Angeboten');
   await expect(page.locator('.deal-marker.candidate')).toHaveCount(1);
   await page.getByLabel('Produkt oder Marke').fill('Kaffee');
   await expect(page.locator('#offers .deal')).toHaveCount(0);
