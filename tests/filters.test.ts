@@ -93,4 +93,15 @@ describe('initial cheap mode', () => {
     writeFilters(params, filtersFromSearch(params), cheap);
     expect(cheapModeFromSearch(params, cheap ? '0' : '1')).toBe(cheap);
   });
+  it.each([
+    ['cheap=0', null, 'cheap=0'],
+    ['cheap=0', '1', 'cheap=0'],
+    ['cheap=0', '0', ''],
+    ['cheap=1', '0', 'cheap=1'],
+    ['coffeeType=espresso&cheap=0', null, 'coffeeType=espresso'],
+  ])('drops cheap only where the plain link already opens in that mode: %s with preference %s', (query, preference, expected) => {
+    const params = new URLSearchParams(query);
+    dropDefaultCheap(params, preference);
+    expect(params.toString()).toBe(expected);
+  });
 });

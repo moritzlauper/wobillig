@@ -71,9 +71,16 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
   }
 }
 
+function savedCheapPreference(): string | null {
+  try { return localStorage.getItem(cheapPreferenceKey); } catch { return null; }
+}
+
 // Keep shared default views as plain wobillig.ch or wobillig.ch/bern links.
-export function dropDefaultCheap(params: URLSearchParams): void {
+// cheap is dropped in both directions once the plain URL already opens in that mode for this browser.
+export function dropDefaultCheap(params: URLSearchParams, preference = savedCheapPreference()): void {
+  const value = params.get('cheap');
+  if (value !== '0' && value !== '1') return;
   const rest = new URLSearchParams(params);
   rest.delete('cheap');
-  if (params.get('cheap') === '1' && cheapModeFromSearch(rest, null)) params.delete('cheap');
+  if ((value === '1') === cheapModeFromSearch(rest, preference)) params.delete('cheap');
 }

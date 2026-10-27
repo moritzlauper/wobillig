@@ -20,7 +20,7 @@ for (const width of [320, 1280]) {
     await expect(page.locator('a[data-city="bern"]')).toHaveAttribute('href', '/bern');
     await cheap.click();
     await expect(cheap).toHaveAttribute('aria-pressed', 'false');
-    await expect(page).toHaveURL(/cheap=0/);
+    await expect.poll(() => new URL(page.url()).search).toBe('');
     await page.goto('/');
     await expect(cheap).toHaveAttribute('aria-pressed', 'false');
     await page.goto('/en/bern?cheap=1');
