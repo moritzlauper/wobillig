@@ -39,7 +39,7 @@ class BurgerRules(unittest.TestCase):
         self.assertFalse(offers[0]['glutenFree'])
 
     def test_rejects_menus_sides_and_non_burgers(self):
-        for name in ('Burger Menü', 'Burger Combo mit Pommes', 'Pommes Frites', 'Hot Dog', 'Kids Burger', 'Chicken Wrap'):
+        for name in ('Burger Menü', 'Burger Combo mit Pommes', 'Pommes Frites', 'Hot Dog', 'Kids Burger', 'Chicken Wrap', 'Mini-Burger Tartar', 'Kleiner Burger'):
             with self.subTest(name=name):
                 self.assertEqual(clean({'offers': [row(name=name, evidence=f'{name} 22.00')]}, URL), [])
 

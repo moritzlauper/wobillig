@@ -35,7 +35,7 @@ CUISINE = re.compile(r'^burger$', re.I)
 RELEVANT = re.compile(r'burger|b[uü]rger|men[uü]|karte|speise|food|essen|dishes|gerichte|lunch|mittag|dinner|abend|take.?away|bestell|order', re.I)
 DOCUMENT = re.compile(r'\.(?:pdf|jpe?g|png|webp)$', re.I)
 # Dish names that describe a meal, a side or a supplement rather than one burger.
-EXCLUDED = re.compile(r'\b(?:men[uü]s?|combo|sets?|kids?|kinder|pommes|fries|wraps?|hot ?dogs?|beilagen?|sides?|getr[aä]nk\w*|drinks?|extras?|zuschlag|aufpreis)\b', re.I)
+EXCLUDED = re.compile(r'\b(?:men[uü]s?|combo|sets?|kids?|kinder|pommes|fries|wraps?|hot ?dogs?|beilagen?|sides?|getr[aä]nk\w*|drinks?|extras?|zuschlag|aufpreis|minis?|klein\w*|small)\b', re.I)
 VEGAN = re.compile(r'\bvegan\w*\b', re.I)
 VEGETARIAN = re.compile(r'\b(?:vegi\w*|veggie\w*|vegetar\w*)\b', re.I)
 GLUTEN_FREE = re.compile(r'\b(?:glutenfrei\w*|gluten[- ]?free|sans gluten|senza glutine)\b', re.I)
