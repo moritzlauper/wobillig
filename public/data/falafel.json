@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-19T20:05:37.158030+00:00",
-  "discoveredAt": "2026-10-19T19:46:21.485666+00:00",
+  "generatedAt": "2026-10-27T21:25:34.316847+00:00",
+  "discoveredAt": "2026-10-27T21:09:16.536860+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -11,6 +11,7 @@
       "type": "fast_food",
       "address": "Gutstrasse 162",
       "postcode": "8055",
+      "addressSource": "https://www.openstreetmap.org/way/307451121",
       "website": null,
       "cuisine": [
         "lebanese"
@@ -19,8 +20,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/307451121"
+      "checkedAt": null
     },
     {
       "id": "node/613703202",
@@ -59,7 +59,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T19:46:21.704868+00:00"
+      "checkedAt": "2026-10-27T21:09:16.586423+00:00"
     },
     {
       "id": "node/5597060141",
@@ -77,8 +77,8 @@
       "openingHours": null,
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T19:47:28.065737+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-27T21:10:01.696782+00:00"
     },
     {
       "id": "node/1449013754",
@@ -106,6 +106,7 @@
       "type": "fast_food",
       "address": "Hafnerstrasse 13",
       "postcode": "8005",
+      "addressSource": "https://www.openstreetmap.org/way/123415532",
       "website": "https://www.almouchtar.com/",
       "cuisine": [
         "lebanese"
@@ -114,8 +115,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T19:46:23.116339+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/123415532"
+      "checkedAt": "2026-10-27T21:09:18.046614+00:00"
     },
     {
       "id": "node/344660930",
@@ -153,7 +153,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T19:46:24.369364+00:00"
+      "checkedAt": "2026-10-27T21:09:18.143006+00:00"
     },
     {
       "id": "node/4892249174",
@@ -171,7 +171,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T19:51:39.098485+00:00"
+      "checkedAt": "2026-10-27T21:12:11.362503+00:00"
     },
     {
       "id": "node/11278373439",
@@ -209,7 +209,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T19:46:25.877610+00:00"
+      "checkedAt": "2026-10-27T21:09:19.775357+00:00"
     },
     {
       "id": "node/11780802149",
@@ -237,6 +237,7 @@
       "type": "fast_food",
       "address": "Birmensdorferstrasse 444",
       "postcode": "8055",
+      "addressSource": "https://www.openstreetmap.org/way/342612701",
       "website": "https://www.triemlitreffpunkt.ch/",
       "cuisine": [
         "kebab",
@@ -247,8 +248,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T19:46:27.885510+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/342612701"
+      "checkedAt": "2026-10-27T21:09:23.915501+00:00"
     },
     {
       "id": "node/6343148993",
@@ -267,7 +267,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T19:46:37.721079+00:00"
+      "checkedAt": "2026-10-27T21:09:28.031791+00:00"
     }
   ]
 }

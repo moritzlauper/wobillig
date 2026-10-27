@@ -1,6 +1,6 @@
 {
   "node/565524652": {
-    "checkedAt": "2026-10-19T18:19:30.795736+00:00",
+    "checkedAt": "2026-10-27T20:52:00.342004+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.fresh-orient.ch/"
@@ -14,7 +14,7 @@
     "candidates": []
   },
   "node/5378024770": {
-    "checkedAt": "2026-10-19T18:19:30.960002+00:00",
+    "checkedAt": "2026-10-27T20:52:00.327532+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.happy-chef.ch/"
@@ -42,7 +42,7 @@
     "candidates": []
   },
   "node/4906342669": {
-    "checkedAt": "2026-10-19T18:19:34.123889+00:00",
+    "checkedAt": "2026-10-27T20:52:02.515750+00:00",
     "status": "fetch_failed",
     "visited": [
       "http://www.bebos.ch/"
@@ -65,7 +65,7 @@
     "candidates": []
   },
   "node/11761779035": {
-    "checkedAt": "2026-10-19T18:19:38.165209+00:00",
+    "checkedAt": "2026-10-27T20:52:05.231801+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.xolldiccc.ch/",
@@ -94,42 +94,13 @@
     "candidates": []
   },
   "node/10063683019": {
-    "checkedAt": "2026-10-19T18:19:44.406966+00:00",
-    "status": "ambiguous_prices",
+    "checkedAt": "2026-10-27T20:52:01.848027+00:00",
+    "status": "no_prices",
     "visited": [
       "https://www.nordtakeaway.ch/"
     ],
     "errors": [],
-    "candidates": [
-      {
-        "name": "Döner im Taschenbrot",
-        "foodType": "doner",
-        "portionType": "bread",
-        "meatType": "unspecified",
-        "volumeMl": null,
-        "priceChf": 14.5,
-        "sourceUrl": "https://www.nordtakeaway.ch/",
-        "observedAt": "2026-10-19T18:19:40.752168+00:00",
-        "confidence": "automatic",
-        "evidence": "Döner im Taschenbrot 14,50 CHF",
-        "alcoholFree": true,
-        "priceContext": "online_menu"
-      },
-      {
-        "name": "Döner im Fladenbrot",
-        "foodType": "doner",
-        "portionType": "bread",
-        "meatType": "unspecified",
-        "volumeMl": null,
-        "priceChf": 15.0,
-        "sourceUrl": "https://www.nordtakeaway.ch/",
-        "observedAt": "2026-10-19T18:19:40.752168+00:00",
-        "confidence": "automatic",
-        "evidence": "Döner im Fladenbrot 15,00 CHF",
-        "alcoholFree": true,
-        "priceContext": "online_menu"
-      }
-    ]
+    "candidates": []
   },
   "way/1308758478": {
     "checkedAt": "2026-10-19T18:19:53.642147+00:00",
@@ -157,7 +128,7 @@
     "candidates": []
   },
   "node/694632572": {
-    "checkedAt": "2026-10-19T18:19:53.962160+00:00",
+    "checkedAt": "2026-10-27T20:52:00.338242+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.restaurant-rodi-zuerich.ch/"
@@ -188,7 +159,7 @@
     "candidates": []
   },
   "node/14019839153": {
-    "checkedAt": "2026-10-19T18:20:04.158737+00:00",
+    "checkedAt": "2026-10-27T20:52:31.550621+00:00",
     "status": "no_prices",
     "visited": [
       "https://allegrotto-zurich.ch/",
@@ -199,21 +170,22 @@
     "candidates": []
   },
   "node/7437151114": {
-    "checkedAt": "2026-10-19T18:20:05.789288+00:00",
-    "status": "fetch_failed",
+    "checkedAt": "2026-10-27T20:52:02.729756+00:00",
+    "status": "partial",
     "visited": [
-      "https://www.tatmezebar.ch/"
+      "https://www.tatmezebar.ch/",
+      "https://www.tatmezebar.ch/menue/"
     ],
     "errors": [
       {
-        "url": "https://www.tatmezebar.ch/",
+        "url": "https://www.tatmezebar.ch/menue/",
         "error": "http_403"
       }
     ],
     "candidates": []
   },
   "node/3909362593": {
-    "checkedAt": "2026-10-19T18:20:07.641478+00:00",
+    "checkedAt": "2026-10-27T20:52:07.726341+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.seebach-treff.ch/",
@@ -225,7 +197,7 @@
     "candidates": []
   },
   "node/10310405298": {
-    "checkedAt": "2026-10-19T18:20:08.946582+00:00",
+    "checkedAt": "2026-10-27T20:52:03.573241+00:00",
     "status": "no_prices",
     "visited": [
       "https://thebab.ch/"
@@ -234,7 +206,7 @@
     "candidates": []
   },
   "node/370834408": {
-    "checkedAt": "2026-10-19T18:20:11.525659+00:00",
+    "checkedAt": "2026-10-27T20:52:38.268828+00:00",
     "status": "no_prices",
     "visited": [
       "https://static.wixstatic.com/media/36392e_099ed1344b7f42ab89f65b9cb5eaecc7~mv2.jpg",
@@ -270,7 +242,7 @@
     "candidates": []
   },
   "node/11534189928": {
-    "checkedAt": "2026-10-19T18:20:12.054977+00:00",
+    "checkedAt": "2026-10-27T20:52:02.792253+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://foodgate.ch/"
@@ -341,7 +313,7 @@
     ]
   },
   "node/10948817478": {
-    "checkedAt": "2026-10-19T18:20:18.116724+00:00",
+    "checkedAt": "2026-10-27T20:52:10.040182+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.fbgcdn.com/websites/img/gloriafood.png",
@@ -354,7 +326,7 @@
     "candidates": []
   },
   "node/7932162722": {
-    "checkedAt": "2026-10-19T18:20:18.273668+00:00",
+    "checkedAt": "2026-10-27T20:52:11.478482+00:00",
     "status": "no_prices",
     "visited": [
       "https://vegitat.ch/"
@@ -374,7 +346,7 @@
     "candidates": []
   },
   "node/876086417": {
-    "checkedAt": "2026-10-19T18:20:20.304627+00:00",
+    "checkedAt": "2026-10-27T20:52:06.674778+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.wiedikon-point-zuerich.ch/"
@@ -383,7 +355,7 @@
     "candidates": []
   },
   "node/6911864195": {
-    "checkedAt": "2026-10-19T18:20:22.375589+00:00",
+    "checkedAt": "2026-10-27T20:52:21.079854+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.3menskebab.ch/",
@@ -424,7 +396,7 @@
     "candidates": []
   },
   "node/8785727518": {
-    "checkedAt": "2026-10-19T18:20:29.260648+00:00",
+    "checkedAt": "2026-10-27T20:52:12.619704+00:00",
     "status": "no_prices",
     "visited": [
       "https://zumgoldenentaschenbrot.ch/",
@@ -449,8 +421,8 @@
     "candidates": []
   },
   "node/6343148993": {
-    "checkedAt": "2026-10-19T18:20:36.818192+00:00",
-    "status": "prices_found",
+    "checkedAt": "2026-10-27T20:52:21.990330+00:00",
+    "status": "no_prices",
     "visited": [
       "https://www.zueribistro.ch/menue-milchbuck/",
       "https://www.zueribistro.ch/wp-content/uploads/2020/05/american_express_new.png",
@@ -464,34 +436,7 @@
       "https://www.zueribistro.ch/wp-content/uploads/2020/05/visa_new.png"
     ],
     "errors": [],
-    "candidates": [
-      {
-        "name": "Classic Döner",
-        "foodType": "doner",
-        "portionType": "unspecified",
-        "meatType": "unspecified",
-        "volumeMl": null,
-        "priceChf": 13.0,
-        "sourceUrl": "https://www.zueribistro.ch/menue-milchbuck/",
-        "observedAt": "2026-10-19T18:20:18.273708+00:00",
-        "confidence": "automatic",
-        "evidence": "Classic Döner 13,00",
-        "alcoholFree": true
-      },
-      {
-        "name": "Chicken Kebap",
-        "foodType": "doner",
-        "portionType": "unspecified",
-        "meatType": "chicken",
-        "volumeMl": null,
-        "priceChf": 15.5,
-        "sourceUrl": "https://www.zueribistro.ch/menue-milchbuck/",
-        "observedAt": "2026-10-19T18:20:18.273708+00:00",
-        "confidence": "automatic",
-        "evidence": "Chicken Kebap 15,50",
-        "alcoholFree": true
-      }
-    ]
+    "candidates": []
   },
   "node/334300587": {
     "checkedAt": "2026-10-19T18:20:51.018562+00:00",
@@ -505,7 +450,7 @@
     "candidates": []
   },
   "node/5597060141": {
-    "checkedAt": "2026-10-19T18:20:53.351569+00:00",
+    "checkedAt": "2026-10-27T20:52:56.025763+00:00",
     "status": "no_prices",
     "visited": [
       "https://delicesdorient.ch/",
@@ -564,7 +509,7 @@
     "candidates": []
   },
   "node/4424600896": {
-    "checkedAt": "2026-10-19T18:20:59.773433+00:00",
+    "checkedAt": "2026-10-27T20:52:46.182690+00:00",
     "status": "no_prices",
     "visited": [
       "https://actionburger.ch/",
@@ -840,7 +785,7 @@
     "candidates": []
   },
   "node/357225677": {
-    "checkedAt": "2026-10-19T18:23:01.637917+00:00",
+    "checkedAt": "2026-10-27T20:54:49.271554+00:00",
     "status": "no_prices",
     "visited": [
       "https://addisabebazurich.ch/",
@@ -1420,7 +1365,7 @@
     "candidates": []
   },
   "node/5115701836": {
-    "checkedAt": "2026-10-19T18:25:08.185839+00:00",
+    "checkedAt": "2026-10-27T20:52:56.512371+00:00",
     "status": "no_prices",
     "visited": [
       "https://static.wixstatic.com/media/6f547f_da9ee563afeb461587c8867c22ea7767~mv2.jpg",
@@ -1546,7 +1491,7 @@
     "candidates": []
   },
   "node/6483410885": {
-    "checkedAt": "2026-10-19T18:25:27.222066+00:00",
+    "checkedAt": "2026-10-27T20:52:56.949645+00:00",
     "status": "no_prices",
     "visited": [
       "https://limmatladen.ch",
@@ -1556,7 +1501,7 @@
     "candidates": []
   },
   "node/4496730804": {
-    "checkedAt": "2026-10-19T18:25:28.128310+00:00",
+    "checkedAt": "2026-10-27T20:53:02.113385+00:00",
     "status": "no_prices",
     "visited": [
       "https://back-werk.ch/de/",
@@ -1619,7 +1564,7 @@
     "candidates": []
   },
   "node/13028181701": {
-    "checkedAt": "2026-10-19T18:25:49.611400+00:00",
+    "checkedAt": "2026-10-27T20:55:05.311590+00:00",
     "status": "no_prices",
     "visited": [
       "https://pizza-allegrezza.ch/bestellen/dessert2/",
@@ -2015,7 +1960,7 @@
     "candidates": []
   },
   "node/656634932": {
-    "checkedAt": "2026-10-19T18:26:43.284112+00:00",
+    "checkedAt": "2026-10-27T20:52:57.193809+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://biergarten8004.ch/"
@@ -2068,7 +2013,7 @@
     "candidates": []
   },
   "node/4900260245": {
-    "checkedAt": "2026-10-19T18:26:48.339234+00:00",
+    "checkedAt": "2026-10-27T20:53:05.689869+00:00",
     "status": "partial",
     "visited": [
       "https://bibimshack.com/",
@@ -2085,7 +2030,7 @@
     "candidates": []
   },
   "node/1611869039": {
-    "checkedAt": "2026-10-19T18:26:48.551883+00:00",
+    "checkedAt": "2026-10-27T20:53:22.433146+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.bellevuemarroni.ch/",
@@ -2133,7 +2078,7 @@
     "candidates": []
   },
   "node/651272493": {
-    "checkedAt": "2026-10-19T18:26:51.769659+00:00",
+    "checkedAt": "2026-10-27T20:53:05.721212+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://lochergut-bistro.ch/"
@@ -2157,7 +2102,7 @@
     "candidates": []
   },
   "node/4868072655": {
-    "checkedAt": "2026-10-19T18:26:55.229553+00:00",
+    "checkedAt": "2026-10-27T20:53:08.886980+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.bgoodrestaurants.ch/langstrasse/"
@@ -2211,7 +2156,7 @@
     "candidates": []
   },
   "node/10893221699": {
-    "checkedAt": "2026-10-19T18:27:15.313336+00:00",
+    "checkedAt": "2026-10-27T20:53:25.656958+00:00",
     "status": "no_prices",
     "visited": [
       "https://bloomingjuice.ch/"
@@ -2513,7 +2458,7 @@
     "candidates": []
   },
   "node/4424600894": {
-    "checkedAt": "2026-10-19T18:28:16.949943+00:00",
+    "checkedAt": "2026-10-27T20:53:11.674783+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.buffet-express-zh.ch/"
@@ -2602,7 +2547,7 @@
     "candidates": []
   },
   "node/317773545": {
-    "checkedAt": "2026-10-19T18:28:41.053082+00:00",
+    "checkedAt": "2026-10-27T20:53:12.900659+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.burger-king.ch/"
@@ -2868,7 +2813,7 @@
     "candidates": []
   },
   "node/11778835755": {
-    "checkedAt": "2026-10-19T18:29:33.224981+00:00",
+    "checkedAt": "2026-10-27T20:54:08.739764+00:00",
     "status": "no_prices",
     "visited": [
       "https://burgerboutique.ch",
@@ -2881,7 +2826,7 @@
     "candidates": []
   },
   "node/3078522543": {
-    "checkedAt": "2026-10-19T18:29:38.893395+00:00",
+    "checkedAt": "2026-10-27T20:53:32.982709+00:00",
     "status": "no_prices",
     "visited": [
       "https://cartelburrito.ch/",
@@ -3004,7 +2949,7 @@
     "candidates": []
   },
   "node/4815870121": {
-    "checkedAt": "2026-10-19T18:30:06.190673+00:00",
+    "checkedAt": "2026-10-27T20:53:35.955023+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.chaimatakeaway.ch/",
@@ -3021,7 +2966,7 @@
     "candidates": []
   },
   "node/4550939256": {
-    "checkedAt": "2026-10-19T18:30:13.890902+00:00",
+    "checkedAt": "2026-10-27T20:53:39.301152+00:00",
     "status": "no_prices",
     "visited": [
       "https://cheesecakelove.ch"
@@ -3392,7 +3337,7 @@
     "candidates": []
   },
   "node/4869996367": {
-    "checkedAt": "2026-10-19T18:32:57.472570+00:00",
+    "checkedAt": "2026-10-27T20:54:23.642618+00:00",
     "status": "no_prices",
     "visited": [
       "https://chickeria.ch/details/chickeria-zuerich-langstrasse/",
@@ -3625,7 +3570,7 @@
     "candidates": []
   },
   "node/11956514145": {
-    "checkedAt": "2026-10-19T18:33:49.062867+00:00",
+    "checkedAt": "2026-10-27T20:53:40.561406+00:00",
     "status": "no_prices",
     "visited": [
       "https://cobacanteen.com/"
@@ -3678,7 +3623,7 @@
     "candidates": []
   },
   "node/370834151": {
-    "checkedAt": "2026-10-19T18:34:22.871308+00:00",
+    "checkedAt": "2026-10-27T20:54:32.739501+00:00",
     "status": "no_prices",
     "visited": [
       "https://de.cdn-website.com/bed120bb8aeb4b3ba22b9fe0043bfe57/files/uploaded/2021.pdf",
@@ -3937,7 +3882,7 @@
     "candidates": []
   },
   "node/2232079982": {
-    "checkedAt": "2026-10-19T18:35:47.980913+00:00",
+    "checkedAt": "2026-10-27T20:53:54.520283+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://dimama.ch/"
@@ -4135,7 +4080,7 @@
     "candidates": []
   },
   "node/267049752": {
-    "checkedAt": "2026-10-19T18:36:25.374981+00:00",
+    "checkedAt": "2026-10-27T20:53:59.829960+00:00",
     "status": "partial",
     "visited": [
       "https://dieci.ch/de/pizzakurier-binz-wollishofen",
@@ -4151,7 +4096,7 @@
     "candidates": []
   },
   "node/5380840438": {
-    "checkedAt": "2026-10-19T18:36:33.969508+00:00",
+    "checkedAt": "2026-10-27T20:54:02.145695+00:00",
     "status": "no_prices",
     "visited": [
       "https://dieci.ch/de/pizzakurier-zuerich-oerlikon",
@@ -4161,7 +4106,7 @@
     "candidates": []
   },
   "node/5386900841": {
-    "checkedAt": "2026-10-19T18:36:39.857452+00:00",
+    "checkedAt": "2026-10-27T20:54:03.561671+00:00",
     "status": "no_prices",
     "visited": [
       "https://dieci.ch/de/pizzakurier-zuerichberg",
@@ -4171,7 +4116,7 @@
     "candidates": []
   },
   "node/5386923026": {
-    "checkedAt": "2026-10-19T18:36:44.428584+00:00",
+    "checkedAt": "2026-10-27T20:54:05.084446+00:00",
     "status": "no_prices",
     "visited": [
       "https://dieci.ch/de/pizzakurier-zuerich-hardbruecke",
@@ -4181,7 +4126,7 @@
     "candidates": []
   },
   "node/386002566": {
-    "checkedAt": "2026-10-19T18:36:51.384995+00:00",
+    "checkedAt": "2026-10-27T20:54:34.617056+00:00",
     "status": "partial",
     "visited": [
       "https://static.wixstatic.com/media/0454f669096968fe4b701f134abd2e7f.jpg",
@@ -4213,7 +4158,7 @@
     "candidates": []
   },
   "node/5658634795": {
-    "checkedAt": "2026-10-19T18:36:58.020418+00:00",
+    "checkedAt": "2026-10-27T20:54:58.590030+00:00",
     "status": "partial",
     "visited": [
       "https://deananddavid.ch/standorte/zuerich-bleicherweg/",
@@ -4251,7 +4196,7 @@
     "candidates": []
   },
   "node/9871003608": {
-    "checkedAt": "2026-10-19T18:37:00.348203+00:00",
+    "checkedAt": "2026-10-27T20:55:01.761552+00:00",
     "status": "no_prices",
     "visited": [
       "https://delhihouse.ch/",
@@ -4357,7 +4302,7 @@
     "candidates": []
   },
   "node/13686387310": {
-    "checkedAt": "2026-10-19T18:37:05.876502+00:00",
+    "checkedAt": "2026-10-27T20:54:33.434196+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.instagram.com/eat_rockn_roll/"
@@ -4371,7 +4316,7 @@
     "candidates": []
   },
   "node/5652355503": {
-    "checkedAt": "2026-10-19T18:37:06.038284+00:00",
+    "checkedAt": "2026-10-27T20:54:33.454432+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.ecke-west-zurich.ch/"
@@ -4743,7 +4688,7 @@
     "candidates": []
   },
   "node/1924110438": {
-    "checkedAt": "2026-10-19T18:38:49.135402+00:00",
+    "checkedAt": "2026-10-27T20:54:39.491831+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.famiglia-tremonte.ch/",
@@ -4780,7 +4725,7 @@
     "candidates": []
   },
   "node/1639345927": {
-    "checkedAt": "2026-10-19T18:38:52.767437+00:00",
+    "checkedAt": "2026-10-27T20:54:37.044307+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.filopizza.ch/"
@@ -4822,7 +4767,7 @@
     "candidates": []
   },
   "node/1391312210": {
-    "checkedAt": "2026-10-19T18:38:54.336417+00:00",
+    "checkedAt": "2026-10-27T20:54:40.382154+00:00",
     "status": "no_prices",
     "visited": [
       "https://firehousesubs.ch/"
@@ -4831,7 +4776,7 @@
     "candidates": []
   },
   "node/3771823688": {
-    "checkedAt": "2026-10-19T18:38:54.492685+00:00",
+    "checkedAt": "2026-10-27T20:54:39.518046+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.gofishandchips.ch/"
@@ -5052,7 +4997,7 @@
     "candidates": []
   },
   "node/6819291454": {
-    "checkedAt": "2026-10-19T18:39:23.664041+00:00",
+    "checkedAt": "2026-10-27T20:54:45.469270+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://francospizza.ch/oerlikon/"
@@ -5112,7 +5057,7 @@
     "candidates": []
   },
   "node/12390093683": {
-    "checkedAt": "2026-10-19T18:39:36.239881+00:00",
+    "checkedAt": "2026-10-27T20:55:01.144651+00:00",
     "status": "no_prices",
     "visited": [
       "https://fox-cuisine.com",
@@ -5647,7 +5592,7 @@
     "candidates": []
   },
   "node/12216226992": {
-    "checkedAt": "2026-10-19T18:42:37.066127+00:00",
+    "checkedAt": "2026-10-27T20:56:55.254466+00:00",
     "status": "no_prices",
     "visited": [
       "http://www.food-trucks-deutschland.de/media/entry/impression/01125fb8ee0ceb04a2cdd0969155d38f.jpg",
@@ -5912,7 +5857,7 @@
     "candidates": []
   },
   "node/1291611937": {
-    "checkedAt": "2026-10-19T18:43:00.189192+00:00",
+    "checkedAt": "2026-10-27T20:55:20.593949+00:00",
     "status": "partial",
     "visited": [
       "https://www.gooods.ch/",
@@ -5929,8 +5874,10 @@
       "https://www.gooods.ch/data/images/1325_1.jpg",
       "https://www.gooods.ch/data/images/1326_1.jpg",
       "https://www.gooods.ch/data/images/159_1.jpg",
+      "https://www.gooods.ch/data/images/33_1.jpg",
       "https://www.gooods.ch/data/images/36_1.jpg",
-      "https://www.gooods.ch/data/images/38_1.jpg",
+      "https://www.gooods.ch/data/images/37_1.jpg",
+      "https://www.gooods.ch/data/images/42_1.jpg",
       "https://www.gooods.ch/data/images/healthy-goods_neu.png",
       "https://www.gooods.ch/data/images/healthy-goods_neu[1].png",
       "https://www.gooods.ch/data/images/healthy-goods_neu_FR.png",
@@ -5956,7 +5903,7 @@
     "candidates": []
   },
   "node/14189662619": {
-    "checkedAt": "2026-10-19T18:43:04.321045+00:00",
+    "checkedAt": "2026-10-27T20:54:59.987194+00:00",
     "status": "no_prices",
     "visited": [
       "https://plattenhof.ch/guetaegg/"
@@ -5965,7 +5912,7 @@
     "candidates": []
   },
   "node/5341084407": {
-    "checkedAt": "2026-10-19T18:43:17.742570+00:00",
+    "checkedAt": "2026-10-27T20:55:08.036041+00:00",
     "status": "no_prices",
     "visited": [
       "https://images.squarespace-cdn.com/content/v1/62547181f80e0b2be341db45/1669842496231-ZUDWMS4BE788G8HNPUSM/unsplash-image-c-S9qxFxtSQ.jpg",
@@ -6047,7 +5994,7 @@
     "candidates": []
   },
   "node/103116140": {
-    "checkedAt": "2026-10-19T18:43:30.223105+00:00",
+    "checkedAt": "2026-10-27T20:55:04.527888+00:00",
     "status": "no_prices",
     "visited": [
       "https://hafen-enge-beiz.ch/",
@@ -6112,7 +6059,7 @@
     "candidates": []
   },
   "node/5297796707": {
-    "checkedAt": "2026-10-19T18:43:47.500503+00:00",
+    "checkedAt": "2026-10-27T20:55:15.034656+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.ha-noi.ch/",
@@ -6412,7 +6359,7 @@
     "candidates": []
   },
   "node/5635232716": {
-    "checkedAt": "2026-10-19T18:44:40.768016+00:00",
+    "checkedAt": "2026-10-27T20:55:04.567324+00:00",
     "status": "fetch_failed",
     "visited": [
       "http://hk.iuu.ch/"
@@ -6607,7 +6554,7 @@
     "candidates": []
   },
   "node/9893260545": {
-    "checkedAt": "2026-10-19T18:45:26.405643+00:00",
+    "checkedAt": "2026-10-27T20:55:04.570535+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.instagram.com/huncho.ch/"
@@ -6970,7 +6917,7 @@
     "candidates": []
   },
   "node/12390093682": {
-    "checkedAt": "2026-10-19T18:47:17.733195+00:00",
+    "checkedAt": "2026-10-27T20:56:21.653915+00:00",
     "status": "partial",
     "visited": [
       "https://humkitchenmomo.com",
@@ -7126,7 +7073,7 @@
     "candidates": []
   },
   "node/10799596831": {
-    "checkedAt": "2026-10-19T18:47:57.101612+00:00",
+    "checkedAt": "2026-10-27T20:56:45.076776+00:00",
     "status": "no_prices",
     "visited": [
       "https://houseofmomos.ch",
@@ -7285,7 +7232,7 @@
     "candidates": []
   },
   "node/2509647639": {
-    "checkedAt": "2026-10-19T18:48:25.517001+00:00",
+    "checkedAt": "2026-10-27T20:55:10.371007+00:00",
     "status": "no_prices",
     "visited": [
       "https://janni.ch/"
@@ -7339,7 +7286,7 @@
     "candidates": []
   },
   "way/374528962": {
-    "checkedAt": "2026-10-19T18:48:33.039123+00:00",
+    "checkedAt": "2026-10-27T20:55:13.610760+00:00",
     "status": "no_prices",
     "visited": [
       "https://juicery21.ch/"
@@ -7348,7 +7295,7 @@
     "candidates": []
   },
   "node/1569581032": {
-    "checkedAt": "2026-10-19T18:48:33.188855+00:00",
+    "checkedAt": "2026-10-27T20:55:13.611392+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://kstreetoast.ch/"
@@ -7444,7 +7391,7 @@
     "candidates": []
   },
   "node/6657342923": {
-    "checkedAt": "2026-10-19T18:49:09.463423+00:00",
+    "checkedAt": "2026-10-27T20:55:23.917010+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.hopzueri.ch/kantine-im-5i",
@@ -7466,7 +7413,7 @@
     "candidates": []
   },
   "node/13920868271": {
-    "checkedAt": "2026-10-19T18:49:17.744114+00:00",
+    "checkedAt": "2026-10-27T20:55:45.101782+00:00",
     "status": "no_prices",
     "visited": [
       "https://kantonslice.ch/",
@@ -7594,7 +7541,7 @@
     "candidates": []
   },
   "node/308057023": {
-    "checkedAt": "2026-10-19T18:49:54.834617+00:00",
+    "checkedAt": "2026-10-27T20:55:16.378103+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.josefwiese.ch"
@@ -7906,7 +7853,7 @@
     "candidates": []
   },
   "node/1240181038": {
-    "checkedAt": "2026-10-19T18:53:32.136390+00:00",
+    "checkedAt": "2026-10-27T20:55:26.743546+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.lacapricciosa.ch/"
@@ -7943,7 +7890,7 @@
     "candidates": []
   },
   "node/4424695481": {
-    "checkedAt": "2026-10-19T18:53:50.875196+00:00",
+    "checkedAt": "2026-10-27T20:55:45.844632+00:00",
     "status": "no_prices",
     "visited": [
       "https://static.wixstatic.com/media/4b01ed_051f4087d6954ba39cf52ff5e76a6453~mv2.jpg",
@@ -8183,136 +8130,12 @@
     "candidates": []
   },
   "node/11898794623": {
-    "checkedAt": "2026-10-19T18:55:21.202940+00:00",
-    "status": "partial",
+    "checkedAt": "2026-10-27T20:55:21.831736+00:00",
+    "status": "no_prices",
     "visited": [
-      "https://static.wixstatic.com/media/01ab6619093f45388d66736ec22e5885.png",
-      "https://static.wixstatic.com/media/1eb386efddc84e228cf940a6dcccc882.jpg",
-      "https://static.wixstatic.com/media/23fd2a2be53141ed810f4d3dcdcd01fa.png",
-      "https://static.wixstatic.com/media/81af6121f84c41a5b4391d7d37fce12a.png",
-      "https://static.wixstatic.com/media/834e6621772e779aa0ff41047d5b4918.jpg",
-      "https://static.wixstatic.com/media/8eaf7d54fb4e47bdb3f871c347480ec1.jpg",
-      "https://static.wixstatic.com/media/9cc232f4c60746dc92321fedec48c69c.jpg",
-      "https://static.wixstatic.com/media/ac2d87_008468bfab1b4edf97cf64127fc79a51~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_03015c6ce5be4ea49acf66247a0a9918~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_144fcf358b2f4b7c91f9844cc14b57a7~mv2.png",
-      "https://static.wixstatic.com/media/ac2d87_14c4ee6b31f9496bbf61095886614cec~mv2.webp",
-      "https://static.wixstatic.com/media/ac2d87_17800d583d3c4ecca660831b277dd19a~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_20bc666238ea4d39bb42c0fc95c3e3fd~mv2.webp",
-      "https://static.wixstatic.com/media/ac2d87_3a8e8828862845ac850692e7c8434c23~mv2.png",
-      "https://static.wixstatic.com/media/ac2d87_3dbca2d3fdae4d7a87c70b6b8d0324cd~mv2.png",
-      "https://static.wixstatic.com/media/ac2d87_3dedb00faf524ce6804cfdc4aec8c2fb~mv2.webp",
-      "https://static.wixstatic.com/media/ac2d87_42fa564c540446cf8f93c91182c5f4c8~mv2.webp",
-      "https://static.wixstatic.com/media/ac2d87_48fbb8e7740f47e69ce550dc7573afed~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_53180c12bba7487eae50ab5a80373f88~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_5afc83015b4e4c2cb8de88a7eb437818~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_5baf7acca2054141a384d250786722bf~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_65a6a267393d4acf910c075cb42b3c65~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_7cdc1362dc1548a2baddc2bc89ca01fa~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_8b17082ad2ee4819ad7dc4288ba8ecb7~mv2.png",
-      "https://static.wixstatic.com/media/ac2d87_8d9c4c6f9d794dd990b077f347cc32b4~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_97b6881ca4a648898916456002c8645f~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_a39d42a7254247539a1071de697c24c5~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_b73d4c242e444fc88e87ebc7c33667cd~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_b8d61a670d3741caafa0672e3ca9406d~mv2.png",
-      "https://static.wixstatic.com/media/ac2d87_cec77658447446b78be3373e6c814d5d~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_e127fdef5e8b4abd811fe4f6685afd88~mv2.webp",
-      "https://static.wixstatic.com/media/ac2d87_f7d35b9b3b76447a85f3c9699ceba0b9~mv2.jpeg",
-      "https://static.wixstatic.com/media/ac2d87_f8d774a6dad54d30a2ea0c484e461997~mv2.jpg",
-      "https://static.wixstatic.com/media/ac2d87_fdb79ed5e9694b88a2dc5d46a3f29b0e~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_048f8b90ff064e17b1ad153e8ae9c69f~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_06357570ba614ea1a4d9a67529930042~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_067bbd85256e49dbbd184c848c304344~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_105bbb3a0ca847aebbf68f7f4d2f4f43~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_1091a8685153436aab706f4e3d4ee466~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_12faba51cabb428492abddab3458c66c~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_1690f9e0adff4f1aa824098f0105bc4f~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_192b6bd35f4349038059f3ae85c4dcec~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_203a43a75f384c3d9b3ffe9642e1a009~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_2637de357c084ecd99c4ac7baadc6344~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_26eba56b8edf47ce9e2f8c51fc59ddb2~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_29238b0c89914748881e4af9a44bcab6~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_293bded2b18747618acc3e55d23ebeca~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_2abb0fadb3f54508a8c2c0237c745e1e~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_3167fab86a87474d833716d95d2dbfdb~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_34ea36ae4c8e41c98fabf4d19ee4507e~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_34f5f8753a284b6c8d0aad3878d534dc~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_3ace544d7d13400a8ae6c3a7f3afafb2~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_3cc521726beb44b5acbef7d595dc110f~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_3e970848afc24b3e8189b8c7147d1e99~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_40395c65c017489db418f0fb4254b5ab~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_4542b57418fc47dfb2789ee9058de48b~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_462738d39d834de5b00184b7049fa4a2~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_4a2fb05b571b4f038ff7ee8b61c6f777~mv2.webp",
-      "https://static.wixstatic.com/media/b3bb35_4ecd175ab40043f7ab2f077bc0561f52~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_5063cd6505c14ea8ad24836ef700e74f~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_547f0040424447d28079d7fbaef40a34~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_5b3fc1ef3ad84bcb9256da3d2aac1691~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_5cc5b69bb3174b6d9cdc203cac50ba7b~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_615d0bd09ee749a99f3b324485f9890c~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_61aa21be55c34a2da6cbef958969bfcf~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_626b8ce58f6e44f18fcecd66f8d59b04~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_62ced48e511b48a584d6eb19956c4d4e~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_675e4285fcb84ad8be12ef47eab29549~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_68b816c7f08d457798c93cff044ed206~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_68c58a411d91434e93f2327073a2485d~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_699bac5b032145e58160e00416188652~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_6a6a9ef38f494cfc8c7591c1efa4ef8e~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_6caa34de88d84a6babbc222b5f7f7281~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_735c206b27a545be99a2dbdaf692131f~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_7dad4f16d1014709955516efb7ea4422~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_7dd096634e50422892657d544b8b3591~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_7f7c1a19d561453884dc2dc673019e65~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_8309a0815ebb4998a6d581d87107f470~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_843c18e120f643eab4e513e10441fd5c~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_8c4e6ea5dd9d489c9eabd8d3d804db3d~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_9552d0f70e9b4be1adcdcd51bc8fe363~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_974835f02da440898e9863353dddc387~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_994f255c64734c97a6fa88922c9c4063~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_9d92ef72af214901bc897eeb8afbdf88~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_a0cb31dc3f1443319c2db7d49cf39a28~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_a17c0dd60ee34c6db53dec1c56d4be4b~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_a1f1acf7124a4ca6b694450d81d16cbe~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_b04866d3b8d74e7ba6189b213ed040f6~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_b343aaf065f147acae927198d9dbe2ff~mv2.webp",
-      "https://static.wixstatic.com/media/b3bb35_b3afe8a4fb974be0b26ee48d3c4ca01b~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_b65ce2920c854bd28732882c49d8cb54~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_bbdb9207e6634ff18cb4f575dda37c95~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_bdf3d0f7c7fa493c90a9eb5c1c05bc6e~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_be2221c8816c43b5afc287d99589e69f~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_bfc09461dd604727ad8e076db24d4a16~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_c145b877e06b40caa9ee6a0fdb635550~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_c1ee39b7d23944b4836f23e61671cea6~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_c39606f032d84f2aa043b83fbe12b7cb~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_c4a01f9ccb2a4c1ebe9a65b774388d89~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_c4d2f39c648c4c94bd259a3d393a771f~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_c67265fbba774e3dab70d17d2ea82781~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_cf13f66145604aa48b5cc5541c3d0b1d~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_cf879ec1a4c043ab90d38f381f88f9b8~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_d179e5468cac4aa4b1b386732d92e61e~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_d7284a48c4f14a7398c17fd57c080fe3~mv2.webp",
-      "https://static.wixstatic.com/media/b3bb35_e05b8c94418a4536a47492a75553e155~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_e3d4c88a188b41f7a69c2681d7c5f02c~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_e9837b12df364da6942e6dd15aed2022~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_e9f1bd54b23c4646bd04117a8224c31d~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_ea869a4812f0491b80651c9c8df18892~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_f260d56c97c445919e95b352625adc0a~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_f57bc45ac0414d3bb1da7d4ea886ca48~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_f6c5d76223be44ef8504fb8e01781ee3~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_f87fe2aeec004b948513a940c780aa38~mv2.jpg",
-      "https://static.wixstatic.com/media/b3bb35_faabc71c8eaf4fc582aecc719ba7e3ba~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_fbbeec7996764c02b060d2cbdaebc3a7~mv2.png",
-      "https://static.wixstatic.com/media/b3bb35_fc39cf14b4f145caa7ad089a48db3a03~mv2.jpg",
-      "https://www.im-guet.ch/",
-      "https://www.im-guet.ch/online-bestellen",
-      "https://www.im-guet.ch/online-ordering"
+      "https://www.im-guet.ch/"
     ],
-    "errors": [
-      {
-        "url": "https://static.wixstatic.com/media/9cc232f4c60746dc92321fedec48c69c.jpg",
-        "error": "response_too_large"
-      }
-    ],
+    "errors": [],
     "candidates": []
   },
   "node/2635576908": {
@@ -8372,7 +8195,7 @@
     "candidates": []
   },
   "node/10779724980": {
-    "checkedAt": "2026-10-19T18:56:01.019247+00:00",
+    "checkedAt": "2026-10-27T20:55:41.560138+00:00",
     "status": "no_prices",
     "visited": [
       "https://pizzabuona.ch",
@@ -8560,7 +8383,7 @@
     "candidates": []
   },
   "node/633584224": {
-    "checkedAt": "2026-10-19T18:57:07.316448+00:00",
+    "checkedAt": "2026-10-27T20:55:35.095106+00:00",
     "status": "no_prices",
     "visited": [
       "http://the-lemon-grass.ch",
@@ -8623,7 +8446,7 @@
     "candidates": []
   },
   "node/988651681": {
-    "checkedAt": "2026-10-19T18:57:18.187336+00:00",
+    "checkedAt": "2026-10-27T20:55:28.408818+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.almouchtar.com/"
@@ -8888,8 +8711,8 @@
     "candidates": []
   },
   "node/4370078392": {
-    "checkedAt": "2026-10-19T18:58:36.125077+00:00",
-    "status": "partial",
+    "checkedAt": "2026-10-27T20:56:22.454366+00:00",
+    "status": "no_prices",
     "visited": [
       "https://image.jimcdn.com/app/cms/image/transf/dimension=210x10000:format=png/path/sfa6d9d2031bcc50c/image/i17b638d2c372fa3a/version/1784293752/image.png",
       "https://image.jimcdn.com/app/cms/image/transf/dimension=431x10000:format=png/path/sfa6d9d2031bcc50c/image/ie8cd577a6461550a/version/1481118210/image.png",
@@ -8909,12 +8732,7 @@
       "https://www.mylittlethai.ch/app/download/8612045263/Menu.pdf?t=1784293780",
       "https://www.mylittlethai.ch/menu/"
     ],
-    "errors": [
-      {
-        "url": "https://www.mylittlethai.ch/app/download/8612045263/Menu.pdf?t=1784293780",
-        "error": "robots_blocked"
-      }
-    ],
+    "errors": [],
     "candidates": []
   },
   "node/10721724386": {
@@ -9242,17 +9060,12 @@
     "candidates": []
   },
   "node/1958808378": {
-    "checkedAt": "2026-10-19T19:00:57.814708+00:00",
-    "status": "fetch_failed",
+    "checkedAt": "2026-10-27T20:55:37.074671+00:00",
+    "status": "no_prices",
     "visited": [
       "https://www.maboon.co/"
     ],
-    "errors": [
-      {
-        "url": "https://www.maboon.co/",
-        "error": "robots_blocked"
-      }
-    ],
+    "errors": [],
     "candidates": []
   },
   "node/638984434": {
@@ -9270,7 +9083,7 @@
     "candidates": []
   },
   "node/4424939160": {
-    "checkedAt": "2026-10-19T19:01:02.957226+00:00",
+    "checkedAt": "2026-10-27T20:55:39.904579+00:00",
     "status": "no_prices",
     "visited": [
       "https://m-panada.ch/"
@@ -9431,7 +9244,7 @@
     "candidates": []
   },
   "node/4833061536": {
-    "checkedAt": "2026-10-19T19:02:00.537597+00:00",
+    "checkedAt": "2026-10-27T20:55:48.264731+00:00",
     "status": "no_prices",
     "visited": [
       "https://images.squarespace-cdn.com/content/v1/62b2c8aa504e402d6ea4d283/23ba1666-f943-4129-a3c0-6c2f19dc5fbc/Fotos+MARU+WEB_6.jpg",
@@ -9440,6 +9253,7 @@
       "https://images.squarespace-cdn.com/content/v1/62b2c8aa504e402d6ea4d283/c0db3e64-eaad-41a9-bb66-1b700c66292e/202507+Matcha+Marble+Cake+DESSERT+FOOD+FOTO-WEB_5.jpg",
       "https://www.maru.ch/",
       "https://www.maru.ch/speisekarte",
+      "https://www.maru.ch/speisekarte-maru-brunch",
       "https://www.maru.ch/speisekarte-maru-hb",
       "https://www.maru.ch/speisekarte-maru-rolandstrasse"
     ],
@@ -9498,7 +9312,7 @@
     "candidates": []
   },
   "node/378321336": {
-    "checkedAt": "2026-10-19T19:02:09.415124+00:00",
+    "checkedAt": "2026-10-27T20:55:42.926430+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.mcdonalds.com/ch/de-ch/location/z-rich-zurich/z-rich/sihlcity/kalanderplatz-1/780204.html"
@@ -9538,7 +9352,7 @@
     "candidates": []
   },
   "node/6537567763": {
-    "checkedAt": "2026-10-19T19:02:20.295519+00:00",
+    "checkedAt": "2026-10-27T20:55:42.957228+00:00",
     "status": "fetch_failed",
     "visited": [
       "http://www.restaurantmediacampus.ch/"
@@ -9575,7 +9389,7 @@
     "candidates": []
   },
   "node/321346480": {
-    "checkedAt": "2026-10-19T19:02:24.541049+00:00",
+    "checkedAt": "2026-10-27T20:55:44.326049+00:00",
     "status": "no_prices",
     "visited": [
       "https://ethz.ch/de/campus/erleben/gastronomie-und-einkaufen/gastronomie/restaurants-und-cafeterias/hoenggerberg/mendokoro.html"
@@ -9673,7 +9487,7 @@
     "candidates": []
   },
   "node/5733725990": {
-    "checkedAt": "2026-10-19T19:02:48.995752+00:00",
+    "checkedAt": "2026-10-27T20:55:45.516008+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.mensa.uzh.ch/de/menueplaene/lichthof-rondell.html"
@@ -10244,7 +10058,7 @@
     "candidates": []
   },
   "node/4868938106": {
-    "checkedAt": "2026-10-19T19:05:47.339228+00:00",
+    "checkedAt": "2026-10-27T20:55:45.175174+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.moonrestaurant.ch/"
@@ -10277,10 +10091,10 @@
     "candidates": []
   },
   "node/11226561767": {
-    "checkedAt": "2026-10-19T19:05:56.486082+00:00",
+    "checkedAt": "2026-10-27T20:58:33.122408+00:00",
     "status": "partial",
     "visited": [
-      "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/073a3ac4383d1e96d248a442e17e560c4897d0993d9b4167bb521fd8/media/menus_side_image.7077f229.jpeg",
+      "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/bbb177bb270c1b6afb0b0b73282cd220671b3433c841e4e3a7d26be9/media/menus_side_image.7077f229.jpeg",
       "https://static.wixstatic.com/media/02ff6f_039ec98d54b84764ab8d69801792eff4~mv2.jpg",
       "https://static.wixstatic.com/media/02ff6f_04df754f789f49a8a25237dbef8fa663~mv2.jpg",
       "https://static.wixstatic.com/media/02ff6f_05234ce0b5344e3d8ac9190e901fece4~mv2.jpg",
@@ -10632,7 +10446,7 @@
     "candidates": []
   },
   "node/9350498267": {
-    "checkedAt": "2026-10-19T19:06:41.419496+00:00",
+    "checkedAt": "2026-10-27T20:55:48.426207+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.namatakemeout.ch",
@@ -10732,7 +10546,7 @@
     "candidates": []
   },
   "node/4424679508": {
-    "checkedAt": "2026-10-19T19:07:06.565082+00:00",
+    "checkedAt": "2026-10-27T20:55:49.374296+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.negishi.ch/de/zuerich-hauptbahnhof"
@@ -10764,7 +10578,7 @@
     "candidates": []
   },
   "node/4833061716": {
-    "checkedAt": "2026-10-19T19:07:09.025654+00:00",
+    "checkedAt": "2026-10-27T20:55:53.228755+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.negishi.ch/zuerich-oerlikon"
@@ -11095,7 +10909,7 @@
     "candidates": []
   },
   "node/4908968408": {
-    "checkedAt": "2026-10-19T19:07:20.939520+00:00",
+    "checkedAt": "2026-10-27T20:55:54.980231+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.negishi.ch/zuerich-pelikanplatz"
@@ -11118,7 +10932,7 @@
     "candidates": []
   },
   "node/10576943784": {
-    "checkedAt": "2026-10-19T19:07:32.850628+00:00",
+    "checkedAt": "2026-10-27T20:56:12.664886+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.napule.ch/",
@@ -11398,7 +11212,7 @@
     "candidates": []
   },
   "node/301196925": {
-    "checkedAt": "2026-10-19T19:08:48.060785+00:00",
+    "checkedAt": "2026-10-27T20:56:28.056293+00:00",
     "status": "no_prices",
     "visited": [
       "https://ohmygreek.ch/standorte/kalkbreite"
@@ -11434,7 +11248,7 @@
     "candidates": []
   },
   "node/4512119699": {
-    "checkedAt": "2026-10-19T19:09:02.764436+00:00",
+    "checkedAt": "2026-10-27T20:56:40.496887+00:00",
     "status": "no_prices",
     "visited": [
       "https://ohmygreek.ch/standorte/oerlikon"
@@ -11471,7 +11285,7 @@
     "candidates": []
   },
   "node/4556230689": {
-    "checkedAt": "2026-10-19T19:09:09.279870+00:00",
+    "checkedAt": "2026-10-27T20:56:21.362653+00:00",
     "status": "no_prices",
     "visited": [
       "https://oohcurry.ch/wp-content/uploads/2026/06/Zurich-Main-Menu-Final-2026.pdf",
@@ -11631,7 +11445,7 @@
     "candidates": []
   },
   "node/2867994617": {
-    "checkedAt": "2026-10-19T19:09:36.869489+00:00",
+    "checkedAt": "2026-10-27T20:56:24.588647+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.palestinegrill.com/"
@@ -11709,7 +11523,7 @@
     "candidates": []
   },
   "node/10819229263": {
-    "checkedAt": "2026-10-19T19:09:55.903137+00:00",
+    "checkedAt": "2026-10-27T20:56:35.726091+00:00",
     "status": "partial",
     "visited": [
       "https://static.wixstatic.com/media/7f8520_17db9d6016744d46a1259c2f38e90a64~mv2.png",
@@ -11858,7 +11672,7 @@
     "candidates": []
   },
   "node/5803645581": {
-    "checkedAt": "2026-10-19T19:10:40.424639+00:00",
+    "checkedAt": "2026-10-27T20:56:24.083039+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.phuket-thai-zuerich.ch/"
@@ -11969,7 +11783,7 @@
     "candidates": []
   },
   "node/10647465705": {
-    "checkedAt": "2026-10-19T19:11:18.085707+00:00",
+    "checkedAt": "2026-10-27T20:56:25.601739+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=61d610c3-7db5-4820-b247-e823534262f2&dine_in=true"
@@ -11978,7 +11792,7 @@
     "candidates": []
   },
   "node/4833061566": {
-    "checkedAt": "2026-10-19T19:11:18.694588+00:00",
+    "checkedAt": "2026-10-27T20:56:29.203861+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.pimp-your-pizza.ch/"
@@ -12015,7 +11829,7 @@
     "candidates": []
   },
   "node/4948524549": {
-    "checkedAt": "2026-10-19T19:11:24.678808+00:00",
+    "checkedAt": "2026-10-27T20:56:28.336797+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.piratino2.ch/",
@@ -12025,12 +11839,17 @@
     "candidates": []
   },
   "node/8786108318": {
-    "checkedAt": "2026-10-19T19:11:27.647679+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-27T20:56:29.406753+00:00",
+    "status": "fetch_failed",
     "visited": [
       "https://pizzanation.ch/"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://pizzanation.ch/",
+        "error": "http_429"
+      }
+    ],
     "candidates": []
   },
   "node/270800743": {
@@ -12058,7 +11877,7 @@
     "candidates": []
   },
   "node/1828352894": {
-    "checkedAt": "2026-10-19T19:11:42.705784+00:00",
+    "checkedAt": "2026-10-27T20:56:38.050347+00:00",
     "status": "no_prices",
     "visited": [
       "https://pizza-pirata.ch/",
@@ -12167,7 +11986,7 @@
     "candidates": []
   },
   "node/266630290": {
-    "checkedAt": "2026-10-19T19:12:30.899379+00:00",
+    "checkedAt": "2026-10-27T20:57:33.605984+00:00",
     "status": "no_prices",
     "visited": [
       "https://pizzacasa.ch/",
@@ -12367,7 +12186,7 @@
     "candidates": []
   },
   "node/4154316389": {
-    "checkedAt": "2026-10-19T19:13:18.549943+00:00",
+    "checkedAt": "2026-10-27T20:56:30.856484+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.popeyeschicken.ch/"
@@ -12399,7 +12218,7 @@
     "candidates": []
   },
   "node/5174239661": {
-    "checkedAt": "2026-10-19T19:13:32.315835+00:00",
+    "checkedAt": "2026-10-27T20:56:41.771656+00:00",
     "status": "no_prices",
     "visited": [
       "https://cdn.prod.website-files.com/6723a1cf93ba512237855d35/6723a1cf93ba512237855db5_Sweets.webp",
@@ -12502,7 +12321,7 @@
     "candidates": []
   },
   "node/4833061596": {
-    "checkedAt": "2026-10-19T19:13:59.754289+00:00",
+    "checkedAt": "2026-10-27T20:56:35.875544+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.rapido-hb.ch/"
@@ -13630,7 +13449,7 @@
     "candidates": []
   },
   "node/3751610983": {
-    "checkedAt": "2026-10-19T19:20:02.690316+00:00",
+    "checkedAt": "2026-10-27T20:56:38.069789+00:00",
     "status": "no_prices",
     "visited": [
       "https://richis-kiosk.ch/"
@@ -13875,7 +13694,7 @@
     "candidates": []
   },
   "node/2452626421": {
-    "checkedAt": "2026-10-19T19:20:47.697902+00:00",
+    "checkedAt": "2026-10-27T20:56:42.835272+00:00",
     "status": "no_prices",
     "visited": [
       "https://cdn.prod.website-files.com/69d51f28632489fe0a62f08b/69df4cba36229ab2cf6bea8b_Rollerei%20Menu%CC%88.pdf",
@@ -14012,7 +13831,7 @@
     "candidates": []
   },
   "node/5653594946": {
-    "checkedAt": "2026-10-19T19:21:23.036334+00:00",
+    "checkedAt": "2026-10-27T20:57:14.142818+00:00",
     "status": "no_prices",
     "visited": [
       "https://cdn.prod.website-files.com/6878e8da5604bf36c40e6124/68c1d43908800453f098a645_Combo_Bites_ubereats_richies_chicken_zurich_hurrah_fotografie_0805.jpg",
@@ -14095,7 +13914,7 @@
     "candidates": []
   },
   "node/4429458290": {
-    "checkedAt": "2026-10-19T19:21:34.038428+00:00",
+    "checkedAt": "2026-10-27T20:56:44.578310+00:00",
     "status": "no_prices",
     "visited": [
       "http://www.pizzakurier-rucola.ch/"
@@ -14118,7 +13937,7 @@
     "candidates": []
   },
   "node/370842080": {
-    "checkedAt": "2026-10-19T19:21:35.506307+00:00",
+    "checkedAt": "2026-10-27T20:56:42.029797+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.saftlade.ch/"
@@ -14393,7 +14212,7 @@
     "candidates": []
   },
   "node/4909023750": {
-    "checkedAt": "2026-10-19T19:22:19.638653+00:00",
+    "checkedAt": "2026-10-27T20:56:42.063267+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.instagram.com/santini_zurich/"
@@ -14512,7 +14331,7 @@
     "candidates": []
   },
   "node/370835262": {
-    "checkedAt": "2026-10-19T19:23:11.174302+00:00",
+    "checkedAt": "2026-10-27T20:57:05.897576+00:00",
     "status": "partial",
     "visited": [
       "https://sandoburger.com/",
@@ -14762,7 +14581,7 @@
     "candidates": []
   },
   "node/513174124": {
-    "checkedAt": "2026-10-19T19:24:35.307524+00:00",
+    "checkedAt": "2026-10-27T20:56:43.985635+00:00",
     "status": "no_prices",
     "visited": [
       "http://www.silberkugel.ch/"
@@ -15004,7 +14823,7 @@
     "candidates": []
   },
   "node/648956167": {
-    "checkedAt": "2026-10-19T19:25:43.080491+00:00",
+    "checkedAt": "2026-10-27T20:57:07.454224+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.spectaturs.com/",
@@ -15013,12 +14832,13 @@
       "https://www.spectaturs.com/images/Quick-lunch/IMG_4866.png",
       "https://www.spectaturs.com/images/Quick-lunch/IMG_4884.png",
       "https://www.spectaturs.com/images/Quick-lunch/IMG_4906.png",
+      "https://www.spectaturs.com/images/igallery/resized/home-1/catering-crostini1-1999-653-80-c.jpg",
       "https://www.spectaturs.com/images/igallery/resized/home-1/home-172-1999-653-80-c.jpg",
       "https://www.spectaturs.com/images/igallery/resized/home-1/home-173-1999-653-80-c.jpg",
-      "https://www.spectaturs.com/images/igallery/resized/home-1/kokosreis-1999-653-80-c.jpg",
       "https://www.spectaturs.com/images/igallery/resized/home-1/lokal-02-1999-653-80-c.jpg",
       "https://www.spectaturs.com/images/igallery/resized/home-1/rohschinken-1999-653-80-c.jpg",
-      "https://www.spectaturs.com/images/igallery/resized/home-1/ziegenkase-1999-653-80-c.jpg",
+      "https://www.spectaturs.com/images/igallery/resized/home-1/smoothie-1999-653-80-c.jpg",
+      "https://www.spectaturs.com/images/igallery/resized/home-1/zitronenkuchen-1999-653-80-c.jpg",
       "https://www.spectaturs.com/index.php/angebot/bistro-take-away",
       "https://www.spectaturs.com/index.php/angebot/liefershop/quick-order",
       "https://www.spectaturs.com/index.php/angebot/liefershop/salate/salat-in-take-away-schale"
@@ -15434,10 +15254,11 @@
     "candidates": []
   },
   "node/4424939159": {
-    "checkedAt": "2026-10-19T19:27:24.286308+00:00",
+    "checkedAt": "2026-10-27T20:56:54.909786+00:00",
     "status": "no_prices",
     "visited": [
       "http://suanlong.ch/wp-content/uploads/2022/10/Placeholder-PDF.pdf",
+      "https://suanlong.ch/gift-cards/",
       "https://suanlong.ch/restaurant/suan-long-main-station/",
       "https://suanlong.ch/wp-content/uploads/2023/04/food-is-just-an-option.jpg"
     ],
@@ -15570,7 +15391,7 @@
     ]
   },
   "node/1304962768": {
-    "checkedAt": "2026-10-19T19:27:36.241749+00:00",
+    "checkedAt": "2026-10-27T20:56:46.542151+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.mysushishop.ch/"
@@ -15600,7 +15421,7 @@
     "candidates": []
   },
   "node/3472788253": {
-    "checkedAt": "2026-10-19T19:27:41.147545+00:00",
+    "checkedAt": "2026-10-27T20:56:47.911810+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://europaallee.sv-restaurant.ch/"
@@ -15614,7 +15435,7 @@
     "candidates": []
   },
   "node/4011633097": {
-    "checkedAt": "2026-10-19T19:27:45.384080+00:00",
+    "checkedAt": "2026-10-27T20:56:49.264625+00:00",
     "status": "no_prices",
     "visited": [
       "http://www.sweetchili.ch/"
@@ -15623,27 +15444,22 @@
     "candidates": []
   },
   "node/4833061543": {
-    "checkedAt": "2026-10-19T19:27:45.781245+00:00",
-    "status": "partial",
+    "checkedAt": "2026-10-27T20:57:05.191094+00:00",
+    "status": "no_prices",
     "visited": [
-      "https://www.subway.com/",
-      "https://www.subway.com/en-us/locator",
-      "https://www.subway.com/en-us/sustainability/well-being/media_138b9f62b104b11a07b9fa79569c369c1e55f6320.jpg?width=750&format=jpg&optimize=medium",
-      "https://www.subway.com/en-us/sustainability/well-being/media_15c5f28b32af083ba018d6b530098a96f80e809a1.png?width=750&format=png&optimize=medium",
-      "https://www.subway.com/en-us/sustainability/well-being/media_1aea0003b6f6485d8c00e166dbbde186ccd9afdd6.png?width=750&format=png&optimize=medium",
-      "https://www.subway.com/en-us/sustainability/well-being/media_1bd7a5b56fc41efb68f5f1da5cbb7c1975bc69274.png?width=750&format=png&optimize=medium",
-      "https://www.subway.com/en-us/sustainability/well-being/media_1de3dc37b83b469df93678e0a762d47ee1ac631f7.png?width=750&format=png&optimize=medium",
-      "https://www.subway.com/en-us/sustainability/well-being/media_1f29d5970e8592ac635c8068882a0a2c05784e78a.png?width=750&format=png&optimize=medium",
-      "https://www.subway.com/en-us/sustainability/well-being/quality-and-food-safety",
-      "https://www.subway.com/media_1ce3d733f680bba20e933c1932cdb37326e31608c.avif?width=750&format=avif&optimize=medium",
-      "https://www.subway.com/us/en/start-order"
+      "https://subway.ch/menu/",
+      "https://subway.ch/wp-content/uploads/2024/11/41-300x300.png",
+      "https://subway.ch/wp-content/uploads/2024/11/42-300x300.png",
+      "https://subway.ch/wp-content/uploads/2024/11/44-300x300.png",
+      "https://subway.ch/wp-content/uploads/2024/11/45-300x300.png",
+      "https://subway.ch/wp-content/uploads/2024/11/46-300x300.png",
+      "https://subway.ch/wp-content/uploads/2024/11/47-300x300.png",
+      "https://subway.ch/wp-content/uploads/2024/11/48-300x300.png",
+      "https://subway.ch/wp-content/uploads/2024/11/49-300x300.png",
+      "https://subway.ch/wp-content/uploads/2026/06/Untitled-design-2-300x300.png",
+      "https://www.subway.com/"
     ],
-    "errors": [
-      {
-        "url": "https://www.subway.com/us/en/start-order",
-        "error": "http_404"
-      }
-    ],
+    "errors": [],
     "candidates": []
   },
   "node/321364237": {
@@ -15696,7 +15512,7 @@
     "candidates": []
   },
   "node/4864530744": {
-    "checkedAt": "2026-10-19T19:28:00.473594+00:00",
+    "checkedAt": "2026-10-27T20:56:57.906198+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.tacos-plaza-zuerich.ch",
@@ -15706,7 +15522,7 @@
     "candidates": []
   },
   "node/10889806814": {
-    "checkedAt": "2026-10-19T19:28:06.243410+00:00",
+    "checkedAt": "2026-10-27T20:57:03.354434+00:00",
     "status": "no_prices",
     "visited": [
       "https://swiss-fried-chicken.com",
@@ -15761,7 +15577,7 @@
     "candidates": []
   },
   "node/4968280519": {
-    "checkedAt": "2026-10-19T19:28:10.552608+00:00",
+    "checkedAt": "2026-10-27T20:57:03.276186+00:00",
     "status": "no_prices",
     "visited": [
       "https://ramiroymacario.ch/",
@@ -15903,7 +15719,7 @@
     "candidates": []
   },
   "node/2888173290": {
-    "checkedAt": "2026-10-19T19:29:49.269233+00:00",
+    "checkedAt": "2026-10-27T20:59:09.803211+00:00",
     "status": "no_prices",
     "visited": [
       "https://static.wixstatic.com/media/777bb7_02d6eeca8ff54e4db58f789d7437a3da.png",
@@ -16063,16 +15879,123 @@
     "candidates": []
   },
   "node/12256259976": {
-    "checkedAt": "2026-10-19T19:30:37.638865+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-27T20:59:05.221100+00:00",
+    "status": "partial",
     "visited": [
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/08/8d/088d2ffd-7c92-4ef4-b2a3-09aa9b3db4c5/tenz_web_products_chili_sauce_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/0c/b0/0cb0073b-5933-4d92-9f03-3beef68311ad/kny00827.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/0e/03/0e03f238-bd2a-464a-a6bb-cd13c57c778d/tenz_web_products_desserts_bild_3.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/0f/c3/0fc3e603-95ce-4581-b53f-3877460d034c/products_beefmomo_website.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/14/37/14372968-656f-4b09-a44d-fef480dd7ea1/250403_schlieren_1.png",
       "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/15/1b/151bdbe1-9e33-49e4-9db5-c6b2e5873f5c/250319_oerlikon_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/15/84/1584f3b8-0257-4897-b90c-36c9f6551fad/tenz_momo_chur_bahnhof_web_location_bild_7.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/1b/f3/1bf37b7a-c615-48b7-8e07-d4571d56c4b9/products_salads_labumarpo_website.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/22/7a/227afb4c-2430-45d1-acaf-ea62c8fd0b3f/tenz_momo_zh_enge_bahnhof_web_location_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/27/c3/27c3c8d1-4a83-4643-863b-fed31955b0f9/tenz_momo_stgallen_bahnhof_web_location_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/27/ef/27efe069-db9b-480c-b75b-acbec5b0e3f3/tenz_momo_zh_enge_bahnhof_web_location_bild_12.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/32/24/32246a25-bfc1-4bc7-8a0a-806bfb41234b/tenz_momo_chur_bahnhof_web_location_bild_3.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/32/5c/325c8435-e72b-4ef4-8f42-41e8bd4ac021/tenz_momo_chur_bahnhof_web_location_bild_6.jpg",
       "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/33/10/33101106-f99e-47df-91a2-ac45c6c3a6ec/tenz_momo_zh_oerlikon_bahnhof_web_location_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/38/f0/38f0d6d3-ada7-42a9-837a-cbc3346abc86/tenz_momo_winterthur_bahnhof_web_location_bild_9.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/3a/0e/3a0e45f2-1bf2-4096-b11a-d942ce4626c1/tenz_momo_zh_enge_bahnhof_web_location_bild_7.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/42/a2/42a29f95-72c6-4b79-8c0d-139239c367fe/tenz_momo_winterthur_bahnhof_web_location_bild_7.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/44/d3/44d39565-59e9-46e4-a58f-8be42a89d3ee/tenz_momo_zh_enge_bahnhof_web_location_bild_9.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/44/ea/44ea02c4-aeda-4328-b0c7-a950ef8ddaa4/products_chickenmomo_website.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/46/eb/46eb520a-7cfc-4dd7-9985-64e5a93bbe78/tenz_momo_chur_bahnhof_web_location_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/49/f6/49f60dfe-13e7-4723-8f00-26a704bd5abb/tenz_momo_chur_bahnhof_web_location_bild_9.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/50/2c/502ccc70-ec33-4d0f-a432-1b59d566799c/tenz_web_products_soups.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/51/64/5164e437-3a8b-4e0f-9adc-a0a704276710/tenz_momo_chur_bahnhof_web_location_bild_4.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/53/4e/534e8c01-7cd7-423c-97a4-be3bfbf65bf1/tenz_momo_chur_bahnhof_web_location_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/57/7b/577b41fd-3cca-4412-b912-616a7ca2d4b7/tenz_momo_stgallen_bahnhof_web_location_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/58/58/5858028e-f93d-4192-85f6-e55ce1a47778/tenz_momo_luzern_bahnhof_web_location_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/5d/1c/5d1cc068-998d-430e-8974-ab6a8b7a0b4e/tenz_web_products_chili_sauce_bild_3.jpg",
       "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/5d/79/5d793492-8bec-4f67-bc03-9ad562aee448/250319_oerlikon_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/5e/1b/5e1b96df-b760-4586-b96f-ce3356671247/tenz_momo_luzern_bahnhof_web_location_bild_3.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/61/c9/61c919f8-450b-4900-a1e0-611af512a6cb/tenz_momo_zh_enge_bahnhof_web_location_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/66/d6/66d6afc5-3d64-41bc-8ec8-169f38932144/tenz_web_products_sandwich_bild_4.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/6b/5b/6b5be251-d499-46ec-b7c3-325ff2967eb4/tenz_momo_schlieren_bahnhof_web_location_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/6d/88/6d88a6a5-2290-4f07-ab7b-0eb19a8fe1fa/tenz_momo_luzern_bahnhof_web_location_bild_7.jpg",
       "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/70/f4/70f4493c-d920-4084-b9cd-bfcbd94600bb/tenz_momo_zh_oerlikon_bahnhof_web_location_bild_1.jpg",
-      "https://www.tenz.ch/locations/take-away/zurich-oerlikon-bahnhof/"
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/70/f5/70f53407-9eee-4b9a-b018-2e0323391b32/tenz_momo_zh_enge_bahnhof_web_location_bild_8.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/7a/f2/7af2780e-3c91-4c41-85df-bc504d1e0104/tenz_web_products_desserts_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/7a/f3/7af3cc3b-22dc-4957-aba8-949ff66f2e01/250903_tenz_website_huussalat.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/7d/24/7d247f35-2bec-465e-86d8-41b5136dd088/products_shairng_shooting_website.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/81/9c/819c8626-cd0f-4246-a854-6eb73026f1b8/tenz_momo_winterthur_bahnhof_web_location_bild_6.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/84/57/84570252-e0a0-451f-bd4c-a87f8d6d29c0/tenz_web_products_sandwich_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/84/70/8470a09a-f33a-4b09-84ce-1e14430ac067/tenz_momo_winterthur_bahnhof_web_location_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/85/39/853996ce-f926-43c5-a0a2-d3d05a7d5f79/products_veganmomo_website.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/8d/3a/8d3a4770-9904-44fc-88df-28c6ce5791df/250903_tenz_website_tsepaley.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/8e/f8/8ef83195-4116-4bb3-a05f-6d8b991a5264/tenz_momo_zh_enge_bahnhof_web_location_bild_3.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/8f/24/8f249ce6-0f9e-4589-bbd2-c6dfcde8ec58/tenz_momo_duebendorf_web_location_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/90/76/9076696b-9e79-4fdb-9db2-45a4d2c7b2d9/tenz_web_products_desserts_bild_4.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/93/6c/936ca79e-bdd4-451e-9632-b3c71264b8d8/tenz_momo_luzern_bahnhof_web_location_bild_8.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/95/57/95579410-5204-456d-97a0-fb00046493ae/tenz_web_products_chili_sauce_bild_4.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/95/6d/956db1dd-1554-49ff-b101-fd48f1ac1d48/products_salads_kangra_website.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/9a/ac/9aac5305-a2a0-45d4-b365-0566046607d6/tenz_momo_chur_bahnhof_web_location_bild_5.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/9b/e7/9be7f9f7-6172-44fd-9dd1-64ce12ca0ede/tenz_web_products_sandwich_bild_3.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/9d/32/9d32dcd7-5115-4607-9a7a-8f59e9e2e5f0/tenz_momo_zh_enge_bahnhof_web_location_bild_13.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/a8/b7/a8b7fa32-e96d-4810-8036-40b9e6eccb86/250903_tenz_website_shapaleytsepaley.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/a9/20/a920f827-8dcf-4139-ab1f-68d93d8ac38c/tenz_momo_luzern_bahnhof_web_location_bild_5.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/aa/14/aa141d93-c134-4f1f-81fc-ac21dab3bc39/tenz_momo_duebendorf_web_location_bild_4.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/ab/b1/abb103cf-c662-4680-a67d-3706672a83a5/kny00805.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/ad/9f/ad9f8bd1-6d8b-44ab-bddd-1996d0bc43ea/tenz_momo_winterthur_bahnhof_web_location_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/b0/d1/b0d1a10c-b658-4839-ba48-c749c65565e8/tenz_momo_winterthur_bahnhof_web_location_bild_3.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/b9/04/b9049b1d-b7d5-485f-a7f7-76b0cf44fd9d/tenz_momo_duebendorf_web_location_bild_3.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/be/f8/bef89e89-d272-4705-bf84-6b48bead5b76/250903_tenz_website_shapaley.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/c1/54/c154beca-789b-4aac-94d6-af568be39cf9/250903_tenz_website_sonlabu.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/c2/39/c239b77c-2f4b-473e-b7a7-71f4b7ed8748/250319_st_gallen_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/c5/bb/c5bb6601-eb43-4fc8-991f-7894301792cc/tenz_momo_duebendorf_web_location_bild_5.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/c6/e7/c6e73bbc-c170-4218-a511-ea7fad24c3a1/tenz_momo_zh_enge_bahnhof_web_location_bild_4.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/c8/58/c858dcd4-9739-476b-ae92-a2ef4543fad6/tenz_momo_duebendorf_web_location_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/cc/1e/cc1e31be-547b-4f95-80a2-3bafb2f604f2/tenz_momo_zh_enge_bahnhof_web_location_bild_11.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/ce/ed/ceed78f8-550a-4a0f-af7e-7da538cdfb04/tenz_momo_zh_enge_bahnhof_web_location_bild_5.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/d0/93/d0930877-c05e-49ef-9451-56a86fe4bc5e/tenz_momo_luzern_bahnhof_web_location_bild_4.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/d3/c6/d3c640de-4118-4775-920d-4b17c967de76/tenz_web_products_desserts_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/d4/3a/d43a15dc-8c0e-419c-af6a-108c404cdff4/tenz_momo_zh_enge_bahnhof_web_location_bild_6.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/d4/5b/d45b6227-a81d-4592-bfe8-60f57b65fa88/tenz_momo_winterthur_bahnhof_web_location_bild_5.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/d5/3c/d53c77b4-b4af-40e0-83c3-2226964dfa28/250403_schlieren_2.png",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/d6/67/d6670ea8-3ee0-47b4-b01e-2a87fd6adaf4/250319_st_gallen_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/d7/4a/d74aeba7-3aa4-425b-a495-ba30775fa9fc/tenz_momo_winterthur_bahnhof_web_location_bild_4.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/dc/47/dc4730b3-930d-478e-bcd2-db6e07520ab9/tenz_momo_winterthur_bahnhof_web_location_bild_8.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/e0/79/e079218c-0f7a-49ae-95ce-b75ca19973ff/products_vegimomo_website.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/e1/8b/e18b5e05-696a-4e9a-b3b4-1495a8876feb/tenz_momo_luzern_bahnhof_web_location_bild_2.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/ea/d4/ead4a4ce-36d9-486b-a10c-e47b542144b6/tenz_web_products_sandwich_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/ec/f0/ecf0cea3-5463-495f-91fc-4760a5549583/tenz_momo_winterthur_bahnhof_web_location_bild_10.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/ed/21/ed21e79e-160f-4d27-9abe-a4601251a743/products_friedmomo_website.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/f3/86/f3868377-14ee-4213-86ae-ff98ba4f5773/tenz_momo_chur_bahnhof_web_location_bild_8.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/f8/97/f897c6e1-da00-444b-a05c-c7e81aade2a7/tenz_momo_luzern_bahnhof_web_location_bild_6.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/fb/de/fbdefcc9-3ae8-432c-abab-80cd78795b69/tenz_web_products_chili_sauce_bild_1.jpg",
+      "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/ff/c8/ffc8853d-effe-4cfa-bd12-f714d005a5ff/kny00818.jpg",
+      "https://www.tenz.ch/locations/take-away/chur-bahnhof/",
+      "https://www.tenz.ch/locations/take-away/dubendorf/",
+      "https://www.tenz.ch/locations/take-away/f-c-binz/",
+      "https://www.tenz.ch/locations/take-away/luzern-bahnhof/",
+      "https://www.tenz.ch/locations/take-away/schlieren/",
+      "https://www.tenz.ch/locations/take-away/st-gallen-bahnhof/",
+      "https://www.tenz.ch/locations/take-away/winterthur-bhf/",
+      "https://www.tenz.ch/locations/take-away/zurich-enge-bahnhof/",
+      "https://www.tenz.ch/locations/take-away/zurich-oerlikon-bahnhof/",
+      "https://www.tenz.ch/products/food/desserts/",
+      "https://www.tenz.ch/products/food/momo/",
+      "https://www.tenz.ch/products/food/sandwich/",
+      "https://www.tenz.ch/products/food/shapaley-tsepaley/",
+      "https://www.tenz.ch/products/food/soups-salads/",
+      "https://www.tenz.ch/products/food/tenz-chili-sauce/"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/ab/b1/abb103cf-c662-4680-a67d-3706672a83a5/kny00805.jpg",
+        "error": "response_too_large"
+      },
+      {
+        "url": "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/0c/b0/0cb0073b-5933-4d92-9f03-3beef68311ad/kny00827.jpg",
+        "error": "response_too_large"
+      },
+      {
+        "url": "https://tenz-public-prod.sos-ch-dk-2.exo.io/filer_public/ff/c8/ffc8853d-effe-4cfa-bd12-f714d005a5ff/kny00818.jpg",
+        "error": "response_too_large"
+      }
+    ],
     "candidates": []
   },
   "node/268467884": {
@@ -16317,7 +16240,7 @@
     "candidates": []
   },
   "node/419866110": {
-    "checkedAt": "2026-10-19T19:30:55.965263+00:00",
+    "checkedAt": "2026-10-27T20:57:05.708411+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://www.notguilty.ch/"
@@ -16371,15 +16294,17 @@
     "candidates": []
   },
   "node/5119622513": {
-    "checkedAt": "2026-10-19T19:31:10.771378+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-10-27T20:57:07.117337+00:00",
+    "status": "fetch_failed",
     "visited": [
-      "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/6534c6689b6eff9c6166dec62c6906f4d6682cec6b49c79c3caa0a9f/media/menus_side_image.7077f229.jpeg",
-      "https://static.wixstatic.com/media/3ba7c5_d2eda08055174eeb9327e649a7a01839~mv2.jpg",
-      "https://www.pasta-barn.ch",
-      "https://www.pasta-barn.ch/menu"
+      "https://www.pasta-barn.ch"
     ],
-    "errors": [],
+    "errors": [
+      {
+        "url": "https://www.pasta-barn.ch",
+        "error": "http_404"
+      }
+    ],
     "candidates": []
   },
   "way/42157273": {
@@ -16494,7 +16419,7 @@
     "candidates": []
   },
   "node/1614877906": {
-    "checkedAt": "2026-10-19T19:32:00.463140+00:00",
+    "checkedAt": "2026-10-27T20:57:26.963542+00:00",
     "status": "no_prices",
     "visited": [
       "https://thecoconut.ch/",
@@ -17059,7 +16984,7 @@
     "candidates": []
   },
   "node/7614241198": {
-    "checkedAt": "2026-10-19T19:34:00.491418+00:00",
+    "checkedAt": "2026-10-27T20:57:10.419742+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.viadelgusto28.ch/"
@@ -17375,7 +17300,7 @@
     "candidates": []
   },
   "node/8194979187": {
-    "checkedAt": "2026-10-19T19:34:55.139143+00:00",
+    "checkedAt": "2026-10-27T20:57:07.525757+00:00",
     "status": "fetch_failed",
     "visited": [
       "https://weerapura.ch/"
@@ -17794,13 +17719,13 @@
     "candidates": []
   },
   "node/4505829727": {
-    "checkedAt": "2026-10-19T19:35:45.662472+00:00",
+    "checkedAt": "2026-10-27T20:57:14.983217+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.sintegra-zh.ch/user_assets/downloads/04_werkBAR/Broschuere_werkBAR.pdf",
       "https://www.sintegra-zh.ch/user_assets/downloads/04_werkBAR/werkbar_information_klientInnen-maerz-22.pdf",
-      "https://www.sintegra-zh.ch/user_assets/downloads/KW-43_2026-10-16-111246_shei.pdf",
-      "https://www.sintegra-zh.ch/user_assets/images/04_werkBAR/3_Menue/_2000x1445_crop_center-center_80_none/soup-g4de870803_640.jpg",
+      "https://www.sintegra-zh.ch/user_assets/downloads/KW-44_2026-10-23-113139_uzhl.pdf",
+      "https://www.sintegra-zh.ch/user_assets/images/04_werkBAR/3_Menue/_2000x1445_crop_center-center_80_none/cordon-bleu.jpg",
       "https://www.sintegra-zh.ch/werkbar/werkbar-ueberblick"
     ],
     "errors": [],
@@ -17994,10 +17919,37 @@
     "candidates": []
   },
   "node/11416682178": {
-    "checkedAt": "2026-10-19T19:36:35.562430+00:00",
+    "checkedAt": "2026-10-27T20:57:49.236440+00:00",
     "status": "no_prices",
     "visited": [
-      "https://yardbird.ch/de/zuerich_hauptbahnhof/"
+      "https://yardbird.ch/",
+      "https://yardbird.ch/backyard-menu/",
+      "https://yardbird.ch/de/",
+      "https://yardbird.ch/de/ZuriHBmenu/",
+      "https://yardbird.ch/de/backyard-menu/",
+      "https://yardbird.ch/de/yardbean-menu/",
+      "https://yardbird.ch/de/zuerich/",
+      "https://yardbird.ch/de/zuerich_hauptbahnhof/",
+      "https://yardbird.ch/de/zurich-hauptbahnhof-menu/",
+      "https://yardbird.ch/de/zurihbmenubar/",
+      "https://yardbird.ch/wp-content/uploads/2021/10/vmhg-1.png",
+      "https://yardbird.ch/wp-content/uploads/2022/10/Artboard-2-copy-2.png",
+      "https://yardbird.ch/wp-content/uploads/2022/11/YARDBIRD_webseite-768x131.png",
+      "https://yardbird.ch/wp-content/uploads/2024/06/chicken_wing-267x300.png",
+      "https://yardbird.ch/wp-content/uploads/2024/06/smile-1-300x300.png",
+      "https://yardbird.ch/wp-content/uploads/2024/06/vegi-213x300.png",
+      "https://yardbird.ch/wp-content/uploads/2024/09/yardbean-1024x690.png",
+      "https://yardbird.ch/wp-content/uploads/2024/09/yardbird-1-1024x690.png",
+      "https://yardbird.ch/wp-content/uploads/2025/01/bisket.png",
+      "https://yardbird.ch/wp-content/uploads/2025/01/labrea-1.png",
+      "https://yardbird.ch/wp-content/uploads/2025/01/thebite-1.png",
+      "https://yardbird.ch/wp-content/uploads/2025/01/theshop.png",
+      "https://yardbird.ch/yardbean-menu/",
+      "https://yardbird.ch/zuerich",
+      "https://yardbird.ch/zuerich/",
+      "https://yardbird.ch/zurich-hauptbahnhof-menu",
+      "https://yardbird.ch/zurich-hauptbahnhof-menu/",
+      "https://yardbird.ch/zurihbmenubar/"
     ],
     "errors": [],
     "candidates": []
@@ -18067,7 +18019,7 @@
     "candidates": []
   },
   "node/4370339893": {
-    "checkedAt": "2026-10-19T19:36:50.972722+00:00",
+    "checkedAt": "2026-10-27T20:57:15.627835+00:00",
     "status": "no_prices",
     "visited": [
       "https://yokita.ch/"
@@ -18136,7 +18088,7 @@
     "candidates": []
   },
   "node/2281350139": {
-    "checkedAt": "2026-10-19T19:37:01.447634+00:00",
+    "checkedAt": "2026-10-27T20:57:16.523478+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.yoyo-pizza.ch/"
@@ -18145,7 +18097,7 @@
     "candidates": []
   },
   "node/7528998178": {
-    "checkedAt": "2026-10-19T19:37:01.910451+00:00",
+    "checkedAt": "2026-10-27T20:57:18.204385+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.yoojis.com/standorte/zuerich-passage/"
@@ -18172,7 +18124,7 @@
     "candidates": []
   },
   "node/1291638554": {
-    "checkedAt": "2026-10-19T19:37:14.298229+00:00",
+    "checkedAt": "2026-10-27T20:57:24.088747+00:00",
     "status": "no_prices",
     "visited": [
       "https://kramergastronomie.ch/",
@@ -18216,7 +18168,7 @@
     "candidates": []
   },
   "node/5648366364": {
-    "checkedAt": "2026-10-19T19:37:34.219147+00:00",
+    "checkedAt": "2026-10-27T20:57:34.381594+00:00",
     "status": "no_prices",
     "visited": [
       "https://image.jimcdn.com/app/cms/image/transf/dimension=1008x10000:format=jpg/path/s910b485c224cbdcd/image/iff2fa82d9c44b0a6/version/1716970439/image.jpg",
@@ -18232,10 +18184,10 @@
     "candidates": []
   },
   "node/10141445815": {
-    "checkedAt": "2026-10-19T19:37:52.067829+00:00",
+    "checkedAt": "2026-10-27T20:57:53.356225+00:00",
     "status": "no_prices",
     "visited": [
-      "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/6534c6689b6eff9c6166dec62c6906f4d6682cec6b49c79c3caa0a9f/media/menus_side_image.7077f229.jpeg",
+      "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/d6e306b2b79a3b221c681e69ed121e7b5496709072d33d3eff45e435/media/menus_side_image.7077f229.jpeg",
       "https://static.wixstatic.com/media/40898a93cfff4578b1779073137eb1b4.png",
       "https://static.wixstatic.com/media/7ac8fc_0743c1df698c407c8a25361a1a0967b0~mv2.jpg",
       "https://static.wixstatic.com/media/7ac8fc_9803cc4f72ac41edb138ab942a3782da~mv2.jpg",
@@ -18293,17 +18245,13 @@
     "candidates": []
   },
   "node/11984275435": {
-    "checkedAt": "2026-10-19T19:38:19.964601+00:00",
-    "status": "fetch_failed",
+    "checkedAt": "2026-10-27T20:57:29.408309+00:00",
+    "status": "no_prices",
     "visited": [
-      "https://www.zukis.ch"
+      "https://www.zukis.ch",
+      "https://www.zukis.ch/food/"
     ],
-    "errors": [
-      {
-        "url": "https://www.zukis.ch",
-        "error": "http_403"
-      }
-    ],
+    "errors": [],
     "candidates": []
   },
   "node/103122838": {
@@ -18849,7 +18797,7 @@
     "candidates": []
   },
   "node/4833061607": {
-    "checkedAt": "2026-10-19T19:40:10.615500+00:00",
+    "checkedAt": "2026-10-27T20:57:39.708388+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.aess-bar.ch/",
@@ -19095,7 +19043,7 @@
     "candidates": []
   },
   "node/10082600663": {
-    "checkedAt": "2026-10-19T19:44:54.668405+00:00",
+    "checkedAt": "2026-10-27T21:09:14.887355+00:00",
     "status": "no_prices",
     "visited": [
       "https://www.the-thai.ch",
@@ -19166,6 +19114,529 @@
       "https://www.the-thai.ch/wp-content/uploads/2026/09/bild-2-street-food-events_2_ergebnis.webp",
       "https://www.the-thai.ch/wp-content/uploads/2026/09/bild-3-street-food-events_3_ergebnis.webp",
       "https://www.the-thai.ch/wp-content/uploads/2026/09/bild-4-street-food-events_4_ergebnis.webp"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/4860115710": {
+    "checkedAt": "2026-10-27T20:52:15.576391+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://images.squarespace-cdn.com/content/v1/5923e966e3df28823047d68b/53ec18ef-1950-4526-8c67-d427761cb1ca/belcafe-belpizza-take-away.png",
+      "https://www.belcafe.ch/"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/3987856802": {
+    "checkedAt": "2026-10-27T20:52:25.041926+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://www.klaraskitchen.ch/",
+      "https://www.klaraskitchen.ch/wp-content/uploads/2015/03/superfood.jpg"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/2289574750": {
+    "checkedAt": "2026-10-27T20:52:38.971638+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/bbb177bb270c1b6afb0b0b73282cd220671b3433c841e4e3a7d26be9/media/menus_side_image.7077f229.jpeg",
+      "https://static.wixstatic.com/media/b8d8be_f9fa2de5f9c142419ace5cd5332755df~mv2.jpg",
+      "https://static.wixstatic.com/media/df8c4e_9965e4525ce44660acbb95236b22f1df~mv2.png",
+      "https://static.wixstatic.com/media/fdcfaba150fc427da298a00cb09d91c1.png",
+      "https://www.sazio.ch/",
+      "https://www.sazio.ch/_files/ugd/10c111_6ff4384a0bfc4214950ba558f9beada2.pdf",
+      "https://www.sazio.ch/_files/ugd/10c111_71aeef22998f493794298b19d734fdc6.pdf",
+      "https://www.sazio.ch/_files/ugd/10c111_71b36ecd18a040da924b81baf18b0395.pdf",
+      "https://www.sazio.ch/mittagsmenü",
+      "https://www.sazio.ch/weinkarte"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/6574004298": {
+    "checkedAt": "2026-10-27T20:52:40.016790+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://www.vito.ch/"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/5370500717": {
+    "checkedAt": "2026-10-27T20:52:40.512626+00:00",
+    "status": "partial",
+    "visited": [
+      "https://ayverdis.ch/en/menue/",
+      "https://ayverdis.ch/menu",
+      "https://ayverdis.ch/menu/",
+      "https://ayverdis.ch/menue",
+      "https://ayverdis.ch/menue/",
+      "https://ayverdis.ch/wp-content/themes/ayverdis/public/balloon.gif",
+      "https://ayverdis.ch/wp-content/uploads/2024/05/dddb6855f42665894627de6486220024.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/07/AY_Kebab_Frei-1.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/07/Frischkaese-Honig-Kebab-frei.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/07/Kebabteller_Frei-1.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/07/Taschenbrot_Kebab_Frei-1.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/07/Trueffel-Kebab-Frei.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/08/Kebab-Crsipy-Chicken-Ayverdis.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/09/AYA-Ayran-Kebab-Zuerich-1.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/09/Ayverdis-Wiedikon-Standort-Kebab-scaled.jpg",
+      "https://ayverdis.ch/wp-content/uploads/2024/09/Raclette-Kebab-Frei.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/11/Ays-Mit-Preview.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/11/Ays-Ohni-Preview.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/11/Falafel-Kebab-frei-1.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/11/aystea-don-zero-3.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/11/aystea-nature-haze.png",
+      "https://ayverdis.ch/wp-content/uploads/2024/11/aystea-red-forest.png",
+      "https://ayverdis.ch/wp-content/uploads/2025/02/Ayverdis-Metalli-Zug-Standort-Kebab.jpg",
+      "https://ayverdis.ch/wp-content/uploads/2025/02/Taschenbrot_Kebab_Frei-1.png",
+      "https://ayverdis.ch/wp-content/uploads/2025/07/Ayverdis-Bahnhofplatz-Standort-Kebab-V.jpg",
+      "https://ayverdis.ch/wp-content/uploads/2026/06/Baklava-frei.png",
+      "https://www.ayverdis.ch/"
+    ],
+    "errors": [
+      {
+        "url": "https://ayverdis.ch/wp-content/themes/ayverdis/public/balloon.gif",
+        "error": "response_too_large"
+      }
+    ],
+    "candidates": []
+  },
+  "node/4424654359": {
+    "checkedAt": "2026-10-27T20:52:51.631865+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://www.zopfundzoepfli.ch/"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/92612575": {
+    "checkedAt": "2026-10-27T20:52:54.464377+00:00",
+    "status": "partial",
+    "visited": [
+      "https://burger-meister.ch/burgermeister-delivery-online-bestellung/",
+      "https://burger-meister.ch/burgermeister-delivery-online-bestellung/Ja, möglich.",
+      "https://burger-meister.ch/food/",
+      "https://burger-meister.ch/wp-content/themes/yootheme/cache/82/Chili-Cheesefries_Small-1-82fdcefb.jpeg",
+      "https://burger-meister.ch/wp-content/themes/yootheme/cache/8b/locations-8b96b025.jpeg",
+      "https://burger-meister.ch/wp-content/themes/yootheme/cache/8b/pattys-8bba07fb.jpeg",
+      "https://burger-meister.ch/wp-content/themes/yootheme/cache/97/BM-WM-4-1-97bbc6d3.jpeg",
+      "https://burger-meister.ch/wp-content/themes/yootheme/cache/a9/DSC00039-scaled-a9f63cfe.jpeg",
+      "https://burger-meister.ch/wp-content/themes/yootheme/cache/b7/Planted-Chicken-Burger-Blurry_Small-1-b7828774.jpeg",
+      "https://burger-meister.ch/wp-content/themes/yootheme/cache/bc/BM-MA-Bilder-42-1-scaled-bc4b17c2.jpeg",
+      "https://burger-meister.ch/wp-content/themes/yootheme/cache/ea/BM-D14-Edit-38-scaled-eac42a84.jpeg",
+      "https://burger-meister.ch/wp-content/uploads/2026_08-Allergenfibel.pdf",
+      "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
+      "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240_p.pdf",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609077/medium_C4S3Tmj3UB.jpeg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609078/medium_2x3mUsOZaT.jpg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609079/medium_gSlw3b9qPk.jpg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609080/medium_vIPLTn0M5X.jpg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609081/medium_NzCv1Ig5y9.jpg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609083/medium_Kjtm3MXjy0.jpeg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609084/medium_d5mxkTaEKv.jpg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609085/medium_OeKId28MOg.jpg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609086/medium_MmFvC9M9F2.jpeg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609088/medium_FKUVzsyry9.jpg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3609089/medium_sgFfsbrdZp.jpg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/3882507/medium_w5zEnpHUea.jpg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/4478571/medium_FdSFQGUu5q.jpeg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/4610890/medium_5oy62XKDoJ.jpeg",
+      "https://s3.eu-central-1.amazonaws.com/uberall-userpics-prod/6371035/medium_Vm0lzjLPMH.jpeg",
+      "https://www.burger-meister.ch/",
+      "https://www.burger-meister.ch/wp-content/uploads/2024/02/just-eat.png",
+      "https://www.burger-meister.ch/wp-content/uploads/2024/02/uber-eats.png"
+    ],
+    "errors": [
+      {
+        "url": "https://burger-meister.ch/burgermeister-delivery-online-bestellung/Ja, möglich.",
+        "error": "http_404"
+      }
+    ],
+    "candidates": []
+  },
+  "node/13073678755": {
+    "checkedAt": "2026-10-27T20:53:09.576376+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/6880ea2c3d009ea99c8d74f4_fb.png",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/6880ea2d913fe2ea46ce447e_Insta.png",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/688737c3d1c51a1374a2bf13_Mask%20group.png",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68873bd204473edef55f260f_Bildmarke.png",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68998b73681dbbcc3563b748_Bildmarke.png",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68e2b18e00060b17ea909ffd_c239e8abee8a38ab6fcd5d4467c97c12_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6740.jpg",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68e2b18e0798b9f0ec5d2f3f_5ef0ec0f192e1182a1e06a9bfc06f1a0_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6954.jpg",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68e2b18e1f6dd53e56a81a8c_4e795cab4ad1367832ad579361b4f2a9_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6825.jpg",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68e2b18e69618cca627ced1e_dc6e386e5aabbf3691c062ab9109e2e4_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6893.jpg",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68e2b18e73e123ac57f60cc6_84a3a664c23d95724344b3b1a5baad82_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6815.jpg",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68e2b18ed06b59c991192b5f_47531a60fc1bb35878587fd5ca1cba17_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6764.jpg",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68e2b18ed2184c530685dca0_fa10d00027fbc10e908b75244a630814_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6801.jpg",
+      "https://cdn.prod.website-files.com/68777b868b7db56fcc3c074a/68e2b1d351c4edf905d7e04b_9ca6b5e788f3f6a80ef5926ff3dc93a1_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6848.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b259fee16c7f8ff0160d_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6917.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b26e583104a037babbb0_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6880.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b2814ba94799003ed2ff_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6848.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b998c403862b9daf8be1_mitundohne_kebab_zurich_lochergut_schweiz_L1030189.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9a1d06b59c9911a5532_mitundohne_kebab_zurich_lochergut_schweiz_L1030169.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9a5de43f1c36a131807_mitundohne_kebab_zurich_lochergut_schweiz_L1030171.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9b19bd27e94b9afe7e6_mitundohne_kebab_zurich_lochergut_schweiz_L1030177.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9b6831e570c034f57cb_mitundohne_kebab_zurich_lochergut_schweiz_L1030181.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9be0a8283c9f3ee01db_mitundohne_kebab_zurich_lochergut_schweiz_L1030182.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9c23ed0adec5c902bdf_mitundohne_kebab_zurich_lochergut_schweiz_L1030183.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9c68f41907707d49459_mitundohne_kebab_zurich_lochergut_schweiz_L1030187.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9cc11c85940d11ff507_mitundohne_kebab_zurich_lochergut_schweiz_L1030188.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9d2bc8085fe7edc5662_mitundohne_kebab_zurich_lochergut_schweiz_L1030194.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9dab534a5ce616d1db7_mitundohne_kebab_zurich_lochergut_schweiz_L1030203.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2b9dac403862b9daf95cc_mitundohne_kebab_zurich_lochergut_schweiz_L1030196.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba1f4701a7e189aceb57_mitundohne_kebab_stgallen_schweiz_FullSizeRender%2019.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba24d2184c530687148c_mitundohne_kebab_stgallen_schweiz_L1030636.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba2b28e24692aef3d07f_mitundohne_kebab_stgallen_schweiz_FullSizeRender.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba2f5c877848859a2d3a_mitundohne_kebab_stgallen_schweiz_FullSizeRender%2040.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba39d60bd8dbc75c4950_mitundohne_kebab_stgallen_schweiz_FullSizeRender%2030.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba3e2748dccce7ba1bab_mitundohne_kebab_stgallen_schweiz_FullSizeRender%2012.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba437879ae62a61b4f32_mitundohne_kebab_stgallen_schweiz_FullSizeRender%204.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba4a3367f98e10e24957_mitundohne_kebab_stgallen_schweiz_L1030593.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba5c5bfe12b2d008a805_mitundohne_kebab_stgallen_schweiz_L1030607.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba5c705bce252754f4ad_mitundohne_kebab_stgallen_schweiz_FullSizeRender%2031.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba6c2e4911d3d8d9c189_mitundohne_kebab_stgallen_schweiz_FullSizeRender%2023.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba6ca1e9b28688798549_mitundohne_kebab_stgallen_schweiz_M_DSC4686.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba7a52dda65945c93c21_mitundohne_kebab_stgallen_schweiz_FullSizeRender%2033.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ba80ba4ee29c2edf56eb_mitundohne_kebab_stgallen_schweiz_FullSizeRender%2020.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bacb4cf66c2ee8f87ec4_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6740.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada239e5efb74717e80_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6769.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada2a3959987f5fdc61_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6815.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada3d8034229f266b4f_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6794.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada4ab30641ef4a2f93_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6745.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada59b493eb21f24d3c_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6899.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada5b42befd11a4d045_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6893.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada728be1dc52241741_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6825.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada860968e10e522e6f_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6780.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada86942fce81ec7eb2_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6801.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2bada8cff8864d6e20ae5_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6764.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2badab3d3bc7dc4a46fd7_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6954.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ca709a3536f1e21baa51_mitundohne_kebab_stgallen_schweiz_FullSizeRender%202.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/68e2ca8ebc2f8e7f7defe171_mitundohne_kebab_hbzurich_sept25_hurrah_content_DSCF6799.jpg",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/6a01fcf5ed56b02d9b6483aa_STGmenuFinished.pdf",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/6a01ff1cf4ab678fc3e4cc91_HB.pdf",
+      "https://cdn.prod.website-files.com/687f90cf68a4d6a5987e64a0/6a01ffc1d23f91e09d73b956_LG.pdf",
+      "https://www.mitundohne.com",
+      "https://www.mitundohne.com/location/kebab-st-gallen",
+      "https://www.mitundohne.com/location/kebab-zurich-hauptbahnhof-sbb",
+      "https://www.mitundohne.com/location/kebab-zurich-lochergut"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/1743220322": {
+    "checkedAt": "2026-10-27T20:53:54.497086+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1495627044145-T2DRB18UI88N9B13VC56/sternen-grill-take-away-bellevue.png",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1495637877542-L3I6LHJHZDCNJERKMYIT/580A1937.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1495637881897-S7QFD7QAF19VJW0AJPUM/580A1947.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1495639918603-Z5M1HBOL4SGN10PQEHQU/580A2006.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1495639935421-BWCWB6ZIHIO9WDPI8CZT/580A1996.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1495644386812-WYGZI8NJY2MN2AF4ECR0/580A5368.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1496932509308-ZHQP44XDPMJHSAIWBSWI/Belcafe-signet-sand.png",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1515687235527-A283XSF0JSNW04UXQ9KY/sternen-grill-take-away-flughafen-zuerich.png",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1637317034335-C2EEXEKK0XUDVDW0TWZT/deutsch-take-away-button.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1637317036154-FOI5RX05O7IHGR1EQ9P5/english-take-away-button.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656939943944-T8EFQKCI66DPBCQO5K0A/sternengrill-bellevue-zuerich-uppergrade+%285%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656939953235-RESFRFWG9T4LQ0ROBQPZ/sternengrill-bellevue-zuerich-uppergrade+%286%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656939958363-IKNJW65H3NG2V8MBKBBR/sternengrill-bellevue-zuerich-uppergrade+%2811%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656939962979-8V7NYK3BQ9PE0PV2P56W/sternengrill-bellevue-zuerich-uppergrade+%2813%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656939972636-AB7639PNS26D3AXZ654E/sternengrill-bellevue-zuerich-uppergrade+%2832%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656939983871-9IW55U2DVB4HVJR0QXE2/sternengrill-bellevue-zuerich-uppergrade+%2834%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656940059001-268L52ABG9G62SPEET93/sternengrill-bellevue-zuerich-uppergrade+%2838%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656940330047-4OK9DTBVVDJLPNPOE9HO/sternengrill-bellevue-zuerich-uppergrade+%2824%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656940355416-XNOQDTPJIXMGIRYL7RHH/sternengrill-bellevue-zuerich-uppergrade+%2842%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656940363607-E9UUJEC4DDLFIXYTAKNH/sternengrill-bellevue-zuerich-uppergrade+%282%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656940811214-NDIB8UFGRG20YQ6GDPT9/sternengrill-bellevue-zuerich-uppergrade+%28100%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656940893167-1Z92M0UVPRLNWCAL9JLR/sternengrill-bellevue-zuerich-uppergrade+%2896%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656940898422-PO0L6KS76UID1MTVWDCH/sternengrill-bellevue-zuerich-uppergrade+%2883%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656941257133-1DHL6SLK0Y6HUYO7AU02/sternengrill-bellevue-zuerich-uppergrade+%2889%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656941262499-IVNLDJT7O3XH5KQXOHK7/sternengrill-bellevue-zuerich-uppergrade+%2891%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656941267959-A18J6QDY6WDIGLGHACRI/sternengrill-bellevue-zuerich-uppergrade+%2893%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656941273341-JGD95N7QJC8IMAMV04I7/sternengrill-bellevue-zuerich-uppergrade+%2894%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656941292929-FCKIC3ZPS8PABUX9DKHA/sternengrill-bellevue-zuerich-uppergrade+%2895%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656947105104-CK4UPVUUG7TUA6N7P2HZ/Sternengrill-bellevue-zuerich-take-away.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1683649746363-O6SXKROC82LXG1ZJAALT/image-asset.jpeg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1683711441159-U2R45YSHZGP7XBVLIYWE/image-asset.jpeg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1683969185288-MF1T2VVUVSBJ9AG1CYP1/image-asset.jpeg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1684230314139-BVPJ3BCGJVJ2KB4EB4UX/image-asset.jpeg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1684485102299-080D0AMT1DHDF80QKMIH/image-asset.jpeg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1784880321685-X0KXXG6QEEGG3QCZ3UFL/IMG_4962.jpeg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1bb5c1dd-94f4-4b16-87c7-fc356f4ed473/sternengrill-bellevue-zuerich-uppergrade+%2898%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/666ff894-c083-4a44-b4b3-22e7e94a2faa/sternengrill-bellevue-zuerich-uppergrade+%2886%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/6afffe29-d364-4823-ac45-f601924416cf/sternengrill-get-a-taste-of-zurich-food-tour.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/8d15ce42-38bb-4f1c-8cdb-890ab0523f64/sternengrill-bellevue-zuerich-uppergrade+%2896%29.jpg",
+      "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/8e97b61b-7588-4d6e-a648-0b3d4994ce5b/sternen-senf-salamander.jpg",
+      "https://www.sternengrill.ch/",
+      "https://www.sternengrill.ch/s/sternen-grill-gaestebuch-low.pdf",
+      "https://www.sternengrill.ch/take-away-airport-kloten",
+      "https://www.sternengrill.ch/take-away-bellevue-zuerich-city",
+      "https://www.sternengrill.ch/take-away-flughafen",
+      "https://www.sternengrill.ch/take-away-grill",
+      "https://www.sternengrill.ch/take-away-menu"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/4843837964": {
+    "checkedAt": "2026-10-27T20:55:13.544327+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://wesleys-kitchen.ch/",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/bbq_pork_hong_kong_style.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/beef_shao_mai_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/beef_shao_mai_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/black_pepper_udon_4.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/black_pepper_udon_5.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/black_pepper_udon_6.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/black_pepper_udon_7.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/chicken_katzu_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/chicken_shao_mai_sticky_rice_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/chicken_shao_mai_sticky_rice_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/chicken_tonkatsu.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/chicken_tonkatsu_2_1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/chicken_tonkatsu_3.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/chinesiche_mochi.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/chinesiche_mochi_1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/chinesiche_mochi_2.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/crispy_beef_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/crispy_gyoza_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/crispy_gyoza_3.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/crispy_shrimps.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/crispy_shrimps_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/crispy_tuna_roll.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/crispy_tuna_roll2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/dscf8584_4_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/dscf8594.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/dscf8594_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/dscf8594_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/edamame.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/edamame_2.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/edamame_3.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/foto_20.01.18_20_10_01.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/foto_taiwan_bao_jpg.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/fruehlingsrolle_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/gyoza_gedaempft_.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/gyoza_gedaempft__1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/gyoza_gedaempft__2.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/gyoza_gedaempft__3.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/gyoza_gedaempft__4.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/gyoza_gedaempft__5.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/hot_lamm.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/img_2412_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/img_2412_3.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/img_2420.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/img_2450_4.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/img_2583_6.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/img_2609_3.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/img_2651_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/img_2651_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/jingtu_pork.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/jingtu_pork_1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/korean_bbq_beef.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/korean_bbq_beef_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/mushroom_shao_mai_sticky_rice_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/mushroom_shao_mai_sticky_rice_3.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/pak_choi.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/pak_choi_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/pak_choi_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/papaya_salat.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/papaya_salat_1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/papaya_salat_2.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/pastel_de_nata_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/peking_ente.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/peking_ente_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/peking_ente_1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/photoroom_20230131_130935.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/porc_shao_mai_sticky_rice_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/pork_belly.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/pork_belly_3.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/pork_hong_kong_style_1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/pork_hong_kong_style_2.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/rettich_an_sojasauce-0199.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/rettich_an_sojasauce-0205.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/rettich_an_sojasauce-0207.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/rice-0110.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/rice.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/shanghai_bao_shrimps.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/shanghai_bao_shrimps_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/shanghai_bao_shrimps_3.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/singapore_noodles_0_3.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/singapore_noodles_0_4.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/singapore_noodles_0_5.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/soy_duck.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/spicy_aubergine.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/spicy_aubergine_1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/spicy_aubergine_2.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/spicy_chinakohlsalat-0225_2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/spicy_chinakohlsalat-0225_3.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/spicy_tofu_mit_koriander-0146.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/spicy_tofu_mit_koriander-0146_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/spinat_mit_sesamoel.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/suess_tomaten_2.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/suess_tomaten_3.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/szechuan_chicken-0408.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/thai_tom_yum_fried_rrice_4.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/thai_tom_yum_fried_rrice_5.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/thai_tom_yum_fried_rrice_6.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/thai_tom_yum_fried_rrice_7.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/u9r4868.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/u9r4887_5.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/u9r4890_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/udon_nudeln_mit_rindfleisch_.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/udon_nudeln_mit_rindfleisch__1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/udon_nudeln_mit_rindfleisch__2.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/vegan_ente_bamboos_und_pilze_kopie.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/wan_tan_suppe_1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/wan_tan_suppe_3.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/xiao_long_bao.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/xiao_long_bao_1.png",
+      "https://wesleys-kitchen.ch/imagetypes/food-th/xiao_long_bao_3.png",
+      "https://wesleys-kitchen.ch/imagetypes/order-high/img-20190415-wa0009.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/order-high/standort-volketswil.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/order-high/standort_hb_1.jpg",
+      "https://wesleys-kitchen.ch/imagetypes/order-high/standort_oerlikon.jpg",
+      "https://wesleys-kitchen.ch/menu/",
+      "https://wesleys-kitchen.ch/order-food/",
+      "https://wesleys-kitchen.ch/order-food/take-away-hb/?order_type=2",
+      "https://wesleys-kitchen.ch/order-food/take-away-josefstrasse/?order_type=2",
+      "https://wesleys-kitchen.ch/order-food/take-away-oerlikon/?order_type=2",
+      "https://www.wesleys-kitchen.ch/"
+    ],
+    "errors": [],
+    "candidates": []
+  },
+  "node/4892249174": {
+    "checkedAt": "2026-10-27T20:55:16.025635+00:00",
+    "status": "no_prices",
+    "visited": [
+      "https://www.orientcatering.ch/",
+      "https://www.orientcatering.ch/menuliste/",
+      "https://www.orientcatering.ch/menuliste/apero/",
+      "https://www.orientcatering.ch/menuliste/hauptgerichte/",
+      "https://www.orientcatering.ch/menuliste/mezze/",
+      "https://www.orientcatering.ch/menuliste/salate/",
+      "https://www.orientcatering.ch/tagesmenue/",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/002-2-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/511.-Maklouba-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/513.-Shaik-Al-Mahshy-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/521.-Mansaf-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/531.-Samake-Harra-2-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/541.-Shawarma-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/555.-Shish-Kebab-Lamm-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/555.-Shish-Kebab-Lamm-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/556.-Kofta-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/557.-Shish-Taouk-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/562-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/Apero-Platte-2-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00678.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00695.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00697.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00698.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00702.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00707.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00709.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00710-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00712-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00713-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00714-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00715-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00716-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00717-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00718-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00720-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00721-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00722-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00723-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00724-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00725-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00726-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00727-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/DSC00729-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_0474-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_0550-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_0839-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1467-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1474-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1475-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1483-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1484-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1485-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1488-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1489-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1490-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1492-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1493-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1496-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1499-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1500-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1501-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1502-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1503-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1504-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1507-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1508-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1509-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1510-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1511-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1512-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1513-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1516-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1519-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1520-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1521-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1522-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1523-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1524-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1526-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1527-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1530-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1531-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1536-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1538-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1574-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1577-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1578-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1579-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1582-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1586-320x202.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1638-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1647-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1662-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1665-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1666-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1668-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1669-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1670-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_1671-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2940-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2941-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2942-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2943-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2944-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2946-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2947-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2948-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2949-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2950-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2951-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2952-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2953-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2954-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2955-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2956-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2958-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/IMG_2959-scaled.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/mohammed2-578.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/mohammed2-581.jpg",
+      "https://www.orientcatering.ch/wp-content/uploads/2021/09/slogan.png"
     ],
     "errors": [],
     "candidates": []

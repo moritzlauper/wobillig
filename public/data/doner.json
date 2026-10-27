@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-19T19:44:54.669373+00:00",
-  "discoveredAt": "2026-10-19T18:19:30.551066+00:00",
+  "generatedAt": "2026-10-27T21:09:14.887946+00:00",
+  "discoveredAt": "2026-10-27T20:52:00.278664+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -11,6 +11,7 @@
       "type": "fast_food",
       "address": "Niederdorfstrasse 4",
       "postcode": "8001",
+      "addressSource": "https://www.openstreetmap.org/way/285188186",
       "website": null,
       "cuisine": [
         "kebab"
@@ -19,8 +20,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/285188186"
+      "checkedAt": null
     },
     {
       "id": "node/370835686",
@@ -39,26 +39,6 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
-    },
-    {
-      "id": "node/613673924",
-      "name": "Akara‘s",
-      "lat": 47.3906861,
-      "lon": 8.4887363,
-      "type": "restaurant",
-      "address": "Hohlstrasse 561",
-      "postcode": "",
-      "website": "https://akaras.ch/",
-      "cuisine": [
-        "kebab",
-        "pizza",
-        "turkish"
-      ],
-      "openingHours": "Mo-Th 06:00-00:30, Fr,Sa 06:00-01:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T18:19:31.280718+00:00"
     },
     {
       "id": "node/14019839153",
@@ -82,26 +62,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:04.158726+00:00"
-    },
-    {
-      "id": "node/13994678684",
-      "name": "anna.",
-      "lat": 47.3889387,
-      "lon": 8.5266352,
-      "type": "restaurant",
-      "address": "Limmatstrasse 254",
-      "postcode": "8005",
-      "website": null,
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/90648438"
+      "checkedAt": "2026-10-27T20:52:31.550596+00:00"
     },
     {
       "id": "node/345525759",
@@ -111,6 +72,7 @@
       "type": "fast_food",
       "address": "Bertastrasse 1",
       "postcode": "8003",
+      "addressSource": "https://www.openstreetmap.org/way/143481540",
       "website": null,
       "cuisine": [
         "pizza",
@@ -121,8 +83,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/143481540"
+      "checkedAt": null
     },
     {
       "id": "node/1553894700",
@@ -132,6 +93,7 @@
       "type": "fast_food",
       "address": "Ueberlandstrasse 327",
       "postcode": "8051",
+      "addressSource": "https://www.openstreetmap.org/way/122075968",
       "website": null,
       "cuisine": [
         "kebab",
@@ -141,8 +103,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/122075968"
+      "checkedAt": null
     },
     {
       "id": "node/1837635768",
@@ -163,26 +124,6 @@
       "checkedAt": null
     },
     {
-      "id": "node/4172097485",
-      "name": "Ayverdi's",
-      "lat": 47.4146478,
-      "lon": 8.5613897,
-      "type": "restaurant",
-      "address": "Genossenschaftsstrasse 18",
-      "postcode": "8050",
-      "website": "https://ayverdis.ch/",
-      "cuisine": [
-        "kebab",
-        "pizza"
-      ],
-      "openingHours": "Mo-Su 11:00-23:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/282045257"
-    },
-    {
       "id": "node/5370500717",
       "name": "Ayverdi's",
       "lat": 47.4114406,
@@ -198,27 +139,8 @@
       "openingHours": "Mo-Su 11:00-23:00",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/5653783775",
-      "name": "Ayverdi's",
-      "lat": 47.3798658,
-      "lon": 8.5061904,
-      "type": "restaurant",
-      "address": "Badenerstrasse 415",
-      "postcode": "8003",
-      "website": "https://ayverdis.ch/",
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Su-Th 11:00-22:00; Fr,Sa 11:00-23:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/34092940"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-27T20:52:40.512615+00:00"
     },
     {
       "id": "node/279180962",
@@ -228,6 +150,7 @@
       "type": "fast_food",
       "address": "Bahnhofplatz 2",
       "postcode": "8001",
+      "addressSource": "https://www.openstreetmap.org/way/78630006",
       "website": null,
       "cuisine": [
         "kebab"
@@ -236,27 +159,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/78630006"
-    },
-    {
-      "id": "node/12961010814",
-      "name": "baba’s döner",
-      "lat": 47.4112902,
-      "lon": 8.5462929,
-      "type": "restaurant",
-      "address": "Nansenstrasse 4",
-      "postcode": "8050",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/137132918"
+      "checkedAt": null
     },
     {
       "id": "node/3338285993",
@@ -295,7 +198,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T18:19:34.123872+00:00"
+      "checkedAt": "2026-10-27T20:52:02.515732+00:00"
     },
     {
       "id": "node/4868072666",
@@ -323,6 +226,7 @@
       "type": "fast_food",
       "address": "Badenerstrasse 676",
       "postcode": "8048",
+      "addressSource": "https://www.openstreetmap.org/way/617645749",
       "website": null,
       "cuisine": [
         "kebab"
@@ -331,29 +235,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/617645749"
-    },
-    {
-      "id": "node/4377444852",
-      "name": "Da Amici 2",
-      "lat": 47.420397,
-      "lon": 8.5486267,
-      "type": "restaurant",
-      "address": "Schaffhauserstrasse 477",
-      "postcode": "8052",
-      "website": "https://daamici2.ch",
-      "cuisine": [
-        "kebab",
-        "pizza",
-        "oriental"
-      ],
-      "openingHours": null,
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:19:56.953494+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/440041822"
+      "checkedAt": null
     },
     {
       "id": "node/8476045611",
@@ -409,7 +291,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:11.525648+00:00"
+      "checkedAt": "2026-10-27T20:52:38.268820+00:00"
     },
     {
       "id": "node/565524652",
@@ -429,62 +311,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T18:19:30.795721+00:00"
-    },
-    {
-      "id": "node/6588854822",
-      "name": "GZ Bachwiesen Kafi",
-      "lat": 47.3800795,
-      "lon": 8.4862915,
-      "type": "cafe",
-      "address": "Bachwiesenstrasse 38",
-      "postcode": "8047",
-      "website": null,
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": "Su 14:00-17:30; Tu-Fr 10:00-17:30; Mo,Sa off",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/1014076983"
-    },
-    {
-      "id": "way/1308758478",
-      "name": "Gül",
-      "lat": 47.3784912,
-      "lon": 8.5291495,
-      "type": "restaurant",
-      "address": "Tellstrasse 22",
-      "postcode": "8004",
-      "website": "http://www.guel.ch",
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": "Mo-Fr 18:00-24:00; Sa 11:00-14:00 ,18:00-24:00; Su 11:00-15:00,18:00-22:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:19:53.642133+00:00"
-    },
-    {
-      "id": "node/14290082402",
-      "name": "Halk Pazari",
-      "lat": 47.4089742,
-      "lon": 8.5475396,
-      "type": "restaurant",
-      "address": "Tramstrasse 10",
-      "postcode": "8050",
-      "website": "http://halkpazari.ch",
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": "Mo-Sa 08:00-22:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:19:38.470843+00:00"
+      "checkedAt": "2026-10-27T20:52:00.341998+00:00"
     },
     {
       "id": "node/5378024770",
@@ -504,7 +331,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T18:19:30.959989+00:00"
+      "checkedAt": "2026-10-27T20:52:00.327524+00:00"
     },
     {
       "id": "node/11761779035",
@@ -522,7 +349,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:19:38.165200+00:00"
+      "checkedAt": "2026-10-27T20:52:05.231795+00:00"
     },
     {
       "id": "node/313115222",
@@ -532,6 +359,7 @@
       "type": "fast_food",
       "address": "Limmattalstrasse 227",
       "postcode": "8049",
+      "addressSource": "https://www.openstreetmap.org/node/4864530766",
       "website": null,
       "cuisine": [
         "kebab"
@@ -540,45 +368,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/node/4864530766"
-    },
-    {
-      "id": "node/6541772271",
-      "name": "Legend Döner",
-      "lat": 47.4178276,
-      "lon": 8.5460313,
-      "type": "restaurant",
-      "address": "Schaffhauserstrasse 449",
-      "postcode": "8052",
-      "website": null,
-      "cuisine": [
-        "döner"
-      ],
-      "openingHours": "Mo-Sa 11:00-22:00; Su 12:00-22:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
       "checkedAt": null
-    },
-    {
-      "id": "node/2355693108",
-      "name": "Lemon",
-      "lat": 47.4092114,
-      "lon": 8.5377071,
-      "type": "restaurant",
-      "address": "Birchstrasse 120",
-      "postcode": "8050",
-      "website": "http://www.pizzalemon.ch/",
-      "cuisine": [
-        "pizza",
-        "kebab"
-      ],
-      "openingHours": "Mo-Su 10:00-23:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:19:35.153684+00:00"
     },
     {
       "id": "node/5597060141",
@@ -597,7 +387,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:53.351555+00:00"
+      "checkedAt": "2026-10-27T20:52:56.025752+00:00"
     },
     {
       "id": "node/344660930",
@@ -631,57 +421,10 @@
       ],
       "openingHours": "Mo-Th, Su 06:30-04:00; Fr, Sa 00:00-24:00",
       "outdoor": true,
-      "offers": [
-        {
-          "name": "Doner Pepito",
-          "foodType": "doner",
-          "portionType": "unspecified",
-          "meatType": "unspecified",
-          "volumeMl": null,
-          "priceChf": 12.5,
-          "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/doner-snack-salad-desert-444x1024.jpg",
-          "observedAt": "2026-10-19T19:04:15.242348+00:00",
-          "confidence": "automatic",
-          "evidence": "OCR PDF S. 1: Doner Pepito 12.50",
-          "alcoholFree": true,
-          "extractionMethod": "ocr"
-        },
-        {
-          "name": "Poulet Kebab",
-          "foodType": "doner",
-          "portionType": "unspecified",
-          "meatType": "chicken",
-          "volumeMl": null,
-          "priceChf": 13.5,
-          "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/doner-snack-salad-desert-444x1024.jpg",
-          "observedAt": "2026-10-19T19:04:15.242348+00:00",
-          "confidence": "automatic",
-          "evidence": "OCR PDF S. 1: Poulet Kebab 13.50",
-          "alcoholFree": true,
-          "extractionMethod": "ocr"
-        }
-      ],
+      "offers": [],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T19:05:10.305240+00:00",
       "addressSource": "https://www.openstreetmap.org/way/123498498"
-    },
-    {
-      "id": "node/5325690372",
-      "name": "mit&ohne",
-      "lat": 47.375895,
-      "lon": 8.5161558,
-      "type": "restaurant",
-      "address": "Badenerstrasse 248",
-      "postcode": "8004",
-      "website": "https://www.mitundohne.com/",
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Th 11:00-23:00; Fr-Sa 11:00-23:30; Su 11:00-22:30",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
     },
     {
       "id": "node/13073678755",
@@ -698,47 +441,8 @@
       "openingHours": "Su-Th 09:00-23:30; Fr-Sa 09:00-00:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/4949132238",
-      "name": "Monti",
-      "lat": 47.3684607,
-      "lon": 8.4963959,
-      "type": "restaurant",
-      "address": "Birmensdorferstrasse 486",
-      "postcode": "8055",
-      "website": "https://monti-triemli.ch/",
-      "cuisine": [
-        "burger",
-        "kebab",
-        "pasta",
-        "pizza"
-      ],
-      "openingHours": "Mo-Fr 10:30-22:30; Sa-Su 14:00-22:30",
-      "outdoor": true,
-      "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:44:08.503218+00:00"
-    },
-    {
-      "id": "node/3626070826",
-      "name": "Musti Grill",
-      "lat": 47.3874759,
-      "lon": 8.4881408,
-      "type": "restaurant",
-      "address": "Saumackerstrasse 48",
-      "postcode": "8048",
-      "website": "https://musti-grill.ch/",
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": "Mo-Sa 10:00-23:00, Su 12:00-22:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:31:43.572950+00:00"
+      "checkedAt": "2026-10-27T20:53:09.576366+00:00"
     },
     {
       "id": "node/315314715",
@@ -759,28 +463,6 @@
       "checkedAt": null
     },
     {
-      "id": "node/9502311902",
-      "name": "No Grain Zone",
-      "lat": 47.3732166,
-      "lon": 8.5442343,
-      "type": "cafe",
-      "address": "Brunngasse 3",
-      "postcode": "8001",
-      "website": "https://www.nograinzone.com/",
-      "cuisine": [
-        "cake",
-        "coffee_shop",
-        "kebab",
-        "sandwich"
-      ],
-      "openingHours": "Tu-We 10:30-14:00; Th-Fr 10:00-14:00, 16:30-20:00; Sa 10:00-14:00, 16:00-20:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:19:40.752109+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/285609767"
-    },
-    {
       "id": "node/10063683019",
       "name": "Nord Take Away",
       "lat": 47.3925309,
@@ -797,8 +479,8 @@
       "openingHours": "Mo-Sa 11:00-21:00",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "ambiguous_prices",
-      "checkedAt": "2026-10-19T18:19:44.406950+00:00"
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-27T20:52:01.848014+00:00"
     },
     {
       "id": "node/11278373439",
@@ -821,25 +503,6 @@
       "checkedAt": null
     },
     {
-      "id": "node/10860757271",
-      "name": "Orient World",
-      "lat": 47.3788419,
-      "lon": 8.545135,
-      "type": "restaurant",
-      "address": "Leonhardstrasse 10",
-      "postcode": "8001",
-      "website": "https://orientworld.ch/",
-      "cuisine": [
-        "lebanese",
-        "turkish"
-      ],
-      "openingHours": "Mo-Sa 10:00-21:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:19.931461+00:00"
-    },
-    {
       "id": "node/2465850943",
       "name": "Original Kebap Haus",
       "lat": 47.4094888,
@@ -847,6 +510,7 @@
       "type": "fast_food",
       "address": "Franklinstrasse 20",
       "postcode": "8050",
+      "addressSource": "https://www.openstreetmap.org/way/192153605",
       "website": null,
       "cuisine": [
         "kebab"
@@ -855,8 +519,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/192153605"
+      "checkedAt": null
     },
     {
       "id": "node/3832917126",
@@ -899,27 +562,6 @@
       "checkedAt": null
     },
     {
-      "id": "node/1840633299",
-      "name": "Puzzles",
-      "lat": 47.4124987,
-      "lon": 8.5445738,
-      "type": "restaurant",
-      "address": "Affolternstrasse 10",
-      "postcode": "8050",
-      "website": "https://www.puzzles-zuerich.ch",
-      "cuisine": [
-        "burger",
-        "pasta",
-        "pizza",
-        "kebab"
-      ],
-      "openingHours": "Mo-Fr 11:00-22:00; Sa-Su 11:00-02:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T18:19:53.806359+00:00"
-    },
-    {
       "id": "node/694632572",
       "name": "Rodi Take Away",
       "lat": 47.4044558,
@@ -936,7 +578,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T18:19:53.962138+00:00"
+      "checkedAt": "2026-10-27T20:52:00.338237+00:00"
     },
     {
       "id": "node/3909362593",
@@ -957,7 +599,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:07.641465+00:00"
+      "checkedAt": "2026-10-27T20:52:07.726332+00:00"
     },
     {
       "id": "node/11780802149",
@@ -997,78 +639,6 @@
       "checkedAt": null
     },
     {
-      "id": "node/9905448958",
-      "name": "Shahba Rose",
-      "lat": 47.4178923,
-      "lon": 8.546588,
-      "type": "restaurant",
-      "address": "",
-      "postcode": "",
-      "website": null,
-      "cuisine": [
-        "syrian",
-        "turkish"
-      ],
-      "openingHours": null,
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/14170149001",
-      "name": "Spicy Zaika",
-      "lat": 47.3380711,
-      "lon": 8.5302675,
-      "type": "restaurant",
-      "address": "Albisstrasse 107",
-      "postcode": "8038",
-      "website": "https://spicyzaika.ch",
-      "cuisine": [
-        "indian"
-      ],
-      "openingHours": "Mo-Fr 11:00-14:00, 17:00-22:00; Sa-Su 11:00-22:00",
-      "outdoor": false,
-      "offers": [
-        {
-          "name": "Chicken Kebab",
-          "foodType": "doner",
-          "portionType": "unspecified",
-          "meatType": "chicken",
-          "volumeMl": null,
-          "priceChf": 11.5,
-          "sourceUrl": "https://spicyzaika.ch/wp-content/uploads/2026/08/spicy_zaika_menu.pdf",
-          "observedAt": "2026-10-19T19:25:02.381709+00:00",
-          "confidence": "automatic",
-          "evidence": "PDF S. 3: Chicken Kebab CHF 11.50",
-          "alcoholFree": true
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T19:27:34.790467+00:00"
-    },
-    {
-      "id": "node/11843562096",
-      "name": "Spuntino",
-      "lat": 47.3546706,
-      "lon": 8.5576663,
-      "type": "cafe",
-      "address": "Seefeldstrasse 187",
-      "postcode": "8008",
-      "website": "https://spuntino.ch/",
-      "cuisine": [
-        "kebab",
-        "pasta",
-        "pizza"
-      ],
-      "openingHours": "Mo-Fr 07:00-23:00, Sa 07:30-22:00, Su 09:00-21:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "ambiguous_prices",
-      "checkedAt": "2026-10-19T18:20:17.300774+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/97939346"
-    },
-    {
       "id": "node/5370500827",
       "name": "Sultan Sofrasi",
       "lat": 47.4113526,
@@ -1076,6 +646,7 @@
       "type": "fast_food",
       "address": "Regensbergstrasse 309b",
       "postcode": "",
+      "addressSource": "https://www.openstreetmap.org/way/42299919",
       "website": null,
       "cuisine": [
         "turkish"
@@ -1084,8 +655,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/42299919"
+      "checkedAt": null
     },
     {
       "id": "node/7437151114",
@@ -1102,8 +672,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T18:20:05.789276+00:00"
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-10-27T20:52:02.729730+00:00"
     },
     {
       "id": "node/10310405298",
@@ -1121,7 +691,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:08.946569+00:00"
+      "checkedAt": "2026-10-27T20:52:03.573235+00:00"
     },
     {
       "id": "node/6911864195",
@@ -1137,7 +707,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:22.375576+00:00"
+      "checkedAt": "2026-10-27T20:52:21.079830+00:00"
     },
     {
       "id": "node/1024029494",
@@ -1147,6 +717,7 @@
       "type": "fast_food",
       "address": "Franklinstrasse 8",
       "postcode": "",
+      "addressSource": "https://www.openstreetmap.org/way/88260126",
       "website": null,
       "cuisine": [
         "kebab",
@@ -1156,8 +727,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/88260126"
+      "checkedAt": null
     },
     {
       "id": "node/84452656",
@@ -1167,6 +737,7 @@
       "type": "fast_food",
       "address": "Albisstrasse 105",
       "postcode": "8038",
+      "addressSource": "https://www.openstreetmap.org/way/46944650",
       "website": null,
       "cuisine": [
         "kebab"
@@ -1175,8 +746,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/46944650"
+      "checkedAt": null
     },
     {
       "id": "node/1882140710",
@@ -1225,6 +795,7 @@
       "type": "fast_food",
       "address": "Birmensdorferstrasse 444",
       "postcode": "8055",
+      "addressSource": "https://www.openstreetmap.org/way/342612701",
       "website": "https://www.triemlitreffpunkt.ch/",
       "cuisine": [
         "kebab",
@@ -1235,8 +806,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:18.116712+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/342612701"
+      "checkedAt": "2026-10-27T20:52:10.040172+00:00"
     },
     {
       "id": "node/11534189928",
@@ -1254,7 +824,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-19T18:20:12.054963+00:00"
+      "checkedAt": "2026-10-27T20:52:02.792243+00:00"
     },
     {
       "id": "node/7932162722",
@@ -1272,7 +842,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:18.273655+00:00"
+      "checkedAt": "2026-10-27T20:52:11.478471+00:00"
     },
     {
       "id": "node/7815132988",
@@ -1293,25 +863,6 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
-    },
-    {
-      "id": "node/524694886",
-      "name": "Villa Grillhaus",
-      "lat": 47.3963892,
-      "lon": 8.4823067,
-      "type": "restaurant",
-      "address": "Bernerstrasse Nord 224",
-      "postcode": "8064",
-      "website": null,
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/319098879"
     },
     {
       "id": "node/365918123",
@@ -1347,44 +898,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:20.304620+00:00"
-    },
-    {
-      "id": "node/10015479901",
-      "name": "Yakamoz",
-      "lat": 47.4051819,
-      "lon": 8.5705089,
-      "type": "restaurant",
-      "address": "Saatlenstrasse 23",
-      "postcode": "8051",
-      "website": null,
-      "cuisine": [
-        "kebab",
-        "pizza"
-      ],
-      "openingHours": "Su-Th 10:00-23:00; Fr,Sa 10:00-24:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/4838591618",
-      "name": "Zekis World",
-      "lat": 47.4105297,
-      "lon": 8.5432986,
-      "type": "restaurant",
-      "address": "Hofwiesenstrasse 350",
-      "postcode": "8050",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Th 08:00-21:00, Fr-Sa 08:00-21:30",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": "2026-10-27T20:52:06.674774+00:00"
     },
     {
       "id": "node/8785727518",
@@ -1402,7 +916,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-19T18:20:29.260636+00:00"
+      "checkedAt": "2026-10-27T20:52:12.619688+00:00"
     },
     {
       "id": "node/660560664",
@@ -1412,6 +926,7 @@
       "type": "fast_food",
       "address": "Badenerstrasse 343",
       "postcode": "8003",
+      "addressSource": "https://www.openstreetmap.org/way/335010492",
       "website": "https://www.zueribistro.ch/",
       "cuisine": [
         "burger",
@@ -1422,8 +937,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/335010492"
+      "checkedAt": null
     },
     {
       "id": "node/6343148993",
@@ -1440,36 +954,9 @@
       ],
       "openingHours": "Mo-Fr 09:00-23:00; Sa, Su 10:00-23:00",
       "outdoor": false,
-      "offers": [
-        {
-          "name": "Classic Döner",
-          "foodType": "doner",
-          "portionType": "unspecified",
-          "meatType": "unspecified",
-          "volumeMl": null,
-          "priceChf": 13.0,
-          "sourceUrl": "https://www.zueribistro.ch/menue-milchbuck/",
-          "observedAt": "2026-10-19T18:20:18.273708+00:00",
-          "confidence": "automatic",
-          "evidence": "Classic Döner 13,00",
-          "alcoholFree": true
-        },
-        {
-          "name": "Chicken Kebap",
-          "foodType": "doner",
-          "portionType": "unspecified",
-          "meatType": "chicken",
-          "volumeMl": null,
-          "priceChf": 15.5,
-          "sourceUrl": "https://www.zueribistro.ch/menue-milchbuck/",
-          "observedAt": "2026-10-19T18:20:18.273708+00:00",
-          "confidence": "automatic",
-          "evidence": "Chicken Kebap 15,50",
-          "alcoholFree": true
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T18:20:36.818183+00:00"
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-27T20:52:21.990312+00:00"
     },
     {
       "id": "node/632562120",
@@ -1479,6 +966,7 @@
       "type": "fast_food",
       "address": "Universitätstrasse 43",
       "postcode": "8006",
+      "addressSource": "https://www.openstreetmap.org/way/315141965",
       "website": null,
       "cuisine": [
         "kebab"
@@ -1487,8 +975,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "pending",
-      "checkedAt": null,
-      "addressSource": "https://www.openstreetmap.org/way/315141965"
+      "checkedAt": null
     }
   ]
 }
