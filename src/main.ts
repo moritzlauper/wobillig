@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import './style.css';
 import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
 import { selectBeerSize, cheapPriceLimit, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels as defaultCoffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer, type OutdoorPermit } from './data';
-import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type PriceEntry, type PriceInput } from './community';
+import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type EntryDrink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
 import { cheapModeFromSearch, cheapPreferenceKey, dropDefaultCheap, filtersFromSearch, writeFilters } from './filters';
 import { createExport, downloadExport } from './export';
@@ -25,9 +25,10 @@ import { applyVenueCorrections, type VenueCorrection } from './venue-corrections
 import { categoryNavigation } from './category-navigation';
 import { customMaps } from './custom-maps';
 import { pizzaMenuContent } from './pizza-menu';
-import { pizzaVarieties, beerVarieties, hasBeerSelection } from './data';
+import { pizzaVarieties, beerVarieties, hasBeerSelection, hasGlutenFreePizza } from './data';
 import { beerGroupLabels, parseBeerSelection } from './beer-selection';
 import { parsePizzaSelection, pizzaGroupLabels, type PizzaGroup } from './pizza-selection';
+import { burgerSelectionLabels, parseBurgerSelection } from './burger-selection';
 import { showGoogleRating, clearGoogleRating } from './google-rating';
 import { showValueRating } from './value-rating';
 import { setupTip } from './tip';
@@ -99,7 +100,7 @@ let districtsLoading = false;
 const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
-let communityReady = false, saving = false, pizzaAvailable = false, ramenAvailable = false;
+let communityReady = false, saving = false, pizzaAvailable = false, ramenAvailable = false, burgerAvailable = false;
 let cheapPreference: string | null = null;
 try { cheapPreference = localStorage.getItem(cheapPreferenceKey); } catch { /* Storage can be blocked. */ }
 let cheapMode = cheapModeFromSearch(initial, cheapPreference);
@@ -109,6 +110,7 @@ function rememberCheapMode(enabled: boolean) {
 }
 let cheapLimit: number | undefined;
 let pizzaOptions: ReturnType<typeof pizzaVarieties> = [];
+let pizzaGlutenFree = false;
 let beerOptions: ReturnType<typeof beerVarieties> = [];
 let locationCatalogue: Bar[] = [];
 let customMapUI: ReturnType<typeof customMaps> | undefined;
@@ -126,9 +128,11 @@ const coffee = () => f.drink === 'coffee';
 const pizza = () => f.drink === 'pizza';
 const beer = () => f.drink === 'beer';
 const ramen = () => f.drink === 'ramen';
-// Ramen appears only once enough venues have a current price, like pizza.
+const burger = () => f.drink === 'burger';
+// Ramen and burgers appear only once enough venues have a current price, like pizza.
 const RAMEN_MIN_VENUES = 5;
-const budgets: Record<Drink, number> = { beer: Infinity, coffee: Infinity, pizza: Infinity, ramen: Infinity };
+const BURGER_MIN_VENUES = 5;
+const budgets: Record<Drink, number> = { beer: Infinity, coffee: Infinity, pizza: Infinity, ramen: Infinity, burger: Infinity };
 const unit = (o: Offer) => offerCategory(o) !== 'beer' ? portion(o) : `${f.mode === 'half' ? `5 dl${o.volumeMl === 500 ? '' : ` · ${t('umgerechnet')}`}` : portion(o)} · ${beerTypeLabel(o)}`;
 
 $('app').innerHTML = `
@@ -148,6 +152,9 @@ $('app').innerHTML = `
     <select id="pizza-selection" aria-label="${t('Pizzasorte')}" title="${t('Klassiker nach Zutaten gruppiert')}"><option value="margherita">Margherita</option><option value="all">${t('Alle Pizzen')}</option></select>
     <input id="pizza-query" type="search" maxlength="120" placeholder="${t('z. B. Prosciutto oder Pilze')}" aria-label="${t('Pizzaname oder Zutat')}">
   </div>
+  <div id="burger-controls" class="pizza-controls" hidden>
+    <select id="burger-selection" aria-label="${t('Burgerauswahl')}">${options(translated(burgerSelectionLabels))}</select>
+  </div>
   <label class="budget">${t('Bis CHF')} <input id="price" aria-label="${t('Höchstpreis in CHF')}" type="number" min="0.5" step="0.01"></label>
   <button id="filters-toggle" aria-expanded="false" aria-controls="filters">${t('Filter')} <span class="filter-chevron" aria-hidden="true"></span></button>
 </div>
@@ -160,6 +167,7 @@ $('app').innerHTML = `
   <label><input id="unknown" type="checkbox" checked> ${t('Ohne passenden Preis anzeigen')}</label>
   <label><input id="outdoor" type="checkbox"> ${t('Draussen sitzen')}</label>
   <label id="alcohol-label"><input id="alcohol-free" type="checkbox"> ${t('Alkoholfrei')}</label>
+  <label id="gluten-free-label"><input id="gluten-free" type="checkbox"> ${t('Glutenfrei')}</label>
   <label id="normalize-label"><input id="normalize" type="checkbox"> ${t('Auf 5 dl umrechnen')}</label>
   <label${city.districts ? '' : ' hidden'}><input id="district-toggle" type="checkbox" aria-controls="district-select-label"> ${districtTexts.show}</label><label id="district-select-label" hidden>${districtTexts.unit} <select id="district-select" aria-label="${districtTexts.select}"><option value="">${districtTexts.all}</option></select></label>
   <button id="reset">${t('Zurücksetzen')}</button>
@@ -402,6 +410,7 @@ function rebuild() {
     .map(bar => withKnownAddress(bar, catalogueById.get(bar.id))), venueCorrections);
   const pizzaBars = datasets.pizza ? applyEntries(datasets.pizza, entries, venues, 'pizza', venueCorrections).bars : [];
   pizzaOptions = pizzaVarieties(pizzaBars);
+  pizzaGlutenFree = hasGlutenFreePizza(pizzaBars);
   // Count priced venues city-wide, including contributions, independently of UI filters.
   pizzaAvailable = pizzaBars.filter(b => [...b.offers, ...(b.pizzaMenu || [])]
     .some(o => o.pizzaType && isCurrentOffer(o) && isComparableOffer(o))).length >= 14;
@@ -415,14 +424,20 @@ function rebuild() {
     f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
     $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
   }
+  const burgerBars = datasets.burger ? applyEntries(datasets.burger, entries, venues, 'burger', venueCorrections).bars : [];
+  burgerAvailable = burgerBars.filter(b => b.offers.some(o => offerCategory(o) === 'burger' && isCurrentOffer(o) && isComparableOffer(o))).length >= BURGER_MIN_VENUES;
+  if (burger() && !burgerAvailable) {
+    f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
+    $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
+  }
   const base = datasets[f.drink!];
-  bars = ramen() ? ramenBars : pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!, venueCorrections).bars : [];
+  bars = burger() ? burgerBars : ramen() ? ramenBars : pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!, venueCorrections).bars : [];
   if (beer()) beerOptions = beerVarieties(bars);
   render();
 }
 function syncControls() {
   if (customMapUI?.isOpen) return;
-  const heading = beer() ? t('Bierpreise {city}', { city: cityName }) : ramen() ? t('Ramenpreise {city} · Community', { city: cityName }) : pizza() ? t('Pizzapreise {city}', { city: cityName }) : t('Kaffeepreise {city}', { city: cityName });
+  const heading = beer() ? t('Bierpreise {city}', { city: cityName }) : ramen() ? t('Ramenpreise {city} · Community', { city: cityName }) : burger() ? t('Burgerpreise {city}', { city: cityName }) : pizza() ? t('Pizzapreise {city}', { city: cityName }) : t('Kaffeepreise {city}', { city: cityName });
   if ($('map-title').textContent !== heading) $('map-title').textContent = heading;
   document.title = coffee() ? coffeePageTitle : t('{heading} vergleichen | wobillig', { heading });
   $<HTMLSelectElement>('type').innerHTML = options(venueTypes);
@@ -439,13 +454,15 @@ function syncControls() {
   if (beerSelect.innerHTML !== beerOptionHtml) beerSelect.innerHTML = beerOptionHtml;
   beerSelect.value = beerValue;
   $('pizza-controls').hidden = !pizza();
+  $('burger-controls').hidden = !burger();
+  $<HTMLSelectElement>('burger-selection').value = f.burgerSelection || 'all';
   const pizzaSelect = $<HTMLSelectElement>('pizza-selection');
   const pizzaValue = f.pizzaQuery?.trim() ? 'all' : f.pizzaSelection || 'margherita';
-  const availablePizzas = [{ value: 'margherita', label: 'Margherita' }, ...pizzaOptions, { value: 'all', label: t('Alle Pizzen') }];
+  const availablePizzas = [{ value: 'margherita', label: 'Margherita' }, ...pizzaOptions, ...(pizzaGlutenFree ? [{ value: 'glutenfree', label: t('Glutenfrei') }] : []), { value: 'all', label: t('Alle Pizzen') }];
   // Retain a shared selection when the destination city has no price for it.
   if (!availablePizzas.some(option => option.value === pizzaValue)) availablePizzas.push({
     value: pizzaValue,
-    label: pizzaValue.startsWith('group:') ? pizzaGroupLabels[pizzaValue.slice(6) as PizzaGroup] : pizzaValue.slice(5),
+    label: pizzaValue === 'glutenfree' ? t('Glutenfrei') : pizzaValue.startsWith('group:') ? pizzaGroupLabels[pizzaValue.slice(6) as PizzaGroup] : pizzaValue.slice(5),
   });
   const pizzaOptionHtml = availablePizzas.map(({ value, label }) => `<option value="${e(value)}">${e(label)}</option>`).join('');
   if (pizzaSelect.innerHTML !== pizzaOptionHtml) pizzaSelect.innerHTML = pizzaOptionHtml;
@@ -454,16 +471,17 @@ function syncControls() {
   $<HTMLInputElement>('beer-query').value = f.beerQuery || '';
   $<HTMLSelectElement>('volume').querySelector<HTMLOptionElement>('[value=stange]')!.disabled = ['bottle', 'can'].includes(f.beerType!);
   $<HTMLSelectElement>('beer-type').value = f.beerType || 'all';
-  $('alcohol-label').hidden = !beer(); $('normalize-label').hidden = !beer() || ['stange', '300', '300-330'].includes(f.volume);
+  $('alcohol-label').hidden = !beer(); $('gluten-free-label').hidden = !beer(); $('normalize-label').hidden = !beer() || ['stange', '300', '300-330'].includes(f.volume);
   $<HTMLSelectElement>('volume').value = f.volume;
   $<HTMLSelectElement>('coffeeType').value = f.coffeeType!;
   $<HTMLInputElement>('normalize').checked = f.mode === 'half';
-  categoryNav.update(f.drink!, pizzaAvailable, ramenAvailable);
+  categoryNav.update(f.drink!, pizzaAvailable, ramenAvailable, burgerAvailable);
   $<HTMLInputElement>('search').value = f.query;
   $('search-clear').hidden = f.query.length === 0;
   $<HTMLSelectElement>('sort').value = f.sort;
   $<HTMLInputElement>('outdoor').checked = f.outdoor;
   $<HTMLInputElement>('alcohol-free').checked = f.alcoholFree;
+  $<HTMLInputElement>('gluten-free').checked = Boolean(f.glutenFree);
   const url = new URL(location.href);
   writeFilters(url.searchParams, f, cheapMode);
   if (addressSelection) url.searchParams.set('address', '1'); else url.searchParams.delete('address');
@@ -517,7 +535,7 @@ function render() {
   $('count').textContent = coverageLabel(current, f) + (addressSelection ? ` · ${t('Bezugspunkt: {label}', { label: addressSelection.label })}` : '');
   const average = cityAverage(bars, f);
   $('city-average').textContent = t('Schnitt {city} {value}', { city: cityName, value: average ? `CHF ${money(average.price)}` : '—' });
-  const comparison = pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
+  const comparison = pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : burger() ? t(burgerSelectionLabels[f.burgerSelection || 'all']) : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
     size: f.volume === 'all' ? t('alle Grössen') : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`,
     mode: f.mode === 'half' ? t('auf 5 dl umgerechnet') : t('Portionspreis'),
   });
@@ -692,7 +710,7 @@ function mapLocations(): Bar[] {
   if (hasBeerSelection(f)) return current;
   // The pizza dataset includes confirmed pizzerias without prices and community
   // pizza entries. Do not add the general restaurant catalogue back to this map.
-  const candidates = pizza() || ramen() ? bars : selectableLocations(venues, locationCatalogue);
+  const candidates = pizza() || ramen() || burger() ? bars : selectableLocations(venues, locationCatalogue);
   return candidates.filter(b => matchesVenueType(b, f) && inSelectedDistrict(b));
 }
 function renderLocations() {
@@ -726,7 +744,7 @@ function detail(b: Bar) {
   const other = b.offers.filter(o => isCurrentOffer(o) && isComparableOffer(o) && !matches.includes(o));
   const offers = [...matches, ...other];
   const additionalPizzas = pizza() ? pizzaMenuContent((b.pizzaMenu ?? datasets.pizza?.bars.find(venue => venue.id === b.id)?.pizzaMenu ?? []).filter(o => !matches.includes(o))) : '';
-  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">${t('Schliessen')}</button></div><p class="muted detail-address">${e(b.address ? [b.address, b.postcode, cityName].filter(Boolean).join(' ') : [b.postcode, cityName, t('Standort: {coordinates}', { coordinates: `${b.lat.toFixed(5)}, ${b.lon.toFixed(5)}` })].filter(Boolean).join(' · '))}<span class="detail-maps"><a href="${e(googleMapsLink(b, city.name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></p>${b.outdoorPermit ? `<p class="muted">${e(permitLabel(b.outdoorPermit))}</p>` : ''}<div class="detail-actions"><button id="add-here" class="primary">${t('Preis hinzufügen')}</button><button id="correct-venue">${t('Lokal korrigieren')}</button><button id="share-bar" aria-label="${e(t('{name} teilen', { name: b.name }))}">${t('Teilen')}</button></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div>${offerDescription(o, matches) ? `<div class="muted">${e(offerDescription(o, matches))}</div>` : ''}${o.pizzaType && o.ingredients ? `<p class="muted">${e(o.ingredients)}</p>` : ''}${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>${t('geschätzt')}</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `${t('Google-Maps-Foto')} · ${e(o.photoSource.date)} · ` : ''}${o.menuScan ? t('Foto-Upload') : o.confidence === 'community' ? t('Eingetragen') : o.confidence === 'reviewed' ? t('Manuell geprüft') : o.confidence === 'ai' ? t('KI-erkannt') : t('Automatisch erkannt')} · ${e(new Date(o.verifiedMenuDate?.date || o.observedAt).toLocaleDateString(dateLocale()))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('Quelle')}</a>` : ''}${o.pizzaType !== 'other' ? `<button data-edit="${i}">${t('Ändern')}</button>` : ''}</div></div>`).join('') : additionalPizzas ? '' : `<p>${t('Noch kein Preis eingetragen.')}</p>`}${additionalPizzas}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
+  $('detail').innerHTML = `<div class="detail-top"><strong>${e(b.name)}</strong><button id="close-detail">${t('Schliessen')}</button></div><p class="muted detail-address">${e(b.address ? [b.address, b.postcode, cityName].filter(Boolean).join(' ') : [b.postcode, cityName, t('Standort: {coordinates}', { coordinates: `${b.lat.toFixed(5)}, ${b.lon.toFixed(5)}` })].filter(Boolean).join(' · '))}<span class="detail-maps"><a href="${e(googleMapsLink(b, city.name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></p>${b.outdoorPermit ? `<p class="muted">${e(permitLabel(b.outdoorPermit))}</p>` : ''}<div class="detail-actions"><button id="add-here" class="primary" ${burger() ? 'hidden' : ''}>${t('Preis hinzufügen')}</button><button id="correct-venue">${t('Lokal korrigieren')}</button><button id="share-bar" aria-label="${e(t('{name} teilen', { name: b.name }))}">${t('Teilen')}</button></div>${offers.length ? offers.map((o, i) => `<div class="offer ${matches.includes(o) ? '' : 'other-offer'}"><div class="offer-top"><strong>${e(o.name)}</strong><strong class="nowrap">CHF ${money(o.priceChf)}</strong></div>${offerDescription(o, matches) ? `<div class="muted">${e(offerDescription(o, matches))}</div>` : ''}${o.pizzaType && o.ingredients ? `<p class="muted">${e(o.ingredients)}</p>` : ''}${offerCategory(o) === 'beer' && o.beerTypeEstimate && (!o.beerType || o.beerType === 'unknown') ? `<details class="estimate muted"><summary>${t('geschätzt')}</summary><p>${e(o.beerTypeEstimate.reason)}</p></details>` : ''}<div class="offer-meta"><span>${o.photoSource ? `${t('Google-Maps-Foto')} · ${e(o.photoSource.date)} · ` : ''}${o.menuScan ? t('Foto-Upload') : o.confidence === 'community' ? t('Eingetragen') : o.confidence === 'reviewed' ? t('Manuell geprüft') : o.confidence === 'ai' ? t('KI-erkannt') : t('Automatisch erkannt')} · ${e(new Date(o.verifiedMenuDate?.date || o.observedAt).toLocaleDateString(dateLocale()))}</span>${safeUrl(o.sourceUrl) ? `<a href="${safeUrl(o.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('Quelle')}</a>` : ''}${o.pizzaType !== 'other' && !o.burgerType ? `<button data-edit="${i}">${t('Ändern')}</button>` : ''}</div></div>`).join('') : additionalPizzas ? '' : `<p>${t('Noch kein Preis eingetragen.')}</p>`}${additionalPizzas}${safeUrl(b.website) ? `<p><a href="${safeUrl(b.website)}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}`;
   $('detail').hidden = false;
   if (ratedVenue) showGoogleRating($('detail').querySelector<HTMLElement>('.detail-maps')!, cityId, b.id);
   else clearGoogleRating();
@@ -859,6 +877,10 @@ $('pizza-selection').onchange = () => {
   f.pizzaQuery = undefined;
   render();
 };
+$('burger-selection').onchange = () => {
+  f.burgerSelection = parseBurgerSelection($<HTMLSelectElement>('burger-selection').value);
+  render();
+};
 $('pizza-query').oninput = () => {
   f.pizzaQuery = $<HTMLInputElement>('pizza-query').value;
   if (f.pizzaQuery.trim()) f.pizzaSelection = 'all';
@@ -888,7 +910,7 @@ $('beer-type').onchange = () => {
 };
 $('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render(); };
 $('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position && !addressSelection) locate(); else render(); };
-for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree']] as const) $(id).onchange = () => { if (key === 'unknown') rememberCheapMode(false); f[key] = $<HTMLInputElement>(id).checked; render(); };
+for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree'], ['gluten-free', 'glutenFree']] as const) $(id).onchange = () => { if (key === 'unknown') rememberCheapMode(false); f[key] = $<HTMLInputElement>(id).checked; render(); };
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
 $('reset').onclick = () => {
@@ -896,10 +918,10 @@ $('reset').onclick = () => {
   closeSearchSuggestions();
   rememberCheapMode(false);
   districtState.enabled = false; districtState.selected = undefined;
-  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, glutenFree: false, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = '';
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
-  for (const id of ['unknown', 'outdoor', 'alcohol-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
+  for (const id of ['unknown', 'outdoor', 'alcohol-free', 'gluten-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
   render();
 };
 let locating = false;
@@ -1064,7 +1086,7 @@ $('price-dialog').addEventListener('cancel', event => { if (saving) event.preven
 $('price-form').onsubmit = async event => {
   event.preventDefault(); if (saving) return;
   $('form-error').hidden = true;
-  const drink = $<HTMLSelectElement>('entry-drink').value as Drink;
+  const drink = $<HTMLSelectElement>('entry-drink').value as EntryDrink;
   const action = editing ? 'edit' : 'add';
   let stage: 'validation' | 'request' = 'validation';
   let saved = false;
@@ -1134,11 +1156,12 @@ async function loadCommunity() {
   } catch { communityReady = false; return false; }
 }
 async function init() {
-  const [beerResult, coffeeResult, pizzaResult, ramenResult, loadedCommunity, locationsResult] = await Promise.all([
+  const [beerResult, coffeeResult, pizzaResult, ramenResult, burgerResult, loadedCommunity, locationsResult] = await Promise.all([
     fetch(`${dataPath}bars.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${dataPath}coffee.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${dataPath}pizza.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${dataPath}ramen.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    fetch(`${dataPath}burger.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     loadCommunity(),
     fetch(`${dataPath}locations.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
   ]);
@@ -1147,6 +1170,8 @@ async function init() {
   if (pizzaResult) datasets.pizza = pizzaResult;
   // Ramen is optional: cities without a scraped ramen file simply hide the category.
   if (ramenResult) datasets.ramen = ramenResult;
+  // Burgers are optional too: cities without a scanned burger file hide the category.
+  if (burgerResult) datasets.burger = burgerResult;
   locationCatalogue = locationsResult?.bars || [];
   const missing = [!beerResult ? t('Bier') : '', !coffeeResult ? t('Kaffee') : '', !pizzaResult ? 'Pizza' : '', !loadedCommunity ? t('gemeinsame Einträge') : ''].filter(Boolean);
   const hasData = Object.keys(datasets).length > 0;

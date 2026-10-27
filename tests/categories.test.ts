@@ -35,14 +35,15 @@ it('counts only current positive prices in the requested food category', () => {
 
 describe('shared category popularity', () => {
   it('keeps coffee first and ranks the remaining categories with stable ties', () => {
-    expect(rankedCategories(emptyCategoryCounts())).toEqual(['coffee', 'beer', 'ramen', 'pizza', 'doner', 'falafel']);
-    const counts = { coffee: 40, beer: 30, ramen: 0, pizza: 1, doner: 20, falafel: 0 };
-    expect(rankedCategories(counts)).toEqual(['coffee', 'beer', 'doner', 'pizza', 'ramen', 'falafel']);
-    expect(rankedCategories(counts, false)).toEqual(['coffee', 'beer', 'doner', 'ramen', 'falafel']);
-    expect(rankedCategories(counts, true, false)).toEqual(['coffee', 'beer', 'doner', 'pizza', 'falafel']);
-    const coffeeLeastPopular = { coffee: 0, beer: 100, ramen: 0, pizza: 200, doner: 300, falafel: 400 };
-    expect(rankedCategories(coffeeLeastPopular)).toEqual(['coffee', 'falafel', 'doner', 'pizza', 'beer', 'ramen']);
-    expect(rankedCategories(coffeeLeastPopular, false)).toEqual(['coffee', 'falafel', 'doner', 'beer', 'ramen']);
+    expect(rankedCategories(emptyCategoryCounts())).toEqual(['coffee', 'beer', 'ramen', 'burger', 'pizza', 'doner', 'falafel']);
+    const counts = { coffee: 40, beer: 30, ramen: 0, burger: 0, pizza: 1, doner: 20, falafel: 0 };
+    expect(rankedCategories(counts)).toEqual(['coffee', 'beer', 'doner', 'pizza', 'ramen', 'burger', 'falafel']);
+    expect(rankedCategories(counts, false)).toEqual(['coffee', 'beer', 'doner', 'ramen', 'burger', 'falafel']);
+    expect(rankedCategories(counts, true, false)).toEqual(['coffee', 'beer', 'doner', 'pizza', 'burger', 'falafel']);
+    expect(rankedCategories(counts, true, true, false)).toEqual(['coffee', 'beer', 'doner', 'pizza', 'ramen', 'falafel']);
+    const coffeeLeastPopular = { coffee: 0, beer: 100, ramen: 0, burger: 0, pizza: 200, doner: 300, falafel: 400 };
+    expect(rankedCategories(coffeeLeastPopular)).toEqual(['coffee', 'falafel', 'doner', 'pizza', 'beer', 'ramen', 'burger']);
+    expect(rankedCategories(coffeeLeastPopular, false)).toEqual(['coffee', 'falafel', 'doner', 'beer', 'ramen', 'burger']);
   });
   it('counts at most one click per visitor, category and UTC day across clients', async () => {
     const store = memoryStore();
@@ -50,7 +51,7 @@ describe('shared category popularity', () => {
     await recordCategoryClick(store, 'doner', 'visitor-a', now);
     await recordCategoryClick(store, 'falafel', 'visitor-a', now);
     const counts = await recordCategoryClick(store, 'doner', 'visitor-b', now);
-    expect(counts).toEqual({ coffee: 0, beer: 0, ramen: 0, pizza: 0, doner: 2, falafel: 1 });
+    expect(counts).toEqual({ coffee: 0, beer: 0, ramen: 0, burger: 0, pizza: 0, doner: 2, falafel: 1 });
     expect((await recordCategoryClick(store, 'doner', 'visitor-a', now + 86400000)).doner).toBe(3);
     expect((await store.read()).state.visitors).toEqual({ 'visitor-a': ['doner'] });
   });
@@ -65,7 +66,7 @@ describe('shared category popularity', () => {
       '2026-09-20': { ...emptyCategoryCounts(), coffee: 2 },
     }, visitorDay: '2026-10-18', visitors: { old: ['doner'] } };
     const store = memoryStore(state);
-    expect(popularityCounts(state, now)).toEqual({ coffee: 2, beer: 0, ramen: 0, pizza: 0, doner: 0, falafel: 0 });
+    expect(popularityCounts(state, now)).toEqual({ coffee: 2, beer: 0, ramen: 0, burger: 0, pizza: 0, doner: 0, falafel: 0 });
     await recordCategoryClick(store, 'falafel', 'new', now);
     const saved = (await store.read()).state;
     expect(saved.days).not.toHaveProperty('2026-09-19');

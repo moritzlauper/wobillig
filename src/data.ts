@@ -2,6 +2,8 @@ import { matchesSearch } from './search.js';
 import { t } from './i18n.js';
 import { pizzaGroup, pizzaGroupLabels, pizzaNameKey, type PizzaGroup, type PizzaSelection } from './pizza-selection.js';
 import { beerGroup, beerGroupLabels, normalizeBeerName, type BeerSelection } from './beer-selection.js';
+import { type BurgerSelection } from './burger-selection.js';
+import { isGlutenFreeOffer, isGlutenFreePizzeria } from './gluten-free.js';
 
 export type BeerType = "draft" | "bottle" | "can" | "unknown";
 export const beerTypeLabels: Record<BeerType, string> = { draft: "Offenbier", bottle: "Flaschenbier", can: "Dosenbier", unknown: "Ausschankart unbekannt" };
@@ -10,6 +12,10 @@ export type Offer = {
   volumeMl: number | null;
   pizzaType?: "margherita" | "other";
   ramenType?: "ramen";
+  burgerType?: "burger";
+  burgerDiet?: "standard" | "vegetarian" | "vegan";
+  // Explicit label from the menu; text labels are checked in isGlutenFreeOffer.
+  glutenFree?: boolean;
   priceContext?: "online_menu";
   coffeeType?: string;
   serving?: "stange";
@@ -69,11 +75,13 @@ export type Dataset = {
 export type Filters = {
   pizzaSelection?: PizzaSelection;
   pizzaQuery?: string;
-  drink?: "beer" | "coffee" | "pizza" | "ramen";
+  drink?: "beer" | "coffee" | "pizza" | "ramen" | "burger";
+  burgerSelection?: BurgerSelection;
   coffeeType?: string;
   beerType?: BeerType | "all";
   beerQuery?: string;
   beerSelection?: BeerSelection;
+  glutenFree?: boolean;
   query: string;
   max: number;
   volume: string;
@@ -91,10 +99,10 @@ export const coffeeLabels: Record<string, string> = {
   matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
-  return o.pizzaType ? (o.priceContext === "online_menu" ? t('Onlinepreis') : "") : o.ramenType ? t('Standardportion') : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
+  return o.pizzaType ? (o.priceContext === "online_menu" ? t('Onlinepreis') : "") : (o.ramenType || o.burgerType) ? t('Standardportion') : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
 }
-export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" | "ramen" {
-  return o.ramenType ? "ramen" : o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
+export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" | "ramen" | "burger" {
+  return o.burgerType ? "burger" : o.ramenType ? "ramen" : o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
 }
 // Keep in sync with scraper/beer_rules.py.
 export function isBeerMix(name: string): boolean {
@@ -136,8 +144,16 @@ export function pizzaVarieties(bars: Bar[]): { value: PizzaSelection; label: str
     .map(([group, label]) => ({ value: `group:${group}` as PizzaSelection, label }));
 }
 
+// A pizza is gluten-free by its own label or by a gluten-free pizzeria.
+export function isGlutenFreePizza(o: Offer, bar: Bar): boolean {
+  return isGlutenFreePizzeria(bar) || isGlutenFreeOffer(o);
+}
+export function hasGlutenFreePizza(bars: Bar[]): boolean {
+  return bars.some(bar => [...bar.offers, ...(bar.pizzaMenu || [])].some(o => o.pizzaType && isCurrentOffer(o) && isGlutenFreePizza(o, bar)));
+}
+
 // Search only sourced names and ingredients; do not infer missing ingredients.
-export function matchesPizza(o: Offer, f: Filters): boolean {
+export function matchesPizza(o: Offer, f: Filters, bar?: Bar): boolean {
   if (!o.pizzaType) return false;
   const normalize = (text: string) => text.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase()
     .replace(/\b(?:proscuito|proscuitto|prosciuto)\b/g, 'prosciutto');
@@ -145,6 +161,7 @@ export function matchesPizza(o: Offer, f: Filters): boolean {
   if (!query) {
     if (f.pizzaSelection?.startsWith('group:')) return pizzaGroup(o) === f.pizzaSelection.slice(6);
     if (f.pizzaSelection?.startsWith('name:')) return pizzaNameKey(o.name) === f.pizzaSelection.slice(5);
+    if (f.pizzaSelection === 'glutenfree') return bar !== undefined && isGlutenFreePizza(o, bar);
     return f.pizzaSelection === 'all' || o.pizzaType === 'margherita';
   }
   const text = normalize(`${o.name} ${o.ingredients || ''}`);
@@ -171,17 +188,28 @@ export function beerVarieties(bars: Bar[]): { value: BeerSelection; label: strin
     || beerGroupLabels[a].localeCompare(beerGroupLabels[b], 'de'))
     .map(([value]) => ({ value, label: beerGroupLabels[value] }));
 }
+// Vegan burgers are vegetarian too, so the vegetarian choice keeps them.
+const burgerChoices: Record<BurgerSelection, (o: Offer) => boolean> = {
+  all: () => true,
+  vegetarian: o => o.burgerDiet === "vegetarian" || o.burgerDiet === "vegan",
+  vegan: o => o.burgerDiet === "vegan",
+  glutenfree: o => isGlutenFreeOffer(o),
+};
+export function matchesBurger(o: Offer, f: Filters): boolean {
+  return Boolean(o.burgerType) && burgerChoices[f.burgerSelection || "all"](o);
+}
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return (f.drink === 'pizza' ? [...bar.offers, ...(bar.pizzaMenu || [])] : bar.offers)
     .filter(o => isCurrentOffer(o) && isComparableOffer(o))
     .filter(o => offerCategory(o) === (f.drink || "beer"))
     .filter(
       (o) =>
-        f.drink === "pizza" ? matchesPizza(o, f) :
+        f.drink === "pizza" ? matchesPizza(o, f, bar) :
         f.drink === "ramen" ? Boolean(o.ramenType) :
+        f.drink === "burger" ? matchesBurger(o, f) :
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
-        !o.coffeeType && o.alcoholFree === f.alcoholFree &&
+        !o.coffeeType && o.alcoholFree === f.alcoholFree && (!f.glutenFree || isGlutenFreeOffer(o)) &&
         matchesBeerName(o.name, f.beerQuery) &&
         (f.beerQuery?.trim() || !f.beerSelection || beerGroup(o.name) === f.beerSelection) &&
         (!f.beerType || f.beerType === "all" || effectiveBeerType(o) === f.beerType) &&

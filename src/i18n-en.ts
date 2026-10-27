@@ -682,4 +682,12 @@ export const en: Record<string, string> = {
   'Zu viele neue Lokale. Bitte in einer Stunde erneut versuchen.': 'Too many new venues. Please try again in an hour.',
   'Gerade werden weitere Lokale gespeichert. Bitte erneut versuchen.': 'Other venues are being saved right now. Please try again.',
   'Der Wiederherstellungslink ist ungültig oder abgelaufen.': 'The recovery link is invalid or has expired.',
+  'Burger': 'Burger',
+  'Burgerpreise {city}': 'Burger prices in {city}',
+  'Burgerpreis': 'burger price',
+  'Burgerauswahl': 'Burger selection',
+  'Alle Burger': 'All burgers',
+  'Vegi Burger': 'Veggie burgers',
+  'Vegan': 'Vegan',
+  'Glutenfrei': 'Gluten-free',
 };

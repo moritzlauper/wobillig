@@ -11,7 +11,7 @@ export const pizzaGroupLabels = {
   tonno: 'Tonno',
 } as const;
 export type PizzaGroup = keyof typeof pizzaGroupLabels;
-export type PizzaSelection = 'all' | `group:${PizzaGroup}` | `name:${string}`;
+export type PizzaSelection = 'all' | 'glutenfree' | `group:${PizzaGroup}` | `name:${string}`;
 
 const normalize = (text: string) => text.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase();
 
@@ -93,7 +93,7 @@ export function pizzaNameKey(name: string): string {
 }
 
 export function parsePizzaSelection(value: string | null): PizzaSelection | undefined {
-  if (value === 'all') return value;
+  if (value === 'all' || value === 'glutenfree') return value;
   if (value?.startsWith('group:') && Object.hasOwn(pizzaGroupLabels, value.slice(6))) return value as PizzaSelection;
   if (value?.startsWith('name:')) {
     const name = pizzaNameKey(value.slice(5));

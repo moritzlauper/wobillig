@@ -9,6 +9,8 @@ Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der
 - Kaffee ist die Startansicht. Verglichen wird pro Getränk und Sorte, zum Beispiel Espresso, Cappuccino, Café crème, Flat White oder Matcha Latte, ohne Umrechnung auf eine Tassengrösse.
 - Bier lässt sich nach Grösse (Stange/3 dl, 3.3 dl, 5 dl), Ausschank (Offen-, Flaschen- oder Dosenbier) und Marke filtern. Auf Wunsch rechnet die Karte auf 5 dl um.
 - Pizza erscheint in einer Stadt ab 14 Lokalen mit aktuellem Pizzapreis, gezählt wird jede Sorte. Voreingestellt ist die Margherita, weitere Klassiker wie Diavola oder Quattro Stagioni sind über eine eigene Auswahl erreichbar.
+- Burger erscheint in einer Stadt ab 5 Lokalen mit aktuellem Burgerpreis. Voreingestellt sind alle Burger, zur Auswahl stehen ausserdem Vegi Burger (inklusive vegane), Vegan und Glutenfrei. Der Scraper liest Speisekarten von Lokalen mit Burger im Namen oder Küchentyp und bestätigt die Preise mit Claude Haiku 5.5. Vegi und Glutenfrei gelten nur, wenn die Karte es ausweist.
+- Glutenfrei lässt sich bei Pizza und Bier filtern. Eine Pizza gilt als glutenfrei, wenn die Karte es ausweist oder das Lokal auf seiner Website als glutenfreie Pizzeria auftritt. Ein Bier gilt als glutenfrei, wenn der Name es sagt.
 - Preise lassen sich von Hand eintragen und korrigieren oder per Foto der Karte erfassen. Der Foto-Scan liest die Preise mit Claude Haiku 5.5 aus und speichert sie direkt beim gewählten Lokal. Das Bild selbst wird nicht gespeichert.
 - Fehlende Lokale können ergänzt und bestehende korrigiert werden (Name, Adresse, Website).
 - Kaffee lässt sich mit Sternen und einem Foto bewerten. Der Durchschnitt erscheint ab drei Stimmen.
@@ -98,6 +100,7 @@ python -m scraper.scrape_coffee --discover --limit 0
 python -m scraper.scrape_pizza --discover --limit 0
 python -m scraper.locations                       # nur Standortkatalog
 python -m scraper.ai_scan --discover              # KI-Scan, braucht ANTHROPIC_API_KEY
+python -m scraper.burger --budget-usd 2           # Burger-Karten Zürich, KI-Bestätigung
 ```
 
 `WOBILLIG_CITY=bern`, `basel`, `winterthur`, `olten`, `lausanne` oder `geneva` wählt die Stadt, ohne Variable gilt Zürich. Einzelne Lokale prüft `--name 'Bar Rossi'` beim Bier und `--only 'Name|Name'` bei Kaffee und Pizza. `--max-pages` begrenzt die Dokumente pro Lokal, `--limit` die Zahl neuer Kandidaten.

@@ -2,11 +2,12 @@ import type { Filters } from './data';
 import type { Drink } from './community';
 import { parsePizzaSelection } from './pizza-selection';
 import { parseBeerSelection } from './beer-selection';
+import { parseBurgerSelection } from './burger-selection';
 
 // Old shared beer links used only size/beerType; keep those entry points working.
 export function drinkFromSearch(params: URLSearchParams): Drink {
   const drink = params.get('drink');
-  if (drink === 'beer' || drink === 'coffee' || drink === 'pizza' || drink === 'ramen') return drink;
+  if (drink === 'beer' || drink === 'coffee' || drink === 'pizza' || drink === 'ramen' || drink === 'burger') return drink;
   if (!drink && (params.has('size') || params.has('beerType') || params.has('beerQuery') || params.has('beerSelection'))) return 'beer';
   return 'coffee';
 }
@@ -17,6 +18,8 @@ export function barLink(href: string, barId: string, drink: Drink, volume: strin
   const pizzaQuery = url.searchParams.get('pizzaQuery');
   const beerQuery = url.searchParams.get('beerQuery');
   const beerSelection = parseBeerSelection(url.searchParams.get('beerSelection'));
+  const glutenFree = url.searchParams.get('glutenFree') === '1';
+  const burgerSelection = parseBurgerSelection(url.searchParams.get('burgerSelection'));
   url.search = '';
   url.hash = '';
   url.searchParams.set('bar', barId);
@@ -25,9 +28,11 @@ export function barLink(href: string, barId: string, drink: Drink, volume: strin
     if (pizzaSelection) url.searchParams.set('pizzaSelection', pizzaSelection);
     if (pizzaQuery) url.searchParams.set('pizzaQuery', pizzaQuery);
   }
+  if (drink === 'burger' && burgerSelection) url.searchParams.set('burgerSelection', burgerSelection);
   if (drink === 'beer') {
     if (beerSelection) url.searchParams.set('beerSelection', beerSelection);
     if (beerQuery) url.searchParams.set('beerQuery', beerQuery);
+    if (glutenFree) url.searchParams.set('glutenFree', '1');
     url.searchParams.set('size', volume);
     if (beerType && beerType !== 'all') url.searchParams.set('beerType', beerType);
   }
