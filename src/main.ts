@@ -30,6 +30,7 @@ import { pizzaVarieties, beerVarieties, hasBeerSelection } from './data';
 import { beerGroupLabels, parseBeerSelection } from './beer-selection';
 import { parsePizzaSelection, pizzaGroupLabels, type PizzaGroup } from './pizza-selection';
 import { showGoogleRating, clearGoogleRating } from './google-rating';
+import { showPizzaRating } from './pizza-rating';
 import { setupTip } from './tip';
 
 inject({ mode: import.meta.env.DEV ? 'development' : 'production', beforeSend: analyticsBeforeSend });
@@ -731,6 +732,7 @@ function detail(b: Bar) {
   if (f.drink === 'coffee') showCoffeeRating($('detail').querySelector<HTMLElement>('.detail-actions')!, cityId, b.id, communityReady);
   if (pizzaVenue) showGoogleRating($('detail').querySelector<HTMLElement>('.detail-maps')!, cityId, b.id);
   else clearGoogleRating();
+  if (pizzaVenue) showPizzaRating($('detail').querySelector<HTMLElement>('.detail-actions')!, cityId, b.id);
   $('close-detail').onclick = () => {
     closeSearchSuggestions();
     selected = undefined; f.query = '';

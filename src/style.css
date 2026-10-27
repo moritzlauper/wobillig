@@ -243,6 +243,14 @@ main { display: flex; flex: 1; min-height: 0; }
 .coffee-rating-stars button:hover, .coffee-rating-stars button:focus-visible { color: var(--teal); border-color: var(--teal); }
 .coffee-rating-message { flex-basis: 100%; order: 2; font-size: 12px; color: var(--muted); }
 .coffee-rating-message:empty { display: none; }
+.pizza-rating { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 10px; font-size: 13px; }
+.pizza-rating-label, .pizza-rating-summary { color: var(--muted); white-space: nowrap; }
+.pizza-rating-stars { display: inline-flex; gap: 4px; }
+.pizza-rating-stars button { min-width: 36px; min-height: 36px; padding: 4px; font-size: 12px; }
+.pizza-rating-stars button[aria-pressed="true"] { color: var(--teal); border-color: var(--teal); background: var(--surface); }
+.pizza-rating-stars button:hover, .pizza-rating-stars button:focus-visible { color: var(--teal); border-color: var(--teal); }
+.pizza-rating-message { flex-basis: 100%; font-size: 12px; color: var(--muted); }
+.pizza-rating-message:empty { display: none; }
 #share-url { display: block; width: 100%; margin-top: 10px; }
 p { line-height: 1.5; }
 .muted { color: var(--muted); font-size: var(--font-control); }
