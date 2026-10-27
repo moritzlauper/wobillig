@@ -346,8 +346,8 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     const address = venue.address ? [venue.address, venue.postcode, t(cities[city].name)].filter(Boolean).join(' ')
       : t('Standort: {coordinates}', { coordinates: `${venue.lat.toFixed(5)}, ${venue.lon.toFixed(5)}` });
     detail.innerHTML = `<div class="detail-top"><strong>${e(venue.name)}</strong><button type="button" data-close>${t('Schliessen')}</button></div>
-      <p class="muted">${e(address)}</p>
-      <div class="detail-actions"><button type="button" class="primary" data-add ${current?.canEdit === false ? 'hidden' : ''}>${t('Preis hinzufügen')}</button><span class="detail-maps"><a href="${e(googleMapsLink(venue, cities[city].name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></div>
+      <p class="muted detail-address">${e(address)}<span class="detail-maps"><a href="${e(googleMapsLink(venue, cities[city].name))}" target="_blank" rel="noopener noreferrer" aria-label="${t('In Google Maps öffnen')}" translate="no">Google Maps</a></span></p>
+      <div class="detail-actions"><button type="button" class="primary" data-add ${current?.canEdit === false ? 'hidden' : ''}>${t('Preis hinzufügen')}</button></div>
       ${offers.map((offer, index) => `<div class="offer"><div class="offer-top"><strong>${e(offer.product)}</strong><strong class="nowrap">CHF ${offer.priceChf.toFixed(2)}</strong></div><div class="offer-meta"><span>${t('Eingetragen')} · ${e(new Date(offer.updatedAt).toLocaleDateString(dateLocale()))}</span><button type="button" data-edit="${index}" ${current?.canEdit === false ? 'hidden' : ''}>${t('Ändern')}</button></div></div>`).join('')}`;
     detail.hidden = false;
     const close = () => { detail.hidden = true; if (fromList) showView(true); trigger?.focus({ preventScroll: true }); };
