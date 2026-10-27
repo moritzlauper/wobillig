@@ -25,11 +25,10 @@ for (const width of [320, 1280]) {
         : params.has('map') ? { map: saved } : { entries: [] } });
     });
     await page.goto('/');
-    await page.locator('#categories-toggle').click();
-    await page.locator('#additional-categories').getByRole('button', { name: 'Automatische Map anfragen' }).click();
+    await page.locator('#create-map').click();
     const form = page.locator('#create-map-dialog');
+    await form.getByLabel('Art der Map').selectOption('automatic');
     await expect(form.getByLabel('Art der Map')).toHaveValue('automatic');
-    await expect(page.locator('#additional-categories')).toBeHidden();
     await form.getByLabel('Name der Map').fill('Coop Aktionen Zürich');
     await form.getByLabel('Link zur Angebotsseite').fill('https://www.coop.ch/de/aktionen/alle-aktionen/c/m_1111');
     await form.getByLabel('Welche Angebote möchtest du sehen?').fill('Kaffeeaktionen');

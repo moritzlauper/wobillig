@@ -27,17 +27,16 @@ for (const [doner, falafel, visible] of [
     await expect(page.locator('#primary-categories #drink-doner, #primary-categories #drink-falafel')).toHaveCount(0);
     if (visible.length) {
       await page.locator('#categories-toggle').click();
-      await expect(page.locator('#additional-categories button:visible')).toHaveText([...visible, 'Automatische Map anfragen']);
+      await expect(page.locator('#additional-categories button:visible')).toHaveText(visible);
     } else {
-      await page.locator('#categories-toggle').click();
-      await expect(page.locator('#additional-categories button:visible')).toHaveText(['Automatische Map anfragen']);
+      await expect(page.locator('#categories-toggle')).toBeHidden();
       await expect(page.locator('#drink-doner')).toBeHidden();
       await expect(page.locator('#drink-falafel')).toBeHidden();
     }
   });
 }
 
-test('missing or unreadable city datasets keep unavailable categories hidden but allow map requests', async ({ page }) => {
+test('missing or unreadable city datasets keep unavailable categories hidden', async ({ page }) => {
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: { doner: 9999, falafel: 9999 } } }));
   await page.route('**/data/bern/doner.json', route => route.fulfill({ status: 404 }));
   await page.route('**/data/bern/falafel.json', route => route.fulfill({ contentType: 'text/html', body: '<html>Not found</html>' }));
@@ -45,10 +44,10 @@ test('missing or unreadable city datasets keep unavailable categories hidden but
   await page.goto('/bern');
   await loaded;
   await expect(page.locator('#count')).not.toHaveText('Laden …');
-  await page.locator('#categories-toggle').click();
-  await expect(page.locator('#additional-categories button:visible')).toHaveText(['Automatische Map anfragen']);
+  await expect(page.locator('#categories-toggle')).toBeHidden();
   await expect(page.locator('#drink-doner')).toBeHidden();
   await expect(page.locator('#drink-falafel')).toBeHidden();
+  await expect(page.locator('#create-map')).toBeVisible();
 });
 
 for (const width of [320, 390, 1280]) {
@@ -69,7 +68,7 @@ for (const width of [320, 390, 1280]) {
     expect(clicks).toEqual([]);
     await expect(page.locator('#toolbar-toggle')).toHaveCount(0);
     await page.getByRole('button', { name: 'Weitere Kategorien', exact: true }).click();
-    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel', 'Automatische Map anfragen']);
+    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
     await expect(page.locator('#search')).toBeVisible();
     await expect(page.locator('#coffeeType')).toBeVisible();
     const menu = await page.locator('#additional-categories').boundingBox();
@@ -86,7 +85,7 @@ for (const width of [320, 390, 1280]) {
     await expect(page.locator('#drink-doner')).toBeHidden();
     await expect(page.locator('#drink-falafel')).toBeHidden();
     await page.locator('#categories-toggle').click();
-    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel', 'Automatische Map anfragen']);
+    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
     await page.keyboard.press('Escape');
     await page.locator('#drink-pizza').click();
     await expect(page.locator('#map-title')).toHaveText('Pizzapreise Zürich');
@@ -141,7 +140,7 @@ test('a delayed ranking does not move buttons while the menu is open', async ({ 
   const response = page.waitForResponse('**/api/categories');
   release();
   await response;
-  await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel', 'Automatische Map anfragen']);
+  await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
   await page.keyboard.press('Escape');
   await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza']);
   await expect(page.locator('#drink-doner')).toBeHidden();

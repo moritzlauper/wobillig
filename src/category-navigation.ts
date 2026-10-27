@@ -24,7 +24,6 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   let requestVersion = 0;
   let pendingClicks = Promise.resolve();
   let mapButtons: HTMLButtonElement[] = [], savedMapButtons: HTMLButtonElement[] = [];
-  let requestMapButton: HTMLButtonElement | undefined;
   const buttons = Object.fromEntries(categories.map(category => {
     const button = document.createElement('button');
     button.id = `drink-${category}`; button.type = 'button';
@@ -84,12 +83,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
       heading.className = 'custom-map-menu-label'; heading.textContent = label;
       group.append(heading, ...items); more.append(group);
     }
-    if (requestMapButton) {
-      const action = document.createElement('div');
-      action.className = 'custom-map-menu-group';
-      action.append(requestMapButton); more.append(action);
-    }
-    moreContainer.hidden = !order.some(upcoming) && !mapButtons.length && !savedMapButtons.length && !requestMapButton;
+    moreContainer.hidden = !order.some(upcoming) && !mapButtons.length && !savedMapButtons.length;
     if (moreContainer.hidden) {
       more.hidden = true;
       toggle.setAttribute('aria-expanded', 'false');
@@ -143,13 +137,6 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   }
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') void refresh(); });
   return {
-    setAutomaticMapRequest(openRequest: (trigger: HTMLButtonElement) => void) {
-      requestMapButton = document.createElement('button');
-      requestMapButton.type = 'button';
-      requestMapButton.textContent = t('Automatische Map anfragen');
-      requestMapButton.onclick = () => { close(); openRequest(toggle); };
-      render();
-    },
     setCustomMaps(maps: PublicMap[], load: (id: string) => void) {
       mapButtons = [...maps].sort((a, b) => a.name.localeCompare(b.name, 'de-CH')).map(map => {
         const button = document.createElement('button'); button.type = 'button';

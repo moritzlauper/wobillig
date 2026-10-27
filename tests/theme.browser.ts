@@ -87,11 +87,8 @@ for (const mode of ['light', 'dark'] as const) {
       await expect(page.locator('.leaflet-tile-pane')).toHaveCSS('filter', mode === 'light' ? 'none' : 'invert(1) hue-rotate(180deg) brightness(0.78) saturate(0.55)');
       await page.screenshot({ path: `/tmp/wobillig-theme-${mode}-${width}.png` });
       if (width < 760) {
-        await page.locator('#categories-toggle').click();
-        await expect(page.locator('#additional-categories')).toBeVisible();
         await expect(page.locator('#search')).toBeVisible();
         await expect(page.getByLabel('Farbschema')).toBeVisible();
-        await page.locator('#categories-toggle').click();
         await page.locator('#view-list').click();
         await expect(page.locator('.venue').first()).toBeVisible();
         await page.locator('#view-map').click();
