@@ -227,7 +227,7 @@ main { display: flex; flex: 1; min-height: 0; }
 .detail-top > button, .dialog-top > button { font-size: var(--font-control); flex-shrink: 0; }
 .detail-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 .detail-actions button { min-height: 32px; padding: 5px 8px; font-size: var(--font-control); }
-.detail-actions a { display: inline-flex; align-items: center; min-height: 32px; padding: 5px 0; font-size: var(--font-control); }
+.detail-actions a { display: inline-flex; align-items: center; min-height: 32px; padding: 5px 8px; font-size: var(--font-control); }
 .detail-maps { display: inline-flex; align-items: center; white-space: nowrap; font-size: var(--font-control); }
 .value-rating { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 10px; font-size: 13px; }
 .value-rating-label, .value-rating-summary { color: var(--muted); white-space: nowrap; }
