@@ -30,12 +30,17 @@ beforeEach(() => {
   mocks.store.mockReturnValue(store);
 });
 afterEach(() => vi.unstubAllEnvs());
-it('only queries known pizzerias with a server-side key', async () => {
+it('only queries known pizzerias and ramen venues with a server-side key', async () => {
   const result = await request();
   expect(result.status).toBe(200);
   expect(result.data).toEqual({ rating: null });
   expect(mocks.fetch).toHaveBeenCalledWith(bar, 'Zürich', 'private-test-key');
   expect(result.setHeader).toHaveBeenCalledWith('Cache-Control', 'no-store');
+});
+it('also rates ramen venues from their own file', async () => {
+  const ramen = (JSON.parse(readFileSync('public/data/ramen.json', 'utf8')) as Dataset).bars[0];
+  expect((await request(`?city=zurich&bar=${encodeURIComponent(ramen.id)}`)).status).toBe(200);
+  expect(mocks.fetch).toHaveBeenCalledWith(ramen, 'Zürich', 'private-test-key');
 });
 it('rejects arbitrary places, cities, foreign requests and write methods before querying Google', async () => {
   expect((await request('?city=zurich&bar=arbitrary-search')).status).toBe(404);

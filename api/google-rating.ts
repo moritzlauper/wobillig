@@ -6,7 +6,7 @@ import { fetchGoogleRating, type GoogleRating } from '../server/google-rating.js
 import { cachedGoogleRating, googleQuotaExhausted, googleRatingStore } from '../server/google-rating-cache.js';
 import { tripadvisorRating, tripadvisorStore } from '../server/tripadvisor-rating.js';
 
-const catalogues: Partial<Record<City, Dataset>> = {};
+const catalogues: Partial<Record<City, Dataset['bars']>> = {};
 const pending = new Map<string, Promise<GoogleRating | null>>();
 const limits = new Map<string, { count: number; until: number }>();
 // An instance-local visitor guard supplements the shared monthly budget.
@@ -18,6 +18,13 @@ function allowed(ip: string): boolean {
   limit.count++;
   limits.set(ip, limit);
   return true;
+}
+
+// Ramen exists only where it was scraped, so a missing ramen file must not block pizzeria ratings.
+async function ratedBars(city: City) {
+  const read = (name: string) => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(text => JSON.parse(text) as Dataset);
+  const [pizza, ramen] = await Promise.all([read('pizza'), read('ramen').catch(() => undefined)]);
+  return [...pizza.bars, ...(ramen?.bars ?? [])];
 }
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
@@ -32,8 +39,8 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     const city = params.get('city') || 'zurich';
     const id = params.get('bar');
     if (!isCity(city) || !id || id.length > 100) return reply(400, {});
-    const data = catalogues[city] ||= JSON.parse(await readFile(`${process.cwd()}/public/data/${cities[city].data}pizza.json`, 'utf8')) as Dataset;
-    const bar = data.bars.find(venue => venue.id === id);
+    const bars = catalogues[city] ||= await ratedBars(city);
+    const bar = bars.find(venue => venue.id === id);
     if (!bar) return reply(404, {});
     const key = process.env.GOOGLE_PLACES_API_KEY;
     if (!key) return reply(503, {});
