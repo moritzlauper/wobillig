@@ -1,6 +1,6 @@
 import unittest
 
-from scraper.burger import candidates, clean, dataset_offers, product_name
+from scraper.burger import candidates, clean, dataset, dataset_offers, product_name, scan
 
 URL = 'https://burger.example/menu'
 OBSERVED = '2026-10-27T12:00:00+00:00'
@@ -57,15 +57,38 @@ class BurgerRules(unittest.TestCase):
 
 
 class BurgerDataset(unittest.TestCase):
-    def test_candidates_use_cuisine_or_name(self):
+    def test_candidates_cover_restaurant_types_with_a_website(self):
         bars = [
-            {'id': 'node/1', 'name': 'Bärengarten', 'cuisine': ['burger'], 'website': 'https://a.example/'},
-            {'id': 'node/2', 'name': 'Burger Bar', 'cuisine': [], 'website': 'https://b.example/'},
-            {'id': 'node/3', 'name': 'Pizzeria Roma', 'cuisine': ['pizza'], 'website': 'https://c.example/'},
-            {'id': 'node/4', 'name': 'Burger ohne Website', 'cuisine': ['burger'], 'website': None},
+            {'id': 'node/1', 'name': 'Bärengarten', 'type': 'restaurant', 'cuisine': ['burger'], 'website': 'https://a.example/'},
+            {'id': 'node/2', 'name': 'Burger Bar', 'type': 'bar', 'cuisine': [], 'website': 'https://b.example/'},
+            {'id': 'node/3', 'name': 'Pizzeria Roma', 'type': 'restaurant', 'cuisine': ['pizza'], 'website': 'https://c.example/'},
+            {'id': 'node/4', 'name': 'Burger ohne Website', 'type': 'restaurant', 'cuisine': ['burger'], 'website': None},
+            {'id': 'node/5', 'name': 'Bäckerei', 'type': 'shop', 'cuisine': [], 'website': 'https://d.example/'},
         ]
         groups = candidates(bars, {})
-        self.assertEqual(sorted(group[0]['id'] for group in groups.values()), ['node/1', 'node/2'])
+        self.assertEqual(sorted(group[0]['id'] for group in groups.values()), ['node/1', 'node/2', 'node/3'])
+
+    def test_dataset_publishes_only_venues_with_burger_prices(self):
+        def bar(number):
+            return {'id': f'node/{number}', 'name': f'Lokal {number}', 'lat': 47.37, 'lon': 8.54, 'type': 'restaurant', 'website': f'https://{number}.example/'}
+        offer = {'name': 'Classic Burger', 'priceChf': 22, 'diet': 'standard', 'glutenFree': False, 'lunchOnly': False,
+                 'evidence': 'Classic Burger 22.00', 'sourceUrl': URL, 'sourcePage': 1, 'extractionModel': 'test'}
+        bars = [('a.example', [bar(1)]), ('b.example', [bar(2)]), ('c.example', [bar(3)])]
+        results = {'a.example': {'status': 'no_prices', 'offers': []},
+                   'b.example': {'status': 'skipped', 'offers': []},
+                   'c.example': {'status': 'priced', 'offers': [offer]}}
+        previous = {'node/2': dataset_offers([offer], OBSERVED)}
+        rows = dataset(bars, results, previous, OBSERVED, 'test')['bars']
+        self.assertEqual([row['id'] for row in rows], ['node/2', 'node/3'])
+        self.assertEqual(rows[0]['offers'], previous['node/2'])
+
+    def test_scan_skips_venues_after_the_time_limit(self):
+        class NoFetch:
+            def get(self, url):
+                raise AssertionError('fetched after the time limit')
+        result = scan('Lokal', [{'name': 'Lokal', 'website': URL}], NoFetch(), None, 40, 60, deadline=0)
+        self.assertEqual(result['status'], 'skipped')
+        self.assertEqual(result['offers'], [])
 
     def test_product_name_marks_lunch_offers(self):
         self.assertEqual(product_name({'name': 'BIG BURGER', 'lunchOnly': True}), 'Big Burger (Mittagskarte)')
