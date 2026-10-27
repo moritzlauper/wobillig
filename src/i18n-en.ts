@@ -609,6 +609,8 @@ export const en: Record<string, string> = {
   'In Google Maps öffnen': 'Open in Google Maps',
   'Google-Bewertung: {rating} von 5': 'Google rating: {rating} out of 5',
   '{count} Google-Bewertungen': '{count} Google reviews',
+  'Tripadvisor-Bewertung: {rating} von 5': 'Tripadvisor rating: {rating} out of 5',
+  '{count} Tripadvisor-Bewertungen': '{count} Tripadvisor reviews',
   'Preis hinzufügen': 'Add price',
   '{name} teilen': 'Share {name}',
   'Teilen': 'Share',

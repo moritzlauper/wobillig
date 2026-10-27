@@ -21,7 +21,7 @@ const normalize = (value: string) => value.normalize('NFKD').replace(/\p{M}/gu, 
 const words = (value: string) => value.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase().match(/[a-z0-9]+/g) || [];
 const genericNames = new Set(['restaurant', 'ristorante', 'pizzeria', 'pizza', 'bar', 'cafe', 'zurich', 'zurichs', 'zuerich', 'bern', 'basel', 'winterthur', 'olten']);
 
-function sameName(a: string, b: string): boolean {
+export function sameName(a: string, b: string): boolean {
   const first = words(a).filter(word => !genericNames.has(word));
   const secondWords = words(b).filter(word => !genericNames.has(word));
   const second = new Set(secondWords);

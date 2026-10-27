@@ -3,7 +3,8 @@ import { readFile } from 'node:fs/promises';
 import { cities, isCity, type City } from '../src/cities.js';
 import type { Dataset } from '../src/data.js';
 import { fetchGoogleRating, type GoogleRating } from '../server/google-rating.js';
-import { cachedGoogleRating, googleRatingStore } from '../server/google-rating-cache.js';
+import { cachedGoogleRating, googleQuotaExhausted, googleRatingStore } from '../server/google-rating-cache.js';
+import { tripadvisorRating, tripadvisorStore } from '../server/tripadvisor-rating.js';
 
 const catalogues: Partial<Record<City, Dataset>> = {};
 const pending = new Map<string, Promise<GoogleRating | null>>();
@@ -38,6 +39,8 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     if (!key) return reply(503, {});
     const ip = String(req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown');
     if (!allowed(ip)) { res.setHeader('Retry-After', '60'); return reply(429, {}); }
+    // Once this month's Google allowance is spent, TripAdvisor supplies the rating until its lifetime allowance ends.
+    if (await googleQuotaExhausted(googleRatingStore())) return reply(200, { rating: await tripadvisorRating(tripadvisorStore(), bar, cities[city].name, process.env.TRIPADVISOR_API_KEY) });
     const requestKey = `${city}:${id}`;
     let request = pending.get(requestKey);
     if (!request) {

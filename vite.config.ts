@@ -21,6 +21,7 @@ export default defineConfig({
       for (const [key, value] of Object.entries(securityEnv)) process.env[key] ||= value;
       const env = loadEnv(server.config.mode, process.cwd(), 'GOOGLE_PLACES_');
       process.env.GOOGLE_PLACES_API_KEY ||= env.GOOGLE_PLACES_API_KEY;
+      process.env.TRIPADVISOR_API_KEY ||= loadEnv(server.config.mode, process.cwd(), 'TRIPADVISOR_API_KEY').TRIPADVISOR_API_KEY;
       process.env.BLOB_READ_WRITE_TOKEN ||= loadEnv(server.config.mode, process.cwd(), 'BLOB_READ_WRITE_TOKEN').BLOB_READ_WRITE_TOKEN;
       const reviewPassword = loadEnv(server.config.mode, process.cwd(), 'MAP_REVIEW_PASSWORD').MAP_REVIEW_PASSWORD;
       if (reviewPassword) process.env.MAP_REVIEW_PASSWORD ||= reviewPassword;

@@ -156,6 +156,7 @@ Alle Werte sind Servervariablen und bekommen nie ein `VITE_`-Präfix. Die Vorlag
 | `BLOB_READ_WRITE_TOKEN` | Privater Speicher für Beiträge, Limits und Backups |
 | `ANTHROPIC_API_KEY` | Foto-Scan und Kaffeefoto-Prüfung, als GitHub-Secret auch für den KI-Scan |
 | `GOOGLE_PLACES_API_KEY` | Google-Bewertungen für Pizzerien, höchstens 1'000 Anfragen pro Monat |
+| `TRIPADVISOR_API_KEY` | Tripadvisor-Bewertungen für Pizzerien, sobald das Google-Kontingent des Monats aufgebraucht ist. Höchstens 1'000 Einheiten insgesamt, damit nichts kostet |
 | `MAP_REVIEW_PASSWORD` | Zugang zu den Prüfseiten |
 | `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` | Beitrag an die Plattformkosten. Ohne Live-Schlüssel bleibt der Button in Production ausgeblendet |
 | `CONTRIBUTION_PROTECTION`, `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | Bot-Schutz vor Beiträgen |

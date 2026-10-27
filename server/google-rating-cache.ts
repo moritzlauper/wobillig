@@ -25,6 +25,12 @@ export type RatingStore = {
 export class RatingWriteConflict extends Error {}
 export const emptyRatingState = (): RatingState => ({ version: 1, month: '', used: 0, cache: {}, pending: {} });
 
+// Ratings move to TripAdvisor only once this month's Google allowance is spent.
+export async function googleQuotaExhausted(store: RatingStore, now = Date.now()): Promise<boolean> {
+  const { state } = await store.read();
+  return state.month === googleBillingMonth(now) && state.used >= GOOGLE_RATING_MONTHLY_LIMIT;
+}
+
 function validState(state: RatingState): boolean {
   return state?.version === 1 && (state.month === '' || /^\d{4}-\d{2}$/.test(state.month))
     && Number.isInteger(state.used) && state.used >= 0 && (state.month !== '' || state.used === 0)
