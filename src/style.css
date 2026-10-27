@@ -229,28 +229,14 @@ main { display: flex; flex: 1; min-height: 0; }
 .detail-actions button { min-height: 32px; padding: 5px 8px; font-size: var(--font-control); }
 .detail-actions a { display: inline-flex; align-items: center; min-height: 32px; padding: 5px 0; font-size: var(--font-control); }
 .detail-maps { display: inline-flex; align-items: center; white-space: nowrap; font-size: var(--font-control); }
-.coffee-rating-control { display: contents; }
-.detail-actions .coffee-rate-toggle { border: 0; background: transparent; color: var(--muted); padding-inline: 3px; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; }
-.coffee-rating-summary { display: inline-flex; align-items: center; color: var(--muted); font-size: 12px; white-space: nowrap; }
-.coffee-rating-editor { flex-basis: 100%; order: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
-.coffee-rating-editor[hidden] { display: none; }
-.coffee-rating-editor small { font-size: 12px; color: var(--muted); }
-.coffee-photo-label { display: flex; flex-direction: column; gap: 6px; max-width: 100%; font-size: 13px; }
-.coffee-photo { max-width: 100%; font: inherit; }
-.coffee-rating-stars button[aria-pressed="true"] { color: var(--teal); border-color: var(--teal); background: var(--surface); }
-.coffee-rating-stars { display: inline-flex; gap: 4px; }
-.detail-actions .coffee-rating-stars button { min-width: 36px; min-height: 36px; padding: 4px; font-size: 12px; }
-.coffee-rating-stars button:hover, .coffee-rating-stars button:focus-visible { color: var(--teal); border-color: var(--teal); }
-.coffee-rating-message { flex-basis: 100%; order: 2; font-size: 12px; color: var(--muted); }
-.coffee-rating-message:empty { display: none; }
-.pizza-rating { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 10px; font-size: 13px; }
-.pizza-rating-label, .pizza-rating-summary { color: var(--muted); white-space: nowrap; }
-.pizza-rating-stars { display: inline-flex; gap: 4px; }
-.pizza-rating-stars button { min-width: 36px; min-height: 36px; padding: 4px; font-size: 12px; }
-.pizza-rating-stars button[aria-pressed="true"] { color: var(--teal); border-color: var(--teal); background: var(--surface); }
-.pizza-rating-stars button:hover, .pizza-rating-stars button:focus-visible { color: var(--teal); border-color: var(--teal); }
-.pizza-rating-message { flex-basis: 100%; font-size: 12px; color: var(--muted); }
-.pizza-rating-message:empty { display: none; }
+.value-rating { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 10px; font-size: 13px; }
+.value-rating-label, .value-rating-summary { color: var(--muted); white-space: nowrap; }
+.value-rating-stars { display: inline-flex; }
+.value-rating-stars button { min-width: 32px; min-height: 36px; padding: 0; border: 0; background: none; color: var(--muted); font-size: 22px; line-height: 1; }
+.value-rating-stars button.on, .value-rating-stars button:hover, .value-rating-stars button:focus-visible { color: var(--teal); }
+.value-rating-message { flex-basis: 100%; font-size: 12px; color: var(--muted); }
+.value-rating-message:empty { display: none; }
+.value-rating-remove { border: 0; background: none; padding: 0; min-height: 36px; font: inherit; font-size: 13px; color: var(--muted); text-decoration: underline; cursor: pointer; }
 #share-url { display: block; width: 100%; margin-top: 10px; }
 p { line-height: 1.5; }
 .muted { color: var(--muted); font-size: var(--font-control); }

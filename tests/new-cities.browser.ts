@@ -3,7 +3,7 @@ import { captureAnalytics } from './analytics-browser-helper';
 
 test.beforeEach(async ({ page }) => {
   await captureAnalytics(page);
-  await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [], venues: [], coffeeRatings: {} } }));
+  await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [], venues: [] } }));
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.route('**/api/tip?*', route => route.fulfill({ status: 503, json: {} }));
 });

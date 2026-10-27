@@ -52,16 +52,15 @@ describe('city-scoped price API', () => {
       entries: [], customMaps: [map, { id: 'another-map', name: 'Other', entries: [] }], limits: { secret: {} },
     } }) });
     expect((await request(`/api/prices?city=bern&map=${map.id}`)).data).toEqual({ map: { ...map, canEdit: true } });
-    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: {}, publicMaps: [] });
+    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [], venueCorrections: [], publicMaps: [] });
     expect((await request('/api/prices?map=invalid')).status).toBe(400);
     expect((await request('/api/prices?map=d268dbea-93cf-45de-9d17-2b5c74090237')).status).toBe(404);
   });
   it('does not expose the private audit log, history or visitor limits', async () => {
     mocks.blobStore.mockReturnValue({ read: async () => ({ state: {
       entries: [], history: [{ id: 'old' }], priceChanges: [{ id: 'private-change' }], limits: { visitor: { count: 1 } },
-      coffeeVotes: { 'node/zurich': { 'private-voter': 4 } },
     } }) });
-    expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [], venueCorrections: [], coffeeRatings: { 'node/zurich': { average: null, count: 1 } }, publicMaps: [] });
+    expect((await request('/api/prices')).data).toEqual({ entries: [], venues: [], venueCorrections: [], publicMaps: [] });
   });
   it('publicly lists only maps with at least one venue in the selected city', async () => {
     const entries = Array.from({ length: 6 }, (_, i) => ({ venue: { id: `node/${i}` }, priceChf: 12 }));
@@ -95,7 +94,7 @@ describe('city-scoped price API', () => {
     expect(mocks.saveVenue.mock.calls[0][3]).toBe('bern');
     expect(mocks.blobStore).toHaveBeenCalledWith('prices/bern/production.json');
     mocks.blobStore.mockReturnValue({ read: async () => ({ state: { entries: [], venues: [{ id: 'community/new' }] } }) });
-    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [{ id: 'community/new' }], venueCorrections: [], coffeeRatings: {}, publicMaps: [] });
+    expect((await request('/api/prices?city=bern')).data).toEqual({ entries: [], venues: [{ id: 'community/new' }], venueCorrections: [], publicMaps: [] });
   });
 
   it('routes corrections to the selected city and publishes corrections without their audit history', async () => {

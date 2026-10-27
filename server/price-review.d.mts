@@ -7,4 +7,4 @@ import type { CustomMap } from '../src/custom-map-data.js';
 export type ReviewRow = PriceChange & { exact: boolean; city: City };
 export function reviewRows(state: State, city: City, venues?: Bar[]): ReviewRow[];
 export function reviewCsv(rows: ReviewRow[]): string;
-export function reviewHtml(rows: ReviewRow[], environment: string, generatedAt?: string, online?: boolean, maps?: { city: City; map: CustomMap }[], mapReviewsHtml?: string): string;
+export function reviewHtml(rows: ReviewRow[], environment: string, generatedAt?: string, online?: boolean, maps?: { city: City; map: CustomMap }[], mapReviewsHtml?: string, valueRatings?: { city: City; venueName: string; address: string; average: number; count: number }[]): string;

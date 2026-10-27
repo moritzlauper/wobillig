@@ -1,6 +1,6 @@
 import { pathToFileURL } from 'node:url';
 
-const privateFields = ['heldPrices', 'mapOwners', 'emailChallenges', 'securityCounters', 'history', 'limits', 'coffeeVoteDetails'];
+const privateFields = ['heldPrices', 'mapOwners', 'emailChallenges', 'securityCounters', 'history', 'limits'];
 export async function checkSite(base = 'https://wobillig.ch', fetcher = fetch) {
   const checks = [
     ['/', text => text.includes('id="app"')],

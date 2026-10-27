@@ -12,7 +12,6 @@ import { communityVenues } from '../src/community.js';
 import { duplicateVenue, validateVenue } from '../src/venue-contributions.js';
 import type { City } from '../src/cities.js';
 import { priceChange, type PriceChange } from './price-audit.js';
-import type { CoffeeVotes, CoffeeVoteDetails } from './coffee-ratings.js';
 import { priceConcern, visiblePrices, type HeldPrice } from './price-moderation.js';
 import { checkPriceEdit } from './price-edit-rules.js';
 import type { PriceCooldowns } from './price-cooldown.js';
@@ -22,7 +21,7 @@ import type { VenueCorrection, VenueChanges } from '../src/venue-corrections.js'
 
 export type ScanReceipt = { pending?: boolean; ids: string[]; added: number; unchanged: number; conflicts: number; skipped: number; updated?: number };
 export type ScanRecord = { status: 'pending' | 'done' | 'failed'; expires: number; result?: ScanReceipt };
-export type State = { pendingVenues?: PendingVenue[]; pendingCorrections?: PendingCorrection[]; reviewUndo?: ReviewUndo[]; securityCounters?: Record<string, SecurityCounter>; emailChallenges?: Record<string, EmailChallenge>; mapOwners?: Record<string, Actor>; dealPilot?: DealPilot; dealSweep?: DealBatch; entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; venueCorrections?: VenueCorrection[]; venueCorrectionHistory?: { correction: VenueCorrection; before: VenueChanges }[]; priceChanges?: PriceChange[]; coffeeVotes?: CoffeeVotes; coffeeVoteDetails?: CoffeeVoteDetails; coffeePhotoUses?: Record<string, { voter: string; barId: string }>; heldPrices?: HeldPrice[]; priceCooldowns?: PriceCooldowns; customMaps?: CustomMap[]; mapQuotas?: MapQuotas };
+export type State = { pendingVenues?: PendingVenue[]; pendingCorrections?: PendingCorrection[]; reviewUndo?: ReviewUndo[]; securityCounters?: Record<string, SecurityCounter>; emailChallenges?: Record<string, EmailChallenge>; mapOwners?: Record<string, Actor>; dealPilot?: DealPilot; dealSweep?: DealBatch; entries: PriceEntry[]; history: PriceEntry[]; limits: Record<string, { count: number; expires: number }>; menuScans?: Record<string, ScanRecord>; venues?: Bar[]; venueCorrections?: VenueCorrection[]; venueCorrectionHistory?: { correction: VenueCorrection; before: VenueChanges }[]; priceChanges?: PriceChange[]; heldPrices?: HeldPrice[]; priceCooldowns?: PriceCooldowns; customMaps?: CustomMap[]; mapQuotas?: MapQuotas };
 export type Store = { read(): Promise<{ state: State; etag?: string }>; write(state: State, etag?: string): Promise<void> };
 export const emptyState = (): State => ({ entries: [], history: [], limits: {} });
 export class WriteConflict extends Error {}

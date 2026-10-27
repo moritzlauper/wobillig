@@ -1,8 +1,7 @@
-import { coffeeRatingSummaries } from './coffee-ratings.js';
 import { publicMapSummaries } from '../src/custom-map-data.js';
 import type { Store } from './prices.js';
 function select(state: Awaited<ReturnType<Store['read']>>['state']) {
-  return { entries: state.entries, venues: state.venues || [], venueCorrections: state.venueCorrections || [], coffeeRatings: coffeeRatingSummaries(state), publicMaps: publicMapSummaries(state.customMaps || []) };
+  return { entries: state.entries, venues: state.venues || [], venueCorrections: state.venueCorrections || [], publicMaps: publicMapSummaries(state.customMaps || []) };
 }
 const cache = new Map<string, { expires: number; value: Promise<ReturnType<typeof select>> }>();
 export function clearPublicCache() { cache.clear(); }

@@ -5,6 +5,7 @@ import type { Dataset } from '../src/data.js';
 import { blobStore } from '../server/prices.js';
 import { reviewRows, reviewHtml, reviewCsv } from '../server/price-review.mjs';
 import { authorizedMapReviewer, mapReviewCards } from '../server/map-review.js';
+import { valueRatingOverview, valueRatingStore } from '../server/value-rating.js';
 
 // Password-protected review area. Only price snapshots are exposed;
 // raw state, visitor hashes, limits and scan receipts never leave this handler.
@@ -39,16 +40,19 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
         blobStore(cityStoragePath(city, true)).read(),
         readFile(`${process.cwd()}/public/data/${cities[city].data}locations.json`, 'utf8').then(text => JSON.parse(text) as Dataset),
       ]);
-      return { prices: reviewRows(state, city, catalogue.bars), maps: (state.customMaps || []).map(map => ({ city, map })) };
+      const venues = catalogue.bars.map(bar => [`${city}:${bar.id}`, { name: bar.name, address: bar.address }] as const);
+      return { prices: reviewRows(state, city, catalogue.bars), maps: (state.customMaps || []).map(map => ({ city, map })), venues };
     }));
     const rows = grouped.flatMap(group => group.prices).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt) || b.revision - a.revision);
     const maps = grouped.flatMap(group => group.maps);
+    const venues = new Map(grouped.flatMap(group => group.venues));
+    const valueRatings = valueRatingOverview((await valueRatingStore().read()).state, venues);
     if (format === 'csv') {
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
       res.setHeader('Content-Disposition', 'attachment; filename="price-changes.csv"');
     }
     res.statusCode = 200;
-    res.end(req.method === 'HEAD' ? undefined : format === 'csv' ? reviewCsv(rows) : reviewHtml(rows, 'production', undefined, true, maps, mapReviewCards(maps)));
+    res.end(req.method === 'HEAD' ? undefined : format === 'csv' ? reviewCsv(rows) : reviewHtml(rows, 'production', undefined, true, maps, mapReviewCards(maps), valueRatings));
   } catch (cause) {
     console.error('Price review failed', cause instanceof Error ? cause.name : 'UnknownError');
     return error(503, 'Die Preisübersicht konnte nicht vollständig geladen werden. Bitte die Seite später erneut öffnen.');

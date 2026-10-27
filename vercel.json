@@ -8,16 +8,12 @@
       "includeFiles": "public/data/**/coffee.json",
       "maxDuration": 30
     },
-    "api/coffee-rating.ts": {
-      "includeFiles": "public/data/**/*.json",
-      "maxDuration": 60
-    },
     "api/google-rating.ts": {
       "includeFiles": "public/data/**/pizza.json",
       "maxDuration": 15
     },
-    "api/pizza-rating.ts": {
-      "includeFiles": "public/data/**/pizza.json",
+    "api/value-rating.ts": {
+      "includeFiles": "public/data/**/locations.json",
       "maxDuration": 15
     },
     "api/price-review.ts": {

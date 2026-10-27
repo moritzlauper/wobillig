@@ -1,9 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 
-const mocks = vi.hoisted(() => ({ readFile: vi.fn(), blobStore: vi.fn() }));
+const mocks = vi.hoisted(() => ({ readFile: vi.fn(), blobStore: vi.fn(), valueRatingStore: vi.fn() }));
 vi.mock('node:fs/promises', () => ({ readFile: mocks.readFile }));
 vi.mock('../server/prices.js', () => ({ blobStore: mocks.blobStore }));
+vi.mock('../server/value-rating.js', async importOriginal => ({ ...await importOriginal<typeof import('../server/value-rating')>(), valueRatingStore: mocks.valueRatingStore }));
 import handler from '../api/price-review';
 
 const offer = { name: 'Lager', priceChf: 7, volumeMl: 500, observedAt: '2026-10-19', sourceUrl: '', alcoholFree: false };
@@ -27,6 +28,8 @@ beforeEach(() => {
   vi.stubEnv('MAP_REVIEW_PASSWORD', 'review-secret');
   mocks.readFile.mockResolvedValue(JSON.stringify({ bars: [] }));
   mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: state(path) }) }));
+  mocks.valueRatingStore.mockReturnValue({ read: async () => ({ state: { version: 1, day: '2026-10-27',
+    totals: { 'zurich:node/1': { sum: 9, count: 2 } }, votes: { 'zurich:node/1': { 'visitor-hash': 4 } } } }) });
 });
 
 afterEach(() => vi.unstubAllEnvs());
@@ -47,6 +50,12 @@ describe('online manual price review', () => {
     expect(response.headers['X-Robots-Tag']).toContain('noindex');
     await request();
     expect(mocks.blobStore).toHaveBeenCalledTimes(14);
+  });
+  it('shows aggregated value ratings but never individual votes', async () => {
+    const response = await request();
+    expect(response.body).toContain('Preis/Leistung-Bewertungen');
+    expect(response.body).toContain('<td class="number">4.5</td><td class="number">2</td>');
+    expect(response.body).not.toContain('visitor-hash');
   });
   it('shows all maps across cities, including empty drafts and every publication status', async () => {
     mocks.blobStore.mockImplementation((path: string) => ({ read: async () => ({ state: { ...state(path), customMaps:

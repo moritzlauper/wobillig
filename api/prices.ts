@@ -8,7 +8,6 @@ import { createHmac } from 'node:crypto';
 import { communityVenues, validateInput, InputError } from '../src/community.js';
 import type { Dataset } from '../src/data.js';
 import { blobStore, savePrice, saveVenue } from '../server/prices.js';
-import { coffeeRatingSummaries } from '../server/coffee-ratings.js';
 import { priceOwner, visiblePrices } from '../server/price-moderation.js';
 import { PriceCooldownError, withPriceCooldown } from '../server/price-cooldown.js';
 import { isMapId, publicMapSummaries } from '../src/custom-map-data.js';
@@ -64,7 +63,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
         if (!map) throw new InputError('Diese Map wurde nicht gefunden.', 404);
         return reply(200, { map: { ...map, canEdit: canEditMap(map) } });
       }
-      return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], venueCorrections: state.venueCorrections || [], coffeeRatings: coffeeRatingSummaries(state), publicMaps: publicMapSummaries(state.customMaps || []) });
+      return reply(200, { entries: visiblePrices(state, priceOwner(req, res)), venues: state.venues || [], venueCorrections: state.venueCorrections || [], publicMaps: publicMapSummaries(state.customMaps || []) });
     }
     const origin = req.headers.origin;
     if (!origin || new URL(origin).host !== req.headers.host || req.headers['sec-fetch-site'] === 'cross-site') return reply(403, { error: 'Bitte das Formular auf dieser Website verwenden.' });
@@ -111,9 +110,6 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       const map = await withMapQuota(quotaStore, creating ? 'create' : 'publish', mapIp, actor.account || owner, operation, save);
       if (input.action !== 'createMap') await notifyMapRequest(city, map);
       return reply(200, { map });
-    }
-    if (body && typeof body === 'object' && 'action' in body && body.action === 'rateCoffee') {
-      throw new InputError('Bitte ein Foto mit deinem Kaffee aus diesem Lokal hochladen.', 422);
     }
     if (body && typeof body === 'object' && 'action' in body && body.action === 'addVenue') {
       return reply(200, await saveVenue(store, 'venue' in body ? body.venue : undefined, data, city, visitor));
