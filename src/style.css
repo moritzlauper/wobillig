@@ -231,6 +231,7 @@ main { display: flex; flex: 1; min-height: 0; }
 .detail-maps { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-size: var(--font-control); }
 .detail-maps a { display: inline-flex; align-items: center; min-height: 32px; }
 .value-rating { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 10px; font-size: 13px; }
+.value-rating-meta { display: flex; flex-basis: 100%; flex-wrap: wrap; align-items: center; gap: 6px 10px; min-height: 36px; }
 .value-rating-label, .value-rating-summary { color: var(--muted); white-space: nowrap; }
 .value-rating-stars { display: inline-flex; }
 .value-rating-stars button { min-width: 32px; min-height: 36px; padding: 0; border: 0; background: none; color: var(--muted); font-size: 22px; line-height: 1; }

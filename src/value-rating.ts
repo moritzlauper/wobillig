@@ -19,8 +19,8 @@ export function showValueRating(actions: HTMLElement, city: City, barId: string)
       : t('Noch keine Bewertung') : '';
     group.innerHTML = `<span class="value-rating-label">${t('Preis/Leistung')}</span>
       <span class="value-rating-stars" role="group" aria-label="${e(t('Preis/Leistung bewerten'))}">${[1, 2, 3, 4, 5].map(value => `<button type="button" data-stars="${value}" class="${rating?.mine && value <= rating.mine ? 'on' : ''}" aria-label="${e(t('{score} von 5 Sternen', { score: value }))}" ${saving ? 'disabled' : ''}><span aria-hidden="true">★</span></button>`).join('')}</span>
-      <span class="value-rating-summary">${e(summary)}</span>
-      ${rating?.mine ? `<button type="button" class="value-rating-remove" ${saving ? 'disabled' : ''}>${e(t('Bewertung entfernen'))}</button>` : ''}
+      <span class="value-rating-meta"><span class="value-rating-summary">${e(summary)}</span>
+      ${rating?.mine ? `<button type="button" class="value-rating-remove" ${saving ? 'disabled' : ''}>${e(t('Bewertung entfernen'))}</button>` : ''}</span>
       <span class="value-rating-message" role="${failed ? 'alert' : 'status'}">${failed ? e(t('Bewertung konnte nicht gespeichert werden. Bitte erneut versuchen.')) : ''}</span>`;
     // Hovering or focusing a star fills every star up to it. Leaving restores the saved vote.
     const starRow = group.querySelector<HTMLElement>('.value-rating-stars')!;
