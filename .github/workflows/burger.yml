@@ -9,7 +9,8 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: burger-prices
+  # Shared queue for all category scans: they run one after another and never publish at the same time.
+  group: category-prices
   cancel-in-progress: false
 jobs:
   refresh:
