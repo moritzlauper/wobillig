@@ -23,7 +23,12 @@ import { fileURLToPath } from 'node:url'
 
 const hier = dirname(fileURLToPath(import.meta.url))
 const UA = 'wobillig-kino/1.0 (+https://wobillig.ch)'
-const MAX_SEITEN = 3
+// Tiefer Scan (KINO_TIEFE=tief) liest bis zu zehn Unterseiten je Kino statt drei.
+const TIEF = process.env.KINO_TIEFE === 'tief'
+const MAX_SEITEN = TIEF ? 10 : 3
+// KI-Budget in USD. Ohne Budget (0) oder ohne ANTHROPIC_API_KEY liest der Lauf nur per Regex.
+const KI_BUDGET_USD = Number(process.env.KI_BUDGET_USD) || 0
+let kiAusgegeben = 0
 
 export const KINOS = [
   { name: 'Filmpodium', url: 'https://www.filmpodium.ch/' },
@@ -216,8 +221,31 @@ function kiAufgabe(kino, text) {
   ].join('\n')
 }
 
+// Preise je Million Token wie in scraper/ai.py. Die Reserve rechnet mit dem höheren Satz.
+const EINGABE_PREIS = 0.10
+const AUSGABE_PREIS = 0.50
+const GROSSE_EINGABE_PREIS = 0.50
+const GROSSE_AUSGABE_PREIS = 2.50
+const GRENZE_EINGABE_TOKEN = 100_000
+const MAX_AUSGABE_TOKEN = 2000
+
+export function kiKosten(usage) {
+  const eingabe = usage.input_tokens ?? 0
+  const ausgabe = usage.output_tokens ?? 0
+  const [preisEingabe, preisAusgabe] = eingabe <= GRENZE_EINGABE_TOKEN ? [EINGABE_PREIS, AUSGABE_PREIS] : [GROSSE_EINGABE_PREIS, GROSSE_AUSGABE_PREIS]
+  return (eingabe * preisEingabe + ausgabe * preisAusgabe) / 1_000_000
+}
+
+export function kiReserve(aufgabe) {
+  // Ein Token entspricht grob drei Zeichen, damit die Reserve auch bei deutschem Text reicht.
+  const eingabe = Math.ceil(aufgabe.length / 3)
+  return (eingabe * GROSSE_EINGABE_PREIS + MAX_AUSGABE_TOKEN * GROSSE_AUSGABE_PREIS) / 1_000_000
+}
+
 // Fragt die Claude-API nach den Preisen einer Seite. Wirft bei Fehlern, der Aufrufer fällt dann auf den Regex zurück.
 export async function kiPreise(text, kino, schluessel) {
+  const aufgabe = kiAufgabe(kino, text)
+  if (kiAusgegeben + kiReserve(aufgabe) > KI_BUDGET_USD) throw new Error('KI-Budget erschöpft')
   const antwort = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -228,13 +256,14 @@ export async function kiPreise(text, kino, schluessel) {
     body: JSON.stringify({
       model: KI_MODELL,
       max_tokens: 2000,
-      messages: [{ role: 'user', content: kiAufgabe(kino, text) }],
+      messages: [{ role: 'user', content: aufgabe }],
     }),
     signal: AbortSignal.timeout(60_000),
   })
   if (!antwort.ok) throw new Error(`KI-API HTTP ${antwort.status}`)
 
   const daten = await antwort.json()
+  kiAusgegeben += kiKosten(daten.usage ?? {})
   const inhalt = (daten.content ?? []).filter((block) => block.type === 'text').map((block) => block.text).join('')
   const array = inhalt.match(/\[[\s\S]*\]/)
   if (!array) return []
@@ -266,7 +295,7 @@ async function pruefen(kino, geprueft) {
   for (const { url, html } of texte) {
     const text = textOf(html)
     let funde = null
-    if (schluessel) {
+    if (schluessel && KI_BUDGET_USD > 0) {
       try {
         funde = await kiPreise(text, kino.name, schluessel)
       } catch (fehlerObjekt) {
@@ -327,8 +356,9 @@ async function main() {
   const kinos = []
   for (const kino of KINOS) kinos.push(await pruefen(kino, geprueft))
 
-  writeFileSync(ausgabe, JSON.stringify({ checkedOn: geprueft, cinemas: kinos }, null, 2) + '\n')
+  writeFileSync(ausgabe, JSON.stringify({ checkedOn: geprueft, ki: { budgetUsd: KI_BUDGET_USD, ausgegebenUsd: Number(kiAusgegeben.toFixed(4)) }, cinemas: kinos }, null, 2) + '\n')
   console.log(vergleich(kinos, geprueft))
+  if (KI_BUDGET_USD > 0) console.log(`\nKI-Budget: ${kiAusgegeben.toFixed(3)} USD von ${KI_BUDGET_USD.toFixed(2)} USD verbraucht, ${TIEF ? 'tiefer' : 'normaler'} Scan.`)
 
   const mitPreisen = kinos.filter((kino) => kino.preise.some((eintrag) => KATEGORIEN.includes(eintrag.kategorie)))
   if (mitPreisen.length === 0) {

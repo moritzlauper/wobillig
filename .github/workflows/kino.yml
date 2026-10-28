@@ -6,6 +6,15 @@ name: Kino Zürich
 
 on:
   workflow_dispatch:
+    inputs:
+      ki_budget_usd:
+        description: Haiku 5.5 budget in USD for reading the cinema pages (0 reads only by regex)
+        type: number
+        default: 3
+      tief:
+        description: Deep scan, up to ten subpages per cinema instead of three
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -30,8 +39,10 @@ jobs:
 
       - name: Preise suchen und vergleichen
         env:
-          # Optional. Ohne Secret liest der Lauf die Preise nur per Regex aus der Seite.
+          # Optional. Ohne Secret oder mit Budget 0 liest der Lauf die Preise nur per Regex aus der Seite.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          KI_BUDGET_USD: ${{ inputs.ki_budget_usd || 0 }}
+          KINO_TIEFE: ${{ inputs.tief && 'tief' || 'normal' }}
         run: node scripts/kino-preise.mjs >> "$GITHUB_STEP_SUMMARY"
 
       - name: Rohdaten als Artefakt ablegen
