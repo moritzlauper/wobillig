@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-27T21:09:14.887946+00:00",
-  "discoveredAt": "2026-10-27T20:52:00.278664+00:00",
+  "generatedAt": "2026-10-28T11:46:17.645856+00:00",
+  "discoveredAt": "2026-10-28T11:26:37.992791+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -62,7 +62,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:31.550596+00:00"
+      "checkedAt": "2026-10-28T11:27:14.492941+00:00"
     },
     {
       "id": "node/345525759",
@@ -140,7 +140,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-27T20:52:40.512615+00:00"
+      "checkedAt": "2026-10-28T11:27:53.101202+00:00"
     },
     {
       "id": "node/279180962",
@@ -198,7 +198,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-27T20:52:02.515732+00:00"
+      "checkedAt": "2026-10-28T11:26:41.082267+00:00"
     },
     {
       "id": "node/4868072666",
@@ -236,6 +236,38 @@
       "offers": [],
       "scrapeStatus": "pending",
       "checkedAt": null
+    },
+    {
+      "id": "node/4869996367",
+      "name": "Chickeria",
+      "lat": 47.3777738,
+      "lon": 8.5264426,
+      "type": "fast_food",
+      "address": "Langstrasse 83",
+      "postcode": "8004",
+      "website": "https://chickeria.ch/details/chickeria-zuerich-langstrasse/",
+      "cuisine": [
+        "chicken"
+      ],
+      "openingHours": "Su-Th 10:00-22:00; Fr-Sa 10:00-02:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Kebab Wrap",
+          "foodType": "doner",
+          "portionType": "wrap",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 10.9,
+          "sourceUrl": "https://www.chickeria.ch/products/prod-13-kebab-wrap/",
+          "observedAt": "2026-10-28T11:27:56.624980+00:00",
+          "confidence": "automatic",
+          "evidence": "Kebab Wrap 10.90",
+          "alcoholFree": true
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-28T11:28:50.233409+00:00"
     },
     {
       "id": "node/8476045611",
@@ -291,7 +323,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:38.268820+00:00"
+      "checkedAt": "2026-10-28T11:27:27.335621+00:00"
     },
     {
       "id": "node/565524652",
@@ -311,7 +343,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-27T20:52:00.341998+00:00"
+      "checkedAt": "2026-10-28T11:26:38.082817+00:00"
     },
     {
       "id": "node/5378024770",
@@ -331,7 +363,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-27T20:52:00.327524+00:00"
+      "checkedAt": "2026-10-28T11:26:38.166457+00:00"
     },
     {
       "id": "node/11761779035",
@@ -349,7 +381,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:05.231795+00:00"
+      "checkedAt": "2026-10-28T11:26:44.517800+00:00"
     },
     {
       "id": "node/313115222",
@@ -387,7 +419,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:56.025752+00:00"
+      "checkedAt": "2026-10-28T11:27:56.624918+00:00"
     },
     {
       "id": "node/344660930",
@@ -442,7 +474,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:53:09.576366+00:00"
+      "checkedAt": "2026-10-28T11:28:49.045990+00:00"
     },
     {
       "id": "node/315314715",
@@ -480,7 +512,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:01.848014+00:00"
+      "checkedAt": "2026-10-28T11:26:41.248688+00:00"
     },
     {
       "id": "node/11278373439",
@@ -578,7 +610,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-27T20:52:00.338237+00:00"
+      "checkedAt": "2026-10-28T11:26:38.172617+00:00"
     },
     {
       "id": "node/3909362593",
@@ -599,7 +631,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:07.726332+00:00"
+      "checkedAt": "2026-10-28T11:26:49.698568+00:00"
     },
     {
       "id": "node/11780802149",
@@ -672,8 +704,8 @@
       "openingHours": null,
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "partial",
-      "checkedAt": "2026-10-27T20:52:02.729730+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-28T11:26:39.472647+00:00"
     },
     {
       "id": "node/10310405298",
@@ -691,7 +723,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:03.573235+00:00"
+      "checkedAt": "2026-10-28T11:26:40.763407+00:00"
     },
     {
       "id": "node/6911864195",
@@ -707,7 +739,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:21.079830+00:00"
+      "checkedAt": "2026-10-28T11:26:55.638320+00:00"
     },
     {
       "id": "node/1024029494",
@@ -806,7 +838,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:10.040172+00:00"
+      "checkedAt": "2026-10-28T11:26:45.290753+00:00"
     },
     {
       "id": "node/11534189928",
@@ -824,7 +856,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-27T20:52:02.792243+00:00"
+      "checkedAt": "2026-10-28T11:26:38.409273+00:00"
     },
     {
       "id": "node/7932162722",
@@ -842,7 +874,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:11.478471+00:00"
+      "checkedAt": "2026-10-28T11:26:47.693548+00:00"
     },
     {
       "id": "node/7815132988",
@@ -898,7 +930,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:06.674774+00:00"
+      "checkedAt": "2026-10-28T11:26:40.768427+00:00"
     },
     {
       "id": "node/8785727518",
@@ -916,7 +948,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:12.619688+00:00"
+      "checkedAt": "2026-10-28T11:26:49.834890+00:00"
     },
     {
       "id": "node/660560664",
@@ -956,7 +988,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-27T20:52:21.990312+00:00"
+      "checkedAt": "2026-10-28T11:26:57.877752+00:00"
     },
     {
       "id": "node/632562120",
