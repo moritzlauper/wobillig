@@ -1,0 +1,21 @@
+name: Sushi Zürich
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "sushi/**"
+      - "scripts/sushi-zuerich.mjs"
+      - ".github/workflows/sushi-zuerich.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  vergleich:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preise pro Stück vergleichen
+        run: node scripts/sushi-zuerich.mjs sushi/zuerich.json >> "$GITHUB_STEP_SUMMARY"

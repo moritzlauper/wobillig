@@ -1,0 +1,21 @@
+name: Getränke Zürich
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "getraenke/**"
+      - "scripts/getraenke-zuerich.mjs"
+      - ".github/workflows/getraenke-zuerich.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  vergleich:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preise pro 100 ml vergleichen
+        run: node scripts/getraenke-zuerich.mjs getraenke/zuerich.json >> "$GITHUB_STEP_SUMMARY"

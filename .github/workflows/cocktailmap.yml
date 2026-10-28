@@ -1,0 +1,46 @@
+name: Cocktailkarte Zürich
+
+# Baut die Cocktailkarte neu. Zuerst kommen Bars und Kartengeometrie aus OpenStreetMap,
+# danach werden die Websites der Bars nach den Cocktailnamen aus cocktailmap/src/cocktails.mjs
+# durchsucht. Das Ergebnis ist cocktailmap/site/ (index.html und data.json) und liegt als
+# Artefakt "cocktailmap" am Lauf. Die Seite wird nicht automatisch veröffentlicht.
+# Läuft von Hand unter "Actions" und jeden Montag.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cocktailmap
+  cancel-in-progress: false
+
+jobs:
+  karte:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Bars und Kartengeometrie aus OpenStreetMap laden
+        run: node cocktailmap/src/fetch-osm.mjs
+
+      - name: Websites der Bars nach Cocktails durchsuchen
+        run: node cocktailmap/src/scan-menus.mjs >> "$GITHUB_STEP_SUMMARY"
+
+      - name: data.json erzeugen
+        run: node cocktailmap/src/build.mjs >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Seite als Artefakt ablegen
+        uses: actions/upload-artifact@v4
+        with:
+          name: cocktailmap
+          path: cocktailmap/site/
+          retention-days: 30

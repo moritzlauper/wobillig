@@ -1,0 +1,21 @@
+name: Glace Zürich
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "glace/**"
+      - "scripts/glace-zuerich.mjs"
+      - ".github/workflows/glace-zuerich.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  vergleich:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preise pro Kugel vergleichen
+        run: node scripts/glace-zuerich.mjs glace/zuerich.json >> "$GITHUB_STEP_SUMMARY"

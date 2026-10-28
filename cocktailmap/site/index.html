@@ -1,0 +1,625 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Cocktailkarte Zürich</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: Rezept und Vergleich in einer Spalte, Karte und Barliste ab 900px nebeneinander.
+   Farben: Zürichsee-Blau für Wasser, Campari-Rot für Treffer, neutrales Grün-Grau für den Rest. */
+:root {
+  --bg: #F4F5F0;
+  --surface: #FFFFFF;
+  --ink: #16211D;
+  --muted: #5B6862;
+  --line: #D9DED8;
+  --accent: #B3162A;
+  --accent-ink: #FFFFFF;
+  --water: #B9D6E2;
+  --land: #E8ECE5;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1412;
+    --surface: #151E1B;
+    --ink: #E8EEEA;
+    --muted: #97A59E;
+    --line: #2A3631;
+    --accent: #FF6A5C;
+    --accent-ink: #0E1412;
+    --water: #1F3A47;
+    --land: #18221F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1412;
+  --surface: #151E1B;
+  --ink: #E8EEEA;
+  --muted: #97A59E;
+  --line: #2A3631;
+  --accent: #FF6A5C;
+  --accent-ink: #0E1412;
+  --water: #1F3A47;
+  --land: #18221F;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.5 var(--body);
+  padding-block: 32px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.page { max-width: 1120px; margin: 0 auto; display: grid; gap: 48px; min-width: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.15; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.45rem, 3.5vw, 1.9rem); letter-spacing: -0.01em; }
+h3 { font-size: 1.35rem; }
+p { margin: 0; }
+.lede { max-width: 64ch; margin-top: 16px; color: var(--muted); }
+.meta { margin-top: 14px; font-size: 0.875rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.section-head { display: grid; gap: 6px; margin-bottom: 18px; }
+.hint { color: var(--muted); font-size: 0.9375rem; max-width: 64ch; }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+button, input { font: inherit; color: inherit; }
+button:focus-visible, a:focus-visible, circle:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.chip:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Rezept */
+.recipe {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  min-width: 0;
+}
+@media (max-width: 760px) { .recipe { grid-template-columns: minmax(0, 1fr); } }
+.recipe-meta { margin-top: 6px; color: var(--muted); font-size: 0.9375rem; }
+.recipe-method { margin-top: 14px; max-width: 60ch; }
+.ingredients { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 0.9375rem; }
+.ingredients td { padding: 9px 0; border-bottom: 1px solid var(--line); }
+.ingredients tr:first-child td { border-top: 1px solid var(--line); }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0; }
+.facts dt { font-size: 0.8125rem; color: var(--muted); letter-spacing: 0.01em; }
+.facts dd { margin: 2px 0 0; font-family: var(--display); font-size: 1.75rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.note { margin-top: 18px; font-size: 0.875rem; color: var(--muted); max-width: 52ch; }
+.profile { margin-top: 22px; display: grid; gap: 10px; }
+.profile-row { display: grid; grid-template-columns: 90px auto; align-items: center; gap: 12px; font-size: 0.9375rem; }
+.meter { display: inline-flex; gap: 4px; }
+.meter i { width: 26px; height: 8px; border-radius: 4px; background: var(--line); display: block; }
+.meter i.on { background: var(--accent); }
+
+/* Karte und Liste */
+.map-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--land);
+  overflow: hidden;
+  min-width: 0;
+}
+.map-card svg { display: block; width: 100%; height: auto; }
+.water { fill: var(--water); stroke: var(--water); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.water .shore { fill: none; }
+.river { fill: none; stroke: var(--water); stroke-width: 3; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+.boundary { fill: none; stroke: var(--muted); stroke-opacity: 0.35; stroke-width: 1; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; }
+.dot { fill: var(--ink); fill-opacity: 0.55; stroke: var(--surface); stroke-width: 2; cursor: pointer; }
+.dot.dim { fill-opacity: 0.22; }
+.dot.hit { fill: var(--accent); fill-opacity: 1; }
+.dot.active { stroke: var(--ink); stroke-width: 4; }
+.map-label { font: 600 22px var(--body); fill: var(--ink); paint-order: stroke; stroke: var(--land); stroke-width: 6px; stroke-linejoin: round; pointer-events: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; padding: 12px 16px; font-size: 0.8125rem; color: var(--muted); border-top: 1px solid var(--line); background: var(--surface); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 22px 0 14px; min-width: 0; }
+.search {
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.search::placeholder { color: var(--muted); }
+.count { font-size: 0.9375rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.bars-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; min-width: 0; }
+@media (min-width: 900px) { .bars-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
+.bar-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); max-height: 520px; overflow-y: auto; min-width: 0; }
+.bar-item {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  padding: 12px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.bar-list li:last-child .bar-item { border-bottom: 0; }
+.bar-item[aria-pressed="true"] { background: var(--land); }
+.bar-name { font-weight: 600; overflow-wrap: anywhere; }
+.bar-addr { font-size: 0.875rem; color: var(--muted); overflow-wrap: anywhere; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.badge { font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.badge.hit { border-color: var(--accent); color: var(--accent); }
+.empty { padding: 20px 16px; color: var(--muted); font-size: 0.9375rem; }
+
+.detail { padding: 22px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); min-width: 0; }
+.detail dl { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 16px 0 0; }
+.detail dt { font-size: 0.8125rem; color: var(--muted); }
+.detail dd { margin: 2px 0 0; overflow-wrap: anywhere; }
+.detail a { color: var(--accent); font-weight: 600; }
+.match-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.match-list a { color: var(--accent); font-weight: 600; }
+
+/* Vergleich */
+.compare-picker { margin-bottom: 18px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.compare { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 0.9375rem; }
+.compare th, .compare td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.compare thead th { font-family: var(--display); font-size: 1.05rem; text-align: right; }
+.compare thead th:first-child { text-align: left; }
+.compare tbody th { text-align: left; font-weight: 500; color: var(--muted); white-space: nowrap; }
+.compare tbody tr:last-child th, .compare tbody tr:last-child td { border-bottom: 0; }
+.bars-compare { display: grid; gap: 14px; margin-top: 22px; }
+.bar-row { display: grid; grid-template-columns: minmax(0, 130px) minmax(0, 1fr) 72px; align-items: center; gap: 12px; font-size: 0.9375rem; }
+.track { height: 14px; border-radius: 7px; background: var(--land); overflow: hidden; }
+.track span { display: block; height: 100%; background: var(--accent); border-radius: 7px; }
+.track-label { font-variant-numeric: tabular-nums; text-align: right; }
+
+footer { font-size: 0.8125rem; color: var(--muted); max-width: 70ch; border-top: 1px solid var(--line); padding-top: 20px; }
+footer p + p { margin-top: 6px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main class="page">
+  <header>
+    <h1>Cocktailkarte Zürich</h1>
+    <p class="lede">Die Bars stammen aus OpenStreetMap. Welche Cocktails sie führen, sucht ein Skript auf den Websites der Bars. Ein fehlender Treffer heisst deshalb nur, dass die Website den Namen nicht nennt. Ob die Bar den Cocktail trotzdem führt, lässt sich so nicht sagen.</p>
+    <p class="meta" id="meta">Daten werden geladen.</p>
+  </header>
+
+  <section aria-labelledby="h-cocktail">
+    <div class="section-head">
+      <h2 id="h-cocktail">Cocktail wählen</h2>
+      <p class="hint">Der Cocktail bestimmt die Rezeptangaben und die Treffer auf der Karte.</p>
+    </div>
+    <div class="chips" id="cocktail-chips" role="group" aria-label="Cocktail wählen"></div>
+    <div class="recipe" id="recipe" style="margin-top: 18px;" aria-live="polite"></div>
+  </section>
+
+  <section aria-labelledby="h-map">
+    <div class="section-head">
+      <h2 id="h-map">Bars auf der Karte</h2>
+      <p class="hint" id="map-hint"></p>
+    </div>
+    <div class="map-card">
+      <svg id="map" role="img" aria-label="Karte von Zürich mit den Bars"></svg>
+      <div class="legend">
+        <span><i class="swatch" style="background: var(--accent);"></i>Treffer auf der Website</span>
+        <span><i class="swatch" style="background: var(--ink); opacity: 0.55;"></i>ohne Treffer</span>
+        <span><i class="swatch" style="background: var(--water);"></i>See und Flüsse</span>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <input class="search" id="q" type="search" placeholder="Bar oder Strasse suchen" aria-label="Bar oder Strasse suchen">
+      <div class="chips" id="filters" role="group" aria-label="Filter"></div>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+
+    <div class="bars-layout" style="margin-top: 14px;">
+      <ul class="bar-list" id="bar-list" aria-label="Bars"></ul>
+      <div class="detail" id="detail" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-compare">
+    <div class="section-head">
+      <h2 id="h-compare">Cocktails vergleichen</h2>
+      <p class="hint">Bis zu drei Cocktails markieren. Der Alkoholgehalt ergibt sich aus den Standardmengen des Rezepts.</p>
+    </div>
+    <div class="chips compare-picker" id="compare-chips" role="group" aria-label="Cocktails zum Vergleich"></div>
+    <div id="compare"></div>
+  </section>
+
+  <footer>
+    <p id="sources"></p>
+    <p>Rezepte sind Standardrezepte. Die Geschmacksprofile sind eine Einschätzung und keine Messung. Ein Standardgetränk enthält in der Schweiz 10 g reinen Alkohol.</p>
+  </footer>
+</main>
+
+<script>
+const DIFFICULTY = { 1: "einfach", 2: "mittel", 3: "anspruchsvoll" };
+const PROFILE = [["bitter", "Bitter"], ["sweet", "Süsse"], ["sour", "Frische"]];
+const FILTERS = [["matchOnly", "Mit Treffer"], ["outdoor", "Terrasse"], ["wheelchair", "Rollstuhlzugang"]];
+const READ = new Set(["treffer", "keine_treffer"]);
+const MAX_COMPARE = 3;
+
+const nf = new Intl.NumberFormat("de-CH", { maximumFractionDigits: 1 });
+const dateFmt = new Intl.DateTimeFormat("de-CH", { dateStyle: "long" });
+
+const state = {
+  cocktail: "negroni",
+  bar: null,
+  query: "",
+  matchOnly: false,
+  outdoor: false,
+  wheelchair: false,
+  compare: ["negroni", "aperol-spritz", "gin-tonic"],
+};
+
+let data;
+let cocktailById;
+let projection;
+
+const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+const hasMatch = (bar, cocktailId) => bar.menu.some((match) => match.cocktail === cocktailId);
+const safeHref = (url) => (/^https?:\/\//i.test(url || "") ? esc(url) : null);
+const meter = (value) => `<span class="meter" role="img" aria-label="${value} von 3">${[1, 2, 3].map((n) => `<i class="${n <= value ? "on" : ""}"></i>`).join("")}</span>`;
+
+function makeProjection(bars) {
+  let minLat = Math.min(...bars.map((b) => b.lat));
+  let maxLat = Math.max(...bars.map((b) => b.lat));
+  let minLon = Math.min(...bars.map((b) => b.lon));
+  let maxLon = Math.max(...bars.map((b) => b.lon));
+  const padLat = (maxLat - minLat) * 0.06;
+  const padLon = (maxLon - minLon) * 0.06;
+  minLat -= padLat;
+  maxLat += padLat;
+  minLon -= padLon;
+  maxLon += padLon;
+  const kx = Math.cos(((minLat + maxLat) / 2) * Math.PI / 180) * 111320;
+  const ky = 111320;
+  const scale = 1000 / ((maxLon - minLon) * kx);
+  return {
+    width: 1000,
+    height: Math.round((maxLat - minLat) * ky * scale),
+    project: (lat, lon) => [(lon - minLon) * kx * scale, (maxLat - lat) * ky * scale],
+  };
+}
+
+function ringPath(points) {
+  return points.map(([lat, lon], i) => {
+    const [x, y] = projection.project(lat, lon);
+    return `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`;
+  }).join("");
+}
+
+function isClosed(points) {
+  const first = points[0];
+  const last = points[points.length - 1];
+  return first[0] === last[0] && first[1] === last[1];
+}
+
+function visibleBars() {
+  const q = state.query.trim().toLowerCase();
+  return data.bars.filter((bar) => {
+    if (state.matchOnly && !hasMatch(bar, state.cocktail)) return false;
+    if (state.outdoor && !bar.outdoorSeating) return false;
+    if (state.wheelchair && bar.wheelchair !== "yes") return false;
+    if (q && !`${bar.name} ${bar.address ?? ""}`.toLowerCase().includes(q)) return false;
+    return true;
+  });
+}
+
+function renderMeta() {
+  const counts = data.menuScan.statusCounts;
+  const read = (counts.treffer ?? 0) + (counts.keine_treffer ?? 0);
+  const hits = data.bars.filter((bar) => bar.menu.length > 0).length;
+  const parts = [`${data.bars.length} Bars`, `${read} Websites gelesen`, `${hits} mit mindestens einem Treffer`];
+  document.getElementById("meta").textContent = parts.join(" · ");
+  const osm = data.osmTimestamp ? dateFmt.format(new Date(data.osmTimestamp)) : "unbekannt";
+  const scan = data.menuScan.scannedAt ? dateFmt.format(new Date(data.menuScan.scannedAt)) : "unbekannt";
+  document.getElementById("sources").textContent = `Kartendaten: OpenStreetMap, Stand ${osm}. Websites abgesucht am ${scan}. © OpenStreetMap-Mitwirkende, ODbL.`;
+}
+
+function renderCocktailChips() {
+  document.getElementById("cocktail-chips").innerHTML = data.cocktails.map((c) =>
+    `<button class="chip" type="button" data-cocktail="${c.id}" aria-pressed="${c.id === state.cocktail}">${esc(c.name)}</button>`,
+  ).join("");
+}
+
+function renderRecipe() {
+  const c = cocktailById.get(state.cocktail);
+  const hits = data.bars.filter((bar) => hasMatch(bar, c.id)).length;
+  document.getElementById("recipe").innerHTML = `
+    <div>
+      <h3>${esc(c.name)}</h3>
+      <p class="recipe-meta">Basis: ${esc(c.base)} · Glas: ${esc(c.glass)} · ${DIFFICULTY[c.difficulty]}</p>
+      <p class="recipe-method">${esc(c.method)}</p>
+      <table class="ingredients">
+        <caption class="visually-hidden">Zutaten von ${esc(c.name)}</caption>
+        <tbody>${c.ingredients.map((item) => `
+          <tr>
+            <td>${esc(item.name)}</td>
+            <td class="num">${item.ml} ml</td>
+            <td class="num muted">${item.abv ? `${nf.format(item.abv)}%` : "ohne Alkohol"}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <dl class="facts">
+        <div><dt>Alkohol pro Glas</dt><dd>${nf.format(c.grams)} g</dd></div>
+        <div><dt>Standardgläser</dt><dd>${nf.format(c.standardDrinks)}</dd></div>
+        <div><dt>Alkoholgehalt</dt><dd>${nf.format(c.abv)}%</dd></div>
+        <div><dt>Volumen</dt><dd>${c.volume} ml</dd></div>
+      </dl>
+      <p class="note">Berechnet aus den Mengen vor dem Verdünnen durch Eis. Auf den Websites von ${hits} ${hits === 1 ? "Bar" : "Bars"} wird dieser Cocktail genannt.</p>
+      <div class="profile">
+        ${PROFILE.map(([key, label]) => `<div class="profile-row"><span>${label}</span>${meter(c.profile[key])}</div>`).join("")}
+      </div>
+    </div>`;
+}
+
+function renderMap() {
+  const visible = new Set(visibleBars().map((bar) => bar.id));
+  const c = cocktailById.get(state.cocktail);
+  const { width, height, project } = projection;
+  const geo = data.geo;
+
+  const lakes = geo.lakes.map((ring) => {
+    const d = ringPath(ring);
+    return isClosed(ring) ? `<path class="water" d="${d}Z"/>` : `<path class="water" d="${d}" fill="none"/>`;
+  }).join("");
+  const rivers = geo.rivers.map((river) => `<path class="river" d="${ringPath(river.line)}"/>`).join("");
+  const boundary = geo.boundary.map((line) => `<path class="boundary" d="${ringPath(line)}"/>`).join("");
+
+  const dots = data.bars.filter((bar) => visible.has(bar.id)).map((bar) => {
+    const [x, y] = project(bar.lat, bar.lon);
+    const classes = ["dot"];
+    if (hasMatch(bar, c.id)) classes.push("hit");
+    else classes.push("dim");
+    if (bar.id === state.bar) classes.push("active");
+    return `<circle class="${classes.join(" ")}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" tabindex="0" role="button" data-bar="${esc(bar.id)}" aria-label="${esc(bar.name)}"><title>${esc(bar.name)}</title></circle>`;
+  }).join("");
+
+  const active = state.bar ? data.bars.find((bar) => bar.id === state.bar) : null;
+  let label = "";
+  if (active && visible.has(active.id)) {
+    const [x, y] = project(active.lat, active.lon);
+    label = `<text class="map-label" x="${(x + 14).toFixed(1)}" y="${(y + 6).toFixed(1)}">${esc(active.name)}</text>`;
+  }
+
+  document.getElementById("map").setAttribute("viewBox", `0 0 ${width} ${height}`);
+  document.getElementById("map").innerHTML = `${lakes}${rivers}${boundary}<g>${dots}</g>${label}`;
+}
+
+function renderMapHint() {
+  const c = cocktailById.get(state.cocktail);
+  const hits = data.bars.filter((bar) => hasMatch(bar, c.id));
+  const text = hits.length === 0
+    ? `Keine gelesene Website nennt ${c.name}. Karten, die nur als Bild oder PDF vorliegen, lassen sich so nicht finden.`
+    : `${hits.length} ${hits.length === 1 ? "Bar nennt" : "Bars nennen"} ${c.name} auf ihrer Website. Die Punkte in Rot sind diese Bars.`;
+  document.getElementById("map-hint").textContent = text;
+}
+
+function renderToolbar() {
+  document.getElementById("filters").innerHTML = FILTERS.map(([key, label]) =>
+    `<button class="chip" type="button" data-filter="${key}" aria-pressed="${state[key]}">${label}</button>`,
+  ).join("");
+}
+
+function renderCount() {
+  const visible = visibleBars().length;
+  document.getElementById("count").textContent = `${visible} von ${data.bars.length} Bars sichtbar`;
+}
+
+function renderBarList() {
+  const visible = visibleBars();
+  const list = document.getElementById("bar-list");
+  if (visible.length === 0) {
+    list.innerHTML = `<li class="empty">Keine Bar passt zu diesen Filtern.</li>`;
+    return;
+  }
+  list.innerHTML = visible.map((bar) => {
+    const badges = [
+      hasMatch(bar, state.cocktail) ? `<span class="badge hit">${esc(cocktailById.get(state.cocktail).name)}</span>` : "",
+      bar.outdoorSeating ? `<span class="badge">Terrasse</span>` : "",
+      bar.wheelchair === "yes" ? `<span class="badge">Rollstuhl</span>` : "",
+    ].join("");
+    return `<li><button class="bar-item" type="button" data-bar="${esc(bar.id)}" aria-pressed="${bar.id === state.bar}">
+      <span class="bar-name">${esc(bar.name)}</span>
+      <span class="bar-addr">${esc(bar.address ?? "Adresse in OSM nicht erfasst")}</span>
+      ${badges ? `<span class="badges">${badges}</span>` : ""}
+    </button></li>`;
+  }).join("");
+}
+
+const STATUS_TEXT = {
+  keine_website: "In OpenStreetMap ist keine Website hinterlegt.",
+  keine_treffer: "Die Website nennt keinen der zehn Cocktails.",
+  fehler: "Die Website konnte nicht gelesen werden.",
+  robots: "Die robots.txt der Website erlaubt das Lesen nicht.",
+  ungueltige_url: "Die Website-Adresse in OpenStreetMap ist ungültig.",
+};
+
+function renderDetail() {
+  const target = document.getElementById("detail");
+  const bar = state.bar ? data.bars.find((item) => item.id === state.bar) : null;
+  if (!bar) {
+    target.innerHTML = `<p class="muted">Wähle eine Bar auf der Karte oder in der Liste.</p>`;
+    return;
+  }
+  const wheelchair = { yes: "ja", limited: "eingeschränkt", no: "nein" }[bar.wheelchair] ?? "nicht erfasst";
+  const website = safeHref(bar.website);
+  const matches = bar.menu.length
+    ? `<ul class="match-list">${bar.menu.map((match) => {
+        const url = safeHref(match.url);
+        const name = cocktailById.get(match.cocktail)?.name ?? match.cocktail;
+        return `<li>${esc(name)}${url ? ` · <a href="${url}" target="_blank" rel="noopener noreferrer">Seite öffnen</a>` : ""}</li>`;
+      }).join("")}</ul>`
+    : `<p class="muted">${esc(STATUS_TEXT[bar.menuStatus] ?? "Keine Angabe.")}</p>`;
+  target.innerHTML = `
+    <h3>${esc(bar.name)}</h3>
+    <dl>
+      <div><dt>Adresse</dt><dd>${esc(bar.address ?? "In OpenStreetMap nicht erfasst")}</dd></div>
+      <div><dt>Öffnungszeiten (OpenStreetMap)</dt><dd>${esc(bar.opening ?? "Nicht erfasst")}</dd></div>
+      <div><dt>Telefon</dt><dd>${esc(bar.phone ?? "Nicht erfasst")}</dd></div>
+      <div><dt>Website</dt><dd>${website ? `<a href="${website}" target="_blank" rel="noopener noreferrer">${esc(bar.website)}</a>` : "Nicht erfasst"}</dd></div>
+      <div><dt>Terrasse / Rollstuhl</dt><dd>${bar.outdoorSeating ? "Terrasse vorhanden" : "Keine Terrasse erfasst"} · Rollstuhl: ${wheelchair}</dd></div>
+      <div><dt>Cocktails auf der Website</dt><dd>${matches}</dd></div>
+    </dl>`;
+}
+
+function renderCompareChips() {
+  const full = state.compare.length >= MAX_COMPARE;
+  document.getElementById("compare-chips").innerHTML = data.cocktails.map((c) => {
+    const picked = state.compare.includes(c.id);
+    return `<button class="chip" type="button" data-compare="${c.id}" aria-pressed="${picked}" ${full && !picked ? "disabled" : ""}>${esc(c.name)}</button>`;
+  }).join("");
+}
+
+function renderCompare() {
+  const target = document.getElementById("compare");
+  const picked = state.compare.map((id) => cocktailById.get(id)).filter(Boolean);
+  if (picked.length === 0) {
+    target.innerHTML = `<p class="muted">Noch kein Cocktail markiert.</p>`;
+    return;
+  }
+  const hitCount = (id) => data.bars.filter((bar) => hasMatch(bar, id)).length;
+  const maxGrams = Math.max(...picked.map((c) => c.grams));
+  const rows = [
+    ["Basis", (c) => esc(c.base)],
+    ["Glas", (c) => esc(c.glass)],
+    ["Schwierigkeit", (c) => DIFFICULTY[c.difficulty]],
+    ["Volumen", (c) => `${c.volume} ml`],
+    ["Alkoholgehalt", (c) => `${nf.format(c.abv)}%`],
+    ["Alkohol pro Glas", (c) => `${nf.format(c.grams)} g`],
+    ["Standardgläser", (c) => nf.format(c.standardDrinks)],
+    ["Bitter", (c) => meter(c.profile.bitter)],
+    ["Süsse", (c) => meter(c.profile.sweet)],
+    ["Frische", (c) => meter(c.profile.sour)],
+    ["Bars mit Treffer", (c) => hitCount(c.id)],
+  ];
+  target.innerHTML = `
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th scope="col"><span class="visually-hidden">Merkmal</span></th>${picked.map((c) => `<th scope="col">${esc(c.name)}</th>`).join("")}</tr></thead>
+        <tbody>${rows.map(([label, cell]) => `<tr><th scope="row">${label}</th>${picked.map((c) => `<td class="num">${cell(c)}</td>`).join("")}</tr>`).join("")}</tbody>
+      </table>
+    </div>
+    <div class="bars-compare" aria-label="Alkohol pro Glas im Vergleich">
+      ${picked.map((c) => `
+        <div class="bar-row">
+          <span>${esc(c.name)}</span>
+          <div class="track"><span style="width: ${(c.grams / maxGrams * 100).toFixed(1)}%"></span></div>
+          <span class="track-label">${nf.format(c.grams)} g</span>
+        </div>`).join("")}
+    </div>`;
+}
+
+function renderAll() {
+  renderCocktailChips();
+  renderRecipe();
+  renderMapHint();
+  renderMap();
+  renderToolbar();
+  renderCount();
+  renderBarList();
+  renderDetail();
+  renderCompareChips();
+  renderCompare();
+}
+
+function selectBar(id) {
+  state.bar = state.bar === id ? null : id;
+  renderMap();
+  renderBarList();
+  renderDetail();
+  renderCount();
+}
+
+document.addEventListener("click", (event) => {
+  const cocktailButton = event.target.closest("[data-cocktail]");
+  if (cocktailButton) {
+    state.cocktail = cocktailButton.dataset.cocktail;
+    renderAll();
+    return;
+  }
+  const compareButton = event.target.closest("[data-compare]");
+  if (compareButton && !compareButton.disabled) {
+    const id = compareButton.dataset.compare;
+    state.compare = state.compare.includes(id)
+      ? state.compare.filter((item) => item !== id)
+      : [...state.compare, id].slice(-MAX_COMPARE);
+    renderCompareChips();
+    renderCompare();
+    return;
+  }
+  const filterButton = event.target.closest("[data-filter]");
+  if (filterButton) {
+    const key = filterButton.dataset.filter;
+    state[key] = !state[key];
+    renderToolbar();
+    renderMap();
+    renderCount();
+    renderBarList();
+    return;
+  }
+  const barButton = event.target.closest("[data-bar]");
+  if (barButton) {
+    selectBar(barButton.dataset.bar);
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if ((event.key === "Enter" || event.key === " ") && event.target.matches("circle[data-bar]")) {
+    event.preventDefault();
+    selectBar(event.target.dataset.bar);
+  }
+});
+
+document.getElementById("q").addEventListener("input", (event) => {
+  state.query = event.target.value;
+  renderMap();
+  renderCount();
+  renderBarList();
+});
+
+async function init() {
+  try {
+    const response = await fetch("data.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    data = await response.json();
+  } catch {
+    document.getElementById("meta").textContent = "Die Daten konnten nicht geladen werden. Bitte die Seite neu laden.";
+    return;
+  }
+  cocktailById = new Map(data.cocktails.map((c) => [c.id, c]));
+  projection = makeProjection(data.bars);
+  renderMeta();
+  renderAll();
+}
+
+init();
+</script>
