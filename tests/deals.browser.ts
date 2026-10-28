@@ -18,12 +18,14 @@ for (const width of [390, 1280]) test(`private promotion preview searches and ex
   await expect(page.locator('.deal-marker.candidate')).toHaveCount(1);
   await page.getByLabel('Produkt oder Marke').fill('Kaffee');
   await expect(page.locator('#offers .deal')).toHaveCount(0);
-  await expect(page.locator('.deal-marker')).toHaveCount(0);
+  // Unmatched OSM candidates stay on the map while the candidate option is on; only markers with offers must go.
+  await expect(page.locator('.deal-marker:not(.candidate)')).toHaveCount(0);
   await page.getByLabel('Produkt oder Marke').fill('zucker');
   await expect(page.locator('#offers .deal')).toHaveCount(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
   await page.screenshot({ path: `/tmp/wobillig-deals-preview-${width}.png`, fullPage: true });
   await page.clock.fastForward(61000);
   await expect(page.locator('#offers .deal')).toHaveCount(0);
-  await expect(page.locator('.deal-marker')).toHaveCount(0);
+  // Unmatched OSM candidates stay on the map while the candidate option is on; only markers with offers must go.
+  await expect(page.locator('.deal-marker:not(.candidate)')).toHaveCount(0);
 });

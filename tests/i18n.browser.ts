@@ -10,7 +10,8 @@ test.describe('English comparison pages without JavaScript', () => {
       expect(response?.status()).toBe(200);
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
       await expect(page.locator('h1')).toHaveText(metadata(city, type, 'en').heading);
-      await expect(page.getByRole('columnheader', { name: 'Venue / address' })).toBeVisible();
+      // A guide without recorded prices shows its empty-state text instead of the table; both are readable.
+      await expect(page.getByRole('columnheader', { name: 'Venue / address' }).or(page.getByText('No comparable prices have been recorded yet.'))).toBeVisible();
       await expect(page.getByRole('heading', { name: ['espresso', 'cappuccino'].includes(type) ? 'Which offers can be compared?' : 'Price range' })).toBeVisible();
       await page.getByRole('link', { name: 'Deutsch', exact: true }).click();
       await expect(page.locator('html')).toHaveAttribute('lang', 'de-CH');

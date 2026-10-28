@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
-import type { Dataset } from '../src/data';
+import { isGlutenFreePizza, type Dataset } from '../src/data';
 
 test('cheap prices follow pizza selection and search while the shortcut is active', async ({ page }) => {
   const data = JSON.parse(readFileSync('public/data/pizza.json', 'utf8')) as Dataset;
@@ -68,8 +68,11 @@ for (const width of [320, 1280]) {
   test(`pizza search compares the selected menu item at ${width}px`, async ({ page }) => {
     const data = JSON.parse(readFileSync('public/data/pizza.json', 'utf8')) as Dataset;
     for (const bar of data.bars) bar.pizzaMenu = [];
+    // Gluten-free pizzas elsewhere would add a filter option, so drop them. The venues stay for the pizza threshold.
+    for (const bar of data.bars) bar.offers = bar.offers.filter(offer => !(offer.pizzaType && isGlutenFreePizza(offer, bar)));
     const venue = data.bars.find(b => b.type === 'restaurant' && b.offers.length)!;
-    venue.offers = [{ ...venue.offers[0], name: 'Margherita', priceChf: 16 }];
+    // The real first offer may carry toppings that put it into another pizza group, so state the toppings explicitly.
+    venue.offers = [{ ...venue.offers[0], name: 'Margherita', pizzaType: 'margherita', priceChf: 16, ingredients: 'Tomaten, Mozzarella' }];
     venue.pizzaMenu = [{ ...venue.offers[0], name: 'Prosciutto', pizzaType: 'other', priceChf: 21,
       ingredients: 'Tomaten, Mozzarella, Schinken' }];
     await page.route('**/data/pizza.json', route => route.fulfill({ json: data }));

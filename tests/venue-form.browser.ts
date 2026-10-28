@@ -28,6 +28,8 @@ test('mobile visitors can create a venue, reload it and add a price', async ({ p
   await dialog.getByLabel('Name', { exact: true }).fill('Neues Testcafé');
   await dialog.getByLabel('Strasse und Hausnummer').fill('Testgasse 12');
   await dialog.getByLabel('Postleitzahl').fill('3011');
+  // The venue type is required; without a choice the browser blocks the submit and no validation message appears.
+  await dialog.getByLabel('Art des Lokals').selectOption({ index: 1 });
   await dialog.getByRole('button', { name: 'Lokal speichern', exact: true }).click();
   await expect(dialog.getByRole('alert')).toContainText('Kartenposition');
   expect(venues).toHaveLength(0);
@@ -80,6 +82,7 @@ test('manual map placement works when address search fails; save failure keeps t
   await dialog.getByRole('button', { name: 'Adresse auf Karte suchen' }).click();
   await expect(dialog.locator('#venue-search-status')).toContainText('nicht verfügbar');
   await dialog.getByRole('button', { name: 'Kartenmitte übernehmen' }).click();
+  await dialog.getByLabel('Art des Lokals').selectOption({ index: 1 });
   await dialog.getByRole('button', { name: 'Lokal speichern', exact: true }).click();
   await expect(dialog.getByRole('alert')).toHaveText('Speichern gerade nicht möglich.');
   await expectEvent(page, 'venue_failed', { city: 'bern', language: 'de', stage: 'request' });
