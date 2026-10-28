@@ -4,6 +4,7 @@ import {
   filterBars,
   cheapPriceLimit,
   isVenueEligible,
+  matchesVenueType,
   isBeerMix,
   isComparableOffer,
   isCurrentOffer,
@@ -165,6 +166,11 @@ describe("coffee comparisons", () => {
         expect(filterBars([venue], { ...f, drink, type: "fast_food" })).toHaveLength(type === "fast_food" ? 1 : 0);
       }
     }
+  });
+  it("hides fast food under the default venue type, also for burgers", () => {
+    const venue = { ...b, type: "fast_food" };
+    expect(matchesVenueType(venue, { ...f, drink: "burger" })).toBe(false);
+    expect(matchesVenueType(venue, { ...f, drink: "burger", type: "fast_food" })).toBe(true);
   });
   it("never converts coffee prices into a fictional volume", () => {
     expect(cost(cappuccino, "half")).toBe(5.5);

@@ -252,7 +252,7 @@ function venueCategory(type: string): string {
 }
 
 export function matchesVenueType(bar: Bar, f: Filters): boolean {
-  if (!f.type) return bar.type !== "fast_food" || f.drink === "burger";
+  if (!f.type) return bar.type !== "fast_food";
   return f.type === "all" || venueCategory(bar.type) === f.type;
 }
 
