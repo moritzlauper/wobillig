@@ -3,7 +3,7 @@ import { build } from 'vite';
 import { readFileSync } from 'node:fs';
 import { cities, defaultCityLocale } from '../src/cities';
 import { coffeePrices, guidePrices, guideDataset, cityIds, cityPath, guideContent, guidePath, guideTypes, metadata, siteOrigin, mapLink } from '../src/seo';
-import type { Dataset } from '../src/data';
+import { coffeeLabels, type Dataset } from '../src/data';
 import { locales } from '../src/i18n';
 
 describe('search-engine-visible production pages', () => {
@@ -19,7 +19,7 @@ describe('search-engine-visible production pages', () => {
   it('ships unique titles, a single canonical and visible price content on all city and guide pages without JavaScript', () => {
     const titles = new Set<string>();
     const pages = cityIds.flatMap(city => locales.flatMap(locale =>
-      [undefined, ...guideTypes].map(type => ({ meta: metadata(city, type, locale), source: locale === 'en' ? 'Price source</a>' : 'Preisquelle</a>', priced: !type || guidePrices(JSON.parse(readFileSync(`public/data/${cities[city].data}${guideDataset(type)}.json`, 'utf8')), type).length > 0 }))));
+      [undefined, ...guideTypes].map(type => ({ meta: metadata(city, type, locale), source: locale === 'en' ? 'Price source</a>' : 'Preisquelle</a>', priced: type ? guidePrices(JSON.parse(readFileSync(`public/data/${cities[city].data}${guideDataset(type)}.json`, 'utf8')), type).length > 0 : Object.keys(coffeeLabels).some(sort => coffeePrices(JSON.parse(readFileSync(`public/data/${cities[city].data}coffee.json`, 'utf8')), sort).length > 0) }))));
     for (const { meta, source, priced } of pages) {
       const html = files.get(meta.path === '/' ? 'index.html' : `${meta.path.slice(1)}/index.html`)!;
       expect(html).toBeTruthy();
@@ -30,7 +30,7 @@ describe('search-engine-visible production pages', () => {
       if (priced) {
         expect(html).toContain('<table>');
         expect(html).toContain(source);
-      } else expect(html).toMatch(/Noch keine vergleichbaren Preise erfasst\.|No comparable prices have been recorded yet\./);
+      } else expect(html).toMatch(/Noch keine vergleichbaren Preise erfasst\.|Für diese Sorte sind noch keine vergleichbaren Preise erfasst\.|No comparable prices have been recorded yet\.|No comparable prices have been recorded for this type yet\./);
       expect(html).not.toContain('<!-- SEO_');
       expect(html).not.toContain('noindex');
       const data = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)![1]);
