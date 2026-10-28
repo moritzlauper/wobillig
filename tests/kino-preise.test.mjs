@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { kategorie, kiFundePruefen, kiKosten, kiReserve, preiseAus, preisLinks, regelnAus, textOf } from '../scripts/kino-preise.mjs'
+import { internLinks, kategorie, kiFundePruefen, kiKosten, kiReserve, preiseAus, preisLinks, regelnAus, textOf } from '../scripts/kino-preise.mjs'
 
 const hier = dirname(fileURLToPath(import.meta.url))
 const seite = readFileSync(join(hier, 'fixtures', 'kino-filmpodium-tickets.html'), 'utf8')
@@ -19,6 +19,11 @@ test('KI-Kosten: Sätze wie in scraper/ai.py, die Reserve deckt eine volle Seite
   // 30 000 Zeichen sind rund 10 000 Token Eingabe und 2 000 Token Ausgabe, also 0,01 USD.
   assert.ok(Math.abs(kiReserve('x'.repeat(30000)) - 0.01) < 1e-12)
   assert.ok(kiReserve('x'.repeat(30000)) >= kiKosten({ input_tokens: 10000, output_tokens: 2000 }))
+})
+
+test('Tiefer Scan: interne Links, Preisseiten zuerst, externe und Impressum-Links fallen weg', () => {
+  const html = '<a href="/programm">Programm</a><a href="/preise">Preise</a><a href="/impressum">Impressum</a><a href="https://extern.example/tickets">Extern</a><a href="/kino/abo">Abo</a>'
+  assert.deepEqual(internLinks(html, 'https://kino.example/'), ['https://kino.example/preise', 'https://kino.example/programm', 'https://kino.example/kino/abo'])
 })
 
 test('Filmpodium: Eintrittspreise werden den Kategorien zugeordnet', () => {

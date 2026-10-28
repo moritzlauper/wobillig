@@ -25,7 +25,11 @@ const hier = dirname(fileURLToPath(import.meta.url))
 const UA = 'wobillig-kino/1.0 (+https://wobillig.ch)'
 // Tiefer Scan (KINO_TIEFE=tief) liest bis zu zehn Unterseiten je Kino statt drei.
 const TIEF = process.env.KINO_TIEFE === 'tief'
-const MAX_SEITEN = TIEF ? 10 : 3
+const MAX_SEITEN = 3
+// Der tiefe Scan folgt allen internen Links ab der Startseite, bis zu dieser Zahl an Seiten je Kino.
+const MAX_SEITEN_TIEF = 60
+// Nur Seiten mit diesen Wörtern gehen an die KI, sonst bleibt der Aufruf im Tiefe-Modus teuer.
+const PREIS_HINWEIS = /CHF|Fr\.|Preis|Tarif|Eintritt|Ticket|Legi|AHV|Abo/i
 // KI-Budget in USD. Ohne Budget (0) oder ohne ANTHROPIC_API_KEY liest der Lauf nur per Regex.
 const KI_BUDGET_USD = Number(process.env.KI_BUDGET_USD) || 0
 let kiAusgegeben = 0
@@ -270,6 +274,46 @@ export async function kiPreise(text, kino, schluessel) {
   return kiFundePruefen(JSON.parse(array[0]), text)
 }
 
+// Alle internen Links einer Seite, Preislinks zuerst. Datei-, Impressum- und Ticketnummern-Links fallen weg.
+export function internLinks(html, basis) {
+  const host = new URL(basis).host
+  const gefunden = new Set()
+  for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"#]+)"/gi)) {
+    let url
+    try {
+      url = new URL(decodeEntities(href), basis)
+    } catch {
+      continue
+    }
+    if (url.host !== host || KEIN_LINK.test(url.pathname)) continue
+    url.hash = ''
+    gefunden.add(url.href)
+  }
+  return [...gefunden].sort((a, b) => rang(a) - rang(b))
+}
+
+// Liest bis zu max Seiten derselben Website, breit über die internen Links, Preisseiten zuerst.
+async function tiefeSeiten(startUrl, startHtml, max) {
+  const besucht = new Set([startUrl])
+  const warteschlange = internLinks(startHtml, startUrl)
+  const seiten = []
+  const fehler = []
+  while (warteschlange.length && seiten.length < max) {
+    const url = warteschlange.shift()
+    if (besucht.has(url)) continue
+    besucht.add(url)
+    try {
+      const html = await abrufen(url)
+      seiten.push({ url, html })
+      for (const link of internLinks(html, url)) if (!besucht.has(link)) warteschlange.push(link)
+      warteschlange.sort((a, b) => rang(a) - rang(b))
+    } catch (fehlerObjekt) {
+      fehler.push(`${url}: ${fehlerObjekt.message}`)
+    }
+  }
+  return { seiten, fehler }
+}
+
 async function pruefen(kino, geprueft) {
   const seiten = []
   const fehler = []
@@ -280,13 +324,18 @@ async function pruefen(kino, geprueft) {
     return { name: kino.name, quelle: kino.url, geprueft, status: `Abruf fehlgeschlagen: ${fehlerObjekt.message}`, seiten: [], preise: [] }
   }
 
-  const unterseiten = preisLinks(hauptseite, kino.url).slice(0, MAX_SEITEN)
   const texte = [{ url: kino.url, html: hauptseite }]
-  for (const url of unterseiten) {
-    try {
-      texte.push({ url, html: await abrufen(url) })
-    } catch (fehlerObjekt) {
-      fehler.push(`${url}: ${fehlerObjekt.message}`)
+  if (TIEF) {
+    const tief = await tiefeSeiten(kino.url, hauptseite, MAX_SEITEN_TIEF)
+    texte.push(...tief.seiten)
+    fehler.push(...tief.fehler)
+  } else {
+    for (const url of preisLinks(hauptseite, kino.url).slice(0, MAX_SEITEN)) {
+      try {
+        texte.push({ url, html: await abrufen(url) })
+      } catch (fehlerObjekt) {
+        fehler.push(`${url}: ${fehlerObjekt.message}`)
+      }
     }
   }
 
@@ -294,6 +343,7 @@ async function pruefen(kino, geprueft) {
   const preise = []
   for (const { url, html } of texte) {
     const text = textOf(html)
+    if (TIEF && !PREIS_HINWEIS.test(text)) continue
     let funde = null
     if (schluessel && KI_BUDGET_USD > 0) {
       try {
