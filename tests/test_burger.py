@@ -90,6 +90,18 @@ class BurgerDataset(unittest.TestCase):
         self.assertEqual(result['status'], 'skipped')
         self.assertEqual(result['offers'], [])
 
+    def test_unreadable_pdf_fails_the_venue_instead_of_the_run(self):
+        class BrokenPdf:
+            def get(self, url):
+                return url, 'application/pdf', b'%PDF-1.4 not a complete document'
+        class NoModel:
+            disabled = False
+            def ask(self, blocks, schema, system):
+                raise AssertionError('asked the model about an unreadable PDF')
+        result = scan('Lokal', [{'name': 'Lokal', 'website': URL}], BrokenPdf(), NoModel(), 40, 60, deadline=float('inf'))
+        self.assertEqual(result['status'], 'fetch_failed')
+        self.assertEqual(result['offers'], [])
+
     def test_product_name_marks_lunch_offers(self):
         self.assertEqual(product_name({'name': 'BIG BURGER', 'lunchOnly': True}), 'Big Burger (Mittagskarte)')
 

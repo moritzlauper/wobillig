@@ -20,6 +20,7 @@ import time
 from urllib.parse import urljoin, urlparse, unquote
 
 from bs4 import BeautifulSoup
+from pypdf.errors import PyPdfError
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
 from scraper.cities import ROOT, venue_query
@@ -191,6 +192,10 @@ def scan(name, bars, fetcher, client, max_pages, max_documents, deadline):
                 break
         except ValueError as error:
             result['errors'].append({'url': doc['url'], 'error': str(error)[:150]})
+        except PyPdfError as error:
+            # A PDF that cannot be parsed is unread, so the venue keeps its previous offers.
+            result['errors'].append({'url': doc['url'], 'error': str(error)[:150]})
+            failed = True
     offers = list({(product_name(o), o['priceChf']): o for o in found}.values())
     status = 'priced' if offers else 'fetch_failed' if failed else 'unverified' if unverified else 'no_prices'
     print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, {len(offers)} offers, {status}', flush=True)
