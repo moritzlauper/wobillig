@@ -77,14 +77,15 @@ jobs:
           CATEGORY: ${{ inputs.category }}
           BUDGET: ${{ inputs.ai_budget_usd || 3 }}
           TIEF: ${{ github.event_name == 'schedule' || inputs.tief }}
+          # Three categories share the job limit, so each gets 110 minutes. A single manual category gets 300.
+          MINUTES: ${{ github.event_name == 'schedule' && 110 || 300 }}
         run: |
           FLAG=""
           if [ "$TIEF" = "true" ]; then FLAG="--tief"; fi
           CATS="$CATEGORY"
           if [ "$EVENT" = "schedule" ]; then CATS="cocktail softdrink brot"; fi
-          # Each category gets its own time slice, so three deep runs fit into the job limit.
           for c in $CATS; do
-            python -m scraper.gastro --category "$c" --budget-usd "$BUDGET" --minutes 110 $FLAG
+            python -m scraper.gastro --category "$c" --budget-usd "$BUDGET" --minutes "$MINUTES" $FLAG
           done
 
       - name: Snapshot gastro datasets

@@ -19,6 +19,10 @@ for (const [width, language] of [[320, 'de'], [1280, 'en']] as const) {
     await page.route('**/data/bars.json', route => route.fulfill({ json: data }));
     await page.route('**/data/coffee.json', route => route.fulfill({ json: { ...data, bars: [] } }));
     await page.route('**/data/pizza.json', route => route.fulfill({ json: { ...data, bars: [] } }));
+    // Without this, the location catalogue of all Zürich venues would appear in the beer list.
+    await page.route('**/data/locations.json', route => route.fulfill({ json: { bars: [] } }));
+    await page.route('**/data/burger.json', route => route.fulfill({ json: { bars: [] } }));
+    await page.route('**/data/ramen.json', route => route.fulfill({ json: { bars: [] } }));
     await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
     await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
     await page.setViewportSize({ width, height: 900 });

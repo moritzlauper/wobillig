@@ -3,6 +3,10 @@ import { emptyCategoryCounts } from '../src/categories';
 
 test.beforeEach(async ({ context }) => {
   await context.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
+  // Burger and ramen datasets are published by their scans; the category counts here must not depend on them.
+  for (const dataset of ['burger', 'ramen', 'locations']) {
+    await context.route(`**/data/${dataset}.json`, route => route.fulfill({ json: { bars: [] } }));
+  }
   for (const foodType of ['doner', 'falafel']) {
     await context.route(`**/data/**${foodType}.json`, route => route.fulfill({ json: {
       bars: [{ type: 'fast_food', offers: Array.from({ length: 50 }, () => ({ foodType, portionType: 'wrap', priceChf: 12 })) }],
