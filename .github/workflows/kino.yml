@@ -1,0 +1,43 @@
+name: Kino Zürich
+
+# Sucht die Eintrittspreise der Zürcher Kinos auf deren Websites (scripts/kino-preise.mjs) und vergleicht
+# sie. Läuft von Hand. Ergebnis: Vergleich in der Zusammenfassung des Laufs, Rohdaten als Artefakt
+# "kinopreise". Kein Commit zurück auf main.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kino-preise
+  cancel-in-progress: false
+
+jobs:
+  preise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Skript testen
+        run: node --test tests/kino-preise.test.mjs
+
+      - name: Preise suchen und vergleichen
+        env:
+          # Optional. Ohne Secret liest der Lauf die Preise nur per Regex aus der Seite.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/kino-preise.mjs >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Rohdaten als Artefakt ablegen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kinopreise
+          path: scripts/kino-zuerich.json
+          retention-days: 90
