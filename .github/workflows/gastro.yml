@@ -1,17 +1,20 @@
 name: Refresh cocktail, soft drink and bread prices
 
-# One run per category, Zürich only. Restaurants and bars are read from their websites and the
-# prices are confirmed by Claude Haiku 5.5. Deep scan is on by default.
+# Restaurants and bars in Zürich, read from their websites and confirmed by Claude Haiku 5.5. Runs every
+# three weeks for all three categories with the deep scan, and by hand for one category or all of them.
+
 on:
+  schedule:
+    - cron: "30 6 * * 1"
   workflow_dispatch:
     inputs:
       category:
-        description: Which price scan to run
+        description: Which price scan to run by hand
         type: choice
         options: [cocktail, softdrink, brot]
         default: cocktail
       ai_budget_usd:
-        description: Haiku 5.5 API budget in USD (hard cap 3.00)
+        description: Haiku 5.5 API budget in USD per category (scheduled runs use 3)
         type: number
         default: 3
       tief:
@@ -32,39 +35,65 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 340
     steps:
+      - name: Check three-week refresh cadence
+        id: cadence
+        shell: python
+        run: |
+          import os
+          from datetime import date, datetime, timezone
+
+          anchor = date(2026, 10, 19)
+          today = datetime.now(timezone.utc).date()
+          due = today >= anchor and (today - anchor).days % 21 == 0
+          refresh = os.environ['GITHUB_EVENT_NAME'] == 'workflow_dispatch' or due
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'refresh={str(refresh).lower()}\n')
+
       - uses: actions/checkout@v4
+        if: steps.cadence.outputs.refresh == 'true'
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
+        if: steps.cadence.outputs.refresh == 'true'
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: scraper/requirements.txt
 
-      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr && pip install -r scraper/requirements.txt
+      - if: steps.cadence.outputs.refresh == 'true'
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr && pip install -r scraper/requirements.txt
 
       - name: Test gastro rules
+        if: steps.cadence.outputs.refresh == 'true'
         run: python -m unittest discover -s tests -p 'test_gastro.py'
 
       - name: Crawl restaurant and bar websites and confirm prices with Claude
+        if: steps.cadence.outputs.refresh == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EVENT: ${{ github.event_name }}
           CATEGORY: ${{ inputs.category }}
           BUDGET: ${{ inputs.ai_budget_usd || 3 }}
-          TIEF: ${{ inputs.tief }}
+          TIEF: ${{ github.event_name == 'schedule' || inputs.tief }}
         run: |
           FLAG=""
           if [ "$TIEF" = "true" ]; then FLAG="--tief"; fi
-          python -m scraper.gastro --category "$CATEGORY" --budget-usd "$BUDGET" $FLAG
+          CATS="$CATEGORY"
+          if [ "$EVENT" = "schedule" ]; then CATS="cocktail softdrink brot"; fi
+          # Each category gets its own time slice, so three deep runs fit into the job limit.
+          for c in $CATS; do
+            python -m scraper.gastro --category "$c" --budget-usd "$BUDGET" --minutes 110 $FLAG
+          done
 
       - name: Snapshot gastro datasets
         id: snapshot
+        if: steps.cadence.outputs.refresh == 'true'
         run: python -m scraper.publish --snapshot "$RUNNER_TEMP/gastro-snapshot.json"
 
       - name: Save gastro datasets
-        if: steps.snapshot.outcome == 'success'
+        if: steps.cadence.outputs.refresh == 'true' && steps.snapshot.outcome == 'success'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

@@ -17,9 +17,9 @@ on:
         options: [full, pizza_only, ai_only, estimates_only, photos_only]
         default: full
       ai_budget_usd:
-        description: Haiku 5.5 API budget per city in USD (default 5.00, hard cap 20.00; no request cap)
+        description: Haiku 5.5 API budget per city in USD (default 4.00, hard cap 20.00; no request cap)
         type: number
-        default: 5.00
+        default: 4.00
       exhaustive_scan:
         description: Extra-deep manual scan (120 menu pages, 60 AI documents per venue)
         type: boolean

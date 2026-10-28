@@ -67,7 +67,7 @@ Die Standorte kommen aus OpenStreetMap, abgefragt über Overpass (`overpass.osm.
 
 Der Python-Scraper folgt der Website eines Lokals und liest HTML-Seiten, PDF-Karten und mit Tesseract-OCR auch Bildkarten. Er hält sich an `robots.txt` und Crawl-Delay, wartet pro Host mindestens eine Sekunde und umgeht keine Logins, Captchas oder Sperren. Übernommen wird ein Preis nur, wenn Produkt, Menge und Preis eindeutig zusammengehören. Karten, die nur visuell eindeutig sind, liegen geprüft mit SHA-256-Prüfsumme in `scraper/reviewed_*.json` und gelten nur, solange sich die Datei nicht ändert.
 
-Was der Parser nicht lesen kann, etwa gescannte PDF-Seiten oder Menübilder, geht an Claude Haiku 5.5. Das Budget dafür liegt bei 5 USD pro Stadt und Lauf. Solche Preise sind als «KI-erkannt» markiert. Einträge von Besucherinnen und Besuchern haben Vorrang vor Scraper-Preisen, ausser eine nachweislich neuere Karte nennt für dasselbe Produkt einen anderen Preis.
+Was der Parser nicht lesen kann, etwa gescannte PDF-Seiten oder Menübilder, geht an Claude Haiku 5.5. Das Budget dafür liegt bei 4 USD pro Stadt und Lauf. Solche Preise sind als «KI-erkannt» markiert. Einträge von Besucherinnen und Besuchern haben Vorrang vor Scraper-Preisen, ausser eine nachweislich neuere Karte nennt für dasselbe Produkt einen anderen Preis.
 
 ## Lokal entwickeln
 

@@ -4,7 +4,7 @@ name: Cocktailkarte Zürich
 # danach werden die Websites der Bars nach den Cocktailnamen aus cocktailmap/src/cocktails.mjs
 # durchsucht. Das Ergebnis ist cocktailmap/site/ (index.html und data.json) und liegt als
 # Artefakt "cocktailmap" am Lauf. Die Seite wird nicht automatisch veröffentlicht.
-# Läuft von Hand unter "Actions" und jeden Montag.
+# Läuft von Hand unter "Actions" und alle drei Wochen (Montag, gleicher Takt wie die Preisscans).
 
 on:
   workflow_dispatch:
@@ -23,22 +23,42 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
+      - name: Check three-week refresh cadence
+        id: cadence
+        shell: python
+        run: |
+          import os
+          from datetime import date, datetime, timezone
+
+          anchor = date(2026, 10, 19)
+          today = datetime.now(timezone.utc).date()
+          due = today >= anchor and (today - anchor).days % 21 == 0
+          refresh = os.environ['GITHUB_EVENT_NAME'] == 'workflow_dispatch' or due
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'refresh={str(refresh).lower()}\n')
+
       - uses: actions/checkout@v4
+        if: steps.cadence.outputs.refresh == 'true'
 
       - uses: actions/setup-node@v4
+        if: steps.cadence.outputs.refresh == 'true'
         with:
           node-version: 22
 
       - name: Bars und Kartengeometrie aus OpenStreetMap laden
+        if: steps.cadence.outputs.refresh == 'true'
         run: node cocktailmap/src/fetch-osm.mjs
 
       - name: Websites der Bars nach Cocktails durchsuchen
+        if: steps.cadence.outputs.refresh == 'true'
         run: node cocktailmap/src/scan-menus.mjs >> "$GITHUB_STEP_SUMMARY"
 
       - name: data.json erzeugen
+        if: steps.cadence.outputs.refresh == 'true'
         run: node cocktailmap/src/build.mjs >> "$GITHUB_STEP_SUMMARY"
 
       - name: Seite als Artefakt ablegen
+        if: steps.cadence.outputs.refresh == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: cocktailmap

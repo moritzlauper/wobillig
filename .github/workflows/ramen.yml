@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       ai_budget_usd:
-        description: Haiku 5.5 API budget in USD (hard cap 2.00)
+        description: Haiku 5.5 API budget in USD (hard cap 1.00)
         type: number
-        default: 2
+        default: 1
 permissions:
   contents: write
 concurrency:
@@ -53,7 +53,7 @@ jobs:
         if: steps.cadence.outputs.refresh == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          BUDGET: ${{ inputs.ai_budget_usd || 2 }}
+          BUDGET: ${{ inputs.ai_budget_usd || 1 }}
         run: python -m scraper.ramen --budget-usd "$BUDGET"
       - name: Snapshot ramen dataset
         id: snapshot

@@ -1,6 +1,9 @@
 name: Refresh döner and falafel prices
 
 on:
+  schedule:
+    # Same three-week cadence as the city price scan.
+    - cron: "45 5 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -16,34 +19,55 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 340
     steps:
+      - name: Check three-week refresh cadence
+        id: cadence
+        shell: python
+        run: |
+          import os
+          from datetime import date, datetime, timezone
+
+          anchor = date(2026, 10, 19)
+          today = datetime.now(timezone.utc).date()
+          due = today >= anchor and (today - anchor).days % 21 == 0
+          refresh = os.environ['GITHUB_EVENT_NAME'] == 'workflow_dispatch' or due
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'refresh={str(refresh).lower()}\n')
+
       - uses: actions/checkout@v4
+        if: steps.cadence.outputs.refresh == 'true'
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
+        if: steps.cadence.outputs.refresh == 'true'
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: scraper/requirements.txt
 
-      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr && pip install -r scraper/requirements.txt
+      - if: steps.cadence.outputs.refresh == 'true'
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr && pip install -r scraper/requirements.txt
 
       - name: Test street-food rules
+        if: steps.cadence.outputs.refresh == 'true'
         run: python -m unittest discover -s tests -p 'test_streetfood.py'
 
       - name: Crawl döner menus in Zürich
+        if: steps.cadence.outputs.refresh == 'true'
         run: python -m scraper.scrape_streetfood --category doner --discover --limit 0 --max-pages 120
 
       - name: Crawl falafel menus in Zürich
+        if: steps.cadence.outputs.refresh == 'true'
         run: python -m scraper.scrape_streetfood --category falafel --discover --limit 0 --max-pages 120
 
       - name: Snapshot street-food datasets
         id: snapshot
+        if: steps.cadence.outputs.refresh == 'true'
         run: python -m scraper.publish --snapshot "$RUNNER_TEMP/streetfood-snapshot.json"
 
       - name: Save street-food datasets
-        if: steps.snapshot.outcome == 'success'
+        if: steps.cadence.outputs.refresh == 'true' && steps.snapshot.outcome == 'success'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
