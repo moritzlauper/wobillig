@@ -35,7 +35,7 @@ jobs:
           node-version: 22
 
       - name: Skript testen
-        run: node --test tests/kino-preise.test.mjs
+        run: node --test tests/kino-preise.node.mjs
 
       - name: Preise suchen und vergleichen
         env:
