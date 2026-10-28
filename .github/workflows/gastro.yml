@@ -1,0 +1,71 @@
+name: Refresh cocktail, soft drink and bread prices
+
+# One run per category, Zürich only. Restaurants and bars are read from their websites and the
+# prices are confirmed by Claude Haiku 5.5. Deep scan is on by default.
+on:
+  workflow_dispatch:
+    inputs:
+      category:
+        description: Which price scan to run
+        type: choice
+        options: [cocktail, softdrink, brot]
+        default: cocktail
+      ai_budget_usd:
+        description: Haiku 5.5 API budget in USD (hard cap 3.00)
+        type: number
+        default: 3
+      tief:
+        description: Deep scan, more pages and documents per venue
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  # Shared queue for all category scans: they run one after another and never publish at the same time.
+  group: category-prices
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scraper/requirements.txt
+
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr && pip install -r scraper/requirements.txt
+
+      - name: Test gastro rules
+        run: python -m unittest discover -s tests -p 'test_gastro.py'
+
+      - name: Crawl restaurant and bar websites and confirm prices with Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CATEGORY: ${{ inputs.category }}
+          BUDGET: ${{ inputs.ai_budget_usd || 3 }}
+          TIEF: ${{ inputs.tief }}
+        run: |
+          FLAG=""
+          if [ "$TIEF" = "true" ]; then FLAG="--tief"; fi
+          python -m scraper.gastro --category "$CATEGORY" --budget-usd "$BUDGET" $FLAG
+
+      - name: Snapshot gastro datasets
+        id: snapshot
+        run: python -m scraper.publish --snapshot "$RUNNER_TEMP/gastro-snapshot.json"
+
+      - name: Save gastro datasets
+        if: steps.snapshot.outcome == 'success'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python -m scraper.publish --snapshot "$RUNNER_TEMP/gastro-snapshot.json" --branch "$GITHUB_REF_NAME"

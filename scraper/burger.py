@@ -76,8 +76,8 @@ def menu_links(body, url):
     return list(dict.fromkeys(u for u in result if not skip_source(u)))
 
 
-def crawl(start, fetcher, max_pages):
-    """Collect documents for the AI: pages mentioning burgers, menu PDFs and images."""
+def crawl(start, fetcher, max_pages, mention=BURGER):
+    """Collect documents for the AI: pages mentioning the item, menu PDFs and images."""
     queue, visited, errors, docs = [start], set(), [], []
     while queue and len(visited) < max_pages:
         url = queue.pop(0)
@@ -96,7 +96,7 @@ def crawl(start, fetcher, max_pages):
                 for node in soup(['script', 'style']):
                     node.decompose()
                 text = soup.get_text('\n', strip=True)
-                if BURGER.search(text):
+                if mention.search(text):
                     docs.append({'url': final, 'kind': 'text/plain', 'body': text, 'mentioned': True})
                 links = menu_links(body, final)
             elif kind.startswith('image/'):
