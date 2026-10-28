@@ -33,6 +33,11 @@ class StreetfoodTests(unittest.TestCase):
                 self.assertEqual((offers[0]['foodType'], offers[0]['portionType'], offers[0]['priceChf']), (category, portion, price))
                 self.assertEqual((offers[0]['sourceUrl'], offers[0]['observedAt']), (URL, STAMP))
 
+    def test_product_card_takes_the_single_price_not_the_menu_price(self):
+        body = '<div><h1>Kebab Wrap</h1><p>Saftiges Pouletkebab im Tortilla Wrap</p><h4>EINZELN</h4><div>10.90</div><h4>MENÜ</h4><div>15.90</div></div>'.encode()
+        offers = food_html(body, URL, STAMP, 'doner')
+        self.assertEqual([(o['foodType'], o['portionType'], o['priceChf']) for o in offers], [('doner', 'wrap', 10.9)])
+
     def test_no_boxes_plates_menus_mixed_fillings_or_ambiguous_prices(self):
         rejected = ['Döner im Taschenbrot 12.50', 'Kebab 11', 'Poulet Kebab im Brot 12',
                     'Falafel Sandwich 11', 'Falafel im Fladenbrot 10', 'Dürüm oder Taschenbrot 12', 'Döner Box 12', 'Döner Teller 18', 'Döner Menü 15', 'Dürüm mit Pommes 14',

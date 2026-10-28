@@ -70,6 +70,22 @@ def unique(offers):
     return list({(o['portionType'], o['meatType'], o['priceChf']): o for o in offers}.values())
 
 
+def single_portion_price(heading):
+    """Product cards print "EINZELN 10.90 MENÜ 15.90": only the single portion price qualifies."""
+    name = heading.get_text(' ', strip=True)
+    for ancestor in heading.parents:
+        strings = list(ancestor.stripped_strings)
+        if not strings or strings[0] != name:
+            return ''
+        if 'EINZELN' not in strings:
+            continue
+        if strings.count('EINZELN') != 1 or strings.index('EINZELN') + 1 >= len(strings):
+            return ''
+        match = re.fullmatch(r'(?:CHF\s*)?(\d{1,2}[.,]\d{2})', strings[strings.index('EINZELN') + 1])
+        return match.group(1) if match else ''
+    return ''
+
+
 def food_html(body, url, stamp, category):
     soup = BeautifulSoup(body, 'html.parser')
     title = soup.title.get_text(' ', strip=True) if soup.title else ''
@@ -79,7 +95,7 @@ def food_html(body, url, stamp, category):
     for node in soup(['script', 'style', 'nav', 'footer', 'header']):
         node.decompose()
     offers = []
-    for row in soup.select('tr,p,li,div,article,h2,h3,h4,h5,dt'):
+    for row in soup.select('tr,p,li,div,article,h1,h2,h3,h4,h5,dt'):
         text = row.get_text(' ', strip=True)
         if not NAME.search(text) or len(text) > 350:
             continue
@@ -102,6 +118,10 @@ def food_html(body, url, stamp, category):
             price = sibling.get_text(' ', strip=True)
             if re.fullmatch(r'(?:CHF\s*|Fr\.?\s*)?\d{1,2}(?:[.,]\d{1,2}|\.\s*[–—-])?(?:\s*(?:CHF|Fr\.?))?', price, re.I):
                 found = food_row(text + ' ' + price, url, stamp, category)
+        if not found and not PRICE.search(text):
+            price = single_portion_price(row)
+            if price:
+                found = food_row(f'{text} {price}', url, stamp, category)
         offers.extend(found)
     if online:
         for offer in offers:
