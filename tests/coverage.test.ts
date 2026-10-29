@@ -22,7 +22,7 @@ it('does not count old mixed-drink offers as beer coverage', () => {
   expect(coverageLabel([mixed], f)).toBe('1 Lokale · 0 mit Bierpreis · 0 passend zum Filter');
 });
 
-it('averages one cheapest matching price per venue, following the venue type but not search or outdoor filters', () => {
+it('averages one cheapest matching price per venue, following the venue type and price ceiling but not the search', () => {
   const coffee = { ...offer, coffeeType: 'cappuccino', volumeMl: null, priceChf: 5 };
   const venues = [
     bar([coffee, { ...coffee, priceChf: 8 }]),
@@ -32,9 +32,12 @@ it('averages one cheapest matching price per venue, following the venue type but
     { ...bar([{ ...coffee, coffeeType: 'espresso', priceChf: 2 }]), id: '5' },
     { ...bar([{ ...coffee, priceChf: 3, photoSource: { kind: 'google_maps_photo' as const, date: '2020-01-01', dateEvidence: '', dateCheckedAt: '', validUntil: '2020-07-01' } }]), id: '6' },
   ];
-  // Search, price ceiling and outdoor filter do not change the benchmark; the venue type does.
-  expect(cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', max: 1, query: 'no match', outdoor: true, type: 'bar' }))
+  // The search does not change the average; the venue type and the price ceiling do, so it never exceeds the ceiling.
+  expect(cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', query: 'no match', type: 'bar' }))
     .toEqual({ price: 5.5, count: 2 });
+  const capped = cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', max: 5, type: 'bar' });
+  expect(capped!.price).toBeLessThanOrEqual(5);
+  expect(cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', max: 1, type: 'bar' })).toBeUndefined();
   expect(cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', type: 'fast_food' })).toEqual({ price: 1, count: 1 });
   expect(cityAverage(venues, { ...f, drink: 'coffee', coffeeType: 'cappuccino', type: 'cafe' })).toBeUndefined();
 });
@@ -49,6 +52,6 @@ it('uses the chosen beer size, serving format and price comparison', () => {
 });
 
 it('also computes a city benchmark for Margherita', () => {
-  expect(cityAverage([bar([{ ...offer, pizzaType: 'margherita', volumeMl: null, priceChf: 19 }])], { ...f, drink: 'pizza' }))
+  expect(cityAverage([bar([{ ...offer, pizzaType: 'margherita', volumeMl: null, priceChf: 19 }])], { ...f, drink: 'pizza', max: Infinity }))
     .toEqual({ price: 19, count: 1 });
 });

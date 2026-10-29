@@ -75,12 +75,12 @@ describe('initial cheap mode', () => {
       expect(cheapModeFromSearch(new URLSearchParams(query), '0')).toBe(false);
     }
   });
-  it.each(['max=8', 'drink=beer', 'q=Cafe', 'bar=node/1', 'map=abc', 'kreis=2', 'coffeeType=espresso', 'unknown=1'])(
+  it.each(['max=8', 'drink=beer', 'q=Cafe', 'bar=node/1', 'map=abc', 'coffeeType=espresso', 'unknown=1'])(
     'preserves older selection links: %s', query => {
       expect(cheapModeFromSearch(new URLSearchParams(query), '1')).toBe(false);
     });
   it.each([['cheap=1', ''], ['utm_source=newsletter&cheap=1', 'utm_source=newsletter'], ['cheap=0', 'cheap=0'],
-    ['bar=node%2F1&cheap=1', 'bar=node%2F1&cheap=1'], ['coffeeType=espresso&cheap=1', 'coffeeType=espresso&cheap=1'], ['kreis=2&cheap=1', 'kreis=2&cheap=1']])(
+    ['bar=node%2F1&cheap=1', 'bar=node%2F1&cheap=1'], ['coffeeType=espresso&cheap=1', 'coffeeType=espresso&cheap=1']])(
     'keeps default cheap links plain: %s', (query, expected) => {
       const params = new URLSearchParams(query);
       const cheap = cheapModeFromSearch(params, null);

@@ -12,8 +12,7 @@ import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, ty
 import { barLink, shareLink } from './sharing';
 import { cheapModeFromSearch, cheapPreferenceKey, dropDefaultCheap, filtersFromSearch, writeFilters } from './filters';
 import { createExport, downloadExport } from './export';
-import { googleMapsLink, withKnownAddress, locationAtPosition, nearbyLocations, selectableLocations } from './locations';
-import { createDistrictLookup, districtFromSearch, type Districts } from './districts';
+import { googleMapsLink, withKnownAddress, withKnownDetails, locationAtPosition, nearbyLocations, selectableLocations } from './locations';
 import { searchSuggestions } from './search';
 import { createSearchHistory } from './search-history';
 import { searchAddresses, type AddressResult } from './address-search';
@@ -48,57 +47,10 @@ const coffeeOptions = options(translated(coffeeLabels));
 const city = cities[cityId];
 const cityName = t(city.name);
 const dataPath = `${import.meta.env.BASE_URL}data/${city.data}`;
-// Each city filters by its own official boundaries and their open-data source.
-type DistrictTexts = Record<'show' | 'unit' | 'select' | 'all' | 'loading' | 'failed' | 'info' | 'source' | 'sourceName' | 'sourceUrl', string>;
-const districtTextsByCity: Partial<Record<City, DistrictTexts>> = {
-  zurich: {
-    show: t('Kreise anzeigen'), unit: t('Kreis'), select: t('Zürcher Stadtkreis'), all: t('Alle Kreise'), loading: t('Kreise laden …'),
-    failed: t('Kreisgrenzen konnten nicht geladen werden. Bitte «Kreise anzeigen» erneut aktivieren.'),
-    info: t('Kreise: Unter «Filter» lassen sich die Stadtkreise einblenden und per Karte oder Auswahlfeld auswählen. Der Kreisdurchschnitt wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb der gewählten Kreisgrenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.'),
-    source: t('Kreisgrenzen:'), sourceName: t('Stadt Zürich, Stadtkreise (CC0)'), sourceUrl: 'https://data.stadt-zuerich.ch/dataset/geo_stadtkreise',
-  },
-  bern: {
-    show: t('Stadtteile anzeigen'), unit: t('Stadtteil'), select: t('Berner Stadtteil'), all: t('Alle Stadtteile'), loading: t('Stadtteile laden …'),
-    failed: t('Stadtteilgrenzen konnten nicht geladen werden. Bitte «Stadtteile anzeigen» erneut aktivieren.'),
-    info: t('Stadtteile: Unter «Filter» lassen sich die sechs Stadtteile einblenden und per Karte oder Auswahlfeld auswählen. Der Durchschnitt eines Stadtteils wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb seiner Grenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.'),
-    source: t('Stadtteilgrenzen:'), sourceName: t('Stadt Bern, Stadtteile (freie Nutzung)'), sourceUrl: 'https://opendata.swiss/de/dataset/stadtteile',
-  },
-  basel: {
-    show: t('Wohnviertel anzeigen'), unit: t('Wohnviertel'), select: t('Basler Wohnviertel'), all: t('Alle Wohnviertel'), loading: t('Wohnviertel laden …'),
-    failed: t('Wohnviertelgrenzen konnten nicht geladen werden. Bitte «Wohnviertel anzeigen» erneut aktivieren.'),
-    info: t('Wohnviertel: Unter «Filter» lassen sich die 19 Wohnviertel der Stadt Basel einblenden und per Karte oder Auswahlfeld auswählen. Der Durchschnitt eines Wohnviertels wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb seiner Grenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.'),
-    source: t('Wohnviertelgrenzen:'), sourceName: t('Kanton Basel-Stadt, Statistische Raumeinheiten: Wohnviertel (CC BY 4.0)'), sourceUrl: 'https://data.bs.ch/explore/dataset/100042/',
-  },
-  lausanne: {
-    show: t('Quartiere anzeigen'), unit: t('Quartier'), select: t('Lausanner Quartier'), all: t('Alle Quartiere'), loading: t('Quartiere laden …'),
-    failed: t('Quartiergrenzen konnten nicht geladen werden. Bitte «Quartiere anzeigen» erneut aktivieren.'),
-    info: t('Quartiere: Unter «Filter» lassen sich die 18 statistischen Quartiere von Lausanne einblenden und per Karte oder Auswahlfeld auswählen. Der Quartierdurchschnitt berücksichtigt nur Lokale innerhalb seiner Grenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.'),
-    source: t('Quartiergrenzen:'), sourceName: t('Stadt Lausanne, Quartiers statistiques'), sourceUrl: 'https://viageo.ch/md/29cfd252-6b51-4798-92af-6f9aaf229dcc',
-  },
-  geneva: {
-    show: t('Quartiere anzeigen'), unit: t('Quartier'), select: t('Genfer Quartier'), all: t('Alle Quartiere'), loading: t('Quartiere laden …'),
-    failed: t('Quartiergrenzen konnten nicht geladen werden. Bitte «Quartiere anzeigen» erneut aktivieren.'),
-    info: t('Quartiere: Unter «Filter» lassen sich die acht Quartiere der Stadt Genf einblenden und per Karte oder Auswahlfeld auswählen. Der Quartierdurchschnitt berücksichtigt nur Lokale innerhalb seiner Grenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.'),
-    source: t('Quartiergrenzen:'), sourceName: t('Stadt Genf / SITG, Quartiers de la ville de Genève'), sourceUrl: 'https://sitg.ge.ch/donnees/vdg-quartier-ville',
-  },
-  winterthur: {
-    show: t('Stadtkreise anzeigen'), unit: t('Stadtkreis'), select: t('Winterthurer Stadtkreis'), all: t('Alle Stadtkreise'), loading: t('Stadtkreise laden …'),
-    failed: t('Stadtkreisgrenzen konnten nicht geladen werden. Bitte «Stadtkreise anzeigen» erneut aktivieren.'),
-    info: t('Stadtkreise: Unter «Filter» lassen sich die sieben Stadtkreise von Winterthur einblenden und per Karte oder Auswahlfeld auswählen. Der Durchschnitt eines Stadtkreises wird wie der Stadtdurchschnitt berechnet, jedoch nur mit Lokalen innerhalb seiner Grenze. Die Zahl in Klammern nennt die Lokale mit passendem Preis.'),
-    source: t('Stadtkreisgrenzen:'), sourceName: t('Kanton Zürich, Stadtkreise und Quartiere Zürich und Winterthur (freie Nutzung)'), sourceUrl: 'https://opendata.swiss/de/dataset/stadtkreise-und-quartiere-zurich-und-winterthur',
-  },
-};
-// Olten has no district boundaries: its filter stays hidden, so these empty texts are never shown.
-const noDistrictTexts: DistrictTexts = { show: '', unit: '', select: '', all: '', loading: '', failed: '', info: '', source: '', sourceName: '', sourceUrl: '' };
-const districtTexts = districtTextsByCity[cityId] ?? noDistrictTexts;
 const pricesApi = `/api/prices?city=${cityId}`;
 const coffeePageTitle = document.title;
 const initial = new URLSearchParams(location.search);
 const f: Filters = filtersFromSearch(initial);
-const districtState = districtFromSearch(initial, cityId);
-let districtData: Districts | undefined;
-let districtLookup: ReturnType<typeof createDistrictLookup> | undefined;
-let districtsLoading = false;
 const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
@@ -186,10 +138,9 @@ $('app').innerHTML = `
   <label id="alcohol-label"><input id="alcohol-free" type="checkbox"> ${t('Alkoholfrei')}</label>
   <label id="gluten-free-label"><input id="gluten-free" type="checkbox"> ${t('Glutenfrei')}</label>
   <label id="normalize-label"><input id="normalize" type="checkbox"> ${t('Auf 5 dl umrechnen')}</label>
-  <label${city.districts ? '' : ' hidden'}><input id="district-toggle" type="checkbox" aria-controls="district-select-label"> ${districtTexts.show}</label><label id="district-select-label" hidden>${districtTexts.unit} <select id="district-select" aria-label="${districtTexts.select}"><option value="">${districtTexts.all}</option></select></label>
   <button id="reset">${t('Zurücksetzen')}</button>
 </div>
-<div class="status-row"><div class="status-summary" role="status"><strong id="city-average">${e(t('Schnitt {city} {value}', { city: cityName, value: '—' }))}</strong><strong id="district-average" hidden></strong><span id="count">${t('Laden …')}</span></div><div class="mobile-switch" role="group" aria-label="${t('Ansicht')}"><button id="view-map" aria-pressed="true">${t('Karte')}</button><button id="view-list" aria-pressed="false">${t('Liste')}</button></div><div class="status-meta"><small class="refresh-note">${t('Wird alle 3 Wochen aktualisiert')}</small><nav class="city-switch" aria-label="${t('Stadt wechseln')}">${(['zurich', 'bern', 'basel'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, locale()))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('<span aria-hidden="true">/</span>')}<details class="city-more" id="city-more"><summary aria-label="${t('Weitere Städte')}" title="${t('Weitere Städte')}"><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="m3 4.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="city-more-menu">${(['winterthur', 'olten', 'lausanne', 'geneva'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, defaultCityLocale(id, locale())))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('')}<a class="city-request" href="mailto:hello@wobillig.ch?subject=${encodeURIComponent(t('Neue Stadt für wobillig'))}&amp;body=${encodeURIComponent(t('Diese Stadt wünsche ich mir auf wobillig:') + '\r\n\r\n')}" aria-label="${t('Stadt wünschen')}" title="${t('Stadt wünschen')}"><span aria-hidden="true">+</span></a></div></details></nav><button id="data-info" class="text-button">${t('Daten')}</button></div></div>
+<div class="status-row"><div class="status-summary" role="status"><strong id="city-average">${e(t('Schnitt {city} {value}', { city: cityName, value: '—' }))}</strong><span id="count">${t('Laden …')}</span></div><div class="mobile-switch" role="group" aria-label="${t('Ansicht')}"><button id="view-map" aria-pressed="true">${t('Karte')}</button><button id="view-list" aria-pressed="false">${t('Liste')}</button></div><div class="status-meta"><small class="refresh-note">${t('Wird alle 3 Wochen aktualisiert')}</small><nav class="city-switch" aria-label="${t('Stadt wechseln')}">${(['zurich', 'bern', 'basel'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, locale()))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('<span aria-hidden="true">/</span>')}<details class="city-more" id="city-more"><summary aria-label="${t('Weitere Städte')}" title="${t('Weitere Städte')}"><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="m3 4.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="city-more-menu">${(['winterthur', 'olten', 'lausanne', 'geneva'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, defaultCityLocale(id, locale())))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('')}<a class="city-request" href="mailto:hello@wobillig.ch?subject=${encodeURIComponent(t('Neue Stadt für wobillig'))}&amp;body=${encodeURIComponent(t('Diese Stadt wünsche ich mir auf wobillig:') + '\r\n\r\n')}" aria-label="${t('Stadt wünschen')}" title="${t('Stadt wünschen')}"><span aria-hidden="true">+</span></a></div></details></nav><button id="data-info" class="text-button">${t('Daten')}</button></div></div>
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="${t('Lokale')}"><div class="list-tools"><a id="rankings-link" class="rankings-link" href="#kaffeepreise" aria-label="${t('Ranglisten und Quellen')}" title="${t('Ranglisten und Quellen')}">${t('Ranglisten')}</a><select id="sort" aria-label="${t('Sortierung')}">${options({ price: t('Preis aufsteigend'), price_desc: t('Preis absteigend'), name: 'Name A–Z', distance: t('Entfernung') })}</select></div><div id="results"></div></aside>
@@ -223,7 +174,7 @@ $('app').innerHTML = `
   </fieldset></details>
   <p id="form-error" role="alert" hidden></p>
 </form></dialog>
-<dialog id="info" aria-label="${t('Daten')}"><div class="dialog-top"><strong>${t('Daten')}</strong><button id="close-info">${t('Schliessen')}</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">${e(t('Daten für {city} herunterladen', { city: cityName }))}</strong><p>${t('Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.')}</p><div class="download-actions"><button id="download-csv" class="primary" disabled>${t('CSV herunterladen')}</button><button id="download-json" disabled>${t('JSON herunterladen')}</button></div><p class="muted">${t('CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.')}</p><p id="download-status" class="muted" role="status">${t('Daten werden geladen …')}</p></section><p id="coverage"></p><p>${t('Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Suche, Preislimit, «Günstig» und «Draussen sitzen» verändern diesen stadtweiten Vergleichswert nicht. Der Lokaltyp zählt mit: Ohne Auswahl bleiben Imbisse ausgeschlossen. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.')}</p><p>${districtTexts.info} ${districtTexts.source} <a href="${districtTexts.sourceUrl}" target="_blank" rel="noopener noreferrer">${districtTexts.sourceName}</a>.</p>${cityId === 'basel' ? `<p>${t('Draussen sitzen: In Basel zählen neben den Angaben aus OpenStreetMap auch Lokale mit einer gültigen Boulevard-Bewilligung des Kantons. Zugeordnet sind nur Bewilligungen, deren Name und Standort eindeutig zu einem Lokal passen. Saisonbewilligungen zählen nur während der bewilligten Zeit.')} ${t('Bewilligungen:')} <a href="https://data.bs.ch/explore/dataset/100018/" target="_blank" rel="noopener noreferrer">${t('Kanton Basel-Stadt, Allmendbewilligungen (CC BY 4.0)')}</a>.</p>` : ''}<p>${t('Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise und Foto-Uploads behalten Vorrang, ausser eine belegbar neuere Website-Karte nennt einen abweichenden Preis. Quelle, Menge und Datum stehen beim Angebot.')}</p><p>${t('Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.')}</p><p>${t('Bier: Cafés erscheinen mit einem erfassten, aktuellen Bierangebot unabhängig von ihren Öffnungszeiten. Cafés ohne Bierangebot werden auch bei «Ohne passenden Preis anzeigen» ausgeblendet.')}</p><p>${t('Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.')}</p><p><a href="${import.meta.env.BASE_URL.replace(/\/$/, '')}${legalPaths(locale()).privacy}">${t('Wie wobillig deine Daten verarbeitet')}</a><br>${t('Standorte und Karte:')} <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">${t('© OpenStreetMap-Mitwirkende, ODbL')}</a>.</p></dialog>`;
+<dialog id="info" aria-label="${t('Daten')}"><div class="dialog-top"><strong>${t('Daten')}</strong><button id="close-info">${t('Schliessen')}</button></div><section class="data-download" aria-labelledby="download-title"><strong id="download-title">${e(t('Daten für {city} herunterladen', { city: cityName }))}</strong><p>${t('Alle erfassten Angebote für Bier, Kaffee und Pizza, unabhängig von deinen Filtern. Mit Originalpreisen in CHF, Mengen, Quellen, Datum und Prüfstatus sowie verfügbaren gemeinsamen Korrekturen.')}</p><div class="download-actions"><button id="download-csv" class="primary" disabled>${t('CSV herunterladen')}</button><button id="download-json" disabled>${t('JSON herunterladen')}</button></div><p class="muted">${t('CSV: eine Zeile pro Angebot, UTF-8, Semikolon als Trennzeichen. JSON enthält zusätzlich Lokale ohne Preis und die vollständigen Angebotsdetails. Abgelaufene Angebote sind im CSV gekennzeichnet; im JSON bleibt das Fotodatum erhalten.')}</p><p id="download-status" class="muted" role="status">${t('Daten werden geladen …')}</p></section><p id="coverage"></p><p>${t('Der Stadtdurchschnitt verwendet den günstigsten passenden Preis je Lokal für die gewählte Sorte, Biergrösse und Ausschankart. Alkoholfrei und die optionale Umrechnung auf 5 dl werden berücksichtigt. Preislimit, «Günstig» und «Draussen sitzen» werden wie in der Liste berücksichtigt, die Suche nicht. Der Lokaltyp zählt mit: Ohne Auswahl bleiben Imbisse ausgeschlossen. Lokale ohne passenden Preis zählen nicht mit. Bei «Alle» wird das jeweils günstigste passende Angebot verwendet.')}</p>${cityId === 'basel' ? `<p>${t('Draussen sitzen: In Basel zählen neben den Angaben aus OpenStreetMap auch Lokale mit einer gültigen Boulevard-Bewilligung des Kantons. Zugeordnet sind nur Bewilligungen, deren Name und Standort eindeutig zu einem Lokal passen. Saisonbewilligungen zählen nur während der bewilligten Zeit.')} ${t('Bewilligungen:')} <a href="https://data.bs.ch/explore/dataset/100018/" target="_blank" rel="noopener noreferrer">${t('Kanton Basel-Stadt, Allmendbewilligungen (CC BY 4.0)')}</a>.</p>` : ''}<p>${t('Preise stammen aus verlinkten Speise- und Getränkekarten oder wurden von Besuchern eingetragen. Eingetragene Preise und Foto-Uploads behalten Vorrang, ausser eine belegbar neuere Website-Karte nennt einen abweichenden Preis. Quelle, Menge und Datum stehen beim Angebot.')}</p><p>${t('Pizza: Preis pro ganzer, normaler Margherita im Lokal. Grössen können je nach Restaurant abweichen. Kinderpizzen, Spezialvarianten und reine Liefer- oder Take-away-Preise sind ausgeschlossen.')}</p><p>${t('Bier: Cafés erscheinen mit einem erfassten, aktuellen Bierangebot unabhängig von ihren Öffnungszeiten. Cafés ohne Bierangebot werden auch bei «Ohne passenden Preis anzeigen» ausgeblendet.')}</p><p>${t('Stange: 3 dl oder ausdrücklich als Stange bezeichnete kleine Portion; bekannte Flaschen und Dosen sind ausgeschlossen. Fehlt die Ausschankart in der Quelle, wird sie anhand von Menü, Bezeichnung und Menge geschätzt. Solche Angaben sind als «geschätzt» gekennzeichnet und zählen im Ausschank-Filter mit. Fehlende Mengen bleiben offen. Die optionale Umrechnung auf 5 dl ist ein Vergleichspreis.')}</p><p><a href="${import.meta.env.BASE_URL.replace(/\/$/, '')}${legalPaths(locale()).privacy}">${t('Wie wobillig deine Daten verarbeitet')}</a><br>${t('Standorte und Karte:')} <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">${t('© OpenStreetMap-Mitwirkende, ODbL')}</a>.</p></dialog>`;
 
 // Zürich has the most soft drink prices, so they stay visible there next to coffee, beer and pizza.
 const categoryNav = categoryNavigation($('category-navigation'), chooseDrink, dataPath, cityId === 'zurich' ? ['coffee', 'beer', 'pizza', 'softdrink'] : undefined);
@@ -241,7 +192,7 @@ const map = L.map('map', { zoomControl: false }).setView(city.center, 14);
 const openVenueForm = venueForm(cityId, pricesApi, () => selectableLocations(venues, locationCatalogue), (bar, created) => {
   if (!addedVenues.some(b => b.id === bar.id)) addedVenues.push(bar);
   clearAddressSelection(); f.query = ''; f.type = 'all'; f.unknown = true; f.outdoor = false;
-  districtState.selected = undefined; cheapMode = false; f.drink = 'coffee'; selected = bar.id;
+  cheapMode = false; f.drink = 'coffee'; selected = bar.id;
   closeSearchSuggestions(); rebuild(); showBar(bar, 18);
   toast(created ? t('Lokal gespeichert und für alle sichtbar. Du kannst jetzt Preise hinzufügen.') : t('Dieses Lokal ist bereits vorhanden. Du kannst hier Preise hinzufügen oder die Angaben über «Lokal korrigieren» ändern.'));
 });
@@ -287,8 +238,6 @@ const mapLayoutObserver = new ResizeObserver(() => {
 });
 mapLayoutObserver.observe($('map'));
 mapLayoutObserver.observe($('detail'));
-map.createPane('districts').style.zIndex = '350';
-const districtLayer = L.geoJSON(undefined, { pane: 'districts', bubblingMouseEvents: false });
 const layer = L.layerGroup().addTo(map);
 const locationLayer = L.layerGroup().addTo(map);
 const detailMarkersMinZoom = 17;
@@ -327,100 +276,6 @@ function showView(list: boolean) {
   $('view-map').setAttribute('aria-pressed', String(!list)); $('view-list').setAttribute('aria-pressed', String(list));
   map.invalidateSize();
 }
-function inSelectedDistrict(bar: Bar) {
-  return !districtState.enabled || !districtState.selected || !districtLookup || districtLookup(bar) === districtState.selected;
-}
-async function loadDistricts() {
-  if (districtData || districtsLoading) return;
-  districtsLoading = true;
-  renderDistricts();
-  try {
-    const response = await fetch(`${dataPath}districts.json`, { signal: AbortSignal.timeout(15000) });
-    if (!response.ok) throw new Error('Grenzen fehlen');
-    districtData = await response.json() as Districts;
-    districtLookup = createDistrictLookup(districtData);
-    districtLayer.addData(districtData);
-    districtLayer.eachLayer(layer => {
-      const polygon = layer as L.Polygon & { feature: { properties: { number: number } } };
-      const number = polygon.feature.properties.number;
-      polygon.on('click', () => chooseDistrict(districtState.selected === number ? undefined : number));
-      polygon.on('mouseover', () => polygon.setStyle({ weight: 3, fillOpacity: districtState.selected ? .25 : 0 }));
-      polygon.on('mouseout', () => polygon.setStyle(districtStyle(number)));
-    });
-  } catch {
-    districtData = undefined;
-    districtState.enabled = false; districtState.selected = undefined;
-    toast(districtTexts.failed);
-  } finally {
-    districtsLoading = false;
-    render();
-  }
-}
-function districtStyle(number: number): L.PathOptions {
-  const active = districtState.selected === number;
-  return { color: active ? 'var(--blue)' : 'var(--district-line)', weight: active ? 3 : 1.5, fillColor: '#2679c9', fillOpacity: active ? .24 : districtState.selected ? .035 : 0 };
-}
-function chooseDistrict(number: number | undefined) {
-  districtState.selected = number;
-  selected = undefined;
-  render();
-  if (number) {
-    districtLayer.eachLayer(layer => {
-      const polygon = layer as L.Polygon & { feature: { properties: { number: number } } };
-      if (polygon.feature.properties.number === number) map.fitBounds(polygon.getBounds(), { padding: [30, 60], maxZoom: 15 });
-    });
-  }
-}
-function districtName(number: number) {
-  return districtData?.features.find(d => d.properties.number === number)?.properties.name ?? t('Kreis {number}', { number });
-}
-function renderDistricts() {
-  const enabled = districtState.enabled;
-  $<HTMLInputElement>('district-toggle').checked = enabled;
-  $('district-select-label').hidden = !enabled;
-  const select = $<HTMLSelectElement>('district-select');
-  select.disabled = !districtData;
-  $('district-average').hidden = true;
-  if (!enabled || !districtData) {
-    districtLayer.remove();
-    select.innerHTML = `<option value="">${districtsLoading ? districtTexts.loading : districtTexts.all}</option>`;
-    return;
-  }
-  if (!map.hasLayer(districtLayer)) districtLayer.addTo(map);
-  const averages = new Map(districtData.features.map(d => {
-    const number = d.properties.number;
-    return [number, cityAverage(bars.filter(b => districtLookup!(b) === number), f)];
-  }));
-  const label = (number: number) => {
-    const average = averages.get(number);
-    return `${e(districtName(number))} · ${average ? `Ø CHF ${money(average.price)} (${average.count})` : t('kein passender Preis')}`;
-  };
-  select.innerHTML = `<option value="">${districtTexts.all}</option>` + districtData.features.map(d => `<option value="${d.properties.number}">${label(d.properties.number)}</option>`).join('');
-  select.value = districtState.selected ? String(districtState.selected) : '';
-  districtLayer.eachLayer(layer => {
-    const polygon = layer as L.Polygon & { feature: { properties: { number: number } } };
-    const number = polygon.feature.properties.number;
-    polygon.setStyle(districtStyle(number));
-    if (polygon.getTooltip()) polygon.setTooltipContent(label(number));
-    else polygon.bindTooltip(label(number), { sticky: true, className: 'district-tooltip' });
-  });
-  if (districtState.selected) {
-    const average = averages.get(districtState.selected);
-    $('district-average').hidden = false;
-    $('district-average').textContent = average
-      ? t('Schnitt {district} CHF {price} ({count} Lokale)', { district: districtName(districtState.selected), price: money(average.price), count: average.count })
-      : t('Schnitt {district}: keine passenden Preise', { district: districtName(districtState.selected) });
-    $('district-average').title = t('Günstigster passender Preis je Lokal innerhalb der gewählten Grenze. Unabhängig von Suche, Preislimit, Günstig-Filter und Draussen-Filter. Der Lokaltyp zählt mit.');
-  }
-}
-$('district-toggle').onchange = () => {
-  districtState.enabled = $<HTMLInputElement>('district-toggle').checked;
-  if (!districtState.enabled) districtState.selected = undefined;
-  selected = undefined;
-  render();
-  if (districtState.enabled) void loadDistricts();
-};
-$('district-select').onchange = () => chooseDistrict(Number($<HTMLSelectElement>('district-select').value) || undefined);
 function rebuild() {
   const catalogueById = new Map(locationCatalogue.map(bar => [bar.id, bar]));
   const correctedIds = new Set(venueCorrections.map(item => item.barId));
@@ -536,10 +391,6 @@ function syncControls() {
   const url = new URL(location.href);
   writeFilters(url.searchParams, f, cheapMode);
   if (addressSelection) url.searchParams.set('address', '1'); else url.searchParams.delete('address');
-  if (city.districts) {
-    if (districtState.enabled) url.searchParams.set(city.districts.toggle, '1'); else url.searchParams.delete(city.districts.toggle);
-    if (districtState.enabled && districtState.selected) url.searchParams.set(city.districts.param, String(districtState.selected)); else url.searchParams.delete(city.districts.param);
-  }
   if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
   dropDefaultCheap(url.searchParams);
   history.replaceState(null, '', url);
@@ -557,11 +408,10 @@ function selectedLocation() {
 }
 function render() {
   const selection = selectedLocation();
-  if (selected && (!selection || !isVenueEligible(selection, f) || !inSelectedDistrict(selection))) selected = undefined;
+  if (selected && (!selection || !isVenueEligible(selection, f))) selected = undefined;
   syncControls();
   $<HTMLAnchorElement>('rankings-link').href = beer() ? '#bierpreise' : pizza() ? '#pizzapreise' : '#kaffeepreise';
-  const districtBars = bars.filter(inSelectedDistrict);
-  cheapLimit = cheapPriceLimit(districtBars, addressSelection ? { ...f, query: '' } : f);
+  cheapLimit = cheapPriceLimit(bars, addressSelection ? { ...f, query: '' } : f);
   const cheapButton = $<HTMLButtonElement>('cheap');
   cheapButton.textContent = cheapLimit === undefined ? t('Günstig') : t('Günstig bis CHF {price}', { price: Number.isInteger(cheapLimit) ? cheapLimit : cheapLimit.toFixed(2) });
   cheapButton.disabled = cheapLimit === undefined && !cheapMode;
@@ -570,7 +420,7 @@ function render() {
   const searchFilters = addressSelection ? { ...f, query: '' } : f;
   const activeFilters = cheapMode ? { ...searchFilters, max: cheapLimit ?? -Infinity, unknown: false } : searchFilters;
   $<HTMLInputElement>('unknown').checked = activeFilters.unknown;
-  current = filterBars(districtBars, activeFilters, addressSelection ? [addressSelection.lat, addressSelection.lon] : position);
+  current = filterBars(bars, activeFilters, addressSelection ? [addressSelection.lat, addressSelection.lon] : position);
   // An automatic budget includes every matching venue and displays the highest
   // listed price. Keep it automatic when the selection or available data changes.
   const displayedMax = Number.isFinite(activeFilters.max) ? activeFilters.max : current.reduce((highest, bar) => {
@@ -582,9 +432,8 @@ function render() {
     selected = undefined;
     syncControls();
   }
-  renderDistricts();
   $('count').textContent = coverageLabel(current, f) + (addressSelection ? ` · ${t('Bezugspunkt: {label}', { label: addressSelection.label })}` : '');
-  const average = cityAverage(bars, f);
+  const average = cityAverage(bars, activeFilters);
   $('city-average').textContent = t('Schnitt {city} {value}', { city: cityName, value: average ? `CHF ${money(average.price)}` : '—' });
   const comparison = pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : burger() ? t(burgerSelectionLabels[f.burgerSelection || 'all']) : softdrink() ? `${f.softdrinkSelection && f.softdrinkSelection !== 'all' ? t(softdrinkSelectionLabels[f.softdrinkSelection]) : t('Softdrink')} · ${t(softdrinkSizeLabels[f.softdrinkSize || '300-330'])}` : cocktail() ? t(cocktailSelectionLabels[f.cocktailSelection || 'all']) : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
     size: f.volume === 'all' ? t('alle Grössen') : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`,
@@ -593,7 +442,7 @@ function render() {
   const beerLabel = f.beerQuery?.trim() || (f.beerSelection ? beerGroupLabels[f.beerSelection] : '');
   const productComparison = hasBeerSelection(f) ? `${beerLabel} · ${comparison}` : comparison;
   $('city-average').title = average
-    ? t('{comparison}: Durchschnitt des günstigsten passenden Preises pro Lokal ({count} Lokale). Stadtweit, unabhängig von Suche, Preislimit, Günstig-Filter und Draussen-Filter. Der Lokaltyp zählt mit.', { comparison: productComparison, count: average.count })
+    ? t('{comparison}: Durchschnitt des günstigsten passenden Preises pro Lokal ({count} Lokale). Preislimit, «Günstig» und «Draussen sitzen» zählen mit, die Suche nicht.', { comparison: productComparison, count: average.count })
     : t('{comparison}: Noch keine passenden Preise für den Stadtdurchschnitt vorhanden.', { comparison: productComparison });
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
@@ -690,7 +539,7 @@ async function loadAddressResults(): Promise<void> {
   })();
   return addressPromise;
 }
-function searchCandidates() { return bars.filter(b => isVenueEligible(b, f) && inSelectedDistrict(b)); }
+function searchCandidates() { return bars.filter(b => isVenueEligible(b, f)); }
 function closeSearchSuggestions() {
   searchOpen = false; activeSuggestion = -1; suggestions = [];
   $('search-dropdown').hidden = true;
@@ -762,7 +611,7 @@ function mapLocations(): Bar[] {
   // The pizza dataset includes confirmed pizzerias without prices and community
   // pizza entries. Do not add the general restaurant catalogue back to this map.
   const candidates = pizza() || ramen() || scanned() ? bars : selectableLocations(venues, locationCatalogue);
-  return candidates.filter(b => matchesVenueType(b, f) && inSelectedDistrict(b));
+  return candidates.filter(b => matchesVenueType(b, f));
 }
 function renderLocations() {
   locationLayer.clearLayers();
@@ -982,7 +831,6 @@ $('reset').onclick = () => {
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
   rememberCheapMode(false);
-  districtState.enabled = false; districtState.selected = undefined;
   Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, softdrinkSize: undefined, softdrinkSelection: undefined, cocktailSelection: undefined, glutenFree: false, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = '';
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
@@ -1011,7 +859,7 @@ function locate(openNearby = false) {
     const nearby = openNearby && locationCatalogue.length
       ? locationAtPosition(selectableLocations(bars, selectableLocations(venues, locationCatalogue)), position, p.coords.accuracy)
       : undefined;
-    if (nearby && isVenueEligible(nearby, f) && inSelectedDistrict(nearby)) showBar(nearby);
+    if (nearby && isVenueEligible(nearby, f)) showBar(nearby);
   }, () => { finish(); if (f.sort === 'distance') { f.sort = 'price'; $<HTMLSelectElement>('sort').value = 'price'; } toast(t('Standort nicht verfügbar.')); }, { enableHighAccuracy: true, maximumAge: 0, timeout: 10000 });
 }
 $('locate').onclick = () => locate(true);
@@ -1167,7 +1015,7 @@ $('price-form').onsubmit = async event => {
       serving: drink === 'beer' && $<HTMLInputElement>('entry-stange').checked ? 'stange' : undefined,
       alcoholFree: drink !== 'beer' || $<HTMLInputElement>('entry-alcohol').checked,
       observedAt: $<HTMLInputElement>('entry-date').value, sourceUrl: $<HTMLInputElement>('entry-source').value,
-    } satisfies PriceInput, selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f) && inSelectedDistrict(b)));
+    } satisfies PriceInput, selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f)));
     stage = 'request';
     trackEvent(cityId, 'price_submitted', { category: drink, action });
     saving = true; $<HTMLButtonElement>('scan-menu').disabled = true; $<HTMLButtonElement>('save-price').disabled = true; $<HTMLButtonElement>('cancel-price').disabled = true; $('save-price').textContent = t('Speichern …');
@@ -1240,9 +1088,10 @@ async function init() {
   // Burgers are optional too: cities without a scanned burger file hide the category.
   if (burgerResult) datasets.burger = burgerResult;
   // Soft drinks and cocktails come from the Zürich gastro scan; other cities hide them.
-  if (softdrinkResult) datasets.softdrink = softdrinkResult;
-  if (cocktailResult) datasets.cocktail = cocktailResult;
   locationCatalogue = locationsResult?.bars || [];
+  const catalogue = new Map(locationCatalogue.map(bar => [bar.id, bar]));
+  for (const [drink, result] of [['softdrink', softdrinkResult], ['cocktail', cocktailResult]] as const)
+    if (result) datasets[drink] = { ...result, bars: result.bars.map((bar: Bar) => withKnownDetails(bar, catalogue.get(bar.id))) };
   const missing = [!beerResult ? t('Bier') : '', !coffeeResult ? t('Kaffee') : '', !pizzaResult ? 'Pizza' : '', !loadedCommunity ? t('gemeinsame Einträge') : ''].filter(Boolean);
   const hasData = Object.keys(datasets).length > 0;
   for (const format of ['csv', 'json']) $<HTMLButtonElement>('download-' + format).disabled = !hasData;
@@ -1273,7 +1122,3 @@ syncControls();
 void init();
 void setupTip($<HTMLButtonElement>('tip-coffee'), cityId, toast);
 // Account entry is temporarily hidden; contribution verification remains available.
-if (districtState.enabled) {
-  $('filters').hidden = false; $('filters-toggle').setAttribute('aria-expanded', 'true');
-  void loadDistricts();
-}

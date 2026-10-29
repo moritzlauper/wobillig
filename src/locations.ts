@@ -8,6 +8,12 @@ export function withKnownAddress(bar: Bar, known?: Bar): Bar {
   return address === bar.address && postcode === bar.postcode ? bar : { ...bar, address, postcode };
 }
 
+// The gastro scan exports no outdoor seating or opening hours; the location catalogue knows them.
+export function withKnownDetails(bar: Bar, known?: Bar): Bar {
+  if (!known || known.id !== bar.id || (bar.outdoor !== undefined && bar.openingHours !== undefined)) return bar;
+  return { ...bar, outdoor: bar.outdoor ?? known.outdoor ?? false, openingHours: bar.openingHours ?? known.openingHours ?? null };
+}
+
 export function googleMapsLink(bar: Pick<Bar, 'name' | 'address' | 'postcode' | 'lat' | 'lon'>, city: string): string {
   const query = bar.address.trim()
     ? [bar.name, bar.address, bar.postcode, city, 'Schweiz'].filter(Boolean).join(', ')

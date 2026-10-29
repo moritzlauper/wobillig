@@ -170,7 +170,8 @@ def dataset(bars, results, previous, observed, attribution, category):
                 continue
             rows.append({'id': bar['id'], 'name': bar['name'], 'lat': bar['lat'], 'lon': bar['lon'], 'type': bar.get('type'),
                          'address': bar.get('address'), 'postcode': bar.get('postcode'), 'website': bar.get('website'),
-                         'cuisine': bar.get('cuisine', []), 'offers': offers,
+                         'cuisine': bar.get('cuisine', []), 'openingHours': bar.get('openingHours'), 'outdoor': bar.get('outdoor', False),
+                         'offers': offers,
                          # Kept offers from an unread site must not look like a fresh check.
                          'scrapeStatus': result['status'] if result['status'] not in ('priced', 'no_prices') else 'prices_found',
                          'checkedAt': observed})

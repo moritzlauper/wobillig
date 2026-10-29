@@ -66,20 +66,3 @@ for (const width of [320, 1280]) {
     await page.screenshot({ path: `/tmp/wobillig-cities-${width}.png` });
   });
 }
-
-for (const [city, param, number, name] of [
-  ['lausanne', 'quartierLausanne', '90', 'Zones foraines'],
-  ['geneve', 'quartierGeneve', '4', 'Eaux-Vives Cité'],
-]) {
-  test(`${city} direct links default to English and restore the official districts`, async ({ page }) => {
-    await page.goto(`/${city}?${param}=${number}`);
-    await expect(page).toHaveURL(new RegExp(`/en/${city}\\?`));
-    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-    await page.locator('#filters-toggle').click();
-    await expect(page.locator('#district-select')).toHaveValue(number);
-    await expect(page.locator('#district-select option:checked')).toContainText(name);
-    await expect(page.locator('.leaflet-districts-pane path').first()).toBeAttached();
-    await page.reload();
-    await expect(page.locator('#district-select')).toHaveValue(number);
-  });
-}

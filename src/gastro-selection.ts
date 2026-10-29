@@ -16,8 +16,7 @@ export function matchesSoftdrinkSize(volumeMl: number | null, size: SoftdrinkSiz
 
 export const softdrinkSelectionLabels = {
   all: 'Alle Softdrinks',
-  cola: 'Coca-Cola',
-  cola_zero: 'Cola Zero / Light',
+  cola: 'Coca-Cola / Zero',
   rivella: 'Rivella',
   fanta: 'Fanta',
   sprite: 'Sprite',
@@ -35,8 +34,7 @@ export type SoftdrinkGroup = Exclude<SoftdrinkSelection, 'all'>;
 // Menus often list several drinks at one price ("Coca Cola / Zero", "Rivella rot oder blau"),
 // so a soft drink can belong to more than one group.
 const softdrinkPatterns: Record<SoftdrinkGroup, RegExp> = {
-  cola: /\b(?:coca[\s-]*)?cola\b(?![\s-]*(?:zero|light))/,
-  cola_zero: /\b(?:cola|coke)\b.*\b(?:zero|light)\b/,
+  cola: /\b(?:cola|coke)\b/,
   rivella: /\brivella\b/,
   fanta: /\bfanta\b/,
   sprite: /\bsprite\b/,
@@ -67,11 +65,12 @@ export const cocktailSelectionLabels = {
   espresso_martini: 'Espresso Martini',
   margarita: 'Margarita',
   caipirinha: 'Caipirinha',
+  mocktail: 'Mocktails',
 } as const;
 export type CocktailSelection = keyof typeof cocktailSelectionLabels;
 export type CocktailGroup = Exclude<CocktailSelection, 'all'>;
 
-const cocktailPatterns: Record<CocktailGroup, RegExp> = {
+const cocktailPatterns: Record<Exclude<CocktailGroup, 'mocktail'>, RegExp> = {
   aperol_spritz: /\baperol\b/,
   hugo: /\bhugo\b/,
   gin_tonic: /\bgin\s*(?:&|\+|and|und|n)?\s*tonic\b/,
@@ -82,9 +81,12 @@ const cocktailPatterns: Record<CocktailGroup, RegExp> = {
   margarita: /\bmargarita\b/,
   caipirinha: /\bcaipirinha\b/,
 };
+// A virgin Aperol Spritz or a Negroni 0.0% is a mocktail, not the classic it is named after.
+const mocktailPattern = /\bvirgin\b|alkoholfrei|alcohol[\s-]*free|ohne alkohol|mocktail|zero[\s-]*proof|(?<!cola\s)\bzero\b|(?<![\d.,])0(?:[.,]0)?\s*%|crodino|san\s*bitter/;
 export function cocktailGroup(name: string): CocktailGroup | undefined {
   const text = name.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase();
-  return (Object.keys(cocktailPatterns) as CocktailGroup[]).find(group => cocktailPatterns[group].test(text));
+  if (mocktailPattern.test(text)) return 'mocktail';
+  return (Object.keys(cocktailPatterns) as Exclude<CocktailGroup, 'mocktail'>[]).find(group => cocktailPatterns[group].test(text));
 }
 export function parseCocktailSelection(value: string | null): CocktailSelection | undefined {
   return value && Object.hasOwn(cocktailSelectionLabels, value) ? value as CocktailSelection : undefined;

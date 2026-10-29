@@ -4,7 +4,6 @@ import { parsePizzaSelection } from './pizza-selection';
 import { parseBeerSelection } from './beer-selection';
 import { parseBurgerSelection } from './burger-selection';
 import { parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize } from './gastro-selection';
-import { cities } from './cities';
 
 export const cheapPreferenceKey = 'wobillig:cheap';
 
@@ -13,8 +12,7 @@ export function cheapModeFromSearch(params: URLSearchParams, preference: string 
   // Links made before cheap became the default must retain their original view.
   const selectionKeys = ['drink', 'coffeeType', 'beerType', 'beerSelection', 'beerQuery',
     'pizzaSelection', 'pizzaQuery', 'burgerSelection', 'softdrinkSize', 'softdrinkSelection', 'cocktailSelection', 'q', 'max', 'size', 'type', 'unknown', 'outdoor',
-    'alcoholFree', 'glutenFree', 'mode', 'sort', 'bar', 'address', 'map',
-    ...Object.values(cities).flatMap(city => city.districts ? [city.districts.toggle, city.districts.param] : [])];
+    'alcoholFree', 'glutenFree', 'mode', 'sort', 'bar', 'address', 'map'];
   if (selectionKeys.some(key => params.has(key))) return false;
   return preference !== '0';
 }

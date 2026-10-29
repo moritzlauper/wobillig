@@ -2,8 +2,8 @@ import { t } from './i18n';
 import { bestOffer, cost, filterBars, isCurrentOffer, isComparableOffer, offerCategory, type Bar, type Filters } from './data';
 
 export function cityAverage(bars: Bar[], f: Filters): { price: number; count: number } | undefined {
-  // The venue type shapes the benchmark; search, price ceiling and the other filters must not bias it.
-  const cityFilters: Filters = { ...f, query: '', max: Infinity, outdoor: false, unknown: false, sort: 'price' };
+  // The average follows the list's filters, so it never exceeds the price ceiling; only the search is left out.
+  const cityFilters: Filters = { ...f, query: '', unknown: false, sort: 'price' };
   const prices = filterBars(bars, cityFilters)
     .map(bar => cost(bestOffer(bar, cityFilters)!, cityFilters.mode))
     .filter(price => Number.isFinite(price) && price > 0);

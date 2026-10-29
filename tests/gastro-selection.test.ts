@@ -60,8 +60,8 @@ describe('soft drinks', () => {
 describe('soft drink selection', () => {
   it('groups soft drinks by their sourced name, also when a menu lists several', () => {
     expect(softdrinkGroups('Coca Cola')).toEqual(['cola']);
-    expect(softdrinkGroups('Coca-Cola Zero')).toEqual(['cola_zero']);
-    expect(softdrinkGroups('Coca Cola / Zero')).toEqual(['cola', 'cola_zero']);
+    expect(softdrinkGroups('Coca-Cola Zero')).toEqual(['cola']);
+    expect(softdrinkGroups('Coca Cola / Zero')).toEqual(['cola']);
     expect(softdrinkGroups('Rivella rot oder blau')).toEqual(['rivella']);
     expect(softdrinkGroups('Hausgemachter Eistee')).toEqual(['icetea']);
     expect(softdrinkGroups('Schweppes Tonic / Bitter Lemon')).toEqual(['tonic', 'bitter_lemon']);
@@ -85,7 +85,7 @@ describe('soft drink selection', () => {
   it('offers a soft drink once three venues list it', () => {
     const bars = ['1', '2', '3'].map(id => venue(`node/${id}`, [soft('Coca Cola / Zero', 6, 330), soft('Fanta', 6, 330)]));
     bars[2].offers.pop();
-    expect(softdrinkVarieties(bars).map(option => option.value)).toEqual(['cola', 'cola_zero']);
+    expect(softdrinkVarieties(bars)).toEqual([{ value: 'cola', label: 'Coca-Cola / Zero' }]);
   });
 });
 
@@ -98,8 +98,24 @@ describe('cocktails', () => {
     expect(cocktailGroup('Espresso Martini')).toBe('espresso_martini');
     expect(cocktailGroup('Martini Bianco')).toBeUndefined();
     expect(cocktailGroup('Pizza Margherita')).toBeUndefined();
+    expect(cocktailGroup('Cuba Libre mit Cola Zero')).toBeUndefined();
     expect(parseCocktailSelection('mojito')).toBe('mojito');
     expect(parseCocktailSelection('constructor')).toBeUndefined();
+  });
+
+  it('keeps alcohol-free versions out of the classics and lists them as mocktails', () => {
+    for (const name of ['Virgin Aperol Spritz', 'Mojito Virgin', 'Hugo (alkoholfrei)', 'Negroni Zero', 'Gin Tonic 0.0%', '0.0% Negroni', 'Hugo Spritz / Virgin Hugo 0%', 'Crodino Spritz', 'Zero Proof Apricot Spritz', 'Pina Colada (Mocktail)'])
+      expect(cocktailGroup(name), name).toBe('mocktail');
+    expect(cocktailGroup('Aperol Spritz 10%')).toBe('aperol_spritz');
+    const bar = venue('node/1', [drink('Aperol Spritz', 13), drink('Virgin Aperol Spritz', 9)]);
+    expect(matchingOffers(bar, filters({ drink: 'cocktail', cocktailSelection: 'aperol_spritz' })).map(o => o.name)).toEqual(['Aperol Spritz']);
+    expect(matchingOffers(bar, filters({ drink: 'cocktail', cocktailSelection: 'mocktail' })).map(o => o.name)).toEqual(['Virgin Aperol Spritz']);
+  });
+
+  it('lists mocktails after the classics', () => {
+    const bars = ['1', '2', '3', '4'].map(id => venue(`node/${id}`, [drink('Virgin Mojito', 9), drink('Hugo', 12)]));
+    bars[3].offers.pop();
+    expect(cocktailVarieties(bars).map(option => option.value)).toEqual(['hugo', 'mocktail']);
   });
 
   it('lists all cocktails by default and one classic on request', () => {

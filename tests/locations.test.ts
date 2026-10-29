@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { googleMapsLink, withKnownAddress, locationAtPosition, nearbyLocations, selectableLocations } from '../src/locations';
+import { googleMapsLink, withKnownAddress, withKnownDetails, locationAtPosition, nearbyLocations, selectableLocations } from '../src/locations';
 import { allVenues, communityVenues, applyEntries, validateInput, type PriceInput } from '../src/community';
 import { emptyState, savePrice, WriteConflict, type State } from '../server/prices';
 import type { Dataset } from '../src/data';
@@ -29,6 +29,13 @@ describe('map locations', () => {
     }
     expect(withKnownAddress({ ...roi, address: 'New address 2' }, roi).address).toBe('New address 2');
     expect(withKnownAddress(sparse, { ...roi, id: 'another-venue' }).address).toBe('');
+  });
+  it('fills outdoor seating and opening hours that a scan did not export', () => {
+    const { outdoor: _outdoor, openingHours: _hours, ...scanned } = roi;
+    const known = { ...roi, outdoor: true, openingHours: 'Mo-Su 10:00-23:00' };
+    expect(withKnownDetails(scanned as typeof roi, known)).toMatchObject({ outdoor: true, openingHours: 'Mo-Su 10:00-23:00' });
+    expect(withKnownDetails({ ...roi, outdoor: false }, known).outdoor).toBe(false);
+    expect(withKnownDetails(scanned as typeof roi, { ...known, id: 'another-venue' }).outdoor).toBeUndefined();
   });
   it('links to the named venue and address, or coordinates when no address is known', () => {
     const link = new URL(googleMapsLink({ ...roi, name: 'Café & Bar', address: 'Testgasse 4', postcode: '8004' }, 'Zürich'));

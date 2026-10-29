@@ -223,7 +223,8 @@ export function cocktailVarieties(bars: Bar[]): { value: CocktailGroup; label: s
     venues.get(group)!.add(bar.id);
   }
   return [...venues].filter(([, ids]) => ids.size >= 3)
-    .sort(([a, idsA], [b, idsB]) => idsB.size - idsA.size || cocktailSelectionLabels[a].localeCompare(cocktailSelectionLabels[b], "de"))
+    // Mocktails close the list, after the classics.
+    .sort(([a, idsA], [b, idsB]) => Number(a === "mocktail") - Number(b === "mocktail") || idsB.size - idsA.size || cocktailSelectionLabels[a].localeCompare(cocktailSelectionLabels[b], "de"))
     .map(([value]) => ({ value, label: cocktailSelectionLabels[value] }));
 }
 // Soft drinks follow the same rule: a choice appears once three venues list it.

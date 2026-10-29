@@ -56,8 +56,6 @@ it('opens the new cities in English by default and preserves explicit German lin
   expect(defaultCityLocale('zurich', 'en', 'zurich')).toBe('en');
   expect(cityLink('winterthur', '?drink=beer&bar=node%2F1')).toBe('/winterthur?drink=beer');
   expect(cityLink('winterthur', '', '/', 'en')).toBe('/en/winterthur');
-  // Olten has no district filter, so any district parameter from another city is dropped.
-  expect(cityLink('olten', '?kreise=1&kreis=5&drink=beer')).toBe('/olten?drink=beer');
   expect(cityLink('olten', '', '/', 'en')).toBe('/en/olten');
   expect(cityLink('geneva', '?drink=beer&bar=node%2F1', '/', 'en')).toBe('/en/geneve?drink=beer');
   expect(cityLink('lausanne', '', '/', 'de')).toBe('/de/lausanne');

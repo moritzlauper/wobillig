@@ -116,17 +116,3 @@ for (const mode of ['light', 'dark'] as const) {
     });
   }
 }
-
-test('district boundaries adapt immediately when the theme changes', async ({ page }) => {
-  await page.emulateMedia({ colorScheme: 'light' });
-  await page.goto('/');
-  await page.locator('#filters-toggle').click();
-  await page.locator('#district-toggle').check();
-  const boundary = page.locator('.leaflet-districts-pane path').first();
-  await expect(boundary).toBeVisible();
-  await expect(boundary).toHaveCSS('stroke', 'rgb(82, 123, 166)');
-  await page.getByLabel('Farbschema').selectOption('dark');
-  await expect(boundary).toHaveCSS('stroke', 'rgb(143, 180, 220)');
-  await page.locator('#district-select').selectOption('1');
-  await expect(page.locator('#district-average')).toBeVisible();
-});

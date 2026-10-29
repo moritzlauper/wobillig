@@ -135,11 +135,6 @@ a { color: var(--link); text-underline-offset: 2px; }
 .status-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 36px; padding: 3px 10px; color: var(--secondary); border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
 .status-summary { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 16px; min-width: 0; }
 #city-average { color: var(--text); font-size: 14px; white-space: nowrap; }
-#district-average { color: var(--blue); font-size: 14px; }
-#district-select { max-width: 100%; }
-.district-tooltip { color: var(--blue); font-weight: 600; }
-/* Kreisflächen zeigen ihre Auswahl entlang der Grenze, ohne rechteckigen Fokusrahmen. */
-#map .leaflet-districts-pane path:focus { outline: none; }
 .status-meta { display: flex; align-items: center; justify-content: flex-end; gap: 14px; margin-left: auto; }
 .refresh-note { font-size: var(--font-meta); color: var(--subtle); }
 .city-switch { display: flex; align-items: center; gap: 6px; font-size: var(--font-meta); white-space: nowrap; }
@@ -307,7 +302,7 @@ dialog::backdrop { background: var(--backdrop); }
   #filters-toggle { order: 4; grid-column: 3; padding-inline: 7px; font-size: var(--font-control); gap: 7px; }
   .status-row { flex-shrink: 0; min-height: 0; padding: 3px 7px; gap: 1px 7px; }
   .status-summary { gap: 1px 8px; }
-  #city-average, #district-average { font-size: var(--font-control); }
+  #city-average { font-size: var(--font-control); }
   .mobile-switch { display: flex; gap: 3px; margin-left: auto; }
   .mobile-switch button { font-size: var(--font-control); min-height: 30px; padding: 4px 7px; }
   #count { font-size: var(--font-meta); line-height: 1.25; }
