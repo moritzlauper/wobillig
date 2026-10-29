@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { cocktailGroup, parseCocktailSelection, parseSoftdrinkSize, softdrinkSizes } from '../src/gastro-selection';
-import { cocktailVarieties, filterBars, matchingOffers, offerCategory, portion, type Bar, type Filters, type Offer } from '../src/data';
+import { cheapPriceLimit, cocktailVarieties, filterBars, matchingOffers, offerCategory, portion, type Bar, type Filters, type Offer } from '../src/data';
 import { filtersFromSearch, writeFilters } from '../src/filters';
 import { barLink, drinkFromSearch } from '../src/sharing';
 
@@ -38,6 +38,14 @@ describe('soft drinks', () => {
   it('ignores the beer filters and never mixes in beer', () => {
     const bar = venue('node/1', [soft('Coca Cola', 6.5, 330), offer({ name: 'Lager', priceChf: 5, volumeMl: 330 })]);
     expect(matchingOffers(bar, filters({ alcoholFree: true, volume: 'stange', mode: 'half' })).map(o => o.name)).toEqual(['Coca Cola']);
+  });
+
+  it('keeps the common CHF 5 out of cheap mode by using the cheapest fifth', () => {
+    const prices = [[3.5, 2], [4, 12], [4.5, 10], [4.8, 7], [4.9, 5], [5, 55], [5.5, 33], [6, 35], [6.5, 13], [7, 8]]
+      .flatMap(([price, count]) => Array.from({ length: count }, () => price));
+    const bars = (type: 'softdrink' | 'cocktail') => prices.map((price, i) => venue(`node/${i}`, [offer({ name: 'Cola', priceChf: price, volumeMl: 330, gastroType: type })]));
+    expect(cheapPriceLimit(bars('softdrink'), filters())).toBe(4.9);
+    expect(cheapPriceLimit(bars('cocktail'), filters({ drink: 'cocktail' }))).toBe(5);
   });
 
   it('parses only known sizes', () => {

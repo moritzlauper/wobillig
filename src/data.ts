@@ -333,8 +333,9 @@ export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
   if (!prices.length) return undefined;
   // Cheap mode is on by default, so it must not leave a sparse map. Target the
   // cheapest third, but at least ten venues or, for small selections, the cheaper half.
+  // Soft drink prices cluster at CHF 5, where the cheapest third would end; use the cheapest fifth.
   const minimum = Math.min(10, Math.ceil(prices.length / 2));
-  const target = Math.max(Math.ceil(prices.length / 3), minimum);
+  const target = Math.max(Math.ceil(prices.length / (f.drink === "softdrink" ? 5 : 3)), minimum);
   const boundary = prices[target - 1];
   const included = prices.filter(price => price <= boundary).length;
   const below = prices.filter(price => price < boundary);
