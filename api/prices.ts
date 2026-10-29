@@ -17,12 +17,13 @@ import { withMapQuota } from '../server/map-quota.js';
 import { saveVenueCorrection } from '../server/venue-corrections.js';
 import { notifyMapRequest } from '../server/community-mail.js';
 
-const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset> & Partial<Record<'ramen', Dataset>>>>> = {};
+const dataPromises: Partial<Record<City, Promise<Record<'beer' | 'coffee' | 'pizza' | 'locations', Dataset> & Partial<Record<'ramen' | 'softdrink' | 'cocktail', Dataset>>>>> = {};
 function datasets(city: City) {
-  // Ramen exists only where it was scraped; other cities must keep working without the file.
+  // Ramen, soft drinks and cocktails exist only where they were scraped; other cities must keep working without the files.
+  const optional = (name: string) => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse, () => undefined);
   return dataPromises[city] ||= Promise.all([...['bars', 'coffee', 'pizza', 'locations'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse)),
-    readFile(`${process.cwd()}/public/data/${cities[city].data}ramen.json`, 'utf8').then(JSON.parse, () => undefined)])
-    .then(([beer, coffee, pizza, locations, ramen]) => ({ beer, coffee, pizza, locations, ramen }));
+    optional('ramen'), optional('gastro-softdrink'), optional('gastro-cocktail')])
+    .then(([beer, coffee, pizza, locations, ramen, softdrink, cocktail]) => ({ beer, coffee, pizza, locations, ramen, softdrink, cocktail }));
 }
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');

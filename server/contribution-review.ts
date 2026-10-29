@@ -11,7 +11,7 @@ export type PendingVenue = { id: string; venue: Bar; submittedAt: string };
 export type PendingCorrection = { id: string; correction: VenueCorrection; before: VenueCorrection | null; submittedAt: string };
 export type ReviewUndo = { id: string; kind: 'price' | 'venue' | 'correction'; entity: string; before: PriceEntry | Bar | VenueCorrection | null; after: PriceEntry | Bar | VenueCorrection; at: string; undoneAt?: string };
 export const fingerprint = (value: unknown) => createHash('sha256').update(JSON.stringify(value ?? null)).digest('hex');
-export async function reviewContribution(store: Store, kind: string, id: string, expected: string, decision: string, datasets: Partial<Record<'beer' | 'coffee' | 'pizza' | 'ramen', Dataset>>) {
+export async function reviewContribution(store: Store, kind: string, id: string, expected: string, decision: string, datasets: Partial<Record<'beer' | 'coffee' | 'pizza' | 'ramen' | 'softdrink' | 'cocktail', Dataset>>) {
   for (let attempt = 0; attempt < 8; attempt++) {
     const { state, etag } = await store.read();
     const held = state.heldPrices?.find(row => row.entry.id === id && fingerprint(row) === expected);

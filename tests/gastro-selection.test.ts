@@ -104,7 +104,7 @@ describe('cocktails', () => {
   });
 
   it('keeps alcohol-free versions out of the classics and lists them as mocktails', () => {
-    for (const name of ['Virgin Aperol Spritz', 'Mojito Virgin', 'Hugo (alkoholfrei)', 'Negroni Zero', 'Gin Tonic 0.0%', '0.0% Negroni', 'Hugo Spritz / Virgin Hugo 0%', 'Crodino Spritz', 'Zero Proof Apricot Spritz', 'Pina Colada (Mocktail)'])
+    for (const name of ['Virgin Aperol Spritz', 'Mojito Virgin', 'Hugo (alkoholfrei)', 'Negroni Zero', 'Gin Tonic 0.0%', '0.0% Negroni', 'Hugo Spritz / Virgin Hugo 0%', 'Crodino Spritz', 'Zero Proof Apricot Spritz', 'Pina Colada (Mocktail)', 'Virgin Negroni', 'Free Caipirinha', 'Amaretto Free Sour'])
       expect(cocktailGroup(name), name).toBe('mocktail');
     expect(cocktailGroup('Aperol Spritz 10%')).toBe('aperol_spritz');
     const bar = venue('node/1', [drink('Aperol Spritz', 13), drink('Virgin Aperol Spritz', 9)]);

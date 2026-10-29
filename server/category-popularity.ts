@@ -1,5 +1,5 @@
 import { get, put, BlobPreconditionFailedError } from '@vercel/blob';
-import { categories, categoryCounts, emptyCategoryCounts, type Category, type CategoryCounts } from '../src/categories.js';
+import { categories, categoryCounts, categoryPeriod, categoryPeriodStart, emptyCategoryCounts, type Category, type CategoryCounts } from '../src/categories.js';
 
 export type CategoryState = { days: Record<string, CategoryCounts>; visitorDay: string; visitors: Record<string, Category[]> };
 export type CategoryStore = { read(): Promise<{ state: CategoryState; etag?: string }>; write(state: CategoryState, etag?: string): Promise<void> };
@@ -16,6 +16,11 @@ export function popularityCounts(state: CategoryState, now = Date.now()): Catego
     for (const category of categories) result[category] += counts[category];
   }
   return result;
+}
+
+// The category row uses only clicks from before the current period, so it stays fixed for the whole period.
+export function rankingCounts(state: CategoryState, now = Date.now()): CategoryCounts {
+  return popularityCounts(state, categoryPeriodStart(categoryPeriod(now)) - 1);
 }
 
 export function categoryStore(): CategoryStore {
@@ -47,12 +52,12 @@ export async function recordCategoryClick(store: CategoryStore, category: Catego
     state.days = Object.fromEntries(Object.entries(state.days).filter(([day]) => day >= cutoff(now) && day <= today));
     if (state.visitorDay !== today) { state.visitorDay = today; state.visitors = {}; }
     const clicked = state.visitors[visitor] || [];
-    if (clicked.includes(category)) return popularityCounts(state, now);
+    if (clicked.includes(category)) return rankingCounts(state, now);
     state.visitors[visitor] = [...clicked, category];
     const counts = categoryCounts(state.days[today]);
     counts[category]++;
     state.days[today] = counts;
-    try { await store.write(state, etag); return popularityCounts(state, now); }
+    try { await store.write(state, etag); return rankingCounts(state, now); }
     catch (error) { if (!(error instanceof CategoryWriteConflict)) throw error; }
   }
   throw new Error('Category write conflict');

@@ -24,6 +24,24 @@ export function categoryCounts(value: unknown): CategoryCounts {
   return counts;
 }
 
+// The category row is decided per period of two UTC days, so it does not shift while people use it.
+const dayMs = 86400000;
+export const categoryPeriod = (now = Date.now()) => Math.floor(now / dayMs / 2);
+export const categoryPeriodStart = (period: number) => period * 2 * dayMs;
+
+// Coffee and pizza always lead the row; the two most clicked other categories follow.
+// Every other period the fourth place goes to another category in turn, so it can collect clicks too.
+export function featuredCategories(counts: CategoryCounts, available: readonly Category[], period: number, size = 4): Category[] {
+  const fixed = (['coffee', 'pizza'] as const).filter(category => available.includes(category));
+  const pool = available.filter(category => !fixed.includes(category as 'coffee' | 'pizza') && category !== 'doner' && category !== 'falafel')
+    .sort((a, b) => counts[b] - counts[a] || categories.indexOf(a) - categories.indexOf(b));
+  const slots = Math.max(0, size - fixed.length);
+  const chosen = pool.slice(0, slots);
+  const challengers = pool.slice(slots);
+  if (period % 2 === 1 && chosen.length && challengers.length) chosen[chosen.length - 1] = challengers[Math.floor(period / 2) % challengers.length];
+  return [...fixed, ...chosen];
+}
+
 export function rankedCategories(counts: CategoryCounts, hidden: ReadonlySet<Category> = new Set()): Category[] {
   // Coffee is always first; popularity only orders the remaining categories.
   return categories.filter(category => !hidden.has(category))

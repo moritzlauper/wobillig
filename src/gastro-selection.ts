@@ -81,8 +81,8 @@ const cocktailPatterns: Record<Exclude<CocktailGroup, 'mocktail'>, RegExp> = {
   margarita: /\bmargarita\b/,
   caipirinha: /\bcaipirinha\b/,
 };
-// A virgin Aperol Spritz or a Negroni 0.0% is a mocktail, not the classic it is named after.
-const mocktailPattern = /\bvirgin\b|alkoholfrei|alcohol[\s-]*free|ohne alkohol|mocktail|zero[\s-]*proof|(?<!cola\s)\bzero\b|(?<![\d.,])0(?:[.,]0)?\s*%|crodino|san\s*bitter/;
+// A virgin Aperol Spritz, a "Free Caipirinha" or a Negroni 0.0% is a mocktail, not the classic it is named after.
+const mocktailPattern = /\bvirgin\b|^free\b|\bfree\s+sour\b|alkoholfrei|alcohol[\s-]*free|ohne alkohol|mocktail|zero[\s-]*proof|(?<!cola\s)\bzero\b|(?<![\d.,])0(?:[.,]0)?\s*%|crodino|san\s*bitter/;
 export function cocktailGroup(name: string): CocktailGroup | undefined {
   const text = name.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase();
   if (mocktailPattern.test(text)) return 'mocktail';

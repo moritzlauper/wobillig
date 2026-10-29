@@ -46,10 +46,10 @@ export function blobStore(path = process.env.VERCEL_ENV === 'production' ? 'pric
     },
   };
 }
-export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset> & Partial<Record<'pizza' | 'ramen' | 'locations', Dataset>>, visitor: string, now = Date.now(), owner = visitor) {
+export async function savePrice(store: Store, input: PriceInput, datasets: Record<'beer' | 'coffee', Dataset> & Partial<Record<'pizza' | 'ramen' | 'softdrink' | 'cocktail' | 'locations', Dataset>>, visitor: string, now = Date.now(), owner = visitor) {
   const offer: Offer = {
     name: input.name, priceChf: input.priceChf, volumeMl: input.volumeMl, coffeeType: input.coffeeType, pizzaType: input.pizzaType, ramenType: input.ramenType,
-    serving: input.serving, beerType: input.beerType, alcoholFree: input.alcoholFree, observedAt: input.observedAt,
+    serving: input.serving, beerType: input.beerType, ...(input.gastroType ? { gastroType: input.gastroType } : {}), alcoholFree: input.alcoholFree, observedAt: input.observedAt,
     sourceUrl: input.sourceUrl, confidence: 'community', evidence: '',
   };
   for (let attempt = 0; attempt < 4; attempt++) {
@@ -71,10 +71,10 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     const entry: PriceEntry = { id: old?.id || randomUUID(), barId: input.barId, drink: input.drink, targetKey, revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString(), offer, venue: { ...venue, offers: [] } };
     const change = priceChange(entry, old, datasets[input.drink]);
     const held = state.heldPrices?.find(item => item.owner === owner && item.entry.id === old?.id);
-    if (!held) checkPriceEdit(entry, change.before, state.priceChanges || [], now);
+    const editConcern = held ? undefined : checkPriceEdit(entry, change.before, state.priceChanges || [], now);
     // Continue a held offer privately, even if later edited to a plausible value.
     // Its private revision must never overwrite a concurrent public correction.
-    const reason = held?.reason || (reviewRequired() ? 'review-required' : priceConcern(entry, change.before));
+    const reason = held?.reason || editConcern || (reviewRequired() ? 'review-required' : priceConcern(entry, change.before));
     if (reason) {
       if (!held) checkReviewCapacity(state);
       state.heldPrices = [...(state.heldPrices || []).filter(item => item !== held),

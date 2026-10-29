@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { categoryCounts, emptyCategoryCounts, rankedCategories, streetfoodPriceCount } from '../src/categories';
-import { CategoryWriteConflict, emptyCategoryState, popularityCounts, recordCategoryClick, type CategoryState, type CategoryStore } from '../server/category-popularity';
+import { categoryCounts, categoryPeriod, categoryPeriodStart, emptyCategoryCounts, featuredCategories, rankedCategories, streetfoodPriceCount } from '../src/categories';
+import { CategoryWriteConflict, emptyCategoryState, popularityCounts, rankingCounts, recordCategoryClick, type CategoryState, type CategoryStore } from '../server/category-popularity';
 
 function memoryStore(initial = emptyCategoryState()): CategoryStore {
   let state = structuredClone(initial), revision = 0;
@@ -45,14 +45,37 @@ describe('shared category popularity', () => {
     expect(rankedCategories(coffeeLeastPopular)).toEqual(['coffee', 'falafel', 'doner', 'pizza', 'beer', 'ramen', 'burger', 'softdrink', 'cocktail']);
     expect(rankedCategories(coffeeLeastPopular, new Set(['pizza']))).toEqual(['coffee', 'falafel', 'doner', 'beer', 'ramen', 'burger', 'softdrink', 'cocktail']);
   });
+  it('keeps coffee and pizza first and features the two most clicked others, rotating the fourth place every other period', () => {
+    const counts = { ...emptyCategoryCounts(), beer: 50, cocktail: 40, softdrink: 30, ramen: 5, doner: 999 };
+    const available = rankedCategories(counts);
+    expect(featuredCategories(counts, available, 10)).toEqual(['coffee', 'pizza', 'beer', 'cocktail']);
+    expect(featuredCategories(counts, available, 12)).toEqual(['coffee', 'pizza', 'beer', 'cocktail']);
+    // Odd periods give the fourth place to the other categories in turn.
+    expect([11, 13, 15, 17].map(period => featuredCategories(counts, available, period)[3])).toEqual(['burger', 'softdrink', 'ramen', 'burger']);
+    expect(featuredCategories(counts, available, 11).slice(0, 3)).toEqual(['coffee', 'pizza', 'beer']);
+    expect(featuredCategories(counts, rankedCategories(counts, new Set(['pizza', 'ramen', 'burger', 'softdrink', 'cocktail'])), 11)).toEqual(['coffee', 'beer']);
+    expect(featuredCategories(counts, rankedCategories(counts, new Set(['pizza'])), 10)).toEqual(['coffee', 'beer', 'cocktail', 'softdrink']);
+  });
+  it('decides the row once per two UTC days from the clicks before that period', () => {
+    const start = categoryPeriodStart(categoryPeriod(now));
+    expect(categoryPeriod(start)).toBe(categoryPeriod(start + 2 * 86400000 - 1));
+    expect(categoryPeriod(start + 2 * 86400000)).toBe(categoryPeriod(start) + 1);
+    const day = (time: number) => new Date(time).toISOString().slice(0, 10);
+    const state: CategoryState = { days: {
+      [day(start - 86400000)]: { ...emptyCategoryCounts(), beer: 3 },
+      [day(start)]: { ...emptyCategoryCounts(), cocktail: 50 },
+    }, visitorDay: '', visitors: {} };
+    expect(rankingCounts(state, start + 86400000)).toEqual({ ...emptyCategoryCounts(), beer: 3 });
+  });
   it('counts at most one click per visitor, category and UTC day across clients', async () => {
     const store = memoryStore();
     await recordCategoryClick(store, 'doner', 'visitor-a', now);
     await recordCategoryClick(store, 'doner', 'visitor-a', now);
     await recordCategoryClick(store, 'falafel', 'visitor-a', now);
-    const counts = await recordCategoryClick(store, 'doner', 'visitor-b', now);
-    expect(counts).toEqual({ coffee: 0, beer: 0, ramen: 0, burger: 0, softdrink: 0, cocktail: 0, pizza: 0, doner: 2, falafel: 1 });
-    expect((await recordCategoryClick(store, 'doner', 'visitor-a', now + 86400000)).doner).toBe(3);
+    await recordCategoryClick(store, 'doner', 'visitor-b', now);
+    expect(popularityCounts((await store.read()).state, now)).toEqual({ coffee: 0, beer: 0, ramen: 0, burger: 0, softdrink: 0, cocktail: 0, pizza: 0, doner: 2, falafel: 1 });
+    await recordCategoryClick(store, 'doner', 'visitor-a', now + 86400000);
+    expect(popularityCounts((await store.read()).state, now + 86400000).doner).toBe(3);
     expect((await store.read()).state.visitors).toEqual({ 'visitor-a': ['doner'] });
   });
   it('merges concurrent visitors without losing clicks and deduplicates concurrent retries', async () => {

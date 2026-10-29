@@ -1,13 +1,11 @@
-import { categories, categoryCounts, emptyCategoryCounts, rankedCategories, streetfoodPriceCount, type Category } from './categories';
+import { categories, categoryCounts, categoryPeriod, emptyCategoryCounts, featuredCategories, rankedCategories, streetfoodPriceCount, type Category } from './categories';
 import type { Drink } from './community';
 import { t } from './i18n';
 import type { PublicMap } from './custom-map-data';
 
-export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void, dataPath: string, visible: readonly Category[] = ['coffee', 'beer', 'pizza']) {
+export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void, dataPath: string) {
   const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), ramen: t('Ramen'), burger: t('Burger'), softdrink: t('Softdrinks'), cocktail: t('Cocktails'), pizza: 'Pizza', doner: t('Döner'), falafel: 'Falafel' };
   const upcoming = (category: Category) => category === 'doner' || category === 'falafel';
-  // Only the visible categories stay in the row; every other category, new ones included, sits behind "Weitere".
-  const collapsed = (category: Category) => !visible.includes(category);
   root.innerHTML = `<div id="primary-categories" class="switch" role="group" aria-label="${t('Kategorie')}"></div>
     <div class="more-categories"><button id="categories-toggle" type="button" aria-expanded="false" aria-controls="additional-categories" aria-label="${t('Weitere Kategorien')}" title="${t('Weitere Kategorien')}"><span class="more-label">${t('Weitere')}</span><span class="filter-chevron" aria-hidden="true"></span></button>
     <div id="additional-categories" role="group" aria-label="${t('Weitere Kategorien')}" hidden></div></div>`;
@@ -65,8 +63,11 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     const focused = document.activeElement;
     const order = rankedCategories(counts, unavailable).filter(category =>
       category !== 'doner' && category !== 'falafel' || priceCounts[category] >= 50);
+    // Only the featured categories stay in the row; every other category, new ones included, sits behind "Weitere".
+    const featured = featuredCategories(counts, order, categoryPeriod());
+    const collapsed = (category: Category) => !featured.includes(category);
     for (const category of categories) buttons[category].hidden = !order.includes(category);
-    primary.replaceChildren(...order.filter(category => !collapsed(category)).map(category => buttons[category]));
+    primary.replaceChildren(...featured.map(category => buttons[category]));
     more.replaceChildren(...order.filter(collapsed).map(category => buttons[category]));
     // Retain the unavailable Pizza element for existing control synchronization.
     if (unavailable.has('pizza')) more.append(buttons.pizza);

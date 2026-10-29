@@ -22,6 +22,11 @@ class GastroRules(unittest.TestCase):
     def test_price_must_appear_in_the_evidence(self):
         self.assertEqual(clean({'offers': [row(evidence='Aperol Spritz')]}, 'cocktail', URL), [])
 
+    def test_drops_a_shot_named_like_a_cocktail(self):
+        shot = row(name='Espresso Martini', priceChf=8, evidence='Espresso Martini 8')
+        drink = row(name='Espresso Martini', priceChf=18, evidence='Espresso Martini 18 Vodka · Kahlua · Espresso')
+        self.assertEqual([o['priceChf'] for o in clean({'offers': [shot, drink]}, 'cocktail', URL)], [18])
+
     def test_soft_drink_needs_a_serving_size(self):
         cola = row(name='Coca-Cola', priceChf=4.5, evidence='Coca-Cola 0,33 l 4.50')
         self.assertEqual([o['volumeMl'] for o in clean({'offers': [cola]}, 'softdrink', URL)], [330])

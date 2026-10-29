@@ -26,3 +26,8 @@ it('resets the cumulative baseline after a photo-confirmed correction and ignore
   expect(() => checkPriceEdit(entry(8), offer(7), history, now)).not.toThrow();
   expect(() => checkPriceEdit({ ...entry(7), id: 'two', targetKey: 'different' }, offer(6), [change(5, 6, now - 1000)], now)).not.toThrow();
 });
+it('holds large soft drink and cocktail corrections for review, since no menu photo can prove them', () => {
+  const cocktail = { ...entry(15), drink: 'cocktail' as const, offer: { ...offer(15), name: 'Caipirinha', coffeeType: undefined, gastroType: 'cocktail' as const } };
+  expect(checkPriceEdit(cocktail, { ...cocktail.offer, priceChf: 10 }, [], now)).toBe('large-change');
+  expect(checkPriceEdit(cocktail, { ...cocktail.offer, priceChf: 14 }, [], now)).toBeUndefined();
+});

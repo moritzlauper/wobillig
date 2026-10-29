@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { createHmac } from 'node:crypto';
 import { isCategory } from '../src/categories.js';
-import { categoryStore, popularityCounts, recordCategoryClick } from '../server/category-popularity.js';
+import { categoryStore, rankingCounts, recordCategoryClick } from '../server/category-popularity.js';
 
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -13,7 +13,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     if (req.method === 'GET') {
       const { state } = await categoryStore().read();
       res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=60');
-      return reply(200, { counts: popularityCounts(state) });
+      return reply(200, { counts: rankingCounts(state) });
     }
     const origin = req.headers.origin;
     if (!origin || new URL(origin).host !== req.headers.host || req.headers['sec-fetch-site'] === 'cross-site') return reply(403, {});

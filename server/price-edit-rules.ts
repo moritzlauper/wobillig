@@ -2,7 +2,8 @@ import { InputError, type PriceEntry } from '../src/community.js';
 import type { Offer } from '../src/data.js';
 import type { PriceChange } from './price-audit.js';
 
-export function checkPriceEdit(entry: PriceEntry, before: Offer | null, changes: PriceChange[], now: number) {
+// Returns a review reason when a large change cannot be proven with a menu photo (the photo scan reads no soft drinks or cocktails).
+export function checkPriceEdit(entry: PriceEntry, before: Offer | null, changes: PriceChange[], now: number): string | undefined {
   if (!before) return;
   const related = changes.filter(change => change.barId === entry.barId && change.drink === entry.drink &&
     (change.entryId === entry.id || change.targetKey === entry.targetKey));
@@ -15,6 +16,7 @@ export function checkPriceEdit(entry: PriceEntry, before: Offer | null, changes:
     const difference = Math.abs(Math.round(entry.offer.priceChf * 100) - cents);
     return difference >= 200 && difference * 100 > cents * 30;
   });
+  if (large && (entry.drink === 'softdrink' || entry.drink === 'cocktail')) return 'large-change';
   if (large) throw new InputError('Für grössere Preisänderungen bitte eine aktuelle Menükarte hochladen.', 422);
   if (entry.offer.priceChf !== before.priceChf &&
       recent.filter(change => change.before && change.before.priceChf !== change.after.priceChf).length >= 6) {

@@ -68,7 +68,7 @@ for (const width of [320, 390, 1280]) {
     });
     await page.goto('/');
     await expect(page.locator('#count')).not.toHaveText('Laden …');
-    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza']);
+    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Pizza', 'Bier']);
     expect(clicks).toEqual([]);
     await expect(page.locator('#toolbar-toggle')).toHaveCount(0);
     await page.getByRole('button', { name: 'Weitere Kategorien', exact: true }).click();
@@ -82,7 +82,7 @@ for (const width of [320, 390, 1280]) {
     await page.getByRole('button', { name: 'Döner · Bald verfügbar' }).click();
     await expect(page.getByRole('dialog', { name: 'Döner · Bald verfügbar' })).toBeVisible();
     await expect.poll(() => clicks).toEqual(['doner']);
-    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza']);
+    await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Pizza', 'Bier']);
     expect(clicks).toEqual(['doner']);
     await page.getByRole('button', { name: 'Schliessen', exact: true }).click();
     await expect(page.locator('#categories-toggle')).toBeFocused();
@@ -146,7 +146,7 @@ test('a delayed ranking does not move buttons while the menu is open', async ({ 
   await response;
   await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
   await page.keyboard.press('Escape');
-  await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier', 'Pizza']);
+  await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Pizza', 'Bier']);
   await expect(page.locator('#drink-doner')).toBeHidden();
   await expect(page.locator('#drink-falafel')).toBeHidden();
 });
