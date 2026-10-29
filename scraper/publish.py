@@ -19,7 +19,7 @@ FILES = (
     for root, suffix in [('public/data', ''), ('scraper', '_checks')]
     for prefix in (('', 'bern/', 'basel/', 'lausanne/', 'geneva/', 'winterthur/', 'olten/') if root == 'public/data' else ('', 'cities/bern/', 'cities/basel/', 'cities/lausanne/', 'cities/geneva/', 'cities/winterthur/', 'cities/olten/'))
     for category in ('doner', 'falafel')
-) + ('scraper/cities/basel/outdoor_permits.json',)
+) + tuple(f'public/data/{city}/gastro-{category}.json' for city in ('bern', 'basel') for category in ('cocktail', 'softdrink')) + ('scraper/cities/basel/outdoor_permits.json',)
 MISSING = object()
 
 

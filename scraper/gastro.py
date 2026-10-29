@@ -1,6 +1,7 @@
-"""Cocktail, soft drink and bread prices in Zürich restaurants and bars, confirmed by Claude.
+"""Cocktail, soft drink and bread prices in restaurants and bars, confirmed by Claude.
 
 Example: python -m scraper.gastro --category softdrink --budget-usd 3 --tief
+WOBILLIG_CITY=basel selects the city (default Zürich); the dataset lands in its data folder.
 
 Venues with a website are read like the burger menus. Each category keeps only
 offers whose evidence names the item and states the price verbatim. Soft drinks
@@ -22,7 +23,7 @@ from pypdf.errors import PyPdfError
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
 from scraper.burger import crawl
-from scraper.cities import ROOT, venue_query
+from scraper.cities import CITY_NAME, DATA_DIR, ROOT, venue_query
 from scraper.enrich import AuditFetcher, host
 from scraper.scrape import discover, now
 
@@ -123,7 +124,7 @@ def scan(name, bars, fetcher, client, category, max_pages, max_documents, deadli
     for doc in docs:
         try:
             for blocks, start, count, text in documents(doc['body'], doc['kind'], page_filter=relevant):
-                prompt = {'type': 'text', 'text': f'Venue: {bars[0]["name"]}, Zürich. Source: {doc["url"]}. Extract every priced {category} item.'}
+                prompt = {'type': 'text', 'text': f'Venue: {bars[0]["name"]}, {CITY_NAME}. Source: {doc["url"]}. Extract every priced {category} item.'}
                 answer = client.ask(blocks + [prompt], SCHEMA, config['system'])
                 checked = clean(answer, category, doc['url'], start, count, text if doc['kind'] == 'text/plain' else '')
                 unverified |= bool(answer.get('offers')) and not checked
@@ -186,7 +187,7 @@ def main():
     parser.add_argument('--workers', type=int, default=4)
     parser.add_argument('--venues-file', type=Path, help='Reuse a saved OSM discovery')
     args = parser.parse_args()
-    out = args.out or ROOT / f'public/data/gastro-{args.category}.json'
+    out = args.out or DATA_DIR / f'gastro-{args.category}.json'
     max_pages, max_documents = (150, 200) if args.tief else (40, 60)
     found = json.loads(args.venues_file.read_text()) if args.venues_file else discover({}, query=venue_query('restaurant|fast_food|cafe|bar|pub'))
     groups = candidates(found['bars'])

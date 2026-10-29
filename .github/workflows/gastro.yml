@@ -1,7 +1,8 @@
 name: Refresh cocktail, soft drink and bread prices
 
-# Restaurants and bars in Zürich, read from their websites and confirmed by Claude Haiku 5.5. Runs every
-# three weeks for all three categories with the deep scan, and by hand for one category or all of them.
+# Restaurants and bars, read from their websites and confirmed by Claude Haiku 5.5. Runs every three weeks
+# with the deep scan: Zürich with all three categories at 3 USD each, Basel and Bern with cocktails and
+# soft drinks at 1.50 USD each (bread is not shown in the app). By hand for one category and one city.
 
 on:
   schedule:
@@ -13,10 +14,15 @@ on:
         type: choice
         options: [cocktail, softdrink, brot]
         default: cocktail
+      city:
+        description: City (bread only in Zürich)
+        type: choice
+        options: [zurich, basel, bern]
+        default: zurich
       ai_budget_usd:
-        description: Haiku 5.5 API budget in USD per category (scheduled runs use 3)
-        type: number
-        default: 3
+        description: Haiku 5.5 API budget in USD per category (empty uses 3 in Zürich and 1.50 in Basel and Bern, like the scheduled runs)
+        type: string
+        default: ""
       tief:
         description: Deep scan, more pages and documents per venue
         type: boolean
@@ -26,7 +32,8 @@ permissions:
   contents: write
 
 concurrency:
-  # Shared queue for all category scans: they run one after another and never publish at the same time.
+  # Shared queue for all category scans: runs wait for each other. The city jobs of one run publish
+  # independently; scraper.publish retries on top of the newest branch tip.
   group: category-prices
   cancel-in-progress: false
 
@@ -34,6 +41,13 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      # One job per city, so each city keeps its own time limit. Publishing merges per file.
+      matrix:
+        city: ${{ fromJSON(github.event_name == 'schedule' && '["zurich","basel","bern"]' || format('["{0}"]', inputs.city || 'zurich')) }}
+    env:
+      WOBILLIG_CITY: ${{ matrix.city }}
     steps:
       - name: Check three-week refresh cadence
         id: cadence
@@ -75,15 +89,22 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           EVENT: ${{ github.event_name }}
           CATEGORY: ${{ inputs.category }}
-          BUDGET: ${{ inputs.ai_budget_usd || 3 }}
+          BUDGET: ${{ inputs.ai_budget_usd }}
           TIEF: ${{ github.event_name == 'schedule' || inputs.tief }}
-          # Three categories share the job limit, so each gets 110 minutes. A single manual category gets 300.
-          MINUTES: ${{ github.event_name == 'schedule' && 110 || 300 }}
         run: |
           FLAG=""
           if [ "$TIEF" = "true" ]; then FLAG="--tief"; fi
-          CATS="$CATEGORY"
-          if [ "$EVENT" = "schedule" ]; then CATS="cocktail softdrink brot"; fi
+          if [ "$EVENT" = "schedule" ]; then
+            # Zürich: three categories share the job limit with 110 minutes each. Basel and Bern: two with 150.
+            if [ "$WOBILLIG_CITY" = "zurich" ]; then CATS="cocktail softdrink brot"; BUDGET=3; MINUTES=110
+            else CATS="cocktail softdrink"; BUDGET=1.5; MINUTES=150; fi
+          else
+            if [ "$CATEGORY" = "brot" ] && [ "$WOBILLIG_CITY" != "zurich" ]; then
+              echo "::error::Bread in restaurants is scanned only in Zürich."; exit 1
+            fi
+            CATS="$CATEGORY"; MINUTES=300
+            if [ -z "$BUDGET" ]; then BUDGET=$([ "$WOBILLIG_CITY" = "zurich" ] && echo 3 || echo 1.5); fi
+          fi
           for c in $CATS; do
             python -m scraper.gastro --category "$c" --budget-usd "$BUDGET" --minutes "$MINUTES" $FLAG
           done
