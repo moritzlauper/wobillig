@@ -4,10 +4,10 @@ import { t } from './i18n';
 import type { PublicMap } from './custom-map-data';
 
 export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void, dataPath: string) {
-  const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), ramen: t('Ramen'), burger: t('Burger'), pizza: 'Pizza', doner: t('Döner'), falafel: 'Falafel' };
+  const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), ramen: t('Ramen'), burger: t('Burger'), softdrink: t('Softdrinks'), cocktail: t('Cocktails'), pizza: 'Pizza', doner: t('Döner'), falafel: 'Falafel' };
   const upcoming = (category: Category) => category === 'doner' || category === 'falafel';
-  // Only coffee, beer and pizza stay in the visible row; the other categories sit behind "Weitere".
-  const collapsed = (category: Category) => upcoming(category) || category === 'ramen' || category === 'burger';
+  // Only coffee, beer and pizza stay in the visible row; every other category, new ones included, sits behind "Weitere".
+  const collapsed = (category: Category) => category !== 'coffee' && category !== 'beer' && category !== 'pizza';
   root.innerHTML = `<div id="primary-categories" class="switch" role="group" aria-label="${t('Kategorie')}"></div>
     <div class="more-categories"><button id="categories-toggle" type="button" aria-expanded="false" aria-controls="additional-categories" aria-label="${t('Weitere Kategorien')}" title="${t('Weitere Kategorien')}"><span class="more-label">${t('Weitere')}</span><span class="filter-chevron" aria-hidden="true"></span></button>
     <div id="additional-categories" role="group" aria-label="${t('Weitere Kategorien')}" hidden></div></div>`;
@@ -21,7 +21,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   dialog.setAttribute('aria-labelledby', 'upcoming-category-title');
   dialog.innerHTML = `<h2 id="upcoming-category-title"></h2><p>${t('Für diese Kategorie sind noch keine Preise verfügbar.')}</p><form method="dialog"><button>${t('Schliessen')}</button></form>`;
   root.append(dialog);
-  let counts = emptyCategoryCounts(), pizzaAvailable = true, ramenAvailable = true, burgerAvailable = true, active: Drink = 'coffee';
+  let counts = emptyCategoryCounts(), unavailable: ReadonlySet<Category> = new Set(), active: Drink = 'coffee';
   let clicked: Category = 'coffee';
   let requestVersion = 0;
   let pendingClicks = Promise.resolve();
@@ -63,13 +63,13 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   }
   function render() {
     const focused = document.activeElement;
-    const order = rankedCategories(counts, pizzaAvailable, ramenAvailable, burgerAvailable).filter(category =>
+    const order = rankedCategories(counts, unavailable).filter(category =>
       category !== 'doner' && category !== 'falafel' || priceCounts[category] >= 50);
     for (const category of categories) buttons[category].hidden = !order.includes(category);
     primary.replaceChildren(...order.filter(category => !collapsed(category)).map(category => buttons[category]));
     more.replaceChildren(...order.filter(collapsed).map(category => buttons[category]));
     // Retain the unavailable Pizza element for existing control synchronization.
-    if (!pizzaAvailable) more.append(buttons.pizza);
+    if (unavailable.has('pizza')) more.append(buttons.pizza);
     const savedIds = new Set(savedMapButtons.map(button => button.dataset.customMap));
     const publicButtons = mapButtons.filter(button => !savedIds.has(button.dataset.customMap));
     const publicIds = new Set(mapButtons.map(button => button.dataset.customMap));
@@ -159,9 +159,10 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
       render();
     },
     close,
-    update(drink: Drink, hasPizza: boolean, hasRamen: boolean, hasBurger: boolean) {
+    // Categories without enough current prices in this city stay hidden.
+    update(drink: Drink, hidden: ReadonlySet<Category>) {
       active = drink;
-      if (pizzaAvailable !== hasPizza || ramenAvailable !== hasRamen || burgerAvailable !== hasBurger) { pizzaAvailable = hasPizza; ramenAvailable = hasRamen; burgerAvailable = hasBurger; render(); }
+      if (hidden.size !== unavailable.size || [...hidden].some(category => !unavailable.has(category))) { unavailable = new Set(hidden); render(); }
       else syncActive();
     },
   };

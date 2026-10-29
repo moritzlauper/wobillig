@@ -3,6 +3,7 @@ import { t } from './i18n.js';
 import { pizzaGroup, pizzaGroupLabels, pizzaNameKey, type PizzaGroup, type PizzaSelection } from './pizza-selection.js';
 import { beerGroup, beerGroupLabels, normalizeBeerName, type BeerSelection } from './beer-selection.js';
 import { type BurgerSelection } from './burger-selection.js';
+import { cocktailGroup, cocktailSelectionLabels, matchesSoftdrinkSize, type CocktailGroup, type CocktailSelection, type SoftdrinkSize } from './gastro-selection.js';
 import { isGlutenFreeOffer, isGlutenFreePizzeria } from './gluten-free.js';
 
 export type BeerType = "draft" | "bottle" | "can" | "unknown";
@@ -16,6 +17,8 @@ export type Offer = {
   burgerDiet?: "standard" | "vegetarian" | "vegan";
   // Explicit label from the menu; text labels are checked in isGlutenFreeOffer.
   glutenFree?: boolean;
+  // Set by the gastro scan. Its bread dataset is not loaded, so "brot" never reaches the app.
+  gastroType?: "softdrink" | "cocktail";
   priceContext?: "online_menu";
   coffeeType?: string;
   serving?: "stange";
@@ -75,8 +78,10 @@ export type Dataset = {
 export type Filters = {
   pizzaSelection?: PizzaSelection;
   pizzaQuery?: string;
-  drink?: "beer" | "coffee" | "pizza" | "ramen" | "burger";
+  drink?: "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail";
   burgerSelection?: BurgerSelection;
+  softdrinkSize?: SoftdrinkSize;
+  cocktailSelection?: CocktailSelection;
   coffeeType?: string;
   beerType?: BeerType | "all";
   beerQuery?: string;
@@ -99,10 +104,11 @@ export const coffeeLabels: Record<string, string> = {
   matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
+  if (o.gastroType) return o.volumeMl ? `${o.volumeMl / 100} dl` : "";
   return o.pizzaType ? (o.priceContext === "online_menu" ? t('Onlinepreis') : "") : (o.ramenType || o.burgerType) ? t('Standardportion') : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
 }
-export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" | "ramen" | "burger" {
-  return o.burgerType ? "burger" : o.ramenType ? "ramen" : o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer";
+export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail" {
+  return o.gastroType || (o.burgerType ? "burger" : o.ramenType ? "ramen" : o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer");
 }
 // Keep in sync with scraper/beer_rules.py.
 export function isBeerMix(name: string): boolean {
@@ -198,6 +204,23 @@ const burgerChoices: Record<BurgerSelection, (o: Offer) => boolean> = {
 export function matchesBurger(o: Offer, f: Filters): boolean {
   return Boolean(o.burgerType) && burgerChoices[f.burgerSelection || "all"](o);
 }
+export function matchesCocktail(o: Offer, f: Filters): boolean {
+  return o.gastroType === "cocktail" && (!f.cocktailSelection || f.cocktailSelection === "all" || cocktailGroup(o.name) === f.cocktailSelection);
+}
+// Like the pizza and beer choices, a cocktail appears once three venues list it.
+export function cocktailVarieties(bars: Bar[]): { value: CocktailGroup; label: string }[] {
+  const venues = new Map<CocktailGroup, Set<string>>();
+  for (const bar of bars) for (const offer of bar.offers) {
+    if (offer.gastroType !== "cocktail" || !isCurrentOffer(offer) || !Number.isFinite(offer.priceChf) || offer.priceChf <= 0) continue;
+    const group = cocktailGroup(offer.name);
+    if (!group) continue;
+    if (!venues.has(group)) venues.set(group, new Set());
+    venues.get(group)!.add(bar.id);
+  }
+  return [...venues].filter(([, ids]) => ids.size >= 3)
+    .sort(([a, idsA], [b, idsB]) => idsB.size - idsA.size || cocktailSelectionLabels[a].localeCompare(cocktailSelectionLabels[b], "de"))
+    .map(([value]) => ({ value, label: cocktailSelectionLabels[value] }));
+}
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return (f.drink === 'pizza' ? [...bar.offers, ...(bar.pizzaMenu || [])] : bar.offers)
     .filter(o => isCurrentOffer(o) && isComparableOffer(o))
@@ -207,6 +230,8 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
         f.drink === "pizza" ? matchesPizza(o, f, bar) :
         f.drink === "ramen" ? Boolean(o.ramenType) :
         f.drink === "burger" ? matchesBurger(o, f) :
+        f.drink === "softdrink" ? matchesSoftdrinkSize(o.volumeMl, f.softdrinkSize) :
+        f.drink === "cocktail" ? matchesCocktail(o, f) :
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree && (!f.glutenFree || isGlutenFreeOffer(o)) &&
@@ -278,7 +303,8 @@ export function filterBars(
         (!f.outdoor || hasOutdoorSeating(b)) &&
         (o ? cost(o, f.mode) <= f.max : f.unknown &&
           !hasBeerSelection(f) &&
-          !(f.drink === "pizza" && (f.pizzaQuery?.trim() || (f.pizzaSelection && f.pizzaSelection !== 'all'))))
+          !(f.drink === "pizza" && (f.pizzaQuery?.trim() || (f.pizzaSelection && f.pizzaSelection !== 'all'))) &&
+          !(f.drink === "cocktail" && f.cocktailSelection && f.cocktailSelection !== "all"))
       );
     })
     .sort((a, b) => {

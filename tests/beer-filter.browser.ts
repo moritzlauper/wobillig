@@ -23,6 +23,7 @@ for (const [width, language] of [[320, 'de'], [1280, 'en']] as const) {
     await page.route('**/data/locations.json', route => route.fulfill({ json: { bars: [] } }));
     await page.route('**/data/burger.json', route => route.fulfill({ json: { bars: [] } }));
     await page.route('**/data/ramen.json', route => route.fulfill({ json: { bars: [] } }));
+    await page.route('**/data/gastro-*.json', route => route.fulfill({ json: { bars: [] } }));
     await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
     await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
     await page.setViewportSize({ width, height: 900 });

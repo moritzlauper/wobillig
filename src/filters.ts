@@ -3,6 +3,7 @@ import { drinkFromSearch } from './sharing';
 import { parsePizzaSelection } from './pizza-selection';
 import { parseBeerSelection } from './beer-selection';
 import { parseBurgerSelection } from './burger-selection';
+import { parseCocktailSelection, parseSoftdrinkSize } from './gastro-selection';
 import { cities } from './cities';
 
 export const cheapPreferenceKey = 'wobillig:cheap';
@@ -11,7 +12,7 @@ export function cheapModeFromSearch(params: URLSearchParams, preference: string 
   if (params.has('cheap')) return params.get('cheap') === '1';
   // Links made before cheap became the default must retain their original view.
   const selectionKeys = ['drink', 'coffeeType', 'beerType', 'beerSelection', 'beerQuery',
-    'pizzaSelection', 'pizzaQuery', 'burgerSelection', 'q', 'max', 'size', 'type', 'unknown', 'outdoor',
+    'pizzaSelection', 'pizzaQuery', 'burgerSelection', 'softdrinkSize', 'cocktailSelection', 'q', 'max', 'size', 'type', 'unknown', 'outdoor',
     'alcoholFree', 'glutenFree', 'mode', 'sort', 'bar', 'address', 'map',
     ...Object.values(cities).flatMap(city => city.districts ? [city.districts.toggle, city.districts.param] : [])];
   if (selectionKeys.some(key => params.has(key))) return false;
@@ -28,6 +29,8 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
   const pizzaSelection = parsePizzaSelection(params.get('pizzaSelection'));
   const beerSelection = parseBeerSelection(params.get('beerSelection'));
   const burgerSelection = parseBurgerSelection(params.get('burgerSelection'));
+  const softdrinkSize = parseSoftdrinkSize(params.get('softdrinkSize'));
+  const cocktailSelection = parseCocktailSelection(params.get('cocktailSelection'));
   const amount = params.get('max');
   const max = amount?.trim() && Number.isFinite(Number(amount)) && Number(amount) >= 0.5 ? Number(amount) : Infinity;
   const filters: Filters = {
@@ -35,6 +38,8 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
     ...(pizzaSelection ? { pizzaSelection } : {}),
     ...(beerSelection ? { beerSelection } : {}),
     ...(burgerSelection ? { burgerSelection } : {}),
+    ...(softdrinkSize ? { softdrinkSize } : {}),
+    ...(cocktailSelection ? { cocktailSelection } : {}),
     ...(params.get('pizzaQuery')?.trim() ? { pizzaQuery: params.get('pizzaQuery')!.trim().slice(0, 120) } : {}),
     ...(params.get('beerQuery')?.trim() ? { beerQuery: params.get('beerQuery')!.trim().slice(0, 120) } : {}),
     coffeeType: choice(params, 'coffeeType', ['all', ...Object.keys(coffeeLabels)], 'cappuccino'),
@@ -65,6 +70,8 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
     coffeeType: f.coffeeType && f.coffeeType !== 'cappuccino' ? f.coffeeType : '',
     pizzaSelection: f.pizzaSelection || '', pizzaQuery: f.pizzaQuery?.trim() || '',
     burgerSelection: f.burgerSelection && f.burgerSelection !== 'all' ? f.burgerSelection : '',
+    softdrinkSize: f.softdrinkSize && f.softdrinkSize !== '300-330' ? f.softdrinkSize : '',
+    cocktailSelection: f.cocktailSelection && f.cocktailSelection !== 'all' ? f.cocktailSelection : '',
     beerType, beerSelection: f.beerSelection || '', beerQuery: f.beerQuery?.trim() || '', q: f.query,
     max: Number.isFinite(f.max) ? String(f.max) : '',
     size, type: f.type, unknown: f.unknown ? '' : '0', outdoor: f.outdoor ? '1' : '',

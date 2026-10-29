@@ -25,7 +25,7 @@ beforeEach(() => {
   mocks.record.mockResolvedValue({ coffee: 0, beer: 0, pizza: 0, doner: 1, falafel: 0 });
 });
 it('returns only aggregate counts and never visitor identifiers', async () => {
-  expect((await request('GET')).data).toEqual({ counts: { coffee: 0, beer: 0, ramen: 0, burger: 0, pizza: 0, doner: 0, falafel: 0 } });
+  expect((await request('GET')).data).toEqual({ counts: { coffee: 0, beer: 0, ramen: 0, burger: 0, softdrink: 0, cocktail: 0, pizza: 0, doner: 0, falafel: 0 } });
 });
 it('rejects foreign requests, invalid categories, methods and large bodies before recording', async () => {
   expect((await request('POST', { category: 'doner' }, { origin: 'https://other.org' })).status).toBe(403);
