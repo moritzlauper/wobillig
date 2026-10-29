@@ -3,7 +3,7 @@ import { t } from './i18n.js';
 import { pizzaGroup, pizzaGroupLabels, pizzaNameKey, type PizzaGroup, type PizzaSelection } from './pizza-selection.js';
 import { beerGroup, beerGroupLabels, normalizeBeerName, type BeerSelection } from './beer-selection.js';
 import { type BurgerSelection } from './burger-selection.js';
-import { cocktailGroup, cocktailSelectionLabels, matchesSoftdrinkSize, type CocktailGroup, type CocktailSelection, type SoftdrinkSize } from './gastro-selection.js';
+import { cocktailGroup, cocktailSelectionLabels, matchesSoftdrinkSize, softdrinkGroups, softdrinkSelectionLabels, type CocktailGroup, type CocktailSelection, type SoftdrinkGroup, type SoftdrinkSelection, type SoftdrinkSize } from './gastro-selection.js';
 import { isGlutenFreeOffer, isGlutenFreePizzeria } from './gluten-free.js';
 
 export type BeerType = "draft" | "bottle" | "can" | "unknown";
@@ -81,6 +81,7 @@ export type Filters = {
   drink?: "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail";
   burgerSelection?: BurgerSelection;
   softdrinkSize?: SoftdrinkSize;
+  softdrinkSelection?: SoftdrinkSelection;
   cocktailSelection?: CocktailSelection;
   coffeeType?: string;
   beerType?: BeerType | "all";
@@ -204,6 +205,10 @@ const burgerChoices: Record<BurgerSelection, (o: Offer) => boolean> = {
 export function matchesBurger(o: Offer, f: Filters): boolean {
   return Boolean(o.burgerType) && burgerChoices[f.burgerSelection || "all"](o);
 }
+export function matchesSoftdrink(o: Offer, f: Filters): boolean {
+  return matchesSoftdrinkSize(o.volumeMl, f.softdrinkSize) &&
+    (!f.softdrinkSelection || f.softdrinkSelection === "all" || softdrinkGroups(o.name).includes(f.softdrinkSelection));
+}
 export function matchesCocktail(o: Offer, f: Filters): boolean {
   return o.gastroType === "cocktail" && (!f.cocktailSelection || f.cocktailSelection === "all" || cocktailGroup(o.name) === f.cocktailSelection);
 }
@@ -221,6 +226,20 @@ export function cocktailVarieties(bars: Bar[]): { value: CocktailGroup; label: s
     .sort(([a, idsA], [b, idsB]) => idsB.size - idsA.size || cocktailSelectionLabels[a].localeCompare(cocktailSelectionLabels[b], "de"))
     .map(([value]) => ({ value, label: cocktailSelectionLabels[value] }));
 }
+// Soft drinks follow the same rule: a choice appears once three venues list it.
+export function softdrinkVarieties(bars: Bar[]): { value: SoftdrinkGroup; label: string }[] {
+  const venues = new Map<SoftdrinkGroup, Set<string>>();
+  for (const bar of bars) for (const offer of bar.offers) {
+    if (offer.gastroType !== "softdrink" || !isCurrentOffer(offer) || !Number.isFinite(offer.priceChf) || offer.priceChf <= 0) continue;
+    for (const group of softdrinkGroups(offer.name)) {
+      if (!venues.has(group)) venues.set(group, new Set());
+      venues.get(group)!.add(bar.id);
+    }
+  }
+  return [...venues].filter(([, ids]) => ids.size >= 3)
+    .sort(([a, idsA], [b, idsB]) => idsB.size - idsA.size || softdrinkSelectionLabels[a].localeCompare(softdrinkSelectionLabels[b], "de"))
+    .map(([value]) => ({ value, label: softdrinkSelectionLabels[value] }));
+}
 export function matchingOffers(bar: Bar, f: Filters): Offer[] {
   return (f.drink === 'pizza' ? [...bar.offers, ...(bar.pizzaMenu || [])] : bar.offers)
     .filter(o => isCurrentOffer(o) && isComparableOffer(o))
@@ -230,7 +249,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
         f.drink === "pizza" ? matchesPizza(o, f, bar) :
         f.drink === "ramen" ? Boolean(o.ramenType) :
         f.drink === "burger" ? matchesBurger(o, f) :
-        f.drink === "softdrink" ? matchesSoftdrinkSize(o.volumeMl, f.softdrinkSize) :
+        f.drink === "softdrink" ? matchesSoftdrink(o, f) :
         f.drink === "cocktail" ? matchesCocktail(o, f) :
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
@@ -304,6 +323,7 @@ export function filterBars(
         (o ? cost(o, f.mode) <= f.max : f.unknown &&
           !hasBeerSelection(f) &&
           !(f.drink === "pizza" && (f.pizzaQuery?.trim() || (f.pizzaSelection && f.pizzaSelection !== 'all'))) &&
+          !(f.drink === "softdrink" && f.softdrinkSelection && f.softdrinkSelection !== "all") &&
           !(f.drink === "cocktail" && f.cocktailSelection && f.cocktailSelection !== "all"))
       );
     })

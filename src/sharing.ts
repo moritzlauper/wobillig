@@ -3,7 +3,7 @@ import type { Drink } from './community';
 import { parsePizzaSelection } from './pizza-selection';
 import { parseBeerSelection } from './beer-selection';
 import { parseBurgerSelection } from './burger-selection';
-import { parseCocktailSelection, parseSoftdrinkSize } from './gastro-selection';
+import { parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize } from './gastro-selection';
 
 // Old shared beer links used only size/beerType; keep those entry points working.
 export function drinkFromSearch(params: URLSearchParams): Drink {
@@ -22,6 +22,7 @@ export function barLink(href: string, barId: string, drink: Drink, volume: strin
   const glutenFree = url.searchParams.get('glutenFree') === '1';
   const burgerSelection = parseBurgerSelection(url.searchParams.get('burgerSelection'));
   const softdrinkSize = parseSoftdrinkSize(url.searchParams.get('softdrinkSize'));
+  const softdrinkSelection = parseSoftdrinkSelection(url.searchParams.get('softdrinkSelection'));
   const cocktailSelection = parseCocktailSelection(url.searchParams.get('cocktailSelection'));
   url.search = '';
   url.hash = '';
@@ -33,6 +34,7 @@ export function barLink(href: string, barId: string, drink: Drink, volume: strin
   }
   if (drink === 'burger' && burgerSelection) url.searchParams.set('burgerSelection', burgerSelection);
   if (drink === 'softdrink' && softdrinkSize) url.searchParams.set('softdrinkSize', softdrinkSize);
+  if (drink === 'softdrink' && softdrinkSelection) url.searchParams.set('softdrinkSelection', softdrinkSelection);
   if (drink === 'cocktail' && cocktailSelection) url.searchParams.set('cocktailSelection', cocktailSelection);
   if (drink === 'beer') {
     if (beerSelection) url.searchParams.set('beerSelection', beerSelection);

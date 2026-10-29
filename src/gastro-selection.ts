@@ -14,6 +14,48 @@ export function matchesSoftdrinkSize(volumeMl: number | null, size: SoftdrinkSiz
   return volumeMl === Number(size);
 }
 
+export const softdrinkSelectionLabels = {
+  all: 'Alle Softdrinks',
+  cola: 'Coca-Cola',
+  cola_zero: 'Cola Zero / Light',
+  rivella: 'Rivella',
+  fanta: 'Fanta',
+  sprite: 'Sprite',
+  icetea: 'Eistee',
+  tonic: 'Tonic Water',
+  bitter_lemon: 'Bitter Lemon',
+  ginger_beer: 'Ginger Beer',
+  ginger_ale: 'Ginger Ale',
+  schorle: 'Schorle',
+  lemonade: 'Limonade',
+} as const;
+export type SoftdrinkSelection = keyof typeof softdrinkSelectionLabels;
+export type SoftdrinkGroup = Exclude<SoftdrinkSelection, 'all'>;
+
+// Menus often list several drinks at one price ("Coca Cola / Zero", "Rivella rot oder blau"),
+// so a soft drink can belong to more than one group.
+const softdrinkPatterns: Record<SoftdrinkGroup, RegExp> = {
+  cola: /\b(?:coca[\s-]*)?cola\b(?![\s-]*(?:zero|light))/,
+  cola_zero: /\b(?:cola|coke)\b.*\b(?:zero|light)\b/,
+  rivella: /\brivella\b/,
+  fanta: /\bfanta\b/,
+  sprite: /\bsprite\b/,
+  icetea: /eistee|ice[\s-]*tea|fuse[\s-]*tea/,
+  tonic: /\btonic\b/,
+  bitter_lemon: /\bbitter\s*lemon\b/,
+  ginger_beer: /\bginger\s*beer\b/,
+  ginger_ale: /\bginger\s*ale\b/,
+  schorle: /schorle/,
+  lemonade: /limonade|lemonade/,
+};
+export function softdrinkGroups(name: string): SoftdrinkGroup[] {
+  const text = name.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase();
+  return (Object.keys(softdrinkPatterns) as SoftdrinkGroup[]).filter(group => softdrinkPatterns[group].test(text));
+}
+export function parseSoftdrinkSelection(value: string | null): SoftdrinkSelection | undefined {
+  return value && Object.hasOwn(softdrinkSelectionLabels, value) ? value as SoftdrinkSelection : undefined;
+}
+
 export const cocktailSelectionLabels = {
   all: 'Alle Cocktails',
   aperol_spritz: 'Aperol Spritz',

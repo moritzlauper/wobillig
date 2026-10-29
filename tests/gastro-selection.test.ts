@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { cocktailGroup, parseCocktailSelection, parseSoftdrinkSize, softdrinkSizes } from '../src/gastro-selection';
-import { cheapPriceLimit, cocktailVarieties, filterBars, matchingOffers, offerCategory, portion, type Bar, type Filters, type Offer } from '../src/data';
+import { cocktailGroup, parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize, softdrinkGroups, softdrinkSizes } from '../src/gastro-selection';
+import { cheapPriceLimit, cocktailVarieties, softdrinkVarieties, filterBars, matchingOffers, offerCategory, portion, type Bar, type Filters, type Offer } from '../src/data';
 import { filtersFromSearch, writeFilters } from '../src/filters';
 import { barLink, drinkFromSearch } from '../src/sharing';
 
@@ -57,6 +57,38 @@ describe('soft drinks', () => {
   });
 });
 
+describe('soft drink selection', () => {
+  it('groups soft drinks by their sourced name, also when a menu lists several', () => {
+    expect(softdrinkGroups('Coca Cola')).toEqual(['cola']);
+    expect(softdrinkGroups('Coca-Cola Zero')).toEqual(['cola_zero']);
+    expect(softdrinkGroups('Coca Cola / Zero')).toEqual(['cola', 'cola_zero']);
+    expect(softdrinkGroups('Rivella rot oder blau')).toEqual(['rivella']);
+    expect(softdrinkGroups('Hausgemachter Eistee')).toEqual(['icetea']);
+    expect(softdrinkGroups('Schweppes Tonic / Bitter Lemon')).toEqual(['tonic', 'bitter_lemon']);
+    expect(softdrinkGroups('Pepsi Zero Sugar')).toEqual([]);
+    expect(parseSoftdrinkSelection('cola')).toBe('cola');
+    expect(parseSoftdrinkSelection('constructor')).toBeUndefined();
+  });
+
+  it('combines the drink with the size and hides venues without it', () => {
+    const bars = [
+      venue('node/1', [soft('Coca Cola', 6.5, 330), soft('Fanta', 5, 330), soft('Coca Cola', 4, 200)]),
+      venue('node/2', [soft('Rivella Rot', 5.5, 330)]),
+    ];
+    const f = filters({ softdrinkSelection: 'cola' });
+    expect(matchingOffers(bars[0], f).map(o => o.priceChf)).toEqual([6.5]);
+    expect(matchingOffers(bars[0], { ...f, softdrinkSize: 'all' }).map(o => o.priceChf)).toEqual([4, 6.5]);
+    expect(filterBars(bars, f).map(bar => bar.id)).toEqual(['node/1']);
+    expect(filterBars(bars, filters()).map(bar => bar.id)).toEqual(['node/1', 'node/2']);
+  });
+
+  it('offers a soft drink once three venues list it', () => {
+    const bars = ['1', '2', '3'].map(id => venue(`node/${id}`, [soft('Coca Cola / Zero', 6, 330), soft('Fanta', 6, 330)]));
+    bars[2].offers.pop();
+    expect(softdrinkVarieties(bars).map(option => option.value)).toEqual(['cola', 'cola_zero']);
+  });
+});
+
 describe('cocktails', () => {
   it('groups the classics by their sourced name', () => {
     expect(cocktailGroup('Aperol Spritz')).toBe('aperol_spritz');
@@ -104,5 +136,8 @@ describe('links', () => {
     const cocktailLink = new URL(barLink('https://wobillig.ch/?drink=cocktail&cocktailSelection=hugo', 'node/1', 'cocktail', '300-330'));
     expect(cocktailLink.searchParams.get('cocktailSelection')).toBe('hugo');
     expect(new URL(barLink('https://wobillig.ch/?cocktailSelection=hugo', 'node/1', 'softdrink', '300-330')).searchParams.has('cocktailSelection')).toBe(false);
+    expect(filtersFromSearch(new URLSearchParams('drink=softdrink&softdrinkSelection=cola')).softdrinkSelection).toBe('cola');
+    const softdrinkLink = new URL(barLink('https://wobillig.ch/?drink=softdrink&softdrinkSelection=cola', 'node/1', 'softdrink', '300-330'));
+    expect(softdrinkLink.searchParams.get('softdrinkSelection')).toBe('cola');
   });
 });

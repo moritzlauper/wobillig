@@ -25,11 +25,11 @@ import { applyVenueCorrections, type VenueCorrection } from './venue-corrections
 import { categoryNavigation } from './category-navigation';
 import { customMaps } from './custom-maps';
 import { pizzaMenuContent } from './pizza-menu';
-import { pizzaVarieties, beerVarieties, cocktailVarieties, hasBeerSelection, hasGlutenFreePizza } from './data';
+import { pizzaVarieties, beerVarieties, cocktailVarieties, softdrinkVarieties, hasBeerSelection, hasGlutenFreePizza } from './data';
 import { beerGroupLabels, parseBeerSelection } from './beer-selection';
 import { parsePizzaSelection, pizzaGroupLabels, type PizzaGroup } from './pizza-selection';
 import { burgerSelectionLabels, parseBurgerSelection } from './burger-selection';
-import { cocktailSelectionLabels, parseCocktailSelection, parseSoftdrinkSize, softdrinkSizeLabels, softdrinkSizes } from './gastro-selection';
+import { cocktailSelectionLabels, parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize, softdrinkSelectionLabels, softdrinkSizeLabels, softdrinkSizes } from './gastro-selection';
 import type { Category } from './categories';
 import { showGoogleRating, clearGoogleRating } from './google-rating';
 import { showValueRating } from './value-rating';
@@ -115,6 +115,7 @@ let cheapLimit: number | undefined;
 let pizzaOptions: ReturnType<typeof pizzaVarieties> = [];
 let pizzaGlutenFree = false;
 let beerOptions: ReturnType<typeof beerVarieties> = [];
+let softdrinkOptions: ReturnType<typeof softdrinkVarieties> = [];
 let cocktailOptions: ReturnType<typeof cocktailVarieties> = [];
 let locationCatalogue: Bar[] = [];
 let customMapUI: ReturnType<typeof customMaps> | undefined;
@@ -165,6 +166,7 @@ $('app').innerHTML = `
     <select id="burger-selection" aria-label="${t('Burgerauswahl')}">${options(translated(burgerSelectionLabels))}</select>
   </div>
   <div id="softdrink-controls" class="pizza-controls" hidden>
+    <select id="softdrink-selection" aria-label="${t('Softdrinkauswahl')}"><option value="all">${t('Alle Softdrinks')}</option></select>
     <select id="softdrink-size" aria-label="${t('Softdrinkgrösse')}">${softdrinkSizes.map(size => `<option value="${size}">${e(t(softdrinkSizeLabels[size]))}</option>`).join('')}</select>
   </div>
   <div id="cocktail-controls" class="pizza-controls" hidden>
@@ -456,6 +458,7 @@ function rebuild() {
       $<HTMLInputElement>('price').value = Number.isFinite(f.max) ? String(f.max) : '';
     }
   }
+  softdrinkOptions = softdrinkVarieties(gastroBars.softdrink);
   cocktailOptions = cocktailVarieties(gastroBars.cocktail);
   const base = datasets[f.drink!];
   bars = softdrink() ? gastroBars.softdrink : cocktail() ? gastroBars.cocktail : burger() ? burgerBars : ramen() ? ramenBars : pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!, venueCorrections).bars : [];
@@ -485,6 +488,14 @@ function syncControls() {
   $<HTMLSelectElement>('burger-selection').value = f.burgerSelection || 'all';
   $('softdrink-controls').hidden = !softdrink();
   $<HTMLSelectElement>('softdrink-size').value = f.softdrinkSize || '300-330';
+  const softdrinkSelect = $<HTMLSelectElement>('softdrink-selection');
+  const softdrinkValue = f.softdrinkSelection || 'all';
+  const availableSoftdrinks: { value: string; label: string }[] = [{ value: 'all', label: t('Alle Softdrinks') }, ...softdrinkOptions.map(option => ({ ...option, label: t(option.label) }))];
+  // Retain a shared selection when the destination city lists too few venues for it.
+  if (!availableSoftdrinks.some(option => option.value === softdrinkValue)) availableSoftdrinks.push({ value: softdrinkValue, label: t(softdrinkSelectionLabels[softdrinkValue]) });
+  const softdrinkOptionHtml = availableSoftdrinks.map(({ value, label }) => `<option value="${e(value)}">${e(label)}</option>`).join('');
+  if (softdrinkSelect.innerHTML !== softdrinkOptionHtml) softdrinkSelect.innerHTML = softdrinkOptionHtml;
+  softdrinkSelect.value = softdrinkValue;
   $('cocktail-controls').hidden = !cocktail();
   const cocktailSelect = $<HTMLSelectElement>('cocktail-selection');
   const cocktailValue = f.cocktailSelection || 'all';
@@ -575,7 +586,7 @@ function render() {
   $('count').textContent = coverageLabel(current, f) + (addressSelection ? ` · ${t('Bezugspunkt: {label}', { label: addressSelection.label })}` : '');
   const average = cityAverage(bars, f);
   $('city-average').textContent = t('Schnitt {city} {value}', { city: cityName, value: average ? `CHF ${money(average.price)}` : '—' });
-  const comparison = pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : burger() ? t(burgerSelectionLabels[f.burgerSelection || 'all']) : softdrink() ? t('Softdrink · {size}', { size: t(softdrinkSizeLabels[f.softdrinkSize || '300-330']) }) : cocktail() ? t(cocktailSelectionLabels[f.cocktailSelection || 'all']) : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
+  const comparison = pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : burger() ? t(burgerSelectionLabels[f.burgerSelection || 'all']) : softdrink() ? `${f.softdrinkSelection && f.softdrinkSelection !== 'all' ? t(softdrinkSelectionLabels[f.softdrinkSelection]) : t('Softdrink')} · ${t(softdrinkSizeLabels[f.softdrinkSize || '300-330'])}` : cocktail() ? t(cocktailSelectionLabels[f.cocktailSelection || 'all']) : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
     size: f.volume === 'all' ? t('alle Grössen') : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`,
     mode: f.mode === 'half' ? t('auf 5 dl umgerechnet') : t('Portionspreis'),
   });
@@ -925,6 +936,11 @@ $('softdrink-size').onchange = () => {
   f.softdrinkSize = parseSoftdrinkSize($<HTMLSelectElement>('softdrink-size').value);
   render();
 };
+$('softdrink-selection').onchange = () => {
+  f.softdrinkSelection = parseSoftdrinkSelection($<HTMLSelectElement>('softdrink-selection').value);
+  selected = undefined;
+  render();
+};
 $('cocktail-selection').onchange = () => {
   f.cocktailSelection = parseCocktailSelection($<HTMLSelectElement>('cocktail-selection').value);
   selected = undefined;
@@ -967,7 +983,7 @@ $('reset').onclick = () => {
   closeSearchSuggestions();
   rememberCheapMode(false);
   districtState.enabled = false; districtState.selected = undefined;
-  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, softdrinkSize: undefined, cocktailSelection: undefined, glutenFree: false, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, softdrinkSize: undefined, softdrinkSelection: undefined, cocktailSelection: undefined, glutenFree: false, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = ''; $<HTMLInputElement>('price').value = '';
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
   for (const id of ['unknown', 'outdoor', 'alcohol-free', 'gluten-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
