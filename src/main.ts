@@ -10,7 +10,7 @@ import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
 import { selectBeerSize, cheapPriceLimit, matchingPrices, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels as defaultCoffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer, type OutdoorPermit } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type EntryDrink, type PriceEntry, type PriceInput } from './community';
 import { barLink, shareLink } from './sharing';
-import { cheapModeFromSearch, cheapPreferenceKey, dropDefaultCheap, filtersFromSearch, writeFilters } from './filters';
+import { cheapModeFromSearch, dropDefaultCheap, filtersFromSearch, writeFilters } from './filters';
 import { createExport, downloadExport } from './export';
 import { googleMapsLink, withKnownAddress, withKnownDetails, locationAtPosition, nearbyLocations, selectableLocations } from './locations';
 import { searchSuggestions } from './search';
@@ -56,13 +56,7 @@ let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: B
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
 let communityReady = false, saving = false, pizzaAvailable = false, ramenAvailable = false, burgerAvailable = false;
 const gastroAvailable = { softdrink: false, cocktail: false };
-let cheapPreference: string | null = null;
-try { cheapPreference = localStorage.getItem(cheapPreferenceKey); } catch { /* Storage can be blocked. */ }
-let cheapMode = cheapModeFromSearch(initial, cheapPreference);
-function rememberCheapMode(enabled: boolean) {
-  cheapMode = enabled;
-  try { localStorage.setItem(cheapPreferenceKey, enabled ? '1' : '0'); } catch { /* Keep the choice for this page. */ }
-}
+let cheapMode = cheapModeFromSearch(initial);
 let cheapLimit: number | undefined;
 let pizzaOptions: ReturnType<typeof pizzaVarieties> = [];
 let pizzaGlutenFree = false;
@@ -892,13 +886,13 @@ $('beer-type').onchange = () => {
 };
 $('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render(); };
 $('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position && !addressSelection) locate(); else render(); };
-for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree'], ['gluten-free', 'glutenFree']] as const) $(id).onchange = () => { if (key === 'unknown') rememberCheapMode(false); f[key] = $<HTMLInputElement>(id).checked; render(); };
+for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree'], ['gluten-free', 'glutenFree']] as const) $(id).onchange = () => { if (key === 'unknown') cheapMode = false; f[key] = $<HTMLInputElement>(id).checked; render(); };
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); syncSearchRow(); };
 $('reset').onclick = () => {
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
-  rememberCheapMode(false);
+  cheapMode = false;
   Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, softdrinkSize: undefined, softdrinkSelection: undefined, cocktailSelection: undefined, glutenFree: false, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = '';
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
@@ -932,7 +926,7 @@ function locate(openNearby = false) {
 }
 $('locate').onclick = () => locate(true);
 $('cheap').onclick = () => {
-  rememberCheapMode(!cheapMode);
+  cheapMode = !cheapMode;
   if (cheapMode) f.max = Infinity;
   trackEvent(cityId, 'cheap_filter_changed', { category: f.drink!, enabled: cheapMode });
   selected = undefined;

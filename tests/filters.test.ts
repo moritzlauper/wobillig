@@ -67,47 +67,39 @@ describe('filters across city navigation', () => {
 
 
 describe('initial cheap mode', () => {
-  it('defaults new visits and tracking links to cheap, respecting saved choices', () => {
-    for (const query of ['', 'utm_source=newsletter']) {
-      for (const preference of [null, '1', 'invalid']) {
-        expect(cheapModeFromSearch(new URLSearchParams(query), preference)).toBe(true);
-      }
-      expect(cheapModeFromSearch(new URLSearchParams(query), '0')).toBe(false);
-    }
+  it.each(['', 'utm_source=newsletter'])('defaults plain visits and tracking links to cheap: %s', query => {
+    expect(cheapModeFromSearch(new URLSearchParams(query))).toBe(true);
   });
   it.each(['max=8', 'q=Cafe', 'bar=node/1', 'map=abc', 'unknown=1'])(
     'keeps the full list for links with a limit, search, venue or map: %s', query => {
-      expect(cheapModeFromSearch(new URLSearchParams(query), '1')).toBe(false);
+      expect(cheapModeFromSearch(new URLSearchParams(query))).toBe(false);
     });
   it.each(['drink=cocktail', 'drink=beer&size=500', 'coffeeType=espresso', 'drink=softdrink&softdrinkSelection=cola'])(
     'opens category and product choices at the cheap price: %s', query => {
-      expect(cheapModeFromSearch(new URLSearchParams(query), null)).toBe(true);
-      expect(cheapModeFromSearch(new URLSearchParams(query), '0')).toBe(false);
+      expect(cheapModeFromSearch(new URLSearchParams(query))).toBe(true);
     });
   it.each([['cheap=1', ''], ['utm_source=newsletter&cheap=1', 'utm_source=newsletter'], ['cheap=0', 'cheap=0'],
     ['bar=node%2F1&cheap=1', 'bar=node%2F1&cheap=1'], ['coffeeType=espresso&cheap=1', 'coffeeType=espresso'], ['coffeeType=espresso&cheap=0', 'coffeeType=espresso&cheap=0']])(
     'keeps default cheap links plain: %s', (query, expected) => {
       const params = new URLSearchParams(query);
-      const cheap = cheapModeFromSearch(params, null);
+      const cheap = cheapModeFromSearch(params);
       dropDefaultCheap(params);
       expect(params.toString()).toBe(expected);
-      expect(cheapModeFromSearch(params, null)).toBe(cheap);
+      expect(cheapModeFromSearch(params)).toBe(cheap);
     });
-  it.each([true, false])('preserves cheap=%s through sharing despite the recipient preference', cheap => {
+  it.each([true, false])('preserves cheap=%s through sharing', cheap => {
     const params = new URLSearchParams();
     writeFilters(params, filtersFromSearch(params), cheap);
-    expect(cheapModeFromSearch(params, cheap ? '0' : '1')).toBe(cheap);
+    expect(cheapModeFromSearch(params)).toBe(cheap);
   });
   it.each([
-    ['cheap=0', null, 'cheap=0'],
-    ['cheap=0', '1', 'cheap=0'],
-    ['cheap=0', '0', ''],
-    ['cheap=1', '0', 'cheap=1'],
-    ['coffeeType=espresso&cheap=0', null, 'coffeeType=espresso&cheap=0'],
-    ['max=8&cheap=0', null, 'max=8'],
-  ])('drops cheap only where the plain link already opens in that mode: %s with preference %s', (query, preference, expected) => {
+    ['cheap=0', 'cheap=0'],
+    ['cheap=1', ''],
+    ['coffeeType=espresso&cheap=0', 'coffeeType=espresso&cheap=0'],
+    ['max=8&cheap=0', 'max=8'],
+  ])('drops cheap only where the plain link already opens in that mode: %s', (query, expected) => {
     const params = new URLSearchParams(query);
-    dropDefaultCheap(params, preference);
+    dropDefaultCheap(params);
     expect(params.toString()).toBe(expected);
   });
 });

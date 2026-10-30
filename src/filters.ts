@@ -5,15 +5,12 @@ import { parseBeerSelection } from './beer-selection';
 import { parseBurgerSelection } from './burger-selection';
 import { parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize } from './gastro-selection';
 
-export const cheapPreferenceKey = 'wobillig:cheap';
-
-export function cheapModeFromSearch(params: URLSearchParams, preference: string | null): boolean {
+export function cheapModeFromSearch(params: URLSearchParams): boolean {
   if (params.has('cheap')) return params.get('cheap') === '1';
   // A category or product choice still opens at the cheap price. Links with their own price limit,
   // a search, a venue or a map keep the full list, so the cheap filter cannot hide what they point to.
   const fullListKeys = ['q', 'max', 'unknown', 'bar', 'address', 'map'];
-  if (fullListKeys.some(key => params.has(key))) return false;
-  return preference !== '0';
+  return !fullListKeys.some(key => params.has(key));
 }
 
 function choice<T extends string>(params: URLSearchParams, key: string, values: readonly T[], fallback: T): T {
@@ -57,8 +54,8 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
 }
 
 // Persist the underlying filters, not the temporary price cap of cheap mode.
-// Write cheap mode so shared links override the recipient's saved preference;
-// dropDefaultCheap later removes it where a plain link already opens in cheap mode.
+// Write cheap mode so the link keeps it; dropDefaultCheap later removes it
+// where a plain link already opens in that mode.
 export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean): void {
   const drink = f.drink || 'coffee';
   const beerType = f.beerType && f.beerType !== 'all' ? f.beerType : '';
@@ -83,16 +80,12 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
   }
 }
 
-function savedCheapPreference(): string | null {
-  try { return localStorage.getItem(cheapPreferenceKey); } catch { return null; }
-}
-
 // Keep shared default views as plain wobillig.ch or wobillig.ch/bern links.
-// cheap is dropped in both directions once the plain URL already opens in that mode for this browser.
-export function dropDefaultCheap(params: URLSearchParams, preference = savedCheapPreference()): void {
+// cheap is dropped in both directions once the URL without it already opens in that mode.
+export function dropDefaultCheap(params: URLSearchParams): void {
   const value = params.get('cheap');
   if (value !== '0' && value !== '1') return;
   const rest = new URLSearchParams(params);
   rest.delete('cheap');
-  if ((value === '1') === cheapModeFromSearch(rest, preference)) params.delete('cheap');
+  if ((value === '1') === cheapModeFromSearch(rest)) params.delete('cheap');
 }
