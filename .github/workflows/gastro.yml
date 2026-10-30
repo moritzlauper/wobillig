@@ -15,9 +15,9 @@ on:
         options: [cocktail, softdrink, brot]
         default: cocktail
       city:
-        description: City (bread only in Zürich)
+        description: City (bread only in Zürich; the schedule runs Zürich, Basel and Bern)
         type: choice
-        options: [zurich, basel, bern]
+        options: [zurich, basel, bern, lausanne, geneva, winterthur, olten]
         default: zurich
       ai_budget_usd:
         description: Haiku 5.5 API budget in USD per category (empty uses 3 in Zürich and 1.50 in Basel and Bern, like the scheduled runs)

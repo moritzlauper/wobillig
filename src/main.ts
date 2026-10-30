@@ -119,7 +119,6 @@ $('app').innerHTML = `
   </div>
   <div id="softdrink-controls" class="pizza-controls" hidden>
     <select id="softdrink-selection" aria-label="${t('Softdrinkauswahl')}"><option value="all">${t('Alle Softdrinks')}</option></select>
-    <select id="softdrink-size" aria-label="${t('Softdrinkgrösse')}">${softdrinkSizes.map(size => `<option value="${size}">${e(t(softdrinkSizeLabels[size]))}</option>`).join('')}</select>
   </div>
   <div id="cocktail-controls" class="pizza-controls" hidden>
     <select id="cocktail-selection" aria-label="${t('Cocktailauswahl')}"><option value="all">${t('Alle Cocktails')}</option></select>
@@ -132,6 +131,7 @@ $('app').innerHTML = `
     <label>${t('Bier')} <select id="beer-selection" aria-label="${t('Bier auswählen')}"><option value="all">${t('Alle Biere')}</option></select></label>
     <input id="beer-query" type="search" maxlength="120" placeholder="${t('z. B. Quöllfrisch')}" aria-label="${t('Biername oder Marke')}">
   </div>
+  <label id="softdrink-size-label" hidden>${t('Grösse')} <select id="softdrink-size" aria-label="${t('Softdrinkgrösse')}">${softdrinkSizes.map(size => `<option value="${size}">${e(t(softdrinkSizeLabels[size]))}</option>`).join('')}</select></label>
   <label>${t('Lokal')} <select id="type">${options(venueTypes)}</select></label>
   <label><input id="unknown" type="checkbox" checked> ${t('Ohne passenden Preis anzeigen')}</label>
   <label><input id="outdoor" type="checkbox"> ${t('Draussen sitzen')}</label>
@@ -140,7 +140,7 @@ $('app').innerHTML = `
   <label id="normalize-label"><input id="normalize" type="checkbox"> ${t('Auf 5 dl umrechnen')}</label>
   <button id="reset">${t('Zurücksetzen')}</button>
 </div>
-<div class="status-row"><div class="status-summary" role="status"><strong id="city-average">${e(t('Schnitt {city} {value}', { city: cityName, value: '—' }))}</strong><span id="count">${t('Laden …')}</span></div><div class="mobile-switch" role="group" aria-label="${t('Ansicht')}"><button id="view-map" aria-pressed="true">${t('Karte')}</button><button id="view-list" aria-pressed="false">${t('Liste')}</button></div><div class="status-meta"><small class="refresh-note">${t('Wird alle 3 Wochen aktualisiert')}</small><nav class="city-switch" aria-label="${t('Stadt wechseln')}">${(['zurich', 'bern', 'basel'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, locale()))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('<span aria-hidden="true">/</span>')}<details class="city-more" id="city-more"><summary aria-label="${t('Weitere Städte')}" title="${t('Weitere Städte')}"><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="m3 4.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="city-more-menu">${(['winterthur', 'olten', 'lausanne', 'geneva'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, defaultCityLocale(id, locale())))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('')}<a class="city-request" href="mailto:hello@wobillig.ch?subject=${encodeURIComponent(t('Neue Stadt für wobillig'))}&amp;body=${encodeURIComponent(t('Diese Stadt wünsche ich mir auf wobillig:') + '\r\n\r\n')}" aria-label="${t('Stadt wünschen')}" title="${t('Stadt wünschen')}"><span aria-hidden="true">+</span></a></div></details></nav><button id="data-info" class="text-button">${t('Daten')}</button></div></div>
+<div class="status-row"><div class="status-summary" role="status"><strong id="city-average">${e(t('Schnitt {city} {value}', { city: cityName, value: '—' }))}</strong><span id="count">${t('Laden …')}</span></div><div class="mobile-switch" role="group" aria-label="${t('Ansicht')}"><button id="view-map" aria-pressed="true">${t('Karte')}</button><button id="view-list" aria-pressed="false">${t('Liste')}</button></div><div class="status-meta"><nav class="city-switch" aria-label="${t('Stadt wechseln')}">${(['zurich', 'bern', 'basel'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, locale()))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('<span aria-hidden="true">/</span>')}<details class="city-more" id="city-more"><summary aria-label="${t('Weitere Städte')}" title="${t('Weitere Städte')}"><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="m3 4.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="city-more-menu">${(['winterthur', 'olten', 'lausanne', 'geneva'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, defaultCityLocale(id, locale())))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('')}<a class="city-request" href="mailto:hello@wobillig.ch?subject=${encodeURIComponent(t('Neue Stadt für wobillig'))}&amp;body=${encodeURIComponent(t('Diese Stadt wünsche ich mir auf wobillig:') + '\r\n\r\n')}" aria-label="${t('Stadt wünschen')}" title="${t('Stadt wünschen')}"><span aria-hidden="true">+</span></a></div></details></nav><button id="data-info" class="text-button">${t('Daten')}</button></div></div>
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="${t('Lokale')}"><div class="list-tools"><a id="rankings-link" class="rankings-link" href="#kaffeepreise" aria-label="${t('Ranglisten und Quellen')}" title="${t('Ranglisten und Quellen')}">${t('Ranglisten')}</a><select id="sort" aria-label="${t('Sortierung')}">${options({ price: t('Preis aufsteigend'), price_desc: t('Preis absteigend'), name: 'Name A–Z', distance: t('Entfernung') })}</select></div><div id="results"></div></aside>
@@ -320,6 +320,10 @@ function rebuild() {
   if (beer()) beerOptions = beerVarieties(bars);
   render();
 }
+// On phones the venue search sits in a row that opens with the filters, unless a search is active.
+function syncSearchRow() {
+  document.querySelector('.toolbar')!.classList.toggle('search-open', !$('filters').hidden || Boolean($<HTMLInputElement>('search').value || $<HTMLInputElement>('pizza-query').value));
+}
 function syncControls() {
   if (customMapUI?.isOpen) return;
   const heading = beer() ? t('Bierpreise {city}', { city: cityName }) : ramen() ? t('Ramenpreise {city} · Community', { city: cityName }) : burger() ? t('Burgerpreise {city}', { city: cityName }) : softdrink() ? t('Softdrinkpreise {city}', { city: cityName }) : cocktail() ? t('Cocktailpreise {city}', { city: cityName }) : pizza() ? t('Pizzapreise {city}', { city: cityName }) : t('Kaffeepreise {city}', { city: cityName });
@@ -342,6 +346,8 @@ function syncControls() {
   $('burger-controls').hidden = !burger();
   $<HTMLSelectElement>('burger-selection').value = f.burgerSelection || 'all';
   $('softdrink-controls').hidden = !softdrink();
+  $('softdrink-size-label').hidden = !softdrink();
+  syncSearchRow();
   $<HTMLSelectElement>('softdrink-size').value = f.softdrinkSize || '300-330';
   const softdrinkSelect = $<HTMLSelectElement>('softdrink-selection');
   const softdrinkValue = f.softdrinkSelection || 'all';
@@ -602,7 +608,7 @@ function selectSearchSuggestion(index: number, remember = true) {
   f.query = bar.name;
   $('search').blur();
   if (matchMedia('(max-width: 760px)').matches) {
-    $('filters').hidden = true; $('filters-toggle').setAttribute('aria-expanded', 'false');
+    $('filters').hidden = true; $('filters-toggle').setAttribute('aria-expanded', 'false'); syncSearchRow();
   }
   showBar(bar, 17);
 }
@@ -826,7 +832,7 @@ $('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render
 $('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position && !addressSelection) locate(); else render(); };
 for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree'], ['gluten-free', 'glutenFree']] as const) $(id).onchange = () => { if (key === 'unknown') rememberCheapMode(false); f[key] = $<HTMLInputElement>(id).checked; render(); };
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
-$('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); };
+$('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); syncSearchRow(); };
 $('reset').onclick = () => {
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();

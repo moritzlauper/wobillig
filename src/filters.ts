@@ -9,11 +9,10 @@ export const cheapPreferenceKey = 'wobillig:cheap';
 
 export function cheapModeFromSearch(params: URLSearchParams, preference: string | null): boolean {
   if (params.has('cheap')) return params.get('cheap') === '1';
-  // Links made before cheap became the default must retain their original view.
-  const selectionKeys = ['drink', 'coffeeType', 'beerType', 'beerSelection', 'beerQuery',
-    'pizzaSelection', 'pizzaQuery', 'burgerSelection', 'softdrinkSize', 'softdrinkSelection', 'cocktailSelection', 'q', 'max', 'size', 'type', 'unknown', 'outdoor',
-    'alcoholFree', 'glutenFree', 'mode', 'sort', 'bar', 'address', 'map'];
-  if (selectionKeys.some(key => params.has(key))) return false;
+  // A category or product choice still opens at the cheap price. Links with their own price limit,
+  // a search, a venue or a map keep the full list, so the cheap filter cannot hide what they point to.
+  const fullListKeys = ['q', 'max', 'unknown', 'bar', 'address', 'map'];
+  if (fullListKeys.some(key => params.has(key))) return false;
   return preference !== '0';
 }
 

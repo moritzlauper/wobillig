@@ -13,7 +13,6 @@ import { duplicateVenue, validateVenue } from '../src/venue-contributions.js';
 import type { City } from '../src/cities.js';
 import { priceChange, type PriceChange } from './price-audit.js';
 import { priceConcern, visiblePrices, type HeldPrice } from './price-moderation.js';
-import { checkPriceEdit } from './price-edit-rules.js';
 import type { PriceCooldowns } from './price-cooldown.js';
 import type { MapQuotas } from './map-quota.js';
 import type { CustomMap } from '../src/custom-map-data.js';
@@ -71,10 +70,9 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     const entry: PriceEntry = { id: old?.id || randomUUID(), barId: input.barId, drink: input.drink, targetKey, revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString(), offer, venue: { ...venue, offers: [] } };
     const change = priceChange(entry, old, datasets[input.drink]);
     const held = state.heldPrices?.find(item => item.owner === owner && item.entry.id === old?.id);
-    const editConcern = held ? undefined : checkPriceEdit(entry, change.before, state.priceChanges || [], now);
     // Continue a held offer privately, even if later edited to a plausible value.
     // Its private revision must never overwrite a concurrent public correction.
-    const reason = held?.reason || editConcern || (reviewRequired() ? 'review-required' : priceConcern(entry, change.before));
+    const reason = held?.reason || (reviewRequired() ? 'review-required' : priceConcern(entry));
     if (reason) {
       if (!held) checkReviewCapacity(state);
       state.heldPrices = [...(state.heldPrices || []).filter(item => item !== held),

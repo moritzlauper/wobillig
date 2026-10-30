@@ -27,7 +27,7 @@ for (const [width, language] of [[320, 'de'], [1280, 'en']] as const) {
     await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
     await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
     await page.setViewportSize({ width, height: 900 });
-    await page.goto(`${language === 'en' ? '/en' : '/'}?drink=beer`);
+    await page.goto(`${language === 'en' ? '/en' : '/'}?drink=beer&cheap=0`);
     await expect(page.locator('#results .venue')).toHaveCount(4);
     await expect(page.locator('#beer-query')).toBeHidden();
     await expect(page.locator('#beer-selection')).toBeHidden();

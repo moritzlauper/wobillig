@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { showSearch } from './search-row-helper';
 
 const address = { attrs: { label: 'Bümplizstrasse 97a <b>3018 Bern</b>', lat: 46.943485, lon: 7.39179, origin: 'address' } };
 const endpoint = 'https://api3.geo.admin.ch/**';
@@ -8,6 +9,7 @@ test.beforeEach(async ({ page }) => {
   await page.route(endpoint, route => route.fulfill({ json: { results: [address] } }));
   await page.goto('/bern');
   await expect(page.locator('#count')).not.toHaveText('Laden …');
+  await showSearch(page);
 });
 
 test('selects a residential address by keyboard, shows nearby venues and restores it after reload', async ({ page }) => {
@@ -69,6 +71,7 @@ test('discarded requests cannot reopen the dropdown or move the map', async ({ p
 for (const width of [390, 1280]) {
   test(`typing and browsing suggestions leave the map still at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
+    await showSearch(page);
     await expect(page.locator('#results .venue').first()).toBeAttached();
     const name = await page.locator('#results .venue strong').first().innerText();
     const mapState = () => page.evaluate(() => ({
@@ -102,6 +105,7 @@ test('history survives reload, restores addresses without lookup and can be clea
   await expect(page.getByText('Letzte Suchen', { exact: true })).toBeVisible();
   await page.reload();
   await expect(page.locator('#count')).not.toHaveText('Laden …');
+  await showSearch(page);
   await page.route(endpoint, route => route.abort());
   await search.focus();
   await expect(page.locator('#search-suggestions').getByRole('option')).toHaveCount(1);
@@ -119,6 +123,8 @@ test('history survives reload, restores addresses without lookup and can be clea
   await page.keyboard.press('Enter');
   await expect(page.locator('#search-dropdown')).toBeHidden();
   await page.reload();
+  await expect(page.locator('#count')).not.toHaveText('Laden …');
+  await showSearch(page);
   await search.focus();
   await expect(page.locator('#search-dropdown')).toBeHidden();
 });

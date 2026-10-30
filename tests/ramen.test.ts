@@ -44,7 +44,7 @@ it('shows only venues from the ramen dataset, like pizza', () => {
 it('holds implausible ramen prices for review', () => {
   const entry = (priceChf: number) => ({ id: 'e', barId: 'node/1', drink: 'ramen', targetKey: 'k', revision: 1, updatedAt: today,
     offer: ramenOffer('Shoyu Ramen', priceChf) }) as PriceEntry;
-  expect(priceConcern(entry(3), null)).toBe('ramen-range');
-  expect(priceConcern(entry(60), null)).toBe('ramen-range');
-  expect(priceConcern(entry(22), null)).toBeUndefined();
+  expect(priceConcern(entry(3))).toBe('ramen-range');
+  expect(priceConcern(entry(60))).toBe('ramen-range');
+  expect(priceConcern(entry(22))).toBeUndefined();
 });

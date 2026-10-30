@@ -5,6 +5,11 @@ on:
     - cron: "38 5 * * 1"
   workflow_dispatch:
     inputs:
+      city:
+        description: City (the schedule runs Zürich, Basel and Bern)
+        type: choice
+        options: [zurich, basel, bern, lausanne, geneva, winterthur, olten]
+        default: zurich
       ai_budget_usd:
         description: Haiku 5.5 API budget in USD for all restaurant menus (default 3)
         type: number
@@ -19,6 +24,13 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      # One job per city; publishing merges per file. Other cities only by hand.
+      matrix:
+        city: ${{ fromJSON(github.event_name == 'schedule' && '["zurich","basel","bern"]' || format('["{0}"]', inputs.city || 'zurich')) }}
+    env:
+      WOBILLIG_CITY: ${{ matrix.city }}
     steps:
       - name: Check three-week refresh cadence
         id: cadence

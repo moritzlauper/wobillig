@@ -3,6 +3,7 @@ run-name: "${{ inputs.scan_mode == 'pizza_only' && 'Pizza menus' || 'City prices
 on:
   schedule:
     # The cadence job runs every third Monday to keep a true 21-day interval.
+    # Scheduled runs cover Zürich, Basel and Bern; the other cities are refreshed by hand.
     - cron: "23 4 * * 1"
   workflow_dispatch:
     inputs:
@@ -102,7 +103,7 @@ jobs:
   lausanne:
     name: Lausanne
     needs: [cadence, bern]
-    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (github.event_name == 'schedule' || inputs.city == 'all' || inputs.city == 'lausanne') }}
+    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (inputs.city == 'all' || inputs.city == 'lausanne') }}
     uses: ./.github/workflows/scrape-city.yml
     with:
       city: lausanne
@@ -117,7 +118,7 @@ jobs:
   geneva:
     name: Genève
     needs: [cadence, lausanne]
-    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (github.event_name == 'schedule' || inputs.city == 'all' || inputs.city == 'geneva') }}
+    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (inputs.city == 'all' || inputs.city == 'geneva') }}
     uses: ./.github/workflows/scrape-city.yml
     with:
       city: geneva
@@ -132,7 +133,7 @@ jobs:
   winterthur:
     name: Winterthur
     needs: [cadence, geneva]
-    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (github.event_name == 'schedule' || inputs.city == 'all' || inputs.city == 'winterthur') }}
+    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (inputs.city == 'all' || inputs.city == 'winterthur') }}
     uses: ./.github/workflows/scrape-city.yml
     with:
       city: winterthur
@@ -147,7 +148,7 @@ jobs:
   olten:
     name: Olten
     needs: [cadence, winterthur]
-    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (github.event_name == 'schedule' || inputs.city == 'all' || inputs.city == 'olten') }}
+    if: ${{ !cancelled() && needs.cadence.outputs.refresh == 'true' && (inputs.city == 'all' || inputs.city == 'olten') }}
     uses: ./.github/workflows/scrape-city.yml
     with:
       city: olten

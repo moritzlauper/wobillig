@@ -50,12 +50,12 @@ afterEach(() => vi.unstubAllEnvs());
 it('holds all three vandalism patterns, including submitted source URLs', () => {
   for (const [drink, before, after] of [['coffee', 3, 20], ['pizza', 14, 40], ['pizza', 19, 50]] as const) {
     const entry = { drink, offer: { ...offer, priceChf: after } } as PriceEntry;
-    expect(priceConcern(entry, { ...offer, priceChf: before })).toBeTruthy();
+    expect(priceConcern(entry), String(before)).toBeTruthy();
   }
-  expect(priceConcern({ drink: 'coffee', offer: { ...offer, priceChf: 10 } } as PriceEntry, { ...offer, priceChf: 3 })).toBe('large-increase');
-  expect(priceConcern({ drink: 'coffee', offer: { ...offer, priceChf: 1 } } as PriceEntry, { ...offer, priceChf: 5 })).toBe('large-decrease');
-  expect(priceConcern({ drink: 'coffee', offer: { ...offer, priceChf: 1.5 } } as PriceEntry, null)).toBeUndefined();
-  expect(priceConcern({ drink: 'beer', offer: { ...offer, priceChf: 29, volumeMl: 750 } } as PriceEntry, null)).toBeUndefined();
+  // Large but plausible changes are no longer held.
+  expect(priceConcern({ drink: 'coffee', offer: { ...offer, priceChf: 10 } } as PriceEntry)).toBeUndefined();
+  expect(priceConcern({ drink: 'coffee', offer: { ...offer, priceChf: 1.5 } } as PriceEntry)).toBeUndefined();
+  expect(priceConcern({ drink: 'beer', offer: { ...offer, priceChf: 29, volumeMl: 750 } } as PriceEntry)).toBeUndefined();
 });
 
 it('returns normal success and persists only the submitting browser’s view across reloads and IP changes', async () => {
@@ -90,12 +90,9 @@ it('returns normal success and persists only the submitting browser’s view acr
   expect((await request({ ...input, id: saved.data.entry.id, revision: 2 } )).status).toBe(409);
 });
 
-it('requires a menu photo for large changes and leaves public prices untouched', async () => {
-  await expect(savePrice(store, input, data, 'troll')).rejects.toMatchObject({ status: 422 });
-  expect((await store.read()).state.entries).toEqual([]);
-  const normal = await savePrice(store, { ...input, priceChf: offer.priceChf + .5 }, data, 'normal');
-  await expect(savePrice(store, { ...input, id: normal.id, revision: 1 }, data, 'troll')).rejects.toMatchObject({ status: 422 });
-  expect(visiblePrices((await store.read()).state, 'normal')[0]).toEqual(normal);
+it('publishes large but plausible changes without a menu photo', async () => {
+  const saved = await savePrice(store, { ...input, priceChf: 11.5 }, data, 'visitor');
+  expect(visiblePrices((await store.read()).state)[0]).toEqual(saved);
 });
 
 it('rate limits held prices and retries storage conflicts without leaking them to public state', async () => {

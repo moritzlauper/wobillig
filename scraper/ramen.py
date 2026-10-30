@@ -1,4 +1,4 @@
-"""Ramen prices for the Zürich dataset (public/data/ramen.json), confirmed by Claude.
+"""Ramen prices for one city's dataset (public/data/[city/]ramen.json, city from WOBILLIG_CITY), confirmed by Claude.
 
 Example: python -m scraper.ramen --budget-usd 2
 
@@ -21,14 +21,14 @@ from urllib.parse import urljoin, urlparse, unquote
 from bs4 import BeautifulSoup
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
-from scraper.cities import ROOT, venue_query
+from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, venue_query
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
 from scraper.pizza import structured_menu_links
 from scraper.scrape import discover, now
 from scraper.scrape_streetfood import skip_source
 
-OUTPUT = ROOT / 'public/data/ramen.json'
+OUTPUT = DATA_DIR / 'ramen.json'
 RAMEN = re.compile(r'\b(?:r[aā]h?men|tonkotsu|shoyu|shio|tan\s?tan\w*|paitan|abura\s?soba|tsukemen|maze\s?(?:soba|men))\b|ラーメン|麺', re.I)
 CUISINE = re.compile(r'^(?:ramen|noodles?|japanese|udon|soba)$')
 RELEVANT = re.compile(r'ramen|noodle|nudel|men[uü]|karte|speise|food|essen|dishes|gerichte|lunch|mittag|dinner|abend|take.?away|bestell|order|japan', re.I)
@@ -161,7 +161,7 @@ def scan(name, bars, fetcher, client, max_pages, max_documents):
     for doc in docs:
         try:
             for blocks, start, count, text in documents(doc['body'], doc['kind'], page_filter=ramen_page):
-                prompt = {'type': 'text', 'text': f'Venue: {bars[0]["name"]}, Zürich. Source: {doc["url"]}. Extract every priced ramen dish.'}
+                prompt = {'type': 'text', 'text': f'Venue: {bars[0]["name"]}, {CITY_NAME}. Source: {doc["url"]}. Extract every priced ramen dish.'}
                 answer = client.ask(blocks + [prompt], SCHEMA, SYSTEM)
                 # PDF text layers can lack prices or mangle characters; only page text is compared.
                 checked = clean(answer, doc['url'], start, count, text if doc['kind'] == 'text/plain' else '')
@@ -217,7 +217,7 @@ def main():
     parser.add_argument('--workers', type=int, default=4)
     parser.add_argument('--minutes', type=int, default=150)
     parser.add_argument('--venues-file', type=Path, help='Reuse a saved OSM discovery')
-    parser.add_argument('--ai-cache', type=Path, default=ROOT / 'scraper/cache/ai-ramen')
+    parser.add_argument('--ai-cache', type=Path, default=CACHE_DIR / 'ai-ramen')
     args = parser.parse_args()
     found = json.loads(args.venues_file.read_text()) if args.venues_file else discover({}, query=venue_query('restaurant|fast_food|cafe'))
     groups = candidates(found['bars'], json.loads((ROOT / 'scraper/website_overrides.json').read_text()))

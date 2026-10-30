@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { showSearch } from './search-row-helper';
 import { readFileSync } from 'node:fs';
 import { isGlutenFreePizza, type Dataset } from '../src/data';
 
@@ -17,7 +18,7 @@ test('cheap prices follow pizza selection and search while the shortcut is activ
   await page.route('**/data/pizza.json', route => route.fulfill({ json: data }));
   await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
-  await page.goto('/?drink=pizza');
+  await page.goto('/?drink=pizza&cheap=0');
   await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 18');
   await page.locator('#pizza-selection').selectOption('group:quattro_formaggi');
   await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 20');
@@ -31,6 +32,7 @@ test('cheap prices follow pizza selection and search while the shortcut is activ
   await page.reload();
   await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#price')).toHaveValue('22');
+  await showSearch(page);
   await page.locator('#pizza-query').fill('gorgonzola');
   await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 20');
   await expect(page.locator('#price')).toHaveValue('20');
@@ -90,6 +92,7 @@ for (const width of [320, 1280]) {
     await page.reload();
     await expect(page.locator('#pizza-selection')).toHaveValue('group:prosciutto');
     await expect(page.locator('#results .venue')).toHaveCount(1);
+    await showSearch(page);
     await page.getByRole('searchbox', { name: 'Pizzaname oder Zutat' }).fill('proscuito');
     await expect(page.locator('#pizza-selection')).toHaveValue('all');
     const result = page.locator('#results .venue');

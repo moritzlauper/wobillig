@@ -75,12 +75,17 @@ describe('initial cheap mode', () => {
       expect(cheapModeFromSearch(new URLSearchParams(query), '0')).toBe(false);
     }
   });
-  it.each(['max=8', 'drink=beer', 'q=Cafe', 'bar=node/1', 'map=abc', 'coffeeType=espresso', 'unknown=1'])(
-    'preserves older selection links: %s', query => {
+  it.each(['max=8', 'q=Cafe', 'bar=node/1', 'map=abc', 'unknown=1'])(
+    'keeps the full list for links with a limit, search, venue or map: %s', query => {
       expect(cheapModeFromSearch(new URLSearchParams(query), '1')).toBe(false);
     });
+  it.each(['drink=cocktail', 'drink=beer&size=500', 'coffeeType=espresso', 'drink=softdrink&softdrinkSelection=cola'])(
+    'opens category and product choices at the cheap price: %s', query => {
+      expect(cheapModeFromSearch(new URLSearchParams(query), null)).toBe(true);
+      expect(cheapModeFromSearch(new URLSearchParams(query), '0')).toBe(false);
+    });
   it.each([['cheap=1', ''], ['utm_source=newsletter&cheap=1', 'utm_source=newsletter'], ['cheap=0', 'cheap=0'],
-    ['bar=node%2F1&cheap=1', 'bar=node%2F1&cheap=1'], ['coffeeType=espresso&cheap=1', 'coffeeType=espresso&cheap=1']])(
+    ['bar=node%2F1&cheap=1', 'bar=node%2F1&cheap=1'], ['coffeeType=espresso&cheap=1', 'coffeeType=espresso'], ['coffeeType=espresso&cheap=0', 'coffeeType=espresso&cheap=0']])(
     'keeps default cheap links plain: %s', (query, expected) => {
       const params = new URLSearchParams(query);
       const cheap = cheapModeFromSearch(params, null);
@@ -98,7 +103,8 @@ describe('initial cheap mode', () => {
     ['cheap=0', '1', 'cheap=0'],
     ['cheap=0', '0', ''],
     ['cheap=1', '0', 'cheap=1'],
-    ['coffeeType=espresso&cheap=0', null, 'coffeeType=espresso'],
+    ['coffeeType=espresso&cheap=0', null, 'coffeeType=espresso&cheap=0'],
+    ['max=8&cheap=0', null, 'max=8'],
   ])('drops cheap only where the plain link already opens in that mode: %s with preference %s', (query, preference, expected) => {
     const params = new URLSearchParams(query);
     dropDefaultCheap(params, preference);

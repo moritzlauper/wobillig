@@ -73,7 +73,8 @@ for (const width of [320, 390, 1280]) {
     await expect(page.locator('#toolbar-toggle')).toHaveCount(0);
     await page.getByRole('button', { name: 'Weitere Kategorien', exact: true }).click();
     await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
-    await expect(page.locator('#search')).toBeVisible();
+    // On phones the venue search sits behind Filter.
+    await expect(page.locator('#search')).toBeVisible({ visible: width >= 760 });
     await expect(page.locator('#coffeeType')).toBeVisible();
     const menu = await page.locator('#additional-categories').boundingBox();
     expect(menu!.x).toBeGreaterThanOrEqual(0);
@@ -122,7 +123,7 @@ test('keyboard, outside click and English menu work when popularity storage fail
   await expect(page.locator('#additional-categories')).toBeHidden();
   await expect(toggle).toBeFocused();
   await toggle.click();
-  await page.locator('#search').click();
+  await page.locator('#city-average').click();
   await expect(page.locator('#additional-categories')).toBeHidden();
   await page.locator('#drink-beer').click();
   await expect(page.locator('#drink-beer')).toHaveAttribute('aria-pressed', 'true');

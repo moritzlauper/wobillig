@@ -23,7 +23,7 @@ test.beforeEach(async ({ page }) => {
 for (const colorScheme of ['light', 'dark'] as const) {
   test(`list hover and keyboard focus highlight the matching marker in ${colorScheme} mode`, async ({ page }) => {
     await page.emulateMedia({ colorScheme });
-    await page.goto('/?drink=coffee');
+    await page.goto('/?drink=coffee&cheap=0');
     const rows = page.locator('#results .venue');
     const alpha = page.locator('.marker-wrap[title^="Alpha:"]');
     const beta = page.locator('.marker-wrap[title^="Beta:"]');

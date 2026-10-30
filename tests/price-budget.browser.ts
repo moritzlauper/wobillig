@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { showSearch } from './search-row-helper';
 
 for (const width of [320, 1280]) {
   test(`automatic budget follows listed prices and preserves manual limits at ${width}px`, async ({ page }) => {
@@ -32,6 +33,7 @@ for (const width of [320, 1280]) {
     expect(new URL(page.url()).searchParams.has('max')).toBe(false);
     await page.locator('#coffeeType').selectOption('espresso');
     await expect(price).toHaveValue('7.35');
+    await showSearch(page);
     await page.locator('#search').fill('Budget');
     await expect(price).toHaveValue('3.15');
     await page.locator('#search').fill('Unknown');
