@@ -4,9 +4,8 @@ name: Refresh cocktail, soft drink and bread prices
 # with the deep scan: Zürich with all three categories at 3 USD each, Basel and Bern with cocktails and
 # soft drinks at 1.50 USD each (bread is not shown in the app). By hand for one category and one city.
 
+# Replaced on the schedule by menus.yml, which reads cocktails and soft drinks together with burgers and ramen.
 on:
-  schedule:
-    - cron: "30 6 * * 1"
   workflow_dispatch:
     inputs:
       category:

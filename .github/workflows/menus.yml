@@ -1,0 +1,105 @@
+name: Refresh menu prices (cocktails, soft drinks, burgers, ramen)
+
+# One read of every restaurant and bar menu for four categories (scraper/menu_scan.py), confirmed by
+# Claude Haiku 5.5. Each document is paid for once instead of once per category. Runs every three weeks
+# with the deep scan in Zürich (6 USD), Basel and Bern (3 USD each); other cities by hand.
+
+on:
+  schedule:
+    - cron: "38 5 * * 1"
+  workflow_dispatch:
+    inputs:
+      city:
+        description: City (the schedule runs Zürich, Basel and Bern)
+        type: choice
+        options: [zurich, basel, bern, lausanne, geneva, winterthur, olten]
+        default: zurich
+      ai_budget_usd:
+        description: Haiku 5.5 API budget in USD for all four categories (empty uses 6 in Zürich and 3 elsewhere; hard cap 12)
+        type: string
+        default: ""
+      tief:
+        description: Deep scan, more pages and documents per venue
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: category-prices
+  # Keep every requested run waiting in order; without this GitHub cancels all but the newest pending run.
+  queue: max
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      # One job per city; publishing merges per file.
+      matrix:
+        city: ${{ fromJSON(github.event_name == 'schedule' && '["zurich","basel","bern"]' || format('["{0}"]', inputs.city || 'zurich')) }}
+    env:
+      WOBILLIG_CITY: ${{ matrix.city }}
+    steps:
+      - name: Check three-week refresh cadence
+        id: cadence
+        shell: python
+        run: |
+          import os
+          from datetime import date, datetime, timezone
+
+          anchor = date(2026, 10, 19)
+          today = datetime.now(timezone.utc).date()
+          due = today >= anchor and (today - anchor).days % 21 == 0
+          refresh = os.environ['GITHUB_EVENT_NAME'] == 'workflow_dispatch' or due
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'refresh={str(refresh).lower()}\n')
+
+      - uses: actions/checkout@v4
+        if: steps.cadence.outputs.refresh == 'true'
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        if: steps.cadence.outputs.refresh == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scraper/requirements.txt
+
+      - if: steps.cadence.outputs.refresh == 'true'
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr && pip install -r scraper/requirements.txt
+
+      - name: Test menu rules
+        if: steps.cadence.outputs.refresh == 'true'
+        run: |
+          python -m unittest discover -s tests -p 'test_menu_scan.py'
+          python -m unittest discover -s tests -p 'test_gastro.py'
+
+      - name: Read restaurant and bar menus once and confirm prices with Claude
+        if: steps.cadence.outputs.refresh == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BUDGET: ${{ inputs.ai_budget_usd }}
+          TIEF: ${{ github.event_name == 'schedule' || inputs.tief }}
+        run: |
+          FLAG=""
+          if [ "$TIEF" = "true" ]; then FLAG="--tief"; fi
+          if [ -z "$BUDGET" ]; then BUDGET=$([ "$WOBILLIG_CITY" = "zurich" ] && echo 6 || echo 3); fi
+          python -m scraper.menu_scan --budget-usd "$BUDGET" $FLAG
+
+      - name: Snapshot menu datasets
+        id: snapshot
+        if: steps.cadence.outputs.refresh == 'true'
+        run: python -m scraper.publish --snapshot "$RUNNER_TEMP/menus-snapshot.json"
+
+      - name: Save menu datasets
+        if: steps.cadence.outputs.refresh == 'true' && steps.snapshot.outcome == 'success'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python -m scraper.publish --snapshot "$RUNNER_TEMP/menus-snapshot.json" --branch "$GITHUB_REF_NAME"

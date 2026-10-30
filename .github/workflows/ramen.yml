@@ -1,8 +1,6 @@
 name: Refresh ramen prices
+# Replaced on the schedule by menus.yml; this scan stays available by hand.
 on:
-  schedule:
-    # Same three-week cadence as the city price scan, one hour later.
-    - cron: "53 5 * * 1"
   workflow_dispatch:
     inputs:
       city:
