@@ -16,7 +16,8 @@ import time
 import unicodedata
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
-from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, clean_offers, ESTIMATE_SCHEMA, KINDS, SYSTEM, MODEL, DEFAULT_BUDGET_USD, MAX_BUDGET_USD
+from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, clean_offers, ESTIMATE_SCHEMA, KINDS, SYSTEM, MODEL, DEFAULT_BUDGET_USD, MAX_BUDGET_USD, OFFER_SCHEMA, obj, drink_page
+from scraper import menu_scan
 from scraper.estimates import estimate_types, name_key
 from scraper.beer_rules import eligible_offer
 from scraper.extract import SIZE
@@ -27,6 +28,8 @@ from scraper.menu_photos import scan_photos, prune_expired_photos
 from scraper.product_images import product_images
 
 CHECKS = STATE_DIR / 'ai_checks.json'
+# One request per document returns beer and coffee plus the menu categories, so every menu is read once.
+COMBINED_SCHEMA = obj({'offers': {'type': 'array', 'items': OFFER_SCHEMA}, 'menuItems': {'type': 'array', 'items': menu_scan.MENU_ITEM}})
 
 
 def candidate_priority(bar, checks, hints):
@@ -94,7 +97,8 @@ def classify_existing(client, bars):
         print(f'Estimated serving formats {min(start + 35, len(unknown))}/{len(unknown)}', flush=True)
 
 
-def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
+def scan_venue(bar, client, fetcher, hints, max_pages, deadline, menu=None):
+    """Scan one venue for beer and coffee. When menu is a dict, it also collects the verified menu items per category."""
     found, failures, visited, seen_documents = [], [], set(), set()
     link_labels={}
     urls = list(dict.fromkeys(hints.get(bar['id'], []) + [o['sourceUrl'] for o in bar['offers'] if not o.get('photoSource')] + ([bar['website']] if bar.get('website') else [])))
@@ -124,7 +128,8 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
                     label = ' '.join([image.get('alt', ''), image.get('title', ''), image.get_text(' ', strip=True), urlparse(target).path])
                     if re.search(r'\.(?:png|jpe?g|webp)(?:$|[?])', target, re.I) and re.search(r'menu|karte|getr|drink|beverage', label, re.I) and not SKIP_MENU.search(label):
                         links.append(target)
-                if not re.search(r'\d', content) or not re.search(r'bier|beer|kaffee|coffee|espresso|cappuccino|café', content, re.I): content = ''
+                drinks = re.search(r'bier|beer|kaffee|coffee|espresso|cappuccino|café', content, re.I)
+                if not re.search(r'\d', content) or not (drinks or (menu is not None and menu_scan.MENTION.search(content))): content = ''
             elif kind.startswith('image/'):
                 links, content = [], body
             else: continue
@@ -148,16 +153,25 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline):
                             image_bytes += len(image_body)
                     except Exception as exc:
                         failures.append('product_image: ' + type(exc).__name__)
-            for blocks, offset, pages, text in documents(content, kind):
+            # With the menu categories, pages that show only cocktails or food reach the model too.
+            page_filter = (lambda t: drink_page(t) or menu_scan.menu_page(t)) if menu is not None else drink_page
+            for blocks, offset, pages, text in documents(content, kind, page_filter=page_filter):
                 if time.monotonic() >= deadline: break
                 attached = []
                 for item, picture in image_blocks:
                     if item['name'].casefold() not in text.casefold(): continue
                     attached.append(item)
                     blocks += [{'type': 'text', 'text': 'Product image belonging ONLY to this menu row: ' + json.dumps({k: item[k] for k in ('name', 'volumeMl', 'priceChf', 'imageUrl')}, ensure_ascii=False)}] + picture
-                prompt = {'type': 'text', 'text': f'Venue: {bar["name"]}, {bar.get("address", "")}, {CITY_NAME}. Source: {final}. Extract every beer and coffee price for this venue. PDF chunk begins at original page {offset + 1}.'}
+                prompt = {'type': 'text', 'text': f'Venue: {bar["name"]}, {bar.get("address", "")}, {CITY_NAME}. Source: {final}. Extract every beer and coffee price for this venue' + (', and the menu items' if menu is not None else '') + f'. PDF chunk begins at original page {offset + 1}.'}
                 allowed = ', '.join(sorted({'beer', 'coffee'} - reviewed))
-                result = client.ask(blocks + [prompt], system=SYSTEM + '\nFor this document ONLY extract these drink categories: ' + allowed + '. Other categories have already been manually reviewed; omit them from the response.')
+                system = SYSTEM + '\nFor this document ONLY extract these drink categories: ' + allowed + '. Other categories have already been manually reviewed; omit them from the response.'
+                if menu is None:
+                    result = client.ask(blocks + [prompt], system=system)
+                else:
+                    result = client.ask(blocks + [prompt], schema=COMBINED_SCHEMA, system=system + menu_scan.CITY_ADDENDUM)
+                    # The menu items pass the unchanged rules of their single scans.
+                    for category, items in menu_scan.split({'offers': result.get('menuItems', [])}, final, offset, pages, text).items():
+                        menu.setdefault(category, []).extend(items)
                 cleaned = clean_offers(result, final, stamp, offset, pages, text, product_images=attached)
                 print(f'  {bar["name"]}: {len(result.get("offers", []))} extracted / {len(cleaned)} validated, document page {offset + 1}', flush=True)
                 for o in cleaned:
@@ -187,6 +201,7 @@ def main():
     parser.add_argument('--discover', action='store_true')
     parser.add_argument('--estimates-only', action='store_true')
     parser.add_argument('--photos-only', action='store_true')
+    parser.add_argument('--menu', action='store_true', help='Also read cocktails, soft drinks, burgers and ramen in the same requests')
     args = parser.parse_args()
     if args.minutes <= 0: parser.error('--minutes must be positive')
     deadline = time.monotonic() + args.minutes * 60
@@ -195,6 +210,10 @@ def main():
     data = {d: json.loads(path.read_text()) for d, path in paths.items()}
     by_drink = {d: {b['id']: b for b in value['bars']} for d, value in data.items()}
     checks = json.loads(CHECKS.read_text()) if CHECKS.exists() else {}
+    # Menu categories read in the same requests land in their own datasets; fully read venues are skipped by the menu scan.
+    menu_paths = {c: DATA_DIR / f'{file}.json' for c, file in menu_scan.DATASET_FILES.items()}
+    menu_data = {c: json.loads(p.read_text()) if p.exists() else {'generatedAt': now(), 'bars': []} for c, p in menu_paths.items()} if args.menu else {}
+    menu_checks = json.loads(menu_scan.CHECKS.read_text()) if args.menu and menu_scan.CHECKS.exists() else {}
     hints = json.loads((ROOT / 'scraper/menu_urls.json').read_text())
     for key, urls in json.loads((ROOT / 'scraper/coffee_menu_urls.json').read_text()).items(): hints[key] = list(dict.fromkeys(hints.get(key, []) + urls))
     merged = {}
@@ -212,6 +231,10 @@ def main():
             value['bars'] = sorted(by_drink[d].values(), key=lambda b: b['name'].casefold())
             value['generatedAt'] = now(); save(paths[d], value)
         save(CHECKS, checks)
+        for c, value in menu_data.items():
+            value['bars'] = sorted(value['bars'], key=lambda b: b['name'].casefold())
+            value['generatedAt'] = now(); save(menu_paths[c], value)
+        if args.menu: save(menu_scan.CHECKS, menu_checks)
     try:
         if not args.estimates_only:
             rows = json.loads((ROOT / 'scraper/menu_photos.json').read_text())
@@ -242,10 +265,17 @@ def main():
                     if reason:
                         stop_reason = reason
                         break
-                    batch = {pool.submit(scan_venue, b, client, fetcher, hints, args.max_pages, deadline): b for b in selected[start:start + 6]}
+                    menus = {b['id']: {} if args.menu else None for b in selected[start:start + 6]}
+                    batch = {pool.submit(scan_venue, b, client, fetcher, hints, args.max_pages, deadline, menus[b['id']]): b for b in selected[start:start + 6]}
                     stop = False
                     for task in as_completed(batch):
                         b = batch[task]; found, status, errors = task.result()
+                        if args.menu:
+                            observed = now()
+                            menu_scan.apply_city_offers(menu_data, b, menus[b['id']], observed)
+                            # Only a complete read lets the menu scan skip this venue; a partial one is read again there.
+                            if status == 'checked':
+                                menu_checks[b['id']] = {'checkedAt': observed, 'items': {c: len(v) for c, v in menus[b['id']].items() if v}}
                         failures.extend(errors)
                         if status in ('budget_limit', 'request_limit', 'time_limit', 'api_error'):
                             stop = True

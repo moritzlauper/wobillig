@@ -24,6 +24,8 @@ export function defaultCityLocale(city: City, current: Locale, from: City = city
 export function cityLink(city: City, search: string, base = '/', locale: Locale = 'de'): string {
   const params = new URLSearchParams(search);
   params.delete('bar');
+  // Prices differ per city: the other city opens at its own cheap price, not at a limit set elsewhere.
+  params.delete('max');
   const query = params.toString();
   return base.replace(/\/$/, '') + localizedPath(cities[city].path, locale) + (query ? `?${query}` : '');
 }

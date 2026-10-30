@@ -120,7 +120,8 @@ jobs:
           elif [ "$SCAN_MODE" = 'photos_only' ]; then
             python -m scraper.ai_scan --photos-only --budget-usd "$AI_BUDGET"
           else
-            python -m scraper.ai_scan --discover --budget-usd "$AI_BUDGET" --workers 6 --minutes "$AI_MINUTES" --max-pages "$AI_PAGES"
+            # --menu reads cocktails, soft drinks, burgers and ramen in the same requests, so each menu is paid for once.
+            python -m scraper.ai_scan --discover --menu --budget-usd "$AI_BUDGET" --workers 6 --minutes "$AI_MINUTES" --max-pages "$AI_PAGES"
           fi
       - name: Report additional venues and prices
         if: ${{ always() && steps.baseline.outcome == 'success' }}

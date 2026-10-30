@@ -4,7 +4,7 @@ import { cityLink } from '../src/cities';
 import type { Filters } from '../src/data';
 
 describe('filters across city navigation', () => {
-  it.each(['coffee', 'beer', 'pizza'] as const)('preserves every %s filter and cheap mode through all city links', drink => {
+  it.each(['coffee', 'beer', 'pizza'] as const)('preserves every %s filter but the price limit, and cheap mode, through all city links', drink => {
     const filters: Filters = {
       drink, coffeeType: 'matcha_latte', beerType: 'bottle', query: 'Café & Bar', max: 7.5,
       volume: '330', type: 'cafe', unknown: false, outdoor: true, alcoholFree: true, mode: 'half', sort: 'price_desc',
@@ -13,7 +13,8 @@ describe('filters across city navigation', () => {
     writeFilters(params, filters, true);
     for (const city of ['zurich', 'bern', 'basel'] as const) {
       const url = new URL(cityLink(city, params.toString()), 'https://wobillig.ch');
-      expect(filtersFromSearch(url.searchParams)).toEqual(filters);
+      // A price limit set in one city does not fit another city's prices.
+      expect(filtersFromSearch(url.searchParams)).toEqual({ ...filters, max: Infinity });
       expect(url.searchParams.get('cheap')).toBe('1');
       expect(url.searchParams.has('bar')).toBe(false);
     }

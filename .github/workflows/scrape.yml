@@ -67,7 +67,7 @@ jobs:
       scan_mode: ${{ inputs.scan_mode || 'full' }}
       exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
       deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
-      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
+      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 7 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   basel:
@@ -82,7 +82,7 @@ jobs:
       scan_mode: ${{ inputs.scan_mode || 'full' }}
       exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
       deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
-      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
+      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 7 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   bern:
@@ -97,7 +97,7 @@ jobs:
       scan_mode: ${{ inputs.scan_mode || 'full' }}
       exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
       deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
-      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
+      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 7 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   lausanne:
@@ -112,7 +112,7 @@ jobs:
       scan_mode: ${{ inputs.scan_mode || 'full' }}
       exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
       deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
-      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
+      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 7 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   geneva:
@@ -127,7 +127,7 @@ jobs:
       scan_mode: ${{ inputs.scan_mode || 'full' }}
       exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
       deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
-      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
+      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 7 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   winterthur:
@@ -142,7 +142,7 @@ jobs:
       scan_mode: ${{ inputs.scan_mode || 'full' }}
       exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
       deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
-      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
+      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 7 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
   olten:
@@ -157,6 +157,6 @@ jobs:
       scan_mode: ${{ inputs.scan_mode || 'full' }}
       exhaustive_scan: ${{ inputs.exhaustive_scan || false }}
       deep_scan: ${{ github.event_name == 'schedule' || inputs.deep_scan || inputs.exhaustive_scan }}
-      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 5 || inputs.ai_budget_usd || 0)) }}
+      ai_budget_usd: ${{ fromJSON(format('{0}', github.event_name == 'schedule' && 7 || inputs.ai_budget_usd || 0)) }}
     secrets:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

@@ -227,6 +227,27 @@ class ScanReuseTests(unittest.TestCase):
         self.assertEqual(status,'checked')
         self.assertEqual(errors,[])
 
+    def test_city_scan_reads_menu_items_in_the_same_request(self):
+        import time
+        from unittest.mock import Mock
+        from scraper.ai_scan import scan_venue, COMBINED_SCHEMA
+        body=b'<h2>Cocktails</h2><p>Negroni 16.00</p>'
+        fetcher=Mock();fetcher.get.side_effect=lambda url:(url,'text/html',body)
+        negroni={'category':'cocktail','name':'Negroni','priceChf':16,'volumeMl':None,'diet':'standard','glutenFree':False,'style':'none',
+                 'standardPortion':True,'lunchOnly':False,'conditional':False,'evidence':'Negroni 16.00','page':1}
+        client=Mock();client.ask.return_value={'offers':[],'menuItems':[negroni]}
+        bar={'id':'test','name':'Test Bar','address':'Zurich','website':'https://example.com/karte','offers':[]}
+        menu={}
+        found,status,_=scan_venue(bar,client,fetcher,{},8,time.monotonic()+30,menu)
+        self.assertEqual(client.ask.call_count,1)
+        self.assertIs(client.ask.call_args.kwargs['schema'],COMBINED_SCHEMA)
+        self.assertIn('menuItems',client.ask.call_args.kwargs['system'])
+        self.assertEqual((found,status,[o['name'] for o in menu['cocktail']]),([],'checked',['Negroni']))
+        # Without the menu option, a page without beer or coffee is not sent at all.
+        client.ask.reset_mock()
+        scan_venue(bar,client,fetcher,{},8,time.monotonic()+30)
+        client.ask.assert_not_called()
+
 class PriceAssociationTests(unittest.TestCase):
     def test_sparse_table_does_not_guess_size_columns(self):
         from scraper.ai import supported_size_price

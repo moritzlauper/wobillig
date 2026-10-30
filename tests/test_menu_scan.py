@@ -1,6 +1,6 @@
 import unittest
 
-from scraper.menu_scan import candidates, category_results, scan, split
+from scraper.menu_scan import apply_city_offers, candidates, category_results, recently_read, scan, split
 
 URL = 'https://bar.example/karte'
 
@@ -45,6 +45,23 @@ class MenuScan(unittest.TestCase):
                    'b': {'status': 'fetch_failed', 'offers': {'burger': [], 'ramen': []}, 'errors': []}}
         self.assertEqual({k: v['status'] for k, v in category_results(results, 'burger').items()}, {'a': 'priced', 'b': 'fetch_failed'})
         self.assertEqual({k: v['status'] for k, v in category_results(results, 'ramen').items()}, {'a': 'no_prices', 'b': 'fetch_failed'})
+
+    def test_city_scan_offers_replace_only_the_categories_it_found(self):
+        old = {'name': 'Old Negroni', 'priceChf': 14}
+        data = {'cocktail': {'bars': [{'id': 'node/1', 'name': 'Bar', 'offers': [old]}]}, 'softdrink': {'bars': []},
+                'burger': {'bars': [{'id': 'node/1', 'name': 'Bar', 'offers': [{'name': 'Burger', 'priceChf': 20}]}]}, 'ramen': {'bars': []}}
+        found = split({'offers': [row('cocktail', 'Negroni', 16, 'Negroni 16.00'), row('softdrink', 'Cola', 5, 'Cola 3 dl 5.00', volumeMl=300)]}, URL, 0, 1, '')
+        apply_city_offers(data, {'id': 'node/1', 'name': 'Bar', 'lat': 47, 'lon': 8}, found, '2026-10-30T10:00:00+00:00')
+        self.assertEqual([o['name'] for o in data['cocktail']['bars'][0]['offers']], ['Negroni'])
+        self.assertEqual(data['softdrink']['bars'][0]['offers'][0]['volumeMl'], 300)
+        self.assertEqual(data['burger']['bars'][0]['offers'], [{'name': 'Burger', 'priceChf': 20}])
+
+    def test_menu_scan_skips_websites_the_city_scan_read_recently(self):
+        checks = {'node/1': {'checkedAt': '2026-10-27T05:00:00+00:00'}, 'node/2': {'checkedAt': '2026-10-01T05:00:00+00:00'}}
+        now = '2026-10-30T05:00:00+00:00'
+        self.assertTrue(recently_read(checks, [{'id': 'node/1'}], now))
+        self.assertFalse(recently_read(checks, [{'id': 'node/2'}], now))
+        self.assertFalse(recently_read(checks, [{'id': 'node/1'}, {'id': 'node/3'}], now))
 
     def test_scan_skips_venues_after_the_time_limit(self):
         class NoFetch:

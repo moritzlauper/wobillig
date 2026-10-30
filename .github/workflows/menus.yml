@@ -1,12 +1,13 @@
 name: Refresh menu prices (cocktails, soft drinks, burgers, ramen)
 
-# One read of every restaurant and bar menu for four categories (scraper/menu_scan.py), confirmed by
-# Claude Haiku 5.5. Each document is paid for once instead of once per category. Runs every three weeks
-# with the deep scan in Zürich (6 USD), Basel and Bern (3 USD each); other cities by hand.
+# The city price scan (Monday) reads cocktails, soft drinks, burgers and ramen in the same requests as beer
+# and coffee. This scan (Tuesday, the day after) reads only the restaurant and bar websites the city scan
+# did not read completely (scraper/menu_scan.py), so every menu is paid for once. Deep scan in Zürich
+# (3 USD), Basel and Bern (1.50 USD each); other cities by hand.
 
 on:
   schedule:
-    - cron: "38 5 * * 1"
+    - cron: "38 5 * * 2"
   workflow_dispatch:
     inputs:
       city:
@@ -15,7 +16,7 @@ on:
         options: [zurich, basel, bern, lausanne, geneva, winterthur, olten]
         default: zurich
       ai_budget_usd:
-        description: Haiku 5.5 API budget in USD for all four categories (empty uses 6 in Zürich and 3 elsewhere; hard cap 12)
+        description: Haiku 5.5 API budget in USD for all four categories (empty uses 3 in Zürich and 1.50 elsewhere; hard cap 12)
         type: string
         default: ""
       tief:
@@ -54,7 +55,8 @@ jobs:
 
           anchor = date(2026, 10, 19)
           today = datetime.now(timezone.utc).date()
-          due = today >= anchor and (today - anchor).days % 21 == 0
+          # The day after the city price scan.
+          due = today >= anchor and (today - anchor).days % 21 == 1
           refresh = os.environ['GITHUB_EVENT_NAME'] == 'workflow_dispatch' or due
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write(f'refresh={str(refresh).lower()}\n')
@@ -90,7 +92,7 @@ jobs:
         run: |
           FLAG=""
           if [ "$TIEF" = "true" ]; then FLAG="--tief"; fi
-          if [ -z "$BUDGET" ]; then BUDGET=$([ "$WOBILLIG_CITY" = "zurich" ] && echo 6 || echo 3); fi
+          if [ -z "$BUDGET" ]; then BUDGET=$([ "$WOBILLIG_CITY" = "zurich" ] && echo 3 || echo 1.5); fi
           python -m scraper.menu_scan --budget-usd "$BUDGET" $FLAG
 
       - name: Snapshot menu datasets
