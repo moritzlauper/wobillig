@@ -46,6 +46,17 @@ describe('menu interpretation', () => {
     const result = extract([{ ...row, name: 'Cappuccino', category: 'cappuccino', sizes: [''], prices: ['5.50'] }, { ...row, name: 'Margherita', category: 'pizza_margherita', sizes: [''], prices: ['18.-'] }]);
     expect(result.prices.map(p => [p.input.drink, p.input.volumeMl, p.input.priceChf])).toEqual([['coffee', null, 5.5], ['pizza', null, 18]]);
   });
+  it('reads cocktails with one price and soft drinks with a printed size', () => {
+    const negroni = { ...row, name: 'Negroni', category: 'cocktail', sizes: [''], prices: ['16.00'], beerType: 'unknown' };
+    const cola = { ...row, name: 'Coca-Cola 3.3 dl', category: 'softdrink', sizes: ['3.3dl', '5dl'], prices: ['5.50', '7.00'], beerType: 'unknown' };
+    const { prices, skipped } = extract([negroni, cola]);
+    expect(prices.map(p => [p.input.drink, p.input.name, p.input.volumeMl, p.input.priceChf, p.input.gastroType])).toEqual([
+      ['cocktail', 'Negroni', null, 16, 'cocktail'], ['softdrink', 'Coca-Cola', 330, 5.5, 'softdrink'], ['softdrink', 'Coca-Cola', 500, 7, 'softdrink']]);
+    expect(skipped).toBe(0);
+    // A soft drink without a printed unit, a Stange soft drink and a cocktail shot are left out.
+    expect(extract([{ ...cola, sizes: [''], prices: ['5.50'] }, { ...cola, sizes: ['Stange'], prices: ['5.50'] },
+      { ...negroni, name: 'Tequila Shot' }]).prices).toEqual([]);
+  });
   it('uses the printed medium coffee column, even when columns are reversed', () => {
     for (const sizes of [['S (2 dl)', 'M (3 dl)', 'L (4 dl)'], ['L (4 dl)', 'M (3 dl)', 'S (2 dl)']]) {
       const prices = sizes[0].startsWith('S') ? ['4.8', '5.3', '5.8'] : ['5.8', '5.3', '4.8'];
@@ -229,15 +240,15 @@ describe('atomic, repeat-safe scan storage', () => {
     const store = memoryStore();
     const results = await Promise.allSettled([reserveScan(store, 'same', 'a'), reserveScan(store, 'same', 'b')]);
     expect(results.filter(r => r.status === 'fulfilled')).toHaveLength(1);
+    // A failed scan frees the photo at once.
     await failScan(store, 'same');
-    await expect(reserveScan(store, 'same', 'a')).rejects.toMatchObject({ status: 429 });
+    await expect(reserveScan(store, 'same', 'a')).resolves.toBeUndefined();
   });
-  it('allows the same photo again after a short failed-scan cooldown and keeps charging attempt limits', async () => {
+  it('allows the same photo again right after a failed scan and keeps charging attempt limits', async () => {
     const store = memoryStore(), now = 1000;
     await reserveScan(store, 'same', 'a', now);
     await failScan(store, 'same', now);
-    await expect(reserveScan(store, 'same', 'a', now + 14999)).rejects.toMatchObject({ status: 429 });
-    await expect(reserveScan(store, 'same', 'a', now + 15001)).resolves.toBeUndefined();
+    await expect(reserveScan(store, 'same', 'a', now + 1)).resolves.toBeUndefined();
     expect((await store.read()).state.limits['scan:a'].count).toBe(2);
   });
   it('limits paid attempts across instances and expires the limit', async () => {

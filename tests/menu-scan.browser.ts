@@ -43,7 +43,7 @@ test('errors stay in the dialog and allow another photo without extra required f
   await openForm(page);
   await page.locator('#menu-photo').setInputFiles('tests/fixtures/menu-scan-unreadable.jpg');
   await expect(page.locator('#form-error')).toContainText('scharfen Ausschnitt');
-  await expectEvent(page, 'menu_upload_failed', { city: 'zurich', language: 'de', stage: 'request' });
+  await expectEvent(page, 'menu_upload_failed', { city: 'zurich', language: 'de', stage: 'request', reason: 'unreadable' });
   expect((await events(page)).some(e => e.name === 'menu_upload_completed')).toBe(false);
   await expect(page.locator('#scan-menu')).toBeEnabled(); await expect(page.locator('#cancel-price')).toBeEnabled();
   await expect(page.locator('#manual-fields')).toBeEnabled();

@@ -60,7 +60,8 @@ it('rejects a clearly wrong restaurant with a specific message and saves no pric
   expect(result.status).toBe(422);
   expect(result.data.error).toContain('anderen Lokal');
   expect((await store.read()).state.entries).toEqual([]);
-  expect(Object.values((await store.read()).state.menuScans!)[0].status).toBe('failed');
+  // A failed scan leaves no lock behind, so the same photo can be retried at once.
+  expect((await store.read()).state.menuScans).toEqual({});
 });
 it('rejects foreign origins, unsupported files and non-existent city venues before OCR', async () => {
   expect((await request(photo, { headers: { host: 'example.org', origin: 'https://other.example', 'content-type': 'application/json' } })).status).toBe(403);
@@ -78,10 +79,10 @@ it('ignores injected prices and venue coordinates in the request', async () => {
   expect(result.data.entries[0].offer.priceChf).toBe(5.2);
   expect(result.data.entries[0].venue.name).toBe('Mars Bar');
 });
-it('leaves the store unchanged for unreadable photos and does not charge an immediate retry', async () => {
+it('leaves the store unchanged for unreadable photos and lets the visitor retry at once', async () => {
   mocks.readMenu.mockResolvedValue({ parsed: { menu: false, wrongVenue: false, currency: 'unspecified', rows: [] } });
-  expect((await request()).status).toBe(422); expect((await request()).status).toBe(429);
-  expect((await store.read()).state.entries).toEqual([]); expect(mocks.readMenu).toHaveBeenCalledTimes(1);
+  expect((await request()).status).toBe(422); expect((await request()).status).toBe(422);
+  expect((await store.read()).state.entries).toEqual([]); expect(mocks.readMenu).toHaveBeenCalledTimes(2);
 });
 it('handles missing API configuration without sending the photo or claiming success', async () => {
   vi.stubEnv('ANTHROPIC_API_KEY', ''); expect((await request()).status).toBe(503); expect(mocks.readMenu).not.toHaveBeenCalled();

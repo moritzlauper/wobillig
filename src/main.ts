@@ -960,8 +960,6 @@ function entryFields() {
   if (category === 'pizza') name.value = 'Pizza Margherita';
   else if (name.value === 'Pizza Margherita') name.value = '';
   name.placeholder = category === 'coffee' ? t('z. B. Espresso') : category === 'ramen' ? t('z. B. Shoyu Ramen') : category === 'softdrink' ? t('z. B. Coca-Cola') : category === 'cocktail' ? t('z. B. Aperol Spritz') : t('z. B. Lager');
-  // The menu photo scan reads no soft drinks or cocktails.
-  $('menu-scan').hidden = isSoftdrink || category === 'cocktail';
   const packaged = ['bottle', 'can'].includes($<HTMLSelectElement>('entry-beer-type').value);
   if (packaged) { $<HTMLInputElement>('entry-stange').checked = false; $<HTMLInputElement>('entry-size-unknown').checked = false; }
   $<HTMLInputElement>('entry-size-unknown').disabled = packaged;
@@ -1013,6 +1011,7 @@ $('menu-photo').onchange = async () => {
   const barId = $<HTMLInputElement>('entry-bar').value;
   let stage: 'preparation' | 'request' = 'preparation';
   let completed = false;
+  let reason: Parameters<typeof trackEvent<'menu_upload_failed'>>[2]['reason'] = 'preparation';
   trackEvent(cityId, 'menu_upload_started', {});
   saving = true;
   $<HTMLButtonElement>('scan-menu').disabled = true;
@@ -1023,11 +1022,17 @@ $('menu-photo').onchange = async () => {
   $('scan-status').hidden = false; $('scan-status').textContent = t('Foto wird vorbereitet …');
   try {
     const image = await prepareMenuPhoto(file);
-    stage = 'request';
+    stage = 'request'; reason = 'network';
     $('scan-status').textContent = t('Karte wird gelesen und Preise werden gespeichert …');
     const response = await contributionFetch(`/api/scan-menu?city=${cityId}`, { barId, image, ...(editing ? { edit: { id: editing.communityId, revision: editing.revision || 0, targetKey: editing.originalKey || offerKey(editing), drink: offerCategory(editing) } } : {}) }, 190000);
     const result = await response.json().catch(() => { throw new Error(t('Der Scan ist gerade nicht verfügbar. Bitte später erneut versuchen.')); });
-    if (!response.ok) throw new Error(result.error || t('Das Foto konnte nicht verarbeitet werden.'));
+    if (!response.ok) {
+      const message = String(result.error || '');
+      reason = response.status === 413 ? 'too_large' : response.status === 429 ? 'limit' : response.status === 409 ? 'busy'
+        : response.status === 503 ? 'unavailable' : response.status !== 422 ? 'invalid'
+        : /anderen Lokal/.test(message) ? 'wrong_venue' : /Keine eindeutigen/.test(message) ? 'no_prices' : 'unreadable';
+      throw new Error(message || t('Das Foto konnte nicht verarbeitet werden.'));
+    }
     const scanned = result as MenuScanResult;
     const { added, unchanged, conflicts, skipped } = scanned;
     completed = true;
@@ -1041,7 +1046,7 @@ $('menu-photo').onchange = async () => {
     if (bar) showBar(bar);
     toast(scanned.pending ? t('Danke. Dein Beitrag wird vor der Veröffentlichung geprüft.') : scanSummary(scanned));
   } catch (error) {
-    if (!completed) trackEvent(cityId, 'menu_upload_failed', { stage });
+    if (!completed) trackEvent(cityId, 'menu_upload_failed', { stage, reason });
     $('scan-status').hidden = true;
     $('form-error').textContent = error instanceof Error && !['TypeError', 'TimeoutError', 'AbortError'].includes(error.name)
       ? t(error.message) : t('Verbindung unterbrochen. Bitte lade die Seite neu, um bereits gespeicherte Preise zu sehen.');

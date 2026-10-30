@@ -11,7 +11,8 @@ type Events = {
   price_failed: PriceAction & { stage: 'validation' | 'request' };
   menu_upload_started: Record<string, never>;
   menu_upload_completed: { added: number; unchanged: number; conflicts: number; skipped: number };
-  menu_upload_failed: { stage: 'preparation' | 'request' };
+  // reason is a fixed code derived from the HTTP status, never the error text itself.
+  menu_upload_failed: { stage: 'preparation' | 'request'; reason: 'preparation' | 'network' | 'unreadable' | 'wrong_venue' | 'no_prices' | 'limit' | 'busy' | 'too_large' | 'unavailable' | 'invalid' };
   venue_form_opened: Record<string, never>;
   venue_submitted: Record<string, never>;
   venue_saved: Record<string, never>;

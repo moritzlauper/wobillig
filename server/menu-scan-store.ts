@@ -12,7 +12,7 @@ export function parseScanEdit(value: unknown): ScanEdit {
   const edit = value as ScanEdit | null;
   if (!edit || typeof edit.targetKey !== 'string' || edit.targetKey.length > 1000 ||
       !Number.isInteger(edit.revision) || edit.revision < 0 ||
-      !['beer', 'coffee', 'pizza'].includes(edit.drink) || (edit.id !== undefined && typeof edit.id !== 'string')) {
+      !['beer', 'coffee', 'pizza', 'cocktail', 'softdrink'].includes(edit.drink) || (edit.id !== undefined && typeof edit.id !== 'string')) {
     throw new InputError('Ungültiges Angebot.');
   }
   return { id: edit.id, revision: edit.revision, targetKey: edit.targetKey, drink: edit.drink };
@@ -52,7 +52,6 @@ export async function reserveScan(store: Store, hash: string, visitor: string, n
     const old = state.menuScans[hash];
     if (old?.status === 'done' && old.result) return scanResult(state, old.result);
     if (old?.status === 'pending') throw new InputError('Dieses Foto wird bereits verarbeitet. Bitte kurz warten.', 409);
-    if (old?.status === 'failed') throw new InputError('Der letzte Scan ist fehlgeschlagen. Bitte kurz warten und dasselbe Foto erneut hochladen.', 429);
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, value]) => value.expires > now));
     for (const [key, max, ttl] of [[`scan:${visitor}`, 12, 3600000], ['scan:daily', 1000, 86400000]] as const) {
       const oldLimit = state.limits[key] || { count: 0, expires: now + ttl };
@@ -66,7 +65,8 @@ export async function reserveScan(store: Store, hash: string, visitor: string, n
 export async function failScan(store: Store, hash: string, now = Date.now()) {
   await change(store, state => {
     const job = state.menuScans?.[hash];
-    if (job?.status === 'pending') { job.status = 'failed'; job.expires = now + 15000; }
+    // A failed scan may be retried at once; the per-visitor and daily limits still apply.
+    if (job?.status === 'pending') delete state.menuScans![hash];
   });
 }
 function identity(offer: Offer) {

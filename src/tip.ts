@@ -28,10 +28,12 @@ async function paymentDialog(stripe: Stripe, { price, amount, test, createIntent
   dialog.id = 'tip-dialog';
   dialog.setAttribute('aria-labelledby', 'tip-title');
   // All dynamic copy uses textContent; payment details stay inside Stripe's iframe.
-  dialog.innerHTML = '<div class="dialog-top"><strong id="tip-title">wobillig</strong><button type="button" class="tip-close"></button></div><p class="tip-description"></p><form><div class="tip-element"></div><button class="primary tip-pay" type="submit" disabled></button></form><p class="tip-status" role="status" tabindex="-1"></p>';
+  dialog.innerHTML = '<div class="dialog-top"><strong id="tip-title">wobillig</strong><button type="button" class="tip-close"></button></div><p class="tip-description"></p><p class="tip-goal"></p><form><div class="tip-element"></div><button class="primary tip-pay" type="submit" disabled></button></form><p class="tip-status" role="status" tabindex="-1"></p>';
   const close = dialog.querySelector<HTMLButtonElement>('.tip-close')!;
   close.textContent = t('Schliessen');
   dialog.querySelector('.tip-description')!.textContent = t('Beitrag an die Plattformkosten in der Höhe eines günstigen Cappuccinos · CHF {price}', { price }) + (test ? ` (${t('Test')})` : '');
+  // The monthly goal is shown only after opening the dialog, not in the button's tooltip.
+  dialog.querySelector('.tip-goal')!.textContent = t('wobillig kostet rund CHF 40 im Monat (Hosting, Datenabfragen und KI-Scans). Das ist das Ziel für die Beiträge.');
   const form = dialog.querySelector('form')!;
   const pay = dialog.querySelector<HTMLButtonElement>('.tip-pay')!;
   pay.textContent = t('CHF {price} bezahlen', { price });

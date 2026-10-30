@@ -4,9 +4,8 @@ name: Kino Zürich
 # sie. Läuft alle drei Wochen (Montag) und von Hand, geplante Läufe immer mit tiefem Scan. Ergebnis:
 # Vergleich in der Zusammenfassung des Laufs, Rohdaten als Artefakt "kinopreise". Kein Commit zurück auf main.
 
+# Not on the site and not scheduled: runs only by hand.
 on:
-  schedule:
-    - cron: "8 6 * * 1"
   workflow_dispatch:
     inputs:
       ki_budget_usd:

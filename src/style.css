@@ -382,7 +382,8 @@ input::placeholder { color: var(--subtle); opacity: 1; }
 #automatic-map-details h2 { font-size: 20px; }
 
 #tip-dialog { color-scheme: light; background: #fff; color: #262626; }
-#tip-dialog .tip-description { margin: 0 0 20px; }
+#tip-dialog .tip-description { margin: 0 0 8px; }
+#tip-dialog .tip-goal { margin: 0 0 20px; color: var(--muted); font-size: var(--font-control); }
 #tip-dialog .tip-pay { width: 100%; margin-top: 20px; background: #262626; color: #fff; }
 #tip-dialog .tip-status { margin: 16px 0 0; font-size: 14px; }
 #tip-dialog .tip-status:empty { display: none; }
