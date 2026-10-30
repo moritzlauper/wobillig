@@ -6,8 +6,12 @@ on:
     - cron: "45 5 * * 1"
   workflow_dispatch:
     inputs:
-      extra_tief:
-        description: Extra-deep scan, up to 300 pages per venue instead of 120 (reads menus without AI, so it costs no API budget)
+      ai_budget_usd:
+        description: Haiku 5.5 API budget in USD for döner and falafel together (hard cap 8.00)
+        type: number
+        default: 4
+      tief:
+        description: Deep scan, more pages and documents per venue
         type: boolean
         default: false
 
@@ -58,15 +62,17 @@ jobs:
 
       - name: Test street-food rules
         if: steps.cadence.outputs.refresh == 'true'
-        run: python -m unittest discover -s tests -p 'test_streetfood.py'
+        run: python -m unittest discover -s tests -p 'test_streetfood*.py'
 
-      - name: Crawl döner menus in Zürich
+      - name: Crawl menus in Zürich and confirm döner and falafel prices with Claude
         if: steps.cadence.outputs.refresh == 'true'
-        run: python -m scraper.scrape_streetfood --category doner --discover --limit 0 --max-pages ${{ inputs.extra_tief && 300 || 120 }}
-
-      - name: Crawl falafel menus in Zürich
-        if: steps.cadence.outputs.refresh == 'true'
-        run: python -m scraper.scrape_streetfood --category falafel --discover --limit 0 --max-pages ${{ inputs.extra_tief && 300 || 120 }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BUDGET: ${{ inputs.ai_budget_usd || 4 }}
+          TIEF: ${{ inputs.tief }}
+        run: |
+          if [ "$TIEF" = "true" ]; then DEPTH="--max-pages 150 --max-documents 200"; else DEPTH=""; fi
+          python -m scraper.streetfood_ai --budget-usd "$BUDGET" $DEPTH
 
       - name: Snapshot street-food datasets
         id: snapshot
