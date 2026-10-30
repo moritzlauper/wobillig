@@ -1,3 +1,56 @@
 {
-  "shops": []
+  "shops": [
+    {
+      "name": "Gelati 1998",
+      "address": "Zürich",
+      "source": "https://www.gelati1998.ch/wp-content/uploads/2025/03/gelati-altstadt_luzern-theke-1032x1201.jpg",
+      "checkedOn": "2026-10-30",
+      "portions": [
+        {
+          "scoops": 6,
+          "price": 17
+        }
+      ]
+    },
+    {
+      "name": "Leonardo",
+      "address": "Zürich",
+      "source": "https://www.gelaterialeonardo.ch/wp-content/uploads/2026/06/Glatt-10.06.2026-Menukarte-1-1.pdf",
+      "checkedOn": "2026-10-30",
+      "portions": [
+        {
+          "scoops": 1,
+          "price": 3.9
+        },
+        {
+          "scoops": 2,
+          "price": 7.6
+        },
+        {
+          "scoops": 3,
+          "price": 11.0
+        }
+      ]
+    },
+    {
+      "name": "Leonardo",
+      "address": "Zürich",
+      "source": "https://www.gelaterialeonardo.ch/wp-content/uploads/2026/06/Glatt-10.06.2026-Menukarte-1-1.pdf",
+      "checkedOn": "2026-10-30",
+      "portions": [
+        {
+          "scoops": 1,
+          "price": 3.9
+        },
+        {
+          "scoops": 2,
+          "price": 7.6
+        },
+        {
+          "scoops": 3,
+          "price": 11.0
+        }
+      ]
+    }
+  ]
 }
