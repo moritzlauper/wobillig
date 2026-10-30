@@ -406,6 +406,7 @@ function syncControls() {
 function selectedLocation() {
   return bars.find(b => b.id === selected) || locationCatalogue.find(b => b.id === selected);
 }
+const priceAmount = (price: number) => Number.isInteger(price) ? String(price) : price.toFixed(2);
 // The price range runs from the cheapest to the most expensive matching price, in 50 Rappen steps.
 // The cheap price sits in the middle: the left half covers the cheap venues, the right half the rest.
 let priceLow = 0, priceHigh = 1;
@@ -428,11 +429,10 @@ function syncPriceRange(prices: number[]) {
   slider.setAttribute('aria-valuemin', String(low)); slider.setAttribute('aria-valuemax', String(high)); slider.setAttribute('aria-valuenow', String(value));
   slider.setAttribute('aria-disabled', String(!prices.length));
   slider.style.setProperty('--fill', `${pricePosition(value)}%`);
-  const amount = (price: number) => Number.isInteger(price) ? String(price) : price.toFixed(2);
-  $('price-min').textContent = prices.length ? amount(low) : ''; $('price-max').textContent = prices.length ? amount(high) : '';
-  button.textContent = !prices.length ? t('Günstig') : cheapMode && cheapLimit !== undefined ? t('Günstig bis CHF {price}', { price: amount(cheapLimit) })
-    : Number.isFinite(f.max) && f.max < high ? t('Bis CHF {price}', { price: amount(f.max) }) : t('Alle Preise');
-  button.disabled = cheapLimit === undefined && !cheapMode;
+  $('price-min').textContent = prices.length ? priceAmount(low) : ''; $('price-max').textContent = prices.length ? priceAmount(high) : '';
+  // Always the same format, so the label keeps its width while the slider moves.
+  button.textContent = prices.length ? t('Bis CHF {price}', { price: value.toFixed(2) }) : t('Günstig');
+  button.disabled = cheapLimit === undefined;
   button.setAttribute('aria-pressed', String(cheapMode));
   button.title = cheapMode ? t('Günstig-Filter aufheben') : cheapLimit === undefined ? t('Keine passenden Preise vorhanden') : t('Günstige Lokale für die aktuelle Auswahl anzeigen');
   slider.setAttribute('aria-valuetext', button.textContent);
@@ -801,11 +801,13 @@ function setPriceLimit(value: number) {
   // The cheap price itself is a stop, even between two 50 Rappen steps.
   const rounded = Math.round(value * 2) / 2;
   const snapped = Math.min(Math.max(cheapLimit !== undefined && Math.abs(value - cheapLimit) < Math.abs(value - rounded) ? cheapLimit : rounded, priceLow), priceHigh);
-  cheapMode = false;
-  f.max = snapped >= priceHigh ? Infinity : snapped;
+  // Back on the cheap price (the middle) is the cheap filter again.
+  cheapMode = snapped === cheapLimit;
+  f.max = cheapMode || snapped >= priceHigh ? Infinity : snapped;
   selected = undefined;
-  // Show the new position at once; redraw the map at most once per frame.
+  // Show the new position and price at once; redraw the map at most once per frame.
   $('price').style.setProperty('--fill', `${pricePosition(snapped)}%`);
+  $('cheap').textContent = t('Bis CHF {price}', { price: snapped.toFixed(2) });
   cancelAnimationFrame(priceFrame);
   priceFrame = requestAnimationFrame(() => render());
 }

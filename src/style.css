@@ -195,11 +195,12 @@ main { display: flex; flex: 1; min-height: 0; }
 /* Price range: the cheap price is a button, the slider narrows or widens the list in the same green. */
 .price-range { display: flex; flex: 1; max-width: 460px; min-width: 0; align-items: center; gap: 2px; border: 1px solid var(--teal-border); border-radius: 6px; background: color-mix(in srgb, var(--teal-surface) 72%, transparent); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
 .price-range:has(#cheap[aria-pressed=true]) { border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal), 0 1px 4px #0002; }
-.map-actions .price-range #cheap { border: 0; background: transparent; box-shadow: none; white-space: nowrap; }
+.map-actions .price-range #cheap { border: 0; background: transparent; box-shadow: none; white-space: nowrap; flex: none; width: 8.6em; padding-inline: 10px 4px; text-align: left; font-variant-numeric: tabular-nums; }
+.map-actions .price-range #cheap::after { content: none; }
 .map-actions .price-range #cheap[aria-pressed=true] { background: transparent; }
 #price { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 110px; height: 34px; margin: 0 8px 0 2px; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
 .price-rail { position: relative; flex: 1; align-self: stretch; }
-.price-end { color: var(--teal); font-size: var(--font-meta); font-variant-numeric: tabular-nums; opacity: .8; }
+.price-end { flex: none; width: 2.2em; color: var(--teal); font-size: var(--font-meta); font-variant-numeric: tabular-nums; text-align: center; opacity: .8; }
 #price[aria-disabled=true] { cursor: default; opacity: .5; }
 .price-track { position: absolute; left: 9px; right: 9px; top: 50%; height: 4px; margin-top: -2px; border-radius: 2px; background: var(--teal-border); }
 .price-fill { position: absolute; left: 0; top: 0; bottom: 0; width: var(--fill, 100%); border-radius: 2px; background: var(--teal); }
