@@ -5,6 +5,8 @@ import { captureAnalytics } from './analytics-browser-helper';
 test.describe('English comparison pages without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
   test('all comparison guides have readable content and matching language links', async ({ page }) => {
+    // Seven cities times every guide type, each loaded three times, takes longer than the default 30 seconds.
+    test.setTimeout(180000);
     for (const city of cityIds) for (const type of guideTypes) {
       const response = await page.goto(guidePath(city, type, 'en'));
       expect(response?.status()).toBe(200);
