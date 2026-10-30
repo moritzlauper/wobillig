@@ -18,7 +18,8 @@ permissions:
   contents: write
 concurrency:
   # Shared queue for all category scans: they run one after another and never publish at the same time.
-  group: category-prices
+  # Each scan has its own queue; scraper.publish merges concurrent results per file on top of the newest branch tip.
+  group: ice-cream-prices
   # Keep every requested run waiting in order; without this GitHub cancels all but the newest pending run.
   queue: max
   cancel-in-progress: false
