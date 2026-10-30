@@ -1,949 +1,2200 @@
 {
- "generatedAt": "2026-10-26T18:08:11.983438+00:00",
- "discoveredAt": "2026-10-26T18:08:11.983438+00:00",
- "attribution": "© OpenStreetMap contributors, ODbL 1.0",
- "bars": [
-  {
-   "id": "node/1372569844",
-   "name": "Cafe Miyuko",
-   "lat": 47.3697504,
-   "lon": 8.536579,
-   "type": "cafe",
-   "address": "Bärengasse 20",
-   "postcode": "8001",
-   "website": "https://www.miyuko.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "We-Fr 09:00-18:00; Sa,Su 10:00-18:00",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/725764771",
-   "name": "Chifa Izakaya",
-   "lat": 47.3821574,
-   "lon": 8.5357577,
-   "type": "restaurant",
-   "address": "Baumgasse 10",
-   "postcode": "8005",
-   "website": "https://chifa-izakaya.ch/",
-   "cuisine": [
-    "peruvian",
-    "japanese",
-    "chinese"
-   ],
-   "openingHours": "Mo,Su off; Tu-Fr 11:30-14:00,18:00-22:00; Sa 18:00-23:00",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "fetch_failed",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/7700425496",
-   "name": "Eclipse Restaurant & Bar",
-   "lat": 47.3406053,
-   "lon": 8.5299514,
-   "type": "restaurant",
-   "address": "Albisstrasse 84",
-   "postcode": "8038",
-   "website": "https://www.eclipsebarlounge.com/",
-   "cuisine": [
-    "vietnamese",
-    "asian",
-    "international",
-    "coffee_shop",
-    "burger",
-    "sandwich",
-    "chicken",
-    "japanese",
-    "chinese",
-    "thai",
-    "american",
-    "ice_cream",
-    "seafood",
-    "noodle",
-    "steak_house",
-    "fish",
-    "cake",
-    "pasta",
-    "tea",
-    "juice",
-    "salad",
-    "dessert",
-    "diner",
-    "curry",
-    "western",
-    "fine_dining",
-    "soup",
-    "fries",
-    "european",
-    "udon"
-   ],
-   "openingHours": "Mo-Th 11:00-02:00; Fr 11:00-05:00; Sa 12:00-05:00; Su 12:00-02:00",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/7204657040",
-   "name": "Gaijin Izakaya",
-   "lat": 47.3729171,
-   "lon": 8.5277003,
-   "type": "restaurant",
-   "address": "Birmensdorferstrasse 5",
-   "postcode": "8004",
-   "website": "https://gaijin-izakaya.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 11:30-14:00, Mo-Su 18:00-24:00",
-   "outdoor": true,
-   "offers": [
+  "generatedAt": "2026-10-30T13:26:49.479508+00:00",
+  "discoveredAt": "2026-10-30T13:26:49.479508+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "bars": [
     {
-     "name": "Gaijin Tonkotsu Ramen (Mittagskarte)",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 27,
-     "sourceUrl": "https://gaijin-izakaya.ch/menu/lunch-menu/",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Gaijin Tonkotsu Ramen Tonkotsu Style Ramen Soup, Noodles, Tare Pork Belly, Egg 27 CHF",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/5341084407",
-   "name": "Gyoza Yokocho",
-   "lat": 47.3876919,
-   "lon": 8.5264887,
-   "type": "fast_food",
-   "address": "Limmatstrasse 231",
-   "postcode": "8005",
-   "website": "https://www.gyozayokocho.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Sa 11:00-20:00; Su off",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/11211942437",
-   "name": "Hikari",
-   "lat": 47.3709215,
-   "lon": 8.5220385,
-   "type": "restaurant",
-   "address": "Weststrasse 70",
-   "postcode": "8003",
-   "website": "https://hikari.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 08:00-22:30; Sa 10:00-22:30; Su 10:00-15:30",
-   "outdoor": false,
-   "offers": [
+      "id": "node/12887183327",
+      "name": "BaoBae",
+      "lat": 47.3760394,
+      "lon": 8.5150678,
+      "type": "restaurant",
+      "address": "Badenerstrasse 271",
+      "postcode": "8003",
+      "website": "https://www.baobae.ch/",
+      "cuisine": [
+        "chinese"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:00,18:00-24:00; Sa 18:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Peanut Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 18,
+          "sourceUrl": "https://9401b68c-004c-429b-9ece-92e271a512e3.filesusr.com/ugd/14ebb6_9dab23fec0484814a3e7cca461ef152b.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "PEANUT RAMEN 沙县拌面 Peanut Sauce, Roasted Onions, Lime, Fresh Noods, Porkbelly Sprinkles - x V Served Dry 18",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Shio Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 27,
-     "sourceUrl": "https://hikari.ch/files/26-10-15-WEB-Menu.pdf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Shio Ramen 27",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/12390093682",
-   "name": "Hum Kitchen",
-   "lat": 47.3930749,
-   "lon": 8.4897763,
-   "type": "fast_food",
-   "address": "Aargauerstrasse 252",
-   "postcode": "8048",
-   "website": "https://humkitchenmomo.com",
-   "cuisine": [
-    "japanese",
-    "ramen"
-   ],
-   "openingHours": "Mo-Fr 11:00-14:00",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "fetch_failed",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/890983520",
-   "name": "Ichizen",
-   "lat": 47.3737975,
-   "lon": 8.5274539,
-   "type": "restaurant",
-   "address": "Kanzleistrasse 15",
-   "postcode": "",
-   "website": "https://www.ichizen-japan-restaurant.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 11:30-14:00,18:30-22:30; Sa 18:00-22:30; PH off",
-   "outdoor": false,
-   "offers": [
+      "id": "node/3448147745",
+      "name": "Bund 39",
+      "lat": 47.3749607,
+      "lon": 8.5287161,
+      "type": "restaurant",
+      "address": "Bäckerstrasse 39",
+      "postcode": "8004",
+      "website": "https://www.bund39.cn/",
+      "cuisine": [
+        "chinese"
+      ],
+      "openingHours": "closed \"Aufgrund umfassender Renovationsarbeiten vorübergehend geschlossen\"",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "· Rindscarpaccio Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 32,
+          "sourceUrl": "https://www.bund39.cn/menus",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "生牛肉面 · Rindscarpaccio Ramen Rindsfilet mit Basilikum und Knoblauch. 32 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.8,
+          "sourceUrl": "https://www.bund39.cn/menus",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "什绵素面 Gemüsenudelsuppe mit Tofu 25,80 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 28,
+          "sourceUrl": "https://www.bund39.cn/menus",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "担担鲜虾面 Dan-Dan Nudelsuppe mit Schweinefleisch und Riesengarnelen 28,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Champon",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 29.0,
-     "sourceUrl": "https://www.ichizen-japan-restaurant.ch/online-ordering-1?itemId=cbc10986-b789-4975-bf1b-af23a99ab015&sectionId=94f7b5b1-566d-486f-b469-c9a2d106e465&menuId=4dee19cb-d25e-4491-9d61-003a2c2fe7cf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "CHAMPON ... Ramen (Eiernudeln) in hausgemachter cremigen Hühnerbrühe ... CHF 29.00",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/914703113",
-   "name": "Ikoo",
-   "lat": 47.3748928,
-   "lon": 8.5287964,
-   "type": "restaurant",
-   "address": "Bäckerstrasse 37",
-   "postcode": "8004",
-   "website": "http://www.ikoo.ch",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 11:30-14:00, Su-Fr 18:00-22:30, Sa 12:00-22:30",
-   "outdoor": true,
-   "offers": [
+      "id": "node/1372569844",
+      "name": "Cafe Miyuko",
+      "lat": 47.3697504,
+      "lon": 8.536579,
+      "type": "cafe",
+      "address": "Bärengasse 20",
+      "postcode": "8001",
+      "website": "https://www.miyuko.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "We-Fr 09:00-18:00; Sa,Su 10:00-18:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Shio Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 22.0,
-     "sourceUrl": "http://www.ikoo.ch/media/site/ce3b0c2376-1789136490/26-08-ikoo-menu-web.pdf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Shio Ramen 塩 Klare, leichte Suppe 22.00",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/5859687885",
-   "name": "Japan saku",
-   "lat": 47.3643245,
-   "lon": 8.5478329,
-   "type": "restaurant",
-   "address": "",
-   "postcode": "8008",
-   "website": "https://www.sakusaku.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Tu-Th 11:30-14:00, 18:00-21:00; Fr 11:30-14:00, 17:30-21:00; Sa 17:30-21:00",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4604638576",
-   "name": "Kokoro",
-   "lat": 47.3807187,
-   "lon": 8.526522,
-   "type": "restaurant",
-   "address": "Neufrankengasse 25",
-   "postcode": "",
-   "website": "https://www.kokoro-restaurant.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo,Su off; Tu-Fr 11:30-14:30,18:00-22:30; Sa 18:00-22:30",
-   "outdoor": true,
-   "offers": [
+      "id": "node/4424600900",
+      "name": "Cafe Oscar",
+      "lat": 47.3778329,
+      "lon": 8.5396019,
+      "type": "cafe",
+      "address": "Hauptbahnhof, Südtrakt",
+      "postcode": "8001",
+      "website": "https://www.cafe-oscar.ch/",
+      "cuisine": [],
+      "openingHours": "Sa-We 06:00-21:00, Th-Sa 06:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Tantanmen Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.9,
+          "sourceUrl": "https://www.cafe-oscar.ch/wp-content/uploads/2025/09/OSCAR_Menuekarte_0925.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantanmen Ramen 26.9",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Kokoro Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 28,
-     "sourceUrl": "https://www.kokoro-restaurant.ch/_files/ugd/82d2d6_e402d95bd35c40c1bbfd86862fc9869a.pdf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "RAMEN Kokoro Ramen Ramen-Suppe mit hausgemachter Brühe aus Gemüse ... 28.-",
-     "alcoholFree": true,
-     "sourcePage": 2,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4599535995",
-   "name": "Machida Shoten",
-   "lat": 47.3803612,
-   "lon": 8.5424142,
-   "type": "restaurant",
-   "address": "Stampfenbachplatz 4",
-   "postcode": "8006",
-   "website": "https://ch.machidashoten.com/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 09:00-23:00; Sa-Su 11:30-23:00",
-   "outdoor": true,
-   "offers": [
+      "id": "node/725764771",
+      "name": "Chifa Izakaya",
+      "lat": 47.3821574,
+      "lon": 8.5357577,
+      "type": "restaurant",
+      "address": "Baumgasse 10",
+      "postcode": "8005",
+      "website": "https://chifa-izakaya.ch/",
+      "cuisine": [
+        "peruvian",
+        "japanese",
+        "chinese"
+      ],
+      "openingHours": "Mo,Su off; Tu-Fr 11:30-14:00,18:00-22:00; Sa 18:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Yokohama Style Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 22.0,
-     "sourceUrl": "https://cdn.prod.website-files.com/67ca50bd4ec1f73e0d7a295b/692b755e442715f1b42b60aa_%E7%94%BA%E7%94%B0%E5%95%86%E5%BA%97_MENU%20BOOK_20251124-compressed.pdf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "横浜家系ラーメン Yokohama Style Ramen 22.00 CHF",
-     "alcoholFree": true,
-     "sourcePage": 2,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/6828843870",
-   "name": "Machida Shoten",
-   "lat": 47.3774336,
-   "lon": 8.5127223,
-   "type": "restaurant",
-   "address": "Zypressenstrasse 49",
-   "postcode": "8004",
-   "website": "https://ch.machidashoten.com/",
-   "cuisine": [
-    "ramen"
-   ],
-   "openingHours": "Mo-Su 11:30-23:00",
-   "outdoor": false,
-   "offers": [
+      "id": "node/460432599",
+      "name": "Der Wilde Kaiser",
+      "lat": 47.3581573,
+      "lon": 8.5225902,
+      "type": "restaurant",
+      "address": "Kalanderplatz 6",
+      "postcode": "8045",
+      "website": "https://www.derwildekaiser.ch/",
+      "cuisine": [
+        "austrian",
+        "hungarian",
+        "fusion",
+        "heuriger"
+      ],
+      "openingHours": "Tu-Sa 11:00-23:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Der Alpin Ramen «auf Wienersich»",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 36.5,
+          "sourceUrl": "https://www.derwildekaiser.ch/_files/ugd/1aa8b2_9be9426a0aae452ab643bf712cff9b1e.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Der Alpin RAMEN «auf Wienersich» 36.50",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Yokohama Style Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 22.0,
-     "sourceUrl": "https://cdn.prod.website-files.com/67ca50bd4ec1f73e0d7a295b/692b755e442715f1b42b60aa_%E7%94%BA%E7%94%B0%E5%95%86%E5%BA%97_MENU%20BOOK_20251124-compressed.pdf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "横浜家系ラーメン Yokohama Style Ramen 22.00 CHF",
-     "alcoholFree": true,
-     "sourcePage": 2,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4817455055",
-   "name": "Maki Haus",
-   "lat": 47.37828,
-   "lon": 8.5437936,
-   "type": "restaurant",
-   "address": "Stampfenbachstrasse 12",
-   "postcode": "8001",
-   "website": "https://makihaus.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 11:30-14:30,18:00-21:00; Sa 18:00-21:00; Su off",
-   "outdoor": false,
-   "offers": [
+      "id": "node/7700425496",
+      "name": "Eclipse Restaurant & Bar",
+      "lat": 47.3406053,
+      "lon": 8.5299514,
+      "type": "restaurant",
+      "address": "Albisstrasse 84",
+      "postcode": "8038",
+      "website": "https://www.eclipsebarlounge.com/",
+      "cuisine": [
+        "vietnamese",
+        "asian",
+        "international",
+        "coffee_shop",
+        "burger",
+        "sandwich",
+        "chicken",
+        "japanese",
+        "chinese",
+        "thai",
+        "american",
+        "ice_cream",
+        "seafood",
+        "noodle",
+        "steak_house",
+        "fish",
+        "cake",
+        "pasta",
+        "tea",
+        "juice",
+        "salad",
+        "dessert",
+        "diner",
+        "curry",
+        "western",
+        "fine_dining",
+        "soup",
+        "fries",
+        "european",
+        "udon"
+      ],
+      "openingHours": "Mo-Th 11:00-02:00; Fr 11:00-05:00; Sa 12:00-05:00; Su 12:00-02:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Tonkotsu-Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 24.0,
-     "sourceUrl": "https://makihaus.ch/menu/",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Tonkotsu-Ramen Schweineknochensuppe, Schweinefleisch-Scheiben, Ramen-Nudeln, Ei, Sojasprossen, Algen, Lauch 24.00",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4833061536",
-   "name": "Maru",
-   "lat": 47.3781269,
-   "lon": 8.5401993,
-   "type": "fast_food",
-   "address": "Hauptbahnhof, Plaza",
-   "postcode": "8001",
-   "website": "https://www.maru.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 09:00-21:00; Sa,Su 09:00-20:30",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/321346480",
-   "name": "Mendokoro",
-   "lat": 47.4082813,
-   "lon": 8.5078663,
-   "type": "fast_food",
-   "address": "",
-   "postcode": "",
-   "website": "https://ethz.ch/de/campus/erleben/gastronomie-und-einkaufen/gastronomie/restaurants-und-cafeterias/hoenggerberg/mendokoro.html",
-   "cuisine": [
-    "ramen"
-   ],
-   "openingHours": "Mo-Fr 07:30-14:30",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/3875945857",
-   "name": "Metropol",
-   "lat": 47.3684217,
-   "lon": 8.5411604,
-   "type": "restaurant",
-   "address": "Fraumünsterstrasse 12",
-   "postcode": "8001",
-   "website": "https://metropol-restaurant.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Sa 11:00-23:00; PH,Su closed",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/316831596",
-   "name": "Miki Ramen",
-   "lat": 47.3752742,
-   "lon": 8.5165912,
-   "type": "restaurant",
-   "address": "Sihlfeldstrasse 63",
-   "postcode": "8003",
-   "website": "http://www.miki-ramen.ch/",
-   "cuisine": [
-    "japanese",
-    "ramen"
-   ],
-   "openingHours": "Mo-Fr 11:45-14:30, 18:00-23:00; Sa 12:00-23:00; Su 18:00-23:00",
-   "outdoor": true,
-   "offers": [
+      "id": "node/7204657040",
+      "name": "Gaijin Izakaya",
+      "lat": 47.3729171,
+      "lon": 8.5277003,
+      "type": "restaurant",
+      "address": "Birmensdorferstrasse 5",
+      "postcode": "8004",
+      "website": "https://gaijin-izakaya.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00, Mo-Su 18:00-24:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Miso Ramen (vegetarische Variante)",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 19.0,
-     "sourceUrl": "https://miki.ch/media/site/92e2fe88b3-1786359907/26-07-miki-menu-web.pdf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Miso Ramen ... Vegetarische Variante: 19.00",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/7900044076",
-   "name": "Mori Ramen",
-   "lat": 47.3703532,
-   "lon": 8.549533,
-   "type": "restaurant",
-   "address": "Hottingerstrasse 4",
-   "postcode": "8032",
-   "website": "https://mori.ch/",
-   "cuisine": [
-    "ramen"
-   ],
-   "openingHours": "Mo-Fr 11:30-14:30,17:00-22:00; Sa 17:00-22:00",
-   "outdoor": true,
-   "offers": [
+      "id": "node/268420651",
+      "name": "Ginger",
+      "lat": 47.3618394,
+      "lon": 8.5506873,
+      "type": "restaurant",
+      "address": "Seefeldstrasse 62",
+      "postcode": "8008",
+      "website": "https://ginger-restaurant.ch/",
+      "cuisine": [
+        "sushi"
+      ],
+      "openingHours": "Mo-We 11:45-14:00,17:30-23:00; Th-Fr 11:45-14:00,17:30-24:00; Sa 17:30-24:00; Su off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Miso Ramen Mit Chashu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29.0,
+          "sourceUrl": "https://www.ginger-restaurant.ch/_files/ugd/693b34_ed3d9adab3724a4db6c548ce982f3251.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "MISO RAMEN MIT CHASHU ... 29.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso Ramen vegetarisch (vegan möglich)",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://www.ginger-restaurant.ch/_files/ugd/693b34_ed3d9adab3724a4db6c548ce982f3251.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "MISO RAMEN vegetarisch (vegan möglich) ... 26.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu Ramen Mit Chashu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29.0,
+          "sourceUrl": "https://www.ginger-restaurant.ch/_files/ugd/693b34_ed3d9adab3724a4db6c548ce982f3251.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "SHOYU RAMEN MIT CHASHU ... 29.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu Ramen vegetarisch (vegan möglich)",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://www.ginger-restaurant.ch/_files/ugd/693b34_ed3d9adab3724a4db6c548ce982f3251.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "SHOYU RAMEN vegetarisch (vegan möglich) ... 26.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonkotsu Black",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 32.0,
+          "sourceUrl": "https://www.ginger-restaurant.ch/_files/ugd/693b34_ed3d9adab3724a4db6c548ce982f3251.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "TONKOTSU BLACK Schweinebauch, Mayu, Ei ... 32.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Shoyu Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 22.0,
-     "sourceUrl": "https://mori.ch/media/site/a4efd2b2f3-1782386759/mori-menu-web-06-26.pdf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Shoyu Ramen 醤油 Klare Suppe mit Soja Sauce, Chashu 22.00",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4935627380",
-   "name": "Mura Omakase Restaurant",
-   "lat": 47.3545891,
-   "lon": 8.5561613,
-   "type": "restaurant",
-   "address": "",
-   "postcode": "",
-   "website": "https://www.mura39.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Tu-Fr 11:30-14:30, 18:00-23:00; Sa 18:00-23:00",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/2301713646",
-   "name": "Noodlee",
-   "lat": 47.3808663,
-   "lon": 8.5180091,
-   "type": "restaurant",
-   "address": "Zypressenstrasse 146",
-   "postcode": "8004",
-   "website": "https://noodlee.ch/",
-   "cuisine": [],
-   "openingHours": null,
-   "outdoor": false,
-   "offers": [
+      "id": "node/5341084407",
+      "name": "Gyoza Yokocho",
+      "lat": 47.3876919,
+      "lon": 8.5264887,
+      "type": "fast_food",
+      "address": "Limmatstrasse 231",
+      "postcode": "8005",
+      "website": "https://www.gyozayokocho.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Sa 11:00-20:00; Su off",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Veggie Miso Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 22.5,
-     "sourceUrl": "https://www.noodlee.ch/menus",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Veggie Miso Ramen Miso Soup, Noodles, Greens, Seaweed, Bamboo, Corn, Cooked Egg CHF 22.5",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4447297097",
-   "name": "Ooki Izakaya Wiedikon",
-   "lat": 47.3721676,
-   "lon": 8.5188077,
-   "type": "restaurant",
-   "address": "Zentralstrasse 53",
-   "postcode": "8003",
-   "website": "https://ooki.tokyo/home",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 11:30-14:00, 18:00-00:00; Sa 18:00-00:00; Su 18:00-22:00",
-   "outdoor": true,
-   "offers": [
+      "id": "node/11211942437",
+      "name": "Hikari",
+      "lat": 47.3709215,
+      "lon": 8.5220385,
+      "type": "restaurant",
+      "address": "Weststrasse 70",
+      "postcode": "8003",
+      "website": "https://hikari.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Fr 12:00-14:30,18:00-22:30; Sa 18:00-22:30; Su 10:00-14:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Chiizu Mazemen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26,
+          "sourceUrl": "https://hikari.ch/files/26-10-15-WEB-Menu.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Chiizu Mazemen 26",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shio Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27,
+          "sourceUrl": "https://hikari.ch/files/26-10-15-WEB-Menu.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shio Ramen 27",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Yuzu Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27,
+          "sourceUrl": "https://hikari.ch/files/26-10-15-WEB-Menu.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Yuzu Shoyu Ramen 27",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hikari Tantan",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27.5,
+          "sourceUrl": "https://hikari.ch/files/26-10-15-WEB-Menu.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "HIKARI Tantan 27.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Miso-Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 25,
-     "sourceUrl": "https://ooki.tokyo/data/files/EN_Ooki_MenueInhalt_20250630.pdf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "味噌ラーメン Miso–Ramen 25.–",
-     "alcoholFree": true,
-     "sourcePage": 22,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/319291882",
-   "name": "Ooki Pavillon Letzigrund",
-   "lat": 47.3807554,
-   "lon": 8.5040594,
-   "type": "restaurant",
-   "address": "Badenerstrasse 457",
-   "postcode": "8003",
-   "website": "https://pavillon.ooki.tokyo",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Tu-Fr 11:30-14:00, 17:30-00:00; Sa 17:30-00:00; Su 17:30-22:00",
-   "outdoor": true,
-   "offers": [
+      "id": "node/12390093682",
+      "name": "Hum Kitchen",
+      "lat": 47.3930749,
+      "lon": 8.4897763,
+      "type": "fast_food",
+      "address": "Aargauerstrasse 252",
+      "postcode": "8048",
+      "website": "https://humkitchenmomo.com",
+      "cuisine": [
+        "japanese",
+        "ramen"
+      ],
+      "openingHours": "Mo-Fr 11:00-14:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Shoyu Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 25,
-     "sourceUrl": "https://pavillon.ooki.tokyo/data/files/DE_Ooki_Pavillon_MenueInhalt_20260505.pdf",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Shoyu Ramen 25.–",
-     "alcoholFree": true,
-     "sourcePage": 12,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/699587305",
-   "name": "Ototo - Sushi Dining",
-   "lat": 47.3925569,
-   "lon": 8.5308196,
-   "type": "restaurant",
-   "address": "Nordstrasse 199",
-   "postcode": "8037",
-   "website": "https://www.ototo.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo 18:00-23:00; Tu-Fr 11:30-14:30, 17:30-23:00; Sa 17:30-23:00",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/10267138041",
-   "name": "PUTPUTakeaway",
-   "lat": 47.3764992,
-   "lon": 8.5252048,
-   "type": "restaurant",
-   "address": "Stauffacherstrasse 101",
-   "postcode": "8004",
-   "website": "http://www.putput.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo 11:30-14:30; Tu-Fr 11:30-14:30,17:30-21:00",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4857867456",
-   "name": "Riki Ramen Bā",
-   "lat": 47.3735366,
-   "lon": 8.5320042,
-   "type": "restaurant",
-   "address": "Kasernenstrasse 2",
-   "postcode": "8004",
-   "website": "https://www.riki-ramen.com/",
-   "cuisine": [
-    "ramen"
-   ],
-   "openingHours": "Mo-Sa 11:30-14:00,17:30-23:00",
-   "outdoor": true,
-   "offers": [
+      "id": "node/890983520",
+      "name": "Ichizen",
+      "lat": 47.3737975,
+      "lon": 8.5274539,
+      "type": "restaurant",
+      "address": "Kanzleistrasse 15",
+      "postcode": "",
+      "website": "https://www.ichizen-japan-restaurant.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,18:30-22:30; Sa 18:00-22:30; PH off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ramen Shoyu od. Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29.0,
+          "sourceUrl": "https://www.ichizen-japan-restaurant.ch/online-ordering-1?itemId=5134475f-c635-430c-bfe0-7057ae342fe1&sectionId=0421b407-9b9e-46c7-8317-050dbf148b96&menuId=0d913e58-786c-44c5-b60e-2fa546d4cd5e",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "RAMEN SHOYU od. MISO | CHF 29.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantan Ramen od. Udon",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29.0,
+          "sourceUrl": "https://www.ichizen-japan-restaurant.ch/online-ordering-1?itemId=5134475f-c635-430c-bfe0-7057ae342fe1&sectionId=0421b407-9b9e-46c7-8317-050dbf148b96&menuId=0d913e58-786c-44c5-b60e-2fa546d4cd5e",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "TANTAN RAMEN od. UDON | CHF 29.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Champon",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29.0,
+          "sourceUrl": "https://www.ichizen-japan-restaurant.ch/online-ordering-1?itemId=5134475f-c635-430c-bfe0-7057ae342fe1&sectionId=0421b407-9b9e-46c7-8317-050dbf148b96&menuId=0d913e58-786c-44c5-b60e-2fa546d4cd5e",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "CHAMPON | CHF 29.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Kimchi Ramen",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 26,
-     "sourceUrl": "https://images.squarespace-cdn.com/content/v1/692d68c918568431addfa1c7/e311afbb-ce22-46e5-9751-ab2d84f90d31/260930_RIKI_A_La_Carte_Menu_JPEG.jpg",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "KIMCHI RAMEN ... 26.0",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/9666216542",
-   "name": "Rémy",
-   "lat": 47.3734505,
-   "lon": 8.5196917,
-   "type": "restaurant",
-   "address": "Kalkbreitestrasse 33",
-   "postcode": "8003",
-   "website": "https://www.remy.restaurant/",
-   "cuisine": [
-    "ramen"
-   ],
-   "openingHours": "Tu-Th 11:30-13:30,18:30-24:00; Fr,Sa 18:30-01:00",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/279180960",
-   "name": "Sala of Tokyo",
-   "lat": 47.3761821,
-   "lon": 8.5402129,
-   "type": "restaurant",
-   "address": "",
-   "postcode": "",
-   "website": "https://sala-of-tokyo.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Tu-Fr 11:30-14:00,18:00-23:00",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4605571617",
-   "name": "Samurai VII",
-   "lat": 47.3870425,
-   "lon": 8.4890636,
-   "type": "restaurant",
-   "address": "Grimselstrasse 2",
-   "postcode": "8048",
-   "website": "https://samuraisieben.com",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Tu-Fr 11:30-14:00,18:00-22:00; Sa 17:00-22:00; Su off",
-   "outdoor": true,
-   "offers": [
+      "id": "node/914703113",
+      "name": "Ikoo",
+      "lat": 47.3748928,
+      "lon": 8.5287964,
+      "type": "restaurant",
+      "address": "Bäckerstrasse 37",
+      "postcode": "8004",
+      "website": "https://ikoo.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00,18:00-22:00; Fr 11:30-14:00,18:00-22:30; Sa 18:00-22:30; Su 18:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Shio Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 22.0,
+          "sourceUrl": "https://ikoo.ch/media/site/9c3acf9d15-1789136490/26-08-ikoo-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shio Ramen / Klare, leichte Suppe 22.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 22.0,
+          "sourceUrl": "https://ikoo.ch/media/site/9c3acf9d15-1789136490/26-08-ikoo-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shoyu Ramen / Klare Suppe mit Soja Sauce 22.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.0,
+          "sourceUrl": "https://ikoo.ch/media/site/9c3acf9d15-1789136490/26-08-ikoo-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Miso Ramen / Suppe mit hell fermentiertem Miso 24.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso Ramen vegetarische Variante",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 19.0,
+          "sourceUrl": "https://ikoo.ch/media/site/9c3acf9d15-1789136490/26-08-ikoo-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Miso Ramen / Vegetarische Variante: 19.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonkotsu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://ikoo.ch/media/site/9c3acf9d15-1789136490/26-08-ikoo-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tonkotsu Ramen / Unsere cremige Brühe aus 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://ikoo.ch/media/site/9c3acf9d15-1789136490/26-08-ikoo-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantanmen / Scharfe Suppe auf Sesam- und Chilibasis 26.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen vegetarische Variante",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.5,
+          "sourceUrl": "https://ikoo.ch/media/site/9c3acf9d15-1789136490/26-08-ikoo-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantanmen / Vegetarische Variante: 24.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Tantan Men",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 25,
-     "sourceUrl": "https://www.samuraisieben.com/menus?location=Grimselstrasse&menu=nudeln",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Tantan Men / 担々麺 Ramen (Eiernudeln) in Suppe mit Tonkotsu ... CHF 25",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
-    }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/5422953724",
-   "name": "Sappo",
-   "lat": 47.3844486,
-   "lon": 8.5283789,
-   "type": "restaurant",
-   "address": "Josefstrasse 140",
-   "postcode": "",
-   "website": "https://sappo.ch/",
-   "cuisine": [
-    "ramen"
-   ],
-   "openingHours": "Mo-Fr 11:30-14:00,17:00-22:00; Sa 12:00-22:00; Su 17:30-22:00",
-   "outdoor": false,
-   "offers": [
+      "id": "node/267049751",
+      "name": "Imone",
+      "lat": 47.3639501,
+      "lon": 8.5201156,
+      "type": "restaurant",
+      "address": "Uetlibergstrasse 38",
+      "postcode": "8045",
+      "website": "https://imonezurich.com/",
+      "cuisine": [
+        "asian",
+        "korean"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00,18:00-21:30; Fr 11:30-14:00,18:00-22:00; Sa 18:00-22:00; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "만두라면 Mandu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 18,
+          "sourceUrl": "https://imonezurich.com/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "만두라면 MANDU RAMEN - 18",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
     {
-     "name": "Classic Sapporo Miso",
-     "volumeMl": null,
-     "ramenType": "ramen",
-     "priceChf": 23,
-     "sourceUrl": "https://sappo.ch/de/menu/",
-     "observedAt": "2026-10-26T18:08:11.983438+00:00",
-     "confidence": "ai",
-     "evidence": "Classic Sapporo Miso ... frische Frühlingszwiebeln. 23",
-     "alcoholFree": true,
-     "sourcePage": 1,
-     "extractionModel": "claude-haiku-5-5"
+      "id": "node/5859687885",
+      "name": "Japan saku",
+      "lat": 47.3643245,
+      "lon": 8.5478329,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "8008",
+      "website": "https://www.sakusaku.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Th 11:30-14:00, 18:00-21:00; Fr 11:30-14:00, 17:30-21:00; Sa 17:30-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4604638576",
+      "name": "Kokoro",
+      "lat": 47.3807187,
+      "lon": 8.526522,
+      "type": "restaurant",
+      "address": "Neufrankengasse 25",
+      "postcode": "",
+      "website": "https://www.kokoro-restaurant.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo,Su off; Tu-Fr 11:30-14:30,18:00-22:30; Sa 18:00-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Kokoro Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 28,
+          "sourceUrl": "https://www.kokoro-restaurant.ch/_files/ugd/82d2d6_eee8151995af471792f75992ed2cfabd.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Kokoro Ramen 28.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4599535995",
+      "name": "Machida Shoten",
+      "lat": 47.3803612,
+      "lon": 8.5424142,
+      "type": "restaurant",
+      "address": "Stampfenbachplatz 4",
+      "postcode": "8006",
+      "website": "https://ch.machidashoten.com/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 09:00-23:00; Sa-Su 11:30-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Creamy Vegan-Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/67ca50bd4ec1f73e0d7a295b/692b755e442715f1b42b60aa_%E7%94%BA%E7%94%B0%E5%95%86%E5%BA%97_MENU%20BOOK_20251124-compressed.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Creamy Vegan-Ramen ... 26.00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/6828843870",
+      "name": "Machida Shoten",
+      "lat": 47.3774336,
+      "lon": 8.5127223,
+      "type": "restaurant",
+      "address": "Zypressenstrasse 49",
+      "postcode": "8004",
+      "website": "https://ch.machidashoten.com/",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Mo-Su 11:30-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Creamy Vegan-Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/67ca50bd4ec1f73e0d7a295b/692b755e442715f1b42b60aa_%E7%94%BA%E7%94%B0%E5%95%86%E5%BA%97_MENU%20BOOK_20251124-compressed.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Creamy Vegan-Ramen ... 26.00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4817455055",
+      "name": "Maki Haus",
+      "lat": 47.37828,
+      "lon": 8.5437936,
+      "type": "restaurant",
+      "address": "Stampfenbachstrasse 12",
+      "postcode": "8001",
+      "website": "https://makihaus.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:30,18:00-21:00; Sa 18:00-21:00; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Tonkotsu-Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.0,
+          "sourceUrl": "https://makihaus.ch/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tonkotsu-Ramen Schweineknochensuppe, Schweinefleisch-Scheiben, Ramen-Nudeln, Ei, Sojasprossen, Algen, Lauch 24.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.0,
+          "sourceUrl": "https://makihaus.ch/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantanmen* Scharfe Sesamsuppe, Sojasprossen, Pak Choi, Lauch, Ramen-Nudeln mit Rindhackfleisch 24.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4833061536",
+      "name": "Maru",
+      "lat": 47.3781269,
+      "lon": 8.5401993,
+      "type": "fast_food",
+      "address": "Hauptbahnhof, Plaza",
+      "postcode": "8001",
+      "website": "https://www.maru.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 09:00-21:00; Sa,Su 09:00-20:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/321346480",
+      "name": "Mendokoro",
+      "lat": 47.4082813,
+      "lon": 8.5078663,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://ethz.ch/de/campus/erleben/gastronomie-und-einkaufen/gastronomie/restaurants-und-cafeterias/hoenggerberg/mendokoro.html",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Mo-Fr 07:30-14:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/3875945857",
+      "name": "Metropol",
+      "lat": 47.3684217,
+      "lon": 8.5411604,
+      "type": "restaurant",
+      "address": "Fraumünsterstrasse 12",
+      "postcode": "8001",
+      "website": "https://metropol-restaurant.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Sa 11:00-23:00; PH,Su closed",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/316831596",
+      "name": "Miki Ramen",
+      "lat": 47.3752742,
+      "lon": 8.5165912,
+      "type": "restaurant",
+      "address": "Sihlfeldstrasse 63",
+      "postcode": "8003",
+      "website": "https://miki.ch/",
+      "cuisine": [
+        "japanese",
+        "ramen"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:30,18:00-23:00; Sa 12:00-23:00; Su 18:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Shio Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 22.0,
+          "sourceUrl": "https://miki.ch/media/site/cb32188d8f-1786359907/26-07-miki-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shio Ramen 塩 Klare, leichte Suppe 22.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 22.0,
+          "sourceUrl": "https://miki.ch/media/site/cb32188d8f-1786359907/26-07-miki-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shoyu Ramen 醤油 Klare Suppe mit Soja Sauce 22.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.0,
+          "sourceUrl": "https://miki.ch/media/site/cb32188d8f-1786359907/26-07-miki-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Miso Ramen 味噌 Suppe mit hell fermentiertem Miso 24.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonkotsu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://miki.ch/media/site/cb32188d8f-1786359907/26-07-miki-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tonkotsu Ramen 豚骨 Unsere cremige Brühe aus Schweineknochen (CH) - 15h geköchelt 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://miki.ch/media/site/cb32188d8f-1786359907/26-07-miki-menu-web.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantanmen 担担麺 Scharfe Suppe auf Sesam- und Chilibasis 26.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/7900044076",
+      "name": "Mori Ramen",
+      "lat": 47.3703532,
+      "lon": 8.549533,
+      "type": "restaurant",
+      "address": "Hottingerstrasse 4",
+      "postcode": "8032",
+      "website": "https://mori.ch/",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:30,17:00-22:00; Sa,Su 17:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 22.0,
+          "sourceUrl": "https://mori.ch/media/site/a4efd2b2f3-1782386759/mori-menu-web-06-26.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shoyu Ramen / Klare Suppe mit Soja Sauce, Chashu 22.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.0,
+          "sourceUrl": "https://mori.ch/media/site/a4efd2b2f3-1782386759/mori-menu-web-06-26.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Miso Ramen / Suppe mit hell fermentiertem Miso, 24.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://mori.ch/media/site/a4efd2b2f3-1782386759/mori-menu-web-06-26.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantanmen / Scharfe Suppe auf Sesam und Chilibasis 26.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mazemen Miso Cheese",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.0,
+          "sourceUrl": "https://mori.ch/media/site/a4efd2b2f3-1782386759/mori-menu-web-06-26.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Mazemen Miso Cheese / Nudeln mit cremiger Käse-Miso Sauce 24.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mazemen Dashi Tomato",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 28.0,
+          "sourceUrl": "https://mori.ch/media/site/a4efd2b2f3-1782386759/mori-menu-web-06-26.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Mazemen Dashi Tomato / Nudeln mit Tomaten-Dashi, Gyuniku 28.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mazemen Spicy Masu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://mori.ch/media/site/a4efd2b2f3-1782386759/mori-menu-web-06-26.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Mazemen Spicy Masu / Nudeln mit Gemüse-Dashi, geräuchertes 26.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4935627380",
+      "name": "Mura Omakase Restaurant",
+      "lat": 47.3545891,
+      "lon": 8.5561613,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.mura39.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:30, 18:00-23:00; Sa 18:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/2301713646",
+      "name": "Noodlee",
+      "lat": 47.3808663,
+      "lon": 8.5180091,
+      "type": "restaurant",
+      "address": "Zypressenstrasse 146",
+      "postcode": "8004",
+      "website": "https://noodlee.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Veggie Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 22.5,
+          "sourceUrl": "https://www.noodlee.ch/online-ordering",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Veggie Miso Ramen CHF 22.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tofu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.noodlee.ch/online-ordering",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tofu Ramen CHF 24.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chicken Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.noodlee.ch/online-ordering",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Chicken Ramen CHF 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonkotsu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.noodlee.ch/online-ordering",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tonkotsu Ramen CHF 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spicy Beef Noodles",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27.5,
+          "sourceUrl": "https://www.noodlee.ch/online-ordering",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Spicy Beef Noodles CHF 27.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kimchi Chicken Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.noodlee.ch/online-ordering",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Kimchi Chicken Ramen CHF 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sichuan Dandan Noodles",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.noodlee.ch/online-ordering",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Sichuan Dandan Noodles CHF 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spicy Chongqing Noodles",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.noodlee.ch/online-ordering",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Spicy Chongqing Noodles CHF 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4447297097",
+      "name": "Ooki Izakaya Wiedikon",
+      "lat": 47.3721676,
+      "lon": 8.5188077,
+      "type": "restaurant",
+      "address": "Zentralstrasse 53",
+      "postcode": "8003",
+      "website": "https://ooki.tokyo/home",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00, 18:00-00:00; Sa 18:00-00:00; Su 18:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://ooki.tokyo/data/files/EN_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shoyu Ramen 25.–",
+          "alcoholFree": true,
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso-Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://ooki.tokyo/data/files/DE_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Miso–Ramen 25.–",
+          "alcoholFree": true,
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Miso-Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://ooki.tokyo/data/files/DE_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "vegi Miso–Ramen 25.–",
+          "alcoholFree": true,
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonkotsu-Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26,
+          "sourceUrl": "https://ooki.tokyo/data/files/DE_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tonkotsu–Ramen 26.–",
+          "alcoholFree": true,
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://ooki.tokyo/data/files/EN_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantanmen 26.5",
+          "alcoholFree": true,
+          "sourcePage": 23,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://ooki.tokyo/data/files/DE_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "vegi Tantanmen 26.5",
+          "alcoholFree": true,
+          "sourcePage": 23,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso–Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://ooki.tokyo/data/files/EN_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Miso–Ramen 25.–",
+          "alcoholFree": true,
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "vegi Miso–Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://ooki.tokyo/data/files/EN_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "vegi Miso–Ramen 25.–",
+          "alcoholFree": true,
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonkotsu–Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26,
+          "sourceUrl": "https://ooki.tokyo/data/files/EN_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tonkotsu–Ramen 26.–",
+          "alcoholFree": true,
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "vegi Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://ooki.tokyo/data/files/EN_Ooki_MenueInhalt_20250630.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "vegi Tantanmen 26.5",
+          "alcoholFree": true,
+          "sourcePage": 23,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/319291882",
+      "name": "Ooki Pavillon Letzigrund",
+      "lat": 47.3807554,
+      "lon": 8.5040594,
+      "type": "restaurant",
+      "address": "Badenerstrasse 457",
+      "postcode": "8003",
+      "website": "https://pavillon.ooki.tokyo",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:00, 17:30-00:00; Sa 17:30-00:00; Su 17:30-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Tonkotsu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26,
+          "sourceUrl": "https://pavillon.ooki.tokyo/data/files/DE_Ooki_Pavillon_MenueInhalt_20261008.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tonkotsu Ramen 26.–",
+          "alcoholFree": true,
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://pavillon.ooki.tokyo/data/files/DE_Ooki_Pavillon_MenueInhalt_20261008.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Miso ramen 25.–",
+          "alcoholFree": true,
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23,
+          "sourceUrl": "https://pavillon.ooki.tokyo/data/files/DE_Ooki_Pavillon_MenueInhalt_20261008.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Vegi Miso ramen 23.–",
+          "alcoholFree": true,
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://pavillon.ooki.tokyo/data/files/DE_Ooki_Pavillon_MenueInhalt_20261008.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shoyu Ramen 25.–",
+          "alcoholFree": true,
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://pavillon.ooki.tokyo/data/files/DE_Ooki_Pavillon_MenueInhalt_20261008.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "tantanmen 26.5",
+          "alcoholFree": true,
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://pavillon.ooki.tokyo/data/files/DE_Ooki_Pavillon_MenueInhalt_20261008.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "vegi tantanmen 26.5",
+          "alcoholFree": true,
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Wantan Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.0,
+          "sourceUrl": "https://pavillon.ooki.tokyo/data/files/DE_Ooki_Pavillon_MenueInhalt_20261008.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Wantan ramen 25.–",
+          "alcoholFree": true,
+          "sourcePage": 14,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/699587305",
+      "name": "Ototo - Sushi Dining",
+      "lat": 47.3925569,
+      "lon": 8.5308196,
+      "type": "restaurant",
+      "address": "Nordstrasse 199",
+      "postcode": "8037",
+      "website": "https://www.ototo.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo 18:00-23:00; Tu-Fr 11:30-14:30, 17:30-23:00; Sa 17:30-23:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/10267138041",
+      "name": "PUTPUTakeaway",
+      "lat": 47.3764992,
+      "lon": 8.5252048,
+      "type": "restaurant",
+      "address": "Stauffacherstrasse 101",
+      "postcode": "8004",
+      "website": "http://www.putput.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo 11:30-14:30; Tu-Fr 11:30-14:30,17:30-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4857867456",
+      "name": "Riki Ramen Bā",
+      "lat": 47.3735366,
+      "lon": 8.5320042,
+      "type": "restaurant",
+      "address": "Kasernenstrasse 2",
+      "postcode": "8004",
+      "website": "https://www.riki-ramen.com/",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:00,17:30-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Spicy Tantanmen Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 28.5,
+          "sourceUrl": "https://images.squarespace-cdn.com/content/v1/692d68c918568431addfa1c7/e311afbb-ce22-46e5-9751-ab2d84f90d31/260930_RIKI_A_La_Carte_Menu_JPEG.jpg",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "SPICY TANTANMEN RAMEN Goma Tare • Hühnerbrühe • Tantan 28.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "The Super Shio Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27.5,
+          "sourceUrl": "https://images.squarespace-cdn.com/content/v1/692d68c918568431addfa1c7/e311afbb-ce22-46e5-9751-ab2d84f90d31/260930_RIKI_A_La_Carte_Menu_JPEG.jpg",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "THE SUPER SHIO RAMEN Shio Tare • Hühnerbrühe • Muschel-Dashi 27.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Paitan Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://images.squarespace-cdn.com/content/v1/692d68c918568431addfa1c7/e311afbb-ce22-46e5-9751-ab2d84f90d31/260930_RIKI_A_La_Carte_Menu_JPEG.jpg",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "PAITAN RAMEN Shoyu Tare • Dashi • Hühnerbrühe 26.0",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kimchi Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://images.squarespace-cdn.com/content/v1/692d68c918568431addfa1c7/e311afbb-ce22-46e5-9751-ab2d84f90d31/260930_RIKI_A_La_Carte_Menu_JPEG.jpg",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "KIMCHI RAMEN Shoyu Tare • Rinds- und Schweinsbrühe • Kimchi 26.0",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mushroom Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://images.squarespace-cdn.com/content/v1/692d68c918568431addfa1c7/e311afbb-ce22-46e5-9751-ab2d84f90d31/260930_RIKI_A_La_Carte_Menu_JPEG.jpg",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "MUSHROOM MISO RAMEN Miso Tare • Pilz & Sellerie Dashi • Austernpilze 26.0",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/9666216542",
+      "name": "Rémy",
+      "lat": 47.3734505,
+      "lon": 8.5196917,
+      "type": "restaurant",
+      "address": "Kalkbreitestrasse 33",
+      "postcode": "8003",
+      "website": "https://www.remy.restaurant/",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Tu-Th 11:30-13:30,18:30-24:00; Fr,Sa 18:30-01:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/279180960",
+      "name": "Sala of Tokyo",
+      "lat": 47.3761821,
+      "lon": 8.5402129,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://sala-of-tokyo.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:00,18:00-23:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4605571617",
+      "name": "Samurai VII",
+      "lat": 47.3870425,
+      "lon": 8.4890636,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://samuraisieben.com",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:00,18:00-22:00; Sa 17:00-22:00; Su off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Tantan Men",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://www.samuraisieben.com/menus?location=Grimselstrasse&menu=nudeln",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantan Men / 担々麺 Ramen (Eiernudeln) in Suppe mit Tonkotsu ... CHF 25",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/10896827512",
+      "name": "Sapa Canteen",
+      "lat": 47.3800211,
+      "lon": 8.5422229,
+      "type": "restaurant",
+      "address": "Walchestrasse 11",
+      "postcode": "",
+      "website": "https://www.sapacanteen.ch",
+      "cuisine": [
+        "vietnamese"
+      ],
+      "openingHours": "Mo-Sa 12:00-14:30,17:30-23:00; Su 13:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "MÌ Ramen Xào Tôm",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29.5,
+          "sourceUrl": "https://de.cdn-website.com/71dd5ce1d175414080c601e41e85746c/files/uploaded/Menu_Deutsch_05.11.2023_%281%29.pdf",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "MÌ RAMEN XÀO TÔM - Gebratene Ramennudeln mit saftigen Crevetten und frischem Gemüse. 29.50",
+          "alcoholFree": true,
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/5422953724",
+      "name": "Sappo",
+      "lat": 47.3844486,
+      "lon": 8.5283789,
+      "type": "restaurant",
+      "address": "Josefstrasse 140",
+      "postcode": "",
+      "website": "https://sappo.ch/",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,17:00-22:00; Sa 12:00-22:00; Su 17:30-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Classic Sapporo Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Classic Sapporo Miso | 23",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chashu Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 28,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Chashu Miso | 28",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negi Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Negi Miso | 25",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegan Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Vegan Miso | 23",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kara Miso Chashu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Kara Miso Chashu | 25",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegan Kara Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Vegan Kara Miso | 25",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu Chashu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shoyu Chashu | 23",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegan Shoyu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Vegan Shoyu | 23",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shio Chashu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shio Chashu | 23",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegan Shio",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Vegan Shio | 23",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantan Men Chashu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantan Men Chashu | 25",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantan Men Vegan",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantan Men Vegan | 25",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tsukemen Chashu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tsukemen Chashu | 25",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tsukemen Vegan",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tsukemen Vegan | 25",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mazesoba Chashu",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Mazesoba Chashu | 23",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mazesoba Vegan",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23,
+          "sourceUrl": "https://sappo.ch/de/menu/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Mazesoba Vegan | 23",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/3085757833",
+      "name": "SEAM – Japanese Kappo Cuisine",
+      "lat": 47.374608,
+      "lon": 8.535733,
+      "type": "restaurant",
+      "address": "Löwenstrasse 29",
+      "postcode": "8001",
+      "website": "https://www.kappo-seam.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:30,18:00-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4424600919",
+      "name": "Sora Sushi",
+      "lat": 47.3775929,
+      "lon": 8.53946,
+      "type": "restaurant",
+      "address": "Hauptbahnhof, Südtrakt",
+      "postcode": "8001",
+      "website": "https://website.sora-sushi.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Su 11:30-21:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/1243596474",
+      "name": "Tanukiya",
+      "lat": 47.3782008,
+      "lon": 8.5292404,
+      "type": "restaurant",
+      "address": "Zwinglistrasse 12",
+      "postcode": "8004",
+      "website": "https://www.tanukiya.ch",
+      "cuisine": [
+        "japanese",
+        "ramen",
+        "udon"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/633584200",
+      "name": "The Alehouse Palmhof",
+      "lat": 47.3790827,
+      "lon": 8.5478805,
+      "type": "pub",
+      "address": "Universitätstrasse 23",
+      "postcode": "",
+      "website": "https://www.alehouse.ch/",
+      "cuisine": [
+        "american"
+      ],
+      "openingHours": "Mo-Fr 10:00-24:00; Sa 11:30-24:00; Su 11:30-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Veggie Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 22,
+          "sourceUrl": "https://www.alehouse.ch/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Veggie Ramen Fresh vegetables, miso, homemade veggie broth ... CHF 22.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fried Chicken Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 22,
+          "sourceUrl": "https://www.alehouse.ch/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Fried Chicken Ramen Fresh vegetables, miso, homemade chicken broth ... CHF 22.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/10795377101",
+      "name": "Tokyo Express @ bridge",
+      "lat": 47.3787745,
+      "lon": 8.5336711,
+      "type": "restaurant",
+      "address": "Europaallee 22",
+      "postcode": "8004",
+      "website": "https://www.bridgezurich.ch/de/startseite/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,17:30-21:30; Sa 11:30-21:30",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/315566479",
+      "name": "Trattoria Neumarkt",
+      "lat": 47.3725811,
+      "lon": 8.5456297,
+      "type": "bar",
+      "address": "",
+      "postcode": "",
+      "website": "https://neumarkt-zuerich.ch",
+      "cuisine": [
+        "italian",
+        "japanese"
+      ],
+      "openingHours": "Tu-Sa 12:00-14:00, 18:00-23:00; Su 12:00-21:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/10967922622",
+      "name": "tsuru tsuru noodlebar",
+      "lat": 47.3761906,
+      "lon": 8.5401823,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.tsuru-tsuru.ch",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:00; Tu-Sa 18:00-23:00; PH closed",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/3926932171",
+      "name": "Ying Cusine",
+      "lat": 47.3705241,
+      "lon": 8.5148792,
+      "type": "restaurant",
+      "address": "Birmensdorferstrasse 222",
+      "postcode": "8003",
+      "website": "https://www.ying-cusine.ch/",
+      "cuisine": [
+        "asian"
+      ],
+      "openingHours": "Mo-Tu 18:00-21:30; We-Fr 11:00-14:30,17:30-21:30; Sa 12:00-14:30,17:30-21:30; Su 11:30-21:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Chicken Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.0,
+          "sourceUrl": "https://www.ying-cusine.ch/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Chicken Ramen Hühnersuppe zubereitet mit Poulet Chashu ... 25,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.0,
+          "sourceUrl": "https://www.ying-cusine.ch/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "33. Vegi Tantanmen Scharfe Suppe, gebratene Tofu Würfel ... 24,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen mit Rindshackfleisch (scharf)",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27.0,
+          "sourceUrl": "https://www.ying-cusine.ch/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Tantanmen mit Rindshackfleisch (scharf) Scharfe Suppe ... 27,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.0,
+          "sourceUrl": "https://www.ying-cusine.ch/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Miso Ramen Suppe auf Miso-Basis zubereitet mit Schweinefleisch Chashu ... 25,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.0,
+          "sourceUrl": "https://www.ying-cusine.ch/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Shoyu Ramen Suppe auf Soja Sauce-Basis zubereitet mit Schweinefleisch Chashu ... 25,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23.0,
+          "sourceUrl": "https://www.ying-cusine.ch/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Vegi Miso Ramen Suppe auf Miso-Basis zubereitet mit geschmortem Tofu ... 23,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rinds-Siedfleisch Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27.0,
+          "sourceUrl": "https://www.ying-cusine.ch/",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "Rinds-Siedfleisch Ramen Rinderbrühe zubereitet mit durchzogenem und geschmortem Rinds-Siedfleisch ... 27,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/4370339893",
+      "name": "Yokita",
+      "lat": 47.3701402,
+      "lon": 8.5143368,
+      "type": "fast_food",
+      "address": "Friesenbergstrasse 3",
+      "postcode": "",
+      "website": "https://yokita.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,17:30-20:00; Sa 12:30-15:00,17:30-19:30; PH off",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/357225679",
+      "name": "Yu-An",
+      "lat": 47.3726012,
+      "lon": 8.5273865,
+      "type": "restaurant",
+      "address": "Werdstrasse 66",
+      "postcode": "8004",
+      "website": "https://www.yu-an.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:30, 18:30-22:30; Sa 18:30-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     }
-   ],
-   "scrapeStatus": "prices_found",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/3085757833",
-   "name": "SEAM – Japanese Kappo Cuisine",
-   "lat": 47.374608,
-   "lon": 8.535733,
-   "type": "restaurant",
-   "address": "Löwenstrasse 29",
-   "postcode": "8001",
-   "website": "https://www.kappo-seam.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Sa 11:30-14:30,18:00-22:30",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4424600919",
-   "name": "Sora Sushi",
-   "lat": 47.3775929,
-   "lon": 8.53946,
-   "type": "restaurant",
-   "address": "Hauptbahnhof, Südtrakt",
-   "postcode": "8001",
-   "website": "https://website.sora-sushi.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Su 11:30-21:30",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "fetch_failed",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/1243596474",
-   "name": "Tanukiya",
-   "lat": 47.3782008,
-   "lon": 8.5292404,
-   "type": "restaurant",
-   "address": "Zwinglistrasse 12",
-   "postcode": "8004",
-   "website": "https://www.tanukiya.ch",
-   "cuisine": [
-    "japanese",
-    "ramen",
-    "udon"
-   ],
-   "openingHours": null,
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "fetch_failed",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/10795377101",
-   "name": "Tokyo Express @ bridge",
-   "lat": 47.3787745,
-   "lon": 8.5336711,
-   "type": "restaurant",
-   "address": "Europaallee 22",
-   "postcode": "8004",
-   "website": "https://www.bridgezurich.ch/de/startseite/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 11:30-14:00,17:30-21:30; Sa 11:30-21:30",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/13116652401",
-   "name": "Trattoria Neumarkt",
-   "lat": 47.3728285,
-   "lon": 8.5456439,
-   "type": "restaurant",
-   "address": "Neumarkt 5",
-   "postcode": "8001",
-   "website": "https://www.neumarkt-zuerich.ch/",
-   "cuisine": [
-    "italian",
-    "japanese"
-   ],
-   "openingHours": "Tu-Fr 12:00-14:00, 18:00-23:00; Sa 12:00-15:00, 18:00-23:00; Su 12:00-21:00",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/10967922622",
-   "name": "tsuru tsuru noodlebar",
-   "lat": 47.3761906,
-   "lon": 8.5401823,
-   "type": "restaurant",
-   "address": "",
-   "postcode": "",
-   "website": "https://www.tsuru-tsuru.ch",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Tu-Fr 11:30-14:00; Tu-Sa 18:00-23:00; PH closed",
-   "outdoor": true,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/4370339893",
-   "name": "Yokita",
-   "lat": 47.3701402,
-   "lon": 8.5143368,
-   "type": "fast_food",
-   "address": "Friesenbergstrasse 3",
-   "postcode": "",
-   "website": "https://yokita.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Mo-Fr 11:30-14:00,17:30-20:00; Sa 12:30-15:00,17:30-19:30; PH off",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "no_prices",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  },
-  {
-   "id": "node/357225679",
-   "name": "Yu-An",
-   "lat": 47.3726012,
-   "lon": 8.5273865,
-   "type": "restaurant",
-   "address": "Werdstrasse 66",
-   "postcode": "8004",
-   "website": "https://www.yu-an.ch/",
-   "cuisine": [
-    "japanese"
-   ],
-   "openingHours": "Tu-Fr 11:30-14:30, 18:30-22:30; Sa 18:30-22:30",
-   "outdoor": false,
-   "offers": [],
-   "scrapeStatus": "fetch_failed",
-   "checkedAt": "2026-10-26T18:08:11.983438+00:00"
-  }
- ]
+  ]
 }
