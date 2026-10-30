@@ -181,7 +181,8 @@ main { display: flex; flex: 1; min-height: 0; }
 /* Extend the map to the screen edge; only its controls avoid the home indicator. */
 #map .leaflet-bottom { bottom: env(safe-area-inset-bottom, 0px); }
 #map .leaflet-right { right: env(safe-area-inset-right, 0px); }
-.map-actions { position: absolute; left: 10px; top: 10px; z-index: 500; display: flex; flex-wrap: wrap; max-width: calc(100% - 20px); gap: 5px; }
+.map-actions { position: absolute; left: 10px; right: 10px; top: 10px; z-index: 500; display: flex; gap: 5px; pointer-events: none; }
+.map-actions > * { pointer-events: auto; }
 .map-actions button { min-height: 30px; padding: 5px 9px; border-color: var(--teal-border); border-radius: 6px; background: var(--teal-surface); color: var(--teal); font-size: var(--font-control); box-shadow: 0 1px 4px #0002; }
 .map-actions #locate { display: grid; place-items: center; width: 32px; flex-shrink: 0; padding: 5px; }
 .map-actions button:hover { background: var(--teal-hover); border-color: var(--teal); }
@@ -192,17 +193,17 @@ main { display: flex; flex: 1; min-height: 0; }
 .map-actions #cheap[aria-pressed=true]:hover { background: var(--teal-hover); }
 .map-actions #cheap[aria-pressed=true]::after { content: ''; flex-shrink: 0; width: 9px; height: 9px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 1.5l7 7m0-7l-7 7' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 1.5l7 7m0-7l-7 7' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; }
 /* Price range: the cheap price is a button, the slider narrows or widens the list in the same green. */
-.price-range { display: flex; align-items: center; gap: 2px; border: 1px solid var(--teal-border); border-radius: 6px; background: var(--teal-surface); }
+.price-range { display: flex; flex: 1; max-width: 460px; min-width: 0; align-items: center; gap: 2px; border: 1px solid var(--teal-border); border-radius: 6px; background: var(--teal-surface); }
 .price-range:has(#cheap[aria-pressed=true]) { border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal), 0 1px 4px #0002; }
 .map-actions .price-range #cheap { border: 0; background: transparent; box-shadow: none; white-space: nowrap; }
 .map-actions .price-range #cheap[aria-pressed=true] { background: transparent; }
-#price { width: 120px; height: 30px; margin: 0 10px 0 4px; padding: 0; border: 0; background: transparent; appearance: none; -webkit-appearance: none; cursor: pointer; }
-#price:disabled { cursor: default; opacity: .5; }
-#price::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--teal) var(--fill, 100%), var(--teal-border) var(--fill, 100%)); }
-#price::-moz-range-track { height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--teal) var(--fill, 100%), var(--teal-border) var(--fill, 100%)); }
-#price::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; margin-top: -7px; border: 2px solid var(--teal-surface); border-radius: 50%; background: var(--teal); box-shadow: 0 1px 3px #0004; }
-#price::-moz-range-thumb { width: 14px; height: 14px; border: 2px solid var(--teal-surface); border-radius: 50%; background: var(--teal); box-shadow: 0 1px 3px #0004; }
-#price:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+#price { position: relative; flex: 1; min-width: 90px; height: 34px; margin: 0 12px 0 4px; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
+#price[aria-disabled=true] { cursor: default; opacity: .5; }
+.price-track { position: absolute; left: 9px; right: 9px; top: 50%; height: 4px; margin-top: -2px; border-radius: 2px; background: var(--teal-border); }
+.price-fill { position: absolute; left: 0; top: 0; bottom: 0; width: var(--fill, 100%); border-radius: 2px; background: var(--teal); }
+.price-thumb { position: absolute; left: var(--fill, 100%); top: 50%; width: 20px; height: 20px; margin: -10px 0 0 -10px; border: 2px solid var(--teal-surface); border-radius: 50%; background: var(--teal); box-shadow: 0 1px 3px #0004; }
+#price:focus-visible { outline: none; }
+#price:focus-visible .price-thumb { box-shadow: 0 0 0 3px var(--teal-border); }
 .map-panel:has(#detail:not([hidden])) .map-actions, .map-panel:has(#detail:not([hidden])) .app-footer { display: none; }
 .price-marker { display: block; background: var(--surface); color: var(--text); border: 1px solid var(--marker-border); border-radius: 3px; padding: 4px 2px; text-align: center; font: bold 13px Arial, sans-serif; box-shadow: 0 1px 3px #0003; }
 .price-marker.active { background: var(--primary); color: var(--on-primary); border: 2px solid var(--surface); outline: 1px solid var(--primary); }
@@ -321,7 +322,7 @@ dialog::backdrop { background: var(--backdrop); }
   .city-switch a { padding-block: 5px; }
   .status-meta { gap: 6px; }
   #data-info { min-height: 24px; font-size: var(--font-control); }
-  .map-actions { left: 8px; top: 8px; }
+  .map-actions { left: 8px; right: 8px; top: 8px; }
   #filters { gap: 10px; max-height: 30dvh; overflow-y: auto; font-size: var(--font-control); }
   .list-panel { display: none; flex-basis: 100%; border: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .show-list .list-panel { display: block; }

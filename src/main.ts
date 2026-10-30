@@ -94,7 +94,6 @@ const scanned = () => burger() || softdrink() || cocktail();
 const RAMEN_MIN_VENUES = 5;
 const BURGER_MIN_VENUES = 5;
 const GASTRO_MIN_VENUES = 5;
-const budgets: Record<Drink, number> = { beer: Infinity, coffee: Infinity, pizza: Infinity, ramen: Infinity, burger: Infinity, softdrink: Infinity, cocktail: Infinity };
 const unit = (o: Offer) => offerCategory(o) !== 'beer' ? portion(o) : `${f.mode === 'half' ? `5 dl${o.volumeMl === 500 ? '' : ` · ${t('umgerechnet')}`}` : portion(o)} · ${beerTypeLabel(o)}`;
 
 $('app').innerHTML = `
@@ -143,7 +142,7 @@ $('app').innerHTML = `
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="${t('Lokale')}"><div class="list-tools"><a id="rankings-link" class="rankings-link" href="#kaffeepreise" aria-label="${t('Ranglisten und Quellen')}" title="${t('Ranglisten und Quellen')}">${t('Ranglisten')}</a><select id="sort" aria-label="${t('Sortierung')}">${options({ price: t('Preis aufsteigend'), price_desc: t('Preis absteigend'), name: 'Name A–Z', distance: t('Entfernung') })}</select></div><div id="results"></div></aside>
-  <section class="map-panel" aria-label="${t('Karte')}"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="${t('Standort anzeigen')}" title="${t('Standort anzeigen')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><div id="price-range" class="price-range"><button id="cheap" type="button" aria-pressed="false" disabled>${t('Günstig')}</button><input id="price" type="range" min="0" max="1" step="0.5" aria-label="${t('Höchstpreis in CHF')}" disabled></div></div><section id="detail" aria-label="${t('Lokal und Preise')}" tabindex="-1" hidden></section>
+  <section class="map-panel" aria-label="${t('Karte')}"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="${t('Standort anzeigen')}" title="${t('Standort anzeigen')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><div id="price-range" class="price-range"><button id="cheap" type="button" aria-pressed="false" disabled>${t('Günstig')}</button><div id="price" class="price-slider" role="slider" tabindex="0" aria-label="${t('Höchstpreis in CHF')}" aria-disabled="true"><div class="price-track"><div class="price-fill"></div><div class="price-thumb"></div></div></div></div></div><section id="detail" aria-label="${t('Lokal und Preise')}" tabindex="-1" hidden></section>
 <footer class="app-footer"><button id="tip-coffee" type="button" hidden></button><a href="mailto:hello@wobillig.ch">${t('Kontakt')}</a></footer>
   </section>
 </main>
@@ -287,17 +286,17 @@ function rebuild() {
   pizzaAvailable = pizzaBars.filter(b => [...b.offers, ...(b.pizzaMenu || [])]
     .some(o => o.pizzaType && isCurrentOffer(o) && isComparableOffer(o))).length >= 14;
   if (pizza() && !pizzaAvailable) {
-    f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
+    f.drink = 'coffee'; f.max = Infinity; f.mode = 'glass'; selected = undefined;
   }
   const ramenBars = datasets.ramen ? applyEntries(datasets.ramen, entries, venues, 'ramen', venueCorrections).bars : [];
   ramenAvailable = ramenBars.filter(b => b.offers.some(o => offerCategory(o) === 'ramen' && isCurrentOffer(o) && isComparableOffer(o))).length >= RAMEN_MIN_VENUES;
   if (ramen() && !ramenAvailable) {
-    f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
+    f.drink = 'coffee'; f.max = Infinity; f.mode = 'glass'; selected = undefined;
   }
   const burgerBars = datasets.burger ? applyEntries(datasets.burger, entries, venues, 'burger', venueCorrections).bars : [];
   burgerAvailable = burgerBars.filter(b => b.offers.some(o => offerCategory(o) === 'burger' && isCurrentOffer(o) && isComparableOffer(o))).length >= BURGER_MIN_VENUES;
   if (burger() && !burgerAvailable) {
-    f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
+    f.drink = 'coffee'; f.max = Infinity; f.mode = 'glass'; selected = undefined;
   }
   const gastroBars = { softdrink: [] as Bar[], cocktail: [] as Bar[] };
   for (const drink of ['softdrink', 'cocktail'] as const) {
@@ -305,7 +304,7 @@ function rebuild() {
     gastroBars[drink] = dataset ? applyEntries(dataset, entries, venues, drink, venueCorrections).bars : [];
     gastroAvailable[drink] = gastroBars[drink].filter(b => b.offers.some(o => offerCategory(o) === drink && isCurrentOffer(o) && isComparableOffer(o))).length >= GASTRO_MIN_VENUES;
     if (f.drink === drink && !gastroAvailable[drink]) {
-      f.drink = 'coffee'; f.max = budgets.coffee; f.mode = 'glass'; selected = undefined;
+      f.drink = 'coffee'; f.max = Infinity; f.mode = 'glass'; selected = undefined;
     }
   }
   softdrinkOptions = softdrinkVarieties(gastroBars.softdrink);
@@ -408,12 +407,14 @@ function selectedLocation() {
   return bars.find(b => b.id === selected) || locationCatalogue.find(b => b.id === selected);
 }
 // The price range runs from the cheapest to the most expensive matching price, in 50 Rappen steps.
+let priceLow = 0, priceHigh = 1;
 function syncPriceRange(prices: number[]) {
-  const slider = $<HTMLInputElement>('price'), button = $<HTMLButtonElement>('cheap');
+  const slider = $('price'), button = $<HTMLButtonElement>('cheap');
   const low = prices.length ? Math.floor(prices[0] * 2) / 2 : 0, high = prices.length ? Math.ceil(prices[prices.length - 1] * 2) / 2 : 1;
-  const value = cheapMode && cheapLimit !== undefined ? cheapLimit : Number.isFinite(f.max) ? Math.min(Math.max(f.max, low), high) : high;
-  slider.min = String(low); slider.max = String(high); slider.value = String(value);
-  slider.disabled = !prices.length;
+  priceLow = low; priceHigh = high;
+  const value = Math.min(Math.max(cheapMode && cheapLimit !== undefined ? cheapLimit : Number.isFinite(f.max) ? f.max : high, low), high);
+  slider.setAttribute('aria-valuemin', String(low)); slider.setAttribute('aria-valuemax', String(high)); slider.setAttribute('aria-valuenow', String(value));
+  slider.setAttribute('aria-disabled', String(!prices.length));
   slider.style.setProperty('--fill', `${high > low ? (value - low) / (high - low) * 100 : 100}%`);
   const amount = (price: number) => Number.isInteger(price) ? String(price) : price.toFixed(2);
   button.textContent = !prices.length ? t('Günstig') : cheapMode && cheapLimit !== undefined ? t('Günstig bis CHF {price}', { price: amount(cheapLimit) })
@@ -714,7 +715,11 @@ function showBar(b: Bar, zoom?: number) {
   scheduleBarReveal(zoom);
   $('detail').focus({ preventScroll: true });
 }
-function chooseDrink(drink: Drink) { if (drink !== f.drink) trackEvent(cityId, 'category_changed', { category: drink }); budgets[f.drink!] = f.max; f.max = budgets[drink]; f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
+function chooseDrink(drink: Drink) {
+  if (drink !== f.drink) trackEvent(cityId, 'category_changed', { category: drink });
+  // Every category opens at its cheap price, without remembering an earlier slider position.
+  cheapMode = true; f.max = Infinity;
+  f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
 $('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
 $('search').oninput = event => {
   cancelAddressRequest(); clearAddressSelection();
@@ -776,12 +781,38 @@ $('search').onkeydown = async event => {
   }
 };
 // Dragging to the right end shows every price; the cheap price stays one tap away on the button.
-$('price').oninput = () => {
-  const slider = $<HTMLInputElement>('price');
+// A custom slider: the whole track takes the pointer, so it drags reliably with a finger.
+let priceFrame = 0;
+function setPriceLimit(value: number) {
+  if ($('price').getAttribute('aria-disabled') === 'true') return;
+  const snapped = Math.min(Math.max(Math.round(value * 2) / 2, priceLow), priceHigh);
   cheapMode = false;
-  f.max = slider.valueAsNumber >= Number(slider.max) ? Infinity : slider.valueAsNumber;
+  f.max = snapped >= priceHigh ? Infinity : snapped;
   selected = undefined;
-  render();
+  // Show the new position at once; redraw the map at most once per frame.
+  $('price').style.setProperty('--fill', `${priceHigh > priceLow ? (snapped - priceLow) / (priceHigh - priceLow) * 100 : 100}%`);
+  cancelAnimationFrame(priceFrame);
+  priceFrame = requestAnimationFrame(() => render());
+}
+function priceAt(event: PointerEvent) {
+  const track = $('price').querySelector('.price-track')!.getBoundingClientRect();
+  return priceLow + Math.min(Math.max((event.clientX - track.left) / track.width, 0), 1) * (priceHigh - priceLow);
+}
+$('price').onpointerdown = event => {
+  if ($('price').getAttribute('aria-disabled') === 'true') return;
+  event.preventDefault();
+  $('price').setPointerCapture(event.pointerId);
+  $('price').focus({ preventScroll: true });
+  setPriceLimit(priceAt(event));
+};
+$('price').onpointermove = event => { if ($('price').hasPointerCapture(event.pointerId)) setPriceLimit(priceAt(event)); };
+$('price').onkeydown = event => {
+  const current = Number($('price').getAttribute('aria-valuenow'));
+  const next = ({ ArrowRight: current + .5, ArrowUp: current + .5, ArrowLeft: current - .5, ArrowDown: current - .5,
+    PageUp: current + 2, PageDown: current - 2, Home: priceLow, End: priceHigh } as Record<string, number>)[event.key];
+  if (next === undefined) return;
+  event.preventDefault();
+  setPriceLimit(next);
 };
 $('volume').onchange = () => { selectBeerSize(f, $<HTMLSelectElement>('volume').value); render(); };
 $('coffeeType').onchange = () => { f.coffeeType = $<HTMLSelectElement>('coffeeType').value; render(); };

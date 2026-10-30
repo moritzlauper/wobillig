@@ -31,18 +31,26 @@ for (const width of [320, 1280]) {
     await expect(cheap).toHaveText('Alle Preise');
     await expect(page.locator('#results .venue-price')).toContainText(['4.25', '18.75', 'Noch nicht erfasst']);
     expect(new URL(page.url()).searchParams.has('max')).toBe(false);
-    // Dragging the range sets a limit that survives reloads and stays with its category.
-    await price.fill('5');
+    // Moving the slider sets a limit that survives reloads; another category opens at its cheap price.
+    await price.focus();
+    await page.keyboard.press('Home');
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('ArrowRight');
     await expect(cheap).toHaveText('Bis CHF 5');
     await expect(page.locator('#results [data-bar="budget-1"]')).toHaveCount(0);
     await page.reload();
     await expect(cheap).toHaveText('Bis CHF 5');
     await page.getByRole('button', { name: 'Bier', exact: true }).click();
-    await expect(cheap).toHaveText('Alle Preise');
+    await expect(cheap).toContainText('Günstig bis CHF');
     await page.getByRole('button', { name: 'Kaffee', exact: true }).click();
-    await expect(cheap).toHaveText('Bis CHF 5');
+    await expect(cheap).toContainText('Günstig bis CHF');
     // The right end removes the limit again; the button returns to the cheap price.
-    await price.fill(await price.getAttribute('max') || '');
+    // Dragging to the right end of the track removes the limit.
+    const track = (await price.boundingBox())!;
+    await page.mouse.move(track.x + track.width / 2, track.y + track.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(track.x + track.width + 20, track.y + track.height / 2, { steps: 5 });
+    await page.mouse.up();
     await expect(cheap).toHaveText('Alle Preise');
     expect(new URL(page.url()).searchParams.has('max')).toBe(false);
     await cheap.click();
