@@ -19,10 +19,10 @@ test('cheap prices follow pizza selection and search while the shortcut is activ
   await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.goto('/?drink=pizza&cheap=0');
-  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 18');
+  await expect(page.locator('#cheap')).toHaveText('Alle Preise');
   await page.locator('#pizza-selection').selectOption('group:quattro_formaggi');
-  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 20');
   await page.locator('#cheap').click();
+  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 20');
   await expect(page.locator('#price')).toHaveValue('20');
   await expect(page.locator('#results .venue')).toHaveCount(4);
   await page.locator('#pizza-selection').selectOption('group:prosciutto');
@@ -42,10 +42,9 @@ test('cheap prices follow pizza selection and search while the shortcut is activ
   await expect(page.locator('#results .venue')).toHaveCount(0);
   await page.locator('#pizza-selection').selectOption('margherita');
   await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 18');
-  await expect(page.locator('#price')).toHaveValue('18');
   await expect(page.locator('#results .venue')).toHaveCount(20);
   await page.locator('#cheap').click();
-  await expect(page.locator('#price')).toHaveValue('16');
+  await expect(page.locator('#cheap')).toHaveText('Alle Preise');
 });
 
 test('pizza groups compare house names by ingredients without a Margherita price', async ({ page }) => {

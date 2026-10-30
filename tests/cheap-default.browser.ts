@@ -34,7 +34,7 @@ for (const width of [320, 1280]) {
     await expect(cheap).toHaveAttribute('aria-pressed', 'true');
     await page.goto('/?max=8');
     await expect(cheap).toHaveAttribute('aria-pressed', 'false');
-    await expect(page.locator('#price')).toHaveValue('8');
+    await expect(cheap).toHaveText(/Bis CHF 8|Alle Preise/);
   });
 }
 

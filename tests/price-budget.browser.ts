@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { showSearch } from './search-row-helper';
 
 for (const width of [320, 1280]) {
-  test(`automatic budget follows listed prices and preserves manual limits at ${width}px`, async ({ page }) => {
+  test(`the price range narrows the list and keeps manual limits at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
     await page.route('**/api/**', route => route.fulfill({ json: { entries: [], counts: {}, enabled: false } }));
@@ -24,42 +23,29 @@ for (const width of [320, 1280]) {
       return route.fulfill({ json: { bars, generatedAt: '', discoveredAt: '', attribution: '' } });
     });
     await page.goto('/');
-    await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
+    const cheap = page.locator('#cheap'), price = page.locator('#price');
+    await expect(cheap).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#results .venue')).toHaveCount(1);
-    await page.locator('#cheap').click();
-    const price = page.locator('#price');
-    await expect(price).toHaveValue('18.75');
+    // Without the cheap filter the range opens fully and lists every venue.
+    await cheap.click();
+    await expect(cheap).toHaveText('Alle Preise');
     await expect(page.locator('#results .venue-price')).toContainText(['4.25', '18.75', 'Noch nicht erfasst']);
     expect(new URL(page.url()).searchParams.has('max')).toBe(false);
-    await page.locator('#coffeeType').selectOption('espresso');
-    await expect(price).toHaveValue('7.35');
-    await showSearch(page);
-    await page.locator('#search').fill('Budget');
-    await expect(price).toHaveValue('3.15');
-    await page.locator('#search').fill('Unknown');
-    await expect(price).toHaveValue('');
-    await page.locator('#search').fill('');
+    // Dragging the range sets a limit that survives reloads and stays with its category.
     await price.fill('5');
-    await page.locator('#coffeeType').selectOption('cappuccino');
-    await expect(price).toHaveValue('5');
+    await expect(cheap).toHaveText('Bis CHF 5');
     await expect(page.locator('#results [data-bar="budget-1"]')).toHaveCount(0);
     await page.reload();
-    await expect(price).toHaveValue('5');
-    await page.locator('#filters-toggle').click();
-    await page.locator('#reset').click();
-    await expect(price).toHaveValue('18.75');
+    await expect(cheap).toHaveText('Bis CHF 5');
     await page.getByRole('button', { name: 'Bier', exact: true }).click();
-    await expect(price).toHaveValue('16.4');
-    await page.getByRole('button', { name: 'Pizza', exact: true }).click();
-    await expect(price).toHaveValue('38.9');
-    await price.fill('30');
+    await expect(cheap).toHaveText('Alle Preise');
     await page.getByRole('button', { name: 'Kaffee', exact: true }).click();
-    await expect(price).toHaveValue('18.75');
-    await page.getByRole('button', { name: 'Pizza', exact: true }).click();
-    await expect(price).toHaveValue('30');
-    await price.fill('');
-    await price.blur();
-    await expect(price).toHaveValue('38.9');
+    await expect(cheap).toHaveText('Bis CHF 5');
+    // The right end removes the limit again; the button returns to the cheap price.
+    await price.fill(await price.getAttribute('max') || '');
+    await expect(cheap).toHaveText('Alle Preise');
     expect(new URL(page.url()).searchParams.has('max')).toBe(false);
+    await cheap.click();
+    await expect(cheap).toContainText('Günstig bis CHF');
   });
 }

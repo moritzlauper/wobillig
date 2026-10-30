@@ -346,11 +346,15 @@ export function filterBars(
     });
 }
 // One price per venue, independent of the current budget and missing-price toggle.
-export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
-  const prices = filterBars(bars, { ...f, max: Infinity, unknown: false, sort: "price" })
+// The cheapest matching price per venue, ascending, regardless of any price limit.
+export function matchingPrices(bars: Bar[], f: Filters): number[] {
+  return filterBars(bars, { ...f, max: Infinity, unknown: false, sort: "price" })
     .map(bar => cost(bestOffer(bar, f)!, f.mode))
     .filter(price => Number.isFinite(price) && price > 0)
     .sort((a, b) => a - b);
+}
+export function cheapPriceLimit(bars: Bar[], f: Filters): number | undefined {
+  const prices = matchingPrices(bars, f);
   if (!prices.length) return undefined;
   // Cheap mode is on by default, so it must not leave a sparse map. Target the
   // cheapest third, but at least ten venues or, for small selections, the cheaper half.

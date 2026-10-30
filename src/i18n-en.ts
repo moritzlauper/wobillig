@@ -514,6 +514,8 @@ export const en: Record<string, string> = {
   'Pizzapreise {city}': 'Pizza prices in {city}',
   '{heading} vergleichen | wobillig': '{heading}: compare venues | wobillig',
   'Günstig bis CHF {price}': 'Cheap: up to CHF {price}',
+  'Bis CHF {price}': 'Up to CHF {price}',
+  'Alle Preise': 'All prices',
   'Keine passenden Preise vorhanden': 'No matching prices available',
   'Günstig-Filter aufheben': 'Remove the cheap filter',
   'Günstige Lokale für die aktuelle Auswahl anzeigen': 'Show cheap venues for the current selection',
