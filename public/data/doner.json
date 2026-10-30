@@ -1,443 +1,43 @@
 {
-  "generatedAt": "2026-10-28T11:46:17.645856+00:00",
-  "discoveredAt": "2026-10-28T11:26:37.992791+00:00",
+  "generatedAt": "2026-10-30T10:17:38.371932+00:00",
+  "discoveredAt": "2026-10-30T10:17:38.371932+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
-      "id": "node/273369771",
-      "name": "1001",
-      "lat": 47.3728579,
-      "lon": 8.5438241,
-      "type": "fast_food",
-      "address": "Niederdorfstrasse 4",
-      "postcode": "8001",
-      "addressSource": "https://www.openstreetmap.org/way/285188186",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Th 10:30-04:00, Fr,Sa 10:30-05:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/370835686",
-      "name": "1001 Take Away",
-      "lat": 47.3753239,
-      "lon": 8.5438222,
-      "type": "fast_food",
+      "id": "node/4377444852",
+      "name": "Da Amici 2",
+      "lat": 47.420397,
+      "lon": 8.5486267,
+      "type": "restaurant",
       "address": "",
       "postcode": "",
-      "website": null,
+      "website": "https://daamici2.ch",
       "cuisine": [
-        "kebab"
+        "kebab",
+        "pizza",
+        "oriental"
       ],
       "openingHours": null,
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/14019839153",
-      "name": "Allegrotto",
-      "lat": 47.3776837,
-      "lon": 8.5264,
-      "type": "fast_food",
-      "address": "Langstrasse 81",
-      "postcode": "8004",
-      "website": "https://allegrotto-zurich.ch/",
-      "cuisine": [
-        "pizza",
-        "burger",
-        "indian",
-        "sri_lankan",
-        "salad",
-        "kebab",
-        "chicken"
-      ],
-      "openingHours": "Mo-We 11:00-23:00; Th-Su 00:00-24:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:27:14.492941+00:00"
-    },
-    {
-      "id": "node/345525759",
-      "name": "Ararat",
-      "lat": 47.3753691,
-      "lon": 8.5164146,
-      "type": "fast_food",
-      "address": "Bertastrasse 1",
-      "postcode": "8003",
-      "addressSource": "https://www.openstreetmap.org/way/143481540",
-      "website": null,
-      "cuisine": [
-        "pizza",
-        "turkish",
-        "kebab"
-      ],
-      "openingHours": "Su-Th 10:00-02:00, Fr-Sa 10:00-04:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/1553894700",
-      "name": "Awania",
-      "lat": 47.408823,
-      "lon": 8.5803294,
-      "type": "fast_food",
-      "address": "Ueberlandstrasse 327",
-      "postcode": "8051",
-      "addressSource": "https://www.openstreetmap.org/way/122075968",
-      "website": null,
-      "cuisine": [
-        "kebab",
-        "pizza"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/1837635768",
-      "name": "Awania",
-      "lat": 47.4200742,
-      "lon": 8.5482532,
-      "type": "fast_food",
-      "address": "Schaffhauserstrasse 473",
-      "postcode": "8052",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Fr 06:30-20:00; Sa,Su 08:00-20:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/5370500717",
-      "name": "Ayverdi's",
-      "lat": 47.4114406,
-      "lon": 8.5253692,
-      "type": "fast_food",
-      "address": "Wehntalerstrasse 289",
-      "postcode": "8046",
-      "website": "https://www.ayverdis.ch/",
-      "cuisine": [
-        "kebab",
-        "pizza"
-      ],
-      "openingHours": "Mo-Su 11:00-23:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "partial",
-      "checkedAt": "2026-10-28T11:27:53.101202+00:00"
-    },
-    {
-      "id": "node/279180962",
-      "name": "Ayverdi's",
-      "lat": 47.3768376,
-      "lon": 8.5409094,
-      "type": "fast_food",
-      "address": "Bahnhofplatz 2",
-      "postcode": "8001",
-      "addressSource": "https://www.openstreetmap.org/way/78630006",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Th 11:00-23:00, Fr,Sa 11:00-04:00, Su 11:00-22:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/3338285993",
-      "name": "Bahnhof Kebap & Pizza",
-      "lat": 47.4115767,
-      "lon": 8.5457382,
-      "type": "fast_food",
-      "address": "Ohmstrasse 18",
-      "postcode": "",
-      "website": null,
-      "cuisine": [
-        "kebab",
-        "pizza"
-      ],
-      "openingHours": "Mo-Th 10:00-24:00; Fr-Sa 10:00-01:00; Su 11:00-24:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/4906342669",
-      "name": "Bebos Beef & Chicken",
-      "lat": 47.3897523,
-      "lon": 8.5219083,
-      "type": "fast_food",
-      "address": "Hardstrasse 310",
-      "postcode": "8005",
-      "website": "http://www.bebos.ch/",
-      "cuisine": [
-        "burger",
-        "chicken",
-        "kebab"
-      ],
-      "openingHours": "Mo-Th 10:00-22:00; Fr-Sa 11:00-02:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-28T11:26:41.082267+00:00"
-    },
-    {
-      "id": "node/4868072666",
-      "name": "Best Kebab",
-      "lat": 47.3827549,
-      "lon": 8.5300757,
-      "type": "fast_food",
-      "address": "Langstrasse 206",
-      "postcode": "8005",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Fr 08:00-04:30; Sa, Su 04:31-04:30",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/2028881393",
-      "name": "Cafe Bar Memo",
-      "lat": 47.3879937,
-      "lon": 8.4861656,
-      "type": "fast_food",
-      "address": "Badenerstrasse 676",
-      "postcode": "8048",
-      "addressSource": "https://www.openstreetmap.org/way/617645749",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Su 08:00-23:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/4869996367",
-      "name": "Chickeria",
-      "lat": 47.3777738,
-      "lon": 8.5264426,
-      "type": "fast_food",
-      "address": "Langstrasse 83",
-      "postcode": "8004",
-      "website": "https://chickeria.ch/details/chickeria-zuerich-langstrasse/",
-      "cuisine": [
-        "chicken"
-      ],
-      "openingHours": "Su-Th 10:00-22:00; Fr-Sa 10:00-02:00",
-      "outdoor": false,
       "offers": [
         {
-          "name": "Kebab Wrap",
+          "name": "Pide Kebab",
           "foodType": "doner",
-          "portionType": "wrap",
+          "portionType": "bread",
           "meatType": "unspecified",
           "volumeMl": null,
-          "priceChf": 10.9,
-          "sourceUrl": "https://www.chickeria.ch/products/prod-13-kebab-wrap/",
-          "observedAt": "2026-10-28T11:27:56.624980+00:00",
-          "confidence": "automatic",
-          "evidence": "Kebab Wrap 10.90",
-          "alcoholFree": true
+          "priceChf": 17.0,
+          "sourceUrl": "https://daamici2.ch/menu/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "CHF 17.00 Pide Kebab Mozzarella, Kebabfleisch",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-28T11:28:50.233409+00:00"
-    },
-    {
-      "id": "node/8476045611",
-      "name": "Edy's",
-      "lat": 47.3737038,
-      "lon": 8.5300022,
-      "type": "fast_food",
-      "address": "Stauffacherstrasse 22",
-      "postcode": "8004",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Sa 11:00-22:00; Su off",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/1946105410",
-      "name": "Flash Bistro",
-      "lat": 47.370521,
-      "lon": 8.5137146,
-      "type": "fast_food",
-      "address": "Kalkbreitestrasse 136",
-      "postcode": "8003",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/370834408",
-      "name": "Food Corner",
-      "lat": 47.3759873,
-      "lon": 8.5439456,
-      "type": "fast_food",
-      "address": "Niederdorfstrasse 71",
-      "postcode": "",
-      "website": "https://www.foodcorner-swiss.ch/",
-      "cuisine": [
-        "barbecue",
-        "kebab",
-        "sandwich"
-      ],
-      "openingHours": "Mo-Su 10:00-23:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:27:27.335621+00:00"
-    },
-    {
-      "id": "node/565524652",
-      "name": "Fresh Orient",
-      "lat": 47.3933532,
-      "lon": 8.5243031,
-      "type": "fast_food",
-      "address": "Wipkingerweg 2",
-      "postcode": "",
-      "website": "https://www.fresh-orient.ch/",
-      "cuisine": [
-        "indian",
-        "kebab",
-        "pizza"
-      ],
-      "openingHours": "10:00-22:00; Fr 11:00-23:30, Sa 11:00-23:30, Su 11:00-22:30",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-28T11:26:38.082817+00:00"
-    },
-    {
-      "id": "node/5378024770",
-      "name": "Happy Chef",
-      "lat": 47.3679354,
-      "lon": 8.5350652,
-      "type": "fast_food",
-      "address": "Bleicherweg 44",
-      "postcode": "8002",
-      "website": "https://www.happy-chef.ch/",
-      "cuisine": [
-        "kebab",
-        "burger",
-        "italian"
-      ],
-      "openingHours": "Mo-Fr 10:30-19:30; Sa 11:30-17:30; PH closed",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-28T11:26:38.166457+00:00"
-    },
-    {
-      "id": "node/11761779035",
-      "name": "Kebab Grill Xolldi CCC",
-      "lat": 47.3642496,
-      "lon": 8.5552806,
-      "type": "fast_food",
-      "address": "",
-      "postcode": "",
-      "website": "https://www.xolldiccc.ch/",
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Fr 09:00-23:00; Sa 10:00-23:00; Su 11:00-21:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:44.517800+00:00"
-    },
-    {
-      "id": "node/313115222",
-      "name": "Kebab-Haus Höngg",
-      "lat": 47.401987,
-      "lon": 8.4960446,
-      "type": "fast_food",
-      "address": "Limmattalstrasse 227",
-      "postcode": "8049",
-      "addressSource": "https://www.openstreetmap.org/node/4864530766",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Th 10:00-23:00; Fr 10:00-23:30; Sa 11:00-23:30; Su 11:00-23:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/5597060141",
-      "name": "Les délices d'orient",
-      "lat": 47.3714214,
-      "lon": 8.5162476,
-      "type": "fast_food",
-      "address": "Aemtlerstrasse 18",
-      "postcode": "8003",
-      "website": "https://delicesdorient.ch/",
-      "cuisine": [
-        "lebanese",
-        "kebab"
-      ],
-      "openingHours": null,
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:27:56.624918+00:00"
-    },
-    {
-      "id": "node/344660930",
-      "name": "Markaz Döner & Falafel",
-      "lat": 47.3874455,
-      "lon": 8.5196693,
-      "type": "fast_food",
-      "address": "Hardstrasse 238",
-      "postcode": "",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": null,
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
     },
     {
       "id": "node/725765073",
@@ -445,54 +45,220 @@
       "lat": 47.3842264,
       "lon": 8.5319218,
       "type": "fast_food",
-      "address": "Limmatstrasse 125",
-      "postcode": "8005",
+      "address": "",
+      "postcode": "",
       "website": "http://millennium-restaurant.ch/",
       "cuisine": [
         "pizza"
       ],
       "openingHours": "Mo-Th, Su 06:30-04:00; Fr, Sa 00:00-24:00",
       "outdoor": true,
-      "offers": [],
+      "offers": [
+        {
+          "name": "Kebab Teller",
+          "foodType": "doner",
+          "portionType": "plate",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 22.0,
+          "sourceUrl": "http://millennium-restaurant.ch/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Kebab Teller 22,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Dürüm",
+          "foodType": "doner",
+          "portionType": "wrap",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 12.5,
+          "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/menu-3-2024-444x1024.jpg",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Dürüm 12.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Lamm Kebab",
+          "foodType": "doner",
+          "portionType": "wrap",
+          "meatType": "lamb",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/menu-3-2024-444x1024.jpg",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Lamm Kebab 15.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Poulet Kebab",
+          "foodType": "doner",
+          "portionType": "wrap",
+          "meatType": "chicken",
+          "volumeMl": null,
+          "priceChf": 14.0,
+          "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/menu-3-2024-444x1024.jpg",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Poulet Kebab 14.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pide mit Kebabfleisch",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/pizzen-spagetti-pide-2024-444x1024.jpg",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Pide mit Kebabfleisch 18.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Döner Dürüm",
+          "foodType": "doner",
+          "portionType": "wrap",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 12.5,
+          "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/doner-snack-salad-desert-444x1024.jpg",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Döner Dürüm 12.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Döner Box",
+          "foodType": "doner",
+          "portionType": "plate",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "http://millennium-restaurant.ch/wp-content/uploads/2024/08/doner-snack-salad-desert-444x1024.jpg",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Döner Box 15.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-19T19:05:10.305240+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/123498498"
+      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
     },
     {
-      "id": "node/13073678755",
-      "name": "mit&ohne",
-      "lat": 47.3777548,
-      "lon": 8.5386128,
-      "type": "fast_food",
-      "address": "Bahnhofplatz",
-      "postcode": "8001",
-      "website": "https://www.mitundohne.com",
+      "id": "node/4949132238",
+      "name": "Monti",
+      "lat": 47.3684607,
+      "lon": 8.4963959,
+      "type": "restaurant",
+      "address": "Birmensdorferstrasse 486",
+      "postcode": "8055",
+      "website": "https://monti-triemli.ch/",
       "cuisine": [
-        "kebab"
+        "burger",
+        "kebab",
+        "pasta",
+        "pizza"
       ],
-      "openingHours": "Su-Th 09:00-23:30; Fr-Sa 09:00-00:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:28:49.045990+00:00"
-    },
-    {
-      "id": "node/315314715",
-      "name": "My Kebab",
-      "lat": 47.4210295,
-      "lon": 8.501703,
-      "type": "fast_food",
-      "address": "Wehntalerstrasse 597",
-      "postcode": "8046",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Su 10:00-22:00",
+      "openingHours": "Mo-Fr 10:30-22:30; Sa-Su 14:00-22:30",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "offers": [
+        {
+          "name": "Kebab Box",
+          "foodType": "doner",
+          "portionType": "plate",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://monti-triemli.ch/bestellen/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Kebab Box Wahl aus: Kebabfleisch, Pommes, Salat, Zwiebel, Tomaten, Rotkabis, Weisskabis, Sauce (Cocktail, Joghurt, Scharf) CHF 17.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kebab Taschenbrot",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://monti-triemli.ch/bestellen/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Kebab Taschenbrot Wahl aus: Kebabfleisch, Salat, Tomaten, Rotkabis, Weisskabis, Zwiebel, Sauce (Cocktail, Joghurt, Scharf) CHF 19.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kebab Fladenbrot",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://monti-triemli.ch/bestellen/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Kebab Fladenbrot Wahl aus: Kebabfleisch, Zwiebel, Salat, Rotkabis, Weisskabis, Tomaten, Sauce (Cocktail, Joghurt, Scharf) CHF 19.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kebab Teller",
+          "foodType": "doner",
+          "portionType": "plate",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 29.5,
+          "sourceUrl": "https://monti-triemli.ch/bestellen/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Kebab Teller Steak Kebab, Pommes und Salat (Sauce nach Wahl) CHF 29.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pide Kebab",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 27.5,
+          "sourceUrl": "https://monti-triemli.ch/bestellen/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Pide Kebab mit Kase, Steak Kebab und Joghurtsauce CHF 27.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
     },
     {
       "id": "node/10063683019",
@@ -510,314 +276,121 @@
       ],
       "openingHours": "Mo-Sa 11:00-21:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:41.248688+00:00"
+      "offers": [
+        {
+          "name": "Döner im Taschenbrot",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 14.5,
+          "sourceUrl": "https://www.nordtakeaway.ch/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Döner im Taschenbrot 14,50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Döner im Fladenbrot",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 15.0,
+          "sourceUrl": "https://www.nordtakeaway.ch/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Döner im Fladenbrot 15,00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
     },
     {
-      "id": "node/11278373439",
-      "name": "Orient Express",
-      "lat": 47.3915462,
-      "lon": 8.4879993,
-      "type": "fast_food",
+      "id": "node/11843562096",
+      "name": "Spuntino",
+      "lat": 47.3546706,
+      "lon": 8.5576663,
+      "type": "cafe",
       "address": "",
       "postcode": "",
-      "website": null,
-      "cuisine": [
-        "grill",
-        "kebab",
-        "turkish"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/2465850943",
-      "name": "Original Kebap Haus",
-      "lat": 47.4094888,
-      "lon": 8.5445789,
-      "type": "fast_food",
-      "address": "Franklinstrasse 20",
-      "postcode": "8050",
-      "addressSource": "https://www.openstreetmap.org/way/192153605",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "10:00-23:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/3832917126",
-      "name": "Palu Pizza & Takeaway",
-      "lat": 47.3679063,
-      "lon": 8.5158643,
-      "type": "fast_food",
-      "address": "Goldbrunnenstrasse 57",
-      "postcode": "8055",
-      "website": null,
-      "cuisine": [
-        "pizza",
-        "kebab"
-      ],
-      "openingHours": "Mo-Sa 07:00-20:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/1842297632",
-      "name": "Payamlino Take Away",
-      "lat": 47.3615076,
-      "lon": 8.517904,
-      "type": "fast_food",
-      "address": "Uetlibergstrasse 103",
-      "postcode": "8045",
-      "website": null,
-      "cuisine": [
-        "pizza",
-        "kebab",
-        "balkan",
-        "burger"
-      ],
-      "openingHours": "Mo-Fr 08:30-23:00; Sa-Su 10:00-23:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/694632572",
-      "name": "Rodi Take Away",
-      "lat": 47.4044558,
-      "lon": 8.573453,
-      "type": "fast_food",
-      "address": "Winterthurerstrasse 537",
-      "postcode": "8051",
-      "website": "https://www.restaurant-rodi-zuerich.ch/",
+      "website": "https://spuntino.ch/",
       "cuisine": [
         "kebab",
+        "pasta",
         "pizza"
       ],
-      "openingHours": "Mo-Sa 10:00-22:00; Su 11:00-22:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-28T11:26:38.172617+00:00"
-    },
-    {
-      "id": "node/3909362593",
-      "name": "Seebacher Treff",
-      "lat": 47.421224,
-      "lon": 8.550043,
-      "type": "fast_food",
-      "address": "Schaffhauserstrasse 498",
-      "postcode": "8052",
-      "website": "https://www.seebach-treff.ch/",
-      "cuisine": [
-        "burger",
-        "kebab",
-        "pizza",
-        "turkish"
-      ],
-      "openingHours": null,
+      "openingHours": "Mo-Fr 07:00-23:00, Sa 07:30-22:00, Su 09:00-21:00",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:49.698568+00:00"
-    },
-    {
-      "id": "node/11780802149",
-      "name": "Sesam Falafel",
-      "lat": 47.374336,
-      "lon": 8.5380261,
-      "type": "fast_food",
-      "address": "Seidengasse 6",
-      "postcode": "",
-      "website": null,
-      "cuisine": [
-        "turkish"
+      "offers": [
+        {
+          "name": "Kebab",
+          "foodType": "doner",
+          "portionType": "plate",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://spuntino.ch/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Kebab CHF 19.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "DÜRÜM",
+          "foodType": "doner",
+          "portionType": "wrap",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 13.5,
+          "sourceUrl": "https://spuntino.ch/menu-seefeld/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "DÜRÜM CHF 13.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "KEBAB BOX",
+          "foodType": "doner",
+          "portionType": "plate",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 14.5,
+          "sourceUrl": "https://spuntino.ch/menu-seefeld/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "KEBAB BOX CHF 14.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kebab",
+          "foodType": "doner",
+          "portionType": "plate",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 24.5,
+          "sourceUrl": "https://spuntino.ch/menu-seefeld/",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Kebab CHF 24.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
       ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/1504204985",
-      "name": "Seven's",
-      "lat": 47.4110152,
-      "lon": 8.5450797,
-      "type": "fast_food",
-      "address": "",
-      "postcode": "",
-      "website": null,
-      "cuisine": [
-        "kebab",
-        "pizza"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/5370500827",
-      "name": "Sultan Sofrasi",
-      "lat": 47.4113526,
-      "lon": 8.5261671,
-      "type": "fast_food",
-      "address": "Regensbergstrasse 309b",
-      "postcode": "",
-      "addressSource": "https://www.openstreetmap.org/way/42299919",
-      "website": null,
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": null,
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/7437151114",
-      "name": "tat",
-      "lat": 47.3716812,
-      "lon": 8.5357324,
-      "type": "fast_food",
-      "address": "Talacker 34",
-      "postcode": "8001",
-      "website": "https://www.tatmezebar.ch/",
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-28T11:26:39.472647+00:00"
-    },
-    {
-      "id": "node/10310405298",
-      "name": "TheBab",
-      "lat": 47.3703079,
-      "lon": 8.5362399,
-      "type": "fast_food",
-      "address": "Talstrasse 58",
-      "postcode": "8001",
-      "website": "https://thebab.ch/",
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": "Mo-Sa 11:00-22:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:40.763407+00:00"
-    },
-    {
-      "id": "node/6911864195",
-      "name": "Three Men's Kebab",
-      "lat": 47.3770319,
-      "lon": 8.5323997,
-      "type": "fast_food",
-      "address": "Freischützgasse 1",
-      "postcode": "",
-      "website": "https://www.3menskebab.ch/",
-      "cuisine": [],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:55.638320+00:00"
-    },
-    {
-      "id": "node/1024029494",
-      "name": "Toros Imbiss",
-      "lat": 47.4090648,
-      "lon": 8.5457225,
-      "type": "fast_food",
-      "address": "Franklinstrasse 8",
-      "postcode": "",
-      "addressSource": "https://www.openstreetmap.org/way/88260126",
-      "website": null,
-      "cuisine": [
-        "kebab",
-        "turkish"
-      ],
-      "openingHours": null,
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/84452656",
-      "name": "Tram Point",
-      "lat": 47.3383109,
-      "lon": 8.5303585,
-      "type": "fast_food",
-      "address": "Albisstrasse 105",
-      "postcode": "8038",
-      "addressSource": "https://www.openstreetmap.org/way/46944650",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/1882140710",
-      "name": "Traum Pizza Kebab",
-      "lat": 47.3691547,
-      "lon": 8.5011383,
-      "type": "fast_food",
-      "address": "Birmensdorferstrasse 430",
-      "postcode": "8055",
-      "website": null,
-      "cuisine": [
-        "coffee_shop",
-        "kebab",
-        "pizza",
-        "salad"
-      ],
-      "openingHours": null,
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/317005851",
-      "name": "Treff",
-      "lat": 47.4200404,
-      "lon": 8.5085041,
-      "type": "fast_food",
-      "address": "",
-      "postcode": "",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Sa 08:00-20:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
     },
     {
       "id": "node/10948817478",
@@ -825,9 +398,8 @@
       "lat": 47.3688423,
       "lon": 8.499924,
       "type": "fast_food",
-      "address": "Birmensdorferstrasse 444",
-      "postcode": "8055",
-      "addressSource": "https://www.openstreetmap.org/way/342612701",
+      "address": "",
+      "postcode": "",
       "website": "https://www.triemlitreffpunkt.ch/",
       "cuisine": [
         "kebab",
@@ -836,101 +408,85 @@
       ],
       "openingHours": "Mo-Fr 11:00-23:00; Sa 12:00-23:00; Su off",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:45.290753+00:00"
-    },
-    {
-      "id": "node/11534189928",
-      "name": "Triemli's Food Gate",
-      "lat": 47.3683597,
-      "lon": 8.4964634,
-      "type": "fast_food",
-      "address": "",
-      "postcode": "",
-      "website": "https://foodgate.ch/",
-      "cuisine": [
-        "kebab"
+      "offers": [
+        {
+          "name": "Dürüm Kebab",
+          "foodType": "doner",
+          "portionType": "wrap",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Dürüm Kebab Ab: 12.50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Döner Box mit Pommes",
+          "foodType": "doner",
+          "portionType": "plate",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 13.5,
+          "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Döner Box mit Pommes Ab: 13.50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kebab Lang im Pepito-Brot",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 14.0,
+          "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Kebab Lang im Pepito-Brot Ab: 14.00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gyros Dürüm mit Pommes",
+          "foodType": "doner",
+          "portionType": "wrap",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 14.0,
+          "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Gyros Dürüm mit Pommes Ab: 14.00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pide Kebab mit Käse, Kebab Fleisch",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Pide Kebab mit Käse, Kebab Fleisch Ab: 19.00 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
       ],
-      "openingHours": "Mo-Su 11:00-22:15",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-28T11:26:38.409273+00:00"
-    },
-    {
-      "id": "node/7932162722",
-      "name": "Vegitat",
-      "lat": 47.3822487,
-      "lon": 8.5296459,
-      "type": "fast_food",
-      "address": "Langstrasse 192",
-      "postcode": "8005",
-      "website": "https://vegitat.ch/",
-      "cuisine": [
-        "turkish"
-      ],
-      "openingHours": "Mo-Th 11:30-14:00, 17:00-21:00; Fr, Sa 11:30-23:00; Su 13:00-21:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:47.693548+00:00"
-    },
-    {
-      "id": "node/7815132988",
-      "name": "Victoria Brezelbäckerei",
-      "lat": 47.3674846,
-      "lon": 8.5464889,
-      "type": "fast_food",
-      "address": "",
-      "postcode": "",
-      "website": null,
-      "cuisine": [
-        "burger",
-        "kebab",
-        "hot_dog"
-      ],
-      "openingHours": null,
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/365918123",
-      "name": "Weinberg Bistro Zürich",
-      "lat": 47.3789263,
-      "lon": 8.5444555,
-      "type": "fast_food",
-      "address": "Weinbergstrasse 26",
-      "postcode": "8001",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Sa 10:00-22:30; Su 10:00-22:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/876086417",
-      "name": "Wiedikon Point",
-      "lat": 47.3695261,
-      "lon": 8.520351,
-      "type": "fast_food",
-      "address": "Zurlindenstrasse 59",
-      "postcode": "8003",
-      "website": "https://www.wiedikon-point-zuerich.ch/",
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:40.768427+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
     },
     {
       "id": "node/8785727518",
@@ -946,68 +502,40 @@
       ],
       "openingHours": "Tu-Th 11:00-22:00; Fr 11:00-22:30; Sa 12:00-22:30",
       "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:49.834890+00:00"
-    },
-    {
-      "id": "node/660560664",
-      "name": "Züri Bistro",
-      "lat": 47.3779515,
-      "lon": 8.5106961,
-      "type": "fast_food",
-      "address": "Badenerstrasse 343",
-      "postcode": "8003",
-      "addressSource": "https://www.openstreetmap.org/way/335010492",
-      "website": "https://www.zueribistro.ch/",
-      "cuisine": [
-        "burger",
-        "kebab",
-        "turkish"
+      "offers": [
+        {
+          "name": "Classic Kebab",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "chicken",
+          "volumeMl": null,
+          "priceChf": 15,
+          "sourceUrl": "https://zumgoldenentaschenbrot.ch/wp-content/uploads/2025/04/Classic-Kebab-Menu-60x60-1.pdf",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Classic Kebab 15",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fitness Kebab Bowl",
+          "foodType": "doner",
+          "portionType": "plate",
+          "meatType": "chicken",
+          "volumeMl": null,
+          "priceChf": 18.5,
+          "sourceUrl": "https://zumgoldenentaschenbrot.ch/wp-content/uploads/2025/04/Classic-Kebab-Menu-60x60-1.pdf",
+          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "confidence": "ai",
+          "evidence": "Fit ness Kebab Bowl 18.5",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
       ],
-      "openingHours": null,
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
-    },
-    {
-      "id": "node/6343148993",
-      "name": "Züri Bistro",
-      "lat": 47.3965002,
-      "lon": 8.5409347,
-      "type": "fast_food",
-      "address": "Schaffhauserstrasse 126",
-      "postcode": "",
-      "website": "https://www.zueribistro.ch/menue-milchbuck/",
-      "cuisine": [
-        "kebab",
-        "falafel"
-      ],
-      "openingHours": "Mo-Fr 09:00-23:00; Sa, Su 10:00-23:00",
-      "outdoor": false,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-28T11:26:57.877752+00:00"
-    },
-    {
-      "id": "node/632562120",
-      "name": "Züri Bistro",
-      "lat": 47.38053,
-      "lon": 8.5479785,
-      "type": "fast_food",
-      "address": "Universitätstrasse 43",
-      "postcode": "8006",
-      "addressSource": "https://www.openstreetmap.org/way/315141965",
-      "website": null,
-      "cuisine": [
-        "kebab"
-      ],
-      "openingHours": "Mo-Su 10:00-22:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
     }
   ]
 }
