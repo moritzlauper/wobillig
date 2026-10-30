@@ -40,6 +40,14 @@ for (const width of [320, 1280]) {
     await expect(page.locator('#results [data-bar="budget-1"]')).toHaveCount(0);
     await page.reload();
     await expect(cheap).toHaveText('Bis CHF 5');
+    // Another coffee type opens at its own cheap price.
+    await page.locator('#coffeeType').selectOption('espresso');
+    await expect(cheap).toHaveText('Günstig bis CHF 3.15');
+    await page.locator('#coffeeType').selectOption('cappuccino');
+    await price.focus();
+    await page.keyboard.press('Home');
+    await page.keyboard.press('ArrowRight');
+    await page.keyboard.press('ArrowRight');
     await page.getByRole('button', { name: 'Bier', exact: true }).click();
     await expect(cheap).toContainText('Günstig bis CHF');
     await page.getByRole('button', { name: 'Kaffee', exact: true }).click();

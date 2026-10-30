@@ -142,7 +142,7 @@ $('app').innerHTML = `
 <div id="load-error" role="status" hidden></div>
 <main>
   <aside class="list-panel" aria-label="${t('Lokale')}"><div class="list-tools"><a id="rankings-link" class="rankings-link" href="#kaffeepreise" aria-label="${t('Ranglisten und Quellen')}" title="${t('Ranglisten und Quellen')}">${t('Ranglisten')}</a><select id="sort" aria-label="${t('Sortierung')}">${options({ price: t('Preis aufsteigend'), price_desc: t('Preis absteigend'), name: 'Name A–Z', distance: t('Entfernung') })}</select></div><div id="results"></div></aside>
-  <section class="map-panel" aria-label="${t('Karte')}"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="${t('Standort anzeigen')}" title="${t('Standort anzeigen')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><div id="price-range" class="price-range"><button id="cheap" type="button" aria-pressed="false" disabled>${t('Günstig')}</button><div id="price" class="price-slider" role="slider" tabindex="0" aria-label="${t('Höchstpreis in CHF')}" aria-disabled="true"><div class="price-track"><div class="price-fill"></div><div class="price-thumb"></div></div></div></div></div><section id="detail" aria-label="${t('Lokal und Preise')}" tabindex="-1" hidden></section>
+  <section class="map-panel" aria-label="${t('Karte')}"><div id="map"></div><div class="map-actions"><button id="locate" aria-pressed="false" aria-label="${t('Standort anzeigen')}" title="${t('Standort anzeigen')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></button><div id="price-range" class="price-range"><button id="cheap" type="button" aria-pressed="false" disabled>${t('Günstig')}</button><div id="price" class="price-slider" role="slider" tabindex="0" aria-label="${t('Höchstpreis in CHF')}" aria-disabled="true"><span class="price-end" id="price-min"></span><div class="price-rail"><div class="price-track"><div class="price-fill"></div><div class="price-thumb"></div></div></div><span class="price-end" id="price-max"></span></div></div></div><section id="detail" aria-label="${t('Lokal und Preise')}" tabindex="-1" hidden></section>
 <footer class="app-footer"><button id="tip-coffee" type="button" hidden></button><a href="mailto:hello@wobillig.ch">${t('Kontakt')}</a></footer>
   </section>
 </main>
@@ -407,7 +407,19 @@ function selectedLocation() {
   return bars.find(b => b.id === selected) || locationCatalogue.find(b => b.id === selected);
 }
 // The price range runs from the cheapest to the most expensive matching price, in 50 Rappen steps.
+// The cheap price sits in the middle: the left half covers the cheap venues, the right half the rest.
 let priceLow = 0, priceHigh = 1;
+function pricePosition(value: number) {
+  const mid = cheapLimit;
+  if (priceHigh <= priceLow) return 100;
+  if (mid === undefined || mid <= priceLow || mid >= priceHigh) return (value - priceLow) / (priceHigh - priceLow) * 100;
+  return value <= mid ? (value - priceLow) / (mid - priceLow) * 50 : 50 + (value - mid) / (priceHigh - mid) * 50;
+}
+function priceFromPosition(ratio: number) {
+  const mid = cheapLimit;
+  if (mid === undefined || mid <= priceLow || mid >= priceHigh) return priceLow + ratio * (priceHigh - priceLow);
+  return ratio <= .5 ? priceLow + ratio * 2 * (mid - priceLow) : mid + (ratio - .5) * 2 * (priceHigh - mid);
+}
 function syncPriceRange(prices: number[]) {
   const slider = $('price'), button = $<HTMLButtonElement>('cheap');
   const low = prices.length ? Math.floor(prices[0] * 2) / 2 : 0, high = prices.length ? Math.ceil(prices[prices.length - 1] * 2) / 2 : 1;
@@ -415,8 +427,9 @@ function syncPriceRange(prices: number[]) {
   const value = Math.min(Math.max(cheapMode && cheapLimit !== undefined ? cheapLimit : Number.isFinite(f.max) ? f.max : high, low), high);
   slider.setAttribute('aria-valuemin', String(low)); slider.setAttribute('aria-valuemax', String(high)); slider.setAttribute('aria-valuenow', String(value));
   slider.setAttribute('aria-disabled', String(!prices.length));
-  slider.style.setProperty('--fill', `${high > low ? (value - low) / (high - low) * 100 : 100}%`);
+  slider.style.setProperty('--fill', `${pricePosition(value)}%`);
   const amount = (price: number) => Number.isInteger(price) ? String(price) : price.toFixed(2);
+  $('price-min').textContent = prices.length ? amount(low) : ''; $('price-max').textContent = prices.length ? amount(high) : '';
   button.textContent = !prices.length ? t('Günstig') : cheapMode && cheapLimit !== undefined ? t('Günstig bis CHF {price}', { price: amount(cheapLimit) })
     : Number.isFinite(f.max) && f.max < high ? t('Bis CHF {price}', { price: amount(f.max) }) : t('Alle Preise');
   button.disabled = cheapLimit === undefined && !cheapMode;
@@ -785,18 +798,20 @@ $('search').onkeydown = async event => {
 let priceFrame = 0;
 function setPriceLimit(value: number) {
   if ($('price').getAttribute('aria-disabled') === 'true') return;
-  const snapped = Math.min(Math.max(Math.round(value * 2) / 2, priceLow), priceHigh);
+  // The cheap price itself is a stop, even between two 50 Rappen steps.
+  const rounded = Math.round(value * 2) / 2;
+  const snapped = Math.min(Math.max(cheapLimit !== undefined && Math.abs(value - cheapLimit) < Math.abs(value - rounded) ? cheapLimit : rounded, priceLow), priceHigh);
   cheapMode = false;
   f.max = snapped >= priceHigh ? Infinity : snapped;
   selected = undefined;
   // Show the new position at once; redraw the map at most once per frame.
-  $('price').style.setProperty('--fill', `${priceHigh > priceLow ? (snapped - priceLow) / (priceHigh - priceLow) * 100 : 100}%`);
+  $('price').style.setProperty('--fill', `${pricePosition(snapped)}%`);
   cancelAnimationFrame(priceFrame);
   priceFrame = requestAnimationFrame(() => render());
 }
 function priceAt(event: PointerEvent) {
   const track = $('price').querySelector('.price-track')!.getBoundingClientRect();
-  return priceLow + Math.min(Math.max((event.clientX - track.left) / track.width, 0), 1) * (priceHigh - priceLow);
+  return priceFromPosition(Math.min(Math.max((event.clientX - track.left) / track.width, 0), 1));
 }
 $('price').onpointerdown = event => {
   if ($('price').getAttribute('aria-disabled') === 'true') return;
@@ -814,6 +829,13 @@ $('price').onkeydown = event => {
   event.preventDefault();
   setPriceLimit(next);
 };
+// Choosing another product (Espresso instead of Cappuccino, another size or pizza) opens at its own cheap price,
+// like a category switch. This runs in the capture phase, before each control's own handler renders.
+const productControls = new Set(['coffeeType', 'volume', 'beer-type', 'beer-selection', 'beer-query', 'pizza-selection', 'pizza-query',
+  'burger-selection', 'softdrink-selection', 'softdrink-size', 'cocktail-selection']);
+for (const type of ['change', 'input']) document.addEventListener(type, event => {
+  if (event.target instanceof HTMLElement && productControls.has(event.target.id)) { cheapMode = true; f.max = Infinity; }
+}, true);
 $('volume').onchange = () => { selectBeerSize(f, $<HTMLSelectElement>('volume').value); render(); };
 $('coffeeType').onchange = () => { f.coffeeType = $<HTMLSelectElement>('coffeeType').value; render(); };
 $('pizza-selection').onchange = () => {

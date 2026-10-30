@@ -20,8 +20,8 @@ test('cheap prices follow pizza selection and search while the shortcut is activ
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.goto('/?drink=pizza&cheap=0');
   await expect(page.locator('#cheap')).toHaveText('Alle Preise');
+  // Another pizza opens at its own cheap price.
   await page.locator('#pizza-selection').selectOption('group:quattro_formaggi');
-  await page.locator('#cheap').click();
   await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 20');
   await expect(page.locator('#price')).toHaveAttribute('aria-valuenow', '20');
   await expect(page.locator('#results .venue')).toHaveCount(4);

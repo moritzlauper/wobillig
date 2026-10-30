@@ -5,6 +5,11 @@ on:
     # Same three-week cadence as the city price scan.
     - cron: "45 5 * * 1"
   workflow_dispatch:
+    inputs:
+      extra_tief:
+        description: Extra-deep scan, up to 300 pages per venue instead of 120 (reads menus without AI, so it costs no API budget)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -55,11 +60,11 @@ jobs:
 
       - name: Crawl döner menus in Zürich
         if: steps.cadence.outputs.refresh == 'true'
-        run: python -m scraper.scrape_streetfood --category doner --discover --limit 0 --max-pages 120
+        run: python -m scraper.scrape_streetfood --category doner --discover --limit 0 --max-pages ${{ inputs.extra_tief && 300 || 120 }}
 
       - name: Crawl falafel menus in Zürich
         if: steps.cadence.outputs.refresh == 'true'
-        run: python -m scraper.scrape_streetfood --category falafel --discover --limit 0 --max-pages 120
+        run: python -m scraper.scrape_streetfood --category falafel --discover --limit 0 --max-pages ${{ inputs.extra_tief && 300 || 120 }}
 
       - name: Snapshot street-food datasets
         id: snapshot

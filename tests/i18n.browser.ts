@@ -26,6 +26,8 @@ test.describe('English comparison pages without JavaScript', () => {
 
 for (const width of [320, 1280]) {
   test(`English city, guide and map navigation stays English at ${width}px`, async ({ page }) => {
+    // Visits every city, its espresso guide and its map, which takes longer than the default 30 seconds.
+    test.setTimeout(180000);
     await captureAnalytics(page);
     await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
     await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));

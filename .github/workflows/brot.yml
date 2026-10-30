@@ -7,9 +7,13 @@ on:
   workflow_dispatch:
     inputs:
       ai_budget_usd:
-        description: Haiku 5.5 API budget in USD (hard cap 1.00)
+        description: Haiku 5.5 API budget in USD (hard cap 2.00)
         type: number
         default: 1
+      tief:
+        description: Deep scan, more pages and documents per bakery
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -55,7 +59,10 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BUDGET: ${{ inputs.ai_budget_usd || 1 }}
-        run: python -m scraper.brot --budget-usd "$BUDGET"
+          TIEF: ${{ inputs.tief }}
+        run: |
+          if [ "$TIEF" = "true" ]; then DEPTH="--max-pages 150 --max-documents 200"; else DEPTH=""; fi
+          python -m scraper.brot --budget-usd "$BUDGET" $DEPTH
       - name: Snapshot bread dataset
         id: snapshot
         if: steps.cadence.outputs.refresh == 'true'

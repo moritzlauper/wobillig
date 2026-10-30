@@ -36,6 +36,9 @@ for (const [width, language] of [[320, 'de'], [1280, 'en']] as const) {
     await expect(page.locator('#filters #beer-query')).toHaveAttribute('placeholder', language === 'en' ? 'e.g. Quöllfrisch' : 'z. B. Quöllfrisch');
     await expect(page.locator('#beer-selection option')).toHaveText([language === 'en' ? 'All beers' : 'Alle Biere', 'Quöllfrisch', 'Guinness']);
     await page.locator('#beer-selection').selectOption('quollfrisch');
+    // A new beer choice opens at its cheap price; this test compares the full list.
+    await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
+    await page.locator('#cheap').click();
     await expect(page.locator('#results .venue')).toHaveCount(2);
     await expect(page.locator('#city-average')).toContainText('6.75');
     await expect(page.locator('.marker-wrap')).toHaveCount(2);
@@ -47,6 +50,9 @@ for (const [width, language] of [[320, 'de'], [1280, 'en']] as const) {
     await page.locator('#filters-toggle').click();
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
     await page.getByRole('searchbox', { name: language === 'en' ? 'Beer name or brand' : 'Biername oder Marke' }).fill('Guiness');
+    // A new beer choice opens at its cheap price; this test compares the full list.
+    await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
+    await page.locator('#cheap').click();
     await expect(page.locator('#beer-selection')).toHaveValue('all');
     await expect(page.locator('#volume')).toHaveValue('all');
     await expect(page.locator('#results .venue')).toHaveCount(1);
@@ -70,6 +76,7 @@ for (const [width, language] of [[320, 'de'], [1280, 'en']] as const) {
     await expect(page.locator('.marker-wrap')).toHaveCount(0);
     await page.locator('#beer-selection').selectOption('quollfrisch');
     await expect(page.locator('#beer-query')).toHaveValue('');
+    await page.locator('#cheap').click();
     await expect(page.locator('#results .venue')).toHaveCount(2);
     await page.locator('#reset').click();
     await expect(page.locator('#beer-query')).toHaveValue('');

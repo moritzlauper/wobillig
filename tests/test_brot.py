@@ -29,6 +29,18 @@ class BreadRules(unittest.TestCase):
         self.assertEqual(clean({'offers': [row(priceChf=0.9, evidence='Ruchbrot 500 g 0.90')]}, URL), [])
         self.assertEqual(clean({'offers': [row(priceChf=40, evidence='Ruchbrot 500 g 40.00')]}, URL), [])
 
+    def test_plain_gipfeli_compare_per_piece(self):
+        single = row(name='Buttergipfeli', priceChf=1.9, evidence='Buttergipfeli 1.90')
+        pack = row(name='Laugengipfeli', priceChf=9, pieces=6, evidence='Laugengipfeli 6 Stück 9.00')
+        offers = clean({'offers': [single, pack]}, URL)
+        self.assertEqual([(o['brotType'], o['pieces'], o['pricePerPieceChf']) for o in offers], [('gipfeli', 1, 1.9), ('gipfeli', 6, 1.5)])
+        self.assertEqual([product_name(o) for o in offers], ['Buttergipfeli', 'Laugengipfeli, 6 Stück'])
+        self.assertEqual(dataset_offers(offers, OBSERVED)[1]['pricePerPieceChf'], 1.5)
+
+    def test_filled_gipfeli_and_packs_without_count_are_dropped(self):
+        self.assertEqual(clean({'offers': [row(name='Nussgipfel', priceChf=3.2, evidence='Nussgipfel 3.20')]}, URL), [])
+        self.assertEqual(clean({'offers': [row(name='Buttergipfeli', priceChf=9, pieces=6, evidence='Buttergipfeli 9.00')]}, URL), [])
+
     def test_rejects_rolls_sandwiches_and_baskets(self):
         for name in ('Brötchen', 'Sandwich Ruchbrot', 'Toast', 'Brotkorb', 'Brotaufstrich', 'Burger Brot'):
             with self.subTest(name=name):
