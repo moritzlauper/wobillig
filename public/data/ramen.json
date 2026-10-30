@@ -1970,6 +1970,70 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "node/268421310",
+      "name": "Tiffins",
+      "lat": 47.3618934,
+      "lon": 8.551033,
+      "type": "restaurant",
+      "address": "Seefeldstrasse 61",
+      "postcode": "8008",
+      "website": "https://www.tiffins.ch/",
+      "openingHours": "Mo-Fr 11:30-23:00; Sa,Su 15:00-23:00",
+      "cuisine": [
+        "asian"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Peking-Ja Nudelsuppe",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 32,
+          "sourceUrl": "https://www.tiffins.ch/index.cfm",
+          "observedAt": "2026-10-30T16:40:37.447774+00:00",
+          "confidence": "ai",
+          "evidence": "Peking-Ja Nudelsuppe CHF 32 Knusprige Ente, Ramen-Nudeln",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T16:40:37.447774+00:00"
+    },
+    {
+      "id": "node/5113288024",
+      "name": "Tiny Fish",
+      "lat": 47.4135312,
+      "lon": 8.5515385,
+      "type": "restaurant",
+      "address": "Thurgauerstrasse 34",
+      "postcode": "8050",
+      "website": "https://tinyfish.ch",
+      "openingHours": "Mo-Fr 11:30-14:00",
+      "cuisine": [
+        "sushi"
+      ],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Nudelsuppen Tantanmen · Satay · Szechuan · Shoyu-Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://www.tinyfish.ch/menu",
+          "observedAt": "2026-10-30T13:11:56.250566+00:00",
+          "confidence": "ai",
+          "evidence": "NUDELSUPPEN ⬥ Nudelsuppen Tantanmen · Satay · Szechuan · Shoyu-Miso CHF 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:11:56.250566+00:00"
+    },
+    {
       "id": "node/10795377101",
       "name": "Tokyo Express @ bridge",
       "lat": 47.3787745,

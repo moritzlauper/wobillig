@@ -281,6 +281,39 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "node/4414546006",
+      "name": "Bagelboys",
+      "lat": 47.4143024,
+      "lon": 8.5593968,
+      "type": "cafe",
+      "address": "Dialogweg 11",
+      "postcode": "8050",
+      "website": "https://www.bagelboys.ch/",
+      "openingHours": "Mo-Fr 07:00-18:00; Sa-Su 08:00-14:00",
+      "cuisine": [
+        "bagel"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Smashed Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 14.5,
+          "sourceUrl": "https://bagelboys.ch/en/restaurant/",
+          "observedAt": "2026-10-30T13:38:01.223060+00:00",
+          "confidence": "ai",
+          "evidence": "Smashed Burger Das pure Schweizer Bio-Beef ... CHF 14.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:38:01.223060+00:00"
+    },
+    {
       "id": "node/11901870909",
       "name": "Balkan",
       "lat": 47.4143542,
@@ -310,6 +343,126 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/694152201",
+      "name": "Bar Zürichberg",
+      "lat": 47.3824554,
+      "lon": 8.5671437,
+      "type": "bar",
+      "address": "Orellistrasse 21",
+      "postcode": "8044",
+      "website": "https://www.zuerichberg.ch/bar",
+      "openingHours": "Mo-Th 14:00-23:00; Fr-Su 12:00-23:00",
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Zürichberg Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 35,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6ab52d4bd058915a7241109b/1790258507982/Nachmittagskarte_Herbst_2026.pdf",
+          "observedAt": "2026-10-30T16:51:46.983308+00:00",
+          "confidence": "ai",
+          "evidence": "ZÜRICHBERG BURGER Gemüse-Kartoffel Patty | Kräutercreme karamellisierte Zwiebeln | Züri Fries 35",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Black-angus-rindburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 37,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6ab530b316446f238c97adb0/1790259379423/Herbstkarte_2026_DE.pdf",
+          "observedAt": "2026-10-30T16:51:46.983308+00:00",
+          "confidence": "ai",
+          "evidence": "BLACK-ANGUS-RINDBURGER Speck | Käse | Kräutercreme | karamellisierte Zwiebeln | Züri Fries 37",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Black-angus-rindsburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 37,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6ab52d4bd058915a7241109b/1790258507982/Nachmittagskarte_Herbst_2026.pdf",
+          "observedAt": "2026-10-30T16:51:46.983308+00:00",
+          "confidence": "ai",
+          "evidence": "BLACK-ANGUS-RINDSBURGER Speck | Käse | Kräutercreme | karamellisierte Zwiebeln | Züri Fries 37",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Zurichberg Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 35,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6ab52f84a9abd6588f5b9116/1790259076225/Herbstkarte_2026_EN.pdf",
+          "observedAt": "2026-10-30T16:51:46.983308+00:00",
+          "confidence": "ai",
+          "evidence": "ZURICHBERG BURGER Vegetable and potato patty | herb cream | caramelised onions | Zurich Fries 35",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Black Angus Beef Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 37,
+          "sourceUrl": "https://static1.squarespace.com/static/5c45c4ed4cde7a1a753d3ace/t/6ab52f84a9abd6588f5b9116/1790259076225/Herbstkarte_2026_EN.pdf",
+          "observedAt": "2026-10-30T16:51:46.983308+00:00",
+          "confidence": "ai",
+          "evidence": "BLACK ANGUS BEEF BURGER Bacon | cheese | herb cream | caramelised onions | Zurich Fries 37",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T16:51:46.983308+00:00"
+    },
+    {
+      "id": "node/1592426153",
+      "name": "Barcelona Restaurant",
+      "lat": 47.4020484,
+      "lon": 8.5353195,
+      "type": "restaurant",
+      "address": "Hofwiesenstrasse 188",
+      "postcode": "",
+      "website": "https://barcelonarestaurant.ch/",
+      "openingHours": "Mo off; Tu-Fr 10:00-14:00, 18:00-00:00; Sa 10:00-14:30, 18:00-00:00; Su 10:00-14:30, 18:00-23:00",
+      "cuisine": [
+        "spanish"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Premium Barcelona Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 39.5,
+          "sourceUrl": "https://barcelonarestaurant.ch/",
+          "observedAt": "2026-10-30T13:39:06.569718+00:00",
+          "confidence": "ai",
+          "evidence": "Premium Barcelona Burger mit hausgemachtem Kalbs- und Rindfleisch ... serviert mit Pommes 39.50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:39:06.569718+00:00"
     },
     {
       "id": "way/38098975",
@@ -419,6 +572,79 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/267345323",
+      "name": "Big Ben Westside Pub",
+      "lat": 47.3872345,
+      "lon": 8.519462,
+      "type": "pub",
+      "address": "Hardstrasse 234",
+      "postcode": "8005",
+      "website": "https://www.bigbenwestside.ch/",
+      "openingHours": "Mo 17:00-23:00,11:00-14:00, Tu,We 11:00-14:00,17:00-24:00, Th 11:00-14:00,17:00-01:00, Fr 11:00-14:00,16:00-02:00, Sa 15:00-02:00, Su 13:00-22:00",
+      "cuisine": [],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Big Ben Beef Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 22.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/956/menu/e35cd71a9e64-00.jpg",
+          "observedAt": "2026-10-30T15:47:28.454906+00:00",
+          "confidence": "ai",
+          "evidence": "Big Ben Beef Burger 22.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Big Ben Cheeseburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/956/menu/e35cd71a9e64-00.jpg",
+          "observedAt": "2026-10-30T15:47:28.454906+00:00",
+          "confidence": "ai",
+          "evidence": "Big Ben Cheeseburger 24.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Big Ben Chicken Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/956/menu/e35cd71a9e64-00.jpg",
+          "observedAt": "2026-10-30T15:47:28.454906+00:00",
+          "confidence": "ai",
+          "evidence": "Big Ben Chicken Burger 24.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Big Ben Veggie Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/956/menu/e35cd71a9e64-00.jpg",
+          "observedAt": "2026-10-30T15:47:28.454906+00:00",
+          "confidence": "ai",
+          "evidence": "Big Ben Veggie Burger 24.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T15:47:28.454906+00:00"
     },
     {
       "id": "node/10704773552",
@@ -924,6 +1150,37 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "node/12612390224",
+      "name": "Canvas Bar & Lounge",
+      "lat": 47.3727222,
+      "lon": 8.573421,
+      "type": "bar",
+      "address": "Kurhausstrasse 65",
+      "postcode": "8032",
+      "website": "https://www.thedoldergrand.com/canvas-bar-lounge/",
+      "openingHours": null,
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Swiss Prime Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 42,
+          "sourceUrl": "https://www.thedoldergrand.com/app/uploads/2026/10/Saltz-DE-Snacks.pdf",
+          "observedAt": "2026-10-30T15:48:10.317707+00:00",
+          "confidence": "ai",
+          "evidence": "Swiss Prime Burger Tomate, Lattich, Essiggurken & Cheddar 42",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T15:48:10.317707+00:00"
+    },
+    {
       "id": "node/4869996367",
       "name": "Chickeria",
       "lat": 47.3777738,
@@ -1066,6 +1323,53 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "way/124014593",
+      "name": "Degenried",
+      "lat": 47.3674235,
+      "lon": 8.5792292,
+      "type": "restaurant",
+      "address": "Degenriedstrasse 135",
+      "postcode": "8032",
+      "website": "https://www.degenried.ch/",
+      "openingHours": "Mo-Su 11:30-23:00",
+      "cuisine": [
+        "regional"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Beyond Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 30.5,
+          "sourceUrl": "https://www.degenried.ch/media/degenried_speisekarte_deutsch_13.pdf",
+          "observedAt": "2026-10-30T17:03:52.216650+00:00",
+          "confidence": "ai",
+          "evidence": "Beyond Burger mit Cocktailsauce, Eisberg, Tomaten, Zwiebelconfit und Essiggurken 30.50",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Burger Rindfleisch",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 31.5,
+          "sourceUrl": "https://www.degenried.ch/media/degenried_speisekarte_deutsch_13.pdf",
+          "observedAt": "2026-10-30T17:03:52.216650+00:00",
+          "confidence": "ai",
+          "evidence": "Burger Rindfleisch mit Cocktailsauce, Eisberg, Tomaten, Zwiebelconfit und Essiggurken 31.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T17:03:52.216650+00:00"
+    },
+    {
       "id": "node/279180951",
       "name": "Dupont Brasserie & Bar",
       "lat": 47.3761856,
@@ -1097,6 +1401,51 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/3725780320",
+      "name": "Fischer's Fritz",
+      "lat": 47.3359056,
+      "lon": 8.5421859,
+      "type": "restaurant",
+      "address": "Seestrasse 557",
+      "postcode": "8038",
+      "website": "https://www.fischers-fritz.ch/",
+      "openingHours": "Mo-Su 11:30-14:00, 18:00-22:00",
+      "cuisine": [],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hiltl Vegi-Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 23.5,
+          "sourceUrl": "https://www.fischers-fritz.ch/media/fischersfritz_speisekarte_de.pdf",
+          "observedAt": "2026-10-30T14:03:43.408723+00:00",
+          "confidence": "ai",
+          "evidence": "Hiltl Vegi-Burger als Péclard Edition im Biertreber Bun der Brauerei Locher 23.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Krabbenburger - Dario und Luca Bianchi Style",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 36.5,
+          "sourceUrl": "https://www.fischers-fritz.ch/media/fischersfritz_speisekarte_de.pdf",
+          "observedAt": "2026-10-30T14:03:43.408723+00:00",
+          "confidence": "ai",
+          "evidence": "Krabbenburger - Dario und Luca Bianchi Style aus invasiven Snow Crabs mit Gurke, Salat und Joghurtsauce 36.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T14:03:43.408723+00:00"
     },
     {
       "id": "node/1819652476",
@@ -1683,6 +2032,37 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "node/370530329",
+      "name": "Haus zum Rüden",
+      "lat": 47.3708573,
+      "lon": 8.5432024,
+      "type": "restaurant",
+      "address": "Limmatquai 42",
+      "postcode": "8001",
+      "website": "https://www.haus-zum-rueden.ch/",
+      "openingHours": "Tu-Fr 11:30-14:00,18:00-23:00; Sa 18:00-23:00; Su,Mo closed",
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Rüden-burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 26,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/12962/menu/efbe32e6fc12-12.jpg",
+          "observedAt": "2026-10-30T14:10:08.773949+00:00",
+          "confidence": "ai",
+          "evidence": "RÜDEN-BURGER | 26 Trüffel-Mayo, Cheddar Käse und Schalotten-Confit",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T14:10:08.773949+00:00"
+    },
+    {
       "id": "node/633584181",
       "name": "Hot Pasta",
       "lat": 47.3786854,
@@ -2117,6 +2497,39 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/5516953836",
+      "name": "Kraftwerk",
+      "lat": 47.3721385,
+      "lon": 8.5319295,
+      "type": "cafe",
+      "address": "Selnaustrasse 25",
+      "postcode": "8001",
+      "website": "https://www.kraftwerk.coffee/",
+      "openingHours": "Mo-We 08:00-22:00; Th-Fr 08:00-24:00; Sa-Su off",
+      "cuisine": [
+        "coffee_shop"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Crispy Nochicken Burger (Mittagskarte)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.0,
+          "sourceUrl": "https://kraftwerk.zuerich/wp-content/uploads/Speisekarte.pdf?v2",
+          "observedAt": "2026-10-30T14:23:03.803260+00:00",
+          "confidence": "ai",
+          "evidence": "Crispy Nochicken Burger 19.- Nochicken Patty / Kraftwerk Sauce Cheddar / Eisbergsalat / Züri-Frites",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T14:23:03.803260+00:00"
     },
     {
       "id": "node/594103804",
@@ -2629,6 +3042,37 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "node/270938706",
+      "name": "Milchbar",
+      "lat": 47.3689961,
+      "lon": 8.5402339,
+      "type": "restaurant",
+      "address": "Kappelergasse 16",
+      "postcode": "8001",
+      "website": "https://www.milchbar.ch/",
+      "openingHours": null,
+      "cuisine": [],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "hiltl vegi burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.milchbar.ch/files/milchbar_brunch-de.pdf",
+          "observedAt": "2026-10-30T14:36:22.081097+00:00",
+          "confidence": "ai",
+          "evidence": "hiltl vegi burger biertreber laugenbun der brauerei locher, salat, tomaten, zwiebel, bbq sauce, cocktailsauce 24.50",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T14:36:22.081097+00:00"
+    },
+    {
       "id": "node/725765073",
       "name": "Millennium",
       "lat": 47.3842264,
@@ -3003,6 +3447,121 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "node/370834754",
+      "name": "N-68",
+      "lat": 47.3756656,
+      "lon": 8.5441177,
+      "type": "restaurant",
+      "address": "Niederdorfstrasse 68",
+      "postcode": "8001",
+      "website": "https://www.n68.ch/",
+      "openingHours": "Mo-Th 11:00-23:00, Fr,Sa 11:00-24:00, Su 11:00-22:00",
+      "cuisine": [],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Cyclops Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 28.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/955/menu/c97d45ce8793.pdf",
+          "observedAt": "2026-10-30T17:07:49.120786+00:00",
+          "confidence": "ai",
+          "evidence": "Cyclops Burger 28.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Texas Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 27.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/955/menu/c97d45ce8793.pdf",
+          "observedAt": "2026-10-30T17:07:49.120786+00:00",
+          "confidence": "ai",
+          "evidence": "Texas Burger 27.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Royal Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 29.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/955/menu/c97d45ce8793.pdf",
+          "observedAt": "2026-10-30T17:07:49.120786+00:00",
+          "confidence": "ai",
+          "evidence": "Royal Burger 29.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Beef Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/955/menu/c97d45ce8793.pdf",
+          "observedAt": "2026-10-30T17:07:49.120786+00:00",
+          "confidence": "ai",
+          "evidence": "Beef Burger 24.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cheese Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 26.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/955/menu/c97d45ce8793.pdf",
+          "observedAt": "2026-10-30T17:07:49.120786+00:00",
+          "confidence": "ai",
+          "evidence": "Cheese Burger 26.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chicken Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 27.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/955/menu/c97d45ce8793.pdf",
+          "observedAt": "2026-10-30T17:07:49.120786+00:00",
+          "confidence": "ai",
+          "evidence": "Chicken Burger 27.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/955/menu/c97d45ce8793.pdf",
+          "observedAt": "2026-10-30T17:07:49.120786+00:00",
+          "confidence": "ai",
+          "evidence": "Vegi Burger 24.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T17:07:49.120786+00:00"
+    },
+    {
       "id": "node/270797381",
       "name": "Neumünster",
       "lat": 47.3596206,
@@ -3046,6 +3605,53 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/3926121798",
+      "name": "Nuovo",
+      "lat": 47.3904612,
+      "lon": 8.5102561,
+      "type": "cafe",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.routetwentysix.ch/nuovo",
+      "openingHours": "Mo-Su 14:00-24:00",
+      "cuisine": [
+        "italian"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Smokey Mountain Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 32,
+          "sourceUrl": "https://mds-assets.marriott.com/cms-platform-for-marriott/zrhzs-routetwentysix/nuovo-menu-food.pdf",
+          "observedAt": "2026-10-30T14:43:29.241866+00:00",
+          "confidence": "ai",
+          "evidence": "Smokey Mountain Burger 32",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Dirty Chicken Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 26,
+          "sourceUrl": "https://mds-assets.marriott.com/cms-platform-for-marriott/zrhzs-routetwentysix/nuovo-menu-food.pdf",
+          "observedAt": "2026-10-30T14:43:29.241866+00:00",
+          "confidence": "ai",
+          "evidence": "Dirty Chicken Burger 26",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T14:43:29.241866+00:00"
     },
     {
       "id": "node/270938826",
@@ -3337,6 +3943,37 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/358146590",
+      "name": "Pelikanbar",
+      "lat": 47.3717506,
+      "lon": 8.5364943,
+      "type": "bar",
+      "address": "Pelikanplatz",
+      "postcode": "8001",
+      "website": "https://kaufleuten.ch/pelikanbar",
+      "openingHours": null,
+      "cuisine": [],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Kaufleuten Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 22.5,
+          "sourceUrl": "https://static-cdn.kaufleuten.ch/content/uploads/2026/02/Food_Karte_Pelikanbar_2026.pdf",
+          "observedAt": "2026-10-30T15:28:34.421608+00:00",
+          "confidence": "ai",
+          "evidence": "Kaufleuten Burger 22.50 Brioche Bun, Swiss Black Angus Beef",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T15:28:34.421608+00:00"
     },
     {
       "id": "node/12072072341",
@@ -3730,6 +4367,237 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/5269563133",
+      "name": "Stars and Stripes",
+      "lat": 47.4115465,
+      "lon": 8.5443658,
+      "type": "restaurant",
+      "address": "Hofwiesenstrasse 369",
+      "postcode": "8050",
+      "website": "https://www.starsandstripes.ch/de/p/standorte/oerlikon-1115.html",
+      "openingHours": "Mo-Sa 09:00-21:30+; Su 09:30-21:30+",
+      "cuisine": [
+        "american",
+        "burger",
+        "steak_house"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Cajun Chicken Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "CAJUN CHICKEN BURGER Chicken breast in a cornflake coating CHF 19.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Planted Mexican Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegan",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "PLANTED MEXICAN BURGER Vegan brioche bun, crispy Planted chicken patty CHF 24.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Italian Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "ITALIAN BURGER 6 ounces CHF 24.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Swiss Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "SWISS BURGER 6 ounces CHF 24.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Irish Whiskey Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "IRISH WHISKEY BURGER 6 ounces CHF 24.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Buffalo Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "BUFFALO BURGER 6 ounces CHF 24.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Stars Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "STARS BURGER 6 ounces CHF 19.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cheese Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "CHEESE BURGER 6 ounces CHF 19.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Texas Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "TEXAS BURGER with BBQ sauce 6 ounces CHF 19.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Steakhouse Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 35.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessversion-mit-oerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "Steakhouse Burger CHF 35.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Steakhouse burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 35.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=stream&path=%2Fstandort%2Fstandort-oerlikon%2F2024speisekartessengloerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "Steakhouse burger CHF 35.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Stars Burger (Mittagskarte)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 23.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=download&path=%2Fstandort%2Fstandort-oerlikon%2F3gzd202411mittagskartessoerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "Stars Burger 23.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cheese Burger (Mittagskarte)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=download&path=%2Fstandort%2Fstandort-oerlikon%2F3gzd202411mittagskartessoerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "Cheese Burger 24.50 mit Cheddar überbacken",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Texas Burger (Mittagskarte)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=download&path=%2Fstandort%2Fstandort-oerlikon%2F3gzd202411mittagskartessoerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "Texas Burger 24.50 mit hausgemachter BBQ Sauce",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cajun Chicken Burger (Mittagskarte)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.5,
+          "sourceUrl": "https://www.starsandstripes.ch/de/filefly/api?action=download&path=%2Fstandort%2Fstandort-oerlikon%2F3gzd202411mittagskartessoerlikon.pdf",
+          "observedAt": "2026-10-30T15:24:14.730140+00:00",
+          "confidence": "ai",
+          "evidence": "Cajun Chicken Burger 24.50 Pouletbrust im Corn Flakes - Mantel",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T15:24:14.730140+00:00"
     },
     {
       "id": "node/656699893",
@@ -4133,6 +5001,98 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "node/4031779422",
+      "name": "Tillsamman",
+      "lat": 47.3730074,
+      "lon": 8.5175231,
+      "type": "restaurant",
+      "address": "Sihlfeldstrasse 10",
+      "postcode": "8003",
+      "website": "https://www.tillsamman.ch/",
+      "openingHours": "Mo-Tu 08:00-17:00; We-Fr 08:00-23:00",
+      "cuisine": [
+        "swedish"
+      ],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Blomkålsburger (Mittagskarte)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24,
+          "sourceUrl": "https://www.tillsamman.ch/menu",
+          "observedAt": "2026-10-30T13:10:31.929247+00:00",
+          "confidence": "ai",
+          "evidence": "”Blomkålsburger” Knuspriger Pikanter Blumenkohl im Burger Bun, Pommes Frites, Blattsalat 24",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Elch und Rentier Cheeseburger (Mittagskarte)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 25,
+          "sourceUrl": "https://www.tillsamman.ch/menu",
+          "observedAt": "2026-10-30T13:10:31.929247+00:00",
+          "confidence": "ai",
+          "evidence": "Elch und Rentier Cheeseburger (SWE), Remoulade Sauce, Pommes Frites, Salat 25",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T13:10:31.929247+00:00"
+    },
+    {
+      "id": "node/4833061572",
+      "name": "Tina Bar",
+      "lat": 47.3729812,
+      "lon": 8.5438547,
+      "type": "bar",
+      "address": "Niederdorfstrasse 10",
+      "postcode": "8001",
+      "website": "https://brasserie-louis.ch/",
+      "openingHours": "Mo-We 17:00-24:00; Th 17:00-01:00; Fr 17:00-02:00; Sa 15:00-02:00; Su 17:00-23:00",
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Tina Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 37.0,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/1170/menu/165ff55800b4-04.jpg",
+          "observedAt": "2026-10-30T15:59:26.412571+00:00",
+          "confidence": "ai",
+          "evidence": "TINA BURGER 37.00 Beef burger, tomato, onion, lettuce, cheese and shoestring potatoes",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tina Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 38.0,
+          "sourceUrl": "https://files.lunchgate.ch/gastrouploads/1170/menu/37e1b7b889cf.pdf",
+          "observedAt": "2026-10-30T15:59:26.412571+00:00",
+          "confidence": "ai",
+          "evidence": "TINA BURGER hausgemacht aus 100% Rindfleisch mit Pommes Allumettes und Cole Slaw 38.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T15:59:26.412571+00:00"
+    },
+    {
       "id": "node/10948817478",
       "name": "Triemli Treffpunkt - Döner & Kebab Zürich",
       "lat": 47.3688423,
@@ -4378,6 +5338,130 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "node/7245143002",
+      "name": "Westhive Kitchen",
+      "lat": 47.3933418,
+      "lon": 8.5121558,
+      "type": "restaurant",
+      "address": "Hardturmstrasse 161",
+      "postcode": "8005",
+      "website": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-hardturm/",
+      "openingHours": "Mo-Fr 07:30-17:00",
+      "cuisine": [
+        "regional",
+        "sandwich",
+        "pasta",
+        "salad",
+        "donut"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Angus Beef Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 24.9,
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/",
+          "observedAt": "2026-10-30T16:45:00.660460+00:00",
+          "confidence": "ai",
+          "evidence": "Angus Beef Burger 168g beef (CH) ... with classic fries and coleslaw. 24.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Angus Beef Cheeseburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 25.9,
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/",
+          "observedAt": "2026-10-30T16:45:00.660460+00:00",
+          "confidence": "ai",
+          "evidence": "Angus Beef Cheeseburger 168g Swiss beef, cheddar cheese ... 25.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Crispy no Chicken Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 21.9,
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/",
+          "observedAt": "2026-10-30T16:45:00.660460+00:00",
+          "confidence": "ai",
+          "evidence": "Crispy no Chicken Burger * Veggie patty ... served with classic fries & coleslaw 21.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Crispy no Chicken Cheese Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 23.9,
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/",
+          "observedAt": "2026-10-30T16:45:00.660460+00:00",
+          "confidence": "ai",
+          "evidence": "Crispy no Chicken Cheese Burger * Veggie patty, Cheddar ... 23.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "The traditional beef burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-stettbach/",
+          "observedAt": "2026-10-30T16:45:00.660460+00:00",
+          "confidence": "ai",
+          "evidence": "The traditional beef burger 80g Swiss beef, onions, gherkin, ketchup, mustard, served with classic fries & coleslaw 18.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T16:45:00.660460+00:00"
+    },
+    {
+      "id": "node/7273885585",
+      "name": "Widder Bar & Cuisine",
+      "lat": 47.3722307,
+      "lon": 8.5399168,
+      "type": "bar",
+      "address": "Widdergasse 6",
+      "postcode": "8001",
+      "website": "https://www.widderhotel.com/en/eat-drink/widder-bar/",
+      "openingHours": "Mo-Th 12:00-25:00; Fr-Sa 12:00-26:00; Su 12:00-24:00",
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Widder Burger (vegetarian Option)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 39,
+          "sourceUrl": "https://www.widderhotel.com/media/seofh4oi/barkarte_juni_2026.pdf",
+          "observedAt": "2026-10-30T15:53:11.017407+00:00",
+          "confidence": "ai",
+          "evidence": "WIDDER BURGER (VEGETARIAN OPTION) 39 Swiss Beef | Onion Confiture | French Fries",
+          "sourcePage": 29,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T15:53:11.017407+00:00"
+    },
+    {
       "id": "node/1975523704",
       "name": "Wirtschaft Unterdorf",
       "lat": 47.4262082,
@@ -4487,6 +5571,95 @@
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
     },
     {
+      "id": "node/103122838",
+      "name": "Ziegel oh Lac",
+      "lat": 47.3435586,
+      "lon": 8.5368559,
+      "type": "restaurant",
+      "address": "Seestrasse 407",
+      "postcode": "8038",
+      "website": "https://www.ziegelohlac.ch/",
+      "openingHours": "Tu-Su 11:00-23:00",
+      "cuisine": [
+        "regional"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hamburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 17.0,
+          "sourceUrl": "https://ziegelohlac.ch/wp-content/uploads/2025/02/16.02.25_Brunchkarte.pdf",
+          "observedAt": "2026-10-30T16:46:27.246144+00:00",
+          "confidence": "ai",
+          "evidence": "HAMBURGER 17.00",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cheeseburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.0,
+          "sourceUrl": "https://ziegelohlac.ch/wp-content/uploads/2025/02/16.02.25_Brunchkarte.pdf",
+          "observedAt": "2026-10-30T16:46:27.246144+00:00",
+          "confidence": "ai",
+          "evidence": "CHEESEBURGER 18.00",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bacon-Cheeseburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 20.0,
+          "sourceUrl": "https://ziegelohlac.ch/wp-content/uploads/2025/02/16.02.25_Brunchkarte.pdf",
+          "observedAt": "2026-10-30T16:46:27.246144+00:00",
+          "confidence": "ai",
+          "evidence": "BACON-CHEESEBURGER 20.00",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Burger Royal",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://ziegelohlac.ch/wp-content/uploads/2025/02/16.02.25_Brunchkarte.pdf",
+          "observedAt": "2026-10-30T16:46:27.246144+00:00",
+          "confidence": "ai",
+          "evidence": "BURGER ROYAL 18.50 Chèvre und Rucola",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Veganer Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegan",
+          "glutenFree": false,
+          "priceChf": 16.5,
+          "sourceUrl": "https://ziegelohlac.ch/wp-content/uploads/2025/02/16.02.25_Brunchkarte.pdf",
+          "observedAt": "2026-10-30T16:46:27.246144+00:00",
+          "confidence": "ai",
+          "evidence": "VEGANER BURGER 16.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T16:46:27.246144+00:00"
+    },
+    {
       "id": "node/6864953385",
       "name": "Zum Frischen Max",
       "lat": 47.4122862,
@@ -4530,6 +5703,65 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+    },
+    {
+      "id": "node/1625432206",
+      "name": "Zweifels Weinbeiz",
+      "lat": 47.404036,
+      "lon": 8.4967746,
+      "type": "restaurant",
+      "address": "Regensdorferstrasse 20",
+      "postcode": "8049",
+      "website": "https://www.zweifel1898.ch/de/weinbeiz-hoengg.html",
+      "openingHours": "Mo,Su,PH off; Tu-Fr 11:30-14:00,18:00-22:00; Sa 17:00-22:00",
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Rindsburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 17.5,
+          "sourceUrl": "https://www.zweifel1898.ch/upload/cms/user/Speisekarte2026.pdf",
+          "observedAt": "2026-10-30T16:44:10.374072+00:00",
+          "confidence": "ai",
+          "evidence": "RINDSBURGER 100% SCHWEIZER RINDFLEISCH, SALAT, TOMATEN, ESSIGGURKEN UND ZWIEBELN 17.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pouletburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 17.5,
+          "sourceUrl": "https://www.zweifel1898.ch/upload/cms/user/Speisekarte2026.pdf",
+          "observedAt": "2026-10-30T16:44:10.374072+00:00",
+          "confidence": "ai",
+          "evidence": "POULETBURGER 100% SCHWEIZER POULETFLEISCH, SALAT, TOMATEN, ESSIGGURKEN UND ZWIEBELN 17.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegiburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 17.5,
+          "sourceUrl": "https://www.zweifel1898.ch/upload/cms/user/Speisekarte2026.pdf",
+          "observedAt": "2026-10-30T16:44:10.374072+00:00",
+          "confidence": "ai",
+          "evidence": "VEGIBURGER GEMÜSESCHNITZEL, SALAT, TOMATEN, ESSIGGURKEN UND ZWIEBELN 17.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-10-30T16:44:10.374072+00:00"
     },
     {
       "id": "node/5894361739",
