@@ -124,6 +124,8 @@ def clean(result, url, page_start=0, page_count=1, source_text=''):
         if re.sub(r'\W', '', name.casefold()) not in re.sub(r'\W', '', evidence.casefold()): continue
         if source_text.strip() and (norm(name) not in norm(source_text)
                                     or not any(norm(p) in norm(source_text) for p in (f'{price:.2f}', f'{price:g}', f'{price:.1f}'))): continue
+        # A name written only in Japanese script would be empty on the map, which shows the Latin name.
+        if len(product_name({'name': name, 'lunchOnly': False})) < 2: continue
         offers.append({'name': name.strip(), 'priceChf': round(price, 2), 'style': row['style'], 'lunchOnly': bool(row.get('lunchOnly')),
                        'evidence': evidence, 'sourceUrl': url, 'sourcePage': page_start + row['page'], 'extractionModel': MODEL})
     return offers
@@ -132,7 +134,7 @@ def clean(result, url, page_start=0, page_count=1, source_text=''):
 def product_name(offer):
     # Drop Japanese script and shouting capitals; the map shows a short dish name.
     name = re.sub(r'[　-ヿ一-鿿＀-￯]+', ' ', offer['name'])
-    name = re.sub(r'\(\s*\)|\s*/\s*$', '', re.sub(r'\s+', ' ', name)).strip(' -–/')
+    name = re.sub(r'\(\s*\)|\s*/\s*$', '', re.sub(r'\s+', ' ', name)).strip(' -–/·•*')
     name = ' '.join(w.capitalize() if w.isupper() and len(w) > 2 else w for w in name.split())
     if offer['lunchOnly']:
         name += ' (Mittagskarte)'

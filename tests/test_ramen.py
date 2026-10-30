@@ -54,6 +54,11 @@ class RamenTests(unittest.TestCase):
         self.assertEqual(len(clean({'offers': [row(name='Paitan Ramen')]}, URL)), 0)
         self.assertEqual(len(clean({'offers': [row(name='Paitan Ramen', evidence='PAITAN RAMEN 22.0')]}, URL)), 1)
 
+    def test_names_only_in_japanese_script_are_dropped(self):
+        named = row(name='醤油ラーメン', evidence='醤油ラーメン 25.80', priceChf=25.8)
+        self.assertEqual(clean({'offers': [named]}, URL), [])
+        self.assertEqual(product_name({'name': '· Shoyu Ramen', 'lunchOnly': False}), 'Shoyu Ramen')
+
     def test_product_names_are_short_and_mark_lunch_prices(self):
         self.assertEqual(product_name({'name': 'Yokohama Style Ramen (横浜家系ラーメン)', 'lunchOnly': False}), 'Yokohama Style Ramen')
         self.assertEqual(product_name({'name': 'Tantan Men / 担々麺', 'lunchOnly': False}), 'Tantan Men')
