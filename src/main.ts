@@ -432,7 +432,7 @@ function syncPriceRange(prices: number[]) {
   $('price-min').textContent = prices.length ? priceAmount(low) : ''; $('price-max').textContent = prices.length ? priceAmount(high) : '';
   // Always the same format, so the label keeps its width while the slider moves.
   button.textContent = prices.length ? t('Bis CHF {price}', { price: value.toFixed(2) }) : t('Günstig');
-  button.disabled = cheapLimit === undefined;
+  button.disabled = cheapLimit === undefined && !cheapMode;
   button.setAttribute('aria-pressed', String(cheapMode));
   button.title = cheapMode ? t('Günstig-Filter aufheben') : cheapLimit === undefined ? t('Keine passenden Preise vorhanden') : t('Günstige Lokale für die aktuelle Auswahl anzeigen');
   slider.setAttribute('aria-valuetext', button.textContent);

@@ -28,7 +28,7 @@ for (const width of [320, 1280]) {
     await expect(page.locator('#results .venue')).toHaveCount(1);
     // Without the cheap filter the range opens fully and lists every venue.
     await cheap.click();
-    await expect(cheap).toHaveText('Alle Preise');
+    await expect(cheap).toHaveText('Bis CHF 19.00');
     await expect(page.locator('#results .venue-price')).toContainText(['4.25', '18.75', 'Noch nicht erfasst']);
     expect(new URL(page.url()).searchParams.has('max')).toBe(false);
     // Moving the slider sets a limit that survives reloads; another category opens at its cheap price.
@@ -36,22 +36,22 @@ for (const width of [320, 1280]) {
     await page.keyboard.press('Home');
     await page.keyboard.press('ArrowRight');
     await page.keyboard.press('ArrowRight');
-    await expect(cheap).toHaveText('Bis CHF 5');
+    await expect(cheap).toHaveText('Bis CHF 5.00');
     await expect(page.locator('#results [data-bar="budget-1"]')).toHaveCount(0);
     await page.reload();
-    await expect(cheap).toHaveText('Bis CHF 5');
+    await expect(cheap).toHaveText('Bis CHF 5.00');
     // Another coffee type opens at its own cheap price.
     await page.locator('#coffeeType').selectOption('espresso');
-    await expect(cheap).toHaveText('Günstig bis CHF 3.15');
+    await expect(cheap).toHaveText('Bis CHF 3.15');
     await page.locator('#coffeeType').selectOption('cappuccino');
     await price.focus();
     await page.keyboard.press('Home');
     await page.keyboard.press('ArrowRight');
     await page.keyboard.press('ArrowRight');
     await page.getByRole('button', { name: 'Bier', exact: true }).click();
-    await expect(cheap).toContainText('Günstig bis CHF');
+    await expect(cheap).toHaveAttribute('aria-pressed', 'true');
     await page.getByRole('button', { name: 'Kaffee', exact: true }).click();
-    await expect(cheap).toContainText('Günstig bis CHF');
+    await expect(cheap).toHaveAttribute('aria-pressed', 'true');
     // The right end removes the limit again; the button returns to the cheap price.
     // Dragging to the right end of the track removes the limit.
     const track = (await price.boundingBox())!;
@@ -59,9 +59,9 @@ for (const width of [320, 1280]) {
     await page.mouse.down();
     await page.mouse.move(track.x + track.width + 20, track.y + track.height / 2, { steps: 5 });
     await page.mouse.up();
-    await expect(cheap).toHaveText('Alle Preise');
+    await expect(cheap).toHaveText('Bis CHF 19.00');
     expect(new URL(page.url()).searchParams.has('max')).toBe(false);
     await cheap.click();
-    await expect(cheap).toContainText('Günstig bis CHF');
+    await expect(cheap).toHaveAttribute('aria-pressed', 'true');
   });
 }

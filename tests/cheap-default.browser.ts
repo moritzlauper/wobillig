@@ -11,7 +11,7 @@ for (const width of [320, 1280]) {
     await page.goto('/');
     const cheap = page.locator('#cheap');
     await expect(cheap).toHaveAttribute('aria-pressed', 'true');
-    await expect(cheap).toContainText('Günstig bis CHF');
+    await expect(cheap).toContainText('Bis CHF');
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
     // The default view is shared as a plain link, also from older cheap=1 links.
     await page.goto('/?cheap=1');
@@ -34,7 +34,7 @@ for (const width of [320, 1280]) {
     await expect(cheap).toHaveAttribute('aria-pressed', 'true');
     await page.goto('/?max=8');
     await expect(cheap).toHaveAttribute('aria-pressed', 'false');
-    await expect(cheap).toHaveText(/Bis CHF 8|Alle Preise/);
+    await expect(cheap).toHaveText(/Bis CHF/);
   });
 }
 

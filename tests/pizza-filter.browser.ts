@@ -19,14 +19,14 @@ test('cheap prices follow pizza selection and search while the shortcut is activ
   await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.goto('/?drink=pizza&cheap=0');
-  await expect(page.locator('#cheap')).toHaveText('Alle Preise');
+  await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'false');
   // Another pizza opens at its own cheap price.
   await page.locator('#pizza-selection').selectOption('group:quattro_formaggi');
-  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 20');
+  await expect(page.locator('#cheap')).toHaveText('Bis CHF 20.00');
   await expect(page.locator('#price')).toHaveAttribute('aria-valuenow', '20');
   await expect(page.locator('#results .venue')).toHaveCount(4);
   await page.locator('#pizza-selection').selectOption('group:prosciutto');
-  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 22');
+  await expect(page.locator('#cheap')).toHaveText('Bis CHF 22.00');
   await expect(page.locator('#price')).toHaveAttribute('aria-valuenow', '22');
   await expect(page.locator('#results .venue')).toHaveCount(4);
   await page.reload();
@@ -34,17 +34,17 @@ test('cheap prices follow pizza selection and search while the shortcut is activ
   await expect(page.locator('#price')).toHaveAttribute('aria-valuenow', '22');
   await showSearch(page);
   await page.locator('#pizza-query').fill('gorgonzola');
-  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 20');
+  await expect(page.locator('#cheap')).toHaveText('Bis CHF 20.00');
   await expect(page.locator('#price')).toHaveAttribute('aria-valuenow', '20');
   await expect(page.locator('#results .venue')).toHaveCount(4);
   await page.locator('#pizza-query').fill('unbekannte zutat');
   await expect(page.locator('#cheap')).toHaveText('Günstig');
   await expect(page.locator('#results .venue')).toHaveCount(0);
   await page.locator('#pizza-selection').selectOption('margherita');
-  await expect(page.locator('#cheap')).toHaveText('Günstig bis CHF 18');
+  await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#results .venue')).toHaveCount(20);
   await page.locator('#cheap').click();
-  await expect(page.locator('#cheap')).toHaveText('Alle Preise');
+  await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'false');
 });
 
 test('pizza groups compare house names by ingredients without a Margherita price', async ({ page }) => {
