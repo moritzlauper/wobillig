@@ -121,8 +121,8 @@
       "lat": 47.3902274,
       "lon": 8.538794,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Schaffhauserstrasse 29",
+      "postcode": "8006",
       "website": "https://www.alventotto.ch",
       "cuisine": [
         "italian"
@@ -145,7 +145,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T21:53:32.706508+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/94799971"
     },
     {
       "id": "node/2888172595",
@@ -1219,8 +1220,8 @@
       "lat": 47.3641859,
       "lon": 8.5204226,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Uetlibergstrasse 30",
+      "postcode": "8045",
       "website": "https://anamira.ch",
       "cuisine": [
         "italian"
@@ -1536,7 +1537,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.anamira.ch/",
         "evidence": "AnaMiRa Zürich | Pizzeria, Bar & Bistro in Wiedikon"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/way/313727292"
     },
     {
       "id": "node/465277329",
@@ -1777,8 +1779,8 @@
       "lat": 47.371054,
       "lon": 8.5243486,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Birmensdorferstrasse 67",
+      "postcode": "8004",
       "website": "https://arcadepizzeria.ch/",
       "cuisine": [
         "pizza"
@@ -2062,7 +2064,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://arcadepizzeria.ch/menu/",
         "evidence": "menu – Arcade Pizzeria"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/way/102694277"
     },
     {
       "id": "node/1553894700",
@@ -5851,8 +5854,8 @@
       "lat": 47.420397,
       "lon": 8.5486267,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Schaffhauserstrasse 477",
+      "postcode": "8052",
       "website": "https://daamici2.ch",
       "cuisine": [
         "kebab",
@@ -6145,7 +6148,8 @@
           "ingredients": "Grillgemüse",
           "sourceSha256": "20ea4e0f7316f7eb1897871071476997766ea5c8cf1b6d96db8f668ddc9ae361"
         }
-      ]
+      ],
+      "addressSource": "https://www.openstreetmap.org/way/440041822"
     },
     {
       "id": "node/3110688142",
@@ -10187,8 +10191,8 @@
       "lat": 47.3695668,
       "lon": 8.5058334,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Birmensdorferstrasse 364",
+      "postcode": "8055",
       "website": "https://www.ilbasilico.ch/",
       "cuisine": [
         "pizza"
@@ -10211,7 +10215,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T22:02:25.660629+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/54172654"
     },
     {
       "id": "node/1525269376",
@@ -10674,8 +10679,8 @@
       "lat": 47.370173,
       "lon": 8.4927222,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Letzigraben 241",
+      "postcode": "8047",
       "website": "https://www.im-guet.ch/",
       "cuisine": [
         "pizza"
@@ -10699,7 +10704,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T22:08:19.902522+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/1282194529"
     },
     {
       "id": "node/2509647639",
@@ -10726,8 +10732,8 @@
       "lat": 47.3778013,
       "lon": 8.5268763,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Brauerstrasse 37",
+      "postcode": "8004",
       "website": "https://kantonslice.ch/",
       "cuisine": [
         "pizza"
@@ -10737,7 +10743,8 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-19T22:05:26.441708+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/73306064"
     },
     {
       "id": "node/11408113758",
@@ -10801,8 +10808,8 @@
       "lat": 47.4005575,
       "lon": 8.5859139,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Dübendorfstrasse 223",
+      "postcode": "8051",
       "website": "https://la-fonte.ch/",
       "cuisine": [
         "pizza"
@@ -10825,7 +10832,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T22:08:00.210146+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/node/1495246973"
     },
     {
       "id": "node/289669851",
@@ -10913,7 +10921,7 @@
       "lat": 47.3307586,
       "lon": 8.5155905,
       "type": "restaurant",
-      "address": "",
+      "address": "Leimbachstrasse 104",
       "postcode": "",
       "website": "https://pizza-laperladelsud.ch",
       "cuisine": [
@@ -11370,7 +11378,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://pizza-laperladelsud.ch/bestellen/desserts/",
         "evidence": "Desserts – Pizzeria la Perla del Sud"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/way/55751692"
     },
     {
       "id": "node/5280373588",
@@ -11708,7 +11717,7 @@
       "lat": 47.411255,
       "lon": 8.545482,
       "type": "restaurant",
-      "address": "",
+      "address": "Ohmstrasse 21",
       "postcode": "8050",
       "website": "https://www.restaurantlastazione.ch/",
       "cuisine": [
@@ -11732,7 +11741,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T21:56:25.144920+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/node/3250908467"
     },
     {
       "id": "node/2355693108",
@@ -12022,8 +12032,8 @@
       "lat": 47.3842264,
       "lon": 8.5319218,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Limmatstrasse 125",
+      "postcode": "8005",
       "website": "http://millennium-restaurant.ch/",
       "cuisine": [
         "pizza"
@@ -12078,7 +12088,8 @@
           "sourceSha256": "da910d948f2b7744d64fd073c95f16d8a85b8636d8a46baed702b523dd45012d",
           "sourcePage": 1
         }
-      ]
+      ],
+      "addressSource": "https://www.openstreetmap.org/way/123498498"
     },
     {
       "id": "node/270800785",
@@ -12204,8 +12215,8 @@
       "lat": 47.3903989,
       "lon": 8.4801695,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Badenerstrasse 740",
+      "postcode": "8048",
       "website": "https://www.moonrestaurant.ch/",
       "cuisine": [
         "pizza"
@@ -12215,7 +12226,8 @@
       "offers": [],
       "scrapeStatus": "fetch_failed",
       "checkedAt": "2026-10-19T22:05:59.035189+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/317184291"
     },
     {
       "id": "node/3626070826",
@@ -13432,7 +13444,7 @@
       "lat": 47.3732242,
       "lon": 8.5431171,
       "type": "fast_food",
-      "address": "",
+      "address": "Rosengasse 3",
       "postcode": "8001",
       "website": "https://pizzanation.ch/",
       "cuisine": [
@@ -13443,7 +13455,8 @@
       "offers": [],
       "scrapeStatus": "partial",
       "checkedAt": "2026-10-19T21:52:08.865375+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/285612561"
     },
     {
       "id": "node/1828352894",
@@ -13918,8 +13931,8 @@
       "lat": 47.3842422,
       "lon": 8.4978272,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Badenerstrasse 558",
+      "postcode": "8048",
       "website": "https://pizzazueri.ch",
       "cuisine": [
         "italian"
@@ -13941,7 +13954,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T21:45:12.377895+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/607714529"
     },
     {
       "id": "node/5113146557",
@@ -14598,7 +14612,7 @@
       "lat": 47.4016808,
       "lon": 8.4989566,
       "type": "restaurant",
-      "address": "",
+      "address": "Ackersteinstrasse 205",
       "postcode": "",
       "website": "http://www.rapido-pizza.ch",
       "cuisine": [
@@ -14626,7 +14640,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://rapido-pizza.ch/",
         "evidence": "Pizzeria Rapido Zürich-Höngg | Pizza, Pasta & Dolci"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/way/31478807"
     },
     {
       "id": "node/5016528002",
@@ -18140,8 +18155,8 @@
       "lat": 47.388287,
       "lon": 8.4848405,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Badenerstrasse 686",
+      "postcode": "8048",
       "website": "https://www.bindella.ch/gastronomie/santa-lucia-altstetten",
       "cuisine": [
         "pizza",
@@ -18405,7 +18420,8 @@
           "sourcePage": 3,
           "ingredients": "Scharfe kalabrische Streichwurst, Mascarpone, rote Zwiebeln, Oliven"
         }
-      ]
+      ],
+      "addressSource": "https://www.openstreetmap.org/way/317343687"
     },
     {
       "id": "node/313367755",
@@ -18457,8 +18473,8 @@
       "lat": 47.3735869,
       "lon": 8.5530663,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Zürichbergstrasse 19",
+      "postcode": "8032",
       "website": "https://plattenhof.ch/restaurant-sento-2/",
       "cuisine": [
         "italian"
@@ -18613,7 +18629,8 @@
           "sourcePage": 3,
           "ingredients": "tomate-fior di latte-thon-ognion rouge"
         }
-      ]
+      ],
+      "addressSource": "https://www.openstreetmap.org/way/277071799"
     },
     {
       "id": "node/1504204985",
@@ -19109,8 +19126,8 @@
       "lat": 47.3546706,
       "lon": 8.5576663,
       "type": "cafe",
-      "address": "",
-      "postcode": "",
+      "address": "Seefeldstrasse 187",
+      "postcode": "8008",
       "website": "https://spuntino.ch/",
       "cuisine": [
         "kebab",
@@ -19135,7 +19152,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-19T21:52:44.961998+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/97939346"
     },
     {
       "id": "node/289669639",
@@ -19199,8 +19217,8 @@
       "lat": 47.3761581,
       "lon": 8.5147672,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Badenerstrasse 275",
+      "postcode": "8003",
       "website": "http://www.taverne-da-angelo.ch/",
       "cuisine": [
         "italian"
@@ -19705,7 +19723,8 @@
           "sourcePage": 1,
           "ingredients": "Tomaten, Mozzarella, Gemüse, Oregano"
         }
-      ]
+      ],
+      "addressSource": "https://www.openstreetmap.org/way/336073656"
     },
     {
       "id": "node/2677704001",
@@ -19807,8 +19826,8 @@
       "lat": 47.3688423,
       "lon": 8.499924,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Birmensdorferstrasse 444",
+      "postcode": "8055",
       "website": "https://www.triemlitreffpunkt.ch/",
       "cuisine": [
         "kebab",
@@ -19820,7 +19839,8 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-19T22:07:20.350507+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/way/342612701"
     },
     {
       "id": "node/3817121658",
