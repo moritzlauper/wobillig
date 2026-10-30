@@ -17,6 +17,8 @@ permissions:
 concurrency:
   # Shared queue for all category scans: they run one after another and never publish at the same time.
   group: category-prices
+  # Keep every requested run waiting in order; without this GitHub cancels all but the newest pending run.
+  queue: max
   cancel-in-progress: false
 
 jobs:

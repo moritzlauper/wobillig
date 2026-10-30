@@ -35,6 +35,8 @@ concurrency:
   # Shared queue for all category scans: runs wait for each other. The city jobs of one run publish
   # independently; scraper.publish retries on top of the newest branch tip.
   group: category-prices
+  # Keep every requested run waiting in order; without this GitHub cancels all but the newest pending run.
+  queue: max
   cancel-in-progress: false
 
 jobs:
