@@ -799,6 +799,9 @@ function setPriceLimit(value: number) {
   // Show the new position and price at once; redraw the map at most once per frame.
   $('price').style.setProperty('--fill', `${pricePosition(snapped)}%`);
   $('cheap').textContent = t('Bis CHF {price}', { price: snapped.toFixed(2) });
+  // Quick key presses read the value before the next frame renders, so it must be current right away.
+  $('price').setAttribute('aria-valuenow', String(snapped));
+  $('price').setAttribute('aria-valuetext', $('cheap').textContent!);
   cancelAnimationFrame(priceFrame);
   priceFrame = requestAnimationFrame(() => render());
 }

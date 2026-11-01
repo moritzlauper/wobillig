@@ -325,8 +325,11 @@ dialog::backdrop { background: var(--backdrop); }
   .city-switch a { padding-block: 5px; }
   .status-meta { gap: 6px; }
   #data-info { min-height: 24px; font-size: var(--font-control); }
-  /* On phones the price slider sits at the bottom of the map, within thumb reach, above the footer links. */
-  .map-actions { left: 8px; right: 8px; top: auto; bottom: calc(50px + env(safe-area-inset-bottom, 0px)); }
+  /* On phones the price slider sits at the bottom edge of the map, within thumb reach;
+     the map credits and the footer links move to the top right corner instead. */
+  .map-actions { left: 8px; right: 8px; top: auto; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+  #map .leaflet-bottom { top: 0; bottom: auto; }
+  .app-footer { top: 22px; bottom: auto; }
   #filters { gap: 10px; max-height: 30dvh; overflow-y: auto; font-size: var(--font-control); }
   .list-panel { display: none; flex-basis: 100%; border: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .show-list .list-panel { display: block; }
