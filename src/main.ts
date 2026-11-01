@@ -41,7 +41,7 @@ const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getEleme
 const money = (n: number) => n.toFixed(2);
 const options = (values: Record<string, string>) => Object.entries(values).map(([value, label]) => `<option value="${value}">${e(label)}</option>`).join('');
 const translated = (labels: Record<string, string>) => Object.fromEntries(Object.entries(labels).map(([key, label]) => [key, t(label)]));
-const venueTypes = { '': t('Alle (ohne Imbiss)'), all: t('Alle (inkl. Imbiss)'), bar: 'Bar / Pub', restaurant: 'Restaurant', cafe: 'Café', fast_food: t('Imbiss') };
+const venueTypes = { '': t('Alle (ohne Imbiss)'), all: t('Alle (inkl. Imbiss)'), bar: 'Bar / Pub', restaurant: 'Restaurant', cafe: 'Café', fast_food: t('Imbiss'), kiosk: 'Kiosk' };
 const cityId = cityFromPath(location.pathname, import.meta.env.BASE_URL);
 const coffeeLabels = cityId === 'bern' ? { ...defaultCoffeeLabels, milk: 'Milchkaffee / Schale' } : defaultCoffeeLabels;
 const coffeeOptions = options(translated(coffeeLabels));

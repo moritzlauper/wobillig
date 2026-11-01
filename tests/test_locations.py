@@ -15,3 +15,10 @@ class LocationCatalogueTests(unittest.TestCase):
         self.assertEqual(output['discoveredAt'], '2026-10-15')
         self.assertEqual(next(b for b in output['bars'] if b['id'] == 'node/1')['cuisine'], ['pizza'])
         self.assertEqual(existing[0]['offers'], [{'priceChf': 5}])
+
+
+class KioskLocations(unittest.TestCase):
+    def test_kiosks_are_selectable_with_their_own_type(self):
+        from scraper.locations import kiosks
+        found = {'attribution': 'OSM', 'bars': [{'id': 'node/9', 'name': 'k kiosk', 'type': 'bar', 'offers': []}]}
+        self.assertEqual([b['type'] for b in kiosks(found)['bars']], ['kiosk'])

@@ -48,7 +48,7 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
     beerType: choice(params, 'beerType', ['all', ...Object.keys(beerTypeLabels)] as NonNullable<Filters['beerType']>[], 'all'),
     query: params.get('q') || '', max,
     volume: choice(params, 'size', ['stange', '300-330', '500', '330', '400', 'all'], drink === 'beer' && (beerSelection || params.get('beerQuery')?.trim()) ? 'all' : '300-330'),
-    type: choice(params, 'type', ['', 'all', 'bar', 'restaurant', 'cafe', 'fast_food'], ''),
+    type: choice(params, 'type', ['', 'all', 'bar', 'restaurant', 'cafe', 'fast_food', 'kiosk'], ''),
     unknown: params.get('unknown') !== '0', outdoor: params.get('outdoor') === '1',
     alcoholFree: params.get('alcoholFree') === '1',
     ...(params.get('glutenFree') === '1' ? { glutenFree: true } : {}),

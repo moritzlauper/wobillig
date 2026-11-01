@@ -5,7 +5,7 @@ python -m scraper.locations --venues-file scraper/cache/pizza-venues.json
 No menu fetching or invented prices; locations stay outside price comparisons
 until a price is contributed. Failed discovery leaves the previous file intact.
 """
-from scraper.cities import DATA_DIR, venue_query
+from scraper.cities import AREA, DATA_DIR, venue_query
 import argparse
 import json
 from pathlib import Path
@@ -14,6 +14,13 @@ from scraper.scrape_coffee import save
 from scraper.verified_venues import include_verified_coffee_venues
 
 QUERY = venue_query('restaurant|cafe|fast_food|bar|pub|biergarten')
+# Kiosks often sell cheap coffee to go, so they can be picked on the map too.
+KIOSK_QUERY = '[out:json][timeout:90];' + AREA + 'nwr["shop"="kiosk"]["name"](area.city);out center tags;'
+
+
+def kiosks(found):
+    """discover() takes the type from amenity; kiosks carry shop=kiosk instead."""
+    return {**found, 'bars': [{**bar, 'type': 'kiosk'} for bar in found['bars']]}
 
 
 def catalogue(discovered, existing):
@@ -32,6 +39,8 @@ def main():
     found = json.loads(args.venues_file.read_text()) if args.venues_file else discover({}, query=QUERY)
     if not found.get('bars'):
         raise ValueError('Refusing to publish an empty location catalogue')
+    if not args.venues_file:
+        found = {**found, 'bars': found['bars'] + kiosks(discover({}, query=KIOSK_QUERY))['bars']}
     existing = [b for name in ('bars', 'coffee', 'pizza')
                 if (DATA_DIR / f'{name}.json').exists()
                 for b in json.loads((DATA_DIR / f'{name}.json').read_text())['bars']]
