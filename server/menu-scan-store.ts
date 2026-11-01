@@ -12,7 +12,7 @@ export function parseScanEdit(value: unknown): ScanEdit {
   const edit = value as ScanEdit | null;
   if (!edit || typeof edit.targetKey !== 'string' || edit.targetKey.length > 1000 ||
       !Number.isInteger(edit.revision) || edit.revision < 0 ||
-      !['beer', 'coffee', 'pizza', 'burger', 'cocktail', 'softdrink'].includes(edit.drink) || (edit.id !== undefined && typeof edit.id !== 'string')) {
+      !['beer', 'coffee', 'pizza', 'ramen', 'burger', 'kebab', 'cocktail', 'softdrink'].includes(edit.drink) || (edit.id !== undefined && typeof edit.id !== 'string')) {
     throw new InputError('Ungültiges Angebot.');
   }
   return { id: edit.id, revision: edit.revision, targetKey: edit.targetKey, drink: edit.drink };

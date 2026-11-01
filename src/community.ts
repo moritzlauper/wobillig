@@ -2,9 +2,9 @@ import { isBeerMix, coffeeLabels, beerTypeLabels, safeUrl, type BeerType, type B
 import { selectableLocations, withKnownAddress } from './locations.js';
 import { applyVenueCorrections, type VenueCorrection } from './venue-corrections.js';
 
-// Community prices exist for these categories only; kebab and falafel are scanned, never entered.
-export type EntryDrink = 'beer' | 'coffee' | 'pizza' | 'ramen' | 'burger' | 'softdrink' | 'cocktail';
-export type Drink = EntryDrink | 'kebab';
+// Every category takes community prices; kebab covers both döner and falafel.
+export type EntryDrink = 'beer' | 'coffee' | 'pizza' | 'ramen' | 'burger' | 'kebab' | 'softdrink' | 'cocktail';
+export type Drink = EntryDrink;
 export type PriceEntry = {
   id: string;
   barId: string;
@@ -30,6 +30,8 @@ export type PriceInput = {
   pizzaType?: 'margherita';
   ramenType?: 'ramen';
   burgerType?: 'burger';
+  foodType?: 'doner' | 'falafel';
+  portionType?: 'wrap' | 'bread' | 'plate';
   gastroType?: 'softdrink' | 'cocktail';
   alcoholFree: boolean;
   observedAt: string;
@@ -42,6 +44,7 @@ export function offerKey(o: Offer) {
   if (o.pizzaType) key.push(o.pizzaType);
   if (o.ramenType) key.push(o.ramenType);
   if (o.burgerType) key.push(o.burgerType);
+  if (o.foodType) key.push(o.foodType, o.portionType || '');
   if (!o.coffeeType && o.beerType && o.beerType !== 'unknown') key.push(o.beerType);
   return JSON.stringify(key);
 }
@@ -113,7 +116,7 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new InputError('Ungültiger Eintrag.');
   const x = value as Record<string, unknown>;
   if (typeof x.barId !== 'string' || !venues.some(b => b.id === x.barId)) throw new InputError('Bitte ein Lokal aus der Liste wählen.');
-  if (!['beer', 'coffee', 'pizza', 'ramen', 'burger', 'softdrink', 'cocktail'].includes(x.drink as string)) throw new InputError('Bitte Bier, Kaffee, Ramen, Burger, Pizza Margherita, Softdrink oder Cocktail wählen.');
+  if (!['beer', 'coffee', 'pizza', 'ramen', 'burger', 'kebab', 'softdrink', 'cocktail'].includes(x.drink as string)) throw new InputError('Bitte eine Kategorie wählen.');
   if (typeof x.name !== 'string' || !x.name.trim() || x.name.trim().length > 100 || /[\x00-\x1f]/.test(x.name)) throw new InputError('Bitte eine Bezeichnung mit höchstens 100 Zeichen eingeben.');
   if (typeof x.priceChf !== 'number' || !Number.isFinite(x.priceChf) || x.priceChf < .5 || x.priceChf > 50 || Math.abs(x.priceChf * 100 - Math.round(x.priceChf * 100)) > 0.00001) throw new InputError('Der Preis muss zwischen CHF 0.50 und CHF 50 liegen (maximal zwei Nachkommastellen).');
   if (typeof x.observedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(x.observedAt) || !Number.isFinite(Date.parse(x.observedAt)) || new Date(x.observedAt).toISOString().slice(0,10) !== x.observedAt || x.observedAt < '2020-01-01' || x.observedAt > today) throw new InputError('Bitte ein gültiges Datum bis heute wählen.');
@@ -140,6 +143,10 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
   } else if (x.drink === 'burger') {
     if (!/burger/i.test(x.name.trim())) throw new InputError('Bitte einen Burger wie Cheeseburger oder Veggie Burger eintragen.');
     if (x.beerType !== undefined || x.coffeeType !== undefined || x.serving !== undefined || x.volumeMl !== null) throw new InputError('Bitte einen Burger ohne Getränkeangaben eintragen.');
+  } else if (x.drink === 'kebab') {
+    if (x.foodType !== 'doner' && x.foodType !== 'falafel') throw new InputError('Bitte Kebab oder Falafel wählen.');
+    if (x.portionType !== 'wrap' && x.portionType !== 'bread' && x.portionType !== 'plate') throw new InputError('Bitte Dürüm, Im Brot oder Teller wählen.');
+    if (x.beerType !== undefined || x.coffeeType !== undefined || x.serving !== undefined || x.volumeMl !== null) throw new InputError('Bitte ohne Getränkeangaben eintragen.');
   } else if (x.drink === 'cocktail') {
     if (x.beerType !== undefined || x.coffeeType !== undefined || x.serving !== undefined || x.volumeMl !== null) throw new InputError('Bitte einen Cocktail ohne Mengenangabe eintragen.');
   } else if (x.drink === 'softdrink') {
@@ -165,6 +172,7 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
     beerType: x.drink === 'beer' ? (x.beerType as BeerType | undefined) || 'unknown' : undefined,
     coffeeType: x.coffeeType as string | undefined, pizzaType: x.drink === 'pizza' ? 'margherita' : undefined, ramenType: x.drink === 'ramen' ? 'ramen' : undefined,
     ...(x.drink === 'burger' ? { burgerType: 'burger' as const } : {}),
+    ...(x.drink === 'kebab' ? { foodType: x.foodType as 'doner' | 'falafel', portionType: x.portionType as 'wrap' | 'bread' | 'plate' } : {}),
     ...(gastroType ? { gastroType } : {}), alcoholFree: x.drink === 'beer' ? x.alcoholFree : x.drink !== 'cocktail',
     observedAt: x.observedAt, sourceUrl,
   };

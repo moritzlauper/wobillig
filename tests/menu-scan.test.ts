@@ -62,6 +62,14 @@ describe('menu interpretation', () => {
     expect(extract([burger]).prices.map(p => [p.input.drink, p.input.name, p.input.priceChf, p.input.burgerType])).toEqual([['burger', 'Holy Cow! Burger', 19.9, 'burger']]);
     expect(extract([{ ...burger, name: 'Burger Menü mit Pommes' }, { ...burger, name: 'Kids Burger' }, { ...burger, sizes: ['S', 'L'], prices: ['12', '16'] }]).prices).toEqual([]);
   });
+  it('reads ramen, and döner or falafel only with their portion', () => {
+    const food = { ...row, sizes: [''], prices: ['14.50'], beerType: 'unknown', alcoholFree: true };
+    const { prices } = extract([{ ...food, name: 'Shoyu Ramen', category: 'ramen', portion: 'none' }, { ...food, name: 'Dürüm', category: 'doner', portion: 'wrap' },
+      { ...food, name: 'Falafel Teller', category: 'falafel', portion: 'plate', prices: ['19.00'] }]);
+    expect(prices.map(p => [p.input.drink, p.input.name, p.input.priceChf, p.input.foodType, p.input.portionType])).toEqual([
+      ['ramen', 'Shoyu Ramen', 14.5, undefined, undefined], ['kebab', 'Dürüm', 14.5, 'doner', 'wrap'], ['kebab', 'Falafel Teller', 19, 'falafel', 'plate']]);
+    expect(extract([{ ...food, name: 'Kebab', category: 'doner', portion: 'none' }, { ...food, name: 'Kebab Box', category: 'doner', portion: 'bread' }]).prices).toEqual([]);
+  });
   it('uses the printed medium coffee column, even when columns are reversed', () => {
     for (const sizes of [['S (2 dl)', 'M (3 dl)', 'L (4 dl)'], ['L (4 dl)', 'M (3 dl)', 'S (2 dl)']]) {
       const prices = sizes[0].startsWith('S') ? ['4.8', '5.3', '5.8'] : ['5.8', '5.3', '4.8'];

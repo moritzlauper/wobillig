@@ -1,6 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { cities, isCity, cityStoragePath, type City } from '../src/cities.js';
+import { mergeStreetfood } from '../src/streetfood-selection.js';
 import { InputError } from '../src/community.js';
 import { blobStore } from '../server/prices.js';
 import { authorizedMapReviewer } from '../server/map-review.js';
@@ -30,8 +31,8 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
         res.statusCode = 303; res.setHeader('Location', '/api/community-review'); res.end(); return;
       }
       const [beer, coffee, pizza] = await Promise.all(['bars', 'coffee', 'pizza'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse)));
-      const [ramen, softdrink, cocktail, burger] = await Promise.all(['ramen', 'gastro-softdrink', 'gastro-cocktail', 'burger'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse, () => undefined)));
-      await reviewContribution(store(city), form.kind, form.id, form.fingerprint, form.decision, { beer, coffee, pizza, ramen, softdrink, cocktail, burger });
+      const [ramen, softdrink, cocktail, burger, doner, falafel] = await Promise.all(['ramen', 'gastro-softdrink', 'gastro-cocktail', 'burger', 'doner', 'falafel'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse, () => undefined)));
+      await reviewContribution(store(city), form.kind, form.id, form.fingerprint, form.decision, { beer, coffee, pizza, ramen, softdrink, cocktail, burger, kebab: mergeStreetfood([doner, falafel]) });
       res.statusCode = 303; res.setHeader('Location', '/api/community-review'); res.end(); return;
     }
     if (req.method !== 'GET') { res.setHeader('Allow', 'GET, POST'); return fail(405, 'Methode nicht erlaubt.'); }
