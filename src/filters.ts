@@ -3,7 +3,7 @@ import { drinkFromSearch } from './sharing';
 import { parsePizzaSelection } from './pizza-selection';
 import { parseBeerSelection } from './beer-selection';
 import { parseBurgerSelection } from './burger-selection';
-import { parseStreetfoodPortion } from './streetfood-selection';
+import { parseStreetfoodFood, parseStreetfoodPortion } from './streetfood-selection';
 import { parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize } from './gastro-selection';
 
 export function cheapModeFromSearch(params: URLSearchParams): boolean {
@@ -25,6 +25,8 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
   const beerSelection = parseBeerSelection(params.get('beerSelection'));
   const burgerSelection = parseBurgerSelection(params.get('burgerSelection'));
   const streetfoodPortion = parseStreetfoodPortion(params.get('portion'));
+  // Old döner and falafel links keep their choice of food.
+  const streetfoodFood = parseStreetfoodFood(params.get('food')) || (params.get('drink') === 'doner' || params.get('drink') === 'falafel' ? params.get('drink') as 'doner' | 'falafel' : undefined);
   const softdrinkSize = parseSoftdrinkSize(params.get('softdrinkSize'));
   const softdrinkSelection = parseSoftdrinkSelection(params.get('softdrinkSelection'));
   const cocktailSelection = parseCocktailSelection(params.get('cocktailSelection'));
@@ -36,6 +38,7 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
     ...(beerSelection ? { beerSelection } : {}),
     ...(burgerSelection ? { burgerSelection } : {}),
     ...(streetfoodPortion ? { streetfoodPortion } : {}),
+    ...(streetfoodFood ? { streetfoodFood } : {}),
     ...(softdrinkSize ? { softdrinkSize } : {}),
     ...(softdrinkSelection ? { softdrinkSelection } : {}),
     ...(cocktailSelection ? { cocktailSelection } : {}),
@@ -70,7 +73,8 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
     pizzaSelection: f.pizzaSelection || '', pizzaQuery: f.pizzaQuery?.trim() || '',
     // A product choice belongs to its category; a city without that category must not keep it in the link.
     burgerSelection: drink === 'burger' && f.burgerSelection && f.burgerSelection !== 'all' ? f.burgerSelection : '',
-    portion: (drink === 'doner' || drink === 'falafel') && f.streetfoodPortion && f.streetfoodPortion !== 'snack' ? f.streetfoodPortion : '',
+    portion: drink === 'kebab' && f.streetfoodPortion && f.streetfoodPortion !== 'snack' ? f.streetfoodPortion : '',
+    food: drink === 'kebab' && f.streetfoodFood && f.streetfoodFood !== 'all' ? f.streetfoodFood : '',
     softdrinkSize: drink === 'softdrink' && f.softdrinkSize && f.softdrinkSize !== '300-330' ? f.softdrinkSize : '',
     softdrinkSelection: drink === 'softdrink' && f.softdrinkSelection && f.softdrinkSelection !== 'all' ? f.softdrinkSelection : '',
     cocktailSelection: drink === 'cocktail' && f.cocktailSelection && f.cocktailSelection !== 'all' ? f.cocktailSelection : '',

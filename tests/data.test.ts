@@ -454,15 +454,29 @@ describe("döner and falafel", () => {
       { ...base, name: "Falafel Wrap", foodType: "falafel", portionType: "wrap", priceChf: 10 },
     ],
   };
-  const doner = { ...f, drink: "doner" as const, max: Infinity };
-  it("compares Dürüm and döner in bread by default, plates on their own", () => {
-    expect(matchingOffers(imbiss, doner).map(o => o.name)).toEqual(["Kebab im Brot", "Dürüm"]);
+  const doner = { ...f, drink: "kebab" as const, max: Infinity };
+  it("compares Dürüm and in bread by default, plates on their own, kebab and falafel together", () => {
+    expect(matchingOffers(imbiss, doner).map(o => o.name)).toEqual(["Falafel Wrap", "Kebab im Brot", "Dürüm"]);
+    expect(matchingOffers(imbiss, { ...doner, streetfoodFood: "doner" }).map(o => o.name)).toEqual(["Kebab im Brot", "Dürüm"]);
     expect(matchingOffers(imbiss, { ...doner, streetfoodPortion: "plate" }).map(o => o.name)).toEqual(["Kebab Teller"]);
-    expect(matchingOffers(imbiss, { ...doner, streetfoodPortion: "all" })).toHaveLength(3);
-    expect(bestOffer(imbiss, { ...doner, drink: "falafel" })?.name).toBe("Falafel Wrap");
+    expect(matchingOffers(imbiss, { ...doner, streetfoodPortion: "all", streetfoodFood: "doner" })).toHaveLength(3);
+    expect(bestOffer(imbiss, { ...doner, streetfoodFood: "falafel" })?.name).toBe("Falafel Wrap");
   });
   it("keeps Imbiss stands without a venue choice", () => {
     expect(filterBars([imbiss], doner)).toHaveLength(1);
     expect(filterBars([imbiss], { ...doner, type: "restaurant" })).toHaveLength(0);
+  });
+});
+
+describe("kebab and falafel datasets", () => {
+  it("merge into one venue per stand and keep old döner links working", async () => {
+    const { mergeStreetfood } = await import("../src/streetfood-selection");
+    const { filtersFromSearch } = await import("../src/filters");
+    const stand = (offer: string) => ({ id: "s", name: "Stand", offers: [{ name: offer }] });
+    const merged = mergeStreetfood([{ bars: [stand("Dürüm")] }, null, { bars: [stand("Falafel Wrap"), { ...stand("Wrap"), id: "t" }] }] as never);
+    expect(merged!.bars.map(bar => [bar.id, bar.offers.map(o => o.name)])).toEqual([["s", ["Dürüm", "Falafel Wrap"]], ["t", ["Wrap"]]]);
+    expect(mergeStreetfood([null, undefined])).toBeUndefined();
+    const legacy = filtersFromSearch(new URLSearchParams("drink=falafel"));
+    expect([legacy.drink, legacy.streetfoodFood]).toEqual(["kebab", "falafel"]);
   });
 });

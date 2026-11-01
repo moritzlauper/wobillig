@@ -1,17 +1,8 @@
-import { isCurrentOffer, type Offer } from './data.js';
-
-export const categories = ['coffee', 'beer', 'ramen', 'burger', 'softdrink', 'cocktail', 'pizza', 'doner', 'falafel'] as const;
+export const categories = ['coffee', 'beer', 'ramen', 'burger', 'softdrink', 'cocktail', 'pizza', 'kebab'] as const;
 export type Category = typeof categories[number];
 export type CategoryCounts = Record<Category, number>;
-export const emptyCategoryCounts = (): CategoryCounts => ({ coffee: 0, beer: 0, ramen: 0, burger: 0, softdrink: 0, cocktail: 0, pizza: 0, doner: 0, falafel: 0 });
+export const emptyCategoryCounts = (): CategoryCounts => ({ coffee: 0, beer: 0, ramen: 0, burger: 0, softdrink: 0, cocktail: 0, pizza: 0, kebab: 0 });
 export const isCategory = (value: unknown): value is Category => categories.includes(value as Category);
-
-export function streetfoodPriceCount(dataset: unknown, category: 'doner' | 'falafel'): number {
-  if (!dataset || typeof dataset !== 'object' || !('bars' in dataset) || !Array.isArray(dataset.bars)) return 0;
-  return dataset.bars.reduce((count, bar) => count + (bar?.type === 'fast_food' && Array.isArray(bar.offers) ? bar.offers.filter((offer: Offer & { foodType?: string; portionType?: string }) =>
-    offer?.foodType === category && offer.portionType === 'wrap' && Number.isFinite(offer.priceChf) && offer.priceChf > 0 && isCurrentOffer(offer)
-  ).length : 0), 0);
-}
 
 export function categoryCounts(value: unknown): CategoryCounts {
   const counts = emptyCategoryCounts();
@@ -31,10 +22,10 @@ export const categoryPeriodStart = (period: number) => period * 2 * dayMs;
 
 // Coffee and pizza always lead the row; the two most clicked other categories follow.
 // Every other period the fourth place goes to another category in turn, so it can collect clicks too.
-// Döner and falafel always stay behind "Weitere", however often they are clicked.
+// Kebab & Falafel always stays behind "Weitere", however often it is clicked.
 export function featuredCategories(counts: CategoryCounts, available: readonly Category[], period: number, size = 4): Category[] {
   const fixed = (['coffee', 'pizza'] as const).filter(category => available.includes(category));
-  const pool = available.filter(category => !fixed.includes(category as 'coffee' | 'pizza') && category !== 'doner' && category !== 'falafel')
+  const pool = available.filter(category => !fixed.includes(category as 'coffee' | 'pizza') && category !== 'kebab')
     .sort((a, b) => counts[b] - counts[a] || categories.indexOf(a) - categories.indexOf(b));
   const slots = Math.max(0, size - fixed.length);
   const chosen = pool.slice(0, slots);

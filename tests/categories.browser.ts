@@ -21,11 +21,10 @@ function streetfood(foodType: 'doner' | 'falafel', venues: number) {
   })) };
 }
 
-for (const [doner, falafel, visible] of [
-  [2, 2, []], [3, 2, ['Döner']], [2, 3, ['Falafel']], [3, 3, ['Döner', 'Falafel']],
-] as const) {
-  test(`venue threshold is independent for each category: ${doner} doner, ${falafel} falafel`, async ({ page }) => {
-    await page.route('**/api/categories', route => route.fulfill({ json: { counts: { doner: 9999, falafel: 9999 } } }));
+// Kebab & Falafel opens once three stands have a price, counting both datasets together.
+for (const [doner, falafel, visible] of [[1, 1, false], [2, 1, true], [0, 3, true]] as const) {
+  test(`Kebab & Falafel needs three priced stands: ${doner} kebab, ${falafel} falafel`, async ({ page }) => {
+    await page.route('**/api/categories', route => route.fulfill({ json: { counts: { kebab: 9999 } } }));
     for (const [foodType, count] of [['doner', doner], ['falafel', falafel]] as const) {
       await page.route(`**/data/${foodType}.json`, route => route.fulfill({ json: streetfood(foodType, count) }));
     }
@@ -33,20 +32,19 @@ for (const [doner, falafel, visible] of [
     await page.goto('/');
     await loaded;
     await expect(page.locator('#count')).not.toHaveText('Laden …');
-    await expect(page.locator('#primary-categories #drink-doner, #primary-categories #drink-falafel')).toHaveCount(0);
-    if (visible.length) {
+    await expect(page.locator('#primary-categories #drink-kebab')).toHaveCount(0);
+    if (visible) {
       await page.locator('#categories-toggle').click();
-      await expect(page.locator('#additional-categories button:visible')).toHaveText(visible);
+      await expect(page.locator('#additional-categories button:visible')).toHaveText(['Kebab & Falafel']);
     } else {
       await expect(page.locator('#categories-toggle')).toBeHidden();
-      await expect(page.locator('#drink-doner')).toBeHidden();
-      await expect(page.locator('#drink-falafel')).toBeHidden();
+      await expect(page.locator('#drink-kebab')).toBeHidden();
     }
   });
 }
 
 test('missing or unreadable city datasets keep unavailable categories hidden', async ({ page }) => {
-  await page.route('**/api/categories', route => route.fulfill({ json: { counts: { doner: 9999, falafel: 9999 } } }));
+  await page.route('**/api/categories', route => route.fulfill({ json: { counts: { kebab: 9999 } } }));
   await page.route('**/data/bern/doner.json', route => route.fulfill({ status: 404 }));
   await page.route('**/data/bern/falafel.json', route => route.fulfill({ contentType: 'text/html', body: '<html>Not found</html>' }));
   const loaded = Promise.all(['doner', 'falafel'].map(category => page.waitForResponse(`**/data/bern/${category}.json`)));
@@ -54,20 +52,19 @@ test('missing or unreadable city datasets keep unavailable categories hidden', a
   await loaded;
   await expect(page.locator('#count')).not.toHaveText('Laden …');
   await expect(page.locator('#categories-toggle')).toBeHidden();
-  await expect(page.locator('#drink-doner')).toBeHidden();
-  await expect(page.locator('#drink-falafel')).toBeHidden();
+  await expect(page.locator('#drink-kebab')).toBeHidden();
   await expect(page.locator('#create-map')).toBeVisible();
 });
 
 for (const width of [320, 390, 1280]) {
-  test(`Doner and Falafel stay in More regardless of popularity at ${width}px`, async ({ page, context }) => {
+  test(`Kebab & Falafel stays in More regardless of popularity at ${width}px`, async ({ page, context }) => {
     await page.setViewportSize({ width, height: 844 });
-    let counts = { coffee: 100, beer: 80, pizza: 5, doner: 4, falafel: 0 };
+    let counts = { coffee: 100, beer: 80, pizza: 5, kebab: 4 };
     const clicks: string[] = [];
     await context.route('**/api/categories', async route => {
       if (route.request().method() === 'POST') {
         clicks.push(route.request().postDataJSON().category);
-        counts = { ...counts, doner: 200, falafel: 150 };
+        counts = { ...counts, kebab: 200 };
       }
       await route.fulfill({ json: { counts } });
     });
@@ -77,7 +74,7 @@ for (const width of [320, 390, 1280]) {
     expect(clicks).toEqual([]);
     await expect(page.locator('#toolbar-toggle')).toHaveCount(0);
     await page.getByRole('button', { name: 'Weitere Kategorien', exact: true }).click();
-    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
+    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Kebab & Falafel']);
     // On phones the venue search sits behind Filter.
     await expect(page.locator('#search')).toBeVisible({ visible: width >= 760 });
     await expect(page.locator('#coffeeType')).toBeVisible();
@@ -85,16 +82,17 @@ for (const width of [320, 390, 1280]) {
     expect(menu!.x).toBeGreaterThanOrEqual(0);
     expect(menu!.x + menu!.width).toBeLessThanOrEqual(width);
     await page.screenshot({ path: `/tmp/wobillig-categories-${width}.png` });
-    await page.getByRole('button', { name: 'Döner', exact: true }).click();
-    await expect(page.locator('#map-title')).toHaveText('Dönerpreise Zürich');
-    await expect.poll(() => clicks).toEqual(['doner']);
-    // However often they are clicked, döner and falafel stay behind "Weitere".
+    await page.getByRole('button', { name: 'Kebab & Falafel', exact: true }).click();
+    await expect(page.locator('#map-title')).toHaveText('Kebab- und Falafelpreise Zürich');
+    await expect(page.locator('#streetfood-portion')).toHaveValue('snack');
+    // Cheap mode opens on the cheaper stands of both kebab and falafel.
+    await expect(page.locator('#results .venue').first()).toContainText('Dürüm');
+    await expect.poll(() => clicks).toEqual(['kebab']);
+    // However often it is clicked, Kebab & Falafel stays behind "Weitere".
     await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Pizza', 'Bier']);
     await expect(page.locator('#categories-toggle')).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('#drink-doner')).toBeHidden();
-    await expect(page.locator('#drink-falafel')).toBeHidden();
     await page.locator('#categories-toggle').click();
-    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
+    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Kebab & Falafel']);
     await page.keyboard.press('Escape');
     await page.locator('#drink-pizza').click();
     await expect(page.locator('#map-title')).toHaveText('Pizzapreise Zürich');
@@ -102,7 +100,7 @@ for (const width of [320, 390, 1280]) {
     await expect(page.locator('#categories-toggle')).toHaveAttribute('aria-pressed', 'false');
     await expect(page.locator('#categories-toggle')).toHaveAccessibleName('Weitere Kategorien');
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
-    // Even in a city without Pizza and without döner prices, popular categories do not move up.
+    // Even in a city without Pizza and without kebab prices, popular categories do not move up.
     const other = await context.newPage();
     await other.route('**/data/bern/pizza.json', route => route.fulfill({ json: {
       bars: [], generatedAt: '2026-10-20', discoveredAt: '2026-10-20', attribution: '',
@@ -110,8 +108,7 @@ for (const width of [320, 390, 1280]) {
     await other.goto('/bern');
     await expect(other.locator('#count')).not.toHaveText('Laden …');
     await expect(other.locator('#primary-categories button')).toHaveText(['Kaffee', 'Bier']);
-    await expect(other.locator('#drink-doner')).toBeHidden();
-    await expect(other.locator('#drink-falafel')).toBeHidden();
+    await expect(other.locator('#drink-kebab')).toBeHidden();
   });
 }
 
@@ -122,7 +119,7 @@ test('keyboard, outside click and English menu work when popularity storage fail
   const toggle = page.getByRole('button', { name: 'More categories', exact: true });
   await toggle.focus();
   await toggle.press('ArrowDown');
-  await expect(page.getByRole('button', { name: 'Doner kebab', exact: true })).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Kebab & falafel', exact: true })).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(page.locator('#additional-categories')).toBeHidden();
   await expect(toggle).toBeFocused();
@@ -132,8 +129,8 @@ test('keyboard, outside click and English menu work when popularity storage fail
   await page.locator('#drink-beer').click();
   await expect(page.locator('#drink-beer')).toHaveAttribute('aria-pressed', 'true');
   await toggle.click();
-  await page.getByRole('button', { name: 'Falafel', exact: true }).click();
-  await expect(page.locator('#map-title')).toContainText('Falafel prices');
+  await page.getByRole('button', { name: 'Kebab & falafel', exact: true }).click();
+  await expect(page.locator('#map-title')).toContainText('Kebab and falafel prices');
 });
 
 test('a delayed ranking does not move buttons while the menu is open', async ({ page }) => {
@@ -141,7 +138,7 @@ test('a delayed ranking does not move buttons while the menu is open', async ({ 
   const wait = new Promise<void>(resolve => { release = resolve; });
   await page.route('**/api/categories', async route => {
     await wait;
-    await route.fulfill({ json: { counts: { ...emptyCategoryCounts(), doner: 100 } } });
+    await route.fulfill({ json: { counts: { ...emptyCategoryCounts(), kebab: 100 } } });
   });
   await page.goto('/');
   await expect(page.locator('#count')).not.toHaveText('Laden …');
@@ -149,9 +146,8 @@ test('a delayed ranking does not move buttons while the menu is open', async ({ 
   const response = page.waitForResponse('**/api/categories');
   release();
   await response;
-  await expect(page.locator('#additional-categories button:visible')).toHaveText(['Döner', 'Falafel']);
+  await expect(page.locator('#additional-categories button:visible')).toHaveText(['Kebab & Falafel']);
   await page.keyboard.press('Escape');
   await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Pizza', 'Bier']);
-  await expect(page.locator('#drink-doner')).toBeHidden();
-  await expect(page.locator('#drink-falafel')).toBeHidden();
+  await expect(page.locator('#drink-kebab')).toBeHidden();
 });

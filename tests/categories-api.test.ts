@@ -22,14 +22,14 @@ beforeEach(() => {
   vi.clearAllMocks();
   vi.stubEnv('BLOB_READ_WRITE_TOKEN', 'test-secret');
   mocks.read.mockResolvedValue({ state: { days: {}, visitorDay: 'today', visitors: { private: ['coffee'] } } });
-  mocks.record.mockResolvedValue({ coffee: 0, beer: 0, pizza: 0, doner: 1, falafel: 0 });
+  mocks.record.mockResolvedValue({ coffee: 0, beer: 0, pizza: 0, kebab: 1 });
 });
 it('returns only aggregate counts and never visitor identifiers', async () => {
-  expect((await request('GET')).data).toEqual({ counts: { coffee: 0, beer: 0, ramen: 0, burger: 0, softdrink: 0, cocktail: 0, pizza: 0, doner: 0, falafel: 0 } });
+  expect((await request('GET')).data).toEqual({ counts: { coffee: 0, beer: 0, ramen: 0, burger: 0, softdrink: 0, cocktail: 0, pizza: 0, kebab: 0 } });
 });
 it('rejects foreign requests, invalid categories, methods and large bodies before recording', async () => {
-  expect((await request('POST', { category: 'doner' }, { origin: 'https://other.org' })).status).toBe(403);
-  expect((await request('POST', { category: 'doner' }, { 'sec-fetch-site': 'cross-site' })).status).toBe(403);
+  expect((await request('POST', { category: 'kebab' }, { origin: 'https://other.org' })).status).toBe(403);
+  expect((await request('POST', { category: 'kebab' }, { 'sec-fetch-site': 'cross-site' })).status).toBe(403);
   expect((await request('POST', { category: 'fake' })).status).toBe(400);
   expect((await request('POST', '{invalid')).status).toBe(400);
   expect((await request('POST', {}, { 'content-type': 'text/plain' })).status).toBe(415);
@@ -38,9 +38,9 @@ it('rejects foreign requests, invalid categories, methods and large bodies befor
   expect(mocks.record).not.toHaveBeenCalled();
 });
 it('accepts all category clicks with a private daily hash, including streamed bodies', async () => {
-  const result = await request('POST', undefined, {}, ['{"category":"doner"}']);
+  const result = await request('POST', undefined, {}, ['{"category":"kebab"}']);
   expect(result.status).toBe(200);
-  expect(mocks.record.mock.calls[0][1]).toBe('doner');
+  expect(mocks.record.mock.calls[0][1]).toBe('kebab');
   expect(mocks.record.mock.calls[0][2]).toMatch(/^[a-f0-9]{64}$/);
   expect(JSON.stringify(result.data)).not.toContain('127.0.0.1');
 });

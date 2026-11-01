@@ -2,9 +2,9 @@ import { isBeerMix, coffeeLabels, beerTypeLabels, safeUrl, type BeerType, type B
 import { selectableLocations, withKnownAddress } from './locations.js';
 import { applyVenueCorrections, type VenueCorrection } from './venue-corrections.js';
 
-// Community prices exist for these categories only; burgers, döner and falafel are scanned, never entered.
+// Community prices exist for these categories only; burgers, kebab and falafel are scanned, never entered.
 export type EntryDrink = 'beer' | 'coffee' | 'pizza' | 'ramen' | 'softdrink' | 'cocktail';
-export type Drink = EntryDrink | 'burger' | 'doner' | 'falafel';
+export type Drink = EntryDrink | 'burger' | 'kebab';
 export type PriceEntry = {
   id: string;
   barId: string;
@@ -77,7 +77,7 @@ function verifiedWebsiteUpdate(offer: Offer, entry: PriceEntry): boolean {
 }
 export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Bar[], drink: Drink, corrections: VenueCorrection[] = []): Dataset {
   // Drinks share locations; pizza only includes known pizza venues and pizza entries.
-  const bars = new Map((drink === 'pizza' || drink === 'ramen' || drink === 'burger' || drink === 'softdrink' || drink === 'cocktail' || drink === 'doner' || drink === 'falafel' ? [] : venues).map(b => [b.id, { ...b, offers: [] as Offer[] }]));
+  const bars = new Map((drink === 'pizza' || drink === 'ramen' || drink === 'burger' || drink === 'softdrink' || drink === 'cocktail' || drink === 'kebab' ? [] : venues).map(b => [b.id, { ...b, offers: [] as Offer[] }]));
   const knownVenues = new Map(venues.map(bar => [bar.id, bar]));
   for (const b of dataset.bars) bars.set(b.id, { ...withKnownAddress(b, knownVenues.get(b.id)), offers: [...b.offers] });
   for (const entry of entries.filter(x => x.drink === drink)) {
