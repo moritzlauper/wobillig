@@ -196,10 +196,19 @@ def is_chain(group):
     return len(label) >= 4 and all(label in name or name in label for name in names)
 
 
+# Supermarket bake-off counters are not bakeries: the comparison is about fresh bakery bread.
+SUPERMARKET = re.compile(r'\b(?:coop|migros|aldi|lidl|denner|spar|volg|manor|globus|avec|k\s?kiosk)\b', re.I)
+
+
 def candidates(bars, overrides):
-    """Every bakery with a website, grouped by website. A shared website counts only for one chain's branches."""
+    """Every bakery with a website, grouped by website. A shared website counts only for one chain's branches.
+
+    Supermarket bakery counters stay out, even when OpenStreetMap tags them as a bakery.
+    """
     found = []
     for bar in bars:
+        if SUPERMARKET.search(bar.get('name') or ''):
+            continue
         website = overrides.get(bar['id'], bar.get('website'))
         if website:
             found.append({**bar, 'website': website})

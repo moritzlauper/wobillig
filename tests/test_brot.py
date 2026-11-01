@@ -90,6 +90,11 @@ class BreadDataset(unittest.TestCase):
         groups = candidates(bars, {'node/5': 'https://e.example/'})
         self.assertEqual(sorted(group[0]['id'] for group in groups.values()), ['node/1', 'node/5'])
 
+    def test_supermarket_bakery_counters_are_left_out(self):
+        bars = [{'id': 'node/1', 'name': 'Coop Bäckerei', 'type': 'bakery', 'website': 'https://coop.ch/'},
+                {'id': 'node/2', 'name': 'Bäckerei Hug', 'type': 'bakery', 'website': 'https://hug.example/'}]
+        self.assertEqual([group[0]['id'] for group in candidates(bars, {}).values()], ['node/2'])
+
     def test_chain_branches_share_one_read(self):
         bars = [
             {'id': 'node/1', 'name': 'John Baker', 'type': 'bakery', 'website': 'https://www.johnbaker.ch/'},
