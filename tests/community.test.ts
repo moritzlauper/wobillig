@@ -30,6 +30,18 @@ describe('shared price validation', () => {
     expect(validateInput({ ...input, drink: 'softdrink', name: 'Coca-Cola', priceChf: 5, volumeMl: 330 }, [bar])).toMatchObject({ gastroType: 'softdrink', volumeMl: 330 });
     expect(() => validateInput({ ...input, drink: 'softdrink', name: 'Coca-Cola', priceChf: 5, volumeMl: null }, [bar])).toThrow();
   });
+  it('corrects a scanned burger price and accepts new burgers', async () => {
+    const cheeseburger: Offer = { name: 'Cheeseburger', priceChf: 24, volumeMl: null, burgerType: 'burger', sourceUrl: 'https://example.org/menu', observedAt: '2026-10-14', confidence: 'ai', evidence: 'Cheeseburger 24', alcoholFree: true };
+    const burger: Dataset = { ...beer, bars: [{ ...bar, offers: [cheeseburger] }] };
+    const correction = { ...input, drink: 'burger' as const, name: 'Cheeseburger', priceChf: 26, volumeMl: null, alcoholFree: true, targetKey: offerKey(cheeseburger) };
+    const valid = validateInput(correction, [bar]);
+    expect(valid).toMatchObject({ burgerType: 'burger', alcoholFree: true, volumeMl: null });
+    const entry = await savePrice(memoryStore(), valid, { ...data, burger }, 'visitor');
+    expect(entry.offer.burgerType).toBe('burger');
+    expect(applyEntries(burger, [entry], [bar], 'burger').bars[0].offers.map(o => o.priceChf)).toEqual([26]);
+    expect(() => validateInput({ ...correction, name: 'Pommes frites' }, [bar])).toThrow();
+    expect(() => validateInput({ ...correction, volumeMl: 300 }, [bar])).toThrow();
+  });
   it('accepts real glass prices and coffee with no made-up volume', () => {
     expect(validateInput(input, [bar]).priceChf).toBe(6.5);
     expect(validateInput({ ...input, drink: 'coffee', coffeeType: 'espresso', volumeMl: null }, [bar]).alcoholFree).toBe(true);

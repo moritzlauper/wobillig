@@ -39,11 +39,11 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const [beer, coffee, pizza, locations] = await Promise.all(['bars', 'coffee', 'pizza', 'locations'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(v => JSON.parse(v) as Dataset)));
     const store = blobStore(cityStoragePath(city, process.env.VERCEL_ENV === 'production'));
     const { state } = await store.read();
-    const bar = communityVenues({ beer, coffee, pizza, locations }, state.entries, state.venues, state.venueCorrections).find(b => b.id === data.barId);
+    // Scanned burger, cocktail and soft drink prices are matched against the scraped ones like beer and coffee.
+    const [cocktail, softdrink, burger] = await Promise.all(['gastro-cocktail', 'gastro-softdrink', 'burger'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(v => JSON.parse(v) as Dataset, () => undefined)));
+    const bar = communityVenues({ beer, coffee, pizza, locations, burger }, state.entries, state.venues, state.venueCorrections).find(b => b.id === data.barId);
     if (!bar) throw new InputError('Bitte zuerst ein Lokal auswählen.');
-    // Scanned cocktail and soft drink prices are matched against the scraped ones like beer and coffee.
-    const gastro = await Promise.all(['gastro-cocktail', 'gastro-softdrink'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(v => JSON.parse(v) as Dataset, () => undefined)));
-    const originals = [beer, coffee, pizza, ...gastro].flatMap(d => d?.bars.find(b => b.id === bar.id)?.offers || []);
+    const originals = [beer, coffee, pizza, cocktail, softdrink, burger].flatMap(d => d?.bars.find(b => b.id === bar.id)?.offers || []);
     const edit = data.edit === undefined ? undefined : parseScanEdit(data.edit);
     const key = process.env.ANTHROPIC_API_KEY, secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!key || !secret) throw new InputError('Karte scannen ist gerade nicht verfügbar. Du kannst Preise einzeln eintragen.', 503);
@@ -60,7 +60,7 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     await reservePhotoBudget(OCR_BUDGET_USD);
     const result = await readMenu(image, bar, key);
     const { prices, skipped } = menuPrices(result.parsed, bar, zurichToday());
-    if (!prices.length) throw new InputError('Keine eindeutigen Bier-, Kaffee-, Cocktail-, Softdrink- oder Margherita-Preise erkannt. Bitte einen näheren, scharfen Ausschnitt fotografieren.', 422);
+    if (!prices.length) throw new InputError('Keine eindeutigen Bier-, Kaffee-, Burger-, Cocktail-, Softdrink- oder Margherita-Preise erkannt. Bitte einen näheren, scharfen Ausschnitt fotografieren.', 422);
     const saved = await saveMenuScan(store, hash, bar, originals, prices, skipped, Date.now(), edit, priceOwner(req, res, true));
     reserved = undefined;
     return reply(200, saved);

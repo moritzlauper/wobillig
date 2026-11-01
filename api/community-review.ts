@@ -30,8 +30,8 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
         res.statusCode = 303; res.setHeader('Location', '/api/community-review'); res.end(); return;
       }
       const [beer, coffee, pizza] = await Promise.all(['bars', 'coffee', 'pizza'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse)));
-      const [ramen, softdrink, cocktail] = await Promise.all(['ramen', 'gastro-softdrink', 'gastro-cocktail'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse, () => undefined)));
-      await reviewContribution(store(city), form.kind, form.id, form.fingerprint, form.decision, { beer, coffee, pizza, ramen, softdrink, cocktail });
+      const [ramen, softdrink, cocktail, burger] = await Promise.all(['ramen', 'gastro-softdrink', 'gastro-cocktail', 'burger'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(JSON.parse, () => undefined)));
+      await reviewContribution(store(city), form.kind, form.id, form.fingerprint, form.decision, { beer, coffee, pizza, ramen, softdrink, cocktail, burger });
       res.statusCode = 303; res.setHeader('Location', '/api/community-review'); res.end(); return;
     }
     if (req.method !== 'GET') { res.setHeader('Allow', 'GET, POST'); return fail(405, 'Methode nicht erlaubt.'); }

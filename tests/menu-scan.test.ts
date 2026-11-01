@@ -57,6 +57,11 @@ describe('menu interpretation', () => {
     expect(extract([{ ...cola, sizes: [''], prices: ['5.50'] }, { ...cola, sizes: ['Stange'], prices: ['5.50'] },
       { ...negroni, name: 'Tequila Shot' }]).prices).toEqual([]);
   });
+  it('reads burgers with one price but leaves out menus and mini burgers', () => {
+    const burger = { ...row, name: 'Holy Cow! Burger', category: 'burger', sizes: [''], prices: ['19.90'], beerType: 'unknown', alcoholFree: true };
+    expect(extract([burger]).prices.map(p => [p.input.drink, p.input.name, p.input.priceChf, p.input.burgerType])).toEqual([['burger', 'Holy Cow! Burger', 19.9, 'burger']]);
+    expect(extract([{ ...burger, name: 'Burger Menü mit Pommes' }, { ...burger, name: 'Kids Burger' }, { ...burger, sizes: ['S', 'L'], prices: ['12', '16'] }]).prices).toEqual([]);
+  });
   it('uses the printed medium coffee column, even when columns are reversed', () => {
     for (const sizes of [['S (2 dl)', 'M (3 dl)', 'L (4 dl)'], ['L (4 dl)', 'M (3 dl)', 'S (2 dl)']]) {
       const prices = sizes[0].startsWith('S') ? ['4.8', '5.3', '5.8'] : ['5.8', '5.3', '4.8'];
