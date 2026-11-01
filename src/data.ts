@@ -110,7 +110,7 @@ export const coffeeLabels: Record<string, string> = {
   matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
-  if (o.foodType) return o.portionType === "plate" ? t('Teller') : o.portionType === "bread" ? t('im Brot') : t('Dürüm / Wrap');
+  if (o.foodType) return o.portionType === "plate" ? t('Teller') : o.portionType === "bread" ? (o.foodType === "doner" ? 'Kebab' : t('Sandwich')) : o.foodType === "doner" ? 'Dürüm' : 'Wrap';
   if (o.gastroType) return o.volumeMl ? `${o.volumeMl / 100} dl` : "";
   return o.pizzaType ? (o.priceContext === "online_menu" ? t('Onlinepreis') : "") : (o.ramenType || o.burgerType) ? t('Standardportion') : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
 }

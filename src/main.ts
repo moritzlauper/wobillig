@@ -118,7 +118,7 @@ $('app').innerHTML = `
     <select id="burger-selection" aria-label="${t('Burgerauswahl')}">${options(translated(burgerSelectionLabels))}</select>
   </div>
   <div id="streetfood-controls" class="pizza-controls" hidden>
-    <select id="streetfood-portion" aria-label="${t('Portion')}">${options(translated(streetfoodPortionLabels))}</select>
+    <select id="streetfood-portion" aria-label="${t('Portion')}">${options(translated(streetfoodPortionLabels('doner')))}</select>
   </div>
   <div id="softdrink-controls" class="pizza-controls" hidden>
     <select id="softdrink-selection" aria-label="${t('Softdrinkauswahl')}"><option value="all">${t('Alle Softdrinks')}</option></select>
@@ -352,7 +352,11 @@ function syncControls() {
   $('burger-controls').hidden = !burger();
   $<HTMLSelectElement>('burger-selection').value = f.burgerSelection || 'all';
   $('streetfood-controls').hidden = !streetfood();
-  $<HTMLSelectElement>('streetfood-portion').value = f.streetfoodPortion || 'snack';
+  // Döner and falafel name the same portions differently: Kebab / Dürüm, Sandwich / Wrap.
+  const portionSelect = $<HTMLSelectElement>('streetfood-portion');
+  const portionHtml = options(translated(streetfoodPortionLabels(f.drink === 'falafel' ? 'falafel' : 'doner')));
+  if (portionSelect.innerHTML !== portionHtml) portionSelect.innerHTML = portionHtml;
+  portionSelect.value = f.streetfoodPortion || 'snack';
   $('softdrink-controls').hidden = !softdrink();
   $('softdrink-size-label').hidden = !softdrink();
   syncSearchRow();
@@ -470,7 +474,7 @@ function render() {
   $('count').textContent = coverageLabel(current, f) + (addressSelection ? ` · ${t('Bezugspunkt: {label}', { label: addressSelection.label })}` : '');
   const average = cityAverage(bars, searchFilters);
   $('city-average').textContent = t('Schnitt {city} {value}', { city: cityName, value: average ? `CHF ${money(average.price)}` : '—' });
-  const comparison = streetfood() ? `${f.drink === 'doner' ? t('Döner') : 'Falafel'} · ${t(streetfoodPortionLabels[f.streetfoodPortion || 'snack'])}` : pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : burger() ? t(burgerSelectionLabels[f.burgerSelection || 'all']) : softdrink() ? `${f.softdrinkSelection && f.softdrinkSelection !== 'all' ? t(softdrinkSelectionLabels[f.softdrinkSelection]) : t('Softdrink')} · ${t(softdrinkSizeLabels[f.softdrinkSize || '300-330'])}` : cocktail() ? t(cocktailSelectionLabels[f.cocktailSelection || 'all']) : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
+  const comparison = streetfood() ? `${f.drink === 'doner' ? t('Döner') : 'Falafel'} · ${t(streetfoodPortionLabels(f.drink === 'falafel' ? 'falafel' : 'doner')[f.streetfoodPortion || 'snack'])}` : pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : burger() ? t(burgerSelectionLabels[f.burgerSelection || 'all']) : softdrink() ? `${f.softdrinkSelection && f.softdrinkSelection !== 'all' ? t(softdrinkSelectionLabels[f.softdrinkSelection]) : t('Softdrink')} · ${t(softdrinkSizeLabels[f.softdrinkSize || '300-330'])}` : cocktail() ? t(cocktailSelectionLabels[f.cocktailSelection || 'all']) : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
     size: f.volume === 'all' ? t('alle Grössen') : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`,
     mode: f.mode === 'half' ? t('auf 5 dl umgerechnet') : t('Portionspreis'),
   });
