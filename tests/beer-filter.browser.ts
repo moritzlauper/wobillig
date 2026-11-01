@@ -63,7 +63,7 @@ for (const [width, language] of [[320, 'de'], [1280, 'en']] as const) {
     await page.reload();
     await expect(page.locator('#beer-query')).toHaveValue('Guiness');
     await expect(page.locator('#results .venue')).toHaveCount(1);
-    await page.locator('.leaflet-control-zoom-in').click({ clickCount: 4, delay: 300 });
+    for (let step = 0; step < 4; step++) { await page.locator('#map').press('+'); await page.waitForTimeout(300); }
     await expect(page.locator('.location-marker')).toHaveCount(0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
     await page.locator('#volume').selectOption('300-330');

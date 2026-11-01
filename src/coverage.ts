@@ -2,8 +2,8 @@ import { t } from './i18n';
 import { bestOffer, cost, filterBars, isCurrentOffer, isComparableOffer, offerCategory, type Bar, type Filters } from './data';
 
 export function cityAverage(bars: Bar[], f: Filters): { price: number; count: number } | undefined {
-  // The average follows the list's filters, so it never exceeds the price ceiling; only the search is left out.
-  const cityFilters: Filters = { ...f, query: '', unknown: false, sort: 'price' };
+  // The city average describes the selected product city-wide: the price limit and the search must not move it.
+  const cityFilters: Filters = { ...f, query: '', max: Infinity, unknown: false, sort: 'price' };
   const prices = filterBars(bars, cityFilters)
     .map(bar => cost(bestOffer(bar, cityFilters)!, cityFilters.mode))
     .filter(price => Number.isFinite(price) && price > 0);

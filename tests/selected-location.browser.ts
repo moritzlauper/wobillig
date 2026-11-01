@@ -23,7 +23,7 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
     });
     await expect.poll(centered).toBe(true);
     // Zooming out must not hide the selected venue with the other unpriced dots.
-    await page.locator('.leaflet-control-zoom-out').click();
+    await page.locator('#map').press('-');
     await expect(page.locator('#map')).not.toHaveClass(/show-unpriced-markers/);
     await expect(marker).toBeVisible();
     await expect(marker.locator('.venue-marker-name')).toBeVisible();
