@@ -24,6 +24,7 @@ from pypdf.errors import PyPdfError
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
 from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, venue_query
+from scraper.chains import is_chain
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
 from scraper.pizza import structured_menu_links
@@ -152,7 +153,7 @@ def candidates(bars, overrides):
 
     Burgers appear on many menus without the word in the venue name, so all
     venue types are read. Only pages that mention a burger reach the AI.
-    Shared websites need a reviewed shared menu.
+    A shared website counts only for one chain's branches (scraper.chains).
     """
     found = []
     for bar in bars:
@@ -164,7 +165,7 @@ def candidates(bars, overrides):
     by_host = defaultdict(list)
     for bar in found:
         by_host[host(bar['website'])].append(bar)
-    return {name: group for name, group in by_host.items() if len(group) == 1}
+    return {name: group for name, group in by_host.items() if len(group) == 1 or is_chain(group)}
 
 
 def scan(name, bars, fetcher, client, max_pages, max_documents, deadline):

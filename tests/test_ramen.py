@@ -65,7 +65,7 @@ class RamenTests(unittest.TestCase):
         self.assertEqual(product_name({'name': 'PAITAN RAMEN', 'lunchOnly': False}), 'Paitan Ramen')
         self.assertEqual(product_name({'name': 'Gaijin Tonkotsu Ramen', 'lunchOnly': True}), 'Gaijin Tonkotsu Ramen (Mittagskarte)')
 
-    def test_candidates_need_ramen_cuisine_or_name_and_a_reviewed_shared_menu(self):
+    def test_candidates_need_ramen_cuisine_or_name_and_a_chain_or_reviewed_shared_menu(self):
         bars = [{**BAR, 'id': 'node/2', 'name': 'Yume Ramen', 'website': 'https://www.yume-ramen.ch'},
                 {**BAR, 'id': 'node/3', 'name': 'Yume-Ramen', 'website': 'https://www.yume-ramen.ch/'},
                 {**BAR, 'id': 'node/4', 'name': 'Machida Shoten', 'website': 'https://ch.machidashoten.com/'},
@@ -74,8 +74,10 @@ class RamenTests(unittest.TestCase):
                 {**BAR, 'id': 'node/7', 'name': 'Sushi', 'cuisine': ['japanese'], 'website': None},
                 {**BAR, 'id': 'node/8', 'name': 'Sushi Bar', 'cuisine': ['japanese'], 'website': 'https://sushi.example/'}]
         found = candidates(bars, {'node/8': 'https://sushi-override.example/'})
-        self.assertEqual(set(found), {'ch.machidashoten.com', 'sushi-override.example'})
+        # Branches of a chain share one read; Yume Ramen carries the brand of its website.
+        self.assertEqual(set(found), {'yume-ramen.ch', 'ch.machidashoten.com', 'sushi-override.example'})
         self.assertEqual(len(found['ch.machidashoten.com']), 2)
+        self.assertEqual(len(found['yume-ramen.ch']), 2)
         self.assertEqual(candidates([{**BAR, 'id': 'node/4', 'name': 'Samurai VII', 'website': 'https://samurai.example/',
                                       'address': None, 'postcode': None}], {})['samurai.example'][0]['address'], None)
         self.assertIn('node/4605571617', ADDRESS_OVERRIDES)

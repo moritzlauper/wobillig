@@ -5,8 +5,9 @@ Repeated limited runs rotate through least recently checked candidates. Shared
 chain websites require a venue-specific menu hint to avoid mixing branches.
 """
 from scraper.cities import STATE_DIR, CACHE_DIR, venue_query
+from scraper.chains import is_chain
 import argparse
-from collections import Counter
+from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import hashlib
 import json
@@ -27,12 +28,17 @@ def host(url):
 def candidates(found, existing, hints, checks):
     known={b['id'] for b in existing}
     unique={b['id']:b for b in existing+found}
-    hosts=Counter(host(b['website']) for b in unique.values() if b['website'])
+    groups=defaultdict(list)
+    for b in unique.values():
+        if b['website']:
+            groups[host(b['website'])].append(b)
     result=[]
     for b in found:
         if b['id'] in known or not b['website']:
             continue
-        if hosts[host(b['website'])] > 1 and b['id'] not in hints:
+        # A shared website is read for a chain's branches, not for unrelated venues on one host.
+        group=groups[host(b['website'])]
+        if len(group) > 1 and b['id'] not in hints and not is_chain(group):
             continue
         if any(b['name'].casefold()==a['name'].casefold() and abs(b['lat']-a['lat'])<.0005 and abs(b['lon']-a['lon'])<.0007 for a in existing):
             continue

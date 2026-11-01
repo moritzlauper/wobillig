@@ -22,6 +22,7 @@ from bs4 import BeautifulSoup
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
 from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, venue_query
+from scraper.chains import is_chain
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
 from scraper.pizza import structured_menu_links
@@ -152,7 +153,7 @@ def candidates(bars, overrides):
     by_host = defaultdict(list)
     for bar in found:
         by_host[host(bar['website'])].append(bar)
-    return {name: group for name, group in by_host.items() if len(group) == 1 or name in SHARED_MENUS}
+    return {name: group for name, group in by_host.items() if len(group) == 1 or name in SHARED_MENUS or is_chain(group)}
 
 
 def scan(name, bars, fetcher, client, max_pages, max_documents):

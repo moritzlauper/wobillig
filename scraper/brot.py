@@ -21,7 +21,6 @@ import math
 from pathlib import Path
 import re
 import time
-import unicodedata
 from urllib.parse import urljoin, urlparse, unquote
 
 from bs4 import BeautifulSoup
@@ -29,6 +28,7 @@ from pypdf.errors import PyPdfError
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
 from scraper.cities import AREA, ROOT
+from scraper.chains import is_chain
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
 from scraper.pizza import structured_menu_links
@@ -177,23 +177,6 @@ def product_name(offer):
         pieces = offer.get('pieces', 1)
         return (f'{name}, {pieces} Stück' if pieces > 1 else name)[:100]
     return (f'{name}, {grams / 1000:g} kg' if grams >= 1000 else f'{name}, {grams} g')[:100]
-
-
-def chain_label(website):
-    """The brand part of a host: john-baker.ch -> johnbaker."""
-    parts = host(website).split('.')
-    return re.sub(r'[\W_]', '', parts[-2] if len(parts) > 1 else parts[0]).casefold()
-
-
-def is_chain(group):
-    """Branches of one bakery chain: every branch name carries the brand of the shared website.
-
-    Chains price their bread the same in every branch, so one read covers all of them.
-    Unrelated bakeries that only share a host (a page builder, a directory) stay out.
-    """
-    label = chain_label(group[0]['website'])
-    names = [re.sub(r'[\W_]', '', unicodedata.normalize('NFKD', bar['name']).encode('ascii', 'ignore').decode()).casefold() for bar in group]
-    return len(label) >= 4 and all(label in name or name in label for name in names)
 
 
 # Supermarket bake-off counters are not bakeries: the comparison is about fresh bakery bread.

@@ -27,7 +27,7 @@ from bs4 import BeautifulSoup
 from pypdf.errors import PyPdfError
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj
-from scraper.brot import is_chain
+from scraper.chains import is_chain
 from scraper.cities import AREA, ROOT
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links

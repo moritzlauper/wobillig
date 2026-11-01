@@ -95,6 +95,11 @@ class BreadDataset(unittest.TestCase):
                 {'id': 'node/2', 'name': 'Bäckerei Hug', 'type': 'bakery', 'website': 'https://hug.example/'}]
         self.assertEqual([group[0]['id'] for group in candidates(bars, {}).values()], ['node/2'])
 
+    def test_holy_cow_branches_are_one_chain(self):
+        from scraper.chains import is_chain
+        self.assertTrue(is_chain([{'name': 'Holy Cow!', 'website': 'https://www.holycow.ch/'}, {'name': 'Holy Cow!', 'website': 'https://www.holycow.ch/'}]))
+        self.assertFalse(is_chain([{'name': 'Bar Eins', 'website': 'https://site.wixsite.com/a'}, {'name': 'Bar Zwei', 'website': 'https://site.wixsite.com/b'}]))
+
     def test_chain_branches_share_one_read(self):
         bars = [
             {'id': 'node/1', 'name': 'John Baker', 'type': 'bakery', 'website': 'https://www.johnbaker.ch/'},

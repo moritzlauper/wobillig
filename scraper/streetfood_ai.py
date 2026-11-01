@@ -21,6 +21,7 @@ from pypdf.errors import PyPdfError
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
 from scraper.burger import crawl
 from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, venue_query
+from scraper.chains import is_chain
 from scraper.enrich import AuditFetcher, host
 from scraper.scrape import discover, now
 
@@ -91,7 +92,7 @@ def candidates(bars, overrides, known=()):
     by_host = {}
     for bar in found:
         by_host.setdefault(host(bar['website']), []).append(bar)
-    return {name: group for name, group in by_host.items() if len(group) == 1}
+    return {name: group for name, group in by_host.items() if len(group) == 1 or is_chain(group)}
 
 
 def scan(name, bars, fetcher, client, max_pages, max_documents, deadline):
