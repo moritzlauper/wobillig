@@ -66,6 +66,7 @@ for (const kind of ['automatic', 'publication'] as const) {
     await page.goto(kind === 'automatic' ? '/' : `/?map=${mapId}`);
     await expect(page.locator('#tip-coffee')).not.toHaveAttribute('hidden');
     if (kind === 'automatic') {
+      await page.locator('#categories-toggle').click();
       await page.locator('#create-map').click();
       await page.getByLabel('Art der Map').selectOption('automatic');
       await page.getByLabel('Name der Map').fill('Test-Map');

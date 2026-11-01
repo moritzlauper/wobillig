@@ -16,6 +16,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   let requestVersion = 0;
   let pendingClicks = Promise.resolve();
   let mapButtons: HTMLButtonElement[] = [], savedMapButtons: HTMLButtonElement[] = [];
+  let createButton: HTMLButtonElement | undefined;
   const buttons = Object.fromEntries(categories.map(category => {
     const button = document.createElement('button');
     button.id = `drink-${category}`; button.type = 'button';
@@ -72,7 +73,8 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
       heading.className = 'custom-map-menu-label'; heading.textContent = label;
       group.append(heading, ...items); more.append(group);
     }
-    moreContainer.hidden = !order.some(collapsed) && !mapButtons.length && !savedMapButtons.length;
+    if (createButton) more.append(createButton);
+    moreContainer.hidden = !order.some(collapsed) && !mapButtons.length && !savedMapButtons.length && !createButton;
     if (moreContainer.hidden) {
       more.hidden = true;
       toggle.setAttribute('aria-expanded', 'false');
@@ -134,6 +136,13 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
       render();
     },
     close,
+    setCreateButton(button: HTMLButtonElement) {
+      createButton = button;
+      button.addEventListener('click', () => close());
+      render();
+    },
+    // After the map dialog closes, focus returns to the menu the button sits in.
+    focusMenu() { toggle.focus(); },
     // Categories without enough current prices in this city stay hidden.
     update(drink: Drink, hidden: ReadonlySet<Category>) {
       active = drink;

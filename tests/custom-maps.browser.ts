@@ -145,6 +145,7 @@ for (const width of [320, 1280]) {
     });
     await page.goto('/');
     await expect(page.locator('#count')).not.toHaveText('Laden …');
+    await page.locator('#categories-toggle').click();
     await page.getByRole('button', { name: 'Map erstellen', exact: true }).click();
     await page.getByRole('textbox', { name: 'Name der Map' }).fill('Döner-Map');
     await page.locator('#create-map-dialog').getByRole('button', { name: 'Map erstellen', exact: true }).click();
@@ -211,6 +212,7 @@ test('creation errors preserve input, retry uses the same ID, and Escape returns
     return route.fulfill({ json: { entries: [] } });
   });
   await page.goto('/en');
+  await page.locator('#categories-toggle').click();
   await page.getByRole('button', { name: 'Create map', exact: true }).click();
   await page.getByRole('textbox', { name: 'Map name' }).fill('Ice cream');
   const submit = page.locator('#create-map-dialog').getByRole('button', { name: 'Create map', exact: true });
@@ -221,7 +223,7 @@ test('creation errors preserve input, retry uses the same ID, and Escape returns
   await expect(submit).toBeEnabled();
   expect(ids).toHaveLength(2); expect(ids[0]).toBe(ids[1]);
   await page.keyboard.press('Escape');
-  await expect(page.locator('#create-map')).toBeFocused();
+  await expect(page.locator('#categories-toggle')).toBeFocused();
 });
 
 test('a missing venue can be added from an own map without losing the price form', async ({ page }) => {

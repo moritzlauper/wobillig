@@ -25,6 +25,7 @@ for (const width of [320, 1280]) {
         : params.has('map') ? { map: saved } : { entries: [] } });
     });
     await page.goto('/');
+    await page.locator('#categories-toggle').click();
     await page.locator('#create-map').click();
     const form = page.locator('#create-map-dialog');
     await form.getByLabel('Art der Map').selectOption('automatic');
@@ -57,6 +58,7 @@ test('the English request form translates choices and explains review', async ({
   await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
   await page.route('**/api/categories', route => route.fulfill({ json: { counts: {} } }));
   await page.goto('/en');
+  await page.locator('#categories-toggle').click();
   await page.locator('#create-map').click();
   await page.getByLabel('Map type').selectOption('automatic');
   await expect(page.getByRole('button', { name: 'Submit request' })).toBeVisible();

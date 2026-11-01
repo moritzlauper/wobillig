@@ -35,9 +35,8 @@ for (const [doner, falafel, visible] of [[1, 1, false], [2, 1, true], [0, 3, tru
     await expect(page.locator('#primary-categories #drink-kebab')).toHaveCount(0);
     if (visible) {
       await page.locator('#categories-toggle').click();
-      await expect(page.locator('#additional-categories button:visible')).toHaveText(['Kebab & Falafel']);
+      await expect(page.locator('#additional-categories button:visible:not(#create-map)')).toHaveText(['Kebab & Falafel']);
     } else {
-      await expect(page.locator('#categories-toggle')).toBeHidden();
       await expect(page.locator('#drink-kebab')).toBeHidden();
     }
   });
@@ -51,9 +50,10 @@ test('missing or unreadable city datasets keep unavailable categories hidden', a
   await page.goto('/bern');
   await loaded;
   await expect(page.locator('#count')).not.toHaveText('Laden …');
-  await expect(page.locator('#categories-toggle')).toBeHidden();
   await expect(page.locator('#drink-kebab')).toBeHidden();
-  await expect(page.locator('#create-map')).toBeVisible();
+  // Creating a map stays available behind "Weitere", even when no category is collapsed.
+  await page.locator('#categories-toggle').click();
+  await expect(page.locator('#additional-categories button:visible')).toHaveText(['+ Map erstellen']);
 });
 
 for (const width of [320, 390, 1280]) {
@@ -74,7 +74,7 @@ for (const width of [320, 390, 1280]) {
     expect(clicks).toEqual([]);
     await expect(page.locator('#toolbar-toggle')).toHaveCount(0);
     await page.getByRole('button', { name: 'Weitere Kategorien', exact: true }).click();
-    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Kebab & Falafel']);
+    await expect(page.locator('#additional-categories button:visible:not(#create-map)')).toHaveText(['Kebab & Falafel']);
     // On phones the venue search sits behind Filter.
     await expect(page.locator('#search')).toBeVisible({ visible: width >= 760 });
     await expect(page.locator('#coffeeType')).toBeVisible();
@@ -92,7 +92,7 @@ for (const width of [320, 390, 1280]) {
     await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Pizza', 'Bier']);
     await expect(page.locator('#categories-toggle')).toHaveAttribute('aria-pressed', 'true');
     await page.locator('#categories-toggle').click();
-    await expect(page.locator('#additional-categories button:visible')).toHaveText(['Kebab & Falafel']);
+    await expect(page.locator('#additional-categories button:visible:not(#create-map)')).toHaveText(['Kebab & Falafel']);
     await page.keyboard.press('Escape');
     await page.locator('#drink-pizza').click();
     await expect(page.locator('#map-title')).toHaveText('Pizzapreise Zürich');
@@ -146,7 +146,7 @@ test('a delayed ranking does not move buttons while the menu is open', async ({ 
   const response = page.waitForResponse('**/api/categories');
   release();
   await response;
-  await expect(page.locator('#additional-categories button:visible')).toHaveText(['Kebab & Falafel']);
+  await expect(page.locator('#additional-categories button:visible:not(#create-map)')).toHaveText(['Kebab & Falafel']);
   await page.keyboard.press('Escape');
   await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Pizza', 'Bier']);
   await expect(page.locator('#drink-kebab')).toBeHidden();

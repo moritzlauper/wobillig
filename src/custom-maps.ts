@@ -26,7 +26,6 @@ class MapRequestError extends Error {
 
 export function customMaps(city: City, known: () => Bar[], onClose: () => void, navigation: ReturnType<typeof categoryNavigation>) {
   const app = document.getElementById('app')!;
-  const nav = document.getElementById('category-navigation')!;
   const api = `/api/prices?city=${city}`;
   const storageKey = `wobillig:maps:${city}`;
   let saved: { id: string; name: string; automaticStatus?: AutomaticMapRequest['status'] }[] = [];
@@ -42,11 +41,11 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
   let publicMaps: PublicMap[] = [];
   const added: Bar[] = [];
   const venues = () => [...new Map([...known(), ...added].map(bar => [bar.id, bar])).values()];
+  // Creating a map sits at the end of the "Weitere" menu, not in the category row.
   const plus = document.createElement('button');
-  plus.id = 'create-map'; plus.type = 'button'; plus.className = 'create-map-button';
-  plus.setAttribute('aria-label', t('Map erstellen')); plus.title = t('Map erstellen');
-  plus.innerHTML = '<span aria-hidden="true">+</span>';
-  nav.append(plus);
+  plus.id = 'create-map'; plus.type = 'button'; plus.className = 'create-map-item';
+  plus.innerHTML = `<span aria-hidden="true">+</span> ${t('Map erstellen')}`;
+  navigation.setCreateButton(plus);
   updateSavedMaps();
   const create = document.createElement('dialog');
   create.id = 'create-map-dialog'; create.setAttribute('aria-labelledby', 'create-map-title');
@@ -189,7 +188,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     dialog.querySelector<HTMLButtonElement>('[data-close]')!.onclick = () => { if (!busy) dialog.close(); };
     dialog.addEventListener('cancel', event => { if (busy) event.preventDefault(); });
   }
-  create.addEventListener('close', () => { if (view.hidden) plus.focus(); });
+  create.addEventListener('close', () => { if (view.hidden) navigation.focusMenu(); });
   function setBusy(value: boolean) {
     busy = value;
     for (const dialog of [create, entry]) {
@@ -652,7 +651,7 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     cancelViewportPlaces();
     request++; current = undefined; view.hidden = true; app.classList.remove('custom-map-active');
     const target = new URL(location.href); target.searchParams.delete('map'); history.replaceState(null, '', target);
-    onClose(); plus.focus();
+    onClose(); navigation.focusMenu();
   };
   return { get isOpen() { return !view.hidden; }, load, updatePublicMaps };
 }
