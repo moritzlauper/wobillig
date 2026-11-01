@@ -1,6 +1,6 @@
 import unittest
 
-from scraper.glace import candidates, clean, scan, scoops_in, shops_output
+from scraper.glace import candidates, clean, dataset, scan, scoops_in, shops_output
 
 URL = 'https://glace.example/preise'
 
@@ -40,6 +40,24 @@ class GlaceRules(unittest.TestCase):
         self.assertEqual([(s['name'], s['checkedOn'], s['portions']) for s in shops],
                          [('Eisdiele', '2026-07-01', [{'scoops': 1, 'price': 4}]), ('Gelateria', '2026-10-30', [{'scoops': 1, 'price': 4.5}])])
         self.assertEqual(shops[1]['address'], 'Seestrasse 1, 8002 Zürich')
+
+    def test_a_shop_listed_twice_appears_once(self):
+        shop = {'name': 'Leonardo', 'website': URL, 'address': 'Seestrasse 1', 'postcode': '8002'}
+        groups = {'glace.example': [{**shop, 'id': 'node/1'}, {**shop, 'id': 'node/2'}]}
+        results = {'glace.example': {'status': 'priced', 'portions': [{'scoops': 1, 'price': 4.5, 'source': URL}]}}
+        self.assertEqual(len(shops_output(groups, results, {}, '2026-10-30')['shops']), 1)
+
+    def test_dataset_compares_the_price_per_scoop_and_keeps_unread_shops(self):
+        groups = {'glace.example': [{'id': 'node/1', 'name': 'Gelateria', 'lat': 47.37, 'lon': 8.54, 'website': URL}],
+                  'eis.example': [{'id': 'node/2', 'name': 'Eisdiele', 'lat': 47.38, 'lon': 8.55, 'website': 'https://eis.example/'}]}
+        results = {'glace.example': {'status': 'priced', 'portions': [{'scoops': 2, 'price': 8.0, 'source': URL, 'evidence': '2 Kugeln 8.00'}]},
+                   'eis.example': {'status': 'fetch_failed', 'portions': []}}
+        kept = [{'name': '1 Kugel', 'priceChf': 4}]
+        bars = dataset(groups, results, {'node/2': kept}, '2026-10-30T10:00:00Z', 'OSM')['bars']
+        self.assertEqual([b['name'] for b in bars], ['Eisdiele', 'Gelateria'])
+        self.assertEqual(bars[0]['offers'], kept)
+        offer = bars[1]['offers'][0]
+        self.assertEqual((offer['name'], offer['scoops'], offer['priceChf'], offer['pricePerScoopChf'], offer['glaceType']), ('2 Kugeln', 2, 8.0, 4.0, 'glace'))
 
     def test_scan_skips_shops_after_the_time_limit(self):
         class NoFetch:

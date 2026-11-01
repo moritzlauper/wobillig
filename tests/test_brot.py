@@ -90,6 +90,16 @@ class BreadDataset(unittest.TestCase):
         groups = candidates(bars, {'node/5': 'https://e.example/'})
         self.assertEqual(sorted(group[0]['id'] for group in groups.values()), ['node/1', 'node/5'])
 
+    def test_chain_branches_share_one_read(self):
+        bars = [
+            {'id': 'node/1', 'name': 'John Baker', 'type': 'bakery', 'website': 'https://www.johnbaker.ch/'},
+            {'id': 'node/2', 'name': 'John Baker Stadelhofen', 'type': 'bakery', 'website': 'https://johnbaker.ch/stadelhofen'},
+            {'id': 'node/3', 'name': 'Café Bäckerei', 'type': 'bakery', 'website': 'https://wixsite.com/a'},
+            {'id': 'node/4', 'name': 'Andere Bäckerei', 'type': 'bakery', 'website': 'https://wixsite.com/b'},
+        ]
+        groups = candidates(bars, {})
+        self.assertEqual({name: [bar['id'] for bar in group] for name, group in groups.items()}, {'johnbaker.ch': ['node/1', 'node/2']})
+
     def test_dataset_publishes_only_bakeries_with_bread_prices(self):
         def bar(number):
             return {'id': f'node/{number}', 'name': f'Bäckerei {number}', 'lat': 47.37, 'lon': 8.54, 'type': 'bakery', 'website': f'https://{number}.example/'}

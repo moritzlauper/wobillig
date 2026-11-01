@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       ai_budget_usd:
-        description: Haiku 5.5 API budget in USD (hard cap 2.00)
+        description: Haiku 5.5 API budget in USD (hard cap 3.00)
         type: number
         default: 1
       tief:
