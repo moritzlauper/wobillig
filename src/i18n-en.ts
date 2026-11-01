@@ -669,7 +669,6 @@ export const en: Record<string, string> = {
   'Dürüm / Im Brot': 'Dürüm / in bread',
   'Im Brot': 'In bread',
   'Alle Portionen': 'All portions',
-  'Füllung': 'Filling',
   'Kebab oder Falafel': 'Kebab or falafel',
   'Kebab': 'Kebab',
 };

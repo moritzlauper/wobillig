@@ -28,7 +28,7 @@ import { pizzaVarieties, beerVarieties, cocktailVarieties, softdrinkVarieties, h
 import { beerGroupLabels, parseBeerSelection } from './beer-selection';
 import { parsePizzaSelection, pizzaGroupLabels, type PizzaGroup } from './pizza-selection';
 import { burgerSelectionLabels, parseBurgerSelection } from './burger-selection';
-import { mergeStreetfood, parseStreetfoodFood, parseStreetfoodPortion, streetfoodFoodLabels, streetfoodPortionLabels } from './streetfood-selection';
+import { mergeStreetfood, parseStreetfoodPortion, streetfoodFoodLabels, streetfoodPortionLabels } from './streetfood-selection';
 import { cocktailSelectionLabels, parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize, softdrinkSelectionLabels, softdrinkSizeLabels, softdrinkSizes } from './gastro-selection';
 import type { Category } from './categories';
 import { showGoogleRating, clearGoogleRating } from './google-rating';
@@ -133,9 +133,9 @@ $('app').innerHTML = `
     <label>${t('Bier')} <select id="beer-selection" aria-label="${t('Bier auswählen')}"><option value="all">${t('Alle Biere')}</option></select></label>
     <input id="beer-query" type="search" maxlength="120" placeholder="${t('z. B. Quöllfrisch')}" aria-label="${t('Biername oder Marke')}">
   </div>
-  <label id="streetfood-food-label" hidden>${t('Füllung')} <select id="streetfood-food" aria-label="${t('Kebab oder Falafel')}">${options(translated(streetfoodFoodLabels))}</select></label>
+  <span id="streetfood-food-label" class="streetfood-food" role="group" aria-label="${t('Kebab oder Falafel')}" hidden><label><input id="streetfood-doner" type="checkbox" checked> Kebab</label><label><input id="streetfood-falafel" type="checkbox" checked> Falafel</label></span>
   <label id="softdrink-size-label" hidden>${t('Grösse')} <select id="softdrink-size" aria-label="${t('Softdrinkgrösse')}">${softdrinkSizes.map(size => `<option value="${size}">${e(t(softdrinkSizeLabels[size]))}</option>`).join('')}</select></label>
-  <label>${t('Lokal')} <select id="type">${options(venueTypes)}</select></label>
+  <label id="type-label">${t('Lokal')} <select id="type">${options(venueTypes)}</select></label>
   <label><input id="unknown" type="checkbox" checked> ${t('Ohne passenden Preis anzeigen')}</label>
   <label><input id="outdoor" type="checkbox"> ${t('Draussen sitzen')}</label>
   <label id="alcohol-label"><input id="alcohol-free" type="checkbox"> ${t('Alkoholfrei')}</label>
@@ -334,6 +334,8 @@ function syncControls() {
   document.title = coffee() ? coffeePageTitle : t('{heading} vergleichen | wobillig', { heading });
   $<HTMLSelectElement>('type').innerHTML = options(venueTypes);
   $<HTMLSelectElement>('type').value = f.type;
+  // Kebab and falafel always include Imbiss stands, so the venue choice would only mislead.
+  $('type-label').hidden = streetfood();
   $('beer-controls').hidden = !beer(); $('coffeeType').hidden = !coffee();
   $('beer-selection-controls').hidden = !beer();
   const beerSelect = $<HTMLSelectElement>('beer-selection');
@@ -351,7 +353,8 @@ function syncControls() {
   $('streetfood-controls').hidden = !streetfood();
   $<HTMLSelectElement>('streetfood-portion').value = f.streetfoodPortion || 'snack';
   $('streetfood-food-label').hidden = !streetfood();
-  $<HTMLSelectElement>('streetfood-food').value = f.streetfoodFood || 'all';
+  $<HTMLInputElement>('streetfood-doner').checked = f.streetfoodFood !== 'falafel';
+  $<HTMLInputElement>('streetfood-falafel').checked = f.streetfoodFood !== 'doner';
   $('softdrink-controls').hidden = !softdrink();
   $('softdrink-size-label').hidden = !softdrink();
   syncSearchRow();
@@ -848,7 +851,7 @@ $('price').onkeydown = event => {
 // Choosing another product (Espresso instead of Cappuccino, another size or pizza) opens at its own cheap price,
 // like a category switch. This runs in the capture phase, before each control's own handler renders.
 const productControls = new Set(['coffeeType', 'volume', 'beer-type', 'beer-selection', 'beer-query', 'pizza-selection', 'pizza-query',
-  'burger-selection', 'streetfood-portion', 'streetfood-food', 'softdrink-selection', 'softdrink-size', 'cocktail-selection']);
+  'burger-selection', 'streetfood-portion', 'streetfood-doner', 'streetfood-falafel', 'softdrink-selection', 'softdrink-size', 'cocktail-selection']);
 for (const type of ['change', 'input']) document.addEventListener(type, event => {
   if (event.target instanceof HTMLElement && productControls.has(event.target.id)) { cheapMode = true; f.max = Infinity; }
 }, true);
@@ -868,8 +871,10 @@ $('streetfood-portion').onchange = () => {
   selected = undefined;
   render();
 };
-$('streetfood-food').onchange = () => {
-  f.streetfoodFood = parseStreetfoodFood($<HTMLSelectElement>('streetfood-food').value);
+// Both are on by default; switching one off shows only the other, and the last one cannot be switched off.
+for (const [id, other, only] of [['streetfood-doner', 'streetfood-falafel', 'falafel'], ['streetfood-falafel', 'streetfood-doner', 'doner']] as const) $(id).onchange = () => {
+  if (!$<HTMLInputElement>(id).checked && !$<HTMLInputElement>(other).checked) $<HTMLInputElement>(other).checked = true;
+  f.streetfoodFood = $<HTMLInputElement>(id).checked ? ($<HTMLInputElement>(other).checked ? undefined : only === 'falafel' ? 'doner' : 'falafel') : only;
   selected = undefined;
   render();
 };

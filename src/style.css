@@ -132,6 +132,7 @@ a { color: var(--link); text-underline-offset: 2px; }
 #filters-toggle[aria-expanded=true] .filter-chevron { transform: translateY(2px) rotate(225deg); }
 #filters { font-size: var(--font-control); display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; padding: 10px; background: var(--soft); border-bottom: 1px solid var(--divider); }
 #filters label { display: flex; align-items: center; gap: 4px; }
+.streetfood-food:not([hidden]) { display: flex; gap: 12px 20px; }
 .status-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 36px; padding: 3px 10px; color: var(--secondary); border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
 .status-summary { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 16px; min-width: 0; }
 #city-average { color: var(--text); font-size: 14px; white-space: nowrap; }
