@@ -7,22 +7,27 @@ test.beforeEach(async ({ context }) => {
   for (const dataset of ['burger', 'ramen', 'gastro-softdrink', 'gastro-cocktail', 'locations']) {
     await context.route(`**/data/${dataset}.json`, route => route.fulfill({ json: { bars: [] } }));
   }
-  for (const foodType of ['doner', 'falafel']) {
-    await context.route(`**/data/**${foodType}.json`, route => route.fulfill({ json: {
-      bars: [{ type: 'fast_food', offers: Array.from({ length: 50 }, () => ({ foodType, portionType: 'wrap', priceChf: 12 })) }],
-    } }));
+  for (const foodType of ['doner', 'falafel'] as const) {
+    await context.route(`**/data/**${foodType}.json`, route => route.fulfill({ json: streetfood(foodType, 3) }));
   }
 });
 
+// Imbiss stands with one priced Dürüm each, as published by the döner and falafel scan.
+function streetfood(foodType: 'doner' | 'falafel', venues: number) {
+  return { generatedAt: '', discoveredAt: '', attribution: '', bars: Array.from({ length: venues }, (_, index) => ({
+    id: `node/${foodType}-${index}`, name: `${foodType} ${index}`, type: 'fast_food', lat: 47.378, lon: 8.53 + index * .002,
+    address: 'Testgasse 1', postcode: '8005', website: null, openingHours: null, outdoor: false, scrapeStatus: 'prices_found', checkedAt: null,
+    offers: [{ name: 'Dürüm', foodType, portionType: 'wrap', priceChf: 12 + index, volumeMl: null, alcoholFree: true, confidence: 'ai', observedAt: '2026-10-30', sourceUrl: '', evidence: '' }],
+  })) };
+}
+
 for (const [doner, falafel, visible] of [
-  [49, 49, []], [50, 49, ['Döner']], [49, 50, ['Falafel']], [50, 50, ['Döner', 'Falafel']],
+  [2, 2, []], [3, 2, ['Döner']], [2, 3, ['Falafel']], [3, 3, ['Döner', 'Falafel']],
 ] as const) {
-  test(`price threshold is independent for each category: ${doner} doner, ${falafel} falafel`, async ({ page }) => {
+  test(`venue threshold is independent for each category: ${doner} doner, ${falafel} falafel`, async ({ page }) => {
     await page.route('**/api/categories', route => route.fulfill({ json: { counts: { doner: 9999, falafel: 9999 } } }));
     for (const [foodType, count] of [['doner', doner], ['falafel', falafel]] as const) {
-      await page.route(`**/data/${foodType}.json`, route => route.fulfill({ json: {
-        bars: [{ type: 'fast_food', offers: Array.from({ length: count }, () => ({ foodType, portionType: 'wrap', priceChf: 12 })) }],
-      } }));
+      await page.route(`**/data/${foodType}.json`, route => route.fulfill({ json: streetfood(foodType, count) }));
     }
     const loaded = Promise.all(['doner', 'falafel'].map(category => page.waitForResponse(`**/data/${category}.json`)));
     await page.goto('/');
@@ -80,13 +85,12 @@ for (const width of [320, 390, 1280]) {
     expect(menu!.x).toBeGreaterThanOrEqual(0);
     expect(menu!.x + menu!.width).toBeLessThanOrEqual(width);
     await page.screenshot({ path: `/tmp/wobillig-categories-${width}.png` });
-    await page.getByRole('button', { name: 'Döner · Bald verfügbar' }).click();
-    await expect(page.getByRole('dialog', { name: 'Döner · Bald verfügbar' })).toBeVisible();
+    await page.getByRole('button', { name: 'Döner', exact: true }).click();
+    await expect(page.locator('#map-title')).toHaveText('Dönerpreise Zürich');
     await expect.poll(() => clicks).toEqual(['doner']);
+    // However often they are clicked, döner and falafel stay behind "Weitere".
     await expect(page.locator('#primary-categories button')).toHaveText(['Kaffee', 'Pizza', 'Bier']);
-    expect(clicks).toEqual(['doner']);
-    await page.getByRole('button', { name: 'Schliessen', exact: true }).click();
-    await expect(page.locator('#categories-toggle')).toBeFocused();
+    await expect(page.locator('#categories-toggle')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#drink-doner')).toBeHidden();
     await expect(page.locator('#drink-falafel')).toBeHidden();
     await page.locator('#categories-toggle').click();
@@ -98,7 +102,7 @@ for (const width of [320, 390, 1280]) {
     await expect(page.locator('#categories-toggle')).toHaveAttribute('aria-pressed', 'false');
     await expect(page.locator('#categories-toggle')).toHaveAccessibleName('Weitere Kategorien');
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
-    // Even in a city without Pizza, popular upcoming categories stay in More.
+    // Even in a city without Pizza and without döner prices, popular categories do not move up.
     const other = await context.newPage();
     await other.route('**/data/bern/pizza.json', route => route.fulfill({ json: {
       bars: [], generatedAt: '2026-10-20', discoveredAt: '2026-10-20', attribution: '',
@@ -118,7 +122,7 @@ test('keyboard, outside click and English menu work when popularity storage fail
   const toggle = page.getByRole('button', { name: 'More categories', exact: true });
   await toggle.focus();
   await toggle.press('ArrowDown');
-  await expect(page.getByRole('button', { name: 'Doner kebab · Coming soon' })).toBeFocused();
+  await expect(page.getByRole('button', { name: 'Doner kebab', exact: true })).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(page.locator('#additional-categories')).toBeHidden();
   await expect(toggle).toBeFocused();
@@ -128,8 +132,8 @@ test('keyboard, outside click and English menu work when popularity storage fail
   await page.locator('#drink-beer').click();
   await expect(page.locator('#drink-beer')).toHaveAttribute('aria-pressed', 'true');
   await toggle.click();
-  await page.getByRole('button', { name: 'Falafel · Coming soon' }).click();
-  await expect(page.getByRole('dialog')).toContainText('Prices are not available for this category yet.');
+  await page.getByRole('button', { name: 'Falafel', exact: true }).click();
+  await expect(page.locator('#map-title')).toContainText('Falafel prices');
 });
 
 test('a delayed ranking does not move buttons while the menu is open', async ({ page }) => {

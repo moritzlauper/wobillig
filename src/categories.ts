@@ -31,6 +31,7 @@ export const categoryPeriodStart = (period: number) => period * 2 * dayMs;
 
 // Coffee and pizza always lead the row; the two most clicked other categories follow.
 // Every other period the fourth place goes to another category in turn, so it can collect clicks too.
+// Döner and falafel always stay behind "Weitere", however often they are clicked.
 export function featuredCategories(counts: CategoryCounts, available: readonly Category[], period: number, size = 4): Category[] {
   const fixed = (['coffee', 'pizza'] as const).filter(category => available.includes(category));
   const pool = available.filter(category => !fixed.includes(category as 'coffee' | 'pizza') && category !== 'doner' && category !== 'falafel')

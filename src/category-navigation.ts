@@ -1,11 +1,10 @@
-import { categories, categoryCounts, categoryPeriod, emptyCategoryCounts, featuredCategories, rankedCategories, streetfoodPriceCount, type Category } from './categories';
+import { categories, categoryCounts, categoryPeriod, emptyCategoryCounts, featuredCategories, rankedCategories, type Category } from './categories';
 import type { Drink } from './community';
 import { t } from './i18n';
 import type { PublicMap } from './custom-map-data';
 
-export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void, dataPath: string) {
+export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void) {
   const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), ramen: t('Ramen'), burger: t('Burger'), softdrink: t('Softdrinks'), cocktail: t('Cocktails'), pizza: 'Pizza', doner: t('Döner'), falafel: 'Falafel' };
-  const upcoming = (category: Category) => category === 'doner' || category === 'falafel';
   root.innerHTML = `<div id="primary-categories" class="switch" role="group" aria-label="${t('Kategorie')}"></div>
     <div class="more-categories"><button id="categories-toggle" type="button" aria-expanded="false" aria-controls="additional-categories" aria-label="${t('Weitere Kategorien')}" title="${t('Weitere Kategorien')}"><span class="more-label">${t('Weitere')}</span><span class="filter-chevron" aria-hidden="true"></span></button>
     <div id="additional-categories" role="group" aria-label="${t('Weitere Kategorien')}" hidden></div></div>`;
@@ -13,30 +12,18 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   const more = root.querySelector<HTMLElement>('#additional-categories')!;
   const toggle = root.querySelector<HTMLButtonElement>('#categories-toggle')!;
   const moreContainer = root.querySelector<HTMLElement>('.more-categories')!;
-  const priceCounts = { doner: 0, falafel: 0 };
-  const dialog = document.createElement('dialog');
-  dialog.id = 'upcoming-category';
-  dialog.setAttribute('aria-labelledby', 'upcoming-category-title');
-  dialog.innerHTML = `<h2 id="upcoming-category-title"></h2><p>${t('Für diese Kategorie sind noch keine Preise verfügbar.')}</p><form method="dialog"><button>${t('Schliessen')}</button></form>`;
-  root.append(dialog);
   let counts = emptyCategoryCounts(), unavailable: ReadonlySet<Category> = new Set(), active: Drink = 'coffee';
-  let clicked: Category = 'coffee';
   let requestVersion = 0;
   let pendingClicks = Promise.resolve();
   let mapButtons: HTMLButtonElement[] = [], savedMapButtons: HTMLButtonElement[] = [];
   const buttons = Object.fromEntries(categories.map(category => {
     const button = document.createElement('button');
     button.id = `drink-${category}`; button.type = 'button';
-    button.setAttribute('aria-label', upcoming(category) ? `${labels[category]} · ${t('Bald verfügbar')}` : labels[category]);
+    button.setAttribute('aria-label', labels[category]);
     button.textContent = labels[category];
-    if (upcoming(category)) button.title = t('Bald verfügbar');
     button.onclick = () => {
-      clicked = category;
       close();
-      if (category === 'doner' || category === 'falafel') {
-        dialog.querySelector('h2')!.textContent = `${labels[category]} · ${t('Bald verfügbar')}`;
-        dialog.showModal();
-      } else choose(category);
+      choose(category);
       // Serialize responses so a slower earlier click cannot undo a newer ranking.
       ++requestVersion;
       pendingClicks = pendingClicks.then(async () => {
@@ -61,8 +48,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   }
   function render() {
     const focused = document.activeElement;
-    const order = rankedCategories(counts, unavailable).filter(category =>
-      category !== 'doner' && category !== 'falafel' || priceCounts[category] >= 50);
+    const order = rankedCategories(counts, unavailable);
     // Only the featured categories stay in the row; every other category, new ones included, sits behind "Weitere".
     const featured = featuredCategories(counts, order, categoryPeriod());
     const collapsed = (category: Category) => !featured.includes(category);
@@ -112,7 +98,6 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   });
   document.addEventListener('pointerdown', event => { if (!more.hidden && !root.contains(event.target as Node)) close(); });
   root.addEventListener('focusout', event => { if (!more.hidden && event.relatedTarget && !root.contains(event.relatedTarget as Node)) close(); });
-  dialog.addEventListener('close', () => (primary.contains(buttons[clicked]) ? buttons[clicked] : toggle).focus());
   async function refresh() {
     const version = ++requestVersion;
     try {
@@ -127,17 +112,6 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   }
   render();
   void refresh();
-  // Price availability comes from this city's datasets, independently of click popularity.
-  for (const category of ['doner', 'falafel'] as const) {
-    void (async () => {
-      try {
-        const response = await fetch(`${dataPath}${category}.json`, { signal: AbortSignal.timeout(15000) });
-        if (!response.ok) return;
-        priceCounts[category] = streetfoodPriceCount(await response.json(), category);
-        render();
-      } catch { /* Missing or unreadable datasets keep the category hidden. */ }
-    })();
-  }
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') void refresh(); });
   return {
     setCustomMaps(maps: PublicMap[], load: (id: string) => void) {

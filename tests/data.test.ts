@@ -442,3 +442,27 @@ describe("cheap price shortcut", () => {
     expect(cheapPriceLimit(venues([5.1, 5.1, 5.1]), f)).toBe(5.1);
   });
 });
+
+describe("döner and falafel", () => {
+  const base = { sourceUrl: "https://example.ch", observedAt: "2026-11-01", confidence: "ai" as const, evidence: "", alcoholFree: true, volumeMl: null };
+  const imbiss: Bar = {
+    id: "i", name: "Imbiss", lat: 47.37, lon: 8.54, type: "fast_food", address: "", postcode: "8005", website: null, openingHours: null, outdoor: false, scrapeStatus: "prices_found", checkedAt: null,
+    offers: [
+      { ...base, name: "Kebab Teller", foodType: "doner", portionType: "plate", priceChf: 22 },
+      { ...base, name: "Dürüm", foodType: "doner", portionType: "wrap", priceChf: 12.5 },
+      { ...base, name: "Kebab im Brot", foodType: "doner", portionType: "bread", priceChf: 11 },
+      { ...base, name: "Falafel Wrap", foodType: "falafel", portionType: "wrap", priceChf: 10 },
+    ],
+  };
+  const doner = { ...f, drink: "doner" as const, max: Infinity };
+  it("compares Dürüm and döner in bread by default, plates on their own", () => {
+    expect(matchingOffers(imbiss, doner).map(o => o.name)).toEqual(["Kebab im Brot", "Dürüm"]);
+    expect(matchingOffers(imbiss, { ...doner, streetfoodPortion: "plate" }).map(o => o.name)).toEqual(["Kebab Teller"]);
+    expect(matchingOffers(imbiss, { ...doner, streetfoodPortion: "all" })).toHaveLength(3);
+    expect(bestOffer(imbiss, { ...doner, drink: "falafel" })?.name).toBe("Falafel Wrap");
+  });
+  it("keeps Imbiss stands without a venue choice", () => {
+    expect(filterBars([imbiss], doner)).toHaveLength(1);
+    expect(filterBars([imbiss], { ...doner, type: "restaurant" })).toHaveLength(0);
+  });
+});

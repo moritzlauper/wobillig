@@ -228,8 +228,6 @@ export const en: Record<string, string> = {
   'Weitere': 'More',
   'Weitere Kategorien': 'More categories',
   'Döner': 'Doner kebab',
-  'Bald verfügbar': 'Coming soon',
-  'Für diese Kategorie sind noch keine Preise verfügbar.': 'Prices are not available for this category yet.',
   // Offers and coverage
   'Offenbier': 'Draught beer',
   'Flaschenbier': 'Bottled beer',
@@ -662,4 +660,14 @@ export const en: Record<string, string> = {
   '3 / 3.3 dl': '3 / 3.3 dl',
   '2 dl': '2 dl',
   '5 dl': '5 dl',
+  'Dönerpreis': 'döner price',
+  'Falafelpreis': 'falafel price',
+  'Teller': 'Plate',
+  'im Brot': 'in bread',
+  'Dürüm / Wrap': 'Dürüm / wrap',
+  'Portion': 'Portion',
+  'Dönerpreise {city}': 'Döner prices {city}',
+  'Falafelpreise {city}': 'Falafel prices {city}',
+  'Dürüm & im Brot': 'Dürüm & in bread',
+  'Alle Portionen': 'All portions',
 };

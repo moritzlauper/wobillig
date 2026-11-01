@@ -3,6 +3,7 @@ import { t } from './i18n.js';
 import { pizzaGroup, pizzaGroupLabels, pizzaNameKey, type PizzaGroup, type PizzaSelection } from './pizza-selection.js';
 import { beerGroup, beerGroupLabels, normalizeBeerName, type BeerSelection } from './beer-selection.js';
 import { type BurgerSelection } from './burger-selection.js';
+import { matchesStreetfoodPortion, type StreetfoodPortion } from './streetfood-selection.js';
 import { cocktailGroup, cocktailSelectionLabels, matchesSoftdrinkSize, softdrinkGroups, softdrinkSelectionLabels, type CocktailGroup, type CocktailSelection, type SoftdrinkGroup, type SoftdrinkSelection, type SoftdrinkSize } from './gastro-selection.js';
 import { isGlutenFreeOffer, isGlutenFreePizzeria } from './gluten-free.js';
 
@@ -19,6 +20,9 @@ export type Offer = {
   glutenFree?: boolean;
   // Set by the gastro scan. Its bread dataset is not loaded, so "brot" never reaches the app.
   gastroType?: "softdrink" | "cocktail";
+  // Döner and falafel scan: the portion decides what is compared.
+  foodType?: "doner" | "falafel";
+  portionType?: "wrap" | "bread" | "plate";
   priceContext?: "online_menu";
   coffeeType?: string;
   serving?: "stange";
@@ -78,8 +82,9 @@ export type Dataset = {
 export type Filters = {
   pizzaSelection?: PizzaSelection;
   pizzaQuery?: string;
-  drink?: "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail";
+  drink?: "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail" | "doner" | "falafel";
   burgerSelection?: BurgerSelection;
+  streetfoodPortion?: StreetfoodPortion;
   softdrinkSize?: SoftdrinkSize;
   softdrinkSelection?: SoftdrinkSelection;
   cocktailSelection?: CocktailSelection;
@@ -105,11 +110,12 @@ export const coffeeLabels: Record<string, string> = {
   matcha_latte: "Matcha Latte",
 };
 export function portion(o: Offer) {
+  if (o.foodType) return o.portionType === "plate" ? t('Teller') : o.portionType === "bread" ? t('im Brot') : t('Dürüm / Wrap');
   if (o.gastroType) return o.volumeMl ? `${o.volumeMl / 100} dl` : "";
   return o.pizzaType ? (o.priceContext === "online_menu" ? t('Onlinepreis') : "") : (o.ramenType || o.burgerType) ? t('Standardportion') : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
 }
-export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail" {
-  return o.gastroType || (o.burgerType ? "burger" : o.ramenType ? "ramen" : o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer");
+export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail" | "doner" | "falafel" {
+  return o.gastroType || o.foodType || (o.burgerType ? "burger" : o.ramenType ? "ramen" : o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer");
 }
 // Keep in sync with scraper/beer_rules.py.
 export function isBeerMix(name: string): boolean {
@@ -250,6 +256,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
         f.drink === "pizza" ? matchesPizza(o, f, bar) :
         f.drink === "ramen" ? Boolean(o.ramenType) :
         f.drink === "burger" ? matchesBurger(o, f) :
+        f.drink === "doner" || f.drink === "falafel" ? matchesStreetfoodPortion(o.portionType, f.streetfoodPortion) :
         f.drink === "softdrink" ? matchesSoftdrink(o, f) :
         f.drink === "cocktail" ? matchesCocktail(o, f) :
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
@@ -297,7 +304,8 @@ function venueCategory(type: string): string {
 }
 
 export function matchesVenueType(bar: Bar, f: Filters): boolean {
-  if (!f.type) return bar.type !== "fast_food";
+  // Döner and falafel are mostly sold at Imbiss stands, so those count without a venue choice.
+  if (!f.type) return bar.type !== "fast_food" || f.drink === "doner" || f.drink === "falafel";
   return f.type === "all" || venueCategory(bar.type) === f.type;
 }
 
