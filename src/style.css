@@ -162,9 +162,9 @@ a { color: var(--link); text-underline-offset: 2px; }
 .mobile-switch { display: none; }
 #load-error { background: var(--warning); padding: 8px 12px; font-size: var(--font-control); }
 main { display: flex; flex: 1; min-height: 0; }
-.app-footer { position: absolute; right: calc(52px + env(safe-area-inset-right, 0px)); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); z-index: 500; font-size: var(--font-meta); }
+.app-footer { position: absolute; right: calc(8px + env(safe-area-inset-right, 0px)); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); z-index: 500; font-size: var(--font-meta); }
 .app-footer a, .app-footer button { display: inline-flex; align-items: center; flex-shrink: 0; white-space: nowrap; min-height: 24px; padding: 2px 5px; border: 0; border-radius: 3px; background: var(--overlay); color: var(--secondary); font: inherit; text-decoration: underline; text-underline-offset: 2px; }
-.app-footer { display: flex; gap: 2px; justify-content: flex-end; max-width: calc(100% - 64px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)); }
+.app-footer { display: flex; gap: 2px; justify-content: flex-end; max-width: calc(100% - 16px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)); }
 .app-footer #tip-coffee { display: block; flex-shrink: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .list-panel { flex: 0 0 300px; overflow-y: auto; border-right: 1px solid var(--strong-border); }
 .list-tools { padding: 8px; border-bottom: 1px solid var(--divider); }
@@ -325,7 +325,8 @@ dialog::backdrop { background: var(--backdrop); }
   .city-switch a { padding-block: 5px; }
   .status-meta { gap: 6px; }
   #data-info { min-height: 24px; font-size: var(--font-control); }
-  .map-actions { left: 8px; right: 8px; top: 8px; }
+  /* On phones the price slider sits at the bottom of the map, within thumb reach, above the footer links. */
+  .map-actions { left: 8px; right: 8px; top: auto; bottom: calc(50px + env(safe-area-inset-bottom, 0px)); }
   #filters { gap: 10px; max-height: 30dvh; overflow-y: auto; font-size: var(--font-control); }
   .list-panel { display: none; flex-basis: 100%; border: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .show-list .list-panel { display: block; }
