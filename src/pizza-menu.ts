@@ -10,7 +10,7 @@ export function pizzaMenuContent(items: PizzaMenuItem[] = []): string {
     return `<div class="offer"><div class="offer-top"><strong>${e(item.name)}</strong><strong class="nowrap">CHF ${item.priceChf.toFixed(2)}</strong></div>
       ${item.ingredients ? `<p class="muted">${e(item.ingredients)}</p>` : ''}
       ${item.priceContext === 'online_menu' ? `<div class="muted">${t('Onlinepreis')}</div>` : ''}
-      <div class="offer-meta"><span>${item.confidence === 'ai' ? t('KI-erkannt') : t('Automatisch erkannt')} · ${e(date)}</span>
+      <div class="offer-meta"><span>${e(date)}</span>
       ${safeUrl(item.sourceUrl) ? `<a href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${t('Quelle')}</a>` : ''}</div></div>`;
   }).join('')}</section>`;
 }

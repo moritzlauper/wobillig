@@ -550,8 +550,6 @@ export const en: Record<string, string> = {
   'Google-Maps-Foto': 'Google Maps photo',
   'Foto-Upload': 'Photo upload',
   'Eingetragen': 'Added by a visitor',
-  'KI-erkannt': 'Recognised by AI',
-  'Automatisch erkannt': 'Recognised automatically',
   'Quelle': 'Source',
   'Ändern': 'Edit',
   'Noch kein Preis eingetragen.': 'No price added yet.',
