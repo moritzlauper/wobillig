@@ -1,6 +1,873 @@
 {
-  "generatedAt": "2026-11-02T13:00:00+00:00",
-  "discoveredAt": "2026-11-02T13:00:00+00:00",
+  "generatedAt": "2026-11-02T14:26:12.016883+00:00",
+  "discoveredAt": "2026-11-02T14:15:13.541548+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
-  "bars": []
+  "bars": [
+    {
+      "id": "node/3673086990",
+      "name": "Angolo",
+      "lat": 47.0570701,
+      "lon": 8.3111267,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "http://angolopizza-luzern.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Th 11:00-14:30,17:30-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-02T14:15:13.553402+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/1814750677",
+      "name": "Basilico",
+      "lat": 47.0470664,
+      "lon": 8.3080462,
+      "type": "restaurant",
+      "address": "Hirschmattstrasse 29",
+      "postcode": "6003",
+      "website": "https://www.basilico-luzern.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:00, Mo-Th 17:30-22:30, Fr,Sa 17:30-23:30; Su off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.0,
+          "sourceUrl": "https://basilico-luzern.ch/wp-content/uploads/2022/10/BASILICO_SPEISEKARTE_abc_GzD.pdf",
+          "observedAt": "2026-11-02T14:16:31.938013+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: MARGHERITA 17.00",
+          "alcoholFree": true,
+          "sourceSha256": "0b1aea23569463192634ed81bdaf99952fb5c1d3bb792c10ef93de3f625bf093"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:16:31.938013+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/14114643055",
+      "name": "Berliner Bro",
+      "lat": 47.0491285,
+      "lon": 8.2626595,
+      "type": "fast_food",
+      "address": "Luzernerstrasse 143",
+      "postcode": "",
+      "website": "https://berlinerbro.ch/",
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": "Mo-Th 10:00-20:00;Fr-Sa 10:00-23:00;Su 11:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 13.5,
+          "sourceUrl": "https://berlinerbro.ch/",
+          "observedAt": "2026-11-02T14:16:49.060297+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita 13.50",
+          "alcoholFree": true,
+          "sourceSha256": "8e1120e7b9e6c8fd6e8a4b2a09136e7e1b916d45db37e1ea3b6f37aec81dccae"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:16:49.060297+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/6419146490",
+      "name": "Best Pizza",
+      "lat": 47.0536712,
+      "lon": 8.2931153,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1488843034",
+      "name": "Best Pizza Kurier",
+      "lat": 47.0535327,
+      "lon": 8.2942776,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1327348697",
+      "name": "Cara Mia Ristorante",
+      "lat": 47.0508958,
+      "lon": 8.302812,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://caramia-luzern.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Tu-Fr 11:00-14:00,17:00-23:00; Sa 11:30-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 22.0,
+          "sourceUrl": "https://caramia-luzern.ch/menu/",
+          "observedAt": "2026-11-02T14:15:13.603472+00:00",
+          "confidence": "automatic",
+          "evidence": "Margherita Tomatensauce, Fior di latte, Basilikum Salsa di pomodoro, fior di latte, basilico CHF 22",
+          "alcoholFree": true,
+          "sourceSha256": "d23176607b3aa2e3965ce0b06cc542d745c77ed0540611098f1bf652a1245f60"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:15:13.603472+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/1573053738",
+      "name": "Caravelle",
+      "lat": 47.0575841,
+      "lon": 8.3109426,
+      "type": "restaurant",
+      "address": "Denkmalstrasse 2",
+      "postcode": "6006",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "italian"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/10028851525",
+      "name": "Centro",
+      "lat": 47.036878,
+      "lon": 8.3289852,
+      "type": "restaurant",
+      "address": "Langensandstrasse 25a",
+      "postcode": "6005",
+      "website": "https://ristorante-centro.ch/",
+      "cuisine": [
+        "italian",
+        "italian_pizza"
+      ],
+      "openingHours": "Mo-Sa 08:00-23:00; Su 11:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://ristorante-centro.ch/fileadmin/user_upload/speisekarten/Ristorante-Centro_Speisekarte__NOVIEMBRE_2026_PRECIOS_NUEVOS.pdf",
+          "observedAt": "2026-11-02T14:17:28.799660+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: Margherita Tomaten, Mozzarella, Oregano Fr. 19.50",
+          "alcoholFree": true,
+          "sourceSha256": "dac034d6abd609afbd3b27a0196286f72e01bc87a8c3873d114aaf0fe30ee534"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:17:28.799660+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/4120523387",
+      "name": "Da Ernesto",
+      "lat": 47.0519618,
+      "lon": 8.3066191,
+      "type": "restaurant",
+      "address": "Rathausquai 11",
+      "postcode": "6004",
+      "website": "https://www.da-ernesto.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo,We-Fr 11:30-23:00; Tu,Sa 13:00-23:00; Su 11:30-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.da-ernesto.ch/wp-content/uploads/sites/7/2026/11/RZ_DaErnesto_Speisekarte_A4_aktuell_202611-CICD-Farbe.pdf",
+          "observedAt": "2026-11-02T14:17:31.870144+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 7: Pizza Margherita 19.50",
+          "alcoholFree": true,
+          "sourceSha256": "78f121d382902946b02afd3c39b3b93b6cf8c52fb0aa3c830fa6e54a3239ee98"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:17:31.870144+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/1351224757",
+      "name": "Daily Pizza",
+      "lat": 47.0482946,
+      "lon": 8.3093839,
+      "type": "fast_food",
+      "address": "Zentralstrasse 16",
+      "postcode": "6003",
+      "website": "https://luzern.dailypizza.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th,Su 10:30-23:00; Fr,Sa 10:30-00:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-11-02T14:15:13.552292+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.dailypizza.ch/luzern",
+        "evidence": "Deine Pizzeria in Luzern: Frische Pizzen für jeden Geschmack"
+      }
+    },
+    {
+      "id": "node/5836796342",
+      "name": "Dieci Pizzakurier",
+      "lat": 47.045078,
+      "lon": 8.3036813,
+      "type": "fast_food",
+      "address": "Obergrundstrasse 70",
+      "postcode": "6003",
+      "website": "https://dieci.ch/de/pizzakurier-luzern",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 11:00-13:30,17:00-22:00; Su 11:00-22:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-02T14:15:13.552718+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/1353867475",
+      "name": "Disco Pizza",
+      "lat": 47.0511592,
+      "lon": 8.3013225,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://discopizza.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-11-02T14:15:13.552844+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/1504787063",
+      "name": "Domino's",
+      "lat": 47.0592624,
+      "lon": 8.3092302,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4609332522",
+      "name": "Don Carlos",
+      "lat": 47.0610049,
+      "lon": 8.2746584,
+      "type": "restaurant",
+      "address": "Ruopigenplatz 14",
+      "postcode": "6015",
+      "website": "https://doncarlos.ch",
+      "cuisine": [
+        "mediterranean",
+        "pizza"
+      ],
+      "openingHours": "Mo,Su,PH off; Tu-Sa 11:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.0,
+          "sourceUrl": "https://doncarlos.ch/wp-content/uploads/2026/03/2026.03.V02_DC_Speisekarte.pdf",
+          "observedAt": "2026-11-02T14:15:13.589748+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 5: Pizza Margherita 18",
+          "alcoholFree": true,
+          "sourceSha256": "82e4cada9df96c167a2b687aa5f278b4dc99117d5f8266b9d58f8447742c7382"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:15:13.589748+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/5732675469",
+      "name": "Falkens's Burger & Pizza",
+      "lat": 47.0490122,
+      "lon": 8.3008805,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "burger",
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/12828342919",
+      "name": "Food Brothers",
+      "lat": 47.0660029,
+      "lon": 8.2819597,
+      "type": "fast_food",
+      "address": "Hauptstrasse 50",
+      "postcode": "6015",
+      "website": null,
+      "cuisine": [
+        "kebab",
+        "pizza",
+        "burger"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1488843090",
+      "name": "Gimi's Pizza & Panini",
+      "lat": 47.0538381,
+      "lon": 8.292497,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/6071417754",
+      "name": "Inseli",
+      "lat": 47.0490607,
+      "lon": 8.3136652,
+      "type": "fast_food",
+      "address": "Inseliquai 10",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab",
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/769075245",
+      "name": "Kebab und Pizza House Littau",
+      "lat": 47.0490381,
+      "lon": 8.259599,
+      "type": "fast_food",
+      "address": "Renggstrasse 2",
+      "postcode": "6014",
+      "website": null,
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1423740034",
+      "name": "La Baracca",
+      "lat": 47.0500866,
+      "lon": 8.3067964,
+      "type": "restaurant",
+      "address": "Theaterstrasse 7",
+      "postcode": "6003",
+      "website": "https://www.labaracca-luzern.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 11:00-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 22.0,
+          "sourceUrl": "https://www.labaracca-luzern.ch/docs/labaracca-speisekarte.pdf",
+          "observedAt": "2026-11-02T14:19:12.182003+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: Margherita 22.-",
+          "alcoholFree": true,
+          "sourceSha256": "9aa38e6202d8fcba3214eab54c0e80b2cfec190b85fbf062f234295ab0c904d2"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:19:12.182003+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.labaracca-luzern.ch/pizzeria/",
+        "evidence": "Pizzeria – Pizzeria La Baracca Luzern"
+      }
+    },
+    {
+      "id": "node/5695175222",
+      "name": "La Bestia - Pizza Pizza",
+      "lat": 47.0491893,
+      "lon": 8.3081841,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://labestia-luzern.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00,17:30-22:30; Fr 11:30-14:00,17:30-24:00; Sa 11:30-24:00; Su 12:00-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-02T14:15:13.552936+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/3981886474",
+      "name": "La Fenice",
+      "lat": 47.0524098,
+      "lon": 8.3049294,
+      "type": "restaurant",
+      "address": "Rössligasse 2",
+      "postcode": "6004",
+      "website": "https://www.ristorantelafenice.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 17.9,
+          "sourceUrl": "https://ristorantelafenice.ch/wp-content/uploads/2026/10/SK_2026.pdf",
+          "observedAt": "2026-11-02T14:19:23.930080+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 4: MARGHERITA Tomatensauce, Mozzarella und Oregano Tomato sauce, mozzarella and oregano 17.90",
+          "alcoholFree": true,
+          "sourceSha256": "3d62cb957af7086e9da18c1f2b9811324762be4f9949bdb750a595ede62f74ac"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:19:23.930080+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://ristorantelafenice.ch/",
+        "evidence": "Steakhouse & Pizzeria in Luzern - Ristorante LaFenice"
+      }
+    },
+    {
+      "id": "node/5018129623",
+      "name": "Made in Sud",
+      "lat": 47.0470738,
+      "lon": 8.3038339,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:30-23:30; Fr,Sa 11:30-00:30, Su 14:00-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1504787075",
+      "name": "Maihof Kebab und Pizzahaus",
+      "lat": 47.060704,
+      "lon": 8.3089273,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [],
+      "openingHours": "Mo-Th 10:30-23:00; Fr,Sa 10:30-23:00; Su,PH 11:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/6071370504",
+      "name": "Memo's Kebap",
+      "lat": 47.0545692,
+      "lon": 8.2898297,
+      "type": "fast_food",
+      "address": "Baselstrasse 81",
+      "postcode": "6003",
+      "website": "https://www.memos-kebap.ch/",
+      "cuisine": [
+        "kebab",
+        "pizza",
+        "burger"
+      ],
+      "openingHours": "Mo-Fr 10:30-23:00; Sa-Su 11:00-23:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-02T14:15:13.589829+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/5336998521",
+      "name": "Molini Pizza Luzern",
+      "lat": 47.0646592,
+      "lon": 8.3108359,
+      "type": "restaurant",
+      "address": "Maihofstrasse 57",
+      "postcode": "6006",
+      "website": "https://www.peacefood.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Su 11:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-02T14:15:13.553061+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/10649888805",
+      "name": "Old City Take Away",
+      "lat": 47.0507268,
+      "lon": 8.302389,
+      "type": "fast_food",
+      "address": "Pfistergasse 13",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/5469279622",
+      "name": "Papagallo",
+      "lat": 47.0541578,
+      "lon": 8.2886796,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/1821541393",
+      "name": "Peperoncini",
+      "lat": 47.0454377,
+      "lon": 8.3037027,
+      "type": "cafe",
+      "address": "Obergrundstrasse 50",
+      "postcode": "",
+      "website": "https://peperoncini.ch",
+      "cuisine": [
+        "pizza",
+        "italian",
+        "coffee_shop"
+      ],
+      "openingHours": "Mo-Th 07:00-23:00, Fr 07:00-24:00, Sa 08:00-24:00, Su,PH 08:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.peperoncini.ch/angebot/",
+          "observedAt": "2026-11-02T14:15:13.603400+00:00",
+          "confidence": "automatic",
+          "evidence": "Pizza Margherita Tomatensauce, Mozzarella & Basilikum 18.50",
+          "alcoholFree": true,
+          "sourceSha256": "3ca9f6fd50dffff4b4cfe6b9890b0bd9b9b4a2231b8a00eb172f3f882eb4db3e"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:15:13.603400+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/1553431863",
+      "name": "Pizzeria Einhorn",
+      "lat": 47.0541998,
+      "lon": 8.308468,
+      "type": "restaurant",
+      "address": "Hertensteinstrasse 23",
+      "postcode": "6004",
+      "website": null,
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 10:00-23:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4119726833",
+      "name": "pizzeria Valentino",
+      "lat": 47.0516907,
+      "lon": 8.304673,
+      "type": "restaurant",
+      "address": "Metzgerrainle 3",
+      "postcode": "6004",
+      "website": "https://www.gastronomia-vaglio.com/",
+      "cuisine": [
+        "italian_pizza"
+      ],
+      "openingHours": "Tu-Sa 11:30-14:30, Tu-Sa 18:00-24:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-02T14:15:13.553170+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/1573053917",
+      "name": "Ristorante Mamma Leone",
+      "lat": 47.0521364,
+      "lon": 8.3033674,
+      "type": "restaurant",
+      "address": "Mühlenplatz 12",
+      "postcode": "",
+      "website": "https://www.mammaleone-luzern.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 11:00-23:00; Su 11:00-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 22.0,
+          "sourceUrl": "https://www.mammaleone-luzern.ch/docs/mammaleone-speisekarte.pdf",
+          "observedAt": "2026-11-02T14:15:36.539112+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 8: Margherita 22.00",
+          "alcoholFree": true,
+          "sourceSha256": "4f9f9d2e31a5e3c162cec81350c73969bf7bfb9c6df95a7df059470cddf3db88"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:15:36.539112+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/6080681576",
+      "name": "Schlüssel",
+      "lat": 47.0595549,
+      "lon": 8.2854866,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/2919124634",
+      "name": "Secondo",
+      "lat": 47.0635328,
+      "lon": 8.3104814,
+      "type": "fast_food",
+      "address": "Maihofstrasse",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "pizza",
+        "kebab"
+      ],
+      "openingHours": "Mo-Su 09:00-00:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/5641318723",
+      "name": "Staglio",
+      "lat": 47.0523932,
+      "lon": 8.3054264,
+      "type": "restaurant",
+      "address": "Hirschenplatz 2",
+      "postcode": "6004",
+      "website": null,
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Eröffnung November 2025",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/507135005",
+      "name": "Tribschen Kebab & Pizzahaus",
+      "lat": 47.0433813,
+      "lon": 8.3132033,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": null,
+      "cuisine": [
+        "kebab"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_website",
+      "checkedAt": null
+    },
+    {
+      "id": "node/4741566574",
+      "name": "Valle di Zerz",
+      "lat": 47.0586242,
+      "lon": 8.3005298,
+      "type": "restaurant",
+      "address": "Spitalstrasse 21",
+      "postcode": "6004",
+      "website": "https://www.valledizerz.ch/",
+      "cuisine": [
+        "italian",
+        "italian_pizza",
+        "mediterranean"
+      ],
+      "openingHours": "Tu-Fr 11:30-23:30; Sa 15:00-23:30; Su-Mo,PH closed",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://www.valledizerz.ch/docs/valledizerz-speisekarte.pdf",
+          "observedAt": "2026-11-02T14:23:36.864892+00:00",
+          "confidence": "automatic",
+          "evidence": "PDF S. 6: Margherita 19",
+          "alcoholFree": true,
+          "sourceSha256": "67d6b42ef68b032105947277cb440a7d39a63d9a399782ae6921c8e7b5e52ad2"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:23:36.864892+00:00",
+      "pizzaMenu": []
+    },
+    {
+      "id": "node/4574572601",
+      "name": "VyA - New Art of Pizza",
+      "lat": 47.0558962,
+      "lon": 8.2936345,
+      "type": "restaurant",
+      "address": "St.-Karli-Strasse 34",
+      "postcode": "6004",
+      "website": "https://vyapizza.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 11:00-13:30, 17:00-23:00; Su 11:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-02T14:15:13.553288+00:00",
+      "pizzaMenu": []
+    }
+  ]
 }

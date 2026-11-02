@@ -1,0 +1,611 @@
+{
+  "generatedAt": "2026-11-02T14:57:12.707006+00:00",
+  "bars": [
+    {
+      "id": "node/1234120491",
+      "name": "das weisse schaf",
+      "lat": 47.049463,
+      "lon": 8.3088867,
+      "type": "bar",
+      "address": "Frankenstrasse 2",
+      "postcode": "6003",
+      "website": "https://www.dasweisseschaf.ch/",
+      "openingHours": "Mo-Th 17:00-24:00; Fr,Sa 17:00-03:00; Su off",
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Manhattan",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16,
+          "sourceUrl": "https://www.dasweisseschaf.ch/_files/ugd/9c1083_1229073e8e28410286dd3253d3961123.pdf",
+          "observedAt": "2026-11-02T14:43:07.209353+00:00",
+          "confidence": "ai",
+          "evidence": "MANHATTAN Bulleit Rye Whiskey Sweet Vermouth Angostura Bitters 16 CHF",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Old Fashioned",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16,
+          "sourceUrl": "https://www.dasweisseschaf.ch/_files/ugd/9c1083_1229073e8e28410286dd3253d3961123.pdf",
+          "observedAt": "2026-11-02T14:43:07.209353+00:00",
+          "confidence": "ai",
+          "evidence": "OLD FASHIONED Bulleit Bourbon Whiskey Zuckersirup Angostura Bitters 16 CHF",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16,
+          "sourceUrl": "https://www.dasweisseschaf.ch/_files/ugd/9c1083_1229073e8e28410286dd3253d3961123.pdf",
+          "observedAt": "2026-11-02T14:43:07.209353+00:00",
+          "confidence": "ai",
+          "evidence": "NEGRONI Tanqueray London Dry Campari Vermouth 16 CHF",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Espresso Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16,
+          "sourceUrl": "https://www.dasweisseschaf.ch/_files/ugd/9c1083_1229073e8e28410286dd3253d3961123.pdf",
+          "observedAt": "2026-11-02T14:43:07.209353+00:00",
+          "confidence": "ai",
+          "evidence": "ESPRESSO MARTINI Ketel One Vodka Kaffee Likör Zuckersirup, Espresso 16 CHF",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pornstar Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16,
+          "sourceUrl": "https://www.dasweisseschaf.ch/_files/ugd/9c1083_1229073e8e28410286dd3253d3961123.pdf",
+          "observedAt": "2026-11-02T14:43:07.209353+00:00",
+          "confidence": "ai",
+          "evidence": "PORNSTAR MARTINI Ketel One Vanille Vodka Passionsfruckt Vanillesirup 16 CHF",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Moscow Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16,
+          "sourceUrl": "https://www.dasweisseschaf.ch/_files/ugd/9c1083_1229073e8e28410286dd3253d3961123.pdf",
+          "observedAt": "2026-11-02T14:43:07.209353+00:00",
+          "confidence": "ai",
+          "evidence": "MOSCOW MULE Ketel One Vodka Limette Ginger Beer 16 CHF",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mojito Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15,
+          "sourceUrl": "https://www.dasweisseschaf.ch/_files/ugd/9c1083_1229073e8e28410286dd3253d3961123.pdf",
+          "observedAt": "2026-11-02T14:43:07.209353+00:00",
+          "confidence": "ai",
+          "evidence": "MOJITO SPRITZ Prosecco Minze, Limette Soda 15 CHF",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Peach Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16,
+          "sourceUrl": "https://www.dasweisseschaf.ch/_files/ugd/9c1083_1229073e8e28410286dd3253d3961123.pdf",
+          "observedAt": "2026-11-02T14:43:07.209353+00:00",
+          "confidence": "ai",
+          "evidence": "PEACH MULE Ciroc Pfirsich Vodka Limette Ginger Beer 16 CHF",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:43:07.209353+00:00"
+    },
+    {
+      "id": "node/14131283969",
+      "name": "FlowFood",
+      "lat": 47.0661397,
+      "lon": 8.282106,
+      "type": "restaurant",
+      "address": "Hauptstrasse 50a",
+      "postcode": "6015",
+      "website": "https://www.restaurant-flowfood.ch/",
+      "openingHours": "Mo,We 11:30-14:00; Th,Fr 11:30-14:00,17:30-22:00; Sa 16:00-22:00; Su 16:00-21:00; Tu off",
+      "cuisine": [
+        "indian"
+      ],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Flow Cocktail",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.restaurant-flowfood.ch/menu",
+          "observedAt": "2026-11-02T14:43:48.677837+00:00",
+          "confidence": "ai",
+          "evidence": "Flow Cocktail 12.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:43:48.677837+00:00"
+    },
+    {
+      "id": "node/1504787042",
+      "name": "GourmIndia",
+      "lat": 47.052581,
+      "lon": 8.2960532,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.gourmindialuzern.com/",
+      "openingHours": "Mo-Fr 11:45-13:45,17:30-22:00; Sa-Su 17:30-22:00",
+      "cuisine": [
+        "indian"
+      ],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11,
+          "sourceUrl": "https://41a86f49-cc39-4188-b831-cb5a95482f92.filesusr.com/ugd/d337b7_67f1d7f181cb45d294642e3b25492280.pdf",
+          "observedAt": "2026-11-02T14:46:05.566857+00:00",
+          "confidence": "ai",
+          "evidence": "APEROL SPRITZ 11 CHF",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11,
+          "sourceUrl": "https://41a86f49-cc39-4188-b831-cb5a95482f92.filesusr.com/ugd/d337b7_67f1d7f181cb45d294642e3b25492280.pdf",
+          "observedAt": "2026-11-02T14:46:05.566857+00:00",
+          "confidence": "ai",
+          "evidence": "HUGO 11 CHF",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mango Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://41a86f49-cc39-4188-b831-cb5a95482f92.filesusr.com/ugd/d337b7_67f1d7f181cb45d294642e3b25492280.pdf",
+          "observedAt": "2026-11-02T14:46:05.566857+00:00",
+          "confidence": "ai",
+          "evidence": "MANGO SPRITZ 12.50 CHF",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bombay Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://41a86f49-cc39-4188-b831-cb5a95482f92.filesusr.com/ugd/d337b7_67f1d7f181cb45d294642e3b25492280.pdf",
+          "observedAt": "2026-11-02T14:46:05.566857+00:00",
+          "confidence": "ai",
+          "evidence": "BOMBAY MULE 13 CHF",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gourmindia Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15,
+          "sourceUrl": "https://41a86f49-cc39-4188-b831-cb5a95482f92.filesusr.com/ugd/d337b7_67f1d7f181cb45d294642e3b25492280.pdf",
+          "observedAt": "2026-11-02T14:46:05.566857+00:00",
+          "confidence": "ai",
+          "evidence": "GOURMINDIA SOUR 15 CHF",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Virgin Mojito 0.0%",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.5,
+          "sourceUrl": "https://41a86f49-cc39-4188-b831-cb5a95482f92.filesusr.com/ugd/d337b7_67f1d7f181cb45d294642e3b25492280.pdf",
+          "observedAt": "2026-11-02T14:46:05.566857+00:00",
+          "confidence": "ai",
+          "evidence": "VIRGIN MOJITO 0.0% 8.50 CHF",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:46:05.566857+00:00"
+    },
+    {
+      "id": "node/5600768221",
+      "name": "Kaspar",
+      "lat": 47.0484703,
+      "lon": 8.3064315,
+      "type": "bar",
+      "address": "Hirschmattstrasse 24",
+      "postcode": "6003",
+      "website": "https://www.kaspar-luzern.ch",
+      "openingHours": "Tu,We 16:00-23:00; Th 16:00-24:00; Fr,Sa 16:00-02:00; Su,Mo off",
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Kaspars Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 18,
+          "sourceUrl": "https://www.kaspar-luzern.ch/_files/ugd/6a189a_d81a22f5dbae4047bdfa065f0cedbc67.pdf?index=true",
+          "observedAt": "2026-11-02T14:48:35.701691+00:00",
+          "confidence": "ai",
+          "evidence": "KASPARS Negroni Henkes Gin, Carpano Classico Rosso Wermut Grand Classico, Erdbeere Estragon CHF 18",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "KASPARs Amaretto Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 18,
+          "sourceUrl": "https://www.kaspar-luzern.ch/_files/ugd/6a189a_d81a22f5dbae4047bdfa065f0cedbc67.pdf?index=true",
+          "observedAt": "2026-11-02T14:48:35.701691+00:00",
+          "confidence": "ai",
+          "evidence": "KASPARs Amaretto Sour ... CHF 18",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Amaretto Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16,
+          "sourceUrl": "https://www.kaspar-luzern.ch/_files/ugd/6a189a_d81a22f5dbae4047bdfa065f0cedbc67.pdf?index=true",
+          "observedAt": "2026-11-02T14:48:35.701691+00:00",
+          "confidence": "ai",
+          "evidence": "Amaretto Sour ... CHF 16",
+          "sourcePage": 15,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kaspar's Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.5,
+          "sourceUrl": "https://www.kaspar-luzern.ch/_files/ugd/6a189a_d81a22f5dbae4047bdfa065f0cedbc67.pdf?index=true",
+          "observedAt": "2026-11-02T14:48:35.701691+00:00",
+          "confidence": "ai",
+          "evidence": "KASPAR'S Spritz CHF 13.50",
+          "sourcePage": 17,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kaspar's Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.5,
+          "sourceUrl": "https://www.kaspar-luzern.ch/_files/ugd/6a189a_d81a22f5dbae4047bdfa065f0cedbc67.pdf?index=true",
+          "observedAt": "2026-11-02T14:48:35.701691+00:00",
+          "confidence": "ai",
+          "evidence": "KASPAR'S Hugo CHF 13.50",
+          "sourcePage": 17,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Easy Spritz (Alkoholfrei)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.kaspar-luzern.ch/_files/ugd/6a189a_d81a22f5dbae4047bdfa065f0cedbc67.pdf?index=true",
+          "observedAt": "2026-11-02T14:48:35.701691+00:00",
+          "confidence": "ai",
+          "evidence": "Easy Spritz (Alkoholfrei) REBELS 0,0% Spritz Alternative CHF 12.50",
+          "sourcePage": 17,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kaspars Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.kaspar-luzern.ch/_files/ugd/6a189a_1a8ceb3dc882406ab9bae033028a821f.pdf",
+          "observedAt": "2026-11-02T14:48:35.701691+00:00",
+          "confidence": "ai",
+          "evidence": "KASPARS SPRITZ CHF 12,50",
+          "sourcePage": 30,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kaspars Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.kaspar-luzern.ch/_files/ugd/6a189a_1a8ceb3dc882406ab9bae033028a821f.pdf",
+          "observedAt": "2026-11-02T14:48:35.701691+00:00",
+          "confidence": "ai",
+          "evidence": "KASPARS HUGO CHF 12,50",
+          "sourcePage": 30,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:48:35.701691+00:00"
+    },
+    {
+      "id": "node/2775360961",
+      "name": "La Bonne Cave",
+      "lat": 47.052262,
+      "lon": 8.307839,
+      "type": "restaurant",
+      "address": "Rathausquai 1",
+      "postcode": "6004",
+      "website": "https://www.labonnecave.ch",
+      "openingHours": null,
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperitivo Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.0,
+          "sourceUrl": "https://static1.squarespace.com/static/5f5238e6fa3ec151dd715675/t/6ac74bd0af9adb02deb469da/1791445968702/LaBonneCave-Karte-web-2025-1.pdf",
+          "observedAt": "2026-11-02T14:49:10.096922+00:00",
+          "confidence": "ai",
+          "evidence": "Aperitivo Spritz 12.00",
+          "sourcePage": 26,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.0,
+          "sourceUrl": "https://static1.squarespace.com/static/5f5238e6fa3ec151dd715675/t/6ac74bd0af9adb02deb469da/1791445968702/LaBonneCave-Karte-web-2025-1.pdf",
+          "observedAt": "2026-11-02T14:49:10.096922+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 12.00",
+          "sourcePage": 26,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:49:10.096922+00:00"
+    },
+    {
+      "id": "node/12613615219",
+      "name": "Lumières",
+      "lat": 47.0516911,
+      "lon": 8.2949868,
+      "type": "restaurant",
+      "address": "Kanonenstrasse",
+      "postcode": "6003",
+      "website": "https://www.chateau-guetsch.ch/en/restaurant-lumieres",
+      "openingHours": null,
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Explorer Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 32.0,
+          "sourceUrl": "https://www.chateau-guetsch.ch/wp-content/uploads/2021/11/Barkarte-Sommer-2026-2.pdf_20260319_192019_0000-2.pdf",
+          "observedAt": "2026-11-02T14:52:15.048801+00:00",
+          "confidence": "ai",
+          "evidence": "EXPLORER MARTINI michters american whiskey | sherry 30y | amaretto 32.-",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol / Campari spritz, Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14,
+          "sourceUrl": "https://www.chateau-guetsch.ch/wp-content/uploads/2021/11/Weinkarte-Lumieres-Sommer-2026.pdf",
+          "observedAt": "2026-11-02T14:52:15.048801+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol / Campari spritz, Hugo 14",
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Orange / Soda",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.chateau-guetsch.ch/wp-content/uploads/2021/11/Weinkarte-Lumieres-Sommer-2026.pdf",
+          "observedAt": "2026-11-02T14:52:15.048801+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Orange / Soda 13",
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Alkoholfreier Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.5,
+          "sourceUrl": "https://www.chateau-guetsch.ch/wp-content/uploads/2021/11/Weinkarte-Lumieres-Sommer-2026.pdf",
+          "observedAt": "2026-11-02T14:52:15.048801+00:00",
+          "confidence": "ai",
+          "evidence": "Alkoholfreier Hugo 10.50",
+          "sourcePage": 22,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:52:15.048801+00:00"
+    },
+    {
+      "id": "node/5779570178",
+      "name": "melissa‘s kitchen",
+      "lat": 47.0486241,
+      "lon": 8.3030225,
+      "type": "cafe",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.melissas.ch/",
+      "openingHours": "Tu-Fr 06:30-18:00; Mo off; Sa 06:00-17:00; Su 09:00-15:00",
+      "cuisine": [],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.8,
+          "sourceUrl": "https://www.melissas.ch/files/userdata/filemanager/data/11-Layout_01_01_2026.pdf",
+          "observedAt": "2026-11-02T14:50:11.527211+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz Fr. 10.80",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo mit Holunderblütensirup und Minze",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.8,
+          "sourceUrl": "https://www.melissas.ch/files/userdata/filemanager/data/11-Layout_01_01_2026.pdf",
+          "observedAt": "2026-11-02T14:50:11.527211+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo mit Holunderblütensirup und Minze Fr. 10.80",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:50:11.527211+00:00"
+    },
+    {
+      "id": "node/1483240190",
+      "name": "Opus",
+      "lat": 47.0507283,
+      "lon": 8.3043592,
+      "type": "restaurant",
+      "address": "Bahnhofstrasse 16",
+      "postcode": "6003",
+      "website": "https://www.restaurant-opus.ch/",
+      "openingHours": null,
+      "cuisine": [
+        "ice_cream",
+        "mediterranean"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Virgin Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.restaurant-opus.ch/fileadmin/files/Betriebe/opus/PDF/Offenweinblatt_OPS.pdf",
+          "observedAt": "2026-11-02T14:54:32.058419+00:00",
+          "confidence": "ai",
+          "evidence": "Virgin Spritz 13.–",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Virgin Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.restaurant-opus.ch/fileadmin/files/Betriebe/opus/PDF/Offenweinblatt_OPS.pdf",
+          "observedAt": "2026-11-02T14:54:32.058419+00:00",
+          "confidence": "ai",
+          "evidence": "Virgin Hugo 13.–",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwer Spritz 0.0 %",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.restaurant-opus.ch/fileadmin/files/Betriebe/opus/PDF/Offenweinblatt_OPS.pdf",
+          "observedAt": "2026-11-02T14:54:32.058419+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwer Spritz 0.0 % 13.–",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic – Tanqueray 0.0 %",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.5,
+          "sourceUrl": "https://www.restaurant-opus.ch/fileadmin/files/Betriebe/opus/PDF/Offenweinblatt_OPS.pdf",
+          "observedAt": "2026-11-02T14:54:32.058419+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic – Tanqueray 0.0 % 13.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Martini Floreale (weiss) mit Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.restaurant-opus.ch/fileadmin/files/Betriebe/opus/PDF/Offenweinblatt_OPS.pdf",
+          "observedAt": "2026-11-02T14:54:32.058419+00:00",
+          "confidence": "ai",
+          "evidence": "Martini Floreale (weiss) mit Tonic 12.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:54:32.058419+00:00"
+    },
+    {
+      "id": "node/1142783785",
+      "name": "Reussbad",
+      "lat": 47.0535676,
+      "lon": 8.2993821,
+      "type": "restaurant",
+      "address": "Brüggligasse 19",
+      "postcode": "6004",
+      "website": "https://www.reussbad-luzern.ch/",
+      "openingHours": "Tu-Fr 11:00-14:00,18:00-23:00; Sa 11:00-14:00,17:00-23:00; Su-Mo off",
+      "cuisine": [
+        "regional"
+      ],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Moonshine Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16.5,
+          "sourceUrl": "https://www.reussbad-luzern.ch/images/karten/reussbad-dessertkarte.pdf",
+          "observedAt": "2026-11-02T14:57:12.698195+00:00",
+          "confidence": "ai",
+          "evidence": "Moonshine Sour 16.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-02T14:57:12.698195+00:00"
+    }
+  ]
+}
