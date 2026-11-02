@@ -9,11 +9,12 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Use the shipped datasets: mocked offers would hide an unpopulated city.
-for (const drink of ['coffee', 'beer', 'pizza']) {
+for (const drink of ['coffee', 'beer']) {
   test(`Luzern ships visible ${drink} prices with source links`, async ({ page }) => {
     await page.goto(`/luzern?drink=${drink}`);
     await expect(page.locator('#map-title')).toContainText('Luzern');
     await expect(page.locator('#count')).not.toContainText('Laden');
+    await expect(page.locator(`#drink-${drink}`)).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('.price-marker:not(.unknown)').first()).toHaveText(/\d+\.\d{2}/);
     await page.locator('#view-list').click();
     const first = page.locator('#results .venue').first();
@@ -24,3 +25,12 @@ for (const drink of ['coffee', 'beer', 'pizza']) {
     await expect(offer.getByRole('link', { name: 'Quelle', exact: true })).toHaveAttribute('href', /^https?:\/\//);
   });
 }
+
+test('Luzern publishes its recorded pizza prices in the Margherita ranking', async ({ page }) => {
+  // The map's Pizza category needs 14 priced venues; the ranking already shows smaller datasets.
+  await page.goto('/margherita-luzern');
+  await expect(page.locator('h1')).toContainText('Pizza Margherita in Luzern');
+  const first = page.locator('tbody tr').first();
+  await expect(first.locator('td').first()).toHaveText(/\d+\.\d{2}/);
+  await expect(first.getByRole('link', { name: 'Preisquelle', exact: true })).toHaveAttribute('href', /^https?:\/\//);
+});
