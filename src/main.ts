@@ -119,6 +119,7 @@ $('app').innerHTML = `
 <div class="toolbar">
   <div id="category-navigation" class="toolbar-heading"></div>
   <div class="search-box smart-search-box">
+    <label class="smart-search-label" for="search">${t('Smart-Suche')}:</label>
     <input id="search" type="search" role="combobox" placeholder="${t('Lokal, Adresse, PLZ oder Ort')}" aria-label="${t('Lokal, Adresse oder Wunsch in eigenen Worten')}" enterkeyhint="search" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
     <button id="search-clear" type="button" aria-label="${t('Suche löschen')}" title="${t('Suche löschen')}" hidden><span aria-hidden="true">×</span></button>
     <div id="search-dropdown" hidden><div id="search-history-heading" hidden><strong>${t('Letzte Suchen')}</strong><button id="search-history-clear" type="button">${t('Verlauf löschen')}</button></div><div id="search-suggestions" role="listbox" aria-label="${t('Suchvorschläge')}"></div><p id="search-empty" role="status" hidden></p></div>
