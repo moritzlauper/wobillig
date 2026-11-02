@@ -31,6 +31,6 @@ test('Luzern publishes its recorded pizza prices in the Margherita ranking', asy
   await page.goto('/margherita-luzern');
   await expect(page.locator('h1')).toContainText('Pizza Margherita in Luzern');
   const first = page.locator('tbody tr').first();
-  await expect(first.locator('td').first()).toHaveText(/\d+\.\d{2}/);
+  await expect(first.locator('td').nth(1)).toHaveText(/\d+\.\d{2}/);
   await expect(first.getByRole('link', { name: 'Preisquelle', exact: true })).toHaveAttribute('href', /^https?:\/\//);
 });
