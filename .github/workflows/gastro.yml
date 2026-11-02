@@ -86,8 +86,10 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_gastro.py'
 
       - name: Install a browser for menus built with JavaScript
+        # Optional: the scan falls back to the runner's Chrome, or to plain HTML without any browser.
+        continue-on-error: true
         if: steps.cadence.outputs.refresh == 'true'
-        run: python -m playwright install --with-deps chromium
+        run: python -m playwright install chromium || google-chrome --version || echo 'No browser; JavaScript menus are read as plain HTML'
 
       - name: Crawl restaurant and bar websites and confirm prices with Claude
         if: steps.cadence.outputs.refresh == 'true'

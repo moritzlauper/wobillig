@@ -60,7 +60,9 @@ jobs:
       - run: pip install -r scraper/requirements.txt
       - run: python -m unittest discover -s tests -p 'test_*.py'
       - name: Install a browser for menus built with JavaScript
-        run: python -m playwright install --with-deps chromium
+        # Optional: the scan falls back to the runner's Chrome, or to plain HTML without any browser.
+        continue-on-error: true
+        run: python -m playwright install chromium || google-chrome --version || echo 'No browser; JavaScript menus are read as plain HTML'
       - name: Record coverage before scanning
         id: baseline
         run: python -m scraper.scan_report --baseline "$RUNNER_TEMP/scan-before.json"
