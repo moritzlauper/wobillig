@@ -31,12 +31,12 @@ async function paymentDialog(stripe: Stripe, { price, amount, test, createIntent
   dialog.innerHTML = '<div class="dialog-top"><strong id="tip-title">wobillig</strong><button type="button" class="tip-close"></button></div><p class="tip-description"></p><p class="tip-goal"></p><form><div class="tip-element"></div><button class="primary tip-pay" type="submit" disabled></button></form><p class="tip-status" role="status" tabindex="-1"></p>';
   const close = dialog.querySelector<HTMLButtonElement>('.tip-close')!;
   close.textContent = t('Schliessen');
-  dialog.querySelector('.tip-description')!.textContent = t('Beitrag an die Plattformkosten · {price}', { price }) + (test ? ` (${t('Test')})` : '');
+  dialog.querySelector('.tip-description')!.textContent = t('Beitrag an die Plattformkosten · CHF {price}', { price }) + (test ? ` (${t('Test')})` : '');
   // The monthly goal is shown only after opening the dialog, not in the button's tooltip.
   dialog.querySelector('.tip-goal')!.textContent = t('wobillig kostet rund CHF 40 im Monat (Hosting, Datenabfragen und KI-Scans). Das ist das Ziel für die Beiträge.');
   const form = dialog.querySelector('form')!;
   const pay = dialog.querySelector<HTMLButtonElement>('.tip-pay')!;
-  pay.textContent = t('{price} bezahlen', { price });
+  pay.textContent = t('CHF {price} bezahlen', { price });
   const status = dialog.querySelector<HTMLElement>('.tip-status')!;
   status.textContent = t('Zahlung wird geladen …');
   // Must match payment_method_types in tipPaymentParams, or the server-created intent rejects the chosen method.
@@ -101,9 +101,8 @@ export async function setupTip(button: HTMLButtonElement, city: City, notify: (t
     if (!response.ok) return;
     const quote = await response.json() as { enabled?: boolean; amount?: number; test?: boolean; publishableKey?: string };
     if (!quote.enabled || !quote.publishableKey?.startsWith('pk_') || !Number.isInteger(quote.amount) || quote.amount! < 100 || quote.amount! > 2000) return;
-    // Whole francs in Swiss notation without currency (2.–), otherwise CHF with Rappen.
-    const price = quote.amount! % 100 ? `CHF ${(quote.amount! / 100).toFixed(2)}` : `${quote.amount! / 100}.–`;
-    const label = t('Plattformkosten stützen · {price}', { price });
+    const price = (quote.amount! / 100).toFixed(2);
+    const label = t('Plattformkosten stützen · CHF {price}', { price });
     button.textContent = quote.test ? `${label} (${t('Test')})` : label;
     button.title = t('Der freiwillige Beitrag hilft, die Plattformkosten zu decken.');
     button.hidden = false;
