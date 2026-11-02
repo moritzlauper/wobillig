@@ -81,6 +81,8 @@ export const en: Record<string, string> = {
   "Bitte eine Kartenposition in oder um Winterthur wählen.": "Please choose a map position in or around Winterthur.",
   "Olten": "Olten",
   "Bitte eine Kartenposition in oder um Olten wählen.": "Please choose a map position in or around Olten.",
+  "Luzern": "Lucerne",
+  "Bitte eine Kartenposition in oder um Luzern wählen.": "Please choose a map position in or around Lucerne.",
   'wobillig kostet rund CHF 40 im Monat (Hosting, Datenabfragen und KI-Scans). Das ist das Ziel für die Beiträge.': 'wobillig costs about CHF 40 a month (hosting, data queries and AI scans). That is the goal for contributions.',
   'Plattformkosten stützen · CHF {price}': 'Help cover platform costs · CHF {price}',
   'Test': 'Test',

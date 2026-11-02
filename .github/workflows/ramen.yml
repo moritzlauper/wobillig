@@ -6,7 +6,7 @@ on:
       city:
         description: City (the schedule runs Zürich, Basel and Bern)
         type: choice
-        options: [zurich, basel, bern, lausanne, geneva, winterthur, olten]
+        options: [zurich, basel, bern, lausanne, geneva, winterthur, olten, luzern]
         default: zurich
       ai_budget_usd:
         description: Haiku 5.5 API budget in USD (hard cap 1.00)

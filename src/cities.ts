@@ -8,6 +8,7 @@ export const cities = {
   geneva: { name: 'Genf', path: '/geneve', data: 'geneva/', center: [46.2044, 6.1432] as [number, number] },
   winterthur: { name: 'Winterthur', path: '/winterthur', data: 'winterthur/', center: [47.4995, 8.7275] as [number, number] },
   olten: { name: 'Olten', path: '/olten', data: 'olten/', center: [47.3531, 7.9078] as [number, number] },
+  luzern: { name: 'Luzern', path: '/luzern', data: 'luzern/', center: [47.0502, 8.3093] as [number, number] },
 };
 export type City = keyof typeof cities;
 export function isCity(value: string): value is City { return Object.hasOwn(cities, value); }

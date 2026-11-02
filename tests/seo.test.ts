@@ -66,7 +66,7 @@ describe('search-engine-visible production pages', () => {
       expect(german).toContain(`data-locale="en" href="${cityPath(city, 'en')}"`);
       expect(english).toContain(`data-locale="de" href="${cityPath(city)}"`);
       expect(english).toContain('<meta property="og:locale" content="en_GB" />');
-      expect(english).toContain(`<h1 id="map-title">Coffee prices in ${city === 'zurich' ? 'Zurich' : city === 'geneva' ? 'Geneva' : cities[city].name}</h1>`);
+      expect(english).toContain(`<h1 id="map-title">Coffee prices in ${city === 'zurich' ? 'Zurich' : city === 'geneva' ? 'Geneva' : city === 'luzern' ? 'Lucerne' : cities[city].name}</h1>`);
       expect(english).toContain('aria-label="Colour scheme"');
       for (const type of guideTypes) {
         expect(english).not.toContain(`href="${guidePath(city, type)}"`);
