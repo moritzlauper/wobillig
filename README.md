@@ -19,7 +19,7 @@ Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der
 - Unter «Filter» stehen die Zürcher und Winterthurer Stadtkreise, die Basler Wohnviertel, die Berner Stadtteile und die Quartiere von Lausanne und Genf zur Auswahl, jeweils mit eigenem Durchschnittspreis.
 - Das Fenster «Daten» exportiert den Bestand der Stadt als CSV oder JSON.
 - Lokale lassen sich per Link teilen. Es gibt einen Hell- und einen Dunkelmodus sowie eine deutsche und eine englische Oberfläche.
-- «Plattformkosten stützen» ist ein freiwilliger Beitrag an Hosting, Speicher und KI-Scan, bezahlt per TWINT oder Karte über Stripe. Der Betrag ist in allen Städten CHF 2.00.
+- «Plattformkosten stützen» ist ein freiwilliger Beitrag an Hosting, Speicher und KI-Scan, bezahlt per TWINT oder Karte über Stripe. Der Betrag ist in allen Städten CHF 2.–.
 
 ### Günstig-Filter
 

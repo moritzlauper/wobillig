@@ -101,7 +101,8 @@ export async function setupTip(button: HTMLButtonElement, city: City, notify: (t
     if (!response.ok) return;
     const quote = await response.json() as { enabled?: boolean; amount?: number; test?: boolean; publishableKey?: string };
     if (!quote.enabled || !quote.publishableKey?.startsWith('pk_') || !Number.isInteger(quote.amount) || quote.amount! < 100 || quote.amount! > 2000) return;
-    const price = (quote.amount! / 100).toFixed(2);
+    // Whole francs in Swiss notation (2.–), otherwise with Rappen.
+    const price = quote.amount! % 100 ? (quote.amount! / 100).toFixed(2) : `${quote.amount! / 100}.–`;
     const label = t('Plattformkosten stützen · CHF {price}', { price });
     button.textContent = quote.test ? `${label} (${t('Test')})` : label;
     button.title = t('Der freiwillige Beitrag hilft, die Plattformkosten zu decken.');
