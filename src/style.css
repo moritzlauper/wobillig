@@ -100,8 +100,9 @@ a { color: var(--link); text-underline-offset: 2px; }
 #additional-categories .category-description { display: inline; }
 .search-box { position: relative; flex: 1; min-width: 160px; }
 .smart-search-box { flex: 1 1 360px; max-width: none; }
-.smart-search-field { position: relative; display: flex; align-items: center; min-width: 0; border: 3px solid var(--teal-border); border-radius: 4px; background: var(--surface); cursor: text; }
+.smart-search-field { position: relative; display: flex; align-items: center; min-width: 0; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); cursor: text; }
 .smart-search-field:has(#search:focus-visible) { border-color: var(--teal); }
+.smart-search-label { flex: 0 0 auto; padding-left: 9px; color: var(--muted); white-space: nowrap; }
 .smart-search-box #search { flex: 1; width: auto; min-height: 29px; border: 0; background: transparent; }
 .smart-search-box #search:focus-visible { outline: none; }
 #search { width: 100%; min-width: 0; padding-right: 44px; }
