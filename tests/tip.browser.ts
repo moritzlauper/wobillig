@@ -15,7 +15,7 @@ for (const [path, city, amount] of [['/', 'zurich', 200], ['/bern', 'bern', 200]
     });
     await page.goto(path);
     const tip = page.locator('#tip-coffee'), wish = page.getByRole('link', { name: 'Kontakt', exact: true });
-    await expect(tip).toHaveText('Plattformkosten stützen · CHF 2.–');
+    await expect(tip).toHaveText('Plattformkosten stützen · 2.–');
     await expect(tip).toHaveCSS('font-size', '10px');
     await expect(wish).toHaveCSS('font-size', '10px');
     const a = await tip.boundingBox(), b = await wish.boundingBox();
@@ -23,7 +23,7 @@ for (const [path, city, amount] of [['/', 'zurich', 200], ['/bern', 'bern', 200]
     expect(Math.abs(a!.y - b!.y)).toBeLessThan(2);
     expect(a!.x + a!.width).toBeLessThanOrEqual(b!.x);
     await page.getByLabel('Kaffeesorte oder Matcha Latte').selectOption('espresso');
-    await expect(tip).toHaveText('Plattformkosten stützen · CHF 2.–');
+    await expect(tip).toHaveText('Plattformkosten stützen · 2.–');
     await tip.click();
     // Opening the dialog creates no payment; only submitting does.
     await page.waitForTimeout(500);
