@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { cityIds, cityPath, guidePath, guideTypes, metadata } from '../src/seo';
+import { cities } from '../src/cities';
 import { captureAnalytics } from './analytics-browser-helper';
 
 test.describe('English comparison pages without JavaScript', () => {
@@ -48,7 +49,7 @@ for (const width of [320, 1280]) {
       await expect(page.locator('#coffeeType')).toHaveValue('cappuccino');
       await expect(page.locator('#cheap')).toHaveAttribute('aria-pressed', 'true');
       await expect(page).toHaveURL(/cheap=1/);
-      await expect(page.locator('#map-title')).toHaveText(metadata(city, undefined, 'en').heading.replace('Compare coffee', 'Coffee'));
+      await expect(page.locator('#map-title')).toHaveText(`wobillig ${city === 'geneva' ? 'Geneva' : city === 'luzern' ? 'Lucerne' : cities[city].name}`);
       await expect(page.getByRole('button', { name: 'Filters', exact: true })).toBeVisible();
     }
   });

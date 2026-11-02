@@ -1,6 +1,7 @@
 // English texts keyed by the German original. Missing keys fall back to German.
 export const en: Record<string, string> = {
   'Bitte wählen': 'Please choose',
+  'wobillig {city}': 'wobillig {city}',
   'Imbiss: Schnellservice oder Take-away, zum Beispiel ein Pizza- oder Döner-Laden. Imbisse sind in der Standardansicht ausgeblendet und erscheinen bei «Alle (inkl. Imbiss)».': 'Imbiss: quick service or takeaway, for example a pizza or döner takeaway. Imbiss venues are hidden in the default view and appear under “All (incl. Imbiss)”.',
   'Ramen': 'Ramen',
   'Ramenpreis': 'Ramen price',
@@ -458,6 +459,8 @@ export const en: Record<string, string> = {
   'Weitere Pizzen': 'More pizzas',
   'Sortierung': 'Sort order',
   'Preis aufsteigend': 'Price: low to high',
+  'Günstigste zuerst': 'Cheapest first',
+  'Teuerste zuerst': 'Most expensive first',
   'Preis absteigend': 'Price: high to low',
   'Entfernung': 'Distance',
   'Standort anzeigen': 'Show my location',

@@ -83,7 +83,7 @@ for (const width of [320, 390, 1280]) {
     expect(menu!.x + menu!.width).toBeLessThanOrEqual(width);
     await page.screenshot({ path: `/tmp/wobillig-categories-${width}.png` });
     await page.getByRole('button', { name: 'Kebab & Falafel', exact: true }).click();
-    await expect(page.locator('#map-title')).toHaveText('Kebab- und Falafelpreise Zürich');
+    await expect(page.locator('#map-title')).toHaveText('wobillig Zürich');
     await expect(page.locator('#streetfood-portion')).toHaveValue('snack');
     // Cheap mode opens on the cheaper stands of both kebab and falafel.
     await expect(page.locator('#results .venue').first()).toContainText('Dürüm');
@@ -95,7 +95,7 @@ for (const width of [320, 390, 1280]) {
     await expect(page.locator('#additional-categories button:visible:not(#create-map)')).toHaveText(['Kebab & Falafel']);
     await page.keyboard.press('Escape');
     await page.locator('#drink-pizza').click();
-    await expect(page.locator('#map-title')).toHaveText('Pizzapreise Zürich');
+    await expect(page.locator('#map-title')).toHaveText('wobillig Zürich');
     await expect(page.locator('#drink-pizza')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#categories-toggle')).toHaveAttribute('aria-pressed', 'false');
     await expect(page.locator('#categories-toggle')).toHaveAccessibleName('Weitere Kategorien');
@@ -130,7 +130,7 @@ test('keyboard, outside click and English menu work when popularity storage fail
   await expect(page.locator('#drink-beer')).toHaveAttribute('aria-pressed', 'true');
   await toggle.click();
   await page.getByRole('button', { name: 'Kebab & falafel', exact: true }).click();
-  await expect(page.locator('#map-title')).toContainText('Kebab and falafel prices');
+  await expect(page.locator('#map-title')).toHaveText('wobillig Zurich');
 });
 
 test('a delayed ranking does not move buttons while the menu is open', async ({ page }) => {

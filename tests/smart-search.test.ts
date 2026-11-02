@@ -39,6 +39,12 @@ describe('parseSmartQuery', () => {
     expect(parse('Pint under 8 francs')).toMatchObject({ drink: 'beer', volumeMl: 500, max: 8 });
   });
 
+  it('recognises cheapest and most expensive searches as a price order', () => {
+    expect(parse('günstigste Stange in Zürich')).toMatchObject({ drink: 'beer', stange: true, priceOrder: 'asc', rest: [] });
+    expect(parse('teuerste Stange in Zürich')).toMatchObject({ drink: 'beer', stange: true, priceOrder: 'desc', rest: [] });
+    expect(parse('zehn teuerste Stangen in Zürich')).toMatchObject({ drink: 'beer', stange: true, priceOrder: 'desc', resultLimit: 10, rest: [] });
+  });
+
   it('reads opening times as now or as a time of day', () => {
     expect(parse('Bier um 23 Uhr').open).toBe('23:00');
     expect(parse('draft beer open at 11 pm').open).toBe('23:00');
@@ -84,6 +90,11 @@ describe('planSmartQuery', () => {
     expect(plan.cheap).toBe(true);
     expect(plan.filters).toMatchObject({ drink: 'beer', volume: 'stange', beerType: 'all', district: 4, outdoor: true, max: Infinity, open: undefined, type: '' });
     expect(planSmartQuery(parse('Cappuccino bis 5 Franken'), all, 'beer')).toMatchObject({ cheap: false, filters: { drink: 'coffee', coffeeType: 'cappuccino', max: 5 } });
+  });
+
+  it('sorts superlative price searches without applying the cheap-price cutoff', () => {
+    expect(planSmartQuery(parse('günstigste Stange'), all, 'coffee')).toMatchObject({ cheap: false, resultLimit: 1, filters: { sort: 'price', volume: 'stange' } });
+    expect(planSmartQuery(parse('zehn teuerste Stange'), all, 'coffee')).toMatchObject({ cheap: false, resultLimit: 10, filters: { sort: 'price_desc', volume: 'stange' } });
   });
 
   it('follows the toolbar for beer sizes and serving', () => {

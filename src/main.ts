@@ -78,6 +78,7 @@ let userMarker: L.CircleMarker | undefined;
 // A smart suggestion applies a sentence such as «Stange unter 5 Franken im Kreis 4»; examples come from smartExamples.
 type SmartSuggestion = { smart: string; example?: boolean };
 let suggestions: (Bar | AddressResult | SmartSuggestion)[] = [], activeSuggestion = -1, searchOpen = false;
+let smartResultLimit: number | undefined;
 let addressResults: AddressResult[] = [], addressSelection: AddressResult | undefined;
 let addressController: AbortController | undefined, addressTimer: ReturnType<typeof setTimeout> | undefined;
 let addressStatus: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
@@ -85,11 +86,17 @@ let addressRequest = 0;
 let addressPromise: Promise<void> | undefined;
 const searchHistory = createSearchHistory(cityId);
 let districts: Districts | undefined, districtOf: ((bar: Bar) => number | undefined) | undefined, districtsPromise: Promise<void> | undefined;
+// Text typed into the search field but not applied yet. Typing only updates the suggestions;
+// the list and map follow on Enter, a chosen suggestion or an emptied field.
+let draft: string | undefined;
+const typed = () => draft ?? f.query;
 // The sentence being typed, read by the smart search rules; cleared once it is applied.
 let smartPreview: { text: string; query: SmartQuery } | undefined;
 // Words of the last applied sentence that no rule, venue, beer or pizza matched.
 let smartNote = '';
 let exampleList: string[] = [], exampleIndex = 0, dropdownExamples: string[] = [];
+// Keep the idle-state smart search menu short and useful.
+const SMART_SEARCH_RECOMMENDATION_LIMIT = 5;
 const coffee = () => f.drink === 'coffee';
 const pizza = () => f.drink === 'pizza';
 const beer = () => f.drink === 'beer';
@@ -111,7 +118,7 @@ const unit = (o: Offer) => offerCategory(o) !== 'beer' ? portion(o) : `${f.mode 
 $('app').innerHTML = `
 <div class="toolbar">
   <div id="category-navigation" class="toolbar-heading"></div>
-  <div class="search-box">
+  <div class="search-box smart-search-box">
     <input id="search" type="search" role="combobox" placeholder="${t('Lokal, Adresse, PLZ oder Ort')}" aria-label="${t('Lokal, Adresse oder Wunsch in eigenen Worten')}" enterkeyhint="search" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
     <button id="search-clear" type="button" aria-label="${t('Suche löschen')}" title="${t('Suche löschen')}" hidden><span aria-hidden="true">×</span></button>
     <div id="search-dropdown" hidden><div id="search-history-heading" hidden><strong>${t('Letzte Suchen')}</strong><button id="search-history-clear" type="button">${t('Verlauf löschen')}</button></div><div id="search-suggestions" role="listbox" aria-label="${t('Suchvorschläge')}"></div><p id="search-empty" role="status" hidden></p></div>
@@ -208,7 +215,7 @@ document.addEventListener('keydown', event => {
 const map = L.map('map', { zoomControl: false }).setView(city.center, 14);
 const openVenueForm = venueForm(cityId, pricesApi, () => selectableLocations(venues, locationCatalogue), (bar, created) => {
   if (!addedVenues.some(b => b.id === bar.id)) addedVenues.push(bar);
-  clearAddressSelection(); f.query = ''; f.type = 'all'; f.unknown = true; f.outdoor = false;
+  clearAddressSelection(); f.query = ''; draft = undefined; f.type = 'all'; f.unknown = true; f.outdoor = false;
   cheapMode = false; f.drink = 'coffee'; selected = bar.id;
   closeSearchSuggestions(); rebuild(); showBar(bar, 18);
   toast(created ? t('Lokal gespeichert und für alle sichtbar. Du kannst jetzt Preise hinzufügen.') : t('Dieses Lokal ist bereits vorhanden. Du kannst hier Preise hinzufügen oder die Angaben über «Lokal korrigieren» ändern.'));
@@ -225,7 +232,7 @@ addVenueButton.id = 'add-venue'; addVenueButton.className = 'text-button'; addVe
 $('data-info').before(addVenueButton);
 addVenueButton.onclick = () => {
   if (!communityReady) return toast(t('Gemeinsame Einträge sind gerade nicht verfügbar. Bitte neu laden.'));
-  openVenueForm(map.getCenter(), addressSelection ? '' : f.query.trim());
+  openVenueForm(map.getCenter(), addressSelection ? '' : typed().trim());
 };
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
 let mapMoving = false;
@@ -343,7 +350,7 @@ function syncSearchRow() {
 }
 function syncControls() {
   if (customMapUI?.isOpen) return;
-  const heading = streetfood() ? t('Kebab- und Falafelpreise {city}', { city: cityName }) : beer() ? t('Bierpreise {city}', { city: cityName }) : ramen() ? t('Ramenpreise {city} · Community', { city: cityName }) : burger() ? t('Burgerpreise {city}', { city: cityName }) : softdrink() ? t('Softdrinkpreise {city}', { city: cityName }) : cocktail() ? t('Cocktailpreise {city}', { city: cityName }) : pizza() ? t('Pizzapreise {city}', { city: cityName }) : t('Kaffeepreise {city}', { city: cityName });
+  const heading = t('wobillig {city}', { city: cityName });
   if ($('map-title').textContent !== heading) $('map-title').textContent = heading;
   document.title = coffee() ? coffeePageTitle : t('{heading} vergleichen | wobillig', { heading });
   $<HTMLSelectElement>('type').innerHTML = options(venueTypes);
@@ -410,8 +417,8 @@ function syncControls() {
   $<HTMLSelectElement>('coffeeType').value = f.coffeeType!;
   $<HTMLInputElement>('normalize').checked = f.mode === 'half';
   categoryNav.update(f.drink!, hiddenCategories());
-  $<HTMLInputElement>('search').value = f.query;
-  $('search-clear').hidden = f.query.length === 0;
+  $<HTMLInputElement>('search').value = typed();
+  $('search-clear').hidden = typed().length === 0;
   $<HTMLSelectElement>('sort').value = f.sort;
   $<HTMLInputElement>('outdoor').checked = f.outdoor;
   $<HTMLInputElement>('open-now').checked = f.open === 'now';
@@ -479,9 +486,7 @@ function render() {
   if (selected && (!selection || !isVenueEligible(selection, f))) selected = undefined;
   syncControls();
   $<HTMLAnchorElement>('rankings-link').href = beer() ? '#bierpreise' : pizza() ? '#pizzapreise' : '#kaffeepreise';
-  // While a sentence is typed, only its unknown words search venue names; the rest waits for Enter.
-  const preview = livePreview();
-  const searchFilters = { ...f, query: addressSelection ? '' : preview ? preview.rest.join(' ') : f.query };
+  const searchFilters = addressSelection ? { ...f, query: '' } : f;
   const pool = narrowBars(bars);
   const prices = matchingPrices(pool, searchFilters);
   cheapLimit = cheapPriceLimit(pool, searchFilters);
@@ -489,6 +494,7 @@ function render() {
   const activeFilters = cheapMode ? { ...searchFilters, max: cheapLimit ?? -Infinity, unknown: false } : searchFilters;
   $<HTMLInputElement>('unknown').checked = activeFilters.unknown;
   current = filterBars(pool, activeFilters, addressSelection ? [addressSelection.lat, addressSelection.lon] : position);
+  if (smartResultLimit !== undefined) current = current.slice(0, smartResultLimit);
   if (hasBeerSelection(f) && selected && !current.some(bar => bar.id === selected)) {
     selected = undefined;
     syncControls();
@@ -575,7 +581,7 @@ function narrowBars(list: Bar[]): Bar[] {
 }
 // The parsed sentence while it is still the text in the field.
 function livePreview(): SmartQuery | undefined {
-  return smartPreview && smartPreview.text === f.query ? smartPreview.query : undefined;
+  return smartPreview && smartPreview.text === typed() ? smartPreview.query : undefined;
 }
 function productLabel(plan: SmartPlan, query: SmartQuery): string {
   const p = { ...f, ...plan.filters };
@@ -600,7 +606,7 @@ function smartSummary(query: SmartQuery): string {
   return [
     plan.unavailable ? t('{category} nicht in {city}', { category: smartCategoryLabel(plan.unavailable), city: cityName }) : '',
     productLabel(plan, query),
-    query.max !== undefined ? t('Bis CHF {price}', { price: money(query.max) }) : query.cheap ? t('Günstig') : '',
+    query.max !== undefined ? t('Bis CHF {price}', { price: money(query.max) }) : query.priceOrder === 'desc' ? t('Teuerste zuerst') : query.priceOrder === 'asc' ? t('Günstigste zuerst') : query.cheap ? t('Günstig') : '',
     p.district ? districtLabel(p.district, districts) : '',
     p.open ? (p.open === 'now' ? t('Jetzt offen') : t('Offen um {time}', { time: p.open })) : '',
     p.outdoor ? t('Draussen sitzen') : '',
@@ -618,9 +624,10 @@ async function applySmartSearch(text: string, example = false) {
   const plan = planSmartQuery(query, availableCategories(), f.drink!);
   cancelAddressRequest(); clearAddressSelection(); closeSearchSuggestions();
   smartPreview = undefined; selected = undefined; smartNote = '';
+  smartResultLimit = plan.resultLimit;
   Object.assign(f, plan.filters);
   cheapMode = plan.cheap;
-  f.query = '';
+  f.query = ''; draft = undefined;
   rebuild();
   // Unknown words may still name a venue, a beer or a pizza; otherwise they are reported, never searched for nothing.
   const rest = query.rest.join(' ');
@@ -666,7 +673,7 @@ function renderSmartChips() {
 // The search field cycles through example sentences; the plain venue hint opens each round.
 function nextPlaceholder() {
   if (exampleIndex >= exampleList.length) {
-    exampleList = [t('Lokal, Adresse, PLZ oder Ort'), ...smartExamples(cityId, locale(), availableCategories()).map(example => t('z. B. {example}', { example }))];
+    exampleList = [t('Lokal, Adresse, PLZ oder Ort'), ...smartExamples(cityId, locale(), availableCategories())];
     // The plain hint is already there on load, so the first round starts with an example.
     exampleIndex = exampleRound++ ? 0 : 1;
   }
@@ -690,7 +697,7 @@ function cancelAddressRequest() {
   addressPromise = undefined; addressResults = []; addressStatus = 'idle';
 }
 function scheduleAddressSearch() {
-  if (f.query.trim().length < 2) return;
+  if (typed().trim().length < 2) return;
   addressStatus = 'loading'; renderSearchSuggestions();
   clearTimeout(addressTimer);
   addressTimer = setTimeout(() => void loadAddressResults(), 350);
@@ -698,8 +705,8 @@ function scheduleAddressSearch() {
 async function loadAddressResults(): Promise<void> {
   clearTimeout(addressTimer);
   if (addressPromise) return addressPromise;
-  if (f.query.trim().length < 2) return;
-  const request = ++addressRequest, query = f.query;
+  if (typed().trim().length < 2) return;
+  const request = ++addressRequest, query = typed();
   addressController = new AbortController();
   const controller = addressController;
   const timeout = setTimeout(() => controller.abort(), 8000);
@@ -707,7 +714,7 @@ async function loadAddressResults(): Promise<void> {
   addressPromise = (async () => {
     try {
       const results = await searchAddresses(query, city.center, controller.signal, city.name);
-      if (request !== addressRequest || query !== f.query) return;
+      if (request !== addressRequest || query !== typed()) return;
       addressResults = results; addressStatus = 'ready';
     } catch {
       if (request !== addressRequest) return;
@@ -728,18 +735,20 @@ function closeSearchSuggestions() {
 }
 function renderSearchSuggestions() {
   if (!searchOpen) { closeSearchSuggestions(); return; }
-  const showHistory = !f.query.trim();
+  const text = typed();
+  const showHistory = !text.trim();
   const active = suggestions[activeSuggestion];
-  const venues = searchSuggestions(searchCandidates(), f.query);
+  const venues = searchSuggestions(searchCandidates(), text);
   const history = showHistory ? searchHistory.results(searchCandidates()) : [];
   const preview = livePreview();
   // A sentence comes first, unless the text is the start of a venue name such as «Pizza Bella».
-  const smart: SmartSuggestion[] = preview ? [{ smart: f.query }] : [];
-  const venueFirst = venues.length > 0 && normalizeSearch(venues[0].name).startsWith(normalizeSearch(f.query));
-  const found = /\d/.test(f.query) && !preview ? [...addressResults, ...venues] : [...venues, ...addressResults];
-  suggestions = showHistory ? [...history, ...dropdownExamples.map(example => ({ smart: example, example: true }))]
-    : venueFirst ? [found[0], ...smart, ...found.slice(1)] : [...smart, ...found];
-  $('search-history-heading').hidden = !history.length;
+  const smart: SmartSuggestion[] = preview ? [{ smart: text }] : [];
+  const found = /\d/.test(text) && !preview ? [...addressResults, ...venues] : [...venues, ...addressResults];
+  // Smart search is the primary suggestion: show it before venue matches and, when
+  // the field is empty, put up to five examples before the search history.
+  suggestions = showHistory ? [...dropdownExamples.map(example => ({ smart: example, example: true })), ...history]
+    : [...smart, ...found];
+  $('search-history-heading').hidden = !history.length || Boolean(dropdownExamples.length);
   if (showHistory && !suggestions.length) { closeSearchSuggestions(); return; }
   activeSuggestion = active ? suggestions.indexOf(active) : -1;
   $('search-dropdown').hidden = false;
@@ -747,7 +756,7 @@ function renderSearchSuggestions() {
   $('search-empty').hidden = showHistory || preview !== undefined || (suggestions.length > 0 && addressStatus !== 'loading' && addressStatus !== 'error');
   $('search-empty').textContent = addressStatus === 'loading' ? t('Adressen werden gesucht …')
     : addressStatus === 'error' ? t('Adresssuche gerade nicht verfügbar. Mit Enter erneut versuchen.')
-    : f.query.trim().length < 2 ? t('Mindestens zwei Zeichen eingeben.') : t('Keine Lokale oder Adressen gefunden. Versuche Strasse, Hausnummer, PLZ oder Ort.');
+    : text.trim().length < 2 ? t('Mindestens zwei Zeichen eingeben.') : t('Keine Lokale oder Adressen gefunden. Versuche Strasse, Hausnummer, PLZ oder Ort.');
   const visible = new Set(current.map(b => b.id));
   $('search-suggestions').innerHTML = suggestions.map((b, index) => {
     if ('smart' in b) return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}" class="smart-option${b.example ? ' smart-example' : ''}"><strong>${b.example ? e(b.smart) : e(smartSummary(preview!))}</strong><small><span class="smart-badge">${t('Smart-Suche')}</span>${b.example ? t('Beispiel ausprobieren') : e(b.smart)}</small></button>`;
@@ -773,6 +782,7 @@ function selectSearchSuggestion(index: number, remember = true) {
   const bar = suggestions[index];
   if (!bar) return;
   if ('smart' in bar) { void applySmartSearch(bar.smart, bar.example); return; }
+  draft = undefined;
   if (remember) searchHistory.remember(bar);
   cancelAddressRequest();
   closeSearchSuggestions();
@@ -839,7 +849,7 @@ function detail(b: Bar) {
   showValueRating($('detail').querySelector<HTMLElement>('.detail-actions')!, cityId, b.id);
   $('close-detail').onclick = () => {
     closeSearchSuggestions();
-    selected = undefined; f.query = '';
+    selected = undefined; f.query = ''; draft = undefined;
     render();
   };
   $('add-here').onclick = () => openPrice(b);
@@ -899,16 +909,26 @@ function chooseDrink(drink: Drink) {
   if (drink !== f.drink) trackEvent(cityId, 'category_changed', { category: drink });
   // Every category opens at its cheap price, without remembering an earlier slider position.
   cheapMode = true; f.max = Infinity;
-  f.drink = drink; f.mode = 'glass'; selected = undefined; rebuild(); }
+  f.drink = drink; f.mode = 'glass'; smartResultLimit = undefined; selected = undefined; rebuild(); }
 $('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
-$('search').oninput = event => {
-  cancelAddressRequest(); clearAddressSelection();
-  f.query = $<HTMLInputElement>('search').value;
-  const query = parseSmartQuery(f.query, cityId);
-  smartPreview = isSmartQuery(query) ? { text: f.query, query } : undefined;
-  selected = undefined; activeSuggestion = -1; searchOpen = true; smartNote = '';
+function commitSearch() {
+  if (draft === undefined) return;
+  clearAddressSelection();
+  smartResultLimit = undefined;
+  f.query = draft; draft = undefined; selected = undefined;
   render();
-  if (!(event as InputEvent).isComposing && f.query.trim().length >= 2 && !skipsAddressSearch()) {
+}
+$('search').oninput = event => {
+  cancelAddressRequest();
+  draft = $<HTMLInputElement>('search').value;
+  const query = parseSmartQuery(draft, cityId);
+  smartPreview = isSmartQuery(query) ? { text: draft, query } : undefined;
+  activeSuggestion = -1; searchOpen = true; smartNote = '';
+  $('search-clear').hidden = !draft;
+  // Emptying the field is a reset rather than a search, so the full list returns at once.
+  if (!draft.trim() && (f.query || addressSelection)) commitSearch();
+  else { renderSearchSuggestions(); renderSmartChips(); }
+  if (!(event as InputEvent).isComposing && typed().trim().length >= 2 && !skipsAddressSearch()) {
     scheduleAddressSearch();
   }
 };
@@ -919,7 +939,7 @@ function skipsAddressSearch() {
 }
 $('search').onfocus = () => {
   void loadDistricts();
-  dropdownExamples = smartExamples(cityId, locale(), availableCategories()).slice(0, 3);
+  dropdownExamples = smartExamples(cityId, locale(), availableCategories()).slice(0, SMART_SEARCH_RECOMMENDATION_LIMIT);
   searchOpen = true; renderSearchSuggestions();
   if (!addressSelection && addressStatus === 'idle' && !skipsAddressSearch()) scheduleAddressSearch();
 };
@@ -933,7 +953,7 @@ $('search-clear').onpointerdown = event => event.preventDefault();
 $('search-clear').onclick = () => {
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
-  f.query = ''; selected = undefined;
+  f.query = ''; draft = undefined; selected = undefined;
   searchOpen = true;
   render();
   $('search').focus({ preventScroll: true });
@@ -960,16 +980,16 @@ $('search').onkeydown = async event => {
     event.preventDefault();
     if (searchOpen && activeSuggestion >= 0) selectSearchSuggestion(activeSuggestion);
     // The first row is the sentence, or a venue whose name the text starts with.
-    else if (livePreview()) { if (searchOpen && suggestions.length) selectSearchSuggestion(0); else void applySmartSearch(f.query); }
-    else if (searchOpen && suggestions.length && (!/\d/.test(f.query) || addressStatus === 'ready')) selectSearchSuggestion(0);
+    else if (livePreview()) { if (searchOpen && suggestions.length) selectSearchSuggestion(0); else void applySmartSearch(typed()); }
+    else if (searchOpen && suggestions.length && (!/\d/.test(typed()) || addressStatus === 'ready')) selectSearchSuggestion(0);
     else {
-      const query = f.query;
+      const query = typed();
       searchOpen = true;
       const pending = loadAddressResults(), request = addressRequest;
       await pending;
-      if (searchOpen && f.query === query && request === addressRequest) {
+      if (searchOpen && typed() === query && request === addressRequest) {
         if (suggestions.length) selectSearchSuggestion(0);
-        else zoomToSearchResults();
+        else { commitSearch(); zoomToSearchResults(); }
       }
     }
   }
@@ -1095,7 +1115,7 @@ $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden
 $('reset').onclick = () => {
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
-  cheapMode = false;
+  cheapMode = false; draft = undefined;
   Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, streetfoodPortion: undefined, streetfoodFood: undefined, softdrinkSize: undefined, softdrinkSelection: undefined, cocktailSelection: undefined, glutenFree: false, district: undefined, open: undefined, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = '';
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';

@@ -30,6 +30,8 @@ export type SmartQuery = {
   cafe?: boolean;
   max?: number;
   cheap?: boolean;
+  priceOrder?: 'asc' | 'desc';
+  resultLimit?: number;
   // "now" or a time of day as HH:MM.
   open?: string;
   outdoor?: boolean;
@@ -46,6 +48,7 @@ export type SmartPlan = {
   filters: Partial<Filters>;
   cheap: boolean;
   near: boolean;
+  resultLimit?: number;
   unavailable?: Category;
 };
 
@@ -86,7 +89,9 @@ const times = table<string>([
 ]);
 const outdoor = words(['terrasse', 'terrassen', 'terasse', 'terrace', 'draussen', 'drausen', 'dusse', 'outdoor', 'outdoors', 'outside', 'aussen', 'aussenbereich', 'im freien', 'garten', 'gartenwirtschaft', 'gartenbeiz', 'biergarten', 'garden', 'beer garden', 'boulevard', 'an der sonne', 'sonnig', 'sunny', 'en terrasse']);
 const near = words(['in der nähe', 'in meiner nähe', 'nähe', 'nahe', 'in der umgebung', 'um die ecke', 'hier', 'nearby', 'near me', 'near', 'close by', 'close to me', 'around me', 'près de moi', 'à proximité', 'proche', 'ici']);
-const cheap = words(['am günstigsten', 'günstig', 'günstige', 'günstiger', 'günstiges', 'günstigste', 'günstigsten', 'günstigster', 'günstigstes', 'billig', 'billige', 'billiges', 'billigste', 'billigsten', 'billigster', 'preiswert', 'cheap', 'cheaper', 'cheapest', 'budget', 'low budget', 'pas cher', 'bon marché', 'wobillig']);
+const cheapest = words(['am günstigsten', 'günstigste', 'günstigsten', 'günstigster', 'günstigstes', 'billigste', 'billigsten', 'billigster', 'billigstes', 'cheapest', 'least expensive', 'moins cher']);
+const mostExpensive = words(['am teuersten', 'teuerste', 'teuersten', 'teuerster', 'teuerstes', 'most expensive', 'priciest', 'plus cher']);
+const cheap = words(['günstig', 'günstige', 'günstiger', 'günstiges', 'billig', 'billige', 'billiges', 'preiswert', 'cheap', 'cheaper', 'budget', 'low budget', 'pas cher', 'bon marché', 'wobillig']);
 const diets = table<'vegan' | 'vegetarian'>([
   ['vegan', ['vegan', 'vegane', 'veganer', 'veganes', 'veganen']],
   ['vegetarian', ['vegi', 'vegie', 'veggie', 'vegetarisch', 'vegetarische', 'vegetarischer', 'vegetarisches', 'vegetarian', 'végétarien', 'végé']],
@@ -219,6 +224,15 @@ const stopwords = new Set(['wo', 'gibt', 'gibts', 'es', 'ein', 'eine', 'einen', 
 export function parseSmartQuery(text: string, city: City): SmartQuery {
   const query: SmartQuery = { rest: [] };
   let s = ` ${normalizeSmart(text)} `;
+  const quantityWords: Record<string, number> = { ein: 1, eine: 1, zwei: 2, drei: 3, vier: 4, funf: 5, sechs: 6, sieben: 7, acht: 8, neun: 9, zehn: 10 };
+  const tokens = normalizeSmart(text).split(' ');
+  for (let index = 0; index < tokens.length - 1; index++) {
+    const amount = quantityWords[tokens[index]] || Number(tokens[index]);
+    if (Number.isInteger(amount) && amount >= 1 && amount <= 50 && ['teurst', 'gunstigst', 'billigst'].some(word => tokens[index + 1].startsWith(word))) {
+      query.resultLimit = amount;
+      break;
+    }
+  }
   // Taking a match blanks it out, so later rules cannot read it again and positions stay comparable.
   const take = (pattern: RegExp, use: (match: RegExpExecArray) => boolean | void) => {
     pattern.lastIndex = 0;
@@ -254,6 +268,8 @@ export function parseSmartQuery(text: string, city: City): SmartQuery {
   for (const [n, pattern] of aliases) take(pattern, () => { query.district ??= n; });
   take(near, () => { query.near = true; });
   take(outdoor, () => { query.outdoor = true; });
+  take(cheapest, () => { query.priceOrder = 'asc'; });
+  take(mostExpensive, () => { query.priceOrder = 'desc'; });
   take(cheap, () => { query.cheap = true; });
   for (const [diet, pattern] of diets) take(pattern, () => { query.diet ??= diet; });
   take(glutenFree, () => { query.glutenFree = true; });
@@ -276,7 +292,7 @@ export function parseSmartQuery(text: string, city: City): SmartQuery {
   take(plate, () => { query.plate = true; });
   take(cafe, () => { query.cafe = true; });
   for (const [type, pattern] of venueTypes) take(pattern, () => { query.type ??= type; });
-  const leftover = s.split(' ').filter(word => word && !stopwords.has(word) && !/^[.:<]+$/.test(word));
+  const leftover = s.split(' ').filter(word => word && !stopwords.has(word) && !/^[.:<]+$/.test(word) && !(query.resultLimit && (quantityWords[word] === query.resultLimit || Number(word) === query.resultLimit)));
   // Report leftovers in the visitor's spelling where a typed word normalises to the same text.
   const typed = text.split(/[\s,;!?()«»"]+/).filter(Boolean);
   query.rest = leftover.map(word => typed.find(original => normalizeSmart(original) === word) || word);
@@ -303,6 +319,7 @@ export function planSmartQuery(query: SmartQuery, available: ReadonlySet<Categor
     outdoor: Boolean(query.outdoor), open: query.open, district: query.district,
     type: query.type || (query.cafe && target !== 'coffee' ? 'cafe' : ''),
     max: query.max ?? Infinity,
+    ...(query.priceOrder ? { sort: query.priceOrder === 'desc' ? 'price_desc' as const : 'price' as const } : {}),
     ...(query.near ? { sort: 'distance' } : {}),
   };
   if (drink) Object.assign(filters, { drink, mode: 'glass' as const });
@@ -332,7 +349,7 @@ export function planSmartQuery(query: SmartQuery, available: ReadonlySet<Categor
     Object.assign(filters, { streetfoodFood: query.streetfoodFood === 'all' ? undefined : query.streetfoodFood, ...(portion ? { streetfoodPortion: portion } : {}) });
   }
   // A price of its own replaces the cheap filter; otherwise the result opens at its cheap price like a category switch.
-  return { filters, cheap: query.max === undefined, near: Boolean(query.near), ...(unavailable ? { unavailable } : {}) };
+  return { filters, cheap: query.max === undefined && !query.priceOrder, near: Boolean(query.near), ...(query.priceOrder ? { resultLimit: query.resultLimit || 1 } : {}), ...(unavailable ? { unavailable } : {}) };
 }
 
 type Example = { de: string; en: string; needs: Category; place?: boolean };
