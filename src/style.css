@@ -353,9 +353,12 @@ dialog::backdrop { background: var(--backdrop); }
   .smart-chips { padding: 5px 7px; gap: 5px; flex-shrink: 0; }
   .smart-chip { min-height: 30px; }
   #search { padding-right: 7px; font-size: var(--font-control); }
-  .search-box:has(#search-clear:not([hidden])) #search { padding-right: 60px; }
-  #search-clear { right: 30px; width: 30px; }
-  #search-close { position: absolute; top: 0; right: 0; display: block; width: 30px; height: 100%; padding: 0; border: 0; background: transparent; font-size: 24px; line-height: 1; }
+  .search-box:has(#search-clear:not([hidden])) #search, .search-box #search[aria-expanded=true] { padding-right: 30px; }
+  .search-box:has(#search-clear:not([hidden])) #search[aria-expanded=true] { padding-right: 60px; }
+  #search-clear { right: 0; width: 30px; }
+  #search[aria-expanded=true] ~ #search-clear { right: 30px; }
+  #search-close { position: absolute; top: 0; right: 0; width: 30px; height: 100%; padding: 0; border: 0; background: transparent; font-size: 24px; line-height: 1; }
+  #search[aria-expanded=true] ~ #search-close { display: block; }
   #search-close:hover { background: var(--hover); }
   #search-close:focus-visible { outline-offset: -3px; }
   #coffeeType { order: 2; grid-column: 1; max-width: none; width: 100%; min-width: 0; font-size: var(--font-control); }
