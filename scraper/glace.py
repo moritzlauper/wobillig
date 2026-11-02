@@ -28,7 +28,8 @@ from pypdf.errors import PyPdfError
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj
 from scraper.chains import is_chain
-from scraper.datasets import keep_unlisted
+from scraper.sites import start_urls
+from scraper.datasets import first_error, keep_unlisted
 from scraper.cities import AREA, ROOT
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
@@ -87,7 +88,9 @@ def menu_links(body, url):
 
 def crawl(start, fetcher, max_pages):
     """Collect documents for the AI: pages mentioning ice cream, price lists and images."""
-    queue, visited, errors, docs = [start], set(), [], []
+    # A dead OpenStreetMap address falls back to the site's home page (scraper.sites).
+    starts = start_urls(start)
+    queue, visited, errors, docs, reached = [starts.pop(0)], set(), [], [], False
     while queue and len(visited) < max_pages:
         url = queue.pop(0)
         if not url or url in visited or skip_source(url):
@@ -95,6 +98,7 @@ def crawl(start, fetcher, max_pages):
         visited.add(url)
         try:
             final, kind, body = fetcher.get(url)
+            reached = True
             links = []
             if 'pdf' in kind or urlparse(final).path.lower().endswith('.pdf'):
                 docs.append({'url': final, 'kind': 'application/pdf', 'body': body, 'mentioned': False})
@@ -112,7 +116,9 @@ def crawl(start, fetcher, max_pages):
             queue = list(dict.fromkeys(u for u in links + queue if u not in visited and not skip_source(u)))
             queue.sort(key=lambda u: (not bool(re.search(r'glace|gelat|preis|price|karte|menu|sorten', u, re.I)), not bool(DOCUMENT.search(urlparse(u).path))))
         except Exception as error:
-            errors.append({'url': url, 'error': type(error).__name__})
+            errors.append({'url': url, 'error': f'{type(error).__name__}: {error}'[:120]})
+            if not reached and starts:
+                queue.insert(0, starts.pop(0))
     return {'visited': len(visited), 'errors': errors, 'documents': docs}
 
 
@@ -176,7 +182,7 @@ def scan(name, shops, fetcher, client, max_pages, max_documents, deadline):
             cheapest[offer['scoops']] = offer
     portions = [cheapest[n] for n in sorted(cheapest)]
     status = 'priced' if portions else 'fetch_failed' if failed else 'no_prices'
-    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, {len(portions)} portions, {status}', flush=True)
+    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, {len(portions)} portions, {status}' + first_error(result), flush=True)
     return {'status': status, 'portions': portions, 'errors': result['errors'][:5]}
 
 

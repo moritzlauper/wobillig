@@ -22,7 +22,7 @@ from pypdf.errors import PyPdfError
 
 from scraper import burger, gastro, ramen
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, obj, enum
-from scraper.datasets import keep_unlisted
+from scraper.datasets import first_error, keep_unlisted
 from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, STATE_DIR, venue_query
 from scraper.enrich import AuditFetcher
 from scraper.scrape import discover, now
@@ -114,7 +114,7 @@ def scan(name, bars, fetcher, client, max_pages, max_documents, deadline):
             failed = True
     offers = {category: list({KEYS[category](o): o for o in found[category]}.values()) for category in CATEGORIES}
     status = 'fetch_failed' if failed else 'read'
-    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, ' + ', '.join(f'{len(v)} {k}' for k, v in offers.items()), flush=True)
+    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, ' + ', '.join(f'{len(v)} {k}' for k, v in offers.items()) + first_error(result), flush=True)
     return {'status': status, 'offers': offers, 'errors': result['errors'][:5]}
 
 

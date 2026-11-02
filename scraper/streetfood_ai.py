@@ -22,7 +22,7 @@ from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents
 from scraper.burger import crawl
 from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, venue_query
 from scraper.chains import is_chain
-from scraper.datasets import keep_unlisted
+from scraper.datasets import first_error, keep_unlisted
 from scraper.enrich import AuditFetcher, host
 from scraper.scrape import discover, now
 
@@ -123,7 +123,7 @@ def scan(name, bars, fetcher, client, max_pages, max_documents, deadline):
             failed = True
     offers = list({(o['food'], o['name'], o['portion'], o['priceChf']): o for o in found}.values())
     status = 'priced' if offers else 'fetch_failed' if failed else 'no_prices'
-    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, {len(offers)} offers, {status}', flush=True)
+    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, {len(offers)} offers, {status}' + first_error(result), flush=True)
     return {'status': status, 'offers': offers, 'errors': result['errors'][:5]}
 
 

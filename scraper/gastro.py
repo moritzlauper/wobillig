@@ -25,7 +25,7 @@ from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents
 from scraper.burger import crawl
 from scraper.cities import CITY_NAME, DATA_DIR, ROOT, venue_query
 from scraper.chains import is_chain
-from scraper.datasets import keep_unlisted
+from scraper.datasets import first_error, keep_unlisted
 from scraper.enrich import AuditFetcher, host
 from scraper.scrape import discover, now
 
@@ -152,7 +152,7 @@ def scan(name, bars, fetcher, client, category, max_pages, max_documents, deadli
             failed = True
     offers = list({(item_name(o), o['priceChf']): o for o in found}.values())
     status = 'priced' if offers else 'fetch_failed' if failed else 'unverified' if unverified else 'no_prices'
-    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, {len(offers)} offers, {status}', flush=True)
+    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, {len(offers)} offers, {status}' + first_error(result), flush=True)
     return {'status': status, 'offers': offers, 'errors': result['errors'][:5]}
 
 
