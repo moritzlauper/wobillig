@@ -22,7 +22,8 @@ test('mobile visitors can create a venue, reload it and add a price', async ({ p
   ] } }));
   await page.goto('/bern');
   await expect(page.locator('.price-marker').first()).toBeVisible();
-  await page.getByRole('button', { name: 'Lokal hinzufügen', exact: true }).click();
+  await page.getByRole('button', { name: 'Preise ergänzen', exact: true }).click();
+  await page.getByRole('button', { name: 'Neues Lokal erfassen', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Lokal hinzufügen', exact: true });
   await expect(dialog).toBeVisible();
   await dialog.getByLabel('Name', { exact: true }).fill('Neues Testcafé');
@@ -56,7 +57,8 @@ test('mobile visitors can create a venue, reload it and add a price', async ({ p
   await expect(page.locator('#detail')).toContainText('CHF 5.20');
   expect(entries).toHaveLength(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
-  await page.getByRole('button', { name: 'Lokal hinzufügen', exact: true }).click();
+  await page.getByRole('button', { name: 'Preise ergänzen', exact: true }).click();
+  await page.getByRole('button', { name: 'Neues Lokal erfassen', exact: true }).click();
   await dialog.getByLabel('Name', { exact: true }).fill('Neues Testcafé');
   await dialog.getByRole('button', { name: 'Neues Testcafé · Testgasse 12' }).click();
   await expect(dialog).not.toBeVisible();
@@ -74,7 +76,8 @@ test('manual map placement works when address search fails; save failure keeps t
   await page.route('https://api3.geo.admin.ch/**', route => route.abort());
   await page.goto('/bern');
   await expect(page.locator('.price-marker').first()).toBeVisible();
-  await page.getByRole('button', { name: 'Lokal hinzufügen', exact: true }).click();
+  await page.getByRole('button', { name: 'Preise ergänzen', exact: true }).click();
+  await page.getByRole('button', { name: 'Neues Lokal erfassen', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Lokal hinzufügen', exact: true });
   await dialog.getByLabel('Name', { exact: true }).fill('Anderes Testcafé');
   await dialog.getByLabel('Strasse und Hausnummer').fill('Testgasse 12');

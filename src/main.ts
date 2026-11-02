@@ -22,6 +22,8 @@ import { searchAddresses, type AddressResult } from './address-search';
 import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan';
 import { dateLocale, locale, localizedPath, t, type Locale } from './i18n';
 import { venueForm } from './venue-form';
+import { contributionForm, contributionNotes, type ContributionMode } from './contribution-form';
+import type { ContributionDraft } from './smart-contribution';
 import { venueCorrectionForm } from './venue-correction-form';
 import { applyVenueCorrections, type VenueCorrection } from './venue-corrections';
 import { categoryNavigation } from './category-navigation';
@@ -59,6 +61,7 @@ const datasets: Partial<Record<Drink, Dataset>> = {};
 let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: Bar[] = [];
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
 let communityReady = false, saving = false, pizzaAvailable = false, ramenAvailable = false, burgerAvailable = false;
+let activeContribution: { mode: ContributionMode; draft?: ContributionDraft } | undefined;
 const gastroAvailable = { softdrink: false, cocktail: false };
 // Imbiss stands stay out of the shared venue list, so they never show up on the drink maps.
 let streetfoodDataset: Dataset | undefined;
@@ -95,8 +98,8 @@ let smartPreview: { text: string; query: SmartQuery } | undefined;
 // Words of the last applied sentence that no rule, venue, beer or pizza matched.
 let smartNote = '';
 let exampleList: string[] = [], exampleIndex = 0, dropdownExamples: string[] = [];
-// Keep the idle-state smart search menu short and useful.
-const SMART_SEARCH_RECOMMENDATION_LIMIT = 5;
+// Stop the automatic placeholder rotation after seven examples per page visit.
+const SMART_SEARCH_PLACEHOLDER_LIMIT = 7;
 const coffee = () => f.drink === 'coffee';
 const pizza = () => f.drink === 'pizza';
 const beer = () => f.drink === 'beer';
@@ -119,10 +122,11 @@ $('app').innerHTML = `
 <div class="toolbar">
   <div id="category-navigation" class="toolbar-heading"></div>
   <div class="search-box smart-search-box">
-    <label class="smart-search-label" for="search">${t('Smart-Suche')}:</label>
-    <input id="search" type="search" role="combobox" placeholder="${t('Lokal, Adresse, PLZ oder Ort')}" aria-label="${t('Lokal, Adresse oder Wunsch in eigenen Worten')}" enterkeyhint="search" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
+    <div class="smart-search-field">
+    <input id="search" type="search" role="combobox" placeholder="${t('Lokal, Adresse, PLZ oder Ort')}" aria-label="${t('Lokal, Adresse oder Wunsch in eigenen Worten')}" enterkeyhint="search" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-examples search-suggestions">
     <button id="search-clear" type="button" aria-label="${t('Suche löschen')}" title="${t('Suche löschen')}" hidden><span aria-hidden="true">×</span></button>
-    <div id="search-dropdown" hidden><div id="search-history-heading" hidden><strong>${t('Letzte Suchen')}</strong><button id="search-history-clear" type="button">${t('Verlauf löschen')}</button></div><div id="search-suggestions" role="listbox" aria-label="${t('Suchvorschläge')}"></div><p id="search-empty" role="status" hidden></p></div>
+    </div>
+    <div id="search-dropdown" hidden><div id="search-examples" role="listbox" aria-label="${t('Smart-Suche')}" hidden></div><div id="search-history-heading" hidden><strong>${t('Letzte Suchen')}</strong><button id="search-history-clear" type="button">${t('Verlauf löschen')}</button></div><div id="search-suggestions" role="listbox" aria-label="${t('Suchvorschläge')}"></div><p id="search-empty" role="status" hidden></p></div>
   </div>
   <div id="beer-controls" class="beer-controls">
     <select id="beer-type" aria-label="${t('Ausschank')}">${options({ draft: t('Offenbier'), bottle: t('Flaschenbier'), all: t('Alle Ausschankarten'), can: t('Dosenbier'), unknown: t('Unbekannt') })}</select>
@@ -179,6 +183,8 @@ $('app').innerHTML = `
   <div class="dialog-top"><strong id="form-title" tabindex="-1" autofocus>${t('Preis eintragen')}</strong><button id="cancel-price" type="button">${t('Schliessen')}</button></div>
   <input id="entry-bar" type="hidden">
   <label>${t('Lokal')}<input id="entry-bar-name" readonly></label><p id="entry-location" class="muted"></p>
+  <button id="entry-change-venue" class="text-button" type="button" hidden>${t('Anderes Lokal wählen')}</button>
+  <div id="entry-smart-preview" class="contribution-preview" hidden><p id="entry-smart-text"></p><p id="entry-smart-notes" class="muted"></p></div>
   <section id="menu-scan" class="menu-scan" aria-label="${t('Karte scannen')}">
     <button id="scan-menu" class="primary" type="button">${t('Karte scannen / hochladen')}</button>
     <input id="menu-photo" type="file" accept="image/*" aria-label="${t('Menüfoto auswählen')}" hidden>
@@ -187,9 +193,10 @@ $('app').innerHTML = `
     <p id="scan-status" role="status" hidden></p>
   </section>
   <details id="manual-entry"><summary>${t('Preis von Hand eintragen')}</summary><fieldset id="manual-fields">
-  <div class="form-row"><label>${t('Kategorie')}<select id="entry-drink"><option value="coffee">${t('Kaffee')}</option><option value="beer">${t('Bier')}</option><option value="ramen">${t('Ramen')}</option><option value="burger">${t('Burger')}</option><option value="kebab">${t('Kebab & Falafel')}</option><option value="pizza">Pizza Margherita</option><option value="softdrink">${t('Softdrink')}</option><option value="cocktail">${t('Cocktail')}</option></select></label><label id="entry-coffee-label" hidden>${t('Sorte')}<select id="entry-coffee">${coffeeOptions}</select></label></div>
-  <div id="entry-kebab-fields" class="form-row" hidden><label>${t('Füllung')}<select id="entry-food"><option value="doner">Kebab</option><option value="falafel">Falafel</option></select></label><label>${t('Portion')}<select id="entry-portion"><option value="wrap">Dürüm</option><option value="bread">${t('Im Brot')}</option><option value="plate">${t('Teller')}</option></select></label></div>
+  <div class="form-row"><label>${t('Kategorie')}<select id="entry-drink" required><option value="" disabled>${t('Bitte wählen')}</option><option value="coffee">${t('Kaffee')}</option><option value="beer">${t('Bier')}</option><option value="ramen">${t('Ramen')}</option><option value="burger">${t('Burger')}</option><option value="kebab">${t('Kebab & Falafel')}</option><option value="pizza">Pizza Margherita</option><option value="softdrink">${t('Softdrink')}</option><option value="cocktail">${t('Cocktail')}</option></select></label><label id="entry-coffee-label" hidden>${t('Sorte')}<select id="entry-coffee"><option value="" disabled>${t('Bitte wählen')}</option>${coffeeOptions}</select></label></div>
+  <div id="entry-kebab-fields" class="form-row" hidden><label>${t('Füllung')}<select id="entry-food"><option value="" disabled>${t('Bitte wählen')}</option><option value="doner">Kebab</option><option value="falafel">Falafel</option></select></label><label>${t('Portion')}<select id="entry-portion"><option value="" disabled>${t('Bitte wählen')}</option><option value="wrap">Dürüm</option><option value="bread">${t('Im Brot')}</option><option value="plate">${t('Teller')}</option></select></label></div>
   <label>${t('Bezeichnung')}<input id="entry-name" maxlength="100" placeholder="${t('z. B. Lager oder Espresso')}" required></label>
+  <label id="entry-pizza-check" class="check" hidden><input id="entry-whole-pizza" type="checkbox"> ${t('Der Preis gilt für eine ganze, normale Margherita im Lokal.')}</label>
   <div id="entry-beer-fields"><label id="entry-beer-type-label">${t('Ausschank')}<select id="entry-beer-type">${options(translated(beerTypeLabels))}</select></label><small id="entry-type-hint" class="muted" hidden>${t('Diese Vorauswahl ist geschätzt. Bitte prüfen.')}</small><div class="form-row"><label>${t('Menge in dl')}<input id="entry-volume" type="number" min="1" max="10" step="0.01" value="5"></label><label id="entry-stange-label" class="inline-check"><input id="entry-stange" type="checkbox"> Stange</label></div><label id="entry-size-unknown-label" class="check"><input id="entry-size-unknown" type="checkbox"> ${t('Menge nicht angegeben (nur Stange)')}</label><label id="entry-alcohol-label" class="check"><input id="entry-alcohol" type="checkbox"> ${t('Alkoholfrei')}</label></div>
   <div class="form-row"><label>${t('Preis in CHF')}<input id="entry-price" type="number" min="0.5" max="50" step="0.01" inputmode="decimal" required></label><label>${t('Preis gesehen am')}<input id="entry-date" type="date" min="2020-01-01" required></label></div>
   <label>${t('Link zur Karte (optional)')}<input id="entry-source" type="url" maxlength="1500" placeholder="https://…"></label>
@@ -214,12 +221,22 @@ document.addEventListener('keydown', event => {
   }
 });
 const map = L.map('map', { zoomControl: false }).setView(city.center, 14);
+let newVenueContinuation: ((bar: Bar) => void) | undefined;
+const contributionLocations = () => selectableLocations(selectableLocations(venues, locationCatalogue), streetfoodDataset?.bars || []);
 const openVenueForm = venueForm(cityId, pricesApi, () => selectableLocations(venues, locationCatalogue), (bar, created) => {
   if (!addedVenues.some(b => b.id === bar.id)) addedVenues.push(bar);
   clearAddressSelection(); f.query = ''; draft = undefined; f.type = 'all'; f.unknown = true; f.outdoor = false;
   cheapMode = false; f.drink = 'coffee'; selected = bar.id;
   closeSearchSuggestions(); rebuild(); showBar(bar, 18);
   toast(created ? t('Lokal gespeichert und für alle sichtbar. Du kannst jetzt Preise hinzufügen.') : t('Dieses Lokal ist bereits vorhanden. Du kannst hier Preise hinzufügen oder die Angaben über «Lokal korrigieren» ändern.'));
+  const continuation = newVenueContinuation; newVenueContinuation = undefined; continuation?.(bar);
+});
+const contributions = contributionForm(cityId, contributionLocations, (bar, mode, draft) => openPrice(bar, undefined, { mode, draft }), (name, chosen) => {
+  newVenueContinuation = chosen;
+  openVenueForm(map.getCenter(), name);
+});
+$('venue-dialog').addEventListener('close', () => {
+  if (newVenueContinuation) { newVenueContinuation = undefined; contributions.resume(); }
 });
 const openVenueCorrection = venueCorrectionForm(pricesApi, correction => {
   venueCorrections = [...venueCorrections.filter(item => item.barId !== correction.barId), correction];
@@ -229,11 +246,11 @@ const openVenueCorrection = venueCorrectionForm(pricesApi, correction => {
   toast(t('Korrektur gespeichert. Für alle sichtbar.'));
 });
 const addVenueButton = document.createElement('button');
-addVenueButton.id = 'add-venue'; addVenueButton.className = 'text-button'; addVenueButton.textContent = t('Lokal hinzufügen');
+addVenueButton.id = 'add-venue'; addVenueButton.className = 'text-button'; addVenueButton.textContent = t('Preise ergänzen');
 $('data-info').before(addVenueButton);
 addVenueButton.onclick = () => {
   if (!communityReady) return toast(t('Gemeinsame Einträge sind gerade nicht verfügbar. Bitte neu laden.'));
-  openVenueForm(map.getCenter(), addressSelection ? '' : typed().trim());
+  contributions.open(addressSelection ? '' : typed().trim());
 };
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
 let mapMoving = false;
@@ -664,29 +681,27 @@ function renderSmartChips() {
   if (box.innerHTML === html) return;
   box.innerHTML = html;
   box.querySelectorAll<HTMLButtonElement>('[data-chip]').forEach(button => button.onclick = () => {
-    const chip = chips[Number(button.dataset.chip)];
+    const index = Number(button.dataset.chip), chip = chips[index];
+    cancelAddressRequest(); closeSearchSuggestions();
     chip.clear(); smartNote = ''; selected = undefined;
     render();
-    // Keep the keyboard focus in the row after the chip disappears.
-    (box.querySelector<HTMLElement>('[data-chip]') || $('search')).focus({ preventScroll: true });
+    // Keep focus near the removed chip without reopening the search or mobile keyboard.
+    const remaining = box.querySelectorAll<HTMLButtonElement>('[data-chip]');
+    (remaining[Math.min(index, remaining.length - 1)] || $('filters-toggle')).focus({ preventScroll: true });
   });
 }
-// The search field cycles through example sentences; the plain venue hint opens each round.
-function nextPlaceholder() {
-  if (exampleIndex >= exampleList.length) {
-    exampleList = [t('Lokal, Adresse, PLZ oder Ort'), ...smartExamples(cityId, locale(), availableCategories())];
-    // The plain hint is already there on load, so the first round starts with an example.
-    exampleIndex = exampleRound++ ? 0 : 1;
-  }
-  return exampleList[exampleIndex++] ?? exampleList[0];
-}
-let exampleRound = 0, placeholderTimer: ReturnType<typeof setTimeout> | undefined;
+let placeholderTimer: ReturnType<typeof setTimeout> | undefined, placeholderInterval: ReturnType<typeof setInterval> | undefined;
 function rotatePlaceholder() {
   const input = $<HTMLInputElement>('search');
-  if (document.hidden || input.value) return;
+  if (exampleIndex >= exampleList.length) { clearInterval(placeholderInterval); return; }
+  if (document.hidden || input.value || document.activeElement === input) return;
   input.classList.add('placeholder-out');
   clearTimeout(placeholderTimer);
-  placeholderTimer = setTimeout(() => { input.placeholder = nextPlaceholder(); input.classList.remove('placeholder-out'); }, 220);
+  placeholderTimer = setTimeout(() => {
+    if (!document.hidden && !input.value && document.activeElement !== input) input.placeholder = exampleList[exampleIndex++];
+    input.classList.remove('placeholder-out');
+    if (exampleIndex >= exampleList.length) clearInterval(placeholderInterval);
+  }, 220);
 }
 let addressMarker: L.CircleMarker | undefined;
 function clearAddressSelection() {
@@ -746,12 +761,14 @@ function renderSearchSuggestions() {
   const smart: SmartSuggestion[] = preview ? [{ smart: text }] : [];
   const found = /\d/.test(text) && !preview ? [...addressResults, ...venues] : [...venues, ...addressResults];
   // Smart search is the primary suggestion: show it before venue matches and, when
-  // the field is empty, put up to five examples before the search history.
+  // the field is empty, put the examples before the search history.
   suggestions = showHistory ? [...dropdownExamples.map(example => ({ smart: example, example: true })), ...history]
     : [...smart, ...found];
-  $('search-history-heading').hidden = !history.length || Boolean(dropdownExamples.length);
+  $('search-history-heading').hidden = !history.length;
   if (showHistory && !suggestions.length) { closeSearchSuggestions(); return; }
-  activeSuggestion = active ? suggestions.indexOf(active) : -1;
+  activeSuggestion = active && 'smart' in active
+    ? suggestions.findIndex(result => 'smart' in result && result.smart === active.smart)
+    : active ? suggestions.indexOf(active) : -1;
   $('search-dropdown').hidden = false;
   $('search').setAttribute('aria-expanded', 'true');
   $('search-empty').hidden = showHistory || preview !== undefined || (suggestions.length > 0 && addressStatus !== 'loading' && addressStatus !== 'error');
@@ -759,15 +776,19 @@ function renderSearchSuggestions() {
     : addressStatus === 'error' ? t('Adresssuche gerade nicht verfügbar. Mit Enter erneut versuchen.')
     : text.trim().length < 2 ? t('Mindestens zwei Zeichen eingeben.') : t('Keine Lokale oder Adressen gefunden. Versuche Strasse, Hausnummer, PLZ oder Ort.');
   const visible = new Set(current.map(b => b.id));
-  $('search-suggestions').innerHTML = suggestions.map((b, index) => {
+  const rows = suggestions.map((b, index) => {
     if ('smart' in b) return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}" class="smart-option${b.example ? ' smart-example' : ''}"><strong>${b.example ? e(b.smart) : e(smartSummary(preview!))}</strong><small><span class="smart-badge">${t('Smart-Suche')}</span>${b.example ? t('Beispiel ausprobieren') : e(b.smart)}</small></button>`;
     if ('kind' in b) return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}"><strong>${e(b.label)}</strong><small>${t('Adresse / Ort · Auf Karte anzeigen')}</small></button>`;
     const offer = bestOffer(b, f);
     return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}"><strong>${e(b.name)}</strong><small>${e([b.address, b.postcode].filter(Boolean).join(' · ') || cityName)}</small><small>${offer ? `CHF ${money(cost(offer, f.mode))} · ${e(unit(offer))}` : missingPriceLabel(b, f)}${visible.has(b.id) ? '' : ` · ${t('ausserhalb der aktuellen Filter')}`}</small></button>`;
-  }).join('');
+  });
+  const exampleCount = showHistory ? dropdownExamples.length : 0;
+  $('search-examples').innerHTML = rows.slice(0, exampleCount).join('');
+  $('search-examples').hidden = !exampleCount;
+  $('search-suggestions').innerHTML = rows.slice(exampleCount).join('');
   if (activeSuggestion >= 0) $('search').setAttribute('aria-activedescendant', `search-option-${activeSuggestion}`);
   else $('search').removeAttribute('aria-activedescendant');
-  $('search-suggestions').querySelectorAll<HTMLButtonElement>('[data-suggestion]').forEach(button => {
+  $('search-dropdown').querySelectorAll<HTMLButtonElement>('[data-suggestion]').forEach(button => {
     button.onpointerdown = event => event.preventDefault();
     button.onclick = () => selectSearchSuggestion(Number(button.dataset.suggestion));
   });
@@ -940,7 +961,7 @@ function skipsAddressSearch() {
 }
 $('search').onfocus = () => {
   void loadDistricts();
-  dropdownExamples = smartExamples(cityId, locale(), availableCategories()).slice(0, SMART_SEARCH_RECOMMENDATION_LIMIT);
+  dropdownExamples = smartExamples(cityId, locale(), availableCategories());
   searchOpen = true; renderSearchSuggestions();
   if (!addressSelection && addressStatus === 'idle' && !skipsAddressSearch()) scheduleAddressSearch();
 };
@@ -1190,20 +1211,36 @@ function entryFields() {
   $<HTMLInputElement>('entry-size-unknown').disabled = packaged;
   const unknown = $<HTMLInputElement>('entry-size-unknown').checked;
   $('entry-coffee-label').hidden = !isCoffee; $('entry-beer-fields').hidden = !isBeer && !isSoftdrink;
+  $<HTMLSelectElement>('entry-coffee').required = isCoffee;
+  $<HTMLSelectElement>('entry-coffee').disabled = !isCoffee;
   $('entry-kebab-fields').hidden = category !== 'kebab';
+  for (const id of ['entry-food', 'entry-portion']) {
+    $<HTMLSelectElement>(id).required = category === 'kebab';
+    $<HTMLSelectElement>(id).disabled = category !== 'kebab';
+  }
+  const confirmPizza = activeContribution?.mode === 'smart' && category === 'pizza';
+  $('entry-pizza-check').hidden = !confirmPizza;
+  $<HTMLInputElement>('entry-whole-pizza').required = Boolean(confirmPizza);
   for (const id of ['entry-beer-type-label', 'entry-stange-label', 'entry-size-unknown-label', 'entry-alcohol-label']) $(id).hidden = !isBeer;
   $<HTMLInputElement>('entry-volume').disabled = isSoftdrink ? false : !isBeer || unknown;
   $<HTMLInputElement>('entry-volume').required = isSoftdrink || isBeer && !unknown;
   if (unknown) $<HTMLInputElement>('entry-stange').checked = true;
   $<HTMLInputElement>('entry-stange').disabled = unknown || packaged;
 }
-function openPrice(bar: Bar, offer?: Offer) {
+function openPrice(bar: Bar, offer?: Offer, contribution?: { mode: ContributionMode; draft?: ContributionDraft }) {
   if (!communityReady) return toast(t('Gemeinsame Preise sind gerade nicht verfügbar. Bitte neu laden.'));
   map.closePopup();
   editing = offer;
+  activeContribution = contribution;
   $<HTMLFormElement>('price-form').reset();
   $('form-title').textContent = offer ? t('Preis ändern') : t('Preise hinzufügen');
-  $<HTMLDetailsElement>('manual-entry').open = Boolean(offer);
+  $<HTMLDetailsElement>('manual-entry').open = Boolean(offer || contribution && contribution.mode !== 'scan');
+  if (contribution && contribution.mode !== 'scan') $('menu-scan').before($('manual-entry'));
+  else $('menu-scan').after($('manual-entry'));
+  $('entry-change-venue').hidden = !contribution;
+  $('entry-smart-preview').hidden = !contribution?.draft;
+  $('entry-smart-text').textContent = contribution?.draft?.text || '';
+  $('entry-smart-notes').textContent = contribution?.draft ? [t('Bitte Angaben und Datum prüfen, dann speichern.'), ...contributionNotes(contribution.draft)].join(' ') : '';
   $('scan-status').hidden = true;
   $<HTMLInputElement>('entry-bar').value = bar.id;
   $('entry-location').textContent = t('Die Preise werden diesem Lokal zugeordnet.');
@@ -1223,14 +1260,32 @@ function openPrice(bar: Bar, offer?: Offer) {
   $<HTMLInputElement>('entry-alcohol').checked = offer?.alcoholFree ?? f.alcoholFree;
   $<HTMLInputElement>('entry-date').value = zurichToday(); $<HTMLInputElement>('entry-date').max = zurichToday();
   $<HTMLInputElement>('entry-source').value = offer?.sourceUrl || '';
+  if (contribution?.draft) {
+    const fields = contribution.draft.fields;
+    $<HTMLSelectElement>('entry-drink').value = fields.drink || '';
+    $<HTMLSelectElement>('entry-coffee').value = fields.coffeeType || '';
+    $<HTMLInputElement>('entry-name').value = fields.name ? t(fields.name) : '';
+    $<HTMLInputElement>('entry-price').value = fields.priceChf !== undefined ? String(fields.priceChf) : '';
+    $<HTMLInputElement>('entry-volume').value = fields.volumeMl ? String(fields.volumeMl / 100) : '';
+    $<HTMLInputElement>('entry-stange').checked = fields.serving === 'stange';
+    $<HTMLInputElement>('entry-size-unknown').checked = fields.serving === 'stange' && fields.volumeMl === null;
+    $<HTMLSelectElement>('entry-beer-type').value = fields.beerType || 'unknown';
+    $<HTMLInputElement>('entry-alcohol').checked = Boolean(fields.alcoholFree);
+    $<HTMLSelectElement>('entry-food').value = fields.foodType || '';
+    $<HTMLSelectElement>('entry-portion').value = fields.portionType || '';
+  }
   $('form-error').hidden = true;
   entryFields();
   $<HTMLDialogElement>('price-dialog').showModal();
-  trackEvent(cityId, 'price_form_opened', { category: offer ? offerCategory(offer) : f.drink!, action: offer ? 'edit' : 'add' });
+  trackEvent(cityId, 'price_form_opened', { category: offer ? offerCategory(offer) : contribution?.draft?.fields.drink || f.drink!, action: offer ? 'edit' : 'add' });
   // Focus the heading even when reopening after typing; inputs must never open
   // the phone keyboard until the visitor explicitly taps a field.
   $('form-title').focus({ preventScroll: true });
 }
+$('entry-change-venue').onclick = () => {
+  if (saving) return;
+  $<HTMLDialogElement>('price-dialog').close(); contributions.resume();
+};
 $('scan-menu').onclick = () => { if (!saving) $<HTMLInputElement>('menu-photo').click(); };
 $('menu-photo').onchange = async () => {
   const picker = $<HTMLInputElement>('menu-photo');
@@ -1296,7 +1351,7 @@ $('entry-coffee').onchange = () => { if (!editing) $<HTMLInputElement>('entry-na
 $('entry-beer-type').onchange = entryFields;
 $('cancel-price').onclick = () => { if (!saving) $<HTMLDialogElement>('price-dialog').close(); };
 // Kebab stands live only in their own dataset, outside the shared venue list.
-const entryVenues = () => [...selectableLocations(venues, locationCatalogue).filter(b => matchesVenueType(b, f)), ...(streetfood() ? bars : [])];
+const entryVenues = contributionLocations;
 $('price-dialog').addEventListener('cancel', event => { if (saving) event.preventDefault(); });
 $('price-form').onsubmit = async event => {
   event.preventDefault(); if (saving) return;
@@ -1408,8 +1463,9 @@ async function init() {
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   if (f.district) await loadDistricts();
   rebuild();
+  exampleList = smartExamples(cityId, locale(), availableCategories()).slice(0, SMART_SEARCH_PLACEHOLDER_LIMIT);
   rotatePlaceholder();
-  setInterval(rotatePlaceholder, 4500);
+  placeholderInterval = setInterval(rotatePlaceholder, 4500);
   if (initial.has('map')) await customMapUI?.load(initial.get('map')!);
   const linkedId = initial.get('bar');
   if (linkedId) {

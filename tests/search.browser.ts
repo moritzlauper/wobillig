@@ -87,7 +87,10 @@ for (const width of [390, 1280]) {
       await page.waitForTimeout(500);
       expect(await mapState()).toEqual(before);
     }
-    await search.press('ArrowDown');
+    // Venue names containing words such as "Restaurant" can also have a smart-search row.
+    const venueOption = page.locator('#search-suggestions [role=option]:not(.smart-option)').filter({ hasText: name });
+    const venueIndex = Number(await venueOption.getAttribute('data-suggestion'));
+    for (let index = 0; index <= venueIndex; index++) await search.press('ArrowDown');
     expect(await mapState()).toEqual(before);
     await search.press('Enter');
     await expect(page.locator('#detail')).toBeVisible();
