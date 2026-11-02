@@ -660,8 +660,7 @@ async function applySmartSearch(text: string, example = false) {
   $('search').blur();
   showView(document.body.classList.contains('show-list'));
   if (plan.near && !position) locate(false, 16); else render();
-  const area = f.district ? districts?.features.find(d => d.properties.number === f.district)?.bbox : undefined;
-  if (area) map.fitBounds([[area[1], area[0]], [area[3], area[2]]], { padding: [20, 20] });
+  if (f.district) zoomToDistrictResults();
   else if (f.query) zoomToSearchResults();
 }
 // Filters without their own control in the toolbar, each removable with one tap.
@@ -792,6 +791,15 @@ function renderSearchSuggestions() {
     button.onpointerdown = event => event.preventDefault();
     button.onclick = () => selectSearchSuggestion(Number(button.dataset.suggestion));
   });
+}
+// A district's boundary reaches into forests, tracks and the lake, so frame the venues found there instead.
+function zoomToDistrictResults() {
+  const priced = current.filter(b => bestOffer(b, f));
+  const points = (priced.length ? priced : current).map(b => [b.lat, b.lon] as [number, number]);
+  const area = districts?.features.find(d => d.properties.number === f.district)?.bbox;
+  if (points.length === 1) map.setView(points[0], 16);
+  else if (points.length) map.fitBounds(L.latLngBounds(points), { padding: [40, 40], maxZoom: 16 });
+  else if (area) map.setView([(area[1] + area[3]) / 2, (area[0] + area[2]) / 2], 15);
 }
 function zoomToSearchResults() {
   if (!f.query.trim()) return;
@@ -1343,10 +1351,10 @@ $('menu-photo').onchange = async () => {
   }
 };
 $('entry-drink').onchange = () => {
-  if (!editing) $<HTMLInputElement>('entry-name').value = $<HTMLSelectElement>('entry-drink').value === 'coffee' ? coffeeLabels[$<HTMLSelectElement>('entry-coffee').value] : '';
+  if (!editing) $<HTMLInputElement>('entry-name').value = $<HTMLSelectElement>('entry-drink').value === 'coffee' ? coffeeLabels[$<HTMLSelectElement>('entry-coffee').value] || '' : '';
   entryFields();
 };
-$('entry-coffee').onchange = () => { if (!editing) $<HTMLInputElement>('entry-name').value = coffeeLabels[$<HTMLSelectElement>('entry-coffee').value]; };
+$('entry-coffee').onchange = () => { if (!editing) $<HTMLInputElement>('entry-name').value = coffeeLabels[$<HTMLSelectElement>('entry-coffee').value] || ''; };
  $('entry-size-unknown').onchange = entryFields;
 $('entry-beer-type').onchange = entryFields;
 $('cancel-price').onclick = () => { if (!saving) $<HTMLDialogElement>('price-dialog').close(); };

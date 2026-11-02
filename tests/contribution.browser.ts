@@ -59,6 +59,13 @@ test('uncertain prices remain empty and changing venue keeps the sentence', asyn
   await expect(page.locator('#contribution-venue')).toBeVisible();
   await page.getByRole('button', { name: 'Zurück', exact: true }).click();
   await expect(page.locator('#contribution-text')).toHaveValue('Food Court Cappuccino ab 5 CHF');
+  await page.locator('#contribution-text').fill('Food Court Getränk für 5 CHF');
+  await page.getByRole('button', { name: 'Eintrag vorbereiten' }).click();
+  await page.locator('#contribution-matches button').first().click();
+  await page.locator('#entry-drink').selectOption('coffee');
+  await expect(page.locator('#entry-name')).toHaveValue('');
+  await page.locator('#entry-coffee').selectOption('espresso');
+  await expect(page.locator('#entry-name')).toHaveValue('Espresso');
   expect(writes).toHaveLength(0);
 });
 
