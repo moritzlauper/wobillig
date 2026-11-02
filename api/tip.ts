@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { isCity } from '../src/cities.js';
-import { cappuccinoTipAmount, tipPaymentParams } from '../server/tips.js';
+import { tipAmount, tipPaymentParams } from '../server/tips.js';
 
 const limits = new Map<string, { count: number; until: number }>();
 function allowed(ip: string): boolean {
@@ -33,7 +33,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
       const ip = String(req.headers['x-vercel-forwarded-for'] || req.socket.remoteAddress || 'unknown');
       if (!allowed(ip)) { res.setHeader('Retry-After', '60'); return reply(429, {}); }
     }
-    const amount = await cappuccinoTipAmount(city);
+    const amount = tipAmount;
     if (req.method === 'GET') return reply(200, { enabled: true, amount, currency: 'chf', publishableKey, test: key!.includes('_test_') });
     // Never silently charge a different amount from the one the visitor saw.
     if (params.get('amount') !== String(amount)) return reply(409, { amount });

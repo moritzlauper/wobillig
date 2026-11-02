@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-for (const [path, city, amount] of [['/', 'zurich', 550], ['/bern', 'bern', 500], ['/basel', 'basel', 530]] as const) {
+for (const [path, city, amount] of [['/', 'zurich', 200], ['/bern', 'bern', 200], ['/basel', 'basel', 200]] as const) {
   test(`small platform-cost contribution beside the contact link in ${city}`, async ({ page }) => {
     await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
     const posts: string[] = [];
@@ -52,7 +52,7 @@ for (const kind of ['automatic', 'publication'] as const) {
     let fail = true, payments = 0;
     await page.route('**/api/tip?*', route => {
       if (route.request().method() === 'POST') { payments++; return route.fulfill({ status: 503, json: {} }); }
-      return route.fulfill({ json: { enabled: true, amount: 550, publishableKey: 'pk_test_public' } });
+      return route.fulfill({ json: { enabled: true, amount: 200, publishableKey: 'pk_test_public' } });
     });
     await page.route('**/api/prices?*', route => {
       if (route.request().method() === 'POST') {

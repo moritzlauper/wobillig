@@ -31,7 +31,7 @@ async function paymentDialog(stripe: Stripe, { price, amount, test, createIntent
   dialog.innerHTML = '<div class="dialog-top"><strong id="tip-title">wobillig</strong><button type="button" class="tip-close"></button></div><p class="tip-description"></p><p class="tip-goal"></p><form><div class="tip-element"></div><button class="primary tip-pay" type="submit" disabled></button></form><p class="tip-status" role="status" tabindex="-1"></p>';
   const close = dialog.querySelector<HTMLButtonElement>('.tip-close')!;
   close.textContent = t('Schliessen');
-  dialog.querySelector('.tip-description')!.textContent = t('Beitrag an die Plattformkosten in der Höhe eines günstigen Cappuccinos · CHF {price}', { price }) + (test ? ` (${t('Test')})` : '');
+  dialog.querySelector('.tip-description')!.textContent = t('Beitrag an die Plattformkosten · CHF {price}', { price }) + (test ? ` (${t('Test')})` : '');
   // The monthly goal is shown only after opening the dialog, not in the button's tooltip.
   dialog.querySelector('.tip-goal')!.textContent = t('wobillig kostet rund CHF 40 im Monat (Hosting, Datenabfragen und KI-Scans). Das ist das Ziel für die Beiträge.');
   const form = dialog.querySelector('form')!;
@@ -104,7 +104,7 @@ export async function setupTip(button: HTMLButtonElement, city: City, notify: (t
     const price = (quote.amount! / 100).toFixed(2);
     const label = t('Plattformkosten stützen · CHF {price}', { price });
     button.textContent = quote.test ? `${label} (${t('Test')})` : label;
-    button.title = t('Der Betrag entspricht einem Cappuccino zum «Günstig»-Preis dieser Stadt und hilft, die Plattformkosten zu decken.');
+    button.title = t('Der freiwillige Beitrag hilft, die Plattformkosten zu decken.');
     button.hidden = false;
     const getStripe = async () => {
       const { loadStripe } = await import('@stripe/stripe-js/pure');
@@ -130,7 +130,7 @@ export async function setupTip(button: HTMLButtonElement, city: City, notify: (t
       return clientSecret;
     };
     const onPriceChanged = () => {
-      notify(t('Der Cappuccino-Preis hat sich geändert und damit auch der Betrag. Bitte erneut wählen.'));
+      notify(t('Der Betrag hat sich geändert. Bitte erneut wählen.'));
       void setupTip(button, city, notify);
     };
     button.onclick = async () => {
@@ -154,7 +154,7 @@ export function offerTip(context: 'automatic' | 'publication', mapId: string) {
   dialog.id = 'tip-invitation'; dialog.setAttribute('aria-labelledby', 'tip-invitation-title');
   dialog.innerHTML = '<div class="dialog-top"><strong id="tip-invitation-title"></strong><button type="button" class="tip-dismiss"></button></div><p></p><button type="button" class="primary tip-accept"></button>';
   dialog.querySelector('strong')!.textContent = context === 'automatic' ? t('Deine Anfrage ist eingereicht.') : t('Deine Map ist zur Prüfung eingereicht.');
-  dialog.querySelector('p')!.textContent = t('Magst du die Plattformkosten von wobillig mit dem Preis eines günstigen Cappuccinos stützen? Der Beitrag ist freiwillig und hat keinen Einfluss auf die Prüfung.');
+  dialog.querySelector('p')!.textContent = t('Magst du die Plattformkosten von wobillig mit einem kleinen Beitrag stützen? Der Beitrag ist freiwillig und hat keinen Einfluss auf die Prüfung.');
   const dismiss = dialog.querySelector<HTMLButtonElement>('.tip-dismiss')!;
   dismiss.textContent = t('Nicht jetzt'); dismiss.onclick = () => dialog.close();
   const accept = dialog.querySelector<HTMLButtonElement>('.tip-accept')!;

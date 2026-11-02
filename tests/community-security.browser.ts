@@ -70,7 +70,7 @@ for (const width of [320, 1280]) {
   test(`dormant account control supports optional email sign-in at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
     await fixture(page);
-    await page.route('**/api/tip?*', route => route.fulfill({ json: { enabled: true, amount: 550, publishableKey: 'pk_test_public' } }));
+    await page.route('**/api/tip?*', route => route.fulfill({ json: { enabled: true, amount: 200, publishableKey: 'pk_test_public' } }));
     await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
     let verified = false;
     const actions: string[] = [];
@@ -84,7 +84,7 @@ for (const width of [320, 1280]) {
     await mountAccount(page);
     const account = page.locator('.app-footer').getByRole('button', { name: 'Konto erstellen', exact: true });
     await expect(account).toBeVisible();
-    await expect(page.locator('#tip-coffee')).toHaveText('Plattformkosten stützen · CHF 5.50');
+    await expect(page.locator('#tip-coffee')).toHaveText('Plattformkosten stützen · CHF 2.00');
     expect(await page.locator('.app-footer').evaluate(el => el.scrollWidth > el.clientWidth)).toBe(false);
     await page.screenshot({ path: `/tmp/wobillig-footer-account-${width}.png` });
     await account.click();
