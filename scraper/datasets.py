@@ -20,3 +20,9 @@ def keep_unlisted(output, path, pairs):
     kept = [bar for bar in previous if bar['id'] not in published | candidates and bar.get('offers')]
     removed = sorted(bar['id'] for bar in previous if bar.get('offers') and bar['id'] in candidates and bar['id'] not in published)
     return {**output, 'bars': sorted(output['bars'] + kept, key=lambda bar: bar['name'].casefold()), 'removed': removed}
+
+
+def first_error(result):
+    """The first fetch or reading error of a website, for the scan log ("" when it was read cleanly)."""
+    errors = result.get('errors') or []
+    return f' ({errors[0].get("error")} at {errors[0].get("url")})' if errors else ''

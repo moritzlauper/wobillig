@@ -23,7 +23,7 @@ from bs4 import BeautifulSoup
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
 from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, venue_query
 from scraper.chains import is_chain
-from scraper.datasets import keep_unlisted
+from scraper.datasets import first_error, keep_unlisted
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
 from scraper.pizza import structured_menu_links
@@ -103,7 +103,7 @@ def crawl(start, fetcher, max_pages):
             queue = list(dict.fromkeys(u for u in links + queue if u not in visited and not skip_source(u)))
             queue.sort(key=lambda u: (not bool(re.search(r'ramen|noodle|nudel|men[uü]|karte|speise', u, re.I)), not bool(DOCUMENT.search(urlparse(u).path))))
         except Exception as error:
-            errors.append({'url': url, 'error': type(error).__name__})
+            errors.append({'url': url, 'error': f'{type(error).__name__}: {error}'[:120]})
     return {'visited': len(visited), 'errors': errors, 'documents': docs}
 
 
@@ -181,7 +181,7 @@ def scan(name, bars, fetcher, client, max_pages, max_documents):
             result['errors'].append({'url': doc['url'], 'error': str(error)[:150]})
     offers = list({(product_name(o), o['priceChf']): o for o in found}.values())
     status = 'priced' if offers else 'fetch_failed' if failed else 'unverified' if unverified else 'no_prices'
-    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, {len(offers)} offers, {status}', flush=True)
+    print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, {len(offers)} offers, {status}' + first_error(result), flush=True)
     return {'status': status, 'offers': offers, 'errors': result['errors'][:5], 'note': SHARED_MENUS.get(name)}
 
 
