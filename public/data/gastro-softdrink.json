@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-11-02T02:06:27.144201+00:00",
+  "generatedAt": "2026-11-02T11:28:50.606257+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "category": "softdrink",
+  "removed": [],
   "bars": [
     {
       "id": "node/639048686",
@@ -54,7 +55,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/317023457",
@@ -65,8 +66,8 @@
       "address": "Selnaustrasse 2",
       "postcode": "8001",
       "website": "https://2akt.ch/",
-      "openingHours": "Tu-Fr 11:00-14:00, Tu-Th 17:00-23:00, Fr 17:00-02:00, Sa 15:00-02:00",
       "cuisine": [],
+      "openingHours": "Tu-Fr 11:00-14:00, Tu-Th 17:00-23:00, Fr 17:00-02:00, Sa 15:00-02:00",
       "outdoor": false,
       "offers": [
         {
@@ -94,8 +95,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T16:50:08.916747+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2904476133",
@@ -138,7 +139,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/370835059",
@@ -203,7 +204,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3357441576",
@@ -306,7 +307,38 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
+    },
+    {
+      "id": "node/12567711566",
+      "name": "ALBA",
+      "lat": 47.3686243,
+      "lon": 8.5009579,
+      "type": "restaurant",
+      "address": "Birmensdorferstrasse 431",
+      "postcode": "8055",
+      "website": "https://www.alba.pizza/alba-locations/alba-triemli",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Tu off; We-Su 11:30-14:00,17:30-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola + Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://cdn.prod.website-files.com/65f2d2911db1172c98c2530c/6a91c1ab8504e2ab696aa076_0826_Stampfenbach_Menu.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "coca cola + zero 0.33l 5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2888172595",
@@ -338,38 +370,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
-    },
-    {
-      "id": "node/12567711566",
-      "name": "ALBA",
-      "lat": 47.3686243,
-      "lon": 8.5009579,
-      "type": "restaurant",
-      "address": "Birmensdorferstrasse 431",
-      "postcode": "8055",
-      "website": "https://www.alba.pizza/alba-locations/alba-triemli",
-      "cuisine": [
-        "pizza"
-      ],
-      "openingHours": "Mo-Tu off; We-Su 11:30-14:00,17:30-22:00",
-      "outdoor": false,
-      "offers": [
-        {
-          "name": "Coca Cola + Zero",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 5,
-          "sourceUrl": "https://cdn.prod.website-files.com/65f2d2911db1172c98c2530c/6a91c1ab8504e2ab696aa076_0826_Stampfenbach_Menu.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "coca cola + zero 0.33l 5",
-          "sourcePage": 3,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4370222091",
@@ -400,7 +401,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/656327571",
@@ -465,7 +466,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/13028181701",
@@ -568,7 +569,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/297710735",
@@ -801,7 +802,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/721046177",
@@ -880,7 +881,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/11777908596",
@@ -933,7 +934,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/289669794",
@@ -1048,7 +1049,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1245160899",
@@ -1125,7 +1126,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/683404164",
@@ -1192,7 +1193,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4968281140",
@@ -1259,7 +1260,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/267879347",
@@ -1350,7 +1351,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/370844160",
@@ -1451,7 +1452,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4035706224",
@@ -1482,7 +1483,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/370809277",
@@ -1513,7 +1514,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/283458368",
@@ -1616,7 +1617,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2447923884",
@@ -1693,7 +1694,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2069791719",
@@ -1748,7 +1749,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10162798340",
@@ -1779,7 +1780,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4414546006",
@@ -1834,7 +1835,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4070417589",
@@ -1923,7 +1924,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/12887183327",
@@ -2026,7 +2027,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10718529590",
@@ -2103,7 +2104,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1235083734",
@@ -2156,7 +2157,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5803645580",
@@ -2257,7 +2258,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/694152201",
@@ -2329,7 +2330,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "way/38098975",
@@ -2409,7 +2410,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/272354078",
@@ -2420,8 +2421,8 @@
       "address": "Bellevueplatz 1",
       "postcode": "8001",
       "website": "https://www.belcafe.ch/",
-      "openingHours": "Mo-Fr 06:00-23:00; Sa,Su 07:00-23:00",
       "cuisine": [],
+      "openingHours": "Mo-Fr 06:00-23:00; Sa,Su 07:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -2437,8 +2438,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T13:40:54.157719+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "way/442704572",
@@ -2494,7 +2495,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/310139088",
@@ -2609,7 +2610,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/906856274",
@@ -2746,7 +2747,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/267345323",
@@ -2847,7 +2848,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10704773552",
@@ -2902,7 +2903,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4839549446",
@@ -2945,7 +2946,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4956927758",
@@ -2998,7 +2999,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/442522931",
@@ -3089,7 +3090,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/7655574678",
@@ -3267,7 +3268,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/13353100435",
@@ -3433,7 +3434,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/656628375",
@@ -3524,7 +3525,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/480320546",
@@ -3603,7 +3604,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/11425719484",
@@ -3706,7 +3707,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1346146716",
@@ -3893,7 +3894,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1937429078",
@@ -4009,7 +4010,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5559734861",
@@ -4091,7 +4092,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/315861905",
@@ -4122,69 +4123,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
-    },
-    {
-      "id": "node/92612575",
-      "name": "Burgermeister",
-      "lat": 47.3648083,
-      "lon": 8.5313604,
-      "type": "fast_food",
-      "address": "Tessinerplatz 10",
-      "postcode": "8002",
-      "website": "https://www.burger-meister.ch/",
-      "cuisine": [
-        "burger"
-      ],
-      "openingHours": "Mo-Th 09:00-23:00; Fr 09:00-02:00; Su 10:00-23:00; Sa 10:00-02:00",
-      "outdoor": false,
-      "offers": [
-        {
-          "name": "Coca Cola / Coke Zero",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 5.0,
-          "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-02T02:06:27.144201+00:00",
-          "confidence": "ai",
-          "evidence": "Coca Cola / Coke Zero 50 cl 5.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
-    },
-    {
-      "id": "node/848938980",
-      "name": "Burgermeister",
-      "lat": 47.3745663,
-      "lon": 8.5245378,
-      "type": "restaurant",
-      "address": "Langstrasse 6",
-      "postcode": "8004",
-      "website": "https://www.burger-meister.ch/",
-      "cuisine": [
-        "burger"
-      ],
-      "openingHours": "Mo-Sa 11:00-23:00, Su 12:00-21:30",
-      "outdoor": true,
-      "offers": [
-        {
-          "name": "Coca Cola / Coke Zero",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 5.0,
-          "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-02T02:06:27.144201+00:00",
-          "confidence": "ai",
-          "evidence": "Coca Cola / Coke Zero 50 cl 5.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1052078790",
@@ -4214,8 +4153,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3751319529",
@@ -4245,8 +4184,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3926088056",
@@ -4276,8 +4215,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/6284033411",
@@ -4307,8 +4246,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/6569935426",
@@ -4338,8 +4277,70 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
+    },
+    {
+      "id": "node/848938980",
+      "name": "Burgermeister",
+      "lat": 47.3745663,
+      "lon": 8.5245378,
+      "type": "restaurant",
+      "address": "Langstrasse 6",
+      "postcode": "8004",
+      "website": "https://www.burger-meister.ch/",
+      "cuisine": [
+        "burger"
+      ],
+      "openingHours": "Mo-Sa 11:00-23:00, Su 12:00-21:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Coca Cola / Coke Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
+          "observedAt": "2026-11-02T02:06:27.144201+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola / Coke Zero 50 cl 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
+    },
+    {
+      "id": "node/92612575",
+      "name": "Burgermeister",
+      "lat": 47.3648083,
+      "lon": 8.5313604,
+      "type": "fast_food",
+      "address": "Tessinerplatz 10",
+      "postcode": "8002",
+      "website": "https://www.burger-meister.ch/",
+      "cuisine": [
+        "burger"
+      ],
+      "openingHours": "Mo-Th 09:00-23:00; Fr 09:00-02:00; Su 10:00-23:00; Sa 10:00-02:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola / Coke Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
+          "observedAt": "2026-11-02T02:06:27.144201+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola / Coke Zero 50 cl 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "way/110593270",
@@ -4404,7 +4405,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "way/75803849",
@@ -4517,7 +4518,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4424600900",
@@ -4570,7 +4571,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/343068234",
@@ -4623,7 +4624,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/370843777",
@@ -4738,7 +4739,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10650748517",
@@ -4815,7 +4816,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/268468109",
@@ -4964,7 +4965,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1895863272",
@@ -5079,7 +5080,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/370657577",
@@ -5135,7 +5136,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/6896222370",
@@ -5188,7 +5189,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/12612390224",
@@ -5372,11 +5373,11 @@
       "address": "Bahnhofstrasse 41",
       "postcode": "8001",
       "website": "https://www.carlton.ch/",
-      "openingHours": "Mo-Th 11:00-24:00, Fr 11:00-01:00, Sa 11:00-02:00",
       "cuisine": [
         "international",
         "steak_house"
       ],
+      "openingHours": "Mo-Th 11:00-24:00, Fr 11:00-01:00, Sa 11:00-02:00",
       "outdoor": true,
       "offers": [
         {
@@ -5440,8 +5441,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T15:25:33.301788+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/270692604",
@@ -5580,7 +5581,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/13265102767",
@@ -5609,7 +5610,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/11358468756",
@@ -5686,7 +5687,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/311859458",
@@ -5729,7 +5730,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3932278823",
@@ -5796,7 +5797,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/725764771",
@@ -5865,7 +5866,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/370834151",
@@ -5968,7 +5969,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2711625369",
@@ -6094,8 +6095,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T13:26:49.479508+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/7273882085",
@@ -6136,7 +6137,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1596052317",
@@ -6261,7 +6262,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2888142446",
@@ -6292,7 +6293,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/13026054404",
@@ -6362,7 +6363,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/343347643",
@@ -6403,215 +6404,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
-    },
-    {
-      "id": "node/300419657",
-      "name": "Cucina",
-      "lat": 47.3936197,
-      "lon": 8.5078042,
-      "type": "restaurant",
-      "address": "Hardturmstrasse 261",
-      "postcode": "8005",
-      "website": "https://www.cucinarestaurant.ch/",
-      "cuisine": [
-        "italian",
-        "pizza"
-      ],
-      "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00,17:30-22:30; Sa 17:00-22:30; Su off",
-      "outdoor": false,
-      "offers": [
-        {
-          "name": "Eistee",
-          "volumeMl": 300,
-          "gastroType": "softdrink",
-          "priceChf": 5.5,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Eistee 3dl 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Eistee",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 7.5,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Eistee 5dl 7.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Coca Cola",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Coca Cola 3.3dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Coca Cola Zero",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Coca Cola Zero 3.3dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Rivella Rot",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Rivella Rot 3.3dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Rivella Blau",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Rivella Blau 3.3dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Tonic",
-          "volumeMl": 200,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Tonic 2dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
-    },
-    {
-      "id": "node/370844602",
-      "name": "Cucina",
-      "lat": 47.370856,
-      "lon": 8.5445409,
-      "type": "restaurant",
-      "address": "Münstergasse 4",
-      "postcode": "8001",
-      "website": "https://www.cucinarestaurant.ch/",
-      "cuisine": [
-        "italian",
-        "pizza"
-      ],
-      "openingHours": "Mo-Sa 11:00-24:00",
-      "outdoor": false,
-      "offers": [
-        {
-          "name": "Eistee",
-          "volumeMl": 300,
-          "gastroType": "softdrink",
-          "priceChf": 5.5,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Eistee 3dl 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Eistee",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 7.5,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Eistee 5dl 7.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Coca Cola",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Coca Cola 3.3dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Coca Cola Zero",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Coca Cola Zero 3.3dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Rivella Rot",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Rivella Rot 3.3dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Rivella Blau",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Rivella Blau 3.3dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Tonic",
-          "volumeMl": 200,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Tonic 2dl 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1978573306",
@@ -6715,7 +6508,215 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
+    },
+    {
+      "id": "node/300419657",
+      "name": "Cucina",
+      "lat": 47.3936197,
+      "lon": 8.5078042,
+      "type": "restaurant",
+      "address": "Hardturmstrasse 261",
+      "postcode": "8005",
+      "website": "https://www.cucinarestaurant.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00,17:30-22:30; Sa 17:00-22:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee 3dl 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Eistee",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 7.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee 5dl 7.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 3.3dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola Zero 3.3dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Rot 3.3dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Blau 3.3dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic 2dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
+    },
+    {
+      "id": "node/370844602",
+      "name": "Cucina",
+      "lat": 47.370856,
+      "lon": 8.5445409,
+      "type": "restaurant",
+      "address": "Münstergasse 4",
+      "postcode": "8001",
+      "website": "https://www.cucinarestaurant.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 11:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee 3dl 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Eistee",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 7.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee 5dl 7.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 3.3dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola Zero 3.3dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Rot 3.3dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Blau 3.3dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://cdn.prod.website-files.com/628e2e5fadec76b9fa01c4b8/684b0fbf3a50b850b2ba59a9_page_10.png",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic 2dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4958366047",
@@ -6819,7 +6820,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/9995613567",
@@ -6923,7 +6924,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/448855246",
@@ -6964,144 +6965,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
-    },
-    {
-      "id": "node/693318631",
-      "name": "D-Vino",
-      "lat": 47.3763866,
-      "lon": 8.540071,
-      "type": "bar",
-      "address": "Schützengasse 12",
-      "postcode": "8001",
-      "website": "https://www.d-vino.ch/",
-      "cuisine": [],
-      "openingHours": "Mo-Fr 07:00-24:00; Sa 11:00-24:00; Su 10:00-23:00",
-      "outdoor": true,
-      "offers": [
-        {
-          "name": "Hausgemachter Eistee, Homemade Ice Tea",
-          "volumeMl": 250,
-          "gastroType": "softdrink",
-          "priceChf": 5.0,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Hausgemachter Eistee, Homemade Ice Tea",
-          "volumeMl": 250,
-          "gastroType": "softdrink",
-          "priceChf": 7.5,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Coca Cola, Zero",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 5.5,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Coca Cola, Zero 33 cl 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Rivella rot, blau, red, blue",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 5.5,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Rivella rot, blau, red, blue 33 cl 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Kinley Tonic, Kinley Bitter Lemon",
-          "volumeMl": 200,
-          "gastroType": "softdrink",
-          "priceChf": 5.0,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Kinley Tonic, Kinley Bitter Lemon 20 cl 5.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Hausgemachter Eistee",
-          "volumeMl": 250,
-          "gastroType": "softdrink",
-          "priceChf": 5.0,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Hausgemachter Eistee",
-          "volumeMl": 250,
-          "gastroType": "softdrink",
-          "priceChf": 7.5,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Apfelschorle, Fanta, Sprite, Ice Tea classic",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 5.5,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Apfelschorle, Fanta, Sprite, Ice Tea classic 33 cl 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Rivella rot, blau",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 5.5,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Rivella rot, blau, red, blue 33 cl 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Schweppes Ginger Ale",
-          "volumeMl": 200,
-          "gastroType": "softdrink",
-          "priceChf": 5.0,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Schweppes Ginger Ale 20 cl 5.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1728845231",
@@ -7238,7 +7102,144 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
+    },
+    {
+      "id": "node/693318631",
+      "name": "D-Vino",
+      "lat": 47.3763866,
+      "lon": 8.540071,
+      "type": "bar",
+      "address": "Schützengasse 12",
+      "postcode": "8001",
+      "website": "https://www.d-vino.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 07:00-24:00; Sa 11:00-24:00; Su 10:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachter Eistee, Homemade Ice Tea",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachter Eistee, Homemade Ice Tea",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 7.5,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola, Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola, Zero 33 cl 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot, blau, red, blue",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot, blau, red, blue 33 cl 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kinley Tonic, Kinley Bitter Lemon",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Kinley Tonic, Kinley Bitter Lemon 20 cl 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachter Eistee",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachter Eistee",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 7.5,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Apfelschorle, Fanta, Sprite, Ice Tea classic",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Apfelschorle, Fanta, Sprite, Ice Tea classic 33 cl 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot, blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot, blau, red, blue 33 cl 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Ginger Ale",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Bahnhfstrasse-Web-2025.pdf",
+          "observedAt": "2026-11-02T01:37:05.920217+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Ginger Ale 20 cl 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3110688142",
@@ -7318,7 +7319,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1528733083",
@@ -7363,7 +7364,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/370834639",
@@ -7456,7 +7457,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4313510389",
@@ -7509,7 +7510,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/315863116",
@@ -7538,7 +7539,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10831702421",
@@ -7631,7 +7632,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2289568166",
@@ -7770,7 +7771,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4370124989",
@@ -7825,7 +7826,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/386002566",
@@ -7856,7 +7857,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/9871003608",
@@ -7887,7 +7888,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/299610695",
@@ -7942,7 +7943,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10967856738",
@@ -8043,7 +8044,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/552929127",
@@ -8110,7 +8111,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/268474472",
@@ -8175,7 +8176,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/279180951",
@@ -8278,7 +8279,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1235083774",
@@ -8345,7 +8346,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4848816870",
@@ -8518,7 +8519,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/503707638",
@@ -8609,7 +8610,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1569509638",
@@ -8738,7 +8739,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1819652476",
@@ -8817,7 +8818,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3393448593",
@@ -8884,7 +8885,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2904476136",
@@ -8975,7 +8976,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/307742573",
@@ -9043,7 +9044,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/105443906",
@@ -9135,8 +9136,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5431084536",
@@ -9165,7 +9166,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1528043958",
@@ -9256,7 +9257,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1817263418",
@@ -9359,7 +9360,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2037084628",
@@ -9426,7 +9427,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4778167221",
@@ -9491,7 +9492,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3799099678",
@@ -9631,7 +9632,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/268420651",
@@ -9722,7 +9723,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1740683819",
@@ -9870,10 +9871,10 @@
       "address": "Schaffhauserstrasse 121",
       "postcode": "8057",
       "website": "https://restaurant-gonzalez.ch/",
-      "openingHours": "Mo-We 11:00-14:30,18:00-22:00; Th,Fr 11:30-14:30,18:00-23:00; Sa 18:00-23:00",
       "cuisine": [
         "spanish"
       ],
+      "openingHours": "Mo-We 11:00-14:30,18:00-22:00; Th,Fr 11:30-14:30,18:00-23:00; Sa 18:00-23:00",
       "outdoor": false,
       "offers": [
         {
@@ -9937,8 +9938,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T17:05:33.001718+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3866955757",
@@ -9991,7 +9992,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4833061577",
@@ -10106,7 +10107,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5584394319",
@@ -10173,7 +10174,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/317768690",
@@ -10238,7 +10239,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/268654801",
@@ -10291,7 +10292,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "way/1308758478",
@@ -10322,7 +10323,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5297796707",
@@ -10378,7 +10379,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5888416187",
@@ -10410,7 +10411,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/304597368",
@@ -10561,7 +10562,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/11091863725",
@@ -10650,7 +10651,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/11057125637",
@@ -10741,7 +10742,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/119247298",
@@ -10794,7 +10795,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1817263466",
@@ -10885,7 +10886,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/11211942437",
@@ -10940,7 +10941,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4941865455",
@@ -10993,7 +10994,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/13878894291",
@@ -11046,7 +11047,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4941865456",
@@ -11099,7 +11100,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4034163671",
@@ -11154,7 +11155,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5652355501",
@@ -11245,63 +11246,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
-    },
-    {
-      "id": "node/656327806",
-      "name": "Holy Cow!",
-      "lat": 47.3754711,
-      "lon": 8.5447223,
-      "type": "fast_food",
-      "address": "Zähringerstrasse 28",
-      "postcode": "8001",
-      "website": "https://www.holycow.ch/",
-      "cuisine": [
-        "burger",
-        "salad"
-      ],
-      "openingHours": "Mo-We 11:00-22:00; Th-Sa 11:00-23:00; Su 11:00-22:00",
-      "outdoor": true,
-      "offers": [
-        {
-          "name": "Holy Cola 50cl",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 3.9,
-          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_en.pdf",
-          "observedAt": "2026-11-02T02:06:27.144201+00:00",
-          "confidence": "ai",
-          "evidence": "HOLY COLA 50CL 3.90",
-          "sourcePage": 2,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Ice Tea 50cl",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 3.9,
-          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_en.pdf",
-          "observedAt": "2026-11-02T02:06:27.144201+00:00",
-          "confidence": "ai",
-          "evidence": "ICE TEA 50CL 3.90",
-          "sourcePage": 2,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Apple Juice | Schorle 50cl",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 3.9,
-          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_en.pdf",
-          "observedAt": "2026-11-02T02:06:27.144201+00:00",
-          "confidence": "ai",
-          "evidence": "APPLE JUICE | SCHORLE 50CL 3.90",
-          "sourcePage": 2,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4785609122",
@@ -11356,8 +11301,64 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
+    },
+    {
+      "id": "node/656327806",
+      "name": "Holy Cow!",
+      "lat": 47.3754711,
+      "lon": 8.5447223,
+      "type": "fast_food",
+      "address": "Zähringerstrasse 28",
+      "postcode": "8001",
+      "website": "https://www.holycow.ch/",
+      "cuisine": [
+        "burger",
+        "salad"
+      ],
+      "openingHours": "Mo-We 11:00-22:00; Th-Sa 11:00-23:00; Su 11:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Holy Cola 50cl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_en.pdf",
+          "observedAt": "2026-11-02T02:06:27.144201+00:00",
+          "confidence": "ai",
+          "evidence": "HOLY COLA 50CL 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea 50cl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_en.pdf",
+          "observedAt": "2026-11-02T02:06:27.144201+00:00",
+          "confidence": "ai",
+          "evidence": "ICE TEA 50CL 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Apple Juice | Schorle 50cl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_en.pdf",
+          "observedAt": "2026-11-02T02:06:27.144201+00:00",
+          "confidence": "ai",
+          "evidence": "APPLE JUICE | SCHORLE 50CL 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/633584181",
@@ -11388,7 +11389,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10799596831",
@@ -11503,7 +11504,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/268963180",
@@ -11618,7 +11619,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/12652457762",
@@ -11662,7 +11663,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/75025846",
@@ -11802,7 +11803,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/311960281",
@@ -11881,7 +11882,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5277869467",
@@ -11948,7 +11949,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/13571047601",
@@ -11980,7 +11981,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10048648151",
@@ -12033,7 +12034,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3250788311",
@@ -12062,7 +12063,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2207042728",
@@ -12199,7 +12200,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/250554254",
@@ -12336,7 +12337,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/343364120",
@@ -12379,7 +12380,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/598560604",
@@ -12444,7 +12445,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1760802115",
@@ -12533,7 +12534,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4935627373",
@@ -12624,7 +12625,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/310788549",
@@ -12679,7 +12680,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4604638576",
@@ -12710,7 +12711,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/317773504",
@@ -12739,7 +12740,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2615979187",
@@ -12828,7 +12829,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5344545424",
@@ -12977,7 +12978,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/268467807",
@@ -13081,7 +13082,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/7964618532",
@@ -13146,7 +13147,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/9201875603",
@@ -13247,7 +13248,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/11408113758",
@@ -13398,7 +13399,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/446784538",
@@ -13442,7 +13443,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/320526598",
@@ -13519,7 +13520,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/906855932",
@@ -13575,7 +13576,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1496400845",
@@ -13714,7 +13715,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/594103804",
@@ -13782,7 +13783,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5280373588",
@@ -13897,7 +13898,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10779724980",
@@ -14000,7 +14001,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5670095833",
@@ -14115,7 +14116,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/648956175",
@@ -14206,7 +14207,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5629311368",
@@ -14247,7 +14248,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1828358570",
@@ -14350,7 +14351,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/385208811",
@@ -14441,7 +14442,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4935627392",
@@ -14520,7 +14521,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4869996374",
@@ -14573,7 +14574,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1491966834",
@@ -14652,7 +14653,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5115701103",
@@ -14789,7 +14790,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10721724386",
@@ -14928,7 +14929,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10818971061",
@@ -15031,7 +15032,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/6569753582",
@@ -15072,7 +15073,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/983601220",
@@ -15295,7 +15296,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/271411936",
@@ -15396,7 +15397,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/268602878",
@@ -15521,7 +15522,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/268602010",
@@ -15610,7 +15611,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4599535995",
@@ -15665,7 +15666,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/6828843870",
@@ -15720,7 +15721,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3646100093",
@@ -15833,7 +15834,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/271225677",
@@ -15864,7 +15865,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/560519078",
@@ -15957,7 +15958,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/14270484052",
@@ -16022,62 +16023,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
-    },
-    {
-      "id": "node/4833061536",
-      "name": "Maru",
-      "lat": 47.3781269,
-      "lon": 8.5401993,
-      "type": "fast_food",
-      "address": "Hauptbahnhof, Plaza",
-      "postcode": "8001",
-      "website": "https://www.maru.ch/",
-      "cuisine": [
-        "japanese"
-      ],
-      "openingHours": "Mo-Fr 09:00-21:00; Sa,Su 09:00-20:30",
-      "outdoor": false,
-      "offers": [
-        {
-          "name": "Ginger Lemon Lemonade",
-          "volumeMl": 400,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://www.maru.ch/speisekarte-maru-brunch",
-          "observedAt": "2026-10-30T13:26:49.479508+00:00",
-          "confidence": "ai",
-          "evidence": "6.00 GINGER LEMON LEMONADE Homemade · Ginger & Lemon · 4 dl",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Yuzu Matcha Ice Tea",
-          "volumeMl": 400,
-          "gastroType": "softdrink",
-          "priceChf": 6.0,
-          "sourceUrl": "https://www.maru.ch/speisekarte-maru-brunch",
-          "observedAt": "2026-10-30T13:26:49.479508+00:00",
-          "confidence": "ai",
-          "evidence": "6.00 YUZU MATCHA ICE TEA Homemade · Yuzu & Matcha · 4 dl",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Goba Cola",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 5.5,
-          "sourceUrl": "https://www.maru.ch/speisekarte-maru-brunch",
-          "observedAt": "2026-10-30T13:26:49.479508+00:00",
-          "confidence": "ai",
-          "evidence": "5.50 GOBA COLA Original / Zero · 5 dl",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/13052489329",
@@ -16133,6 +16079,61 @@
       "checkedAt": "2026-10-30T15:00:28.536124+00:00"
     },
     {
+      "id": "node/4833061536",
+      "name": "Maru",
+      "lat": 47.3781269,
+      "lon": 8.5401993,
+      "type": "fast_food",
+      "address": "Hauptbahnhof, Plaza",
+      "postcode": "8001",
+      "website": "https://www.maru.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 09:00-21:00; Sa,Su 09:00-20:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ginger Lemon Lemonade",
+          "volumeMl": 400,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.maru.ch/speisekarte-maru-brunch",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "6.00 GINGER LEMON LEMONADE Homemade · Ginger & Lemon · 4 dl",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Yuzu Matcha Ice Tea",
+          "volumeMl": 400,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.maru.ch/speisekarte-maru-brunch",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "6.00 YUZU MATCHA ICE TEA Homemade · Yuzu & Matcha · 4 dl",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Goba Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.maru.ch/speisekarte-maru-brunch",
+          "observedAt": "2026-10-30T13:26:49.479508+00:00",
+          "confidence": "ai",
+          "evidence": "5.50 GOBA COLA Original / Zero · 5 dl",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
+    },
+    {
       "id": "node/914812540",
       "name": "Meat Me",
       "lat": 47.3742016,
@@ -16185,7 +16186,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5435311170",
@@ -16324,7 +16325,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4833061573",
@@ -16552,7 +16553,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/725765073",
@@ -16691,7 +16692,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10967957874",
@@ -16720,7 +16721,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/270691220",
@@ -16775,7 +16776,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1510019206",
@@ -16854,7 +16855,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4949132238",
@@ -16948,7 +16949,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3770491170",
@@ -17051,7 +17052,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1986773362",
@@ -17116,7 +17117,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4935627380",
@@ -17219,7 +17220,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5924367485",
@@ -17310,7 +17311,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/370531172",
@@ -17365,7 +17366,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5201535172",
@@ -17442,7 +17443,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10576943784",
@@ -17509,7 +17510,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1083769431",
@@ -17564,7 +17565,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/279180955",
@@ -17605,7 +17606,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3220515763",
@@ -17648,7 +17649,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1964156339",
@@ -17847,7 +17848,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1360237971",
@@ -17938,7 +17939,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2301713646",
@@ -17979,7 +17980,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/9811058009",
@@ -18070,7 +18071,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10063683019",
@@ -18115,7 +18116,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/9352194479",
@@ -18204,7 +18205,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/270938826",
@@ -18269,7 +18270,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/297711157",
@@ -18322,7 +18323,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4447297097",
@@ -18473,7 +18474,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/319291882",
@@ -18564,7 +18565,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10860757271",
@@ -18620,7 +18621,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3900561493",
@@ -18675,7 +18676,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/270800743",
@@ -18766,7 +18767,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "way/1383743333",
@@ -18819,7 +18820,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/358146590",
@@ -19011,7 +19012,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5803645581",
@@ -19078,7 +19079,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1828352894",
@@ -19145,7 +19146,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/9666216541",
@@ -19188,7 +19189,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2697748612",
@@ -19327,7 +19328,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3725379463",
@@ -19394,7 +19395,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/8262559375",
@@ -19677,7 +19678,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3983019367",
@@ -19720,7 +19721,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/9553599374",
@@ -19777,7 +19778,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/300419202",
@@ -19878,7 +19879,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/848939013",
@@ -19981,7 +19982,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/316831490",
@@ -20046,7 +20047,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2528352535",
@@ -20174,7 +20175,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2463374628",
@@ -20277,7 +20278,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/632553574",
@@ -20452,7 +20453,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4833061571",
@@ -20519,7 +20520,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2330404237",
@@ -20598,7 +20599,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4492182084",
@@ -20641,7 +20642,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/6337148508",
@@ -20744,7 +20745,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3352544250",
@@ -20821,7 +20822,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/317769175",
@@ -20888,7 +20889,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5711550619",
@@ -20919,7 +20920,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1363069723",
@@ -21022,7 +21023,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4857867456",
@@ -21101,7 +21102,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/357227348",
@@ -21228,7 +21229,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/327453260",
@@ -21319,7 +21320,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5803645582",
@@ -21398,7 +21399,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4833061570",
@@ -21453,7 +21454,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1867263239",
@@ -21496,7 +21497,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4429458290",
@@ -21529,7 +21530,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/469984901",
@@ -21630,7 +21631,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5422953724",
@@ -21709,7 +21710,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3806522222",
@@ -21909,7 +21910,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3070546033",
@@ -21974,7 +21975,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/3085757833",
@@ -22077,7 +22078,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10647415905",
@@ -22130,7 +22131,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5034474651",
@@ -22209,7 +22210,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/267345309",
@@ -22277,7 +22278,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/10152362370",
@@ -22320,7 +22321,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/648956167",
@@ -22447,7 +22448,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/305586752",
@@ -22518,7 +22519,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/14170149101",
@@ -22549,7 +22550,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/105460220",
@@ -22823,7 +22824,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/656699893",
@@ -22864,7 +22865,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/914812549",
@@ -22919,7 +22920,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4424600904",
@@ -23020,7 +23021,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4864530744",
@@ -23351,7 +23352,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4364350631",
@@ -23416,7 +23417,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1243596474",
@@ -23461,7 +23462,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1964869590",
@@ -23516,7 +23517,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4833061579",
@@ -23610,7 +23611,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/656508776",
@@ -23688,8 +23689,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/271411937",
@@ -23742,7 +23743,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1567061990",
@@ -23855,7 +23856,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5945878069",
@@ -23922,7 +23923,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4833061595",
@@ -23999,7 +24000,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4833061572",
@@ -24201,7 +24202,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/12925905033",
@@ -24302,7 +24303,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2677704001",
@@ -24439,7 +24440,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/315566479",
@@ -24519,7 +24520,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/104276014",
@@ -24707,7 +24708,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2274216672",
@@ -24784,7 +24785,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5631126821",
@@ -24839,7 +24840,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/9518963186",
@@ -24880,7 +24881,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1360843969",
@@ -24983,7 +24984,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/256437327",
@@ -25170,7 +25171,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/283458326",
@@ -25249,7 +25250,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/269913252",
@@ -25290,7 +25291,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/270800540",
@@ -25343,7 +25344,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/7245143002",
@@ -25462,7 +25463,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1975523704",
@@ -25553,7 +25554,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/80087517",
@@ -25620,7 +25621,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/2298795774",
@@ -25651,7 +25652,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/357225679",
@@ -25718,7 +25719,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/313212546",
@@ -25774,7 +25775,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/803245834",
@@ -25841,7 +25842,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/703215222",
@@ -25908,7 +25909,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/6864953385",
@@ -25961,7 +25962,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/638984360",
@@ -26064,7 +26065,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/4732388222",
@@ -26131,7 +26132,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/1625432206",
@@ -26208,7 +26209,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/5894361739",
@@ -26237,7 +26238,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     },
     {
       "id": "node/270938652",
@@ -26352,7 +26353,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-02T02:06:27.144201+00:00"
+      "checkedAt": "2026-11-02T11:28:50.606257+00:00"
     }
   ]
 }
