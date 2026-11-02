@@ -225,7 +225,7 @@ main { display: flex; flex: 1; min-height: 0; }
 .price-fill { position: absolute; left: 0; top: 0; bottom: 0; width: var(--fill, 100%); border-radius: 2px; background: var(--teal); }
 .price-thumb { position: absolute; left: var(--fill, 100%); top: 50%; width: 20px; height: 20px; margin: -10px 0 0 -10px; border: 2px solid var(--teal-surface); border-radius: 50%; background: var(--teal); box-shadow: 0 1px 3px #0004; }
 #price:focus-visible { outline: none; }
-#price:focus-visible .price-thumb { box-shadow: 0 0 0 3px var(--teal-border); }
+#price:focus-visible .price-thumb { border-color: var(--teal-border); }
 .map-panel:has(#detail:not([hidden])) .map-actions, .map-panel:has(#detail:not([hidden])) .app-footer { display: none; }
 .price-marker { display: block; background: var(--surface); color: var(--text); border: 1px solid var(--marker-border); border-radius: 3px; padding: 4px 2px; text-align: center; font: bold 13px Arial, sans-serif; box-shadow: 0 1px 3px #0003; }
 .price-marker.active { background: var(--primary); color: var(--on-primary); border: 2px solid var(--surface); outline: 1px solid var(--primary); }
