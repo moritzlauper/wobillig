@@ -1,6 +1,4 @@
 import type { PendingVenue, PendingCorrection, ReviewUndo } from './contribution-review.js';
-import { checkReviewCapacity } from './community-policy.js';
-import { reviewRequired } from './community-policy.js';
 import type { SecurityCounter, Actor } from './community-security.js';
 import type { EmailChallenge } from './email-auth.js';
 import type { DealBatch, DealPilot } from '../src/deal-data.js';
@@ -70,20 +68,12 @@ export async function savePrice(store: Store, input: PriceInput, datasets: Recor
     if (!venue) throw new InputError('Dieses Lokal ist nicht mehr verfügbar. Bitte neu laden.');
     const entry: PriceEntry = { id: old?.id || randomUUID(), barId: input.barId, drink: input.drink, targetKey, revision: (old?.revision || 0) + 1, updatedAt: new Date(now).toISOString(), offer, venue: { ...venue, offers: [] } };
     const change = priceChange(entry, old, datasets[input.drink]);
-    const held = state.heldPrices?.find(item => item.owner === owner && item.entry.id === old?.id);
-    // Continue a held offer privately, even if later edited to a plausible value.
-    // Its private revision must never overwrite a concurrent public correction.
-    const reason = held?.reason || (reviewRequired() ? 'review-required' : priceConcern(entry));
-    if (reason) {
-      if (!held) checkReviewCapacity(state);
-      state.heldPrices = [...(state.heldPrices || []).filter(item => item !== held),
-        { owner, entry, reason, before: held ? held.before : change.before, baseEntry: held ? held.baseEntry : state.entries.find(row => row.id === entry.id) || null }];
-    } else {
-      // The public edit and its audit record commit atomically under the same ETag.
-      state.priceChanges = [...(state.priceChanges || []), change];
-      if (old) state.history.push(old);
-      state.entries = [...state.entries.filter(x => x.id !== entry.id), entry];
-    }
+    // Implausible prices are refused outright; there is no manual review queue.
+    if (priceConcern(entry)) throw new InputError('Dieser Preis wirkt unplausibel und wurde nicht gespeichert. Bitte Betrag prüfen.');
+    // The public edit and its audit record commit atomically under the same ETag.
+    state.priceChanges = [...(state.priceChanges || []), change];
+    if (old) state.history.push(old);
+    state.entries = [...state.entries.filter(x => x.id !== entry.id), entry];
     try { await store.write(state, etag); return entry; }
     catch (error) { if (!(error instanceof WriteConflict)) throw error; }
   }
@@ -104,13 +94,8 @@ export async function saveVenue(store: Store, value: unknown, datasets: Paramete
     state.limits[key] = { ...limit, count: limit.count + 1 };
     const venue: Bar = { ...input, id: `community/${randomUUID()}`, website: input.website || null,
       openingHours: null, offers: [], scrapeStatus: 'community', checkedAt: new Date(now).toISOString() };
-    if (reviewRequired()) {
-      checkReviewCapacity(state);
-      const duplicatePending = state.pendingVenues?.find(row => duplicateVenue(input, [row.venue]));
-      if (duplicatePending) return { venue: duplicatePending.venue, created: false, pending: true };
-      state.pendingVenues = [...(state.pendingVenues || []), { id: randomUUID(), venue, submittedAt: new Date(now).toISOString() }];
-    } else state.venues = [...(state.venues || []), venue];
-    try { await store.write(state, etag); return { venue, created: true, ...(reviewRequired() ? { pending: true } : {}) }; }
+    state.venues = [...(state.venues || []), venue];
+    try { await store.write(state, etag); return { venue, created: true }; }
     catch (error) { if (!(error instanceof WriteConflict)) throw error; }
   }
   throw new InputError('Gerade werden weitere Lokale gespeichert. Bitte erneut versuchen.', 409);

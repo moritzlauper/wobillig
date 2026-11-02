@@ -350,6 +350,7 @@ export const en: Record<string, string> = {
   'Das Scan-Limit ist erreicht. Bitte später erneut versuchen oder Preise einzeln eintragen.': 'The scan limit has been reached. Please try again later or enter prices individually.',
   'Das ursprüngliche Angebot ist nicht mehr vorhanden. Bitte neu laden.': 'The original offer no longer exists. Please reload.',
   'Der Preis muss zwischen CHF 0.50 und CHF 50 liegen (maximal zwei Nachkommastellen).': 'The price must be between CHF 0.50 and CHF 50 (at most two decimal places).',
+  'Dieser Preis wirkt unplausibel und wurde nicht gespeichert. Bitte Betrag prüfen.': 'This price looks implausible and was not saved. Please check the amount.',
   'Der Quellenlink muss mit https:// oder http:// beginnen.': 'The source link must start with https:// or http://.',
   'Der Scan ist nicht mehr verfügbar. Bitte erneut fotografieren.': 'This scan is no longer available. Please take the photo again.',
   'Die Erkennung ist gerade nicht erreichbar. Bitte später erneut versuchen.': 'Recognition cannot be reached right now. Please try again later.',

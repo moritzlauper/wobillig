@@ -11,26 +11,39 @@ const data = { beer: dataset, coffee: dataset };
 const input: PriceInput = { barId: bar.id, drink: 'coffee', revision: 0, name: 'Espresso', priceChf: 4, volumeMl: null, coffeeType: 'espresso', alcoholFree: true, observedAt: '2026-10-21', sourceUrl: '' };
 function memory(): Store { let state = emptyState(), version = 0; return { read: async () => ({ state: structuredClone(state), etag: String(version) }), write: async (next, etag) => { if (etag !== String(version)) throw new WriteConflict(); state = structuredClone(next); version++; } }; }
 let store: Store;
-beforeEach(() => { store = memory(); vi.stubEnv('COMMUNITY_REVIEW_REQUIRED', 'true'); });
+beforeEach(() => { store = memory(); });
 afterEach(() => vi.unstubAllEnvs());
-it('publishes normal prices, photo scans, venues and corrections directly when review is disabled', async () => {
-  vi.stubEnv('COMMUNITY_REVIEW_REQUIRED', 'false');
+// Older held rows can still sit in storage from before manual review was abolished.
+async function seedHeld() {
+  const { state, etag } = await store.read();
+  const entry = { id: 'held-1', barId: bar.id, drink: 'coffee' as const, targetKey: '["espresso",null,"espresso",true]', revision: 1, updatedAt: '2026-10-21T12:00:00.000Z',
+    offer: { name: 'Espresso', priceChf: 4, volumeMl: null, coffeeType: 'espresso' as const, alcoholFree: true, observedAt: '2026-10-21', sourceUrl: '', confidence: 'community' as const, evidence: '' }, venue: bar };
+  state.heldPrices = [{ owner: 'owner', entry, reason: 'review-required', before: null, baseEntry: null }];
+  await store.write(state, etag);
+  return entry;
+}
+it('publishes normal prices, photo scans, venues and corrections directly', async () => {
+  vi.stubEnv('COMMUNITY_REVIEW_REQUIRED', 'true');
   await savePrice(store, input, data, 'visitor');
   await reserveScan(store, 'photo', 'visitor');
   const scan = await saveMenuScan(store, 'photo', bar, [], [{ input: { ...input, name: 'Cappuccino', coffeeType: 'cappuccino' }, evidence: 'menu' }], 0);
   expect(scan.pending).not.toBe(true); expect(scan.entries).toHaveLength(1);
   const venue = await saveVenue(store, { ...bar, name: 'New cafe', website: '' }, data, 'zurich', 'visitor');
-  expect(venue.pending).not.toBe(true);
+  expect(venue).not.toHaveProperty('pending');
   const correction = await saveVenueCorrection(store, { barId: bar.id, revision: 0, changes: { website: 'https://example.org' } }, data, 'visitor');
-  expect(correction.pending).not.toBe(true);
+  expect(correction).not.toHaveProperty('pending');
   const { state } = await store.read();
   expect(state.entries).toHaveLength(2); expect(state.venues).toHaveLength(1); expect(state.venueCorrections).toHaveLength(1);
-  expect(state.heldPrices || []).toEqual([]);
+  expect(state.heldPrices || []).toEqual([]); expect(state.pendingVenues || []).toEqual([]); expect(state.pendingCorrections || []).toEqual([]);
 });
-it('holds plausible prices, rejects stale reviews and supports exact undo', async () => {
-  const entry = await savePrice(store, input, data, 'visitor', Date.now(), 'owner');
+it('refuses implausible prices instead of holding them', async () => {
+  await expect(savePrice(store, { ...input, name: 'Cappuccino', coffeeType: 'cappuccino', priceChf: 22.5 }, data, 'visitor')).rejects.toMatchObject({ status: 400 });
+  const { state } = await store.read();
+  expect(state.entries).toEqual([]); expect(state.heldPrices || []).toEqual([]);
+});
+it('approves older held prices, rejects stale reviews and supports exact undo', async () => {
+  const entry = await seedHeld();
   let state = (await store.read()).state;
-  expect(state.entries).toEqual([]); expect(state.heldPrices).toHaveLength(1);
   const held = state.heldPrices![0];
   await expect(reviewContribution(store, 'price', entry.id, 'stale', 'approve', data)).rejects.toMatchObject({ status: 409 });
   await reviewContribution(store, 'price', entry.id, fingerprint(held), 'approve', data);
@@ -40,36 +53,18 @@ it('holds plausible prices, rejects stale reviews and supports exact undo', asyn
   expect((await store.read()).state.entries).toEqual([]);
   await expect(reviewContribution(store, 'undo', undo.id, fingerprint(undo), 'undo', data)).rejects.toMatchObject({ status: 409 });
 });
-it('does not overwrite newer public prices on approval or rollback', async () => {
-  const entry = await savePrice(store, input, data, 'visitor');
+it('does not overwrite newer public prices on approval of an older held price', async () => {
+  const entry = await seedHeld();
   const { state, etag } = await store.read(); const held = state.heldPrices![0];
   state.entries.push({ ...entry, revision: 3 }); await store.write(state, etag);
   await expect(reviewContribution(store, 'price', entry.id, fingerprint(held), 'approve', data)).rejects.toMatchObject({ status: 409 });
   await reviewContribution(store, 'price', entry.id, fingerprint(held), 'reject', data);
   expect((await store.read()).state.entries[0].revision).toBe(3);
 });
-it('holds new venues and corrections, deduplicates and publishes only after approval', async () => {
-  const added = await saveVenue(store, { ...bar, name: '<script>New</script>', website: '' }, data, 'zurich', 'v');
-  expect(added.pending).toBe(true); let state = (await store.read()).state;
-  expect(state.venues || []).toEqual([]); expect(state.pendingVenues).toHaveLength(1);
-  const row = state.pendingVenues![0];
+it('escapes older pending venues on the review page', async () => {
+  const state = emptyState();
+  state.pendingVenues = [{ id: 'v1', venue: { ...bar, name: '<script>New</script>' }, submittedAt: '' }];
   expect(contributionReviewHtml([{ city: 'zurich', state }])).not.toContain('<script>New</script>');
-  await reviewContribution(store, 'venue', row.id, fingerprint(row), 'approve', data);
-  expect((await store.read()).state.venues).toHaveLength(1);
-  const changed = await saveVenueCorrection(store, { barId: bar.id, revision: 0, changes: { website: 'https://example.org' } }, data, 'v');
-  expect(changed.pending).toBe(true); state = (await store.read()).state;
-  expect(state.venueCorrections || []).toEqual([]);
-  const correction = state.pendingCorrections![0];
-  await reviewContribution(store, 'correction', correction.id, fingerprint(correction), 'approve', data);
-  expect((await store.read()).state.venueCorrections![0].changes.website).toBe('https://example.org/');
-});
-it('holds photo-derived prices as well as manual ones and does not publish them on retries', async () => {
-  await reserveScan(store, 'hash', 'visitor');
-  const result = await saveMenuScan(store, 'hash', bar, [], [{ input, evidence: 'menu' }], 0, Date.now(), undefined, 'owner');
-  expect(result.pending).toBe(true); expect(result.entries).toEqual([]);
-  expect((await store.read()).state.heldPrices).toHaveLength(1);
-  const retry = await reserveScan(store, 'hash', 'visitor');
-  expect(retry?.pending).toBe(true); expect(retry?.entries).toEqual([]);
 });
 it('assigns existing maps only explicitly and rejects stale or repeated claims', async () => {
   const { state, etag } = await store.read(); const map = { id: 'old', name: 'Legacy', entries: [], createdAt: '' }; state.customMaps = [map]; await store.write(state, etag);
