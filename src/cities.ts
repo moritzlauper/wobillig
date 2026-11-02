@@ -27,6 +27,8 @@ export function cityLink(city: City, search: string, base = '/', locale: Locale 
   params.delete('bar');
   // Prices differ per city: the other city opens at its own cheap price, not at a limit set elsewhere.
   params.delete('max');
+  // District numbers only exist within their own city's boundaries.
+  params.delete('district');
   const query = params.toString();
   return base.replace(/\/$/, '') + localizedPath(cities[city].path, locale) + (query ? `?${query}` : '');
 }

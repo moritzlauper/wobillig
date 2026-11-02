@@ -30,6 +30,8 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
   const softdrinkSize = parseSoftdrinkSize(params.get('softdrinkSize'));
   const softdrinkSelection = parseSoftdrinkSelection(params.get('softdrinkSelection'));
   const cocktailSelection = parseCocktailSelection(params.get('cocktailSelection'));
+  const district = Number(params.get('district'));
+  const open = params.get('open');
   const amount = params.get('max');
   const max = amount?.trim() && Number.isFinite(Number(amount)) && Number(amount) >= 0.5 ? Number(amount) : Infinity;
   const filters: Filters = {
@@ -52,6 +54,8 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
     unknown: params.get('unknown') !== '0', outdoor: params.get('outdoor') === '1',
     alcoholFree: params.get('alcoholFree') === '1',
     ...(params.get('glutenFree') === '1' ? { glutenFree: true } : {}),
+    ...(Number.isInteger(district) && district >= 1 && district <= 99 ? { district } : {}),
+    ...(open === 'now' || (open && /^(?:[01]\d|2[0-3]):[0-5]\d$/.test(open)) ? { open } : {}),
     mode: choice(params, 'mode', ['glass', 'half'], 'glass'),
     sort: choice(params, 'sort', ['price', 'price_desc', 'name', 'distance'], 'price'),
   };
@@ -82,6 +86,7 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
     max: Number.isFinite(f.max) ? String(f.max) : '',
     size, type: f.type, unknown: f.unknown ? '' : '0', outdoor: f.outdoor ? '1' : '',
     alcoholFree: f.alcoholFree ? '1' : '', glutenFree: f.glutenFree ? '1' : '', mode: f.mode !== 'glass' ? f.mode : '',
+    district: f.district ? String(f.district) : '', open: f.open || '',
     sort: f.sort !== 'price' ? f.sort : '', cheap: cheap ? '1' : '0',
   };
   for (const [key, value] of Object.entries(values)) {

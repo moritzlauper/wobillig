@@ -111,6 +111,19 @@ a { color: var(--link); text-underline-offset: 2px; }
 #search-history-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 12px; font-size: var(--font-control); border-bottom: 1px solid var(--divider); }
 #search-history-clear { border: 0; background: transparent; text-decoration: underline; }
 #search-empty { margin: 0; padding: 12px; font-size: 13px; }
+#search { text-overflow: ellipsis; }
+#search::placeholder { transition: opacity .2s; }
+#search.placeholder-out::placeholder { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { #search::placeholder { transition: none; } }
+#search-suggestions .smart-option strong { display: block; }
+#search-suggestions .smart-option small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#search-suggestions .smart-example { min-height: 52px; }
+.smart-badge { display: inline-block; margin-right: 6px; padding: 0 5px; border: 1px solid var(--teal-border); border-radius: 3px; color: var(--teal); background: var(--teal-surface); font-size: var(--font-meta); line-height: 15px; vertical-align: 1px; }
+.smart-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 6px 10px; border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
+.smart-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; padding: 3px 8px 3px 10px; border-radius: 14px; border-color: var(--teal-border); background: var(--teal-surface); color: var(--teal); }
+.smart-chip:hover { background: var(--teal-hover); }
+.smart-chip span { font-size: 16px; line-height: 1; }
+.smart-note { color: var(--muted); }
 #coffeeType { max-width: 200px; }
 .pizza-controls { display: flex; gap: 8px; min-width: 0; }
 .pizza-controls select { min-width: 0; max-width: 210px; }
@@ -309,7 +322,8 @@ dialog::backdrop { background: var(--backdrop); }
   .beer-selection-controls select { flex: 1; max-width: none; }
   #beer-query { width: 100%; }
   .search-box { order: 5; grid-column: 1 / -1; min-width: 0; }
-  .toolbar:not(.search-open) .search-box { display: none; }
+  .smart-chips { padding: 5px 7px; gap: 5px; flex-shrink: 0; }
+  .smart-chip { min-height: 30px; }
   #search { padding-right: 7px; font-size: var(--font-control); }
   .search-box:has(#search-clear:not([hidden])) #search { padding-right: 30px; }
   #search-clear { width: 30px; }

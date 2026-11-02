@@ -94,6 +94,9 @@ export type Filters = {
   beerQuery?: string;
   beerSelection?: BeerSelection;
   glutenFree?: boolean;
+  // Set by the smart search: an official district number and "now" or a time of day (HH:MM).
+  district?: number;
+  open?: string;
   query: string;
   max: number;
   volume: string;

@@ -13,7 +13,10 @@ import { barLink, shareLink } from './sharing';
 import { cheapModeFromSearch, dropDefaultCheap, filtersFromSearch, writeFilters } from './filters';
 import { createExport, downloadExport } from './export';
 import { googleMapsLink, withKnownAddress, withKnownDetails, locationAtPosition, nearbyLocations, selectableLocations } from './locations';
-import { searchSuggestions } from './search';
+import { matchesSearch, normalizeSearch, searchSuggestions } from './search';
+import { isSmartQuery, parseSmartQuery, planSmartQuery, smartExamples, type SmartPlan, type SmartQuery } from './smart-search';
+import { createDistrictLookup, districtCities, districtLabel, type Districts } from './districts';
+import { isOpenAt, openTime, zurichTime } from './opening-hours';
 import { createSearchHistory } from './search-history';
 import { searchAddresses, type AddressResult } from './address-search';
 import { prepareMenuPhoto, scanSummary, type MenuScanResult } from './menu-scan';
@@ -24,13 +27,13 @@ import { applyVenueCorrections, type VenueCorrection } from './venue-corrections
 import { categoryNavigation } from './category-navigation';
 import { customMaps } from './custom-maps';
 import { pizzaMenuContent } from './pizza-menu';
-import { pizzaVarieties, beerVarieties, cocktailVarieties, softdrinkVarieties, hasBeerSelection, hasGlutenFreePizza } from './data';
+import { pizzaVarieties, beerVarieties, cocktailVarieties, softdrinkVarieties, hasBeerSelection, hasGlutenFreePizza, matchesBeerName, matchesPizza } from './data';
 import { beerGroupLabels, parseBeerSelection } from './beer-selection';
 import { parsePizzaSelection, pizzaGroupLabels, type PizzaGroup } from './pizza-selection';
 import { burgerSelectionLabels, parseBurgerSelection } from './burger-selection';
 import { mergeStreetfood, parseStreetfoodPortion, streetfoodFoodLabels, streetfoodPortionLabels } from './streetfood-selection';
 import { cocktailSelectionLabels, parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize, softdrinkSelectionLabels, softdrinkSizeLabels, softdrinkSizes } from './gastro-selection';
-import type { Category } from './categories';
+import { categories, type Category } from './categories';
 import { showGoogleRating, clearGoogleRating } from './google-rating';
 import { showValueRating } from './value-rating';
 import { setupTip } from './tip';
@@ -72,13 +75,21 @@ let customMapUI: ReturnType<typeof customMaps> | undefined;
 let addedVenues: Bar[] = [];
 let venueCorrections: VenueCorrection[] = [];
 let userMarker: L.CircleMarker | undefined;
-let suggestions: (Bar | AddressResult)[] = [], activeSuggestion = -1, searchOpen = false;
+// A smart suggestion applies a sentence such as «Stange unter 5 Franken im Kreis 4»; examples come from smartExamples.
+type SmartSuggestion = { smart: string; example?: boolean };
+let suggestions: (Bar | AddressResult | SmartSuggestion)[] = [], activeSuggestion = -1, searchOpen = false;
 let addressResults: AddressResult[] = [], addressSelection: AddressResult | undefined;
 let addressController: AbortController | undefined, addressTimer: ReturnType<typeof setTimeout> | undefined;
 let addressStatus: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
 let addressRequest = 0;
 let addressPromise: Promise<void> | undefined;
 const searchHistory = createSearchHistory(cityId);
+let districts: Districts | undefined, districtOf: ((bar: Bar) => number | undefined) | undefined, districtsPromise: Promise<void> | undefined;
+// The sentence being typed, read by the smart search rules; cleared once it is applied.
+let smartPreview: { text: string; query: SmartQuery } | undefined;
+// Words of the last applied sentence that no rule, venue, beer or pizza matched.
+let smartNote = '';
+let exampleList: string[] = [], exampleIndex = 0, dropdownExamples: string[] = [];
 const coffee = () => f.drink === 'coffee';
 const pizza = () => f.drink === 'pizza';
 const beer = () => f.drink === 'beer';
@@ -101,7 +112,7 @@ $('app').innerHTML = `
 <div class="toolbar">
   <div id="category-navigation" class="toolbar-heading"></div>
   <div class="search-box">
-    <input id="search" type="search" role="combobox" placeholder="${t('Lokal, Adresse, PLZ oder Ort')}" aria-label="${t('Lokal oder Adresse suchen')}" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
+    <input id="search" type="search" role="combobox" placeholder="${t('Lokal, Adresse, PLZ oder Ort')}" aria-label="${t('Lokal, Adresse oder Wunsch in eigenen Worten')}" enterkeyhint="search" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
     <button id="search-clear" type="button" aria-label="${t('Suche löschen')}" title="${t('Suche löschen')}" hidden><span aria-hidden="true">×</span></button>
     <div id="search-dropdown" hidden><div id="search-history-heading" hidden><strong>${t('Letzte Suchen')}</strong><button id="search-history-clear" type="button">${t('Verlauf löschen')}</button></div><div id="search-suggestions" role="listbox" aria-label="${t('Suchvorschläge')}"></div><p id="search-empty" role="status" hidden></p></div>
   </div>
@@ -138,11 +149,13 @@ $('app').innerHTML = `
   <label id="type-label">${t('Lokal')} <select id="type">${options(venueTypes)}</select></label>
   <label><input id="unknown" type="checkbox" checked> ${t('Ohne passenden Preis anzeigen')}</label>
   <label><input id="outdoor" type="checkbox"> ${t('Draussen sitzen')}</label>
+  <label title="${t('Laut Öffnungszeiten in OpenStreetMap')}"><input id="open-now" type="checkbox"> ${t('Jetzt offen')}</label>
   <label id="alcohol-label"><input id="alcohol-free" type="checkbox"> ${t('Alkoholfrei')}</label>
   <label id="gluten-free-label"><input id="gluten-free" type="checkbox"> ${t('Glutenfrei')}</label>
   <label id="normalize-label"><input id="normalize" type="checkbox"> ${t('Auf 5 dl umrechnen')}</label>
   <button id="reset">${t('Zurücksetzen')}</button>
 </div>
+<div id="smart-chips" class="smart-chips" role="group" aria-label="${t('Aktive Filter')}" hidden></div>
 <div class="status-row"><div class="status-summary" role="status"><strong id="city-average">${e(t('Schnitt {city} {value}', { city: cityName, value: '—' }))}</strong><span id="count">${t('Laden …')}</span></div><div class="mobile-switch" role="group" aria-label="${t('Ansicht')}"><button id="view-map" aria-pressed="true">${t('Karte')}</button><button id="view-list" aria-pressed="false">${t('Liste')}</button></div><div class="status-meta"><nav class="city-switch" aria-label="${t('Stadt wechseln')}">${(['zurich', 'bern', 'basel'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, locale()))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('<span aria-hidden="true">/</span>')}<details class="city-more" id="city-more"><summary aria-label="${t('Weitere Städte')}" title="${t('Weitere Städte')}"><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="m3 4.5 3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></summary><div class="city-more-menu">${(['winterthur', 'luzern', 'olten', 'lausanne', 'geneva'] as City[]).map(id => `<a data-city="${id}" href="${e(cityLink(id, location.search, import.meta.env.BASE_URL, defaultCityLocale(id, locale())))}"${id === cityId ? ' aria-current="page"' : ''}>${t(cities[id].name)}</a>`).join('')}<a class="city-request" href="mailto:hello@wobillig.ch?subject=${encodeURIComponent(t('Neue Stadt für wobillig'))}&amp;body=${encodeURIComponent(t('Diese Stadt wünsche ich mir auf wobillig:') + '\r\n\r\n')}" aria-label="${t('Stadt wünschen')}" title="${t('Stadt wünschen')}"><span aria-hidden="true">+</span></a></div></details></nav><button id="data-info" class="text-button">${t('Daten')}</button></div></div>
 <div id="load-error" role="status" hidden></div>
 <main>
@@ -324,7 +337,7 @@ function rebuild() {
   if (beer()) beerOptions = beerVarieties(bars);
   render();
 }
-// On phones the venue search sits in a row that opens with the filters, unless a search is active.
+// On phones the pizza search sits in a row that opens with the filters, unless a search is active.
 function syncSearchRow() {
   document.querySelector('.toolbar')!.classList.toggle('search-open', !$('filters').hidden || Boolean($<HTMLInputElement>('search').value || $<HTMLInputElement>('pizza-query').value));
 }
@@ -396,13 +409,12 @@ function syncControls() {
   $<HTMLSelectElement>('volume').value = f.volume;
   $<HTMLSelectElement>('coffeeType').value = f.coffeeType!;
   $<HTMLInputElement>('normalize').checked = f.mode === 'half';
-  const hidden = new Set<Category>([...(pizzaAvailable ? [] : ['pizza' as const]), ...(ramenAvailable ? [] : ['ramen' as const]), ...(burgerAvailable ? [] : ['burger' as const]),
-    ...(['softdrink', 'cocktail'] as const).filter(drink => !gastroAvailable[drink]), ...(streetfoodAvailable ? [] : ['kebab' as const])]);
-  categoryNav.update(f.drink!, hidden);
+  categoryNav.update(f.drink!, hiddenCategories());
   $<HTMLInputElement>('search').value = f.query;
   $('search-clear').hidden = f.query.length === 0;
   $<HTMLSelectElement>('sort').value = f.sort;
   $<HTMLInputElement>('outdoor').checked = f.outdoor;
+  $<HTMLInputElement>('open-now').checked = f.open === 'now';
   $<HTMLInputElement>('alcohol-free').checked = f.alcoholFree;
   $<HTMLInputElement>('gluten-free').checked = Boolean(f.glutenFree);
   const url = new URL(location.href);
@@ -419,6 +431,14 @@ function syncControls() {
   });
   // The language switch keeps the whole view, including the selected venue.
   document.querySelectorAll<HTMLAnchorElement>('[data-locale]').forEach(link => { link.href = import.meta.env.BASE_URL.replace(/\/$/, '') + localizedPath(city.path, link.dataset.locale as Locale) + url.search; });
+}
+function hiddenCategories() {
+  return new Set<Category>([...(pizzaAvailable ? [] : ['pizza' as const]), ...(ramenAvailable ? [] : ['ramen' as const]), ...(burgerAvailable ? [] : ['burger' as const]),
+    ...(['softdrink', 'cocktail'] as const).filter(drink => !gastroAvailable[drink]), ...(streetfoodAvailable ? [] : ['kebab' as const])]);
+}
+function availableCategories() {
+  const hidden = hiddenCategories();
+  return new Set(categories.filter(category => !hidden.has(category)));
 }
 function selectedLocation() {
   return bars.find(b => b.id === selected) || locationCatalogue.find(b => b.id === selected);
@@ -459,13 +479,16 @@ function render() {
   if (selected && (!selection || !isVenueEligible(selection, f))) selected = undefined;
   syncControls();
   $<HTMLAnchorElement>('rankings-link').href = beer() ? '#bierpreise' : pizza() ? '#pizzapreise' : '#kaffeepreise';
-  const prices = matchingPrices(bars, addressSelection ? { ...f, query: '' } : f);
-  cheapLimit = cheapPriceLimit(bars, addressSelection ? { ...f, query: '' } : f);
+  // While a sentence is typed, only its unknown words search venue names; the rest waits for Enter.
+  const preview = livePreview();
+  const searchFilters = { ...f, query: addressSelection ? '' : preview ? preview.rest.join(' ') : f.query };
+  const pool = narrowBars(bars);
+  const prices = matchingPrices(pool, searchFilters);
+  cheapLimit = cheapPriceLimit(pool, searchFilters);
   syncPriceRange(prices);
-  const searchFilters = addressSelection ? { ...f, query: '' } : f;
   const activeFilters = cheapMode ? { ...searchFilters, max: cheapLimit ?? -Infinity, unknown: false } : searchFilters;
   $<HTMLInputElement>('unknown').checked = activeFilters.unknown;
-  current = filterBars(bars, activeFilters, addressSelection ? [addressSelection.lat, addressSelection.lon] : position);
+  current = filterBars(pool, activeFilters, addressSelection ? [addressSelection.lat, addressSelection.lon] : position);
   if (hasBeerSelection(f) && selected && !current.some(bar => bar.id === selected)) {
     selected = undefined;
     syncControls();
@@ -535,6 +558,127 @@ function render() {
   if (selectedBar) detail(selectedBar); else { $('detail').hidden = true; clearGoogleRating(); }
   renderLocations();
   renderSearchSuggestions();
+  renderSmartChips();
+}
+function loadDistricts(): Promise<void> {
+  if (!districtCities.includes(cityId)) return Promise.resolve();
+  return districtsPromise ??= fetch(`${dataPath}districts.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then((data: Districts) => { districts = data; districtOf = createDistrictLookup(data); })
+    .catch(() => { districtsPromise = undefined; });
+}
+// District and opening time narrow the venues before prices are compared, as if the city were smaller.
+// Venues without readable opening hours drop out of "open", so no venue is shown open on a guess.
+function narrowBars(list: Bar[]): Bar[] {
+  if (!f.district && !f.open) return list;
+  const time = f.open ? openTime(f.open, zurichTime()) : undefined;
+  return list.filter(b => (!f.district || districtOf?.(b) === f.district) && (!time || isOpenAt(b.openingHours, time) === true));
+}
+// The parsed sentence while it is still the text in the field.
+function livePreview(): SmartQuery | undefined {
+  return smartPreview && smartPreview.text === f.query ? smartPreview.query : undefined;
+}
+function productLabel(plan: SmartPlan, query: SmartQuery): string {
+  const p = { ...f, ...plan.filters };
+  if (!plan.filters.drink && !query.drink) return '';
+  if (p.drink === 'coffee') return p.coffeeType && p.coffeeType !== 'all' ? t(coffeeLabels[p.coffeeType]) : t('Kaffee');
+  if (p.drink === 'beer') {
+    const size = p.volume === 'stange' ? 'Stange' : ['330', '400', '500'].includes(p.volume) ? `${Number(p.volume) / 100} dl` : '';
+    const serving = p.beerType && p.beerType !== 'all' && p.beerType !== 'unknown' ? t(beerTypeLabels[p.beerType]) : '';
+    return [p.beerSelection ? beerGroupLabels[p.beerSelection] : t('Bier'), size, size === 'Stange' ? '' : serving, p.alcoholFree ? t('Alkoholfrei') : '', p.glutenFree ? t('Glutenfrei') : ''].filter(Boolean).join(' · ');
+  }
+  if (p.drink === 'pizza') return p.pizzaSelection === 'glutenfree' ? `Pizza · ${t('Glutenfrei')}` : p.pizzaSelection?.startsWith('group:') ? `Pizza ${pizzaGroupLabels[p.pizzaSelection.slice(6) as PizzaGroup]}` : 'Pizza Margherita';
+  if (p.drink === 'burger') return p.burgerSelection === 'vegetarian' ? t('Vegi Burger') : p.burgerSelection && p.burgerSelection !== 'all' ? `${t('Burger')} · ${t(burgerSelectionLabels[p.burgerSelection])}` : t('Burger');
+  if (p.drink === 'softdrink') return p.softdrinkSelection && p.softdrinkSelection !== 'all' ? t(softdrinkSelectionLabels[p.softdrinkSelection]) : t('Softdrink');
+  if (p.drink === 'cocktail') return p.cocktailSelection && p.cocktailSelection !== 'all' ? t(cocktailSelectionLabels[p.cocktailSelection]) : t('Cocktail');
+  if (p.drink === 'kebab') return [t(streetfoodFoodLabels[p.streetfoodFood || 'all']), p.streetfoodPortion === 'plate' ? t('Teller') : ''].filter(Boolean).join(' · ');
+  return t('Ramen');
+}
+// What a sentence will do, as short labels for the suggestion row.
+function smartSummary(query: SmartQuery): string {
+  const plan = planSmartQuery(query, availableCategories(), f.drink!);
+  const p = plan.filters;
+  return [
+    plan.unavailable ? t('{category} nicht in {city}', { category: smartCategoryLabel(plan.unavailable), city: cityName }) : '',
+    productLabel(plan, query),
+    query.max !== undefined ? t('Bis CHF {price}', { price: money(query.max) }) : query.cheap ? t('Günstig') : '',
+    p.district ? districtLabel(p.district, districts) : '',
+    p.open ? (p.open === 'now' ? t('Jetzt offen') : t('Offen um {time}', { time: p.open })) : '',
+    p.outdoor ? t('Draussen sitzen') : '',
+    p.type ? (venueTypes as Record<string, string>)[p.type] : '',
+    plan.near ? t('In der Nähe') : '',
+    query.rest.length ? `«${query.rest.join(' ')}»` : '',
+  ].filter(Boolean).join(' · ');
+}
+function smartCategoryLabel(category: Category) {
+  return ({ coffee: t('Kaffee'), beer: t('Bier'), ramen: t('Ramen'), burger: t('Burger'), softdrink: t('Softdrinks'), cocktail: t('Cocktails'), pizza: 'Pizza', kebab: t('Kebab & Falafel') } as Record<Category, string>)[category];
+}
+async function applySmartSearch(text: string, example = false) {
+  const query = parseSmartQuery(text, cityId);
+  if (query.district) await loadDistricts();
+  const plan = planSmartQuery(query, availableCategories(), f.drink!);
+  cancelAddressRequest(); clearAddressSelection(); closeSearchSuggestions();
+  smartPreview = undefined; selected = undefined; smartNote = '';
+  Object.assign(f, plan.filters);
+  cheapMode = plan.cheap;
+  f.query = '';
+  rebuild();
+  // Unknown words may still name a venue, a beer or a pizza; otherwise they are reported, never searched for nothing.
+  const rest = query.rest.join(' ');
+  if (rest) {
+    if (bars.some(b => isVenueEligible(b, f) && matchesSearch(b, rest))) f.query = rest;
+    else if (beer() && bars.some(b => b.offers.some(o => offerCategory(o) === 'beer' && matchesBeerName(o.name, rest)))) Object.assign(f, { beerQuery: rest, beerSelection: undefined, volume: 'all' });
+    else if (pizza() && bars.some(b => [...b.offers, ...(b.pizzaMenu || [])].some(o => matchesPizza(o, { ...f, pizzaQuery: rest }, b)))) Object.assign(f, { pizzaQuery: rest, pizzaSelection: 'all' });
+    else smartNote = rest;
+  }
+  trackEvent(cityId, 'smart_search_applied', { category: f.drink!, example, rest: Boolean(rest), unknown: Boolean(smartNote) });
+  if (plan.unavailable) toast(t('{category} gibt es in {city} noch nicht.', { category: smartCategoryLabel(plan.unavailable), city: cityName }));
+  $('search').blur();
+  showView(document.body.classList.contains('show-list'));
+  if (plan.near && !position) locate(false, 16); else render();
+  const area = f.district ? districts?.features.find(d => d.properties.number === f.district)?.bbox : undefined;
+  if (area) map.fitBounds([[area[1], area[0]], [area[3], area[2]]], { padding: [20, 20] });
+  else if (f.query) zoomToSearchResults();
+}
+// Filters without their own control in the toolbar, each removable with one tap.
+function renderSmartChips() {
+  const chips: { label: string; clear: () => void }[] = [];
+  if (f.district) chips.push({ label: districtLabel(f.district, districts), clear: () => { f.district = undefined; } });
+  if (f.open) chips.push({ label: f.open === 'now' ? t('Jetzt offen') : t('Offen um {time}', { time: f.open }), clear: () => { f.open = undefined; } });
+  if (f.outdoor) chips.push({ label: t('Draussen sitzen'), clear: () => { f.outdoor = false; } });
+  if (f.type && !streetfood()) chips.push({ label: (venueTypes as Record<string, string>)[f.type] || f.type, clear: () => { f.type = ''; } });
+  if (beer() && f.alcoholFree) chips.push({ label: t('Alkoholfrei'), clear: () => { f.alcoholFree = false; } });
+  if (beer() && f.glutenFree) chips.push({ label: t('Glutenfrei'), clear: () => { f.glutenFree = false; } });
+  if (f.sort === 'distance') chips.push({ label: t('In der Nähe'), clear: () => { f.sort = 'price'; } });
+  const box = $('smart-chips');
+  const html = chips.map((chip, index) => `<button type="button" class="smart-chip" data-chip="${index}" title="${e(t('{filter} entfernen', { filter: chip.label }))}" aria-label="${e(t('{filter} entfernen', { filter: chip.label }))}">${e(chip.label)}<span aria-hidden="true">×</span></button>`).join('')
+    + (smartNote ? `<span class="smart-note">${e(t('Nicht berücksichtigt: «{words}»', { words: smartNote }))}</span>` : '');
+  box.hidden = !html;
+  if (box.innerHTML === html) return;
+  box.innerHTML = html;
+  box.querySelectorAll<HTMLButtonElement>('[data-chip]').forEach(button => button.onclick = () => {
+    const chip = chips[Number(button.dataset.chip)];
+    chip.clear(); smartNote = ''; selected = undefined;
+    render();
+    // Keep the keyboard focus in the row after the chip disappears.
+    (box.querySelector<HTMLElement>('[data-chip]') || $('search')).focus({ preventScroll: true });
+  });
+}
+// The search field cycles through example sentences; the plain venue hint opens each round.
+function nextPlaceholder() {
+  if (exampleIndex >= exampleList.length) {
+    exampleList = [t('Lokal, Adresse, PLZ oder Ort'), ...smartExamples(cityId, locale(), availableCategories()).map(example => t('z. B. {example}', { example }))];
+    // The plain hint is already there on load, so the first round starts with an example.
+    exampleIndex = exampleRound++ ? 0 : 1;
+  }
+  return exampleList[exampleIndex++] ?? exampleList[0];
+}
+let exampleRound = 0, placeholderTimer: ReturnType<typeof setTimeout> | undefined;
+function rotatePlaceholder() {
+  const input = $<HTMLInputElement>('search');
+  if (document.hidden || input.value) return;
+  input.classList.add('placeholder-out');
+  clearTimeout(placeholderTimer);
+  placeholderTimer = setTimeout(() => { input.placeholder = nextPlaceholder(); input.classList.remove('placeholder-out'); }, 220);
 }
 let addressMarker: L.CircleMarker | undefined;
 function clearAddressSelection() {
@@ -587,19 +731,26 @@ function renderSearchSuggestions() {
   const showHistory = !f.query.trim();
   const active = suggestions[activeSuggestion];
   const venues = searchSuggestions(searchCandidates(), f.query);
-  suggestions = showHistory ? searchHistory.results(searchCandidates())
-    : /\d/.test(f.query) ? [...addressResults, ...venues] : [...venues, ...addressResults];
-  $('search-history-heading').hidden = !showHistory;
+  const history = showHistory ? searchHistory.results(searchCandidates()) : [];
+  const preview = livePreview();
+  // A sentence comes first, unless the text is the start of a venue name such as «Pizza Bella».
+  const smart: SmartSuggestion[] = preview ? [{ smart: f.query }] : [];
+  const venueFirst = venues.length > 0 && normalizeSearch(venues[0].name).startsWith(normalizeSearch(f.query));
+  const found = /\d/.test(f.query) && !preview ? [...addressResults, ...venues] : [...venues, ...addressResults];
+  suggestions = showHistory ? [...history, ...dropdownExamples.map(example => ({ smart: example, example: true }))]
+    : venueFirst ? [found[0], ...smart, ...found.slice(1)] : [...smart, ...found];
+  $('search-history-heading').hidden = !history.length;
   if (showHistory && !suggestions.length) { closeSearchSuggestions(); return; }
   activeSuggestion = active ? suggestions.indexOf(active) : -1;
   $('search-dropdown').hidden = false;
   $('search').setAttribute('aria-expanded', 'true');
-  $('search-empty').hidden = suggestions.length > 0 && addressStatus !== 'loading' && addressStatus !== 'error';
+  $('search-empty').hidden = showHistory || preview !== undefined || (suggestions.length > 0 && addressStatus !== 'loading' && addressStatus !== 'error');
   $('search-empty').textContent = addressStatus === 'loading' ? t('Adressen werden gesucht …')
     : addressStatus === 'error' ? t('Adresssuche gerade nicht verfügbar. Mit Enter erneut versuchen.')
     : f.query.trim().length < 2 ? t('Mindestens zwei Zeichen eingeben.') : t('Keine Lokale oder Adressen gefunden. Versuche Strasse, Hausnummer, PLZ oder Ort.');
   const visible = new Set(current.map(b => b.id));
   $('search-suggestions').innerHTML = suggestions.map((b, index) => {
+    if ('smart' in b) return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}" class="smart-option${b.example ? ' smart-example' : ''}"><strong>${b.example ? e(b.smart) : e(smartSummary(preview!))}</strong><small><span class="smart-badge">${t('Smart-Suche')}</span>${b.example ? t('Beispiel ausprobieren') : e(b.smart)}</small></button>`;
     if ('kind' in b) return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}"><strong>${e(b.label)}</strong><small>${t('Adresse / Ort · Auf Karte anzeigen')}</small></button>`;
     const offer = bestOffer(b, f);
     return `<button type="button" role="option" tabindex="-1" id="search-option-${index}" data-suggestion="${index}" aria-selected="${index === activeSuggestion}"><strong>${e(b.name)}</strong><small>${e([b.address, b.postcode].filter(Boolean).join(' · ') || cityName)}</small><small>${offer ? `CHF ${money(cost(offer, f.mode))} · ${e(unit(offer))}` : missingPriceLabel(b, f)}${visible.has(b.id) ? '' : ` · ${t('ausserhalb der aktuellen Filter')}`}</small></button>`;
@@ -621,6 +772,7 @@ function zoomToSearchResults() {
 function selectSearchSuggestion(index: number, remember = true) {
   const bar = suggestions[index];
   if (!bar) return;
+  if ('smart' in bar) { void applySmartSearch(bar.smart, bar.example); return; }
   if (remember) searchHistory.remember(bar);
   cancelAddressRequest();
   closeSearchSuggestions();
@@ -752,13 +904,25 @@ $('view-map').onclick = () => showView(false); $('view-list').onclick = () => sh
 $('search').oninput = event => {
   cancelAddressRequest(); clearAddressSelection();
   f.query = $<HTMLInputElement>('search').value;
-  selected = undefined; activeSuggestion = -1; searchOpen = true;
+  const query = parseSmartQuery(f.query, cityId);
+  smartPreview = isSmartQuery(query) ? { text: f.query, query } : undefined;
+  selected = undefined; activeSuggestion = -1; searchOpen = true; smartNote = '';
   render();
-  if (!(event as InputEvent).isComposing && f.query.trim().length >= 2) {
+  if (!(event as InputEvent).isComposing && f.query.trim().length >= 2 && !skipsAddressSearch()) {
     scheduleAddressSearch();
   }
 };
-$('search').onfocus = () => { searchOpen = true; renderSearchSuggestions(); if (!addressSelection && addressStatus === 'idle') scheduleAddressSearch(); };
+// A sentence for the smart search is no address; a quarter name alone may still be a street.
+function skipsAddressSearch() {
+  const preview = livePreview();
+  return preview !== undefined && Object.keys(preview).some(key => key !== 'rest' && key !== 'district');
+}
+$('search').onfocus = () => {
+  void loadDistricts();
+  dropdownExamples = smartExamples(cityId, locale(), availableCategories()).slice(0, 3);
+  searchOpen = true; renderSearchSuggestions();
+  if (!addressSelection && addressStatus === 'idle' && !skipsAddressSearch()) scheduleAddressSearch();
+};
 $('search-history-clear').onpointerdown = event => event.preventDefault();
 $('search-history-clear').onclick = () => {
   searchHistory.clear();
@@ -795,6 +959,8 @@ $('search').onkeydown = async event => {
   } else if (event.key === 'Enter') {
     event.preventDefault();
     if (searchOpen && activeSuggestion >= 0) selectSearchSuggestion(activeSuggestion);
+    // The first row is the sentence, or a venue whose name the text starts with.
+    else if (livePreview()) { if (searchOpen && suggestions.length) selectSearchSuggestion(0); else void applySmartSearch(f.query); }
     else if (searchOpen && suggestions.length && (!/\d/.test(f.query) || addressStatus === 'ready')) selectSearchSuggestion(0);
     else {
       const query = f.query;
@@ -923,20 +1089,22 @@ $('beer-type').onchange = () => {
 $('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render(); };
 $('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position && !addressSelection) locate(); else render(); };
 for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree'], ['gluten-free', 'glutenFree']] as const) $(id).onchange = () => { if (key === 'unknown') cheapMode = false; f[key] = $<HTMLInputElement>(id).checked; render(); };
+$('open-now').onchange = () => { f.open = $<HTMLInputElement>('open-now').checked ? 'now' : undefined; selected = undefined; render(); };
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
 $('filters-toggle').onclick = () => { $('filters').hidden = !$('filters').hidden; $('filters-toggle').setAttribute('aria-expanded', String(!$('filters').hidden)); syncSearchRow(); };
 $('reset').onclick = () => {
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
   cheapMode = false;
-  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, streetfoodPortion: undefined, streetfoodFood: undefined, softdrinkSize: undefined, softdrinkSelection: undefined, cocktailSelection: undefined, glutenFree: false, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, streetfoodPortion: undefined, streetfoodFood: undefined, softdrinkSize: undefined, softdrinkSelection: undefined, cocktailSelection: undefined, glutenFree: false, district: undefined, open: undefined, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = '';
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
-  for (const id of ['unknown', 'outdoor', 'alcohol-free', 'gluten-free']) $<HTMLInputElement>(id).checked = id === 'unknown';
+  for (const id of ['unknown', 'outdoor', 'alcohol-free', 'gluten-free', 'open-now']) $<HTMLInputElement>(id).checked = id === 'unknown';
+  smartNote = '';
   render();
 };
 let locating = false;
-function locate(openNearby = false) {
+function locate(openNearby = false, zoom = 18) {
   if (!navigator.geolocation) return toast(t('Standort wird von diesem Browser nicht unterstützt.'));
   if (locating) return;
   locating = true;
@@ -952,7 +1120,7 @@ function locate(openNearby = false) {
     button.setAttribute('aria-pressed', 'true');
     userMarker?.remove(); userMarker = L.circleMarker(position, { radius: 7, color: '#fff', fillColor: '#1766c2', fillOpacity: 1, weight: 2 }).addTo(map);
     if (openNearby) { selected = undefined; pendingReveal = undefined; }
-    map.setView(position, Math.max(map.getZoom(), 18)); render();
+    map.setView(position, Math.max(map.getZoom(), zoom)); render();
     // Without the full catalogue, a missing neighbour could look unambiguous.
     const nearby = openNearby && locationCatalogue.length
       ? locationAtPosition(selectableLocations(bars, selectableLocations(venues, locationCatalogue)), position, p.coords.accuracy)
@@ -1217,7 +1385,10 @@ async function init() {
   $('download-status').textContent = !hasData ? t('Download nicht verfügbar. Bitte lade die Seite erneut.') : missing.length ? t('Unvollständiger Export: {missing} konnten nicht geladen werden. Bitte lade die Seite erneut für einen vollständigen Export.', { missing: missing.join(', ') }) : t('Gemeinsame Einträge und Korrekturen sind enthalten.');
   const errors = [!beerResult ? t('Bierdaten konnten nicht geladen werden.') : '', !coffeeResult ? t('Kaffeedaten konnten nicht geladen werden.') : '', !pizzaResult ? t('Pizzadaten konnten nicht geladen werden.') : '', !locationsResult ? t('Zusätzliche Kartenlokale konnten nicht geladen werden. Bitte neu laden.') : ''].filter(Boolean);
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
+  if (f.district) await loadDistricts();
   rebuild();
+  rotatePlaceholder();
+  setInterval(rotatePlaceholder, 4500);
   if (initial.has('map')) await customMapUI?.load(initial.get('map')!);
   const linkedId = initial.get('bar');
   if (linkedId) {

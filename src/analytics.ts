@@ -22,6 +22,8 @@ type Events = {
   cheap_filter_changed: { category: Drink; enabled: boolean };
   venue_shared: { category: Drink; result: 'shared' | 'copied' | 'manual' | 'cancelled' };
   data_downloaded: { format: 'csv' | 'json' };
+  // Never the sentence itself: only whether words were left over and whether any matched nothing.
+  smart_search_applied: { category: Drink; example: boolean; rest: boolean; unknown: boolean };
 };
 
 // Only aggregate attributes: never pass forms, filenames, URLs or error messages.
