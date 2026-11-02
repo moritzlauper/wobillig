@@ -135,6 +135,12 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
     updateSavedMaps();
     updatePublicMaps([...publicMaps.filter(item => item.id !== value.id), ...publicMapSummaries([value])]);
   }
+  function forget(id: string) {
+    saved = saved.filter(item => item.id !== id);
+    try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch { /* The list is only a local shortcut. */ }
+    updateSavedMaps();
+    if (create.open) renderSavedMaps();
+  }
   function updatePublicMaps(maps: PublicMap[]) {
     publicMaps = maps.filter(item => isMapId(item.id) && item.venueCount >= PUBLIC_MAP_MIN_VENUES);
     navigation.setCustomMaps(publicMaps, id => { void load(id); });
@@ -225,6 +231,8 @@ export function customMaps(city: City, known: () => Bar[], onClose: () => void, 
       if (version !== request) return;
       create.close(); open(value);
     } catch (error) {
+      // A deleted map stays unreachable, so it no longer belongs in "Meine Maps".
+      if (error instanceof MapRequestError && error.status === 404) forget(id);
       if (version === request) {
         if (!create.open) showPicker();
         errorText(create, failure(error));

@@ -37,6 +37,28 @@ for (const width of [320, 1280]) {
     await expect(page.locator('#custom-map-name')).toHaveText(own.name);
     await expect(page.locator('#create-map-dialog')).toBeHidden();
   });
+  test(`a saved map that no longer exists disappears from my maps at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    const gone = { id: 'd268dbea-93cf-45de-9d17-2b5c74090238', name: 'Ramen' };
+    await page.addInitScript(map => { if (!sessionStorage.getItem('seeded')) { sessionStorage.setItem('seeded', '1'); localStorage.setItem('wobillig:maps:zurich', JSON.stringify([map])); } }, gone);
+    await page.route('**/api/prices?*', route => {
+      const params = new URL(route.request().url()).searchParams;
+      if (params.has('map')) return route.fulfill({ status: 404, json: { error: 'Diese Map wurde nicht gefunden.' } });
+      return route.fulfill({ json: params.has('mapStatuses') ? { maps: [] } : { entries: [], publicMaps: [] } });
+    });
+    await page.goto('/');
+    await expect(page.locator('#count')).not.toHaveText('Laden …');
+    await page.locator('#categories-toggle').click();
+    await page.locator(`#additional-categories [data-custom-map="${gone.id}"]`).click();
+    const dialog = page.locator('#create-map-dialog');
+    await expect(dialog.getByRole('alert')).toHaveText('Diese Map wurde nicht gefunden.');
+    await expect(dialog.locator('#saved-maps')).toBeHidden();
+    expect(await page.evaluate(() => localStorage.getItem('wobillig:maps:zurich'))).toBe('[]');
+    await page.reload();
+    await expect(page.locator('#count')).not.toHaveText('Laden …');
+    await page.locator('#categories-toggle').click();
+    await expect(page.locator(`#additional-categories [data-custom-map="${gone.id}"]`)).toHaveCount(0);
+  });
   test(`venue autocomplete searches beyond the first 80 places at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
     const lateVenue = { ...venue, id: 'node/zuribiss', name: 'Züribiss', address: 'Zähringerstrasse 999', postcode: '8001' };
