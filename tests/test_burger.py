@@ -126,3 +126,20 @@ class BurgerDataset(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class StartFallback(unittest.TestCase):
+    def test_a_dead_branch_page_falls_back_to_the_home_page(self):
+        from scraper.burger import crawl
+        from scraper.sites import start_urls
+        self.assertEqual(start_urls('https://www.bgood.example/langstrasse/'),
+                         ['https://www.bgood.example/langstrasse/', 'https://www.bgood.example/', 'https://bgood.example/'])
+
+        class Site:
+            def get(self, url):
+                if url != 'https://bgood.example/':
+                    raise ValueError('http_404')
+                return url, 'text/html', b'<html><body><h1>Burger</h1><p>Classic Burger 18.50</p></body></html>'
+        result = crawl('https://www.bgood.example/langstrasse/', Site(), 10)
+        self.assertEqual([doc['url'] for doc in result['documents']], ['https://bgood.example/'])
+        self.assertEqual(result['visited'], 3)
