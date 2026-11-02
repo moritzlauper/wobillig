@@ -126,6 +126,7 @@ $('app').innerHTML = `
     <span class="smart-search-label" aria-hidden="true">${t('Smart-Suche')}:</span>
     <input id="search" type="search" role="combobox" placeholder="${t('Lokal, Adresse, PLZ oder Ort')}" aria-label="${t('Lokal, Adresse oder Wunsch in eigenen Worten')}" enterkeyhint="search" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-examples search-suggestions">
     <button id="search-clear" type="button" aria-label="${t('Suche löschen')}" title="${t('Suche löschen')}" hidden><span aria-hidden="true">×</span></button>
+    <button id="search-close" type="button" aria-label="${t('Suche schliessen')}" title="${t('Suche schliessen')}"><span aria-hidden="true">×</span></button>
     </div>
     <div id="search-dropdown" hidden><div id="search-examples" role="listbox" aria-label="${t('Smart-Suche')}" hidden></div><div id="search-history-heading" hidden><strong>${t('Letzte Suchen')}</strong><button id="search-history-clear" type="button">${t('Verlauf löschen')}</button></div><div id="search-suggestions" role="listbox" aria-label="${t('Suchvorschläge')}"></div><p id="search-empty" role="status" hidden></p></div>
   </div>
@@ -988,6 +989,12 @@ $('search-clear').onclick = () => {
   searchOpen = true;
   render();
   $('search').focus({ preventScroll: true });
+};
+$('search-close').onpointerdown = event => event.preventDefault();
+$('search-close').onclick = () => {
+  cancelAddressRequest();
+  closeSearchSuggestions();
+  $('search').blur();
 };
 $('search').onblur = event => {
   if (event.relatedTarget instanceof Node && $('search-dropdown').contains(event.relatedTarget)) return;

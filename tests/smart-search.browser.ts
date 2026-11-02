@@ -55,6 +55,19 @@ test('placeholder rotation stops after seven examples while all suggestions rema
   await expect(page.locator('#search-examples [role=option]').nth(1)).toHaveAttribute('aria-selected', 'true');
 });
 
+test('mobile close button dismisses smart-search suggestions without clearing the query', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await expect(page.locator('#count')).not.toHaveText('Laden …');
+  const search = page.locator('#search');
+  await search.fill('Kaffee unter 5 Franken');
+  await expect(page.locator('#search-dropdown')).toBeVisible();
+  await page.getByRole('button', { name: 'Suche schliessen' }).click();
+  await expect(page.locator('#search-dropdown')).toBeHidden();
+  await expect(search).toHaveValue('Kaffee unter 5 Franken');
+  await expect(search).not.toBeFocused();
+});
+
 test('history is labelled separately from examples and can be cleared', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('wobillig-search-history:zurich', JSON.stringify([
     { kind: 'address', label: 'Zürich HB', lat: 47.378, lon: 8.54, origin: 'address' },

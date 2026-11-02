@@ -110,6 +110,7 @@ a { color: var(--link); text-underline-offset: 2px; }
 #search-clear { position: absolute; top: 0; right: 0; width: 44px; height: 100%; padding: 0; border: 0; background: transparent; font-size: 24px; line-height: 1; }
 #search-clear:hover { background: var(--hover); }
 #search-clear:focus-visible { outline-offset: -3px; }
+#search-close { display: none; }
 #search-dropdown { position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 1600; max-height: min(340px, 45dvh); overflow-y: auto; background: var(--surface); border: 1px solid var(--strong-border); border-radius: 4px; box-shadow: 0 4px 14px #0003; }
 #search-dropdown button[role=option] { display: block; width: 100%; min-height: 60px; padding: 10px 12px; text-align: left; border: 0; border-bottom: 1px solid var(--map); border-radius: 0; }
 #search-dropdown button[aria-selected=true] { background: var(--selected); }
@@ -352,8 +353,11 @@ dialog::backdrop { background: var(--backdrop); }
   .smart-chips { padding: 5px 7px; gap: 5px; flex-shrink: 0; }
   .smart-chip { min-height: 30px; }
   #search { padding-right: 7px; font-size: var(--font-control); }
-  .search-box:has(#search-clear:not([hidden])) #search { padding-right: 30px; }
-  #search-clear { width: 30px; }
+  .search-box:has(#search-clear:not([hidden])) #search { padding-right: 60px; }
+  #search-clear { right: 30px; width: 30px; }
+  #search-close { position: absolute; top: 0; right: 0; display: block; width: 30px; height: 100%; padding: 0; border: 0; background: transparent; font-size: 24px; line-height: 1; }
+  #search-close:hover { background: var(--hover); }
+  #search-close:focus-visible { outline-offset: -3px; }
   #coffeeType { order: 2; grid-column: 1; max-width: none; width: 100%; min-width: 0; font-size: var(--font-control); }
   #filters-toggle { order: 4; grid-column: 2; padding-inline: 7px; font-size: var(--font-control); gap: 7px; }
   .status-row { flex-shrink: 0; min-height: 0; padding: 3px 7px; gap: 1px 7px; }

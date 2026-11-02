@@ -434,6 +434,7 @@ export const en: Record<string, string> = {
   'Lokal, Adresse, PLZ oder Ort': 'Venue, address or postcode',
   'Lokal oder Adresse suchen': 'Search for a venue or address',
   'Suche löschen': 'Clear search',
+  'Suche schliessen': 'Close search',
   'Suchvorschläge': 'Search suggestions',
   'Letzte Suchen': 'Recent searches',
   'Verlauf löschen': 'Clear history',
