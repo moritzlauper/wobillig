@@ -2,7 +2,8 @@
 
 Snapshots contain only public datasets and crawler checks. If the branch changed
 an existing venue/check since the scan started, that entire record wins over the
-scan's stale copy. Other refreshed records and new venues are retained.
+scan's stale copy. Other refreshed records and new venues are retained. A venue
+with prices is never dropped unless the scan lists it under "removed".
 """
 import argparse
 import json
@@ -43,7 +44,7 @@ def snapshot(repo, destination):
     destination.write_text(json.dumps({'baseCommit': base, 'files': files}, ensure_ascii=False) + '\n')
 
 
-def merge_records(base, scanned, latest):
+def merge_records(base, scanned, latest, may_delete=lambda key, before: True):
     """Apply scan changes only to keys untouched on the branch, including deletes."""
     result = dict(latest)
     conflicts = 0
@@ -56,6 +57,8 @@ def merge_records(base, scanned, latest):
             conflicts += 1
             continue
         if after is MISSING:
+            if not may_delete(key, before):
+                continue
             result.pop(key, None)
         else:
             result[key] = after
@@ -72,7 +75,8 @@ def venues_by_id(rows):
 def merge_file(name, base, scanned, latest):
     if scanned == base or scanned == latest:
         return latest, 0
-    if latest == base:
+    # Datasets always go through the record merge, so the removal guard below also applies to unchanged branches.
+    if latest == base and not (name.startswith('public/data/') and scanned is not None and base is not None):
         return scanned, 0
     if scanned is None or latest is None:
         # A concurrent file deletion/replacement takes priority.
@@ -84,8 +88,12 @@ def merge_file(name, base, scanned, latest):
             {k: v for k, v in scanned.items() if k != 'bars'},
             {k: v for k, v in latest.items() if k != 'bars'},
         )
+        # A priced venue leaves a dataset only when the scan names it as read without a price.
+        # Anything else a scan leaves out (an unread venue, a narrower candidate list, a bug) stays published.
+        removed = set(scanned.get('removed', []))
+        may_delete = lambda key, before: not before.get('offers') or key in removed
         bars, bar_conflicts = merge_records(venues_by_id(base.get('bars', [])),
-                                           venues_by_id(scanned['bars']), venues_by_id(latest['bars']))
+                                           venues_by_id(scanned['bars']), venues_by_id(latest['bars']), may_delete)
         merged['bars'] = sorted(bars.values(), key=lambda b: (b['name'].casefold(), b['id']))
         return merged, conflicts + bar_conflicts
     return merge_records(base, scanned, latest)

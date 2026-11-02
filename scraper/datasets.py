@@ -8,10 +8,15 @@ def keep_unlisted(output, path, pairs):
     Other scans write the same file (the city scan writes menu items, the menu
     scan all four categories), and a venue can drop out of OpenStreetMap's
     tags for a while. Only a candidate decides its own entry: a complete read
-    without a price removes it.
+    without a price removes it, and the dataset names it under "removed" so
+    scraper.publish lets that one removal through (it keeps every other
+    priced venue a scan leaves out).
     """
     if not path.exists():
-        return output
-    listed = {bar['id'] for bar in output['bars']} | {bar['id'] for _name, group in pairs for bar in group}
-    kept = [bar for bar in json.loads(path.read_text())['bars'] if bar['id'] not in listed and bar.get('offers')]
-    return {**output, 'bars': sorted(output['bars'] + kept, key=lambda bar: bar['name'].casefold())}
+        return {**output, 'removed': []}
+    previous = json.loads(path.read_text())['bars']
+    candidates = {bar['id'] for _name, group in pairs for bar in group}
+    published = {bar['id'] for bar in output['bars']}
+    kept = [bar for bar in previous if bar['id'] not in published | candidates and bar.get('offers')]
+    removed = sorted(bar['id'] for bar in previous if bar.get('offers') and bar['id'] in candidates and bar['id'] not in published)
+    return {**output, 'bars': sorted(output['bars'] + kept, key=lambda bar: bar['name'].casefold()), 'removed': removed}

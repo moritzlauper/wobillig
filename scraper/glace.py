@@ -28,6 +28,7 @@ from pypdf.errors import PyPdfError
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj
 from scraper.chains import is_chain
+from scraper.datasets import keep_unlisted
 from scraper.cities import AREA, ROOT
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
@@ -256,7 +257,8 @@ def main():
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(output, ensure_ascii=False, indent=2) + '\n')
     known = {b['id']: b['offers'] for b in json.loads(args.dataset.read_text())['bars']} if args.dataset.exists() else {}
-    args.dataset.write_text(json.dumps(dataset(groups, results, known, observed, found.get('attribution', '© OpenStreetMap contributors, ODbL 1.0')), ensure_ascii=False, indent=1))
+    published = keep_unlisted(dataset(groups, results, known, observed, found.get('attribution', '© OpenStreetMap contributors, ODbL 1.0')), args.dataset, list(groups.items()))
+    args.dataset.write_text(json.dumps(published, ensure_ascii=False, indent=1))
     counts = {s: sum(r['status'] == s for r in results.values()) for s in ('priced', 'no_prices', 'fetch_failed', 'skipped')}
     print(f'Saved {args.out} and {args.dataset}: {len(output["shops"])} shops; {counts}; AI {client.requests} requests, {client.spent:.3f} USD')
 

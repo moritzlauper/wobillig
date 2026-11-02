@@ -48,9 +48,16 @@ class MergeTests(unittest.TestCase):
     def test_scan_removals_do_not_remove_branch_corrections(self):
         base = dataset(venue('removed'), venue('corrected'))
         latest = dataset(venue('removed'), venue('corrected', 7))
-        result, conflicts = publisher.merge_file(DATA, base, dataset(), latest)
+        result, conflicts = publisher.merge_file(DATA, base, {**dataset(), 'removed': ['removed', 'corrected']}, latest)
         self.assertEqual(result['bars'], [venue('corrected', 7)])
         self.assertEqual(conflicts, 1)
+
+    def test_a_scan_never_drops_a_priced_venue_it_does_not_name_as_removed(self):
+        base = dataset(venue('city scan'), venue('read without price'), {'id': 'unpriced', 'name': 'unpriced', 'offers': []})
+        scanned = {**dataset(), 'removed': ['read without price']}
+        result, conflicts = publisher.merge_file(DATA, base, scanned, base)
+        self.assertEqual([b['id'] for b in result['bars']], ['city scan'])
+        self.assertEqual(conflicts, 0)
 
     def test_unchanged_scan_preserves_latest_file_including_deletion(self):
         base = dataset(venue('a'))

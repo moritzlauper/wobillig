@@ -87,3 +87,17 @@ class KeepUnlisted(unittest.TestCase):
             output = keep_unlisted({'bars': []}, path, [('read.example', [{'id': 'node/2'}])])
             # Ginger was not a candidate and keeps its price; the venue read without a price stays out.
             self.assertEqual([bar['name'] for bar in output['bars']], ['Ginger'])
+
+
+class RemovedVenues(unittest.TestCase):
+    def test_a_candidate_read_without_a_price_is_named_as_removed(self):
+        import tempfile
+        from pathlib import Path
+        from scraper.datasets import keep_unlisted
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'burger.json'
+            path.write_text(json.dumps({'bars': [{'id': 'node/1', 'name': 'Elsewhere', 'offers': [{'name': 'Burger'}]},
+                                                 {'id': 'node/2', 'name': 'Read now', 'offers': [{'name': 'Burger'}]}]}))
+            output = keep_unlisted({'bars': []}, path, [('read.example', [{'id': 'node/2'}])])
+            self.assertEqual(output['removed'], ['node/2'])
+            self.assertEqual([bar['id'] for bar in output['bars']], ['node/1'])
