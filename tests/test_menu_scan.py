@@ -1,3 +1,4 @@
+import json
 import unittest
 
 from scraper.menu_scan import apply_city_offers, candidates, category_results, recently_read, scan, split
@@ -72,3 +73,17 @@ class MenuScan(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class KeepUnlisted(unittest.TestCase):
+    def test_venues_outside_the_candidates_keep_their_offers(self):
+        import tempfile
+        from pathlib import Path
+        from scraper.menu_scan import keep_unlisted
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'ramen.json'
+            path.write_text(json.dumps({'bars': [{'id': 'node/1', 'name': 'Ginger', 'offers': [{'name': 'Shoyu Ramen'}]},
+                                                 {'id': 'node/2', 'name': 'Read now', 'offers': [{'name': 'Old Ramen'}]}]}))
+            output = keep_unlisted({'bars': []}, path, [('read.example', [{'id': 'node/2'}])])
+            # Ginger was not a candidate and keeps its price; the venue read without a price stays out.
+            self.assertEqual([bar['name'] for bar in output['bars']], ['Ginger'])

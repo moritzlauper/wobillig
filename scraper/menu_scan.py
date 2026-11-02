@@ -164,6 +164,18 @@ def previous_offers(path):
     return {b['id']: b['offers'] for b in json.loads(path.read_text())['bars']} if path.exists() else {}
 
 
+def keep_unlisted(output, path, pairs):
+    """Venues outside this run's candidates (written by the city scan, or no longer matching) keep their published offers.
+
+    Candidates decide their own entry: a complete read without a price removes it.
+    """
+    if not path.exists():
+        return output
+    listed = {bar['id'] for bar in output['bars']} | {bar['id'] for _name, group in pairs for bar in group}
+    kept = [bar for bar in json.loads(path.read_text())['bars'] if bar['id'] not in listed and bar.get('offers')]
+    return {**output, 'bars': sorted(output['bars'] + kept, key=lambda bar: bar['name'].casefold())}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--budget-usd', type=float, required=True)
@@ -198,18 +210,23 @@ def main():
     pairs = list(groups.items())
     for category in ('cocktail', 'softdrink'):
         path = DATA_DIR / f'gastro-{category}.json'
-        output = gastro.dataset(pairs, category_results(results, category), previous_offers(path), observed, attribution, category)
+        output = keep_unlisted(gastro.dataset(pairs, category_results(results, category), previous_offers(path), observed, attribution, category), path, pairs)
         path.write_text(json.dumps(output, ensure_ascii=False, indent=1))
         print(f'Saved {path}: {len(output["bars"])} venues')
     path = DATA_DIR / 'burger.json'
-    output = burger.dataset(pairs, category_results(results, 'burger'), previous_offers(path), observed, attribution)
+    output = keep_unlisted(burger.dataset(pairs, category_results(results, 'burger'), previous_offers(path), observed, attribution), path, pairs)
     path.write_text(json.dumps(output, ensure_ascii=False, indent=1))
     print(f'Saved {path}: {len(output["bars"])} venues')
     # The ramen dataset lists every ramen-like venue, also without a price, plus any other venue with a ramen price.
     ramen_hosts = set(ramen.candidates(found['bars'], overrides))
     ramen_view = category_results(results, 'ramen')
     path = DATA_DIR / 'ramen.json'
-    output = ramen.dataset([(n, g) for n, g in pairs if n in ramen_hosts or ramen_view[n]['offers']], ramen_view, previous_offers(path), observed, attribution)
+    previous = previous_offers(path)
+    # A venue this run did not read keeps the ramen prices an earlier scan found (the city scan writes them too).
+    kept = lambda group: any(previous.get(bar['id']) for bar in group)
+    output = ramen.dataset([(n, g) for n, g in pairs if n in ramen_hosts or ramen_view[n]['offers'] or (results[n]['status'] not in ('priced', 'no_prices') and kept(g))],
+                           ramen_view, previous, observed, attribution)
+    output = keep_unlisted(output, path, pairs)
     path.write_text(json.dumps(output, ensure_ascii=False, indent=1))
     print(f'Saved {path}: {len(output["bars"])} venues')
     print(f'AI {client.requests} requests, {client.spent:.3f} USD')
