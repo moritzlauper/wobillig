@@ -23,6 +23,10 @@ on:
         description: Deep scan, more pages and documents per venue
         type: boolean
         default: true
+      nur:
+        description: Only these websites, comma-separated (e.g. holycow.ch); empty reads every website not read recently
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -89,11 +93,12 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BUDGET: ${{ inputs.ai_budget_usd }}
           TIEF: ${{ github.event_name == 'schedule' || inputs.tief }}
+          NUR: ${{ inputs.nur }}
         run: |
           FLAG=""
           if [ "$TIEF" = "true" ]; then FLAG="--tief"; fi
           if [ -z "$BUDGET" ]; then BUDGET=$([ "$WOBILLIG_CITY" = "zurich" ] && echo 3 || echo 1.5); fi
-          python -m scraper.menu_scan --budget-usd "$BUDGET" $FLAG
+          python -m scraper.menu_scan --budget-usd "$BUDGET" $FLAG --only "$NUR"
 
       - name: Snapshot menu datasets
         id: snapshot

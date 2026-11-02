@@ -17,7 +17,7 @@ import unicodedata
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, clean_offers, ESTIMATE_SCHEMA, KINDS, SYSTEM, MODEL, DEFAULT_BUDGET_USD, MAX_BUDGET_USD, OFFER_SCHEMA, obj, drink_page
-from scraper import menu_scan
+from scraper import burger, menu_scan
 from scraper.estimates import estimate_types, name_key
 from scraper.beer_rules import eligible_offer
 from scraper.extract import SIZE
@@ -170,7 +170,7 @@ def scan_venue(bar, client, fetcher, hints, max_pages, deadline, menu=None):
                 else:
                     result = client.ask(blocks + [prompt], schema=COMBINED_SCHEMA, system=system + menu_scan.CITY_ADDENDUM)
                     # The menu items pass the unchanged rules of their single scans.
-                    for category, items in menu_scan.split({'offers': result.get('menuItems', [])}, final, offset, pages, text).items():
+                    for category, items in menu_scan.split({'offers': result.get('menuItems', [])}, final, offset, pages, text, burger.burger_venue([bar])).items():
                         menu.setdefault(category, []).extend(items)
                 cleaned = clean_offers(result, final, stamp, offset, pages, text, product_images=attached)
                 print(f'  {bar["name"]}: {len(result.get("offers", []))} extracted / {len(cleaned)} validated, document page {offset + 1}', flush=True)

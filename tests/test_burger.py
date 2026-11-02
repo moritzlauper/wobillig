@@ -1,6 +1,6 @@
 import unittest
 
-from scraper.burger import candidates, clean, dataset, dataset_offers, product_name, scan
+from scraper.burger import burger_venue, candidates, clean, dataset, dataset_offers, product_name, scan
 
 URL = 'https://burger.example/menu'
 OBSERVED = '2026-10-27T12:00:00+00:00'
@@ -42,6 +42,15 @@ class BurgerRules(unittest.TestCase):
         for name in ('Burger Menü', 'Burger Combo mit Pommes', 'Pommes Frites', 'Hot Dog', 'Kids Burger', 'Chicken Wrap', 'Mini-Burger Tartar', 'Kleiner Burger'):
             with self.subTest(name=name):
                 self.assertEqual(clean({'offers': [row(name=name, evidence=f'{name} 22.00')]}, URL), [])
+
+    def test_burger_restaurants_name_their_burgers_freely(self):
+        mad_max = row(name='Mad Max', evidence='Mad Max Rind, Bacon, BBQ 19.90', priceChf=19.9)
+        self.assertEqual(clean({'offers': [mad_max]}, URL), [])
+        self.assertEqual([o['name'] for o in clean({'offers': [mad_max]}, URL, burger_venue=True)], ['Mad Max'])
+        self.assertEqual(clean({'offers': [row(name='Pommes Frites', evidence='Pommes Frites 22.00')]}, URL, burger_venue=True), [])
+        self.assertTrue(burger_venue([{'name': 'Holy Cow!', 'cuisine': ['burger', 'salad'], 'website': 'https://www.holycow.ch/'}]))
+        self.assertTrue(burger_venue([{'name': 'Action', 'cuisine': [], 'website': 'https://actionburger.ch/'}]))
+        self.assertFalse(burger_venue([{'name': 'Zum Löwen', 'cuisine': ['regional'], 'website': 'https://loewen.example/'}]))
 
     def test_rejects_implausible_prices_and_conditional_offers(self):
         self.assertEqual(clean({'offers': [row(priceChf=5, evidence='Classic Burger 5.00')]}, URL), [])

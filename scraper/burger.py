@@ -109,7 +109,13 @@ def crawl(start, fetcher, max_pages, mention=BURGER):
     return {'visited': len(visited), 'errors': errors, 'documents': docs}
 
 
-def clean(result, url, page_start=0, page_count=1, source_text=''):
+def burger_venue(bars):
+    """A burger restaurant: its own burgers often carry names like "Holy Cow!" or "Mad Max" without the word burger."""
+    return any(any(CUISINE.match(c) for c in bar.get('cuisine', [])) or BURGER.search(bar.get('name') or '') or BURGER.search(bar.get('website') or '')
+               for bar in bars)
+
+
+def clean(result, url, page_start=0, page_count=1, source_text='', burger_venue=False):
     norm = lambda s: re.sub(r'\s+', '', s.casefold()).replace(',', '.')
     offers = []
     for row in result.get('offers', [])[:100]:
@@ -117,7 +123,8 @@ def clean(result, url, page_start=0, page_count=1, source_text=''):
             continue
         name, price, evidence = row.get('name'), row.get('priceChf'), row.get('evidence', '')
         if not isinstance(name, str) or not 2 <= len(name.strip()) <= 120: continue
-        if not BURGER.search(name) or EXCLUDED.search(name): continue
+        # Elsewhere a dish must name the burger; a burger restaurant's own dishes count without the word.
+        if not (BURGER.search(name) or burger_venue) or EXCLUDED.search(name): continue
         if type(price) not in (int, float) or not math.isfinite(price) or not 8 <= price <= 60: continue
         if not isinstance(evidence, str) or not 4 <= len(evidence) <= 600: continue
         if type(row.get('page')) is not int or not 1 <= row['page'] <= page_count: continue
@@ -182,7 +189,7 @@ def scan(name, bars, fetcher, client, max_pages, max_documents, deadline):
                 prompt = {'type': 'text', 'text': f'Venue: {bars[0]["name"]}, {CITY_NAME}. Source: {doc["url"]}. Extract every priced burger.'}
                 answer = client.ask(blocks + [prompt], SCHEMA, SYSTEM)
                 # PDF text layers can lack prices or mangle characters; only page text is compared.
-                checked = clean(answer, doc['url'], start, count, text if doc['kind'] == 'text/plain' else '')
+                checked = clean(answer, doc['url'], start, count, text if doc['kind'] == 'text/plain' else '', burger_venue(bars))
                 unverified |= bool(answer.get('offers')) and not checked
                 found.extend(checked)
         except (BudgetExhausted, APIUnavailable) as error:

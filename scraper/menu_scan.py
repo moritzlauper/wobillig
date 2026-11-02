@@ -62,7 +62,7 @@ def menu_page(text):
     return len(re.sub(r'\W', '', text)) < 100 or bool(MENTION.search(text))
 
 
-def split(answer, url, page_start, page_count, source_text):
+def split(answer, url, page_start, page_count, source_text, burger_venue=False):
     """Check each category's rows with the rules of its single scan."""
     rows = [row for row in answer.get('offers', [])[:200] if isinstance(row, dict)]
     by = lambda category: {'offers': [row for row in rows if row.get('category') == category]}
@@ -71,7 +71,7 @@ def split(answer, url, page_start, page_count, source_text):
     return {
         'cocktail': gastro.clean(drinks('cocktail'), 'cocktail', url, page_start, page_count, source_text),
         'softdrink': gastro.clean(drinks('softdrink'), 'softdrink', url, page_start, page_count, source_text),
-        'burger': burger.clean(by('burger'), url, page_start, page_count, source_text),
+        'burger': burger.clean(by('burger'), url, page_start, page_count, source_text, burger_venue),
         'ramen': ramen.clean(by('ramen'), url, page_start, page_count, source_text),
     }
 
@@ -98,7 +98,7 @@ def scan(name, bars, fetcher, client, max_pages, max_documents, deadline):
             for blocks, start, count, text in documents(doc['body'], doc['kind'], page_filter=menu_page):
                 prompt = {'type': 'text', 'text': f'Venue: {bars[0]["name"]}, {CITY_NAME}. Source: {doc["url"]}. Extract every priced cocktail, soft drink, burger and ramen dish.'}
                 answer = client.ask(blocks + [prompt], SCHEMA, SYSTEM)
-                for category, offers in split(answer, doc['url'], start, count, text if doc['kind'] == 'text/plain' else '').items():
+                for category, offers in split(answer, doc['url'], start, count, text if doc['kind'] == 'text/plain' else '', burger.burger_venue(bars)).items():
                     found[category].extend(offers)
         except (BudgetExhausted, APIUnavailable) as error:
             # An unread document must never remove the existing offers.
@@ -171,6 +171,7 @@ def main():
     parser.add_argument('--minutes', type=int, default=320)
     parser.add_argument('--workers', type=int, default=4)
     parser.add_argument('--ai-cache', type=Path, default=CACHE_DIR / 'ai-menus')
+    parser.add_argument('--only', default='', help='Comma-separated websites (hosts) to read; all others keep their offers')
     args = parser.parse_args()
     max_pages, max_documents = (150, 200) if args.tief else (40, 60)
     found = discover({}, query=venue_query('restaurant|fast_food|cafe|bar|pub'))
@@ -180,6 +181,10 @@ def main():
     checks = json.loads(CHECKS.read_text()) if CHECKS.exists() else {}
     started = now()
     read_by_city = {name for name, group in groups.items() if recently_read(checks, group, started)}
+    only = {name.strip().removeprefix('www.') for name in args.only.split(',') if name.strip()}
+    if only:
+        # A targeted rerun reads just these websites, even when the city scan read them recently.
+        read_by_city = {name for name in groups if name not in only}
     deadline = time.monotonic() + args.minutes * 60
     client = Claude(budget=min(args.budget_usd, MAX_BUDGET_USD), cache=args.ai_cache, deadline=deadline)
     fetcher = AuditFetcher()
