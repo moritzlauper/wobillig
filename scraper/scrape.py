@@ -21,6 +21,7 @@ from urllib.robotparser import RobotFileParser
 from bs4 import BeautifulSoup
 import requests
 from scraper.extract import extract_offers, BEER, SIZE, STANGE
+from scraper.render import needs_rendering, render, visible_text
 from scraper.beer_type import explicit_type, section_type
 from scraper.estimates import estimate_types
 from scraper.beer_rules import eligible_offer
@@ -148,7 +149,15 @@ class Fetcher:
                 continue
             if code!=200:
                 raise ValueError(f'http_{code}')
-            return url,headers.get('Content-Type',''),body
+            kind=headers.get('Content-Type','')
+            # A JavaScript shell is rendered once, so every scan sees the finished menu.
+            if 'html' in kind.lower() and needs_rendering(body):
+                rendered=render(url,UA)
+                if rendered and len(visible_text(rendered[1]))>len(visible_text(body.decode('utf-8',errors='replace'))):
+                    final,html=rendered
+                    public_url(final)
+                    return final,'text/html; charset=utf-8',html.encode('utf-8')
+            return url,kind,body
         raise ValueError('too_many_redirects')
 
 def discover(previous, path=None, query=QUERY):

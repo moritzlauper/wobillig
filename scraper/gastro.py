@@ -25,6 +25,7 @@ from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents
 from scraper.burger import crawl
 from scraper.cities import CITY_NAME, DATA_DIR, ROOT, venue_query
 from scraper.chains import is_chain
+from scraper.datasets import keep_unlisted
 from scraper.enrich import AuditFetcher, host
 from scraper.scrape import discover, now
 
@@ -210,8 +211,8 @@ def main():
     if out.exists():
         previous = {b['id']: b['offers'] for b in json.loads(out.read_text())['bars']}
     observed = now()
-    output = dataset([(name, group) for name, group in groups.items()], results, previous, observed,
-                     found.get('attribution', '© OpenStreetMap contributors, ODbL 1.0'), args.category)
+    pairs = list(groups.items())
+    output = keep_unlisted(dataset(pairs, results, previous, observed, found.get('attribution', '© OpenStreetMap contributors, ODbL 1.0'), args.category), out, pairs)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(output, ensure_ascii=False, indent=1))
     counts = {s: sum(r['status'] == s for r in results.values()) for s in ('priced', 'no_prices', 'unverified', 'fetch_failed')}

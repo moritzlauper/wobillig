@@ -87,6 +87,10 @@ jobs:
           python -m unittest discover -s tests -p 'test_menu_scan.py'
           python -m unittest discover -s tests -p 'test_gastro.py'
 
+      - name: Install a browser for menus built with JavaScript
+        if: steps.cadence.outputs.refresh == 'true'
+        run: python -m playwright install --with-deps chromium
+
       - name: Read restaurant and bar menus once and confirm prices with Claude
         if: steps.cadence.outputs.refresh == 'true'
         env:

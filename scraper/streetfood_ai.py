@@ -22,6 +22,7 @@ from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents
 from scraper.burger import crawl
 from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, venue_query
 from scraper.chains import is_chain
+from scraper.datasets import keep_unlisted
 from scraper.enrich import AuditFetcher, host
 from scraper.scrape import discover, now
 
@@ -180,8 +181,8 @@ def main():
     observed = now()
     attribution = found.get('attribution', '© OpenStreetMap contributors, ODbL 1.0')
     for food in FOODS:
-        output = dataset(groups, results, previous[food], observed, attribution, food)
         path = DATA_DIR / f'{food}.json'
+        output = keep_unlisted(dataset(groups, results, previous[food], observed, attribution, food), path, list(groups.items()))
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(output, ensure_ascii=False, indent=1))
         wraps = sum(o['portionType'] == 'wrap' for b in output['bars'] for o in b['offers'])

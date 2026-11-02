@@ -22,6 +22,7 @@ from pypdf.errors import PyPdfError
 
 from scraper import burger, gastro, ramen
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, documents, obj, enum
+from scraper.datasets import keep_unlisted
 from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, STATE_DIR, venue_query
 from scraper.enrich import AuditFetcher
 from scraper.scrape import discover, now
@@ -163,17 +164,6 @@ def category_results(results, category):
 def previous_offers(path):
     return {b['id']: b['offers'] for b in json.loads(path.read_text())['bars']} if path.exists() else {}
 
-
-def keep_unlisted(output, path, pairs):
-    """Venues outside this run's candidates (written by the city scan, or no longer matching) keep their published offers.
-
-    Candidates decide their own entry: a complete read without a price removes it.
-    """
-    if not path.exists():
-        return output
-    listed = {bar['id'] for bar in output['bars']} | {bar['id'] for _name, group in pairs for bar in group}
-    kept = [bar for bar in json.loads(path.read_text())['bars'] if bar['id'] not in listed and bar.get('offers')]
-    return {**output, 'bars': sorted(output['bars'] + kept, key=lambda bar: bar['name'].casefold())}
 
 
 def main():

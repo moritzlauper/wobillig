@@ -79,7 +79,7 @@ class KeepUnlisted(unittest.TestCase):
     def test_venues_outside_the_candidates_keep_their_offers(self):
         import tempfile
         from pathlib import Path
-        from scraper.menu_scan import keep_unlisted
+        from scraper.datasets import keep_unlisted
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / 'ramen.json'
             path.write_text(json.dumps({'bars': [{'id': 'node/1', 'name': 'Ginger', 'offers': [{'name': 'Shoyu Ramen'}]},

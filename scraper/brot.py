@@ -29,6 +29,7 @@ from pypdf.errors import PyPdfError
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
 from scraper.cities import AREA, ROOT
 from scraper.chains import is_chain
+from scraper.datasets import keep_unlisted
 from scraper.enrich import AuditFetcher, host
 from scraper.pdf_extract import pdf_links
 from scraper.pizza import structured_menu_links
@@ -295,7 +296,7 @@ def main():
         previous = {b['id']: b['offers'] for b in json.loads(args.out.read_text())['bars']}
     observed = now()
     bars = [(name, group) for name, group in groups.items()]
-    output = dataset(bars, results, previous, observed, found.get('attribution', '© OpenStreetMap contributors, ODbL 1.0'))
+    output = keep_unlisted(dataset(bars, results, previous, observed, found.get('attribution', '© OpenStreetMap contributors, ODbL 1.0')), args.out, bars)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(output, ensure_ascii=False, indent=1))
     counts = {s: sum(r['status'] == s for r in results.values()) for s in ('priced', 'no_prices', 'unverified', 'fetch_failed')}

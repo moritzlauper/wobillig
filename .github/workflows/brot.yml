@@ -57,6 +57,9 @@ jobs:
       - name: Test bread rules
         if: steps.cadence.outputs.refresh == 'true'
         run: python -m unittest discover -s tests -p 'test_brot.py'
+      - name: Install a browser for menus built with JavaScript
+        if: steps.cadence.outputs.refresh == 'true'
+        run: python -m playwright install --with-deps chromium
       - name: Crawl bakeries and confirm bread prices with Claude
         if: steps.cadence.outputs.refresh == 'true'
         env:
