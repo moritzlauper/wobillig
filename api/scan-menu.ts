@@ -45,11 +45,11 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
     const store = photo.store;
     const { state } = await store.read();
     // Scanned burger, ramen, kebab, cocktail and soft drink prices are matched against the scraped ones like beer and coffee.
-    const [cocktail, softdrink, burger, ramen, doner, falafel] = await Promise.all(['gastro-cocktail', 'gastro-softdrink', 'burger', 'ramen', 'doner', 'falafel'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(v => JSON.parse(v) as Dataset, () => undefined)));
+    const [cocktail, softdrink, burger, ramen, doner, falafel, wine] = await Promise.all(['gastro-cocktail', 'gastro-softdrink', 'burger', 'ramen', 'doner', 'falafel', 'gastro-wine'].map(name => readFile(`${process.cwd()}/public/data/${cities[city].data}${name}.json`, 'utf8').then(v => JSON.parse(v) as Dataset, () => undefined)));
     const bar = communityVenues({ beer, coffee, pizza, locations, burger, ramen, kebab: mergeStreetfood([doner, falafel]) }, state.entries, state.venues, state.venueCorrections).find(b => b.id === data.barId);
     if (!bar) throw new InputError('Bitte zuerst ein Lokal auswählen.');
     photo.bar = bar;
-    const originals = [beer, coffee, pizza, cocktail, softdrink, burger, ramen, doner, falafel].flatMap(d => d?.bars.find(b => b.id === bar.id)?.offers || []);
+    const originals = [beer, coffee, pizza, cocktail, softdrink, wine, burger, ramen, doner, falafel].flatMap(d => d?.bars.find(b => b.id === bar.id)?.offers || []);
     const edit = data.edit === undefined ? undefined : parseScanEdit(data.edit);
     const key = process.env.ANTHROPIC_API_KEY, secret = process.env.BLOB_READ_WRITE_TOKEN;
     if (!key || !secret) throw new InputError('Karte scannen ist gerade nicht verfügbar. Du kannst Preise einzeln eintragen.', 503);

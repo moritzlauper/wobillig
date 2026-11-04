@@ -48,6 +48,13 @@ describe('shared price validation', () => {
     expect(() => validateInput({ ...kebab, portionType: undefined }, [bar])).toThrow();
     expect(() => validateInput({ ...kebab, foodType: 'lamb' }, [bar])).toThrow();
   });
+  it('accepts wine by the glass with its size, and a Gespritzter without one', () => {
+    const glass = { ...input, drink: 'wine' as const, name: 'Chasselas', priceChf: 8, volumeMl: 100, alcoholFree: false, targetKey: undefined, wineType: 'white' as const, natural: true };
+    expect(validateInput(glass, [bar])).toMatchObject({ gastroType: 'wine', wineType: 'white', natural: true, volumeMl: 100, alcoholFree: false });
+    expect(() => validateInput({ ...glass, volumeMl: null }, [bar])).toThrow();
+    expect(() => validateInput({ ...glass, volumeMl: 750 }, [bar])).toThrow();
+    expect(validateInput({ ...glass, name: 'Gespritzter', wineType: 'spritzer', volumeMl: null }, [bar])).toMatchObject({ wineType: 'spritzer', volumeMl: null });
+  });
   it('accepts real glass prices and coffee with no made-up volume', () => {
     expect(validateInput(input, [bar]).priceChf).toBe(6.5);
     expect(validateInput({ ...input, drink: 'coffee', coffeeType: 'espresso', volumeMl: null }, [bar]).alcoholFree).toBe(true);

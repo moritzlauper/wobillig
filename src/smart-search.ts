@@ -3,7 +3,7 @@ import type { Category } from './categories';
 import type { Filters } from './data';
 import { beerGroupLabels, type BeerSelection } from './beer-selection';
 import type { PizzaGroup, PizzaSelection } from './pizza-selection';
-import type { CocktailSelection, SoftdrinkSelection, SoftdrinkSize } from './gastro-selection';
+import type { CocktailSelection, SoftdrinkSelection, SoftdrinkSize, WineSelection } from './gastro-selection';
 import type { StreetfoodFood, StreetfoodPortion } from './streetfood-selection';
 import type { Locale } from './i18n';
 
@@ -21,6 +21,7 @@ export type SmartQuery = {
   pizzaGroup?: PizzaGroup;
   margherita?: boolean;
   cocktailSelection?: Exclude<CocktailSelection, 'all'>;
+  wineSelection?: WineSelection;
   softdrinkSelection?: Exclude<SoftdrinkSelection, 'all'>;
   streetfoodFood?: Exclude<StreetfoodFood, 'all'> | 'all';
   plate?: boolean;
@@ -120,7 +121,14 @@ const products: Product[] = [
   // Cocktails before coffee and soft drinks: an Espresso Martini or a Gin Tonic is neither.
   product('cocktail', ['espresso martini'], q => { q.cocktailSelection = 'espresso_martini'; }),
   product('cocktail', ['gin tonic', 'gin and tonic', 'gin und tonic', 'gin & tonic', 'g&t'], q => { q.cocktailSelection = 'gin_tonic'; }),
-  product('cocktail', ['aperol spritz', 'aperol', 'spritz', 'spritzer'], q => { q.cocktailSelection = 'aperol_spritz'; }),
+  // A Gespritzter is a wine first; under Cocktails it is listed too.
+  product('wine', ['gespritzter weisswein', 'gespritzter', 'gspritzter', "g'spritzter", 'spritzer', 'weissweinspritzer'], q => { q.wineSelection = 'spritzer'; }),
+  product('wine', ['glühwein', 'gluehwein', 'gluhwein', 'mulled wine', 'vin chaud'], q => { q.wineSelection = 'mulled'; }),
+  product('wine', ['naturwein', 'naturweine', 'natural wine', 'natural wines', 'vin nature', 'vin naturel', 'orange wine'], q => { q.wineSelection = 'natural'; }),
+  product('wine', ['rotwein', 'rotweine', 'red wine', 'vin rouge', 'rosso'], q => { q.wineSelection = 'red'; }),
+  product('wine', ['rosé', 'rose wine', 'roséwein'], q => { q.wineSelection = 'rose'; }),
+  product('wine', ['weisswein', 'weissweine', 'weißwein', 'white wine', 'vin blanc', 'bianco'], q => { q.wineSelection = 'white'; }),
+  product('cocktail', ['aperol spritz', 'aperol', 'spritz'], q => { q.cocktailSelection = 'aperol_spritz'; }),
   product('cocktail', ['hugo'], q => { q.cocktailSelection = 'hugo'; }),
   product('cocktail', ['negroni'], q => { q.cocktailSelection = 'negroni'; }),
   product('cocktail', ['mojito', 'mojitos'], q => { q.cocktailSelection = 'mojito'; }),
@@ -129,6 +137,7 @@ const products: Product[] = [
   product('cocktail', ['caipirinha', 'caipi'], q => { q.cocktailSelection = 'caipirinha'; }),
   product('cocktail', ['mocktail', 'mocktails', 'virgin'], q => { q.cocktailSelection = 'mocktail'; }),
   product('cocktail', ['cocktail', 'cocktails', 'longdrink', 'longdrinks']),
+  product('wine', ['wein', 'weine', 'wine', 'wines', 'vino', 'glas wein']),
   product('coffee', ['doppelter espresso', 'double espresso', 'doppio', 'doppelespresso'], q => { q.coffeeType = 'double'; }),
   product('coffee', ['espresso', 'espressi', 'espressos'], q => { q.coffeeType = 'espresso'; }),
   product('coffee', ['ristretto'], q => { q.coffeeType = 'ristretto'; }),
@@ -343,6 +352,7 @@ export function planSmartQuery(query: SmartQuery, available: ReadonlySet<Categor
     const size: SoftdrinkSize | undefined = query.volumeMl === 200 ? '200' : query.volumeMl === 500 ? '500' : query.volumeMl === 300 || query.volumeMl === 330 ? '300-330' : undefined;
     Object.assign(filters, { softdrinkSelection: query.softdrinkSelection || 'all', ...(size ? { softdrinkSize: size } : {}) });
   }
+  if (target === 'wine') filters.wineSelection = query.wineSelection || 'white';
   if (target === 'cocktail') filters.cocktailSelection = query.alcoholFree ? 'mocktail' : query.cocktailSelection || 'all';
   if (target === 'kebab') {
     const portion: StreetfoodPortion | undefined = query.plate ? 'plate' : undefined;

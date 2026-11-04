@@ -4,7 +4,7 @@ import { parsePizzaSelection } from './pizza-selection';
 import { parseBeerSelection } from './beer-selection';
 import { parseBurgerSelection } from './burger-selection';
 import { parseStreetfoodFood, parseStreetfoodPortion } from './streetfood-selection';
-import { parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize } from './gastro-selection';
+import { parseCocktailSelection, parseWineSelection, parseSoftdrinkSelection, parseSoftdrinkSize } from './gastro-selection';
 
 export function cheapModeFromSearch(params: URLSearchParams): boolean {
   if (params.has('cheap')) return params.get('cheap') === '1';
@@ -30,6 +30,7 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
   const softdrinkSize = parseSoftdrinkSize(params.get('softdrinkSize'));
   const softdrinkSelection = parseSoftdrinkSelection(params.get('softdrinkSelection'));
   const cocktailSelection = parseCocktailSelection(params.get('cocktailSelection'));
+  const wineSelection = parseWineSelection(params.get('wineSelection'));
   const district = Number(params.get('district'));
   const open = params.get('open');
   const amount = params.get('max');
@@ -44,6 +45,7 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
     ...(softdrinkSize ? { softdrinkSize } : {}),
     ...(softdrinkSelection ? { softdrinkSelection } : {}),
     ...(cocktailSelection ? { cocktailSelection } : {}),
+    ...(wineSelection ? { wineSelection } : {}),
     ...(params.get('pizzaQuery')?.trim() ? { pizzaQuery: params.get('pizzaQuery')!.trim().slice(0, 120) } : {}),
     ...(params.get('beerQuery')?.trim() ? { beerQuery: params.get('beerQuery')!.trim().slice(0, 120) } : {}),
     coffeeType: choice(params, 'coffeeType', ['all', ...Object.keys(coffeeLabels)], 'cappuccino'),
@@ -82,6 +84,7 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
     softdrinkSize: drink === 'softdrink' && f.softdrinkSize && f.softdrinkSize !== '300-330' ? f.softdrinkSize : '',
     softdrinkSelection: drink === 'softdrink' && f.softdrinkSelection && f.softdrinkSelection !== 'all' ? f.softdrinkSelection : '',
     cocktailSelection: drink === 'cocktail' && f.cocktailSelection && f.cocktailSelection !== 'all' ? f.cocktailSelection : '',
+    wineSelection: drink === 'wine' && f.wineSelection && f.wineSelection !== 'white' ? f.wineSelection : '',
     beerType, beerSelection: f.beerSelection || '', beerQuery: f.beerQuery?.trim() || '', q: f.query,
     max: Number.isFinite(f.max) ? String(f.max) : '',
     size, type: f.type, unknown: f.unknown ? '' : '0', outdoor: f.outdoor ? '1' : '',

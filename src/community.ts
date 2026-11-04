@@ -1,9 +1,9 @@
-import { isBeerMix, coffeeLabels, beerTypeLabels, safeUrl, type BeerType, type Bar, type Dataset, type Offer } from './data.js';
+import { isBeerMix, coffeeLabels, beerTypeLabels, offerCategory, safeUrl, type BeerType, type Bar, type Dataset, type Offer } from './data.js';
 import { selectableLocations, withKnownAddress } from './locations.js';
 import { applyVenueCorrections, type VenueCorrection } from './venue-corrections.js';
 
 // Every category takes community prices; kebab covers both döner and falafel.
-export type EntryDrink = 'beer' | 'coffee' | 'pizza' | 'ramen' | 'burger' | 'kebab' | 'softdrink' | 'cocktail';
+export type EntryDrink = 'beer' | 'coffee' | 'pizza' | 'ramen' | 'burger' | 'kebab' | 'softdrink' | 'cocktail' | 'wine';
 export type Drink = EntryDrink;
 export type PriceEntry = {
   id: string;
@@ -32,7 +32,9 @@ export type PriceInput = {
   burgerType?: 'burger';
   foodType?: 'doner' | 'falafel';
   portionType?: 'wrap' | 'bread' | 'plate';
-  gastroType?: 'softdrink' | 'cocktail';
+  gastroType?: 'softdrink' | 'cocktail' | 'wine';
+  wineType?: 'white' | 'red' | 'rose' | 'spritzer' | 'mulled';
+  natural?: boolean;
   alcoholFree: boolean;
   observedAt: string;
   sourceUrl: string;
@@ -45,6 +47,7 @@ export function offerKey(o: Offer) {
   if (o.ramenType) key.push(o.ramenType);
   if (o.burgerType) key.push(o.burgerType);
   if (o.foodType) key.push(o.foodType, o.portionType || '');
+  if (o.wineType) key.push(o.wineType);
   if (!o.coffeeType && o.beerType && o.beerType !== 'unknown') key.push(o.beerType);
   return JSON.stringify(key);
 }
@@ -82,7 +85,7 @@ function verifiedWebsiteUpdate(offer: Offer, entry: PriceEntry): boolean {
 }
 export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Bar[], drink: Drink, corrections: VenueCorrection[] = []): Dataset {
   // Drinks share locations; pizza only includes known pizza venues and pizza entries.
-  const bars = new Map((drink === 'pizza' || drink === 'ramen' || drink === 'burger' || drink === 'softdrink' || drink === 'cocktail' || drink === 'kebab' ? [] : venues).map(b => [b.id, { ...b, offers: [] as Offer[] }]));
+  const bars = new Map((drink === 'pizza' || drink === 'ramen' || drink === 'burger' || drink === 'softdrink' || drink === 'cocktail' || drink === 'wine' || drink === 'kebab' ? [] : venues).map(b => [b.id, { ...b, offers: [] as Offer[] }]));
   const knownVenues = new Map(venues.map(bar => [bar.id, bar]));
   for (const b of dataset.bars) bars.set(b.id, { ...withKnownAddress(b, knownVenues.get(b.id)), offers: [...b.offers] });
   for (const entry of entries.filter(x => x.drink === drink)) {
@@ -99,7 +102,10 @@ export function applyEntries(dataset: Dataset, entries: PriceEntry[], venues: Ba
     // Conflicting prices on equally recent verified menus do not override an upload.
     const website = newer[0] && newer[0].priceChf !== entry.offer.priceChf && newer.filter(o => o.verifiedMenuDate!.date === newer[0].verifiedMenuDate!.date)
       .every(o => o.priceChf === newer[0].priceChf) ? newer[0] : undefined;
-    const chosen = website || { ...entry.offer, beerType: entry.offer.beerType ?? original?.beerType,
+    // Photo uploads before November 2026 saved burgers, ramen and gastro prices without their category field.
+    const kind = offerCategory(entry.offer) === drink ? {} : drink === 'burger' ? { burgerType: 'burger' as const } : drink === 'ramen' ? { ramenType: 'ramen' as const }
+      : drink === 'softdrink' || drink === 'cocktail' ? { gastroType: drink } : {};
+    const chosen = website || { ...entry.offer, ...kind, beerType: entry.offer.beerType ?? original?.beerType,
       beerTypeEstimate: entry.offer.beerType === undefined ? original?.beerTypeEstimate : undefined,
       confidence: entry.offer.menuScan ? 'ai' as const : 'community' as const };
     // Keep the contribution in storage and retain its edit/revision identity.
@@ -116,7 +122,7 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new InputError('Ungültiger Eintrag.');
   const x = value as Record<string, unknown>;
   if (typeof x.barId !== 'string' || !venues.some(b => b.id === x.barId)) throw new InputError('Bitte ein Lokal aus der Liste wählen.');
-  if (!['beer', 'coffee', 'pizza', 'ramen', 'burger', 'kebab', 'softdrink', 'cocktail'].includes(x.drink as string)) throw new InputError('Bitte eine Kategorie wählen.');
+  if (!['beer', 'coffee', 'pizza', 'ramen', 'burger', 'kebab', 'softdrink', 'cocktail', 'wine'].includes(x.drink as string)) throw new InputError('Bitte eine Kategorie wählen.');
   if (typeof x.name !== 'string' || !x.name.trim() || x.name.trim().length > 100 || /[\x00-\x1f]/.test(x.name)) throw new InputError('Bitte eine Bezeichnung mit höchstens 100 Zeichen eingeben.');
   if (typeof x.priceChf !== 'number' || !Number.isFinite(x.priceChf) || x.priceChf < .5 || x.priceChf > 50 || Math.abs(x.priceChf * 100 - Math.round(x.priceChf * 100)) > 0.00001) throw new InputError('Der Preis muss zwischen CHF 0.50 und CHF 50 liegen (maximal zwei Nachkommastellen).');
   if (typeof x.observedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(x.observedAt) || !Number.isFinite(Date.parse(x.observedAt)) || new Date(x.observedAt).toISOString().slice(0,10) !== x.observedAt || x.observedAt < '2020-01-01' || x.observedAt > today) throw new InputError('Bitte ein gültiges Datum bis heute wählen.');
@@ -147,6 +153,14 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
     if (x.foodType !== 'doner' && x.foodType !== 'falafel') throw new InputError('Bitte Kebab oder Falafel wählen.');
     if (x.portionType !== 'wrap' && x.portionType !== 'bread' && x.portionType !== 'plate') throw new InputError('Bitte Dürüm, Im Brot oder Teller wählen.');
     if (x.beerType !== undefined || x.coffeeType !== undefined || x.serving !== undefined || x.volumeMl !== null) throw new InputError('Bitte ohne Getränkeangaben eintragen.');
+  } else if (x.drink === 'wine') {
+    if (!['white', 'red', 'rose', 'spritzer', 'mulled'].includes(x.wineType as string)) throw new InputError('Bitte die Weinsorte wählen.');
+    if (x.natural !== undefined && typeof x.natural !== 'boolean') throw new InputError('Ungültige Weinangabe.');
+    if (x.beerType !== undefined || x.coffeeType !== undefined || x.serving !== undefined) throw new InputError('Ungültige Weinangabe.');
+    // Still wine compares per decilitre and needs its glass size; a Gespritzter or Glühwein may leave it open.
+    const still = ['white', 'red', 'rose'].includes(x.wineType as string);
+    if (still ? !Number.isInteger(x.volumeMl) || (x.volumeMl as number) < 50 || (x.volumeMl as number) > 250
+      : x.volumeMl !== null && (!Number.isInteger(x.volumeMl) || (x.volumeMl as number) < 100 || (x.volumeMl as number) > 500)) throw new InputError('Bitte die Glasgrösse angeben (Wein 0.5 bis 2.5 dl).');
   } else if (x.drink === 'cocktail') {
     if (x.beerType !== undefined || x.coffeeType !== undefined || x.serving !== undefined || x.volumeMl !== null) throw new InputError('Bitte einen Cocktail ohne Mengenangabe eintragen.');
   } else if (x.drink === 'softdrink') {
@@ -164,7 +178,7 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
     if (x.serving === 'stange' && x.volumeMl !== null && ((x.volumeMl as number) < 300 || (x.volumeMl as number) > 330)) throw new InputError('Diese Menge ist keine Stange.');
   }
   const drink = x.drink as PriceInput['drink'];
-  const gastroType = drink === 'softdrink' || drink === 'cocktail' ? drink : undefined;
+  const gastroType = drink === 'softdrink' || drink === 'cocktail' || drink === 'wine' ? drink : undefined;
   return {
     id: x.id as string | undefined, revision: x.revision as number, barId: x.barId, drink,
     targetKey: x.targetKey as string | undefined, name: x.drink === 'pizza' ? 'Pizza Margherita' : x.name.trim(), priceChf: x.priceChf,
@@ -173,7 +187,8 @@ export function validateInput(value: unknown, venues: Bar[], today = zurichToday
     coffeeType: x.coffeeType as string | undefined, pizzaType: x.drink === 'pizza' ? 'margherita' : undefined, ramenType: x.drink === 'ramen' ? 'ramen' : undefined,
     ...(x.drink === 'burger' ? { burgerType: 'burger' as const } : {}),
     ...(x.drink === 'kebab' ? { foodType: x.foodType as 'doner' | 'falafel', portionType: x.portionType as 'wrap' | 'bread' | 'plate' } : {}),
-    ...(gastroType ? { gastroType } : {}), alcoholFree: x.drink === 'beer' ? x.alcoholFree : x.drink !== 'cocktail',
+    ...(x.drink === 'wine' ? { wineType: x.wineType as PriceInput['wineType'], natural: x.natural === true } : {}),
+    ...(gastroType ? { gastroType } : {}), alcoholFree: x.drink === 'beer' ? x.alcoholFree : x.drink !== 'cocktail' && x.drink !== 'wine',
     observedAt: x.observedAt, sourceUrl,
   };
 }

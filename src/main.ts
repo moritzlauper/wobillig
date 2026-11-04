@@ -34,7 +34,7 @@ import { beerGroupLabels, parseBeerSelection } from './beer-selection';
 import { parsePizzaSelection, pizzaGroupLabels, type PizzaGroup } from './pizza-selection';
 import { burgerSelectionLabels, parseBurgerSelection } from './burger-selection';
 import { mergeStreetfood, parseStreetfoodPortion, streetfoodFoodLabels, streetfoodPortionLabels } from './streetfood-selection';
-import { cocktailSelectionLabels, parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize, softdrinkSelectionLabels, softdrinkSizeLabels, softdrinkSizes } from './gastro-selection';
+import { cocktailSelectionLabels, parseCocktailSelection, parseWineSelection, stillWine, wineSelectionLabels, parseSoftdrinkSelection, parseSoftdrinkSize, softdrinkSelectionLabels, softdrinkSizeLabels, softdrinkSizes } from './gastro-selection';
 import { categories, type Category } from './categories';
 import { showGoogleRating, clearGoogleRating } from './google-rating';
 import { showValueRating } from './value-rating';
@@ -62,7 +62,7 @@ let entries: PriceEntry[] = [], venues: Bar[] = [], bars: Bar[] = [], current: B
 let selected: string | undefined, position: [number, number] | undefined, editing: Offer | undefined;
 let communityReady = false, saving = false, pizzaAvailable = false, ramenAvailable = false, burgerAvailable = false;
 let activeContribution: { mode: ContributionMode; draft?: ContributionDraft } | undefined;
-const gastroAvailable = { softdrink: false, cocktail: false };
+const gastroAvailable = { softdrink: false, cocktail: false, wine: false };
 // Imbiss stands stay out of the shared venue list, so they never show up on the drink maps.
 let streetfoodDataset: Dataset | undefined;
 let streetfoodAvailable = false;
@@ -107,9 +107,10 @@ const ramen = () => f.drink === 'ramen';
 const burger = () => f.drink === 'burger';
 const softdrink = () => f.drink === 'softdrink';
 const cocktail = () => f.drink === 'cocktail';
+const wine = () => f.drink === 'wine';
 const streetfood = () => f.drink === 'kebab';
 // Scanned categories offer only the venues their scan found on the map.
-const scanned = () => burger() || softdrink() || cocktail() || streetfood();
+const scanned = () => burger() || softdrink() || cocktail() || wine() || streetfood();
 // Ramen, burgers, soft drinks and cocktails appear only once enough venues have a current price, like pizza.
 const RAMEN_MIN_VENUES = 5;
 const BURGER_MIN_VENUES = 5;
@@ -147,6 +148,9 @@ $('app').innerHTML = `
   </div>
   <div id="softdrink-controls" class="pizza-controls" hidden>
     <select id="softdrink-selection" aria-label="${t('Softdrinkauswahl')}"><option value="all">${t('Alle Softdrinks')}</option></select>
+  </div>
+  <div id="wine-controls" class="pizza-controls" hidden>
+    <select id="wine-selection" aria-label="${t('Weinauswahl')}">${options(translated(wineSelectionLabels))}</select>
   </div>
   <div id="cocktail-controls" class="pizza-controls" hidden>
     <select id="cocktail-selection" aria-label="${t('Cocktailauswahl')}"><option value="all">${t('Alle Cocktails')}</option></select>
@@ -195,7 +199,8 @@ $('app').innerHTML = `
     <p id="scan-status" role="status" hidden></p>
   </section>
   <details id="manual-entry"><summary>${t('Preis von Hand eintragen')}</summary><fieldset id="manual-fields">
-  <div class="form-row"><label>${t('Kategorie')}<select id="entry-drink" required><option value="" disabled>${t('Bitte wählen')}</option><option value="coffee">${t('Kaffee')}</option><option value="beer">${t('Bier')}</option><option value="ramen">${t('Ramen')}</option><option value="burger">${t('Burger')}</option><option value="kebab">${t('Kebab & Falafel')}</option><option value="pizza">Pizza Margherita</option><option value="softdrink">${t('Softdrink')}</option><option value="cocktail">${t('Cocktail')}</option></select></label><label id="entry-coffee-label" hidden>${t('Sorte')}<select id="entry-coffee"><option value="" disabled>${t('Bitte wählen')}</option>${coffeeOptions}</select></label></div>
+  <div class="form-row"><label>${t('Kategorie')}<select id="entry-drink" required><option value="" disabled>${t('Bitte wählen')}</option><option value="coffee">${t('Kaffee')}</option><option value="beer">${t('Bier')}</option><option value="ramen">${t('Ramen')}</option><option value="burger">${t('Burger')}</option><option value="kebab">${t('Kebab & Falafel')}</option><option value="pizza">Pizza Margherita</option><option value="softdrink">${t('Softdrink')}</option><option value="cocktail">${t('Cocktail')}</option><option value="wine">${t('Wein')}</option></select></label><label id="entry-coffee-label" hidden>${t('Sorte')}<select id="entry-coffee"><option value="" disabled>${t('Bitte wählen')}</option>${coffeeOptions}</select></label></div>
+  <div id="entry-wine-fields" class="form-row" hidden><label>${t('Sorte')}<select id="entry-wine-type"><option value="white">${t('Weisswein')}</option><option value="red">${t('Rotwein')}</option><option value="rose">Rosé</option><option value="spritzer">${t('Gespritzter Weisswein')}</option><option value="mulled">${t('Glühwein')}</option></select></label><label class="inline-check"><input id="entry-natural" type="checkbox"> ${t('Naturwein')}</label></div>
   <div id="entry-kebab-fields" class="form-row" hidden><label>${t('Füllung')}<select id="entry-food"><option value="" disabled>${t('Bitte wählen')}</option><option value="doner">Kebab</option><option value="falafel">Falafel</option></select></label><label>${t('Portion')}<select id="entry-portion"><option value="" disabled>${t('Bitte wählen')}</option><option value="wrap">Dürüm</option><option value="bread">${t('Im Brot')}</option><option value="plate">${t('Teller')}</option></select></label></div>
   <label>${t('Bezeichnung')}<input id="entry-name" maxlength="100" placeholder="${t('z. B. Lager oder Espresso')}" required></label>
   <label id="entry-pizza-check" class="check" hidden><input id="entry-whole-pizza" type="checkbox"> ${t('Der Preis gilt für eine ganze, normale Margherita im Lokal.')}</label>
@@ -343,8 +348,8 @@ function rebuild() {
   if (burger() && !burgerAvailable) {
     f.drink = 'coffee'; f.max = Infinity; f.mode = 'glass'; selected = undefined;
   }
-  const gastroBars = { softdrink: [] as Bar[], cocktail: [] as Bar[] };
-  for (const drink of ['softdrink', 'cocktail'] as const) {
+  const gastroBars = { softdrink: [] as Bar[], cocktail: [] as Bar[], wine: [] as Bar[] };
+  for (const drink of ['softdrink', 'cocktail', 'wine'] as const) {
     const dataset = datasets[drink];
     gastroBars[drink] = dataset ? applyEntries(dataset, entries, venues, drink, venueCorrections).bars : [];
     gastroAvailable[drink] = gastroBars[drink].filter(b => b.offers.some(o => offerCategory(o) === drink && isCurrentOffer(o) && isComparableOffer(o))).length >= GASTRO_MIN_VENUES;
@@ -360,7 +365,7 @@ function rebuild() {
   softdrinkOptions = softdrinkVarieties(gastroBars.softdrink);
   cocktailOptions = cocktailVarieties(gastroBars.cocktail);
   const base = datasets[f.drink!];
-  bars = streetfood() ? streetfoodBars : softdrink() ? gastroBars.softdrink : cocktail() ? gastroBars.cocktail : burger() ? burgerBars : ramen() ? ramenBars : pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!, venueCorrections).bars : [];
+  bars = streetfood() ? streetfoodBars : softdrink() ? gastroBars.softdrink : cocktail() ? gastroBars.cocktail : wine() ? gastroBars.wine : burger() ? burgerBars : ramen() ? ramenBars : pizza() ? pizzaBars : base ? applyEntries(base, entries, venues, f.drink!, venueCorrections).bars : [];
   if (beer()) beerOptions = beerVarieties(bars);
   render();
 }
@@ -408,6 +413,8 @@ function syncControls() {
   const softdrinkOptionHtml = availableSoftdrinks.map(({ value, label }) => `<option value="${e(value)}">${e(label)}</option>`).join('');
   if (softdrinkSelect.innerHTML !== softdrinkOptionHtml) softdrinkSelect.innerHTML = softdrinkOptionHtml;
   softdrinkSelect.value = softdrinkValue;
+  $('wine-controls').hidden = !wine();
+  $<HTMLSelectElement>('wine-selection').value = f.wineSelection || 'white';
   $('cocktail-controls').hidden = !cocktail();
   const cocktailSelect = $<HTMLSelectElement>('cocktail-selection');
   const cocktailValue = f.cocktailSelection || 'all';
@@ -461,7 +468,7 @@ function syncControls() {
 }
 function hiddenCategories() {
   return new Set<Category>([...(pizzaAvailable ? [] : ['pizza' as const]), ...(ramenAvailable ? [] : ['ramen' as const]), ...(burgerAvailable ? [] : ['burger' as const]),
-    ...(['softdrink', 'cocktail'] as const).filter(drink => !gastroAvailable[drink]), ...(streetfoodAvailable ? [] : ['kebab' as const])]);
+    ...(['softdrink', 'cocktail', 'wine'] as const).filter(drink => !gastroAvailable[drink]), ...(streetfoodAvailable ? [] : ['kebab' as const])]);
 }
 function availableCategories() {
   const hidden = hiddenCategories();
@@ -522,7 +529,7 @@ function render() {
   $('count').textContent = coverageLabel(current, f) + (addressSelection ? ` · ${t('Bezugspunkt: {label}', { label: addressSelection.label })}` : '');
   const average = cityAverage(bars, searchFilters);
   $('city-average').textContent = t('Schnitt {city} {value}', { city: cityName, value: average ? `CHF ${money(average.price)}` : '—' });
-  const comparison = streetfood() ? `${t(streetfoodFoodLabels[f.streetfoodFood || 'all'])} · ${t(streetfoodPortionLabels[f.streetfoodPortion || 'snack'])}` : pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : burger() ? t(burgerSelectionLabels[f.burgerSelection || 'all']) : softdrink() ? `${f.softdrinkSelection && f.softdrinkSelection !== 'all' ? t(softdrinkSelectionLabels[f.softdrinkSelection]) : t('Softdrink')} · ${t(softdrinkSizeLabels[f.softdrinkSize || '300-330'])}` : cocktail() ? t(cocktailSelectionLabels[f.cocktailSelection || 'all']) : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
+  const comparison = wine() ? `${t(wineSelectionLabels[f.wineSelection || 'white'])} · ${stillWine(f.wineSelection === 'natural' ? 'white' : f.wineSelection || 'white') ? t('pro dl') : t('pro Glas')}` : streetfood() ? `${t(streetfoodFoodLabels[f.streetfoodFood || 'all'])} · ${t(streetfoodPortionLabels[f.streetfoodPortion || 'snack'])}` : pizza() ? (f.pizzaQuery?.trim() || $<HTMLSelectElement>('pizza-selection').selectedOptions[0]?.textContent || 'Pizza Margherita') : ramen() ? t('Ramen') : burger() ? t(burgerSelectionLabels[f.burgerSelection || 'all']) : softdrink() ? `${f.softdrinkSelection && f.softdrinkSelection !== 'all' ? t(softdrinkSelectionLabels[f.softdrinkSelection]) : t('Softdrink')} · ${t(softdrinkSizeLabels[f.softdrinkSize || '300-330'])}` : cocktail() ? t(cocktailSelectionLabels[f.cocktailSelection || 'all']) : coffee() ? (f.coffeeType === 'all' ? t('alle Kaffees & Matcha Latte') : t(coffeeLabels[f.coffeeType!])) : t('Bier · {size} · {mode}', {
     size: f.volume === 'all' ? t('alle Grössen') : f.volume === 'stange' ? 'Stange' : f.volume === '300-330' ? '3 / 3.3 dl' : `${Number(f.volume) / 100} dl`,
     mode: f.mode === 'half' ? t('auf 5 dl umgerechnet') : t('Portionspreis'),
   });
@@ -533,7 +540,7 @@ function render() {
     : t('{comparison}: Noch keine passenden Preise für den Stadtdurchschnitt vorhanden.', { comparison: productComparison });
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
-    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || cityName)}</small>${o && hasBeerSelection(f) ? `<small>${e(o.name)}</small>` : ''}${o && (pizza() || cocktail()) ? `<small>${e(o.name)}</small>` : o && streetfood() ? `<small>${e(o.name.toLowerCase().includes(unit(o).toLowerCase()) ? o.name : `${o.name} · ${unit(o)}`)}</small>` : o && softdrink() ? `<small>${e([o.name, unit(o)].filter(Boolean).join(' · '))}</small>` : o && unit(o) ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
+    return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || cityName)}</small>${o && hasBeerSelection(f) ? `<small>${e(o.name)}</small>` : ''}${o && (pizza() || cocktail()) ? `<small>${e(o.name)}</small>` : o && streetfood() ? `<small>${e(o.name.toLowerCase().includes(unit(o).toLowerCase()) ? o.name : `${o.name} · ${unit(o)}`)}</small>` : o && (softdrink() || wine()) ? `<small>${e([o.name, unit(o)].filter(Boolean).join(' · '))}</small>` : o && unit(o) ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
   }).join('') : `<p class="empty">${t('Keine passenden Lokale.')}</p>`;
   layer.clearLayers();
   const venueMarkers = new Map<string, { marker: L.Marker; zIndex: number }>();
@@ -615,6 +622,7 @@ function productLabel(plan: SmartPlan, query: SmartQuery): string {
   if (p.drink === 'pizza') return p.pizzaSelection === 'glutenfree' ? `Pizza · ${t('Glutenfrei')}` : p.pizzaSelection?.startsWith('group:') ? `Pizza ${pizzaGroupLabels[p.pizzaSelection.slice(6) as PizzaGroup]}` : 'Pizza Margherita';
   if (p.drink === 'burger') return p.burgerSelection === 'vegetarian' ? t('Vegi Burger') : p.burgerSelection && p.burgerSelection !== 'all' ? `${t('Burger')} · ${t(burgerSelectionLabels[p.burgerSelection])}` : t('Burger');
   if (p.drink === 'softdrink') return p.softdrinkSelection && p.softdrinkSelection !== 'all' ? t(softdrinkSelectionLabels[p.softdrinkSelection]) : t('Softdrink');
+  if (p.drink === 'wine') return t(wineSelectionLabels[p.wineSelection || 'white']);
   if (p.drink === 'cocktail') return p.cocktailSelection && p.cocktailSelection !== 'all' ? t(cocktailSelectionLabels[p.cocktailSelection]) : t('Cocktail');
   if (p.drink === 'kebab') return [t(streetfoodFoodLabels[p.streetfoodFood || 'all']), p.streetfoodPortion === 'plate' ? t('Teller') : ''].filter(Boolean).join(' · ');
   return t('Ramen');
@@ -636,7 +644,7 @@ function smartSummary(query: SmartQuery): string {
   ].filter(Boolean).join(' · ');
 }
 function smartCategoryLabel(category: Category) {
-  return ({ coffee: t('Kaffee'), beer: t('Bier'), ramen: t('Ramen'), burger: t('Burger'), softdrink: t('Softdrinks'), cocktail: t('Cocktails'), pizza: 'Pizza', kebab: t('Kebab & Falafel') } as Record<Category, string>)[category];
+  return ({ coffee: t('Kaffee'), beer: t('Bier'), ramen: t('Ramen'), burger: t('Burger'), softdrink: t('Softdrinks'), cocktail: t('Cocktails'), wine: t('Wein'), pizza: 'Pizza', kebab: t('Kebab & Falafel') } as Record<Category, string>)[category];
 }
 async function applySmartSearch(text: string, example = false) {
   const query = parseSmartQuery(text, cityId);
@@ -1076,7 +1084,7 @@ $('price').onkeydown = event => {
 // Choosing another product (Espresso instead of Cappuccino, another size or pizza) opens at its own cheap price,
 // like a category switch. This runs in the capture phase, before each control's own handler renders.
 const productControls = new Set(['coffeeType', 'volume', 'beer-type', 'beer-selection', 'beer-query', 'pizza-selection', 'pizza-query',
-  'burger-selection', 'streetfood-portion', 'streetfood-doner', 'streetfood-falafel', 'softdrink-selection', 'softdrink-size', 'cocktail-selection']);
+  'burger-selection', 'streetfood-portion', 'streetfood-doner', 'streetfood-falafel', 'softdrink-selection', 'softdrink-size', 'cocktail-selection', 'wine-selection']);
 for (const type of ['change', 'input']) document.addEventListener(type, event => {
   if (event.target instanceof HTMLElement && productControls.has(event.target.id)) { cheapMode = true; f.max = Infinity; }
 }, true);
@@ -1109,6 +1117,11 @@ $('softdrink-size').onchange = () => {
 };
 $('softdrink-selection').onchange = () => {
   f.softdrinkSelection = parseSoftdrinkSelection($<HTMLSelectElement>('softdrink-selection').value);
+  selected = undefined;
+  render();
+};
+$('wine-selection').onchange = () => {
+  f.wineSelection = parseWineSelection($<HTMLSelectElement>('wine-selection').value);
   selected = undefined;
   render();
 };
@@ -1154,7 +1167,7 @@ $('reset').onclick = () => {
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
   cheapMode = false; draft = undefined;
-  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, streetfoodPortion: undefined, streetfoodFood: undefined, softdrinkSize: undefined, softdrinkSelection: undefined, cocktailSelection: undefined, glutenFree: false, district: undefined, open: undefined, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
+  Object.assign(f, { pizzaSelection: undefined, pizzaQuery: undefined, beerSelection: undefined, beerQuery: undefined, burgerSelection: undefined, streetfoodPortion: undefined, streetfoodFood: undefined, softdrinkSize: undefined, softdrinkSelection: undefined, cocktailSelection: undefined, wineSelection: undefined, glutenFree: false, district: undefined, open: undefined, query: '', max: Infinity, volume: '300-330', coffeeType: 'cappuccino', beerType: 'all', type: '', unknown: true, outdoor: false, alcoholFree: false, mode: 'glass', sort: 'price' });
   $<HTMLInputElement>('search').value = '';
   $<HTMLSelectElement>('type').value = ''; $<HTMLSelectElement>('sort').value = 'price';
   for (const id of ['unknown', 'outdoor', 'alcohol-free', 'gluten-free', 'open-now']) $<HTMLInputElement>(id).checked = id === 'unknown';
@@ -1196,7 +1209,7 @@ $('cheap').onclick = () => {
 };
 $('data-info').onclick = () => {
   $('coverage').textContent = Object.entries(datasets).map(([drink, data]) => t('{category}: {offers} Angebote aus Karten bei {venues} Lokalen', {
-    category: drink === 'pizza' ? 'Pizza Margherita' : drink === 'ramen' ? t('Ramen') : drink === 'burger' ? t('Burger') : drink === 'kebab' ? t('Kebab & Falafel') : drink === 'softdrink' ? t('Softdrinks') : drink === 'cocktail' ? t('Cocktails') : drink === 'beer' ? t('Bier') : t('Kaffee'),
+    category: drink === 'pizza' ? 'Pizza Margherita' : drink === 'ramen' ? t('Ramen') : drink === 'burger' ? t('Burger') : drink === 'kebab' ? t('Kebab & Falafel') : drink === 'softdrink' ? t('Softdrinks') : drink === 'cocktail' ? t('Cocktails') : drink === 'wine' ? t('Wein') : drink === 'beer' ? t('Bier') : t('Kaffee'),
     offers: data.bars.reduce((n, b) => n + b.offers.length, 0), venues: data.bars.filter(b => b.offers.length).length,
   })).join('. ') + `. ${t('{count} gemeinsame Einträge/Korrekturen.', { count: entries.length })}`;
   $<HTMLDialogElement>('info').showModal();
@@ -1217,16 +1230,20 @@ function entryFields() {
   const isBeer = category === 'beer';
   // Soft drinks need a size like beer; cocktails need none.
   const isSoftdrink = category === 'softdrink';
+  // A glass of wine needs its size (1 dl, 1.5 dl); a Gespritzter or Glühwein may leave it open.
+  const isWine = category === 'wine';
+  const stillGlass = isWine && stillWine($<HTMLSelectElement>('entry-wine-type').value);
   const name = $<HTMLInputElement>('entry-name');
   name.readOnly = category === 'pizza';
   if (category === 'pizza') name.value = 'Pizza Margherita';
   else if (name.value === 'Pizza Margherita') name.value = '';
-  name.placeholder = category === 'coffee' ? t('z. B. Espresso') : category === 'ramen' ? t('z. B. Shoyu Ramen') : category === 'burger' ? t('z. B. Cheeseburger') : category === 'kebab' ? t('z. B. Dürüm Kebab') : category === 'softdrink' ? t('z. B. Coca-Cola') : category === 'cocktail' ? t('z. B. Aperol Spritz') : t('z. B. Lager');
+  name.placeholder = category === 'coffee' ? t('z. B. Espresso') : category === 'ramen' ? t('z. B. Shoyu Ramen') : category === 'burger' ? t('z. B. Cheeseburger') : category === 'kebab' ? t('z. B. Dürüm Kebab') : category === 'softdrink' ? t('z. B. Coca-Cola') : category === 'cocktail' ? t('z. B. Aperol Spritz') : category === 'wine' ? t('z. B. Chasselas') : t('z. B. Lager');
   const packaged = ['bottle', 'can'].includes($<HTMLSelectElement>('entry-beer-type').value);
   if (packaged) { $<HTMLInputElement>('entry-stange').checked = false; $<HTMLInputElement>('entry-size-unknown').checked = false; }
   $<HTMLInputElement>('entry-size-unknown').disabled = packaged;
   const unknown = $<HTMLInputElement>('entry-size-unknown').checked;
-  $('entry-coffee-label').hidden = !isCoffee; $('entry-beer-fields').hidden = !isBeer && !isSoftdrink;
+  $('entry-coffee-label').hidden = !isCoffee; $('entry-beer-fields').hidden = !isBeer && !isSoftdrink && !isWine;
+  $('entry-wine-fields').hidden = !isWine;
   $<HTMLSelectElement>('entry-coffee').required = isCoffee;
   $<HTMLSelectElement>('entry-coffee').disabled = !isCoffee;
   $('entry-kebab-fields').hidden = category !== 'kebab';
@@ -1238,8 +1255,8 @@ function entryFields() {
   $('entry-pizza-check').hidden = !confirmPizza;
   $<HTMLInputElement>('entry-whole-pizza').required = Boolean(confirmPizza);
   for (const id of ['entry-beer-type-label', 'entry-stange-label', 'entry-size-unknown-label', 'entry-alcohol-label']) $(id).hidden = !isBeer;
-  $<HTMLInputElement>('entry-volume').disabled = isSoftdrink ? false : !isBeer || unknown;
-  $<HTMLInputElement>('entry-volume').required = isSoftdrink || isBeer && !unknown;
+  $<HTMLInputElement>('entry-volume').disabled = isSoftdrink || isWine ? false : !isBeer || unknown;
+  $<HTMLInputElement>('entry-volume').required = isSoftdrink || stillGlass || isBeer && !unknown;
   if (unknown) $<HTMLInputElement>('entry-stange').checked = true;
   $<HTMLInputElement>('entry-stange').disabled = unknown || packaged;
 }
@@ -1272,6 +1289,8 @@ function openPrice(bar: Bar, offer?: Offer, contribution?: { mode: ContributionM
   $<HTMLInputElement>('entry-stange').checked = offer?.serving === 'stange' || (!offer && f.volume === 'stange');
   $<HTMLInputElement>('entry-size-unknown').checked = Boolean(offer && offerCategory(offer) === 'beer' && offer.volumeMl === null);
   $<HTMLSelectElement>('entry-beer-type').value = offer ? effectiveBeerType(offer) : 'draft';
+  $<HTMLSelectElement>('entry-wine-type').value = offer?.wineType || (f.wineSelection && f.wineSelection !== 'natural' ? f.wineSelection : 'white');
+  $<HTMLInputElement>('entry-natural').checked = offer ? Boolean(offer.natural) : f.wineSelection === 'natural';
   $('entry-type-hint').hidden = !offer?.beerTypeEstimate || Boolean(offer.beerType && offer.beerType !== 'unknown');
   $<HTMLInputElement>('entry-alcohol').checked = offer?.alcoholFree ?? f.alcoholFree;
   $<HTMLInputElement>('entry-date').value = zurichToday(); $<HTMLInputElement>('entry-date').max = zurichToday();
@@ -1376,6 +1395,7 @@ $('entry-drink').onchange = () => {
 $('entry-coffee').onchange = () => { if (!editing) $<HTMLInputElement>('entry-name').value = coffeeLabels[$<HTMLSelectElement>('entry-coffee').value] || ''; };
  $('entry-size-unknown').onchange = entryFields;
 $('entry-beer-type').onchange = entryFields;
+$('entry-wine-type').onchange = entryFields;
 $('cancel-price').onclick = () => { if (!saving) $<HTMLDialogElement>('price-dialog').close(); };
 // Kebab stands live only in their own dataset, outside the shared venue list.
 const entryVenues = contributionLocations;
@@ -1392,7 +1412,10 @@ $('price-form').onsubmit = async event => {
       id: editing?.communityId, revision: editing?.revision || 0, targetKey: editing ? editing.originalKey || offerKey(editing) : undefined,
       barId: $<HTMLInputElement>('entry-bar').value, drink,
       name: $<HTMLInputElement>('entry-name').value, priceChf: $<HTMLInputElement>('entry-price').valueAsNumber,
-      volumeMl: drink === 'softdrink' || drink === 'beer' && !$<HTMLInputElement>('entry-size-unknown').checked ? Math.round($<HTMLInputElement>('entry-volume').valueAsNumber * 100) : null,
+      volumeMl: drink === 'wine' ? (Number.isFinite($<HTMLInputElement>('entry-volume').valueAsNumber) ? Math.round($<HTMLInputElement>('entry-volume').valueAsNumber * 100) : null)
+        : drink === 'softdrink' || drink === 'beer' && !$<HTMLInputElement>('entry-size-unknown').checked ? Math.round($<HTMLInputElement>('entry-volume').valueAsNumber * 100) : null,
+      wineType: drink === 'wine' ? $<HTMLSelectElement>('entry-wine-type').value as PriceInput['wineType'] : undefined,
+      natural: drink === 'wine' ? $<HTMLInputElement>('entry-natural').checked : undefined,
       beerType: drink === 'beer' ? $<HTMLSelectElement>('entry-beer-type').value as BeerType : undefined,
       coffeeType: drink === 'coffee' ? $<HTMLSelectElement>('entry-coffee').value : undefined,
       pizzaType: drink === 'pizza' ? 'margherita' : undefined,
@@ -1455,7 +1478,7 @@ async function loadCommunity() {
   } catch { communityReady = false; return false; }
 }
 async function init() {
-  const [beerResult, coffeeResult, pizzaResult, ramenResult, burgerResult, softdrinkResult, cocktailResult, loadedCommunity, locationsResult, donerResult, falafelResult] = await Promise.all([
+  const [beerResult, coffeeResult, pizzaResult, ramenResult, burgerResult, softdrinkResult, cocktailResult, loadedCommunity, locationsResult, donerResult, falafelResult, wineResult] = await Promise.all([
     fetch(`${dataPath}bars.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${dataPath}coffee.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${dataPath}pizza.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
@@ -1467,6 +1490,7 @@ async function init() {
     fetch(`${dataPath}locations.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${dataPath}doner.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
     fetch(`${dataPath}falafel.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
+    fetch(`${dataPath}gastro-wine.json`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).catch(() => null),
   ]);
   if (beerResult) datasets.beer = beerResult;
   if (coffeeResult) datasets.coffee = coffeeResult;
@@ -1477,10 +1501,10 @@ async function init() {
   if (burgerResult) datasets.burger = burgerResult;
   // Kebab and falafel come from their own scan; cities without it hide the category.
   streetfoodDataset = mergeStreetfood([donerResult, falafelResult]);
-  // Soft drinks and cocktails come from the Zürich gastro scan; other cities hide them.
+  // Soft drinks, cocktails and wine come from the gastro scan; cities without it hide them.
   locationCatalogue = locationsResult?.bars || [];
   const catalogue = new Map(locationCatalogue.map(bar => [bar.id, bar]));
-  for (const [drink, result] of [['softdrink', softdrinkResult], ['cocktail', cocktailResult]] as const)
+  for (const [drink, result] of [['softdrink', softdrinkResult], ['cocktail', cocktailResult], ['wine', wineResult]] as const)
     if (result) datasets[drink] = { ...result, bars: result.bars.map((bar: Bar) => withKnownDetails(bar, catalogue.get(bar.id))) };
   const missing = [!beerResult ? t('Bier') : '', !coffeeResult ? t('Kaffee') : '', !pizzaResult ? 'Pizza' : '', !loadedCommunity ? t('gemeinsame Einträge') : ''].filter(Boolean);
   const hasData = Object.keys(datasets).length > 0;

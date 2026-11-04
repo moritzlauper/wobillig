@@ -4,7 +4,7 @@ import { t } from './i18n';
 import type { PublicMap } from './custom-map-data';
 
 export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => void) {
-  const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), ramen: t('Ramen'), burger: t('Burger'), softdrink: t('Softdrinks'), cocktail: t('Cocktails'), pizza: 'Pizza', kebab: t('Kebab & Falafel') };
+  const labels: Record<Category, string> = { coffee: t('Kaffee'), beer: t('Bier'), ramen: t('Ramen'), burger: t('Burger'), softdrink: t('Softdrinks'), cocktail: t('Cocktails'), wine: t('Wein'), pizza: 'Pizza', kebab: t('Kebab & Falafel') };
   root.innerHTML = `<div id="primary-categories" class="switch" role="group" aria-label="${t('Kategorie')}"></div>
     <div class="more-categories"><button id="categories-toggle" type="button" aria-expanded="false" aria-controls="additional-categories" aria-label="${t('Weitere Kategorien')}" title="${t('Weitere Kategorien')}"><span class="more-label">${t('Weitere')}</span><span class="filter-chevron" aria-hidden="true"></span></button>
     <div id="additional-categories" role="group" aria-label="${t('Weitere Kategorien')}" hidden></div></div>`;

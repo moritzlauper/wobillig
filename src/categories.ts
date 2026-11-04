@@ -1,7 +1,7 @@
-export const categories = ['coffee', 'beer', 'ramen', 'burger', 'softdrink', 'cocktail', 'pizza', 'kebab'] as const;
+export const categories = ['coffee', 'beer', 'ramen', 'burger', 'softdrink', 'cocktail', 'wine', 'pizza', 'kebab'] as const;
 export type Category = typeof categories[number];
 export type CategoryCounts = Record<Category, number>;
-export const emptyCategoryCounts = (): CategoryCounts => ({ coffee: 0, beer: 0, ramen: 0, burger: 0, softdrink: 0, cocktail: 0, pizza: 0, kebab: 0 });
+export const emptyCategoryCounts = (): CategoryCounts => ({ coffee: 0, beer: 0, ramen: 0, burger: 0, softdrink: 0, cocktail: 0, wine: 0, pizza: 0, kebab: 0 });
 export const isCategory = (value: unknown): value is Category => categories.includes(value as Category);
 
 export function categoryCounts(value: unknown): CategoryCounts {

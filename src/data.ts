@@ -4,7 +4,7 @@ import { pizzaGroup, pizzaGroupLabels, pizzaNameKey, type PizzaGroup, type Pizza
 import { beerGroup, beerGroupLabels, normalizeBeerName, type BeerSelection } from './beer-selection.js';
 import { type BurgerSelection } from './burger-selection.js';
 import { matchesStreetfoodPortion, type StreetfoodFood, type StreetfoodPortion } from './streetfood-selection.js';
-import { cocktailGroup, cocktailSelectionLabels, matchesSoftdrinkSize, softdrinkGroups, softdrinkSelectionLabels, type CocktailGroup, type CocktailSelection, type SoftdrinkGroup, type SoftdrinkSelection, type SoftdrinkSize } from './gastro-selection.js';
+import { cocktailGroup, cocktailSelectionLabels, matchesSoftdrinkSize, matchesWineSelection, stillWine, type WineSelection, type WineType, softdrinkGroups, softdrinkSelectionLabels, type CocktailGroup, type CocktailSelection, type SoftdrinkGroup, type SoftdrinkSelection, type SoftdrinkSize } from './gastro-selection.js';
 import { isGlutenFreeOffer, isGlutenFreePizzeria } from './gluten-free.js';
 
 export type BeerType = "draft" | "bottle" | "can" | "unknown";
@@ -19,7 +19,10 @@ export type Offer = {
   // Explicit label from the menu; text labels are checked in isGlutenFreeOffer.
   glutenFree?: boolean;
   // Set by the gastro scan. Its bread dataset is not loaded, so "brot" never reaches the app.
-  gastroType?: "softdrink" | "cocktail";
+  gastroType?: "softdrink" | "cocktail" | "wine";
+  // Wine by the glass: the kind and whether the menu calls it natural wine.
+  wineType?: WineType;
+  natural?: boolean;
   // Döner and falafel scan, shown together as Kebab & Falafel: the portion decides what is compared.
   foodType?: "doner" | "falafel";
   portionType?: "wrap" | "bread" | "plate";
@@ -82,7 +85,8 @@ export type Dataset = {
 export type Filters = {
   pizzaSelection?: PizzaSelection;
   pizzaQuery?: string;
-  drink?: "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail" | "kebab";
+  drink?: "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail" | "wine" | "kebab";
+  wineSelection?: WineSelection;
   burgerSelection?: BurgerSelection;
   streetfoodPortion?: StreetfoodPortion;
   streetfoodFood?: StreetfoodFood;
@@ -115,10 +119,14 @@ export const coffeeLabels: Record<string, string> = {
 };
 export function portion(o: Offer) {
   if (o.foodType) return o.portionType === "plate" ? t('Teller') : o.portionType === "bread" ? t('Im Brot') : 'Dürüm';
+  if (o.gastroType === "wine") {
+    const glass = o.volumeMl ? t('Glas {size} dl', { size: o.volumeMl / 100 }) : t('Glas');
+    return [stillWine(o.wineType) ? t('pro dl') : '', glass, o.natural ? t('Naturwein') : ''].filter(Boolean).join(' · ');
+  }
   if (o.gastroType) return o.volumeMl ? `${o.volumeMl / 100} dl` : "";
   return o.pizzaType ? (o.priceContext === "online_menu" ? t('Onlinepreis') : "") : (o.ramenType || o.burgerType) ? t('Standardportion') : o.coffeeType ? t(coffeeLabels[o.coffeeType] || 'Kaffee') : o.volumeMl ? `${o.volumeMl / 100} dl` : t('Stange · Grösse nicht angegeben');
 }
-export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail" | "kebab" {
+export function offerCategory(o: Offer): "beer" | "coffee" | "pizza" | "ramen" | "burger" | "softdrink" | "cocktail" | "wine" | "kebab" {
   return o.gastroType || (o.foodType ? "kebab" : o.burgerType ? "burger" : o.ramenType ? "ramen" : o.pizzaType ? "pizza" : o.coffeeType ? "coffee" : "beer");
 }
 // Keep in sync with scraper/beer_rules.py.
@@ -263,6 +271,7 @@ export function matchingOffers(bar: Bar, f: Filters): Offer[] {
         f.drink === "kebab" ? matchesStreetfoodPortion(o.portionType, f.streetfoodPortion) && (!f.streetfoodFood || f.streetfoodFood === "all" || o.foodType === f.streetfoodFood) :
         f.drink === "softdrink" ? matchesSoftdrink(o, f) :
         f.drink === "cocktail" ? matchesCocktail(o, f) :
+        f.drink === "wine" ? matchesWineSelection(o.wineType, o.natural, f.wineSelection) :
         f.drink === "coffee" ? Boolean(o.coffeeType) &&
           (!f.coffeeType || f.coffeeType === "all" || o.coffeeType === f.coffeeType) :
         !o.coffeeType && o.alcoholFree === f.alcoholFree && (!f.glutenFree || isGlutenFreeOffer(o)) &&
@@ -292,6 +301,8 @@ export function bestOffer(bar: Bar, f: Filters): Offer | undefined {
   return matchingOffers(bar, f)[0];
 }
 export function cost(o: Offer, mode: Filters["mode"]) {
+  // Glasses of still wine differ (1, 1.5, 2 dl), so they compare per decilitre.
+  if (o.gastroType === "wine" && stillWine(o.wineType)) return o.volumeMl ? o.priceChf * 100 / o.volumeMl : Infinity;
   return offerCategory(o) === "beer" && mode === "half" ? (o.volumeMl ? (o.priceChf * 500) / o.volumeMl : Infinity) : o.priceChf;
 }
 export function distance(a: [number, number], b: [number, number]) {

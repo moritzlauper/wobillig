@@ -65,6 +65,7 @@ export const cocktailSelectionLabels = {
   espresso_martini: 'Espresso Martini',
   margarita: 'Margarita',
   caipirinha: 'Caipirinha',
+  gespritzter: 'Gespritzter Weisswein',
   mocktail: 'Mocktails',
 } as const;
 export type CocktailSelection = keyof typeof cocktailSelectionLabels;
@@ -80,6 +81,7 @@ const cocktailPatterns: Record<Exclude<CocktailGroup, 'mocktail'>, RegExp> = {
   espresso_martini: /\bespresso\s*martini\b/,
   margarita: /\bmargarita\b/,
   caipirinha: /\bcaipirinha\b/,
+  gespritzter: /\bg(?:e)?\W?spritzt\w*|\bspritzer\b|weisswein\s*(?:soda|gespritzt)/,
 };
 // A virgin Aperol Spritz, a "Free Caipirinha" or a Negroni 0.0% is a mocktail, not the classic it is named after.
 const mocktailPattern = /\bvirgin\b|^free\b|\bfree\s+sour\b|alkoholfrei|alcohol[\s-]*free|ohne alkohol|mocktail|zero[\s-]*proof|(?<!cola\s)\bzero\b|(?<![\d.,])0(?:[.,]0)?\s*%|crodino|san\s*bitter/;
@@ -87,6 +89,25 @@ export function cocktailGroup(name: string): CocktailGroup | undefined {
   const text = name.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase();
   if (mocktailPattern.test(text)) return 'mocktail';
   return (Object.keys(cocktailPatterns) as Exclude<CocktailGroup, 'mocktail'>[]).find(group => cocktailPatterns[group].test(text));
+}
+// Wine by the glass (scraper/gastro.py): still wine compares per decilitre, a Gespritzter and Glühwein per glass.
+export const wineSelectionLabels = {
+  white: 'Weisswein',
+  red: 'Rotwein',
+  natural: 'Naturwein',
+  rose: 'Rosé',
+  spritzer: 'Gespritzter Weisswein',
+  mulled: 'Glühwein',
+} as const;
+export type WineSelection = keyof typeof wineSelectionLabels;
+export type WineType = 'white' | 'red' | 'rose' | 'spritzer' | 'mulled';
+export const stillWine = (type: string | undefined) => type === 'white' || type === 'red' || type === 'rose';
+export function parseWineSelection(value: string | null): WineSelection | undefined {
+  return value && Object.hasOwn(wineSelectionLabels, value) ? value as WineSelection : undefined;
+}
+export function matchesWineSelection(type: string | undefined, natural: boolean | undefined, selection: WineSelection = 'white'): boolean {
+  // Natural wine of every colour is compared per decilitre; a white natural wine is also a white wine.
+  return selection === 'natural' ? Boolean(natural) && stillWine(type) : type === selection;
 }
 export function parseCocktailSelection(value: string | null): CocktailSelection | undefined {
   return value && Object.hasOwn(cocktailSelectionLabels, value) ? value as CocktailSelection : undefined;

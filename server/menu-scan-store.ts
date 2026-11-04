@@ -80,7 +80,10 @@ export async function saveMenuScan(store: Store, hash: string, bar: Bar, origina
     const grouped = new Map<string, { offer: Offer; drink: PriceEntry['drink'] }[]>();
     for (const { input, evidence } of prices) {
       const { name, priceChf, volumeMl, beerType, coffeeType, pizzaType, serving, alcoholFree, observedAt } = input;
-      const offer: Offer = { name, priceChf, volumeMl, beerType, coffeeType, pizzaType, serving, alcoholFree, observedAt,
+      // The category fields decide where the price shows; without them a burger or a cocktail would count as beer.
+      const kind = Object.fromEntries(Object.entries({ ramenType: input.ramenType, burgerType: input.burgerType, foodType: input.foodType, portionType: input.portionType,
+        gastroType: input.gastroType, wineType: input.wineType, natural: input.wineType ? input.natural === true : undefined }).filter(([, value]) => value !== undefined));
+      const offer: Offer = { name, priceChf, volumeMl, beerType, coffeeType, pizzaType, serving, alcoholFree, observedAt, ...kind,
         sourceUrl: '', confidence: 'ai', evidence, menuScan: { sha256: hash, model: OCR_MODEL } };
       const key = identity(offer);
       grouped.set(key, [...(grouped.get(key) || []), { offer, drink: input.drink }]);

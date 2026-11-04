@@ -42,5 +42,6 @@ export function priceConcern(entry: PriceEntry): string | undefined {
   if (entry.drink === 'kebab' && (price < 5 || price > 40)) return 'kebab-range';
   if (entry.drink === 'beer' && price < 1) return 'beer-range';
   if (entry.drink === 'softdrink' && (price < 2 || price > 15)) return 'softdrink-range';
-  if (entry.drink === 'cocktail' && (price < 5 || price > 40)) return 'cocktail-range';
+  if (entry.drink === 'cocktail' && (price < 3 || price > 40)) return 'cocktail-range';
+  if (entry.drink === 'wine' && (price < 3 || price > 30)) return 'wine-range';
 }

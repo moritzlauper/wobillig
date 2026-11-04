@@ -4,12 +4,12 @@ import { parsePizzaSelection } from './pizza-selection';
 import { parseBeerSelection } from './beer-selection';
 import { parseStreetfoodFood, parseStreetfoodPortion } from './streetfood-selection';
 import { parseBurgerSelection } from './burger-selection';
-import { parseCocktailSelection, parseSoftdrinkSelection, parseSoftdrinkSize } from './gastro-selection';
+import { parseCocktailSelection, parseWineSelection, parseSoftdrinkSelection, parseSoftdrinkSize } from './gastro-selection';
 
 // Old shared beer links used only size/beerType; keep those entry points working.
 export function drinkFromSearch(params: URLSearchParams): Drink {
   const drink = params.get('drink');
-  if (drink === 'beer' || drink === 'coffee' || drink === 'pizza' || drink === 'ramen' || drink === 'burger' || drink === 'softdrink' || drink === 'cocktail' || drink === 'kebab') return drink;
+  if (drink === 'beer' || drink === 'coffee' || drink === 'pizza' || drink === 'ramen' || drink === 'burger' || drink === 'softdrink' || drink === 'cocktail' || drink === 'wine' || drink === 'kebab') return drink;
   // Döner and falafel were separate categories before.
   if (drink === 'doner' || drink === 'falafel') return 'kebab';
   if (!drink && (params.has('size') || params.has('beerType') || params.has('beerQuery') || params.has('beerSelection'))) return 'beer';
@@ -29,6 +29,7 @@ export function barLink(href: string, barId: string, drink: Drink, volume: strin
   const softdrinkSize = parseSoftdrinkSize(url.searchParams.get('softdrinkSize'));
   const softdrinkSelection = parseSoftdrinkSelection(url.searchParams.get('softdrinkSelection'));
   const cocktailSelection = parseCocktailSelection(url.searchParams.get('cocktailSelection'));
+  const wineSelection = parseWineSelection(url.searchParams.get('wineSelection'));
   url.search = '';
   url.hash = '';
   url.searchParams.set('bar', barId);
@@ -43,6 +44,7 @@ export function barLink(href: string, barId: string, drink: Drink, volume: strin
   if (drink === 'softdrink' && softdrinkSize) url.searchParams.set('softdrinkSize', softdrinkSize);
   if (drink === 'softdrink' && softdrinkSelection) url.searchParams.set('softdrinkSelection', softdrinkSelection);
   if (drink === 'cocktail' && cocktailSelection) url.searchParams.set('cocktailSelection', cocktailSelection);
+  if (drink === 'wine' && wineSelection) url.searchParams.set('wineSelection', wineSelection);
   if (drink === 'beer') {
     if (beerSelection) url.searchParams.set('beerSelection', beerSelection);
     if (beerQuery) url.searchParams.set('beerQuery', beerQuery);

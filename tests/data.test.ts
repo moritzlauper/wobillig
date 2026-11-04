@@ -480,3 +480,28 @@ describe("kebab and falafel datasets", () => {
     expect([legacy.drink, legacy.streetfoodFood]).toEqual(["kebab", "falafel"]);
   });
 });
+
+describe("wine by the glass", () => {
+  const base = { sourceUrl: "https://example.ch", observedAt: "2026-11-04", confidence: "ai" as const, evidence: "", alcoholFree: false, gastroType: "wine" as const };
+  const bar: Bar = {
+    id: "w", name: "Weinbar", lat: 47.37, lon: 8.54, type: "bar", address: "", postcode: "8001", website: null, openingHours: null, outdoor: false, scrapeStatus: "prices_found", checkedAt: null,
+    offers: [
+      { ...base, name: "Chasselas", wineType: "white", volumeMl: 100, priceChf: 8 },
+      { ...base, name: "Riesling", wineType: "white", volumeMl: 150, priceChf: 10.5, natural: true },
+      { ...base, name: "Pinot Noir", wineType: "red", volumeMl: 200, priceChf: 18 },
+      { ...base, name: "Gespritzter Weisswein", wineType: "spritzer", volumeMl: 300, priceChf: 7.5 },
+      { ...base, name: "Glühwein", wineType: "mulled", volumeMl: null, priceChf: 6 },
+    ],
+  };
+  const wine = { ...f, drink: "wine" as const, max: Infinity };
+  it("compares still wine per decilitre and natural wine of any colour", () => {
+    expect(bestOffer(bar, wine)?.name).toBe("Riesling");
+    expect(cost(bestOffer(bar, wine)!, "glass")).toBe(7);
+    expect(cost(bestOffer(bar, { ...wine, wineSelection: "red" })!, "glass")).toBe(9);
+    expect(matchingOffers(bar, { ...wine, wineSelection: "natural" }).map(o => o.name)).toEqual(["Riesling"]);
+  });
+  it("compares a Gespritzter and Glühwein per glass", () => {
+    expect(cost(bestOffer(bar, { ...wine, wineSelection: "spritzer" })!, "glass")).toBe(7.5);
+    expect(cost(bestOffer(bar, { ...wine, wineSelection: "mulled" })!, "glass")).toBe(6);
+  });
+});
