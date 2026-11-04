@@ -12619,18 +12619,6 @@
       "outdoor": true,
       "offers": [
         {
-          "name": "Negroni - Campari, Martini Rosso, Gin",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 14.5,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Negroni - Campari, Martini Rosso, Gin 14.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
           "name": "Gin Tonic/Gin Bitter",
           "volumeMl": null,
           "gastroType": "cocktail",
@@ -12652,30 +12640,6 @@
           "confidence": "ai",
           "evidence": "Campari Orange 10.50",
           "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Aperol Spritz, Prosecco mit Aperol",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 12.8,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Aperol Spritz, Prosecco mit Aperol 12.80",
-          "sourcePage": 4,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Campari Spritz, Prosecco mit Campari",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 12.8,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Campari Spritz, Prosecco mit Campari 12.80",
-          "sourcePage": 4,
           "extractionModel": "claude-haiku-5-5"
         },
         {
@@ -13868,30 +13832,6 @@
           "confidence": "ai",
           "evidence": "Spritz Aperol 13.50",
           "sourcePage": 9,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Sartori Spritz",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 13.5,
-          "sourceUrl": "https://donleone.ch/menu/waffenplatz/DonLeoneWaffenplatzMenu.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Sartori Spritz 13.50",
-          "sourcePage": 10,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Hugo",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 14.5,
-          "sourceUrl": "https://donleone.ch/menu/waffenplatz/DonLeoneWaffenplatzMenu.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Hugo 14.50",
-          "sourcePage": 10,
           "extractionModel": "claude-haiku-5-5"
         },
         {
@@ -18095,18 +18035,6 @@
           "evidence": "Lemon Spritz Hiltl Prosecco, Ingwer 14.-",
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Apérol Spritz",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 9.5,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/food-drinks-amstrand.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Apérol Spritz 9.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "fetch_failed",
@@ -18541,99 +18469,15 @@
       "outdoor": true,
       "offers": [
         {
-          "name": "Passionfruit Martini",
+          "name": "Hugo",
           "volumeMl": null,
           "gastroType": "cocktail",
-          "priceChf": 17,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/weinkarte-a-la-carte.pdf",
+          "priceChf": 7.5,
+          "sourceUrl": "https://hiltl.ch/wp-content/uploads/food-drinks-amstrand.pdf",
           "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Hiltl Cocktails 17.– / Passionfruit Martini Vodka, Pfirsich, Zitrone, nur mit Alkohol",
+          "confidence": "reviewed",
+          "evidence": "Hugo 7.50",
           "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Negroni",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 17,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/saisoneinleger-a-la-carte-de.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Negroni Campari, Gin, Vermouth 17.-",
-          "sourcePage": 2,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Negroni Sbagliato",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 17,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/weinkarte-a-la-carte.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Classic Cocktails 17.– / Negroni Sbagliato Campari, Hiltl Prosecco, Wermut",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Mojito",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 17,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/weinkarte-a-la-carte.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Classic Cocktails 17.– / Mojito Rum, Limette, Minze, Rohrzucker",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Moscow Mule",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 17,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/weinkarte-a-la-carte.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Classic Cocktails 17.– / Moscow Mule Vodka, Ginger Beer, Limette",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Espresso Martini",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 17,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/weinkarte-a-la-carte.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Classic Cocktails 17.– / Espresso Martini Vodka, Kaffeelikör, Espresso, nur mit Alkohol",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Trauben-Vanille Spritz",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 14,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/saisoneinleger-a-la-carte-de.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Trauben-Vanille Spritz Hiltl Prosecco, Zitrone 14.-",
-          "sourcePage": 2,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Lemon Spritz",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 14,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/saisoneinleger-a-la-carte-de.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Lemon Spritz Hiltl Prosecco, Ingwer 14.-",
-          "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5"
         },
         {
@@ -18760,18 +18604,6 @@
           "evidence": "Lemon Spritz Hiltl Prosecco, Ingwer 14.-",
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Apérol Spritz",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 9.5,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/food-drinks-amstrand.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Apérol Spritz 9.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "fetch_failed",
@@ -18884,18 +18716,6 @@
           "confidence": "ai",
           "evidence": "Lemon Spritz Hiltl Prosecco, Ingwer 14.-",
           "sourcePage": 2,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Apérol Spritz",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 9.5,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/food-drinks-amstrand.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Apérol Spritz 9.50",
-          "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
@@ -19011,18 +18831,6 @@
           "confidence": "ai",
           "evidence": "Lemon Spritz Hiltl Prosecco, Ingwer 14.-",
           "sourcePage": 2,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Apérol Spritz",
-          "volumeMl": null,
-          "gastroType": "cocktail",
-          "priceChf": 9.5,
-          "sourceUrl": "https://hiltl.ch/wp-content/uploads/food-drinks-amstrand.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Apérol Spritz 9.50",
-          "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],

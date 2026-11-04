@@ -3289,22 +3289,6 @@
       "outdoor": true,
       "offers": [
         {
-          "name": "Stirling, La Nébuleuse, Pale Ale,",
-          "volumeMl": 330,
-          "priceChf": 8.0,
-          "beerType": "unknown",
-          "sourceUrl": "https://www.vieux-lausanne.ch/images/LES_JARDINS_Juillet_2026.pdf",
-          "observedAt": "2026-10-21T13:31:24.955393+00:00",
-          "confidence": "automatic",
-          "evidence": "Stirling, La Nébuleuse, Pale Ale, 5.3% 33cl 8",
-          "alcoholFree": false,
-          "beerTypeEstimate": {
-            "type": "bottle",
-            "reason": "KI-Zuordnung anhand der Getränkekarte",
-            "method": "ai"
-          }
-        },
-        {
           "name": "Embuscade IPA,",
           "volumeMl": 330,
           "priceChf": 10.0,
@@ -3347,20 +3331,6 @@
           "confidence": "automatic",
           "evidence": "Heineken Original 5.0% 33cl 6",
           "alcoholFree": false
-        },
-        {
-          "name": "Diversion, La Nébuleuse, 0%",
-          "priceChf": 6,
-          "volumeMl": 330,
-          "sourceUrl": "https://www.vieux-lausanne.ch/images/LES_JARDINS_Juillet_2026.pdf",
-          "observedAt": "2026-10-21T15:17:14.022555+00:00",
-          "confidence": "ai",
-          "evidence": "Bière & Cidre | Bouteilles Diversion, La Nébuleuse, 0% 33cl 6",
-          "alcoholFree": true,
-          "sourcePage": 2,
-          "extractionModel": "claude-haiku-5-5",
-          "beerType": "bottle",
-          "sourceSha256": "283a3128be334bfbe2ffbdabe8dcfe784999caa11e824dd45ae5fd824c7b0d7d"
         }
       ],
       "scrapeStatus": "prices_found",

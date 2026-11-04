@@ -323,20 +323,7 @@
       ],
       "openingHours": "Mo-Tu off; We-Su 11:30-14:00,17:30-22:00",
       "outdoor": false,
-      "offers": [
-        {
-          "name": "Coca Cola + Zero",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 5,
-          "sourceUrl": "https://cdn.prod.website-files.com/65f2d2911db1172c98c2530c/6a91c1ab8504e2ab696aa076_0826_Stampfenbach_Menu.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "coca cola + zero 0.33l 5",
-          "sourcePage": 3,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
+      "offers": [],
       "scrapeStatus": "skipped",
       "checkedAt": "2026-11-04T22:56:09.911699+00:00"
     },
@@ -386,20 +373,7 @@
       ],
       "openingHours": "Mo off; Tu-Fr,Su 17:30-21:55; Sa 17:30-20:00,21:30-22:00",
       "outdoor": false,
-      "offers": [
-        {
-          "name": "Coca Cola + Zero",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 5,
-          "sourceUrl": "https://cdn.prod.website-files.com/65f2d2911db1172c98c2530c/6a91c1ab8504e2ab696aa076_0826_Stampfenbach_Menu.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "coca cola + zero 0.33l 5",
-          "sourcePage": 3,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
+      "offers": [],
       "scrapeStatus": "skipped",
       "checkedAt": "2026-11-04T22:56:09.911699+00:00"
     },
@@ -7149,30 +7123,6 @@
       "outdoor": true,
       "offers": [
         {
-          "name": "Hausgemachter Eistee, Homemade Ice Tea",
-          "volumeMl": 250,
-          "gastroType": "softdrink",
-          "priceChf": 5.0,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Hausgemachter Eistee, Homemade Ice Tea",
-          "volumeMl": 250,
-          "gastroType": "softdrink",
-          "priceChf": 7.5,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Hausgemachter Eistee, Homemade Ice Tea 25 cl/50 cl 5.00/7.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
           "name": "Coca Cola, Zero",
           "volumeMl": 330,
           "gastroType": "softdrink",
@@ -7181,18 +7131,6 @@
           "observedAt": "2026-11-02T01:37:05.920217+00:00",
           "confidence": "ai",
           "evidence": "Coca Cola, Zero 33 cl 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Rivella rot, blau, red, blue",
-          "volumeMl": 330,
-          "gastroType": "softdrink",
-          "priceChf": 5.5,
-          "sourceUrl": "https://www.d-vino.ch/wp-content/uploads/2025/06/D-Vino-Seefeld-Web-2025.pdf",
-          "observedAt": "2026-11-02T01:37:05.920217+00:00",
-          "confidence": "ai",
-          "evidence": "Rivella rot, blau, red, blue 33 cl 5.50",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
