@@ -74,7 +74,7 @@ export async function protectContribution(req: IncomingMessage, res: ServerRespo
 export async function reservePhotoBudget(maxCostUsd = 0.01) {
   // Global across all cities, both photo endpoints and all server instances.
   // Reserve before any paid call; failed requests keep their reservation.
-  const dollars = Number(process.env.COMMUNITY_PHOTO_DAILY_USD || '2');
+  const dollars = Number(process.env.COMMUNITY_PHOTO_DAILY_USD || '10');
   await reserveLimits((await import('./prices.js')).blobStore(securityPath()), [
     { key: 'photos:hour', max: Number(process.env.COMMUNITY_PHOTO_HOURLY_LIMIT || '100'), ms: 3600000 },
     { key: 'photos:day', max: Number(process.env.COMMUNITY_PHOTO_DAILY_LIMIT || '1000'), ms: 86400000 },

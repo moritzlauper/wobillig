@@ -502,7 +502,6 @@ export const en: Record<string, string> = {
   'Karte scannen': 'Scan menu',
   'Karte scannen / hochladen': 'Scan / upload menu',
   'Menüfoto auswählen': 'Choose a menu photo',
-  'Das Foto wird zur Erkennung an Anthropic gesendet und von wobillig nicht gespeichert.': 'The photo is sent to Anthropic for recognition and is not stored by wobillig.',
   'Preis von Hand eintragen': 'Enter a price manually',
   'Sorte': 'Type',
   'Bezeichnung': 'Name on the menu',
@@ -726,4 +725,8 @@ export const en: Record<string, string> = {
   'z. B. {example}': 'e.g. {example}',
   'Smart-Suche': 'Smart search',
   'Beispiel ausprobieren': 'Try this example',
+  'Das Foto wird zur Erkennung an Anthropic gesendet. Kann es nicht automatisch gelesen werden, speichert wobillig es zur Prüfung von Hand und löscht es danach.': 'The photo is sent to Anthropic for recognition. If it cannot be read automatically, wobillig keeps it for a manual check and deletes it afterwards.',
+  'Danke für das Foto! Wir konnten die Karte nicht automatisch lesen und tragen die Preise von Hand nach.': 'Thanks for the photo! We could not read the menu automatically and will add the prices by hand.',
+  'Das Foto konnte gerade nicht gespeichert werden.': 'The photo could not be saved right now.',
+  'Foto nicht gefunden.': 'Photo not found.',
 };

@@ -7,6 +7,7 @@ import { blobStore } from '../server/prices.js';
 import { authorizedMapReviewer } from '../server/map-review.js';
 import { actorFor, sameOrigin } from '../server/community-security.js';
 import { claimLegacyMap, contributionReviewHtml, reviewContribution } from '../server/contribution-review.js';
+import { dismissFailedScan, failedScanPhoto } from '../server/failed-scans.js';
 export default async function handler(req: IncomingMessage & { body?: unknown }, res: ServerResponse) {
   res.setHeader('Cache-Control', 'private, no-store'); res.setHeader('Vary', 'Authorization');
   res.setHeader('X-Robots-Tag', 'noindex, nofollow'); res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -26,6 +27,10 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       const form = typeof body === 'string' ? Object.fromEntries(new URLSearchParams(body)) : body as Record<string, unknown>;
       if (!form || typeof form.city !== 'string' || !isCity(form.city) || typeof form.id !== 'string' || typeof form.kind !== 'string' || typeof form.fingerprint !== 'string' || !/^[a-f0-9]{64}$/.test(form.fingerprint) || typeof form.decision !== 'string') throw new InputError('Ungültige Entscheidung.');
       const city = form.city;
+      if (form.kind === 'failed-scan' && form.decision === 'dismiss') {
+        await dismissFailedScan(store(city), form.id);
+        res.statusCode = 303; res.setHeader('Location', '/api/community-review'); res.end(); return;
+      }
       if (form.kind === 'legacy-map' && form.decision === 'claim') {
         await claimLegacyMap(store(city), form.id, form.fingerprint, actorFor(req, res));
         res.statusCode = 303; res.setHeader('Location', '/api/community-review'); res.end(); return;
@@ -36,6 +41,15 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       res.statusCode = 303; res.setHeader('Location', '/api/community-review'); res.end(); return;
     }
     if (req.method !== 'GET') { res.setHeader('Allow', 'GET, POST'); return fail(405, 'Methode nicht erlaubt.'); }
+    const photo = new URL(req.url || '/', 'http://localhost').searchParams.get('photo');
+    if (photo) {
+      const [city, id] = photo.split(':');
+      if (!isCity(city) || !/^[\da-f-]{36}$/i.test(id || '')) throw new InputError('Foto nicht gefunden.', 404);
+      const { row, stream } = await failedScanPhoto(store(city), id);
+      res.setHeader('Content-Type', row.mediaType);
+      for await (const chunk of stream as unknown as AsyncIterable<Uint8Array>) res.write(chunk);
+      res.end(); return;
+    }
     const groups = await Promise.all((Object.keys(cities) as City[]).map(async city => ({ city, state: (await store(city).read()).state })));
     res.setHeader('Content-Type', 'text/html; charset=utf-8'); res.end(contributionReviewHtml(groups));
   } catch (error) { if (error instanceof InputError) return fail(error.status, error.message); return fail(503, 'Beiträge konnten nicht geladen werden.'); }

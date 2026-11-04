@@ -5,7 +5,8 @@ export const OCR_MODEL = 'claude-haiku-5-5';
 export const MENU_SCAN_VERSION = 'menu-v7';
 // One shared ceiling covers extraction retries and every verification batch.
 // The global photo quota reserves this amount before any paid work begins.
-export const OCR_BUDGET_USD = 0.02;
+// Long menus need a retry with more output tokens and several verification batches; 0.02 cut them off.
+export const OCR_BUDGET_USD = 0.08;
 const INPUT_RATE = .10 / 1_000_000, OUTPUT_RATE = .50 / 1_000_000;
 export const MAX_IMAGE_BYTES = 2_000_000;
 const categories = ['beer', ...Object.keys(coffeeLabels), 'pizza_margherita', 'burger', 'ramen', 'doner', 'falafel', 'cocktail', 'softdrink'];

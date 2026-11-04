@@ -51,7 +51,7 @@ export async function reserveScan(store: Store, hash: string, visitor: string, n
     if (old?.status === 'done' && old.result) return scanResult(state, old.result);
     if (old?.status === 'pending') throw new InputError('Dieses Foto wird bereits verarbeitet. Bitte kurz warten.', 409);
     state.limits = Object.fromEntries(Object.entries(state.limits).filter(([, value]) => value.expires > now));
-    for (const [key, max, ttl] of [[`scan:${visitor}`, 12, 3600000], ['scan:daily', 1000, 86400000]] as const) {
+    for (const [key, max, ttl] of [[`scan:${visitor}`, 40, 3600000], ['scan:daily', 1000, 86400000]] as const) {
       const oldLimit = state.limits[key] || { count: 0, expires: now + ttl };
       if (oldLimit.count >= max) throw new InputError('Das Scan-Limit ist erreicht. Bitte später erneut versuchen oder Preise einzeln eintragen.', 429);
       state.limits[key] = { ...oldLimit, count: oldLimit.count + 1 };

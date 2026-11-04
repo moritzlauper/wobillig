@@ -126,3 +126,14 @@ test('a completed scan without new prices is not counted as a price save', async
   await expectEvent(page, 'menu_upload_completed', { city: 'zurich', language: 'de', added: 0, unchanged: 2, conflicts: 1, skipped: 0 });
   expect((await events(page)).some(e => e.name === 'price_saved')).toBe(false);
 });
+test('a photo the scan cannot read is thanked for, never shown as an error', async ({ page }) => {
+  await page.route('**/api/scan-menu?*', route => route.fulfill({ json: { queued: true, reason: 'unreadable', entries: [], added: 0, unchanged: 0, conflicts: 0, skipped: 0 } }));
+  await openForm(page);
+  const chooser = page.waitForEvent('filechooser'); await page.locator('#scan-menu').click();
+  await (await chooser).setFiles('tests/fixtures/menu-scan-table.jpg');
+  await expect(page.locator('#price-dialog')).not.toBeVisible();
+  await expect(page.locator('#toast')).toContainText('tragen die Preise von Hand nach');
+  await expect(page.locator('#form-error')).toBeHidden();
+  await expectEvent(page, 'menu_upload_queued', { city: 'zurich', language: 'de', reason: 'unreadable' });
+  expect((await events(page)).map(e => e.name)).not.toContain('menu_upload_failed');
+});

@@ -2,7 +2,8 @@ import { beforeEach, it, expect, vi } from 'vitest';
 import { createHmac } from 'node:crypto';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { emptyState, WriteConflict, type State, type Store } from '../server/prices';
-const mocks = vi.hoisted(() => ({ blobStore: vi.fn(), readMenu: vi.fn() }));
+const mocks = vi.hoisted(() => ({ blobStore: vi.fn(), readMenu: vi.fn(), put: vi.fn(), del: vi.fn() }));
+vi.mock('@vercel/blob', async importOriginal => ({ ...await importOriginal<object>(), put: mocks.put, del: mocks.del }));
 vi.mock('../server/prices.js', async importOriginal => ({ ...await importOriginal<object>(), blobStore: mocks.blobStore }));
 vi.mock('../server/menu-ocr.js', async importOriginal => ({ ...await importOriginal<object>(), readMenu: mocks.readMenu }));
 import handler from '../api/scan-menu';
@@ -54,20 +55,25 @@ it('stores 15 menu prices in one upload even when the manual editing quota is ex
   expect(mocks.blobStore.mock.calls.every(([path]) => ['prices/production.json', 'security/production.json'].includes(path))).toBe(true);
   expect(Object.entries(saved.limits).filter(([key]) => key.startsWith('scan:') && key !== 'scan:daily').map(([, value]) => value.count)).toEqual([1]);
 });
-it('rejects a clearly wrong restaurant with a specific message and saves no prices', async () => {
+it('keeps a photo of another restaurant for review, thanks the visitor and saves no prices', async () => {
   mocks.readMenu.mockResolvedValue({ parsed: { menu: true, wrongVenue: true, currency: 'CHF', rows: [] } });
   const result = await request();
-  expect(result.status).toBe(422);
-  expect(result.data.error).toContain('anderen Lokal');
+  expect(result.status).toBe(200);
+  expect(result.data).toMatchObject({ queued: true, reason: 'wrong_venue', entries: [] });
   expect((await store.read()).state.entries).toEqual([]);
+  const [kept] = (await store.read()).state.failedScans!;
+  expect(kept).toMatchObject({ barId: 'node/582264861', venue: expect.stringContaining('Mars Bar'), reason: 'wrong_venue', mediaType: 'image/jpeg' });
+  expect(mocks.put).toHaveBeenCalledWith(kept.path, expect.any(Buffer), expect.objectContaining({ access: 'private' }));
+  expect(kept.path).toMatch(/^failed-scans\/production\/zurich\/[\da-f-]{36}\.jpg$/);
   // A failed scan leaves no lock behind, so the same photo can be retried at once.
   expect((await store.read()).state.menuScans).toEqual({});
 });
 it('rejects foreign origins, unsupported files and non-existent city venues before OCR', async () => {
   expect((await request(photo, { headers: { host: 'example.org', origin: 'https://other.example', 'content-type': 'application/json' } })).status).toBe(403);
   expect((await request({ ...photo, image: { mediaType: 'image/jpeg', data: 'bad' } })).status).toBe(400);
-  expect((await request(photo, { url: '/api/scan-menu?city=bern' })).status).toBe(400);
   expect((await request(photo, { url: '/api/scan-menu?city=../../private' })).status).toBe(400);
+  // A valid photo for a venue the city does not know is kept for review, never read by the AI.
+  expect((await request(photo, { url: '/api/scan-menu?city=bern' })).data).toMatchObject({ queued: true, reason: 'invalid' });
   expect(mocks.readMenu).not.toHaveBeenCalled();
 });
 it('rejects oversize uploads before OCR or storage', async () => {
@@ -79,13 +85,16 @@ it('ignores injected prices and venue coordinates in the request', async () => {
   expect(result.data.entries[0].offer.priceChf).toBe(5.2);
   expect(result.data.entries[0].venue.name).toBe('Mars Bar');
 });
-it('leaves the store unchanged for unreadable photos and lets the visitor retry at once', async () => {
+it('keeps unreadable photos for review without prices and lets the visitor retry at once', async () => {
   mocks.readMenu.mockResolvedValue({ parsed: { menu: false, wrongVenue: false, currency: 'unspecified', rows: [] } });
-  expect((await request()).status).toBe(422); expect((await request()).status).toBe(422);
+  expect((await request()).data).toMatchObject({ queued: true, reason: 'unreadable' }); expect((await request()).status).toBe(200);
   expect((await store.read()).state.entries).toEqual([]); expect(mocks.readMenu).toHaveBeenCalledTimes(2);
+  expect((await store.read()).state.failedScans).toHaveLength(2);
 });
-it('handles missing API configuration without sending the photo or claiming success', async () => {
-  vi.stubEnv('ANTHROPIC_API_KEY', ''); expect((await request()).status).toBe(503); expect(mocks.readMenu).not.toHaveBeenCalled();
+it('keeps the photo for review when the recognition is not configured, without sending it anywhere', async () => {
+  vi.stubEnv('ANTHROPIC_API_KEY', '');
+  expect((await request()).data).toMatchObject({ queued: true, reason: 'unavailable', added: 0 });
+  expect(mocks.readMenu).not.toHaveBeenCalled();
 });
 
 it('allows scanning a newly contributed venue that is absent from the OSM catalogue', async () => {

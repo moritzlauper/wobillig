@@ -191,7 +191,7 @@ $('app').innerHTML = `
     <button id="scan-menu" class="primary" type="button">${t('Karte scannen / hochladen')}</button>
     <input id="menu-photo" type="file" accept="image/*" aria-label="${t('Menüfoto auswählen')}" hidden>
     <p class="muted">${t('Foto aufnehmen oder auswählen. Lesbare Preise aller Kategorien werden automatisch gespeichert.')}</p>
-    <p class="scan-privacy">${t('Das Foto wird zur Erkennung an Anthropic gesendet und von wobillig nicht gespeichert.')}</p>
+    <p class="scan-privacy">${t('Das Foto wird zur Erkennung an Anthropic gesendet. Kann es nicht automatisch gelesen werden, speichert wobillig es zur Prüfung von Hand und löscht es danach.')}</p>
     <p id="scan-status" role="status" hidden></p>
   </section>
   <details id="manual-entry"><summary>${t('Preis von Hand eintragen')}</summary><fieldset id="manual-fields">
@@ -1323,7 +1323,10 @@ $('menu-photo').onchange = async () => {
     const image = await prepareMenuPhoto(file);
     stage = 'request'; reason = 'network';
     $('scan-status').textContent = t('Karte wird gelesen und Preise werden gespeichert …');
-    const response = await contributionFetch(`/api/scan-menu?city=${cityId}`, { barId, image, ...(editing ? { edit: { id: editing.communityId, revision: editing.revision || 0, targetKey: editing.originalKey || offerKey(editing), drink: offerCategory(editing) } } : {}) }, 190000);
+    const payload = { barId, image, ...(editing ? { edit: { id: editing.communityId, revision: editing.revision || 0, targetKey: editing.originalKey || offerKey(editing), drink: offerCategory(editing) } } : {}) };
+    // A dropped connection is retried once; the server recognises the same photo and does not read it twice.
+    const response = await contributionFetch(`/api/scan-menu?city=${cityId}`, payload, 190000)
+      .catch(error => { if (error instanceof Error && error.name === 'TypeError') return contributionFetch(`/api/scan-menu?city=${cityId}`, payload, 190000); throw error; });
     const result = await response.json().catch(() => { throw new Error(t('Der Scan ist gerade nicht verfügbar. Bitte später erneut versuchen.')); });
     if (!response.ok) {
       const message = String(result.error || '');
@@ -1333,6 +1336,14 @@ $('menu-photo').onchange = async () => {
       throw new Error(message || t('Das Foto konnte nicht verarbeitet werden.'));
     }
     const scanned = result as MenuScanResult;
+    if (scanned.queued) {
+      // The photo could not be read automatically; it waits for a manual review instead of failing.
+      completed = true;
+      trackEvent(cityId, 'menu_upload_queued', { reason: scanned.reason || 'invalid' });
+      $<HTMLDialogElement>('price-dialog').close();
+      toast(t('Danke für das Foto! Wir konnten die Karte nicht automatisch lesen und tragen die Preise von Hand nach.'));
+      return;
+    }
     const { added, unchanged, conflicts, skipped } = scanned;
     completed = true;
     trackEvent(cityId, 'menu_upload_completed', { added, unchanged, conflicts, skipped });
