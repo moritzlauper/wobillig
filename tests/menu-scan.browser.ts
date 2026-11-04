@@ -137,3 +137,16 @@ test('a photo the scan cannot read is thanked for, never shown as an error', asy
   await expectEvent(page, 'menu_upload_queued', { city: 'zurich', language: 'de', reason: 'unreadable' });
   expect((await events(page)).map(e => e.name)).not.toContain('menu_upload_failed');
 });
+test('an iPhone HEIC photo is converted to JPG in the browser and uploaded', async ({ page }) => {
+  let uploaded: any;
+  await page.route('**/api/scan-menu?*', async route => {
+    uploaded = route.request().postDataJSON();
+    await route.fulfill({ json: { queued: true, reason: 'unreadable', entries: [], added: 0, unchanged: 0, conflicts: 0, skipped: 0 } });
+  });
+  await openForm(page);
+  const chooser = page.waitForEvent('filechooser'); await page.locator('#scan-menu').click();
+  await (await chooser).setFiles('tests/fixtures/menu-scan-table.heic');
+  await expect(page.locator('#toast')).toContainText('tragen die Preise von Hand nach', { timeout: 30000 });
+  expect(uploaded.image.mediaType).toBe('image/jpeg');
+  expect(Buffer.from(uploaded.image.data, 'base64').subarray(0, 3)).toEqual(Buffer.from([255, 216, 255]));
+});

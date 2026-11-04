@@ -4,12 +4,28 @@ export type MenuScanResult = { pending?: boolean; queued?: boolean; reason?: 'un
 
 // Decode and re-encode locally: normalises phone orientation, removes EXIF/GPS,
 // bounds upload size and retains enough resolution for menu columns.
+const HEIC = /\.(?:heic|heif)$/i;
+// iPhone photos (HEIC) open only in Safari; other browsers get a JPG copy made on the device first.
+async function heicToJpeg(file: Blob): Promise<Blob> {
+  const { heicTo } = await import('heic-to');
+  return heicTo({ blob: file, type: 'image/jpeg', quality: .92 });
+}
+async function decode(source: Blob) {
+  const url = URL.createObjectURL(source);
+  const image = new Image(); image.src = url;
+  try { await image.decode(); return { image, url }; } catch (error) { URL.revokeObjectURL(url); throw error; }
+}
 export async function prepareMenuPhoto(file: File): Promise<{ data: string; mediaType: 'image/jpeg' }> {
-  if (!file.type.startsWith('image/') || file.size > 30_000_000) throw new Error(t('Bitte ein Foto bis 30 MB auswählen.'));
-  const url = URL.createObjectURL(file);
+  const heic = /hei[cf]/i.test(file.type) || HEIC.test(file.name);
+  if ((!file.type.startsWith('image/') && !heic) || file.size > 30_000_000) throw new Error(t('Bitte ein Foto bis 30 MB auswählen.'));
+  let decoded: { image: HTMLImageElement; url: string };
+  try { decoded = await decode(file); }
+  catch {
+    try { decoded = await decode(await heicToJpeg(file)); }
+    catch { throw new Error(t('Dieses Bildformat kann der Browser nicht lesen. Bitte ein JPG-Foto auswählen oder direkt fotografieren.')); }
+  }
+  const { image, url } = decoded;
   try {
-    const image = new Image(); image.src = url;
-    try { await image.decode(); } catch { throw new Error(t('Dieses Bildformat kann der Browser nicht lesen. Bitte ein JPG-Foto auswählen oder direkt fotografieren.')); }
     if (!image.naturalWidth || !image.naturalHeight) throw new Error(t('Das Foto konnte nicht gelesen werden.'));
     const scale = Math.min(1, 2000 / Math.max(image.naturalWidth, image.naturalHeight), Math.sqrt(2_000_000 / (image.naturalWidth * image.naturalHeight)));
     const canvas = document.createElement('canvas');
