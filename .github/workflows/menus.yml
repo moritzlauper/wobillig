@@ -27,6 +27,10 @@ on:
         description: Only these websites, comma-separated (e.g. holycow.ch); empty reads every website not read recently
         type: string
         default: ""
+      alle:
+        description: Read every website, also those the city scan read recently (needed once for a new category such as wine)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -100,9 +104,11 @@ jobs:
           BUDGET: ${{ inputs.ai_budget_usd }}
           TIEF: ${{ github.event_name == 'schedule' || inputs.tief }}
           NUR: ${{ inputs.nur }}
+          ALLE: ${{ inputs.alle }}
         run: |
           FLAG=""
           if [ "$TIEF" = "true" ]; then FLAG="--tief"; fi
+          if [ "$ALLE" = "true" ]; then FLAG="$FLAG --all"; fi
           if [ -z "$BUDGET" ]; then BUDGET=$([ "$WOBILLIG_CITY" = "zurich" ] && echo 3 || echo 1.5); fi
           python -m scraper.menu_scan --budget-usd "$BUDGET" $FLAG --only "$NUR"
 

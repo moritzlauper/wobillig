@@ -18,11 +18,33 @@ class MenuScan(unittest.TestCase):
             row('softdrink', 'Coca-Cola', 5.5, 'Coca-Cola 3.3 dl 5.50', volumeMl=330),
             row('burger', 'Cheeseburger', 24, 'Cheeseburger 24.00'),
             row('ramen', 'Shoyu Ramen', 23, 'Shoyu Ramen 23.00', style='ramen'),
+            row('wine', 'Chasselas', 8, 'Chasselas 1 dl 8.00', wineType='white', volumeMl=100),
         ]}
         found = split(answer, URL, 0, 1, '')
         self.assertEqual({k: [o['name'] for o in v] for k, v in found.items()},
-                         {'cocktail': ['Negroni'], 'softdrink': ['Coca-Cola'], 'burger': ['Cheeseburger'], 'ramen': ['Shoyu Ramen']})
+                         {'cocktail': ['Negroni'], 'softdrink': ['Coca-Cola'], 'wine': ['Chasselas'], 'burger': ['Cheeseburger'], 'ramen': ['Shoyu Ramen']})
         self.assertEqual(found['softdrink'][0]['volumeMl'], 330)
+
+    def test_wine_by_the_glass_natural_wine_spritzer_and_gluehwein(self):
+        answer = {'offers': [
+            row('wine', 'Blauburgunder', 7.5, 'Blauburgunder AOC 1 dl 7.50', wineType='red'),
+            row('wine', 'Pet Nat', 9, 'Naturwein: Pet Nat 1.5 dl 9.00', wineType='white', natural=True),
+            row('wine', 'Riesling', 9, 'Riesling 1 dl 9.00', wineType='white', natural=True),
+            row('wine', 'Merlot Flasche', 54, 'Merlot 75 cl 54.00', wineType='red'),
+            row('wine', 'Pinot Noir', 8, 'Pinot Noir 8.00', wineType='red'),
+            row('wine', 'Gespritzter Weisswein', 6.5, 'Gespritzter Weisswein 3 dl 6.50', wineType='spritzer'),
+            row('wine', 'Glühwein', 7, 'Glühwein 7.00', wineType='mulled'),
+            row('wine', 'Prosecco', 9, 'Prosecco 1 dl 9.00', wineType='sparkling'),
+        ]}
+        found = split(answer, URL, 0, 1, 'Blauburgunder AOC 1 dl 7.50 Naturwein: Pet Nat 1.5 dl 9.00 Riesling 1 dl 9.00 Merlot 75 cl 54.00 Pinot Noir 8.00 Gespritzter Weisswein 3 dl 6.50 Glühwein 7.00 Prosecco 1 dl 9.00')
+        wine = {o['name']: (o['wineType'], o['volumeMl'], o['natural']) for o in found['wine']}
+        # Bottles, glasses without a printed size and sparkling wine stay out; natural only where the page says so.
+        self.assertEqual(wine, {'Blauburgunder': ('red', 100, False), 'Pet Nat': ('white', 150, True), 'Riesling': ('white', 100, True),
+                                'Gespritzter Weisswein': ('spritzer', 300, False), 'Glühwein': ('mulled', None, False)})
+        # The Gespritzter is a cocktail too.
+        self.assertEqual([o['name'] for o in found['cocktail']], ['Gespritzter Weisswein'])
+        no_label = split({'offers': [row('wine', 'Riesling', 9, 'Riesling 1 dl 9.00', wineType='white', natural=True)]}, URL, 0, 1, 'Riesling 1 dl 9.00')
+        self.assertFalse(no_label['wine'][0]['natural'])
 
     def test_rows_in_the_wrong_category_or_conditional_drinks_are_dropped(self):
         answer = {'offers': [
@@ -101,3 +123,21 @@ class RemovedVenues(unittest.TestCase):
             output = keep_unlisted({'bars': []}, path, [('read.example', [{'id': 'node/2'}])])
             self.assertEqual(output['removed'], ['node/2'])
             self.assertEqual([bar['id'] for bar in output['bars']], ['node/1'])
+
+
+class ChainBranches(unittest.TestCase):
+    def test_a_branch_with_its_own_menu_gets_only_that_menu(self):
+        from scraper.chains import split_chain
+        group = [{'id': 'strand', 'name': 'Hiltl am Strand', 'address': 'Mythenquai 95', 'website': 'https://hiltl.ch/'},
+                 {'id': 'haus', 'name': 'Haus Hiltl', 'address': 'Sihlstrasse 28', 'website': 'https://hiltl.ch/'}]
+        result = {'status': 'priced', 'offers': {'cocktail': [{'name': 'Hugo', 'sourceUrl': 'https://hiltl.ch/files/food-drinks-amstrand.pdf'},
+                                                              {'name': 'Negroni', 'sourceUrl': 'https://hiltl.ch/bar/'}]}}
+        split = {key: [o['name'] for o in res['offers']['cocktail']] for key, _group, res in split_chain('hiltl.ch', group, result)}
+        self.assertEqual(split, {'hiltl.ch#strand': ['Hugo'], 'hiltl.ch#haus': ['Negroni']})
+        # Without branch menus every branch keeps the shared offers under the website's own key.
+        shared = {'status': 'priced', 'offers': {'cocktail': [{'name': 'Negroni', 'sourceUrl': 'https://hiltl.ch/bar/'}]}}
+        self.assertEqual([key for key, _g, _r in split_chain('hiltl.ch', group, shared)], ['hiltl.ch'])
+
+    def test_hugo_for_seven_fifty_is_a_cocktail(self):
+        found = split({'offers': [row('cocktail', 'Hugo', 7.5, 'Hugo 7.50'), row('cocktail', 'Apérol Spritz', 9.5, 'Apérol Spritz 9.50')]}, URL, 0, 1, '')
+        self.assertEqual([o['name'] for o in found['cocktail']], ['Hugo', 'Apérol Spritz'])

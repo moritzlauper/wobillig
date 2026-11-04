@@ -12,7 +12,7 @@ import subprocess
 import tempfile
 
 FILES = (
-    'public/data/bars.json', 'public/data/coffee.json', 'public/data/pizza.json', 'public/data/ramen.json', 'public/data/burger.json', 'public/data/brot.json', 'public/data/glace.json', 'public/data/gastro-cocktail.json', 'public/data/gastro-softdrink.json', 'public/data/gastro-brot.json', 'public/data/locations.json',
+    'public/data/bars.json', 'public/data/coffee.json', 'public/data/pizza.json', 'public/data/ramen.json', 'public/data/burger.json', 'public/data/brot.json', 'public/data/glace.json', 'public/data/gastro-cocktail.json', 'public/data/gastro-softdrink.json', 'public/data/gastro-wine.json', 'public/data/gastro-brot.json', 'public/data/locations.json',
     'scraper/discovery_checks.json', 'scraper/coffee_checks.json',
     'scraper/pizza_checks.json', 'scraper/ai_checks.json', 'scraper/menu_checks.json', 'glace/zuerich.json',
 ) + tuple(f'public/data/{city}/{name}.json' for city in ('bern', 'basel', 'lausanne', 'geneva', 'winterthur', 'olten', 'luzern') for name in ('bars', 'coffee', 'pizza', 'locations')) + tuple(f'scraper/cities/{city}/{name}_checks.json' for city in ('bern', 'basel', 'lausanne', 'geneva', 'winterthur', 'olten', 'luzern') for name in ('discovery', 'coffee', 'pizza', 'ai', 'menu')) + tuple(
@@ -20,7 +20,7 @@ FILES = (
     for root, suffix in [('public/data', ''), ('scraper', '_checks')]
     for prefix in (('', 'bern/', 'basel/', 'lausanne/', 'geneva/', 'winterthur/', 'olten/', 'luzern/') if root == 'public/data' else ('', 'cities/bern/', 'cities/basel/', 'cities/lausanne/', 'cities/geneva/', 'cities/winterthur/', 'cities/olten/', 'cities/luzern/'))
     for category in ('doner', 'falafel')
-) + tuple(f'public/data/{city}/{name}.json' for city in ('bern', 'basel', 'lausanne', 'geneva', 'winterthur', 'olten', 'luzern') for name in ('gastro-cocktail', 'gastro-softdrink', 'burger', 'ramen')) + ('scraper/cities/basel/outdoor_permits.json',)
+) + tuple(f'public/data/{city}/{name}.json' for city in ('bern', 'basel', 'lausanne', 'geneva', 'winterthur', 'olten', 'luzern') for name in ('gastro-cocktail', 'gastro-softdrink', 'gastro-wine', 'burger', 'ramen')) + ('scraper/cities/basel/outdoor_permits.json',)
 MISSING = object()
 
 

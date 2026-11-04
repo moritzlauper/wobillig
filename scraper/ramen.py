@@ -22,7 +22,7 @@ from bs4 import BeautifulSoup
 
 from scraper.ai import Claude, BudgetExhausted, APIUnavailable, MODEL, documents, obj, enum
 from scraper.cities import CACHE_DIR, CITY_NAME, DATA_DIR, ROOT, venue_query
-from scraper.chains import is_chain
+from scraper.chains import is_chain, split_chains
 from scraper.sites import start_urls
 from scraper.datasets import first_error, keep_unlisted
 from scraper.enrich import AuditFetcher, host
@@ -240,6 +240,8 @@ def main():
     if args.out.exists():
         previous = {b['id']: b['offers'] for b in json.loads(args.out.read_text())['bars']}
     observed = now()
+    # A branch with its own menu gets only that menu's prices.
+    groups, results = split_chains(groups, results)
     bars = [(name, group) for name, group in groups.items()]
     output = keep_unlisted(dataset(bars, results, previous, observed, found.get('attribution', '© OpenStreetMap contributors, ODbL 1.0')), args.out, bars)
     args.out.parent.mkdir(parents=True, exist_ok=True)
