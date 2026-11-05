@@ -55,16 +55,38 @@ test('placeholder rotation stops after seven examples while all suggestions rema
   await expect(page.locator('#search-examples [role=option]').nth(1)).toHaveAttribute('aria-selected', 'true');
 });
 
-test('mobile close button dismisses smart-search suggestions without clearing the query', async ({ page }) => {
+test('mobile search shows one X: it empties typed text, and closes the empty search', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await expect(page.locator('#count')).not.toHaveText('Laden …');
   const search = page.locator('#search');
   await search.fill('Kaffee unter 5 Franken');
   await expect(page.locator('#search-dropdown')).toBeVisible();
-  await page.getByRole('button', { name: 'Suche schliessen' }).click();
+  await expect(page.locator('#search-clear')).toBeVisible();
+  await expect(page.locator('#search-close')).toBeHidden();
+  await page.locator('#search-clear').click();
+  await expect(search).toHaveValue('');
+  await expect(page.locator('#search-close')).toBeVisible();
+  await page.locator('#search-close').click();
   await expect(page.locator('#search-dropdown')).toBeHidden();
-  await expect(search).toHaveValue('Kaffee unter 5 Franken');
+  await expect(search).not.toBeFocused();
+});
+
+test('after choosing a venue, the X resets the search without reopening it, and «Preise ergänzen» adds to that venue', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/?drink=coffee');
+  await expect(page.locator('#count')).not.toHaveText('Laden …');
+  const search = page.locator('#search');
+  await search.click(); await search.pressSequentially('Café Zähringer');
+  await search.press('Enter');
+  await expect(page.locator('#detail')).toContainText('Zähringerplatz 11');
+  await page.locator('#add-venue').click();
+  await expect(page.locator('#price-dialog')).toBeVisible();
+  await expect(page.locator('#price-dialog input:visible').first()).toHaveValue(/Café Zähringer/);
+  await page.locator('#cancel-price').click();
+  await page.locator('#search-clear').click();
+  await expect(search).toHaveValue('');
+  await expect(page.locator('#search-dropdown')).toBeHidden();
   await expect(search).not.toBeFocused();
 });
 

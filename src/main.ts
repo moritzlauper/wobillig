@@ -126,8 +126,8 @@ $('app').innerHTML = `
     <div class="smart-search-field">
     <span class="smart-search-label" aria-hidden="true">${t('Smart-Suche')}:</span>
     <input id="search" type="search" role="combobox" placeholder="${t('Lokal, Adresse, PLZ oder Ort')}" aria-label="${t('Lokal, Adresse oder Wunsch in eigenen Worten')}" enterkeyhint="search" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="search-examples search-suggestions">
-    <button id="search-clear" type="button" aria-label="${t('Suche löschen')}" title="${t('Suche löschen')}" hidden><span aria-hidden="true">×</span></button>
-    <button id="search-close" type="button" aria-label="${t('Suche schliessen')}" title="${t('Suche schliessen')}"><span aria-hidden="true">×</span></button>
+    <button id="search-clear" type="button" aria-label="${t('Suche löschen')}" title="${t('Suche löschen')}" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg></button>
+    <button id="search-close" type="button" aria-label="${t('Suche schliessen')}" title="${t('Suche schliessen')}"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg></button>
     </div>
     <div id="search-dropdown" hidden><div id="search-examples" role="listbox" aria-label="${t('Smart-Suche')}" hidden></div><div id="search-history-heading" hidden><strong>${t('Letzte Suchen')}</strong><button id="search-history-clear" type="button">${t('Verlauf löschen')}</button></div><div id="search-suggestions" role="listbox" aria-label="${t('Suchvorschläge')}"></div><p id="search-empty" role="status" hidden></p></div>
   </div>
@@ -261,6 +261,9 @@ addVenueButton.id = 'add-venue'; addVenueButton.className = 'text-button'; addVe
 $('data-info').before(addVenueButton);
 addVenueButton.onclick = () => {
   if (!communityReady) return toast(t('Gemeinsame Einträge sind gerade nicht verfügbar. Bitte neu laden.'));
+  // With a venue open, its prices are what the visitor wants to add.
+  const open = selected ? selectedLocation() : undefined;
+  if (open) return openPrice(open);
   contributions.open(addressSelection ? '' : typed().trim());
 };
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
@@ -1005,12 +1008,16 @@ $('search-history-clear').onclick = () => {
 };
 $('search-clear').onpointerdown = event => event.preventDefault();
 $('search-clear').onclick = () => {
+  // While typing, the X empties the field and keeps the search open; after a venue or address was
+  // chosen it only resets the search, without reopening the suggestions and the keyboard.
+  const typing = document.activeElement === $('search') || searchOpen;
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
   f.query = ''; draft = undefined; selected = undefined;
-  searchOpen = true;
+  searchOpen = typing;
   render();
-  $('search').focus({ preventScroll: true });
+  if (typing) $('search').focus({ preventScroll: true });
+  else $('search').blur();
 };
 $('search-close').onpointerdown = event => event.preventDefault();
 $('search-close').onclick = () => {
@@ -1538,6 +1545,12 @@ async function init() {
   if (f.district) await loadDistricts();
   rebuild();
   exampleList = smartExamples(cityId, locale(), availableCategories()).slice(0, SMART_SEARCH_PLACEHOLDER_LIMIT);
+  // Venue names show that the field also finds a café or restaurant by name («Café Zähringer»).
+  const named = bars.filter(b => b.name && b.name.length <= 26 && /caf[eé]|restaurant|bar\b|pizzeria|bistro|beiz/i.test(b.name) && bestOffer(b, f));
+  for (const [position, bar] of [[1, named[Math.floor(Math.random() * named.length)]], [4, named[Math.floor(Math.random() * named.length)]]] as const) {
+    if (bar && !exampleList.includes(bar.name)) exampleList.splice(position, 0, bar.name);
+  }
+  exampleList = exampleList.slice(0, SMART_SEARCH_PLACEHOLDER_LIMIT);
   rotatePlaceholder();
   placeholderInterval = setInterval(rotatePlaceholder, 4500);
   if (initial.has('map')) await customMapUI?.load(initial.get('map')!);
