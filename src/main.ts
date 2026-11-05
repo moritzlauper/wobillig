@@ -194,7 +194,7 @@ $('app').innerHTML = `
   <section id="menu-scan" class="menu-scan" aria-label="${t('Karte scannen')}">
     <button id="scan-menu" class="primary" type="button">${t('Karte scannen / hochladen')}</button>
     <input id="menu-photo" type="file" accept="image/*" aria-label="${t('Menüfoto auswählen')}" hidden>
-    <p class="muted">${t('Foto aufnehmen oder auswählen. Lesbare Preise aller Kategorien werden automatisch gespeichert.')}</p>
+    <p class="muted">${t('Foto der Karte oder einer Quittung aufnehmen oder auswählen. Lesbare Preise aller Kategorien werden automatisch gespeichert.')}</p>
     <p class="scan-privacy">${t('Das Foto wird zur Erkennung an Anthropic gesendet. Kann es nicht automatisch gelesen werden, speichert wobillig es zur Prüfung von Hand und löscht es danach.')}</p>
     <p id="scan-status" role="status" hidden></p>
   </section>

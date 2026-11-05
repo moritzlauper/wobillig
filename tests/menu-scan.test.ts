@@ -116,6 +116,14 @@ describe('OCR calls and cost guard', () => {
     expect(result.usage).toMatchObject({ inputTokens: 9000, outputTokens: 4226 });
     expect(result.usage.costUsd).toBeLessThanOrEqual(OCR_BUDGET_USD);
   });
+  it('asks the model to read till receipts of the venue as well as menus', async () => {
+    const fetcher = vi.fn().mockImplementation(async (url) => String(url).endsWith('count_tokens') ? Response.json({ input_tokens: 3000 })
+      : Response.json({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify({ ...document(), wrongVenue: false, venueEvidence: '', accepted: [0], rejected: [] }) }] }));
+    await readMenu(image, bar, 'test', fetcher);
+    const read = JSON.parse(fetcher.mock.calls.find((c: any[]) => !String(c[0]).endsWith('count_tokens'))![1].body).system;
+    expect(read).toMatch(/till receipt/);
+    expect(read).toMatch(/Panaché \(beer mix, exclude\)/);
+  });
   it('checks a menu with more than forty rows in batches and maps rejections back correctly', async () => {
     const rows = Array.from({ length: 45 }, (_, i) => ({ ...row, name: `Beer ${i}` }));
     const fetcher = vi.fn().mockImplementation(async (url, options) => {

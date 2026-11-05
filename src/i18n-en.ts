@@ -703,7 +703,7 @@ export const en: Record<string, string> = {
   'Bitte einen Burger ohne Getränkeangaben eintragen.': 'Please enter a burger without drink details.',
   'z. B. Cheeseburger': 'e.g. Cheeseburger',
   'Keine eindeutigen Preise erkannt. Bitte einen näheren, scharfen Ausschnitt fotografieren.': 'No clear prices found. Please take a closer, sharp photo of the menu.',
-  'Foto aufnehmen oder auswählen. Lesbare Preise aller Kategorien werden automatisch gespeichert.': 'Take or choose a photo. Readable prices of every category are saved automatically.',
+  'Foto der Karte oder einer Quittung aufnehmen oder auswählen. Lesbare Preise aller Kategorien werden automatisch gespeichert.': 'Take or choose a photo of the menu or a receipt. Readable prices of every category are saved automatically.',
   'Bitte eine Kategorie wählen.': 'Please choose a category.',
   'Bitte Kebab oder Falafel wählen.': 'Please choose kebab or falafel.',
   'Bitte Dürüm, Im Brot oder Teller wählen.': 'Please choose dürüm, in bread or plate.',
