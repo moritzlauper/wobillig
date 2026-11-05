@@ -25,6 +25,15 @@ SLOTS = [((35, 145, 125, 255), (235, 335, 565, 365)),
          ((465, 575, 565, 665), (300, 720, 565, 760))]
 
 
+# Pack sizes as the front page prints them: «2 × 200 g», «6 × 75 cl», «500 g», «1,5 l»,
+# «ca. 850 g», «4 Stück, ca. 320 g», «per Stück», «per kg». A single size must not be
+# a price («100 g = 1.20») or part of a count («2 × 200 g», matched by the first branch).
+QUANTITY = re.compile(r'\d+\s*[×x]\s*\d+(?:[.,]\d+)?\s*(?:kg|g|cl|dl|ml|l)\b'
+                      r'|\d+ Stück, ca\. \d+ g|ca\. \d+(?:[.,]\d+)?\s*(?:kg|g)\b|per Stück|per kg'
+                      r'|(?<![×x(=]\s)(?<![\d.,×x(=])\b\d+(?:[.,]\d+)?\s*(?:kg|g|cl|dl|ml|l)\b(?!\s*=)'
+                      r'|\b\d+ Stück\b')
+
+
 def money(text):
     return float(text.replace('–', '0').replace('−', '0'))
 
@@ -46,6 +55,7 @@ def parse_pdf(data, source_url, fetched_at):
         if not 0 <= (end - start).days <= 7:
             raise ValueError('Unexpected validity period')
         offers = []
+        skipped = []
         for price_box, text_box in SLOTS:
             prices = page.crop(price_box).extract_text() or ''
             description = page.crop(text_box).extract_text() or ''
@@ -58,10 +68,12 @@ def parse_pdf(data, source_url, fetched_at):
             if not 0 < current < old or abs(100 * (1 - current / old) - int(discount[0])) > 1.1:
                 raise ValueError('Price and discount disagree')
             per_100 = 'per 100 g' in prices
-            quantity = re.search(r'\d+\s*[×x]\s*\d+(?:[.,]\d+)?\s*(?:kg|g|cl|ml|l)\b|\d+ Stück, ca\. \d+ g|ca\. \d+ g|per Stück|per kg', description)
+            quantity = QUANTITY.search(description)
             if not quantity:
-                raise ValueError('Unclear pack size or quantity')
-            quantity = quantity.group(0)
+                # One unclear tile must not discard the other offers: skip it and show why in the log.
+                skipped.append({'reason': 'Unclear pack size or quantity', 'evidence': prices + '\n' + description})
+                continue
+            quantity = re.sub(r'\s+', ' ', quantity.group(0))
             conditions = ['Solange Vorrat']
             minimum = re.search(r'ab \d+ Stück', prices)
             if minimum:
@@ -77,10 +89,11 @@ def parse_pdf(data, source_url, fetched_at):
             elif quantity == 'per kg':
                 unit = {'amount': current, 'unit': 'kg'}
             else:
-                pack = re.fullmatch(r'(\d+)\s*[×x]\s*(\d+(?:[.,]\d+)?)\s*(kg|g|cl|ml|l)', quantity)
+                pack = re.fullmatch(r'(?:(\d+)\s*[×x]\s*)?(\d+(?:[.,]\d+)?)\s*(kg|g|cl|ml|l)', quantity)
                 if pack:
                     count, size, measure = pack.groups()
-                    base = float(count) * float(size.replace(',', '.')) * {'kg': 1, 'g': .001, 'l': 1, 'cl': .01, 'ml': .001}[measure]
+                    count = count or '1'
+                    base = float(count) * float(size.replace(',', '.')) * {'kg': 1, 'g': .001, 'l': 1, 'cl': .01, 'dl': .1, 'ml': .001}[measure]
                     unit = {'amount': round(current / base, 2), 'unit': 'kg' if measure in ['g', 'kg'] else 'l'}
             offers.append({
                 'id': hashlib.sha256(f'coop-zz:{product}:{start}:{end}'.encode()).hexdigest()[:24],
@@ -91,6 +104,10 @@ def parse_pdf(data, source_url, fetched_at):
                 'validFrom': start.isoformat(), 'validThrough': end.isoformat(),
                 'sourceUrl': source_url, 'sourcePage': 1, 'evidence': prices + '\n' + description,
             })
+    for item in skipped:
+        print(f"Skipped tile ({item['reason']}): {item['evidence']!r}")
+    if len(offers) < 3:
+        raise ValueError(f'Only {len(offers)} of 5 offers readable; previous data must not be extended')
     return {'source': {'id': 'coop-zz-front-page', 'chain': 'coop', 'label': 'Coop Aktionsprospekt · Titelseite',
                       'url': source_url, 'sha256': hashlib.sha256(data).hexdigest(), 'fetchedAt': fetched_at,
                       'scopeLabel': 'Prospektausgabe ZZ · regionale und filialspezifische Gültigkeit noch zu prüfen'},

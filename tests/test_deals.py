@@ -55,6 +55,34 @@ class DealTests(unittest.TestCase):
         self.assertEqual(offers[3]['unitPrice'], {'amount': 12.0, 'unit': 'kg'})
         self.assertEqual(offers[4]['category'], 'drinks')
 
+    def test_single_sizes_and_one_unclear_tile_is_skipped(self):
+        page = MagicMock(width=595.276, height=841.89)
+        page.extract_text.return_value = 'Donnerstag bis Mittwoch, 05.11. – 11.11.2026 ' + 'statt ' * 5
+        pairs = [('40%\n6.–\nstatt 10.–', 'Coop Rindshackfleisch, Schweiz, 500 g'),
+                 ('50%\n9.–\nstatt 18.–', 'Olivenöl extra vergine, 1 l'),
+                 ('30%\n7.–\nstatt 10.–', 'Coop Geschenkset Weihnachten, Packung'),
+                 ('25%\n7.50\nstatt 10.–', 'Lindt Pralinés, 4 Stück'),
+                 ('50%\n9.–\nstatt 18.–', 'Rivella Rot, 6 × 1,5 l')]
+        page.crop.side_effect = [MagicMock(extract_text=MagicMock(return_value=text)) for pair in pairs for text in pair]
+        document = MagicMock()
+        document.__enter__.return_value.pages = [page]
+        with patch('scraper.deals.pdfplumber.open', return_value=document):
+            offers = parse_pdf(b'pdf', 'https://epaper.coop.ch/test.pdf', '2026-11-05T12:00:00Z')['offers']
+        self.assertEqual([o['quantity'] for o in offers], ['500 g', '1 l', '4 Stück', '6 × 1,5 l'])
+        self.assertEqual(offers[0]['unitPrice'], {'amount': 12.0, 'unit': 'kg'})
+        self.assertEqual(offers[3]['unitPrice'], {'amount': 1.0, 'unit': 'l'})
+
+    def test_too_few_readable_offers_fail_closed(self):
+        page = MagicMock(width=595.276, height=841.89)
+        page.extract_text.return_value = 'Donnerstag bis Mittwoch, 05.11. – 11.11.2026 ' + 'statt ' * 5
+        texts = ['50%\n9.–\nstatt 18.–', 'Coop Geschenkset, Packung'] * 5
+        page.crop.side_effect = [MagicMock(extract_text=MagicMock(return_value=text)) for text in texts]
+        document = MagicMock()
+        document.__enter__.return_value.pages = [page]
+        with patch('scraper.deals.pdfplumber.open', return_value=document):
+            with self.assertRaises(ValueError):
+                parse_pdf(b'pdf', 'https://epaper.coop.ch/test.pdf', '2026-11-05T12:00:00Z')
+
 
 TILE = {'id': '1000706021', 'path': '/de/weine/alle-weine/rotweine/rioja-doca-crianza-cune/p/1000706021', 'cat': 'rotweine',
         'label': 'Rioja DOCa Crianza Cune 34% Aktion 7.85 CHF statt 11.95 CHF',
