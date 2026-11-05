@@ -70,11 +70,13 @@ print(json.dumps({
             lambda line: not line.strip() or line.startswith('          '), run_lines,
         )))
         for day, event, expected in [
+            # Every 28 days from 19.10.2026: 16.11., 14.12., 11.1.2027.
             ('2026-10-12', 'schedule', False), ('2026-10-19', 'schedule', True),
-            ('2026-10-26', 'schedule', False), ('2026-11-02', 'schedule', False),
-            ('2026-11-09', 'schedule', True), ('2026-11-30', 'schedule', True),
-            ('2026-12-21', 'schedule', True), ('2027-01-04', 'schedule', False),
-            ('2027-01-11', 'schedule', True), ('2026-10-16', 'workflow_dispatch', True),
+            ('2026-10-26', 'schedule', False), ('2026-11-09', 'schedule', False),
+            ('2026-11-16', 'schedule', True), ('2026-11-30', 'schedule', False),
+            ('2026-12-14', 'schedule', True), ('2026-12-21', 'schedule', False),
+            ('2027-01-04', 'schedule', False), ('2027-01-11', 'schedule', True),
+            ('2026-10-16', 'workflow_dispatch', True),
         ]:
             class FixedDateTime(datetime):
                 @classmethod
