@@ -1,0 +1,326 @@
+{
+  "generatedAt": "2026-11-05T23:45:44.472630+00:00",
+  "discoveredAt": "2026-11-05T23:45:44.472630+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "bars": [
+    {
+      "id": "node/2663868226",
+      "name": "Bistro Johannes",
+      "lat": 47.565297,
+      "lon": 7.5749311,
+      "type": "restaurant",
+      "address": "Metzerstrasse 52",
+      "postcode": "4056",
+      "website": "https://www.bistrojohannes.ch/",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Tu-Sa 11:00-14:00,18:00-22:00; Mo,Su,PH off",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+    },
+    {
+      "id": "node/13997991120",
+      "name": "Kaisin",
+      "lat": 47.5526409,
+      "lon": 7.5916855,
+      "type": "restaurant",
+      "address": "Elisabethenstrasse 19",
+      "postcode": "4051",
+      "website": "https://kaisin.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-21:30; Sa,Su,PH 12:00-21:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+    },
+    {
+      "id": "node/10581639707",
+      "name": "Miake",
+      "lat": 47.5446361,
+      "lon": 7.5887393,
+      "type": "restaurant",
+      "address": "Sempacherstrasse 7",
+      "postcode": "4053",
+      "website": "https://www.miake.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:00,18:00-22:00; Sa 18:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+    },
+    {
+      "id": "node/9080191421",
+      "name": "Namamen",
+      "lat": 47.5536574,
+      "lon": 7.5915911,
+      "type": "restaurant",
+      "address": "Steinenberg 1",
+      "postcode": "",
+      "website": "https://namamen.ch",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Mo-Fr 11:00-21:30; Sa 11:00-22:30; Su 12:00-21:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Tan Tan Men Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Tan Tan Men Ramen 27.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gyoza Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Gyoza Ramen 24.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kamo Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Kamo Ramen 29.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Wan Tan Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Wan Tan Ramen 25.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chashu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Chashu Ramen 25.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Beef Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Beef Ramen 25.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chicken Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Chicken Ramen 24.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Vegi Ramen 23.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+    },
+    {
+      "id": "node/3890667653",
+      "name": "namamen Japanese Ramenbar Messe",
+      "lat": 47.5637483,
+      "lon": 7.5996043,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.namamen.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:00-14:30,18:00-21:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Tan Tan Men Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Tan Tan Men Ramen 27.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gyoza Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Gyoza Ramen 24.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kamo Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Kamo Ramen 29.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Wan Tan Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Wan Tan Ramen 25.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chashu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Chashu Ramen 25.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Beef Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Beef Ramen 25.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chicken Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 24.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Chicken Ramen 24.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 23.5,
+          "sourceUrl": "https://namamen.ch/assets/media/pdf/NAM Sommerkarte DE 2026.pdf",
+          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "confidence": "ai",
+          "evidence": "Vegi Ramen 23.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+    },
+    {
+      "id": "node/1255857521",
+      "name": "Wasabi",
+      "lat": 47.5447379,
+      "lon": 7.5892479,
+      "type": "restaurant",
+      "address": "Güterstrasse 138",
+      "postcode": "4053",
+      "website": "https://wasabi2go.ch/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,16:30-20:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+    }
+  ],
+  "removed": []
+}
