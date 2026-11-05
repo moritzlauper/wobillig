@@ -85,3 +85,17 @@ test('history is labelled separately from examples and can be cleared', async ({
   await expect(page.locator('#search-suggestions [role=option]')).toHaveCount(0);
   await expect(page.locator('#search-examples')).toBeVisible();
 });
+
+test('venues of every category are found by name, and a full name opens the venue on Enter', async ({ page }) => {
+  await page.goto('/?drink=beer');
+  await expect(page.locator('#count')).not.toHaveText('Laden …');
+  const search = page.locator('#search');
+  // Café Zähringer has no beer price but is still a venue in Zürich.
+  await search.click(); await search.pressSequentially('Café Zähringer');
+  await expect(page.locator('#search-suggestions [data-suggestion]').first()).toContainText('Café Zähringer');
+  await search.press('Enter');
+  await expect(page.locator('#detail')).toContainText('Zähringerplatz 11');
+  // A single category word stays a smart search.
+  await search.fill(''); await search.click(); await search.pressSequentially('Pizza');
+  await expect(page.locator('#search-suggestions [data-suggestion]').first()).toHaveClass(/smart-option/);
+});

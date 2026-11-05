@@ -753,7 +753,13 @@ async function loadAddressResults(): Promise<void> {
   })();
   return addressPromise;
 }
-function searchCandidates() { return bars.filter(b => isVenueEligible(b, f)); }
+// Venues of the chosen category first; every other known venue stays findable by name,
+// so «Café Zähringer» is found while beer is selected.
+function searchCandidates() {
+  const eligible = bars.filter(b => isVenueEligible(b, f));
+  const ids = new Set(eligible.map(b => b.id));
+  return [...eligible, ...selectableLocations(venues, locationCatalogue).filter(b => !ids.has(b.id))];
+}
 function closeSearchSuggestions() {
   searchOpen = false; activeSuggestion = -1; suggestions = [];
   $('search-dropdown').hidden = true;
@@ -771,10 +777,14 @@ function renderSearchSuggestions() {
   // A sentence comes first, unless the text is the start of a venue name such as «Pizza Bella».
   const smart: SmartSuggestion[] = preview ? [{ smart: text }] : [];
   const found = /\d/.test(text) && !preview ? [...addressResults, ...venues] : [...venues, ...addressResults];
-  // Smart search is the primary suggestion: show it before venue matches and, when
-  // the field is empty, put the examples before the search history.
+  // A venue whose name starts with the text («Mars Bar», «Café Zähringer») comes before the sentence,
+  // so Enter opens the venue; otherwise smart search is the primary suggestion. With an empty
+  // field the examples come before the search history.
+  const term = normalizeSearch(text);
+  // A single word like «Pizza» stays a category search even though «Pizzeria Napoli» starts with it.
+  const venueFirst = term.length >= 3 && venues.some(v => normalizeSearch(v.name) === term || (term.includes(' ') && normalizeSearch(v.name).startsWith(term)));
   suggestions = showHistory ? [...dropdownExamples.map(example => ({ smart: example, example: true })), ...history]
-    : [...smart, ...found];
+    : venueFirst ? [...venues, ...smart, ...addressResults] : [...smart, ...found];
   $('search-history-heading').hidden = !history.length;
   if (showHistory && !suggestions.length) { closeSearchSuggestions(); return; }
   activeSuggestion = active && 'smart' in active
