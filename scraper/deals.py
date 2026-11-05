@@ -63,10 +63,12 @@ def parse_pdf(data, source_url, fetched_at):
             previous = re.findall(r'statt\s+([\d–]+\.[\d–]+)', prices)
             discount = re.findall(r'(\d{1,2})%', prices)
             if len(price) != 1 or len(previous) != 1 or len(discount) != 1 or len(description.strip()) < 12:
-                raise ValueError('Ambiguous price or missing product description')
+                skipped.append({'reason': 'Ambiguous price or missing product description', 'evidence': prices + '\n' + description})
+                continue
             current, old = money(price[0]), money(previous[0])
             if not 0 < current < old or abs(100 * (1 - current / old) - int(discount[0])) > 1.1:
-                raise ValueError('Price and discount disagree')
+                skipped.append({'reason': 'Price and discount disagree', 'evidence': prices + '\n' + description})
+                continue
             per_100 = 'per 100 g' in prices
             quantity = QUANTITY.search(description)
             if not quantity:
