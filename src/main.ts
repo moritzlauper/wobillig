@@ -192,8 +192,12 @@ $('app').innerHTML = `
   <button id="entry-change-venue" class="text-button" type="button" hidden>${t('Anderes Lokal wählen')}</button>
   <div id="entry-smart-preview" class="contribution-preview" hidden><p id="entry-smart-text"></p><p id="entry-smart-notes" class="muted"></p></div>
   <section id="menu-scan" class="menu-scan" aria-label="${t('Karte scannen')}">
-    <button id="scan-menu" class="primary" type="button">${t('Foto machen oder auswählen')}</button>
-    <input id="menu-photo" type="file" accept="image/*" aria-label="${t('Menüfoto auswählen')}" hidden>
+    <div class="scan-buttons">
+      <button id="scan-menu" class="primary" type="button">${t('Kamera')}</button>
+      <button id="pick-menu" class="primary" type="button">${t('Galerie')}</button>
+    </div>
+    <input id="menu-photo" type="file" accept="image/*" capture="environment" aria-label="${t('Kamera')}" hidden>
+    <input id="menu-photo-pick" type="file" accept="image/*" aria-label="${t('Galerie')}" hidden>
     <p class="muted">${t('Karte oder Quittung fotografieren. Lesbare Preise aller Kategorien werden automatisch gespeichert.')}</p>
     <p class="scan-privacy">${t('Das Foto wird zur Erkennung an Anthropic gesendet. Kann es nicht automatisch gelesen werden, speichert wobillig es zur Prüfung von Hand und löscht es danach.')}</p>
     <p id="scan-status" role="status" hidden></p>
@@ -1331,9 +1335,10 @@ $('entry-change-venue').onclick = () => {
   if (saving) return;
   $<HTMLDialogElement>('price-dialog').close(); contributions.resume();
 };
-// Without «capture» the phone itself asks whether to take a photo or pick one from the gallery.
+// Android's photo picker no longer offers the camera, so the choice is ours: camera or gallery.
 $('scan-menu').onclick = () => { if (!saving) $<HTMLInputElement>('menu-photo').click(); };
-$('menu-photo').onchange = async (event: Event) => {
+$('pick-menu').onclick = () => { if (!saving) $<HTMLInputElement>('menu-photo-pick').click(); };
+$('menu-photo').onchange = $('menu-photo-pick').onchange = async (event: Event) => {
   const picker = event.currentTarget as HTMLInputElement;
   const file = picker.files?.[0];
   if (!file || saving) return;
@@ -1343,7 +1348,7 @@ $('menu-photo').onchange = async (event: Event) => {
   let reason: Parameters<typeof trackEvent<'menu_upload_failed'>>[2]['reason'] = 'preparation';
   trackEvent(cityId, 'menu_upload_started', {});
   saving = true;
-  $<HTMLButtonElement>('scan-menu').disabled = true;
+  $<HTMLButtonElement>('scan-menu').disabled = true; $<HTMLButtonElement>('pick-menu').disabled = true;
   $<HTMLButtonElement>('cancel-price').disabled = true;
   $<HTMLFieldSetElement>('manual-fields').disabled = true;
   $('menu-scan').setAttribute('aria-busy', 'true');
@@ -1400,7 +1405,7 @@ $('menu-photo').onchange = async (event: Event) => {
     $('form-error').hidden = false;
   } finally {
     saving = false; picker.value = '';
-    $<HTMLButtonElement>('scan-menu').disabled = false;
+    $<HTMLButtonElement>('scan-menu').disabled = false; $<HTMLButtonElement>('pick-menu').disabled = false;
     $<HTMLButtonElement>('cancel-price').disabled = false;
     $<HTMLFieldSetElement>('manual-fields').disabled = false;
     $('menu-scan').removeAttribute('aria-busy');

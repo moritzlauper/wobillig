@@ -16,7 +16,7 @@ export function showValueRating(actions: HTMLElement, city: City, barId: string)
     if (!group.isConnected) return;
     const summary = rating ? rating.count
       ? `★ ${rating.average!.toLocaleString(dateLocale(), { maximumFractionDigits: 1 })}/5 · ${rating.count}`
-      : t('Noch keine Bewertung') : '';
+      : '' : '';
     group.innerHTML = `<span class="value-rating-label">${t('Preis/Leistung')}</span>
       <span class="value-rating-stars" role="group" aria-label="${e(t('Preis/Leistung bewerten'))}">${[1, 2, 3, 4, 5].map(value => `<button type="button" data-stars="${value}" class="${rating?.mine && value <= rating.mine ? 'on' : ''}" aria-label="${e(t('{score} von 5 Sternen', { score: value }))}" ${saving ? 'disabled' : ''}><span aria-hidden="true">★</span></button>`).join('')}</span>
       <span class="value-rating-meta"><span class="value-rating-summary">${e(summary)}</span>

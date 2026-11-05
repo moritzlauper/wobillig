@@ -405,8 +405,10 @@ dialog::backdrop { background: var(--backdrop); }
 .location-choices button { width: 100%; text-align: left; white-space: normal; min-height: 44px; }
 
 .menu-scan { margin: 16px 0; padding: 14px; border: 1px solid var(--teal-border); border-radius: 6px; background: var(--teal-surface); }
-#scan-menu { width: 100%; min-height: 44px; color: #fff; background: var(--teal-active); border-color: var(--teal-active); }
-#scan-menu:hover { background: var(--teal-active-hover); }
+/* Camera and gallery side by side: Android's photo picker no longer offers the camera itself. */
+.scan-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+#scan-menu, #pick-menu { width: 100%; min-height: 44px; color: #fff; background: var(--teal-active); border-color: var(--teal-active); }
+#scan-menu:hover, #pick-menu:hover { background: var(--teal-active-hover); }
 .menu-scan p { margin: 9px 0 0; }
 .scan-privacy { font-size: var(--font-meta); color: var(--muted); }
 #scan-status { font-size: var(--font-control); color: var(--teal); }

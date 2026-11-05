@@ -51,11 +51,19 @@ test('errors stay in the dialog and allow another photo without extra required f
   await expect.poll(() => calls).toBe(2);
   await page.screenshot({ path: '/tmp/wobillig-scan-mobile.png' });
 });
-test('one button lets the phone offer camera or gallery', async ({ page }) => {
+test('camera and gallery are two buttons side by side', async ({ page }) => {
+  let calls = 0;
+  await page.route('**/api/scan-menu?*', route => { calls++; return route.fulfill({ json: { added: 0, unchanged: 0, conflicts: 0, skipped: 0, entries: [] } }); });
   await openForm(page);
-  await expect(page.locator('#scan-menu')).toHaveText('Foto machen oder auswählen');
-  await expect(page.locator('#menu-photo')).not.toHaveAttribute('capture', /.*/);
-  await expect(page.locator('#pick-menu')).toHaveCount(0);
+  await expect(page.locator('#scan-menu')).toHaveText('Kamera');
+  await expect(page.locator('#pick-menu')).toHaveText('Galerie');
+  await expect(page.locator('#menu-photo')).toHaveAttribute('capture', 'environment');
+  await expect(page.locator('#menu-photo-pick')).not.toHaveAttribute('capture', /.*/);
+  const [camera, gallery] = [await page.locator('#scan-menu').boundingBox(), await page.locator('#pick-menu').boundingBox()];
+  expect(Math.abs(camera!.y - gallery!.y)).toBeLessThan(2);
+  const chooser = page.waitForEvent('filechooser'); await page.locator('#pick-menu').click();
+  await (await chooser).setFiles('tests/fixtures/menu-scan-table.jpg');
+  await expect.poll(() => calls).toBe(1);
 });
 test('a cocktail list uploaded while coffee is open is saved and shown under cocktails', async ({ page }) => {
   await page.route('**/api/scan-menu?*', route => route.fulfill({ json: { added: 2, unchanged: 0, conflicts: 0, skipped: 0,

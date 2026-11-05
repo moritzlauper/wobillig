@@ -36,8 +36,8 @@ permissions:
   contents: write
 
 concurrency:
-  # Each scan has its own queue; scraper.publish merges concurrent results per file on top of the newest branch tip.
-  group: menu-prices
+  # One queue per city: cities write separate files, and scraper.publish merges concurrent results per file on top of the newest branch tip.
+  group: menu-prices-${{ inputs.city || 'zurich' }}
   # Keep every requested run waiting in order; without this GitHub cancels all but the newest pending run.
   queue: max
   cancel-in-progress: false
