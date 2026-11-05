@@ -221,6 +221,14 @@ describe('atomic, repeat-safe scan storage', () => {
     expect(scanResult(state, receipt)).toMatchObject({ pending: false, entries: [entry] });
     expect(scanResult(state, { ...receipt, ids: [entry.id, 'still-pending'] }).pending).toBe(true);
   });
+  it('marks prices read from a till receipt, menus stay unmarked', async () => {
+    const store = memoryStore(); await reserveScan(store, 'till', 'visitor');
+    const fromReceipt = menuPrices({ ...document(), receipt: true }, bar, '2026-11-05');
+    expect(fromReceipt.prices.every(p => p.receipt === true)).toBe(true);
+    const saved = await saveMenuScan(store, 'till', bar, [], fromReceipt.prices, fromReceipt.skipped);
+    expect(saved.entries.every(e => e.offer.menuScan?.document === 'receipt')).toBe(true);
+    expect(menuPrices({ ...document(), receipt: false }, bar, '2026-11-05').prices.some(p => 'receipt' in p)).toBe(false);
+  });
   it('saves both sizes once, remembers the receipt and preserves AI attribution', async () => {
     const store = memoryStore(); await reserveScan(store, 'photo', 'visitor');
     const { prices, skipped } = extract();

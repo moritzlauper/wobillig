@@ -44,7 +44,8 @@ export type Offer = {
   ingredients?: string;
   alcoholFree: boolean;
   photoSource?: { kind: "google_maps_photo"; date: string; dateEvidence: string; dateCheckedAt: string; validUntil: string };
-  menuScan?: { sha256: string; model: string };
+  /** A price read from a photo; document says whether it was a till receipt rather than a menu. */
+  menuScan?: { sha256: string; model: string; document?: 'receipt' };
 };
 export type PizzaMenuItem = Omit<Offer, "pizzaType"> & { pizzaType: "other" };
 export type Bar = {

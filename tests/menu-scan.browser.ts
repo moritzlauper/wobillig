@@ -28,7 +28,7 @@ test('a single photo choice sends the selected venue and compressed photo, then 
   await expect(page.locator('#price-dialog')).not.toBeVisible();
   await expect(page.locator('#toast')).toContainText('2 Preise gespeichert');
   await expect(page.locator('#detail')).toContainText('Turbinenbräu Sprint');
-  await expect(page.locator('#detail')).toContainText('Foto-Upload');
+  await expect(page.locator('#detail')).toContainText('Menükarte');
   await expectEvent(page, 'menu_upload_completed', { city: 'zurich', language: 'de', added: 2, unchanged: 0, conflicts: 0, skipped: 0 });
   expect((await events(page)).map(e => e.name)).toEqual(['price_form_opened', 'menu_upload_started', 'menu_upload_completed']);
   expect(JSON.stringify(await events(page))).not.toContain(mars.id);
