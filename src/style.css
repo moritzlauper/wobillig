@@ -408,6 +408,7 @@ dialog::backdrop { background: var(--backdrop); }
 #scan-menu { width: 100%; min-height: 44px; color: #fff; background: var(--teal-active); border-color: var(--teal-active); }
 #scan-menu:hover { background: var(--teal-active-hover); }
 .menu-scan p { margin: 9px 0 0; }
+.menu-scan #pick-menu { display: block; margin-top: 6px; color: inherit; font-size: .9rem; }
 .scan-privacy { font-size: var(--font-meta); color: var(--muted); }
 #scan-status { font-size: var(--font-control); color: var(--teal); }
 #manual-entry > summary { padding: 10px 0; cursor: pointer; font-size: var(--font-control); }
