@@ -177,6 +177,7 @@ export const en: Record<string, string> = {
   'Community-Map': 'Community map',
   'Community-Map · Von der Community erstellt und öffentlich unter «Weitere» sichtbar.': 'Community map · Created by the community and publicly listed under “More”.',
   '{count} Lokale': '{count} places',
+  '1 Lokal': '1 place',
   'Ab {count} verschiedenen Lokalen erscheint deine Map öffentlich unter «Weitere».': 'Once it has {count} different places, your map will be publicly listed under “More”.',
   'Öffentlich unter «Weitere» sichtbar.': 'Publicly listed under “More”.',
   'Noch nicht öffentlich gelistet: {count} von {minimum} Lokalen. Über den Link bereits teilbar.': 'Not publicly listed yet: {count} of {minimum} places. You can already share it via its link.',
@@ -278,6 +279,7 @@ export const en: Record<string, string> = {
   'Kaffeepreis': 'coffee price',
   'Bierpreis': 'beer price',
   '{venues} Lokale · {recorded} mit {kind} · {matching} passend zum Filter': '{venues} venues · {recorded} with {kind} · {matching} match the filters',
+  '1 Lokal · {recorded} mit {kind} · {matching} passend zum Filter': '1 venue · {recorded} with {kind} · {matching} match the filters',
 
   // Menu scan
   'Bitte ein Foto bis 30 MB auswählen.': 'Please choose a photo of up to 30 MB.',
@@ -706,6 +708,10 @@ export const en: Record<string, string> = {
   'Karte oder Quittung fotografieren. Lesbare Preise aller Kategorien werden automatisch gespeichert.': 'Photograph the menu or a receipt. Readable prices of every category are saved automatically.',
   'Kamera': 'Camera',
   'Galerie': 'Gallery',
+  'Nur das teuerste': 'Only the most expensive',
+  'Filter zurücksetzen': 'Reset filters',
+  'Nur das günstigste': 'Only the cheapest',
+  'Top {count}': 'Top {count}',
   'Bitte eine Kategorie wählen.': 'Please choose a category.',
   'Bitte Kebab oder Falafel wählen.': 'Please choose kebab or falafel.',
   'Bitte Dürüm, Im Brot oder Teller wählen.': 'Please choose dürüm, in bread or plate.',

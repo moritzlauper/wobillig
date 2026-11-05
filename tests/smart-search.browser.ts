@@ -121,3 +121,19 @@ test('venues of every category are found by name, and a full name opens the venu
   await search.fill(''); await search.click(); await search.pressSequentially('Pizza');
   await expect(page.locator('#search-suggestions [data-suggestion]').first()).toHaveClass(/smart-option/);
 });
+
+test('an applied search stays in the field, the limit is a removable chip, and the X resets it', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await expect(page.locator('#count')).not.toHaveText('Laden …');
+  const search = page.locator('#search');
+  await search.fill('günstigste Pizza');
+  await search.press('Enter');
+  await expect(search).toHaveValue('günstigste Pizza');
+  await expect(page.locator('.smart-chip')).toContainText('Nur das günstigste');
+  await expect(page.locator('#results .venue')).toHaveCount(1);
+  await page.locator('#search-clear').click();
+  await expect(search).toHaveValue('');
+  await expect(page.locator('.smart-chip')).toHaveCount(0);
+  expect(await page.locator('#results .venue').count()).toBeGreaterThan(1);
+});

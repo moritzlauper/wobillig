@@ -57,6 +57,11 @@ test('mobile visitors can create a venue, reload it and add a price', async ({ p
   await expect(page.locator('#detail')).toContainText('CHF 5.20');
   expect(entries).toHaveLength(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+  // With a venue open, «Preise ergänzen» adds to that venue; closed, it offers the venue choice.
+  await page.getByRole('button', { name: 'Preise ergänzen', exact: true }).click();
+  await expect(page.locator('#price-dialog')).toBeVisible();
+  await page.locator('#cancel-price').click();
+  await page.locator('#close-detail').click();
   await page.getByRole('button', { name: 'Preise ergänzen', exact: true }).click();
   await page.getByRole('button', { name: 'Neues Lokal erfassen', exact: true }).click();
   await dialog.getByLabel('Name', { exact: true }).fill('Neues Testcafé');

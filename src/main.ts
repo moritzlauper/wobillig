@@ -82,6 +82,8 @@ let userMarker: L.CircleMarker | undefined;
 type SmartSuggestion = { smart: string; example?: boolean };
 let suggestions: (Bar | AddressResult | SmartSuggestion)[] = [], activeSuggestion = -1, searchOpen = false;
 let smartResultLimit: number | undefined;
+// The sentence of the applied smart search: it stays in the field so the visitor sees what is active.
+let smartText = '';
 let addressResults: AddressResult[] = [], addressSelection: AddressResult | undefined;
 let addressController: AbortController | undefined, addressTimer: ReturnType<typeof setTimeout> | undefined;
 let addressStatus: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
@@ -262,7 +264,7 @@ $('data-info').before(addVenueButton);
 addVenueButton.onclick = () => {
   if (!communityReady) return toast(t('Gemeinsame Einträge sind gerade nicht verfügbar. Bitte neu laden.'));
   // With a venue open, its prices are what the visitor wants to add.
-  const open = selected ? selectedLocation() : undefined;
+  const open = selected ? selectedLocation() || venues.find(venue => venue.id === selected) : undefined;
   if (open) return openPrice(open);
   contributions.open(addressSelection ? '' : typed().trim());
 };
@@ -451,8 +453,9 @@ function syncControls() {
   $<HTMLSelectElement>('coffeeType').value = f.coffeeType!;
   $<HTMLInputElement>('normalize').checked = f.mode === 'half';
   categoryNav.update(f.drink!, hiddenCategories());
-  $<HTMLInputElement>('search').value = typed();
-  $('search-clear').hidden = typed().length === 0;
+  const shown = draft !== undefined ? draft : f.query || smartText;
+  $<HTMLInputElement>('search').value = shown;
+  $('search-clear').hidden = shown.length === 0;
   $<HTMLSelectElement>('sort').value = f.sort;
   $<HTMLInputElement>('outdoor').checked = f.outdoor;
   $<HTMLInputElement>('open-now').checked = f.open === 'now';
@@ -548,7 +551,10 @@ function render() {
   $('results').innerHTML = current.length ? current.map(b => {
     const o = bestOffer(b, f);
     return `<button class="venue ${selected === b.id ? 'selected' : ''}" data-bar="${e(b.id)}"><span><strong>${e(b.name)}</strong><small>${e(b.address || b.postcode || cityName)}</small>${o && hasBeerSelection(f) ? `<small>${e(o.name)}</small>` : ''}${o && (pizza() || cocktail()) ? `<small>${e(o.name)}</small>` : o && streetfood() ? `<small>${e(o.name.toLowerCase().includes(unit(o).toLowerCase()) ? o.name : `${o.name} · ${unit(o)}`)}</small>` : o && (softdrink() || wine()) ? `<small>${e([o.name, unit(o)].filter(Boolean).join(' · '))}</small>` : o && unit(o) ? `<small>${e(unit(o))}</small>` : ''}</span><span class="venue-price">${o ? money(cost(o, f.mode)) : `<small>${missingPriceLabel(b, f)}</small>`}</span></button>`;
-  }).join('') : `<p class="empty">${t('Keine passenden Lokale.')}</p>`;
+  }).join('') : `<p class="empty">${t('Keine passenden Lokale.')} <button type="button" id="reset-filters" class="text-button">${t('Filter zurücksetzen')}</button></p>`;
+  // An empty list offers the way back instead of a dead end.
+  const reset = document.getElementById('reset-filters');
+  if (reset) reset.onclick = () => { f.query = ''; draft = undefined; clearAddressSelection(); resetSmartFilters(); };
   layer.clearLayers();
   const venueMarkers = new Map<string, { marker: L.Marker; zIndex: number }>();
   const selectedBar = selectedLocation();
@@ -662,7 +668,7 @@ async function applySmartSearch(text: string, example = false) {
   smartResultLimit = plan.resultLimit;
   Object.assign(f, plan.filters);
   cheapMode = plan.cheap;
-  f.query = ''; draft = undefined;
+  f.query = ''; draft = undefined; smartText = text.trim();
   rebuild();
   // Unknown words may still name a venue, a beer or a pizza; otherwise they are reported, never searched for nothing.
   const rest = query.rest.join(' ');
@@ -679,10 +685,25 @@ async function applySmartSearch(text: string, example = false) {
   if (plan.near && !position) locate(false, 16); else render();
   if (f.district) zoomToDistrictResults();
   else if (f.query) zoomToSearchResults();
+  else if (smartResultLimit !== undefined) {
+    // «günstigste Pizza»: show the few venues found, wherever they are in the city.
+    const found = current.filter(b => bestOffer(b, f));
+    if (found.length === 1) map.setView([found[0].lat, found[0].lon], 16);
+    else if (found.length) map.fitBounds(L.latLngBounds(found.map(b => [b.lat, b.lon] as [number, number])), { padding: [45, 60], maxZoom: 16 });
+  }
+}
+function resetSmartFilters() {
+  Object.assign(f, { district: undefined, open: undefined, outdoor: false, type: '', alcoholFree: false, glutenFree: false, pizzaQuery: '', beerQuery: '', max: Infinity });
+  if (f.sort === 'distance' || f.sort === 'price_desc') f.sort = 'price';
+  smartResultLimit = undefined; smartNote = ''; smartText = ''; cheapMode = true;
+  rebuild();
 }
 // Filters without their own control in the toolbar, each removable with one tap.
 function renderSmartChips() {
   const chips: { label: string; clear: () => void }[] = [];
+  // «günstigste Pizza» shows only the cheapest venue: say so, and let it be undone.
+  if (smartResultLimit !== undefined) chips.push({ label: smartResultLimit === 1 ? (f.sort === 'price_desc' ? t('Nur das teuerste') : t('Nur das günstigste'))
+    : t('Top {count}', { count: smartResultLimit }), clear: () => { smartResultLimit = undefined; } });
   if (f.district) chips.push({ label: districtLabel(f.district, districts), clear: () => { f.district = undefined; } });
   if (f.open) chips.push({ label: f.open === 'now' ? t('Jetzt offen') : t('Offen um {time}', { time: f.open }), clear: () => { f.open = undefined; } });
   if (f.outdoor) chips.push({ label: t('Draussen sitzen'), clear: () => { f.outdoor = false; } });
@@ -854,7 +875,7 @@ function selectSearchSuggestion(index: number, remember = true) {
     return;
   }
   clearAddressSelection();
-  f.query = bar.name;
+  f.query = bar.name; smartText = '';
   $('search').blur();
   if (matchMedia('(max-width: 760px)').matches) {
     $('filters').hidden = true; $('filters-toggle').setAttribute('aria-expanded', 'false'); syncSearchRow();
@@ -966,12 +987,12 @@ function chooseDrink(drink: Drink) {
   if (drink !== f.drink) trackEvent(cityId, 'category_changed', { category: drink });
   // Every category opens at its cheap price, without remembering an earlier slider position.
   cheapMode = true; f.max = Infinity;
-  f.drink = drink; f.mode = 'glass'; smartResultLimit = undefined; selected = undefined; rebuild(); }
+  f.drink = drink; f.mode = 'glass'; smartResultLimit = undefined; smartText = ''; selected = undefined; rebuild(); }
 $('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
 function commitSearch() {
   if (draft === undefined) return;
   clearAddressSelection();
-  smartResultLimit = undefined;
+  smartResultLimit = undefined; smartText = '';
   f.query = draft; draft = undefined; selected = undefined;
   render();
 }
@@ -1011,6 +1032,8 @@ $('search-clear').onclick = () => {
   // While typing, the X empties the field and keeps the search open; after a venue or address was
   // chosen it only resets the search, without reopening the suggestions and the keyboard.
   const typing = document.activeElement === $('search') || searchOpen;
+  // The X also undoes an applied smart search: its filters go back to the start of the category.
+  if (smartText && draft === undefined) resetSmartFilters();
   cancelAddressRequest(); clearAddressSelection();
   closeSearchSuggestions();
   f.query = ''; draft = undefined; selected = undefined;

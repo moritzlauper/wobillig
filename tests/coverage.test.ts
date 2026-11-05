@@ -13,13 +13,13 @@ it('separates missing data from prices outside the selected size or serving filt
   expect(missingPriceLabel(coffee, f)).toBe('Noch nicht erfasst');
   expect(missingPriceLabel(bar([]), f)).toBe('Noch nicht erfasst');
   expect(coverageLabel([small, coffee, bar([]), bar([offer])], f)).toBe('4 Lokale · 2 mit Bierpreis · 1 passend zum Filter');
-  expect(coverageLabel([coffee], { ...f, drink: 'coffee', coffeeType: 'creme' })).toBe('1 Lokale · 1 mit Kaffeepreis · 0 passend zum Filter');
+  expect(coverageLabel([coffee], { ...f, drink: 'coffee', coffeeType: 'creme' })).toBe('1 Lokal · 1 mit Kaffeepreis · 0 passend zum Filter');
 });
 
 it('does not count old mixed-drink offers as beer coverage', () => {
   const mixed = bar([{ ...offer, name: 'Panash', beerType: 'draft' }]);
   expect(missingPriceLabel(mixed, f)).toBe('Noch nicht erfasst');
-  expect(coverageLabel([mixed], f)).toBe('1 Lokale · 0 mit Bierpreis · 0 passend zum Filter');
+  expect(coverageLabel([mixed], f)).toBe('1 Lokal · 0 mit Bierpreis · 0 passend zum Filter');
 });
 
 it('averages one cheapest matching price per venue, following the venue type and price ceiling but not the search', () => {

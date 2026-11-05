@@ -119,7 +119,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     setCustomMaps(maps: PublicMap[], load: (id: string) => void) {
       mapButtons = [...maps].sort((a, b) => a.name.localeCompare(b.name, 'de-CH')).map(map => {
         const button = document.createElement('button'); button.type = 'button';
-        button.textContent = `${map.name} · ${t('{count} Lokale', { count: map.venueCount })}`;
+        button.textContent = `${map.name} · ${map.venueCount === 1 ? t('1 Lokal') : t('{count} Lokale', { count: map.venueCount })}`;
         button.dataset.customMap = map.id;
         button.onclick = () => { close(); load(map.id); };
         return button;

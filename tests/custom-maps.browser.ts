@@ -25,7 +25,7 @@ for (const width of [320, 1280]) {
     const menu = page.locator('#additional-categories');
     await expect(menu.getByRole('group', { name: 'Meine Maps', exact: true }).getByRole('button')).toHaveText(`${own.name} · Community-Map`);
     const publicGroup = menu.getByRole('group', { name: 'Community-Maps', exact: true });
-    await expect(publicGroup.getByRole('button')).toHaveText(`${other.name} · 1 Lokale`);
+    await expect(publicGroup.getByRole('button')).toHaveText(`${other.name} · 1 Lokal`);
     await expect(publicGroup).toHaveCSS('border-top-width', '1px');
     await expect(menu.locator(`[data-custom-map="${own.id}"]`)).toHaveCount(1);
     await expect(menu.getByRole('button', { name: 'Meine Maps', exact: true })).toHaveCount(0);
