@@ -31,7 +31,7 @@ SLOTS = [((35, 145, 125, 255), (235, 335, 565, 365)),
 QUANTITY = re.compile(r'\d+\s*[×x]\s*\d+(?:[.,]\d+)?\s*(?:kg|g|cl|dl|ml|l)\b'
                       r'|\d+ Stück, ca\. \d+ g|ca\. \d+(?:[.,]\d+)?\s*(?:kg|g)\b|per Stück|per kg'
                       r'|(?<![×x(=]\s)(?<![\d.,×x(=])\b\d+(?:[.,]\d+)?\s*(?:kg|g|cl|dl|ml|l)\b(?!\s*=)'
-                      r'|\b\d+ Stück\b')
+                      r'|(?<!ab )\b\d+ Stück\b')  # «ab 2 Stück» is a condition, not a pack size
 
 
 def money(text):
@@ -62,6 +62,15 @@ def parse_pdf(data, source_url, fetched_at):
             price = re.findall(r'^([\d–]+\.[\d–]+)\s*$', prices, re.M)
             previous = re.findall(r'statt\s+([\d–]+\.[\d–]+)', prices)
             discount = re.findall(r'(\d{1,2})%', prices)
+            if not price:
+                # Range offer («40% auf das ganze Barilla Sortiment … z. B. … 1.50 statt 2.50»): one example price pair.
+                tile = prices + '\n' + description
+                example = re.findall(r'([\d–]+\.[\d–]+)\s+statt\s+([\d–]+\.[\d–]+)', tile)
+                if len(example) == 1:
+                    price, previous = [example[0][0]], [example[0][1]]
+                    # The tile may sit in either box; the product is every line but the discount and the price.
+                    description = '\n'.join(line for line in tile.splitlines() if line.strip() and not re.search(r'\d%|\bstatt\b', line))
+                    prices = tile
             if len(price) != 1 or len(previous) != 1 or len(discount) != 1 or len(description.strip()) < 12:
                 skipped.append({'reason': 'Ambiguous price or missing product description', 'evidence': prices + '\n' + description})
                 continue

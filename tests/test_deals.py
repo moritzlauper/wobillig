@@ -72,6 +72,19 @@ class DealTests(unittest.TestCase):
         self.assertEqual(offers[0]['unitPrice'], {'amount': 12.0, 'unit': 'kg'})
         self.assertEqual(offers[3]['unitPrice'], {'amount': 1.0, 'unit': 'l'})
 
+    def test_range_offer_uses_its_example_price(self):
+        page = MagicMock(width=595.276, height=841.89)
+        page.extract_text.return_value = 'Donnerstag bis Mittwoch, 05.11. – 11.11.2026 ' + 'statt ' * 5
+        tile = ('40%\nab 2 Stück\nauf das ganze\nBarilla Sortiment\nnach Wahl\nz. B. Barilla Spaghetti Nr. 5, 500 g\n1.50 statt 2.50 (100 g = –.30)', '')
+        pairs = [tile] + [('50%\n9.–\nstatt 18.–', 'Coop Testzucker, 10 × 1 kg')] * 4
+        page.crop.side_effect = [MagicMock(extract_text=MagicMock(return_value=text)) for pair in pairs for text in pair]
+        document = MagicMock()
+        document.__enter__.return_value.pages = [page]
+        with patch('scraper.deals.pdfplumber.open', return_value=document):
+            offer = parse_pdf(b'pdf', 'https://epaper.coop.ch/test.pdf', '2026-11-05T12:00:00Z')['offers'][0]
+        self.assertEqual((offer['priceChf'], offer['previousPriceChf'], offer['quantity']), (1.5, 2.5, '500 g'))
+        self.assertIn('ab 2 Stück', offer['conditions'])
+
     def test_too_few_readable_offers_fail_closed(self):
         page = MagicMock(width=595.276, height=841.89)
         page.extract_text.return_value = 'Donnerstag bis Mittwoch, 05.11. – 11.11.2026 ' + 'statt ' * 5
