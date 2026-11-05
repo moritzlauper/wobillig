@@ -2236,8 +2236,8 @@
       "lat": 46.955392,
       "lon": 7.4470493,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Nordring 8",
+      "postcode": "3013",
       "website": "https://www.celinabern.ch/",
       "cuisine": [
         "italian"
@@ -2251,7 +2251,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.celinabern.ch/",
         "evidence": "Ristorante Pizzeria Celina │ Ihr Italiener im Nordring"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/node/603823592"
     },
     {
       "id": "node/6645659122",
@@ -2259,8 +2260,8 @@
       "lat": 46.9440145,
       "lon": 7.4357364,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Monbijoustrasse 26",
+      "postcode": "3011",
       "website": "https://city-pizzeria-bern.ch/",
       "cuisine": [
         "pizza",
@@ -2755,7 +2756,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.city-pizzeria-bern.ch/",
         "evidence": "City Pizzeria - Hausgemachte Spezialitäten & Kebab - Essen online bestellen in Bern"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/node/443057449"
     },
     {
       "id": "node/1066324526",
@@ -5107,8 +5109,8 @@
       "lat": 46.94969,
       "lon": 7.4440069,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Waisenhausplatz 28",
+      "postcode": "3011",
       "website": "https://www.dallmaier.ch/oliv-bern",
       "cuisine": [],
       "openingHours": null,
@@ -5309,7 +5311,8 @@
           "sourcePage": 4,
           "ingredients": "San-Marzano-Tomaten / Mozzarella / scharfe Salami"
         }
-      ]
+      ],
+      "addressSource": "https://www.openstreetmap.org/node/2284168366"
     },
     {
       "id": "node/2976324699",
@@ -5317,8 +5320,8 @@
       "lat": 46.9483029,
       "lon": 7.3769832,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Weiermattstrasse 40",
+      "postcode": "3027",
       "website": "https://www.piazzabern.ch",
       "cuisine": [
         "italian",
@@ -5575,7 +5578,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.piazzabern.ch",
         "evidence": "Restaurant Bern | Bern | Ristorante Pizzeria Piazza"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/way/44618662"
     },
     {
       "id": "node/286879726",
@@ -6413,8 +6417,8 @@
       "lat": 46.9523406,
       "lon": 7.433518,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Länggassstrasse 19",
+      "postcode": "3012",
       "website": "https://pizzeria-laenggasse.ch/?",
       "cuisine": [
         "pizza",
@@ -6429,7 +6433,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://pizzeria-laenggasse.ch/menu",
         "evidence": "Pizzeria Länggasse Bern | Frische Pizza bestellen und geniessen"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/node/6262746433"
     },
     {
       "id": "node/6341503764",
@@ -6688,8 +6693,8 @@
       "lat": 46.9581282,
       "lon": 7.4362924,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Neubrückstrasse 91",
+      "postcode": "3012",
       "website": "https://pontenuovo.ch/",
       "cuisine": [
         "pizza",
@@ -6700,7 +6705,8 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-20T00:44:10.506850+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/node/1103962406"
     },
     {
       "id": "node/9844659964",
@@ -6708,8 +6714,8 @@
       "lat": 46.9399609,
       "lon": 7.4402161,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Eigerstrasse 73",
+      "postcode": "3007",
       "website": "https://www.ragazzidiberna.ch",
       "cuisine": [
         "pizza"
@@ -6719,7 +6725,8 @@
       "offers": [],
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-10-20T00:44:42.360944+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/node/5387424120"
     },
     {
       "id": "node/5745409029",
@@ -6727,8 +6734,8 @@
       "lat": 46.9420597,
       "lon": 7.3960751,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Bernstrasse 51",
+      "postcode": "3018",
       "website": "https://www.restauranthoehe.ch/",
       "cuisine": [],
       "openingHours": "08:00-23:30",
@@ -7325,7 +7332,8 @@
           "ingredients": "Tomatensauce, Mozzarella, fünf Zutaten nach Wahl, Oregano",
           "sourceSha256": "c793dd7ae1fde1b515df3087253c4c2d22b2465dd76b6df960c7a55d31b14e63"
         }
-      ]
+      ],
+      "addressSource": "https://www.openstreetmap.org/node/1114942542"
     },
     {
       "id": "node/761255424",
@@ -7998,7 +8006,7 @@
       "lat": 46.9569124,
       "lon": 7.4321139,
       "type": "fast_food",
-      "address": "",
+      "address": "Neufeldstrasse 32",
       "postcode": "3012",
       "website": "https://sicula.org/",
       "cuisine": [
@@ -8009,7 +8017,8 @@
       "offers": [],
       "scrapeStatus": "ambiguous_prices",
       "checkedAt": "2026-10-20T00:44:53.557111+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/node/1104632321"
     },
     {
       "id": "node/13063654325",
@@ -8107,8 +8116,8 @@
       "lat": 46.9452602,
       "lon": 7.4728748,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Giacomettistrasse 15",
+      "postcode": "3006",
       "website": "https://www.strada-bern.ch",
       "cuisine": [
         "italian"
@@ -8155,7 +8164,8 @@
       "pizzaEvidence": {
         "sourceUrl": "https://www.strada-bern.ch/",
         "evidence": "Ristorante Pizzeria StraDa in Bern | Mediterrane Küche"
-      }
+      },
+      "addressSource": "https://www.openstreetmap.org/node/2357312697"
     },
     {
       "id": "node/514589641",
@@ -8412,8 +8422,8 @@
       "lat": 46.9424909,
       "lon": 7.4050217,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Freiburgstrasse 169",
+      "postcode": "3008",
       "website": "https://trattoria-bella-italia.ch/",
       "cuisine": [
         "italian"
@@ -8440,7 +8450,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-10-20T00:47:04.591082+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/node/717866768"
     },
     {
       "id": "node/1274323364",
