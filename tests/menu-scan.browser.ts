@@ -63,6 +63,17 @@ test('the main button opens the camera, the link picks an existing photo', async
   await expect.poll(() => calls).toBe(1);
   await expect(page.locator('#pick-menu')).toBeEnabled();
 });
+test('a cocktail list uploaded while coffee is open is saved and shown under cocktails', async ({ page }) => {
+  await page.route('**/api/scan-menu?*', route => route.fulfill({ json: { added: 2, unchanged: 0, conflicts: 0, skipped: 0,
+    entries: ['Negroni', 'Hugo'].map((name, i) => ({ id: 'c-' + i, barId: mars.id, drink: 'cocktail', targetKey: 'c-' + i, revision: 1, venue: mars, updatedAt: '2026-11-05',
+      offer: { name, priceChf: 14 + i, volumeMl: null, gastroType: 'cocktail', alcoholFree: false, sourceUrl: '', observedAt: '2026-11-05', confidence: 'ai', evidence: '', menuScan: { sha256: 'x', model: 'm' } } })) } }));
+  await page.route('**/api/prices?*', route => route.fulfill({ json: { entries: [] } }));
+  await page.goto('/?drink=coffee&bar=' + encodeURIComponent(mars.id));
+  await page.locator('#add-here').click();
+  await page.locator('#menu-photo').setInputFiles('tests/fixtures/menu-scan-table.jpg');
+  await expect(page.locator('#toast')).toContainText('Gespeichert unter: Cocktails (2)');
+  await expect(page.locator('#detail')).toContainText('Negroni');
+});
 test('manual additions and existing-price editing still work', async ({ page }) => {
   let manual: any;
   await page.route('**/api/prices?*', async route => {

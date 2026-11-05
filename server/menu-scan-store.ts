@@ -75,7 +75,7 @@ export async function saveMenuScan(store: Store, hash: string, bar: Bar, origina
     const job = state.menuScans?.[hash];
     if (job?.status === 'done' && job.result) return scanResult(state, job.result);
     if (job?.status !== 'pending') throw new InputError('Der Scan ist nicht mehr verfügbar. Bitte erneut fotografieren.', 409);
-    const target = edit ? resolveScanEdit(edit, bar, originals, state.entries) : undefined;
+    let target = edit ? resolveScanEdit(edit, bar, originals, state.entries) : undefined;
     const receipt: ScanReceipt = { ids: [], added: 0, unchanged: 0, conflicts: 0, skipped };
     const grouped = new Map<string, { offer: Offer; drink: PriceEntry['drink'] }[]>();
     for (const { input, evidence, receipt: fromReceipt } of prices) {
@@ -88,11 +88,11 @@ export async function saveMenuScan(store: Store, hash: string, bar: Bar, origina
       const key = identity(offer);
       grouped.set(key, [...(grouped.get(key) || []), { offer, drink: input.drink }]);
     }
+    // A photo opened from «Ändern» may show another menu (a cocktail list while correcting a coffee):
+    // the price to correct then stays as it is, and every other price on the photo is still saved.
     if (target) {
       const matches = grouped.get(identity(target.offer));
-      if (!matches || new Set(matches.map(row => row.offer.priceChf)).size !== 1) {
-        throw new InputError('Der zu ändernde Preis ist auf diesem Foto nicht eindeutig erkennbar. Bitte einen passenden Kartenausschnitt hochladen.', 422);
-      }
+      if (!matches || new Set(matches.map(row => row.offer.priceChf)).size !== 1) target = undefined;
     }
     for (const [key, group] of grouped) {
       if (new Set(group.map(g => g.offer.priceChf)).size > 1) { receipt.conflicts++; continue; }

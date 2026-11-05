@@ -671,6 +671,7 @@ export const en: Record<string, string> = {
   'Glutenfrei': 'Gluten-free',
   'Softdrinks': 'Soft drinks',
   'Cocktails': 'Cocktails',
+  'Gespeichert unter: {categories}.': 'Saved under: {categories}.',
   'Softdrinkpreise {city}': 'Soft drink prices in {city}',
   'Cocktailpreise {city}': 'Cocktail prices in {city}',
   'Softdrinkpreis': 'soft drink price',

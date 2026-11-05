@@ -1369,6 +1369,7 @@ $('menu-photo').onchange = $('menu-photo-pick').onchange = async (event: Event) 
       throw new Error(message || t('Das Foto konnte nicht verarbeitet werden.'));
     }
     const scanned = result as MenuScanResult;
+    const previousDrink = f.drink;
     if (scanned.queued) {
       // The photo could not be read automatically; it waits for a manual review instead of failing.
       completed = true;
@@ -1382,12 +1383,18 @@ $('menu-photo').onchange = $('menu-photo-pick').onchange = async (event: Event) 
     trackEvent(cityId, 'menu_upload_completed', { added, unchanged, conflicts, skipped });
     const ids = new Set(scanned.entries.map(entry => entry.id));
     entries = [...entries.filter(entry => !ids.has(entry.id)), ...scanned.entries];
-    if (scanned.entries.length && !scanned.entries.some(entry => entry.drink === f.drink)) f.drink = scanned.entries[0].drink;
+    // A cocktail list uploaded while coffee is open is saved under cocktails: show the category with the most new prices.
+    const byCategory = new Map<Drink, number>();
+    for (const entry of scanned.entries) byCategory.set(entry.drink, (byCategory.get(entry.drink) || 0) + 1);
+    if (byCategory.size && !byCategory.has(f.drink!)) f.drink = [...byCategory].sort((a, b) => b[1] - a[1])[0][0];
     cheapMode = false; selected = barId;
     $<HTMLDialogElement>('price-dialog').close(); rebuild();
     const bar = bars.find(b => b.id === barId) || locationCatalogue.find(b => b.id === barId);
     if (bar) showBar(bar);
-    toast(scanned.pending ? t('Danke. Dein Beitrag wird vor der Veröffentlichung geprüft.') : scanSummary(scanned));
+    // Name the categories whenever prices went anywhere but the category that was open.
+    const where = byCategory.size > 1 || (byCategory.size === 1 && !byCategory.has(previousDrink!))
+      ? ' ' + t('Gespeichert unter: {categories}.', { categories: [...byCategory].map(([drink, count]) => `${smartCategoryLabel(drink as Category)} (${count})`).join(', ') }) : '';
+    toast(scanned.pending ? t('Danke. Dein Beitrag wird vor der Veröffentlichung geprüft.') : scanSummary(scanned) + where);
   } catch (error) {
     if (!completed) trackEvent(cityId, 'menu_upload_failed', { stage, reason });
     $('scan-status').hidden = true;

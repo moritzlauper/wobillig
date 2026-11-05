@@ -319,8 +319,10 @@ describe('photo-backed targeted corrections', () => {
     const original = { ...extract().prices[0].input, confidence: 'ai', evidence: '' } as Offer;
     const edit = { revision: 0, targetKey: offerKey(original), drink: 'beer' as const };
     await reserveScan(store, 'missing', 'visitor');
-    await expect(saveMenuScan(store, 'missing', bar, [original], extract([{ ...row, name: 'Other beer' }]).prices, 0, Date.now(), edit)).rejects.toHaveProperty('status', 422);
-    expect((await store.read()).state.entries).toEqual([]);
+    // Without the corrected price on the photo, the other prices are saved and the original stays.
+    const other = await saveMenuScan(store, 'missing', bar, [original], extract([{ ...row, name: 'Other beer' }]).prices, 0, Date.now(), edit);
+    expect(other.added).toBe(2); expect(other.updated).toBeFalsy();
+    expect((await store.read()).state.entries.every(e => e.offer.name === 'Other beer')).toBe(true);
     await reserveScan(store, 'valid', 'visitor');
     expect((await saveMenuScan(store, 'valid', bar, [original], extract([{ ...row, prices: ['9.20', '7.90'] }]).prices, 0, Date.now(), edit)).updated).toBe(1);
     await reserveScan(store, 'stale', 'visitor');
