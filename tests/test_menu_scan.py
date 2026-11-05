@@ -141,3 +141,25 @@ class ChainBranches(unittest.TestCase):
     def test_hugo_for_seven_fifty_is_a_cocktail(self):
         found = split({'offers': [row('cocktail', 'Hugo', 7.5, 'Hugo 7.50'), row('cocktail', 'Apérol Spritz', 9.5, 'Apérol Spritz 9.50')]}, URL, 0, 1, '')
         self.assertEqual([o['name'] for o in found['cocktail']], ['Hugo', 'Apérol Spritz'])
+
+    def test_a_self_described_natural_wine_bar_pours_natural_wine(self):
+        from scraper.menu_scan import natural_bar
+        page = lambda text: [{'kind': 'text/plain', 'body': text}]
+        self.assertTrue(natural_bar([{'name': 'Bar'}], page('Willkommen in unserer Naturweinbar im Kreis 4')))
+        self.assertTrue(natural_bar([{'name': 'Bar'}], page('Wir schenken ausschliesslich Naturweine aus.')))
+        self.assertTrue(natural_bar([{'name': 'Cave Natural Wine Bar'}], []))
+        # One natural wine on a long list does not make every glass natural.
+        self.assertFalse(natural_bar([{'name': 'Restaurant'}], page('Weisswein, Rotwein, auch ein Naturwein aus dem Jura')))
+
+    def test_a_fresh_menu_price_counts_as_read(self):
+        import tempfile
+        from pathlib import Path
+        from unittest.mock import patch
+        from scraper import menu_scan
+        with tempfile.TemporaryDirectory() as tmp:
+            Path(tmp, 'burger.json').write_text(json.dumps({'bars': [
+                {'id': 'fresh', 'scrapeStatus': 'prices_found', 'checkedAt': '2026-11-05T16:00:00'},
+                {'id': 'old', 'scrapeStatus': 'prices_found', 'checkedAt': '2026-10-01T16:00:00'},
+                {'id': 'failed', 'scrapeStatus': 'fetch_failed', 'checkedAt': '2026-11-05T16:00:00'}]}))
+            with patch.object(menu_scan, 'DATA_DIR', Path(tmp)):
+                self.assertEqual(menu_scan.fresh_prices('2026-11-06T10:00:00'), {'fresh'})

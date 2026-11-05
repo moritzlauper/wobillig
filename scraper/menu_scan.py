@@ -29,6 +29,11 @@ from scraper.enrich import AuditFetcher
 from scraper.scrape import discover, now
 
 CATEGORIES = ('cocktail', 'softdrink', 'wine', 'burger', 'ramen')
+# A venue that calls itself a natural wine bar on its own website (or in its name) pours natural wine,
+# even when the menu does not mark each glass. Mentioning «Naturwein» once is not enough.
+NATURAL_BAR = re.compile(r'natur\s*wein\s*-?\s*bar|natural[- ]wine\s*bar|bar\s+(?:à|a)\s+vins?\s+(?:nature|naturels?)|vineria\s+naturale'
+                         r'|(?:nur|ausschliesslich|only|exclusively|uniquement)\s+(?:\w+\s+){0,2}(?:natur\s*weine?|natural\s+wines?|vins?\s+(?:nature|naturels?))', re.I)
+STILL_WINE = ('white', 'red', 'rose', 'orange')
 MAX_BUDGET_USD = 12.00
 MENTION = re.compile('|'.join(f'(?:{p.pattern})' for p in (gastro.CATEGORIES['cocktail']['mention'], gastro.CATEGORIES['softdrink']['mention'], gastro.CATEGORIES['wine']['mention'],
                                                            burger.BURGER, ramen.RAMEN)) + r'|noodle|nudel', re.I)
@@ -121,9 +126,28 @@ def scan(name, bars, fetcher, client, max_pages, max_documents, deadline):
             result['errors'].append({'url': doc['url'], 'error': str(error)[:150]})
             failed = True
     offers = {category: list({KEYS[category](o): o for o in found[category]}.values()) for category in CATEGORIES}
+    if natural_bar(bars, result['documents']):
+        offers['wine'] = [{**o, 'natural': True} if o.get('wineType') in STILL_WINE else o for o in offers['wine']]
     status = 'fetch_failed' if failed else 'read'
     print(f'  {name}: {result["visited"]} pages, {len(docs)} documents, ' + ', '.join(f'{len(v)} {k}' for k, v in offers.items()) + first_error(result), flush=True)
     return {'status': status, 'offers': offers, 'errors': result['errors'][:5]}
+
+
+def natural_bar(bars, docs):
+    """True when the venue presents itself as a natural wine bar in its name or on its website's pages."""
+    texts = [bar.get('name') or '' for bar in bars] + [d['body'] for d in docs if d['kind'] == 'text/plain']
+    return any(NATURAL_BAR.search(text) for text in texts)
+
+
+def fresh_prices(observed):
+    """Venue ids with a menu price found within CHECK_DAYS: their website was read, e.g. by an earlier menu scan."""
+    cutoff = (datetime.fromisoformat(observed) - timedelta(days=CHECK_DAYS)).isoformat()
+    ids = set()
+    for name in DATASET_FILES.values():
+        path = DATA_DIR / f'{name}.json'
+        if path.exists():
+            ids |= {b['id'] for b in json.loads(path.read_text())['bars'] if b.get('scrapeStatus') == 'prices_found' and (b.get('checkedAt') or '') >= cutoff}
+    return ids
 
 
 DATASET_FILES = {'cocktail': 'gastro-cocktail', 'softdrink': 'gastro-softdrink', 'wine': 'gastro-wine', 'burger': 'burger', 'ramen': 'ramen'}
@@ -191,7 +215,9 @@ def main():
     # Websites whose menus the city scan just read are not paid for twice; they keep the offers it wrote.
     checks = json.loads(CHECKS.read_text()) if CHECKS.exists() else {}
     started = now()
-    read_by_city = {name for name, group in groups.items() if recently_read(checks, group, started)}
+    # Websites read recently (by the city scan or an earlier menu scan) are skipped; a fresh price counts as read.
+    fresh = fresh_prices(started)
+    read_by_city = {name for name, group in groups.items() if recently_read(checks, group, started) or any(bar['id'] in fresh for bar in group)}
     only = {name.strip().removeprefix('www.') for name in args.only.split(',') if name.strip()}
     if only:
         # A targeted rerun reads just these websites, even when the city scan read them recently.
@@ -206,9 +232,16 @@ def main():
     skipped = lambda: {'status': 'skipped', 'offers': {category: [] for category in CATEGORIES}, 'errors': []}
     with ThreadPoolExecutor(args.workers) as pool:
         results = dict(zip(groups, pool.map(lambda name: skipped() if name in read_by_city else scan(name, groups[name], fetcher, client, max_pages, max_documents, deadline), groups)))
+    observed = now()
+    # Remember every website read completely, so a second run (e.g. after the budget ran out) continues where this one stopped.
+    for name, result in results.items():
+        if result['status'] == 'read':
+            for bar in groups[name]:
+                checks[bar['id']] = {**checks.get(bar['id'], {}), 'checkedAt': observed}
+    CHECKS.parent.mkdir(parents=True, exist_ok=True)
+    CHECKS.write_text(json.dumps(checks, ensure_ascii=False, indent=1))
     # A branch with its own menu gets only that menu's prices.
     groups, results = split_chains(groups, results)
-    observed = now()
     attribution = found.get('attribution', '© OpenStreetMap contributors, ODbL 1.0')
     pairs = list(groups.items())
     for category in ('cocktail', 'softdrink', 'wine'):
