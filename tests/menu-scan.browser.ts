@@ -51,17 +51,11 @@ test('errors stay in the dialog and allow another photo without extra required f
   await expect.poll(() => calls).toBe(2);
   await page.screenshot({ path: '/tmp/wobillig-scan-mobile.png' });
 });
-test('the main button opens the camera, the link picks an existing photo', async ({ page }) => {
-  let calls = 0;
-  await page.route('**/api/scan-menu?*', route => { calls++; return route.fulfill({ json: { added: 0, unchanged: 0, conflicts: 0, skipped: 0, entries: [] } }); });
+test('one button lets the phone offer camera or gallery', async ({ page }) => {
   await openForm(page);
-  await expect(page.locator('#scan-menu')).toHaveText('Foto machen');
-  await expect(page.locator('#menu-photo')).toHaveAttribute('capture', 'environment');
-  await expect(page.locator('#menu-photo-pick')).not.toHaveAttribute('capture', /.*/);
-  const chooser = page.waitForEvent('filechooser'); await page.locator('#pick-menu').click();
-  await (await chooser).setFiles('tests/fixtures/menu-scan-table.jpg');
-  await expect.poll(() => calls).toBe(1);
-  await expect(page.locator('#pick-menu')).toBeEnabled();
+  await expect(page.locator('#scan-menu')).toHaveText('Foto machen oder auswählen');
+  await expect(page.locator('#menu-photo')).not.toHaveAttribute('capture', /.*/);
+  await expect(page.locator('#pick-menu')).toHaveCount(0);
 });
 test('a cocktail list uploaded while coffee is open is saved and shown under cocktails', async ({ page }) => {
   await page.route('**/api/scan-menu?*', route => route.fulfill({ json: { added: 2, unchanged: 0, conflicts: 0, skipped: 0,
