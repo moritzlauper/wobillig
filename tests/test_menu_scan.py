@@ -163,3 +163,7 @@ class ChainBranches(unittest.TestCase):
                 {'id': 'failed', 'scrapeStatus': 'fetch_failed', 'checkedAt': '2026-11-05T16:00:00'}]}))
             with patch.object(menu_scan, 'DATA_DIR', Path(tmp)):
                 self.assertEqual(menu_scan.fresh_prices('2026-11-06T10:00:00'), {'fresh'})
+
+    def test_a_guide_listed_natural_wine_bar_pours_natural_wine(self):
+        from scraper.menu_scan import natural_bar
+        self.assertTrue(natural_bar([{'id': 'node/1232849946', 'name': 'Gamper Bar'}], []))

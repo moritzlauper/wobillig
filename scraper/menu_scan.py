@@ -133,8 +133,14 @@ def scan(name, bars, fetcher, client, max_pages, max_documents, deadline):
     return {'status': status, 'offers': offers, 'errors': result['errors'][:5]}
 
 
+NATURAL_VENUES = {key for key in json.loads((ROOT / 'scraper/natural_wine_venues.json').read_text()) if not key.startswith('_')}
+
+
 def natural_bar(bars, docs):
-    """True when the venue presents itself as a natural wine bar in its name or on its website's pages."""
+    """True when the venue presents itself as a natural wine bar in its name or on its website's pages,
+    or a guide lists it as one (scraper/natural_wine_venues.json)."""
+    if any(bar.get('id') in NATURAL_VENUES for bar in bars):
+        return True
     texts = [bar.get('name') or '' for bar in bars] + [d['body'] for d in docs if d['kind'] == 'text/plain']
     return any(NATURAL_BAR.search(text) for text in texts)
 
