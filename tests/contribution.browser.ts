@@ -114,7 +114,7 @@ test('menu upload uses the selected venue and the existing scan path', async ({ 
     return route.fulfill({ json: { entries: [], added: 0, unchanged: 1, conflicts: 0, skipped: 0 } });
   });
   const { writes } = await setup(page);
-  await page.getByRole('button', { name: 'Menükarte hochladen' }).click();
+  await page.getByRole('button', { name: /Menükarte oder Quittung hochladen/ }).click();
   await page.getByLabel('Lokal oder Adresse', { exact: true }).fill('Food Court');
   await page.locator('#contribution-matches button').first().click();
   await expect(page.locator('#menu-scan')).toBeVisible();

@@ -23,13 +23,14 @@ export function contributionForm(city: City, known: () => Bar[], proceed: (bar: 
   dialog.innerHTML = `
     <div class="dialog-top"><strong id="contribution-title" tabindex="-1">${t('Preise ergänzen')}</strong><button id="contribution-close" type="button">${t('Schliessen')}</button></div>
     <div id="contribution-start">
+      <!-- A photo of the menu or receipt is the quickest way to add many prices, so it comes first. -->
+      <button id="contribution-scan" class="contribution-option contribution-recommended" type="button"><strong>${t('Menükarte oder Quittung hochladen')}</strong><span>${t('Lokal wählen, dann fotografieren oder ein Foto auswählen. Alle lesbaren Preise werden gespeichert.')}</span></button>
       <form id="contribution-smart" class="contribution-smart">
         <label for="contribution-text">${t('Smart ergänzen')}</label>
         <p class="muted" id="contribution-help">${t('Schreib, was wie viel kostet und wo. Du prüfst den Eintrag vor dem Speichern.')}</p>
         <textarea id="contribution-text" rows="3" maxlength="500" required aria-describedby="contribution-help" placeholder="${t('z. B. Food Court am HB, Pizza Margherita für 5.–')}"></textarea>
         <button type="submit" class="primary">${t('Eintrag vorbereiten')}</button>
       </form>
-      <button id="contribution-scan" class="contribution-option" type="button"><strong>${t('Menükarte hochladen')}</strong><span>${t('Lokal wählen, Foto aufnehmen oder auswählen.')}</span></button>
       <button id="contribution-manual" class="text-button" type="button">${t('Manuell eintragen')}</button>
     </div>
     <section id="contribution-venue" hidden aria-labelledby="contribution-venue-title">

@@ -301,13 +301,16 @@ dialog::backdrop { background: var(--backdrop); }
 #add-venue { white-space: nowrap; }
 #contribution-dialog { width: min(480px, calc(100% - 24px)); }
 #contribution-dialog label { display: block; margin-bottom: 7px; font-weight: 600; }
-.contribution-smart { padding: 16px; border: 1px solid var(--teal-border); border-radius: 6px; background: var(--teal-surface); }
+.contribution-smart { padding: 16px; border: 1px solid var(--border); border-radius: 6px; margin-top: 14px; }
 .contribution-smart p { margin: 0 0 12px; }
 .contribution-smart textarea { width: 100%; min-width: 0; resize: vertical; padding: 10px; font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 3px; }
 .contribution-smart textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-.contribution-smart .primary { width: 100%; margin-top: 10px; min-height: 42px; }
+.contribution-smart .primary { width: 100%; margin-top: 10px; min-height: 42px; background: transparent; color: var(--text); border-color: var(--border); }
 .contribution-option { display: grid; gap: 5px; width: 100%; text-align: left; padding: 14px; margin: 14px 0 4px; }
 .contribution-option span { color: var(--muted); font-size: var(--font-control); }
+.contribution-recommended { margin-top: 0; padding: 16px; color: #fff; background: var(--teal-active); border-color: var(--teal-active); border-radius: 6px; }
+.contribution-recommended span { color: rgba(255, 255, 255, .88); }
+.contribution-recommended:hover { background: var(--teal-active-hover); }
 .contribution-new { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--divider); }
 #contribution-venue h2 { margin: 12px 0; font-size: 18px; }
 #contribution-query { width: 100%; }
