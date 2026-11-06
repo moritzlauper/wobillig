@@ -1,9 +1,40 @@
 {
-  "generatedAt": "2026-11-05T16:06:04.710395+00:00",
+  "generatedAt": "2026-11-06T00:21:46.319361+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "category": "wine",
   "removed": [],
   "bars": [
+    {
+      "id": "node/639048686",
+      "name": "01bar",
+      "lat": 47.373723,
+      "lon": 8.5430379,
+      "type": "bar",
+      "address": "",
+      "postcode": "",
+      "website": "https://01bar.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein (süss oder sauer)",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 12.5,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://01bar.ch/01Bar-Karte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein (süss oder sauer) 12.50",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
     {
       "id": "node/334300587",
       "name": "Aargauerhof",
@@ -35,8 +66,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/297710735",
@@ -150,8 +181,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/289669794",
@@ -197,8 +228,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/12887183327",
@@ -328,8 +359,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/1235083734",
@@ -359,8 +390,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/656628375",
@@ -392,8 +423,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "way/75803849",
@@ -507,8 +538,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/370657577",
@@ -541,8 +572,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/311859458",
@@ -644,8 +675,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/3932278823",
@@ -761,8 +792,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/648918654",
@@ -878,8 +909,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/11884208971",
@@ -981,8 +1012,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/6066072455",
@@ -1084,8 +1115,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/6205732851",
@@ -1187,8 +1218,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/1978573306",
@@ -1249,8 +1280,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/300419657",
@@ -1311,8 +1342,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/370844602",
@@ -1373,8 +1404,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/4958366047",
@@ -1435,8 +1466,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/9995613567",
@@ -1497,8 +1528,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/448855246",
@@ -1528,8 +1559,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/3110688142",
@@ -1758,8 +1789,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/460432599",
@@ -1836,8 +1867,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/307742573",
@@ -1940,8 +1971,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/105443906",
@@ -1975,8 +2006,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/1817263418",
@@ -2106,8 +2137,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/4778167221",
@@ -2137,8 +2168,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/3799099678",
@@ -2171,8 +2202,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/4833061577",
@@ -2204,8 +2235,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/268654801",
@@ -2361,8 +2392,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/1817263466",
@@ -2534,8 +2565,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/268963180",
@@ -2567,8 +2598,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/13136192701",
@@ -2601,8 +2632,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/267049751",
@@ -2649,8 +2680,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/267023274",
@@ -2724,8 +2755,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/3584059568",
@@ -2799,8 +2830,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/5688147984",
@@ -2874,8 +2905,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/7578000581",
@@ -2949,8 +2980,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/5670095833",
@@ -3094,8 +3125,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/5629311368",
@@ -3139,8 +3170,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/385208811",
@@ -3326,8 +3357,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/895750299",
@@ -3555,8 +3586,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/5115701103",
@@ -3684,8 +3715,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/10967922624",
@@ -3799,8 +3830,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/4833061536",
@@ -3874,8 +3905,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/270691220",
@@ -3935,8 +3966,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/1510019206",
@@ -4094,8 +4125,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/1986773362",
@@ -4139,8 +4170,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/370834754",
@@ -4170,8 +4201,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/279180955",
@@ -4257,8 +4288,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/1964156339",
@@ -4290,8 +4321,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/3136184920",
@@ -4323,8 +4354,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "way/1383743333",
@@ -4354,8 +4385,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/13979988101",
@@ -4387,8 +4418,56 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/13566591718",
+      "name": "Pizzeria Turicum",
+      "lat": 47.3909903,
+      "lon": 8.478422,
+      "type": "restaurant",
+      "address": "Badenerstrasse 753",
+      "postcode": "8048",
+      "website": "https://restaurant-turicum.ch/",
+      "cuisine": [
+        "italian",
+        "pizza"
+      ],
+      "openingHours": "Mo-Fr 10:00-23:00; Sa 17:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Primitivo del Salento igt",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restaurant-turicum.ch/weinkarte/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Primitivo del Salento igt LEONE DE CASTRIS 6.00 42.00 (1 dl 6.00)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rosato Fiore di Nero – Sicilia Doc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.0,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://restaurant-turicum.ch/weinkarte/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Rosato Fiore di Nero – Sicilia DOC LOMBARDO 7.00 49.00 (1 dl 7.00)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/8262559375",
@@ -4420,8 +4499,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/2528352535",
@@ -4580,8 +4659,41 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/2463374628",
+      "name": "Restaurant Gertrudhof",
+      "lat": 47.3739155,
+      "lon": 8.5157835,
+      "type": "restaurant",
+      "address": "Gertrudstrasse 26",
+      "postcode": "8003",
+      "website": "https://www.gertrudhof.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Tu-Fr 11:00-14:00, 17:30-23:00; Sa 17:00-23:00; Su 16:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein süss/sauer",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 10.5,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://www.gertrudhof.ch/ws/media-library/584a7ca78935ffc23ca55f5ab0804b32/speisekarte_gertrudhof.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein süss/sauer 1dl Weisswein mit Soda/Citro 10.50",
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     },
     {
       "id": "node/1508362751",
@@ -4795,8 +4907,1206 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/4492182084",
+      "name": "Restaurant Pyramids",
+      "lat": 47.3715877,
+      "lon": 8.5261787,
+      "type": "restaurant",
+      "address": "Werdstrasse 99",
+      "postcode": "8004",
+      "website": "https://www.pyramids-restaurant.ch/",
+      "cuisine": [
+        "egyptian"
+      ],
+      "openingHours": "Mo,Tu 11:30-14:00; We,Th 11:30-14:00,18:00-22:00; Fr 11:30-14:00,18:00-22:30; Sa 17:30-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein (süss oder sauer)",
+          "volumeMl": 200,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://pyramids-restaurant.ch/wp-content/uploads/2024/09/Mittagskarte-Pyramids-Restaurant-2024.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein (süss oder sauer) 9,00 (2 dl.)",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T16:06:04.710395+00:00"
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/3381293318",
+      "name": "SimSim",
+      "lat": 47.3878521,
+      "lon": 8.5392302,
+      "type": "restaurant",
+      "address": "Kronenstrasse 48",
+      "postcode": "8006",
+      "website": "https://sim-sim.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:00,17:30-22:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein",
+          "volumeMl": 200,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://sim-sim.ch/wp-content/uploads/2025/08/SimSim_Oerlikon_Abendkarte_Menue_2025.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein 2 dl 7",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/3479329968",
+      "name": "SimSim",
+      "lat": 47.4075523,
+      "lon": 8.5478557,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://sim-sim.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,17:30-22:00, Sa 17:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein",
+          "volumeMl": 200,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://sim-sim.ch/wp-content/uploads/2025/08/SimSim_Oerlikon_Abendkarte_Menue_2025.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein 2 dl 7",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/305586752",
+      "name": "Sphères",
+      "lat": 47.3919262,
+      "lon": 8.5187946,
+      "type": "bar",
+      "address": "Hardturmstrasse 66",
+      "postcode": "8005",
+      "website": "https://www.spheres.cc",
+      "cuisine": [
+        "breakfast",
+        "cake",
+        "coffee_shop",
+        "local",
+        "regional"
+      ],
+      "openingHours": "Mo-Fr 08:00-23:30; Sa 09:00-19:30; Su 10:00-19:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Weisser Burgunder, Wittmann",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.9,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://cms.spheres.cc/uploads/images/20260324_Aperokarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Weisser Burgunder, Wittmann 2022 1 dl 6.90",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chardonnay - Mâcon Villages (fr)",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.3,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://cms.spheres.cc/uploads/images/20260324_Aperokarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Chardonnay - Mâcon Villages (FR) 2023 1 dl 7.30",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sauvignon blanc, Weingut von Winning",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://cms.spheres.cc/uploads/images/20260324_Aperokarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Sauvignon blanc, Weingut von Winning 2022 1 dl 7.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Domain des Féraud",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.9,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://cms.spheres.cc/uploads/images/20260324_Aperokarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Domain des Féraud 2023 1 dl 6.90",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Palpite Tinto Reserva, António Maçanita (por)",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://cms.spheres.cc/uploads/images/20260324_Aperokarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Palpite Tinto Reserva, António Maçanita (POR) 2022 1 dl 8.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Degani, Valpolicella Ripasso (i)",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.9,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://cms.spheres.cc/uploads/images/20260324_Aperokarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Degani, Valpolicella Ripasso (I) 2022 1 dl 7.90",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pago de Cirsus, La Torre (esp)",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.1,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://cms.spheres.cc/uploads/images/20260324_Aperokarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Pago de Cirsus, La Torre (ESP) 2020 1 dl 8.10",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/4259128853",
+      "name": "Tibits",
+      "lat": 47.4090845,
+      "lon": 8.5466964,
+      "type": "restaurant",
+      "address": "Tramstrasse 2",
+      "postcode": "8050",
+      "website": "https://www.tibits.ch/de/restaurants#tibits-zuerich",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 06:30-22:30; Sa 08:00-22:30; Su,PH 08:00-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "«Les Enfants» Cabernet Franc/Merlot",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.0,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "«Les Enfants» Cabernet Franc/Merlot | 10cl 8.00 | 20cl 15.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "«Les Enfants» Cabernet Franc/Merlot",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 15.0,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "«Les Enfants» Cabernet Franc/Merlot | 10cl 8.00 | 20cl 15.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Syrah-Grenache «Sélection tibits»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Syrah-Grenache «Sélection tibits» | 10cl 7.50 | 20cl 14.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Syrah-Grenache «Sélection tibits»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 14.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Syrah-Grenache «Sélection tibits» | 10cl 7.50 | 20cl 14.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Blauer Zweigelt «Oibelos»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Blauer Zweigelt «Oibelos» | 10cl 8.50 | 20cl 16.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Blauer Zweigelt «Oibelos»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 16.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Blauer Zweigelt «Oibelos» | 10cl 8.50 | 20cl 16.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cabernet Sauvignon «Campo dei Morer»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Cabernet Sauvignon «Campo dei Morer» | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cabernet Sauvignon «Campo dei Morer»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 17.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Cabernet Sauvignon «Campo dei Morer» | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ribera del Duero",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Ribera del Duero | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ribera del Duero",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 17.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Ribera del Duero | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Merlot «Cantastorie»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Merlot «Cantastorie» | 10cl 9.50 | 20cl 18.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Merlot «Cantastorie»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 18.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Merlot «Cantastorie» | 10cl 9.50 | 20cl 18.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/4880906379",
+      "name": "Tibits",
+      "lat": 47.3649526,
+      "lon": 8.5478868,
+      "type": "restaurant",
+      "address": "Seefeldstrasse 2",
+      "postcode": "8008",
+      "website": "https://www.tibits.ch/de/restaurants#tibits-zuerich",
+      "cuisine": [],
+      "openingHours": "Mo-Th 06:30-22:30; Fr 06:30-23:00; Sa 08:00-23:00; Su 09:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "«Les Enfants» Cabernet Franc/Merlot",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.0,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "«Les Enfants» Cabernet Franc/Merlot | 10cl 8.00 | 20cl 15.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "«Les Enfants» Cabernet Franc/Merlot",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 15.0,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "«Les Enfants» Cabernet Franc/Merlot | 10cl 8.00 | 20cl 15.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Syrah-Grenache «Sélection tibits»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Syrah-Grenache «Sélection tibits» | 10cl 7.50 | 20cl 14.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Syrah-Grenache «Sélection tibits»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 14.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Syrah-Grenache «Sélection tibits» | 10cl 7.50 | 20cl 14.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Blauer Zweigelt «Oibelos»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Blauer Zweigelt «Oibelos» | 10cl 8.50 | 20cl 16.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Blauer Zweigelt «Oibelos»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 16.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Blauer Zweigelt «Oibelos» | 10cl 8.50 | 20cl 16.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cabernet Sauvignon «Campo dei Morer»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Cabernet Sauvignon «Campo dei Morer» | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cabernet Sauvignon «Campo dei Morer»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 17.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Cabernet Sauvignon «Campo dei Morer» | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ribera del Duero",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Ribera del Duero | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ribera del Duero",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 17.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Ribera del Duero | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Merlot «Cantastorie»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Merlot «Cantastorie» | 10cl 9.50 | 20cl 18.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Merlot «Cantastorie»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 18.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Merlot «Cantastorie» | 10cl 9.50 | 20cl 18.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/4958366050",
+      "name": "Tibits Bistro Zürich",
+      "lat": 47.3647473,
+      "lon": 8.5475997,
+      "type": "restaurant",
+      "address": "Falkenstrasse 12",
+      "postcode": "8008",
+      "website": "https://www.tibits.ch/de/restaurants#tibits-zuerich",
+      "cuisine": [],
+      "openingHours": "Mo-Sa 09:00-22:00; Su 09:00-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "«Les Enfants» Cabernet Franc/Merlot",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.0,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "«Les Enfants» Cabernet Franc/Merlot | 10cl 8.00 | 20cl 15.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "«Les Enfants» Cabernet Franc/Merlot",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 15.0,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "«Les Enfants» Cabernet Franc/Merlot | 10cl 8.00 | 20cl 15.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Syrah-Grenache «Sélection tibits»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Syrah-Grenache «Sélection tibits» | 10cl 7.50 | 20cl 14.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Syrah-Grenache «Sélection tibits»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 14.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Syrah-Grenache «Sélection tibits» | 10cl 7.50 | 20cl 14.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Blauer Zweigelt «Oibelos»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Blauer Zweigelt «Oibelos» | 10cl 8.50 | 20cl 16.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Blauer Zweigelt «Oibelos»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 16.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Blauer Zweigelt «Oibelos» | 10cl 8.50 | 20cl 16.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cabernet Sauvignon «Campo dei Morer»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Cabernet Sauvignon «Campo dei Morer» | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cabernet Sauvignon «Campo dei Morer»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 17.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Cabernet Sauvignon «Campo dei Morer» | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ribera del Duero",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Ribera del Duero | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ribera del Duero",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 17.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Ribera del Duero | 10cl 9.00 | 20cl 17.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Merlot «Cantastorie»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Merlot «Cantastorie» | 10cl 9.50 | 20cl 18.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Merlot «Cantastorie»",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 18.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Merlot «Cantastorie» | 10cl 9.50 | 20cl 18.00",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/104276014",
+      "name": "Turbinenhalle",
+      "lat": 47.3841009,
+      "lon": 8.4964028,
+      "type": "restaurant",
+      "address": "Badenerstrasse 571",
+      "postcode": "8048",
+      "website": "https://www.restaurant-turbinenbraeu.ch/",
+      "cuisine": [
+        "burger",
+        "regional"
+      ],
+      "openingHours": "Mo-We 11:30-14:00, 18:00-23:00; Th-Fr 11:30-14:30, 17:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Grüner Veltliner",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://fb85aa33-72ec-42ac-a4e8-c65a042ca3b9.filesusr.com/ugd/f1d222_1c75ea1683af497eb9494b3c5f3ea222.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "GRÜNER VELTLINER 1dl 9.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/7245143002",
+      "name": "Westhive Kitchen",
+      "lat": 47.3933418,
+      "lon": 8.5121558,
+      "type": "restaurant",
+      "address": "Hardturmstrasse 161",
+      "postcode": "8005",
+      "website": "https://www.westhive.com/en/eat-drink/westhive-kitchen-zurich-hardturm/",
+      "cuisine": [
+        "regional",
+        "sandwich",
+        "pasta",
+        "salad",
+        "donut"
+      ],
+      "openingHours": "Mo-Fr 07:30-17:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Brancaia il Bianco",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.8,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-hardturm/menue-westhive-kitchen-zuerich-hardturm/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Brancaia il Bianco, 1dl Sauvignon Blanc 6.80",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Brancaia Tre",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.8,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-hardturm/menue-westhive-kitchen-zuerich-hardturm/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Brancaia Tre, 1dl Sangiovese, Merlot, Cabernet Sauvignon 6.80",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Brancaia N°2",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-hardturm/menue-westhive-kitchen-zuerich-hardturm/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Brancaia N°2, 1dl Cabernet Sauvignon 9.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/1975523704",
+      "name": "Wirtschaft Unterdorf",
+      "lat": 47.4262082,
+      "lon": 8.5054134,
+      "type": "restaurant",
+      "address": "Katzenseestrasse 15",
+      "postcode": "8046",
+      "website": "https://wirtschaft-unterdorf.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Mo off; Tu-Sa 09:00-23:00; Su 09:00-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Yvorne Avy Blanc, Chablais Aoc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.0,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://cdn.prod.website-files.com/6853ffe88140f87d39a216a4/68d83829861a65e2ae4a215e_574a5418024420286f4947f687c1bb30_Weinkarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Yvorne AVY Blanc, Chablais AOC | Fr. 7.00 10 cl",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Epesses Lavaux Aoc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.0,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://cdn.prod.website-files.com/6853ffe88140f87d39a216a4/68d83829861a65e2ae4a215e_574a5418024420286f4947f687c1bb30_Weinkarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Epesses Lavaux AOC | Fr. 7.00 10 cl",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Morges Les Terroises, La Côte Aoc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://cdn.prod.website-files.com/6853ffe88140f87d39a216a4/68d83829861a65e2ae4a215e_574a5418024420286f4947f687c1bb30_Weinkarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Morges Les Terroises, La Côte AOC | Fr. 6.00 10 cl",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bourg au Blanc, Aoc Zürich Assemblage Noble",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.0,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://cdn.prod.website-files.com/6853ffe88140f87d39a216a4/68d83829861a65e2ae4a215e_574a5418024420286f4947f687c1bb30_Weinkarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Bourg au Blanc, AOC Zürich Assemblage Noble | Fr. 7.00 10 cl",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Lugana Doc Campovalentino",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.8,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://cdn.prod.website-files.com/6853ffe88140f87d39a216a4/68d83829861a65e2ae4a215e_574a5418024420286f4947f687c1bb30_Weinkarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Lugana DOC Campovalentino | Fr. 7.80 10 cl",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chardonnay Toscana Igt Donna di Valiano",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://cdn.prod.website-files.com/6853ffe88140f87d39a216a4/68d83829861a65e2ae4a215e_574a5418024420286f4947f687c1bb30_Weinkarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Chardonnay Toscana IGT Donna di Valiano | Fr. 7.50 10 cl",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Oeil-de-Perdrix Château d'Auvernier Neuchâtel Aoc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.0,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://cdn.prod.website-files.com/6853ffe88140f87d39a216a4/68d83829861a65e2ae4a215e_574a5418024420286f4947f687c1bb30_Weinkarte.pdf",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Oeil-de-Perdrix Château d'Auvernier Neuchâtel AOC | Fr. 8.00 10 cl",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/11416682178",
+      "name": "Yardbird",
+      "lat": 47.3774579,
+      "lon": 8.5409554,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://yardbird.ch/de/zuerich_hauptbahnhof/",
+      "cuisine": [
+        "american",
+        "chicken"
+      ],
+      "openingHours": "Su-Th 10:30-22:00, Fr-Sa 10:30-01:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Cuvée Weiss «Regula» Aoc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Cuvée Weiss «Regula» AOC, Zürich Riesling-Sylvaner (Müller-Thurgau), Cabernet Blanc, Scheurebe, Vidal blanc 1dl 9",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aphélie Rosé Igp Bio",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Rosé Wine, Aphélie Rosé IGP Bio, Italien Caladoc, Cinsault, Grenache 1dl 7",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Glühwein rot “glüh Glüh”",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 6.5,
+          "wineType": "mulled",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Glühwein rot “glüh Glüh”, spanien, alkoholhaltig 6.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Le Bouquet Igp, Frankreich Sauvignon Blanc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/de/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Le Bouquet IGP, Frankreich / Sauvignon Blanc / 1dl 7",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aphélie Rosé Igp Bio, Italien",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/de/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Aphélie Rosé IGP Bio, Italien / 1dl 7",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Glühwein rot “glüh Glüh”, Spanien, alkoholhaltig",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 6.5,
+          "wineType": "mulled",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/de/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Glühwein rot “glüh Glüh”, spanien, alkoholhaltig 6.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+    },
+    {
+      "id": "node/2298795774",
+      "name": "Yardbird Southern Fried Chicken",
+      "lat": 47.3733877,
+      "lon": 8.5189589,
+      "type": "restaurant",
+      "address": "Weststrasse 146",
+      "postcode": "8003",
+      "website": "https://www.yardbird.ch/",
+      "cuisine": [
+        "american"
+      ],
+      "openingHours": "We,Th,Su 18:00-22:00; Fr,Sa 18:00-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Cuvée Weiss «Regula» Aoc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Cuvée Weiss «Regula» AOC, Zürich Riesling-Sylvaner (Müller-Thurgau), Cabernet Blanc, Scheurebe, Vidal blanc 1dl 9",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aphélie Rosé Igp Bio",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Rosé Wine, Aphélie Rosé IGP Bio, Italien Caladoc, Cinsault, Grenache 1dl 7",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Glühwein rot “glüh Glüh”",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 6.5,
+          "wineType": "mulled",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Glühwein rot “glüh Glüh”, spanien, alkoholhaltig 6.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Le Bouquet Igp, Frankreich Sauvignon Blanc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/de/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Le Bouquet IGP, Frankreich / Sauvignon Blanc / 1dl 7",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aphélie Rosé Igp Bio, Italien",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/de/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Aphélie Rosé IGP Bio, Italien / 1dl 7",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Glühwein rot “glüh Glüh”, Spanien, alkoholhaltig",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 6.5,
+          "wineType": "mulled",
+          "natural": false,
+          "sourceUrl": "https://yardbird.ch/de/backyard-menu/",
+          "observedAt": "2026-11-06T00:21:46.319361+00:00",
+          "confidence": "ai",
+          "evidence": "Glühwein rot “glüh Glüh”, spanien, alkoholhaltig 6.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
     }
   ]
 }
