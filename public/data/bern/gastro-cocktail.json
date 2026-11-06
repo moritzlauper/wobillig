@@ -1,5 +1,8 @@
 {
   "generatedAt": "2026-11-06T00:02:10.993600+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "removed": [],
+  "category": "cocktail",
   "bars": [
     {
       "id": "node/9879313038",
@@ -372,6 +375,185 @@
       "checkedAt": "2026-11-05T23:15:52.585875+00:00"
     },
     {
+      "id": "node/253201072",
+      "name": "Altes Tramdepot",
+      "lat": 46.9475089,
+      "lon": 7.4596534,
+      "type": "restaurant",
+      "address": "Grosser Muristalden 6",
+      "postcode": "3006",
+      "website": "https://www.altestramdepot.ch",
+      "cuisine": [
+        "international"
+      ],
+      "openingHours": "Mar-Oct Mo-Su 10:00-00:30; Nov-Feb Mo-Su 11:00-00:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 13.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Limoncello Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Limoncello Spritz 13.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Onkel Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Onkel Hugo 13.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Soda",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.0,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Soda 10.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Glitter Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.0,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Glitter Spritz 11.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Onkel Hugo 0%",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.0,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Onkel Hugo 0% 11.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/101292381",
+      "name": "Ambassador",
+      "lat": 46.9432228,
+      "lon": 7.4504174,
+      "type": "restaurant",
+      "address": "Thunstrasse 2",
+      "postcode": "3005",
+      "website": "https://www.restaurantambassador.ch",
+      "cuisine": [
+        "greek",
+        "local"
+      ],
+      "openingHours": "Mo-Fr 09:00-14:00,18:00-23:30; Sa 18:00-23:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritzer",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.6,
+          "sourceUrl": "https://www.samos-bern.ch/uploads/1/5/4/7/154723087/samos_speisekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritzer CHF 11.60",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.6,
+          "sourceUrl": "https://www.samos-bern.ch/uploads/1/5/4/7/154723087/samos_speisekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo CHF 11.60",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/4688138991",
+      "name": "Ambiente",
+      "lat": 46.9491209,
+      "lon": 7.4284577,
+      "type": "restaurant",
+      "address": "Bühlstrasse 5",
+      "postcode": "3012",
+      "website": "https://www.ambiente-bern.ch/",
+      "cuisine": [
+        "italian_pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 09:00-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.0,
+          "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 11 Vol-% 4cl 14.00",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzter Weisswein",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.8,
+          "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein 12 Vol-% 4cl 8.80",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/438280379",
       "name": "Azzurro",
       "lat": 46.9483374,
@@ -415,6 +597,61 @@
       "checkedAt": "2026-11-05T23:58:45.712708+00:00"
     },
     {
+      "id": "node/745461263",
+      "name": "Bigote Verde",
+      "lat": 46.9477884,
+      "lon": 7.4289947,
+      "type": "restaurant",
+      "address": "Laupenstrasse 57",
+      "postcode": "3008",
+      "website": "https://www.bigoteverde.com",
+      "cuisine": [
+        "mexican"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00, 17:30-22:00; Sa 14:00-23:00; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Margarita Bigote Verde 3dl",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.2,
+          "sourceUrl": "https://www.bigoteverde.com/speisekarte",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Margarita Bigote Verde 3dl Mit Alkohol CHF 15.20",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mojito 3dl",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.2,
+          "sourceUrl": "https://www.bigoteverde.com/speisekarte",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Mojito 3dl Mit Alkohol CHF 15.20",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Caipirinha 3dl",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.2,
+          "sourceUrl": "https://www.bigoteverde.com/speisekarte",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Caipirinha 3dl Mit Alkohol CHF 15.20",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/3468161751",
       "name": "Billard-Center City",
       "lat": 46.9468058,
@@ -442,6 +679,47 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:13:12.474417+00:00"
+    },
+    {
+      "id": "node/286689576",
+      "name": "Brasserie Bärengraben",
+      "lat": 46.9485322,
+      "lon": 7.459372,
+      "type": "restaurant",
+      "address": "Grosser Muristalden 1",
+      "postcode": "3006",
+      "website": "https://www.brasseriebaerengraben.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 07:00-23:30; Sa-Su 08:00-23:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.9,
+          "sourceUrl": "https://brasseriebaerengraben.ch/wp-content/uploads/2026/10/Wein-1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 10.° 13.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.9,
+          "sourceUrl": "https://brasseriebaerengraben.ch/wp-content/uploads/2026/10/Wein-1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 10.° 13.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/1682881673",
@@ -497,6 +775,47 @@
       "checkedAt": "2026-11-05T23:29:45.571195+00:00"
     },
     {
+      "id": "node/2666705334",
+      "name": "Café Bar Orangerie Elfenau",
+      "lat": 46.9327109,
+      "lon": 7.4661739,
+      "type": "cafe",
+      "address": "Elfenauweg 94",
+      "postcode": "3006",
+      "website": "https://orangerieelfenau.ch/",
+      "cuisine": [],
+      "openingHours": "Apr-Oct Fr, Sa 09:00-22:00; Mo-Th, Su 09:00-19:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Arangino Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://orangerieelfenau.ch/wp-content/uploads/Menu/Orangerie-Elfenau_Menu.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Arangino Spritz 13",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://orangerieelfenau.ch/wp-content/uploads/Menu/Orangerie-Elfenau_Menu.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 12",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/286879743",
       "name": "Café des Pyrenées",
       "lat": 46.9486716,
@@ -548,6 +867,229 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:32:15.325064+00:00"
+    },
+    {
+      "id": "way/460523809",
+      "name": "Cafébar Pinprinza",
+      "lat": 46.9434861,
+      "lon": 7.3918016,
+      "type": "cafe",
+      "address": "Bümplizstrasse 97a",
+      "postcode": "3018",
+      "website": "https://www.pinprinza.ch/",
+      "cuisine": [
+        "coffee_shop",
+        "regional",
+        "ice_cream",
+        "sandwich",
+        "breakfast",
+        "cake",
+        "tea",
+        "pastry"
+      ],
+      "openingHours": "Do-So 09:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo Prosecco, Holunderblüte, Minze, Soda 10.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Apéro Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Apéro Spritz Jsotta Apéritivo, Prosecco, Soda 11.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Spritz Jsotta Bitter, Prosecco, Soda 11.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwerer Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwerer Spritz Jinja Ingwerer, Prosecco, Soda 12.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic 11.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "London Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "London Mule Gin, Ginger Beer, Limettensaft 11.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni Gin, Bitter, Roter Wermut 12.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni Sbagliato",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni Sbagliato Bitter, Roter Wermut, Prosecco 12.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Espresso Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso Martini Wodka, Kaffeelikör, Espresso 12.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/559232004",
+      "name": "Caledonia",
+      "lat": 46.9578432,
+      "lon": 7.4670016,
+      "type": "restaurant",
+      "address": "Mingerstrasse 16",
+      "postcode": "3014",
+      "website": "https://www.caledonia-bern.ch",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 11:00-15:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Apérol spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.caledonia-bern.ch/wp-content/uploads/2026/04/Getraenkekarte_Saison26-27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Apérol spritz 12",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Limoncello spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.caledonia-bern.ch/wp-content/uploads/2026/04/Getraenkekarte_Saison26-27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Limoncello spritz 12",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.caledonia-bern.ch/wp-content/uploads/2026/04/Getraenkekarte_Saison26-27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 12",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14,
+          "sourceUrl": "https://www.caledonia-bern.ch/wp-content/uploads/2026/04/Getraenkekarte_Saison26-27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni 14",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "No spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8,
+          "sourceUrl": "https://www.caledonia-bern.ch/wp-content/uploads/2026/04/Getraenkekarte_Saison26-27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "No spritz 8",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzter Weisswein",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8,
+          "sourceUrl": "https://www.caledonia-bern.ch/wp-content/uploads/2026/04/Getraenkekarte_Saison26-27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein 8",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/738207062",
@@ -828,6 +1370,61 @@
       "checkedAt": "2026-11-05T23:36:00.364965+00:00"
     },
     {
+      "id": "node/286879695",
+      "name": "da Nino",
+      "lat": 46.9420149,
+      "lon": 7.4314041,
+      "type": "restaurant",
+      "address": "Belpstrasse 65",
+      "postcode": "3007",
+      "website": "https://pizzeriadanino.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:30-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Campari Soda",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.0,
+          "sourceUrl": "https://www.pizzeriadanino.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Soda 8.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz piccolino",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.0,
+          "sourceUrl": "https://www.pizzeriadanino.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz piccolino Aperol, Prosecco, Olive 9.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.0,
+          "sourceUrl": "https://www.pizzeriadanino.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni Gin, Bitter, Vermouth rosso 12.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/598242991",
       "name": "Del Gusto",
       "lat": 46.9563407,
@@ -857,6 +1454,73 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:26:16.248566+00:00"
+    },
+    {
+      "id": "node/444434142",
+      "name": "Domino",
+      "lat": 46.9469538,
+      "lon": 7.4391205,
+      "type": "restaurant",
+      "address": "Schwanengasse 3",
+      "postcode": "3011",
+      "website": "https://www.domino-bern.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Sa 10:00-23:00; Su,PH off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Virgin Mojito",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.5,
+          "sourceUrl": "https://domino-bern.ch/wp-content/uploads/2023/10/Speisekarte_online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Virgin Mojito 9.50",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Virgin Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.5,
+          "sourceUrl": "https://domino-bern.ch/wp-content/uploads/2023/10/Speisekarte_online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Virgin Hugo 9.50",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sanbitter Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.5,
+          "sourceUrl": "https://domino-bern.ch/wp-content/uploads/2023/10/Speisekarte_online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sanbitter Spritz 9.50",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://domino-bern.ch/wp-content/uploads/2023/10/Speisekarte_online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 12.50",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/2915897849",
@@ -1123,6 +1787,136 @@
       "checkedAt": "2026-11-05T23:35:10.702212+00:00"
     },
     {
+      "id": "node/6552336713",
+      "name": "Fabrique28",
+      "lat": 46.9439157,
+      "lon": 7.4356642,
+      "type": "restaurant",
+      "address": "Monbijoustrasse 28",
+      "postcode": "3011",
+      "website": "https://fabrique28.ch",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 09:30-16:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Fabrique28-Spritz (Loriña, Liqueur Aperitif)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fabrique28-Spritz (Loriña, Liqueur Aperitif) 11.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwerer-Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwerer-Spritz 11.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.7,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni 14.70",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Soda",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.4,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Soda 8.40",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzter Weisswein sauer",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.4,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein sauer 8.40",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/253201075",
+      "name": "Fischerstübli",
+      "lat": 46.9471244,
+      "lon": 7.4563737,
+      "type": "restaurant",
+      "address": "Gerberngasse 41",
+      "postcode": "3011",
+      "website": "https://fischerstuebli.ch",
+      "cuisine": [],
+      "openingHours": "Tu-Fr 11:00-14:30,17:00-23:00; Sa 11:00-23:00; Sep 22-Oct 06,Jan 31-Feb 09 off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperitivo di Berna Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.5,
+          "sourceUrl": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_102a79bb73604c8cb0c04d2dcb78981a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperitivo di Berna Spritz 13.50 (Aperitivo di Berna, Prosecco, Mineral)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_102a79bb73604c8cb0c04d2dcb78981a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 12.50 (Prosecco, Holundersirup, Minze, Mineral)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwerer Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_102a79bb73604c8cb0c04d2dcb78981a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwerer Spritz 12.50 (Ingwerer, Prosecco, Mineral)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/3217885285",
       "name": "Frohsinn",
       "lat": 46.9475768,
@@ -1339,6 +2133,131 @@
       "checkedAt": "2026-11-05T23:36:51.271461+00:00"
     },
     {
+      "id": "node/598684504",
+      "name": "Hellys",
+      "lat": 46.9467151,
+      "lon": 7.4387885,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://hellys.ch",
+      "cuisine": [],
+      "openingHours": "Tu-Fr 16:00-18:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Haus Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Haus Negroni Gin, Wermut, Bitter, Orangenzeste 14",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni Gin, Wermut, Bitter, Orangenzeste 15",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "French 75 Highball",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "French 75 Highball Gin, Zitrone, Zucker, Schaumwein 15",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Old Fashioned",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 17,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Old Fashioned Bourbon, Zucker, Angostura, Orangezeste 17",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Dry Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 17,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Dry Martini Gin, Dolin Dry, Olive 17",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spritz 0.0%Vol.",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Spritz 0.0%Vol. Aperitivo, Quitte, Limette 12",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni Sbagliato",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni Sbagliato Wermut, Bitter, Schaumwein, Orangenzeste 13",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz Aperol, Schaumwein, Orangenzeste 13",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Orange",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Orange Campari, frisch gepresster Orangensaft 14",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/3271092775",
       "name": "Huayuan",
       "lat": 46.9410313,
@@ -1370,6 +2289,140 @@
       "checkedAt": "2026-11-06T00:00:39.496711+00:00"
     },
     {
+      "id": "node/379712215",
+      "name": "Hung Thinh",
+      "lat": 46.9482359,
+      "lon": 7.4480647,
+      "type": "restaurant",
+      "address": "Kornhausplatz 7",
+      "postcode": "3011",
+      "website": "https://hung-thinh.ch/",
+      "cuisine": [
+        "vietnamese"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:30,17:30-22:00; Su 11:30-14:00,17:00-21:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.5,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 13.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.5,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic – 15.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz – 12.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spritz Wein",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Spritz Wein – 12.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/3283703322",
+      "name": "Kesar",
+      "lat": 46.949,
+      "lon": 7.41113,
+      "type": "restaurant",
+      "address": "Murtenstrasse 131",
+      "postcode": "3008",
+      "website": "https://www.kesar.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo off; Tu-Su 17:00-23:30; Tu-Fr 11:30-14:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.0,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 8.00",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Indian Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.5,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Indian Hugo 9.50",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.5,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 8.50",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzer Weisswein",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzer Weisswein 6.50",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/101292376",
       "name": "Kirchenfeld",
       "lat": 46.9436093,
@@ -1399,6 +2452,83 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:38:58.980669+00:00"
+    },
+    {
+      "id": "node/1831483517",
+      "name": "Klösterli Weincafe",
+      "lat": 46.9490676,
+      "lon": 7.4592481,
+      "type": "cafe",
+      "address": "Klösterlistutz 16",
+      "postcode": "3013",
+      "website": "https://kloesterlibern.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Su 11:00-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Aperol Sprizz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_3.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Sprizz 13.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_3.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 13.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Matte Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 17.0,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_3.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Matte Negroni 26% 9cl 17.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Virgin Aperol",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_3.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Virgin Aperol 13.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Virgin Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_3.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Virgin Hugo 13.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/3045013204",
@@ -1555,6 +2685,222 @@
       "checkedAt": "2026-11-05T23:40:24.098474+00:00"
     },
     {
+      "id": "node/286879776",
+      "name": "Krone",
+      "lat": 46.9482676,
+      "lon": 7.4530574,
+      "type": "restaurant",
+      "address": "Gerechtigkeitsgasse 66",
+      "postcode": "3011",
+      "website": "https://www.kronebern.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Mo-Fr 09:00-23:30; Sa 16:00-00:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Limoncello Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Limoncello Spritz 13",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 13",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Spritz 13",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 13",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni 16",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/13667025050",
+      "name": "La Vie",
+      "lat": 46.9497795,
+      "lon": 7.4176168,
+      "type": "restaurant",
+      "address": "Weyermannsstrasse 1",
+      "postcode": "",
+      "website": "https://www.restaurantlavie.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 09:00-19:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 12",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bitter di Berna Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bitter di Berna Spritz 12",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Spritz 12",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic 13",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 12",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwerer Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwerer Spritz 12",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni 14",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni Sbagliato",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni Sbagliato 14",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Crodino Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Crodino Spritz 10",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzter Weisswein süss & sauer",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.5,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein süss & sauer 8.5",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/2987238077",
       "name": "Lamoon",
       "lat": 46.9568941,
@@ -1620,6 +2966,49 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:39:30.968857+00:00"
+    },
+    {
+      "id": "node/834071511",
+      "name": "Le Carrousel",
+      "lat": 46.9515314,
+      "lon": 7.4351244,
+      "type": "restaurant",
+      "address": "Hallerstrasse 1",
+      "postcode": "3012",
+      "website": "https://www.le-carrousel.ch/",
+      "cuisine": [
+        "creperie"
+      ],
+      "openingHours": "Tu-Sa 11:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "bitter spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://image.jimcdn.com/app/cms/image/transf/none/path/s1542178a095870b5/image/i3955c7a11221ff5b/version/1767281427/image.png",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "bitter spritz souboziane & celticae 12",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "campari soda",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9,
+          "sourceUrl": "https://image.jimcdn.com/app/cms/image/transf/none/path/s1542178a095870b5/image/i3955c7a11221ff5b/version/1767281427/image.png",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "campari soda 9",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/8819936791",
@@ -1735,6 +3124,215 @@
       "checkedAt": "2026-11-05T23:41:12.644865+00:00"
     },
     {
+      "id": "node/1296972964",
+      "name": "Lirum Larum",
+      "lat": 46.9478543,
+      "lon": 7.4512545,
+      "type": "bar",
+      "address": "Kramgasse 19a",
+      "postcode": "3011",
+      "website": "https://www.lirum-larum.ch",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 08:00-00:30; Sa 09:00-00:30; Su 11:00-18:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Pornstar Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Pornstar Martini 18.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Espresso Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso Martini 18.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Moscow Mule | London Mule | Berner Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 17,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Moscow Mule | London Mule | Berner Mule 17",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Berry Coco Mojito",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Berry Coco Mojito 18.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni 16.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mojito",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Mojito 16.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Amaretto Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Amaretto Sour 18.5",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Virgin Mojito",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Virgin Mojito Passionsfrucht | Erdbeer 14",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Soda | Orange (23%)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Soda | Orange (23%) 9.5",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gordons Gin Tonic (40%)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gordons Gin Tonic (40%) 14.5",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bombay Gin Tonic (40%)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bombay Gin Tonic (40%) 14.5",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hendricks Gin Tonic (41.4%)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hendricks Gin Tonic (41.4%) 16.5",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 12.5",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 12.5",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Limoncello Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Limoncello Spritz 13.5",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sarti Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.lirum-larum.ch/_files/ugd/f3b8d3_4bbc9ff7662d4554a6fa7c30594a0753.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sarti Spritz 12.5",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/445018177",
       "name": "Ludmilla",
       "lat": 46.9611333,
@@ -1766,6 +3364,119 @@
       "checkedAt": "2026-11-05T23:41:07.223259+00:00"
     },
     {
+      "id": "node/4083144290",
+      "name": "Lumis Kaffeebar",
+      "lat": 46.9459972,
+      "lon": 7.4358117,
+      "type": "cafe",
+      "address": "Effingerstrasse 10",
+      "postcode": "3011",
+      "website": "https://www.lumis.ch/",
+      "cuisine": [],
+      "openingHours": "Mo 07:00-20:00; Tu-Fr 07:00-22:00; Su 09:00-17:00; Sa off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Aperitvo Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.8,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperitvo Spritz Aperitivo, Prosecco, Mineral 9.80",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.8,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Spritz Campari, Prosecco, Mineral 9.80",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bern Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.0,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bern Mule Ingwerer, Ginger Beer, Limette 14.00",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Amaretto Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.0,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Amaretto Sour Amaretto, Zitronensaft 14.00",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.0,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic Dry Gin, Tonic Water, Zitrone 14.00",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bern Mule Zero",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.5,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bern Mule Zero Ingwerer 0%, Ginger Beer, Limette 10.50",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugolino",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.5,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugolino Holunder, Tonic, Minze 8.50",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzer Weisser",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.5,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzer Weisser Weisswein, Citro | Mineral 8.50",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/2838925989",
       "name": "Marta",
       "lat": 46.9481458,
@@ -1793,6 +3504,64 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:41:09.803027+00:00"
+    },
+    {
+      "id": "node/2336992357",
+      "name": "Marzilibrücke",
+      "lat": 46.9448768,
+      "lon": 7.4445896,
+      "type": "restaurant",
+      "address": "Gasstrasse 8",
+      "postcode": "",
+      "website": "https://www.restaurant-marzilibruecke.ch/",
+      "cuisine": [
+        "regional",
+        "french",
+        "pizza",
+        "fondue"
+      ],
+      "openingHours": "Mo-Fr 11:30-23:30; Sa 12:00-23:30; Su 10:00-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "«ohne» Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.5,
+          "sourceUrl": "https://www.restaurant-marzilibruecke.ch/wp-content/uploads/2026/04/Getraenkekarte-Nr.20-Sommer-2026-online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "«ohne» Hugo 10.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni Sbagliato",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.5,
+          "sourceUrl": "https://www.restaurant-marzilibruecke.ch/wp-content/uploads/2026/04/Getraenkekarte-Nr.20-Sommer-2026-online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni Sbagliato, 13.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.restaurant-marzilibruecke.ch/wp-content/uploads/2026/04/Getraenkekarte-Nr.20-Sommer-2026-online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Spritz 12.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/2583594616",
@@ -2043,6 +3812,195 @@
       "checkedAt": "2026-11-05T22:28:08.716127+00:00"
     },
     {
+      "id": "node/313812140",
+      "name": "Mishio",
+      "lat": 46.9479829,
+      "lon": 7.4433844,
+      "type": "restaurant",
+      "address": "Bärenplatz 2",
+      "postcode": "3011",
+      "website": "https://mishio.ch/bern-vatterland/",
+      "cuisine": [
+        "asian"
+      ],
+      "openingHours": "Mo-Sa 11:30-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://mishio.ch/wp-content/uploads/2026/06/mishio-speisekarte-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 11.5",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://mishio.ch/wp-content/uploads/2026/06/mishio-speisekarte-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 11.5",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/3272891441",
+      "name": "Mondo",
+      "lat": 46.9542074,
+      "lon": 7.431179,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.mondobern.com/",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Tu-Fr 11:45-14:00,18:00-22:30; Sa 18:00-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Japaneasy Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15,
+          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_eb2b43f64cb44d789824e38aeeb2427a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "JAPANEASY NEGRONI 15",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kaffir Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_eb2b43f64cb44d789824e38aeeb2427a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFIR MULE 14.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Yuzu Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_eb2b43f64cb44d789824e38aeeb2427a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "YUZU SPRITZ 12",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/13595458460",
+      "name": "Mont Liban",
+      "lat": 46.9538182,
+      "lon": 7.4238413,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://montliban-bern.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00,17:30-21:30; Fr 11:30-14:00,17:30-22:00; Sa 17:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 11 % 13.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Spritz 25 % 13.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.0,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 11 % 15.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Martini Vibrante Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Martini Vibrante Tonic Alkoholfrei 13.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo alkoholfrei",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.0,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo Alkoholfrei 9.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzter Weisswein",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.0,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein Sauer oder süss 9.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/2577907280",
       "name": "Mont Liban",
       "lat": 46.9576355,
@@ -2132,6 +4090,73 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:43:08.260465+00:00"
+    },
+    {
+      "id": "node/11703444045",
+      "name": "Muna",
+      "lat": 46.9412365,
+      "lon": 7.4650872,
+      "type": "restaurant",
+      "address": "Thunstrasse 108",
+      "postcode": "3006",
+      "website": "https://ristorante-muna.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 10:00-22:00, Sa 17:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Sprizz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://ristorante-muna.ch/wp-content/uploads/2023/11/Weinkarte-.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Sprizz; Aperol, Prosecco, Mineral 11.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://ristorante-muna.ch/wp-content/uploads/2023/11/Weinkarte-.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo; Prosecco, Holundersirup, Mineral, Limette, Minze 11.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Caipirinha",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.5,
+          "sourceUrl": "https://ristorante-muna.ch/wp-content/uploads/2023/11/Weinkarte-.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Caipirinha; Cachaca, Limette, Rohrzucker 15.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Caipiroska",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.5,
+          "sourceUrl": "https://ristorante-muna.ch/wp-content/uploads/2023/11/Weinkarte-.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Caipiroska; Vodka, Limette, Rohrzucker 15.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/14133063701",
@@ -2419,6 +4444,104 @@
       "checkedAt": "2026-11-05T23:43:18.250324+00:00"
     },
     {
+      "id": "node/280528108",
+      "name": "Okra",
+      "lat": 46.9561265,
+      "lon": 7.4448525,
+      "type": "restaurant",
+      "address": "Lorrainestrasse 9",
+      "postcode": "3013",
+      "website": "https://www.okra.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo off; Tu-Fr 11:00-14:00, 17:30-23:30; Sa-Su 17:30-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.5,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2026/10/Getraenkekarte-Abend-OKRA-Juli-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 8.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.0,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2026/10/Getraenkekarte-Abend-OKRA-Juli-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 8.00",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Indian Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.0,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2026/10/Getraenkekarte-Abend-OKRA-Juli-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Indian Hugo 9.00",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/2603741618",
+      "name": "Papa Joe's",
+      "lat": 46.9472616,
+      "lon": 7.4423948,
+      "type": "restaurant",
+      "address": "Schauplatzgasse 23",
+      "postcode": "3011",
+      "website": "https://www.papajoes.ch/bern/deutsch",
+      "cuisine": [
+        "american"
+      ],
+      "openingHours": "Mo-Th 11:30-24:00; Fr-Sa 11:30-01:30; Su 11:30-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Sevilla Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.0,
+          "sourceUrl": "https://www.papajoes.ch/wp-content/uploads/sites/3/2026/06/WEB_RZ_Inlay_EastCoast_200x355mm_2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sevilla Spritz Tanqueray Flor de Sevilla 0.0, Orangensaft, Tonic Water CHF 11.00",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Raspberry Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.0,
+          "sourceUrl": "https://www.papajoes.ch/wp-content/uploads/sites/3/2026/06/WEB_RZ_Inlay_EastCoast_200x355mm_2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Raspberry Mule Vodka Wyborova, Le Fruit Raspberry, Limettensaft, Ginger Beer CHF 14.00",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/6890282886",
       "name": "Petit Couteau",
       "lat": 46.9454348,
@@ -2458,6 +4581,97 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T22:30:57.335857+00:00"
+    },
+    {
+      "id": "node/598242905",
+      "name": "Piazza Vittoria",
+      "lat": 46.9547304,
+      "lon": 7.4514632,
+      "type": "restaurant",
+      "address": "Viktoriastrasse 72",
+      "postcode": "3013",
+      "website": "https://www.piazzavittoria.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 10:00-22:00; Su,PH closed",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz CHF 13.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo CHF 13.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni CHF 13.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mojito",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Mojito CHF 13.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic CHF 13.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Gin",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Gin CHF 13.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/286879738",
@@ -2568,6 +4782,193 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:45:00.972805+00:00"
+    },
+    {
+      "id": "node/4219531601",
+      "name": "Provisorium 46",
+      "lat": 46.9544008,
+      "lon": 7.4291414,
+      "type": "restaurant",
+      "address": "Muesmattstrasse 46",
+      "postcode": "",
+      "website": "https://provisorium46.ch",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Tu-Fr 11:00-14:30,16:00-23:30; Sa 17:00-23:30; Nov-Jan Tu-Sa 17:00-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Gin Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://provisorium46.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic 14.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Amaretto Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Amaretto Sour 14.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni 14.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Special Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.0,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Special Spritz 12.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Spritz 11.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzter Weisswein süss / sauer",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 8.5,
+          "sourceUrl": "https://provisorium46.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein süss / sauer 8.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 11.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwerer Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.0,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwerer Spritz 12.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic - Matte Dry Gin (be) Zitrone",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic - Matte Dry Gin (BE) Zitrone 14.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Moscow Mule (Vodka)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.5,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Moscow Mule (Vodka) 15.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "London Mule (Gin)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.5,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "London Mule (Gin) 15.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bärner Mule (Ingwerer)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.5,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bärner Mule (Ingwerer) 15.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Espresso Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.5,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso Martini 15.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni Sbagliato",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.0,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni Sbagliato 14.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/8199621997",
@@ -2721,6 +5122,373 @@
       "checkedAt": "2026-11-05T23:22:51.721800+00:00"
     },
     {
+      "id": "node/9844659964",
+      "name": "Ragazzi di Berna",
+      "lat": 46.9399609,
+      "lon": 7.4402161,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.ragazzidiberna.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-We 09:00-15:00; Th-Fr 09:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ragazzi Cocktail",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "RAGAZZI COCKTAIL 13.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Amaretto Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "AMARETTO SOUR 14.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Espresso Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "ESPRESSO MARTINI 15.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "GIN TONIC 14.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Old Fashioned",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "OLD FASHIONED 15.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Moscow Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "MOSCOW MULE 14.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "NEGRONI 15.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sober Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "SOBER MULE 9.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cucumber Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "CUCUMBER MULE 9.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ragazzi Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "RAGAZZI SPRITZ 12.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "APEROL SPRITZ 10.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwer-Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "INGWER-SPRITZ 10.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "HUGO 10.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/559232107",
+      "name": "Restaurant & Bar ALLMEND",
+      "lat": 46.9599715,
+      "lon": 7.4674497,
+      "type": "restaurant",
+      "address": "Mingerstrasse 6",
+      "postcode": "3014",
+      "website": "https://www.restaurantallmendbern.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.restaurantallmendbern.ch/wp-content/uploads/2016/12/Saison-26_27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 12",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 10,
+          "sourceUrl": "https://www.restaurantallmendbern.ch/wp-content/uploads/2016/12/Saison-26_27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 10",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Martini Vibrante Spritz, alkoholfrei",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.restaurantallmendbern.ch/wp-content/uploads/2016/12/Saison-26_27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Martini Vibrante Spritz, alkoholfrei 12",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15,
+          "sourceUrl": "https://www.restaurantallmendbern.ch/wp-content/uploads/2016/12/Saison-26_27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic 4 cl 15",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/2892516176",
+      "name": "Restaurant MYLE",
+      "lat": 46.9470191,
+      "lon": 7.4401065,
+      "type": "restaurant",
+      "address": "Bubenbergplatz 5A",
+      "postcode": "3011",
+      "website": "https://myle-bern.com",
+      "cuisine": [
+        "fine_dining"
+      ],
+      "openingHours": "We-Sa 16:00-24:00; Th-Fr 12:00-14:00, 16:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 12",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Espresso Martini (Absolut, Kahlúa)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 17,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso Martini (Absolut, Kahlúa) 17",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwerer Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwerer Spritz 12",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 12",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Moscow Mule (Absolut, Gents Ginger Beer)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 18,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Moscow Mule (Absolut, Gents Ginger Beer) 18",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni (Antica Formula, Campari, Bombay)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 19,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni (Antica Formula, Campari, Bombay) 19",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic (Bombay, Gents Tonic)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 18,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic (Bombay, Gents Tonic) 18",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Amaretto Sour (Disaronno, Limette)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 17,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Amaretto Sour (Disaronno, Limette) 17",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Yuzu Negroni (Bombay, Suze, Cocchi Americano, Yuzu)",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 19,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Yuzu Negroni (Bombay, Suze, Cocchi Americano, Yuzu) 19",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/5744306327",
       "name": "Rollers",
       "lat": 46.9539885,
@@ -2784,6 +5552,35 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T22:33:28.835372+00:00"
+    },
+    {
+      "id": "node/8210172451",
+      "name": "Romy",
+      "lat": 46.9483801,
+      "lon": 7.4515113,
+      "type": "restaurant",
+      "address": "Rathausgasse 11",
+      "postcode": "",
+      "website": "https://www.restaurant-romy.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Wermuth Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.0,
+          "sourceUrl": "https://www.restaurant-romy.ch/wp-content/uploads/2026/10/Getraenkekarte-26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Wermuth Spritz 14.00",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/447293342",
@@ -2877,6 +5674,179 @@
       "checkedAt": "2026-11-05T23:22:19.998969+00:00"
     },
     {
+      "id": "way/379588170",
+      "name": "Simmentaler Brewhouse",
+      "lat": 46.9485835,
+      "lon": 7.4398595,
+      "type": "bar",
+      "address": "Bahnhofplatz 10a",
+      "postcode": "3011",
+      "website": "https://www.simmentalerbrewhouse.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-We 06:30-22:30; Th 06:30-00:30; Fr 06:30-00:30; Sa 08:00-00:30; Su 09:00-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Aperitivo Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperitivo Spritz (Luxardo Aperitivo, Prosecco, Soda) 11.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bitter Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bitter Spritz (Jsotta Bitter, Prosecco, Soda) 11.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vermouth Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Vermouth Spritz (Roter Vermouth, Prosecco, Soda) 11.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Jinja Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Jinja Spritz (Jinja Likör, Prosecco, Soda) 12.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11.5,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo (Holundersirup, Prosecco, Limette, Minze, Soda) 11.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Berry Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Berry Spritz (Vermouth Rosé, Wild Berry Tonic, Beeren) 12.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Berrics Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Berrics Spritz (Berrics, Prosecco, Soda, Minze) 13.00",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gin Tonic",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13.0,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gin Tonic 13.00",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 14.5,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni (Gin, Jsotta Bitter, Vermouth) 14.50",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni Sbagliato",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni Sbagliato (Jsotta Bitter, Vermouth, Prosecco) 16.00",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Espresso Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16.0,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso Martini (Vodka, Kaffeelikör, Zuckersirup, Espresso) 16.00",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Stout Espresso Martini",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 17.0,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Stout Espresso Martini (Stout, Vodka, Kaffeelikör, Zuckersirup, Espresso) 17.00",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Amaretto Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.0,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Amaretto Sour (Amaretto, Zitronensaft, Orangensaft, Zuckersirup) 15.00",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "way/1313090962",
       "name": "Sous Sol",
       "lat": 46.949227,
@@ -2904,6 +5874,176 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:55:22.891633+00:00"
+    },
+    {
+      "id": "node/6448420112",
+      "name": "Spiga",
+      "lat": 46.9441266,
+      "lon": 7.37346,
+      "type": "restaurant",
+      "address": "Gilberte-de-Courgenay-Platz 4",
+      "postcode": "3027",
+      "website": "https://www.spiga-ristorante.ch/i-ristoranti/detail/spiga-westside",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Th,Su 11:00-22:00; Fr-Sa 11:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Moscow Mule",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Moscow Mule 12",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Caipirinha",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Caipirinha 12",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mojito",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Mojito 12",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spiga Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "SPIGA Sour 12",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Negroni",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Negroni 13",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 11",
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Spritz 11",
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 11,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 11",
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzter Weisswein süss/sauer",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 7,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein süss/sauer 7 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/537955663",
+      "name": "Strada",
+      "lat": 46.9452602,
+      "lon": 7.4728748,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.strada-bern.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 08:00-23:00; Su,PH off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.strada-bern.ch/files/1643/weinkarte-2025-neuedisign-pdf-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 12.-",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hugo Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://www.strada-bern.ch/files/1643/weinkarte-2025-neuedisign-pdf-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo Spritz 12.-",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/6448420114",
@@ -3249,6 +6389,61 @@
       "checkedAt": "2026-11-05T22:41:44.473705+00:00"
     },
     {
+      "id": "node/550199534",
+      "name": "tulsi",
+      "lat": 46.9543139,
+      "lon": 7.424953,
+      "type": "restaurant",
+      "address": "Freiestrasse 65",
+      "postcode": "3012",
+      "website": "https://www.tulsi-bern.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00,17:30-23:30; Sa 17:30-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.0,
+          "sourceUrl": "https://www.tulsi-bern.ch/wp-content/uploads/2026/07/Menukarte_Abend_Juni-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hugo 9.00",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Indian Hugo",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.5,
+          "sourceUrl": "https://www.tulsi-bern.ch/wp-content/uploads/2026/07/Menukarte_Abend_Juni-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Indian Hugo 9.50",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 9.5,
+          "sourceUrl": "https://www.tulsi-bern.ch/wp-content/uploads/2026/07/Menukarte_Abend_Juni-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 9.50",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/7893100199",
       "name": "Turbo Lama",
       "lat": 46.9682653,
@@ -3506,6 +6701,119 @@
       "checkedAt": "2026-11-05T23:53:28.034205+00:00"
     },
     {
+      "id": "node/12610161101",
+      "name": "VASA",
+      "lat": 46.9467733,
+      "lon": 7.4381818,
+      "type": "cafe",
+      "address": "Hirschengraben 5",
+      "postcode": "3011",
+      "website": "https://vasa.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-We 06:30-22:00; Th,Fr 06:30-00:30; Sa 08:30-00:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Vasa Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "VASA Spritz - MERMUT, Campari, Prosecco, Rosmarin, 13",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "0% Plumante Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "0% PLUMANTE Spritz - Hausgemachtes Zwetschgen & 12",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Good Mate Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "GOOD MATE Spritz- Good Mate, Prosecco, Zitrone, 13",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Jinjer Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 13,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "JINJER Spritz - JINJERGOLD, Prosecco, Limette 13",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "0% Jinjer Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "0% JINJER Spritz - JINJERGOLD 0%, 0% Schaumwein, 12",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rød Gin Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16.0,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rød Gin Sour - THARO Gin, Limette, Zitrone, Veggwhite 16.0",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Amaretto Äpple Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 16.0,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Amaretto Äpple Sour - Amaretto, Whiskey, Apfelgold-Apfelsaft, Zitrone, Veggwhite 16.0",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "0% Plumaretto Sour",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 15.0,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "0% Plumaretto Sour - Rebells 0% Amaretto, Zwetschgen & Kardamom Cordial, Limette, Zitrone, Veggwhite 15.0",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/619997730",
       "name": "Veranda",
       "lat": 46.9503977,
@@ -3687,6 +6995,83 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:57:03.387428+00:00"
+    },
+    {
+      "id": "node/308973695",
+      "name": "Ändstation Bar",
+      "lat": 46.9359372,
+      "lon": 7.4333667,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.aendstationbar.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Sa 17:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Aperol Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.aendstationbar.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Aperol Spritz 12.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Campari Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.aendstationbar.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Campari Spritz 12.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sarti Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.aendstationbar.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sarti Spritz 12.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Limoncello Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.aendstationbar.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Limoncello Spritz 12.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwerer Spritz",
+          "volumeMl": null,
+          "gastroType": "cocktail",
+          "priceChf": 12.5,
+          "sourceUrl": "https://www.aendstationbar.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwerer Spritz 12.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     }
   ]
 }

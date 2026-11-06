@@ -1,6 +1,40 @@
 {
   "generatedAt": "2026-11-06T00:02:10.998492+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "removed": [],
+  "category": "wine",
   "bars": [
+    {
+      "id": "node/9879313038",
+      "name": "Aarebar",
+      "lat": 46.9383375,
+      "lon": 7.4438185,
+      "type": "bar",
+      "address": "Aarweg",
+      "postcode": "3007",
+      "website": "https://aarebarbern.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 9,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://aarebarbern.ch/menu/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein 9.- mit Chasselas",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
     {
       "id": "node/286879753",
       "name": "Adriano's",
@@ -148,6 +182,40 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:15:52.585875+00:00"
+    },
+    {
+      "id": "node/4688138991",
+      "name": "Ambiente",
+      "lat": 46.9491209,
+      "lon": 7.4284577,
+      "type": "restaurant",
+      "address": "Bühlstrasse 5",
+      "postcode": "3012",
+      "website": "https://www.ambiente-bern.ch/",
+      "cuisine": [
+        "italian_pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 09:00-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 8.8,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein 12 Vol-% 4cl 8.80",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/8349766427",
@@ -339,6 +407,37 @@
       "checkedAt": "2026-11-05T23:01:02.529114+00:00"
     },
     {
+      "id": "node/559232004",
+      "name": "Caledonia",
+      "lat": 46.9578432,
+      "lon": 7.4670016,
+      "type": "restaurant",
+      "address": "Mingerstrasse 16",
+      "postcode": "3014",
+      "website": "https://www.caledonia-bern.ch",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 11:00-15:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 8,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://www.caledonia-bern.ch/wp-content/uploads/2026/04/Getraenkekarte_Saison26-27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein 8",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/738207062",
       "name": "Can Grillhaus",
       "lat": 46.9496815,
@@ -482,6 +581,70 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-06T00:01:05.620630+00:00"
+    },
+    {
+      "id": "node/12347717156",
+      "name": "Capitol Restaurant & Bar",
+      "lat": 46.9483726,
+      "lon": 7.448942,
+      "type": "restaurant",
+      "address": "Rathausgasse 61",
+      "postcode": "3011",
+      "website": "https://capitolbern.ch/",
+      "cuisine": [
+        "international",
+        "burger",
+        "local",
+        "brunch"
+      ],
+      "openingHours": "Mo 16:00-23:30; Tu-We 11:30-23:30; Th-Fr 11:30-00:30; Sa 11:00-00:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Auslese Randersacherer Sonnenstuhl, 2015",
+          "volumeMl": 50,
+          "gastroType": "wine",
+          "priceChf": 8,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://capitolbern.ch/menu-bar/sake-suess-suedweine/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "8 | 0.5 dl - Auslese Randersacherer Sonnenstuhl, 2015",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fino, Solera",
+          "volumeMl": 50,
+          "gastroType": "wine",
+          "priceChf": 8,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://capitolbern.ch/menu-bar/sake-suess-suedweine/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "8 | 0.5 dl - Fino, Solera",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Lbv Unfiltered, 2015",
+          "volumeMl": 50,
+          "gastroType": "wine",
+          "priceChf": 8,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://capitolbern.ch/menu-bar/sake-suess-suedweine/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "8 | 0.5 dl - LBV Unfiltered, 2015",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/438280382",
@@ -1893,6 +2056,107 @@
       "checkedAt": "2026-11-05T23:37:15.145126+00:00"
     },
     {
+      "id": "node/6552336713",
+      "name": "Fabrique28",
+      "lat": 46.9439157,
+      "lon": 7.4356642,
+      "type": "restaurant",
+      "address": "Monbijoustrasse 28",
+      "postcode": "3011",
+      "website": "https://fabrique28.ch",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 09:30-16:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein sauer",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 8.4,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein sauer 8.40",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "La Colombe Féchy, Chasselas Bio, Schweiz",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.4,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "La Colombe Féchy, Chasselas BIO, Schweiz 10 cl 8.40",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sangiovese Bio, Italien",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.9,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sangiovese BIO, Italien 10 cl 7.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cacada Real, 2019, Portugal",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.9,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Cacada Real, 2019, Portugal 10cl 7.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pura Vida, Spanien",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.9,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Pura Vida, Spanien 10cl 7.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Barbera D`Asti Vitis, Italien",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.2,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Barbera D`Asti Vitis, Italien 10cl 7.20",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/3082108093",
       "name": "Haus der Universität",
       "lat": 46.946784,
@@ -2181,6 +2445,123 @@
       "checkedAt": "2026-11-06T00:00:39.496711+00:00"
     },
     {
+      "id": "node/379712215",
+      "name": "Hung Thinh",
+      "lat": 46.9482359,
+      "lon": 7.4480647,
+      "type": "restaurant",
+      "address": "Kornhausplatz 7",
+      "postcode": "3011",
+      "website": "https://hung-thinh.ch/",
+      "cuisine": [
+        "vietnamese"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:30,17:30-22:00; Su 11:30-14:00,17:00-21:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Spritz Wein",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 12.5,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Spritz Wein – 12.50",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Weisswein",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 5.4,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Weisswein – 1 dl: 5.40",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Weisswein",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 10.8,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Weisswein – 1 dl: 5.40 | 2 dl: 10.80",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rosé",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 5.4,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rosé – 1 dl: 5.40",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rosé",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 10.8,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rosé – 1 dl: 5.40 | 2 dl: 10.80",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rotwein",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 5.4,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rotwein – 1 dl: 5.40",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rotwein",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 10.8,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://hung-thinh.ch/wp-content/uploads/2026/04/Speisekarte-Hung-Thinh.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rotwein – 1 dl: 5.40 | 2 dl: 10.80",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/282774043",
       "name": "Jäger",
       "lat": 46.9489056,
@@ -2311,6 +2692,72 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:37:40.417961+00:00"
+    },
+    {
+      "id": "node/3283703322",
+      "name": "Kesar",
+      "lat": 46.949,
+      "lon": 7.41113,
+      "type": "restaurant",
+      "address": "Murtenstrasse 131",
+      "postcode": "3008",
+      "website": "https://www.kesar.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo off; Tu-Su 17:00-23:30; Tu-Fr 11:30-14:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Gespritzer Weisswein",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 6.5,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzer Weisswein 6.50",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/101292376",
+      "name": "Kirchenfeld",
+      "lat": 46.9436093,
+      "lon": 7.4505679,
+      "type": "restaurant",
+      "address": "Thunstrasse 5",
+      "postcode": "3005",
+      "website": "https://www.kirchenfeld.ch",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Mo off; Tu-Sa 08:00-23:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Gespritzer Weisswein",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 11.0,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://www.kirchenfeld.ch/menu/getraenke/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzer Weisswein 11.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/1831483517",
@@ -2658,6 +3105,84 @@
       "checkedAt": "2026-11-05T23:40:24.098474+00:00"
     },
     {
+      "id": "node/286879776",
+      "name": "Krone",
+      "lat": 46.9482676,
+      "lon": 7.4530574,
+      "type": "restaurant",
+      "address": "Gerechtigkeitsgasse 66",
+      "postcode": "3011",
+      "website": "https://www.kronebern.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Mo-Fr 09:00-23:30; Sa 16:00-00:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Weiss, Herdade da Amada – Alentejo- Portugal",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_08020fb3cca246949602a9bf7e903522.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Weiss, Herdade da Amada – Alentejo- Portugal, 6.- 1dl",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rot, Primitivo Salento Prunèo Igp- Italia",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_08020fb3cca246949602a9bf7e903522.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rot, Primitivo Salento Prunèo IGP- Italia, 6.- 1dl",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/13667025050",
+      "name": "La Vie",
+      "lat": 46.9497795,
+      "lon": 7.4176168,
+      "type": "restaurant",
+      "address": "Weyermannsstrasse 1",
+      "postcode": "",
+      "website": "https://www.restaurantlavie.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 09:00-19:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein süss & sauer",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein süss & sauer 8.5",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/8819936791",
       "name": "Lieblings",
       "lat": 46.9484074,
@@ -2818,6 +3343,37 @@
       "checkedAt": "2026-11-05T22:23:21.065549+00:00"
     },
     {
+      "id": "node/4083144290",
+      "name": "Lumis Kaffeebar",
+      "lat": 46.9459972,
+      "lon": 7.4358117,
+      "type": "cafe",
+      "address": "Effingerstrasse 10",
+      "postcode": "3011",
+      "website": "https://www.lumis.ch/",
+      "cuisine": [],
+      "openingHours": "Mo 07:00-20:00; Tu-Fr 07:00-22:00; Su 09:00-17:00; Sa off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Gespritzer Weisser",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzer Weisser Weisswein, Citro | Mineral 8.50",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/2336992357",
       "name": "Marzilibrücke",
       "lat": 46.9448768,
@@ -2914,6 +3470,39 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T22:28:08.716127+00:00"
+    },
+    {
+      "id": "node/13595458460",
+      "name": "Mont Liban",
+      "lat": 46.9538182,
+      "lon": 7.4238413,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://montliban-bern.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00,17:30-21:30; Fr 11:30-14:00,17:30-22:00; Sa 17:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein Sauer oder süss 9.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/2577907280",
@@ -3307,6 +3896,39 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:44:24.260438+00:00"
+    },
+    {
+      "id": "node/280528108",
+      "name": "Okra",
+      "lat": 46.9561265,
+      "lon": 7.4448525,
+      "type": "restaurant",
+      "address": "Lorrainestrasse 9",
+      "postcode": "3013",
+      "website": "https://www.okra.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo off; Tu-Fr 11:00-14:00, 17:30-23:30; Sa-Su 17:30-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Nero d'Avola Igt d'Sicilia",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2024/03/Weinkarte-Abend_Maerz-2024.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Nero d‘Avola IGT d‘Sicilia 1 dl 7.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/286879733",
@@ -3742,6 +4364,109 @@
       "checkedAt": "2026-11-05T23:45:00.972805+00:00"
     },
     {
+      "id": "node/4219531601",
+      "name": "Provisorium 46",
+      "lat": 46.9544008,
+      "lon": 7.4291414,
+      "type": "restaurant",
+      "address": "Muesmattstrasse 46",
+      "postcode": "",
+      "website": "https://provisorium46.ch",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Tu-Fr 11:00-14:30,16:00-23:30; Sa 17:00-23:30; Nov-Jan Tu-Sa 17:00-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Gespritzter Weisswein süss / sauer",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://provisorium46.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein süss / sauer 8.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Riesling Silvaner, Schweiz",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.5,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://provisorium46.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Riesling Silvaner, Schweiz 10 cl 9.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Albiano, Italien",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://provisorium46.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Albiano, Italien 10 cl 7.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pura Vida, Spanien",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://provisorium46.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Pura Vida, Spanien 10 cl 8.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Caçada Real, Portugal",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://provisorium46.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Caçada Real, Portugal 10 cl 8.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Belcanto, Cabernet Sauvignon, Melot, Petit Verdot, Frankreich",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://provisorium46.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Belcanto, Cabernet Sauvignon, Melot, Petit Verdot, Frankreich 10 cl 9.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/8199621997",
       "name": "Qin",
       "lat": 46.9500934,
@@ -4151,6 +4876,193 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:22:19.998969+00:00"
+    },
+    {
+      "id": "node/6448420112",
+      "name": "Spiga",
+      "lat": 46.9441266,
+      "lon": 7.37346,
+      "type": "restaurant",
+      "address": "Gilberte-de-Courgenay-Platz 4",
+      "postcode": "3027",
+      "website": "https://www.spiga-ristorante.ch/i-ristoranti/detail/spiga-westside",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Th,Su 11:00-22:00; Fr-Sa 11:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Chardonnay",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.5,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Chardonnay 6.50 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Roero Arneis Docg",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Roero Arneis DOCG 8.50 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mythos",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Mythos 7 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spiga Bianco",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "SPIGA Bianco 7.50 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gespritzter Weisswein süss/sauer",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter Weisswein süss/sauer 7 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Oeil de Pedrix (Rosé)",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Oeil de Pedrix (Rosé) 7 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chianti Superiore Docg",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Chianti Superiore DOCG 7 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Primitivo di Manduria Doc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Primitivo di Manduria DOC 7.50 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ripasso Classico Doc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ripasso Classico DOC 8.50 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Barbera D'alba",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Barbera D`alba 7 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Simposio Brindisi",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Simposio Brindisi 9 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spiga Rosso",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://www.spiga-ristorante.ch/fileadmin/images/diverse/20240614_SPIGA_Cocktailkarte_Westside_Seiten_105x297mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "SPIGA Rosso 6.50 10cl",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/537955663",
@@ -4726,6 +5638,247 @@
       "checkedAt": "2026-11-05T23:25:21.637985+00:00"
     },
     {
+      "id": "way/96211624",
+      "name": "Tscharnergut",
+      "lat": 46.9481223,
+      "lon": 7.3894549,
+      "type": "restaurant",
+      "address": "Waldmannstrasse 21",
+      "postcode": "",
+      "website": "https://www.restauranttscharnergut.ch/",
+      "cuisine": [],
+      "openingHours": "Mo off; Tu-Fr 09:00-23:00; Sa 08:30-23:00; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Shiraz/Cabernet",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 4.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Shiraz/Cabernet 2022 1dl CHF 4.50",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "The Creek",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 5.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "The Creek 2021 1dl CHF 5.00",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Three Gardens",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Three Gardens 2021 1dl CHF 6.00",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Black Beauty",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Black Beauty 2021 1dl CHF 6.00",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coin Selection",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coin Selection 2021 1dl CHF 6.00",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Inigo",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Inigo 2019 1dl CHF 7.00",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Oeil de Perdix Chateau d'Auvernier",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-05.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Oeil de Perdix Chateau d'Auvernier 1dl CHF 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "BL Rosé Baron Ladron",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 5.5,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-05.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "BL Rosé Baron Ladron 1dl CHF 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "A&b Rosé Angas & Bremer",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 5.5,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-05.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "A&B Rosé Angas & Bremer 1dl CHF 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spring Hill Rosé Irvine",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.5,
+          "wineType": "rose",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-05.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Spring Hill Rosé Irvine 1dl CHF 6.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Roble (Lopez Cristobal)",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-06.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Roble Lopez Cristobal 1dl CHF 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "La Colorada (Lopez Cristobal)",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-06.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "La Colorada Lopez Cristobal 1dl CHF 7.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "De Guevara Crianza (Baron Ladron)",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 5.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-06.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "De Guevara Crianza Baron Ladron 1dl CHF 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "De Guevara Autor Cosecha (Baron Ladron)",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-06.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "De Guevara Autor Cosecha Baron Ladron 1dl CHF 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coin Selection Lost Penny Shiraz",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 6.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-10.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coin Selection Lost Penny Shiraz 1dl CHF 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Inigo Sevenhill Barbera",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 7.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-10.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Inigo Sevenhill Barbera 1dl CHF 7.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/550199534",
       "name": "tulsi",
       "lat": 46.9543139,
@@ -4757,6 +5910,81 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:56:33.837290+00:00"
+    },
+    {
+      "id": "node/33064271",
+      "name": "Zebra",
+      "lat": 46.9555998,
+      "lon": 7.4256783,
+      "type": "restaurant",
+      "address": "Schwalbenweg 2",
+      "postcode": "3012",
+      "website": "https://restaurantzebra.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "We-Sa 18:00-23:00; Su 09:30-14:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Johanniter Sélection",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://restaurantzebra.ch/wp-content/uploads/2026/10/ZEBRA_Weinkarte_Print.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Johanniter Sélection 1dl 8.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Le Griset Blanc",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "white",
+          "natural": false,
+          "sourceUrl": "https://restaurantzebra.ch/wp-content/uploads/2026/10/ZEBRA_Weinkarte_Print.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Le Griset Blanc 1dl 8.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pinot Noir Classique",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 9.0,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restaurantzebra.ch/wp-content/uploads/2026/10/ZEBRA_Weinkarte_Print.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Pinot Noir Classique 1dl 9.00",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Valpolicella Zenato",
+          "volumeMl": 100,
+          "gastroType": "wine",
+          "priceChf": 8.5,
+          "wineType": "red",
+          "natural": false,
+          "sourceUrl": "https://restaurantzebra.ch/wp-content/uploads/2026/10/ZEBRA_Weinkarte_Print.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Valpolicella Zenato 1dl 8.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/286879773",
@@ -4818,6 +6046,37 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:58:17.378026+00:00"
+    },
+    {
+      "id": "node/308973695",
+      "name": "Ändstation Bar",
+      "lat": 46.9359372,
+      "lon": 7.4333667,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.aendstationbar.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Sa 17:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Gsprützte Wiisse (süess oder suur)",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 7.0,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://www.aendstationbar.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gsprützte Wiisse (süess oder suur) 7.-",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     }
   ]
 }

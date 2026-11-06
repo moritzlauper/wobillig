@@ -1,5 +1,8 @@
 {
   "generatedAt": "2026-11-06T00:02:10.996238+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "removed": [],
+  "category": "softdrink",
   "bars": [
     {
       "id": "node/12423233309",
@@ -341,6 +344,153 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:15:52.585875+00:00"
+    },
+    {
+      "id": "node/253201072",
+      "name": "Altes Tramdepot",
+      "lat": 46.9475089,
+      "lon": 7.4596534,
+      "type": "restaurant",
+      "address": "Grosser Muristalden 6",
+      "postcode": "3006",
+      "website": "https://www.altestramdepot.ch",
+      "cuisine": [
+        "international"
+      ],
+      "openingHours": "Mar-Oct Mo-Su 10:00-00:30; Nov-Feb Mo-Su 11:00-00:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Tramdepot Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tramdepot Eistee 30cl 5.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tramdepot Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 8.0,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tramdepot Eistee 30cl 5.5 / Schwarztee, Minze, Hagebutte, Zitrone, Karkade, Ingwer 50cl 8.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Three Cents Ginger Beer",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 7.0,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Three Cents Ginger Beer 20cl 7.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Three Cents Tonic | Bitter Lemon",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Three Cents Tonic | Bitter Lemon 20cl 6.0",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/4688138991",
+      "name": "Ambiente",
+      "lat": 46.9491209,
+      "lon": 7.4284577,
+      "type": "restaurant",
+      "address": "Bühlstrasse 5",
+      "postcode": "3012",
+      "website": "https://www.ambiente-bern.ch/",
+      "cuisine": [
+        "italian_pizza",
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 09:00-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola, Coca Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola, Coca Cola Zero 3.3dl 5.30",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta 3.3dl 5.30",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Icetea / Eistee",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Icetea / Eistee 3.3dl 5.30",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot, Rivella blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot, Rivella blau 3.3dl 5.30",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "https://www.ambiente-bern.ch/wp-content/uploads/2024/03/GzD2_Speisekarte-Ambiente_240305_125126.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Tonic 2dl 5.30",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/1809394316",
@@ -722,6 +872,97 @@
       "checkedAt": "2026-11-05T23:58:45.712708+00:00"
     },
     {
+      "id": "node/5087889279",
+      "name": "Bab Alharra",
+      "lat": 46.9560301,
+      "lon": 7.4254305,
+      "type": "fast_food",
+      "address": "Länggassstrasse 95",
+      "postcode": "3012",
+      "website": "https://bab-alharaa.ch/",
+      "cuisine": [
+        "arab"
+      ],
+      "openingHours": "Mo-Sa 09:00-24:00; Su 10:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca-Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://bab-alharaa.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola 0,33l CHF 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://bab-alharaa.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola Zero 0,33l CHF 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 3.5,
+          "sourceUrl": "https://bab-alharaa.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 0,33l CHF 3.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta Orange",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 3.5,
+          "sourceUrl": "https://bab-alharaa.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta Orange 0,33l CHF 3.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Original",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://bab-alharaa.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Original 0,5l CHF 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://bab-alharaa.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Zero 0,5l CHF 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/13344114703",
       "name": "beans & nuts .",
       "lat": 46.9470847,
@@ -810,6 +1051,129 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:13:16.545691+00:00"
+    },
+    {
+      "id": "node/10656175457",
+      "name": "Becanto Coffee & Brunch Nord",
+      "lat": 46.9587906,
+      "lon": 7.4572151,
+      "type": "cafe",
+      "address": "Rütlistrasse 2",
+      "postcode": "3014",
+      "website": "https://www.becanto.ch",
+      "cuisine": [
+        "coffee_shop",
+        "regional"
+      ],
+      "openingHours": "We-Fr 08:00-16:00; Sa-Su 08:30-16:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Früchte Eistee 3dl",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.becanto.ch/_files/ugd/981e9d_ac2ae2b13e6c4fd0a541f4d056d7ed6a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "FRÜCHTE EISTEE 3DL/5DL 5.00/6.00",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Minze Eistee 3dl",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.becanto.ch/_files/ugd/981e9d_ac2ae2b13e6c4fd0a541f4d056d7ed6a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "MINZE EISTEE 3DL/5DL 5.00/6.00",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Elder Lemonade 3dl",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.becanto.ch/_files/ugd/981e9d_ac2ae2b13e6c4fd0a541f4d056d7ed6a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "ELDER LEMONADE 3DL/5DL 5.00/6.00",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/617990033",
+      "name": "Berner Pizza Huus",
+      "lat": 46.9626335,
+      "lon": 7.451856,
+      "type": "fast_food",
+      "address": "Scheibenstrasse 45",
+      "postcode": "3014",
+      "website": "https://bernerpizzahuus.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 09:00-23:00; Fr,Sa 09:00-24:00; Su,PH 10:00-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://bernerpizzahuus.ch/wp-content/uploads/Flyer2022.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 0.5 l 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cola Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://bernerpizzahuus.ch/wp-content/uploads/Flyer2022.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Cola Zero 0.5 l 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://bernerpizzahuus.ch/wp-content/uploads/Flyer2022.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta 0.5 l 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://bernerpizzahuus.ch/wp-content/uploads/Flyer2022.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ice Tea 0.5 l 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/745461263",
@@ -968,6 +1332,78 @@
       "checkedAt": "2026-11-05T23:58:35.968049+00:00"
     },
     {
+      "id": "node/286689576",
+      "name": "Brasserie Bärengraben",
+      "lat": 46.9485322,
+      "lon": 7.459372,
+      "type": "restaurant",
+      "address": "Grosser Muristalden 1",
+      "postcode": "3006",
+      "website": "https://www.brasseriebaerengraben.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 07:00-23:30; Sa-Su 08:00-23:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Alpinesse Tonic, Bitter Lemon",
+          "volumeMl": 180,
+          "gastroType": "softdrink",
+          "priceChf": 4.4,
+          "sourceUrl": "https://brasseriebaerengraben.ch/wp-content/uploads/2026/10/Wein-1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Alpinesse Tonic, Bitter Lemon 18cl 4.40",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola, Coca Cola Zero, Sprite, Fanta, Rivella, Apfelsaft",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://brasseriebaerengraben.ch/wp-content/uploads/2026/10/Wein-1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola, Coca Cola Zero, Sprite, Fanta, Rivella, Apfelsaft 33cl 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/6509340618",
+      "name": "Burger Meister",
+      "lat": 46.9474476,
+      "lon": 7.4366739,
+      "type": "fast_food",
+      "address": "Laupenstrasse 4",
+      "postcode": "3008",
+      "website": "https://burger-meister.ch/",
+      "cuisine": [
+        "burger"
+      ],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Coca Cola / Coke Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola / Coke Zero 50 cl 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/1682881673",
       "name": "Bärenhöfli",
       "lat": 46.9490008,
@@ -1055,6 +1491,157 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:29:45.571195+00:00"
+    },
+    {
+      "id": "node/2666705334",
+      "name": "Café Bar Orangerie Elfenau",
+      "lat": 46.9327109,
+      "lon": 7.4661739,
+      "type": "cafe",
+      "address": "Elfenauweg 94",
+      "postcode": "3006",
+      "website": "https://orangerieelfenau.ch/",
+      "cuisine": [],
+      "openingHours": "Apr-Oct Fr, Sa 09:00-22:00; Mo-Th, Su 09:00-19:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Eistee hausgemacht 2 dL",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.2,
+          "sourceUrl": "https://orangerieelfenau.ch/wp-content/uploads/Menu/Orangerie-Elfenau_Menu.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee hausgemacht 2 dL 4.2",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Eistee hausgemacht 3 dL",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.1,
+          "sourceUrl": "https://orangerieelfenau.ch/wp-content/uploads/Menu/Orangerie-Elfenau_Menu.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee hausgemacht 3 dL 5.1",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Eistee hausgemacht 5 dL",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 7,
+          "sourceUrl": "https://orangerieelfenau.ch/wp-content/uploads/Menu/Orangerie-Elfenau_Menu.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee hausgemacht 5 dL 7",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Lola Cola / Lola Cola Null",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.8,
+          "sourceUrl": "https://orangerieelfenau.ch/wp-content/uploads/Menu/Orangerie-Elfenau_Menu.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Lola Cola / Lola Cola Null 3.3 dL 5.8",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gents Tonic Water",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.2,
+          "sourceUrl": "https://orangerieelfenau.ch/wp-content/uploads/Menu/Orangerie-Elfenau_Menu.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gents Tonic Water 2 dL 6.2",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "way/460523809",
+      "name": "Cafébar Pinprinza",
+      "lat": 46.9434861,
+      "lon": 7.3918016,
+      "type": "cafe",
+      "address": "Bümplizstrasse 97a",
+      "postcode": "3018",
+      "website": "https://www.pinprinza.ch/",
+      "cuisine": [
+        "coffee_shop",
+        "regional",
+        "ice_cream",
+        "sandwich",
+        "breakfast",
+        "cake",
+        "tea",
+        "pastry"
+      ],
+      "openingHours": "Do-So 09:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachter Eistee 3dl",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Eistee 3dl/5dl 4.00/6.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Goba Cola / Goba Cola Zero 3dl",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Goba Cola / Goba Cola Zero 3dl/5dl 4.50/6.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic Water",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic Water 3dl 5.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ginger Beer",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://static1.squarespace.com/static/683ec1b5a007185ac1b53f84/t/6adf1bd7cfbdf97fb75c4e53/1793006551138/NEU_PZA_Getra%CC%88nkekarte_A4schmal_20260817_ohne+Kuchen_gru%CC%88n.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ginger Beer 3dl 5.50",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/738207062",
@@ -1184,6 +1771,290 @@
       "checkedAt": "2026-11-06T00:01:05.620630+00:00"
     },
     {
+      "id": "node/2572061811",
+      "name": "Casino",
+      "lat": 46.9467627,
+      "lon": 7.4484841,
+      "type": "restaurant",
+      "address": "Casinoplatz 1",
+      "postcode": "3011",
+      "website": "https://www.casinobern.ch/kulinarik",
+      "cuisine": [
+        "italian",
+        "french",
+        "japanese"
+      ],
+      "openingHours": "Mo-Su,PH 11:30-14:00,17:45-23:00 open \"Brasserie\", We-Su 11:45-13:30,17:45-21:30 open \"Izakaya\", Mo-Su,PH 09:00-23:00 open \"Salon d'Or\"",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Casino iistee (hausgemachter Eistee)",
+          "volumeMl": 1000,
+          "gastroType": "softdrink",
+          "priceChf": 14,
+          "sourceUrl": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1782385221/casino_bern_event_wein_und_getraenkekarte_20260625.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Casino iistee (hausgemachter Eistee) 100 cl 14.–",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1782385221/casino_bern_event_wein_und_getraenkekarte_20260625.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola 33 cl 5.–",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1782385221/casino_bern_event_wein_und_getraenkekarte_20260625.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola Zero 33 cl 5.–",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1782385221/casino_bern_event_wein_und_getraenkekarte_20260625.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot 33 cl 5.–",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic Water",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1782385221/casino_bern_event_wein_und_getraenkekarte_20260625.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic Water 20 cl 5.-",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/6645659122",
+      "name": "City Pizzeria",
+      "lat": 46.9440145,
+      "lon": 7.4357364,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://city-pizzeria-bern.ch/",
+      "cuisine": [
+        "pizza",
+        "kebab",
+        "italian",
+        "chicken",
+        "greek"
+      ],
+      "openingHours": "Mo-Sa 10:30-20:45; Su 11:00-20:45",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Lipton Ice Tea",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.city-pizzeria-bern.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Lipton Ice Tea 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta Orange",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.city-pizzeria-bern.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta Orange 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.city-pizzeria-bern.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.city-pizzeria-bern.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola light",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.city-pizzeria-bern.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola light 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/6100657544",
+      "name": "CONTACT take a way",
+      "lat": 46.9406238,
+      "lon": 7.4355286,
+      "type": "fast_food",
+      "address": "Monbijoustrasse 70",
+      "postcode": "3007",
+      "website": "https://www.contact-arbeit.ch/take-away/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 09:00-14:00; Sa-Su off; PH off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Eistee, hausgemacht",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.contact-arbeit.ch/wp-content/uploads/2025/02/Preisliste_V4_DE_2025.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee, hausgemacht, 5 dl 5",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.contact-arbeit.ch/wp-content/uploads/2025/02/Preisliste_V4_DE_2025.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "LOLA Getränke (süss), 3.3 dl Cola, Cola Null, Limo, Schorle 5",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cola Null",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.contact-arbeit.ch/wp-content/uploads/2025/02/Preisliste_V4_DE_2025.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "LOLA Getränke (süss), 3.3 dl Cola, Cola Null, Limo, Schorle 5",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schorle",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.contact-arbeit.ch/wp-content/uploads/2025/02/Preisliste_V4_DE_2025.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "LOLA Getränke (süss), 3.3 dl Cola, Cola Null, Limo, Schorle 5",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/566388511",
+      "name": "Curry-House",
+      "lat": 46.9462478,
+      "lon": 7.4183595,
+      "type": "fast_food",
+      "address": "Freiburgstrasse 64",
+      "postcode": "3008",
+      "website": "https://curryhouse.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo-Fr 10:30-13:30; 17:00-22:00; Sa-Su 17:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Fanta",
+          "volumeMl": 510,
+          "gastroType": "softdrink",
+          "priceChf": 3.5,
+          "sourceUrl": "https://curryhouse.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta 3.50 CHF 0.51L / 1.51L",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea",
+          "volumeMl": 510,
+          "gastroType": "softdrink",
+          "priceChf": 3.5,
+          "sourceUrl": "https://curryhouse.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ice Tea 3.50 CHF 0.51L / 1.51L",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Tonic",
+          "volumeMl": 510,
+          "gastroType": "softdrink",
+          "priceChf": 3.5,
+          "sourceUrl": "https://curryhouse.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Tonic 3.50 CHF 0.51L",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/6195333578",
       "name": "căntin eatery",
       "lat": 46.9483356,
@@ -1237,6 +2108,49 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:13:33.972039+00:00"
+    },
+    {
+      "id": "node/286879695",
+      "name": "da Nino",
+      "lat": 46.9420149,
+      "lon": 7.4314041,
+      "type": "restaurant",
+      "address": "Belpstrasse 65",
+      "postcode": "3007",
+      "website": "https://pizzeriadanino.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 11:30-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.pizzeriadanino.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Cola | Cola Zero Coca Cola 33 cl 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Lola Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.pizzeriadanino.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Lola Cola Lola 33 cl 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/598242991",
@@ -1493,6 +2407,133 @@
       "checkedAt": "2026-11-06T00:00:36.190027+00:00"
     },
     {
+      "id": "node/2915897849",
+      "name": "El Mexicano",
+      "lat": 46.9484343,
+      "lon": 7.4423484,
+      "type": "restaurant",
+      "address": "Spitalgasse 26",
+      "postcode": "3011",
+      "website": "https://bern.elmexicano.ch/",
+      "cuisine": [
+        "mexican"
+      ],
+      "openingHours": "Mo-Sa 11:00-14:00,17:00-00:30; Su 17:00-00:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://bern.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 30 cl 4.50",
+          "sourcePage": 28,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 3.5,
+          "sourceUrl": "https://bern.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 25 cl 3.50",
+          "sourcePage": 28,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://bern.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 25 cl 3.50 33 cl 5.00",
+          "sourcePage": 28,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta Orange",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://bern.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta Orange 33 cl 5.00",
+          "sourcePage": 28,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://bern.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 30 cl 4.50",
+          "sourcePage": 28,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://bern.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 30 cl 4.50 33 cl 5.00",
+          "sourcePage": 28,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://bern.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes 25 cl 4.50",
+          "sourcePage": 28,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://bern.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes 20 cl 5.00",
+          "sourcePage": 28,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://bern.elmexicano.ch/wp-content/uploads/2025/04/MENU-EL-MEXICANO-2025_gedruckt.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella 33 cl 5.00",
+          "sourcePage": 28,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/6272070746",
       "name": "eniline",
       "lat": 46.9476481,
@@ -1606,6 +2647,136 @@
       "checkedAt": "2026-11-05T23:35:10.702212+00:00"
     },
     {
+      "id": "node/6552336713",
+      "name": "Fabrique28",
+      "lat": 46.9439157,
+      "lon": 7.4356642,
+      "type": "restaurant",
+      "address": "Monbijoustrasse 28",
+      "postcode": "3011",
+      "website": "https://fabrique28.ch",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 09:30-16:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachter Eistee",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.5,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Eistee 50 cl 6.50 / 4.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Lola Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Lola Cola 33 cl 5.20",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Lola Cola Null",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://fabrique28.ch",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Lola Cola Null 33 cl 5.20",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/253201075",
+      "name": "Fischerstübli",
+      "lat": 46.9471244,
+      "lon": 7.4563737,
+      "type": "restaurant",
+      "address": "Gerberngasse 41",
+      "postcode": "3011",
+      "website": "https://fischerstuebli.ch",
+      "cuisine": [],
+      "openingHours": "Tu-Fr 11:00-14:30,17:00-23:00; Sa 11:00-23:00; Sep 22-Oct 06,Jan 31-Feb 09 off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Goba Cola oder Goba Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_102a79bb73604c8cb0c04d2dcb78981a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Goba Cola oder Goba Cola Zero 3.3 dl 5.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_102a79bb73604c8cb0c04d2dcb78981a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Rot 3.3 dl 5.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tom's Tonic Water",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_102a79bb73604c8cb0c04d2dcb78981a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tom's Tonic Water 2.0 dl 6.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Dry Tonic Water",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_102a79bb73604c8cb0c04d2dcb78981a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Dry Tonic Water 2.0 dl 6.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ginger Beer",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_102a79bb73604c8cb0c04d2dcb78981a.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ginger Beer 2.0 dl 6.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/3217885285",
       "name": "Frohsinn",
       "lat": 46.9475768,
@@ -1637,6 +2808,61 @@
       "checkedAt": "2026-11-05T23:36:38.008783+00:00"
     },
     {
+      "id": "node/279803128",
+      "name": "Gio Pizza",
+      "lat": 46.9556624,
+      "lon": 7.4453265,
+      "type": "fast_food",
+      "address": "Lorrainestrasse 12",
+      "postcode": "",
+      "website": "https://pizzagio.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Tu-Sa 11:30-14:00, 18:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://pizzagio.ch/menue/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "COCA COLA 0.33L 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://pizzagio.ch/menue/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "COCA COLA ZERO 0.33L 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schorle",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://pizzagio.ch/menue/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "SCHORLE 0.5L 4.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/3082108093",
       "name": "Haus der Universität",
       "lat": 46.946784,
@@ -1664,6 +2890,102 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:36:51.271461+00:00"
+    },
+    {
+      "id": "node/598684504",
+      "name": "Hellys",
+      "lat": 46.9467151,
+      "lon": 7.4387885,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://hellys.ch",
+      "cuisine": [],
+      "openingHours": "Tu-Fr 16:00-18:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Eistee, offen",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee, offen 2.5 dl 4.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Limonade, offen",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Limonade, offen 2.5 dl 4.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola | Zero, Flasche",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola | Zero, Flasche 2 dl 4.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic, Flasche",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic, Flasche 2 dl 4.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/3271092775",
+      "name": "Huayuan",
+      "lat": 46.9410313,
+      "lon": 7.4172646,
+      "type": "restaurant",
+      "address": "Holligenstrasse 70",
+      "postcode": "3008",
+      "website": "https://www.fischermaetteli.ch",
+      "cuisine": [
+        "chinese"
+      ],
+      "openingHours": "Tu-Fr 11:30-14:00,17:30-22:30; Sa,Su 17:30-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachter Pflaumen-Eistee nach Pekinger Art",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.huayuan.ch/_files/ugd/c1b1f5_4057b196098a418b8c1411995142e066.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Pflaumen-Eistee nach Pekinger Art 500ml 5.00",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/2988406100",
@@ -1901,6 +3223,241 @@
       "checkedAt": "2026-11-05T23:37:40.417961+00:00"
     },
     {
+      "id": "node/3283703322",
+      "name": "Kesar",
+      "lat": 46.949,
+      "lon": 7.41113,
+      "type": "restaurant",
+      "address": "Murtenstrasse 131",
+      "postcode": "3008",
+      "website": "https://www.kesar.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo off; Tu-Su 17:00-23:30; Tu-Fr 11:30-14:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Ingwer-Eistee 3dl",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwer-Eistee 3dl 4.80",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schorle",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schorle 3.3dl 4.80",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cola / Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Cola / Cola Zero 3.3dl 4.80",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot / blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot / blau 3.3dl 4.80",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Indian Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Indian Tonic 2dl 5.00",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Bitter Lemon",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.kesar.ch/wp-content/uploads/2025/04/Kesar-Abendkarte-April25-A4.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Bitter Lemon 2dl 5.00",
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/101292376",
+      "name": "Kirchenfeld",
+      "lat": 46.9436093,
+      "lon": 7.4505679,
+      "type": "restaurant",
+      "address": "Thunstrasse 5",
+      "postcode": "3005",
+      "website": "https://www.kirchenfeld.ch",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Mo off; Tu-Sa 08:00-23:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca-Cola, Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.kirchenfeld.ch/menu/getraenke/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola, Cola Zero 3.3 dl 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fever Tree Tonic, Bitter Lemon, Ginger Ale",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://www.kirchenfeld.ch/menu/getraenke/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fever Tree Tonic, Bitter Lemon, Ginger Ale 2 dl 6.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot, Blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.kirchenfeld.ch/menu/getraenke/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Rot, Blau 3.3 dl 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/1831483517",
+      "name": "Klösterli Weincafe",
+      "lat": 46.9490676,
+      "lon": 7.4592481,
+      "type": "cafe",
+      "address": "Klösterlistutz 16",
+      "postcode": "3013",
+      "website": "https://kloesterlibern.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Su 11:00-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Coca Cola / zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_3.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola/ zero 33cl 5.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot / blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_3.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot/ blau 33cl 5.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_3.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Tonic 20cl 5.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ginger Beer, Swiss Mountain Spring",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_3.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ginger Beer, Swiss Mountain Spring 20cl 6.00",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola/zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_2.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola/ zero 33cl 5.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot/blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://kloesterlibern.ch/cmsfiles/Getränkekarte November 2026_2.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot/ blau 33cl 5.50",
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/3045013204",
       "name": "Klötzlikeller",
       "lat": 46.9483137,
@@ -1978,6 +3535,239 @@
       "checkedAt": "2026-11-05T23:40:05.654775+00:00"
     },
     {
+      "id": "node/3210641928",
+      "name": "Kramer",
+      "lat": 46.9481554,
+      "lon": 7.4516097,
+      "type": "restaurant",
+      "address": "Kramgasse 12",
+      "postcode": "3011",
+      "website": "https://www.kramer-bern.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-We 11:00-22:00; Th-Sa 11:00-23:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca-Cola, Coca-Cola zero, Rivella rot, Süssmost, Citron",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://kramer-bern.ch/wp-content/uploads/2026/08/KramerKeller-Bankettdoku.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola, Coca-Cola zero, Rivella rot, Süssmost, Citron 0.3l 5",
+          "sourcePage": 17,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola, Coca-Cola zero, Rivella rot, Süssmost, Citron",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 7,
+          "sourceUrl": "https://kramer-bern.ch/wp-content/uploads/2026/08/KramerKeller-Bankettdoku.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola, Coca-Cola zero, Rivella rot, Süssmost, Citron 0.5l 7",
+          "sourcePage": 17,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachter Eistee Minze-Orange",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://kramer-bern.ch/wp-content/uploads/2026/08/KramerKeller-Bankettdoku.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "HAUSGEMACHTER EISTEE Minze-Orange 0.3l 5.5",
+          "sourcePage": 17,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/286879776",
+      "name": "Krone",
+      "lat": 46.9482676,
+      "lon": 7.4530574,
+      "type": "restaurant",
+      "address": "Gerechtigkeitsgasse 66",
+      "postcode": "3011",
+      "website": "https://www.kronebern.ch/",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Mo-Fr 09:00-23:30; Sa 16:00-00:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola / Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola / Zero 33cl 5.2",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic / Bitter Lemon",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic / Bitter Lemon 20cl 4.5",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Rot 33cl 5.2",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 33cl 5.2",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea Lemon / Peach",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.krone-bern.ch/_files/ugd/700c8d_51ee89e760fc4598b958a099f77a1bb1.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ice Tea Lemon / Peach 33cl 5.2",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/13667025050",
+      "name": "La Vie",
+      "lat": 46.9497795,
+      "lon": 7.4176168,
+      "type": "restaurant",
+      "address": "Weyermannsstrasse 1",
+      "postcode": "",
+      "website": "https://www.restaurantlavie.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 09:00-19:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Hibiskus Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "HAUSGEMACHT 3 dl 5 dl | Hibiskus Eistee 5.3 6.8",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hibiskus Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 6.8,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "HAUSGEMACHT 3 dl 5 dl | Hibiskus Eistee 5.3 6.8",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Limetten-Minze Limonade",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "HAUSGEMACHT 3 dl 5 dl | Limetten-Minze Limonade 5.3 6.8",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Limetten-Minze Limonade",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 6.8,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "HAUSGEMACHT 3 dl 5 dl | Limetten-Minze Limonade 5.3 6.8",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola & Coca-Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola & Coca-Cola Zero 33 cl 5.2",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot & blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot & blau 33 cl 5.2",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Thomas Henry Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6,
+          "sourceUrl": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/LA-VIE-Getraenkekarte-20261013.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Thomas Henry Tonic 20 cl 6",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/2987238077",
       "name": "Lamoon",
       "lat": 46.9568941,
@@ -2043,6 +3833,174 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:39:30.968857+00:00"
+    },
+    {
+      "id": "node/12981974839",
+      "name": "Le Bistro",
+      "lat": 46.9452788,
+      "lon": 7.3751108,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.senevita.ch/de/standorte/betreutes-wohnen-westside-bern/gastronomie",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Coca Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.3,
+          "sourceUrl": "https://www.senevita.ch/wAssets/docs/00_standorte/westside/03_gastronomie/Westside_Bankettkarte_26_Web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola Zero 33 cl 4.30",
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola (offen)",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 3.1,
+          "sourceUrl": "https://www.senevita.ch/wAssets/docs/00_standorte/westside/03_gastronomie/Westside_Bankettkarte_26_Web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola (offen) 2 dl 3.10",
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Eistee (offen)",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 3.1,
+          "sourceUrl": "https://www.senevita.ch/wAssets/docs/00_standorte/westside/03_gastronomie/Westside_Bankettkarte_26_Web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee (offen) 2 dl 3.10",
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.3,
+          "sourceUrl": "https://www.senevita.ch/wAssets/docs/00_standorte/westside/03_gastronomie/Westside_Bankettkarte_26_Web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella blau 33 cl 4.30",
+          "sourcePage": 13,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/834071511",
+      "name": "Le Carrousel",
+      "lat": 46.9515314,
+      "lon": 7.4351244,
+      "type": "restaurant",
+      "address": "Hallerstrasse 1",
+      "postcode": "3012",
+      "website": "https://www.le-carrousel.ch/",
+      "cuisine": [
+        "creperie"
+      ],
+      "openingHours": "Tu-Sa 11:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "schorle aux pommes",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4,
+          "sourceUrl": "https://image.jimcdn.com/app/cms/image/transf/none/path/s1542178a095870b5/image/i294d5c8396be2c0a/version/1767281427/image.png",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "schorle aux pommes apfel-schorle 2/3/5 dl 4/4.5/6.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "schorle aux pommes",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://image.jimcdn.com/app/cms/image/transf/none/path/s1542178a095870b5/image/i294d5c8396be2c0a/version/1767281427/image.png",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "schorle aux pommes apfel-schorle 2/3/5 dl 4/4.5/6.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "schorle aux pommes",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.5,
+          "sourceUrl": "https://image.jimcdn.com/app/cms/image/transf/none/path/s1542178a095870b5/image/i294d5c8396be2c0a/version/1767281427/image.png",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "schorle aux pommes apfel-schorle 2/3/5 dl 4/4.5/6.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "breizh cola / zéro",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://image.jimcdn.com/app/cms/image/transf/none/path/s1542178a095870b5/image/i294d5c8396be2c0a/version/1767281427/image.png",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "breizh cola / zéro bretonisches cola / zero 3.3 dl 5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "limonade la mortuacienne pamplemousse / citron",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://image.jimcdn.com/app/cms/image/transf/none/path/s1542178a095870b5/image/i294d5c8396be2c0a/version/1767281427/image.png",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "limonade la mortuacienne pamplemousse / citron 3.3 dl 5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "ginger beer gents",
+          "volumeMl": 275,
+          "gastroType": "softdrink",
+          "priceChf": 6,
+          "sourceUrl": "https://image.jimcdn.com/app/cms/image/transf/none/path/s1542178a095870b5/image/i294d5c8396be2c0a/version/1767281427/image.png",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "ginger beer gents 2.75 dl 6",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "tonic water th. henry",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://image.jimcdn.com/app/cms/image/transf/none/path/s1542178a095870b5/image/i294d5c8396be2c0a/version/1767281427/image.png",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "tonic water th. henry 2 dl 5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/2910740696",
@@ -2187,6 +4145,78 @@
       "checkedAt": "2026-11-05T23:41:12.644865+00:00"
     },
     {
+      "id": "node/445018177",
+      "name": "Ludmilla",
+      "lat": 46.9611333,
+      "lon": 7.4502091,
+      "type": "restaurant",
+      "address": "Flurstrasse 24",
+      "postcode": "3014",
+      "website": "https://www.restaurant-ludmilla.ch",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Mo-Fr 11:30-23:00; Sa 18:00-23:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachter Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.restaurant-ludmilla.ch/_files/ugd/6a38e9_da463014aa504eb186831c6711bbea2d.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Eistee | 3dl 4.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/4083144290",
+      "name": "Lumis Kaffeebar",
+      "lat": 46.9459972,
+      "lon": 7.4358117,
+      "type": "cafe",
+      "address": "Effingerstrasse 10",
+      "postcode": "3011",
+      "website": "https://www.lumis.ch/",
+      "cuisine": [],
+      "openingHours": "Mo 07:00-20:00; Tu-Fr 07:00-22:00; Su 09:00-17:00; Sa off",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Ginger Beer",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ginger Beer 2.5dl 5.50",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic Water",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://static1.squarespace.com/static/684573eedfd7ff5dc3b9ca71/t/69c17c1b54fc032f6fc36359/1774287899372/Lumis+Men%C3%BCkarte+M%C3%A4rz+26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic Water 2.0dl 5.50",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/2838925989",
       "name": "Marta",
       "lat": 46.9481458,
@@ -2214,6 +4244,191 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:41:09.803027+00:00"
+    },
+    {
+      "id": "node/2336992357",
+      "name": "Marzilibrücke",
+      "lat": 46.9448768,
+      "lon": 7.4445896,
+      "type": "restaurant",
+      "address": "Gasstrasse 8",
+      "postcode": "",
+      "website": "https://www.restaurant-marzilibruecke.ch/",
+      "cuisine": [
+        "regional",
+        "french",
+        "pizza",
+        "fondue"
+      ],
+      "openingHours": "Mo-Fr 11:30-23:30; Sa 12:00-23:30; Su 10:00-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachter Marzili-Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.9,
+          "sourceUrl": "https://www.restaurant-marzilibruecke.ch/wp-content/uploads/2026/04/Getraenkekarte-Nr.20-Sommer-2026-online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Marzili-Eistee 3dl 5.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachter Marzili-Eistee",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 7.9,
+          "sourceUrl": "https://www.restaurant-marzilibruecke.ch/wp-content/uploads/2026/04/Getraenkekarte-Nr.20-Sommer-2026-online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Marzili-Eistee 5dl 7.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Alpinesse: Tonic, Bitter Lemon & Ginger-Ale",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.8,
+          "sourceUrl": "https://www.restaurant-marzilibruecke.ch/wp-content/uploads/2026/04/Getraenkekarte-Nr.20-Sommer-2026-online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Alpinesse: Tonic, Bitter Lemon & Ginger-Ale 2dl 5.80",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fever Tree: Ginger Beer",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.9,
+          "sourceUrl": "https://www.restaurant-marzilibruecke.ch/wp-content/uploads/2026/04/Getraenkekarte-Nr.20-Sommer-2026-online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fever Tree: Ginger Beer 2dl 5.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella: rot & blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.9,
+          "sourceUrl": "https://www.restaurant-marzilibruecke.ch/wp-content/uploads/2026/04/Getraenkekarte-Nr.20-Sommer-2026-online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella: rot & blau 3.3dl 5.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola & Coca-Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.9,
+          "sourceUrl": "https://www.restaurant-marzilibruecke.ch/wp-content/uploads/2026/04/Getraenkekarte-Nr.20-Sommer-2026-online.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola & Coca-Cola Zero 3.3dl 5.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/313812140",
+      "name": "Mishio",
+      "lat": 46.9479829,
+      "lon": 7.4433844,
+      "type": "restaurant",
+      "address": "Bärenplatz 2",
+      "postcode": "3011",
+      "website": "https://mishio.ch/bern-vatterland/",
+      "cuisine": [
+        "asian"
+      ],
+      "openingHours": "Mo-Sa 11:30-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca-Cola",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://mishio.ch/wp-content/uploads/2026/06/mishio-speisekarte-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola 30 cl 4.9",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.1,
+          "sourceUrl": "https://mishio.ch/wp-content/uploads/2026/06/mishio-speisekarte-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola Zero 33 cl 5.1",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schorle",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.1,
+          "sourceUrl": "https://mishio.ch/wp-content/uploads/2026/06/mishio-speisekarte-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schorle 33 cl 5.1",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot / blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.1,
+          "sourceUrl": "https://mishio.ch/wp-content/uploads/2026/06/mishio-speisekarte-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot / blau 33 cl 5.1",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.1,
+          "sourceUrl": "https://mishio.ch/wp-content/uploads/2026/06/mishio-speisekarte-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta 33 cl 5.1",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic / Bitter Lemon",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://mishio.ch/wp-content/uploads/2026/06/mishio-speisekarte-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic / Bitter Lemon 25 cl 4.9",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/3272891441",
@@ -2269,6 +4484,61 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:16:31.028274+00:00"
+    },
+    {
+      "id": "node/13595458460",
+      "name": "Mont Liban",
+      "lat": 46.9538182,
+      "lon": 7.4238413,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://montliban-bern.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Th 11:30-14:00,17:30-21:30; Fr 11:30-14:00,17:30-22:00; Sa 17:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Coca Cola / Coca Cola Zero",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola / Coca Cola Zero 3 dl 4.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Bitter Lemon",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Bitter Lemon 2 dl 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Tonic",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.montliban-bern.ch/speisekarte.html",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Tonic 3,3 dl 4.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/2577907280",
@@ -2338,6 +4608,49 @@
       "checkedAt": "2026-11-05T23:43:08.260465+00:00"
     },
     {
+      "id": "node/11703444045",
+      "name": "Muna",
+      "lat": 46.9412365,
+      "lon": 7.4650872,
+      "type": "restaurant",
+      "address": "Thunstrasse 108",
+      "postcode": "3006",
+      "website": "https://ristorante-muna.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 10:00-22:00, Sa 17:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola, Coca Cola Zero, Sprite, Fanta, Nestea Lemon, Rivella Rot & Blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://ristorante-muna.ch/wp-content/uploads/2023/11/Weinkarte-.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola, Coca Cola Zero, Sprite, Fanta, Nestea Lemon, Rivella Rot & Blau 33cl 5.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kinley Tonic, Bitter Lemon, Ginger Ale",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://ristorante-muna.ch/wp-content/uploads/2023/11/Weinkarte-.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Kinley Tonic, Bitter Lemon, Ginger Ale 20cl 5.00",
+          "sourcePage": 6,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/2663783263",
       "name": "Namaste India",
       "lat": 46.9440749,
@@ -2405,6 +4718,176 @@
       "checkedAt": "2026-11-05T22:29:23.958573+00:00"
     },
     {
+      "id": "node/14133063701",
+      "name": "nido",
+      "lat": 46.9474976,
+      "lon": 7.4409355,
+      "type": "restaurant",
+      "address": "Spitalgasse 47–51",
+      "postcode": "3001",
+      "website": "https://nido-ristorante.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Th 09:00-23:00; Fr-Su 09:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Hausgemachter Eistee 30 cl",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://nido-ristorante.ch/api/nido/menus/nido_loungekarte",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "HAUSGEMACHTER EISTEE 30 cl 5.50",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola / Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://nido-ristorante.ch/api/nido/menus/nido_loungekarte",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "COCA COLA / ZERO 33 cl 5.50",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot/blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://nido-ristorante.ch/api/nido/menus/nido_loungekarte",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "RIVELLA ROT/BLAU 33 cl 5.50",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fever-tree Tonic (Premium Indian Tonic / Mediterranean Tonic)",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://nido-ristorante.ch/api/nido/menus/nido_loungekarte",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "FEVER-TREE TONIC Premium Indian Tonic / Mediterranean Tonic 20 cl 6.-",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fever-tree (Bitter Lemon / Ginger Beer / Ginger Ale)",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://nido-ristorante.ch/api/nido/menus/nido_loungekarte",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "FEVER-TREE Bitter Lemon / Ginger Beer / Ginger Ale 20 cl 6.-",
+          "sourcePage": 11,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/280528108",
+      "name": "Okra",
+      "lat": 46.9561265,
+      "lon": 7.4448525,
+      "type": "restaurant",
+      "address": "Lorrainestrasse 9",
+      "postcode": "3013",
+      "website": "https://www.okra.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo off; Tu-Fr 11:00-14:00, 17:30-23:30; Sa-Su 17:30-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachtes Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2026/10/Getraenkekarte-Abend-OKRA-Juli-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachtes Eistee 3dl 4.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachtes Eistee",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.5,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2026/10/Getraenkekarte-Abend-OKRA-Juli-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachtes Eistee 5dl 6.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schorle",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2026/10/Getraenkekarte-Abend-OKRA-Juli-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schorle 3.3dl 4.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cola / Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2026/10/Getraenkekarte-Abend-OKRA-Juli-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Cola / Cola Zero 3.3dl 4.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot / blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2026/10/Getraenkekarte-Abend-OKRA-Juli-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot / blau 3.3dl 4.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Indian Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://okra.ch/wp-content/uploads/2026/10/Getraenkekarte-Abend-OKRA-Juli-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Indian Tonic 2dl 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/6890282886",
       "name": "Petit Couteau",
       "lat": 46.9454348,
@@ -2432,6 +4915,316 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T22:30:57.335857+00:00"
+    },
+    {
+      "id": "node/598242905",
+      "name": "Piazza Vittoria",
+      "lat": 46.9547304,
+      "lon": 7.4514632,
+      "type": "restaurant",
+      "address": "Viktoriastrasse 72",
+      "postcode": "3013",
+      "website": "https://www.piazzavittoria.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Sa 10:00-22:00; Su,PH closed",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola 5.0 dl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 5.0 dl CHF 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta 5.0 dl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta 5.0 dl CHF 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite 5.0 dl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 5.0 dl CHF 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice tea 5.0 dl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ice tea 5.0 dl CHF 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 5.0 dl CHF 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta 5.0 dl CHF 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 5.0 dl CHF 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice tea",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.piazzavittoria.ch/de/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ice tea 5.0 dl CHF 5.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/286879707",
+      "name": "Piccola Napoli",
+      "lat": 46.9432488,
+      "lon": 7.4361178,
+      "type": "restaurant",
+      "address": "Monbijoustrasse 37",
+      "postcode": "3011",
+      "website": "https://www.piccolanapoli.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Fr 10:00-14:00,16:30-22:00; Sa 11:30-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Schweppes Tonic 0.25l",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.piccolanapoli.ch/menue",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Tonic 0.25l 4.00 4.00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/813680128",
+      "name": "Pizzeria Länggasse",
+      "lat": 46.9523325,
+      "lon": 7.4335285,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://pizzeria-laenggasse.ch/?",
+      "cuisine": [
+        "pizza",
+        "kebab"
+      ],
+      "openingHours": "Mo-Fr 09:30-14:00,17:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "COCA COLA 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "COCA COLA 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "COCA COLA Zero 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "COCA COLA Zero 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "FANTA 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "FANTA 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "SPRITE 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "SPRITE 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea (Lemon/Pfirsich)",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "ICE TEA (Lemon/Pfirsich) 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea (Lemon/Pfirsich)",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "ICE TEA (Lemon/Pfirsich) 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "RIVELLA 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://files.web.host.ch/21/81/2181df4e-a74f-41b3-8b2d-b9b44817cb4b.jpeg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "RIVELLA 4.00 6.00 (0.5 L / 1.5 L)",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/474362126",
@@ -2463,6 +5256,73 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:45:00.972805+00:00"
+    },
+    {
+      "id": "node/4219531601",
+      "name": "Provisorium 46",
+      "lat": 46.9544008,
+      "lon": 7.4291414,
+      "type": "restaurant",
+      "address": "Muesmattstrasse 46",
+      "postcode": "",
+      "website": "https://provisorium46.ch",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": "Tu-Fr 11:00-14:30,16:00-23:30; Sa 17:00-23:30; Nov-Jan Tu-Sa 17:00-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachter Eistee",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 6.8,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "HAUSGEMACHTES 5dl / Hausgemachter Eistee 6.80",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Lola Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Lola Cola 33cl 6.00",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Lola Cola Null",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Lola Cola Null 33cl 6.00",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Gents Tonic, Ginger Ale, Ginger Beer",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://provisorium46.ch/fileadmin/user_upload/provisorium46/Manuskript_Provisorium46_Getraenkekarte_Weinkarte_251204_web.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Gents Tonic, Ginger Ale, Ginger Beer 20cl 6.00",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/8199621997",
@@ -2580,6 +5440,335 @@
       "checkedAt": "2026-11-05T23:22:51.721800+00:00"
     },
     {
+      "id": "node/9844659964",
+      "name": "Ragazzi di Berna",
+      "lat": 46.9399609,
+      "lon": 7.4402161,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.ragazzidiberna.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-We 09:00-15:00; Th-Fr 09:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Home made ice tea 30cl",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "HOME MADE ICE TEA 30CL/50CL 4.5 / 6.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola & Zero 33cl",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.ragazzidiberna.ch/wp-content/uploads/2025/05/M5_Menue-Neu-Getraenke_Monbijou_2025--scaled.jpg",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "COCA COLA & ZERO 33CL 4.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/559232107",
+      "name": "Restaurant & Bar ALLMEND",
+      "lat": 46.9599715,
+      "lon": 7.4674497,
+      "type": "restaurant",
+      "address": "Mingerstrasse 6",
+      "postcode": "3014",
+      "website": "https://www.restaurantallmendbern.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca-Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.restaurantallmendbern.ch/wp-content/uploads/2016/12/ALLMEND-BEA-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola, Coca-Cola Zero 33 cl 5.2",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.restaurantallmendbern.ch/wp-content/uploads/2016/12/ALLMEND-BEA-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola, Coca-Cola Zero 33 cl 5.2",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola, Coca-Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.restaurantallmendbern.ch/wp-content/uploads/2016/12/Saison-26_27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola, Coca-Cola Zero 33 cl 5.2",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Apinesse Bitter Lemon, Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.2,
+          "sourceUrl": "https://www.restaurantallmendbern.ch/wp-content/uploads/2016/12/Saison-26_27.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Apinesse Bitter Lemon, Tonic 20 cl 5.2",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/5745409029",
+      "name": "Restaurant Höhe",
+      "lat": 46.9420597,
+      "lon": 7.3960751,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.restauranthoehe.ch/",
+      "cuisine": [],
+      "openingHours": "08:00-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Schorle",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.restauranthoehe.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schorle 0,5l 4,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta Shokata",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.restauranthoehe.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta Shokata 0,5l 4,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.restauranthoehe.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 0,5l 4,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.restauranthoehe.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Rot 0,5l 4,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.restauranthoehe.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola 0,5l 4,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.restauranthoehe.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola Zero 0,5l 4,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.restauranthoehe.ch/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta 0,5l 4,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/2892516176",
+      "name": "Restaurant MYLE",
+      "lat": 46.9470191,
+      "lon": 7.4401065,
+      "type": "restaurant",
+      "address": "Bubenbergplatz 5A",
+      "postcode": "3011",
+      "website": "https://myle-bern.com",
+      "cuisine": [
+        "fine_dining"
+      ],
+      "openingHours": "We-Sa 16:00-24:00; Th-Fr 12:00-14:00, 16:00-24:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Ice Tea hausgemacht 3 dl",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ice Tea hausgemacht 3 dl / 5 dl 4.9 / 7",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 3.3 dl 5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola Zero 3.3 dl 5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bio Limonade Gurke",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bio Limonade Gurke 3.3 dl 6.5",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bio Limonade Blutorange",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 7,
+          "sourceUrl": "https://www.myle-bern.ch/assets/uploads/files/QR Menus/getraenkekarte.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bio Limonade Blutorange 3.3 dl 7",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/8210172451",
+      "name": "Romy",
+      "lat": 46.9483801,
+      "lon": 7.4515113,
+      "type": "restaurant",
+      "address": "Rathausgasse 11",
+      "postcode": "",
+      "website": "https://www.restaurant-romy.ch/",
+      "cuisine": [],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola / Coca Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.restaurant-romy.ch/wp-content/uploads/2026/10/Getraenkekarte-26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola / Coca Cola Zero 33cl 5.00",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Calamansi Limonade",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.5,
+          "sourceUrl": "https://www.restaurant-romy.ch/wp-content/uploads/2026/10/Getraenkekarte-26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Calamansi Limonade 33cl 6.50",
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/447293342",
       "name": "Seidenhof",
       "lat": 46.9561684,
@@ -2669,6 +5858,287 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:22:19.998969+00:00"
+    },
+    {
+      "id": "way/379588170",
+      "name": "Simmentaler Brewhouse",
+      "lat": 46.9485835,
+      "lon": 7.4398595,
+      "type": "bar",
+      "address": "Bahnhofplatz 10a",
+      "postcode": "3011",
+      "website": "https://www.simmentalerbrewhouse.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-We 06:30-22:30; Th 06:30-00:30; Fr 06:30-00:30; Sa 08:00-00:30; Su 09:00-21:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachter Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Eistee (ohne Zucker) 3 dl / 5.50",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachter Eistee",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 7.5,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Eistee (ohne Zucker) 5 dl / 7.50",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cola",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.9,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Cola 3 dl / 5.90",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cola Zero",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.9,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Cola Zero 3 dl / 5.90",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kandt Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.2,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Kandt Tonic 2 dl / 6.20",
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "way/1313090962",
+      "name": "Sous Sol",
+      "lat": 46.949227,
+      "lon": 7.4403981,
+      "type": "restaurant",
+      "address": "Neuengass-Unterführung 4",
+      "postcode": "",
+      "website": "https://www.lesoussol.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 06:30-20:30; Sa,Su,PH 07:30-20:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Sinalco Cola zero/classic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sinalco Cola zero/classic 4.00 4.90 6.10 (2dl 3dl 5dl)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sinalco Cola zero/classic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sinalco Cola zero/classic 4.00 4.90 6.10 (2dl 3dl 5dl)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sinalco Cola zero/classic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.1,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sinalco Cola zero/classic 4.00 4.90 6.10 (2dl 3dl 5dl)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Icetea Lemon",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Icetea Lemon 4.00 4.90 6.10 (2dl 3dl 5dl)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Icetea Lemon",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Icetea Lemon 4.00 4.90 6.10 (2dl 3dl 5dl)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Icetea Lemon",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.1,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Icetea Lemon 4.00 4.90 6.10 (2dl 3dl 5dl)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bio Kräuter Eistee",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bio Kräuter Eistee 4.00 4.90 6.10 (2dl 3dl 5dl)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bio Kräuter Eistee",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bio Kräuter Eistee 4.00 4.90 6.10 (2dl 3dl 5dl)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bio Kräuter Eistee",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6.1,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Bio Kräuter Eistee 4.00 4.90 6.10 (2dl 3dl 5dl)",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola zero / classic / double zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola zero / classic / double zero 33cl 5.30",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot / blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot / blau 33cl 5.30",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ramseier Apfelsaft / Schorle",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.3,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ramseier Apfelsaft / Schorle 33cl 5.30",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kinley Tonic / bitter Lemon / Purple",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.1,
+          "sourceUrl": "http://lesoussol.ch/Boissons.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Kinley Tonic / bitter Lemon / Purple 20cl 5.10",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/537955663",
+      "name": "Strada",
+      "lat": 46.9452602,
+      "lon": 7.4728748,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.strada-bern.ch",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo-Sa 08:00-23:00; Su,PH off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola/Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.strada-bern.ch/files/1643/weinkarte-2025-neuedisign-pdf-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola/Zero/ 33 cl 5.00",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/3103757460",
@@ -2779,6 +6249,119 @@
       "checkedAt": "2026-11-05T23:25:46.145013+00:00"
     },
     {
+      "id": "node/514589641",
+      "name": "Tavola Calda",
+      "lat": 46.9582904,
+      "lon": 7.4546545,
+      "type": "restaurant",
+      "address": "Breitenrainplatz 29",
+      "postcode": "3014",
+      "website": "https://www.tavolacalda.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Th 10:00-23:00; Fr-Sa 10:00-23:30; Su 16:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.tavolacalda.ch/our-menu/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "5 dl 4,50 Coca Cola",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.tavolacalda.ch/our-menu/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "5 dl 4,50 Coca Cola Zero",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.tavolacalda.ch/our-menu/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "5 dl 4,50 Ice Tea",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea Peach",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.tavolacalda.ch/our-menu/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "5 dl 4,50 Ice Tea Peach",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.tavolacalda.ch/our-menu/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "5 dl 4,50 Fanta",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.tavolacalda.ch/our-menu/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "5 dl 4,50 Sprite",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.tavolacalda.ch/our-menu/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "5 dl 4,50 Rivella Rot",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Blau",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.5,
+          "sourceUrl": "https://www.tavolacalda.ch/our-menu/getraenke/",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "5 dl 4,50 Rivella Blau",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/6142423528",
       "name": "the flow",
       "lat": 46.9478449,
@@ -2806,6 +6389,330 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:53:40.688693+00:00"
+    },
+    {
+      "id": "node/2687061491",
+      "name": "Tibits",
+      "lat": 46.947,
+      "lon": 7.44202,
+      "type": "restaurant",
+      "address": "Gurtengasse 3",
+      "postcode": "3011",
+      "website": "https://www.tibits.ch/de/restaurants/standorte#tibits-bern",
+      "cuisine": [],
+      "openingHours": "Mo-Sa 07:00-22:00; Su 08:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Ingwer-Zitronen-Limonade",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwer-Zitronen-Limonade 25 cl 5.00",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwer-Zitronen-Limonade",
+          "volumeMl": 400,
+          "gastroType": "softdrink",
+          "priceChf": 6.7,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwer-Zitronen-Limonade 40cl 6.70",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Passionsfrucht Limonade",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Passionsfrucht Limonade 25 cl 5.00",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Passionsfrucht Limonade",
+          "volumeMl": 400,
+          "gastroType": "softdrink",
+          "priceChf": 6.7,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Passionsfrucht Limonade 40cl 6.70",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Thymian-Tonic-Limonade",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Thymian-Tonic-Limonade 25 cl 5.00",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Thymian-Tonic-Limonade",
+          "volumeMl": 400,
+          "gastroType": "softdrink",
+          "priceChf": 6.7,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Thymian-Tonic-Limonade 40cl 6.70",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Eistee Klassisch",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.3,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee Klassisch 25 cl 4.30",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hibiskus-Minze-Eistee",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.3,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hibiskus-Minze-Eistee zuckerfrei 25 cl 4.30",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Saisonaler Eistee",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.6,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Saisonaler Eistee 25 cl 4.60",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Süssmost-Schorle",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.3,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Süssmost-Schorle 25 cl 4.30",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Goba Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Goba Cola, Goba Cola Zero 50cl (PET) 5.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Goba Cola Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Goba Cola, Goba Cola Zero 50cl (PET) 5.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/6855277335",
+      "name": "Tibits",
+      "lat": 46.9486696,
+      "lon": 7.4403364,
+      "type": "restaurant",
+      "address": "Bahnhofplatz 10",
+      "postcode": "3011",
+      "website": "https://www.tibits.ch/de/restaurants#tibits-bern",
+      "cuisine": [
+        "international"
+      ],
+      "openingHours": "Mo-Fr 06:30-22:30; Sa-Su,PH 07:30-22:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Ingwer-Zitronen-Limonade",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwer-Zitronen-Limonade 25 cl 5.00",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ingwer-Zitronen-Limonade",
+          "volumeMl": 400,
+          "gastroType": "softdrink",
+          "priceChf": 6.7,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ingwer-Zitronen-Limonade 40cl 6.70",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Passionsfrucht Limonade",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Passionsfrucht Limonade 25 cl 5.00",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Passionsfrucht Limonade",
+          "volumeMl": 400,
+          "gastroType": "softdrink",
+          "priceChf": 6.7,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Passionsfrucht Limonade 40cl 6.70",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Thymian-Tonic-Limonade",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Thymian-Tonic-Limonade 25 cl 5.00",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Thymian-Tonic-Limonade",
+          "volumeMl": 400,
+          "gastroType": "softdrink",
+          "priceChf": 6.7,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Thymian-Tonic-Limonade 40cl 6.70",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Eistee Klassisch",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.3,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Eistee Klassisch 25 cl 4.30",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hibiskus-Minze-Eistee",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.3,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hibiskus-Minze-Eistee zuckerfrei 25 cl 4.30",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Saisonaler Eistee",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.6,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Saisonaler Eistee 25 cl 4.60",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Süssmost-Schorle",
+          "volumeMl": 250,
+          "gastroType": "softdrink",
+          "priceChf": 4.3,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Süssmost-Schorle 25 cl 4.30",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Goba Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Goba Cola, Goba Cola Zero 50cl (PET) 5.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Goba Cola Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Goba Cola, Goba Cola Zero 50cl (PET) 5.50",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/283213579",
@@ -2849,6 +6756,97 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:25:21.637985+00:00"
+    },
+    {
+      "id": "node/550199534",
+      "name": "tulsi",
+      "lat": 46.9543139,
+      "lon": 7.424953,
+      "type": "restaurant",
+      "address": "Freiestrasse 65",
+      "postcode": "3012",
+      "website": "https://www.tulsi-bern.ch/",
+      "cuisine": [
+        "indian"
+      ],
+      "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00,17:30-23:30; Sa 17:30-23:30",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Hausgemachtes Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.tulsi-bern.ch/wp-content/uploads/2026/07/Menukarte_Abend_Juni-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachtes Eistee 3dl 4.90",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachtes Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 6.2,
+          "sourceUrl": "https://www.tulsi-bern.ch/wp-content/uploads/2026/07/Menukarte_Abend_Juni-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachtes Eistee 3dl 4.90 5dl 6.20",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schorle",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.tulsi-bern.ch/wp-content/uploads/2026/07/Menukarte_Abend_Juni-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schorle 3.3dl 4.90",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cola / Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.tulsi-bern.ch/wp-content/uploads/2026/07/Menukarte_Abend_Juni-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Cola / Cola Zero 3.3dl 4.90",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella rot / blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.9,
+          "sourceUrl": "https://www.tulsi-bern.ch/wp-content/uploads/2026/07/Menukarte_Abend_Juni-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella rot / blau 3.3dl 4.90",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Schweppes Indian Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.tulsi-bern.ch/wp-content/uploads/2026/07/Menukarte_Abend_Juni-2026.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Schweppes Indian Tonic 2dl 5.00",
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/7893100199",
@@ -2904,6 +6902,97 @@
       "checkedAt": "2026-11-05T23:53:28.034205+00:00"
     },
     {
+      "id": "node/11782849549",
+      "name": "Umai Bern",
+      "lat": 46.947558,
+      "lon": 7.4003817,
+      "type": "restaurant",
+      "address": "Untermattweg 22",
+      "postcode": "3027",
+      "website": "https://www.umai-bern.ch",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo off; Tu-Su 11:00-15:00, 17:00-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Sprite",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.umai-bern.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 0.33L 4,80 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.umai-bern.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta 0.33L 4,80 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.umai-bern.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Rot 0.33L 4,80 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.umai-bern.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Blau 0.33L 4,80 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.umai-bern.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola 0.33L 4,80 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca-Cola Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.umai-bern.ch/menu",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca-Cola Zero 0.33L 4,80 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/4253054311",
       "name": "Vanakam",
       "lat": 46.9436055,
@@ -2947,6 +7036,155 @@
       "checkedAt": "2026-11-05T22:43:15.211925+00:00"
     },
     {
+      "id": "node/12610161101",
+      "name": "VASA",
+      "lat": 46.9467733,
+      "lon": 7.4381818,
+      "type": "cafe",
+      "address": "Hirschengraben 5",
+      "postcode": "3011",
+      "website": "https://vasa.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-We 06:30-22:00; Th,Fr 06:30-00:30; Sa 08:30-00:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Hausgemachter Herbst Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.9,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Herbst Eistee - (3dl/5dl) 5.90 / 7.90",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachter Herbst Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 7.9,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachter Herbst Eistee - (3dl/5dl) 5.90 / 7.90",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachte Matcha Limonade",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.9,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachte Matcha Limonade - Matcha, (3dl/5dl) 5.90 / 7.90",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachte Matcha Limonade",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 7.9,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachte Matcha Limonade - Matcha, (3dl/5dl) 5.90 / 7.90",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachte Birnen & Ingwer Limonade",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5.9,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachte Birnen & Ingwer Limonade - (3dl/5dl) 5.90 / 7.90",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hausgemachte Birnen & Ingwer Limonade",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 7.9,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Hausgemachte Birnen & Ingwer Limonade - (3dl/5dl) 5.90 / 7.90",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola / Zero",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola / Zero (33cl) 6.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ginger Beer Thomas Henry (0%)",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ginger Beer Thomas Henry (0%) (3dl/5dl) 6.00 / 8.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ginger Beer Thomas Henry (0%)",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 8.0,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Ginger Beer Thomas Henry (0%) (3dl/5dl) 6.00 / 8.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic Water Kandt",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 6.0,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic Water Kandt (3dl/5dl) 6.00 / 8.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic Water Kandt",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 8.0,
+          "sourceUrl": "https://vasa.ch/wp-content/uploads/2026/10/WEB_VASA-KARTE_NOV_26.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Tonic Water Kandt (3dl/5dl) 6.00 / 8.00",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/619997730",
       "name": "Veranda",
       "lat": 46.9503977,
@@ -2986,6 +7224,88 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:53:17.888666+00:00"
+    },
+    {
+      "id": "node/9792700894",
+      "name": "Viktor",
+      "lat": 46.9548039,
+      "lon": 7.4513278,
+      "type": "cafe",
+      "address": "Viktoriaplatz 3",
+      "postcode": "3013",
+      "website": "https://www.allcatsarebeautiful.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-We 08:00-22:00; Th-Sa 08:00-24:00; Su 09:00-16:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Kandt Dry Tonic",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 6,
+          "sourceUrl": "https://cdn.prod.website-files.com/644662929c183e32287cc3b5/6ac8873df5cd91437f7c551b_VIKTOR_KARTE_WEB_261009_GETRAENKE.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "Kandt Dry Tonic (2dl) 6",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/2574170317",
+      "name": "Volkshaus 1914",
+      "lat": 46.9486027,
+      "lon": 7.4464459,
+      "type": "restaurant",
+      "address": "Zeughausgasse 9",
+      "postcode": "3011",
+      "website": "https://www.volkshausbern.ch/",
+      "cuisine": [],
+      "openingHours": "Mo-Sa 06:30-23:30; Su 09:00-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Coca Cola, Coca Cola Zero, Ice Tea, Rivella Rot & Blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 4.8,
+          "sourceUrl": "https://www.volkshausbern.ch/wp-content/uploads/sites/4/2026/09/2026_Barkarte_Herbst.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "COCA COLA, COCA COLA ZERO, ICE TEA, RIVELLA ROT & BLAU 33 CL 4.8",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tonic, Bitter Lemon",
+          "volumeMl": 200,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.volkshausbern.ch/wp-content/uploads/sites/4/2026/09/2026_Barkarte_Herbst.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "TOMATENSAFT, ORANGENSAFT, TONIC, BITTER LEMON 20 CL 5",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Volkshaus-Eistee",
+          "volumeMl": 300,
+          "gastroType": "softdrink",
+          "priceChf": 5,
+          "sourceUrl": "https://www.volkshausbern.ch/wp-content/uploads/sites/4/2026/09/2026_Barkarte_Herbst.pdf",
+          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "confidence": "ai",
+          "evidence": "VOLKSHAUS-EISTEE 30 CL 5",
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     }
   ]
 }

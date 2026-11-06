@@ -1,6 +1,27 @@
 {
   "generatedAt": "2026-11-06T00:02:11.002778+00:00",
+  "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "discoveredAt": "2026-11-06T00:19:06.259583+00:00",
+  "removed": [],
   "bars": [
+    {
+      "id": "node/265627196",
+      "name": "Bivo",
+      "lat": 46.9581818,
+      "lon": 7.4564389,
+      "type": "restaurant",
+      "address": "Herzogstrasse 2",
+      "postcode": "3014",
+      "website": "https://www.bivo-bern.ch/",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Mo,We,Th,Fr 11:30-14:00,16:00-24:00; Sa 10:00-24:00; Su 12:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
     {
       "id": "node/2572061811",
       "name": "Casino",
@@ -34,6 +55,24 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:34:25.641436+00:00"
+    },
+    {
+      "id": "node/12504239332",
+      "name": "Famii Ramen",
+      "lat": 46.9448852,
+      "lon": 7.4295033,
+      "type": "restaurant",
+      "address": "Zieglerstrasse 30",
+      "postcode": "3007",
+      "website": "https://www.famii.ch/",
+      "cuisine": [
+        "ramen"
+      ],
+      "openingHours": "Mo-Fr 11:00-13:30,18:00-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     },
     {
       "id": "node/3271092775",
@@ -139,6 +178,24 @@
       "checkedAt": "2026-11-05T23:38:37.623154+00:00"
     },
     {
+      "id": "node/2400958501",
+      "name": "maimin HAPPY NOODLES",
+      "lat": 46.9471883,
+      "lon": 7.4496206,
+      "type": "restaurant",
+      "address": "Herrengasse 24",
+      "postcode": "3011",
+      "website": "https://maimin.ch/startseite.html",
+      "cuisine": [
+        "thai"
+      ],
+      "openingHours": "Mo-Sa 11:30-21:00",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
       "id": "node/3272891441",
       "name": "Mondo",
       "lat": 46.9542074,
@@ -195,6 +252,42 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T23:16:31.028274+00:00"
+    },
+    {
+      "id": "node/662759350",
+      "name": "Taishi",
+      "lat": 46.9342461,
+      "lon": 7.4398684,
+      "type": "restaurant",
+      "address": "Seftigenstrasse 99",
+      "postcode": "3007",
+      "website": "https://fassbindhotels.ch/gastronomy/teppanyaki-restaurant-taishi-bern/",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo off; Tu-Fr 12:00-14:00,18:00-22:00; Sa 18:00-22:00; Su off; PH off",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+    },
+    {
+      "id": "node/11782849549",
+      "name": "Umai Bern",
+      "lat": 46.947558,
+      "lon": 7.4003817,
+      "type": "restaurant",
+      "address": "Untermattweg 22",
+      "postcode": "3027",
+      "website": "https://www.umai-bern.ch",
+      "cuisine": [
+        "japanese"
+      ],
+      "openingHours": "Mo off; Tu-Su 11:00-15:00, 17:00-22:30",
+      "outdoor": false,
+      "offers": [],
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
     }
   ]
 }
