@@ -1164,8 +1164,8 @@
       "lat": 47.5705037,
       "lon": 7.5952502,
       "type": "fast_food",
-      "address": "",
-      "postcode": "",
+      "address": "Brombacherstrasse 2",
+      "postcode": "4057",
       "website": "https://www.dettoprontopizzakurier.ch",
       "cuisine": [
         "pizza"
@@ -1175,7 +1175,8 @@
       "offers": [],
       "scrapeStatus": "fetch_failed",
       "checkedAt": "2026-10-20T00:06:58.067290+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/node/3207784715"
     },
     {
       "id": "way/1371153668",
@@ -1771,8 +1772,8 @@
       "lat": 47.5551145,
       "lon": 7.6122362,
       "type": "restaurant",
-      "address": "",
-      "postcode": "",
+      "address": "Froburgstrasse 31",
+      "postcode": "4052",
       "website": "http://www.froburg-basel.ch/",
       "cuisine": [
         "pizza",
@@ -1783,7 +1784,8 @@
       "offers": [],
       "scrapeStatus": "fetch_failed",
       "checkedAt": "2026-10-20T00:07:10.693873+00:00",
-      "pizzaMenu": []
+      "pizzaMenu": [],
+      "addressSource": "https://www.openstreetmap.org/node/3551978996"
     },
     {
       "id": "node/3207784678",
@@ -2401,7 +2403,11 @@
           "sourcePage": 3,
           "ingredients": "Passata von gelben Tomaten aus Orte (IT), gemischtes Saisongemüse, Basilikum, Olivenöl"
         }
-      ]
+      ],
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 8.0
+      }
     },
     {
       "id": "node/8909393066",
@@ -6085,28 +6091,6 @@
       ]
     },
     {
-      "id": "node/5130267821",
-      "name": "VITO",
-      "lat": 47.5447591,
-      "lon": 7.5891796,
-      "type": "restaurant",
-      "address": "Güterstrasse 138",
-      "postcode": "4053",
-      "website": "https://www.vito.ch/",
-      "cuisine": [
-        "pizza"
-      ],
-      "openingHours": "Mo-We 11:00-22:00; Th 11:00-22:30; Fr 11:00-23:30; Sa 12:00-23:30; Su 12:00-22:00",
-      "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "pending",
-      "checkedAt": null,
-      "outdoorPermit": {
-        "season": "unspecified",
-        "areaM2": 20.6
-      }
-    },
-    {
       "id": "node/11268593147",
       "name": "VITO",
       "lat": 47.5508116,
@@ -6131,6 +6115,28 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 37.65
+      }
+    },
+    {
+      "id": "node/5130267821",
+      "name": "VITO",
+      "lat": 47.5447591,
+      "lon": 7.5891796,
+      "type": "restaurant",
+      "address": "Güterstrasse 138",
+      "postcode": "4053",
+      "website": "https://www.vito.ch/",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-We 11:00-22:00; Th 11:00-22:30; Fr 11:00-23:30; Sa 12:00-23:30; Su 12:00-22:00",
+      "outdoor": true,
+      "offers": [],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 20.6
       }
     },
     {
