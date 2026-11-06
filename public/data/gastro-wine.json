@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T00:21:46.319361+00:00",
+  "generatedAt": "2026-11-06T11:10:32.948962+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "category": "wine",
   "removed": [],
@@ -32,8 +32,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/334300587",
@@ -67,7 +67,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/297710735",
@@ -182,7 +182,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/289669794",
@@ -229,7 +229,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/12887183327",
@@ -360,7 +360,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/1235083734",
@@ -391,7 +391,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/656628375",
@@ -424,7 +424,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "way/75803849",
@@ -539,7 +539,38 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
+    },
+    {
+      "id": "node/10650748517",
+      "name": "Café Bar Meierei",
+      "lat": 47.3822549,
+      "lon": 8.550719,
+      "type": "cafe",
+      "address": "Spyristrasse 9",
+      "postcode": "8044",
+      "website": "https://www.cafebarmeierei.ch/",
+      "cuisine": [],
+      "openingHours": "We-Fr 16:00-22:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Gespritzter süss / sauer",
+          "volumeMl": null,
+          "gastroType": "wine",
+          "priceChf": 9.5,
+          "wineType": "spritzer",
+          "natural": false,
+          "sourceUrl": "https://images.squarespace-cdn.com/content/v1/58bbc92c6a4963d651b93fa5/6875aa36-6f5f-4b41-b689-b3ef83d9aaf5/AlkoholischeGetr%C3%A4nke-21.8.26.jpg",
+          "observedAt": "2026-11-06T11:10:32.948962+00:00",
+          "confidence": "ai",
+          "evidence": "Gespritzter süss / sauer 9.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/370657577",
@@ -573,7 +604,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/311859458",
@@ -676,7 +707,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/3932278823",
@@ -793,7 +824,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/648918654",
@@ -910,7 +941,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/11884208971",
@@ -1013,7 +1044,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/6066072455",
@@ -1116,7 +1147,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/6205732851",
@@ -1219,7 +1250,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/1978573306",
@@ -1281,7 +1312,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/300419657",
@@ -1343,7 +1374,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/370844602",
@@ -1405,7 +1436,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/4958366047",
@@ -1467,7 +1498,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/9995613567",
@@ -1529,7 +1560,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/448855246",
@@ -1560,7 +1591,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/3110688142",
@@ -1790,7 +1821,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/460432599",
@@ -1868,7 +1899,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/307742573",
@@ -1972,7 +2003,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/105443906",
@@ -2007,7 +2038,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/1817263418",
@@ -2138,7 +2169,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/4778167221",
@@ -2169,7 +2200,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/3799099678",
@@ -2203,7 +2234,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/4833061577",
@@ -2236,7 +2267,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/268654801",
@@ -2393,7 +2424,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/1817263466",
@@ -2566,7 +2597,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/268963180",
@@ -2599,7 +2630,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/13136192701",
@@ -2633,7 +2664,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/267049751",
@@ -2681,7 +2712,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/267023274",
@@ -2756,7 +2787,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/3584059568",
@@ -2831,7 +2862,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/5688147984",
@@ -2906,7 +2937,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/7578000581",
@@ -2981,7 +3012,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/5670095833",
@@ -3126,7 +3157,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/5629311368",
@@ -3171,7 +3202,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/385208811",
@@ -3358,7 +3389,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/895750299",
@@ -3587,7 +3618,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/5115701103",
@@ -3716,7 +3747,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/10967922624",
@@ -3831,7 +3862,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/4833061536",
@@ -3906,7 +3937,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/270691220",
@@ -3967,7 +3998,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/1510019206",
@@ -4126,7 +4157,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/1986773362",
@@ -4171,7 +4202,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/370834754",
@@ -4202,7 +4233,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/279180955",
@@ -4289,7 +4320,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/1964156339",
@@ -4322,7 +4353,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/3136184920",
@@ -4355,7 +4386,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "way/1383743333",
@@ -4386,7 +4417,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/13979988101",
@@ -4419,7 +4450,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/13566591718",
@@ -4466,8 +4497,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/8262559375",
@@ -4500,7 +4531,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/2528352535",
@@ -4660,7 +4691,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/2463374628",
@@ -4692,8 +4723,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/1508362751",
@@ -4908,7 +4939,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/4492182084",
@@ -4940,8 +4971,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/3381293318",
@@ -4973,8 +5004,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/3479329968",
@@ -5006,8 +5037,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/305586752",
@@ -5127,8 +5158,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/4259128853",
@@ -5312,8 +5343,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/4880906379",
@@ -5497,8 +5528,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/4958366050",
@@ -5682,8 +5713,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/104276014",
@@ -5716,8 +5747,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/7245143002",
@@ -5781,8 +5812,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/1975523704",
@@ -5898,8 +5929,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/11416682178",
@@ -6002,8 +6033,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     },
     {
       "id": "node/2298795774",
@@ -6105,8 +6136,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:21:46.319361+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-06T11:10:32.948962+00:00"
     }
   ]
 }
