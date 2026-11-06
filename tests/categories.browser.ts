@@ -53,7 +53,10 @@ test('missing or unreadable city datasets keep unavailable categories hidden', a
   await expect(page.locator('#drink-kebab')).toBeHidden();
   // Creating a map stays available behind "Weitere", even when no category is collapsed.
   await page.locator('#categories-toggle').click();
-  await expect(page.locator('#additional-categories button:visible')).toHaveText(['+ Map erstellen']);
+  // Bern's other categories (cocktails, wine …) may sit there too; kebab without data never does.
+  const more = page.locator('#additional-categories button:visible');
+  await expect(more.last()).toHaveText('+ Map erstellen');
+  await expect(more.filter({ hasText: 'Kebab' })).toHaveCount(0);
 });
 
 for (const width of [320, 390, 1280]) {

@@ -137,3 +137,34 @@ test('an applied search stays in the field, the limit is a removable chip, and t
   await expect(page.locator('.smart-chip')).toHaveCount(0);
   expect(await page.locator('#results .venue').count()).toBeGreaterThan(1);
 });
+
+test('the last category is remembered per city, unless the link names one', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#count')).not.toHaveText('Laden …');
+  await page.getByRole('button', { name: 'Bier', exact: true }).first().click();
+  await page.goto('/');
+  await expect(page.locator('#count')).toContainText('Bierpreis');
+  await page.goto('/?drink=coffee');
+  await expect(page.locator('#count')).toContainText('Kaffeepreis');
+});
+
+test('a shared link carries the smart search and opens the same results', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#count')).not.toHaveText('Laden …');
+  await page.locator('#search').fill('günstigste Pizza');
+  await page.locator('#search').press('Enter');
+  await expect(page).toHaveURL(/[?&]s=g%C3%BCnstigste/);
+  const url = page.url();
+  await page.goto('about:blank'); await page.goto(url);
+  await expect(page.locator('#search')).toHaveValue('günstigste Pizza');
+  await expect(page.locator('.smart-chip')).toContainText('Nur das günstigste');
+});
+
+test('with a location the nearest venues come first, unless a sort was chosen', async ({ page, context }) => {
+  await context.grantPermissions(['geolocation']);
+  await context.setGeolocation({ latitude: 47.3769, longitude: 8.5417 });
+  await page.goto('/');
+  await expect(page.locator('#count')).not.toHaveText('Laden …');
+  await page.locator('#locate').click();
+  await expect(page.locator('#sort')).toHaveValue('distance');
+});

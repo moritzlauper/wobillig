@@ -465,6 +465,8 @@ function syncControls() {
   writeFilters(url.searchParams, f, cheapMode);
   if (addressSelection) url.searchParams.set('address', '1'); else url.searchParams.delete('address');
   if (selected) url.searchParams.set('bar', selected); else url.searchParams.delete('bar');
+  // The applied smart search travels with shared links and opens the same results.
+  if (smartText) url.searchParams.set('s', smartText); else url.searchParams.delete('s');
   dropDefaultCheap(url.searchParams);
   history.replaceState(null, '', url);
   document.querySelectorAll<HTMLAnchorElement>('[data-city]').forEach(link => {
@@ -987,7 +989,10 @@ function chooseDrink(drink: Drink) {
   if (drink !== f.drink) trackEvent(cityId, 'category_changed', { category: drink });
   // Every category opens at its cheap price, without remembering an earlier slider position.
   cheapMode = true; f.max = Infinity;
-  f.drink = drink; f.mode = 'glass'; smartResultLimit = undefined; smartText = ''; selected = undefined; rebuild(); }
+  f.drink = drink; f.mode = 'glass'; smartResultLimit = undefined; smartText = ''; selected = undefined;
+  // Remember the category per city, so a beer drinker does not start at coffee every time.
+  try { localStorage.setItem(`wobillig-category:${cityId}`, drink); } catch { /* storage blocked */ }
+  rebuild(); }
 $('view-map').onclick = () => showView(false); $('view-list').onclick = () => showView(true);
 function commitSearch() {
   if (draft === undefined) return;
@@ -1202,7 +1207,8 @@ $('beer-type').onchange = () => {
   render();
 };
 $('type').onchange = () => { f.type = $<HTMLSelectElement>('type').value; render(); };
-$('sort').onchange = () => { f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position && !addressSelection) locate(); else render(); };
+let sortChosen = initial.has('sort');
+$('sort').onchange = () => { sortChosen = true; f.sort = $<HTMLSelectElement>('sort').value; if (f.sort === 'distance' && !position && !addressSelection) locate(); else render(); };
 for (const [id, key] of [['unknown', 'unknown'], ['outdoor', 'outdoor'], ['alcohol-free', 'alcoholFree'], ['gluten-free', 'glutenFree']] as const) $(id).onchange = () => { if (key === 'unknown') cheapMode = false; f[key] = $<HTMLInputElement>(id).checked; render(); };
 $('open-now').onchange = () => { f.open = $<HTMLInputElement>('open-now').checked ? 'now' : undefined; selected = undefined; render(); };
 $('normalize').onchange = () => { f.mode = $<HTMLInputElement>('normalize').checked ? 'half' : 'glass'; render(); };
@@ -1232,6 +1238,8 @@ function locate(openNearby = false, zoom = 18) {
     if (addressSelection) f.query = '';
     cancelAddressRequest(); clearAddressSelection();
     position = [p.coords.latitude, p.coords.longitude];
+    // With a location, the nearest venues come first (price stays beside each one), unless a sort was chosen.
+    if (!sortChosen && f.sort === 'price') f.sort = 'distance';
     button.setAttribute('aria-pressed', 'true');
     userMarker?.remove(); userMarker = L.circleMarker(position, { radius: 7, color: '#fff', fillColor: '#1766c2', fillOpacity: 1, weight: 2 }).addTo(map);
     if (openNearby) { selected = undefined; pendingReveal = undefined; }
@@ -1566,6 +1574,12 @@ async function init() {
   const errors = [!beerResult ? t('Bierdaten konnten nicht geladen werden.') : '', !coffeeResult ? t('Kaffeedaten konnten nicht geladen werden.') : '', !pizzaResult ? t('Pizzadaten konnten nicht geladen werden.') : '', !locationsResult ? t('Zusätzliche Kartenlokale konnten nicht geladen werden. Bitte neu laden.') : ''].filter(Boolean);
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   if (f.district) await loadDistricts();
+  // Without a category in the link, open the one chosen last time in this city.
+  if (!initial.has('drink') && !initial.has('bar') && !initial.has('s')) {
+    let remembered: string | null = null;
+    try { remembered = localStorage.getItem(`wobillig-category:${cityId}`); } catch { /* storage blocked */ }
+    if (remembered && remembered !== f.drink && availableCategories().has(remembered as Category)) { f.drink = remembered as Drink; f.mode = 'glass'; }
+  }
   rebuild();
   exampleList = smartExamples(cityId, locale(), availableCategories()).slice(0, SMART_SEARCH_PLACEHOLDER_LIMIT);
   // Venue names show that the field also finds a café or restaurant by name («Café Zähringer»).
@@ -1577,6 +1591,8 @@ async function init() {
   rotatePlaceholder();
   placeholderInterval = setInterval(rotatePlaceholder, 4500);
   if (initial.has('map')) await customMapUI?.load(initial.get('map')!);
+  const sharedSearch = initial.get('s')?.trim();
+  if (sharedSearch) await applySmartSearch(sharedSearch.slice(0, 200));
   const linkedId = initial.get('bar');
   if (linkedId) {
     const linkedBar = bars.find(b => b.id === linkedId);
