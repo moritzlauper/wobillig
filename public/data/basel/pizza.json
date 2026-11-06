@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-20T07:05:48.906923+00:00",
-  "discoveredAt": "2026-10-20T00:05:58.833850+00:00",
+  "generatedAt": "2026-11-06T01:01:19.724744+00:00",
+  "discoveredAt": "2026-11-06T00:43:45.549022+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
     {
@@ -21,7 +21,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-20T00:06:33.295919+00:00",
+      "checkedAt": "2026-11-06T00:44:02.650137+00:00",
       "pizzaMenu": []
     },
     {
@@ -82,137 +82,8 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-20T00:12:13.441320+00:00",
-      "pizzaMenu": [
-        {
-          "name": "Pizza al Arrabiata",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.9,
-          "sourceUrl": "https://www.restaurantantalya.ch/menu",
-          "observedAt": "2026-10-20T00:12:13.441320+00:00",
-          "evidence": "Pizza al Arrabiata  22.90 Tomaten, Mozzarella, Schinken, Salami, Sardellen, Knoblauch, Peperoncini und Oregano",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "1352648ddde4ef963a4bab0e3d7a97879e6a07271256a38b26eb13f9a37d6b92",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella, Schinken, Salami, Sardellen, Knoblauch, Peperoncini und Oregano"
-        },
-        {
-          "name": "Pizza Antalya",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 25.9,
-          "sourceUrl": "https://www.restaurantantalya.ch/menu",
-          "observedAt": "2026-10-20T00:12:13.441320+00:00",
-          "evidence": "Pizza Antalya  25.90 Tomaten, Mozzarella, Schinken, Pilze und Oregano",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "1352648ddde4ef963a4bab0e3d7a97879e6a07271256a38b26eb13f9a37d6b92",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella, Schinken, Pilze und Oregano"
-        },
-        {
-          "name": "Pizza Funghi",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.9,
-          "sourceUrl": "https://www.restaurantantalya.ch/menu",
-          "observedAt": "2026-10-20T00:12:13.441320+00:00",
-          "evidence": "Pizza Funghi  22.90 Tomaten, Mozzarella, Pilze und Oregano",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "1352648ddde4ef963a4bab0e3d7a97879e6a07271256a38b26eb13f9a37d6b92",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella, Pilze und Oregano"
-        },
-        {
-          "name": "Pizza Napolitana",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.9,
-          "sourceUrl": "https://www.restaurantantalya.ch/menu",
-          "observedAt": "2026-10-20T00:12:13.441320+00:00",
-          "evidence": "Pizza Napolitana  22.90 Tomaten, Mozzarella, Sardellen, Kapern, Oliven und Oregano",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "1352648ddde4ef963a4bab0e3d7a97879e6a07271256a38b26eb13f9a37d6b92",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella, Sardellen, Kapern, Oliven und Oregano"
-        },
-        {
-          "name": "Pizza Prosciutto",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.9,
-          "sourceUrl": "https://www.restaurantantalya.ch/menu",
-          "observedAt": "2026-10-20T00:12:13.441320+00:00",
-          "evidence": "Pizza Prosciutto  22.90 Tomaten, Mozzarella, Schinken und Oregano",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "1352648ddde4ef963a4bab0e3d7a97879e6a07271256a38b26eb13f9a37d6b92",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella, Schinken und Oregano"
-        },
-        {
-          "name": "Pizza Prosciutto e Funghi",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.9,
-          "sourceUrl": "https://www.restaurantantalya.ch/menu",
-          "observedAt": "2026-10-20T00:12:13.441320+00:00",
-          "evidence": "Pizza Prosciutto e Funghi  22.90 Tomaten, Mozzarella, Schinken, Pilze und Oregano",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "1352648ddde4ef963a4bab0e3d7a97879e6a07271256a38b26eb13f9a37d6b92",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella, Schinken, Pilze und Oregano"
-        },
-        {
-          "name": "Pizza Salami",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.9,
-          "sourceUrl": "https://www.restaurantantalya.ch/menu",
-          "observedAt": "2026-10-20T00:12:13.441320+00:00",
-          "evidence": "Pizza Salami  22.90 Tomaten, Mozzarella, Salami und Oregano",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "1352648ddde4ef963a4bab0e3d7a97879e6a07271256a38b26eb13f9a37d6b92",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella, Salami und Oregano"
-        },
-        {
-          "name": "Pizza Vegetariana",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.9,
-          "sourceUrl": "https://www.restaurantantalya.ch/menu",
-          "observedAt": "2026-10-20T00:12:13.441320+00:00",
-          "evidence": "Pizza Vegetariana  22.90 Tomaten, Mozzarella und verschiedenes Gemüse",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "1352648ddde4ef963a4bab0e3d7a97879e6a07271256a38b26eb13f9a37d6b92",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella und verschiedenes Gemüse"
-        }
-      ],
+      "checkedAt": "2026-11-06T00:46:53.947206+00:00",
+      "pizzaMenu": [],
       "outdoorPermit": {
         "season": "seasonal",
         "from": "02-15",
@@ -236,8 +107,8 @@
       "openingHours": "Mo-Fr 11:00-14:30,17:30-24:00; Sa-Su 11:00-24:00",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "partial",
-      "checkedAt": "2026-10-20T00:06:37.690023+00:00",
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-06T00:44:09.370207+00:00",
       "pizzaMenu": [],
       "pizzaEvidence": {
         "sourceUrl": "https://www.artigiano-pizzeria.com/restaurant-windisch",
@@ -288,16 +159,17 @@
           "volumeMl": null,
           "priceChf": 16.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T00:08:50.661145+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "confidence": "automatic",
-          "evidence": "Pizza Margherita Tomatensauce, Mozzarella, Oregano 16,90 CHF",
+          "evidence": "Pizza Margherita 32 cm Tomatensauce, Mozzarella, Oregano 16,90 CHF",
           "alcoholFree": true,
           "priceContext": "online_menu",
-          "sourceSha256": "32da65152b61698eee10b3d2245606815abf39d24e16ad39d3600e5ad744e544"
+          "ingredients": "Tomatensauce, Mozzarella, Oregano",
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:08:50.661145+00:00",
+      "checkedAt": "2026-11-06T00:45:16.002407+00:00",
       "pizzaMenu": [
         {
           "name": "Pizza Americana",
@@ -305,13 +177,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Americana 32 cm Tomatensauce, Mozzarella, Ananas, Schinken, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Ananas, Schinken, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Basler Kebab",
@@ -319,13 +191,13 @@
           "volumeMl": null,
           "priceChf": 19.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Basler Kebab 32 cm Tomatensauce, Mozzarella, Kalbfleisch Döner, Zwiebeln, Peperoncini, Petersilie, Cocktailsauce, Oregano 19,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Kalbfleisch Döner, Zwiebeln, Peperoncini, Petersilie, Cocktailsauce, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Bella",
@@ -333,13 +205,13 @@
           "volumeMl": null,
           "priceChf": 19.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Bella 32 cm Tomatensauce, Mozzarella, Schinken, Salami, Oregano 19,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Schinken, Salami, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza con Crevetten",
@@ -347,13 +219,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza con Crevetten 32 cm Tomatensauce, Mozzarella, Crevetten, Rucola, Cocktailsauce, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Crevetten, Rucola, Cocktailsauce, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Diavola",
@@ -361,13 +233,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Diavola 32 cm Tomatensauce, Mozzarella, Speck, Zwiebeln, Peperoncini, Knoblauch, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Speck, Zwiebeln, Peperoncini, Knoblauch, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Döner",
@@ -375,13 +247,13 @@
           "volumeMl": null,
           "priceChf": 21.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Döner 32 cm Tomatensauce, Mozzarella, Pouletfleisch vom Döner, Rucola, Cocktailsauce, Chilisauce, Oregano 21,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Pouletfleisch vom Döner, Rucola, Cocktailsauce, Chilisauce, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Evelyn",
@@ -389,13 +261,13 @@
           "volumeMl": null,
           "priceChf": 19.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Evelyn 32 cm Tomatensauce, Mozzarella, Schinken, Champignons, Peperoni, Oliven, Oregano 19,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Schinken, Champignons, Peperoni, Oliven, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Exotica",
@@ -403,13 +275,13 @@
           "volumeMl": null,
           "priceChf": 19.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Exotica 32 cm Tomatensauce, Mozzarella, Pouletfleisch vom Döner, Ananas, Curry, Oregano 19,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Pouletfleisch vom Döner, Ananas, Curry, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Frutti di Mare",
@@ -417,13 +289,13 @@
           "volumeMl": null,
           "priceChf": 21.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Frutti di Mare 32 cm Tomatensauce, Mozzarella, Meeresfrüchte, Knoblauch, Petersilie, Oregano 21,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Meeresfrüchte, Knoblauch, Petersilie, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Funghi",
@@ -431,13 +303,13 @@
           "volumeMl": null,
           "priceChf": 17.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Funghi 32 cm Tomatensauce, Mozzarella, frische Champignons, Oregano 17,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, frische Champignons, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Funghi Spinat",
@@ -445,13 +317,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Funghi Spinat 32 cm Tomatensauce, Mozzarella, Champignons, Spinat, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Champignons, Spinat, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Gorgonzola",
@@ -459,13 +331,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Gorgonzola 32 cm Tomatensauce, Mozzarella, Gorgonzola, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Gorgonzola, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Hawaii",
@@ -473,13 +345,13 @@
           "volumeMl": null,
           "priceChf": 19.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Hawaii 32 cm Tomatensauce, Mozzarella, Ananas, Champignons, Schinken, Oregano 19,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Ananas, Champignons, Schinken, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Laura",
@@ -487,13 +359,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Laura 32 cm Tomatensauce, Mozzarella, Spinat, Ei, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Spinat, Ei, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Napoli",
@@ -501,13 +373,13 @@
           "volumeMl": null,
           "priceChf": 17.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Napoli 32 cm Tomatensauce, Mozzarella, Sardellen, Oliven, Oregano 17,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Sardellen, Oliven, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Parma",
@@ -515,13 +387,13 @@
           "volumeMl": null,
           "priceChf": 21.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Parma 32 cm Tomatensauce, Mozzarella, Parmaschinken, Rucola, Parmesan, Oregano 21,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Parmaschinken, Rucola, Parmesan, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Pazza",
@@ -529,13 +401,13 @@
           "volumeMl": null,
           "priceChf": 17.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Pazza 32 cm Tomatensauce, Mozzarella, Speck, Zwiebeln, Oregano 17,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Speck, Zwiebeln, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Prosciutto",
@@ -543,13 +415,13 @@
           "volumeMl": null,
           "priceChf": 17.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Prosciutto 32 cm Tomatensauce, Mozzarella, Schinken, Oregano 17,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Schinken, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Prosciutto e Funghi",
@@ -557,13 +429,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Prosciutto e Funghi 32 cm Tomatensauce, Mozzarella, Schinken, Champignons, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Schinken, Champignons, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Quattro Formaggi",
@@ -571,13 +443,13 @@
           "volumeMl": null,
           "priceChf": 19.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Quattro Formaggi 32 cm Tomatensauce, Mozzarella, vier verschiedene Käsesorten, Oregano 19,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, vier verschiedene Käsesorten, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Quattro Stagioni",
@@ -585,13 +457,13 @@
           "volumeMl": null,
           "priceChf": 19.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Quattro Stagioni 32 cm Tomatensauce, Mozzarella, Schinken, Artischocken, Oliven, Champignons, Oregano 19,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Schinken, Artischocken, Oliven, Champignons, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Rot Blau",
@@ -599,13 +471,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Rot Blau 32 cm Tomatensauce, Mozzarella, Knoblauchwurst, Peperoni, Oliven, Fetakäse, Cherrytomaten, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Knoblauchwurst, Peperoni, Oliven, Fetakäse, Cherrytomaten, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Ruspante",
@@ -613,13 +485,13 @@
           "volumeMl": null,
           "priceChf": 17.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Ruspante 32 cm Tomatensauce, Mozzarella, Rucola, Cherrytomaten, Parmesan, Oregano 17,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Rucola, Cherrytomaten, Parmesan, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Salami & Oliven",
@@ -627,13 +499,13 @@
           "volumeMl": null,
           "priceChf": 17.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Salami & Oliven 32 cm Tomatensauce, Mozzarella, Salami, Oliven, Oregano 17,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Salami, Oliven, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Salami Piccante",
@@ -641,13 +513,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Salami Piccante 32 cm Tomatensauce, Mozzarella, scharfe Salami, Oliven, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, scharfe Salami, Oliven, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Swissline",
@@ -655,13 +527,13 @@
           "volumeMl": null,
           "priceChf": 21.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Swissline 32 cm Tomatensauce, Mozzarella, Speck, Salami, Schinken, Oregano 21,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Speck, Salami, Schinken, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Tedesca",
@@ -669,13 +541,13 @@
           "volumeMl": null,
           "priceChf": 17.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Tedesca 32 cm Tomatensauce, Mozzarella, Pommes Frites, Oregano 17,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Pommes Frites, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         },
         {
           "name": "Pizza Tonno",
@@ -683,13 +555,13 @@
           "volumeMl": null,
           "priceChf": 18.9,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-10-20T07:04:11.508724+00:00",
+          "observedAt": "2026-11-06T00:45:16.002407+00:00",
           "evidence": "Pizza Tonno 32 cm Tomatensauce, Mozzarella, Thunfisch, Zwiebeln, Oregano 18,90 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Thunfisch, Zwiebeln, Oregano",
-          "sourceSha256": "3f82651ee15ab5bbf84ff25ec52db8e3931276ee15c1fb0d28839b760e545179"
+          "sourceSha256": "7048fb3d591d48c65a856bd8717bb1585130ffc42a568911d78b07d28050e54e"
         }
       ]
     },
@@ -751,7 +623,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:06:55.145119+00:00",
+      "checkedAt": "2026-11-06T00:44:12.317965+00:00",
       "pizzaMenu": []
     },
     {
@@ -772,7 +644,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:06:57.924207+00:00",
+      "checkedAt": "2026-11-06T00:44:14.747854+00:00",
       "pizzaMenu": [],
       "outdoorPermit": {
         "season": "unspecified",
@@ -796,7 +668,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "ambiguous_prices",
-      "checkedAt": "2026-10-20T00:15:53.038420+00:00",
+      "checkedAt": "2026-11-06T00:49:14.823610+00:00",
       "pizzaMenu": [
         {
           "name": "Pizza ai Funghi",
@@ -877,22 +749,6 @@
           "sourceSha256": "1e2d584aa5473beb8b9122dd4b74d8b31be84e6e4261dbe6e4a05c3108e67750",
           "sourcePage": 1,
           "ingredients": "Tomaten, Mozzarella, Gorgonzola"
-        },
-        {
-          "name": "Pizza Gorgonzola",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 21.5,
-          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
-          "observedAt": "2026-10-20T00:15:53.038420+00:00",
-          "evidence": "Pizza Gorgonzola Mit Tomatensauce, Mozzarella & Gorgonzola CHF 21.50",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "480a9683dc1136ada856133670e7ca219ed5a5178394f6c1a6944f7c40b54777",
-          "sourcePage": 1,
-          "ingredients": "Mit Tomatensauce, Mozzarella & Gorgonzola"
         },
         {
           "name": "Pizza Hawaii",
@@ -991,54 +847,6 @@
           "ingredients": "Tomaten,Mozzarella,Rohschinken,Rucola"
         },
         {
-          "name": "Pizza Prosciutto",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
-          "observedAt": "2026-10-20T00:15:53.038420+00:00",
-          "evidence": "Pizza Prosciutto Mit Tomatensauce, Mozzarella und Schinken CHF 22.50",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "480a9683dc1136ada856133670e7ca219ed5a5178394f6c1a6944f7c40b54777",
-          "sourcePage": 1,
-          "ingredients": "Mit Tomatensauce, Mozzarella und Schinken"
-        },
-        {
-          "name": "Pizza Prosciutto ai Funghi",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 23.5,
-          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
-          "observedAt": "2026-10-20T00:15:53.038420+00:00",
-          "evidence": "Pizza Prosciutto ai Funghi Mit Tomatensauce, Mozzarella, Schinken, Pilzen und Oregano CHF 23.50",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "480a9683dc1136ada856133670e7ca219ed5a5178394f6c1a6944f7c40b54777",
-          "sourcePage": 1,
-          "ingredients": "Mit Tomatensauce, Mozzarella, Schinken, Pilzen und Oregano"
-        },
-        {
-          "name": "Pizza Prosciutto Crudo",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 24.9,
-          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
-          "observedAt": "2026-10-20T00:15:53.038420+00:00",
-          "evidence": "Pizza Prosciutto Crudo Tomaten, Mozzarella, Rohschinken, Rucola CHF 24.90",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "480a9683dc1136ada856133670e7ca219ed5a5178394f6c1a6944f7c40b54777",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella, Rohschinken, Rucola"
-        },
-        {
           "name": "Prosciutto e Funghi",
           "pizzaType": "other",
           "volumeMl": null,
@@ -1071,22 +879,6 @@
           "ingredients": "Tomate, Mozzarella, Rohschinken, Rucola Oregano"
         },
         {
-          "name": "Pizza quattro stagioni",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 24.9,
-          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
-          "observedAt": "2026-10-20T00:15:53.038420+00:00",
-          "evidence": "Pizza quattro stagioni Tomaten, Mozzarella, Schinken, Pilze, Zwiebeln, Ei, Oregano CHF 24.90",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "480a9683dc1136ada856133670e7ca219ed5a5178394f6c1a6944f7c40b54777",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella, Schinken, Pilze, Zwiebeln, Ei, Oregano"
-        },
-        {
           "name": "Pizza Salami",
           "pizzaType": "other",
           "volumeMl": null,
@@ -1117,22 +909,6 @@
           "sourceSha256": "c5efd87227504e9d5608da3ee2efb0fe9913b274d75067c89f5a4a4bf01a8392",
           "sourcePage": 1,
           "ingredients": "with tomato sauce, mozzarella, tuna anions"
-        },
-        {
-          "name": "Pizza Tonno",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.clarastuebli.ch/ch/menuler",
-          "observedAt": "2026-10-20T00:15:53.038420+00:00",
-          "evidence": "Pizza Tonno Mit Tomatensauce, Mozzarella, Thon und Zwiebeln CHF 22.50",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "480a9683dc1136ada856133670e7ca219ed5a5178394f6c1a6944f7c40b54777",
-          "sourcePage": 1,
-          "ingredients": "Mit Tomatensauce, Mozzarella, Thon und Zwiebeln"
         }
       ],
       "outdoorPermit": {
@@ -1174,7 +950,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:06:58.067290+00:00",
+      "checkedAt": "2026-11-06T00:44:14.926187+00:00",
       "pizzaMenu": [],
       "addressSource": "https://www.openstreetmap.org/node/3207784715"
     },
@@ -1219,7 +995,7 @@
           "volumeMl": null,
           "priceChf": 19.0,
           "sourceUrl": "https://www.diomio.ch/_files/ugd/7df903_50fd8b21c2d242e08e4081d9e24ad8d4.pdf",
-          "observedAt": "2026-10-20T00:06:58.085612+00:00",
+          "observedAt": "2026-11-06T00:44:15.186248+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 2: MARGHERITA V 19",
           "alcoholFree": true,
@@ -1227,7 +1003,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:06:58.085612+00:00",
+      "checkedAt": "2026-11-06T00:44:15.186248+00:00",
       "pizzaMenu": [
         {
           "name": "4 FORMAGGI",
@@ -1512,6 +1288,39 @@
       }
     },
     {
+      "id": "node/2434405622",
+      "name": "Dodici Osteria & Bar",
+      "lat": 47.5737076,
+      "lon": 7.5793775,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://osteria-dodici.sv-group.ch/",
+      "cuisine": [
+        "italian"
+      ],
+      "openingHours": "Mo 08:00-14:30; Tu-Th 08:00-14:30,15:00-18:00; Fr 11:00-14:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pizza Margherita",
+          "pizzaType": "margherita",
+          "volumeMl": null,
+          "priceChf": 22.0,
+          "sourceUrl": "https://pstosvmarketingdata01.blob.core.windows.net/p-marketingdata-01/Advanced/Menu_Osteria-Dodici.pdf",
+          "observedAt": "2026-11-06T00:46:05.025200+00:00",
+          "confidence": "automatic",
+          "evidence": "OCR PDF S. 2: Pizza Margherita* Fr. 22.00",
+          "alcoholFree": true,
+          "extractionMethod": "ocr",
+          "sourceSha256": "53b6d6a82ab3953164ca7561e0f93a23c7169d8cac60fd1d0875dd7f1790ce2b"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:46:05.025200+00:00",
+      "pizzaMenu": []
+    },
+    {
       "id": "node/3888925390",
       "name": "Domino's",
       "lat": 47.5615711,
@@ -1526,8 +1335,8 @@
       "openingHours": "Mo-Fr 11:00-13:30,17:00-22:00; Sa,Su 11:00-22:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-20T00:07:02.867160+00:00",
+      "scrapeStatus": "partial",
+      "checkedAt": "2026-11-06T00:44:16.789864+00:00",
       "pizzaMenu": []
     },
     {
@@ -1565,7 +1374,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:07:04.630023+00:00",
+      "checkedAt": "2026-11-06T00:44:18.457044+00:00",
       "pizzaMenu": [],
       "outdoorPermit": {
         "season": "unspecified",
@@ -1607,7 +1416,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-20T00:09:12.320411+00:00",
+      "checkedAt": "2026-11-06T00:45:25.592320+00:00",
       "pizzaMenu": []
     },
     {
@@ -1685,7 +1494,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-20T00:07:06.107219+00:00",
+      "checkedAt": "2026-11-06T00:44:19.998124+00:00",
       "pizzaMenu": []
     },
     {
@@ -1741,7 +1550,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-10-20T00:05:58.856309+00:00",
+      "checkedAt": "2026-11-06T00:43:45.567609+00:00",
       "pizzaMenu": [],
       "pizzaEvidence": {
         "sourceUrl": "https://molino.ch/de/",
@@ -1783,7 +1592,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:07:10.693873+00:00",
+      "checkedAt": "2026-11-06T00:44:21.035589+00:00",
       "pizzaMenu": [],
       "addressSource": "https://www.openstreetmap.org/node/3551978996"
     },
@@ -1806,16 +1615,17 @@
           "volumeMl": null,
           "priceChf": 17.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T00:09:01.265303+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "confidence": "automatic",
-          "evidence": "Pizza Margherita Tomaten, Mozzarella, Oregano 17,00 CHF",
+          "evidence": "Pizza Margherita 32 cm Tomaten, Mozzarella, Oregano 17,00 CHF",
           "alcoholFree": true,
           "priceContext": "online_menu",
-          "sourceSha256": "e24d52a3f7a9756a2d0c304352b007108615e8d20b9c3112df2219b3fff27001"
+          "ingredients": "Tomaten, Mozzarella, Oregano",
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:09:01.265303+00:00",
+      "checkedAt": "2026-11-06T00:45:21.795223+00:00",
       "pizzaMenu": [
         {
           "name": "Pizza Aglio",
@@ -1823,13 +1633,13 @@
           "volumeMl": null,
           "priceChf": 20.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Aglio 32 cm Tomaten, Mozzarella, Knoblauch, Oregano 20,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Knoblauch, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Bud Spencer",
@@ -1837,13 +1647,13 @@
           "volumeMl": null,
           "priceChf": 29.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Bud Spencer 32 cm Tomaten, Mozzarella, Speck, Oliven, Ei, scharfe Salami, Champignons, Oregano 29,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Speck, Oliven, Ei, scharfe Salami, Champignons, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Chef",
@@ -1851,13 +1661,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Chef 32 cm Tomaten, Mozzarella, Paprika, Zwiebeln, Oliven, Champignons, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Paprika, Zwiebeln, Oliven, Champignons, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Cipolla",
@@ -1865,13 +1675,13 @@
           "volumeMl": null,
           "priceChf": 20.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Cipolla 32 cm Tomaten, Mozzarella, Zwiebeln, Oregano 20,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Zwiebeln, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Cocciantore",
@@ -1879,13 +1689,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Cocciantore 32 cm Tomaten, Mozzarella, Speck, Knoblauch, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Speck, Knoblauch, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Crevetten",
@@ -1893,13 +1703,13 @@
           "volumeMl": null,
           "priceChf": 25.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Crevetten 32 cm Tomaten, Mozzarella, Crevetten, Knoblauch, Oregano 25,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Crevetten, Knoblauch, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Diavola (scharf)",
@@ -1907,13 +1717,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Diavola (scharf) 32 cm Tomaten, Mozzarella, Salami picante, Oliven, Basilikum, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Salami picante, Oliven, Basilikum, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Dönerpizza",
@@ -1921,13 +1731,13 @@
           "volumeMl": null,
           "priceChf": 27.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Dönerpizza 32 cm Tomaten, Mozzarella, Dönerfleisch, Zwiebeln, Oregano 27,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Dönerfleisch, Zwiebeln, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Frutti di Mare",
@@ -1935,13 +1745,13 @@
           "volumeMl": null,
           "priceChf": 25.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Frutti di Mare 32 cm Tomaten, Mozzarella, Meeresfrüchte, Oregano 25,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Meeresfrüchte, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Funghi",
@@ -1949,13 +1759,13 @@
           "volumeMl": null,
           "priceChf": 20.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Funghi 32 cm Tomaten, Mozzarella, Champignons, Oregano 20,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Champignons, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Gorgonzla",
@@ -1963,13 +1773,13 @@
           "volumeMl": null,
           "priceChf": 25.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Gorgonzla 32 cm Tomaten, Mozzarella, Gorgonzola, Oregano 25,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Gorgonzola, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Hawaii",
@@ -1977,13 +1787,13 @@
           "volumeMl": null,
           "priceChf": 25.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Hawaii 32 cm Tomaten, Mozzarella, Schinken, Ananas, Oregano 25,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Schinken, Ananas, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Istanbul",
@@ -1991,13 +1801,13 @@
           "volumeMl": null,
           "priceChf": 25.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Istanbul 32 cm Tomaten, Mozzarella, Knoblauchwurst, Champignons, Oregano 25,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Knoblauchwurst, Champignons, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Mista",
@@ -2005,13 +1815,13 @@
           "volumeMl": null,
           "priceChf": 27.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Mista 32 cm Tomaten, Schinken, Salami, Salami picante, Oregano 27,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Schinken, Salami, Salami picante, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Musical Grill",
@@ -2019,13 +1829,13 @@
           "volumeMl": null,
           "priceChf": 27.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Musical Grill 32 cm Tomaten, Mozzarella, Salami, Schinken, Peperoni, Champignons, Oregano 27,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Salami, Schinken, Peperoni, Champignons, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Mykonos",
@@ -2033,13 +1843,13 @@
           "volumeMl": null,
           "priceChf": 25.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Mykonos 32 cm Tomaten, Mozzarella, Schafkäse, Zwiebeln, Knoblauch, Zwiebeln, Oregano 25,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Schafkäse, Zwiebeln, Knoblauch, Zwiebeln, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Napoli",
@@ -2047,13 +1857,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Napoli 32 cm Tomaten, Mozzarella, Sardellen, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Sardellen, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Padrone",
@@ -2061,13 +1871,13 @@
           "volumeMl": null,
           "priceChf": 25.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Padrone 32 cm Tomaten, Mozzarella, Salami, Zwiebeln, Champignons, Knoblauch, Oregano 25,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Salami, Zwiebeln, Champignons, Knoblauch, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pommes Dönerpizza",
@@ -2075,13 +1885,13 @@
           "volumeMl": null,
           "priceChf": 28.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pommes Dönerpizza 32 cm Tomaten, Mozzarella, Döner Fleisch, Pommes Frites, Zwiebeln, Oregano 28,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Döner Fleisch, Pommes Frites, Zwiebeln, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Poulet",
@@ -2089,13 +1899,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Poulet 32 cm Tomaten, Mozzarella, Peperoni, Poulet, Oliven, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Peperoni, Poulet, Oliven, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Prosciutto",
@@ -2103,13 +1913,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Prosciutto 32 cm Tomaten, Mozzarella, Schinken, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Schinken, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Prosciutto e Funghi",
@@ -2117,13 +1927,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Prosciutto e Funghi 32 cm Tomaten, Mozzarella, Schinken, Champignons, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Schinken, Champignons, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Prosciutto e Gorgonzola",
@@ -2131,13 +1941,13 @@
           "volumeMl": null,
           "priceChf": 25.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Prosciutto e Gorgonzola 32 cm Tomaten, Mozzarella, Schinken, Gorgonzola, Oregano 25,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Schinken, Gorgonzola, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Quattro Formaggi",
@@ -2145,13 +1955,13 @@
           "volumeMl": null,
           "priceChf": 27.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Quattro Formaggi 32 cm Tomaten, vier verschiedene Käsesorten, Oregano 27,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, vier verschiedene Käsesorten, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Quattro Stagioni",
@@ -2159,13 +1969,13 @@
           "volumeMl": null,
           "priceChf": 27.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Quattro Stagioni 32 cm Tomaten, Mozzarella, Schinken, Artischocken, Oliven, Champignons, Peperoni, Oregano 27,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Schinken, Artischocken, Oliven, Champignons, Peperoni, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Romana",
@@ -2173,13 +1983,13 @@
           "volumeMl": null,
           "priceChf": 25.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Romana 32 cm Tomaten, Mozzarella, Oliven, Sardellen, Kapern, Oregano 25,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Oliven, Sardellen, Kapern, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Salame",
@@ -2187,13 +1997,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Salame 32 cm Tomaten, Mozzarella, Salami, Oliven, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Salami, Oliven, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Tonno",
@@ -2201,13 +2011,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Tonno 32 cm Tomaten, Mozzarella, Thunfisch, Basilikum, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Thunfisch, Basilikum, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Toscana (scharf)",
@@ -2215,13 +2025,13 @@
           "volumeMl": null,
           "priceChf": 27.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Toscana (scharf) 32 cm Tomaten, Mozzarella, Oliven, Spinat, Knoblauch, Zwiebeln, Sardellen, Salami, Oregano 27,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Oliven, Spinat, Knoblauch, Zwiebeln, Sardellen, Salami, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         },
         {
           "name": "Pizza Vegi",
@@ -2229,13 +2039,13 @@
           "volumeMl": null,
           "priceChf": 24.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-10-20T07:04:19.224906+00:00",
+          "observedAt": "2026-11-06T00:45:21.795223+00:00",
           "evidence": "Pizza Vegi 32 cm Tomaten, Mozzarella, Auberginen, Zuchhetti, Champignons, Zwiebeln, Oregano 24,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomaten, Mozzarella, Auberginen, Zuchhetti, Champignons, Zwiebeln, Oregano",
-          "sourceSha256": "08cd79925120f9ec3650b1e04eb467b4481f3cd7ad46fce46878187e2c72ffcd"
+          "sourceSha256": "35064f98e56fcbecaebab55650a6f35bf0261d5ca1d869c92aa1f2dc96a0f140"
         }
       ],
       "outdoorPermit": {
@@ -2281,7 +2091,7 @@
           "volumeMl": null,
           "priceChf": 19.0,
           "sourceUrl": "https://ottopizza.ch/wp-content/uploads/otto-menu.pdf",
-          "observedAt": "2026-10-20T00:05:58.856794+00:00",
+          "observedAt": "2026-11-06T00:43:45.568167+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 3: MARGHERITA 19",
           "alcoholFree": true,
@@ -2289,7 +2099,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:05:58.856794+00:00",
+      "checkedAt": "2026-11-06T00:43:45.568167+00:00",
       "pizzaMenu": [
         {
           "name": "BUFALA E CRUDO",
@@ -2430,7 +2240,7 @@
           "volumeMl": null,
           "priceChf": 17.5,
           "sourceUrl": "https://pasiwo.ch/docs/Restaurant_PaSiWo_Speisekarte_2024_Deutsch.pdf",
-          "observedAt": "2026-10-20T00:07:41.589590+00:00",
+          "observedAt": "2026-11-06T00:44:27.754948+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 4: Pizza Margherita 17.50",
           "alcoholFree": true,
@@ -2439,7 +2249,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:07:41.589590+00:00",
+      "checkedAt": "2026-11-06T00:44:27.754948+00:00",
       "pizzaMenu": [
         {
           "name": "Pizza Fränzi",
@@ -2569,7 +2379,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:05:58.856998+00:00",
+      "checkedAt": "2026-11-06T00:43:45.568350+00:00",
       "pizzaMenu": []
     },
     {
@@ -2622,7 +2432,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:05:58.857184+00:00",
+      "checkedAt": "2026-11-06T00:43:45.568572+00:00",
       "pizzaMenu": []
     },
     {
@@ -2641,7 +2451,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:05:58.857652+00:00",
+      "checkedAt": "2026-11-06T00:43:45.568747+00:00",
       "pizzaMenu": [],
       "outdoorPermit": {
         "season": "unspecified",
@@ -2760,305 +2570,16 @@
           "volumeMl": null,
           "priceChf": 18.5,
           "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
+          "observedAt": "2026-11-06T00:43:45.569068+00:00",
           "confidence": "automatic",
           "evidence": "Margherita CHF 18.50",
           "alcoholFree": true,
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40"
+          "sourceSha256": "168d0de10f9ce7d82cbc1ca1eed24a940d13fb0fb0b8368cf940b7733e38811e"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:05:58.858235+00:00",
-      "pizzaMenu": [
-        {
-          "name": "CENTRO",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 21.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "CENTRO CHF 21.50 Tomaten, Mozzarella Fior di Latte, Mascarpone und Spinat",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Mascarpone und Spinat"
-        },
-        {
-          "name": "Contadina",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Contadina CHF 22.50 Tomaten, Mozarella Fior di Latte, Zwiebeln und Speck",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozarella Fior di Latte, Zwiebeln und Speck"
-        },
-        {
-          "name": "Diavolo",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Diavolo CHF 22.50 Tomaten, Mozzarella Fior di Latte und scharfe Salami",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte und scharfe Salami"
-        },
-        {
-          "name": "Frutti di mare",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 23.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Frutti di mare CHF 23.50 Tomaten, Mozzarella Fior di Latte und Meeresfrüchte",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte und Meeresfrüchte"
-        },
-        {
-          "name": "Funghi",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 20.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Funghi CHF 20.50 Tomaten, Mozzarella Fior di Latte und Pilze",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte und Pilze"
-        },
-        {
-          "name": "Gorgonzola",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 21.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Gorgonzola CHF 21.50 Tomaten, Mozzarella Fior di Latte und Gorgonzola",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte und Gorgonzola"
-        },
-        {
-          "name": "Napoli",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 21.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Napoli CHF 21.50 Tomaten, Mozzarella Fior di Latte, Kapern und Sardellen",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Kapern und Sardellen"
-        },
-        {
-          "name": "Parma e Rucola",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 25.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Parma e Rucola CHF 25.50 Tomaten, Mozzarella Fior di Latte und Parmaschinken und Rucola",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte und Parmaschinken und Rucola"
-        },
-        {
-          "name": "Pazza",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Pazza CHF 22.50 Tomaten, Mozzarella Fior di Latte, Hinterschinken, Pilze, Zwiebeln und Speck",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Hinterschinken, Pilze, Zwiebeln und Speck"
-        },
-        {
-          "name": "Prosciutto",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 21.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Prosciutto CHF 21.50 Tomaten, Mozzarella Fior di Latte und Hinterschinken",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte und Hinterschinken"
-        },
-        {
-          "name": "Prosciutto e funghi",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Prosciutto e funghi CHF 22.50 Tomaten, Mozzarella Fior di Latte , Hinterschinken und Pilze",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte , Hinterschinken und Pilze"
-        },
-        {
-          "name": "Quattro formaggi",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 21.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Quattro formaggi CHF 21.50 Tomaten, Mozzarella Fior di Latte, Gorgonzola, Belpaese und Grana",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Gorgonzola, Belpaese und Grana"
-        },
-        {
-          "name": "Quattro stagioni",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 23.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Quattro stagioni CHF 23.50 Tomaten, Mozzarella Fior di Latte, Hinterschinken, Artischocken, Pilze und Oliven",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Hinterschinken, Artischocken, Pilze und Oliven"
-        },
-        {
-          "name": "Rucola e Grana",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 21.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Rucola e Grana CHF 21.50 Tomaten, Mozzarella Fior di Latte, Rucola und Grana",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Rucola und Grana"
-        },
-        {
-          "name": "Salmone",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Salmone CHF 22.50 Tomaten, Mozzarella Fior di Latte, Lachs und Zwiebeln",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Lachs und Zwiebeln"
-        },
-        {
-          "name": "Tonno e cipolle",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Tonno e cipolle CHF 22.50 Tomaten, Mozzarella Fior di Latte, Thon und Zwiebeln",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Thon und Zwiebeln"
-        },
-        {
-          "name": "Toscana",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Toscana CHF 22.50 Tomaten, Mozzarella Fior di Latte, Salami, Peperoni und Oliven",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Salami, Peperoni und Oliven"
-        },
-        {
-          "name": "Vegetariana",
-          "pizzaType": "other",
-          "volumeMl": null,
-          "priceChf": 21.5,
-          "sourceUrl": "https://www.centroambarfi.ch/pizze/",
-          "observedAt": "2026-10-20T00:05:58.858235+00:00",
-          "evidence": "Vegetariana CHF 21.50 Tomaten, Mozzarella Fior di Latte, Zucchetti, Peperoni und Aubergines",
-          "alcoholFree": true,
-          "confidence": "ai",
-          "extractionMethod": "ai",
-          "model": "claude-haiku-5-5",
-          "sourceSha256": "dcbd44b563eb6fab9f46480f9f3bf5b05c54d9b5a32e39e713269ad458a87b40",
-          "sourcePage": 1,
-          "ingredients": "Tomaten, Mozzarella Fior di Latte, Zucchetti, Peperoni und Aubergines"
-        }
-      ],
+      "checkedAt": "2026-11-06T00:43:45.569068+00:00",
+      "pizzaMenu": [],
       "pizzaEvidence": {
         "sourceUrl": "https://www.centroambarfi.ch/en/coffee-and-digestifs/",
         "evidence": "Italian Restaurant - Pizzeria: Good food in Basel | Centro am Barfi"
@@ -3107,7 +2628,7 @@
           "volumeMl": null,
           "priceChf": 14.0,
           "sourceUrl": "https://restaurant-dapia.ch/downloads/speisekarte.pdf",
-          "observedAt": "2026-10-20T00:05:58.858444+00:00",
+          "observedAt": "2026-11-06T00:43:45.569364+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 7: Margherita 14.-",
           "alcoholFree": true,
@@ -3116,7 +2637,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:05:58.858444+00:00",
+      "checkedAt": "2026-11-06T00:43:45.569364+00:00",
       "pizzaMenu": [
         {
           "name": "Al tonno",
@@ -3419,7 +2940,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-20T00:05:58.858966+00:00",
+      "checkedAt": "2026-11-06T00:43:45.569566+00:00",
       "pizzaMenu": [],
       "pizzaEvidence": {
         "sourceUrl": "https://www.pizzeriafroburg.ch/menuekarte/",
@@ -3440,7 +2961,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:05:59.004528+00:00",
+      "checkedAt": "2026-11-06T00:43:45.685559+00:00",
       "pizzaMenu": []
     },
     {
@@ -3466,7 +2987,7 @@
           "volumeMl": null,
           "priceChf": 17.5,
           "sourceUrl": "http://pizzeriagellert.ch/wp-content/uploads/2026/04/Speisen-2026_2027.pdf",
-          "observedAt": "2026-10-20T00:06:00.152299+00:00",
+          "observedAt": "2026-11-06T00:43:46.916756+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 4: Margherita Tomatensauce, Mozzarella, Oregano 17.50",
           "alcoholFree": true,
@@ -3475,7 +2996,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:06:00.152299+00:00",
+      "checkedAt": "2026-11-06T00:43:46.916756+00:00",
       "pizzaMenu": [
         {
           "name": "ai funghi porcini",
@@ -3856,15 +3377,15 @@
           "volumeMl": null,
           "priceChf": 18.0,
           "sourceUrl": "https://pizzeria-laperla.ch/menu/de/",
-          "observedAt": "2026-10-20T00:06:01.926221+00:00",
+          "observedAt": "2026-11-06T00:43:48.119300+00:00",
           "confidence": "automatic",
           "evidence": "MARGHERITA CHF 18.00",
           "alcoholFree": true,
-          "sourceSha256": "081ff1df50d92c96a5357c9ee54a75bd2d95ed0e1b8455a6d63d2a4187a25d9a"
+          "sourceSha256": "3631f5b112b941b30afc7729f31cf190342cdf973b200419831ebe0f0832e0e3"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:06:01.926221+00:00",
+      "checkedAt": "2026-11-06T00:43:48.119300+00:00",
       "pizzaMenu": [],
       "pizzaEvidence": {
         "sourceUrl": "https://pizzeria-laperla.ch/menu/de/",
@@ -3898,7 +3419,7 @@
           "volumeMl": null,
           "priceChf": 20.8,
           "sourceUrl": "https://www.resslirytti.ch/wp-content/uploads/2025/04/Speisekarte-1.pdf",
-          "observedAt": "2026-10-20T00:07:43.224193+00:00",
+          "observedAt": "2026-11-06T00:44:43.736074+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 6: Margherita 20.80",
           "alcoholFree": true,
@@ -3907,7 +3428,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:07:43.224193+00:00",
+      "checkedAt": "2026-11-06T00:44:43.736074+00:00",
       "pizzaMenu": [
         {
           "name": "Bufala",
@@ -4112,7 +3633,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:07:10.865491+00:00",
+      "checkedAt": "2026-11-06T00:44:21.341824+00:00",
       "pizzaMenu": []
     },
     {
@@ -4130,22 +3651,9 @@
       ],
       "openingHours": "Mo-Fr 09:00-24:00, Sa,Su 10:00-24:00",
       "outdoor": true,
-      "offers": [
-        {
-          "name": "Pizza Margherita",
-          "pizzaType": "margherita",
-          "volumeMl": null,
-          "priceChf": 18.5,
-          "sourceUrl": "https://www.murano.ch/pdf/murano-abendkarte.pdf",
-          "observedAt": "2026-10-20T00:07:11.014370+00:00",
-          "confidence": "automatic",
-          "evidence": "PDF S. 9: Margherita 18.50",
-          "alcoholFree": true,
-          "sourceSha256": "dfdc856c7f8d7a7bf728976849d4fd4a369ab9cfb4bd1d6d015e308f608cec90"
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:07:11.014370+00:00",
+      "offers": [],
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-06T00:44:21.499794+00:00",
       "pizzaMenu": []
     },
     {
@@ -4164,7 +3672,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:06:03.122639+00:00",
+      "checkedAt": "2026-11-06T00:43:48.430795+00:00",
       "pizzaMenu": []
     },
     {
@@ -4183,9 +3691,13 @@
       "openingHours": "Oct-Mar Mo-Th 11:00-24:00; Oct-Mar Fr-Sa 11:00-01:00; Apr-Sep Mo-Th 11:00-23:00; Apr-Sep Fr-Sa 11:00-24:00; PH closed",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:06:03.168620+00:00",
-      "pizzaMenu": []
+      "scrapeStatus": "no_prices",
+      "checkedAt": "2026-11-06T00:43:48.534646+00:00",
+      "pizzaMenu": [],
+      "pizzaEvidence": {
+        "sourceUrl": "https://www.piadinabar-margherita.ch/das-restaurant",
+        "evidence": "Ristorante Pizzeria - authentische italienische Küche - kommen Sie vorbei!"
+      }
     },
     {
       "id": "node/273223709",
@@ -4210,7 +3722,7 @@
           "volumeMl": null,
           "priceChf": 18.5,
           "sourceUrl": "https://restaurantziegelhof.ch/wp-content/uploads/2025/10/Speisekarte3-724x1024.jpg",
-          "observedAt": "2026-10-20T00:07:21.873868+00:00",
+          "observedAt": "2026-11-06T00:44:23.433369+00:00",
           "confidence": "automatic",
           "evidence": "OCR PDF S. 1: PIZZA MARGHERITA 18.50",
           "alcoholFree": true,
@@ -4219,7 +3731,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:07:21.873868+00:00",
+      "checkedAt": "2026-11-06T00:44:23.433369+00:00",
       "pizzaMenu": [
         {
           "name": "PIZZA CON POLLO",
@@ -4258,7 +3770,7 @@
           "volumeMl": null,
           "priceChf": 19.0,
           "sourceUrl": "https://www.coccodrillo-ristorante.com/de/speisekarte",
-          "observedAt": "2026-10-20T00:06:16.374214+00:00",
+          "observedAt": "2026-11-06T00:43:59.925457+00:00",
           "confidence": "automatic",
           "evidence": "Margherita (Tomatensauce | Mozzarella | Oregano) CHF 19,00",
           "alcoholFree": true,
@@ -4267,7 +3779,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:06:16.374214+00:00",
+      "checkedAt": "2026-11-06T00:43:59.925457+00:00",
       "pizzaMenu": [
         {
           "name": "Burrata",
@@ -4504,7 +4016,7 @@
           "volumeMl": null,
           "priceChf": 20.0,
           "sourceUrl": "https://www.fiorentinabasel.ch/_files/ugd/e16147_a29b9031a9fb4eaa87ddf0bae429107b.pdf",
-          "observedAt": "2026-10-20T00:06:19.387820+00:00",
+          "observedAt": "2026-11-06T00:44:01.039789+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 1: MARGHERITA TOMATEN SAUCE | FIOR DI LATTE | BASILIKUM TOMATO SAUCE | FIOR DI LATTE | BASIL 20",
           "alcoholFree": true,
@@ -4513,7 +4025,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:06:19.387820+00:00",
+      "checkedAt": "2026-11-06T00:44:01.039789+00:00",
       "pizzaMenu": [
         {
           "name": "'NDUJA",
@@ -4854,7 +4366,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:07:39.522957+00:00",
+      "checkedAt": "2026-11-06T00:44:23.465486+00:00",
       "pizzaMenu": []
     },
     {
@@ -4873,7 +4385,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-20T00:06:03.720222+00:00",
+      "checkedAt": "2026-11-06T00:43:58.042632+00:00",
       "pizzaMenu": []
     },
     {
@@ -4896,7 +4408,7 @@
           "volumeMl": null,
           "priceChf": 16.0,
           "sourceUrl": "https://www.schiff-restaurant.ch/wp-content/uploads/2025/08/Menukarte-Restaurant-Schiff-2025.pdf",
-          "observedAt": "2026-10-20T00:07:44.216377+00:00",
+          "observedAt": "2026-11-06T00:44:45.750004+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 7: Pizza Margherita 16.00",
           "alcoholFree": true,
@@ -4905,7 +4417,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:07:44.216377+00:00",
+      "checkedAt": "2026-11-06T00:44:45.750004+00:00",
       "pizzaMenu": [
         {
           "name": "Pizza al Tonno",
@@ -5405,7 +4917,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-10-20T00:06:15.727167+00:00",
+      "checkedAt": "2026-11-06T00:43:58.049473+00:00",
       "pizzaMenu": [],
       "outdoorPermit": {
         "season": "unspecified",
@@ -5431,18 +4943,17 @@
           "name": "Pizza Margherita",
           "pizzaType": "margherita",
           "volumeMl": null,
-          "priceChf": 15.5,
-          "sourceUrl": "https://www.sommereck.ch/wp-content/uploads/2026/09/speisekarte-sommereck.pdf",
-          "observedAt": "2026-10-20T00:07:45.732620+00:00",
+          "priceChf": 19.5,
+          "sourceUrl": "https://www.sommereck.ch/wp-content/uploads/2026/11/PIZZA-1.pdf",
+          "observedAt": "2026-11-06T00:44:54.477040+00:00",
           "confidence": "automatic",
-          "evidence": "PDF S. 4: 100 Pizza Margherita 15.50",
+          "evidence": "PDF S. 1: MARGHERITA 19.50",
           "alcoholFree": true,
-          "sourceSha256": "953a78b8bc0117f528bd4846b9a33e4407847a38d29279a35f89ccec607d06e9",
-          "ingredients": "Tomaten, Mozzarella und Oregano"
+          "sourceSha256": "b1284e4a6788290b803086ca633b1798e506cf2c683f26d9fe39c28daf8560e0"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:07:45.732620+00:00",
+      "checkedAt": "2026-11-06T00:44:54.477040+00:00",
       "pizzaMenu": [
         {
           "name": "Pizza al Prosciutto crudo con Rucola",
@@ -5755,16 +5266,17 @@
           "volumeMl": null,
           "priceChf": 17.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T00:09:02.677593+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "confidence": "automatic",
-          "evidence": "Pizza Margherita Tomatensauce, Mozzarella, Oregano 17,50 CHF",
+          "evidence": "Pizza Margherita 32 cm Tomatensauce, Mozzarella, Oregano 17,50 CHF",
           "alcoholFree": true,
           "priceContext": "online_menu",
-          "sourceSha256": "e1a789cd442634668838eef5b3d745973a2f49c0ad26b018195513502a36f86d"
+          "ingredients": "Tomatensauce, Mozzarella, Oregano",
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:09:02.677593+00:00",
+      "checkedAt": "2026-11-06T00:45:23.594181+00:00",
       "pizzaMenu": [
         {
           "name": "Pizza Cappi",
@@ -5772,13 +5284,13 @@
           "volumeMl": null,
           "priceChf": 21.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Cappi 32 cm Tomatensauce, Mozzarella, Oregano, Dönerfleisch, Zwiebeln 21,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Dönerfleisch, Zwiebeln",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Capricciosa",
@@ -5786,13 +5298,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Capricciosa 32 cm Tomatensauce, Mozzarella, Oregano, Hinterschinken, Artischocken, Oliven 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Hinterschinken, Artischocken, Oliven",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Carbonara",
@@ -5800,13 +5312,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Carbonara 32 cm Tomatensauce, Mozzarella, Oregano, Speck, Knoblauch, Eier 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Speck, Knoblauch, Eier",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Crevetten",
@@ -5814,13 +5326,13 @@
           "volumeMl": null,
           "priceChf": 21.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Crevetten 32 cm Tomatensauce, Mozzarella, Oregano, Knoblauch 21,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Knoblauch",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Diavolo (scharf)",
@@ -5828,13 +5340,13 @@
           "volumeMl": null,
           "priceChf": 21.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Diavolo (scharf) 32 cm Tomatensauce, Mozzarella, Oregano, scharfe Salami, Peperoni, Zwiebeln 21,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, scharfe Salami, Peperoni, Zwiebeln",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Fiorentina",
@@ -5842,13 +5354,13 @@
           "volumeMl": null,
           "priceChf": 20.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Fiorentina 32 cm Tomatensauce, Mozzarella, Oregano, Spinat, Oliven 20,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Spinat, Oliven",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Frutti di Mare",
@@ -5856,13 +5368,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Frutti di Mare 32 cm Tomatensauce, Mozzarella, Oregano, Meeresfrüchte 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Meeresfrüchte",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Funghi",
@@ -5870,13 +5382,13 @@
           "volumeMl": null,
           "priceChf": 19.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Funghi 32 cm Tomatensauce, Mozzarella, Oregano, frische Champignons 19,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, frische Champignons",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Gorgonzola",
@@ -5884,13 +5396,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Gorgonzola 32 cm Tomatensauce, Mozzarella, Oregano, Gorgonzola 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Gorgonzola",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Hawaii",
@@ -5898,13 +5410,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Hawaii 32 cm Tomatensauce, Mozzarella, Oregano, Hinterschinken, Ananas 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Hinterschinken, Ananas",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Napoli",
@@ -5912,13 +5424,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Napoli 32 cm Tomatensauce, Mozzarella, Oregano, Sardellen, Oliven, Kapern 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Sardellen, Oliven, Kapern",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza o Sole Mio",
@@ -5926,13 +5438,13 @@
           "volumeMl": null,
           "priceChf": 21.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza o Sole Mio 32 cm Tomatensauce, Mozzarella, Oregano, Ei, Spargel 21,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Ei, Spargel",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Parma",
@@ -5940,13 +5452,13 @@
           "volumeMl": null,
           "priceChf": 21.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Parma 32 cm Tomatensauce, Mozzarella, Oregano, Rohschinken, Oliven 21,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Rohschinken, Oliven",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Prosciutto",
@@ -5954,13 +5466,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Prosciutto 32 cm Tomatensauce, Mozzarella, Oregano, Hinterschinken 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Hinterschinken",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Prosciutto e Funghi",
@@ -5968,13 +5480,13 @@
           "volumeMl": null,
           "priceChf": 21.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Prosciutto e Funghi 32 cm Tomatensauce, Mozzarella, Oregano, Hinterschinken, frische Champignons 21,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Hinterschinken, frische Champignons",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Quattro Formaggi",
@@ -5982,13 +5494,13 @@
           "volumeMl": null,
           "priceChf": 21.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Quattro Formaggi 32 cm Tomatensauce, Mozzarella, Oregano, Parmesan, Gorgonzola, Emmentaler, Feta 21,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Parmesan, Gorgonzola, Emmentaler, Feta",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Quattro Stagioni",
@@ -5996,13 +5508,13 @@
           "volumeMl": null,
           "priceChf": 21.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Quattro Stagioni 32 cm Tomatensauce, Mozzarella, Oregano, Hinterschinken, Oliven, Champignons, Salami, Artischocken 21,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Hinterschinken, Oliven, Champignons, Salami, Artischocken",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Rustica",
@@ -6010,13 +5522,13 @@
           "volumeMl": null,
           "priceChf": 20.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Rustica 32 cm Tomatensauce, Mozzarella, Oregano, Speck, Zwiebeln 20,00 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Speck, Zwiebeln",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Salami",
@@ -6024,13 +5536,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Salami 32 cm Tomatensauce, Mozzarella, Oregano, Salami 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Salami",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Thailand",
@@ -6038,13 +5550,13 @@
           "volumeMl": null,
           "priceChf": 21.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Thailand 32 cm Tomatensauce, Mozzarella, Oregano, Poulet, Ananas, Curry 21,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Poulet, Ananas, Curry",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Tonno",
@@ -6052,13 +5564,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Tonno 32 cm Tomatensauce, Mozzarella, Oregano, Thunfisch, Zwiebeln 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Thunfisch, Zwiebeln",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Pizza Vegi",
@@ -6066,13 +5578,13 @@
           "volumeMl": null,
           "priceChf": 20.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Pizza Vegi 32 cm Tomatensauce, Mozzarella, Oregano, Auberginen, Peperoni, Zucchini 20,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, Auberginen, Peperoni, Zucchini",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         },
         {
           "name": "Wunschpizza",
@@ -6080,13 +5592,13 @@
           "volumeMl": null,
           "priceChf": 21.5,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-10-20T07:04:24.071661+00:00",
+          "observedAt": "2026-11-06T00:45:23.594181+00:00",
           "evidence": "Wunschpizza 32 cm Tomatensauce, Mozzarella, Oregano, jede weitere zutat 1fr. 21,50 CHF",
           "alcoholFree": true,
           "confidence": "automatic",
           "priceContext": "online_menu",
           "ingredients": "Tomatensauce, Mozzarella, Oregano, jede weitere zutat 1fr.",
-          "sourceSha256": "b6f26aa33827c5d23f8697e1480820a9a6350fa4460ed4f34919435a931503e3"
+          "sourceSha256": "99bc2e0132bfbef3e0626b7c5d90ab363788a6db851a3a1f185725d909876c33"
         }
       ]
     },
@@ -6106,7 +5618,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "no_prices",
-      "checkedAt": "2026-10-20T00:07:40.448595+00:00",
+      "checkedAt": "2026-11-06T00:44:24.660710+00:00",
       "pizzaMenu": [],
       "pizzaEvidence": {
         "sourceUrl": "https://www.vito.ch/standort/aeschen-basel",
@@ -6219,15 +5731,15 @@
           "volumeMl": null,
           "priceChf": 14.9,
           "sourceUrl": "https://www.westhive.com/de/eat-drink/westhive-kitchen-zuerich-stettbach/after-work/",
-          "observedAt": "2026-10-20T00:09:06.654979+00:00",
+          "observedAt": "2026-11-06T00:45:24.028529+00:00",
           "confidence": "automatic",
           "evidence": "Margherita * Tomatensugo, Mozzarella, Basilikum 14.90",
           "alcoholFree": true,
-          "sourceSha256": "0bc0fec515a38a5aa54dd412843a02e169a50df28dc2a8ed1c4cd3927b99d98f"
+          "sourceSha256": "f4203d9c3d81daf166cfb7c2089773837c6398692274f31d72c24f086741eb62"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:09:06.654979+00:00",
+      "checkedAt": "2026-11-06T00:45:24.028529+00:00",
       "pizzaMenu": []
     },
     {
@@ -6270,7 +5782,7 @@
           "volumeMl": null,
           "priceChf": 16.0,
           "sourceUrl": "https://static1.squarespace.com/static/67d998bb4592e754083dc2e3/t/67f7ce81f30cbd4c4ef1b1fc/1744293506723/Karte_zum-Kuss_Sommer_25.pdf",
-          "observedAt": "2026-10-20T00:08:28.641132+00:00",
+          "observedAt": "2026-11-06T00:45:05.118184+00:00",
           "confidence": "automatic",
           "evidence": "PDF S. 15: MARGHERITA – Mozzarella, Tomaten – 16.00",
           "alcoholFree": true,
@@ -6279,7 +5791,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-20T00:08:28.641132+00:00",
+      "checkedAt": "2026-11-06T00:45:05.118184+00:00",
       "pizzaMenu": [],
       "outdoorPermit": {
         "season": "unspecified",
