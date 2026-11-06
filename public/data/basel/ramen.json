@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-11-05T23:45:44.472630+00:00",
+  "generatedAt": "2026-11-06T02:31:54.469883+00:00",
   "discoveredAt": "2026-11-05T23:45:44.472630+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "removed": [],
   "bars": [
     {
       "id": "node/2663868226",
@@ -17,9 +18,101 @@
       ],
       "openingHours": "Tu-Sa 11:00-14:00,18:00-22:00; Mo,Su,PH off",
       "outdoor": true,
-      "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "offers": [
+        {
+          "name": "Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 28,
+          "sourceUrl": "https://www.bistrojohannes.ch/_files/ugd/adb95f_f2d76bcdb9e744c8ba9b313a1b214062.pdf",
+          "observedAt": "2026-11-06T02:01:18.229974+00:00",
+          "confidence": "ai",
+          "evidence": "MISO RAMEN Miso-Tare, Hühnerbrühe, pikantes Rindshack ... Fr. 28.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26,
+          "sourceUrl": "https://www.bistrojohannes.ch/_files/ugd/adb95f_f2d76bcdb9e744c8ba9b313a1b214062.pdf",
+          "observedAt": "2026-11-06T02:01:18.229974+00:00",
+          "confidence": "ai",
+          "evidence": "VEGI MISO RAMEN Miso-Tare, Shiitake-Gemüsebrühe, marinierter Bio-Tofu ... Fr. 26.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29,
+          "sourceUrl": "https://www.bistrojohannes.ch/_files/ugd/adb95f_f2d76bcdb9e744c8ba9b313a1b214062.pdf",
+          "observedAt": "2026-11-06T02:01:18.229974+00:00",
+          "confidence": "ai",
+          "evidence": "TANTANMEN Scharfe Miso-Tare, Hühnerbrühe, pikantes Rindshack ... Fr. 29.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Spicy Vegi Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 27,
+          "sourceUrl": "https://www.bistrojohannes.ch/_files/ugd/adb95f_f2d76bcdb9e744c8ba9b313a1b214062.pdf",
+          "observedAt": "2026-11-06T02:01:18.229974+00:00",
+          "confidence": "ai",
+          "evidence": "SPICY VEGI MISO Scharfe Miso-Tare, Shiitake-Gemüsebrühe ... Fr. 27.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shio Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 28,
+          "sourceUrl": "https://www.bistrojohannes.ch/_files/ugd/adb95f_f2d76bcdb9e744c8ba9b313a1b214062.pdf",
+          "observedAt": "2026-11-06T02:01:18.229974+00:00",
+          "confidence": "ai",
+          "evidence": "SHIO RAMEN Shio-Tare*, Hühner/Schweinebrühe, Chashu* ... Fr. 28.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 29,
+          "sourceUrl": "https://www.bistrojohannes.ch/_files/ugd/adb95f_f2d76bcdb9e744c8ba9b313a1b214062.pdf",
+          "observedAt": "2026-11-06T02:01:18.229974+00:00",
+          "confidence": "ai",
+          "evidence": "SHOYU RAMEN Shoyu-Tare*, Hühner/Schweinebrühe, Chashu* ... Fr. 29.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26,
+          "sourceUrl": "https://www.bistrojohannes.ch/_files/ugd/adb95f_f2d76bcdb9e744c8ba9b313a1b214062.pdf",
+          "observedAt": "2026-11-06T02:01:18.229974+00:00",
+          "confidence": "ai",
+          "evidence": "VEGI SHOYU RAMEN Shoyu-Tare*, Shiitake-Gemüsebrühe, Mu-err pilze ... Fr. 26.-",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T02:01:18.229974+00:00"
     },
     {
       "id": "node/13997991120",
@@ -321,6 +414,5 @@
       "scrapeStatus": "no_prices",
       "checkedAt": "2026-11-05T23:45:44.472630+00:00"
     }
-  ],
-  "removed": []
+  ]
 }
