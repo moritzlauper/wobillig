@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T21:34:10.244380+00:00",
+  "generatedAt": "2026-11-06T00:02:10.983720+00:00",
   "discoveredAt": "2026-11-05T21:12:50.262814+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -52,7 +52,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:12:50.273179+00:00"
+      "checkedAt": "2026-11-05T21:12:50.273179+00:00",
+      "aiCheckedAt": "2026-11-05T22:50:07.884004+00:00"
     },
     {
       "id": "node/12423233309",
@@ -183,7 +184,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:12:50.273405+00:00"
+      "checkedAt": "2026-11-05T21:12:50.273405+00:00",
+      "aiCheckedAt": "2026-11-05T23:28:16.077253+00:00"
     },
     {
       "id": "node/12697538641",
@@ -391,10 +393,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: MATCHA LATTE ..............................................................................................7.00",
           "alcoholFree": true
+        },
+        {
+          "name": "BIELER SCHALE",
+          "priceChf": 6.3,
+          "volumeMl": null,
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260928_Cafe_Esplanade_Menu_Inhalt.pdf?v=1790855092",
+          "observedAt": "2026-11-05T23:13:46.842017+00:00",
+          "confidence": "ai",
+          "evidence": "BIELER SCHALE ... 6.30",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "d1b8a4c707db708947b602f7f4cb8796d8c6911d5f3b174544de08e7bc6ca240"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:52.255513+00:00"
+      "checkedAt": "2026-11-05T21:18:52.255513+00:00",
+      "aiCheckedAt": "2026-11-05T23:15:51.110294+00:00"
     },
     {
       "id": "way/379582648",
@@ -587,7 +604,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:54.258044+00:00"
+      "checkedAt": "2026-11-05T21:18:54.258044+00:00",
+      "aiCheckedAt": "2026-11-05T23:15:52.587592+00:00"
     },
     {
       "id": "node/3269292348",
@@ -681,7 +699,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:20:53.860512+00:00"
+      "checkedAt": "2026-11-05T21:20:53.860512+00:00",
+      "aiCheckedAt": "2026-11-05T22:49:37.896154+00:00"
     },
     {
       "id": "node/2953918328",
@@ -1071,7 +1090,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:12:50.301449+00:00"
+      "checkedAt": "2026-11-05T21:12:50.301449+00:00",
+      "aiCheckedAt": "2026-11-05T22:51:45.086829+00:00"
     },
     {
       "id": "node/1809394316",
@@ -1153,10 +1173,25 @@
           "confidence": "automatic",
           "evidence": "Matcha latte  –  CHF 6.20",
           "alcoholFree": true
+        },
+        {
+          "name": "Grosse Schale",
+          "priceChf": 6.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.apfelgold.ch/getraenkekarte",
+          "observedAt": "2026-11-05T23:27:33.377601+00:00",
+          "confidence": "ai",
+          "evidence": "Grosse Schale – CHF 6.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "6f1a883f6b5c8b699269ba0bbb72cb076271627dc3dafede29acb8c993bbb60a"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:12:50.304075+00:00"
+      "checkedAt": "2026-11-05T21:12:50.304075+00:00",
+      "aiCheckedAt": "2026-11-05T23:28:32.538643+00:00"
     },
     {
       "id": "node/12754522803",
@@ -1220,7 +1255,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:12:50.354130+00:00"
+      "checkedAt": "2026-11-05T21:12:50.354130+00:00",
+      "aiCheckedAt": "2026-11-05T23:59:26.527668+00:00"
     },
     {
       "id": "node/14091131003",
@@ -1270,7 +1306,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:12:51.432920+00:00"
+      "checkedAt": "2026-11-05T21:12:51.432920+00:00",
+      "aiCheckedAt": "2026-11-05T22:51:23.983738+00:00"
     },
     {
       "id": "node/2701064649",
@@ -1353,7 +1390,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:12:53.015828+00:00"
+      "checkedAt": "2026-11-05T21:12:53.015828+00:00",
+      "aiCheckedAt": "2026-11-05T22:52:20.238512+00:00"
     },
     {
       "id": "node/2705367348",
@@ -1442,10 +1480,25 @@
           "extractionModel": "claude-haiku-5-5",
           "coffeeType": "espresso",
           "sourceSha256": "4fd834ce310ab1e91e081533c6b0f8d423ba7871930c92dd018c04a7f3f3ffd2"
+        },
+        {
+          "name": "Kaffee",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurantbay.ch/_files/ugd/467005_e10a055e38614b4089818433b16818bd.pdf",
+          "observedAt": "2026-11-05T23:27:32.353629+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso / Kaffee / Sirocco Tee 5/6",
+          "alcoholFree": true,
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "4fd834ce310ab1e91e081533c6b0f8d423ba7871930c92dd018c04a7f3f3ffd2"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:12:54.134959+00:00"
+      "checkedAt": "2026-11-05T21:12:54.134959+00:00",
+      "aiCheckedAt": "2026-11-05T23:28:05.400713+00:00"
     },
     {
       "id": "node/13344114703",
@@ -1558,7 +1611,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:12:54.874343+00:00"
+      "checkedAt": "2026-11-05T21:12:54.874343+00:00",
+      "aiCheckedAt": "2026-11-05T23:28:26.636555+00:00"
     },
     {
       "id": "node/12811865800",
@@ -1666,7 +1720,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:55.210556+00:00"
+      "checkedAt": "2026-11-05T21:18:55.210556+00:00",
+      "aiCheckedAt": "2026-11-05T23:13:16.545884+00:00"
     },
     {
       "id": "node/10656175457",
@@ -1854,7 +1909,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:13:05.142668+00:00"
+      "checkedAt": "2026-11-05T21:13:05.142668+00:00",
+      "aiCheckedAt": "2026-11-05T23:12:50.780311+00:00"
     },
     {
       "id": "node/6123186377",
@@ -1937,7 +1993,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:13:05.327389+00:00"
+      "checkedAt": "2026-11-05T21:13:05.327389+00:00",
+      "aiCheckedAt": "2026-11-05T23:29:07.761217+00:00"
     },
     {
       "id": "node/265627196",
@@ -3055,10 +3112,39 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: Kaffee, Espresso, Ristretto 3.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Kaffee",
+          "priceChf": 3.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tscharni.ch/download/pictures/35/upf8msi6e9wx72xw3ebur1mk7mifmj/260622_menu_und_getraenkekarte_cafe_qzt.pdf",
+          "observedAt": "2026-11-05T23:31:00.139813+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee, Espresso, Ristretto 3.50",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "cce2aa75a607eebcf4352623f074a5852ec300dc127df5fa2c0a57534b00ac89"
+        },
+        {
+          "name": "Schale dunkel/hell",
+          "priceChf": 3.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tscharni.ch/download/pictures/35/upf8msi6e9wx72xw3ebur1mk7mifmj/260622_menu_und_getraenkekarte_cafe_qzt.pdf",
+          "observedAt": "2026-11-05T23:31:00.139813+00:00",
+          "confidence": "ai",
+          "evidence": "Schale dunkel/hell, Cappuccino 3.80",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "cce2aa75a607eebcf4352623f074a5852ec300dc127df5fa2c0a57534b00ac89"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:13:29.668413+00:00"
+      "checkedAt": "2026-11-05T21:13:29.668413+00:00",
+      "aiCheckedAt": "2026-11-05T23:32:05.442872+00:00"
     },
     {
       "id": "way/460523809",
@@ -3367,7 +3453,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:13:34.518033+00:00"
+      "checkedAt": "2026-11-05T21:13:34.518033+00:00",
+      "aiCheckedAt": "2026-11-06T00:01:05.621429+00:00"
     },
     {
       "id": "node/12347717156",
@@ -3411,7 +3498,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:13:35.310450+00:00"
+      "checkedAt": "2026-11-05T21:13:35.310450+00:00",
+      "aiCheckedAt": "2026-11-05T23:32:38.723632+00:00"
     },
     {
       "id": "node/2572061811",
@@ -3926,10 +4014,25 @@
           "confidence": "automatic",
           "evidence": "Latte Macchiato 6.90",
           "alcoholFree": true
+        },
+        {
+          "name": "Cafe",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://da-carlo-bern.ch/getraenkekarte/",
+          "observedAt": "2026-11-05T23:34:38.814894+00:00",
+          "confidence": "ai",
+          "evidence": "Cafe 4.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "6160d9a239007927b9f0b2d8bf7801946bf5f4d5a4090d4ac214495a414626da"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:13:55.674498+00:00"
+      "checkedAt": "2026-11-05T21:13:55.674498+00:00",
+      "aiCheckedAt": "2026-11-05T23:36:00.365271+00:00"
     },
     {
       "id": "node/5137495924",
@@ -5177,7 +5280,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:14:27.562398+00:00"
+      "checkedAt": "2026-11-05T21:14:27.562398+00:00",
+      "aiCheckedAt": "2026-11-05T23:35:10.702646+00:00"
     },
     {
       "id": "node/6552336713",
@@ -5992,10 +6096,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 12: CAPPUCCINO CHF 6.00",
           "alcoholFree": true
+        },
+        {
+          "name": "Kaffee",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://japigo.ch/_upl/files/メインメニュー 2026年9月WEB版.pdf",
+          "observedAt": "2026-11-05T23:37:18.269877+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFEE | ESPRESSO | RISTRETTO | SCHALE CHF 5.00",
+          "alcoholFree": true,
+          "sourcePage": 12,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "54d4e18eb8451765f155725ce441824a53597b6ca4230ef7ebe5a102a05fc083"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:14:57.745632+00:00"
+      "checkedAt": "2026-11-05T21:14:57.745632+00:00",
+      "aiCheckedAt": "2026-11-05T23:38:37.623572+00:00"
     },
     {
       "id": "node/13205261901",
@@ -6084,7 +6203,8 @@
         }
       ],
       "scrapeStatus": "partial",
-      "checkedAt": "2026-11-05T21:15:06.832235+00:00"
+      "checkedAt": "2026-11-05T21:15:06.832235+00:00",
+      "aiCheckedAt": "2026-11-05T23:16:42.924925+00:00"
     },
     {
       "id": "node/10279587110",
@@ -6291,10 +6411,39 @@
           "confidence": "automatic",
           "evidence": "CHF 6.90 Flat White",
           "alcoholFree": true
+        },
+        {
+          "name": "Schale, Cappuccino",
+          "priceChf": 5.4,
+          "volumeMl": null,
+          "sourceUrl": "https://www.kafipfyfouter.ch/getraenke/",
+          "observedAt": "2026-11-05T23:37:19.296464+00:00",
+          "confidence": "ai",
+          "evidence": "CHF 5.40/5.20 Schale, Cappuccino",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "dc371da5c61822cd843927aa99072d9266ab7088e6c7c1818685a5ffd6152439"
+        },
+        {
+          "name": "Latte Macchiato / Chai Latte",
+          "priceChf": 6.6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.kafipfyfouter.ch/getraenke/",
+          "observedAt": "2026-11-05T23:37:19.296464+00:00",
+          "confidence": "ai",
+          "evidence": "CHF 6.60 Latte Macchiato / Chai Latte",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "dc371da5c61822cd843927aa99072d9266ab7088e6c7c1818685a5ffd6152439"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:15:14.908254+00:00"
+      "checkedAt": "2026-11-05T21:15:14.908254+00:00",
+      "aiCheckedAt": "2026-11-05T23:37:40.418170+00:00"
     },
     {
       "id": "node/3283703322",
@@ -6390,7 +6539,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:15:16.281854+00:00"
+      "checkedAt": "2026-11-05T21:15:16.281854+00:00",
+      "aiCheckedAt": "2026-11-05T23:40:15.470335+00:00"
     },
     {
       "id": "node/101292376",
@@ -6680,7 +6830,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:15:24.106150+00:00"
+      "checkedAt": "2026-11-05T21:15:24.106150+00:00",
+      "aiCheckedAt": "2026-11-05T23:40:05.656792+00:00"
     },
     {
       "id": "node/3210641928",
@@ -7309,10 +7460,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 4: Milchkaffee 5",
           "alcoholFree": true
+        },
+        {
+          "name": "Kaffee",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://lieblings.be/pdf/karte.pdf",
+          "observedAt": "2026-11-05T23:40:29.025098+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee 4.5",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "10bf782fa572b7a5a0907d5efb4e359c3b004db813a0126603314dffa428ccdf"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:15:42.519153+00:00"
+      "checkedAt": "2026-11-05T21:15:42.519153+00:00",
+      "aiCheckedAt": "2026-11-05T23:41:12.645690+00:00"
     },
     {
       "id": "node/1296972964",
@@ -7567,7 +7733,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:15:48.760623+00:00"
+      "checkedAt": "2026-11-05T21:15:48.760623+00:00",
+      "aiCheckedAt": "2026-11-05T23:41:02.857819+00:00"
     },
     {
       "id": "node/4540081519",
@@ -7853,7 +8020,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:15:59.117946+00:00"
+      "checkedAt": "2026-11-05T21:15:59.117946+00:00",
+      "aiCheckedAt": "2026-11-05T23:41:09.803278+00:00"
     },
     {
       "id": "node/2336992357",
@@ -8013,10 +8181,39 @@
           "confidence": "automatic",
           "evidence": "Latte Macchiato 5.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://mccarthysirishpub.ch/bern/our-drinks/hot-drinks/",
+          "observedAt": "2026-11-05T22:26:46.274355+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino, Milk Coffee 5.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "2dfd77089d4ddc16f030f6c9ae3767e6072c03ee9e5996409d9c2544303b8827"
+        },
+        {
+          "name": "Milk Coffee",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://mccarthysirishpub.ch/bern/our-drinks/hot-drinks/",
+          "observedAt": "2026-11-05T22:26:46.274355+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino, Milk Coffee 5.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "2dfd77089d4ddc16f030f6c9ae3767e6072c03ee9e5996409d9c2544303b8827"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:16:01.012547+00:00"
+      "checkedAt": "2026-11-05T21:16:01.012547+00:00",
+      "aiCheckedAt": "2026-11-05T22:28:08.716320+00:00"
     },
     {
       "id": "node/663576545",
@@ -8063,7 +8260,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:16:04.127837+00:00"
+      "checkedAt": "2026-11-05T21:16:04.127837+00:00",
+      "aiCheckedAt": "2026-11-05T22:24:41.797856+00:00"
     },
     {
       "id": "node/6425484034",
@@ -8217,7 +8415,8 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-05T21:25:16.984181+00:00",
-      "addressSource": "https://www.openstreetmap.org/node/14313613284"
+      "addressSource": "https://www.openstreetmap.org/node/14313613284",
+      "aiCheckedAt": "2026-11-05T23:16:31.028464+00:00"
     },
     {
       "id": "node/3157391906",
@@ -8308,7 +8507,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:16:09.099633+00:00"
+      "checkedAt": "2026-11-05T21:16:09.099633+00:00",
+      "aiCheckedAt": "2026-11-05T23:43:08.261318+00:00"
     },
     {
       "id": "node/11703444045",
@@ -8738,10 +8938,25 @@
           "confidence": "automatic",
           "evidence": "Espresso 4.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Latte – Schale",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://noybern.ch/menu/",
+          "observedAt": "2026-11-05T23:42:25.791349+00:00",
+          "confidence": "ai",
+          "evidence": "Latte – Schale 6.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "4861980544f176f1ee5df6d9512d03f004a4f64c1724b4eb24db4a7efd1a6877"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:16:26.226072+00:00"
+      "checkedAt": "2026-11-05T21:16:26.226072+00:00",
+      "aiCheckedAt": "2026-11-05T23:43:18.250738+00:00"
     },
     {
       "id": "node/280528108",
@@ -8826,7 +9041,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:16:29.876966+00:00"
+      "checkedAt": "2026-11-05T21:16:29.876966+00:00",
+      "aiCheckedAt": "2026-11-05T23:50:26.678178+00:00"
     },
     {
       "id": "node/11417054366",
@@ -9169,10 +9385,25 @@
           "confidence": "automatic",
           "evidence": "Latte Macchiato 6",
           "alcoholFree": true
+        },
+        {
+          "name": "Flat White",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://petitcouteau.ch/drinks/",
+          "observedAt": "2026-11-05T22:30:35.467855+00:00",
+          "confidence": "ai",
+          "evidence": "Flat White Gross + 1.- 6",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "flat_white",
+          "sourceSha256": "ca8c706af89e19262345c89a66753fbb32285d32f92d1b928ac126229570c045"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:16:34.060982+00:00"
+      "checkedAt": "2026-11-05T21:16:34.060982+00:00",
+      "aiCheckedAt": "2026-11-05T22:30:57.335965+00:00"
     },
     {
       "id": "node/6123186369",
@@ -9500,7 +9731,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:16:44.822648+00:00"
+      "checkedAt": "2026-11-05T21:16:44.822648+00:00",
+      "aiCheckedAt": "2026-11-05T23:45:00.973189+00:00"
     },
     {
       "id": "node/4219531601",
@@ -9677,7 +9909,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:16:48.925471+00:00"
+      "checkedAt": "2026-11-05T21:16:48.925471+00:00",
+      "aiCheckedAt": "2026-11-05T23:22:51.722564+00:00"
     },
     {
       "id": "node/6554088370",
@@ -9693,9 +9926,53 @@
       ],
       "openingHours": "Mo-Th 11:00-15:00; Fr 11:00-15:00, 17:00-21:00; Sa 17:00-21:00",
       "outdoor": true,
-      "offers": [],
+      "offers": [
+        {
+          "name": "C1. Black Phin (đen)",
+          "priceChf": 4.2,
+          "volumeMl": null,
+          "sourceUrl": "https://www.queensbread.ch/menu",
+          "observedAt": "2026-11-05T23:11:46.007982+00:00",
+          "confidence": "ai",
+          "evidence": "C1. Black Phin (đen) CHF 4.20",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "d8721a41a66305c249cd4e2e4abccd692b6ba85268f3c98badd2d71f5c219c64"
+        },
+        {
+          "name": "C2. Condensed Phin (sữa)",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.queensbread.ch/menu",
+          "observedAt": "2026-11-05T23:11:46.007982+00:00",
+          "confidence": "ai",
+          "evidence": "C2. Condensed Phin (sữa) CHF 4.80",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "d8721a41a66305c249cd4e2e4abccd692b6ba85268f3c98badd2d71f5c219c64"
+        },
+        {
+          "name": "C3. Salt Cream Phin",
+          "priceChf": 6.2,
+          "volumeMl": null,
+          "sourceUrl": "https://www.queensbread.ch/menu",
+          "observedAt": "2026-11-05T23:11:46.007982+00:00",
+          "confidence": "ai",
+          "evidence": "C3. Salt Cream Phin CHF 6.20",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "d8721a41a66305c249cd4e2e4abccd692b6ba85268f3c98badd2d71f5c219c64"
+        }
+      ],
       "scrapeStatus": "review_required",
-      "checkedAt": "2026-11-05T21:16:49.935007+00:00"
+      "checkedAt": "2026-11-05T21:16:49.935007+00:00",
+      "aiCheckedAt": "2026-11-05T23:12:15.058858+00:00"
     },
     {
       "id": "node/11897158625",
@@ -10399,7 +10676,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:17:04.457313+00:00"
+      "checkedAt": "2026-11-05T21:17:04.457313+00:00",
+      "aiCheckedAt": "2026-11-05T22:35:16.111941+00:00"
     },
     {
       "id": "node/3106123157",
@@ -10818,10 +11096,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 4: Latte Macchiato 6.60",
           "alcoholFree": true
+        },
+        {
+          "name": "Café",
+          "priceChf": 5.2,
+          "volumeMl": null,
+          "sourceUrl": "https://www.simmentalerbrewhouse.ch/wp-content/uploads/2026/05/Karte-Brewhouse-04_26.pdf",
+          "observedAt": "2026-11-05T23:48:31.585058+00:00",
+          "confidence": "ai",
+          "evidence": "Café 5.20",
+          "alcoholFree": true,
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "d47f946791e00295679b6d032b672acba0e052f4a9416e6ad3a03f1586dccb35"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:17:23.563306+00:00"
+      "checkedAt": "2026-11-05T21:17:23.563306+00:00",
+      "aiCheckedAt": "2026-11-05T23:49:17.697898+00:00"
     },
     {
       "id": "way/1313090962",
@@ -10955,7 +11248,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:17:32.602487+00:00"
+      "checkedAt": "2026-11-05T21:17:32.602487+00:00",
+      "aiCheckedAt": "2026-11-05T23:55:22.894831+00:00"
     },
     {
       "id": "node/6352819896",
@@ -11048,7 +11342,6 @@
       "type": "cafe",
       "address": "Papiermühlestrasse 16",
       "postcode": "3003",
-      "addressSource": "https://www.openstreetmap.org/node/2311206307",
       "website": "https://www.npz.ch/infrastruktur-4/springgarten_cafe/",
       "cuisine": [],
       "openingHours": "Oct-Mar closed; We 11:30-14:00",
@@ -11097,10 +11390,26 @@
           "confidence": "automatic",
           "evidence": "PDF S. 1: Espresso 2.00 CHF",
           "alcoholFree": true
+        },
+        {
+          "name": "Kaffee",
+          "priceChf": 3.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.npz.ch/wp-content/uploads/2026/07/Menukarte-Springgarten-Cafe-2026.pdf",
+          "observedAt": "2026-11-05T23:50:29.587021+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee 3.50 CHF",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "033602a44da4ad8a4c8a8f7d0f0aff45fd31cf37a68a1c3db1d468603289f1b5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:17:41.432889+00:00"
+      "checkedAt": "2026-11-05T21:17:41.432889+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/2311206307",
+      "aiCheckedAt": "2026-11-05T23:51:36.504638+00:00"
     },
     {
       "id": "node/282774243",
@@ -11444,7 +11753,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:00.178990+00:00"
+      "checkedAt": "2026-11-05T21:18:00.178990+00:00",
+      "aiCheckedAt": "2026-11-05T23:21:49.443350+00:00"
     },
     {
       "id": "node/6448420114",
@@ -11502,10 +11812,25 @@
           "extractionModel": "claude-haiku-5-5",
           "coffeeType": "latte",
           "sourceSha256": "01bc44023a6aeae803a2669571ce807159038238359041321584b60721ec653a"
+        },
+        {
+          "name": "Kaffee",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://bern-westside.tararestaurant.ch/wp-content/uploads/2025/09/Menu-for-QR-code-2-scaled.png",
+          "observedAt": "2026-11-05T23:24:47.780322+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFEE 4.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "01bc44023a6aeae803a2669571ce807159038238359041321584b60721ec653a"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:01.927151+00:00"
+      "checkedAt": "2026-11-05T21:18:01.927151+00:00",
+      "aiCheckedAt": "2026-11-05T23:25:46.145396+00:00"
     },
     {
       "id": "node/9238999817",
@@ -11729,7 +12054,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:05.915853+00:00"
+      "checkedAt": "2026-11-05T21:18:05.915853+00:00",
+      "aiCheckedAt": "2026-11-05T23:53:40.689468+00:00"
     },
     {
       "id": "node/2687061491",
@@ -11776,10 +12102,95 @@
           "confidence": "automatic",
           "evidence": "PDF S. 3: Americano 4.60",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-11-05T23:15:56.786855+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 4.50 | double 5.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-11-05T23:15:56.786855+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto 4.10",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.4,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-11-05T23:15:56.786855+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 5.40 | grand 7.40",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Latte Macchiato 25 cl",
+          "priceChf": 6.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-11-05T23:15:56.786855+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato 25 cl 6.30 | 40cl 8.30",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Kaffee Crème",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_AA.pdf",
+          "observedAt": "2026-11-05T23:17:17.575322+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee Crème 4.80 | gross 6.00",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "7874d0c483223d83efee1d3da9beb59474d6573c34e0f4491d8eee5a2e4888a6"
+        },
+        {
+          "name": "Milchkaffee / Schale",
+          "priceChf": 5.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_AA.pdf",
+          "observedAt": "2026-11-05T23:17:17.575322+00:00",
+          "confidence": "ai",
+          "evidence": "Milchkaffee /Schale 5.30 | gross 7.00",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "7874d0c483223d83efee1d3da9beb59474d6573c34e0f4491d8eee5a2e4888a6"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:20:38.286164+00:00"
+      "checkedAt": "2026-11-05T21:20:38.286164+00:00",
+      "aiCheckedAt": "2026-11-05T23:18:59.141731+00:00"
     },
     {
       "id": "node/6855277335",
@@ -11828,10 +12239,95 @@
           "confidence": "automatic",
           "evidence": "PDF S. 3: Americano 4.60",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-11-05T23:15:56.798672+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso 4.50 | double 5.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 4.1,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-11-05T23:15:56.798672+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto 4.10",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Cappuccino",
+          "priceChf": 5.4,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-11-05T23:15:56.798672+00:00",
+          "confidence": "ai",
+          "evidence": "Cappuccino 5.40 | grand 7.40",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Latte Macchiato 25 cl",
+          "priceChf": 6.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+          "observedAt": "2026-11-05T23:15:56.798672+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato 25 cl 6.30 | 40cl 8.30",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "9c0998e243918a858bb06e2d295d9838518c8f92c91d0de22525269d0ccf11ed"
+        },
+        {
+          "name": "Kaffee Crème",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_AA.pdf",
+          "observedAt": "2026-11-05T23:17:17.587806+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee Crème 4.80 | gross 6.00",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "7874d0c483223d83efee1d3da9beb59474d6573c34e0f4491d8eee5a2e4888a6"
+        },
+        {
+          "name": "Milchkaffee / Schale",
+          "priceChf": 5.3,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_AA.pdf",
+          "observedAt": "2026-11-05T23:17:17.587806+00:00",
+          "confidence": "ai",
+          "evidence": "Milchkaffee /Schale 5.30 | gross 7.00",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "7874d0c483223d83efee1d3da9beb59474d6573c34e0f4491d8eee5a2e4888a6"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:20:39.900254+00:00"
+      "checkedAt": "2026-11-05T21:20:39.900254+00:00",
+      "aiCheckedAt": "2026-11-05T23:18:59.169728+00:00"
     },
     {
       "id": "node/1460424605",
@@ -12037,7 +12533,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:09.377661+00:00"
+      "checkedAt": "2026-11-05T21:18:09.377661+00:00",
+      "aiCheckedAt": "2026-11-05T23:56:33.837403+00:00"
     },
     {
       "id": "node/7893100199",
@@ -12131,7 +12628,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:19.143712+00:00"
+      "checkedAt": "2026-11-05T21:18:19.143712+00:00",
+      "aiCheckedAt": "2026-11-05T23:53:28.035581+00:00"
     },
     {
       "id": "node/11782849549",
@@ -12229,7 +12727,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:28.119868+00:00"
+      "checkedAt": "2026-11-05T21:18:28.119868+00:00",
+      "aiCheckedAt": "2026-11-05T22:43:15.212036+00:00"
     },
     {
       "id": "node/12610161101",
@@ -12387,7 +12886,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T21:18:36.519152+00:00"
+      "checkedAt": "2026-11-05T21:18:36.519152+00:00",
+      "aiCheckedAt": "2026-11-05T23:53:17.888840+00:00"
     },
     {
       "id": "node/9792700894",

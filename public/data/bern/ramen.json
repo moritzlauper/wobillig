@@ -1,0 +1,200 @@
+{
+  "generatedAt": "2026-11-06T00:02:11.002778+00:00",
+  "bars": [
+    {
+      "id": "node/2572061811",
+      "name": "Casino",
+      "lat": 46.9467627,
+      "lon": 7.4484841,
+      "type": "restaurant",
+      "address": "Casinoplatz 1",
+      "postcode": "3011",
+      "website": "https://www.casinobern.ch/kulinarik",
+      "openingHours": "Mo-Su,PH 11:30-14:00,17:45-23:00 open \"Brasserie\", We-Su 11:45-13:30,17:45-21:30 open \"Izakaya\", Mo-Su,PH 09:00-23:00 open \"Salon d'Or\"",
+      "cuisine": [
+        "italian",
+        "french",
+        "japanese"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Miso Sesam Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 21,
+          "sourceUrl": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1791889084/casino_bern_izakayabar_speisekarte_20261013.pdf",
+          "observedAt": "2026-11-05T23:34:25.641436+00:00",
+          "confidence": "ai",
+          "evidence": "MISO SESAM RAMEN 21",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-05T23:34:25.641436+00:00"
+    },
+    {
+      "id": "node/3271092775",
+      "name": "Huayuan",
+      "lat": 46.9410313,
+      "lon": 7.4172646,
+      "type": "restaurant",
+      "address": "Holligenstrasse 70",
+      "postcode": "3008",
+      "website": "https://www.fischermaetteli.ch",
+      "openingHours": "Tu-Fr 11:30-14:00,17:30-22:30; Sa,Su 17:30-22:30",
+      "cuisine": [
+        "chinese"
+      ],
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Niu Rou Mian - Ramen Nudelsuppe mit Rindfleisch",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.huayuan.ch/_files/ugd/c1b1f5_dd9a438a0ea54624b5e43fea5e3e2930.pdf",
+          "observedAt": "2026-11-06T00:00:39.496711+00:00",
+          "confidence": "ai",
+          "evidence": "Niu Rou Mian - Ramen Nudelsuppe mit Rindfleisch 26.50",
+          "alcoholFree": true,
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Niu Rou Mian - Ramennudel mit Rindfleisch & Gemüse",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.huayuan.ch/food-drinks",
+          "observedAt": "2026-11-06T00:00:39.496711+00:00",
+          "confidence": "ai",
+          "evidence": "牛肉面 Niu Rou Mian - Ramennudel mit Rindfleisch & Gemüse CHF 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Niu Rou Mian",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.huayuan.ch/food-drinks",
+          "observedAt": "2026-11-06T00:00:39.496711+00:00",
+          "confidence": "ai",
+          "evidence": "Niu Rou Mian - Ramennudel mit Rindfleisch & Gemüse CHF 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-06T00:00:39.496711+00:00"
+    },
+    {
+      "id": "node/2988406100",
+      "name": "Japigo",
+      "lat": 46.9477382,
+      "lon": 7.4419395,
+      "type": "restaurant",
+      "address": "Spitalgasse 33",
+      "postcode": "3011",
+      "website": "https://www.japigo.ch/",
+      "openingHours": "Tu-Sa 11:30-13:45, 17:30-20:30",
+      "cuisine": [
+        "japanese"
+      ],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Shoyu Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 25.0,
+          "sourceUrl": "https://japigo.ch/_upl/files/メインメニュー 2026年9月WEB版.pdf",
+          "observedAt": "2026-11-05T23:38:37.623154+00:00",
+          "confidence": "ai",
+          "evidence": "SHOYU RAMEN CHF 25",
+          "alcoholFree": true,
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso Ramen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.0,
+          "sourceUrl": "https://japigo.ch/_upl/files/メインメニュー 2026年9月WEB版.pdf",
+          "observedAt": "2026-11-05T23:38:37.623154+00:00",
+          "confidence": "ai",
+          "evidence": "MISO RAMEN CHF 26",
+          "alcoholFree": true,
+          "sourcePage": 10,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-05T23:38:37.623154+00:00"
+    },
+    {
+      "id": "node/3272891441",
+      "name": "Mondo",
+      "lat": 46.9542074,
+      "lon": 7.431179,
+      "type": "restaurant",
+      "address": "Länggassstrasse 44",
+      "postcode": "3012",
+      "website": "https://www.mondobern.com/",
+      "openingHours": "Tu-Fr 11:45-14:00,18:00-22:30; Sa 18:00-22:30",
+      "cuisine": [
+        "ramen"
+      ],
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Mondo Tantanmen (Mittagskarte)",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_adb16abc2bd64d46ac75d8f99f4d3ef1.pdf",
+          "observedAt": "2026-11-05T23:16:31.028274+00:00",
+          "confidence": "ai",
+          "evidence": "MONDO TANTANMEN 21.50 normaler Hunger 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Miso Ramen (Mittagskarte)",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_adb16abc2bd64d46ac75d8f99f4d3ef1.pdf",
+          "observedAt": "2026-11-05T23:16:31.028274+00:00",
+          "confidence": "ai",
+          "evidence": "MISO RAMEN 21.50 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Pumpkin Miso Ramen (Mittagskarte)",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 26.5,
+          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_adb16abc2bd64d46ac75d8f99f4d3ef1.pdf",
+          "observedAt": "2026-11-05T23:16:31.028274+00:00",
+          "confidence": "ai",
+          "evidence": "PUMPKIN MISO RAMEN 21.50 26.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-05T23:16:31.028274+00:00"
+    }
+  ]
+}
