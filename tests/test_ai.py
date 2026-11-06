@@ -80,8 +80,14 @@ class AITests(unittest.TestCase):
                 self.assertEqual(c.ask([{'type':'text','text':'menu'}]),{'offers':[]})
                 self.assertEqual(post.call_count,2)
             self.assertEqual(c.hits,1)
-            with patch.object(c,'post',side_effect=[{'input_tokens':100},{'stop_reason':'max_tokens','usage':{}}]):
+            # A cut-off answer is asked once more with more room; cut off again, it is discarded.
+            with patch.object(c,'post',side_effect=[{'input_tokens':100},{'stop_reason':'max_tokens','usage':{}},{'input_tokens':100},{'stop_reason':'max_tokens','usage':{}}]) as post:
                 with self.assertRaises(APIUnavailable):c.ask([{'type':'text','text':'different'}])
+                self.assertEqual(post.call_args_list[3].args[1]['max_tokens'], 20000)
+            long_list = [{'input_tokens':100},{'stop_reason':'max_tokens','usage':{}},{'input_tokens':100},
+                         {'stop_reason':'end_turn','content':[{'type':'text','text':'{"offers":[]}'}],'usage':{'input_tokens':100,'output_tokens':9000}}]
+            with patch.object(c,'post',side_effect=long_list):
+                self.assertEqual(c.ask([{'type':'text','text':'long wine list'}]),{'offers':[]})
 
 class APIErrorTests(unittest.TestCase):
     @patch.dict(os.environ, {'ANTHROPIC_API_KEY': 'test-secret'})

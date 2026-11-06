@@ -22,6 +22,8 @@ DEFAULT_BUDGET_USD = 20.00
 MAX_BUDGET_USD = 20.00
 MAX_INPUT_TOKENS = 100_000
 MAX_OUTPUT_TOKENS = 6000
+# A long wine list or drinks menu can need more: a cut-off answer is asked once more with this much room.
+RETRY_OUTPUT_TOKENS = 20000
 VERSION = '1'
 COFFEE = ['creme', 'espresso', 'double', 'ristretto', 'cappuccino', 'latte', 'milk', 'flat_white', 'americano', 'filter']
 KINDS = ['draft', 'bottle', 'can', 'unknown']
@@ -105,8 +107,8 @@ class Claude:
                 raise APIUnavailable(f'Anthropic HTTP {response.status_code}')
             time.sleep(2 ** (attempt + 1))
 
-    def ask(self, content, schema=SCHEMA, system=SYSTEM):
-        payload = {'model': MODEL, 'max_tokens': MAX_OUTPUT_TOKENS, 'system': system,
+    def ask(self, content, schema=SCHEMA, system=SYSTEM, max_tokens=MAX_OUTPUT_TOKENS):
+        payload = {'model': MODEL, 'max_tokens': max_tokens, 'system': system,
                    'messages': [{'role': 'user', 'content': content}],
                    'output_config': {'format': {'type': 'json_schema', 'schema': schema}}}
         key = hashlib.sha256((VERSION + json.dumps(payload, sort_keys=True)).encode()).hexdigest()
@@ -126,7 +128,7 @@ class Claude:
             raise APIUnavailable('Dokument überschreitet das Tokenlimit; keine Generierung')
         # Reserve at the expensive >100k tier, even though large prompts are rejected.
         # This also covers small count/usage differences and failed requests.
-        reserve = ((counted['input_tokens'] + 2000) * .50 + MAX_OUTPUT_TOKENS * 2.50) / 1_000_000
+        reserve = ((counted['input_tokens'] + 2000) * .50 + max_tokens * 2.50) / 1_000_000
         with self.lock:
             if self.disabled: raise APIUnavailable('Anthropic für diesen Lauf deaktiviert')
             if reason := self.limit_reason(reserve): raise BudgetExhausted(reason)
@@ -139,6 +141,9 @@ class Claude:
             input_rate, output_rate = (.10, .50) if input_tokens <= MAX_INPUT_TOKENS else (.50, 2.50)
             actual = (input_tokens * input_rate + usage['output_tokens'] * output_rate) / 1_000_000
         with self.lock: self.spent += actual - reserve
+        if reply.get('stop_reason') == 'max_tokens' and max_tokens < RETRY_OUTPUT_TOKENS:
+            # Cut off by length, not refused: one more try with room for the whole list (e.g. Gamper Bar's wine list).
+            return self.ask(content, schema, system, RETRY_OUTPUT_TOKENS)
         if reply.get('stop_reason') != 'end_turn': raise APIUnavailable('Unvollständige KI-Antwort verworfen')
         try:
             result = json.loads(''.join(x['text'] for x in reply['content'] if x['type'] == 'text'))
