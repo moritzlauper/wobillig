@@ -4,6 +4,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
+    "api/apartments.ts": {
+      "includeFiles": "public/data/districts.json",
+      "maxDuration": 60
+    },
     "api/tip.ts": {
       "includeFiles": "public/data/**/coffee.json",
       "maxDuration": 30

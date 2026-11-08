@@ -28,6 +28,7 @@ import { venueCorrectionForm } from './venue-correction-form';
 import { applyVenueCorrections, type VenueCorrection } from './venue-corrections';
 import { categoryNavigation } from './category-navigation';
 import { customMaps } from './custom-maps';
+import { apartments, APARTMENT_MAP_ID } from './apartments';
 import { pizzaMenuContent } from './pizza-menu';
 import { pizzaVarieties, beerVarieties, cocktailVarieties, softdrinkVarieties, hasBeerSelection, hasGlutenFreePizza, matchesBeerName, matchesPizza } from './data';
 import { beerGroupLabels, parseBeerSelection } from './beer-selection';
@@ -75,6 +76,7 @@ let softdrinkOptions: ReturnType<typeof softdrinkVarieties> = [];
 let cocktailOptions: ReturnType<typeof cocktailVarieties> = [];
 let locationCatalogue: Bar[] = [];
 let customMapUI: ReturnType<typeof customMaps> | undefined;
+let apartmentUI: ReturnType<typeof apartments> | undefined;
 let addedVenues: Bar[] = [];
 let venueCorrections: VenueCorrection[] = [];
 let userMarker: L.CircleMarker | undefined;
@@ -383,7 +385,7 @@ function syncSearchRow() {
   document.querySelector('.toolbar')!.classList.toggle('search-open', !$('filters').hidden || Boolean($<HTMLInputElement>('search').value || $<HTMLInputElement>('pizza-query').value));
 }
 function syncControls() {
-  if (customMapUI?.isOpen) return;
+  if (customMapUI?.isOpen || apartmentUI?.isOpen) return;
   const heading = t('wobillig {city}', { city: cityName });
   if ($('map-title').textContent !== heading) $('map-title').textContent = heading;
   document.title = coffee() ? coffeePageTitle : t('{heading} vergleichen | wobillig', { heading });
@@ -1590,7 +1592,7 @@ async function init() {
   exampleList = exampleList.slice(0, SMART_SEARCH_PLACEHOLDER_LIMIT);
   rotatePlaceholder();
   placeholderInterval = setInterval(rotatePlaceholder, 4500);
-  if (initial.has('map')) await customMapUI?.load(initial.get('map')!);
+  if (initial.has('map') && initial.get('map') !== APARTMENT_MAP_ID) await customMapUI?.load(initial.get('map')!);
   const sharedSearch = initial.get('s')?.trim();
   if (sharedSearch) await applySmartSearch(sharedSearch.slice(0, 200));
   const linkedId = initial.get('bar');
@@ -1610,6 +1612,12 @@ async function init() {
   }
 }
 customMapUI = customMaps(cityId, () => selectableLocations(venues, locationCatalogue), () => { render(); map.invalidateSize(); }, categoryNav);
+// The apartment listings cover the city of Zürich only.
+if (cityId === 'zurich') {
+  apartmentUI = apartments(categoryNav, () => { render(); map.invalidateSize(); }, toast);
+  // Links from alert emails open the apartment map right away, without waiting for the price data.
+  if (initial.get('map') === APARTMENT_MAP_ID) void apartmentUI.openFromLink();
+}
 syncControls();
 void init();
 void setupTip($<HTMLButtonElement>('tip-coffee'), cityId, toast);

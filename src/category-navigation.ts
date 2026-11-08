@@ -15,7 +15,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   let counts = emptyCategoryCounts(), unavailable: ReadonlySet<Category> = new Set(), active: Drink = 'coffee';
   let requestVersion = 0;
   let pendingClicks = Promise.resolve();
-  let mapButtons: HTMLButtonElement[] = [], savedMapButtons: HTMLButtonElement[] = [];
+  let mapButtons: HTMLButtonElement[] = [], savedMapButtons: HTMLButtonElement[] = [], featuredMapButtons: HTMLButtonElement[] = [];
   let createButton: HTMLButtonElement | undefined;
   const buttons = Object.fromEntries(categories.map(category => {
     const button = document.createElement('button');
@@ -64,7 +64,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     for (const button of savedMapButtons) {
       button.textContent = button.dataset.mapName! + (publicIds.has(button.dataset.customMap) ? ` · ${t('Community-Map')}` : '');
     }
-    for (const [label, items] of [[t('Meine Maps'), savedMapButtons], [t('Community-Maps'), publicButtons]] as const) {
+    for (const [label, items] of [[t('Maps'), featuredMapButtons], [t('Meine Maps'), savedMapButtons], [t('Community-Maps'), publicButtons]] as const) {
       if (!items.length) continue;
       const group = document.createElement('div');
       group.className = 'custom-map-menu-group';
@@ -74,7 +74,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
       group.append(heading, ...items); more.append(group);
     }
     if (createButton) more.append(createButton);
-    moreContainer.hidden = !order.some(collapsed) && !mapButtons.length && !savedMapButtons.length && !createButton;
+    moreContainer.hidden = !order.some(collapsed) && !mapButtons.length && !savedMapButtons.length && !featuredMapButtons.length && !createButton;
     if (moreContainer.hidden) {
       more.hidden = true;
       toggle.setAttribute('aria-expanded', 'false');
@@ -133,6 +133,11 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
         button.onclick = () => { close(); load(map.id); };
         return button;
       });
+      render();
+    },
+    // Maps run by wobillig itself, such as the apartment map; they open their own view.
+    setFeaturedMaps(buttons: HTMLButtonElement[]) {
+      featuredMapButtons = buttons;
       render();
     },
     close,

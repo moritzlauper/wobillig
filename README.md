@@ -24,6 +24,18 @@ Die Preise stammen aus öffentlich zugänglichen Speise- und Getränkekarten der
 - Lokale lassen sich per Link teilen. Es gibt einen Hell- und einen Dunkelmodus sowie eine deutsche und eine englische Oberfläche.
 - «Plattformkosten stützen» ist ein freiwilliger Beitrag an Hosting, Speicher und KI-Scan, bezahlt per TWINT oder Karte über Stripe. Der Betrag ist in allen Städten CHF 2.00.
 
+### Wohnungen Zürich
+
+Unter «Weitere» → «Maps» steht die Wohnungskarte für die Stadt Zürich (`/?map=wohnungen`). Sie öffnet wie eine eigene Map in einer separaten Ansicht, die Kategorien und Preisfilter sind dort ausgeblendet. Die Inserate sammelt [angebunden](https://github.com/moritzlauper/angebunden) alle fünf Minuten aus Flatfox, Ron Orp, WOKO, Stiftung PWG, ABZ und weiteren Genossenschaften (`wohnungen.json` auf dem Zweig `wohnungen`). wobillig lädt die Datei über `/api/apartments?data=1`, ohne das Gedächtnis des Sammlers und zwei Minuten im CDN zwischengespeichert. Lokal ohne API liest die Seite die Datei direkt von GitHub.
+
+- Filter wie bei angebunden: Miete, Zimmer, Fläche, Art, Dauer (unbefristet, ab 1 Jahr, befristet), Ausstattung laut Inserat, Quellen, mittlere ÖV-Reisezeit, Stichwort, nur neue, nur gemerkte, ohne Tausch und Betrugsverdacht. Dazu die Stadtkreise aus `public/data/districts.json` und selbst eingezeichnete Gebiete. Aktive Filter aus dem Filterfeld stehen als Chips unter der Leiste.
+- Merken und Ausblenden bleiben im Browser. Weitere Portale (Homegate, ImmoScout24 und andere) sind mit denselben Filtern verlinkt.
+- Die Filterlogik steht in `src/apartment-data.ts` und gilt gleich für Karte und Suchabo-Mails.
+
+**Suchabos.** «Suchabo per E-Mail» speichert die aktuellen Filter mit einer E-Mail-Adresse (`server/apartments.ts`, privater Blob `apartments/<umgebung>.json`). Zuerst kommt ein Bestätigungslink (Double-Opt-in), unbestätigte Abos samt Adresse verschwinden nach 48 Stunden. Danach schickt der Versand zuerst eine Mail «Dein Suchabo ist aktiv» mit den neuesten passenden Wohnungen, später nur noch Inserate, die neu sind und passen, jedes höchstens einmal. Jede Mail hat einen Abmeldelink und einen One-Click-Abmeldeheader. Der Workflow `.github/workflows/apartment-alerts.yml` ruft alle zehn Minuten `POST /api/apartments?action=dispatch` auf. Versendet wird über die bestehenden SMTP-Variablen. Grenzen: zehn Abos pro Adresse, Anmeldungen pro IP und Adresse begrenzt, Turnstile wie bei Beiträgen.
+
+Einrichtung, einmalig: einen zufälligen Wert (mindestens 16 Zeichen, etwa `openssl rand -hex 24`) als `APARTMENT_ALERTS_SECRET` in Vercel (Production) und als gleichnamiges Repository-Secret in GitHub hinterlegen, dann neu deployen. Ohne Secret überspringt der Workflow den Versand, die Karte funktioniert trotzdem.
+
 ### Günstig-Filter
 
 Aufrufe ohne konkrete Filter starten immer mit «Günstig», auch wenn der Filter bei einem früheren Besuch aufgehoben wurde. Ein Klick auf den Günstig-Button hebt den Filter auf. Diese Wahl steht danach als `cheap=0` in der Adresse und gilt nur für diesen Link. Ist «Günstig» aktiv und sonst nichts gewählt, bleibt die Adresse ohne Zusatz, also `wobillig.ch` oder `wobillig.ch/bern`. In allen anderen Fällen enthalten geteilte Links die Wahl als `cheap=1` oder `cheap=0`.
@@ -172,6 +184,8 @@ Alle Werte sind Servervariablen und bekommen nie ein `VITE_`-Präfix. Die Vorlag
 | `COMMUNITY_WRITES_PAUSED`, `COMMUNITY_PHOTOS_PAUSED` | Notschalter, siehe unten |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `COMMUNITY_EMAIL_FROM`, `COMMUNITY_EMAIL_DAILY_LIMIT` | Versand der Bestätigungscodes und der Hinweise auf neue Map-Anfragen über Infomaniak |
 | `EMAIL_VERIFICATION_REQUIRED`, `COMMUNITY_AUTH_SECRET` | Pflicht-Bestätigung und Signatur der Konto-Sessions |
+| `APARTMENT_ALERTS_SECRET` | Schlüssel, mit dem der Workflow den Versand der Wohnungs-Suchabos auslöst. Gleicher Wert als GitHub-Secret |
+| `APARTMENTS_DATA_URL` | Optional: andere Quelle für `wohnungen.json` |
 | `PHOTON_URL`, `SITE_URL` | Optional: eigener Photon-Endpunkt, abweichende Domain |
 
 ### Notfall
@@ -190,6 +204,7 @@ Snapshots nie blind zurückspielen. Beiträge, die nach dem Snapshot eingegangen
 | --- | --- | --- |
 | Checks | Push und Pull Request | Vitest, Build, Playwright und Python-Tests |
 | Refresh city prices | alle 21 Tage montags 04:23 UTC, nächste Läufe 9. und 30. November 2026 | Preise aller Städte neu einlesen und auf `main` committen |
+| Apartment alerts | alle 10 Minuten | Neue Wohnungen an bestätigte Suchabos mailen, braucht `APARTMENT_ALERTS_SECRET` |
 | Production health | zweimal pro Stunde | Startseite, Rechtsseiten, Bot-Schutz und öffentliche APIs aller Städte prüfen, nur lesend |
 | Private community backup | alle 6 Stunden | Community-Daten im privaten Blob sichern (32 rotierende Stände, rund acht Tage) und die Prüfwarteschlange kontrollieren |
 | Refresh private promotion pilot | täglich | Privater Aktionspilot mit dem Coop-Prospekt, nur auf der Prüfseite sichtbar |

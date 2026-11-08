@@ -1,0 +1,33 @@
+# Sends the apartment alerts (Suchabos) of the Zürich apartment map. The work
+# happens in the Vercel function /api/apartments, which has the SMTP settings;
+# this workflow only knocks every ten minutes. angebunden publishes new listings
+# every five minutes. Needs the repository secret APARTMENT_ALERTS_SECRET with
+# the same value as the Vercel variable of that name; without it the run skips.
+name: Apartment alerts
+on:
+  schedule:
+    - cron: '4,14,24,34,44,54 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: apartment-alerts
+  cancel-in-progress: false
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Send new listings
+        env:
+          SECRET: ${{ secrets.APARTMENT_ALERTS_SECRET }}
+        run: |
+          if [ -z "$SECRET" ]; then
+            echo "::notice::APARTMENT_ALERTS_SECRET is not set, no alerts sent."
+            exit 0
+          fi
+          status=$(curl -sS -o result.json -w '%{http_code}' --max-time 90 -X POST \
+            -H "Authorization: Bearer $SECRET" "https://wobillig.ch/api/apartments?action=dispatch")
+          cat result.json; echo
+          echo "$(date -u +%H:%M) HTTP $status $(cat result.json)" >> "$GITHUB_STEP_SUMMARY"
+          [ "$status" = "200" ]
