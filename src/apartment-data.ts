@@ -32,15 +32,10 @@ export type Apartment = {
   merkmale?: ApartmentFeature[];
   tausch?: boolean;
   vorsicht?: boolean;
-  /** Mean public transport travel time to any address in the city, in minutes, and its rank among all houses. */
-  oev: number | null;
-  oevRang: number | null;
-  kultur: number | null;
-  kulturRang: number | null;
 };
 
 export type ApartmentSourceStatus = { id: ApartmentSource; name: string; anzahl: number; ok: boolean; zuletzt: string | null };
-export type ApartmentData = { erstellt: string; haeuser: number; quellen: ApartmentSourceStatus[]; inserate: Apartment[] };
+export type ApartmentData = { erstellt: string; quellen: ApartmentSourceStatus[]; inserate: Apartment[] };
 
 export const apartmentSourceNames: Record<ApartmentSource, string> = {
   flatfox: 'Flatfox', ronorp: 'Ron Orp', woko: 'WOKO', pwg: 'Stiftung PWG', abz: 'ABZ', gen: 'Genossenschaften',
@@ -56,8 +51,7 @@ export const apartmentFeatureLabels: Record<ApartmentFeature, string> = {
 };
 export const apartmentFeatures = Object.keys(apartmentFeatureLabels) as ApartmentFeature[];
 export const apartmentSortLabels = {
-  neu: 'Neueste zuerst', guenstig: 'Günstigste zuerst', m2: 'Preis pro m²',
-  oev: 'Beste ÖV-Anbindung', kultur: 'Meiste Kultur in der Nähe', gross: 'Grösste zuerst',
+  neu: 'Neueste zuerst', guenstig: 'Günstigste zuerst', m2: 'Preis pro m²', gross: 'Grösste zuerst',
 } as const;
 export type ApartmentSort = keyof typeof apartmentSortLabels;
 export const apartmentDurationLabels = { alle: 'Alle', unbefristet: 'Unbefristet', lang: 'Ab 1 Jahr', befristet: 'Befristet' } as const;
@@ -74,7 +68,6 @@ export type ApartmentFilter = {
   arten: ApartmentKind[];
   /** Deselected sources, so new sources show up on their own. */
   quellenAus: ApartmentSource[];
-  oevMax: number | null;
   text: string;
   dauer: ApartmentDuration;
   merkmale: ApartmentFeature[];
@@ -84,6 +77,11 @@ export type ApartmentFilter = {
   kreise: number[];
   gebiete: ApartmentArea[];
   sorte: ApartmentSort;
+  /**
+   * «Günstig», on by default like on the price maps: hides the more expensive listings
+   * of the selection (see cheapApartments). Has no effect once a rent limit is set.
+   */
+  guenstig: boolean;
   /** Page-only filters; an alert ignores them. */
   nurNeu: boolean;
   nurGemerkt: boolean;
@@ -91,8 +89,8 @@ export type ApartmentFilter = {
 
 export const emptyApartmentFilter = (): ApartmentFilter => ({
   mieteMax: null, zimmerMin: null, zimmerMax: null, flaecheMin: null,
-  arten: [...apartmentKinds], quellenAus: [], oevMax: null, text: '', dauer: 'alle',
-  merkmale: [], ohneZweifel: false, kreise: [], gebiete: [], sorte: 'neu', nurNeu: false, nurGemerkt: false,
+  arten: [...apartmentKinds], quellenAus: [], text: '', dauer: 'alle',
+  merkmale: [], ohneZweifel: false, kreise: [], gebiete: [], sorte: 'neu', guenstig: true, nurNeu: false, nurGemerkt: false,
 });
 
 export const DAY_MS = 24 * 3600 * 1000;
@@ -123,7 +121,6 @@ export function matchesApartment(i: Apartment, f: ApartmentFilter, context: Apar
   if (f.zimmerMin != null && (i.zimmer == null || i.zimmer < f.zimmerMin)) return false;
   if (f.zimmerMax != null && (i.zimmer == null || i.zimmer > f.zimmerMax)) return false;
   if (f.flaecheMin != null && (i.flaeche == null || i.flaeche < f.flaecheMin)) return false;
-  if (f.oevMax != null && (i.oev == null || i.oev > f.oevMax)) return false;
   if (f.nurNeu && context.now - Date.parse(i.erstGesehen) > DAY_MS) return false;
   if (f.dauer === 'befristet' && !i.befristet) return false;
   if (f.dauer === 'unbefristet' && i.befristet) return false;
@@ -151,8 +148,6 @@ export function sortApartments(list: Apartment[], sort: ApartmentSort): Apartmen
     neu: i => -Date.parse(i.erstGesehen),
     guenstig: i => missingLast(i.miete, 1),
     m2: i => i.miete != null && i.flaeche ? i.miete / i.flaeche : Infinity,
-    oev: i => missingLast(i.oev, 1),
-    kultur: i => missingLast(i.kultur, -1),
     gross: i => missingLast(i.flaeche, -1),
   };
   return [...list].sort((a, b) => key[sort](a) - key[sort](b));
@@ -184,7 +179,6 @@ export function parseApartmentFilter(value: unknown): ApartmentFilter {
     flaecheMin: numberOrNull(v.flaecheMin, 0, 2000),
     arten: Array.isArray(v.arten) ? arten : base.arten,
     quellenAus: pick(v.quellenAus, apartmentSources),
-    oevMax: numberOrNull(v.oevMax, 0, 120),
     text: typeof v.text === 'string' ? v.text.slice(0, 120) : '',
     dauer: typeof v.dauer === 'string' && Object.hasOwn(apartmentDurationLabels, v.dauer) ? v.dauer as ApartmentDuration : 'alle',
     merkmale: pick(v.merkmale, apartmentFeatures),
@@ -192,6 +186,7 @@ export function parseApartmentFilter(value: unknown): ApartmentFilter {
     kreise: Array.isArray(v.kreise) ? [...new Set(v.kreise.filter((n): n is number => Number.isInteger(n) && n >= 1 && n <= 12))] : [],
     gebiete: areas,
     sorte: typeof v.sorte === 'string' && Object.hasOwn(apartmentSortLabels, v.sorte) ? v.sorte as ApartmentSort : 'neu',
+    guenstig: v.guenstig !== false,
     nurNeu: v.nurNeu === true,
     nurGemerkt: v.nurGemerkt === true,
   };
@@ -200,6 +195,45 @@ export function parseApartmentFilter(value: unknown): ApartmentFilter {
 /** The filter an alert stores: page-only switches are dropped. */
 export function alertFilter(f: ApartmentFilter): ApartmentFilter {
   return { ...parseApartmentFilter(f), nurNeu: false, nurGemerkt: false };
+}
+
+// «Günstig»: a WG room and a family flat do not compete on price, so the limit is set per
+// type and room count. A group with enough listings keeps its cheaper half (ties included);
+// a smaller group borrows the limit of its type as a whole, and stays whole if that is small
+// too. With few listings overall, or if the cheap selection would leave too little, nothing
+// is filtered.
+export const CHEAP_SHARE = 0.5, CHEAP_MIN_GROUP = 8, CHEAP_MIN_TOTAL = 40, CHEAP_MIN_KEEP = 20;
+const roomGroup = (i: Apartment) => `${i.art}:${i.zimmer == null ? '?' : Math.min(5, Math.floor(i.zimmer))}`;
+
+/** Whether «Günstig» applies to this filter: it is on and no rent limit of its own is set. */
+export const cheapActive = (f: ApartmentFilter) => f.guenstig && f.mieteMax == null && !f.nurGemerkt;
+
+/** Keeps the cheaper listings of a selection; `applied` is false when nothing was filtered. */
+export function cheapApartments(list: Apartment[]): { list: Apartment[]; applied: boolean } {
+  if (list.filter(i => i.miete != null).length < CHEAP_MIN_TOTAL) return { list, applied: false };
+  const limitsBy = (key: (i: Apartment) => string) => {
+    const prices = new Map<string, number[]>();
+    for (const i of list) if (i.miete != null) prices.set(key(i), [...(prices.get(key(i)) || []), i.miete]);
+    const limits = new Map<string, number>();
+    for (const [group, values] of prices) {
+      if (values.length < CHEAP_MIN_GROUP) continue;
+      values.sort((a, b) => a - b);
+      limits.set(group, values[Math.ceil(values.length * CHEAP_SHARE) - 1]);
+    }
+    return limits;
+  };
+  const byRooms = limitsBy(roomGroup), byKind = limitsBy(i => i.art);
+  const cheap = list.filter(i => {
+    const limit = byRooms.get(roomGroup(i)) ?? byKind.get(i.art);
+    return limit === undefined || (i.miete != null && i.miete <= limit);
+  });
+  return cheap.length < CHEAP_MIN_KEEP || cheap.length === list.length ? { list, applied: false } : { list: cheap, applied: true };
+}
+
+/** The listings a filter shows: the per-listing rules, then «Günstig» over the whole selection. */
+export function filterApartments(list: Apartment[], f: ApartmentFilter, context: ApartmentContext) {
+  const matching = list.filter(i => matchesApartment(i, f, context));
+  return cheapActive(f) ? cheapApartments(matching) : { list: matching, applied: false };
 }
 
 /** Swiss number format with apostrophes, as on wobillig. */
@@ -224,6 +258,7 @@ export function describeApartmentFilter(f: ApartmentFilter, tr: (text: string, v
     : f.zimmerMin != null ? tr('ab {rooms}', { rooms: roomsLabel(f.zimmerMin) }) : f.zimmerMax != null ? tr('bis {rooms}', { rooms: roomsLabel(f.zimmerMax) }) : null;
   const kinds = f.arten.length && f.arten.length < apartmentKinds.length ? f.arten.map(kind => tr(apartmentKindLabels[kind])).join(', ') : null;
   const parts = [
+    cheapActive(f) ? tr('Günstig') : null,
     kinds,
     f.mieteMax != null ? tr('bis CHF {price}', { price: chf(f.mieteMax) }) : null,
     rooms ? tr('{rooms} Zi.', { rooms }) : null,
@@ -255,9 +290,9 @@ export function slimApartmentData(raw: unknown): ApartmentData {
     && typeof i.erstGesehen === 'string' && apartmentKinds.includes(i.art));
   return {
     erstellt: value.erstellt,
-    haeuser: typeof value.haeuser === 'number' ? value.haeuser : 0,
     quellen: Array.isArray(value.quellen) ? value.quellen.filter(q => q && apartmentSources.includes(q.id)) : [],
-    inserate,
+    // Transit and culture scores belong to angebunden's map; wobillig shows neither.
+    inserate: inserate.map(({ oev: _oev, oevRang: _oevRang, kultur: _kultur, kulturRang: _kulturRang, ...rest }: Apartment & Record<string, unknown>) => rest as Apartment),
   };
 }
 

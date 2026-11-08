@@ -3,14 +3,14 @@
 // alert stores a filter and an email address; after a double opt-in, every
 // dispatch run mails the listings that are new and match the filter, checked with
 // the same function as the map (src/apartment-data.ts).
-import { randomBytes, randomUUID, timingSafeEqual } from 'node:crypto';
+import { createHmac, randomBytes, randomUUID, timingSafeEqual } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { get, put, BlobPreconditionFailedError } from '@vercel/blob';
 import nodemailer from 'nodemailer';
 import { InputError } from '../src/community.js';
 import { translate, type Locale } from '../src/i18n.js';
 import {
-  alertFilter, apartmentChecksums, apartmentFacts, chf, describeApartmentFilter, matchesApartment, parseApartmentFilter, slimApartmentData,
+  alertFilter, apartmentChecksums, apartmentFacts, chf, describeApartmentFilter, filterApartments, parseApartmentFilter, slimApartmentData,
   type Apartment, type ApartmentData, type ApartmentFilter,
 } from '../src/apartment-data.js';
 
@@ -321,7 +321,8 @@ export async function dispatchAlerts(store: ApartmentStore, data: ApartmentData,
     if (result.mails >= maxMails || Date.now() > deadline) { result.deferred++; continue; }
     result.checked++;
     const filter = alertFilter(alert.filter);
-    const matching = data.inserate.filter(i => matchesApartment(i, filter, { now, district }));
+    // «Günstig» counts over everything that matches now, exactly as on the map.
+    const matching = filterApartments(data.inserate, filter, { now, district }).list;
     const known = new Set(alert.known);
     const fresh = (alert.welcomed
       ? matching.filter(i => !apartmentChecksums(i).some(sum => known.has(sum)) && (!alert.checkedUntil || i.erstGesehen > alert.checkedUntil))
@@ -349,8 +350,19 @@ export async function dispatchAlerts(store: ApartmentStore, data: ApartmentData,
   return result;
 }
 
+/**
+ * The scheduled workflow proves itself with a key both sides already have: an HMAC of
+ * BLOB_READ_WRITE_TOKEN, which is stored in Vercel and as a GitHub secret anyway.
+ * APARTMENT_ALERTS_SECRET (or CRON_SECRET) works as well, sent as is.
+ */
+export function dispatchKeys(): string[] {
+  const keys = [process.env.APARTMENT_ALERTS_SECRET, process.env.CRON_SECRET].filter((key): key is string => Boolean(key && key.length >= 16));
+  const blob = process.env.BLOB_READ_WRITE_TOKEN;
+  if (blob) keys.push(createHmac('sha256', blob).update('wobillig-apartment-alerts').digest('hex'));
+  return keys;
+}
 export function dispatchAuthorized(header: string | undefined): boolean {
-  const secret = process.env.APARTMENT_ALERTS_SECRET || process.env.CRON_SECRET;
-  if (!secret || secret.length < 16 || !header?.startsWith('Bearer ')) return false;
-  return sameToken(header.slice(7), secret);
+  if (!header?.startsWith('Bearer ')) return false;
+  const given = header.slice(7);
+  return dispatchKeys().some(key => sameToken(given, key));
 }

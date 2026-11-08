@@ -1,8 +1,9 @@
 # Sends the apartment alerts (Suchabos) of the Zürich apartment map. The work
 # happens in the Vercel function /api/apartments, which has the SMTP settings;
 # this workflow only knocks every ten minutes. angebunden publishes new listings
-# every five minutes. Needs the repository secret APARTMENT_ALERTS_SECRET with
-# the same value as the Vercel variable of that name; without it the run skips.
+# every five minutes. It signs in with an HMAC of BLOB_READ_WRITE_TOKEN, which
+# GitHub and Vercel both have already; APARTMENT_ALERTS_SECRET (same value in
+# both places) takes precedence when set.
 name: Apartment alerts
 on:
   schedule:
@@ -21,9 +22,13 @@ jobs:
       - name: Send new listings
         env:
           SECRET: ${{ secrets.APARTMENT_ALERTS_SECRET }}
+          BLOB: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: |
+          if [ -z "$SECRET" ] && [ -n "$BLOB" ]; then
+            SECRET=$(printf '%s' 'wobillig-apartment-alerts' | openssl dgst -sha256 -hmac "$BLOB" -r | cut -d' ' -f1)
+          fi
           if [ -z "$SECRET" ]; then
-            echo "::notice::APARTMENT_ALERTS_SECRET is not set, no alerts sent."
+            echo "::notice::Neither APARTMENT_ALERTS_SECRET nor BLOB_READ_WRITE_TOKEN is set, no alerts sent."
             exit 0
           fi
           status=$(curl -sS -o result.json -w '%{http_code}' --max-time 90 -X POST \

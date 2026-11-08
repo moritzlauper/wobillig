@@ -528,7 +528,7 @@ input::placeholder { color: var(--subtle); opacity: 1; }
   #apartment-view .apartment-actions { display: none; }
   .apartment-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 8px; }
   .apartment-controls select, .apartment-controls input, .apartment-controls button { min-height: 34px; width: 100%; min-width: 0; }
-  .apartment-controls #apartment-text { grid-column: 1 / -1; }
+  .apartment-controls #apartment-text { grid-column: span 2; }
   .apartment-rent-label { display: none; }
   .apartment-rent { min-width: 0; }
   #apartment-rent { width: 100%; }

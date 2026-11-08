@@ -1,7 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { IncomingMessage, ServerResponse } from 'node:http';
+import { createHmac } from 'node:crypto';
 import {
-  alertFilter, describeApartmentFilter, emptyApartmentFilter, matchesApartment, parseApartmentFilter, slimApartmentData, sortApartments,
+  alertFilter, cheapApartments, describeApartmentFilter, filterApartments, emptyApartmentFilter, matchesApartment, parseApartmentFilter, slimApartmentData, sortApartments,
   type Apartment, type ApartmentData, type ApartmentFilter,
 } from '../src/apartment-data';
 import { translate } from '../src/i18n';
@@ -21,7 +22,7 @@ const now = Date.parse('2026-11-09T10:00:00Z');
 const listing = (id: string, values: Partial<Apartment> = {}): Apartment => ({
   id, links: [{ quelle: 'flatfox', url: `https://flatfox.ch/de/wohnung/${id}/` }], titel: `Wohnung ${id}`, art: 'wohnung',
   strasse: 'Langstrasse 1', plz: '8004', ort: 'Zürich', lon: 8.528, lat: 47.378, zimmer: 3, flaeche: 70, miete: 2100,
-  bezug: 'sofort', bild: null, erstGesehen: '2026-11-09T09:00:00Z', oev: 25, oevRang: 100, kultur: 50, kulturRang: 200, ...values,
+  bezug: 'sofort', bild: null, erstGesehen: '2026-11-09T09:00:00Z', ...values,
 });
 const filterWith = (values: Partial<ApartmentFilter>) => ({ ...emptyApartmentFilter(), ...values });
 const de = (text: string, vars?: Record<string, string | number>) => translate('de', text, vars);
@@ -42,7 +43,6 @@ describe('apartment filter', () => {
     expect(matchesApartment(listing('c', { links: [{ quelle: 'flatfox', url: 'https://flatfox.ch/x' }, { quelle: 'ronorp', url: 'https://ronorp.net/x' }] }), filterWith({ quellenAus: ['flatfox'] }), ctx)).toBe(true);
     expect(matchesApartment(a, filterWith({ text: 'langstrasse 8004' }), ctx)).toBe(true);
     expect(matchesApartment(a, filterWith({ text: 'seefeld' }), ctx)).toBe(false);
-    expect(matchesApartment(a, filterWith({ oevMax: 22 }), ctx)).toBe(false);
   });
 
   it('handles lease length, features, doubts, new and saved listings', () => {
@@ -91,18 +91,42 @@ describe('apartment filter', () => {
     expect(parseApartmentFilter('nonsense')).toEqual(emptyApartmentFilter());
   });
 
+  it('«Günstig» keeps the cheaper half per type and room count, only with enough listings', () => {
+    const rooms = (art: Apartment['art'], zimmer: number, prices: number[]) => prices.map((miete, k) => listing(`${art}${zimmer}-${k}`, { art, zimmer, miete }));
+    // 10 WG rooms 700–1600 and 30 three-room flats 2000–4900: each group keeps its cheaper half.
+    const list = [...rooms('wg', 1, [700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600]), ...rooms('wohnung', 3, Array.from({ length: 30 }, (_, k) => 2000 + k * 100))];
+    const cheap = cheapApartments(list);
+    expect(cheap.applied).toBe(true);
+    expect(Math.max(...cheap.list.filter(i => i.art === 'wg').map(i => i.miete!))).toBe(1100);
+    expect(Math.max(...cheap.list.filter(i => i.art === 'wohnung').map(i => i.miete!))).toBe(3400);
+    // Without a price a listing cannot count as cheap in a filtered group.
+    expect(cheapApartments([...list, listing('unknown', { zimmer: 3, miete: null })]).list.some(i => i.id === 'unknown')).toBe(false);
+    // A small group stays whole.
+    const houses = rooms('haus', 5, [5000, 9000]);
+    expect(cheapApartments([...list, ...houses]).list.filter(i => i.art === 'haus')).toHaveLength(2);
+    // Few listings: nothing filtered.
+    expect(cheapApartments(list.slice(0, 30))).toMatchObject({ applied: false });
+    // A rent limit of its own switches it off.
+    expect(filterApartments(list, filterWith({}), { now }).list).toHaveLength(cheap.list.length);
+    expect(filterApartments(list, filterWith({ mieteMax: 5000 }), { now }).list).toHaveLength(list.length);
+    expect(filterApartments(list, filterWith({ guenstig: false }), { now }).list).toHaveLength(list.length);
+  });
+
   it('names a search in a few words', () => {
     expect(describeApartmentFilter(filterWith({ mieteMax: 1700, zimmerMin: 2, zimmerMax: 4, kreise: [4] }), de)).toBe('bis CHF 1’700 · 2–4 Zi. · Kreis 4');
-    expect(describeApartmentFilter(filterWith({ arten: ['wg'] }), de)).toBe('WG-Zimmer');
-    expect(describeApartmentFilter(filterWith({}), de)).toBe('Alle Wohnungen');
-    expect(describeApartmentFilter(filterWith({ zimmerMin: 2.5 }), (text, vars) => translate('en', text, vars))).toBe('from 2½ rooms');
+    expect(describeApartmentFilter(filterWith({ arten: ['wg'] }), de)).toBe('Günstig · WG-Zimmer');
+    expect(describeApartmentFilter(filterWith({ guenstig: false }), de)).toBe('Alle Wohnungen');
+    expect(describeApartmentFilter(filterWith({ zimmerMin: 2.5, guenstig: false }), (text, vars) => translate('en', text, vars))).toBe('from 2½ rooms');
   });
 
   it('keeps only what the map needs from the collector file', () => {
     const slim = slimApartmentData({ erstellt: '2026-11-09T10:00:00Z', haeuser: 47085, quellen: [{ id: 'flatfox', name: 'Flatfox', anzahl: 1, ok: true, zuletzt: null }],
-      inserate: [listing('a'), { id: 'broken' }], gesehen: { a: [] }, ki: {}, seiten: {} });
-    expect(Object.keys(slim)).toEqual(['erstellt', 'haeuser', 'quellen', 'inserate']);
+      inserate: [{ ...listing('a'), oev: 25, oevRang: 100, kultur: 50, kulturRang: 200 }, { id: 'broken' }], gesehen: { a: [] }, ki: {}, seiten: {} });
+    expect(Object.keys(slim)).toEqual(['erstellt', 'quellen', 'inserate']);
     expect(slim.inserate.map(i => i.id)).toEqual(['a']);
+    // Transit and culture stay on angebunden.
+    expect(slim.inserate[0]).not.toHaveProperty('oev');
+    expect(slim.inserate[0]).not.toHaveProperty('kulturRang');
     expect(() => slimApartmentData({})).toThrow();
   });
 });
@@ -115,7 +139,7 @@ function memoryStore(initial: ApartmentState = { alerts: [] }): ApartmentStore &
     state: () => state,
   };
 }
-const data = (inserate: Apartment[], erstellt = '2026-11-09T10:00:00Z'): ApartmentData => ({ erstellt, haeuser: 47085, quellen: [], inserate });
+const data = (inserate: Apartment[], erstellt = '2026-11-09T10:00:00Z'): ApartmentData => ({ erstellt, quellen: [], inserate });
 
 describe('apartment alerts', () => {
   it('needs a confirmed email before anything is sent', async () => {
@@ -177,7 +201,7 @@ describe('apartment alerts', () => {
     expect(store.state().alerts[0].welcomed).toBe(false);
     const sent: Mail[] = [];
     await dispatchAlerts(store, data([listing('a')]), async mail => { sent.push(mail); });
-    expect(sent[0].subject).toBe('Your alert “All apartments” is active');
+    expect(sent[0].subject).toBe('Your alert “Cheap” is active');
   });
 
   it('defers alerts beyond the per-run limit', async () => {
@@ -265,6 +289,11 @@ describe('apartments API', () => {
     const ok = await call('POST', '/api/apartments?action=dispatch', undefined, { authorization: 'Bearer a-long-random-test-secret' });
     expect(ok.status).toBe(200);
     expect(ok.body).toMatchObject({ active: 0, mails: 0 });
+    // Without a dedicated secret, the workflow signs with an HMAC of the Blob token both sides have.
+    vi.stubEnv('APARTMENT_ALERTS_SECRET', '');
+    const hmac = createHmac('sha256', 'test-secret').update('wobillig-apartment-alerts').digest('hex');
+    expect((await call('POST', '/api/apartments?action=dispatch', undefined, { authorization: `Bearer ${hmac}` })).status).toBe(200);
+    expect((await call('POST', '/api/apartments?action=dispatch', undefined, { authorization: 'Bearer test-secret' })).status).toBe(401);
   });
 
   it('unsubscribes with one click from the mail program', async () => {

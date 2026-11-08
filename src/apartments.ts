@@ -11,7 +11,7 @@ import type { categoryNavigation } from './category-navigation';
 import {
   apartmentDurationLabels, apartmentFacts, apartmentFeatureLabels, apartmentFeatures, apartmentKindLabels, apartmentKinds,
   apartmentSortLabels, apartmentSourceNames, apartmentSources, chf, describeApartmentFilter, emptyApartmentFilter,
-  matchesApartment, otherPortals, parseApartmentFilter, roomsLabel, sortApartments, DAY_MS,
+  cheapActive, filterApartments, otherPortals, parseApartmentFilter, roomsLabel, sortApartments, DAY_MS,
   type Apartment, type ApartmentData, type ApartmentFilter,
 } from './apartment-data';
 
@@ -47,7 +47,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   let saved = new Set(readJson<string[]>(storage.saved, []).filter(id => typeof id === 'string'));
   let hidden = new Set(readJson<string[]>(storage.hidden, []).filter(id => typeof id === 'string'));
   let alerts = readJson<StoredAlert[]>(storage.alerts, []).filter(item => item && typeof item.token === 'string' && typeof item.name === 'string');
-  let shown = PAGE, selected: string | undefined, matching: Apartment[] = [];
+  let shown = PAGE, selected: string | undefined, matching: Apartment[] = [], cheapApplied = false;
   let districtOf: ((location: { lat: number; lon: number }) => number | undefined) | undefined, districts: Districts | undefined;
   let map: L.Map | undefined, dots: L.LayerGroup | undefined, labels: L.LayerGroup | undefined, areas: L.LayerGroup | undefined, drawLayer: L.LayerGroup | undefined;
   let drawing: [number, number][] | undefined, refreshTimer: ReturnType<typeof setInterval> | undefined;
@@ -74,6 +74,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   </div>
   <div class="toolbar apartment-controls">
     <input id="apartment-text" type="search" maxlength="120" placeholder="${t('Strasse, PLZ oder Stichwort')}" aria-label="${t('Strasse, PLZ oder Stichwort')}" enterkeyhint="search" autocomplete="off">
+    <button id="apartment-cheap" type="button" aria-pressed="true" title="${t('Zeigt je Art und Zimmerzahl die günstigere Hälfte. Mit einer eigenen Preisgrenze ist der Filter aus.')}">${t('Günstig')}</button>
     <label class="apartment-rent"><span class="apartment-rent-label">${t('Miete bis')}</span> <input id="apartment-rent" type="number" min="0" max="100000" step="50" inputmode="numeric" placeholder="CHF" aria-label="${t('Miete bis CHF')}"></label>
     <span class="apartment-rooms" role="group" aria-label="${t('Zimmer')}"><select id="apartment-rooms-min" aria-label="${t('Zimmer ab')}">${roomOptions(t('Zimmer ab'))}</select><select id="apartment-rooms-max" aria-label="${t('Zimmer bis')}">${roomOptions(t('bis'))}</select></span>
     <select id="apartment-kind" aria-label="${t('Art')}"><option value="">${t('Alle Arten')}</option>${kindOptions}<option value="mixed" disabled hidden>${t('Mehrere Arten')}</option></select>
@@ -85,7 +86,6 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     <fieldset><legend>${t('Lage')}</legend>
       <label>${t('Kreis')} <select id="apartment-district"><option value="">${t('Alle Kreise')}</option>${Array.from({ length: 12 }, (_, k) => `<option value="${k + 1}">${e(t('Kreis {number}', { number: k + 1 }))}</option>`).join('')}</select></label>
       <button type="button" id="apartment-draw">${t('Gebiet einzeichnen')}</button>
-      <label>${t('ÖV')} <select id="apartment-transit"><option value="">${t('egal')}</option>${[22, 25, 28, 30, 35].map(n => `<option value="${n}">${e(t('Ø bis {minutes} Min. zu jeder Adresse', { minutes: n }))}</option>`).join('')}</select></label>
     </fieldset>
     <fieldset><legend>${t('Wohnung')}</legend>
       <label>${t('Fläche ab')} <input id="apartment-area" type="number" min="0" max="2000" step="5" inputmode="numeric" placeholder="m²" aria-label="${t('Fläche ab m²')}"></label>
@@ -150,6 +150,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   function syncControls() {
     input('apartment-text').value = filter.text;
     input('apartment-rent').value = filter.mieteMax == null ? '' : String(filter.mieteMax);
+    el('apartment-cheap').setAttribute('aria-pressed', String(cheapActive(filter)));
     select('apartment-rooms-min').value = filter.zimmerMin == null ? '' : String(filter.zimmerMin);
     select('apartment-rooms-max').value = filter.zimmerMax == null ? '' : String(filter.zimmerMax);
     const kind = select('apartment-kind');
@@ -157,7 +158,6 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     view.querySelectorAll<HTMLInputElement>('[name=kind]').forEach(box => { box.checked = filter.arten.includes(box.value as Apartment['art']); });
     view.querySelectorAll<HTMLInputElement>('[name=feature]').forEach(box => { box.checked = filter.merkmale.includes(box.value as never); });
     select('apartment-district').value = filter.kreise.length === 1 ? String(filter.kreise[0]) : '';
-    select('apartment-transit').value = filter.oevMax == null ? '' : String(filter.oevMax);
     input('apartment-area').value = filter.flaecheMin == null ? '' : String(filter.flaecheMin);
     select('apartment-duration').value = filter.dauer;
     input('apartment-new').checked = filter.nurNeu;
@@ -184,7 +184,6 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     if (filter.kreise.length) list.push({ label: filter.kreise.map(n => t('Kreis {number}', { number: n })).join(', '), clear: { kreise: [] } });
     filter.gebiete.forEach((_, k) => list.push({ label: filter.gebiete.length === 1 ? t('Eingezeichnetes Gebiet') : t('Gebiet {number}', { number: k + 1 }), clear: { gebiete: filter.gebiete.filter((__, j) => j !== k) } }));
     if (filter.flaecheMin != null) list.push({ label: t('ab {area} m²', { area: filter.flaecheMin }), clear: { flaecheMin: null } });
-    if (filter.oevMax != null) list.push({ label: t('ÖV Ø bis {minutes} Min.', { minutes: filter.oevMax }), clear: { oevMax: null } });
     if (filter.dauer !== 'alle') list.push({ label: t(apartmentDurationLabels[filter.dauer]), clear: { dauer: 'alle' } });
     for (const feature of filter.merkmale) list.push({ label: t(apartmentFeatureLabels[feature]), clear: { merkmale: filter.merkmale.filter(item => item !== feature) } });
     if (filter.quellenAus.length) list.push({ label: t('Ohne {sources}', { sources: filter.quellenAus.map(source => apartmentSourceNames[source]).join(', ') }), clear: { quellenAus: [] } });
@@ -212,13 +211,16 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       return;
     }
     const ctx = context();
-    matching = sortApartments(data.inserate.filter(item => (filter.nurGemerkt || !hidden.has(item.id)) && matchesApartment(item, filter, ctx)), filter.sorte);
+    const result = filterApartments(data.inserate.filter(item => filter.nurGemerkt || !hidden.has(item.id)), filter, ctx);
+    cheapApplied = result.applied;
+    matching = sortApartments(result.list, filter.sorte);
     const priced = matching.filter(item => item.miete != null);
     const average = priced.length ? priced.reduce((sum, item) => sum + item.miete!, 0) / priced.length : undefined;
     const time = new Date(data.erstellt).toLocaleTimeString(dateLocale(), { hour: '2-digit', minute: '2-digit' });
     el('apartment-summary').textContent = [
       matching.length === 1 ? t('1 Wohnung') : t('{count} Wohnungen', { count: chf(matching.length) }),
       average !== undefined ? t('Schnitt CHF {price}', { price: chf(average) }) : null,
+      cheapApplied ? t('günstigere Hälfte') : null,
       t('Stand {time}', { time }),
     ].filter(Boolean).join(' · ');
     renderList();
@@ -306,7 +308,6 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       : ago < DAY_MS ? t('Neu seit {hours} Std.', { hours: Math.round(ago / 3600000) })
       : t('Online seit {date}', { date: new Date(item.erstGesehen).toLocaleDateString(dateLocale()) });
     const photo = safeUrl(item.bild);
-    const houses = data?.haeuser ? chf(data.haeuser) : '';
     const features = (item.merkmale || []).map(feature => t(apartmentFeatureLabels[feature])).join(', ');
     detail.innerHTML = `<div class="detail-top"><strong>${e(money(item.miete))}</strong><button type="button" data-close>${t('Schliessen')}</button></div>
       ${photo ? `<a href="${e(safeUrl(item.links[0].url))}" target="_blank" rel="noopener noreferrer" class="apartment-photo"><img src="${e(photo)}" alt="" loading="lazy" referrerpolicy="no-referrer"></a>` : ''}
@@ -317,8 +318,6 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       <dl class="apartment-facts">
         ${item.bezug ? `<dt>${t('Bezug')}</dt><dd>${e(/^\d{4}-\d{2}-\d{2}$/.test(item.bezug) ? item.bezug.split('-').reverse().join('.') : item.bezug)}</dd>` : ''}
         ${item.miete != null && item.flaeche ? `<dt>${t('Pro m²')}</dt><dd>CHF ${e((item.miete / item.flaeche).toFixed(2))}</dd>` : ''}
-        ${item.oev != null ? `<dt>${t('ÖV')}</dt><dd>${e(t('Ø {minutes} Min. zu jeder Adresse in Zürich', { minutes: item.oev.toFixed(1) }))}${item.oevRang != null ? `<small>${e(t('Rang {rank} von {total} Häusern', { rank: chf(item.oevRang), total: houses }))}</small>` : ''}</dd>` : ''}
-        ${item.kultur != null ? `<dt>${t('Kultur')}</dt><dd>${e(t('{count} Orte in 15 Gehminuten', { count: chf(item.kultur) }))}${item.kulturRang != null ? `<small>${e(t('Rang {rank} von {total} Häusern', { rank: chf(item.kulturRang), total: houses }))}</small>` : ''}</dd>` : ''}
         ${features ? `<dt>${t('Ausstattung')}</dt><dd>${e(features)}</dd>` : ''}
         <dt>${t('Gefunden')}</dt><dd>${e(seen)}</dd>
       </dl>
@@ -328,7 +327,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
         <button type="button" data-hide>${hidden.has(item.id) ? t('Wieder zeigen') : t('Ausblenden')}</button>
         <button type="button" data-share>${t('Teilen')}</button>
       </div>
-      <p class="muted apartment-note">${t('Angaben aus dem Inserat, ohne Gewähr. ÖV und Kultur: Erreichbarkeitskarte von angebunden.')}</p>`;
+      <p class="muted apartment-note">${t('Angaben aus dem Inserat, ohne Gewähr.')}</p>`;
     detail.hidden = false;
     detail.querySelector<HTMLButtonElement>('[data-close]')!.onclick = () => closeDetail();
     detail.querySelector<HTMLButtonElement>('[data-save]')!.onclick = () => {
@@ -428,7 +427,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       const response = await fetch(RAW_DATA, { signal: AbortSignal.timeout(25000) });
       if (!response.ok) throw new Error(String(response.status));
       const raw = await response.json();
-      return { erstellt: raw.erstellt, haeuser: raw.haeuser, quellen: raw.quellen || [], inserate: raw.inserate || [] };
+      return { erstellt: raw.erstellt, quellen: raw.quellen || [], inserate: raw.inserate || [] };
     }
   }
   function load(): Promise<void> {
@@ -530,6 +529,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   const numberValue = (value: string) => value.trim() === '' || !Number.isFinite(Number(value)) ? null : Number(value);
   let textTimer: ReturnType<typeof setTimeout> | undefined;
   input('apartment-text').oninput = () => { clearTimeout(textTimer); textTimer = setTimeout(() => change({ text: input('apartment-text').value }), 250); };
+  // With a rent limit of its own, «Günstig» steps aside; pressing it again drops the limit.
+  el('apartment-cheap').onclick = () => cheapActive(filter) ? change({ guenstig: false }) : change({ guenstig: true, mieteMax: null, nurGemerkt: false });
   input('apartment-rent').onchange = () => change({ mieteMax: numberValue(input('apartment-rent').value) });
   select('apartment-rooms-min').onchange = () => {
     const min = numberValue(select('apartment-rooms-min').value);
@@ -558,7 +559,6 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     change({ quellenAus: off as ApartmentFilter['quellenAus'] });
   });
   select('apartment-district').onchange = () => { const n = numberValue(select('apartment-district').value); change({ kreise: n ? [n] : [] }); };
-  select('apartment-transit').onchange = () => change({ oevMax: numberValue(select('apartment-transit').value) });
   input('apartment-area').onchange = () => change({ flaecheMin: numberValue(input('apartment-area').value) });
   select('apartment-duration').onchange = () => change({ dauer: select('apartment-duration').value as ApartmentFilter['dauer'] });
   input('apartment-new').onchange = () => change({ nurNeu: input('apartment-new').checked });
