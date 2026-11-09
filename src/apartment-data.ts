@@ -94,8 +94,8 @@ export type ApartmentFilter = {
 
 export const emptyApartmentFilter = (): ApartmentFilter => ({
   mieteMax: null, zimmerMin: null, zimmerMax: null, flaecheMin: null,
-  // Most people look for a home to stay; temporary listings come back with «Dauer» in the filters.
-  arten: [...apartmentKinds], quellenAus: [], text: '', begriffe: [], dauer: 'unbefristet',
+  // Most people look for a flat to stay; WG rooms, studios and temporary listings come back with «Art» and «Dauer».
+  arten: ['wohnung'], quellenAus: [], text: '', begriffe: [], dauer: 'unbefristet',
   merkmale: [], ohneZweifel: false, kreise: [], gebiete: [], sorte: 'neu', guenstig: true, nurNeu: false, nurGemerkt: false,
 });
 
@@ -207,11 +207,11 @@ export function alertFilter(f: ApartmentFilter): ApartmentFilter {
 }
 
 // «Günstig»: a WG room and a family flat do not compete on price, so the limit is set per
-// type and room count. A group with enough listings keeps its cheaper half (ties included);
-// a smaller group borrows the limit of its type as a whole, and stays whole if that is small
-// too. With few listings overall, or if the cheap selection would leave too little, nothing
-// is filtered.
-export const CHEAP_SHARE = 0.5, CHEAP_MIN_GROUP = 8, CHEAP_MIN_TOTAL = 40, CHEAP_MIN_KEEP = 20;
+// type and room count. A group with enough listings keeps its cheapest third (ties included),
+// like «Günstig» on the price maps; a smaller group borrows the limit of its type as a whole,
+// and stays whole if that is small too. With few listings overall, or if the cheap selection
+// would leave too little, nothing is filtered.
+export const CHEAP_SHARE = 1 / 3, CHEAP_MIN_GROUP = 8, CHEAP_MIN_TOTAL = 40, CHEAP_MIN_KEEP = 20;
 const roomGroup = (i: Apartment) => `${i.art}:${i.zimmer == null ? '?' : Math.min(5, Math.floor(i.zimmer))}`;
 
 /** Whether «Günstig» applies to this filter: it is on and no rent limit of its own is set. */

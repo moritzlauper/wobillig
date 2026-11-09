@@ -50,7 +50,7 @@ Fields (0, "" or [] when the sentence does not say it):
 - merkmale: balkon (also Terrasse, Loggia, Sitzplatz), waschmaschine (own washing machine), geschirrspueler, lift, haustiere (pets allowed), hindernisfrei.
 - dauer: unbefristet (permanent) unless the visitor asks for lang (at least a year), befristet (temporary, Zwischenmiete) or says any duration is fine (alle). Unbefristet is the default.
 - nurNeu: only listings from the last 24 hours ("neu", "heute").
-- guenstig: true unless mieteMax is set or the visitor asks for all prices; the map shows the cheaper half by default.
+- guenstig: true unless mieteMax is set or the visitor asks for all prices; the map shows the cheapest third by default.
 - sorte: neu, guenstig (cheapest first), m2 (price per m²), gross (largest first) when the visitor asks for an order, else keine.
 - stichwort: a street name or postcode to look up literally, else "".
 - begriffe: other wishes that only a listing title could show (e.g. "hell", "Altbau", "ruhig", "Seesicht"): for each wish 1–4 lowercase German or English words a title would contain ("altbau", "jugendstil"). Leave out filler words and anything already covered above.`;

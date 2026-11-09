@@ -12,7 +12,7 @@ import type { categoryNavigation } from './category-navigation';
 import {
   apartmentDurationLabels, apartmentFacts, apartmentFeatureLabels, apartmentFeatures, apartmentKindLabels, apartmentKinds,
   apartmentSortLabels, apartmentSourceNames, apartmentSources, chf, describeApartmentFilter, emptyApartmentFilter,
-  cheapActive, filterApartments, otherPortals, parseApartmentFilter, roomsLabel, sortApartments, DAY_MS,
+  cheapActive, filterApartments, CHEAP_SHARE, otherPortals, parseApartmentFilter, roomsLabel, sortApartments, DAY_MS,
   type Apartment, type ApartmentData, type ApartmentFilter,
 } from './apartment-data';
 import { APARTMENT_SMART_MAX, applyApartmentQuery, type ApartmentQuery } from './apartment-smart';
@@ -24,7 +24,7 @@ const CATEGORY_KEY = 'wobillig-category:zurich';
 const DEFAULT_DURATION = emptyApartmentFilter().dauer;
 const RAW_DATA = 'https://raw.githubusercontent.com/moritzlauper/angebunden/wohnungen/wohnungen.json';
 const ZURICH: [number, number] = [47.378, 8.535];
-const PAGE = 150, LABEL_ZOOM = 16, MAX_LABELS = 250;
+const PAGE = 150, DETAIL_ZOOM = 16, MAX_LABELS = 400;
 // Drawing an area: hold the map this long without moving, then trace the area.
 const HOLD_MS = 450, HOLD_TOLERANCE = 10, DRAW_STEP = 6, MAX_AREA_POINTS = 200, RENT_STEP = 50;
 const storage = {
@@ -54,9 +54,12 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   let data: ApartmentData | undefined, loading: Promise<void> | undefined, loadFailed = false, isOpen = false;
   let filter: ApartmentFilter = parseApartmentFilter(readJson<unknown>(storage.filter, emptyApartmentFilter()));
   // «Unbefristet» became the default on 9 November 2026; filters saved before still said «alle».
-  if (readJson<number>(storage.version, 0) < 2) {
-    if (filter.dauer === 'alle') filter = { ...filter, dauer: 'unbefristet' };
-    writeJson(storage.version, 2); writeJson(storage.filter, filter);
+  // On the same day the kind «Wohnung» became the default instead of every kind.
+  const version = readJson<number>(storage.version, 0);
+  if (version < 3) {
+    if (version < 2 && filter.dauer === 'alle') filter = { ...filter, dauer: 'unbefristet' };
+    if (filter.arten.length === apartmentKinds.length) filter = { ...filter, arten: emptyApartmentFilter().arten };
+    writeJson(storage.version, 3); writeJson(storage.filter, filter);
   }
   let saved = new Set(readJson<string[]>(storage.saved, []).filter(id => typeof id === 'string'));
   let hidden = new Set(readJson<string[]>(storage.hidden, []).filter(id => typeof id === 'string'));
@@ -65,7 +68,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   let districtOf: ((location: { lat: number; lon: number }) => number | undefined) | undefined, districts: Districts | undefined;
   let map: L.Map | undefined, dots: L.LayerGroup | undefined, labels: L.LayerGroup | undefined, areas: L.LayerGroup | undefined, drawLayer: L.LayerGroup | undefined;
   let drawing: L.LatLng[] | undefined, refreshTimer: ReturnType<typeof setInterval> | undefined;
-  // The rent slider: cheapest to most expensive rent of the current selection, the median in the middle.
+  // The rent slider: cheapest to most expensive rent of the current selection, «Günstig» (the cheapest third) in the middle.
   let rentLow = 0, rentHigh = 1, rentMid: number | undefined, renderFrame = 0;
   // A finger needs more than the dot itself: taps within 10 px still hit it.
   const renderer = L.canvas({ padding: 0.3, tolerance: 10 });
@@ -140,7 +143,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   <div class="apartment-content">
     <aside class="apartment-list" aria-label="${t('Wohnungen')}"><div class="list-tools"><select id="apartment-sort" aria-label="${t('Sortierung')}">${Object.entries(apartmentSortLabels).map(([value, label]) => `<option value="${value}">${e(t(label))}</option>`).join('')}</select></div><div id="apartment-results"></div></aside>
     <div class="apartment-map-panel"><div id="apartment-canvas" role="region" aria-label="${t('Karte')}"></div>
-      <div class="map-actions"><div class="price-range"><button id="apartment-cheap" type="button" aria-pressed="true" title="${t('Zeigt je Art und Zimmerzahl die günstigere Hälfte.')}">${t('Günstig')}</button><div id="apartment-price" class="price-slider" role="slider" tabindex="0" aria-label="${t('Höchstmiete in CHF')}" aria-disabled="true"><span class="price-end" id="apartment-price-min"></span><div class="price-rail"><div class="price-track"><div class="price-fill"></div><div class="price-thumb"></div></div></div><span class="price-end" id="apartment-price-max"></span></div></div></div>
+      <div class="map-actions"><div class="price-range"><button id="apartment-cheap" type="button" aria-pressed="true" title="${t('Zeigt je Art und Zimmerzahl das günstigste Drittel.')}">${t('Günstig')}</button><div id="apartment-price" class="price-slider" role="slider" tabindex="0" aria-label="${t('Höchstmiete in CHF')}" aria-disabled="true"><span class="price-end" id="apartment-price-min"></span><div class="price-rail"><div class="price-track"><div class="price-fill"></div><div class="price-thumb"></div></div></div><span class="price-end" id="apartment-price-max"></span></div></div></div>
       <div id="apartment-draw-hint" class="apartment-draw-hint" hidden><span role="status"></span><button type="button" id="apartment-draw-cancel" hidden>${t('Abbrechen')}</button></div>
       <section id="apartment-detail" tabindex="-1" aria-label="${t('Wohnung')}" hidden></section></div>
   </div>`;
@@ -247,18 +250,19 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     }
     const ctx = context();
     const visible = data.inserate.filter(item => filter.nurGemerkt || !hidden.has(item.id));
-    // The slider spans every rent the other filters allow, so it stays put while it moves.
-    syncRent(filterApartments(visible, { ...filter, mieteMax: null, guenstig: false }, ctx).list.flatMap(item => item.miete != null && item.miete > 0 ? [item.miete] : []).sort((a, b) => a - b));
     const result = filterApartments(visible, filter, ctx);
     cheapApplied = result.applied;
     matching = sortApartments(result.list, filter.sorte);
-    const priced = matching.filter(item => item.miete != null);
-    const average = priced.length ? priced.reduce((sum, item) => sum + item.miete!, 0) / priced.length : undefined;
+    // The average follows the other filters, not the rent limit or «Günstig», like the city average on the price maps.
+    const rents = filterApartments(visible, { ...filter, mieteMax: null, guenstig: false }, ctx).list.flatMap(item => item.miete != null && item.miete > 0 ? [item.miete] : []);
+    const average = rents.length ? rents.reduce((sum, rent) => sum + rent, 0) / rents.length : undefined;
+    // The slider spans the same rents, so it stays put while it moves.
+    syncRent([...rents].sort((x, y) => x - y));
     const time = new Date(data.erstellt).toLocaleTimeString(dateLocale(), { hour: '2-digit', minute: '2-digit' });
     el('apartment-average').textContent = t('Schnitt {city} {value}', { city: t('Zürich'), value: average !== undefined ? `CHF ${chf(average)}` : '—' });
     el('apartment-summary').textContent = [
       matching.length === 1 ? t('1 Wohnung') : t('{count} Wohnungen', { count: chf(matching.length) }),
-      cheapApplied ? t('günstigere Hälfte') : null,
+      cheapApplied ? t('günstigstes Drittel') : null,
       t('Stand {time}', { time }),
     ].filter(Boolean).join(' · ');
     renderList();
@@ -312,16 +316,16 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     const photo = safeUrl(item.bild);
     return `${photo ? `<img src="${photo}" alt="" loading="lazy" referrerpolicy="no-referrer">` : ''}<strong>${e(money(item.miete))}</strong><span>${e(item.titel)}</span><small>${e(apartmentFacts(item, tr).join(' · '))}</small>`;
   }
-  // Zoomed in, the dots become price labels like the venues on the price map.
+  // Listings show their rent as a label, like the venues on the price map. Only the visible part
+  // of the map gets labels; with very many in view, the cheapest get one and the rest stay dots.
   function renderLabels() {
     if (!map || !labels) return;
     labels.clearLayers();
-    if (map.getZoom() < LABEL_ZOOM) return;
     const bounds = map.getBounds().pad(0.1);
-    let count = 0;
-    for (const item of matching) {
-      if (item.lat == null || item.lon == null || !bounds.contains([item.lat, item.lon])) continue;
-      if (++count > MAX_LABELS) break;
+    const inView = matching.filter(item => item.lat != null && item.lon != null && bounds.contains([item.lat, item.lon]));
+    const labelled = inView.length <= MAX_LABELS ? inView : [...inView].sort((a, b) => Number(b.id === selected) - Number(a.id === selected) || (a.miete ?? Infinity) - (b.miete ?? Infinity)).slice(0, MAX_LABELS);
+    for (const item of labelled) {
+      if (item.lat == null || item.lon == null) continue;
       const isSelected = item.id === selected;
       const text = item.miete != null ? chf(item.miete) : '?';
       const label = L.marker([item.lat, item.lon], {
@@ -366,8 +370,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     slider.setAttribute('aria-valuenow', String(value));
     button.textContent = cheap ? t('Günstig') : t('Bis CHF {price}', { price: chf(limit) });
     button.setAttribute('aria-pressed', String(cheap));
-    button.title = cheap ? t('Günstig-Filter aufheben') : t('Zeigt je Art und Zimmerzahl die günstigere Hälfte.');
-    slider.setAttribute('aria-valuetext', cheap ? t('Günstige Hälfte') : button.textContent);
+    button.title = cheap ? t('Günstig-Filter aufheben') : t('Zeigt je Art und Zimmerzahl das günstigste Drittel.');
+    slider.setAttribute('aria-valuetext', cheap ? t('Günstigstes Drittel') : button.textContent);
   }
   function syncRent(rents: number[]) {
     const slider = el('apartment-price');
@@ -375,7 +379,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     const edge = Math.floor(rents.length / 100);
     rentLow = rents.length ? Math.floor(rents[edge] / RENT_STEP) * RENT_STEP : 0;
     rentHigh = rents.length ? Math.ceil(rents[rents.length - 1 - edge] / RENT_STEP) * RENT_STEP : 1;
-    rentMid = rents.length >= 4 ? Math.round(rents[Math.floor(rents.length / 2)] / RENT_STEP) * RENT_STEP : undefined;
+    rentMid = rents.length >= 4 ? Math.round(rents[Math.ceil(rents.length * CHEAP_SHARE) - 1] / RENT_STEP) * RENT_STEP : undefined;
     slider.setAttribute('aria-valuemin', String(rentLow)); slider.setAttribute('aria-valuemax', String(rentHigh));
     slider.setAttribute('aria-disabled', String(!rents.length));
     el('apartment-price-min').textContent = rents.length ? chf(rentLow) : '';
@@ -448,7 +452,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     view.querySelectorAll('.apartment-row.selected').forEach(row => row.classList.remove('selected'));
     view.querySelector(`.apartment-row[data-id="${CSS.escape(item.id)}"]`)?.classList.add('selected');
     if (map && item.lat != null && item.lon != null) {
-      if (fromList) { showList(false); map.setView([item.lat, item.lon], Math.max(map.getZoom(), LABEL_ZOOM)); }
+      if (fromList) { showList(false); map.setView([item.lat, item.lon], Math.max(map.getZoom(), DETAIL_ZOOM)); }
       renderMap();
     }
     detail.focus({ preventScroll: true });
