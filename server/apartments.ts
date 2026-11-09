@@ -259,7 +259,7 @@ function row(i: Apartment, locale: Locale) {
     <td style="padding:12px 0;vertical-align:top;border-bottom:1px solid #ddd;font-family:${font};color:#222">
       <a href="${target}" style="${link}"><strong style="display:block;font-size:14px;font-weight:600">${esc(i.titel)}</strong>
       <span style="display:block;margin-top:4px;font-size:12px;color:#666">${esc(apartmentFacts(i, tr).join(' · '))}</span></a>
-      <a href="${esc(mapLink(locale, `&inserat=${encodeURIComponent(i.id)}`))}" style="display:inline-block;margin-top:6px;font-size:12px;color:#285b90">${esc(tr('Auf der Karte ansehen'))}</a>
+      <a href="${esc(mapLink(locale, `&inserat=${encodeURIComponent(i.id)}&u=${encodeURIComponent(i.links[0].url)}`))}" style="display:inline-block;margin-top:6px;font-size:12px;color:#285b90">${esc(tr('Auf der Karte ansehen'))}</a>
     </td>
     <td style="padding:12px 0 12px 12px;vertical-align:top;border-bottom:1px solid #ddd;font-family:${font};font-size:14px;font-weight:bold;color:#222;white-space:nowrap;text-align:right"><a href="${target}" style="color:#222;text-decoration:none">${esc(price(tr, i))}</a></td>
   </tr>`;

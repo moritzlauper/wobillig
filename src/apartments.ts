@@ -42,7 +42,9 @@ function writeJson(key: string, value: unknown) {
 // Tokens from email links are read once and removed from the address right away.
 const linkParams = new URLSearchParams(location.search);
 const linkConfirm = linkParams.get('bestaetigen'), linkUnsubscribe = linkParams.get('abmelden'), linkListing = linkParams.get('inserat');
-if (linkParams.get('map') === APARTMENT_MAP_ID && (linkConfirm || linkUnsubscribe || linkListing)) {
+// The listing's original link travels along: a listing merged with a duplicate from another portal changes its id.
+const linkUrl = linkParams.get('u');
+if (linkParams.get('map') === APARTMENT_MAP_ID && (linkConfirm || linkUnsubscribe || linkListing || linkUrl)) {
   const clean = new URL(location.href);
   for (const key of ['bestaetigen', 'abmelden', 'inserat', 'u']) clean.searchParams.delete(key);
   history.replaceState(history.state, '', clean);
@@ -457,6 +459,19 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     }
     detail.focus({ preventScroll: true });
   }
+  // A listing from an email that is no longer collected: say so where its details would be,
+  // with the original link, rather than a toast that is gone before it is read.
+  function showGone(url: string | null | undefined) {
+    selected = undefined;
+    const detail = el('apartment-detail');
+    const original = url ? safeUrl(url) : '';
+    detail.innerHTML = `<div class="detail-top"><strong>${e(t('Nicht mehr online'))}</strong><button type="button" data-close>${t('Schliessen')}</button></div>
+      <p>${e(t('Dieses Inserat steht nicht mehr in den gesammelten Wohnungen. Meist ist es vergeben oder wurde vom Portal entfernt.'))}</p>
+      ${original ? `<div class="apartment-links"><a class="apartment-source" href="${e(original)}" target="_blank" rel="noopener noreferrer">${e(t('Originalinserat öffnen'))} ↗</a></div>` : ''}`;
+    detail.hidden = false;
+    detail.querySelector<HTMLButtonElement>('[data-close]')!.onclick = () => closeDetail();
+    detail.focus({ preventScroll: true });
+  }
   function closeDetail() {
     selected = undefined;
     el('apartment-detail').hidden = true;
@@ -852,7 +867,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   });
 
   // --- Open and close -----------------------------------------------------
-  async function open(listing?: string | null) {
+  async function open(listing?: string | null, listingUrl?: string | null) {
     if (!isOpen) {
       if (app.classList.contains('custom-map-active')) document.querySelector<HTMLButtonElement>('#map-back')?.click();
       isOpen = true;
@@ -877,10 +892,11 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       refreshTimer = setInterval(() => { if (document.visibilityState === 'visible') void load(); }, 120000);
     }
     await load();
-    if (listing) {
-      const item = data?.inserate.find(entry => entry.id === listing);
+    if (listing || listingUrl) {
+      const item = data?.inserate.find(entry => entry.id === listing)
+        ?? (listingUrl ? data?.inserate.find(entry => entry.links.some(link => link.url === listingUrl)) : undefined);
       if (item) showDetail(item, true);
-      else toast(t('Dieses Inserat ist nicht mehr online.'));
+      else showGone(listingUrl);
     }
   }
   el('apartment-back').onclick = () => { close(); navigation.focusMenu(); };
@@ -900,7 +916,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   /** Handles links from alert emails and shared listings; returns true if the apartment map opened. */
   async function openFromLink(): Promise<boolean> {
     if (linkParams.get('map') !== APARTMENT_MAP_ID) return false;
-    const opening = open(linkListing);
+    const opening = open(linkListing, linkUrl);
     if (linkConfirm) {
       try {
         const result = await post({ action: 'confirm', token: linkConfirm });

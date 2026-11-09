@@ -878,7 +878,6 @@ export const en: Record<string, string> = {
   'Heute passt 1 Wohnung.': '1 apartment matches today.',
   'Heute passen {count} Wohnungen.': '{count} apartments match today.',
   'Fast fertig: Wir haben dir einen Link an {email} geschickt. Bestätige ihn, dann ist das Suchabo aktiv.': 'Almost done: we sent a link to {email}. Confirm it to activate the alert.',
-  'Dieses Inserat ist nicht mehr online.': 'This listing is no longer online.',
   'Suchabo bestätigt. Du bekommst ab jetzt eine E-Mail, sobald eine neue Wohnung passt.': 'Alert confirmed. From now on you get an email as soon as a new apartment matches.',
   'Maps': 'Maps',
   'E-Mail-Versand ist nicht eingerichtet.': 'Email sending is not set up.',
@@ -926,4 +925,7 @@ export const en: Record<string, string> = {
   'Zeigt je Art und Zimmerzahl die günstigere Hälfte. Mit einer eigenen Preisgrenze ist der Filter aus.': 'Shows the cheaper half per type and room count. Off when you set your own rent limit.',
   'günstigstes Drittel': 'cheapest third',
   'Angaben aus dem Inserat, ohne Gewähr.': 'Details from the listing, without guarantee.',
+  'Nicht mehr online': 'No longer online',
+  'Dieses Inserat steht nicht mehr in den gesammelten Wohnungen. Meist ist es vergeben oder wurde vom Portal entfernt.': 'This listing is no longer among the collected apartments. Usually it has been let or removed by the portal.',
+  'Originalinserat öffnen': 'Open the original listing',
 };

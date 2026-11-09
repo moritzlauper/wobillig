@@ -188,6 +188,8 @@ describe('apartment alerts', () => {
     expect(sent).toHaveLength(2);
     expect(sent[1].subject).toBe('Neue Wohnung: CHF 1’990, 2.5 Zi., Bäckerstrasse 5');
     expect(sent[1].text).toContain('https://flatfox.ch/de/wohnung/b/');
+    // «Auf der Karte ansehen» names the listing and its original link, so it is found even after its id changed.
+    expect(sent[1].html).toContain(`?map=wohnungen&amp;inserat=b&amp;u=${encodeURIComponent('https://flatfox.ch/de/wohnung/b/')}`);
 
     // A listing that disappears and comes back is not new.
     await dispatchAlerts(store, data([listing('b', { erstGesehen: '2026-11-09T10:20:00Z' })], '2026-11-09T10:20:00Z'), send);
