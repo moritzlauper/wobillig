@@ -18,7 +18,7 @@ export async function readApartmentQuery(text: unknown, apiKey: string, fetcher:
         model: APARTMENT_SMART_MODEL, max_tokens: 800, thinking: { type: 'disabled' },
         system: APARTMENT_SMART_SYSTEM,
         messages: [{ role: 'user', content: `Search sentence: ${JSON.stringify(sentence)}` }],
-        output_config: { format: { type: 'json_schema', schema: APARTMENT_SMART_SCHEMA } },
+        output_config: { effort: 'medium', format: { type: 'json_schema', schema: APARTMENT_SMART_SCHEMA } },
       }),
       signal: AbortSignal.timeout(15000),
     });

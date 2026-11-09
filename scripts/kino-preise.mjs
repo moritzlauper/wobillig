@@ -260,6 +260,7 @@ export async function kiPreise(text, kino, schluessel) {
     body: JSON.stringify({
       model: KI_MODELL,
       max_tokens: 2000,
+      output_config: { effort: 'medium' },
       messages: [{ role: 'user', content: aufgabe }],
     }),
     signal: AbortSignal.timeout(60_000),

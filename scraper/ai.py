@@ -112,6 +112,9 @@ class Claude:
                    'messages': [{'role': 'user', 'content': content}],
                    'output_config': {'format': {'type': 'json_schema', 'schema': schema}}}
         key = hashlib.sha256((VERSION + json.dumps(payload, sort_keys=True)).encode()).hexdigest()
+        # Medium is Haiku 5.5's default effort, so stating it changes no answer; it stays out of
+        # the cache key, otherwise every cached result would be paid for again.
+        payload['output_config']['effort'] = 'medium'
         path = self.cache / (key + '.json')
         if path.exists():
             try:
