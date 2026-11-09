@@ -94,7 +94,8 @@ export type ApartmentFilter = {
 
 export const emptyApartmentFilter = (): ApartmentFilter => ({
   mieteMax: null, zimmerMin: null, zimmerMax: null, flaecheMin: null,
-  arten: [...apartmentKinds], quellenAus: [], text: '', begriffe: [], dauer: 'alle',
+  // Most people look for a home to stay; temporary listings come back with «Dauer» in the filters.
+  arten: [...apartmentKinds], quellenAus: [], text: '', begriffe: [], dauer: 'unbefristet',
   merkmale: [], ohneZweifel: false, kreise: [], gebiete: [], sorte: 'neu', guenstig: true, nurNeu: false, nurGemerkt: false,
 });
 
@@ -188,7 +189,7 @@ export function parseApartmentFilter(value: unknown): ApartmentFilter {
     text: typeof v.text === 'string' ? v.text.slice(0, 120) : '',
     begriffe: Array.isArray(v.begriffe) ? [...new Set(v.begriffe.filter((word): word is string => typeof word === 'string')
       .map(word => word.trim().toLowerCase().slice(0, 40)).filter(Boolean))].slice(0, 16) : [],
-    dauer: typeof v.dauer === 'string' && Object.hasOwn(apartmentDurationLabels, v.dauer) ? v.dauer as ApartmentDuration : 'alle',
+    dauer: typeof v.dauer === 'string' && Object.hasOwn(apartmentDurationLabels, v.dauer) ? v.dauer as ApartmentDuration : base.dauer,
     merkmale: pick(v.merkmale, apartmentFeatures),
     ohneZweifel: v.ohneZweifel === true,
     kreise: Array.isArray(v.kreise) ? [...new Set(v.kreise.filter((n): n is number => Number.isInteger(n) && n >= 1 && n <= 12))] : [],
@@ -273,7 +274,8 @@ export function describeApartmentFilter(f: ApartmentFilter, tr: (text: string, v
     f.flaecheMin != null ? tr('ab {area} m²', { area: f.flaecheMin }) : null,
     f.kreise.length ? f.kreise.length === 1 ? tr('Kreis {number}', { number: f.kreise[0] }) : tr('Kreise {numbers}', { numbers: [...f.kreise].sort((a, b) => a - b).join(', ') }) : null,
     f.gebiete.length ? f.gebiete.length === 1 ? tr('1 Gebiet') : tr('{count} Gebiete', { count: f.gebiete.length }) : null,
-    f.dauer !== 'alle' ? tr(apartmentDurationLabels[f.dauer]) : null,
+    // Permanent is the default and needs no word; «alle» reads as «also temporary».
+    f.dauer === 'unbefristet' ? null : f.dauer === 'alle' ? tr('Auch befristet') : tr(apartmentDurationLabels[f.dauer]),
     ...f.merkmale.map(feature => tr(apartmentFeatureLabels[feature])),
     f.text.trim() ? `«${f.text.trim()}»` : null,
     f.begriffe.length ? `«${f.begriffe.slice(0, 3).join(', ')}»` : null,

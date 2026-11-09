@@ -48,7 +48,7 @@ Fields (0, "" or [] when the sentence does not say it):
 - arten: only if the visitor limits the kind: wohnung (regular flat), wg (room in a shared flat), studio, moebliert (furnished), haus. A plain "Wohnung" sets nothing.
 - kreise: Zürich Kreise 1–12 named directly or by quarter (${quarters}). Nearby or vague places: leave empty.
 - merkmale: balkon (also Terrasse, Loggia, Sitzplatz), waschmaschine (own washing machine), geschirrspueler, lift, haustiere (pets allowed), hindernisfrei.
-- dauer: unbefristet (permanent), lang (at least a year), befristet (temporary, Zwischenmiete), else alle.
+- dauer: unbefristet (permanent) unless the visitor asks for lang (at least a year), befristet (temporary, Zwischenmiete) or says any duration is fine (alle). Unbefristet is the default.
 - nurNeu: only listings from the last 24 hours ("neu", "heute").
 - guenstig: true unless mieteMax is set or the visitor asks for all prices; the map shows the cheaper half by default.
 - sorte: neu, guenstig (cheapest first), m2 (price per m²), gross (largest first) when the visitor asks for an order, else keine.
@@ -66,7 +66,7 @@ export function queryFromClaude(value: unknown): ApartmentQuery | undefined {
   const filter = parseApartmentFilter({
     ...base, zimmerMin: positive(v.zimmerMin, 20), zimmerMax: positive(v.zimmerMax, 20), mieteMax, flaecheMin: positive(v.flaecheMin, 2000),
     arten: arten.length ? arten : base.arten, kreise: v.kreise, merkmale: v.merkmale,
-    dauer: typeof v.dauer === 'string' && Object.hasOwn(apartmentDurationLabels, v.dauer) ? v.dauer as ApartmentDuration : 'alle',
+    dauer: typeof v.dauer === 'string' && Object.hasOwn(apartmentDurationLabels, v.dauer) ? v.dauer as ApartmentDuration : base.dauer,
     nurNeu: v.nurNeu === true, guenstig: mieteMax == null && v.guenstig !== false,
     text: typeof v.stichwort === 'string' ? v.stichwort.trim().slice(0, 60) : '', begriffe: v.begriffe,
   });

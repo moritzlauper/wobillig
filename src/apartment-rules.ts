@@ -30,7 +30,7 @@ export function parseApartmentRules(text: string): ApartmentQuery & { rest: stri
   const base = emptyApartmentFilter();
   const query: ApartmentQuery & { rest: string[] } = {
     mieteMax: null, zimmerMin: null, zimmerMax: null, flaecheMin: null, arten: [...apartmentKinds], kreise: [], merkmale: [],
-    dauer: 'alle', nurNeu: false, guenstig: base.guenstig, text: '', begriffe: [], rest: [],
+    dauer: base.dauer, nurNeu: false, guenstig: base.guenstig, text: '', begriffe: [], rest: [],
   };
   const take = (pattern: RegExp, handle: (...groups: string[]) => void) => {
     s = s.replace(pattern, (...match) => { handle(...match.slice(1).filter(value => typeof value === 'string')); return ' '; });
@@ -56,6 +56,7 @@ export function parseApartmentRules(text: string): ApartmentQuery & { rest: stri
   take(/\b(80\d\d)\b/g, plz => { query.text = `${query.text} ${plz}`.trim(); });
   take(/\b(\p{L}+(?:strasse|str|weg|gasse|platz|quai|rain|halde))\b/gu, street => { query.text = `${query.text} ${street.replace(/str$/, 'strasse')}`.trim(); });
   take(/\b(unbefristet|unbefristete|langfristig\w*|dauerhaft)\b/g, word => { query.dauer = word.startsWith('lang') ? 'lang' : 'unbefristet'; });
+  take(/\b(auch befristet|egal wie lange|befristet oder unbefristet)\b/g, () => { query.dauer = 'alle'; });
   take(/\b(befristet|befristete|zwischenmiete|untermiete|temporar|kurzfristig)\b/g, () => { query.dauer = 'befristet'; });
   take(/\b(heute|neueste|neu reingekommen|frisch)\b/g, () => { query.nurNeu = true; });
   take(/\b(gunstig\w*|billig\w*|preiswert\w*)\b/g, () => { query.guenstig = true; });

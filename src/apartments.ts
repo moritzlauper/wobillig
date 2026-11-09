@@ -21,13 +21,14 @@ import { parseApartmentRules } from './apartment-rules';
 export const APARTMENT_MAP_ID = 'wohnungen';
 // The same key the price map uses to remember the last category in Zürich.
 const CATEGORY_KEY = 'wobillig-category:zurich';
+const DEFAULT_DURATION = emptyApartmentFilter().dauer;
 const RAW_DATA = 'https://raw.githubusercontent.com/moritzlauper/angebunden/wohnungen/wohnungen.json';
 const ZURICH: [number, number] = [47.378, 8.535];
 const PAGE = 150, LABEL_ZOOM = 16, MAX_LABELS = 250;
 // Drawing an area: hold the map this long without moving, then trace the area.
 const HOLD_MS = 450, HOLD_TOLERANCE = 10, DRAW_STEP = 6, MAX_AREA_POINTS = 200, RENT_STEP = 50;
 const storage = {
-  filter: 'wobillig:apartments:filter', saved: 'wobillig:apartments:saved', hidden: 'wobillig:apartments:hidden', alerts: 'wobillig:apartments:alerts',
+  filter: 'wobillig:apartments:filter', version: 'wobillig:apartments:version', saved: 'wobillig:apartments:saved', hidden: 'wobillig:apartments:hidden', alerts: 'wobillig:apartments:alerts',
 };
 type StoredAlert = { token: string; name: string; status: 'pending' | 'active' | 'gone' };
 
@@ -52,6 +53,11 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   const toolbar = app.querySelector<HTMLElement>('.toolbar')!;
   let data: ApartmentData | undefined, loading: Promise<void> | undefined, loadFailed = false, isOpen = false;
   let filter: ApartmentFilter = parseApartmentFilter(readJson<unknown>(storage.filter, emptyApartmentFilter()));
+  // «Unbefristet» became the default on 9 November 2026; filters saved before still said «alle».
+  if (readJson<number>(storage.version, 0) < 2) {
+    if (filter.dauer === 'alle') filter = { ...filter, dauer: 'unbefristet' };
+    writeJson(storage.version, 2); writeJson(storage.filter, filter);
+  }
   let saved = new Set(readJson<string[]>(storage.saved, []).filter(id => typeof id === 'string'));
   let hidden = new Set(readJson<string[]>(storage.hidden, []).filter(id => typeof id === 'string'));
   let alerts = readJson<StoredAlert[]>(storage.alerts, []).filter(item => item && typeof item.token === 'string' && typeof item.name === 'string');
@@ -75,6 +81,22 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   navigation.setExtraCategory(menuButton, () => void open());
   navigation.onLeave(() => { if (isOpen) close(); });
 
+  // Examples take turns in the empty search field, like on the price maps, and stop after the last one.
+  const placeholderExamples = ['3 Zimmer bis 3000 mit Balkon im Kreis 3', 'WG-Zimmer unter 900 im Kreis 4 oder 5', 'Helle Altbauwohnung im Seefeld',
+    'Studio unbefristet bis 1800', 'Ab 4 Zimmer mit Lift und Haustieren', 'Möbliert und befristet im Kreis 6', '2½ Zimmer ab 60 m² in Wiedikon'].map(text => t(text));
+  let placeholderIndex = 1, placeholderTimer: ReturnType<typeof setTimeout> | undefined, placeholderInterval: ReturnType<typeof setInterval> | undefined;
+  function rotatePlaceholder() {
+    const field = input('apartment-smart');
+    if (placeholderIndex >= placeholderExamples.length) { clearInterval(placeholderInterval); return; }
+    if (document.hidden || !isOpen || field.value || document.activeElement === field) return;
+    field.classList.add('placeholder-out');
+    clearTimeout(placeholderTimer);
+    placeholderTimer = setTimeout(() => {
+      if (!document.hidden && !field.value && document.activeElement !== field) field.placeholder = placeholderExamples[placeholderIndex++];
+      field.classList.remove('placeholder-out');
+      if (placeholderIndex >= placeholderExamples.length) clearInterval(placeholderInterval);
+    }, 220);
+  }
   const kindOptions = apartmentKinds.map(kind => `<option value="${kind}">${e(t(apartmentKindLabels[kind]))}</option>`).join('');
   const roomSteps = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6];
   const roomOptions = (empty: string) => `<option value="">${e(empty)}</option>` + roomSteps.map(n => `<option value="${n}">${e(roomsLabel(n))}</option>`).join('');
@@ -82,7 +104,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   const controls = document.createElement('div');
   controls.id = 'apartment-controls'; controls.className = 'apartment-controls'; controls.hidden = true;
   controls.innerHTML = `<div class="apartment-search-row"><button type="button" id="apartment-back" class="apartment-back" aria-label="${t('Zurück zu den Kategorien')}" title="${t('Zurück zu den Kategorien')}"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <form id="apartment-search" class="apartment-search" role="search"><input id="apartment-smart" type="search" maxlength="${APARTMENT_SMART_MAX}" placeholder="${t('z. B. 3 Zimmer bis 3000 mit Balkon im Kreis 3')}" aria-label="${t('Wohnung in eigenen Worten suchen')}" enterkeyhint="search" autocomplete="off"></form></div>
+    <form id="apartment-search" class="apartment-search" role="search"><input id="apartment-smart" type="search" role="combobox" maxlength="${APARTMENT_SMART_MAX}" placeholder="${e(placeholderExamples[0])}" aria-label="${t('Wohnung in eigenen Worten suchen')}" enterkeyhint="search" autocomplete="off" aria-autocomplete="list" aria-expanded="false" aria-controls="apartment-dropdown"><div id="apartment-dropdown" role="listbox" aria-label="${t('Smart-Suche')}" hidden></div></form></div>
     <span class="apartment-rooms" role="group" aria-label="${t('Zimmer')}"><select id="apartment-rooms-min" aria-label="${t('Zimmer ab')}">${roomOptions(t('Zimmer ab'))}</select><select id="apartment-rooms-max" aria-label="${t('Zimmer bis')}">${roomOptions(t('bis'))}</select></span>
     <select id="apartment-kind" aria-label="${t('Art')}"><option value="">${t('Alle Arten')}</option>${kindOptions}<option value="mixed" disabled hidden>${t('Mehrere Arten')}</option></select>
     <button id="apartment-filters-toggle" type="button" aria-expanded="false" aria-controls="apartment-filters">${t('Filter')} <span id="apartment-filter-count"></span><span class="filter-chevron" aria-hidden="true"></span></button>`;
@@ -93,7 +115,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     <fieldset><legend>${t('Art')}</legend>${apartmentKinds.map(kind => `<label><input type="checkbox" name="kind" value="${kind}"> ${e(t(apartmentKindLabels[kind]))}</label>`).join('')}</fieldset>
     <fieldset><legend>${t('Lage')}</legend>
       <span class="apartment-districts" role="group" aria-label="${t('Kreise')}">${Array.from({ length: 12 }, (_, k) => `<label><input type="checkbox" name="district" value="${k + 1}"> ${e(t('Kreis {number}', { number: k + 1 }))}</label>`).join('')}</span>
-      <span class="muted apartment-draw-help">${t('Gebiet: lange auf die Karte drücken und das Gebiet umfahren.')}</span>
+      <button type="button" id="apartment-draw">${t('Gebiet einzeichnen')}</button>
+      <span class="muted apartment-draw-help">${t('Oder lange auf die Karte drücken und das Gebiet umfahren.')}</span>
     </fieldset>
     <fieldset><legend>${t('Wohnung')}</legend>
       <label>${t('Fläche ab')} <input id="apartment-area" type="number" min="0" max="2000" step="5" inputmode="numeric" placeholder="m²" aria-label="${t('Fläche ab m²')}"></label>
@@ -117,7 +140,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     <aside class="apartment-list" aria-label="${t('Wohnungen')}"><div class="list-tools"><select id="apartment-sort" aria-label="${t('Sortierung')}">${Object.entries(apartmentSortLabels).map(([value, label]) => `<option value="${value}">${e(t(label))}</option>`).join('')}</select></div><div id="apartment-results"></div></aside>
     <div class="apartment-map-panel"><div id="apartment-canvas" role="region" aria-label="${t('Karte')}"></div>
       <div class="map-actions"><div class="price-range"><button id="apartment-cheap" type="button" aria-pressed="true" title="${t('Zeigt je Art und Zimmerzahl die günstigere Hälfte.')}">${t('Günstig')}</button><div id="apartment-price" class="price-slider" role="slider" tabindex="0" aria-label="${t('Höchstmiete in CHF')}" aria-disabled="true"><span class="price-end" id="apartment-price-min"></span><div class="price-rail"><div class="price-track"><div class="price-fill"></div><div class="price-thumb"></div></div></div><span class="price-end" id="apartment-price-max"></span></div></div></div>
-      <p id="apartment-draw-hint" class="apartment-draw-hint" role="status" hidden></p>
+      <div id="apartment-draw-hint" class="apartment-draw-hint" hidden><span role="status"></span><button type="button" id="apartment-draw-cancel" hidden>${t('Abbrechen')}</button></div>
       <section id="apartment-detail" tabindex="-1" aria-label="${t('Wohnung')}" hidden></section></div>
   </div>`;
   toolbar.after(view);
@@ -190,7 +213,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     if (filter.kreise.length) list.push({ label: filter.kreise.map(n => t('Kreis {number}', { number: n })).join(', '), clear: { kreise: [] } });
     filter.gebiete.forEach((_, k) => list.push({ label: filter.gebiete.length === 1 ? t('Eingezeichnetes Gebiet') : t('Gebiet {number}', { number: k + 1 }), clear: { gebiete: filter.gebiete.filter((__, j) => j !== k) } }));
     if (filter.flaecheMin != null) list.push({ label: t('ab {area} m²', { area: filter.flaecheMin }), clear: { flaecheMin: null } });
-    if (filter.dauer !== 'alle') list.push({ label: t(apartmentDurationLabels[filter.dauer]), clear: { dauer: 'alle' } });
+    // Permanent is the default; any other duration is a chip that leads back to it.
+    if (filter.dauer !== DEFAULT_DURATION) list.push({ label: filter.dauer === 'alle' ? t('Auch befristet') : t(apartmentDurationLabels[filter.dauer]), clear: { dauer: DEFAULT_DURATION } });
     for (const feature of filter.merkmale) list.push({ label: t(apartmentFeatureLabels[feature]), clear: { merkmale: filter.merkmale.filter(item => item !== feature) } });
     if (filter.quellenAus.length) list.push({ label: t('Ohne {sources}', { sources: filter.quellenAus.map(source => apartmentSourceNames[source]).join(', ') }), clear: { quellenAus: [] } });
     if (filter.nurNeu) list.push({ label: t('Nur neue'), clear: { nurNeu: false } });
@@ -439,7 +463,29 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   // Pointers on the map: a second finger means pinch zoom, not drawing.
   const pointers = new Set<number>();
   function cancelHold() { if (hold) clearTimeout(hold.timer); hold = undefined; }
-  function drawHint(text: string) { el('apartment-draw-hint').textContent = text; el('apartment-draw-hint').hidden = !text; }
+  // «Gebiet einzeichnen» arms the map: the next touch draws right away, without holding.
+  let armed = false;
+  function drawHint(text: string) {
+    el('apartment-draw-hint').querySelector('span')!.textContent = text;
+    el('apartment-draw-hint').hidden = !text;
+    el('apartment-draw-cancel').hidden = !armed;
+  }
+  function arm() {
+    if (!map) return;
+    armed = true;
+    closeDetail(); showList(false);
+    el('apartment-filters').hidden = true; el('apartment-filters-toggle').setAttribute('aria-expanded', 'false');
+    // The browser would pan or scroll with the finger instead of sending its moves.
+    el('apartment-canvas').style.touchAction = 'none';
+    view.classList.add('apartment-drawing');
+    drawHint(t('Gebiet auf der Karte umfahren.'));
+  }
+  function disarm() {
+    if (!armed) return;
+    armed = false;
+    el('apartment-canvas').style.touchAction = '';
+    if (!drawing) { view.classList.remove('apartment-drawing'); drawHint(''); }
+  }
   function redrawTrace() {
     drawLayer?.clearLayers();
     if (drawing && drawLayer && drawing.length > 1) L.polyline(drawing, { color: css('--teal') || '#24636b', weight: 3, dashArray: '4 4', interactive: false, pane: OUTLINE_PANE, renderer: outlines() }).addTo(drawLayer);
@@ -450,6 +496,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     closeDetail(); el('apartment-filters').hidden = true; el('apartment-filters-toggle').setAttribute('aria-expanded', 'false');
     lastPoint = map.mouseEventToContainerPoint(event);
     drawing = [map.containerPointToLatLng(lastPoint)];
+    armed = false;
     view.classList.add('apartment-drawing');
     drawHint(t('Gebiet umfahren und loslassen.'));
     navigator.vibrate?.(15);
@@ -459,6 +506,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     if (!drawing) return;
     drawing = undefined; lastPoint = undefined; drawLayer?.clearLayers();
     map?.dragging.enable();
+    el('apartment-canvas').style.touchAction = '';
     view.classList.remove('apartment-drawing');
     drawHint('');
   }
@@ -469,7 +517,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     const swallow = (event: Event) => { event.stopPropagation(); event.preventDefault(); };
     el('apartment-canvas').addEventListener('click', swallow, { capture: true, once: true });
     setTimeout(() => el('apartment-canvas').removeEventListener('click', swallow, { capture: true }), 400);
-    if (!map || trace.length < 3) { toast(t('Zum Zeichnen lange auf die Karte drücken und dann das Gebiet umfahren.')); return; }
+    if (!map || trace.length < 3) { toast(t('Zum Zeichnen den Finger auf der Karte lassen und das Gebiet umfahren.')); return; }
     const box = L.bounds(trace.map(point => map!.latLngToContainerPoint(point)));
     const size = box.getSize();
     if (size.x < 24 && size.y < 24) { toast(t('Das Gebiet ist zu klein. Bitte grösser umfahren.')); return; }
@@ -481,7 +529,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   function bindDrawing(canvas: HTMLElement) {
     canvas.addEventListener('pointerdown', event => {
       pointers.add(event.pointerId);
-      if (pointers.size > 1 || !event.isPrimary || event.button > 0) { cancelHold(); if (drawing) stopDrawing(); return; }
+      if (pointers.size > 1 || !event.isPrimary || event.button > 0) { cancelHold(); if (drawing) { stopDrawing(); if (armed) disarm(); } return; }
+      if (armed) { cancelHold(); startDrawing(event); return; }
       const id = event.pointerId, x = event.clientX, y = event.clientY;
       cancelHold();
       hold = { id, x, y, timer: setTimeout(() => { hold = undefined; if (pointers.size === 1) startDrawing(event); }, HOLD_MS) };
@@ -505,6 +554,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     // Letting go outside the map still counts, so the window listens too.
     window.addEventListener('pointerup', end, true);
     window.addEventListener('pointercancel', end, true);
+    el('apartment-draw').onclick = () => arm();
+    el('apartment-draw-cancel').onclick = () => disarm();
     // A long press opens no context menu here, it starts drawing.
     canvas.addEventListener('contextmenu', event => event.preventDefault());
   }
@@ -638,13 +689,60 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     filter = applyApartmentQuery(filter, query);
     shown = PAGE; save(); syncControls(); render();
   }
-  input('apartment-smart').oninput = () => { if (!input('apartment-smart').value.trim() && smartText) clearSmart(); };
+  // The dropdown confirms what a sentence will set before it is applied; an empty field offers examples.
+  let options: { text: string; example: boolean }[] = [], activeOption = -1;
+  function querySummary(text: string) {
+    const { rest, ...query } = parseApartmentRules(text);
+    const said = /gunstig|billig|preiswert/.test(text.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, ''));
+    const applied = applyApartmentQuery(emptyApartmentFilter(), { ...query, guenstig: said && query.mieteMax == null });
+    const known = describeApartmentFilter(applied, tr);
+    return [known === t('Alle Wohnungen') ? '' : known, rest.length ? `«${rest.join(' ')}»` : ''].filter(Boolean).join(' · ') || t('Wohnungen suchen');
+  }
+  function renderDropdown() {
+    const field = input('apartment-smart'), box = el('apartment-dropdown');
+    const text = field.value.trim();
+    if (document.activeElement !== field) { closeDropdown(); return; }
+    options = text ? [{ text, example: false }] : placeholderExamples.slice(0, 4).map(example => ({ text: example, example: true }));
+    box.innerHTML = options.map((option, index) => `<button type="button" role="option" tabindex="-1" id="apartment-option-${index}" data-option="${index}" aria-selected="${index === activeOption}" class="smart-option${option.example ? ' smart-example' : ''}"><strong>${e(option.example ? option.text : querySummary(option.text))}</strong><small><span class="smart-badge">${t('Smart-Suche')}</span>${option.example ? t('Beispiel ausprobieren') : e(option.text)}</small></button>`).join('');
+    box.hidden = false; field.setAttribute('aria-expanded', 'true');
+    if (activeOption >= 0) field.setAttribute('aria-activedescendant', `apartment-option-${activeOption}`); else field.removeAttribute('aria-activedescendant');
+    box.querySelectorAll<HTMLButtonElement>('[data-option]').forEach(button => {
+      button.onpointerdown = event => event.preventDefault();
+      button.onclick = () => { field.value = options[Number(button.dataset.option)].text; void applySentence(); };
+    });
+  }
+  function closeDropdown() {
+    activeOption = -1; el('apartment-dropdown').hidden = true;
+    input('apartment-smart').setAttribute('aria-expanded', 'false'); input('apartment-smart').removeAttribute('aria-activedescendant');
+  }
+  input('apartment-smart').oninput = () => {
+    activeOption = -1;
+    if (!input('apartment-smart').value.trim() && smartText) clearSmart();
+    renderDropdown();
+  };
+  input('apartment-smart').onfocus = () => renderDropdown();
+  input('apartment-smart').onblur = () => closeDropdown();
+  input('apartment-smart').onkeydown = event => {
+    if (event.key === 'Escape' && !el('apartment-dropdown').hidden) { event.preventDefault(); closeDropdown(); return; }
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+    event.preventDefault();
+    if (el('apartment-dropdown').hidden) renderDropdown();
+    const n = options.length;
+    activeOption = !n ? -1 : event.key === 'ArrowDown' ? (activeOption + 1) % n : activeOption <= 0 ? n - 1 : activeOption - 1;
+    renderDropdown();
+  };
   function clearSmart() {
     smartText = ''; ++smartRequest;
     change({ text: '', begriffe: [] });
   }
-  el('apartment-search').onsubmit = async event => {
+  el('apartment-search').onsubmit = event => {
     event.preventDefault();
+    // Enter on a highlighted example takes that example.
+    if (activeOption >= 0 && options[activeOption]) input('apartment-smart').value = options[activeOption].text;
+    void applySentence();
+  };
+  async function applySentence() {
+    closeDropdown();
     const sentence = input('apartment-smart').value.trim().slice(0, APARTMENT_SMART_MAX);
     if (!sentence) { clearSmart(); return; }
     input('apartment-smart').blur();
@@ -661,7 +759,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       // Without the server (local development) or when Claude is unavailable, the rules' reading stays.
       if (request === smartRequest && rest.length) toast(t('Nicht berücksichtigt: {words}', { words: rest.join(', ') }));
     }
-  };
+  }
   // With a rent limit of its own, «Günstig» steps aside; pressing it again drops the limit.
   el('apartment-cheap').onclick = () => cheapActive(filter) ? change({ guenstig: false, mieteMax: null }) : change({ guenstig: true, mieteMax: null, nurGemerkt: false });
   const slider = el('apartment-price');
@@ -738,7 +836,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   el('apartment-show-list').onclick = () => showList(true);
   view.addEventListener('keydown', event => {
     if (event.key !== 'Escape') return;
-    if (drawing) stopDrawing(); else if (!el('apartment-detail').hidden) closeDetail();
+    if (drawing) stopDrawing(); else if (armed) disarm(); else if (!el('apartment-detail').hidden) closeDetail();
   });
 
   // --- Open and close -----------------------------------------------------
@@ -760,6 +858,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       } catch { /* storage blocked */ }
       ensureMap(); syncControls(); render();
       map!.invalidateSize();
+      clearInterval(placeholderInterval);
+      if (placeholderIndex < placeholderExamples.length) placeholderInterval = setInterval(rotatePlaceholder, 4500);
       clearInterval(refreshTimer);
       // angebunden collects every five minutes; the page looks for news every two.
       refreshTimer = setInterval(() => { if (document.visibilityState === 'visible') void load(); }, 120000);
@@ -775,7 +875,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   // Another category or map takes over; the price map behind it comes back.
   function close() {
     if (!isOpen) return;
-    stopDrawing(); cancelHold(); clearInterval(refreshTimer); alertDialog.close();
+    stopDrawing(); disarm(); cancelHold(); clearInterval(refreshTimer); clearInterval(placeholderInterval); alertDialog.close();
     // Back on the price map, the category chosen before the apartments is the one to remember.
     try { if (previousCategory) localStorage.setItem(CATEGORY_KEY, previousCategory); else localStorage.removeItem(CATEGORY_KEY); } catch { /* storage blocked */ }
     isOpen = false;

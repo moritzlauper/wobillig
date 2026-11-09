@@ -25,9 +25,14 @@ describe('apartment smart search rules', () => {
     expect(next).toMatchObject({ zimmerMin: 2, mieteMax: 2000, merkmale: [], quellenAus: ['ronorp'] });
     expect(next.gebiete).toHaveLength(1);
   });
+  it('keeps permanent listings as the default duration', () => {
+    expect(parseApartmentRules('2 Zimmer bis 2000').dauer).toBe('unbefristet');
+    expect(parseApartmentRules('2 Zimmer, auch befristet').dauer).toBe('alle');
+    expect(parseApartmentRules('Zwischenmiete im Kreis 4').dauer).toBe('befristet');
+  });
   it('accepts only known values from Claude', () => {
     expect(queryFromClaude({ zimmerMin: 3, zimmerMax: 3.5, mieteMax: 0, flaecheMin: 0, arten: ['villa'], kreise: [3, 15], merkmale: ['balkon', 'pool'], dauer: 'ewig', nurNeu: false, guenstig: true, sorte: 'keine', stichwort: '', begriffe: ['Altbau', 'hell'] }))
-      .toEqual({ zimmerMin: 3, zimmerMax: 3.5, mieteMax: null, flaecheMin: null, arten: emptyApartmentFilter().arten, kreise: [3], merkmale: ['balkon'], dauer: 'alle', nurNeu: false, guenstig: true, text: '', begriffe: ['altbau', 'hell'] });
+      .toEqual({ zimmerMin: 3, zimmerMax: 3.5, mieteMax: null, flaecheMin: null, arten: emptyApartmentFilter().arten, kreise: [3], merkmale: ['balkon'], dauer: 'unbefristet', nurNeu: false, guenstig: true, text: '', begriffe: ['altbau', 'hell'] });
     expect(queryFromClaude('nope')).toBeUndefined();
   });
 });
