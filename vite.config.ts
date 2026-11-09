@@ -33,6 +33,8 @@ export default defineConfig({
           await handler(req, res);
         } catch (error) { next(error); }
       });
+      // Links in local apartment alert mails lead back to this dev server, whose alerts live in the development store.
+      process.env.SITE_URL ||= `http://127.0.0.1:${server.config.server.port ?? 5173}`;
       process.env.ANTHROPIC_API_KEY ||= loadEnv(server.config.mode, process.cwd(), 'ANTHROPIC_API_KEY').ANTHROPIC_API_KEY;
       process.env.STRIPE_SECRET_KEY ||= loadEnv(server.config.mode, process.cwd(), 'STRIPE_SECRET_KEY').STRIPE_SECRET_KEY;
       process.env.STRIPE_PUBLISHABLE_KEY ||= loadEnv(server.config.mode, process.cwd(), 'STRIPE_PUBLISHABLE_KEY').STRIPE_PUBLISHABLE_KEY;
