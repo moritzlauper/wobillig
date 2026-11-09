@@ -69,6 +69,11 @@ export type ApartmentFilter = {
   /** Deselected sources, so new sources show up on their own. */
   quellenAus: ApartmentSource[];
   text: string;
+  /**
+   * Wishes from the smart search such as «hell» or «Altbau», with their usual wordings:
+   * a listing matches if its title contains any of them.
+   */
+  begriffe: string[];
   dauer: ApartmentDuration;
   merkmale: ApartmentFeature[];
   /** Hide swaps and listings with signs of fraud. */
@@ -89,7 +94,7 @@ export type ApartmentFilter = {
 
 export const emptyApartmentFilter = (): ApartmentFilter => ({
   mieteMax: null, zimmerMin: null, zimmerMax: null, flaecheMin: null,
-  arten: [...apartmentKinds], quellenAus: [], text: '', dauer: 'alle',
+  arten: [...apartmentKinds], quellenAus: [], text: '', begriffe: [], dauer: 'alle',
   merkmale: [], ohneZweifel: false, kreise: [], gebiete: [], sorte: 'neu', guenstig: true, nurNeu: false, nurGemerkt: false,
 });
 
@@ -135,9 +140,10 @@ export function matchesApartment(i: Apartment, f: ApartmentFilter, context: Apar
     const inDrawn = f.gebiete.some(area => inArea(lon, lat, area));
     if (!inKreis && !inDrawn) return false;
   }
-  if (f.text.trim()) {
+  if (f.text.trim() || f.begriffe.length) {
     const haystack = `${i.titel} ${i.strasse ?? ''} ${i.plz ?? ''} ${i.ort ?? ''}`.toLowerCase();
     if (!f.text.toLowerCase().split(/\s+/).filter(Boolean).every(word => haystack.includes(word))) return false;
+    if (f.begriffe.length && !f.begriffe.some(word => haystack.includes(word))) return false;
   }
   return true;
 }
@@ -180,6 +186,8 @@ export function parseApartmentFilter(value: unknown): ApartmentFilter {
     arten: Array.isArray(v.arten) ? arten : base.arten,
     quellenAus: pick(v.quellenAus, apartmentSources),
     text: typeof v.text === 'string' ? v.text.slice(0, 120) : '',
+    begriffe: Array.isArray(v.begriffe) ? [...new Set(v.begriffe.filter((word): word is string => typeof word === 'string')
+      .map(word => word.trim().toLowerCase().slice(0, 40)).filter(Boolean))].slice(0, 16) : [],
     dauer: typeof v.dauer === 'string' && Object.hasOwn(apartmentDurationLabels, v.dauer) ? v.dauer as ApartmentDuration : 'alle',
     merkmale: pick(v.merkmale, apartmentFeatures),
     ohneZweifel: v.ohneZweifel === true,
@@ -266,7 +274,9 @@ export function describeApartmentFilter(f: ApartmentFilter, tr: (text: string, v
     f.kreise.length ? f.kreise.length === 1 ? tr('Kreis {number}', { number: f.kreise[0] }) : tr('Kreise {numbers}', { numbers: [...f.kreise].sort((a, b) => a - b).join(', ') }) : null,
     f.gebiete.length ? f.gebiete.length === 1 ? tr('1 Gebiet') : tr('{count} Gebiete', { count: f.gebiete.length }) : null,
     f.dauer !== 'alle' ? tr(apartmentDurationLabels[f.dauer]) : null,
+    ...f.merkmale.map(feature => tr(apartmentFeatureLabels[feature])),
     f.text.trim() ? `«${f.text.trim()}»` : null,
+    f.begriffe.length ? `«${f.begriffe.slice(0, 3).join(', ')}»` : null,
   ].filter((part): part is string => Boolean(part));
   return (parts.join(' · ') || tr('Alle Wohnungen')).slice(0, 120);
 }

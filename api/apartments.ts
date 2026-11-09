@@ -67,6 +67,17 @@ export default async function handler(req: IncomingMessage & { body?: unknown },
       }
       return reply(200, { token: alert.token, name: alert.name, status: alert.status });
     }
+    if (body.action === 'smart') {
+      const apiKey = process.env.ANTHROPIC_API_KEY;
+      if (!apiKey) throw new InputError('Die Smart-Suche ist gerade nicht verfügbar.', 503);
+      // A sentence costs a fraction of a Rappen; the limits keep a script from running up the bill.
+      await reserveLimits((await import('../server/prices.js')).blobStore(securityPath()), [
+        { key: `apartment-smart:ip:${requestIp(req)}`, max: 60, ms: 3600000 },
+        { key: 'apartment-smart:global', max: Number(process.env.APARTMENT_SMART_DAILY_LIMIT || '3000'), ms: 86400000 },
+      ]);
+      const { readApartmentQuery } = await import('../server/apartment-smart.js');
+      return reply(200, { query: await readApartmentQuery(body.text, apiKey) });
+    }
     if (body.action === 'confirm') return reply(200, await confirmAlert(store, body.token));
     if (body.action === 'unsubscribe') return reply(200, await removeAlert(store, body.token));
     if (body.action === 'status') return reply(200, { alerts: await alertStatuses(store, body.tokens) });
