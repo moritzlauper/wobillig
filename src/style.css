@@ -18,12 +18,12 @@ a { color: var(--link); text-underline-offset: 2px; }
 .toolbar-heading { display: flex; align-items: stretch; gap: 6px; }
 #app.custom-map-active > :not(#custom-map-view) { display: none !important; }
 #custom-map-view { display: flex; flex-direction: column; flex: 1; min-height: 0; }
-.custom-map-toolbar, .apartment-toolbar { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px 24px; padding: 16px; border-bottom: 1px solid var(--divider); }
-.custom-map-heading, .apartment-heading { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 180px; }
+.custom-map-toolbar { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px 24px; padding: 16px; border-bottom: 1px solid var(--divider); }
+.custom-map-heading { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 180px; }
 #map-back { flex-shrink: 0; }
 .map-label-short { display: none; }
-.custom-map-title, .apartment-heading-title { min-width: 0; }
-.custom-map-actions, .apartment-actions { display: flex; flex-wrap: wrap; align-items: stretch; justify-content: flex-end; gap: 8px; max-width: 100%; }
+.custom-map-title { min-width: 0; }
+.custom-map-actions { display: flex; flex-wrap: wrap; align-items: stretch; justify-content: flex-end; gap: 8px; max-width: 100%; }
 #map-publish-control { display: flex; }
 #map-publish-help { flex-basis: 100%; margin: 0; text-align: right; font-size: var(--font-control); line-height: 1.5; }
 #map-publish:disabled { cursor: not-allowed; }
@@ -70,18 +70,18 @@ a { color: var(--link); text-underline-offset: 2px; }
   #custom-map-entries { display: none; flex: 1; min-height: 0; width: 100%; overflow-y: auto; border-left: 0; }
   .custom-map-show-list .custom-map-panel { display: none; }
   .custom-map-show-list #custom-map-entries { display: block; }
-  .custom-map-toolbar, .apartment-toolbar { gap: 8px; padding: 8px; }
-  .custom-map-heading, .apartment-heading { flex-basis: 100%; min-width: 0; gap: 8px; }
-  .custom-map-title, .apartment-heading-title { flex: 1; }
+  .custom-map-toolbar { gap: 8px; padding: 8px; }
+  .custom-map-heading { flex-basis: 100%; min-width: 0; gap: 8px; }
+  .custom-map-title { flex: 1; }
   #custom-map-name { font-size: 16px; }
   #custom-map-summary { margin-top: 2px; font-size: 11px; line-height: 1.3; }
   #custom-map-view-switch { flex-shrink: 0; }
-  .custom-map-toolbar button, .apartment-toolbar button { min-height: 34px; padding: 5px 8px; }
+  .custom-map-toolbar button button { min-height: 34px; padding: 5px 8px; }
   #map-back { width: 34px; padding: 0; font-size: 20px; }
-  .custom-map-toolbar .map-label-full, .apartment-toolbar .map-label-full { display: none; }
-  .custom-map-toolbar .map-label-short, .apartment-toolbar .map-label-short { display: inline; }
-  .custom-map-actions, .apartment-actions { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px; width: 100%; }
-  .custom-map-actions > button, #map-publish-control, .apartment-actions > button { flex: 1 1 auto; }
+  .custom-map-toolbar .map-label-full .map-label-full { display: none; }
+  .custom-map-toolbar .map-label-short .map-label-short { display: inline; }
+  .custom-map-actions { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px; width: 100%; }
+  .custom-map-actions > button, #map-publish-control { flex: 1 1 auto; }
   #map-publish { width: 100%; }
   #map-publish-help { text-align: left; }
   #custom-map-visibility { padding: 6px 8px; font-size: 11px; line-height: 1.4; }
@@ -155,7 +155,7 @@ a { color: var(--link); text-underline-offset: 2px; }
 .streetfood-food:not([hidden]) { display: flex; gap: 12px 20px; }
 .status-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 36px; padding: 3px 10px; color: var(--secondary); border-bottom: 1px solid var(--divider); font-size: var(--font-control); }
 .status-summary { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 16px; min-width: 0; }
-#city-average { color: var(--text); font-size: 14px; white-space: nowrap; }
+#city-average, #apartment-average { color: var(--text); font-size: 14px; white-space: nowrap; }
 .status-meta { display: flex; align-items: center; justify-content: flex-end; gap: 14px; margin-left: auto; }
 .city-switch { display: flex; align-items: center; gap: 6px; font-size: var(--font-meta); white-space: nowrap; }
 .city-switch a { color: var(--muted); text-decoration: none; padding: 7px 0; }
@@ -210,25 +210,25 @@ main { display: flex; flex: 1; min-height: 0; }
 .map-actions button[aria-pressed=true] { background: var(--teal-active); color: #fff; border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal), 0 1px 4px #0002; }
 .map-actions button[aria-pressed=true]:hover { background: var(--teal-active-hover); }
 /* The active cheap filter reads as a removable chip, so it needs no separate reset button. */
-.map-actions #cheap[aria-pressed=true] { display: inline-flex; align-items: center; gap: 7px; padding-right: 8px; background: var(--teal-surface); color: var(--teal); }
-.map-actions #cheap[aria-pressed=true]:hover { background: var(--teal-hover); }
-.map-actions #cheap[aria-pressed=true]::after { content: ''; flex-shrink: 0; width: 9px; height: 9px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 1.5l7 7m0-7l-7 7' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 1.5l7 7m0-7l-7 7' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+.map-actions :is(#cheap, #apartment-cheap)[aria-pressed=true] { display: inline-flex; align-items: center; gap: 7px; padding-right: 8px; background: var(--teal-surface); color: var(--teal); }
+.map-actions :is(#cheap, #apartment-cheap)[aria-pressed=true]:hover { background: var(--teal-hover); }
+.map-actions :is(#cheap, #apartment-cheap)[aria-pressed=true]::after { content: ''; flex-shrink: 0; width: 9px; height: 9px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 1.5l7 7m0-7l-7 7' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 1.5l7 7m0-7l-7 7' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; }
 /* Price range: the cheap price is a button, the slider narrows or widens the list in the same green. */
 .price-range { display: flex; flex: 1; max-width: 460px; min-width: 0; align-items: center; gap: 2px; border: 1px solid var(--teal-border); border-radius: 6px; background: color-mix(in srgb, var(--teal-surface) 72%, transparent); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
-.price-range:has(#cheap[aria-pressed=true]) { border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal), 0 1px 4px #0002; }
-.map-actions .price-range #cheap { border: 0; background: transparent; box-shadow: none; white-space: nowrap; flex: none; width: 8.6em; padding-inline: 10px 4px; text-align: left; font-variant-numeric: tabular-nums; }
-.map-actions .price-range #cheap::after { content: none; }
-.map-actions .price-range #cheap[aria-pressed=true] { background: transparent; }
-#price { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 110px; height: 34px; margin: 0 8px 0 2px; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
+.price-range:has(:is(#cheap, #apartment-cheap)[aria-pressed=true]) { border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal), 0 1px 4px #0002; }
+.map-actions .price-range :is(#cheap, #apartment-cheap) { border: 0; background: transparent; box-shadow: none; white-space: nowrap; flex: none; width: 8.6em; padding-inline: 10px 4px; text-align: left; font-variant-numeric: tabular-nums; }
+.map-actions .price-range :is(#cheap, #apartment-cheap)::after { content: none; }
+.map-actions .price-range :is(#cheap, #apartment-cheap)[aria-pressed=true] { background: transparent; }
+:is(#price, #apartment-price) { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 110px; height: 34px; margin: 0 8px 0 2px; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
 .price-rail { position: relative; flex: 1; align-self: stretch; }
 .price-end { flex: none; width: 2.2em; color: var(--teal); font-size: var(--font-meta); font-variant-numeric: tabular-nums; text-align: center; opacity: .8; }
-#price[aria-disabled=true] { cursor: default; opacity: .5; }
+:is(#price, #apartment-price)[aria-disabled=true] { cursor: default; opacity: .5; }
 .price-track { position: absolute; left: 9px; right: 9px; top: 50%; height: 4px; margin-top: -2px; border-radius: 2px; background: var(--teal-border); }
 .price-fill { position: absolute; left: 0; top: 0; bottom: 0; width: var(--fill, 100%); border-radius: 2px; background: var(--teal); }
 .price-thumb { position: absolute; left: var(--fill, 100%); top: 50%; width: 20px; height: 20px; margin: -10px 0 0 -10px; border: 2px solid var(--teal-surface); border-radius: 50%; background: var(--teal); box-shadow: 0 1px 3px #0004; }
-#price:focus-visible { outline: none; }
-#price:focus-visible .price-thumb { border-color: var(--teal-border); }
-.map-panel:has(#detail:not([hidden])) .map-actions, .map-panel:has(#detail:not([hidden])) .app-footer { display: none; }
+:is(#price, #apartment-price):focus-visible { outline: none; }
+:is(#price, #apartment-price):focus-visible .price-thumb { border-color: var(--teal-border); }
+.map-panel:has(#detail:not([hidden])) .map-actions, .map-panel:has(#detail:not([hidden])) .app-footer, .apartment-map-panel:has(#apartment-detail:not([hidden])) .map-actions, .apartment-drawing .map-actions { display: none; }
 .price-marker { display: block; background: var(--surface); color: var(--text); border: 1px solid var(--marker-border); border-radius: 3px; padding: 4px 2px; text-align: center; font: bold 13px Arial, sans-serif; box-shadow: 0 1px 3px #0003; }
 .price-marker.active { background: var(--primary); color: var(--on-primary); border: 2px solid var(--surface); outline: 1px solid var(--primary); }
 .price-marker.unknown { border: 1px solid var(--strong-border); color: var(--muted); padding: 0; height: 14px; width: 14px; font-size: 13px; line-height: 10px; border-radius: 50%; }
@@ -368,10 +368,10 @@ dialog::backdrop { background: var(--backdrop); }
   #filters-toggle { order: 4; grid-column: 2; padding-inline: 7px; font-size: var(--font-control); gap: 7px; }
   .status-row { flex-shrink: 0; min-height: 0; padding: 3px 7px; gap: 1px 7px; }
   .status-summary { gap: 1px 8px; }
-  #city-average { font-size: var(--font-control); }
+  #city-average, #apartment-average { font-size: var(--font-control); }
   .mobile-switch { display: flex; gap: 3px; margin-left: auto; }
   .mobile-switch button { font-size: var(--font-control); min-height: 30px; padding: 4px 7px; }
-  #count { font-size: var(--font-meta); line-height: 1.25; }
+  #count, #apartment-summary { font-size: var(--font-meta); line-height: 1.25; }
   .city-switch { margin-right: auto; }
   .city-switch { gap: 5px; font-size: var(--font-meta); }
   .city-switch a { padding-block: 5px; }
@@ -457,20 +457,18 @@ input::placeholder { color: var(--subtle); opacity: 1; }
 .contribution-security label { display: grid; gap: 8px; }
 .contribution-security input { width: 100%; box-sizing: border-box; padding: 12px; font: inherit; }
 .contribution-security p { line-height: 1.5; }
-/* Apartment map (src/apartments.ts): its own view like a custom map, built from the price map's parts. */
-#app.apartments-active > :not(#apartment-view) { display: none !important; }
+/* Apartment map (src/apartments.ts): a category of its own. The category row and toolbar stay,
+   the food and drink controls, list and map make way for the apartment controls and view. */
+#app.apartments-active:not(.custom-map-active) > :not(.toolbar, #apartment-view, #toast, dialog) { display: none !important; }
+#app.apartments-active:not(.custom-map-active) .toolbar > :not(#category-navigation, #apartment-controls) { display: none !important; }
 #apartment-view { display: flex; flex-direction: column; flex: 1; min-height: 0; }
-#apartment-name { margin: 0; font-size: 18px; line-height: 1.3; }
-#apartment-summary { margin: 4px 0 0; color: var(--muted); font-size: var(--font-control); line-height: 1.5; }
-.apartment-controls #apartment-text { flex: 1 1 220px; min-width: 140px; }
-.apartment-rent { display: inline-flex; align-items: center; gap: 6px; color: var(--secondary); white-space: nowrap; }
-#apartment-rent { width: 92px; }
+.apartment-controls { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.apartment-filters #apartment-text { width: min(320px, 100%); }
 .apartment-rooms { display: inline-flex; gap: 4px; }
 .apartment-rooms select { min-width: 0; }
 #apartment-filters-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
 #apartment-filters-toggle[aria-expanded=true] .filter-chevron { transform: translateY(2px) rotate(225deg); }
 #apartment-filter-count:empty { display: none; }
-#apartment-alert-inline { display: none; }
 .apartment-filters { font-size: var(--font-control); display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 28px; padding: 10px; background: var(--soft); border-bottom: 1px solid var(--divider); }
 .apartment-filters fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 0; padding: 0; border: 0; min-width: 0; }
 .apartment-filters legend { float: left; width: 100%; margin-bottom: 2px; padding: 0; color: var(--muted); font-weight: 600; }
@@ -479,10 +477,13 @@ input::placeholder { color: var(--subtle); opacity: 1; }
 #apartment-area { width: 80px; }
 #apartment-sources { display: contents; }
 .apartment-portals { flex-basis: 100%; margin: 0; }
-.apartment-draw-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 6px 10px; background: var(--teal-surface); border-bottom: 1px solid var(--teal-border); color: var(--teal); font-size: var(--font-control); }
-.apartment-draw-bar span { flex: 1 1 200px; }
-.apartment-draw-bar button { min-height: 30px; padding: 4px 9px; }
+.apartment-draw-help { flex-basis: 100%; }
+.apartment-districts { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.apartment-draw-hint { position: absolute; top: 10px; left: 50%; z-index: 600; transform: translateX(-50%); margin: 0; padding: 6px 10px; border: 1px solid var(--teal); border-radius: 6px; background: var(--teal-surface); color: var(--teal); font-size: var(--font-control); white-space: nowrap; pointer-events: none; box-shadow: 0 1px 4px #0002; }
 .apartment-drawing #apartment-canvas { cursor: crosshair; }
+/* A long press draws on the map; it must not select text or open the callout on iOS. */
+#apartment-canvas { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+#apartment-price .price-end { width: auto; min-width: 2.2em; }
 #apartment-error { margin: 0; background: var(--warning); padding: 8px 12px; font-size: var(--font-control); }
 .apartment-content { display: flex; flex: 1; min-height: 0; }
 .apartment-list { flex: 0 0 320px; overflow-y: auto; border-right: 1px solid var(--strong-border); }
@@ -491,8 +492,7 @@ input::placeholder { color: var(--subtle); opacity: 1; }
 #apartment-canvas .leaflet-tile-pane { filter: var(--tile-filter); }
 #apartment-canvas .leaflet-bar a, #apartment-canvas .leaflet-control-attribution { background: var(--surface); color: var(--text); }
 #apartment-canvas .leaflet-control-attribution a { color: var(--link); }
-.apartment-credit { position: absolute; left: 8px; bottom: 6px; z-index: 500; margin: 0; font-size: var(--font-meta); }
-.apartment-credit a { display: inline-block; padding: 2px 5px; border-radius: 3px; background: var(--overlay); color: var(--secondary); }
+.apartment-credit { color: var(--muted); font-size: var(--font-meta); white-space: nowrap; }
 .apartment-row { align-items: flex-start; }
 .apartment-row-text { min-width: 0; }
 .apartment-row strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -521,23 +521,19 @@ input::placeholder { color: var(--subtle); opacity: 1; }
 .apartment-my-alert span { min-width: 0; overflow-wrap: anywhere; }
 .apartment-my-alert small { display: block; margin-top: 2px; }
 @media (max-width: 760px) {
-  #apartment-name { font-size: 16px; }
-  #apartment-summary { margin-top: 2px; font-size: 11px; line-height: 1.3; }
-  /* Three even rows: search; rent and rooms; type, filters and alert. The alert moves out of the heading. */
-  #apartment-view .apartment-actions { display: none; }
-  .apartment-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 8px; }
-  .apartment-controls select, .apartment-controls input, .apartment-controls button { min-height: 34px; width: 100%; min-width: 0; }
-  .apartment-controls #apartment-text { grid-column: span 2; }
-  .apartment-rent-label { display: none; }
-  .apartment-rent { min-width: 0; }
-  #apartment-rent { width: 100%; }
-  .apartment-rooms { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  #apartment-filters-toggle { padding-inline: 6px; }
-  #apartment-alert-inline { display: block; padding-inline: 6px; }
+  /* One row below the categories: rooms from, rooms to, type and filters. */
+  .apartment-controls { order: 2; grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .8fr) minmax(0, 1.2fr) auto; gap: 5px; margin: 0; }
+  .apartment-rooms { display: contents; }
+  .apartment-controls select { width: 100%; min-width: 0; }
+  #apartment-filters-toggle { padding-inline: 7px; gap: 7px; }
   .apartment-filters { gap: 12px; max-height: 45dvh; overflow-y: auto; }
+  .apartment-filters #apartment-text { width: 100%; }
   .apartment-content { flex-direction: column; overflow: hidden; }
   .apartment-list { display: none; flex: 1; min-height: 0; width: 100%; border-right: 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
   .apartment-show-list .apartment-list { display: block; }
   .apartment-show-list .apartment-map-panel { display: none; }
   .apartment-map-panel { flex: 1; min-height: 0; }
+  /* Without a locate button the slider alone sits at the bottom of the map, as on the price maps. */
+  .apartment-map-panel .map-actions { justify-content: flex-end; }
+  .apartment-draw-hint { top: 8px; }
 }

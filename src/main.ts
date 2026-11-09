@@ -1616,6 +1616,12 @@ if (cityId === 'zurich') {
   apartmentUI = apartments(categoryNav, () => { render(); map.invalidateSize(); }, toast);
   // Links from alert emails open the apartment map right away, without waiting for the price data.
   if (initial.get('map') === APARTMENT_MAP_ID) void apartmentUI.openFromLink();
+  else if (!['drink', 'bar', 's', 'map'].some(key => initial.has(key))) {
+    // Like any other category, the apartments open again when they were chosen last time.
+    let remembered: string | null = null;
+    try { remembered = localStorage.getItem(`wobillig-category:${cityId}`); } catch { /* storage blocked */ }
+    if (remembered === APARTMENT_MAP_ID) void apartmentUI.open();
+  }
 }
 syncControls();
 void init();

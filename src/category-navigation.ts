@@ -15,7 +15,11 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   let counts = emptyCategoryCounts(), unavailable: ReadonlySet<Category> = new Set(), active: Drink = 'coffee';
   let requestVersion = 0;
   let pendingClicks = Promise.resolve();
-  let mapButtons: HTMLButtonElement[] = [], savedMapButtons: HTMLButtonElement[] = [], featuredMapButtons: HTMLButtonElement[] = [];
+  let mapButtons: HTMLButtonElement[] = [], savedMapButtons: HTMLButtonElement[] = [];
+  // A category outside the price data, such as the apartment map: it sits in the menu like the others.
+  let extraButton: HTMLButtonElement | undefined, extraActive = false;
+  const leaveListeners: (() => void)[] = [];
+  const leave = () => { for (const listener of leaveListeners) listener(); };
   let createButton: HTMLButtonElement | undefined;
   const buttons = Object.fromEntries(categories.map(category => {
     const button = document.createElement('button');
@@ -24,6 +28,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     button.textContent = labels[category];
     button.onclick = () => {
       close();
+      leave();
       choose(category);
       // Serialize responses so a slower earlier click cannot undo a newer ranking.
       ++requestVersion;
@@ -42,10 +47,12 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
   })) as Record<Category, HTMLButtonElement>;
 
   function syncActive() {
-    for (const category of categories) buttons[category].setAttribute('aria-pressed', String(category === active));
-    const inMore = more.contains(buttons[active]);
+    for (const category of categories) buttons[category].setAttribute('aria-pressed', String(!extraActive && category === active));
+    extraButton?.setAttribute('aria-pressed', String(extraActive));
+    const current = extraActive && extraButton ? extraButton : buttons[active];
+    const inMore = more.contains(current);
     toggle.setAttribute('aria-pressed', String(inMore));
-    toggle.setAttribute('aria-label', inMore ? `${t('Weitere Kategorien')}: ${labels[active]}` : t('Weitere Kategorien'));
+    toggle.setAttribute('aria-label', inMore ? `${t('Weitere Kategorien')}: ${current.textContent}` : t('Weitere Kategorien'));
   }
   function render() {
     const focused = document.activeElement;
@@ -58,13 +65,14 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     more.replaceChildren(...order.filter(collapsed).map(category => buttons[category]));
     // Retain the unavailable Pizza element for existing control synchronization.
     if (unavailable.has('pizza')) more.append(buttons.pizza);
+    if (extraButton) more.append(extraButton);
     const savedIds = new Set(savedMapButtons.map(button => button.dataset.customMap));
     const publicButtons = mapButtons.filter(button => !savedIds.has(button.dataset.customMap));
     const publicIds = new Set(mapButtons.map(button => button.dataset.customMap));
     for (const button of savedMapButtons) {
       button.textContent = button.dataset.mapName! + (publicIds.has(button.dataset.customMap) ? ` · ${t('Community-Map')}` : '');
     }
-    for (const [label, items] of [[t('Maps'), featuredMapButtons], [t('Meine Maps'), savedMapButtons], [t('Community-Maps'), publicButtons]] as const) {
+    for (const [label, items] of [[t('Meine Maps'), savedMapButtons], [t('Community-Maps'), publicButtons]] as const) {
       if (!items.length) continue;
       const group = document.createElement('div');
       group.className = 'custom-map-menu-group';
@@ -74,7 +82,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
       group.append(heading, ...items); more.append(group);
     }
     if (createButton) more.append(createButton);
-    moreContainer.hidden = !order.some(collapsed) && !mapButtons.length && !savedMapButtons.length && !featuredMapButtons.length && !createButton;
+    moreContainer.hidden = !order.some(collapsed) && !extraButton && !mapButtons.length && !savedMapButtons.length && !createButton;
     if (moreContainer.hidden) {
       more.hidden = true;
       toggle.setAttribute('aria-expanded', 'false');
@@ -121,7 +129,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
         const button = document.createElement('button'); button.type = 'button';
         button.textContent = `${map.name} · ${map.venueCount === 1 ? t('1 Lokal') : t('{count} Lokale', { count: map.venueCount })}`;
         button.dataset.customMap = map.id;
-        button.onclick = () => { close(); load(map.id); };
+        button.onclick = () => { close(); leave(); load(map.id); };
         return button;
       });
       render();
@@ -130,16 +138,19 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
       savedMapButtons = maps.map(map => {
         const button = document.createElement('button'); button.type = 'button';
         button.textContent = map.name; button.dataset.mapName = map.name; button.dataset.customMap = map.id;
-        button.onclick = () => { close(); load(map.id); };
+        button.onclick = () => { close(); leave(); load(map.id); };
         return button;
       });
       render();
     },
-    // Maps run by wobillig itself, such as the apartment map; they open their own view.
-    setFeaturedMaps(buttons: HTMLButtonElement[]) {
-      featuredMapButtons = buttons;
+    setExtraCategory(button: HTMLButtonElement, choose: () => void) {
+      extraButton = button;
+      button.onclick = () => { close(); choose(); };
       render();
     },
+    setExtraActive(value: boolean) { extraActive = value; syncActive(); },
+    // Runs before another category or map takes over from the extra category.
+    onLeave(listener: () => void) { leaveListeners.push(listener); },
     close,
     setCreateButton(button: HTMLButtonElement) {
       createButton = button;

@@ -1,5 +1,6 @@
 // The apartment map for Zürich: listings collected by angebunden, shown as a wobillig
-// map with its own view (the food and drink controls stay hidden while it is open).
+// category. It keeps the category row, status row and price slider of the price maps and
+// swaps the food and drink controls, list and map for its own while it is open.
 // Filters, saved listings and alerts follow angebunden's apartment search; the filter
 // rules live in apartment-data.ts and are shared with the alert emails.
 import L from 'leaflet';
@@ -16,9 +17,13 @@ import {
 } from './apartment-data';
 
 export const APARTMENT_MAP_ID = 'wohnungen';
+// The same key the price map uses to remember the last category in Zürich.
+const CATEGORY_KEY = 'wobillig-category:zurich';
 const RAW_DATA = 'https://raw.githubusercontent.com/moritzlauper/angebunden/wohnungen/wohnungen.json';
 const ZURICH: [number, number] = [47.378, 8.535];
 const PAGE = 150, LABEL_ZOOM = 16, MAX_LABELS = 250;
+// Drawing an area: hold the map this long without moving, then trace the area.
+const HOLD_MS = 450, HOLD_TOLERANCE = 10, DRAW_STEP = 6, MAX_AREA_POINTS = 200, RENT_STEP = 50;
 const storage = {
   filter: 'wobillig:apartments:filter', saved: 'wobillig:apartments:saved', hidden: 'wobillig:apartments:hidden', alerts: 'wobillig:apartments:alerts',
 };
@@ -42,7 +47,8 @@ if (linkParams.get('map') === APARTMENT_MAP_ID && (linkConfirm || linkUnsubscrib
 
 export function apartments(navigation: ReturnType<typeof categoryNavigation>, onClose: () => void, toast: (message: string) => void) {
   const app = document.getElementById('app')!;
-  let data: ApartmentData | undefined, loading: Promise<void> | undefined, loadFailed = false;
+  const toolbar = app.querySelector<HTMLElement>('.toolbar')!;
+  let data: ApartmentData | undefined, loading: Promise<void> | undefined, loadFailed = false, isOpen = false;
   let filter: ApartmentFilter = parseApartmentFilter(readJson<unknown>(storage.filter, emptyApartmentFilter()));
   let saved = new Set(readJson<string[]>(storage.saved, []).filter(id => typeof id === 'string'));
   let hidden = new Set(readJson<string[]>(storage.hidden, []).filter(id => typeof id === 'string'));
@@ -50,42 +56,35 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   let shown = PAGE, selected: string | undefined, matching: Apartment[] = [], cheapApplied = false;
   let districtOf: ((location: { lat: number; lon: number }) => number | undefined) | undefined, districts: Districts | undefined;
   let map: L.Map | undefined, dots: L.LayerGroup | undefined, labels: L.LayerGroup | undefined, areas: L.LayerGroup | undefined, drawLayer: L.LayerGroup | undefined;
-  let drawing: [number, number][] | undefined, refreshTimer: ReturnType<typeof setInterval> | undefined;
+  let drawing: L.LatLng[] | undefined, refreshTimer: ReturnType<typeof setInterval> | undefined;
+  // The rent slider: cheapest to most expensive rent of the current selection, the median in the middle.
+  let rentLow = 0, rentHigh = 1, rentMid: number | undefined, renderFrame = 0;
   const renderer = L.canvas({ padding: 0.3 });
 
   const menuButton = document.createElement('button');
-  menuButton.type = 'button'; menuButton.dataset.apartments = 'true';
+  menuButton.type = 'button'; menuButton.id = 'category-apartments'; menuButton.dataset.apartments = 'true';
   menuButton.textContent = t('Wohnungen');
-  menuButton.onclick = () => { navigation.close(); void open(); };
-  navigation.setFeaturedMaps([menuButton]);
+  navigation.setExtraCategory(menuButton, () => void open());
+  navigation.onLeave(() => { if (isOpen) close(); });
 
   const kindOptions = apartmentKinds.map(kind => `<option value="${kind}">${e(t(apartmentKindLabels[kind]))}</option>`).join('');
   const roomSteps = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 6];
   const roomOptions = (empty: string) => `<option value="">${e(empty)}</option>` + roomSteps.map(n => `<option value="${n}">${e(roomsLabel(n))}</option>`).join('');
-  const view = document.createElement('section');
-  view.id = 'apartment-view'; view.hidden = true;
-  view.innerHTML = `<div class="apartment-toolbar">
-    <div class="apartment-heading">
-      <button type="button" id="apartment-back" aria-label="${t('Zurück')}">←<span class="map-label-full"> ${t('Zurück')}</span></button>
-      <div class="apartment-heading-title"><h1 id="apartment-name">${t('Wohnungen Zürich')}</h1><p id="apartment-summary" role="status">${t('Laden …')}</p></div>
-      <div id="apartment-view-switch" class="mobile-switch" role="group" aria-label="${t('Ansicht')}"><button type="button" id="apartment-show-map" aria-pressed="true">${t('Karte')}</button><button type="button" id="apartment-show-list" aria-pressed="false">${t('Liste')}</button></div>
-    </div>
-    <div class="apartment-actions"><button type="button" class="primary" id="apartment-alert-open"><span class="map-label-full">${t('Suchabo per E-Mail')}</span><span class="map-label-short" aria-hidden="true">${t('Suchabo')}</span></button></div>
-  </div>
-  <div class="toolbar apartment-controls">
-    <input id="apartment-text" type="search" maxlength="120" placeholder="${t('Strasse, PLZ oder Stichwort')}" aria-label="${t('Strasse, PLZ oder Stichwort')}" enterkeyhint="search" autocomplete="off">
-    <button id="apartment-cheap" type="button" aria-pressed="true" title="${t('Zeigt je Art und Zimmerzahl die günstigere Hälfte. Mit einer eigenen Preisgrenze ist der Filter aus.')}">${t('Günstig')}</button>
-    <label class="apartment-rent"><span class="apartment-rent-label">${t('Miete bis')}</span> <input id="apartment-rent" type="number" min="0" max="100000" step="50" inputmode="numeric" placeholder="CHF" aria-label="${t('Miete bis CHF')}"></label>
-    <span class="apartment-rooms" role="group" aria-label="${t('Zimmer')}"><select id="apartment-rooms-min" aria-label="${t('Zimmer ab')}">${roomOptions(t('Zimmer ab'))}</select><select id="apartment-rooms-max" aria-label="${t('Zimmer bis')}">${roomOptions(t('bis'))}</select></span>
+  // The controls take the place of the food and drink controls in the toolbar, next to the categories.
+  const controls = document.createElement('div');
+  controls.id = 'apartment-controls'; controls.className = 'apartment-controls'; controls.hidden = true;
+  controls.innerHTML = `<span class="apartment-rooms" role="group" aria-label="${t('Zimmer')}"><select id="apartment-rooms-min" aria-label="${t('Zimmer ab')}">${roomOptions(t('Zimmer ab'))}</select><select id="apartment-rooms-max" aria-label="${t('Zimmer bis')}">${roomOptions(t('bis'))}</select></span>
     <select id="apartment-kind" aria-label="${t('Art')}"><option value="">${t('Alle Arten')}</option>${kindOptions}<option value="mixed" disabled hidden>${t('Mehrere Arten')}</option></select>
-    <button id="apartment-filters-toggle" type="button" aria-expanded="false" aria-controls="apartment-filters">${t('Filter')} <span id="apartment-filter-count"></span><span class="filter-chevron" aria-hidden="true"></span></button>
-    <button id="apartment-alert-inline" type="button" class="primary">${t('Suchabo')}</button>
-  </div>
-  <div id="apartment-filters" class="apartment-filters" hidden>
+    <button id="apartment-filters-toggle" type="button" aria-expanded="false" aria-controls="apartment-filters">${t('Filter')} <span id="apartment-filter-count"></span><span class="filter-chevron" aria-hidden="true"></span></button>`;
+  toolbar.append(controls);
+  const view = document.createElement('section');
+  view.id = 'apartment-view'; view.hidden = true; view.setAttribute('aria-label', t('Wohnungen Zürich'));
+  view.innerHTML = `<div id="apartment-filters" class="apartment-filters" hidden>
+    <fieldset><legend>${t('Suche')}</legend><input id="apartment-text" type="search" maxlength="120" placeholder="${t('Strasse, PLZ oder Stichwort')}" aria-label="${t('Strasse, PLZ oder Stichwort')}" enterkeyhint="search" autocomplete="off"></fieldset>
     <fieldset><legend>${t('Art')}</legend>${apartmentKinds.map(kind => `<label><input type="checkbox" name="kind" value="${kind}"> ${e(t(apartmentKindLabels[kind]))}</label>`).join('')}</fieldset>
     <fieldset><legend>${t('Lage')}</legend>
-      <label>${t('Kreis')} <select id="apartment-district"><option value="">${t('Alle Kreise')}</option>${Array.from({ length: 12 }, (_, k) => `<option value="${k + 1}">${e(t('Kreis {number}', { number: k + 1 }))}</option>`).join('')}</select></label>
-      <button type="button" id="apartment-draw">${t('Gebiet einzeichnen')}</button>
+      <span class="apartment-districts" role="group" aria-label="${t('Kreise')}">${Array.from({ length: 12 }, (_, k) => `<label><input type="checkbox" name="district" value="${k + 1}"> ${e(t('Kreis {number}', { number: k + 1 }))}</label>`).join('')}</span>
+      <span class="muted apartment-draw-help">${t('Gebiet: lange auf die Karte drücken und das Gebiet umfahren.')}</span>
     </fieldset>
     <fieldset><legend>${t('Wohnung')}</legend>
       <label>${t('Fläche ab')} <input id="apartment-area" type="number" min="0" max="2000" step="5" inputmode="numeric" placeholder="m²" aria-label="${t('Fläche ab m²')}"></label>
@@ -103,14 +102,16 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     <button type="button" id="apartment-reset">${t('Zurücksetzen')}</button>
   </div>
   <div id="apartment-chips" class="smart-chips" role="group" aria-label="${t('Aktive Filter')}" hidden></div>
-  <div id="apartment-draw-bar" class="apartment-draw-bar" hidden><span id="apartment-draw-help" role="status"></span><button type="button" id="apartment-draw-undo">${t('Rückgängig')}</button><button type="button" id="apartment-draw-cancel">${t('Abbrechen')}</button><button type="button" id="apartment-draw-done" class="primary">${t('Fertig')}</button></div>
+  <div class="status-row"><div class="status-summary" role="status"><strong id="apartment-average"></strong><span id="apartment-summary">${t('Laden …')}</span></div><div class="mobile-switch" role="group" aria-label="${t('Ansicht')}"><button type="button" id="apartment-show-map" aria-pressed="true">${t('Karte')}</button><button type="button" id="apartment-show-list" aria-pressed="false">${t('Liste')}</button></div><div class="status-meta"><a class="apartment-credit" href="https://angebunden.ch/wohnungen" target="_blank" rel="noopener">${t('Inserate von angebunden')}</a><button type="button" id="apartment-alert-open" class="text-button">${t('Suchabo per E-Mail')}</button></div></div>
   <p id="apartment-error" role="alert" hidden></p>
   <div class="apartment-content">
     <aside class="apartment-list" aria-label="${t('Wohnungen')}"><div class="list-tools"><select id="apartment-sort" aria-label="${t('Sortierung')}">${Object.entries(apartmentSortLabels).map(([value, label]) => `<option value="${value}">${e(t(label))}</option>`).join('')}</select></div><div id="apartment-results"></div></aside>
-    <div class="apartment-map-panel"><div id="apartment-canvas" role="region" aria-label="${t('Karte')}"></div><section id="apartment-detail" tabindex="-1" aria-label="${t('Wohnung')}" hidden></section>
-      <p class="apartment-credit"><a href="https://angebunden.ch/wohnungen" target="_blank" rel="noopener">${t('Inserate gesammelt von angebunden')}</a></p></div>
+    <div class="apartment-map-panel"><div id="apartment-canvas" role="region" aria-label="${t('Karte')}"></div>
+      <div class="map-actions"><div class="price-range"><button id="apartment-cheap" type="button" aria-pressed="true" title="${t('Zeigt je Art und Zimmerzahl die günstigere Hälfte.')}">${t('Günstig')}</button><div id="apartment-price" class="price-slider" role="slider" tabindex="0" aria-label="${t('Höchstmiete in CHF')}" aria-disabled="true"><span class="price-end" id="apartment-price-min"></span><div class="price-rail"><div class="price-track"><div class="price-fill"></div><div class="price-thumb"></div></div></div><span class="price-end" id="apartment-price-max"></span></div></div></div>
+      <p id="apartment-draw-hint" class="apartment-draw-hint" role="status" hidden></p>
+      <section id="apartment-detail" tabindex="-1" aria-label="${t('Wohnung')}" hidden></section></div>
   </div>`;
-  app.append(view);
+  toolbar.after(view);
 
   const alertDialog = document.createElement('dialog');
   alertDialog.id = 'apartment-alert-dialog'; alertDialog.setAttribute('aria-labelledby', 'apartment-alert-title');
@@ -126,11 +127,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   </form><section id="apartment-my-alerts" hidden><h3>${t('Meine Suchabos')}</h3><div></div></section>`;
   document.body.append(alertDialog);
 
-  const el = <T extends HTMLElement = HTMLElement>(id: string) => view.querySelector<T>('#' + id)!;
-  // On phones the label is hidden to keep the controls in three rows, so the field names itself.
-  const narrow = matchMedia('(max-width: 760px)');
-  const rentPlaceholder = () => { view.querySelector<HTMLInputElement>('#apartment-rent')!.placeholder = narrow.matches ? t('Miete bis CHF') : 'CHF'; };
-  rentPlaceholder(); narrow.addEventListener('change', rentPlaceholder);
+  // The controls sit in the shared toolbar, so elements are looked up in the document.
+  const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
   const input = (id: string) => el<HTMLInputElement>(id);
   const select = (id: string) => el<HTMLSelectElement>(id);
   const money = (n: number | null) => n == null ? t('Preis auf Anfrage') : `CHF ${chf(n)}`;
@@ -148,23 +146,20 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     shown = PAGE; save(); syncControls(); render();
   }
   function syncControls() {
-    input('apartment-text').value = filter.text;
-    input('apartment-rent').value = filter.mieteMax == null ? '' : String(filter.mieteMax);
-    el('apartment-cheap').setAttribute('aria-pressed', String(cheapActive(filter)));
+    if (document.activeElement !== input('apartment-text')) input('apartment-text').value = filter.text;
     select('apartment-rooms-min').value = filter.zimmerMin == null ? '' : String(filter.zimmerMin);
     select('apartment-rooms-max').value = filter.zimmerMax == null ? '' : String(filter.zimmerMax);
     const kind = select('apartment-kind');
     kind.value = filter.arten.length === apartmentKinds.length ? '' : filter.arten.length === 1 ? filter.arten[0] : 'mixed';
     view.querySelectorAll<HTMLInputElement>('[name=kind]').forEach(box => { box.checked = filter.arten.includes(box.value as Apartment['art']); });
     view.querySelectorAll<HTMLInputElement>('[name=feature]').forEach(box => { box.checked = filter.merkmale.includes(box.value as never); });
-    select('apartment-district').value = filter.kreise.length === 1 ? String(filter.kreise[0]) : '';
+    view.querySelectorAll<HTMLInputElement>('[name=district]').forEach(box => { box.checked = filter.kreise.includes(Number(box.value)); });
     input('apartment-area').value = filter.flaecheMin == null ? '' : String(filter.flaecheMin);
     select('apartment-duration').value = filter.dauer;
     input('apartment-new').checked = filter.nurNeu;
     input('apartment-saved').checked = filter.nurGemerkt;
     input('apartment-doubt').checked = filter.ohneZweifel;
     select('apartment-sort').value = filter.sorte;
-    el('apartment-draw').textContent = filter.gebiete.length ? t('Weiteres Gebiet einzeichnen') : t('Gebiet einzeichnen');
     const unhide = el<HTMLButtonElement>('apartment-unhide');
     unhide.hidden = !hidden.size;
     unhide.textContent = t('Ausgeblendete wieder zeigen ({count})', { count: hidden.size });
@@ -181,6 +176,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   // Filters in the panel appear as chips, so the toolbar stays short and nothing active is out of sight.
   function chips() {
     const list: { label: string; clear: Partial<ApartmentFilter> }[] = [];
+    if (filter.text) list.push({ label: `«${filter.text}»`, clear: { text: '' } });
     if (filter.kreise.length) list.push({ label: filter.kreise.map(n => t('Kreis {number}', { number: n })).join(', '), clear: { kreise: [] } });
     filter.gebiete.forEach((_, k) => list.push({ label: filter.gebiete.length === 1 ? t('Eingezeichnetes Gebiet') : t('Gebiet {number}', { number: k + 1 }), clear: { gebiete: filter.gebiete.filter((__, j) => j !== k) } }));
     if (filter.flaecheMin != null) list.push({ label: t('ab {area} m²', { area: filter.flaecheMin }), clear: { flaecheMin: null } });
@@ -207,19 +203,24 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   function render() {
     chips();
     if (!data) {
+      el('apartment-average').textContent = '';
       el('apartment-summary').textContent = loadFailed ? t('Wohnungen konnten nicht geladen werden.') : t('Laden …');
+      syncRent([]);
       return;
     }
     const ctx = context();
-    const result = filterApartments(data.inserate.filter(item => filter.nurGemerkt || !hidden.has(item.id)), filter, ctx);
+    const visible = data.inserate.filter(item => filter.nurGemerkt || !hidden.has(item.id));
+    // The slider spans every rent the other filters allow, so it stays put while it moves.
+    syncRent(filterApartments(visible, { ...filter, mieteMax: null, guenstig: false }, ctx).list.flatMap(item => item.miete != null && item.miete > 0 ? [item.miete] : []).sort((a, b) => a - b));
+    const result = filterApartments(visible, filter, ctx);
     cheapApplied = result.applied;
     matching = sortApartments(result.list, filter.sorte);
     const priced = matching.filter(item => item.miete != null);
     const average = priced.length ? priced.reduce((sum, item) => sum + item.miete!, 0) / priced.length : undefined;
     const time = new Date(data.erstellt).toLocaleTimeString(dateLocale(), { hour: '2-digit', minute: '2-digit' });
+    el('apartment-average').textContent = t('Schnitt {city} {value}', { city: t('Zürich'), value: average !== undefined ? `CHF ${chf(average)}` : '—' });
     el('apartment-summary').textContent = [
       matching.length === 1 ? t('1 Wohnung') : t('{count} Wohnungen', { count: chf(matching.length) }),
-      average !== undefined ? t('Schnitt CHF {price}', { price: chf(average) }) : null,
       cheapApplied ? t('günstigere Hälfte') : null,
       t('Stand {time}', { time }),
     ].filter(Boolean).join(' · ');
@@ -299,6 +300,56 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     }
   }
 
+  // --- Rent slider --------------------------------------------------------
+  // The same slider as on the price maps: «Günstig» sits in the middle, the right end shows every rent.
+  function rentPosition(value: number) {
+    if (rentHigh <= rentLow) return 100;
+    const mid = rentMid;
+    if (mid === undefined || mid <= rentLow || mid >= rentHigh) return (value - rentLow) / (rentHigh - rentLow) * 100;
+    return value <= mid ? (value - rentLow) / (mid - rentLow) * 50 : 50 + (value - mid) / (rentHigh - mid) * 50;
+  }
+  function rentFromPosition(ratio: number) {
+    const mid = rentMid;
+    if (mid === undefined || mid <= rentLow || mid >= rentHigh) return rentLow + ratio * (rentHigh - rentLow);
+    return ratio <= .5 ? rentLow + ratio * 2 * (mid - rentLow) : mid + (ratio - .5) * 2 * (rentHigh - mid);
+  }
+  function showRent(value: number, cheap: boolean, limit = value) {
+    const slider = el('apartment-price'), button = el<HTMLButtonElement>('apartment-cheap');
+    slider.style.setProperty('--fill', `${rentPosition(value)}%`);
+    slider.setAttribute('aria-valuenow', String(value));
+    button.textContent = cheap ? t('Günstig') : t('Bis CHF {price}', { price: chf(limit) });
+    button.setAttribute('aria-pressed', String(cheap));
+    button.title = cheap ? t('Günstig-Filter aufheben') : t('Zeigt je Art und Zimmerzahl die günstigere Hälfte.');
+    slider.setAttribute('aria-valuetext', cheap ? t('Günstige Hälfte') : button.textContent);
+  }
+  function syncRent(rents: number[]) {
+    const slider = el('apartment-price');
+    // A few parking spaces and villas would stretch the scale; the ends leave out the outer percent.
+    const edge = Math.floor(rents.length / 100);
+    rentLow = rents.length ? Math.floor(rents[edge] / RENT_STEP) * RENT_STEP : 0;
+    rentHigh = rents.length ? Math.ceil(rents[rents.length - 1 - edge] / RENT_STEP) * RENT_STEP : 1;
+    rentMid = rents.length >= 4 ? Math.round(rents[Math.floor(rents.length / 2)] / RENT_STEP) * RENT_STEP : undefined;
+    slider.setAttribute('aria-valuemin', String(rentLow)); slider.setAttribute('aria-valuemax', String(rentHigh));
+    slider.setAttribute('aria-disabled', String(!rents.length));
+    el('apartment-price-min').textContent = rents.length ? chf(rentLow) : '';
+    el('apartment-price-max').textContent = rents.length ? chf(rentHigh) : '';
+    const cheap = cheapActive(filter);
+    const value = cheap && rentMid !== undefined ? rentMid : filter.mieteMax != null ? Math.min(Math.max(filter.mieteMax, rentLow), rentHigh) : rentHigh;
+    showRent(value, cheap, !cheap && filter.mieteMax != null ? filter.mieteMax : value);
+  }
+  function setRentLimit(value: number) {
+    if (el('apartment-price').getAttribute('aria-disabled') === 'true') return;
+    const rounded = Math.round(value / RENT_STEP) * RENT_STEP;
+    const snapped = Math.min(Math.max(rentMid !== undefined && Math.abs(value - rentMid) < RENT_STEP / 2 ? rentMid : rounded, rentLow), rentHigh);
+    // Back in the middle is «Günstig» again; the right end shows every rent.
+    const cheap = snapped === rentMid;
+    filter = parseApartmentFilter({ ...filter, guenstig: cheap, mieteMax: cheap || snapped >= rentHigh ? null : snapped, ...(cheap ? { nurGemerkt: false } : {}) });
+    shown = PAGE;
+    showRent(snapped, cheap);
+    cancelAnimationFrame(renderFrame);
+    renderFrame = requestAnimationFrame(() => { save(); render(); });
+  }
+
   // --- Detail -------------------------------------------------------------
   function showDetail(item: Apartment, fromList: boolean) {
     selected = item.id;
@@ -363,58 +414,92 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   }
 
   // --- Drawing areas ------------------------------------------------------
-  function drawStatus() {
-    const points = drawing?.length || 0;
-    el('apartment-draw-help').textContent = points < 3 ? t('Tippe auf die Karte, um die Ecken des Gebiets zu setzen (noch {count}).', { count: 3 - points }) : t('{count} Ecken gesetzt. Weitere Ecken setzen oder «Fertig».', { count: points });
-    el<HTMLButtonElement>('apartment-draw-done').disabled = points < 3;
-    el<HTMLButtonElement>('apartment-draw-undo').disabled = points === 0;
+  // Hold the map still, then trace the area with a finger or the mouse; letting go closes it.
+  let hold: { id: number; x: number; y: number; timer: ReturnType<typeof setTimeout> } | undefined, lastPoint: L.Point | undefined;
+  // Pointers on the map: a second finger means pinch zoom, not drawing.
+  const pointers = new Set<number>();
+  function cancelHold() { if (hold) clearTimeout(hold.timer); hold = undefined; }
+  function drawHint(text: string) { el('apartment-draw-hint').textContent = text; el('apartment-draw-hint').hidden = !text; }
+  function redrawTrace() {
     drawLayer?.clearLayers();
-    if (drawing && drawLayer) {
-      const color = css('--teal') || '#24636b';
-      const latlngs = drawing.map(([lon, lat]) => [lat, lon] as [number, number]);
-      if (latlngs.length > 1) L.polyline(latlngs.length > 2 ? [...latlngs, latlngs[0]] : latlngs, { color, weight: 2, dashArray: '4 4', interactive: false }).addTo(drawLayer);
-      for (const point of latlngs) L.circleMarker(point, { renderer, radius: 5, color: '#fff', weight: 2, fillColor: color, fillOpacity: 1, interactive: false }).addTo(drawLayer);
-    }
+    if (drawing && drawLayer && drawing.length > 1) L.polyline(drawing, { color: css('--teal') || '#24636b', weight: 3, dashArray: '4 4', interactive: false }).addTo(drawLayer);
   }
-  function startDrawing() {
-    drawing = [];
-    el('apartment-filters').hidden = true; el('apartment-filters-toggle').setAttribute('aria-expanded', 'false');
-    el('apartment-draw-bar').hidden = false;
-    showList(false); closeDetail();
+  function startDrawing(event: PointerEvent) {
+    if (!map) return;
+    map.dragging.disable();
+    closeDetail(); el('apartment-filters').hidden = true; el('apartment-filters-toggle').setAttribute('aria-expanded', 'false');
+    lastPoint = map.mouseEventToContainerPoint(event);
+    drawing = [map.containerPointToLatLng(lastPoint)];
     view.classList.add('apartment-drawing');
-    drawStatus();
+    drawHint(t('Gebiet umfahren und loslassen.'));
+    navigator.vibrate?.(15);
+    el('apartment-canvas').setPointerCapture?.(event.pointerId);
   }
   function stopDrawing() {
-    drawing = undefined; drawLayer?.clearLayers();
-    el('apartment-draw-bar').hidden = true;
+    if (!drawing) return;
+    drawing = undefined; lastPoint = undefined; drawLayer?.clearLayers();
+    map?.dragging.enable();
     view.classList.remove('apartment-drawing');
+    drawHint('');
   }
-  el('apartment-draw').onclick = () => startDrawing();
-  el('apartment-draw-undo').onclick = () => { drawing?.pop(); drawStatus(); };
-  el('apartment-draw-cancel').onclick = () => stopDrawing();
-  el('apartment-draw-done').onclick = () => {
-    if (!drawing || drawing.length < 3) return;
-    const area = { punkte: drawing };
+  function finishDrawing() {
+    const trace = drawing || [];
     stopDrawing();
-    change({ gebiete: [...filter.gebiete, area].slice(-10) });
-  };
+    // The browser still sends a click after letting go; it must not open the listing below the finger.
+    const swallow = (event: Event) => { event.stopPropagation(); event.preventDefault(); };
+    el('apartment-canvas').addEventListener('click', swallow, { capture: true, once: true });
+    setTimeout(() => el('apartment-canvas').removeEventListener('click', swallow, { capture: true }), 400);
+    if (!map || trace.length < 3) { toast(t('Zum Zeichnen lange auf die Karte drücken und dann das Gebiet umfahren.')); return; }
+    const box = L.bounds(trace.map(point => map!.latLngToContainerPoint(point)));
+    const size = box.getSize();
+    if (size.x < 24 && size.y < 24) { toast(t('Das Gebiet ist zu klein. Bitte grösser umfahren.')); return; }
+    const step = Math.ceil(trace.length / MAX_AREA_POINTS);
+    const points = trace.filter((_, k) => k % step === 0).map(point => [Math.round(point.lng * 1e6) / 1e6, Math.round(point.lat * 1e6) / 1e6] as [number, number]);
+    change({ gebiete: [...filter.gebiete, { punkte: points }].slice(-10) });
+    toast(t('Gebiet gesetzt. Über das × beim Filter entfernst du es wieder.'));
+  }
+  function bindDrawing(canvas: HTMLElement) {
+    canvas.addEventListener('pointerdown', event => {
+      pointers.add(event.pointerId);
+      if (pointers.size > 1 || !event.isPrimary || event.button > 0) { cancelHold(); if (drawing) stopDrawing(); return; }
+      const id = event.pointerId, x = event.clientX, y = event.clientY;
+      cancelHold();
+      hold = { id, x, y, timer: setTimeout(() => { hold = undefined; if (pointers.size === 1) startDrawing(event); }, HOLD_MS) };
+    }, true);
+    canvas.addEventListener('pointermove', event => {
+      if (hold && event.pointerId === hold.id && Math.hypot(event.clientX - hold.x, event.clientY - hold.y) > HOLD_TOLERANCE) cancelHold();
+      if (!drawing || !map) return;
+      event.stopPropagation();
+      const point = map.mouseEventToContainerPoint(event);
+      if (lastPoint && point.distanceTo(lastPoint) < DRAW_STEP) return;
+      lastPoint = point;
+      drawing.push(map.containerPointToLatLng(point));
+      redrawTrace();
+    }, true);
+    const end = (event: PointerEvent) => {
+      pointers.delete(event.pointerId);
+      if (hold?.id === event.pointerId) cancelHold();
+      if (!drawing) return;
+      if (event.type === 'pointercancel') stopDrawing(); else finishDrawing();
+    };
+    // Letting go outside the map still counts, so the window listens too.
+    window.addEventListener('pointerup', end, true);
+    window.addEventListener('pointercancel', end, true);
+    // A long press opens no context menu here, it starts drawing.
+    canvas.addEventListener('contextmenu', event => event.preventDefault());
+  }
 
   // --- Map and data -------------------------------------------------------
   function ensureMap() {
     if (map) return;
     map = L.map(el('apartment-canvas'), { zoomControl: false, preferCanvas: true }).setView(ZURICH, 13);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>', maxZoom: 19 }).addTo(map);
-    L.control.zoom({ position: 'bottomright' }).addTo(map);
     areas = L.layerGroup().addTo(map);
     dots = L.layerGroup().addTo(map);
     labels = L.layerGroup().addTo(map);
     drawLayer = L.layerGroup().addTo(map);
     map.on('zoomend moveend', renderLabels);
-    map.on('click', event => {
-      if (!drawing) return;
-      drawing.push([Math.round(event.latlng.lng * 1e6) / 1e6, Math.round(event.latlng.lat * 1e6) / 1e6]);
-      drawStatus();
-    });
+    bindDrawing(el('apartment-canvas'));
     new ResizeObserver(() => map?.invalidateSize({ pan: false })).observe(el('apartment-canvas'));
   }
   async function fetchData(): Promise<ApartmentData> {
@@ -441,7 +526,6 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
         el('apartment-error').hidden = true;
         const down = data.quellen.filter(source => !source.ok).map(source => source.name);
         if (down.length) { el('apartment-error').textContent = t('Gerade nicht erreichbar: {sources}. Ihre Inserate vom letzten Abruf bleiben sichtbar.', { sources: down.join(', ') }); el('apartment-error').hidden = false; }
-        menuButton.textContent = t('Wohnungen · {count} Inserate', { count: chf(data.inserate.length) });
       } catch {
         loadFailed = !data;
         if (!data) { el('apartment-error').textContent = t('Wohnungen konnten nicht geladen werden. Bitte später erneut versuchen.'); el('apartment-error').hidden = false; }
@@ -505,7 +589,6 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     alertDialog.showModal();
   }
   el('apartment-alert-open').onclick = () => openAlertDialog();
-  el('apartment-alert-inline').onclick = () => openAlertDialog();
   alertDialog.querySelector<HTMLButtonElement>('[data-close]')!.onclick = () => alertDialog.close();
   form.onsubmit = async event => {
     event.preventDefault();
@@ -530,8 +613,28 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   let textTimer: ReturnType<typeof setTimeout> | undefined;
   input('apartment-text').oninput = () => { clearTimeout(textTimer); textTimer = setTimeout(() => change({ text: input('apartment-text').value }), 250); };
   // With a rent limit of its own, «Günstig» steps aside; pressing it again drops the limit.
-  el('apartment-cheap').onclick = () => cheapActive(filter) ? change({ guenstig: false }) : change({ guenstig: true, mieteMax: null, nurGemerkt: false });
-  input('apartment-rent').onchange = () => change({ mieteMax: numberValue(input('apartment-rent').value) });
+  el('apartment-cheap').onclick = () => cheapActive(filter) ? change({ guenstig: false, mieteMax: null }) : change({ guenstig: true, mieteMax: null, nurGemerkt: false });
+  const slider = el('apartment-price');
+  const rentAt = (event: PointerEvent) => {
+    const track = slider.querySelector('.price-track')!.getBoundingClientRect();
+    return rentFromPosition(Math.min(Math.max((event.clientX - track.left) / track.width, 0), 1));
+  };
+  slider.onpointerdown = event => {
+    if (slider.getAttribute('aria-disabled') === 'true') return;
+    event.preventDefault();
+    slider.setPointerCapture(event.pointerId);
+    slider.focus({ preventScroll: true });
+    setRentLimit(rentAt(event));
+  };
+  slider.onpointermove = event => { if (slider.hasPointerCapture(event.pointerId)) setRentLimit(rentAt(event)); };
+  slider.onkeydown = event => {
+    const current = Number(slider.getAttribute('aria-valuenow'));
+    const next = ({ ArrowRight: current + RENT_STEP, ArrowUp: current + RENT_STEP, ArrowLeft: current - RENT_STEP, ArrowDown: current - RENT_STEP,
+      PageUp: current + 4 * RENT_STEP, PageDown: current - 4 * RENT_STEP, Home: rentLow, End: rentHigh } as Record<string, number>)[event.key];
+    if (next === undefined) return;
+    event.preventDefault();
+    setRentLimit(next);
+  };
   select('apartment-rooms-min').onchange = () => {
     const min = numberValue(select('apartment-rooms-min').value);
     change({ zimmerMin: min, zimmerMax: min != null && filter.zimmerMax != null && filter.zimmerMax < min ? null : filter.zimmerMax });
@@ -558,7 +661,9 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     const off = [...view.querySelectorAll<HTMLInputElement>('[name=source]')].filter(item => !on.has(item.value)).map(item => item.value);
     change({ quellenAus: off as ApartmentFilter['quellenAus'] });
   });
-  select('apartment-district').onchange = () => { const n = numberValue(select('apartment-district').value); change({ kreise: n ? [n] : [] }); };
+  view.querySelectorAll<HTMLInputElement>('[name=district]').forEach(box => {
+    box.onchange = () => change({ kreise: [...view.querySelectorAll<HTMLInputElement>('[name=district]:checked')].map(item => Number(item.value)).sort((a, b) => a - b) });
+  });
   input('apartment-area').onchange = () => change({ flaecheMin: numberValue(input('apartment-area').value) });
   select('apartment-duration').onchange = () => change({ dauer: select('apartment-duration').value as ApartmentFilter['dauer'] });
   input('apartment-new').onchange = () => change({ nurNeu: input('apartment-new').checked });
@@ -588,19 +693,23 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
 
   // --- Open and close -----------------------------------------------------
   async function open(listing?: string | null) {
-    navigation.close();
-    if (app.classList.contains('custom-map-active')) document.querySelector<HTMLButtonElement>('#map-back')?.click();
-    view.hidden = false; app.classList.add('apartments-active');
-    const url = new URL(location.href); url.search = ''; url.searchParams.set('map', APARTMENT_MAP_ID);
-    history.replaceState(null, '', url);
-    document.getElementById('map-title')!.textContent = t('Wohnungen Zürich');
-    document.title = `${t('Wohnungen Zürich')} | wobillig`;
-    ensureMap(); syncControls(); render();
-    map!.invalidateSize();
-    el('apartment-back').focus({ preventScroll: true });
-    clearInterval(refreshTimer);
-    // angebunden collects every five minutes; the page looks for news every two.
-    refreshTimer = setInterval(() => { if (document.visibilityState === 'visible') void load(); }, 120000);
+    if (!isOpen) {
+      if (app.classList.contains('custom-map-active')) document.querySelector<HTMLButtonElement>('#map-back')?.click();
+      isOpen = true;
+      view.hidden = false; controls.hidden = false; app.classList.add('apartments-active');
+      navigation.setExtraActive(true);
+      const url = new URL(location.href); url.search = ''; url.searchParams.set('map', APARTMENT_MAP_ID);
+      history.replaceState(null, '', url);
+      document.getElementById('map-title')!.textContent = t('Wohnungen Zürich');
+      document.title = `${t('Wohnungen Zürich')} | wobillig`;
+      // Like the other categories, the apartments open again on the next visit.
+      try { localStorage.setItem(CATEGORY_KEY, APARTMENT_MAP_ID); } catch { /* storage blocked */ }
+      ensureMap(); syncControls(); render();
+      map!.invalidateSize();
+      clearInterval(refreshTimer);
+      // angebunden collects every five minutes; the page looks for news every two.
+      refreshTimer = setInterval(() => { if (document.visibilityState === 'visible') void load(); }, 120000);
+    }
     await load();
     if (listing) {
       const item = data?.inserate.find(entry => entry.id === listing);
@@ -608,12 +717,16 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       else toast(t('Dieses Inserat ist nicht mehr online.'));
     }
   }
-  el('apartment-back').onclick = () => {
-    stopDrawing(); clearInterval(refreshTimer);
-    view.hidden = true; app.classList.remove('apartments-active');
+  // Another category or map takes over; the price map behind it comes back.
+  function close() {
+    if (!isOpen) return;
+    stopDrawing(); cancelHold(); clearInterval(refreshTimer); alertDialog.close();
+    isOpen = false;
+    view.hidden = true; controls.hidden = true; app.classList.remove('apartments-active');
+    navigation.setExtraActive(false);
     const target = new URL(location.href); target.searchParams.delete('map'); history.replaceState(null, '', target);
-    onClose(); navigation.focusMenu();
-  };
+    onClose();
+  }
 
   /** Handles links from alert emails and shared listings; returns true if the apartment map opened. */
   async function openFromLink(): Promise<boolean> {
@@ -633,5 +746,5 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     await opening;
     return true;
   }
-  return { open, openFromLink, get isOpen() { return !view.hidden; } };
+  return { open, openFromLink, close, get isOpen() { return isOpen; } };
 }
