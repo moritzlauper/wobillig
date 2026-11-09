@@ -58,14 +58,14 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
     const focused = document.activeElement;
     const order = rankedCategories(counts, unavailable);
     // Only the featured categories stay in the row; every other category, new ones included, sits behind "Weitere".
-    const featured = featuredCategories(counts, order, categoryPeriod());
+    // An extra category such as the apartments in Zürich holds the fourth place of the row for good.
+    const featured = featuredCategories(counts, order, categoryPeriod(), extraButton ? 3 : 4);
     const collapsed = (category: Category) => !featured.includes(category);
     for (const category of categories) buttons[category].hidden = !order.includes(category);
-    primary.replaceChildren(...featured.map(category => buttons[category]));
+    primary.replaceChildren(...featured.map(category => buttons[category]), ...(extraButton ? [extraButton] : []));
     more.replaceChildren(...order.filter(collapsed).map(category => buttons[category]));
     // Retain the unavailable Pizza element for existing control synchronization.
     if (unavailable.has('pizza')) more.append(buttons.pizza);
-    if (extraButton) more.append(extraButton);
     const savedIds = new Set(savedMapButtons.map(button => button.dataset.customMap));
     const publicButtons = mapButtons.filter(button => !savedIds.has(button.dataset.customMap));
     const publicIds = new Set(mapButtons.map(button => button.dataset.customMap));
@@ -82,7 +82,7 @@ export function categoryNavigation(root: HTMLElement, choose: (drink: Drink) => 
       group.append(heading, ...items); more.append(group);
     }
     if (createButton) more.append(createButton);
-    moreContainer.hidden = !order.some(collapsed) && !extraButton && !mapButtons.length && !savedMapButtons.length && !createButton;
+    moreContainer.hidden = !order.some(collapsed) && !mapButtons.length && !savedMapButtons.length && !createButton;
     if (moreContainer.hidden) {
       more.hidden = true;
       toggle.setAttribute('aria-expanded', 'false');
