@@ -49,6 +49,7 @@ Die folgenden Auffälligkeiten sind aus den gespeicherten Produktnamen, Belegtex
 
 Die Hauptstichprobe verkleinert sich dadurch von 297 auf 296 Lokale. Die unbereinigte Vergleichsrechnung liefert einen sehr ähnlichen gemeinsamen Faktor. Alle Ausschlüsse und die Belege stehen in `results.json`; die Preisquellen jeder analysierten Zelle stehen in den `*-provenance.json`-Dateien.
 
+
 ## Hauptanalyse: gemeinsames Kaffeepreisniveau
 
 Die 296 Lokale verteilen sich auf Zürich 127, Bern 67, Basel 44, Winterthur 29, Luzern 15, Lausanne 9 und Genf 5. Über gemeinsame Quellen-URLs, Dateihashes oder Website-Hosts wurden **290 Quellengruppen** gebildet. Diese konservative Gruppierung dient als Näherung für abhängige Beobachtungen, nicht als geprüfte Zuordnung zu Unternehmen.
