@@ -9,7 +9,7 @@ import './style.css';
 import { cityAverage, coverageLabel, missingPriceLabel } from './coverage';
 import { selectBeerSize, cheapPriceLimit, matchingPrices, bestOffer, matchingOffers, isCurrentOffer, isComparableOffer, offerCategory, coffeeLabels as defaultCoffeeLabels, portion, effectiveBeerType, beerTypeLabel, beerTypeLabels, cost, escapeHtml as e, filterBars, isVenueEligible, matchesVenueType, safeUrl, type Bar, type Dataset, type Filters, type BeerType, type Offer, type OutdoorPermit } from './data';
 import { communityVenues, applyEntries, offerKey, validateInput, zurichToday, type Drink, type EntryDrink, type PriceEntry, type PriceInput } from './community';
-import { barLink, shareLink } from './sharing';
+import { barLink, hasCategoryParam, shareLink } from './sharing';
 import { cheapModeFromSearch, dropDefaultCheap, filtersFromSearch, writeFilters } from './filters';
 import { createExport, downloadExport } from './export';
 import { googleMapsLink, withKnownAddress, withKnownDetails, locationAtPosition, nearbyLocations, selectableLocations } from './locations';
@@ -1576,7 +1576,7 @@ async function init() {
   if (errors.length) { $('load-error').textContent = errors.join(' '); $('load-error').hidden = false; }
   if (f.district) await loadDistricts();
   // Without a category in the link, open the one chosen last time in this city.
-  if (!initial.has('drink') && !initial.has('bar') && !initial.has('s')) {
+  if (!hasCategoryParam(initial) && !initial.has('bar') && !initial.has('s')) {
     let remembered: string | null = null;
     try { remembered = localStorage.getItem(`wobillig-category:${cityId}`); } catch { /* storage blocked */ }
     if (remembered && remembered !== f.drink && availableCategories().has(remembered as Category)) { f.drink = remembered as Drink; f.mode = 'glass'; }
@@ -1616,7 +1616,7 @@ if (cityId === 'zurich') {
   apartmentUI = apartments(categoryNav, () => { render(); map.invalidateSize(); }, toast);
   // Links from alert emails open the apartment map right away, without waiting for the price data.
   if (initial.get('map') === APARTMENT_MAP_ID) void apartmentUI.openFromLink();
-  else if (!['drink', 'bar', 's', 'map'].some(key => initial.has(key))) {
+  else if (!hasCategoryParam(initial) && !['bar', 's', 'map'].some(key => initial.has(key))) {
     // Like any other category, the apartments open again when they were chosen last time.
     let remembered: string | null = null;
     try { remembered = localStorage.getItem(`wobillig-category:${cityId}`); } catch { /* storage blocked */ }

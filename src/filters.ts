@@ -1,5 +1,5 @@
 import { beerTypeLabels, coffeeLabels, type Filters } from './data';
-import { drinkFromSearch } from './sharing';
+import { categoryParam, drinkFromSearch } from './sharing';
 import { parsePizzaSelection } from './pizza-selection';
 import { parseBeerSelection } from './beer-selection';
 import { parseBurgerSelection } from './burger-selection';
@@ -26,7 +26,7 @@ export function filtersFromSearch(params: URLSearchParams): Filters {
   const burgerSelection = parseBurgerSelection(params.get('burgerSelection'));
   const streetfoodPortion = parseStreetfoodPortion(params.get('portion'));
   // Old döner and falafel links keep their choice of food.
-  const streetfoodFood = parseStreetfoodFood(params.get('food')) || (params.get('drink') === 'doner' || params.get('drink') === 'falafel' ? params.get('drink') as 'doner' | 'falafel' : undefined);
+  const streetfoodFood = parseStreetfoodFood(params.get('food')) || (categoryParam(params) === 'doner' || categoryParam(params) === 'falafel' ? categoryParam(params) as 'doner' | 'falafel' : undefined);
   const softdrinkSize = parseSoftdrinkSize(params.get('softdrinkSize'));
   const softdrinkSelection = parseSoftdrinkSelection(params.get('softdrinkSelection'));
   const cocktailSelection = parseCocktailSelection(params.get('cocktailSelection'));
@@ -73,8 +73,10 @@ export function writeFilters(params: URLSearchParams, f: Filters, cheap: boolean
   const beerType = f.beerType && f.beerType !== 'all' ? f.beerType : '';
   const size = f.volume !== '300-330' || (drink === 'beer' && (f.beerSelection || f.beerQuery?.trim())) ? f.volume : '';
   const values = {
-    // Without a drink, size or beerType would be read as a legacy beer link.
-    drink: drink !== 'coffee' || beerType || size || f.beerSelection || f.beerQuery?.trim() ? drink : '',
+    // Without a category, size or beerType would be read as a legacy beer link.
+    category: drink !== 'coffee' || beerType || size || f.beerSelection || f.beerQuery?.trim() ? drink : '',
+    // The old name gives way to «category» as soon as the page writes its address.
+    drink: '',
     coffeeType: f.coffeeType && f.coffeeType !== 'cappuccino' ? f.coffeeType : '',
     pizzaSelection: f.pizzaSelection || '', pizzaQuery: f.pizzaQuery?.trim() || '',
     // A product choice belongs to its category; a city without that category must not keep it in the link.

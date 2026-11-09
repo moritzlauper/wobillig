@@ -72,7 +72,7 @@ describe('search-engine-visible production pages', () => {
         expect(english).not.toContain(`href="${guidePath(city, type)}"`);
         expect(english).toContain(`href="${guidePath(city, type, 'en')}"`);
       }
-      expect(english).toContain(`href="${cityPath(city, 'en')}?drink=coffee&amp;coffeeType=espresso`);
+      expect(english).toContain(`href="${cityPath(city, 'en')}?category=coffee&amp;coffeeType=espresso`);
       expect(english).not.toMatch(/Kaffeepreise|Lokale mit|Preisquelle|Datenstand/);
     }
   });
@@ -130,7 +130,7 @@ describe('search-engine-visible production pages', () => {
         expect(config.rewrites).toContainEqual({ source: path, destination: `${path}/index.html` });
         expect(config.redirects).toContainEqual({ source: `${path}/index.html`, destination: path, permanent: true });
         const guide = files.get(`${path.slice(1)}/index.html`)!;
-        expect(guide).toContain(type === 'stange' ? 'beerType=draft&amp;size=stange' : type === 'margherita' ? 'drink=pizza&amp;type=restaurant' : `coffeeType=${type}`);
+        expect(guide).toContain(type === 'stange' ? 'beerType=draft&amp;size=stange' : type === 'margherita' ? 'category=pizza&amp;type=restaurant' : `coffeeType=${type}`);
         expect(guide).toContain(`href="${homePath}"`);
       }
     }
@@ -180,7 +180,7 @@ describe('static price selection', () => {
     expect(rows.map(row => row.bar.id)).toEqual(['named', 'regular', 'estimated']);
     expect(rows.map(row => row.offer.priceChf)).toEqual([4, 5, 5]);
     const params = new URL(mapLink('zurich', 'stange'), siteOrigin).searchParams;
-    expect(params.get('drink')).toBe('beer');
+    expect(params.get('category')).toBe('beer');
     expect(params.get('beerType')).toBe('draft');
     expect(params.get('size')).toBe('stange');
     expect(params.has('mode')).toBe(false);
@@ -198,7 +198,7 @@ describe('static price selection', () => {
     expect(html).toContain('Pizza Margherita aus Restaurants, ohne Imbisse und Takeaways.');
     expect(html).toContain('1 Lokale mit Pizza Margherita-Preis');
     const params = new URL(mapLink('zurich', 'margherita'), siteOrigin).searchParams;
-    expect(params.get('drink')).toBe('pizza');
+    expect(params.get('category')).toBe('pizza');
     expect(params.get('type')).toBe('restaurant');
   });
 

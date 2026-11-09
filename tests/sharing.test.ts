@@ -16,10 +16,17 @@ describe('bar links', () => {
     expect(drinkFromSearch(new URLSearchParams('drink=coffee&size=500'))).toBe('coffee');
     expect(drinkFromSearch(new URLSearchParams('drink=invalid'))).toBe('coffee');
   });
+  it('reads the category from ?category= and still from old ?drink= links', () => {
+    expect(drinkFromSearch(new URLSearchParams('category=burger'))).toBe('burger');
+    expect(drinkFromSearch(new URLSearchParams('drink=ramen'))).toBe('ramen');
+    expect(drinkFromSearch(new URLSearchParams('category=pizza&drink=beer'))).toBe('pizza');
+    const url = new URL(barLink('https://example.com/?drink=coffee', 'node/1', 'pizza', '300-330'));
+    expect(url.searchParams.has('drink')).toBe(false);
+  });
   it('keeps the deployment path and bar ID without unrelated URL state', () => {
     const url = new URL(barLink('https://example.com/wobillig/?bar=node%2F1&drink=coffee&utm_source=test#old', 'way/123', 'beer', '500'));
     expect(url.pathname).toBe('/wobillig/');
-    expect([...url.searchParams]).toEqual([['bar', 'way/123'], ['drink', 'beer'], ['size', '500']]);
+    expect([...url.searchParams]).toEqual([['bar', 'way/123'], ['category', 'beer'], ['size', '500']]);
     expect(url.hash).toBe('');
   });
   it('preserves bottled beer and its portion when sharing', () => {
@@ -29,7 +36,7 @@ describe('bar links', () => {
   });
   it('preserves coffee and Stange entry points', () => {
     const coffee = new URL(barLink('https://example.com/', 'node/2', 'coffee', 'stange'));
-    expect(coffee.searchParams.get('drink')).toBe('coffee');
+    expect(coffee.searchParams.get('category')).toBe('coffee');
     expect(coffee.searchParams.has('size')).toBe(false);
     const beer = new URL(barLink('https://example.com/', 'node/2', 'beer', 'stange'));
     expect(beer.searchParams.get('size')).toBe('stange');

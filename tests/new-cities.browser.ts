@@ -12,11 +12,11 @@ test('language links preserve filters before the map module loads and exclude pa
   await page.route('**/src/main.ts*', route => route.abort());
   await page.goto('/en/geneve?drink=beer&size=500&bar=node%2F5860680786&payment_intent=pi_test&payment_intent_client_secret=private-test&redirect_status=succeeded');
   const link = page.locator('.seo-map-header [data-locale="de"]');
-  await expect(link).toHaveAttribute('href', /drink=beer/);
+  await expect(link).toHaveAttribute('href', /category=beer/);
   await expect(link).not.toHaveAttribute('href', /payment_intent|private-test|redirect_status/);
   await link.click();
   const params = new URL(page.url()).searchParams;
-  expect(params.get('drink')).toBe('beer'); expect(params.get('size')).toBe('500');
+  expect(params.get('category')).toBe('beer'); expect(params.get('size')).toBe('500');
   expect(params.get('bar')).toBe('node/5860680786');
 });
 
@@ -40,11 +40,11 @@ for (const width of [320, 1280]) {
     await expect(menu).not.toHaveAttribute('open', '');
     await expect(menu.locator('a[data-city]').first()).toBeHidden();
     await menu.locator('summary').click();
-    await expect(menu.locator('a[data-city="luzern"]')).toHaveAttribute('href', /^\/luzern\?.*drink=beer/);
-    await expect(menu.locator('a[data-city="olten"]')).toHaveAttribute('href', /^\/olten\?.*drink=beer/);
+    await expect(menu.locator('a[data-city="luzern"]')).toHaveAttribute('href', /^\/luzern\?.*category=beer/);
+    await expect(menu.locator('a[data-city="olten"]')).toHaveAttribute('href', /^\/olten\?.*category=beer/);
     await expect(menu.locator('a[data-city="lausanne"]')).toBeVisible();
-    await expect(menu.locator('a[data-city="winterthur"]')).toHaveAttribute('href', /^\/winterthur\?.*drink=beer/);
-    await expect(menu.locator('a[data-city="geneva"]')).toHaveAttribute('href', /\/en\/geneve\?.*drink=beer/);
+    await expect(menu.locator('a[data-city="winterthur"]')).toHaveAttribute('href', /^\/winterthur\?.*category=beer/);
+    await expect(menu.locator('a[data-city="geneva"]')).toHaveAttribute('href', /\/en\/geneve\?.*category=beer/);
     await expect(menu.locator('a').last()).toHaveAttribute('href', /^mailto:hello@wobillig.ch\?subject=/);
     await expect(menu.locator('a').last()).toHaveAccessibleName('Stadt wünschen');
     expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
@@ -52,7 +52,7 @@ for (const width of [320, 1280]) {
     await expect(menu).not.toHaveAttribute('open', '');
     await menu.locator('summary').click();
     await menu.locator('a[data-city="lausanne"]').click();
-    await expect(page).toHaveURL(/\/en\/lausanne\?.*drink=beer/);
+    await expect(page).toHaveURL(/\/en\/lausanne\?.*category=beer/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('#map-title')).toContainText('Lausanne');
     await page.locator('#city-more summary').click();

@@ -41,7 +41,7 @@ describe('Margherita category', () => {
   });
   it('shares a pizza entry point without a stale beer size', () => {
     const url = new URL(barLink('https://example.org/?drink=beer&size=stange', bar.id, 'pizza', 'stange'));
-    expect(url.searchParams.get('drink')).toBe('pizza');
+    expect(url.searchParams.get('category')).toBe('pizza');
     expect(url.searchParams.has('size')).toBe(false);
   });
   it.each([{ pizzaType: 'salami' }, { coffeeType: 'espresso' }, { beerType: 'draft' }, { volumeMl: 300 }, { serving: 'stange' }, { name: 'Margherita Kinderpizza' }, { drink: 'beer' }, { drink: 'coffee', coffeeType: 'creme' }])('rejects incompatible pizza input %j', patch => {

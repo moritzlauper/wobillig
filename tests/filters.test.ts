@@ -46,7 +46,8 @@ describe('filters across city navigation', () => {
     writeFilters(params, filtersFromSearch(params), false);
     expect(params.toString()).toBe('cheap=0');
     writeFilters(params, { ...filtersFromSearch(new URLSearchParams()), drink: 'pizza', max: Infinity }, false);
-    expect(params.get('drink')).toBe('pizza');
+    expect(params.get('category')).toBe('pizza');
+    expect(params.has('drink')).toBe(false);
     expect(params.get('cheap')).toBe('0');
     const coffee = { ...filtersFromSearch(new URLSearchParams()), beerType: 'draft' as const };
     writeFilters(params, coffee, false);

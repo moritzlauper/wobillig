@@ -6,9 +6,15 @@ import { parseStreetfoodFood, parseStreetfoodPortion } from './streetfood-select
 import { parseBurgerSelection } from './burger-selection';
 import { parseCocktailSelection, parseWineSelection, parseSoftdrinkSelection, parseSoftdrinkSize } from './gastro-selection';
 
+// The category travels as ?category=burger. Links from before November 2026 said ?drink=…,
+// which read oddly for burgers and pizza; they keep working.
+export const CATEGORY_PARAM = 'category';
+export const categoryParam = (params: URLSearchParams) => params.get(CATEGORY_PARAM) ?? params.get('drink');
+export const hasCategoryParam = (params: URLSearchParams) => params.has(CATEGORY_PARAM) || params.has('drink');
+
 // Old shared beer links used only size/beerType; keep those entry points working.
 export function drinkFromSearch(params: URLSearchParams): Drink {
-  const drink = params.get('drink');
+  const drink = categoryParam(params);
   if (drink === 'beer' || drink === 'coffee' || drink === 'pizza' || drink === 'ramen' || drink === 'burger' || drink === 'softdrink' || drink === 'cocktail' || drink === 'wine' || drink === 'kebab') return drink;
   // Döner and falafel were separate categories before.
   if (drink === 'doner' || drink === 'falafel') return 'kebab';
@@ -33,7 +39,8 @@ export function barLink(href: string, barId: string, drink: Drink, volume: strin
   url.search = '';
   url.hash = '';
   url.searchParams.set('bar', barId);
-  url.searchParams.set('drink', drink);
+  url.searchParams.delete('drink');
+  url.searchParams.set(CATEGORY_PARAM, drink);
   if (drink === 'pizza') {
     if (pizzaSelection) url.searchParams.set('pizzaSelection', pizzaSelection);
     if (pizzaQuery) url.searchParams.set('pizzaQuery', pizzaQuery);

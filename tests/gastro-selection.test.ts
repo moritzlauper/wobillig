@@ -148,7 +148,7 @@ describe('links', () => {
     const written = new URLSearchParams();
     writeFilters(written, { ...f, softdrinkSize: '300-330' }, false);
     expect(written.has('softdrinkSize')).toBe(false);
-    expect(written.get('drink')).toBe('softdrink');
+    expect(written.get('category')).toBe('softdrink');
     const cocktailLink = new URL(barLink('https://wobillig.ch/?drink=cocktail&cocktailSelection=hugo', 'node/1', 'cocktail', '300-330'));
     expect(cocktailLink.searchParams.get('cocktailSelection')).toBe('hugo');
     expect(new URL(barLink('https://wobillig.ch/?cocktailSelection=hugo', 'node/1', 'softdrink', '300-330')).searchParams.has('cocktailSelection')).toBe(false);
