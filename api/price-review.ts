@@ -6,6 +6,7 @@ import { blobStore } from '../server/prices.js';
 import { reviewRows, reviewHtml, reviewCsv } from '../server/price-review.mjs';
 import { authorizedMapReviewer, mapReviewCards } from '../server/map-review.js';
 import { valueRatingOverview, valueRatingStore } from '../server/value-rating.js';
+import { apartmentAlertsReviewHtml, apartmentStore } from '../server/apartments.js';
 
 // Password-protected review area. Only price snapshots are exposed;
 // raw state, visitor hashes, limits and scan receipts never leave this handler.
@@ -47,12 +48,15 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     const maps = grouped.flatMap(group => group.maps);
     const venues = new Map(grouped.flatMap(group => group.venues));
     const valueRatings = valueRatingOverview((await valueRatingStore().read()).state, venues);
+    // The alerts sit at the top; if their store fails, the rest of the review still opens.
+    const alertsEnvironment = process.env.VERCEL_ENV === 'production' ? 'production' : 'development';
+    const alertsHtml = format === 'html' ? apartmentAlertsReviewHtml(await apartmentStore().read().then(result => result.state).catch(() => undefined), alertsEnvironment) : '';
     if (format === 'csv') {
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
       res.setHeader('Content-Disposition', 'attachment; filename="price-changes.csv"');
     }
     res.statusCode = 200;
-    res.end(req.method === 'HEAD' ? undefined : format === 'csv' ? reviewCsv(rows) : reviewHtml(rows, 'production', undefined, true, maps, mapReviewCards(maps), valueRatings));
+    res.end(req.method === 'HEAD' ? undefined : format === 'csv' ? reviewCsv(rows) : reviewHtml(rows, 'production', undefined, true, maps, mapReviewCards(maps), valueRatings, alertsHtml));
   } catch (cause) {
     console.error('Price review failed', cause instanceof Error ? cause.name : 'UnknownError');
     return error(503, 'Die Preisübersicht konnte nicht vollständig geladen werden. Bitte die Seite später erneut öffnen.');

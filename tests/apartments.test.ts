@@ -303,3 +303,21 @@ describe('apartments API', () => {
     expect(store.state().alerts).toEqual([]);
   });
 });
+
+describe('apartment alerts in the review area', () => {
+  it('lists alerts newest first with shortened addresses', async () => {
+    const { apartmentAlertsReviewHtml, maskEmail } = await import('../server/apartments');
+    expect(maskEmail('moritz@example.ch')).toBe('mo…@example.ch');
+    const base = { locale: 'de' as const, filter: emptyApartmentFilter(), token: 't', welcomed: true, checkedUntil: null, known: ['a', 'b'] };
+    const html = apartmentAlertsReviewHtml({ alerts: [
+      { ...base, id: '1', email: 'anna@example.org', name: 'Älteres <Abo>', created: '2026-11-01T10:00:00Z', status: 'active', lastSent: new Date().toISOString() },
+      { ...base, id: '2', email: 'ben@example.org', name: 'Neues Abo', created: '2026-11-09T10:00:00Z', status: 'pending' },
+    ] }, 'production');
+    expect(html).not.toContain('anna@example.org');
+    expect(html).toContain('an…@example.org');
+    expect(html).toContain('Älteres &lt;Abo&gt;');
+    expect(html.indexOf('Neues Abo')).toBeLessThan(html.indexOf('Älteres'));
+    expect(html).toMatch(/<strong>1<\/strong>aktive Suchabos/);
+    expect(apartmentAlertsReviewHtml(undefined, 'production')).toContain('konnten gerade nicht geladen werden');
+  });
+});

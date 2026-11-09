@@ -186,6 +186,32 @@ export async function alertStatuses(store: ApartmentStore, tokens: unknown) {
 
 // --- Email ----------------------------------------------------------------
 
+/** «moritz@example.ch» → «mo…@example.ch»: enough to recognise an address in the review area, not to collect it. */
+export function maskEmail(email: string): string {
+  const [local, domain] = email.split('@');
+  return `${local.slice(0, 2)}…@${domain ?? ''}`;
+}
+
+/** The alerts section of the password-protected review page, newest first; addresses stay shortened. */
+export function apartmentAlertsReviewHtml(state: ApartmentState | undefined, environment: string): string {
+  const esc = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  const date = (value: string | undefined) => value ? new Intl.DateTimeFormat('de-CH', { timeZone: 'Europe/Zurich', dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value)) : '—';
+  const head = '<section id="apartment-alerts" aria-labelledby="alerts-heading"><h2 id="alerts-heading">Suchabos Wohnungen</h2>';
+  if (!state) return `${head}<p>Die Suchabos konnten gerade nicht geladen werden.</p></section>`;
+  const alerts = [...state.alerts].sort((a, b) => b.created.localeCompare(a.created));
+  const active = alerts.filter(alert => alert.status === 'active');
+  const week = Date.now() - 7 * 86400000;
+  const stat = (value: number, label: string) => `<div class="stat"><strong>${value}</strong>${label}</div>`;
+  return `${head}<p>Speicher <code>apartments/${esc(environment)}.json</code> · Neueste zuerst · Adressen gekürzt. Unbestätigte Abos verschwinden nach 48 Stunden samt Adresse.</p>
+    <div class="stats">${stat(active.length, 'aktive Suchabos')}${stat(alerts.length - active.length, 'warten auf Bestätigung')}${stat(new Set(active.map(alert => alert.email)).size, 'Adressen mit aktivem Abo')}${stat(active.filter(alert => alert.lastSent && Date.parse(alert.lastSent) >= week).length, 'in den letzten 7 Tagen gemailt')}</div>
+    <div class="table-wrap"><table><thead><tr><th>Suche</th><th>E-Mail</th><th>Status</th><th>Angelegt</th><th>Zuletzt gemailt</th><th class="number">Bekannte Inserate</th></tr></thead><tbody>${alerts.map(alert => `<tr>
+      <td><strong>${esc(alert.name)}</strong><small>${alert.locale === 'en' ? 'Englisch' : 'Deutsch'}</small></td>
+      <td>${esc(maskEmail(alert.email))}</td>
+      <td><span class="tag">${alert.status === 'active' ? 'Aktiv' : 'Bestätigung ausstehend'}</span>${alert.status === 'active' && !alert.welcomed ? '<small>Willkommensmail folgt beim nächsten Versand</small>' : ''}</td>
+      <td class="nowrap">${date(alert.created)}</td><td class="nowrap">${date(alert.lastSent)}</td><td class="number">${alert.known.length}</td></tr>`).join('')}</tbody></table>
+    ${alerts.length ? '' : '<p>Noch keine Suchabos.</p>'}</div></section>`;
+}
+
 export function apartmentMailConfigured() {
   return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD && process.env.COMMUNITY_EMAIL_FROM);
 }
