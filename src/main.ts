@@ -456,7 +456,7 @@ function syncControls() {
   categoryNav.update(f.drink!, hiddenCategories());
   const shown = draft !== undefined ? draft : f.query || smartText;
   $<HTMLInputElement>('search').value = shown;
-  $('search-clear').hidden = shown.length === 0;
+  $('search-clear').hidden = !shown.trim();
   $<HTMLSelectElement>('sort').value = f.sort;
   $<HTMLInputElement>('outdoor').checked = f.outdoor;
   $<HTMLInputElement>('open-now').checked = f.open === 'now';
@@ -1008,7 +1008,7 @@ $('search').oninput = event => {
   const query = parseSmartQuery(draft, cityId);
   smartPreview = isSmartQuery(query) ? { text: draft, query } : undefined;
   activeSuggestion = -1; searchOpen = true; smartNote = '';
-  $('search-clear').hidden = !draft;
+  $('search-clear').hidden = !draft.trim();
   // Emptying the field is a reset rather than a search, so the full list returns at once.
   if (!draft.trim() && (f.query || addressSelection)) commitSearch();
   else { renderSearchSuggestions(); renderSmartChips(); }
@@ -1057,6 +1057,9 @@ $('search-close').onclick = () => {
 $('search').onblur = event => {
   if (event.relatedTarget instanceof Node && $('search-dropdown').contains(event.relatedTarget)) return;
   cancelAddressRequest(); closeSearchSuggestions();
+  // A field with only spaces looks empty but would hide the examples; it is emptied for real.
+  const input = $<HTMLInputElement>('search');
+  if (input.value && !input.value.trim()) { input.value = ''; draft = undefined; }
 };
 $('search-dropdown').addEventListener('focusout', event => {
   if (event.relatedTarget instanceof Node && document.querySelector('.search-box')!.contains(event.relatedTarget)) return;

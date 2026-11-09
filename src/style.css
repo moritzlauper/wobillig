@@ -106,7 +106,8 @@ a { color: var(--link); text-underline-offset: 2px; }
 .smart-search-box #search:focus-visible { outline: none; }
 #search { width: 100%; min-width: 0; padding-right: 44px; }
 #search::-webkit-search-cancel-button { -webkit-appearance: none; }
-#search-clear { position: absolute; top: 0; right: 0; width: 44px; height: 100%; padding: 0; border: 0; background: transparent; color: var(--muted); display: grid; place-items: center; }
+/* The X fills the field's height; the general button height would let it stick out below the field. */
+#search-clear { position: absolute; top: 0; right: 0; width: 44px; height: 100%; min-height: 0; padding: 0; border: 0; border-radius: 0 2px 2px 0; background: transparent; color: var(--muted); display: grid; place-items: center; }
 #search-clear[hidden] { display: none; }
 #search-clear:hover { background: var(--hover); }
 #search-clear:focus-visible { outline-offset: -3px; }
@@ -358,7 +359,7 @@ dialog::backdrop { background: var(--backdrop); }
   #search { padding-right: 7px; font-size: var(--font-control); }
   .search-box:has(#search-clear:not([hidden])) #search, .search-box #search[aria-expanded=true] { padding-right: 40px; }
   #search-clear { right: 0; width: 40px; }
-  #search-close { position: absolute; top: 0; right: 0; width: 40px; height: 100%; padding: 0; border: 0; background: transparent; color: var(--muted); place-items: center; }
+  #search-close { position: absolute; top: 0; right: 0; width: 40px; height: 100%; min-height: 0; padding: 0; border: 0; border-radius: 0 2px 2px 0; background: transparent; color: var(--muted); place-items: center; }
   #search[aria-expanded=true] ~ #search-close { display: grid; }
   /* One X at a time: with text in the field the X empties it, without text it closes the suggestions. */
   .search-box:has(#search-clear:not([hidden])) #search-close { display: none !important; }

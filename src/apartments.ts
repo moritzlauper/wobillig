@@ -728,7 +728,12 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     renderDropdown();
   };
   input('apartment-smart').onfocus = () => renderDropdown();
-  input('apartment-smart').onblur = () => closeDropdown();
+  input('apartment-smart').onblur = () => {
+    closeDropdown();
+    // Only spaces look empty but would hide the examples; the field is emptied for real.
+    const field = input('apartment-smart');
+    if (field.value && !field.value.trim()) field.value = '';
+  };
   input('apartment-smart').onkeydown = event => {
     if (event.key === 'Escape' && !el('apartment-dropdown').hidden) { event.preventDefault(); closeDropdown(); return; }
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
