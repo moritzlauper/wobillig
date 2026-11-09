@@ -3,6 +3,11 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "git": {
+    "deploymentEnabled": {
+      "ccr-*": false
+    }
+  },
   "functions": {
     "api/apartments.ts": {
       "includeFiles": "public/data/districts.json",
