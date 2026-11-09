@@ -489,7 +489,13 @@ input::placeholder { color: var(--subtle); opacity: 1; }
 #apartment-sources { display: contents; }
 .apartment-portals { flex-basis: 100%; margin: 0; }
 .apartment-draw-help { flex-basis: 100%; }
-.apartment-districts { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.apartment-districts-box[open] { flex-basis: 100%; }
+.apartment-districts-box summary { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; cursor: pointer; list-style: none; }
+.apartment-districts-box summary::-webkit-details-marker { display: none; }
+.apartment-districts-box summary::after { content: ''; width: 6px; height: 6px; margin-left: 2px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.apartment-districts-box[open] summary::after { transform: translateY(1px) rotate(225deg); }
+#apartment-district-summary { color: var(--muted); }
+.apartment-districts { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 4px 0 2px; }
 .apartment-draw-hint { position: absolute; top: 10px; left: 50%; z-index: 600; display: flex; align-items: center; gap: 10px; max-width: calc(100% - 20px); transform: translateX(-50%); margin: 0; padding: 6px 10px; border: 1px solid var(--teal); border-radius: 6px; background: var(--teal-surface); color: var(--teal); font-size: var(--font-control); white-space: nowrap; pointer-events: none; box-shadow: 0 1px 4px #0002; }
 .apartment-draw-hint span { overflow: hidden; text-overflow: ellipsis; }
 .apartment-draw-hint button { flex: none; min-height: 28px; padding: 3px 8px; border-color: var(--teal-border); background: var(--surface); color: var(--teal); pointer-events: auto; }

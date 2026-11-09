@@ -114,7 +114,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
   view.innerHTML = `<div id="apartment-filters" class="apartment-filters" hidden>
     <fieldset><legend>${t('Art')}</legend>${apartmentKinds.map(kind => `<label><input type="checkbox" name="kind" value="${kind}"> ${e(t(apartmentKindLabels[kind]))}</label>`).join('')}</fieldset>
     <fieldset><legend>${t('Lage')}</legend>
-      <span class="apartment-districts" role="group" aria-label="${t('Kreise')}">${Array.from({ length: 12 }, (_, k) => `<label><input type="checkbox" name="district" value="${k + 1}"> ${e(t('Kreis {number}', { number: k + 1 }))}</label>`).join('')}</span>
+      <details class="apartment-districts-box"><summary>${t('Kreise')}: <span id="apartment-district-summary">${t('Alle Kreise')}</span></summary>
+      <span class="apartment-districts" role="group" aria-label="${t('Kreise')}">${Array.from({ length: 12 }, (_, k) => `<label><input type="checkbox" name="district" value="${k + 1}"> ${e(t('Kreis {number}', { number: k + 1 }))}</label>`).join('')}</span></details>
       <button type="button" id="apartment-draw">${t('Gebiet einzeichnen')}</button>
       <span class="muted apartment-draw-help">${t('Oder lange auf die Karte drücken und das Gebiet umfahren.')}</span>
     </fieldset>
@@ -186,6 +187,8 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     view.querySelectorAll<HTMLInputElement>('[name=kind]').forEach(box => { box.checked = filter.arten.includes(box.value as Apartment['art']); });
     view.querySelectorAll<HTMLInputElement>('[name=feature]').forEach(box => { box.checked = filter.merkmale.includes(box.value as never); });
     view.querySelectorAll<HTMLInputElement>('[name=district]').forEach(box => { box.checked = filter.kreise.includes(Number(box.value)); });
+    // The Kreise stay folded; the summary names the choice.
+    el('apartment-district-summary').textContent = !filter.kreise.length ? t('Alle Kreise') : filter.kreise.length === 1 ? t('Kreis {number}', { number: filter.kreise[0] }) : t('Kreise {numbers}', { numbers: filter.kreise.join(', ') });
     input('apartment-area').value = filter.flaecheMin == null ? '' : String(filter.flaecheMin);
     select('apartment-duration').value = filter.dauer;
     input('apartment-new').checked = filter.nurNeu;
@@ -672,7 +675,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     try {
       const response = await contributionFetch('/api/apartments', { action: 'subscribe', email: email.value.trim(), filter, locale: locale() });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.error ? t(result.error) : t('Bitte erneut versuchen.'));
+      if (!response.ok) throw new Error(result.error ? t(result.error) : t('Suchabos sind gerade nicht verfügbar. Bitte später erneut versuchen.'));
       alerts = [{ token: result.token, name: result.name, status: 'pending' as const }, ...alerts.filter(item => item.token !== result.token)].slice(0, 20);
       storeAlerts(); renderMyAlerts();
       formDone.textContent = t('Fast fertig: Wir haben dir einen Link an {email} geschickt. Bestätige ihn, dann ist das Suchabo aktiv.', { email: email.value.trim() });
