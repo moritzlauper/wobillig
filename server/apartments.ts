@@ -272,7 +272,7 @@ const MAX_IN_MAIL = 15, WELCOME_EXAMPLES = 5;
 export function alertMail(alert: ApartmentAlert, listings: Apartment[], welcome: boolean): Mail {
   const tr = (text: string, vars?: Record<string, string | number>) => translate(alert.locale, text, vars);
   const one = listings[0];
-  const short = one ? [one.miete != null ? `CHF ${chf(one.miete)}` : null, one.zimmer != null ? tr('{rooms} Zi.', { rooms: String(one.zimmer).replace('.5', '½') }) : null, one.strasse ?? one.plz].filter(Boolean).join(', ') : '';
+  const short = one ? [one.miete != null ? `CHF ${chf(one.miete)}` : null, one.zimmer != null ? tr('{rooms} Zi.', { rooms: String(one.zimmer) }) : null, one.strasse ?? one.plz].filter(Boolean).join(', ') : '';
   const subject = welcome ? tr('Dein Suchabo «{name}» ist aktiv', { name: alert.name })
     : listings.length === 1 ? tr('Neue Wohnung: {listing}', { listing: short || one.titel })
     : tr('{count} neue Wohnungen: {name}', { count: listings.length, name: alert.name });

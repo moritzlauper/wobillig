@@ -51,7 +51,7 @@ export const apartmentFeatureLabels: Record<ApartmentFeature, string> = {
 };
 export const apartmentFeatures = Object.keys(apartmentFeatureLabels) as ApartmentFeature[];
 export const apartmentSortLabels = {
-  neu: 'Neueste zuerst', guenstig: 'Günstigste zuerst', m2: 'Preis pro m²', gross: 'Grösste zuerst',
+  neu: 'Neueste zuerst', guenstig: 'Günstigste zuerst', m2: 'Preis pro m2', gross: 'Grösste zuerst',
 } as const;
 export type ApartmentSort = keyof typeof apartmentSortLabels;
 export const apartmentDurationLabels = { alle: 'Alle', unbefristet: 'Unbefristet', lang: 'Ab 1 Jahr', befristet: 'Befristet' } as const;
@@ -247,13 +247,13 @@ export function filterApartments(list: Apartment[], f: ApartmentFilter, context:
 
 /** Swiss number format with apostrophes, as on wobillig. */
 export const chf = (value: number) => String(Math.round(value)).replace(/\B(?=(\d{3})+(?!\d))/g, '’');
-export const roomsLabel = (rooms: number) => String(rooms).replace('.5', '½');
+export const roomsLabel = (rooms: number) => String(rooms);
 
 /** Rooms, area, address and caveats in one line, for the list, the detail and the email. */
 export function apartmentFacts(i: Apartment, tr: (text: string, vars?: Record<string, string | number>) => string): string[] {
   return [
     i.zimmer != null ? tr('{rooms} Zi.', { rooms: roomsLabel(i.zimmer) }) : null,
-    i.flaeche != null ? `${Math.round(i.flaeche)} m²` : null,
+    i.flaeche != null ? `${Math.round(i.flaeche)} m2` : null,
     [i.strasse, i.plz].filter(Boolean).join(', ') || null,
     i.befristet ? (i.befristetBis ? tr('befristet bis {date}', { date: i.befristetBis.split('-').reverse().join('.') }) : tr('befristet')) : null,
     i.tausch ? tr('Wohnungstausch') : null,
@@ -271,7 +271,7 @@ export function describeApartmentFilter(f: ApartmentFilter, tr: (text: string, v
     kinds,
     f.mieteMax != null ? tr('bis CHF {price}', { price: chf(f.mieteMax) }) : null,
     rooms ? tr('{rooms} Zi.', { rooms }) : null,
-    f.flaecheMin != null ? tr('ab {area} m²', { area: f.flaecheMin }) : null,
+    f.flaecheMin != null ? tr('ab {area} m2', { area: f.flaecheMin }) : null,
     f.kreise.length ? f.kreise.length === 1 ? tr('Kreis {number}', { number: f.kreise[0] }) : tr('Kreise {numbers}', { numbers: [...f.kreise].sort((a, b) => a - b).join(', ') }) : null,
     f.gebiete.length ? f.gebiete.length === 1 ? tr('1 Gebiet') : tr('{count} Gebiete', { count: f.gebiete.length }) : null,
     // Permanent is the default and needs no word; «alle» reads as «also temporary».

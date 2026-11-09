@@ -83,7 +83,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
 
   // Examples take turns in the empty search field, like on the price maps, and stop after the last one.
   const placeholderExamples = ['3 Zimmer bis 3000 mit Balkon im Kreis 3', 'WG-Zimmer unter 900 im Kreis 4 oder 5', 'Helle Altbauwohnung im Seefeld',
-    'Studio unbefristet bis 1800', 'Ab 4 Zimmer mit Lift und Haustieren', 'Möbliert und befristet im Kreis 6', '2½ Zimmer ab 60 m² in Wiedikon'].map(text => t(text));
+    'Studio unbefristet bis 1800', 'Ab 4 Zimmer mit Lift und Haustieren', 'Möbliert und befristet im Kreis 6', '2.5 Zimmer ab 60 m2 in Wiedikon'].map(text => t(text));
   let placeholderIndex = 1, placeholderTimer: ReturnType<typeof setTimeout> | undefined, placeholderInterval: ReturnType<typeof setInterval> | undefined;
   function rotatePlaceholder() {
     const field = input('apartment-smart');
@@ -120,7 +120,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       <span class="muted apartment-draw-help">${t('Oder lange auf die Karte drücken und das Gebiet umfahren.')}</span>
     </fieldset>
     <fieldset><legend>${t('Wohnung')}</legend>
-      <label>${t('Fläche ab')} <input id="apartment-area" type="number" min="0" max="2000" step="5" inputmode="numeric" placeholder="m²" aria-label="${t('Fläche ab m²')}"></label>
+      <label>${t('Fläche ab')} <input id="apartment-area" type="number" min="0" max="2000" step="5" inputmode="numeric" placeholder="m2" aria-label="${t('Fläche ab m2')}"></label>
       <label>${t('Dauer')} <select id="apartment-duration">${Object.entries(apartmentDurationLabels).map(([value, label]) => `<option value="${value}">${e(t(label))}</option>`).join('')}</select></label>
     </fieldset>
     <fieldset><legend>${t('Ausstattung laut Inserat')}</legend>${apartmentFeatures.map(feature => `<label><input type="checkbox" name="feature" value="${feature}"> ${e(t(apartmentFeatureLabels[feature]))}</label>`).join('')}</fieldset>
@@ -215,7 +215,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
     if (filter.begriffe.length) list.push({ label: `«${filter.begriffe.join(', ')}»`, clear: { begriffe: [] } });
     if (filter.kreise.length) list.push({ label: filter.kreise.map(n => t('Kreis {number}', { number: n })).join(', '), clear: { kreise: [] } });
     filter.gebiete.forEach((_, k) => list.push({ label: filter.gebiete.length === 1 ? t('Eingezeichnetes Gebiet') : t('Gebiet {number}', { number: k + 1 }), clear: { gebiete: filter.gebiete.filter((__, j) => j !== k) } }));
-    if (filter.flaecheMin != null) list.push({ label: t('ab {area} m²', { area: filter.flaecheMin }), clear: { flaecheMin: null } });
+    if (filter.flaecheMin != null) list.push({ label: t('ab {area} m2', { area: filter.flaecheMin }), clear: { flaecheMin: null } });
     // Permanent is the default; any other duration is a chip that leads back to it.
     if (filter.dauer !== DEFAULT_DURATION) list.push({ label: filter.dauer === 'alle' ? t('Auch befristet') : t(apartmentDurationLabels[filter.dauer]), clear: { dauer: DEFAULT_DURATION } });
     for (const feature of filter.merkmale) list.push({ label: t(apartmentFeatureLabels[feature]), clear: { merkmale: filter.merkmale.filter(item => item !== feature) } });
@@ -415,7 +415,7 @@ export function apartments(navigation: ReturnType<typeof categoryNavigation>, on
       ${item.tausch ? `<p class="apartment-warning">${t('Wohnungstausch: Die Wohnung gibt es nur gegen eine andere.')}</p>` : ''}
       <dl class="apartment-facts">
         ${item.bezug ? `<dt>${t('Bezug')}</dt><dd>${e(/^\d{4}-\d{2}-\d{2}$/.test(item.bezug) ? item.bezug.split('-').reverse().join('.') : item.bezug)}</dd>` : ''}
-        ${item.miete != null && item.flaeche ? `<dt>${t('Pro m²')}</dt><dd>CHF ${e((item.miete / item.flaeche).toFixed(2))}</dd>` : ''}
+        ${item.miete != null && item.flaeche ? `<dt>${t('Pro m2')}</dt><dd>CHF ${e((item.miete / item.flaeche).toFixed(2))}</dd>` : ''}
         ${features ? `<dt>${t('Ausstattung')}</dt><dd>${e(features)}</dd>` : ''}
         <dt>${t('Gefunden')}</dt><dd>${e(seen)}</dd>
       </dl>

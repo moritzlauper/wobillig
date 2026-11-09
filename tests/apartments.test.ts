@@ -116,7 +116,7 @@ describe('apartment filter', () => {
     expect(describeApartmentFilter(filterWith({ mieteMax: 1700, zimmerMin: 2, zimmerMax: 4, kreise: [4] }), de)).toBe('bis CHF 1’700 · 2–4 Zi. · Kreis 4');
     expect(describeApartmentFilter(filterWith({ arten: ['wg'] }), de)).toBe('Günstig · WG-Zimmer');
     expect(describeApartmentFilter(filterWith({ guenstig: false }), de)).toBe('Alle Wohnungen');
-    expect(describeApartmentFilter(filterWith({ zimmerMin: 2.5, guenstig: false }), (text, vars) => translate('en', text, vars))).toBe('from 2½ rooms');
+    expect(describeApartmentFilter(filterWith({ zimmerMin: 2.5, guenstig: false }), (text, vars) => translate('en', text, vars))).toBe('from 2.5 rooms');
   });
 
   it('keeps only what the map needs from the collector file', () => {
@@ -184,7 +184,7 @@ describe('apartment alerts', () => {
     // One new listing: the subject names it.
     await dispatchAlerts(store, data([listing('a'), listing('b', { erstGesehen: '2026-11-09T10:07:00Z', miete: 1990, zimmer: 2.5, strasse: 'Bäckerstrasse 5' })], '2026-11-09T10:10:00Z'), send);
     expect(sent).toHaveLength(2);
-    expect(sent[1].subject).toBe('Neue Wohnung: CHF 1’990, 2½ Zi., Bäckerstrasse 5');
+    expect(sent[1].subject).toBe('Neue Wohnung: CHF 1’990, 2.5 Zi., Bäckerstrasse 5');
     expect(sent[1].text).toContain('https://flatfox.ch/de/wohnung/b/');
 
     // A listing that disappears and comes back is not new.
