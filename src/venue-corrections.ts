@@ -1,8 +1,9 @@
 import type { Bar } from './data.js';
 import { InputError } from './community.js';
 import { newVenueTypes } from './venue-contributions.js';
+import { parseOpeningHours } from './opening-hours.js';
 
-export type VenueChanges = Partial<Pick<Bar, 'name' | 'address' | 'postcode' | 'website' | 'type'>>;
+export type VenueChanges = Partial<Pick<Bar, 'name' | 'address' | 'postcode' | 'website' | 'type' | 'openingHours'>>;
 export type VenueCorrection = { barId: string; changes: VenueChanges; revision: number; updatedAt: string };
 
 export function validateVenueCorrection(value: unknown): { barId: string; revision: number; changes: VenueChanges } {
@@ -14,7 +15,7 @@ export function validateVenueCorrection(value: unknown): { barId: string; revisi
   if (!x.changes || typeof x.changes !== 'object' || Array.isArray(x.changes)) throw new InputError('Ungültige Lokalkorrektur.');
   const changes: VenueChanges = {};
   for (const [key, value] of Object.entries(x.changes)) {
-    if (!['name', 'address', 'postcode', 'website', 'type'].includes(key) || typeof value !== 'string' || /[\x00-\x1f\x7f]/.test(value)) {
+    if (!['name', 'address', 'postcode', 'website', 'type', 'openingHours'].includes(key) || typeof value !== 'string' || /[\x00-\x1f\x7f]/.test(value)) {
       throw new InputError('Ungültige Lokalkorrektur.');
     }
     const text = value.trim();
@@ -27,6 +28,13 @@ export function validateVenueCorrection(value: unknown): { barId: string; revisi
     } else if (key === 'type') {
       if (!Object.hasOwn(newVenueTypes, text)) throw new InputError('Bitte eine gültige Lokalart wählen.');
       changes.type = text;
+    } else if (key === 'openingHours') {
+      // Empty means unknown. Anything else must be understood, or the venue would never show as open.
+      if (!text) { changes.openingHours = null; continue; }
+      if (text.length > 255 || !parseOpeningHours(text)) {
+        throw new InputError('Öffnungszeiten bitte im Format «Tu-Sa 10:00-23:00; Su 10:00-22:00; Mo off» angeben.');
+      }
+      changes.openingHours = text;
     } else {
       if (text.length > 1500) throw new InputError('Ungültige Website.');
       if (!text) { changes.website = null; continue; }

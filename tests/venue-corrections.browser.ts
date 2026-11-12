@@ -86,3 +86,32 @@ test('failed corrections keep the input, and cancelling makes no write', async (
   expect(writes).toBe(1);
   await expect(page.locator('#detail').getByRole('link', { name: 'Website', exact: true })).toHaveAttribute('href', venue.website!);
 });
+
+test('corrects opening hours and keeps hours the map cannot read from being saved', async ({ page }) => {
+  await fixture(page);
+  const corrections: VenueCorrection[] = [], submissions: any[] = [];
+  await page.route('**/api/prices?city=bern*', route => {
+    if (route.request().method() === 'GET') return route.fulfill({ json: { entries: [], venues: [], venueCorrections: corrections } });
+    const body = route.request().postDataJSON(); submissions.push(body);
+    const correction = { barId: body.barId, revision: corrections.length + 1, updatedAt: '2026-11-12', changes: { ...corrections.at(-1)?.changes, ...body.changes } };
+    corrections.splice(0, corrections.length, correction);
+    return route.fulfill({ json: { correction } });
+  });
+  await page.goto('/bern?drink=coffee&bar=node%2F123');
+  const detail = page.locator('#detail');
+  await detail.getByRole('button', { name: 'Lokal korrigieren', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'Lokal korrigieren', exact: true });
+  const hours = dialog.getByLabel('Öffnungszeiten', { exact: true });
+  await expect(hours).toHaveValue('');
+  await hours.fill('abends offen');
+  await dialog.getByRole('button', { name: 'Korrektur speichern', exact: true }).click();
+  await expect(dialog.getByRole('alert')).toContainText('Tu-Sa 10:00-23:00');
+  expect(submissions).toEqual([]);
+  await hours.fill('Tu-Th 10:00-22:30; Fr,Sa 10:00-24:00; Mo off');
+  await dialog.getByRole('button', { name: 'Korrektur speichern', exact: true }).click();
+  await expect(dialog).not.toBeVisible();
+  expect(submissions).toEqual([{ action: 'correctVenue', barId: venue.id, revision: 0, changes: { openingHours: 'Tu-Th 10:00-22:30; Fr,Sa 10:00-24:00; Mo off' } }]);
+  await page.reload();
+  await detail.getByRole('button', { name: 'Lokal korrigieren', exact: true }).click();
+  await expect(hours).toHaveValue('Tu-Th 10:00-22:30; Fr,Sa 10:00-24:00; Mo off');
+});

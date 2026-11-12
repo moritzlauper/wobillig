@@ -16,6 +16,8 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
       <label>${t('Strasse und Hausnummer')}<input name="address" maxlength="160" autocomplete="street-address"></label>
       <label>${t('Postleitzahl')}<input name="postcode" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" autocomplete="postal-code"></label>
       <label>${t('Website (optional)')}<input name="website" type="url" maxlength="1500" placeholder="https://…"></label>
+      <label>${t('Öffnungszeiten')}<input name="openingHours" maxlength="255" autocomplete="off" spellcheck="false" placeholder="Tu-Sa 10:00-23:00; Su 10:00-22:00; Mo off"></label>
+      <p class="muted">${t('Öffnungszeiten wie bei OpenStreetMap, Wochentage englisch abgekürzt (Mo, Tu, We, Th, Fr, Sa, Su). Leer lassen, wenn sie unbekannt sind.')}</p>
       <label>${t('Art des Lokals')}<select name="type"><option value="">${t('Bitte wählen')}</option>${Object.entries(newVenueTypes).map(([key, label]) => `<option value="${key}">${t(label)}</option>`).join('')}</select></label>
       <p class="muted">${t('Imbiss: Schnellservice oder Take-away, zum Beispiel ein Pizza- oder Döner-Laden. Imbisse sind in der Standardansicht ausgeblendet und erscheinen bei «Alle (inkl. Imbiss)».')}</p>
       <p class="muted">${t('Eine falsche Website kannst du ersetzen oder das Feld leeren.')}</p>
@@ -39,7 +41,7 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
     if (busy) return;
     error.hidden = true;
     try {
-      const changes = Object.fromEntries(['name', 'address', 'postcode', 'website']
+      const changes = Object.fromEntries(['name', 'address', 'postcode', 'website', 'openingHours']
         .filter(key => input(key).value.trim() !== (current[key as keyof Bar] || ''))
         .map(key => [key, input(key).value]));
       // An empty choice keeps the current type, so venues with an unlisted OSM type stay correctable.
@@ -65,7 +67,7 @@ export function venueCorrectionForm(api: string, saved: (correction: VenueCorrec
   };
   return (bar: Bar, version: number) => {
     current = bar; revision = version; form.reset(); error.hidden = true;
-    for (const key of ['name', 'address', 'postcode', 'website'] as const) input(key).value = bar[key] || '';
+    for (const key of ['name', 'address', 'postcode', 'website', 'openingHours'] as const) input(key).value = bar[key] || '';
     typeSelect().value = Object.hasOwn(newVenueTypes, bar.type) ? bar.type : '';
     dialog.showModal();
     dialog.querySelector<HTMLElement>('#venue-correction-title')!.focus();

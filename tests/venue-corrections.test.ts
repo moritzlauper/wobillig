@@ -3,6 +3,7 @@ import { communityVenues, applyEntries } from '../src/community';
 import type { Bar, Dataset } from '../src/data';
 import { createExport } from '../src/export';
 import { validateVenueCorrection } from '../src/venue-corrections';
+import { isOpenAt } from '../src/opening-hours';
 import { saveVenueCorrection } from '../server/venue-corrections';
 import { emptyState, saveVenue, WriteConflict, type State, type Store } from '../server/prices';
 
@@ -69,7 +70,7 @@ describe('venue corrections', () => {
   });
   it.each([{ changes: {} }, { changes: { website: 'javascript:alert(1)' } }, { changes: { website: 'https://user:pass@example.org' } },
     { changes: { website: 'https://example.org/\nfoo' } }, { changes: { name: '' } }, { changes: { address: 'x'.repeat(161) } },
-    { changes: { postcode: '123' } }, { changes: { id: 'node/2' } }, { changes: { offers: [] } }, { revision: -1 }])('rejects invalid corrections %j', patch => {
+    { changes: { postcode: '123' } }, { changes: { openingHours: 'abends offen' } }, { changes: { openingHours: 'Mo-Fr 10-22' } }, { changes: { id: 'node/2' } }, { changes: { offers: [] } }, { revision: -1 }])('rejects invalid corrections %j', patch => {
     expect(() => validateVenueCorrection({ ...input, ...patch })).toThrow();
   });
   it('accepts a listed venue type such as Imbiss and rejects unknown types', () => {
@@ -92,5 +93,22 @@ describe('venue corrections', () => {
     const broken = memoryStore(); broken.write = async () => { throw new Error('Offline'); };
     await expect(saveVenueCorrection(broken, input, data, 'visitor')).rejects.toThrow('Offline');
     expect((await broken.read()).state.venueCorrections).toBeUndefined();
+  });
+  it('corrects opening hours, so a venue no longer shows as open after its real closing time', async () => {
+    // Thursday 23:00 in November: OpenStreetMap had Café Zähringer open until midnight.
+    const thursdayLate = { weekday: 3, month: 10, minutes: 23 * 60 };
+    const cafe = { ...bar, openingHours: 'Tu,We 10:00-23:00, Th-Sa 10:00-24:00, Su 10:00-22:00; Mo off' };
+    const late = { coffee: { ...dataset, bars: [cafe] } };
+    expect(isOpenAt(cafe.openingHours, thursdayLate)).toBe(true);
+    const store = memoryStore();
+    const { correction } = await saveVenueCorrection(store, { ...input, changes: { openingHours: ' Tu-Th 10:00-22:30; Fr,Sa 10:00-24:00; Su 10:00-22:00; Mo off ' } }, late, 'visitor');
+    expect(correction.changes.openingHours).toBe('Tu-Th 10:00-22:30; Fr,Sa 10:00-24:00; Su 10:00-22:00; Mo off');
+    expect((await store.read()).state.venueCorrectionHistory?.at(-1)?.before.openingHours).toBe(cafe.openingHours);
+    const corrected = applyEntries(late.coffee, [], communityVenues(late, [], [], [correction]), 'coffee', [correction]).bars[0];
+    expect(isOpenAt(corrected.openingHours, thursdayLate)).toBe(false);
+    expect(isOpenAt(corrected.openingHours, { ...thursdayLate, weekday: 4 })).toBe(true);
+  });
+  it('takes empty opening hours as unknown', () => {
+    expect(validateVenueCorrection({ ...input, changes: { openingHours: '  ' } }).changes).toEqual({ openingHours: null });
   });
 });
