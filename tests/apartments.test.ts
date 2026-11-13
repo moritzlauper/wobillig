@@ -144,6 +144,10 @@ function memoryStore(initial: ApartmentState = { alerts: [] }): ApartmentStore &
 const data = (inserate: Apartment[], erstellt = '2026-11-09T10:00:00Z'): ApartmentData => ({ erstellt, quellen: [], inserate });
 
 describe('apartment alerts', () => {
+  // The fixtures are dated around `now`; confirmation links and dispatch cleanup read the clock.
+  beforeEach(() => { vi.useFakeTimers({ toFake: ['Date'] }); vi.setSystemTime(now); });
+  afterEach(() => { vi.useRealTimers(); });
+
   it('needs a confirmed email before anything is sent', async () => {
     const store = memoryStore();
     const alert = await createAlert(store, { email: ' Anna@Example.org ', filter: { mieteMax: 2500, nurGemerkt: true }, locale: 'de' }, now);
