@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-10-30T10:17:38.371932+00:00",
-  "discoveredAt": "2026-10-30T10:17:38.371932+00:00",
+  "generatedAt": "2026-11-16T14:34:23.589323+00:00",
+  "discoveredAt": "2026-11-16T14:34:23.589323+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "removed": [],
   "bars": [
     {
       "id": "node/4377444852",
@@ -9,8 +10,8 @@
       "lat": 47.420397,
       "lon": 8.5486267,
       "type": "restaurant",
-      "address": "Schaffhauserstrasse 477",
-      "postcode": "8052",
+      "address": "",
+      "postcode": "",
       "website": "https://daamici2.ch",
       "cuisine": [
         "kebab",
@@ -28,7 +29,7 @@
           "volumeMl": null,
           "priceChf": 17.0,
           "sourceUrl": "https://daamici2.ch/menu/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "CHF 17.00 Pide Kebab Mozzarella, Kebabfleisch",
           "alcoholFree": true,
@@ -37,8 +38,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/440041822"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/725765073",
@@ -46,8 +46,8 @@
       "lat": 47.3842264,
       "lon": 8.5319218,
       "type": "fast_food",
-      "address": "Limmatstrasse 125",
-      "postcode": "8005",
+      "address": "",
+      "postcode": "",
       "website": "http://millennium-restaurant.ch/",
       "cuisine": [
         "pizza"
@@ -161,9 +161,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/123498498"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/4949132238",
@@ -184,6 +183,21 @@
       "outdoor": true,
       "offers": [
         {
+          "name": "Kebab Fladenbrot",
+          "foodType": "doner",
+          "portionType": "bread",
+          "meatType": "unspecified",
+          "volumeMl": null,
+          "priceChf": 19.0,
+          "sourceUrl": "https://monti-triemli.ch/bestellen/",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
+          "confidence": "ai",
+          "evidence": "Kebab Fladenbrot CHF 19.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
           "name": "Kebab Box",
           "foodType": "doner",
           "portionType": "plate",
@@ -191,9 +205,9 @@
           "volumeMl": null,
           "priceChf": 17.0,
           "sourceUrl": "https://monti-triemli.ch/bestellen/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
-          "evidence": "Kebab Box Wahl aus: Kebabfleisch, Pommes, Salat, Zwiebel, Tomaten, Rotkabis, Weisskabis, Sauce (Cocktail, Joghurt, Scharf) CHF 17.00",
+          "evidence": "Kebab Box CHF 17.00",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
@@ -206,24 +220,9 @@
           "volumeMl": null,
           "priceChf": 19.0,
           "sourceUrl": "https://monti-triemli.ch/bestellen/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
-          "evidence": "Kebab Taschenbrot Wahl aus: Kebabfleisch, Salat, Tomaten, Rotkabis, Weisskabis, Zwiebel, Sauce (Cocktail, Joghurt, Scharf) CHF 19.00",
-          "alcoholFree": true,
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Kebab Fladenbrot",
-          "foodType": "doner",
-          "portionType": "bread",
-          "meatType": "unspecified",
-          "volumeMl": null,
-          "priceChf": 19.0,
-          "sourceUrl": "https://monti-triemli.ch/bestellen/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
-          "confidence": "ai",
-          "evidence": "Kebab Fladenbrot Wahl aus: Kebabfleisch, Zwiebel, Salat, Rotkabis, Weisskabis, Tomaten, Sauce (Cocktail, Joghurt, Scharf) CHF 19.00",
+          "evidence": "Kebab Taschenbrot CHF 19.00",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
@@ -236,9 +235,9 @@
           "volumeMl": null,
           "priceChf": 29.5,
           "sourceUrl": "https://monti-triemli.ch/bestellen/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
-          "evidence": "Kebab Teller Steak Kebab, Pommes und Salat (Sauce nach Wahl) CHF 29.50",
+          "evidence": "Kebab Teller CHF 29.50",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
@@ -251,22 +250,22 @@
           "volumeMl": null,
           "priceChf": 27.5,
           "sourceUrl": "https://monti-triemli.ch/bestellen/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
-          "evidence": "Pide Kebab mit Kase, Steak Kebab und Joghurtsauce CHF 27.50",
+          "evidence": "Pide Kebab CHF 27.50",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/10063683019",
       "name": "Nord Take Away",
-      "lat": 47.3925309,
-      "lon": 8.4914818,
+      "lat": 47.3925889,
+      "lon": 8.4916299,
       "type": "fast_food",
       "address": "Aargauerstrasse 200",
       "postcode": "8048",
@@ -287,7 +286,7 @@
           "volumeMl": null,
           "priceChf": 14.5,
           "sourceUrl": "https://www.nordtakeaway.ch/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Döner im Taschenbrot 14,50 CHF",
           "alcoholFree": true,
@@ -302,7 +301,7 @@
           "volumeMl": null,
           "priceChf": 15.0,
           "sourceUrl": "https://www.nordtakeaway.ch/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Döner im Fladenbrot 15,00 CHF",
           "alcoholFree": true,
@@ -311,7 +310,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/11843562096",
@@ -319,8 +318,8 @@
       "lat": 47.3546706,
       "lon": 8.5576663,
       "type": "cafe",
-      "address": "Seefeldstrasse 187",
-      "postcode": "8008",
+      "address": "",
+      "postcode": "",
       "website": "https://spuntino.ch/",
       "cuisine": [
         "kebab",
@@ -338,9 +337,9 @@
           "volumeMl": null,
           "priceChf": 19.5,
           "sourceUrl": "https://spuntino.ch/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
-          "evidence": "Kebab CHF 19.50",
+          "evidence": "Tellergerichte Kebab CHF 19.50",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
@@ -353,7 +352,7 @@
           "volumeMl": null,
           "priceChf": 13.5,
           "sourceUrl": "https://spuntino.ch/menu-seefeld/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "DÜRÜM CHF 13.50",
           "alcoholFree": true,
@@ -368,32 +367,16 @@
           "volumeMl": null,
           "priceChf": 14.5,
           "sourceUrl": "https://spuntino.ch/menu-seefeld/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "KEBAB BOX CHF 14.50",
-          "alcoholFree": true,
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Kebab",
-          "foodType": "doner",
-          "portionType": "plate",
-          "meatType": "unspecified",
-          "volumeMl": null,
-          "priceChf": 24.5,
-          "sourceUrl": "https://spuntino.ch/menu-seefeld/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
-          "confidence": "ai",
-          "evidence": "Kebab CHF 24.50",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/97939346"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/10948817478",
@@ -401,8 +384,8 @@
       "lat": 47.3688423,
       "lon": 8.499924,
       "type": "fast_food",
-      "address": "Birmensdorferstrasse 444",
-      "postcode": "8055",
+      "address": "",
+      "postcode": "",
       "website": "https://www.triemlitreffpunkt.ch/",
       "cuisine": [
         "kebab",
@@ -410,7 +393,7 @@
         "pizza"
       ],
       "openingHours": "Mo-Fr 11:00-23:00; Sa 12:00-23:00; Su off",
-      "outdoor": false,
+      "outdoor": true,
       "offers": [
         {
           "name": "Dürüm Kebab",
@@ -420,7 +403,7 @@
           "volumeMl": null,
           "priceChf": 12.5,
           "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Dürüm Kebab Ab: 12.50 CHF",
           "alcoholFree": true,
@@ -435,7 +418,7 @@
           "volumeMl": null,
           "priceChf": 13.5,
           "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Döner Box mit Pommes Ab: 13.50 CHF",
           "alcoholFree": true,
@@ -450,7 +433,7 @@
           "volumeMl": null,
           "priceChf": 14.0,
           "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Kebab Lang im Pepito-Brot Ab: 14.00 CHF",
           "alcoholFree": true,
@@ -465,7 +448,7 @@
           "volumeMl": null,
           "priceChf": 14.0,
           "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Gyros Dürüm mit Pommes Ab: 14.00 CHF",
           "alcoholFree": true,
@@ -480,7 +463,7 @@
           "volumeMl": null,
           "priceChf": 19.0,
           "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Pide Kebab mit Käse, Kebab Fleisch Ab: 19.00 CHF",
           "alcoholFree": true,
@@ -489,8 +472,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/342612701"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/8785727518",
@@ -515,7 +497,7 @@
           "volumeMl": null,
           "priceChf": 15,
           "sourceUrl": "https://zumgoldenentaschenbrot.ch/wp-content/uploads/2025/04/Classic-Kebab-Menu-60x60-1.pdf",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Classic Kebab 15",
           "alcoholFree": true,
@@ -530,7 +512,7 @@
           "volumeMl": null,
           "priceChf": 18.5,
           "sourceUrl": "https://zumgoldenentaschenbrot.ch/wp-content/uploads/2025/04/Classic-Kebab-Menu-60x60-1.pdf",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Fit ness Kebab Bowl 18.5",
           "alcoholFree": true,
@@ -539,7 +521,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     }
   ]
 }

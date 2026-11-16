@@ -1,7 +1,12 @@
 {
-  "generatedAt": "2026-10-30T10:17:38.371932+00:00",
-  "discoveredAt": "2026-10-30T10:17:38.371932+00:00",
+  "generatedAt": "2026-11-16T14:34:23.589323+00:00",
+  "discoveredAt": "2026-11-16T14:34:23.589323+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+  "removed": [
+    "node/3770491170",
+    "node/4935627373",
+    "node/803245834"
+  ],
   "bars": [
     {
       "id": "node/4377444852",
@@ -9,8 +14,8 @@
       "lat": 47.420397,
       "lon": 8.5486267,
       "type": "restaurant",
-      "address": "Schaffhauserstrasse 477",
-      "postcode": "8052",
+      "address": "",
+      "postcode": "",
       "website": "https://daamici2.ch",
       "cuisine": [
         "kebab",
@@ -28,7 +33,7 @@
           "volumeMl": null,
           "priceChf": 22.0,
           "sourceUrl": "https://daamici2.ch/menu/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "CHF 22.00 Falafel-Teller Vegi Frittierte Kichererbsen mit Hummus, Moutabbal, Muhammara und arabischen Salat.",
           "alcoholFree": true,
@@ -37,8 +42,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/440041822"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/11407933119",
@@ -63,7 +67,7 @@
           "volumeMl": null,
           "priceChf": 11.9,
           "sourceUrl": "https://hallobeirut.ch/menu/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Falafel Wrap (vegan) CHF 11.90",
           "alcoholFree": true,
@@ -78,7 +82,7 @@
           "volumeMl": null,
           "priceChf": 18.0,
           "sourceUrl": "https://hallobeirut.ch/menu/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Falafel Teller (vegan) CHF 18.00",
           "alcoholFree": true,
@@ -87,41 +91,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
-    },
-    {
-      "id": "node/4935627373",
-      "name": "Khouris",
-      "lat": 47.3582918,
-      "lon": 8.5537364,
-      "type": "restaurant",
-      "address": "Seefeldstrasse 120",
-      "postcode": "8008",
-      "website": "https://www.khouristherestaurant.com",
-      "cuisine": [
-        "middle_eastern"
-      ],
-      "openingHours": null,
-      "outdoor": true,
-      "offers": [
-        {
-          "name": "Falafel",
-          "foodType": "falafel",
-          "portionType": "plate",
-          "meatType": "vegetarian",
-          "volumeMl": null,
-          "priceChf": 28.5,
-          "sourceUrl": "https://static1.squarespace.com/static/64d22063e2399e70bf93849d/t/6aa129e31c5e777d7a90bb46/1788946915453/Khouris_Menue_DE.pdf",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
-          "confidence": "ai",
-          "evidence": "FALAFEL 28.50",
-          "alcoholFree": true,
-          "sourcePage": 3,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/5597060141",
@@ -136,7 +106,7 @@
         "lebanese",
         "kebab"
       ],
-      "openingHours": null,
+      "openingHours": "Mo-Sa 11:00-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -155,8 +125,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/725765073",
@@ -164,8 +134,8 @@
       "lat": 47.3842264,
       "lon": 8.5319218,
       "type": "fast_food",
-      "address": "Limmatstrasse 125",
-      "postcode": "8005",
+      "address": "",
+      "postcode": "",
       "website": "http://millennium-restaurant.ch/",
       "cuisine": [
         "pizza"
@@ -204,9 +174,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/123498498"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/4949132238",
@@ -234,56 +203,22 @@
           "volumeMl": null,
           "priceChf": 23.5,
           "sourceUrl": "https://monti-triemli.ch/bestellen/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
-          "evidence": "Falafel Teller 8 Stück Falafel, Salat (Sauce nach Wahl), Pommes, Portion Joghurtsauce CHF 23.50",
+          "evidence": "Falafel Teller CHF 23.50",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
-    },
-    {
-      "id": "node/3770491170",
-      "name": "Moudi",
-      "lat": 47.3697863,
-      "lon": 8.5343368,
-      "type": "restaurant",
-      "address": "Brandschenkestrasse 5",
-      "postcode": "8001",
-      "website": "https://www.moudi-bar.ch/",
-      "cuisine": [
-        "lebanese"
-      ],
-      "openingHours": "Mo-We 11:30-23:00; Th-Fr 11:30-24:00; Sa 12:30-24:00",
-      "outdoor": true,
-      "offers": [
-        {
-          "name": "Falafel",
-          "foodType": "falafel",
-          "portionType": "plate",
-          "meatType": "vegetarian",
-          "volumeMl": null,
-          "priceChf": 18,
-          "sourceUrl": "https://images.squarespace-cdn.com/content/v1/5579ac08e4b0c48a5c312187/b1c2a488-e9ed-4914-8096-52232985ba18/moudibar_menu_2025_English_Food2.jpg",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
-          "confidence": "ai",
-          "evidence": "FALAFEL DEEP FRIED CHICKPEA BALLS (5 PCS.) 18",
-          "alcoholFree": true,
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/10063683019",
       "name": "Nord Take Away",
-      "lat": 47.3925309,
-      "lon": 8.4914818,
+      "lat": 47.3925889,
+      "lon": 8.4916299,
       "type": "fast_food",
       "address": "Aargauerstrasse 200",
       "postcode": "8048",
@@ -304,7 +239,7 @@
           "volumeMl": null,
           "priceChf": 14.0,
           "sourceUrl": "https://www.nordtakeaway.ch/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Falafel (6 Stück) im Taschenbrot 14,00 CHF",
           "alcoholFree": true,
@@ -319,7 +254,7 @@
           "volumeMl": null,
           "priceChf": 14.0,
           "sourceUrl": "https://www.nordtakeaway.ch/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Falafel (6 Stück) im Fladenbrot 14,00 CHF",
           "alcoholFree": true,
@@ -334,7 +269,7 @@
           "volumeMl": null,
           "priceChf": 17.0,
           "sourceUrl": "https://www.nordtakeaway.ch/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Spinat falafel Box (6 Stück) 17,00 CHF",
           "alcoholFree": true,
@@ -349,7 +284,7 @@
           "volumeMl": null,
           "priceChf": 15.0,
           "sourceUrl": "https://www.nordtakeaway.ch/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Randen Falafel im Fladenbrot 15,00 CHF",
           "alcoholFree": true,
@@ -364,7 +299,7 @@
           "volumeMl": null,
           "priceChf": 15.0,
           "sourceUrl": "https://www.nordtakeaway.ch/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Randen Falafel im Taschenbrot 15,00 CHF",
           "alcoholFree": true,
@@ -373,7 +308,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/10860757271",
@@ -392,16 +327,16 @@
       "outdoor": false,
       "offers": [
         {
-          "name": "Teller-Falafel",
+          "name": "Falafel-Teller",
           "foodType": "falafel",
           "portionType": "plate",
           "meatType": "vegetarian",
           "volumeMl": null,
-          "priceChf": 14,
+          "priceChf": 16,
           "sourceUrl": "https://orientworld.ch/wp-content/uploads/2024/07/Menuekarten-2024_De_Ar_010724.pdf",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
-          "evidence": "Teller-Falafel 14",
+          "evidence": "Falafel-Teller 16",
           "alcoholFree": true,
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5"
@@ -414,7 +349,7 @@
           "volumeMl": null,
           "priceChf": 16,
           "sourceUrl": "https://orientworld.ch/wp-content/uploads/2024/07/Menuekarten-2024_EN_010724.pdf",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "14 Falafel-plate (with Hummus, Baba ghannuj, salad) 16",
           "alcoholFree": true,
@@ -423,7 +358,75 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
+    },
+    {
+      "id": "node/3381293318",
+      "name": "SimSim",
+      "lat": 47.3878521,
+      "lon": 8.5392302,
+      "type": "restaurant",
+      "address": "Kronenstrasse 48",
+      "postcode": "8006",
+      "website": "https://sim-sim.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Sa 11:30-14:00,17:30-22:30; Su off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pita Falafel",
+          "foodType": "falafel",
+          "portionType": "bread",
+          "meatType": "vegetarian",
+          "volumeMl": null,
+          "priceChf": 27,
+          "sourceUrl": "https://sim-sim.ch/wp-content/uploads/2025/12/EN_SimSim_City_Dinner-Menu.pdf",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
+          "confidence": "ai",
+          "evidence": "Pita Falafel 27 Falafel in pita bread, served with fries or sweet potato fries.",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
+    },
+    {
+      "id": "node/3479329968",
+      "name": "SimSim",
+      "lat": 47.4075523,
+      "lon": 8.5478557,
+      "type": "restaurant",
+      "address": "",
+      "postcode": "",
+      "website": "https://sim-sim.ch/",
+      "cuisine": [
+        "lebanese"
+      ],
+      "openingHours": "Mo-Fr 11:30-14:00,17:30-22:00, Sa 17:30-22:30",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Pita Falafel",
+          "foodType": "falafel",
+          "portionType": "bread",
+          "meatType": "vegetarian",
+          "volumeMl": null,
+          "priceChf": 27,
+          "sourceUrl": "https://sim-sim.ch/wp-content/uploads/2025/12/EN_SimSim_City_Dinner-Menu.pdf",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
+          "confidence": "ai",
+          "evidence": "Pita Falafel 27 Falafel in pita bread, served with fries or sweet potato fries.",
+          "alcoholFree": true,
+          "sourcePage": 5,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/11843562096",
@@ -431,8 +434,8 @@
       "lat": 47.3546706,
       "lon": 8.5576663,
       "type": "cafe",
-      "address": "Seefeldstrasse 187",
-      "postcode": "8008",
+      "address": "",
+      "postcode": "",
       "website": "https://spuntino.ch/",
       "cuisine": [
         "kebab",
@@ -450,32 +453,16 @@
           "volumeMl": null,
           "priceChf": 19.5,
           "sourceUrl": "https://spuntino.ch/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Falafel CHF 19.50",
-          "alcoholFree": true,
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Falafel",
-          "foodType": "falafel",
-          "portionType": "plate",
-          "meatType": "vegetarian",
-          "volumeMl": null,
-          "priceChf": 24.5,
-          "sourceUrl": "https://spuntino.ch/menu-seefeld/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
-          "confidence": "ai",
-          "evidence": "Falafel CHF 24.50",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/97939346"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/1743220322",
@@ -501,7 +488,7 @@
           "volumeMl": null,
           "priceChf": 11.9,
           "sourceUrl": "https://www.sternengrill.ch/take-away-menu",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Falafel in Brottasche mit Salat und Joghurt-Sauce 11.90",
           "alcoholFree": true,
@@ -516,16 +503,16 @@
           "volumeMl": null,
           "priceChf": 9.5,
           "sourceUrl": "https://images.squarespace-cdn.com/content/v1/5923e44c1e5b6c95513838d8/1656940363607-E9UUJEC4DDLFIXYTAKNH/sternengrill-bellevue-zuerich-uppergrade+%282%29.jpg",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
-          "evidence": "FALAFEL Pitabrot mit Salat & Joghurt-Sauce 9.50",
+          "evidence": "FALAFEL auf Pitabrot mit Salat & Joghurt-Sauce 9.50",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
       "id": "node/10948817478",
@@ -533,8 +520,8 @@
       "lat": 47.3688423,
       "lon": 8.499924,
       "type": "fast_food",
-      "address": "Birmensdorferstrasse 444",
-      "postcode": "8055",
+      "address": "",
+      "postcode": "",
       "website": "https://www.triemlitreffpunkt.ch/",
       "cuisine": [
         "kebab",
@@ -542,7 +529,7 @@
         "pizza"
       ],
       "openingHours": "Mo-Fr 11:00-23:00; Sa 12:00-23:00; Su off",
-      "outdoor": false,
+      "outdoor": true,
       "offers": [
         {
           "name": "Falafel Dürüm und Vegi",
@@ -552,7 +539,7 @@
           "volumeMl": null,
           "priceChf": 11.0,
           "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Falafel Dürüm und Vegi Ab: 11.00 CHF",
           "alcoholFree": true,
@@ -567,7 +554,7 @@
           "volumeMl": null,
           "priceChf": 13.5,
           "sourceUrl": "https://www.triemlitreffpunkt.ch/menue",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
           "evidence": "Falafel Box Ab: 13.50 CHF",
           "alcoholFree": true,
@@ -576,42 +563,56 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00",
-      "addressSource": "https://www.openstreetmap.org/way/342612701"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     },
     {
-      "id": "node/803245834",
-      "name": "Za'atar",
-      "lat": 47.3790069,
-      "lon": 8.5249463,
-      "type": "restaurant",
-      "address": "Brauerstrasse 74",
-      "postcode": "8004",
-      "website": "https://www.zaatar.ch",
+      "id": "node/7932162722",
+      "name": "Vegitat",
+      "lat": 47.3822487,
+      "lon": 8.5296459,
+      "type": "fast_food",
+      "address": "Langstrasse 192",
+      "postcode": "8005",
+      "website": "https://vegitat.ch/",
       "cuisine": [
-        "lebanese"
+        "turkish"
       ],
-      "openingHours": "Tu-Fr 11:00-14:00, 17:00-23:00; Sa-Su 17:00-23:00",
-      "outdoor": true,
+      "openingHours": "Mo-Th 11:30-14:00, 17:00-21:00; Fr, Sa 11:30-23:00; Su 13:00-21:00",
+      "outdoor": false,
       "offers": [
         {
-          "name": "Falafel Salat",
+          "name": "03 FALAFEL",
+          "foodType": "falafel",
+          "portionType": "wrap",
+          "meatType": "vegetarian",
+          "volumeMl": null,
+          "priceChf": 14,
+          "sourceUrl": "https://vegitat.ch/assets/pdf/menu.pdf",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
+          "confidence": "ai",
+          "evidence": "03 FALAFEL 14.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "10 FALAFEL BOWL",
           "foodType": "falafel",
           "portionType": "plate",
           "meatType": "vegetarian",
           "volumeMl": null,
-          "priceChf": 31.5,
-          "sourceUrl": "https://www.zaatar.ch/menu/",
-          "observedAt": "2026-10-30T10:17:38.371932+00:00",
+          "priceChf": 17,
+          "sourceUrl": "https://vegitat.ch/assets/pdf/menu.pdf",
+          "observedAt": "2026-11-16T14:34:23.589323+00:00",
           "confidence": "ai",
-          "evidence": "Falafel Salat Falafel (4 Stk.) mit Hummus und Tabboule CHF 31.50",
+          "evidence": "10 FALAFEL BOWL 17.-",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-10-30T10:17:38.371932+00:00"
+      "checkedAt": "2026-11-16T14:34:23.589323+00:00"
     }
   ]
 }
