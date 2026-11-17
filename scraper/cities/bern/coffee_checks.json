@@ -1,6 +1,6 @@
 {
   "node/2953918328": {
-    "checkedAt": "2026-11-05T21:19:04.690010+00:00",
+    "checkedAt": "2026-11-17T00:35:15.571887+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -13,7 +13,7 @@
     "seconds": 2.1
   },
   "node/2284200929": {
-    "checkedAt": "2026-11-05T21:19:06.119441+00:00",
+    "checkedAt": "2026-11-17T00:35:16.786119+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -26,10 +26,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.5
+    "seconds": 13.7
   },
   "node/4463263847": {
-    "checkedAt": "2026-11-05T21:19:08.373544+00:00",
+    "checkedAt": "2026-11-17T00:35:21.485169+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -38,10 +38,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.1
+    "seconds": 3.1
   },
   "node/5132730222": {
-    "checkedAt": "2026-11-05T21:19:06.764134+00:00",
+    "checkedAt": "2026-11-17T00:35:17.709985+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -50,10 +50,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.3
+    "seconds": 3.8
   },
   "node/5151793121": {
-    "checkedAt": "2026-11-05T21:13:03.257316+00:00",
+    "checkedAt": "2026-11-17T00:28:24.506758+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -66,10 +66,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.1
+    "seconds": 2.5
   },
   "node/812906888": {
-    "checkedAt": "2026-11-05T21:19:11.087457+00:00",
+    "checkedAt": "2026-11-17T00:35:24.555113+00:00",
     "status": "partial",
     "documents": [
       {
@@ -84,10 +84,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.1
+    "seconds": 3.8
   },
   "node/3085381441": {
-    "checkedAt": "2026-11-05T21:19:15.154150+00:00",
+    "checkedAt": "2026-11-17T00:35:28.328809+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -104,10 +104,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.1
+    "seconds": 8.7
   },
   "node/12423233309": {
-    "checkedAt": "2026-11-05T21:12:50.273405+00:00",
+    "checkedAt": "2026-11-17T00:27:52.142851+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -123,15 +123,19 @@
         "kind": "html"
       },
       {
-        "url": "https://www.acai-attendant.ch/_files/ugd/41ff12_405e4f5ccfa54927b410142782e65b7c.pdf",
+        "url": "https://www.acai-attendant.ch/_files/ugd/41ff12_68ddaf3c31394c999069ef06d4ce7942.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.acai-attendant.ch/_files/ugd/41ff12_aefbcb30ea39415c85bbed31a267d340.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 3.9
+    "seconds": 9.5
   },
   "node/602460659": {
-    "checkedAt": "2026-11-05T21:19:10.468815+00:00",
+    "checkedAt": "2026-11-17T00:35:24.364750+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -152,54 +156,28 @@
       }
     ],
     "errors": [],
-    "seconds": 12.3
+    "seconds": 8.7
   },
   "node/1809394316": {
-    "checkedAt": "2026-11-05T21:12:50.304075+00:00",
-    "status": "prices_found",
-    "documents": [
+    "checkedAt": "2026-11-17T00:27:53.942461+00:00",
+    "status": "robots_blocked",
+    "documents": [],
+    "errors": [
       {
         "url": "https://www.apfelgold.ch/getraenkekarte",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.apfelgold.ch/getraenkekarte",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.apfelgold.ch/kuchenangebot",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.apfelgold.ch/kuchenangebot",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.apfelgold.ch/angebot",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.apfelgold.ch/angebot",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.apfelgold.ch/kuchenangebot",
-        "kind": "html"
+        "reason": "robots_blocked",
+        "phase": "fetch"
       },
       {
         "url": "https://www.apfelgold.ch",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.apfelgold.ch/netzwerk",
-        "kind": "html"
+        "reason": "robots_blocked",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 13.0
+    "seconds": 9.3
   },
   "node/1831963645": {
-    "checkedAt": "2026-11-05T21:19:18.658190+00:00",
+    "checkedAt": "2026-11-17T00:35:30.459788+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -212,7 +190,7 @@
     "seconds": 8.3
   },
   "node/13344114703": {
-    "checkedAt": "2026-11-05T21:12:54.874343+00:00",
+    "checkedAt": "2026-11-17T00:28:14.725611+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -220,12 +198,12 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.beansandnuts.ch/",
-        "kind": "html"
-      },
-      {
         "url": "http://files.designer.hoststar.ch/8b/42/8b4266a9-db59-4532-8f2d-e7a16d2d732f.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.beansandnuts.ch/",
+        "kind": "html"
       },
       {
         "url": "http://files.designer.hoststar.ch/4b/88/4b887614-b878-4e41-93ab-67c98471937a.pdf",
@@ -237,10 +215,10 @@
       }
     ],
     "errors": [],
-    "seconds": 23.7
+    "seconds": 26.5
   },
   "node/12735326890": {
-    "checkedAt": "2026-11-05T21:19:26.227687+00:00",
+    "checkedAt": "2026-11-17T00:35:37.036299+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -249,10 +227,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.4
+    "seconds": 2.8
   },
   "node/9272067500": {
-    "checkedAt": "2026-11-05T21:13:27.064287+00:00",
+    "checkedAt": "2026-11-17T00:28:52.927532+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -269,10 +247,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.1
+    "seconds": 2.1
   },
   "node/9743321723": {
-    "checkedAt": "2026-11-05T21:19:28.605623+00:00",
+    "checkedAt": "2026-11-17T00:35:39.802342+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -281,22 +259,22 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 3.3
   },
   "node/8998896718": {
-    "checkedAt": "2026-11-05T21:19:32.190645+00:00",
+    "checkedAt": "2026-11-17T00:35:43.061492+00:00",
     "status": "no_prices",
     "documents": [
       {
-        "url": "https://www.baeckerei-roethlisberger.ch/monbijou",
+        "url": "https://baeckerei-roethlisberger.ch/verkaufsorte/",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 2.8
+    "seconds": 4.0
   },
   "node/6123186377": {
-    "checkedAt": "2026-11-05T21:13:05.327389+00:00",
+    "checkedAt": "2026-11-17T00:28:27.159817+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -332,23 +310,23 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 9.5
+    "seconds": 8.5
   },
   "node/2969434889": {
-    "checkedAt": "2026-11-05T21:19:38.643988+00:00",
-    "status": "fetch_failed",
+    "checkedAt": "2026-11-17T00:35:47.903207+00:00",
+    "status": "robots_blocked",
     "documents": [],
     "errors": [
       {
         "url": "https://www.confiserie-eichenberger.ch/filialen/tea-room",
-        "reason": "http_404",
+        "reason": "robots_blocked",
         "phase": "fetch"
       }
     ],
-    "seconds": 3.2
+    "seconds": 8.4
   },
   "node/7234369088": {
-    "checkedAt": "2026-11-05T21:19:34.963993+00:00",
+    "checkedAt": "2026-11-17T00:35:47.047380+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -358,10 +336,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 3.7
+    "seconds": 3.2
   },
   "node/1833062656": {
-    "checkedAt": "2026-11-05T21:19:38.646057+00:00",
+    "checkedAt": "2026-11-17T00:35:47.945670+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -370,10 +348,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.1
+    "seconds": 3.4
   },
   "node/7761404135": {
-    "checkedAt": "2026-11-05T21:19:26.933156+00:00",
+    "checkedAt": "2026-11-17T00:35:38.711558+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -389,166 +367,49 @@
         "kind": "unsupported"
       },
       {
+        "url": "https://www.traeffer.ch/veranstaltungen/2026-04-strick-cafe-jyrm3-9fnl8-tl8zn-ea32c-rlmem-d37nd-nkzyf",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.traeffer.ch/veranstaltungen/2026-04-strick-cafe-jyrm3-9fnl8-tl8zn-ea32c-rlmem-d37nd-nkzyf",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://www.traeffer.ch/veranstaltungen/2026-04-strick-cafe-jyrm3-9fnl8-tl8zn-ea32c-rlmem-d37nd-nkzyf-wlzfz",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.traeffer.ch/veranstaltungen/2026-04-strick-cafe-jyrm3-9fnl8-tl8zn-ea32c-rlmem-d37nd-nkzyf-wlzfz",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://www.traeffer.ch/mittagstisch",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 11.7
+    "seconds": 14.3
   },
   "node/8303946461": {
-    "checkedAt": "2026-11-05T21:13:29.668413+00:00",
-    "status": "prices_found",
-    "documents": [
-      {
-        "url": "https://www.tscharni.ch/download/pictures/35/upf8msi6e9wx72xw3ebur1mk7mifmj/260622_menu_und_getraenkekarte_cafe_qzt.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/cafe",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/7e/omrzjfm02qlr158p5needwc6o75yoq/tscharni_cafe_flyer_a5_020626_web.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/db/f0k5urjngfcu9n30jcgm1utkndl71m/cafekuchen_2026.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/cafe",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/99/vbxumkjxdvdspty3jagr9iid0xh4xg/250110_flyer_ethio_tscharni.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/adventszauber",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/af/qe67hvnivjk4y5ia7russ6ecaahrqe/adventszaubera5.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/eb/1icnraaua6jxwqtzcjip5peqj5jbq5/veloverleih-a5-web.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/mieten",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/c8/egr701ykh1w23u7vldtg7qogsqcqpx/raumtarife_qzt.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/werkstatt",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/c3/amxskgbdevu50lkupb9wpuxvblggsz/flyer_werkstatt_tscharni.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/57/nu7xaq9iui5qht3kruxbeh4ehuxux6/240823_tarife_werkstatt_tscharni_2024.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/spartageskarten",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/adventszauber",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/unterstuetzung",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/quartier",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/39/fg3sll7gekwlueu4assfbcf7p3pq67/260921_medienmitteilung_infoveranstaltung_bethlehem.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/download/pictures/e5/hlooffmcwv95dzvwqcxmp2xy0tku8l/flyer_tscharni_garten.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/unterstuetzung",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/adventszauber",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/spartageskarten",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/spartageskarten",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/werkstatt",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/mieten",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/adventszauber",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/kurse-and-anlaesse",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/kurse-and-anlaesse",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.tscharni.ch/angebote/kurse-and-anlaesse",
-        "kind": "html"
-      }
-    ],
+    "checkedAt": "2026-11-17T00:28:55.052014+00:00",
+    "status": "robots_blocked",
+    "documents": [],
     "errors": [
       {
-        "url": "https://daten.tscharni.ch/cafe/menu.pdf",
+        "url": "https://www.tscharni.ch/download/pictures/35/upf8msi6e9wx72xw3ebur1mk7mifmj/260622_menu_und_getraenkekarte_cafe_qzt.pdf",
         "reason": "robots_blocked",
         "phase": "fetch"
       },
       {
-        "url": "https://tscharni.cmsbox.ch/download/pictures/57/nu7xaq9iui5qht3kruxbeh4ehuxux6/240823_tarife_werkstatt_tscharni_2024.pdf",
-        "reason": "http_403",
+        "url": "https://www.tscharni.ch",
+        "reason": "robots_blocked",
         "phase": "fetch"
       }
     ],
-    "seconds": 25.4
+    "seconds": 9.3
   },
   "node/10860875523": {
-    "checkedAt": "2026-11-05T21:19:47.068711+00:00",
+    "checkedAt": "2026-11-17T00:35:51.374921+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -569,10 +430,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.1
+    "seconds": 6.9
   },
   "node/3100182129": {
-    "checkedAt": "2026-11-05T21:19:41.859196+00:00",
+    "checkedAt": "2026-11-17T00:35:50.031055+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -589,7 +450,7 @@
       }
     ],
     "errors": [],
-    "seconds": 12.8
+    "seconds": 11.0
   },
   "node/1682881696": {
     "checkedAt": "2026-10-17T23:33:27.361796+00:00",
@@ -605,7 +466,7 @@
     "seconds": 7.3
   },
   "node/2918282889": {
-    "checkedAt": "2026-11-05T21:19:42.735393+00:00",
+    "checkedAt": "2026-11-17T00:35:50.273182+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -615,10 +476,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.3
+    "seconds": 4.0
   },
   "node/10279587110": {
-    "checkedAt": "2026-11-05T21:19:54.663948+00:00",
+    "checkedAt": "2026-11-17T00:35:52.975913+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -627,10 +488,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.4
+    "seconds": 5.7
   },
   "node/2392083464": {
-    "checkedAt": "2026-11-05T21:19:57.948210+00:00",
+    "checkedAt": "2026-11-17T00:35:56.335964+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -639,10 +500,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.8
+    "seconds": 2.4
   },
   "node/286879743": {
-    "checkedAt": "2026-11-05T21:13:24.779615+00:00",
+    "checkedAt": "2026-11-17T00:28:52.698975+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -657,10 +518,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 16.2
+    "seconds": 14.2
   },
   "node/280528118": {
-    "checkedAt": "2026-11-05T21:20:00.707784+00:00",
+    "checkedAt": "2026-11-17T00:35:56.343536+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -673,10 +534,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.7
+    "seconds": 3.0
   },
   "node/3171727014": {
-    "checkedAt": "2026-11-05T21:19:22.741735+00:00",
+    "checkedAt": "2026-11-17T00:35:33.044823+00:00",
     "status": "partial",
     "documents": [
       {
@@ -843,10 +704,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 84.7
+    "seconds": 76.3
   },
   "node/2666705334": {
-    "checkedAt": "2026-11-05T21:13:24.371755+00:00",
+    "checkedAt": "2026-11-17T00:28:46.976442+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -859,10 +720,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.3
+    "seconds": 5.7
   },
   "node/7417396228": {
-    "checkedAt": "2026-11-05T21:15:14.908254+00:00",
+    "checkedAt": "2026-11-17T00:30:45.117303+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -882,7 +743,7 @@
     "seconds": 1.4
   },
   "node/5845821611": {
-    "checkedAt": "2026-11-05T21:20:04.356196+00:00",
+    "checkedAt": "2026-11-17T00:35:58.710485+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -891,10 +752,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.7
+    "seconds": 3.4
   },
   "node/3157391906": {
-    "checkedAt": "2026-11-05T21:20:04.434171+00:00",
+    "checkedAt": "2026-11-17T00:35:59.386081+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -904,10 +765,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 5.7
+    "seconds": 4.6
   },
   "node/8819936791": {
-    "checkedAt": "2026-11-05T21:15:42.519153+00:00",
+    "checkedAt": "2026-11-17T00:31:15.721292+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -924,10 +785,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.6
+    "seconds": 14.6
   },
   "node/619787933": {
-    "checkedAt": "2026-11-05T21:20:04.329141+00:00",
+    "checkedAt": "2026-11-17T00:35:58.702033+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -940,10 +801,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.0
+    "seconds": 4.3
   },
   "node/4083144290": {
-    "checkedAt": "2026-11-05T21:15:48.760623+00:00",
+    "checkedAt": "2026-11-17T00:31:20.764642+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -960,10 +821,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.1
+    "seconds": 13.5
   },
   "node/497179138": {
-    "checkedAt": "2026-11-05T21:20:06.236713+00:00",
+    "checkedAt": "2026-11-17T00:36:01.011436+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -980,10 +841,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.5
+    "seconds": 6.2
   },
   "node/6123186369": {
-    "checkedAt": "2026-11-05T21:20:06.726332+00:00",
+    "checkedAt": "2026-11-17T00:36:02.099319+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -993,10 +854,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.6
+    "seconds": 1.5
   },
   "node/1351123642": {
-    "checkedAt": "2026-11-05T21:20:08.277975+00:00",
+    "checkedAt": "2026-11-17T00:36:03.980786+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1005,10 +866,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.8
+    "seconds": 3.6
   },
   "node/13848507672": {
-    "checkedAt": "2026-11-05T21:19:56.138198+00:00",
+    "checkedAt": "2026-11-17T00:35:54.240871+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1018,10 +879,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.8
+    "seconds": 2.1
   },
   "node/11897158625": {
-    "checkedAt": "2026-11-05T21:20:06.735944+00:00",
+    "checkedAt": "2026-11-17T00:36:02.992712+00:00",
     "status": "partial",
     "documents": [
       {
@@ -1040,10 +901,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 8.0
+    "seconds": 11.0
   },
   "node/5285571821": {
-    "checkedAt": "2026-11-05T21:20:09.344544+00:00",
+    "checkedAt": "2026-11-17T00:36:05.274882+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1053,10 +914,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.1
+    "seconds": 0.0
   },
   "node/10969266463": {
-    "checkedAt": "2026-11-05T21:20:09.399665+00:00",
+    "checkedAt": "2026-11-17T00:36:05.321060+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1066,19 +927,19 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/1831483517": {
-    "checkedAt": "2026-11-05T21:15:22.448812+00:00",
+    "checkedAt": "2026-11-17T00:30:48.468119+00:00",
     "status": "prices_found",
     "documents": [
       {
-        "url": "https://kloesterlibern.ch/",
-        "kind": "html"
-      },
-      {
         "url": "https://kloesterlibern.ch/cmsfiles/getränkekarte_november_2026.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://kloesterlibern.ch/",
+        "kind": "html"
       },
       {
         "url": "https://kloesterlibern.ch/cmsfiles/menukarte_oktober_2026.pdf",
@@ -1105,25 +966,19 @@
         "kind": "html"
       },
       {
-        "url": "https://kloesterlibern.ch/cmsfiles/weinkarte_oktober_'26.pdf",
+        "url": "https://kloesterlibern.ch/cmsfiles/weinkarte_november_'26.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://kloesterlibern.ch/cmsfiles/Weinkarte Oktober '26_2.pdf",
+        "url": "https://kloesterlibern.ch/cmsfiles/Weinkarte November '26_2.pdf",
         "kind": "pdf"
       }
     ],
-    "errors": [
-      {
-        "url": "https://kloesterlibern.ch/cmsfiles/getränkekarte_oktober_2026.pdf",
-        "reason": "http_404",
-        "phase": "fetch"
-      }
-    ],
-    "seconds": 38.6
+    "errors": [],
+    "seconds": 42.5
   },
   "node/598242974": {
-    "checkedAt": "2026-11-05T21:18:40.589561+00:00",
+    "checkedAt": "2026-11-17T00:34:53.066936+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1140,10 +995,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.7
+    "seconds": 10.1
   },
   "node/9879313038": {
-    "checkedAt": "2026-11-05T21:12:50.273179+00:00",
+    "checkedAt": "2026-11-17T00:27:52.142605+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1156,23 +1011,26 @@
       }
     ],
     "errors": [],
-    "seconds": 1.2
+    "seconds": 1.0
   },
   "node/602498846": {
-    "checkedAt": "2026-11-05T21:20:43.915728+00:00",
-    "status": "fetch_failed",
-    "documents": [],
-    "errors": [
+    "checkedAt": "2026-11-17T00:37:02.943198+00:00",
+    "status": "no_prices",
+    "documents": [
       {
         "url": "https://www.3dosha.ch/",
-        "reason": "http_503",
-        "phase": "fetch"
+        "kind": "html"
+      },
+      {
+        "url": "https://www.3dosha.ch/restaurant/",
+        "kind": "html"
       }
     ],
-    "seconds": 4.9
+    "errors": [],
+    "seconds": 9.3
   },
   "node/9792700894": {
-    "checkedAt": "2026-11-05T21:18:39.606389+00:00",
+    "checkedAt": "2026-11-17T00:34:52.126422+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1201,10 +1059,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.5
+    "seconds": 3.8
   },
   "node/622512232": {
-    "checkedAt": "2026-11-05T21:20:54.314931+00:00",
+    "checkedAt": "2026-11-17T00:37:12.266139+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1214,10 +1072,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.3
+    "seconds": 0.1
   },
   "node/12610161101": {
-    "checkedAt": "2026-11-05T21:18:30.342361+00:00",
+    "checkedAt": "2026-11-17T00:34:42.969468+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1229,7 +1087,7 @@
         "kind": "html"
       },
       {
-        "url": "https://vasa.ch/wp-content/uploads/2026/10/WEB_FOOD_KARTE_HERBST.pdf",
+        "url": "https://vasa.ch/wp-content/uploads/2026/11/WEB_FOOD_KARTE_HERBST.pdf",
         "kind": "pdf"
       },
       {
@@ -1250,218 +1108,23 @@
       }
     ],
     "errors": [],
-    "seconds": 10.2
+    "seconds": 13.0
   },
   "node/2838915804": {
-    "checkedAt": "2026-11-05T21:20:48.801461+00:00",
-    "status": "no_prices",
-    "documents": [
+    "checkedAt": "2026-11-17T00:37:09.487985+00:00",
+    "status": "robots_blocked",
+    "documents": [],
+    "errors": [
       {
-        "url": "https://abflugbar.ch/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/abflugbar-bern/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/filter/tags/classic-bar/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/solheure-bar-restaurant-lounge-solothurn/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/hirschli-bar-restaurant-sushi-baden/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/kornhauskeller-restaurant-bar-bern/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/filter/tags/modern-bar/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/cinchona-bar-zürich/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/filter/tags/lounge-bar/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/kronenhof-bar-grand-hotel-kronenhof-pontresina/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/delta-beach-lounge-ascona/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/soho-st-gallen/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/filter/tags/design-bar/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/nest-solothurn/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/filter/tags/trendy-bar/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/bbc-butterbarcafe-gossau/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/alex-lounge-bar-zermatt/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/penthouse-360-roof-top-bar-hotel-astoria-luzern/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/jojo-bar-lounge-aarau/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/suedbar-st-gallen/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/black-sheep-genève/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/crapule-club-fribourg/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/atelier-classic-bar-thun/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/felix-bar-zürich/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/soho-basel-basel/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/kaspar-luzern/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/kurt-kurt-bern/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/suite-rooftop-lounge-bar-luzern/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/gueterschuppen-arosa/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/a-lancienne-genève/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/le-verre-a-monique-genève/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/bar-rouge-basel/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/late-bloomers-zürich/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/the-bar-lounges-the-chedi-andermatt-andermatt/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/imi-bar-basel/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/filter/tags/hotel-bar/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/hemingway-rum-lounge-art-deco-hotel-montana-luzern/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/filter/tags/cigar-lounge/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/cafe-perroquet-vert-biel/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/seejogg-cafe-zigarren-lounge-weiningen/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/casa-lacorona-uster/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/cigars-and-more-zug/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/smokers-lounge-spiez/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/la-casa-del-habano-zug-zug/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/le-fumoir-bar-lounge-st-gallen/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/manuels-zürich/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/cigar-bar-im-hotel-storchen-zuerich-zürich/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/vereinslokal-smoke-on-the-water-zürich/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/louis-bar-art-deco-hotel-montana-luzern/",
-        "kind": "html"
-      },
-      {
-        "url": "https://abflugbar.ch/bars/victoria-bar-victoria-jungfrau-grand-hotel-spa-interlaken/",
-        "kind": "html"
+        "url": "https://www.abflugbar.ch/",
+        "reason": "robots_blocked",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 37.0
+    "seconds": 24.4
   },
   "node/489771095": {
-    "checkedAt": "2026-11-05T21:20:08.082988+00:00",
+    "checkedAt": "2026-11-17T00:36:03.593314+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1570,26 +1233,26 @@
       }
     ],
     "errors": [],
-    "seconds": 76.2
+    "seconds": 72.3
   },
   "node/3269292348": {
-    "checkedAt": "2026-11-05T21:20:53.860512+00:00",
+    "checkedAt": "2026-11-17T00:27:52.143871+00:00",
     "status": "prices_found",
     "documents": [
       {
-        "url": "https://www.aernibern.ch",
+        "url": "https://www.aernibern.ch/bar/",
         "kind": "html"
       },
       {
-        "url": "https://www.aernibern.ch/bar/",
+        "url": "https://www.aernibern.ch",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 0.5
+    "seconds": 1.8
   },
   "node/885979320": {
-    "checkedAt": "2026-11-05T21:21:00.290135+00:00",
+    "checkedAt": "2026-11-17T00:37:13.985890+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1598,10 +1261,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.2
+    "seconds": 1.7
   },
   "node/552765224": {
-    "checkedAt": "2026-11-05T21:21:02.441991+00:00",
+    "checkedAt": "2026-11-17T00:37:15.302810+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1610,10 +1273,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.2
+    "seconds": 2.7
   },
   "node/33064268": {
-    "checkedAt": "2026-11-05T21:20:54.577867+00:00",
+    "checkedAt": "2026-11-17T00:37:12.407365+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1630,10 +1293,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.7
+    "seconds": 3.8
   },
   "node/9162831278": {
-    "checkedAt": "2026-11-05T21:12:50.301449+00:00",
+    "checkedAt": "2026-11-17T00:27:53.153742+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1641,19 +1304,19 @@
         "kind": "html"
       },
       {
-        "url": "https://aminos.ch",
+        "url": "https://aminos.ch/karte.html",
         "kind": "html"
       },
       {
-        "url": "https://aminos.ch/karte.html",
+        "url": "https://aminos.ch",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 91.5
+    "seconds": 39.2
   },
   "node/761255428": {
-    "checkedAt": "2026-11-05T21:20:47.482510+00:00",
+    "checkedAt": "2026-11-17T00:37:04.621221+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1666,10 +1329,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.4
+    "seconds": 4.9
   },
   "node/559232116": {
-    "checkedAt": "2026-11-05T21:21:24.327436+00:00",
+    "checkedAt": "2026-11-17T00:37:15.894088+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1679,10 +1342,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.6
+    "seconds": 1.5
   },
   "node/101292381": {
-    "checkedAt": "2026-11-05T21:12:50.274024+00:00",
+    "checkedAt": "2026-11-17T00:27:52.159756+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1699,10 +1362,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.7
+    "seconds": 4.2
   },
   "node/3085310364": {
-    "checkedAt": "2026-11-05T21:21:25.901883+00:00",
+    "checkedAt": "2026-11-17T00:37:17.400339+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -1715,7 +1378,7 @@
     "seconds": 0.2
   },
   "node/13201103248": {
-    "checkedAt": "2026-11-05T21:17:41.432889+00:00",
+    "checkedAt": "2026-11-17T00:33:15.491017+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1833,10 +1496,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 48.9
+    "seconds": 57.8
   },
   "node/892833058": {
-    "checkedAt": "2026-11-05T21:21:25.774181+00:00",
+    "checkedAt": "2026-11-17T00:37:16.212670+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1852,21 +1515,21 @@
     "seconds": 2.8
   },
   "node/8390801947": {
-    "checkedAt": "2026-11-05T21:21:28.607596+00:00",
-    "status": "robots_blocked",
+    "checkedAt": "2026-11-17T00:37:18.031609+00:00",
+    "status": "fetch_failed",
     "documents": [],
     "errors": [
       {
         "url": "https://www.asiatakeawaybern.ch",
-        "reason": "robots_blocked",
+        "reason": "gaierror",
         "phase": "fetch"
       }
     ],
-    "seconds": 0.9
+    "seconds": 0.2
   },
   "node/6192637338": {
-    "checkedAt": "2026-11-05T21:20:03.080785+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-11-17T00:35:58.248630+00:00",
+    "status": "partial",
     "documents": [
       {
         "url": "https://www.lesbar.ch",
@@ -1877,15 +1540,26 @@
         "kind": "html"
       },
       {
-        "url": "https://www.lesbar.ch/APEROANGEBOT/",
+        "url": "https://www.lesbar.ch/",
         "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 32.4
+    "errors": [
+      {
+        "url": "https://www.lesbar.ch/MENU/MENU/",
+        "reason": "http_404",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://www.lesbar.ch/MENU/admin-login.php",
+        "reason": "http_404",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 7.0
   },
   "node/4688138991": {
-    "checkedAt": "2026-11-05T21:12:50.280124+00:00",
+    "checkedAt": "2026-11-17T00:27:52.177652+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1910,10 +1584,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.3
+    "seconds": 4.4
   },
   "node/14091131003": {
-    "checkedAt": "2026-11-05T21:12:51.432920+00:00",
+    "checkedAt": "2026-11-17T00:27:56.585950+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -1930,10 +1604,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.0
+    "seconds": 18.1
   },
   "node/6349130272": {
-    "checkedAt": "2026-11-05T21:21:26.054615+00:00",
+    "checkedAt": "2026-11-17T00:37:17.610336+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -1958,12 +1632,20 @@
       }
     ],
     "errors": [],
-    "seconds": 9.4
+    "seconds": 6.3
   },
   "node/253201072": {
-    "checkedAt": "2026-11-05T21:12:50.273634+00:00",
+    "checkedAt": "2026-11-17T00:27:52.144164+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://altestramdepot.ch/cmsfiles/drinks_kw44.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://altestramdepot.ch/",
         "kind": "html"
@@ -1981,10 +1663,6 @@
         "kind": "html"
       },
       {
-        "url": "https://altestramdepot.ch/cmsfiles/drinks_kw44.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://altestramdepot.ch/cmsfiles/Food_KW44_1.pdf",
         "kind": "pdf"
       },
@@ -1999,10 +1677,6 @@
       {
         "url": "https://altestramdepot.ch/de/Info/Restaurant/Essen_und_Trinken",
         "kind": "html"
-      },
-      {
-        "url": "https://altestramdepot.ch/cmsfiles/getränke_kw44.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://altestramdepot.ch/cmsfiles/Speisen_KW44_1.pdf",
@@ -2093,22 +1767,11 @@
         "kind": "html"
       }
     ],
-    "errors": [
-      {
-        "url": "https://altestramdepot.ch/cmsfiles/drinks_kw39.pdf",
-        "reason": "http_404",
-        "phase": "fetch"
-      },
-      {
-        "url": "https://altestramdepot.ch/cmsfiles/getränke_kw39.pdf",
-        "reason": "http_404",
-        "phase": "fetch"
-      }
-    ],
-    "seconds": 74.0
+    "errors": [],
+    "seconds": 70.7
   },
   "node/507607982": {
-    "checkedAt": "2026-11-05T21:21:05.680051+00:00",
+    "checkedAt": "2026-11-17T00:37:15.663866+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2118,10 +1781,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.0
   },
   "node/2923312174": {
-    "checkedAt": "2026-11-05T21:21:41.501752+00:00",
+    "checkedAt": "2026-11-17T00:37:23.913787+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2131,10 +1794,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/2705367348": {
-    "checkedAt": "2026-11-05T21:12:53.545414+00:00",
+    "checkedAt": "2026-11-17T00:28:03.234159+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2151,10 +1814,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.3
+    "seconds": 1.7
   },
   "node/620033213": {
-    "checkedAt": "2026-11-05T21:21:41.664528+00:00",
+    "checkedAt": "2026-11-17T00:37:24.025513+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2163,34 +1826,23 @@
       }
     ],
     "errors": [],
-    "seconds": 3.0
+    "seconds": 1.9
   },
   "node/283213540": {
-    "checkedAt": "2026-11-05T21:21:39.625401+00:00",
-    "status": "no_prices",
-    "documents": [
+    "checkedAt": "2026-11-17T00:37:22.751034+00:00",
+    "status": "robots_blocked",
+    "documents": [],
+    "errors": [
       {
         "url": "https://www.rest-bahnhofweissenbuehl.ch/",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.rest-bahnhofweissenbuehl.ch/wp-content/uploads/2026/11/04.11..pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.rest-bahnhofweissenbuehl.ch/wp-content/uploads/2026/10/WK44.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://gastrosuisse.ch/assets/de/corona/informationen-covid-19/umgang-mit-corona/gastrosuisse-merkblatt-ansteckungen-vermeiden.pdf",
-        "kind": "pdf"
+        "reason": "robots_blocked",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 13.7
+    "seconds": 9.0
   },
   "node/2329527084": {
-    "checkedAt": "2026-11-05T21:21:53.320627+00:00",
+    "checkedAt": "2026-11-17T00:37:28.606305+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2199,10 +1851,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.4
+    "seconds": 7.2
   },
   "node/2701064649": {
-    "checkedAt": "2026-11-05T21:12:53.015828+00:00",
+    "checkedAt": "2026-11-17T00:28:01.658437+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2218,7 +1870,7 @@
         "kind": "html"
       },
       {
-        "url": "https://azzurro-bern.ch/wp-content/uploads/2026/11/KW45.pdf",
+        "url": "https://azzurro-bern.ch/wp-content/uploads/2026/11/KW47.pdf",
         "kind": "pdf"
       },
       {
@@ -2235,10 +1887,10 @@
       }
     ],
     "errors": [],
-    "seconds": 31.4
+    "seconds": 25.5
   },
   "node/438280379": {
-    "checkedAt": "2026-11-05T21:21:35.475664+00:00",
+    "checkedAt": "2026-11-17T00:37:19.020452+00:00",
     "status": "partial",
     "documents": [
       {
@@ -2309,10 +1961,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.1
+    "seconds": 3.7
   },
   "node/3034040733": {
-    "checkedAt": "2026-11-05T21:21:29.556954+00:00",
+    "checkedAt": "2026-11-17T00:37:18.245695+00:00",
     "status": "partial",
     "documents": [
       {
@@ -2377,10 +2029,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 11.9
+    "seconds": 10.4
   },
   "node/745461263": {
-    "checkedAt": "2026-11-05T21:13:05.142668+00:00",
+    "checkedAt": "2026-11-17T00:28:26.981118+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2393,10 +2045,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.3
+    "seconds": 2.6
   },
   "node/33063987": {
-    "checkedAt": "2026-11-05T21:21:44.620127+00:00",
+    "checkedAt": "2026-11-17T00:37:25.945834+00:00",
     "status": "partial",
     "documents": [
       {
@@ -2404,12 +2056,12 @@
         "kind": "html"
       },
       {
-        "url": "https://www.restaurantbeaulieu.ch/essen-trinken",
-        "kind": "html"
-      },
-      {
         "url": "https://cloud.iieu.ch/rest-beaulieu/beaulieu-menu.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.restaurantbeaulieu.ch/essen-trinken",
+        "kind": "html"
       },
       {
         "url": "https://www.restaurantbeaulieu.ch/beaulieu",
@@ -2422,20 +2074,15 @@
     ],
     "errors": [
       {
-        "url": "https://res.cloudinary.com/csg-ag/image/upload/beaulieu-menu.pdf",
-        "reason": "http_404",
-        "phase": "fetch"
-      },
-      {
         "url": "https://cloud.iieu.ch/rest-beaulieu/beaulieu-weinkarte.pdf",
         "reason": "UnicodeDecodeError",
         "phase": "parse"
       }
     ],
-    "seconds": 18.3
+    "seconds": 13.1
   },
   "node/5481036023": {
-    "checkedAt": "2026-11-05T21:12:54.134959+00:00",
+    "checkedAt": "2026-11-17T00:28:04.951222+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2447,11 +2094,11 @@
         "kind": "html"
       },
       {
-        "url": "https://www.restaurantbay.ch/_files/ugd/467005_6e349676b1e34d64b39814b9b5fe87e7.pdf",
+        "url": "https://www.restaurantbay.ch/_files/ugd/467005_6e8be29527f74593a6ce944c5f79dcd0.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://www.restaurantbay.ch/_files/ugd/467005_9fbf40638ca84fb184dee3e23103e9fc.pdf",
+        "url": "https://www.restaurantbay.ch/_files/ugd/467005_cbd4334d31274eacb1bf4ef5ce2ddb9c.pdf",
         "kind": "pdf"
       },
       {
@@ -2464,10 +2111,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.0
+    "seconds": 17.1
   },
   "node/5342493621": {
-    "checkedAt": "2026-11-05T21:22:12.835085+00:00",
+    "checkedAt": "2026-11-17T00:37:33.952790+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2476,10 +2123,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.2
+    "seconds": 8.3
   },
   "node/7203033166": {
-    "checkedAt": "2026-11-05T21:22:20.302069+00:00",
+    "checkedAt": "2026-11-17T00:37:36.662926+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2488,10 +2135,10 @@
       }
     ],
     "errors": [],
-    "seconds": 24.4
+    "seconds": 24.0
   },
   "node/3468161751": {
-    "checkedAt": "2026-11-05T21:22:12.736663+00:00",
+    "checkedAt": "2026-11-17T00:37:33.840069+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2511,7 +2158,7 @@
     "seconds": 0.1
   },
   "node/8349766427": {
-    "checkedAt": "2026-11-05T21:12:50.354130+00:00",
+    "checkedAt": "2026-11-17T00:27:56.387196+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2528,10 +2175,10 @@
       }
     ],
     "errors": [],
-    "seconds": 136.5
+    "seconds": 148.8
   },
   "node/2937184577": {
-    "checkedAt": "2026-11-05T21:22:02.911600+00:00",
+    "checkedAt": "2026-11-17T00:37:31.747952+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2572,10 +2219,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.7
+    "seconds": 15.1
   },
   "node/2541752402": {
-    "checkedAt": "2026-11-05T21:22:25.735378+00:00",
+    "checkedAt": "2026-11-17T00:37:42.211491+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2588,10 +2235,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.8
+    "seconds": 4.5
   },
   "node/11871616433": {
-    "checkedAt": "2026-11-05T21:22:25.780694+00:00",
+    "checkedAt": "2026-11-17T00:37:46.861381+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2600,10 +2247,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.6
+    "seconds": 2.8
   },
   "node/5742165435": {
-    "checkedAt": "2026-11-05T21:22:19.565638+00:00",
+    "checkedAt": "2026-11-17T00:37:35.780024+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2700,10 +2347,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.7
+    "seconds": 0.9
   },
   "node/265618079": {
-    "checkedAt": "2026-11-05T21:22:28.599872+00:00",
+    "checkedAt": "2026-11-17T00:37:49.886750+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2712,10 +2359,10 @@
       }
     ],
     "errors": [],
-    "seconds": 37.0
+    "seconds": 31.6
   },
   "node/443120387": {
-    "checkedAt": "2026-11-05T21:22:22.005283+00:00",
+    "checkedAt": "2026-11-17T00:37:39.034860+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2736,10 +2383,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.3
+    "seconds": 16.5
   },
   "node/679787262": {
-    "checkedAt": "2026-11-05T21:22:32.052021+00:00",
+    "checkedAt": "2026-11-17T00:37:55.574612+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -2749,10 +2396,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.1
+    "seconds": 2.3
   },
   "node/280528084": {
-    "checkedAt": "2026-11-05T21:22:28.333285+00:00",
+    "checkedAt": "2026-11-17T00:37:49.697943+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2769,10 +2416,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.3
+    "seconds": 0.2
   },
   "node/286689576": {
-    "checkedAt": "2026-11-05T21:13:14.860908+00:00",
+    "checkedAt": "2026-11-17T00:28:35.660795+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2797,10 +2444,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.2
+    "seconds": 10.1
   },
   "node/620493549": {
-    "checkedAt": "2026-11-05T21:22:38.265076+00:00",
+    "checkedAt": "2026-11-17T00:37:59.431439+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -2813,7 +2460,7 @@
     "seconds": 0.1
   },
   "node/12563569914": {
-    "checkedAt": "2026-11-05T21:22:38.475113+00:00",
+    "checkedAt": "2026-11-17T00:37:59.637995+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2822,10 +2469,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.4
+    "seconds": 1.6
   },
   "node/3269783415": {
-    "checkedAt": "2026-11-05T21:22:38.409658+00:00",
+    "checkedAt": "2026-11-17T00:37:59.569005+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2837,7 +2484,7 @@
     "seconds": 0.1
   },
   "node/265627196": {
-    "checkedAt": "2026-11-05T21:13:07.394015+00:00",
+    "checkedAt": "2026-11-17T00:28:29.616603+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2862,10 +2509,10 @@
       }
     ],
     "errors": [],
-    "seconds": 50.9
+    "seconds": 67.5
   },
   "node/6541836826": {
-    "checkedAt": "2026-11-05T21:22:33.128291+00:00",
+    "checkedAt": "2026-11-17T00:37:57.853674+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2874,10 +2521,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.1
+    "seconds": 7.4
   },
   "node/3054531799": {
-    "checkedAt": "2026-11-05T21:22:39.594878+00:00",
+    "checkedAt": "2026-11-17T00:38:05.248608+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -2886,10 +2533,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.0
+    "seconds": 0.1
   },
   "node/3034364838": {
-    "checkedAt": "2026-11-05T21:22:25.757576+00:00",
+    "checkedAt": "2026-11-17T00:37:46.748740+00:00",
     "status": "partial",
     "documents": [
       {
@@ -2909,10 +2556,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 6.3
+    "seconds": 5.7
   },
   "node/718484447": {
-    "checkedAt": "2026-11-05T21:22:39.621204+00:00",
+    "checkedAt": "2026-11-17T00:38:05.307517+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -2922,10 +2569,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.0
+    "seconds": 0.4
   },
   "node/308074891": {
-    "checkedAt": "2026-11-05T21:13:09.206484+00:00",
+    "checkedAt": "2026-11-17T00:28:35.209778+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2966,10 +2613,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.2
+    "seconds": 17.7
   },
   "node/1682881673": {
-    "checkedAt": "2026-11-05T21:13:18.535359+00:00",
+    "checkedAt": "2026-11-17T00:28:41.210354+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -2981,7 +2628,7 @@
         "kind": "html"
       },
       {
-        "url": "https://baerenhoefli.ch/wp-content/uploads/Menu_AB_02.11.26.pdf",
+        "url": "https://baerenhoefli.ch/wp-content/uploads/Menu_ab_16.11.26.pdf",
         "kind": "pdf"
       },
       {
@@ -2990,10 +2637,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.0
+    "seconds": 19.0
   },
   "node/514604437": {
-    "checkedAt": "2026-11-05T21:22:39.231295+00:00",
+    "checkedAt": "2026-11-17T00:38:01.244920+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3009,15 +2656,15 @@
         "kind": "html"
       },
       {
-        "url": "https://buener.ch/wp-content/uploads/2026/10/Weinkarte-Buener-September-2026.docx",
-        "kind": "unsupported"
+        "url": "https://buener.ch/wp-content/uploads/2026/11/Weinkarte-Buener-November-2026-AKTUELL.pdf",
+        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 15.7
+    "seconds": 21.6
   },
   "node/5331785106": {
-    "checkedAt": "2026-11-05T21:22:31.539004+00:00",
+    "checkedAt": "2026-11-17T00:37:52.483755+00:00",
     "status": "partial",
     "documents": [
       {
@@ -3220,10 +2867,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 8.1
+    "seconds": 6.9
   },
   "node/547946831": {
-    "checkedAt": "2026-11-05T21:22:39.887226+00:00",
+    "checkedAt": "2026-11-17T00:38:17.885692+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3232,10 +2879,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.3
+    "seconds": 2.5
   },
   "node/738207062": {
-    "checkedAt": "2026-11-05T21:13:34.518033+00:00",
+    "checkedAt": "2026-11-17T00:29:02.817773+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3256,10 +2903,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.8
+    "seconds": 1.6
   },
   "node/3052432419": {
-    "checkedAt": "2026-11-05T21:22:39.164855+00:00",
+    "checkedAt": "2026-11-17T00:38:00.616803+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3324,38 +2971,28 @@
       }
     ],
     "errors": [],
-    "seconds": 34.9
+    "seconds": 31.4
   },
   "node/559232004": {
-    "checkedAt": "2026-11-05T21:13:32.865435+00:00",
-    "status": "prices_found",
-    "documents": [
+    "checkedAt": "2026-11-17T00:29:02.379845+00:00",
+    "status": "robots_blocked",
+    "documents": [],
+    "errors": [
       {
         "url": "https://www.caledonia-bern.ch/wp-content/uploads/2026/04/Getraenkekarte_Saison26-27.pdf",
-        "kind": "pdf"
+        "reason": "robots_blocked",
+        "phase": "fetch"
       },
       {
         "url": "https://www.caledonia-bern.ch",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.caledonia-bern.ch/essen-und-trinken-2/",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.caledonia-bern.ch/wp-content/uploads/2016/01/Speisekarte-Caledonia-2026.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.caledonia-bern.ch/wp-content/uploads/2016/01/Weinkarte-Caledonia-2025_26.pdf",
-        "kind": "pdf"
+        "reason": "robots_blocked",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 28.3
+    "seconds": 3.1
   },
   "node/761255425": {
-    "checkedAt": "2026-11-05T21:22:42.141102+00:00",
+    "checkedAt": "2026-11-17T00:38:21.475064+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3365,10 +3002,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.5
+    "seconds": 4.4
   },
   "node/438280382": {
-    "checkedAt": "2026-11-05T21:22:40.225926+00:00",
+    "checkedAt": "2026-11-17T00:38:20.427627+00:00",
     "status": "partial",
     "documents": [
       {
@@ -3403,22 +3040,23 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 18.7
+    "seconds": 15.1
   },
   "node/1738559451": {
-    "checkedAt": "2026-11-05T21:22:46.633720+00:00",
-    "status": "no_prices",
-    "documents": [
+    "checkedAt": "2026-11-17T00:38:25.902930+00:00",
+    "status": "robots_blocked",
+    "documents": [],
+    "errors": [
       {
         "url": "https://www.chachathai.ch/de-CH/Restaurants/Bern-vonWerdt",
-        "kind": "html"
+        "reason": "robots_blocked",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 21.5
+    "seconds": 12.9
   },
   "node/12347717156": {
-    "checkedAt": "2026-11-05T21:13:35.310450+00:00",
+    "checkedAt": "2026-11-17T00:29:04.346421+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3499,10 +3137,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.8
+    "seconds": 9.6
   },
   "node/886143734": {
-    "checkedAt": "2026-11-05T21:22:54.919185+00:00",
+    "checkedAt": "2026-11-17T00:38:30.039637+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3515,10 +3153,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.8
+    "seconds": 8.3
   },
   "node/514536836": {
-    "checkedAt": "2026-11-05T21:22:39.666522+00:00",
+    "checkedAt": "2026-11-17T00:38:05.684995+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3543,10 +3181,10 @@
       }
     ],
     "errors": [],
-    "seconds": 18.6
+    "seconds": 12.2
   },
   "node/824801772": {
-    "checkedAt": "2026-11-05T21:13:41.147150+00:00",
+    "checkedAt": "2026-11-17T00:29:05.493346+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -3583,10 +3221,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.5
+    "seconds": 15.2
   },
   "node/8651603412": {
-    "checkedAt": "2026-11-05T21:22:45.757840+00:00",
+    "checkedAt": "2026-11-17T00:38:23.854328+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3615,10 +3253,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.6
+    "seconds": 18.5
   },
   "node/3034395730": {
-    "checkedAt": "2026-11-05T21:23:05.552465+00:00",
+    "checkedAt": "2026-11-17T00:38:35.527888+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3627,12 +3265,16 @@
       }
     ],
     "errors": [],
-    "seconds": 0.1
+    "seconds": 0.2
   },
   "node/2572061811": {
-    "checkedAt": "2026-11-05T21:13:40.961374+00:00",
+    "checkedAt": "2026-11-17T00:29:04.407437+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1792506219/casino_bern_barkarte_20261016.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.casinobern.ch/kulinarik/",
         "kind": "html"
@@ -3642,7 +3284,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1792145792/casino_bern_speisekarte_abend_20261016.pdf",
+        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1794314204/casino_bern_speisekarte_abend_20261107.pdf",
         "kind": "pdf"
       },
       {
@@ -3650,7 +3292,7 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1792506219/casino_bern_barkarte_20261016.pdf",
+        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1794004070/casino_bern_barkarte_20261107.pdf",
         "kind": "pdf"
       },
       {
@@ -3658,16 +3300,16 @@
         "kind": "html"
       },
       {
-        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1792504216/casino_bern_speisekarte_abend_20261020_fr.pdf",
+        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1794003696/casino_bern_speisekarte_abend_20261107_en_fr.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1794003400/casino_bern_kleine_karte_20261107.pdf",
         "kind": "pdf"
       },
       {
         "url": "https://www.casinobern.ch/en/dining/our-menus/",
         "kind": "html"
-      },
-      {
-        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1792507058/casino_bern_speisekarte_abend_20261020_en.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://www.casinobern.ch/en/dining/",
@@ -3786,7 +3428,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1788858137/casino_bern_weinkarte_20260908.pdf",
+        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1794004317/casino_bern_weinkarte_20261107.pdf",
         "kind": "pdf"
       }
     ],
@@ -3795,17 +3437,12 @@
         "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1790575258/casino_bern_barkarte_20260923.pdf",
         "reason": "http_404",
         "phase": "fetch"
-      },
-      {
-        "url": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1792141138/casino_bern_barkarte_20261016.pdf",
-        "reason": "http_404",
-        "phase": "fetch"
       }
     ],
-    "seconds": 86.9
+    "seconds": 104.1
   },
   "node/2965233895": {
-    "checkedAt": "2026-11-05T21:23:08.133859+00:00",
+    "checkedAt": "2026-11-17T00:38:38.832578+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -3815,10 +3452,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 3.0
+    "seconds": 4.4
   },
   "node/5737037068": {
-    "checkedAt": "2026-11-05T21:23:05.388460+00:00",
+    "checkedAt": "2026-11-17T00:38:32.021898+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3831,10 +3468,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.2
+    "seconds": 16.4
   },
   "node/3190495384": {
-    "checkedAt": "2026-11-05T21:22:44.681544+00:00",
+    "checkedAt": "2026-11-17T00:38:22.804796+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3851,10 +3488,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.1
+    "seconds": 1.0
   },
   "node/308973694": {
-    "checkedAt": "2026-11-05T21:22:58.235101+00:00",
+    "checkedAt": "2026-11-17T00:38:30.046911+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3871,10 +3508,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.3
+    "seconds": 14.0
   },
   "node/2701305498": {
-    "checkedAt": "2026-11-05T21:23:13.540357+00:00",
+    "checkedAt": "2026-11-17T00:38:43.246458+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3883,15 +3520,19 @@
       }
     ],
     "errors": [],
-    "seconds": 2.9
+    "seconds": 2.6
   },
   "node/13112421546": {
-    "checkedAt": "2026-11-05T21:23:05.677401+00:00",
+    "checkedAt": "2026-11-17T00:38:38.366855+00:00",
     "status": "no_prices",
     "documents": [
       {
         "url": "https://www.contra-corrente.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://www.contra-corrente.ch/wp-content/uploads/2026/11/San-Silvestro-2026.pdf",
+        "kind": "pdf"
       },
       {
         "url": "https://www.contra-corrente.ch/wp-content/uploads/2026/10/Winterkarte_2026_web.pdf",
@@ -3903,10 +3544,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.1
+    "seconds": 22.2
   },
   "node/6195333578": {
-    "checkedAt": "2026-11-05T21:23:14.079531+00:00",
+    "checkedAt": "2026-11-17T00:38:44.050327+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3927,10 +3568,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.5
+    "seconds": 0.6
   },
   "node/1337634616": {
-    "checkedAt": "2026-11-05T21:23:05.622392+00:00",
+    "checkedAt": "2026-11-17T00:38:35.712332+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3954,7 +3595,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.restaurantcommerce.ch/wp-content/uploads/2026/05/Chef-Mai-2026.pdf",
+        "url": "https://www.restaurantcommerce.ch/wp-content/uploads/2026/11/Chef-Oktober-2026.pdf",
         "kind": "pdf"
       },
       {
@@ -3963,10 +3604,10 @@
       }
     ],
     "errors": [],
-    "seconds": 32.3
+    "seconds": 37.7
   },
   "node/286879695": {
-    "checkedAt": "2026-11-05T21:23:16.417002+00:00",
+    "checkedAt": "2026-11-17T00:38:45.885957+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -3975,10 +3616,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.8
+    "seconds": 6.4
   },
   "node/5137495924": {
-    "checkedAt": "2026-11-05T21:13:58.338769+00:00",
+    "checkedAt": "2026-11-17T00:29:13.923072+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4003,10 +3644,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.0
+    "seconds": 19.9
   },
   "node/2337120408": {
-    "checkedAt": "2026-11-05T21:13:55.098500+00:00",
+    "checkedAt": "2026-11-17T00:29:06.871070+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4047,10 +3688,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.3
+    "seconds": 4.9
   },
   "node/286879727": {
-    "checkedAt": "2026-11-05T21:14:01.172030+00:00",
+    "checkedAt": "2026-11-17T00:29:28.626478+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4075,10 +3716,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.8
+    "seconds": 11.6
   },
   "node/7545709020": {
-    "checkedAt": "2026-11-05T21:14:00.428974+00:00",
+    "checkedAt": "2026-11-17T00:29:20.716872+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4095,10 +3736,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.0
+    "seconds": 8.8
   },
   "node/3532605820": {
-    "checkedAt": "2026-11-05T21:23:24.826206+00:00",
+    "checkedAt": "2026-11-17T00:39:00.584938+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4111,7 +3752,7 @@
     "seconds": 0.3
   },
   "node/6253769629": {
-    "checkedAt": "2026-11-05T21:23:25.123295+00:00",
+    "checkedAt": "2026-11-17T00:39:00.860785+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4123,7 +3764,7 @@
     "seconds": 24.1
   },
   "node/3269626137": {
-    "checkedAt": "2026-11-05T21:23:11.116160+00:00",
+    "checkedAt": "2026-11-17T00:38:42.366300+00:00",
     "status": "partial",
     "documents": [
       {
@@ -4138,10 +3779,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 35.1
+    "seconds": 33.1
   },
   "node/259025144": {
-    "checkedAt": "2026-11-05T21:23:21.584848+00:00",
+    "checkedAt": "2026-11-17T00:38:48.391222+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4166,10 +3807,10 @@
       }
     ],
     "errors": [],
-    "seconds": 23.7
+    "seconds": 28.6
   },
   "node/9510671656": {
-    "checkedAt": "2026-11-05T21:23:24.179020+00:00",
+    "checkedAt": "2026-11-17T00:38:52.268498+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4190,10 +3831,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.4
+    "seconds": 13.4
   },
   "node/6236061372": {
-    "checkedAt": "2026-11-05T21:23:38.604424+00:00",
+    "checkedAt": "2026-11-17T00:39:13.439089+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4203,10 +3844,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.6
+    "seconds": 2.5
   },
   "node/3093543500": {
-    "checkedAt": "2026-11-05T21:23:41.207560+00:00",
+    "checkedAt": "2026-11-17T00:39:15.514395+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4216,10 +3857,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.3
+    "seconds": 0.2
   },
   "node/1066324526": {
-    "checkedAt": "2026-11-05T21:23:14.619341+00:00",
+    "checkedAt": "2026-11-17T00:38:44.665309+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4236,10 +3877,10 @@
       }
     ],
     "errors": [],
-    "seconds": 33.7
+    "seconds": 33.4
   },
   "node/2289108301": {
-    "checkedAt": "2026-11-05T21:23:41.543449+00:00",
+    "checkedAt": "2026-11-17T00:39:15.737648+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4249,10 +3890,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.1
+    "seconds": 0.3
   },
   "node/2301841106": {
-    "checkedAt": "2026-11-05T21:23:41.620556+00:00",
+    "checkedAt": "2026-11-17T00:39:15.985491+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4261,10 +3902,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.3
+    "seconds": 0.5
   },
   "node/1297306803": {
-    "checkedAt": "2026-11-05T21:14:11.397442+00:00",
+    "checkedAt": "2026-11-17T00:29:36.170393+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4285,10 +3926,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.2
+    "seconds": 5.0
   },
   "node/761255433": {
-    "checkedAt": "2026-11-05T21:23:41.941821+00:00",
+    "checkedAt": "2026-11-17T00:39:15.990970+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -4298,10 +3939,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.6
+    "seconds": 1.0
   },
   "node/282774221": {
-    "checkedAt": "2026-11-05T21:13:55.674498+00:00",
+    "checkedAt": "2026-11-17T00:29:11.741663+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4334,34 +3975,28 @@
       }
     ],
     "errors": [],
-    "seconds": 15.7
+    "seconds": 16.9
   },
   "node/13110086301": {
-    "checkedAt": "2026-11-05T21:14:11.947050+00:00",
+    "checkedAt": "2026-11-17T00:29:36.619159+00:00",
     "status": "prices_found",
     "documents": [
       {
         "url": "https://dimelocantando.ch/de-CH/drinks-pdf",
         "kind": "pdf"
-      },
-      {
-        "url": "https://dimelocantando.ch",
-        "kind": "html"
-      },
-      {
-        "url": "https://dimelocantando.ch/de-CH/drinks-pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://dimelocantando.ch/de-CH/speisekarte-pdf",
-        "kind": "pdf"
       }
     ],
-    "errors": [],
-    "seconds": 4.9
+    "errors": [
+      {
+        "url": "https://dimelocantando.ch",
+        "reason": "http_500",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 6.8
   },
   "node/5586700881": {
-    "checkedAt": "2026-11-05T21:23:37.912878+00:00",
+    "checkedAt": "2026-11-17T00:39:05.690132+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4370,10 +4005,6 @@
       },
       {
         "url": "https://www.delinat.com/probierpakete",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/probierpaket-olivenoel",
         "kind": "html"
       },
       {
@@ -4389,7 +4020,47 @@
         "kind": "html"
       },
       {
+        "url": "https://www.delinat.com/probierpaket-wein-spanien",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/probierpaket-olivenoel",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/probierpaket-essig-olivenoel",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/weine/2044.23.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/chateau-coulon-selection-speciale",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/weine/2126.23.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/weine/2133.24.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/weine/2036.22.html",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/weine/2168.21.html",
+        "kind": "html"
+      },
+      {
         "url": "https://www.delinat.com/probierpaket-preiswerte-rotweine",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/probierpaket-wein-frankreich",
         "kind": "html"
       },
       {
@@ -4397,7 +4068,23 @@
         "kind": "html"
       },
       {
-        "url": "https://www.delinat.com/probierpaket-wein-spanien",
+        "url": "https://www.delinat.com/probierpakete",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/probierpaket-dunkle-sortenhonige",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/probierpaket-piwi-rebsorten",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/probierpakete",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.delinat.com/probierpaket-honig-bunt-gemischt",
         "kind": "html"
       },
       {
@@ -4409,39 +4096,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.delinat.com/probierpakete",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/weine/9069.84.html",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/probierpaket-piwi-rebsorten",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/probierpaket-dunkle-sortenhonige",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/probierpaket-honig-bunt-gemischt",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/probierpaket-essig-olivenoel",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/probierpakete",
-        "kind": "html"
-      },
-      {
         "url": "https://www.delinat.com/probierpaket-botanica",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/probierpaket-wein-frankreich",
         "kind": "html"
       },
       {
@@ -4465,35 +4120,19 @@
         "kind": "html"
       },
       {
-        "url": "https://www.delinat.com/weine/2126.23.html",
-        "kind": "html"
+        "url": "https://www.delinat.com/_data/pdf/product/2168.21.pdf",
+        "kind": "pdf"
       },
       {
-        "url": "https://www.delinat.com/chateau-coulon-selection-speciale",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/weine/2168.21.html",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/weine/2044.23.html",
-        "kind": "html"
-      },
-      {
-        "url": "https://www.delinat.com/weine/2133.24.html",
-        "kind": "html"
+        "url": "https://www.delinat.com/_data/pdf/product/2036.22.pdf",
+        "kind": "pdf"
       },
       {
         "url": "https://www.delinat.com/_data/pdf/product/2133.24.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://www.delinat.com/_data/pdf/product/2044.23.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.delinat.com/_data/pdf/product/2168.21.pdf",
+        "url": "https://www.delinat.com/_data/pdf/product/2126.23.pdf",
         "kind": "pdf"
       },
       {
@@ -4501,44 +4140,46 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.delinat.com/_data/pdf/product/2126.23.pdf",
+        "url": "https://www.delinat.com/_data/pdf/product/2044.23.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 14.9
+    "seconds": 19.1
   },
   "node/444434142": {
-    "checkedAt": "2026-11-05T21:14:15.305340+00:00",
+    "checkedAt": "2026-11-17T00:29:40.269985+00:00",
     "status": "prices_found",
     "documents": [
       {
-        "url": "https://domino-bern.ch/wp-content/uploads/2023/10/Speisekarte_online.pdf",
+        "url": "https://www.domino-bern.ch/",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.domino-bern.ch/Speisekarte.pdf",
         "kind": "pdf"
-      },
-      {
-        "url": "https://domino-bern.ch/",
-        "kind": "html"
-      },
-      {
-        "url": "https://domino-bern.ch/speisekarte/",
-        "kind": "html"
-      },
-      {
-        "url": "https://domino-bern.ch/tisch-reservierungen/",
-        "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 1.7
+    "errors": [
+      {
+        "url": "https://domino-bern.ch/wp-content/uploads/2023/10/Speisekarte_online.pdf",
+        "reason": "http_404",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 12.8
   },
   "node/282774266": {
-    "checkedAt": "2026-11-05T21:22:58.892220+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-11-17T00:38:30.074377+00:00",
+    "status": "prices_found",
     "documents": [
       {
         "url": "https://cinematte.ch/restaurant/",
         "kind": "html"
+      },
+      {
+        "url": "https://cinematte.ch/wp-content/uploads/Cinematte_Barkarte_DRUCK.pdf",
+        "kind": "pdf"
       },
       {
         "url": "https://cinematte.ch/",
@@ -4566,10 +4207,10 @@
       }
     ],
     "errors": [],
-    "seconds": 97.3
+    "seconds": 104.3
   },
   "node/253201686": {
-    "checkedAt": "2026-11-05T21:23:46.238670+00:00",
+    "checkedAt": "2026-11-17T00:39:16.979601+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4582,10 +4223,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.8
+    "seconds": 11.6
   },
   "node/9547726418": {
-    "checkedAt": "2026-11-05T21:14:14.633810+00:00",
+    "checkedAt": "2026-11-17T00:29:37.115974+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4621,7 +4262,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.dock8.ch/kultur/veranstaltungen-detail/support-cafe-1-5",
+        "url": "https://www.dock8.ch/kultur/veranstaltungen-detail/philo-cafe-im-oktober-2",
         "kind": "html"
       },
       {
@@ -4634,10 +4275,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.9
+    "seconds": 13.8
   },
   "node/2883937898": {
-    "checkedAt": "2026-11-05T21:23:48.353081+00:00",
+    "checkedAt": "2026-11-17T00:39:18.028347+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4657,7 +4298,7 @@
     "seconds": 3.9
   },
   "node/286879692": {
-    "checkedAt": "2026-11-05T21:23:49.203689+00:00",
+    "checkedAt": "2026-11-17T00:39:21.967710+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4666,10 +4307,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.4
+    "seconds": 2.2
   },
   "node/283213503": {
-    "checkedAt": "2026-11-05T21:23:45.323325+00:00",
+    "checkedAt": "2026-11-17T00:39:16.972899+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4701,23 +4342,19 @@
         "kind": "html"
       },
       {
-        "url": "https://api2.lunchgate.ch/menu/template/",
-        "kind": "pdf"
-      },
-      {
         "url": "https://api2.lunchgate.ch/digital-menu/dm/menu/bab8d7828ef2c8069445c93c71353f94",
         "kind": "html"
       },
       {
-        "url": "https://files.lunchgate.ch/gastrouploads/760/menu/ee83ba1ef18e.pdf",
+        "url": "https://files.lunchgate.ch/gastrouploads/760/menu/d9c1805332da.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 61.7
+    "seconds": 54.6
   },
   "node/278791780": {
-    "checkedAt": "2026-11-05T21:14:16.487257+00:00",
+    "checkedAt": "2026-11-17T00:29:41.218532+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4754,10 +4391,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.7
+    "seconds": 17.2
   },
   "node/598242991": {
-    "checkedAt": "2026-11-05T21:14:04.276614+00:00",
+    "checkedAt": "2026-11-17T00:29:29.526017+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4802,10 +4439,10 @@
       }
     ],
     "errors": [],
-    "seconds": 141.9
+    "seconds": 150.6
   },
   "node/3396579752": {
-    "checkedAt": "2026-11-05T21:23:51.620165+00:00",
+    "checkedAt": "2026-11-17T00:39:24.154951+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4815,10 +4452,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 11.5
+    "seconds": 11.1
   },
   "node/614862146": {
-    "checkedAt": "2026-11-05T21:14:16.966729+00:00",
+    "checkedAt": "2026-11-17T00:29:45.045034+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4847,10 +4484,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.9
+    "seconds": 21.9
   },
   "node/3431780580": {
-    "checkedAt": "2026-11-05T21:23:52.293013+00:00",
+    "checkedAt": "2026-11-17T00:39:24.840989+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4863,7 +4500,7 @@
     "seconds": 0.2
   },
   "node/3945892283": {
-    "checkedAt": "2026-11-05T21:23:52.469815+00:00",
+    "checkedAt": "2026-11-17T00:39:24.938247+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4872,10 +4509,10 @@
       }
     ],
     "errors": [],
-    "seconds": 23.2
+    "seconds": 24.2
   },
   "node/540599716": {
-    "checkedAt": "2026-11-05T21:23:43.591422+00:00",
+    "checkedAt": "2026-11-17T00:39:16.450517+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4896,10 +4533,10 @@
       }
     ],
     "errors": [],
-    "seconds": 46.8
+    "seconds": 44.9
   },
   "node/9446747546": {
-    "checkedAt": "2026-11-05T21:23:52.253640+00:00",
+    "checkedAt": "2026-11-17T00:39:24.798379+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -4911,7 +4548,7 @@
     "seconds": 0.0
   },
   "node/6272070746": {
-    "checkedAt": "2026-11-05T21:14:27.562398+00:00",
+    "checkedAt": "2026-11-17T00:29:53.039857+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4924,10 +4561,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.6
+    "seconds": 19.3
   },
   "node/2208907675": {
-    "checkedAt": "2026-11-05T21:14:05.387197+00:00",
+    "checkedAt": "2026-11-17T00:29:33.861999+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -4975,10 +4612,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 11.1
+    "seconds": 11.2
   },
   "node/12504239332": {
-    "checkedAt": "2026-11-05T21:23:54.041284+00:00",
+    "checkedAt": "2026-11-17T00:39:28.594561+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -4991,7 +4628,7 @@
     "seconds": 1.5
   },
   "node/277019735": {
-    "checkedAt": "2026-11-05T21:14:21.811894+00:00",
+    "checkedAt": "2026-11-17T00:29:50.963372+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5019,7 +4656,7 @@
         "kind": "html"
       },
       {
-        "url": "https://admin.elfenaupark.ch/assets/general/Woche_45-2.pdf",
+        "url": "https://admin.elfenaupark.ch/assets/elfenau/Woche_46.pdf",
         "kind": "pdf"
       },
       {
@@ -5027,7 +4664,7 @@
         "kind": "html"
       },
       {
-        "url": "https://admin.elfenaupark.ch/assets/general/Woche_46-1.pdf",
+        "url": "https://admin.elfenaupark.ch/assets/elfenau/Woche_47.pdf",
         "kind": "pdf"
       },
       {
@@ -5044,10 +4681,10 @@
       }
     ],
     "errors": [],
-    "seconds": 21.8
+    "seconds": 23.8
   },
   "node/280130123": {
-    "checkedAt": "2026-11-05T21:21:05.852188+00:00",
+    "checkedAt": "2026-11-17T00:37:15.697313+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5136,10 +4773,10 @@
       }
     ],
     "errors": [],
-    "seconds": 373.5
+    "seconds": 369.9
   },
   "node/6580355018": {
-    "checkedAt": "2026-11-05T21:23:55.576808+00:00",
+    "checkedAt": "2026-11-17T00:39:30.074500+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5148,10 +4785,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.9
+    "seconds": 3.0
   },
   "node/12734260085": {
-    "checkedAt": "2026-11-05T21:23:58.444126+00:00",
+    "checkedAt": "2026-11-17T00:39:30.989510+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5167,8 +4804,8 @@
     "seconds": 0.2
   },
   "node/6552336713": {
-    "checkedAt": "2026-11-05T21:14:31.909647+00:00",
-    "status": "review_required",
+    "checkedAt": "2026-11-17T00:36:05.399409+00:00",
+    "status": "no_prices",
     "documents": [
       {
         "url": "https://fabrique28.ch",
@@ -5183,19 +4820,15 @@
         "kind": "pdf"
       },
       {
-        "url": "https://fabrique28.ch/fileadmin/user_upload/mischbargastro/Stelleninserate/neu260925_Stelleninserat_Chef_Koch-in.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://fabrique28.ch/news/gutscheine-fuer-ein-inklusives-gastronomieerlebnis",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 7.4
+    "seconds": 0.4
   },
   "node/2509643678": {
-    "checkedAt": "2026-11-05T21:23:58.618205+00:00",
+    "checkedAt": "2026-11-17T00:39:31.183754+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -5205,10 +4838,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.6
+    "seconds": 0.2
   },
   "node/2817791919": {
-    "checkedAt": "2026-11-05T21:23:52.808077+00:00",
+    "checkedAt": "2026-11-17T00:39:25.057067+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5229,10 +4862,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.6
+    "seconds": 5.9
   },
   "node/12959299843": {
-    "checkedAt": "2026-11-05T21:24:03.081967+00:00",
+    "checkedAt": "2026-11-17T00:39:35.248718+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5242,10 +4875,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.3
+    "seconds": 0.9
   },
   "node/11836801369": {
-    "checkedAt": "2026-11-05T21:24:03.411468+00:00",
+    "checkedAt": "2026-11-17T00:39:36.171052+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5257,7 +4890,7 @@
     "seconds": 0.1
   },
   "node/1214981933": {
-    "checkedAt": "2026-11-05T21:24:03.488456+00:00",
+    "checkedAt": "2026-11-17T00:39:36.264788+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5270,7 +4903,7 @@
     "seconds": 0.2
   },
   "node/4150100090": {
-    "checkedAt": "2026-11-05T21:24:03.548413+00:00",
+    "checkedAt": "2026-11-17T00:39:36.356111+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5280,10 +4913,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.0
+    "seconds": 0.1
   },
   "node/11367327293": {
-    "checkedAt": "2026-11-05T21:23:59.208757+00:00",
+    "checkedAt": "2026-11-17T00:39:31.426013+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5300,10 +4933,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.3
+    "seconds": 4.9
   },
   "node/5703484736": {
-    "checkedAt": "2026-11-05T21:14:43.564838+00:00",
+    "checkedAt": "2026-11-17T00:30:12.372639+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5328,10 +4961,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.1
+    "seconds": 9.8
   },
   "node/2377115339": {
-    "checkedAt": "2026-11-05T21:24:03.643541+00:00",
+    "checkedAt": "2026-11-17T00:39:36.467650+00:00",
     "status": "partial",
     "documents": [
       {
@@ -5356,10 +4989,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 8.0
+    "seconds": 6.5
   },
   "node/3217885285": {
-    "checkedAt": "2026-11-05T21:14:44.190449+00:00",
+    "checkedAt": "2026-11-17T00:30:14.560571+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5384,12 +5017,16 @@
       }
     ],
     "errors": [],
-    "seconds": 13.6
+    "seconds": 12.0
   },
   "node/259025158": {
-    "checkedAt": "2026-11-05T21:24:03.562969+00:00",
+    "checkedAt": "2026-11-17T00:30:14.767389+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://cms.zfv.ch/uploads/grosse-schanze-menu-pdfs/grosse-schanze-bern-speisekarte-2026.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.grosseschanze.ch/",
         "kind": "html"
@@ -5397,17 +5034,13 @@
       {
         "url": "https://www.grosseschanze.ch/angebot/",
         "kind": "html"
-      },
-      {
-        "url": "https://cms.zfv.ch/uploads/grosse-schanze-menu-pdfs/grosse-schanze-bern-speisekarte-2026.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 30.5
+    "seconds": 4.2
   },
   "node/1336722053": {
-    "checkedAt": "2026-11-05T21:24:23.870592+00:00",
+    "checkedAt": "2026-11-17T00:39:49.109953+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5417,10 +5050,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.6
+    "seconds": 4.0
   },
   "node/7609029152": {
-    "checkedAt": "2026-11-05T21:24:18.037498+00:00",
+    "checkedAt": "2026-11-17T00:39:46.466907+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5433,23 +5066,53 @@
       }
     ],
     "errors": [],
-    "seconds": 5.8
+    "seconds": 4.8
   },
   "node/6537063611": {
-    "checkedAt": "2026-11-05T21:24:15.669810+00:00",
-    "status": "fetch_failed",
-    "documents": [],
+    "checkedAt": "2026-11-17T00:39:42.986518+00:00",
+    "status": "partial",
+    "documents": [
+      {
+        "url": "https://www.tertianum.ch/wohn-pflegezentrum/tertianum-residence",
+        "kind": "html"
+      }
+    ],
     "errors": [
       {
-        "url": "https://www.tertianum.ch/de/tertianum-wohn-und-pflegezentrum-residence-bern/restaurant-gurtenblick",
-        "reason": "http_404",
+        "url": "https://www.tertianum.ch/hubfs/Website/Broschueren/Tertianum-R%C3%A9sidence-broschuere.pdf",
+        "reason": "robots_blocked",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://www.tertianum.ch/hubfs/Website/Haeuser/Tertianum-Residence/Tertianum-Residence-Pensionspreise-Wohnungen.pdf",
+        "reason": "robots_blocked",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://www.tertianum.ch/hubfs/Website/Haeuser/Tertianum-Residence/Tertianum-Residence-Flyer-Probewohnen.pdf",
+        "reason": "robots_blocked",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://www.tertianum.ch/hubfs/Website/Haeuser/Tertianum-Residence/Tertianum-Residence-Tarifliste.pdf",
+        "reason": "robots_blocked",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://www.tertianum.ch/hubfs/Website/Haeuser/Tertianum-Residence/Tertianum-Residence-Anmeldung-Gaestestammblatt.pdf",
+        "reason": "robots_blocked",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://www.tertianum.ch/hubfs/Website/Haeuser/Tertianum-Residence/Tertianum-Residence-Eventkalender.pdf",
+        "reason": "robots_blocked",
         "phase": "fetch"
       }
     ],
-    "seconds": 2.4
+    "seconds": 6.3
   },
   "node/253201075": {
-    "checkedAt": "2026-11-05T21:14:39.353323+00:00",
+    "checkedAt": "2026-11-17T00:30:06.916618+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5481,6 +5144,10 @@
         "kind": "pdf"
       },
       {
+        "url": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/d61fa2_bad85505f4eb4a589e3188164148a4af.pdf",
+        "kind": "pdf"
+      },
+      {
         "url": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_aee76c6c56b34de592e1b3bc56f5ed21.pdf",
         "kind": "pdf"
       },
@@ -5489,7 +5156,7 @@
         "kind": "pdf"
       },
       {
-        "url": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/eebc37_5e92009b835d4af88fad88ad56fb3d53.pdf",
+        "url": "https://affa22a5-b937-486f-97ec-626dc5d6ec20.filesusr.com/ugd/d61fa2_97472552e30340d694a2526218deb6e8.pdf",
         "kind": "pdf"
       },
       {
@@ -5506,23 +5173,22 @@
       }
     ],
     "errors": [],
-    "seconds": 44.8
+    "seconds": 52.8
   },
   "node/2989881543": {
-    "checkedAt": "2026-11-05T21:24:28.772123+00:00",
-    "status": "fetch_failed",
-    "documents": [],
-    "errors": [
+    "checkedAt": "2026-11-17T00:39:53.930782+00:00",
+    "status": "no_prices",
+    "documents": [
       {
-        "url": "https://www.hollyfood.ch/",
-        "reason": "http_404",
-        "phase": "fetch"
+        "url": "https://hollyfood.ch/",
+        "kind": "html"
       }
     ],
-    "seconds": 1.4
+    "errors": [],
+    "seconds": 3.7
   },
   "node/13926000562": {
-    "checkedAt": "2026-11-05T21:24:28.680655+00:00",
+    "checkedAt": "2026-11-17T00:39:53.151636+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5535,10 +5201,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.2
+    "seconds": 0.8
   },
   "node/265627185": {
-    "checkedAt": "2026-11-05T21:24:11.691817+00:00",
+    "checkedAt": "2026-11-17T00:39:36.486995+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5563,10 +5229,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.1
+    "seconds": 10.0
   },
   "node/286879719": {
-    "checkedAt": "2026-11-05T21:24:01.421264+00:00",
+    "checkedAt": "2026-11-17T00:39:33.055275+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5603,22 +5269,23 @@
       }
     ],
     "errors": [],
-    "seconds": 27.4
+    "seconds": 21.7
   },
   "node/738246034": {
-    "checkedAt": "2026-11-05T21:24:28.888773+00:00",
-    "status": "no_prices",
-    "documents": [
+    "checkedAt": "2026-11-17T00:39:54.079294+00:00",
+    "status": "robots_blocked",
+    "documents": [],
+    "errors": [
       {
-        "url": "https://www.delfinobar.ch/home/index.aspx",
-        "kind": "html"
+        "url": "https://www.delfinobar.ch/",
+        "reason": "robots_blocked",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 0.0
+    "seconds": 10.8
   },
   "node/2915897849": {
-    "checkedAt": "2026-11-05T21:14:16.856207+00:00",
+    "checkedAt": "2026-11-17T00:29:43.383649+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5667,10 +5334,10 @@
       }
     ],
     "errors": [],
-    "seconds": 127.6
+    "seconds": 124.5
   },
   "node/282774244": {
-    "checkedAt": "2026-11-05T21:14:33.190287+00:00",
+    "checkedAt": "2026-11-17T00:29:58.450015+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5702,10 +5369,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 14.7
+    "seconds": 16.1
   },
   "node/2953767135": {
-    "checkedAt": "2026-11-05T21:24:30.187748+00:00",
+    "checkedAt": "2026-11-17T00:39:57.588680+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -5715,10 +5382,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.0
+    "seconds": 0.6
   },
   "node/598684504": {
-    "checkedAt": "2026-11-05T21:24:28.480459+00:00",
+    "checkedAt": "2026-11-17T00:39:51.226182+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5726,11 +5393,11 @@
         "kind": "html"
       },
       {
-        "url": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_9324d6ade6524818b88ddd5c90ba2d70.pdf",
+        "url": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_6f065ccf130449ebbc1b30154d42b864.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_fb0833591143463280d84645f7c4fbfd.pdf",
+        "url": "https://5c2b0e83-0723-498d-89a6-bd93f3f3a47f.filesusr.com/ugd/31a55a_72e52602707240eb815f020970491363.pdf",
         "kind": "pdf"
       },
       {
@@ -5739,10 +5406,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.2
+    "seconds": 2.9
   },
   "node/379712215": {
-    "checkedAt": "2026-11-05T21:14:48.679265+00:00",
+    "checkedAt": "2026-11-17T00:30:22.130561+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5755,10 +5422,10 @@
       }
     ],
     "errors": [],
-    "seconds": 27.9
+    "seconds": 25.7
   },
   "node/6272010226": {
-    "checkedAt": "2026-11-05T21:24:30.399328+00:00",
+    "checkedAt": "2026-11-17T00:39:58.234631+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5770,7 +5437,7 @@
     "seconds": 0.0
   },
   "node/3082108093": {
-    "checkedAt": "2026-11-05T21:24:24.744899+00:00",
+    "checkedAt": "2026-11-17T00:39:49.302829+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5795,10 +5462,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.9
+    "seconds": 5.5
   },
   "node/1336413315": {
-    "checkedAt": "2026-11-05T21:24:30.617958+00:00",
+    "checkedAt": "2026-11-17T00:39:58.498932+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5808,10 +5475,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/3085381445": {
-    "checkedAt": "2026-11-05T21:24:30.439328+00:00",
+    "checkedAt": "2026-11-17T00:39:58.277935+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -5824,7 +5491,7 @@
     "seconds": 0.2
   },
   "node/3271092775": {
-    "checkedAt": "2026-11-05T21:14:47.849477+00:00",
+    "checkedAt": "2026-11-17T00:30:18.979037+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5845,10 +5512,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.6
+    "seconds": 9.6
   },
   "node/314426268": {
-    "checkedAt": "2026-11-05T21:24:28.911351+00:00",
+    "checkedAt": "2026-11-17T00:39:54.730622+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5873,10 +5540,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.0
+    "seconds": 17.8
   },
   "node/679787446": {
-    "checkedAt": "2026-11-05T21:24:30.781133+00:00",
+    "checkedAt": "2026-11-17T00:39:58.594171+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -5893,10 +5560,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.0
+    "seconds": 4.9
   },
   "node/7278483007": {
-    "checkedAt": "2026-11-05T21:14:56.433172+00:00",
+    "checkedAt": "2026-11-17T00:30:25.184375+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -5965,10 +5632,10 @@
       }
     ],
     "errors": [],
-    "seconds": 28.0
+    "seconds": 30.9
   },
   "node/13205261901": {
-    "checkedAt": "2026-11-05T21:15:06.832235+00:00",
+    "checkedAt": "2026-11-17T00:30:28.556443+00:00",
     "status": "partial",
     "documents": [
       {
@@ -5980,7 +5647,7 @@
         "kind": "html"
       },
       {
-        "url": "https://static1.squarespace.com/static/63441b70580c82199e6ba252/t/6aeb916e19fce672b612f7ac/1793823086408/Winter_2026-2027_01.00_SH.pdf",
+        "url": "https://static1.squarespace.com/static/63441b70580c82199e6ba252/t/6af09b775cc898674e5502b0/1794153335957/Winter_2026-2027_Jul.Swiss.pdf",
         "kind": "pdf"
       },
       {
@@ -5999,10 +5666,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 15.6
+    "seconds": 16.6
   },
   "node/450544536": {
-    "checkedAt": "2026-11-05T21:24:31.155354+00:00",
+    "checkedAt": "2026-11-17T00:40:01.321208+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6027,10 +5694,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.9
+    "seconds": 12.2
   },
   "way/95740810": {
-    "checkedAt": "2026-11-05T21:24:34.093484+00:00",
+    "checkedAt": "2026-11-17T00:40:03.483445+00:00",
     "status": "partial",
     "documents": [
       {
@@ -6060,10 +5727,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 10.4
+    "seconds": 8.2
   },
   "node/2370823480": {
-    "checkedAt": "2026-11-05T21:24:36.216221+00:00",
+    "checkedAt": "2026-11-17T00:40:04.907537+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6076,10 +5743,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.3
+    "seconds": 0.1
   },
   "node/603760295": {
-    "checkedAt": "2026-11-05T21:24:29.683550+00:00",
+    "checkedAt": "2026-11-17T00:39:54.784382+00:00",
     "status": "partial",
     "documents": [
       {
@@ -6126,10 +5793,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 22.5
+    "seconds": 25.3
   },
   "node/2988406100": {
-    "checkedAt": "2026-11-05T21:14:57.745632+00:00",
+    "checkedAt": "2026-11-17T00:30:26.562428+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6182,10 +5849,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.2
+    "seconds": 18.0
   },
   "node/101292376": {
-    "checkedAt": "2026-11-05T21:15:16.600622+00:00",
+    "checkedAt": "2026-11-17T00:30:47.832525+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6238,10 +5905,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.5
+    "seconds": 17.1
   },
   "node/2979140526": {
-    "checkedAt": "2026-11-05T21:24:37.938109+00:00",
+    "checkedAt": "2026-11-17T00:40:11.574118+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -6251,10 +5918,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.6
+    "seconds": 0.5
   },
   "node/3045013204": {
-    "checkedAt": "2026-11-05T21:15:24.106150+00:00",
+    "checkedAt": "2026-11-17T00:30:56.095469+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6266,11 +5933,11 @@
         "kind": "html"
       },
       {
-        "url": "https://kloetzlikeller.ch/wp-content/uploads/2026/10/Kloetzlikeller_alacarte-ab-15.10.2026.pdf",
+        "url": "https://kloetzlikeller.ch/wp-content/uploads/2026/11/Kloetzlikeller_alacarte-ab-17.11.2026.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://kloetzlikeller.ch/wp-content/uploads/2026/09/SaisonSpecial-Herbst2026DE.pdf",
+        "url": "https://kloetzlikeller.ch/wp-content/uploads/2026/11/SaisonSpecial-ab-17.11.2026-DE.pdf",
         "kind": "pdf"
       },
       {
@@ -6279,10 +5946,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.5
+    "seconds": 16.0
   },
   "node/3210641928": {
-    "checkedAt": "2026-11-05T21:15:24.410080+00:00",
+    "checkedAt": "2026-11-17T00:30:59.348036+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6307,10 +5974,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.0
+    "seconds": 16.4
   },
   "node/2510283137": {
-    "checkedAt": "2026-11-05T21:24:36.500944+00:00",
+    "checkedAt": "2026-11-17T00:40:05.005660+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6320,10 +5987,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.4
+    "seconds": 1.3
   },
   "node/286879776": {
-    "checkedAt": "2026-11-05T21:15:27.697895+00:00",
+    "checkedAt": "2026-11-17T00:30:59.708822+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6339,7 +6006,7 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.krone-bern.ch/_files/ugd/700c8d_08020fb3cca246949602a9bf7e903522.pdf",
+        "url": "https://www.krone-bern.ch/_files/ugd/700c8d_c1a133594c4c48778a2361afc5510504.pdf",
         "kind": "pdf"
       },
       {
@@ -6352,10 +6019,10 @@
       }
     ],
     "errors": [],
-    "seconds": 21.1
+    "seconds": 22.2
   },
   "node/13667025050": {
-    "checkedAt": "2026-11-05T21:15:33.630498+00:00",
+    "checkedAt": "2026-11-17T00:31:04.961486+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6367,7 +6034,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.restaurantlavie.ch/wp-content/uploads/2026/10/Menukarte_Wildsaison_.12.10.2026_ohne-Mittag.pdf",
+        "url": "https://www.restaurantlavie.ch/wp-content/uploads/2026/11/Menuekarte_20261112_ohne-Mittag.pdf",
         "kind": "pdf"
       },
       {
@@ -6380,10 +6047,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.9
+    "seconds": 7.7
   },
   "node/2987238077": {
-    "checkedAt": "2026-11-05T21:15:34.080868+00:00",
+    "checkedAt": "2026-11-17T00:31:12.070634+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6404,10 +6071,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.3
+    "seconds": 2.9
   },
   "node/890980932": {
-    "checkedAt": "2026-11-05T21:24:38.507570+00:00",
+    "checkedAt": "2026-11-17T00:40:11.653128+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6432,10 +6099,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.9
+    "seconds": 12.5
   },
   "node/2990856404": {
-    "checkedAt": "2026-11-05T21:24:47.037397+00:00",
+    "checkedAt": "2026-11-17T00:40:14.362179+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6445,10 +6112,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 5.3
+    "seconds": 4.7
   },
   "node/8904887209": {
-    "checkedAt": "2026-11-05T21:24:51.383357+00:00",
+    "checkedAt": "2026-11-17T00:40:19.083579+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6461,22 +6128,26 @@
       }
     ],
     "errors": [],
-    "seconds": 3.8
+    "seconds": 3.4
   },
   "node/1287682678": {
-    "checkedAt": "2026-11-05T21:24:52.157832+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-11-17T00:40:20.132220+00:00",
+    "status": "prices_found",
     "documents": [
       {
         "url": "https://leichtsinn.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://leichtsinn.ch/karten",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 0.0
+    "seconds": 0.2
   },
   "node/2301841093": {
-    "checkedAt": "2026-11-05T21:24:52.161257+00:00",
+    "checkedAt": "2026-11-17T00:40:20.360794+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6489,10 +6160,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.0
+    "seconds": 0.2
   },
   "node/2564287472": {
-    "checkedAt": "2026-11-05T21:24:44.477140+00:00",
+    "checkedAt": "2026-11-17T00:40:12.114805+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6521,10 +6192,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.6
+    "seconds": 15.0
   },
   "node/282774043": {
-    "checkedAt": "2026-11-05T21:15:07.910497+00:00",
+    "checkedAt": "2026-11-17T00:30:44.599928+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6581,10 +6252,10 @@
       }
     ],
     "errors": [],
-    "seconds": 222.9
+    "seconds": 247.5
   },
   "node/2910740696": {
-    "checkedAt": "2026-11-05T21:15:37.389420+00:00",
+    "checkedAt": "2026-11-17T00:31:12.623291+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6605,10 +6276,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.0
+    "seconds": 8.1
   },
   "node/280528098": {
-    "checkedAt": "2026-11-05T21:24:37.774475+00:00",
+    "checkedAt": "2026-11-17T00:40:06.340915+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6677,10 +6348,10 @@
       }
     ],
     "errors": [],
-    "seconds": 37.0
+    "seconds": 31.7
   },
   "node/834071511": {
-    "checkedAt": "2026-11-05T21:24:45.936409+00:00",
+    "checkedAt": "2026-11-17T00:40:13.486287+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6693,10 +6364,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.2
+    "seconds": 11.8
   },
   "node/12981974839": {
-    "checkedAt": "2026-11-05T21:24:45.006125+00:00",
+    "checkedAt": "2026-11-17T00:40:12.575560+00:00",
     "status": "partial",
     "documents": [
       {
@@ -6704,11 +6375,11 @@
         "kind": "html"
       },
       {
-        "url": "https://www.senevita.ch/wAssets/docs/00_standorte/westside/03_gastronomie/Menueplan_26-10-01-11-26.pdf",
+        "url": "https://www.senevita.ch/wAssets/docs/00_standorte/westside/03_gastronomie/Menueplan_09-11-15-11-26.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://www.senevita.ch/wAssets/docs/00_standorte/westside/03_gastronomie/Menueplan_02-11-08-11-26.pdf",
+        "url": "https://www.senevita.ch/wAssets/docs/00_standorte/westside/03_gastronomie/Menueplan_16-11-22-11-26.pdf",
         "kind": "pdf"
       },
       {
@@ -6759,10 +6430,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 31.0
+    "seconds": 26.9
   },
   "node/9563432108": {
-    "checkedAt": "2026-11-05T21:24:55.172480+00:00",
+    "checkedAt": "2026-11-17T00:40:24.159837+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6775,10 +6446,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.0
+    "seconds": 3.6
   },
   "node/540729997": {
-    "checkedAt": "2026-11-05T21:24:52.328181+00:00",
+    "checkedAt": "2026-11-17T00:40:22.461268+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6791,10 +6462,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.8
+    "seconds": 4.5
   },
   "node/583398360": {
-    "checkedAt": "2026-11-05T21:15:39.457021+00:00",
+    "checkedAt": "2026-11-17T00:31:14.998296+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6804,17 +6475,13 @@
       {
         "url": "https://www.lido-altenberg.ch",
         "kind": "html"
-      },
-      {
-        "url": "https://cdn.prod.website-files.com/661ec65ffc361b1f71b323e9/69ddd5775a62a9f818432224_3196d5956b8c584d58238fd2f01134fa_MR.WW_menucard_105x297_v3_090426.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 26.7
+    "seconds": 3.5
   },
   "node/1296972964": {
-    "checkedAt": "2026-11-05T21:15:43.356446+00:00",
+    "checkedAt": "2026-11-17T00:31:18.480976+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6831,10 +6498,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.3
+    "seconds": 6.1
   },
   "node/430711668": {
-    "checkedAt": "2026-11-05T21:24:59.184576+00:00",
+    "checkedAt": "2026-11-17T00:40:27.095739+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6850,7 +6517,7 @@
     "seconds": 0.2
   },
   "node/3283703322": {
-    "checkedAt": "2026-11-05T21:15:16.281854+00:00",
+    "checkedAt": "2026-11-17T00:30:46.489693+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6871,10 +6538,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.4
+    "seconds": 12.9
   },
   "node/4540081519": {
-    "checkedAt": "2026-11-05T21:15:49.606945+00:00",
+    "checkedAt": "2026-11-17T00:31:21.950541+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6895,10 +6562,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.5
+    "seconds": 8.1
   },
   "node/603759963": {
-    "checkedAt": "2026-11-05T21:24:57.091701+00:00",
+    "checkedAt": "2026-11-17T00:40:25.331759+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6915,10 +6582,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.2
+    "seconds": 7.2
   },
   "node/2838925989": {
-    "checkedAt": "2026-11-05T21:15:59.117946+00:00",
+    "checkedAt": "2026-11-17T00:31:30.062673+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -6931,10 +6598,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.0
+    "seconds": 3.7
   },
   "node/13640844997": {
-    "checkedAt": "2026-11-05T21:25:06.073549+00:00",
+    "checkedAt": "2026-11-17T00:40:32.510143+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6951,10 +6618,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.0
+    "seconds": 4.8
   },
   "node/5916011989": {
-    "checkedAt": "2026-11-05T21:25:06.280930+00:00",
+    "checkedAt": "2026-11-17T00:40:35.260076+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -6964,10 +6631,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.1
+    "seconds": 0.2
   },
   "node/3252791198": {
-    "checkedAt": "2026-11-05T21:24:59.429398+00:00",
+    "checkedAt": "2026-11-17T00:40:27.331330+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6988,10 +6655,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.5
+    "seconds": 11.8
   },
   "node/445018177": {
-    "checkedAt": "2026-11-05T21:24:58.092190+00:00",
+    "checkedAt": "2026-11-17T00:40:26.940927+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -6999,11 +6666,11 @@
         "kind": "html"
       },
       {
-        "url": "https://5fec2c9e-352e-4ac1-8f66-a84e11907b0b.filesusr.com/ugd/b03db9_a4c9b07508014ad182466b37dc31944a.pdf",
+        "url": "https://5fec2c9e-352e-4ac1-8f66-a84e11907b0b.filesusr.com/ugd/b03db9_98604e84e57345faa345bc5b310fa9b6.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://5fec2c9e-352e-4ac1-8f66-a84e11907b0b.filesusr.com/ugd/b03db9_7501cb7c9d884529b45d8a8fd98452b3.pdf",
+        "url": "https://5fec2c9e-352e-4ac1-8f66-a84e11907b0b.filesusr.com/ugd/b03db9_f72d2fe093a14949adc0da0402eb6939.pdf",
         "kind": "pdf"
       },
       {
@@ -7024,10 +6691,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.9
+    "seconds": 2.5
   },
   "node/3046533485": {
-    "checkedAt": "2026-11-05T21:25:09.570361+00:00",
+    "checkedAt": "2026-11-17T00:40:37.191886+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7036,10 +6703,10 @@
       }
     ],
     "errors": [],
-    "seconds": 23.2
+    "seconds": 22.9
   },
   "node/4729289194": {
-    "checkedAt": "2026-11-05T21:24:52.209906+00:00",
+    "checkedAt": "2026-11-17T00:40:20.595088+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7056,10 +6723,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.4
+    "seconds": 16.6
   },
   "node/2400958501": {
-    "checkedAt": "2026-11-05T21:25:01.112179+00:00",
+    "checkedAt": "2026-11-17T00:40:29.406924+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7076,10 +6743,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.0
+    "seconds": 11.4
   },
   "node/610380079": {
-    "checkedAt": "2026-11-05T21:25:11.118790+00:00",
+    "checkedAt": "2026-11-17T00:40:37.288317+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -7089,7 +6756,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.0
+    "seconds": 0.2
   },
   "node/2929645532": {
     "checkedAt": "2026-10-17T23:38:54.164200+00:00",
@@ -7105,7 +6772,7 @@
     "seconds": 2.3
   },
   "node/662751818": {
-    "checkedAt": "2026-11-05T21:25:00.008612+00:00",
+    "checkedAt": "2026-11-17T00:40:27.734808+00:00",
     "status": "partial",
     "documents": [
       {
@@ -7189,10 +6856,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 6.1
+    "seconds": 7.5
   },
   "node/6425484034": {
-    "checkedAt": "2026-11-05T21:16:06.187408+00:00",
+    "checkedAt": "2026-11-17T00:31:34.235677+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7205,22 +6872,48 @@
       }
     ],
     "errors": [],
-    "seconds": 2.9
+    "seconds": 3.4
   },
   "node/2968521296": {
-    "checkedAt": "2026-11-05T21:25:11.912568+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-11-17T00:40:38.021987+00:00",
+    "status": "prices_found",
     "documents": [
       {
-        "url": "https://www.millesens.ch/",
+        "url": "https://millesens.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://millesens.ch/menu",
+        "kind": "html"
+      },
+      {
+        "url": "https://millesens.ch/assets/karten/abendkarte.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://millesens.ch/karten",
+        "kind": "html"
+      },
+      {
+        "url": "https://millesens.ch/api/cms/site-image/mille-sens",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://millesens.ch/assets/karten/weinkarte.pdf",
+        "kind": "pdf"
       }
     ],
-    "errors": [],
-    "seconds": 41.6
+    "errors": [
+      {
+        "url": "https://millesens.ch/api/cms/site-image/mille-sens",
+        "reason": "response_too_large",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 46.4
   },
   "node/663576545": {
-    "checkedAt": "2026-11-05T21:16:04.127837+00:00",
+    "checkedAt": "2026-11-17T00:31:33.795478+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7251,10 +6944,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 79.4
+    "seconds": 63.1
   },
   "node/13206771290": {
-    "checkedAt": "2026-11-05T21:25:11.160147+00:00",
+    "checkedAt": "2026-11-17T00:40:37.503813+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7263,10 +6956,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.8
+    "seconds": 5.4
   },
   "node/313051043": {
-    "checkedAt": "2026-11-05T21:15:58.164529+00:00",
+    "checkedAt": "2026-11-17T00:31:24.563850+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7455,10 +7148,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 35.8
+    "seconds": 32.7
   },
   "node/313812140": {
-    "checkedAt": "2026-11-05T21:25:12.896373+00:00",
+    "checkedAt": "2026-11-17T00:40:39.103134+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -7468,10 +7161,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.8
+    "seconds": 4.1
   },
   "node/3085288680": {
-    "checkedAt": "2026-11-05T21:25:15.976385+00:00",
+    "checkedAt": "2026-11-17T00:40:41.149217+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7480,10 +7173,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.3
+    "seconds": 1.2
   },
   "node/2336992357": {
-    "checkedAt": "2026-11-05T21:16:00.833008+00:00",
+    "checkedAt": "2026-11-17T00:31:30.370365+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7540,19 +7233,19 @@
       }
     ],
     "errors": [],
-    "seconds": 22.5
+    "seconds": 22.7
   },
   "node/3272891441": {
-    "checkedAt": "2026-11-05T21:25:16.984181+00:00",
+    "checkedAt": "2026-11-17T00:31:37.609641+00:00",
     "status": "prices_found",
     "documents": [
       {
-        "url": "https://www.mondobern.com/",
-        "kind": "html"
-      },
-      {
         "url": "https://www.mondobern.com/_files/ugd/d69cbc_adb16abc2bd64d46ac75d8f99f4d3ef1.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.mondobern.com/",
+        "kind": "html"
       },
       {
         "url": "https://www.mondobern.com/_files/ugd/d69cbc_eb2b43f64cb44d789824e38aeeb2427a.pdf",
@@ -7564,10 +7257,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.6
+    "seconds": 8.8
   },
   "node/2577907280": {
-    "checkedAt": "2026-11-05T21:16:09.099633+00:00",
+    "checkedAt": "2026-11-17T00:31:46.381916+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7584,10 +7277,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.8
+    "seconds": 15.1
   },
   "node/253201074": {
-    "checkedAt": "2026-11-05T21:25:17.281199+00:00",
+    "checkedAt": "2026-11-17T00:40:42.367211+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7596,10 +7289,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.0
+    "seconds": 2.6
   },
   "node/286879728": {
-    "checkedAt": "2026-11-05T21:25:14.726415+00:00",
+    "checkedAt": "2026-11-17T00:40:40.833548+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7608,10 +7301,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.3
+    "seconds": 7.1
   },
   "node/2583594616": {
-    "checkedAt": "2026-11-05T21:16:01.012547+00:00",
+    "checkedAt": "2026-11-17T00:31:30.927412+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7728,10 +7421,10 @@
       }
     ],
     "errors": [],
-    "seconds": 21.4
+    "seconds": 17.6
   },
   "node/2663783263": {
-    "checkedAt": "2026-11-05T21:25:17.677572+00:00",
+    "checkedAt": "2026-11-17T00:40:42.945940+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7744,10 +7437,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.5
+    "seconds": 7.0
   },
   "node/812915211": {
-    "checkedAt": "2026-11-05T21:16:22.893158+00:00",
+    "checkedAt": "2026-11-17T00:31:48.505510+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7772,10 +7465,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.8
+    "seconds": 10.3
   },
   "node/11386034241": {
-    "checkedAt": "2026-11-05T21:25:13.063961+00:00",
+    "checkedAt": "2026-11-17T00:40:39.435319+00:00",
     "status": "partial",
     "documents": [
       {
@@ -7868,10 +7561,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 46.5
+    "seconds": 42.3
   },
   "node/286879693": {
-    "checkedAt": "2026-11-05T21:25:21.253518+00:00",
+    "checkedAt": "2026-11-17T00:40:43.197206+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7880,10 +7573,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.9
+    "seconds": 11.1
   },
   "node/9714501340": {
-    "checkedAt": "2026-11-05T21:16:26.226072+00:00",
+    "checkedAt": "2026-11-17T00:31:58.763026+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7892,6 +7585,10 @@
       },
       {
         "url": "https://noybern.ch/en/menu/",
+        "kind": "html"
+      },
+      {
+        "url": "https://noybern.ch/",
         "kind": "html"
       },
       {
@@ -7908,10 +7605,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.7
+    "seconds": 4.4
   },
   "node/2946057658": {
-    "checkedAt": "2026-11-05T21:25:23.628544+00:00",
+    "checkedAt": "2026-11-17T00:40:47.944872+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7920,10 +7617,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.2
+    "seconds": 9.0
   },
   "node/2680125064": {
-    "checkedAt": "2026-11-05T21:25:31.845623+00:00",
+    "checkedAt": "2026-11-17T00:40:54.274812+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -7932,10 +7629,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.7
+    "seconds": 2.7
   },
   "node/282774236": {
-    "checkedAt": "2026-11-05T21:16:23.339542+00:00",
+    "checkedAt": "2026-11-17T00:31:53.100794+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -7967,15 +7664,15 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.nationalbern.ch/wp-content/uploads/2025/03/Weinkarte-2025-.pdf",
+        "url": "https://www.nationalbern.ch/wp-content/uploads/2026/11/Weinkarte-2026_2-aktuell.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 10.7
+    "seconds": 16.5
   },
   "node/5735892321": {
-    "checkedAt": "2026-11-05T21:25:06.371832+00:00",
+    "checkedAt": "2026-11-17T00:40:35.498939+00:00",
     "status": "partial",
     "documents": [
       {
@@ -8066,10 +7763,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 5.5
+    "seconds": 5.7
   },
   "node/14133063701": {
-    "checkedAt": "2026-11-05T21:16:24.412461+00:00",
+    "checkedAt": "2026-11-17T00:31:57.278474+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8079,6 +7776,10 @@
       {
         "url": "https://nido-ristorante.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://nido-ristorante.ch/api/nido/menus/nido_loungekarte",
+        "kind": "pdf"
       },
       {
         "url": "https://nido-ristorante.ch/api/nido/menus/nido_dinnerkarte",
@@ -8102,10 +7803,10 @@
       }
     ],
     "errors": [],
-    "seconds": 17.8
+    "seconds": 23.2
   },
   "node/6483996052": {
-    "checkedAt": "2026-11-05T21:25:23.051974+00:00",
+    "checkedAt": "2026-11-17T00:40:44.977750+00:00",
     "status": "partial",
     "documents": [
       {
@@ -8199,10 +7900,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 60.1
+    "seconds": 61.4
   },
   "node/6900914600": {
-    "checkedAt": "2026-11-05T21:25:32.788900+00:00",
+    "checkedAt": "2026-11-17T00:40:56.955807+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8219,10 +7920,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.3
+    "seconds": 6.7
   },
   "node/2289122190": {
-    "checkedAt": "2026-11-05T21:25:35.531657+00:00",
+    "checkedAt": "2026-11-17T00:41:00.148485+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -8235,7 +7936,7 @@
     "seconds": 0.0
   },
   "node/5401994062": {
-    "checkedAt": "2026-11-05T21:25:33.125783+00:00",
+    "checkedAt": "2026-11-17T00:40:56.983329+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8251,7 +7952,7 @@
     "seconds": 0.0
   },
   "node/8711580239": {
-    "checkedAt": "2026-11-05T21:25:35.508052+00:00",
+    "checkedAt": "2026-11-17T00:41:00.130109+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8263,7 +7964,7 @@
     "seconds": 0.0
   },
   "node/2603741618": {
-    "checkedAt": "2026-11-05T21:25:35.547042+00:00",
+    "checkedAt": "2026-11-17T00:41:00.173797+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -8273,10 +7974,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 5.6
+    "seconds": 7.3
   },
   "node/666998446": {
-    "checkedAt": "2026-11-05T21:25:43.395053+00:00",
+    "checkedAt": "2026-11-17T00:41:10.160941+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -8286,10 +7987,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 3.4
+    "seconds": 3.2
   },
   "node/259025803": {
-    "checkedAt": "2026-11-05T21:25:41.147104+00:00",
+    "checkedAt": "2026-11-17T00:41:03.701150+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8302,10 +8003,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.5
+    "seconds": 8.1
   },
   "node/2651625715": {
-    "checkedAt": "2026-11-05T21:25:45.636835+00:00",
+    "checkedAt": "2026-11-17T00:41:11.751735+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -8315,10 +8016,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.5
+    "seconds": 1.4
   },
   "node/3156323052": {
-    "checkedAt": "2026-11-05T21:25:43.128761+00:00",
+    "checkedAt": "2026-11-17T00:41:07.480228+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8339,10 +8040,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.3
+    "seconds": 2.7
   },
   "node/6890282886": {
-    "checkedAt": "2026-11-05T21:16:34.060982+00:00",
+    "checkedAt": "2026-11-17T00:32:09.624051+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8363,10 +8064,10 @@
       }
     ],
     "errors": [],
-    "seconds": 18.7
+    "seconds": 16.6
   },
   "node/11417054366": {
-    "checkedAt": "2026-11-05T21:16:32.737209+00:00",
+    "checkedAt": "2026-11-17T00:32:01.462200+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8382,7 +8083,7 @@
         "kind": "html"
       },
       {
-        "url": "https://cdn.prod.website-files.com/651e9e1e7fa34d107205e0b4/6ae84488c3a7a8884cd1540b_Mittag%202.11.pdf",
+        "url": "https://cdn.prod.website-files.com/651e9e1e7fa34d107205e0b4/6af814b378008228b632b77c_Mittag%2016.11.pdf",
         "kind": "pdf"
       },
       {
@@ -8395,10 +8096,10 @@
       }
     ],
     "errors": [],
-    "seconds": 69.5
+    "seconds": 90.2
   },
   "node/2976324699": {
-    "checkedAt": "2026-11-05T21:25:46.798697+00:00",
+    "checkedAt": "2026-11-17T00:41:13.155307+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8415,10 +8116,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.1
+    "seconds": 5.3
   },
   "node/286879707": {
-    "checkedAt": "2026-11-05T21:25:51.918492+00:00",
+    "checkedAt": "2026-11-17T00:41:18.419428+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8427,10 +8128,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.7
+    "seconds": 1.9
   },
   "node/3283725291": {
-    "checkedAt": "2026-11-05T21:25:25.186541+00:00",
+    "checkedAt": "2026-11-17T00:40:49.983999+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8539,10 +8240,10 @@
       }
     ],
     "errors": [],
-    "seconds": 133.4
+    "seconds": 128.0
   },
   "node/598242905": {
-    "checkedAt": "2026-11-05T21:16:41.863586+00:00",
+    "checkedAt": "2026-11-17T00:32:11.569369+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8559,10 +8260,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.0
+    "seconds": 5.7
   },
   "node/3057750584": {
-    "checkedAt": "2026-11-05T21:25:54.587876+00:00",
+    "checkedAt": "2026-11-17T00:41:21.707350+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8571,10 +8272,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.9
+    "seconds": 10.6
   },
   "node/286879726": {
-    "checkedAt": "2026-11-05T21:25:47.147923+00:00",
+    "checkedAt": "2026-11-17T00:41:13.405983+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8595,10 +8296,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.5
+    "seconds": 9.4
   },
   "node/286879733": {
-    "checkedAt": "2026-11-05T21:25:33.173483+00:00",
+    "checkedAt": "2026-11-17T00:40:57.010360+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8643,10 +8344,10 @@
       }
     ],
     "errors": [],
-    "seconds": 31.5
+    "seconds": 31.1
   },
   "node/598684260": {
-    "checkedAt": "2026-11-05T21:25:53.540050+00:00",
+    "checkedAt": "2026-11-17T00:41:20.320431+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8675,10 +8376,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.2
+    "seconds": 20.8
   },
   "node/474362126": {
-    "checkedAt": "2026-11-05T21:16:44.822648+00:00",
+    "checkedAt": "2026-11-17T00:32:20.323689+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8715,10 +8416,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.1
+    "seconds": 5.8
   },
   "node/7856759433": {
-    "checkedAt": "2026-11-05T21:26:04.656221+00:00",
+    "checkedAt": "2026-11-17T00:41:28.070153+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8730,7 +8431,7 @@
     "seconds": 0.0
   },
   "node/4468414867": {
-    "checkedAt": "2026-11-05T21:25:57.616413+00:00",
+    "checkedAt": "2026-11-17T00:41:22.759460+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8743,10 +8444,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.8
+    "seconds": 20.0
   },
   "node/1187465093": {
-    "checkedAt": "2026-11-05T21:25:59.607369+00:00",
+    "checkedAt": "2026-11-17T00:41:24.402730+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8755,14 +8456,18 @@
       }
     ],
     "errors": [],
-    "seconds": 12.0
+    "seconds": 11.7
   },
   "node/6554088370": {
-    "checkedAt": "2026-11-05T21:16:49.935007+00:00",
+    "checkedAt": "2026-11-17T00:32:26.089628+00:00",
     "status": "review_required",
     "documents": [
       {
         "url": "https://www.queensbread.ch/menu",
+        "kind": "html"
+      },
+      {
+        "url": "https://www.queensbread.ch/projects",
         "kind": "html"
       },
       {
@@ -8771,10 +8476,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.6
+    "seconds": 1.8
   },
   "node/1337680384": {
-    "checkedAt": "2026-11-05T21:26:04.669525+00:00",
+    "checkedAt": "2026-11-17T00:41:28.083301+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -8784,10 +8489,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.0
+    "seconds": 0.2
   },
   "node/2497026117": {
-    "checkedAt": "2026-11-05T21:26:04.687206+00:00",
+    "checkedAt": "2026-11-17T00:41:28.332124+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8796,16 +8501,12 @@
       }
     ],
     "errors": [],
-    "seconds": 23.4
+    "seconds": 24.8
   },
   "node/8199621997": {
-    "checkedAt": "2026-11-05T21:16:48.925471+00:00",
-    "status": "prices_found",
+    "checkedAt": "2026-11-17T00:32:22.321708+00:00",
+    "status": "partial",
     "documents": [
-      {
-        "url": "https://www.qin-restaurant.ch/wp21/wp-content/uploads/2025/05/Getraenkekarte.png-pdf.jpg",
-        "kind": "unsupported"
-      },
       {
         "url": "https://www.qin-restaurant.ch",
         "kind": "html"
@@ -8819,11 +8520,17 @@
         "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 1.6
+    "errors": [
+      {
+        "url": "https://www.qin-restaurant.ch/wp21/wp-content/uploads/2025/05/Getraenkekarte.png-pdf.jpg",
+        "reason": "http_404",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 7.0
   },
   "node/9844659964": {
-    "checkedAt": "2026-11-05T21:16:50.552445+00:00",
+    "checkedAt": "2026-11-17T00:32:26.177905+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8844,10 +8551,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.1
+    "seconds": 2.6
   },
   "node/4219531601": {
-    "checkedAt": "2026-11-05T21:16:46.407797+00:00",
+    "checkedAt": "2026-11-17T00:32:20.429276+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8875,19 +8582,15 @@
         "kind": "pdf"
       },
       {
-        "url": "https://provisorium46.ch/fileadmin/user_upload/mischbargastro/Stelleninserate/neu260925_Stelleninserat_Chef_Koch-in.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://provisorium46.ch/news/gutscheine-fuer-ein-inklusives-gastronomieerlebnis",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 9.1
+    "seconds": 7.0
   },
   "node/286879738": {
-    "checkedAt": "2026-11-05T21:16:43.009765+00:00",
+    "checkedAt": "2026-11-17T00:32:17.262315+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -8920,10 +8623,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.9
+    "seconds": 5.1
   },
   "node/5836963208": {
-    "checkedAt": "2026-11-05T21:26:12.765542+00:00",
+    "checkedAt": "2026-11-17T00:41:38.820179+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8932,10 +8635,10 @@
       }
     ],
     "errors": [],
-    "seconds": 36.4
+    "seconds": 35.1
   },
   "node/3122036360": {
-    "checkedAt": "2026-11-05T21:26:17.407980+00:00",
+    "checkedAt": "2026-11-17T00:41:42.733486+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -8945,10 +8648,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.1
+    "seconds": 2.5
   },
   "node/5745409029": {
-    "checkedAt": "2026-11-05T21:26:14.345924+00:00",
+    "checkedAt": "2026-11-17T00:41:41.165576+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8957,10 +8660,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.7
+    "seconds": 3.5
   },
   "node/4209748378": {
-    "checkedAt": "2026-11-05T21:26:11.569211+00:00",
+    "checkedAt": "2026-11-17T00:41:36.066861+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -8972,7 +8675,7 @@
     "seconds": 2.8
   },
   "node/815768463": {
-    "checkedAt": "2026-11-05T21:16:42.228239+00:00",
+    "checkedAt": "2026-11-17T00:32:15.836485+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -9006,10 +8709,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 4.2
+    "seconds": 4.5
   },
   "node/6300969286": {
-    "checkedAt": "2026-11-05T21:26:20.334810+00:00",
+    "checkedAt": "2026-11-17T00:41:46.375872+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9018,10 +8721,10 @@
       }
     ],
     "errors": [],
-    "seconds": 52.2
+    "seconds": 48.7
   },
   "node/11137733515": {
-    "checkedAt": "2026-11-05T21:26:23.175495+00:00",
+    "checkedAt": "2026-11-17T00:41:47.248377+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -9031,10 +8734,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.1
+    "seconds": 0.0
   },
   "node/559232107": {
-    "checkedAt": "2026-11-05T21:16:52.546200+00:00",
+    "checkedAt": "2026-11-17T00:32:27.424517+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -9067,10 +8770,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.9
+    "seconds": 15.7
   },
   "node/2892516176": {
-    "checkedAt": "2026-11-05T21:16:52.775633+00:00",
+    "checkedAt": "2026-11-17T00:32:27.862648+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -9109,10 +8812,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 9.3
+    "seconds": 9.4
   },
   "node/410086516": {
-    "checkedAt": "2026-11-05T21:26:18.530751+00:00",
+    "checkedAt": "2026-11-17T00:41:45.266175+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9169,10 +8872,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.8
+    "seconds": 2.0
   },
   "node/4071533890": {
-    "checkedAt": "2026-11-05T21:26:06.495636+00:00",
+    "checkedAt": "2026-11-17T00:41:32.345086+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9184,7 +8887,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.sfgb-b.ch/sites/default/files/2026-10/Menu%20Woche%2033.pdf",
+        "url": "https://www.sfgb-b.ch/sites/default/files/2026-11/Menu%20Woche%2035.pdf",
         "kind": "pdf"
       },
       {
@@ -9377,10 +9080,10 @@
       }
     ],
     "errors": [],
-    "seconds": 94.4
+    "seconds": 112.1
   },
   "node/6838860577": {
-    "checkedAt": "2026-11-05T21:26:28.044727+00:00",
+    "checkedAt": "2026-11-17T00:41:53.113694+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9389,10 +9092,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.0
+    "seconds": 0.1
   },
   "node/5744306327": {
-    "checkedAt": "2026-11-05T21:26:28.057604+00:00",
+    "checkedAt": "2026-11-17T00:41:53.198163+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9413,10 +9116,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.7
+    "seconds": 6.2
   },
   "node/290798624": {
-    "checkedAt": "2026-11-05T21:26:18.035374+00:00",
+    "checkedAt": "2026-11-17T00:41:44.674386+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9477,10 +9180,10 @@
       }
     ],
     "errors": [],
-    "seconds": 24.0
+    "seconds": 23.6
   },
   "node/286879740": {
-    "checkedAt": "2026-11-05T21:16:55.552201+00:00",
+    "checkedAt": "2026-11-17T00:32:29.353690+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -9496,7 +9199,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2026/09/Deutsche_Speisekarte_Rest_September-2026.pdf",
+        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2025/12/Deutsche_Speisekarte_Rest_November-2026-ZUM-REINSCHREIBEN-PDF-1.pdf",
         "kind": "pdf"
       },
       {
@@ -9504,15 +9207,15 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2026/09/Englische_Speisekarte_Vorder-Rueckseite_September-2026.pdf",
-        "kind": "pdf"
+        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2025/12/Englische_Speisekarte_Vorder-Rueckseite_November_2026.docx",
+        "kind": "unsupported"
       },
       {
-        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2026/06/Kleine-Karte-inkl.-Englisch-Juni-2026_1.pdf",
-        "kind": "pdf"
+        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2025/12/Kleine-Karte-inkl.-Englisch-November-2026-Kopie.docx",
+        "kind": "unsupported"
       },
       {
-        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2026/09/fondue_Mit-Wein-A5-2026.pdf",
+        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2026/11/fondue_Mit-Wein-A5_Nov-2026.pdf",
         "kind": "pdf"
       },
       {
@@ -9544,7 +9247,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2026/02/Menuvorschlage-2026.pdf",
+        "url": "https://www.restaurant-ringgenberg.ch/wp-content/uploads/2025/12/Menuvorschlaege-2026-neu-November-PDF.pdf",
         "kind": "pdf"
       },
       {
@@ -9567,10 +9270,10 @@
         "phase": "parse"
       }
     ],
-    "seconds": 45.9
+    "seconds": 46.1
   },
   "node/290704798": {
-    "checkedAt": "2026-11-05T21:17:00.552111+00:00",
+    "checkedAt": "2026-11-17T00:32:30.808396+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -9587,31 +9290,20 @@
       }
     ],
     "errors": [],
-    "seconds": 20.2
+    "seconds": 19.7
   },
   "node/278791605": {
-    "checkedAt": "2026-11-05T21:26:23.265500+00:00",
-    "status": "no_prices",
-    "documents": [
+    "checkedAt": "2026-11-17T00:41:47.291883+00:00",
+    "status": "fetch_failed",
+    "documents": [],
+    "errors": [
       {
-        "url": "https://benigni.ch/",
-        "kind": "html"
-      },
-      {
-        "url": "https://benigni.ch/tagesmenue-2/",
-        "kind": "html"
-      },
-      {
-        "url": "https://benigni.ch/tagesmenue-2/",
-        "kind": "html"
-      },
-      {
-        "url": "https://benigni.ch/angebote/",
-        "kind": "html"
+        "url": "https://www.benigni.ch/",
+        "reason": "ReadTimeout",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 15.3
+    "seconds": 17.8
   },
   "node/6349130278": {
     "checkedAt": "2026-10-17T23:40:43.583955+00:00",
@@ -9627,7 +9319,7 @@
     "seconds": 0.2
   },
   "node/2629294825": {
-    "checkedAt": "2026-11-05T21:26:38.737668+00:00",
+    "checkedAt": "2026-11-17T00:42:05.318732+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9656,10 +9348,10 @@
       }
     ],
     "errors": [],
-    "seconds": 24.1
+    "seconds": 21.0
   },
   "node/280528108": {
-    "checkedAt": "2026-11-05T21:16:29.876966+00:00",
+    "checkedAt": "2026-11-17T00:32:00.167720+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -9688,10 +9380,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.0
+    "seconds": 15.7
   },
   "node/8210172451": {
-    "checkedAt": "2026-11-05T21:17:02.063088+00:00",
+    "checkedAt": "2026-11-17T00:32:36.895149+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -9712,10 +9404,10 @@
       }
     ],
     "errors": [],
-    "seconds": 15.2
+    "seconds": 17.2
   },
   "node/447265787": {
-    "checkedAt": "2026-11-05T21:26:38.546504+00:00",
+    "checkedAt": "2026-11-17T00:42:05.105374+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9739,9 +9431,13 @@
     "seconds": 0.2
   },
   "node/286879737": {
-    "checkedAt": "2026-11-05T21:17:17.295324+00:00",
+    "checkedAt": "2026-11-17T00:32:43.116671+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://static1.squarespace.com/static/6a60c0a8fee1123738b90cb9/t/6ae47509ca64c13c68f38ea2/1793357065189/menu+getr%C3%A4nke_A4_261023.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://schmied-bern.ch/",
         "kind": "html"
@@ -9751,11 +9447,11 @@
         "kind": "pdf"
       },
       {
-        "url": "https://static1.squarespace.com/static/6a60c0a8fee1123738b90cb9/t/6aece49e0ca2336c31285716/1793909919032/menu+mittag_A4_KW45.pdf",
+        "url": "https://static1.squarespace.com/static/6a60c0a8fee1123738b90cb9/t/6afad62362dc7e38541a600d/1794823715055/menu+mittag_A4_KW47.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://static1.squarespace.com/static/6a60c0a8fee1123738b90cb9/t/6ace47a37e933e7a54cb5e64/1791903651421/menu+abend_A4_20261013.pdf",
+        "url": "https://static1.squarespace.com/static/6a60c0a8fee1123738b90cb9/t/6afae3623a15b5229ae788a9/1794827106407/menu+abend_A4_Piemont.pdf",
         "kind": "pdf"
       },
       {
@@ -9767,7 +9463,7 @@
         "kind": "pdf"
       },
       {
-        "url": "https://static1.squarespace.com/static/6a60c0a8fee1123738b90cb9/t/6abd214ea9297804d89c2edc/1790779727009/veranstaltungen_events_260930.pdf",
+        "url": "https://static1.squarespace.com/static/6a60c0a8fee1123738b90cb9/t/6af348facd044b5068ee5e83/1794328826242/Veranstaltungen_Events_Vorschlag.pdf",
         "kind": "pdf"
       }
     ],
@@ -9778,10 +9474,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 19.8
+    "seconds": 21.8
   },
   "node/282772930": {
-    "checkedAt": "2026-11-05T21:26:52.091520+00:00",
+    "checkedAt": "2026-11-17T00:42:16.064359+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -9794,7 +9490,7 @@
     "seconds": 0.0
   },
   "node/761255424": {
-    "checkedAt": "2026-11-05T21:16:53.669834+00:00",
+    "checkedAt": "2026-11-17T00:32:28.778798+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -9831,10 +9527,10 @@
       }
     ],
     "errors": [],
-    "seconds": 116.6
+    "seconds": 137.8
   },
   "node/620494501": {
-    "checkedAt": "2026-11-05T21:26:49.196477+00:00",
+    "checkedAt": "2026-11-17T00:42:13.967591+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9843,10 +9539,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.9
+    "seconds": 2.1
   },
   "node/9015194277": {
-    "checkedAt": "2026-11-05T21:26:33.781042+00:00",
+    "checkedAt": "2026-11-17T00:41:59.417966+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -9862,11 +9558,23 @@
         "kind": "html"
       },
       {
-        "url": "https://kursaal-bern.ch/planen/raumangebote/details/forum-platz",
+        "url": "https://kursaal-bern.ch/erleben/event-kalender/details/bier-u-chaes-1",
+        "kind": "html"
+      },
+      {
+        "url": "https://kursaal-bern.ch/fr/experiencer/calendrier-des-evenements/details/bier-u-chaes-1",
+        "kind": "html"
+      },
+      {
+        "url": "https://kursaal-bern.ch/en/experience/event-calendar/details/bier-u-chaes-1",
         "kind": "html"
       },
       {
         "url": "https://kursaal-bern.ch/planen/raumangebote/details/alpha",
+        "kind": "html"
+      },
+      {
+        "url": "https://kursaal-bern.ch/planen/raumangebote/details/forum-platz",
         "kind": "html"
       },
       {
@@ -10036,25 +9744,13 @@
       {
         "url": "https://kursaal-bern.ch/fileadmin/inhalte/Dokumente/Planen/Raumangebot/Garten/Kursaal-Bern_Garten_4_Gebaeudeplan.pdf",
         "kind": "pdf"
-      },
-      {
-        "url": "https://kursaal-bern.ch/fileadmin/inhalte/Dokumente/Planen/Raumangebot/Garten/Kursaal-Bern_Garten_3_Gebaeudeplan.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://kursaal-bern.ch/fileadmin/inhalte/Dokumente/Planen/Raumangebot/Garten/Kursaal-Bern_Garten_2_Gebaeudeplan.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://kursaal-bern.ch/fileadmin/inhalte/Dokumente/Planen/Raumangebot/Panorama/Kursaal-Bern_Panorama_3-4_Gebaeudeplan.pdf",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 114.5
+    "seconds": 97.9
   },
   "node/457113454": {
-    "checkedAt": "2026-11-05T21:26:42.034837+00:00",
+    "checkedAt": "2026-11-17T00:42:08.310960+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10066,7 +9762,7 @@
         "kind": "html"
       },
       {
-        "url": "https://cdn.prod.website-files.com/63a5d692ed5955b67c285832/6ae7423f42eb2faf117a3c73_KW%2045%20D.pdf",
+        "url": "https://cdn.prod.website-files.com/63a5d692ed5955b67c285832/6af1acd0ef4aa892e7518d17_KW%2046%20D.pdf",
         "kind": "pdf"
       },
       {
@@ -10087,10 +9783,10 @@
       }
     ],
     "errors": [],
-    "seconds": 13.6
+    "seconds": 12.5
   },
   "node/286879723": {
-    "checkedAt": "2026-11-05T21:17:04.457313+00:00",
+    "checkedAt": "2026-11-17T00:32:37.304029+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -10263,10 +9959,10 @@
       }
     ],
     "errors": [],
-    "seconds": 181.8
+    "seconds": 192.7
   },
   "way/379588170": {
-    "checkedAt": "2026-11-05T21:17:23.563306+00:00",
+    "checkedAt": "2026-11-17T00:32:54.107599+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -10279,10 +9975,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.0
+    "seconds": 7.6
   },
   "node/429232017": {
-    "checkedAt": "2026-11-05T21:26:55.616838+00:00",
+    "checkedAt": "2026-11-17T00:42:20.831056+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10303,10 +9999,10 @@
       }
     ],
     "errors": [],
-    "seconds": 10.3
+    "seconds": 6.5
   },
   "node/6448420112": {
-    "checkedAt": "2026-11-05T21:27:02.885509+00:00",
+    "checkedAt": "2026-11-17T00:42:26.282165+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10326,7 +10022,7 @@
     "seconds": 2.7
   },
   "node/670446032": {
-    "checkedAt": "2026-11-05T21:27:05.631139+00:00",
+    "checkedAt": "2026-11-17T00:42:27.351652+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -10336,10 +10032,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 1.9
+    "seconds": 1.7
   },
   "node/447293342": {
-    "checkedAt": "2026-11-05T21:17:20.725979+00:00",
+    "checkedAt": "2026-11-17T00:32:50.513040+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -10528,10 +10224,10 @@
       }
     ],
     "errors": [],
-    "seconds": 36.1
+    "seconds": 44.7
   },
   "node/491060929": {
-    "checkedAt": "2026-11-05T21:27:05.903835+00:00",
+    "checkedAt": "2026-11-17T00:42:28.950298+00:00",
     "status": "partial",
     "documents": [
       {
@@ -10546,12 +10242,16 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 5.8
+    "seconds": 4.7
   },
   "node/9482332061": {
-    "checkedAt": "2026-11-05T21:17:42.261364+00:00",
+    "checkedAt": "2026-11-17T00:33:31.616663+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.starsandstripes.ch/de/filefly/api",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.starsandstripes.ch/de/filefly/api",
         "kind": "pdf"
@@ -10569,19 +10269,15 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.starsandstripes.ch/de/filefly/api",
-        "kind": "pdf"
-      },
-      {
         "url": "https://www.starsandstripes.ch/de/p/reservation-1119.html",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 12.2
+    "seconds": 6.9
   },
   "node/1822197927": {
-    "checkedAt": "2026-11-05T21:26:52.112843+00:00",
+    "checkedAt": "2026-11-17T00:42:16.074581+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10606,10 +10302,10 @@
       }
     ],
     "errors": [],
-    "seconds": 18.8
+    "seconds": 17.4
   },
   "node/606970718": {
-    "checkedAt": "2026-11-05T21:27:10.897551+00:00",
+    "checkedAt": "2026-11-17T00:42:33.447112+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10618,10 +10314,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.5
+    "seconds": 1.9
   },
   "node/6352819896": {
-    "checkedAt": "2026-11-05T21:17:37.138553+00:00",
+    "checkedAt": "2026-11-17T00:33:04.880654+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -10646,10 +10342,10 @@
       }
     ],
     "errors": [],
-    "seconds": 22.8
+    "seconds": 32.9
   },
   "node/3034850790": {
-    "checkedAt": "2026-11-05T21:27:07.557492+00:00",
+    "checkedAt": "2026-11-17T00:42:29.005507+00:00",
     "status": "partial",
     "documents": [
       {
@@ -10672,10 +10368,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 9.3
+    "seconds": 4.7
   },
   "node/3480736878": {
-    "checkedAt": "2026-11-05T21:27:11.668740+00:00",
+    "checkedAt": "2026-11-17T00:42:33.658478+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10692,10 +10388,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.0
+    "seconds": 5.0
   },
   "node/3213786960": {
-    "checkedAt": "2026-11-05T21:27:12.525701+00:00",
+    "checkedAt": "2026-11-17T00:42:33.711937+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10704,10 +10400,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.9
+    "seconds": 6.0
   },
   "node/3103757460": {
-    "checkedAt": "2026-11-05T21:18:00.178990+00:00",
+    "checkedAt": "2026-11-17T00:33:41.020361+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -10728,10 +10424,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.7
+    "seconds": 0.8
   },
   "node/2950532982": {
-    "checkedAt": "2026-11-05T21:17:54.496598+00:00",
+    "checkedAt": "2026-11-17T00:33:35.235696+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -10775,10 +10471,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 11.4
+    "seconds": 10.2
   },
   "node/514589641": {
-    "checkedAt": "2026-11-05T21:27:17.624406+00:00",
+    "checkedAt": "2026-11-17T00:42:38.685007+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10787,10 +10483,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.8
+    "seconds": 5.2
   },
   "node/4455388196": {
-    "checkedAt": "2026-11-05T21:27:16.860992+00:00",
+    "checkedAt": "2026-11-17T00:42:35.393673+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10803,10 +10499,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.3
+    "seconds": 7.7
   },
   "node/662759350": {
-    "checkedAt": "2026-11-05T21:27:13.352306+00:00",
+    "checkedAt": "2026-11-17T00:42:35.039053+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -10816,10 +10512,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 12.9
+    "seconds": 12.7
   },
   "node/6448420114": {
-    "checkedAt": "2026-11-05T21:18:01.927151+00:00",
+    "checkedAt": "2026-11-17T00:33:41.868543+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -10832,10 +10528,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.5
+    "seconds": 0.4
   },
   "node/5745397483": {
-    "checkedAt": "2026-11-05T21:27:19.321563+00:00",
+    "checkedAt": "2026-11-17T00:42:39.721858+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -10845,12 +10541,16 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 9.8
+    "seconds": 8.8
   },
   "node/1460424605": {
-    "checkedAt": "2026-11-05T21:27:19.413332+00:00",
+    "checkedAt": "2026-11-17T00:34:20.259218+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.thetipsybear.ch/_downloads/6b0fa95c4f03ff7142c2a31cdcdf5d86",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.thetipsybear.ch/",
         "kind": "html"
@@ -10858,17 +10558,13 @@
       {
         "url": "https://www.thetipsybear.ch/bites-drinks",
         "kind": "html"
-      },
-      {
-        "url": "https://www.thetipsybear.ch/_downloads/6b0fa95c4f03ff7142c2a31cdcdf5d86",
-        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 0.4
+    "seconds": 2.0
   },
   "node/1066324532": {
-    "checkedAt": "2026-11-05T21:18:02.390626+00:00",
+    "checkedAt": "2026-11-17T00:33:42.294102+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -10904,19 +10600,21 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.beef-steakhouse.ch/sportsbar-und-lounge/",
-        "kind": "html"
-      },
-      {
         "url": "https://www.beef-steakhouse.ch/wp-content/uploads/2016/01/Weinkarte.pdf",
         "kind": "pdf"
       }
     ],
-    "errors": [],
-    "seconds": 48.4
+    "errors": [
+      {
+        "url": "https://www.beef-steakhouse.ch/sportsbar-und-lounge",
+        "reason": "http_500",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 102.1
   },
   "node/6142423528": {
-    "checkedAt": "2026-11-05T21:18:05.915853+00:00",
+    "checkedAt": "2026-11-17T00:33:42.638628+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -10937,10 +10635,10 @@
       }
     ],
     "errors": [],
-    "seconds": 30.6
+    "seconds": 37.6
   },
   "node/283213579": {
-    "checkedAt": "2026-11-05T21:27:23.418723+00:00",
+    "checkedAt": "2026-11-17T00:42:43.912889+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10953,10 +10651,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.5
+    "seconds": 0.6
   },
   "node/3781985916": {
-    "checkedAt": "2026-11-05T21:27:26.248818+00:00",
+    "checkedAt": "2026-11-17T00:42:48.570533+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -10966,10 +10664,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.6
+    "seconds": 0.5
   },
   "node/717866254": {
-    "checkedAt": "2026-11-05T21:27:23.924626+00:00",
+    "checkedAt": "2026-11-17T00:42:44.469410+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -10986,10 +10684,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.1
+    "seconds": 10.5
   },
   "node/9464255217": {
-    "checkedAt": "2026-11-05T21:17:59.961503+00:00",
+    "checkedAt": "2026-11-17T00:33:38.516701+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11002,10 +10700,10 @@
       }
     ],
     "errors": [],
-    "seconds": 7.9
+    "seconds": 4.1
   },
   "node/3328050553": {
-    "checkedAt": "2026-11-05T21:27:34.993747+00:00",
+    "checkedAt": "2026-11-17T00:42:58.009275+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -11015,10 +10713,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/3156360607": {
-    "checkedAt": "2026-11-05T21:27:19.823361+00:00",
+    "checkedAt": "2026-11-17T00:42:43.061002+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11143,16 +10841,12 @@
       }
     ],
     "errors": [],
-    "seconds": 71.1
+    "seconds": 63.8
   },
   "node/10035927167": {
-    "checkedAt": "2026-11-05T21:18:07.828804+00:00",
-    "status": "review_required",
+    "checkedAt": "2026-11-17T00:36:05.810461+00:00",
+    "status": "no_prices",
     "documents": [
-      {
-        "url": "https://images.squarespace-cdn.com/content/v1/5cbda1a64d546e02c8e1d9dc/5c8ca787-8e54-4022-9d25-328796986cd3/Trybhouz_Saisonkarte-2026+Webversion+%28verschoben%29.jpg",
-        "kind": "unsupported"
-      },
       {
         "url": "https://www.trybhouz.ch/",
         "kind": "html"
@@ -11163,10 +10857,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.5
+    "seconds": 0.1
   },
   "node/1274323364": {
-    "checkedAt": "2026-11-05T21:27:25.124071+00:00",
+    "checkedAt": "2026-11-17T00:42:47.759072+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11199,10 +10893,10 @@
       }
     ],
     "errors": [],
-    "seconds": 16.0
+    "seconds": 17.2
   },
   "node/537955663": {
-    "checkedAt": "2026-11-05T21:17:56.825454+00:00",
+    "checkedAt": "2026-11-17T00:33:37.797178+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11222,7 +10916,7 @@
         "kind": "html"
       },
       {
-        "url": "https://www.strada-bern.ch/files/1861/05-11-2026webst.pdf",
+        "url": "https://www.strada-bern.ch/files/1871/17-11-2026webst.pdf",
         "kind": "pdf"
       },
       {
@@ -11239,22 +10933,23 @@
       }
     ],
     "errors": [],
-    "seconds": 60.0
+    "seconds": 65.2
   },
   "node/290910758": {
-    "checkedAt": "2026-11-05T21:27:38.563025+00:00",
-    "status": "no_prices",
-    "documents": [
+    "checkedAt": "2026-11-17T00:43:05.006354+00:00",
+    "status": "robots_blocked",
+    "documents": [],
+    "errors": [
       {
         "url": "https://www.turnhalle.ch",
-        "kind": "html"
+        "reason": "robots_blocked",
+        "phase": "fetch"
       }
     ],
-    "errors": [],
-    "seconds": 0.0
+    "seconds": 0.5
   },
   "way/1313090962": {
-    "checkedAt": "2026-11-05T21:17:32.602487+00:00",
+    "checkedAt": "2026-11-17T00:33:01.707882+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11278,6 +10973,10 @@
         "kind": "pdf"
       },
       {
+        "url": "http://lesoussol.ch/oignons.pdf",
+        "kind": "pdf"
+      },
+      {
         "url": "https://www.lesoussol.ch/coffe-bar.html",
         "kind": "html"
       }
@@ -11289,10 +10988,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 27.6
+    "seconds": 39.3
   },
   "node/7893100199": {
-    "checkedAt": "2026-11-05T21:18:19.143712+00:00",
+    "checkedAt": "2026-11-17T00:34:33.554726+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11304,15 +11003,15 @@
         "kind": "html"
       },
       {
-        "url": "https://www.turbolama.ch/_files/ugd/721ef7_596dfb229342473097f371031be10cc0.pdf",
+        "url": "https://d4408293-259e-487b-9c38-7580c85ee8b0.filesusr.com/ugd/520f96_550ef0f34b034e9b8ee1cdd96e704a85.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 6.2
+    "seconds": 6.5
   },
   "node/635745466": {
-    "checkedAt": "2026-11-05T21:27:38.590131+00:00",
+    "checkedAt": "2026-11-17T00:43:05.517390+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11329,26 +11028,26 @@
       }
     ],
     "errors": [],
-    "seconds": 4.1
+    "seconds": 5.2
   },
   "node/11782849549": {
-    "checkedAt": "2026-11-05T21:18:25.343803+00:00",
-    "status": "review_required",
+    "checkedAt": "2026-11-17T00:36:05.870982+00:00",
+    "status": "no_prices",
     "documents": [
       {
-        "url": "https://www.umai-bern.ch/menu",
+        "url": "https://www.umai-bern.ch",
         "kind": "html"
       },
       {
-        "url": "https://www.umai-bern.ch",
+        "url": "https://www.umai-bern.ch/menu",
         "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 2.8
+    "seconds": 0.5
   },
   "node/11703444045": {
-    "checkedAt": "2026-11-05T21:16:22.399237+00:00",
+    "checkedAt": "2026-11-17T00:31:47.861334+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11364,7 +11063,7 @@
         "kind": "html"
       },
       {
-        "url": "https://ristorante-muna.ch/wp-content/uploads/2026/11/WOCHEN-MENUe-NEU-KW45.docx.pdf",
+        "url": "https://ristorante-muna.ch/wp-content/uploads/2026/11/WOCHEN-MENUe-NEU-KW47.pdf",
         "kind": "pdf"
       },
       {
@@ -11397,10 +11096,10 @@
       }
     ],
     "errors": [],
-    "seconds": 20.6
+    "seconds": 23.7
   },
   "way/96211624": {
-    "checkedAt": "2026-11-05T21:27:35.193912+00:00",
+    "checkedAt": "2026-11-17T00:42:58.106760+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11472,16 +11171,24 @@
         "kind": "pdf"
       },
       {
+        "url": "https://restauranttscharnergut.ch/ankuendigungen/1/307c634247f4db53bcae17adaeca0445",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://restauranttscharnergut.ch/ankuendigungen/1/307c634247f4db53bcae17adaeca0445",
+        "kind": "unsupported"
+      },
+      {
         "url": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 36.3
+    "seconds": 13.7
   },
   "node/9482332062": {
-    "checkedAt": "2026-11-05T21:27:26.843252+00:00",
-    "status": "partial",
+    "checkedAt": "2026-11-17T00:42:49.046651+00:00",
+    "status": "prices_found",
     "documents": [
       {
         "url": "https://www.tresamigos.ch/de/p/standorte/bern-1106.html",
@@ -11514,19 +11221,17 @@
       {
         "url": "https://www.tresamigos.ch/de/filefly/api",
         "kind": "pdf"
-      }
-    ],
-    "errors": [
+      },
       {
         "url": "https://www.tresamigos.ch/de/filefly/api",
-        "reason": "response_too_large",
-        "phase": "fetch"
+        "kind": "pdf"
       }
     ],
-    "seconds": 53.6
+    "errors": [],
+    "seconds": 54.6
   },
   "node/6089176318": {
-    "checkedAt": "2026-11-05T21:27:41.360370+00:00",
+    "checkedAt": "2026-11-17T00:43:12.020688+00:00",
     "status": "robots_blocked",
     "documents": [],
     "errors": [
@@ -11536,7 +11241,7 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.7
+    "seconds": 0.6
   },
   "node/253677578": {
     "checkedAt": "2026-10-17T23:42:13.147878+00:00",
@@ -11562,7 +11267,7 @@
     "seconds": 11.0
   },
   "node/667410792": {
-    "checkedAt": "2026-11-05T21:27:42.025642+00:00",
+    "checkedAt": "2026-11-17T00:43:12.581452+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -11572,10 +11277,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 3.8
+    "seconds": 2.9
   },
   "node/619997730": {
-    "checkedAt": "2026-11-05T21:18:36.519152+00:00",
+    "checkedAt": "2026-11-17T00:34:46.558772+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11591,11 +11296,11 @@
         "kind": "html"
       },
       {
-        "url": "https://www.veranda-bern.ch/_files/ugd/99f7de_17cd3cfa02744b42966c66f494f4a0c0.pdf",
+        "url": "https://www.veranda-bern.ch/_files/ugd/99f7de_38fb7822e8f34ee1938b03a78d28a597.pdf",
         "kind": "pdf"
       },
       {
-        "url": "https://www.veranda-bern.ch/_files/ugd/99f7de_16e2d635ca354fa498e356d7e5463941.pdf",
+        "url": "https://www.veranda-bern.ch/_files/ugd/99f7de_8eab882ee0e84e4db18330aeefdef7e1.pdf",
         "kind": "pdf"
       },
       {
@@ -11604,10 +11309,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.1
+    "seconds": 6.5
   },
   "node/4253054311": {
-    "checkedAt": "2026-11-05T21:18:28.119868+00:00",
+    "checkedAt": "2026-11-17T00:34:40.073216+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11660,18 +11365,14 @@
       }
     ],
     "errors": [],
-    "seconds": 40.3
+    "seconds": 36.7
   },
   "node/3325925875": {
-    "checkedAt": "2026-11-05T21:27:40.849453+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-11-17T00:43:10.672036+00:00",
+    "status": "partial",
     "documents": [
       {
         "url": "https://urshauri.ch/la-table-bern/",
-        "kind": "html"
-      },
-      {
-        "url": "https://urshauri.ch/la-table-bern/project/aktuelles-menue-auf-lunchgate-ch/",
         "kind": "html"
       },
       {
@@ -11691,19 +11392,26 @@
         "kind": "pdf"
       },
       {
-        "url": "https://urshauri.ch/la-table-bern/project/winter-barbecue-whisky-und-bier/",
-        "kind": "html"
-      },
-      {
         "url": "http://urshauri.ch/la-table-bern/wp-content/uploads/2014/05/Weinkarte.pdf",
         "kind": "pdf"
       }
     ],
-    "errors": [],
-    "seconds": 28.1
+    "errors": [
+      {
+        "url": "https://urshauri.ch/la-table-bern/project/aktuelles-menue-auf-lunchgate-ch/",
+        "reason": "http_404",
+        "phase": "fetch"
+      },
+      {
+        "url": "https://urshauri.ch/la-table-bern/project/winter-barbecue-whisky-und-bier/",
+        "reason": "http_404",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 25.7
   },
   "node/559767084": {
-    "checkedAt": "2026-11-05T21:27:54.788245+00:00",
+    "checkedAt": "2026-11-17T00:43:24.395305+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11720,10 +11428,10 @@
       }
     ],
     "errors": [],
-    "seconds": 8.8
+    "seconds": 8.3
   },
   "node/2433655016": {
-    "checkedAt": "2026-11-05T21:27:42.645976+00:00",
+    "checkedAt": "2026-11-17T00:43:15.494699+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11740,10 +11448,10 @@
       }
     ],
     "errors": [],
-    "seconds": 12.1
+    "seconds": 2.6
   },
   "node/2574170317": {
-    "checkedAt": "2026-11-05T21:18:42.078513+00:00",
+    "checkedAt": "2026-11-17T00:34:55.895745+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11811,7 +11519,7 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.volkshausbern.ch/wp-content/uploads/sites/4/2026/10/2026_Herbst_V2.pdf",
+        "url": "https://www.volkshausbern.ch/wp-content/uploads/sites/4/2026/11/2026_Herbst_V3.pdf",
         "kind": "pdf"
       },
       {
@@ -11832,10 +11540,10 @@
       }
     ],
     "errors": [],
-    "seconds": 19.3
+    "seconds": 16.5
   },
   "node/10242488689": {
-    "checkedAt": "2026-11-05T21:28:11.483794+00:00",
+    "checkedAt": "2026-11-17T00:43:36.410436+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -11845,10 +11553,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 0.2
+    "seconds": 0.1
   },
   "node/2407310350": {
-    "checkedAt": "2026-11-05T21:18:50.310979+00:00",
+    "checkedAt": "2026-11-17T00:34:55.941413+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11873,23 +11581,23 @@
       }
     ],
     "errors": [],
-    "seconds": 1.9
+    "seconds": 1.4
   },
   "node/617990107": {
-    "checkedAt": "2026-11-05T21:28:15.033314+00:00",
-    "status": "fetch_failed",
+    "checkedAt": "2026-11-17T00:43:37.352007+00:00",
+    "status": "robots_blocked",
     "documents": [],
     "errors": [
       {
         "url": "https://www.wylerhuus.ch/bistro",
-        "reason": "http_404",
+        "reason": "robots_blocked",
         "phase": "fetch"
       }
     ],
-    "seconds": 7.0
+    "seconds": 8.6
   },
   "node/550305631": {
-    "checkedAt": "2026-11-05T21:27:45.787464+00:00",
+    "checkedAt": "2026-11-17T00:43:18.109095+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11930,10 +11638,10 @@
       }
     ],
     "errors": [],
-    "seconds": 29.2
+    "seconds": 26.4
   },
   "node/550199534": {
-    "checkedAt": "2026-11-05T21:18:09.377661+00:00",
+    "checkedAt": "2026-11-17T00:34:22.302897+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -11954,10 +11662,10 @@
       }
     ],
     "errors": [],
-    "seconds": 9.8
+    "seconds": 11.3
   },
   "node/699805954": {
-    "checkedAt": "2026-11-05T21:28:28.307630+00:00",
+    "checkedAt": "2026-11-17T00:43:45.907380+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11969,7 +11677,7 @@
     "seconds": 0.0
   },
   "node/7529066231": {
-    "checkedAt": "2026-11-05T21:28:22.021817+00:00",
+    "checkedAt": "2026-11-17T00:43:44.462871+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11978,10 +11686,10 @@
       }
     ],
     "errors": [],
-    "seconds": 11.3
+    "seconds": 8.6
   },
   "node/2096317918": {
-    "checkedAt": "2026-11-05T21:27:41.170005+00:00",
+    "checkedAt": "2026-11-17T00:43:11.838078+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -11997,7 +11705,7 @@
     "seconds": 0.2
   },
   "node/33064271": {
-    "checkedAt": "2026-11-05T21:28:28.326826+00:00",
+    "checkedAt": "2026-11-17T00:43:45.916376+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12026,10 +11734,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.7
+    "seconds": 0.4
   },
   "node/286879766": {
-    "checkedAt": "2026-11-05T21:28:30.949623+00:00",
+    "checkedAt": "2026-11-17T00:43:46.837490+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12042,10 +11750,10 @@
       }
     ],
     "errors": [],
-    "seconds": 6.2
+    "seconds": 5.7
   },
   "node/288961804": {
-    "checkedAt": "2026-11-05T21:28:29.050975+00:00",
+    "checkedAt": "2026-11-17T00:43:46.278869+00:00",
     "status": "partial",
     "documents": [
       {
@@ -12077,10 +11785,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 23.6
+    "seconds": 24.4
   },
   "node/3607741562": {
-    "checkedAt": "2026-11-05T21:28:37.138734+00:00",
+    "checkedAt": "2026-11-17T00:43:52.489901+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12089,10 +11797,10 @@
       }
     ],
     "errors": [],
-    "seconds": 0.1
+    "seconds": 0.0
   },
   "node/33064267": {
-    "checkedAt": "2026-11-05T21:28:37.222013+00:00",
+    "checkedAt": "2026-11-17T00:43:52.520573+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -12102,10 +11810,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 2.7
+    "seconds": 2.8
   },
   "node/1682881702": {
-    "checkedAt": "2026-11-05T21:28:39.878363+00:00",
+    "checkedAt": "2026-11-17T00:43:53.029893+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12114,10 +11822,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.6
+    "seconds": 3.0
   },
   "node/253201362": {
-    "checkedAt": "2026-11-05T21:28:42.752601+00:00",
+    "checkedAt": "2026-11-17T00:43:55.317574+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12125,15 +11833,15 @@
         "kind": "html"
       },
       {
-        "url": "https://cdn.prod.website-files.com/69b40ca70f0b73579504cdb7/6ad735926082515cb9b7129a_Karte_Oktober.pdf",
+        "url": "https://cdn.prod.website-files.com/69b40ca70f0b73579504cdb7/6af2e81b658adfd50bdf6038_Speisekarte_November.pdf",
         "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 4.7
+    "seconds": 5.2
   },
   "node/308973695": {
-    "checkedAt": "2026-11-05T21:18:50.786619+00:00",
+    "checkedAt": "2026-11-17T00:35:02.564482+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -12142,10 +11850,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.4
+    "seconds": 3.3
   },
   "node/3045413150": {
-    "checkedAt": "2026-11-05T21:28:03.560563+00:00",
+    "checkedAt": "2026-11-17T00:43:25.585070+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12174,10 +11882,10 @@
       }
     ],
     "errors": [],
-    "seconds": 39.5
+    "seconds": 26.2
   },
   "node/5921647691": {
-    "checkedAt": "2026-11-05T21:28:33.341640+00:00",
+    "checkedAt": "2026-11-17T00:43:51.738161+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12193,7 +11901,7 @@
         "kind": "html"
       },
       {
-        "url": "https://ed6a89d6-8c5b-4316-be92-21d45679e618.filesusr.com/ugd/c59010_656d511a95be4c01bdd0d2fc4d3431bb.pdf",
+        "url": "https://ed6a89d6-8c5b-4316-be92-21d45679e618.filesusr.com/ugd/c59010_077432b3beff48a0992061d86dc6277d.pdf",
         "kind": "pdf"
       },
       {
@@ -12202,10 +11910,10 @@
       }
     ],
     "errors": [],
-    "seconds": 14.9
+    "seconds": 11.7
   },
   "node/7962621588": {
-    "checkedAt": "2026-11-05T21:28:08.934794+00:00",
+    "checkedAt": "2026-11-17T00:43:32.733856+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12222,10 +11930,10 @@
       }
     ],
     "errors": [],
-    "seconds": 33.8
+    "seconds": 32.3
   },
   "node/265627184": {
-    "checkedAt": "2026-11-05T21:28:43.102135+00:00",
+    "checkedAt": "2026-11-17T00:43:56.037586+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12238,10 +11946,10 @@
       }
     ],
     "errors": [],
-    "seconds": 3.7
+    "seconds": 4.5
   },
   "node/2925703789": {
-    "checkedAt": "2026-11-05T21:27:29.125832+00:00",
+    "checkedAt": "2026-11-17T00:42:54.941673+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12249,7 +11957,7 @@
         "kind": "html"
       },
       {
-        "url": "https://truckerbar.ch/wp-content/uploads/2026/11/02-–-06.November-2026.pdf",
+        "url": "https://truckerbar.ch/wp-content/uploads/2026/11/16-–-20.November-2026.pdf",
         "kind": "pdf"
       },
       {
@@ -12266,10 +11974,10 @@
       }
     ],
     "errors": [],
-    "seconds": 82.7
+    "seconds": 80.0
   },
   "node/286879702": {
-    "checkedAt": "2026-11-05T21:28:20.452879+00:00",
+    "checkedAt": "2026-11-17T00:43:43.601247+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12283,13 +11991,17 @@
       {
         "url": "https://indian-yaadein.ch/wp-content/uploads/2025/06/menu.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://indian-yaadein.ch/wp-content/uploads/2026/11/Yaadein_Weekly_Lunch_Buffet_A4-2.pdf",
+        "kind": "pdf"
       }
     ],
     "errors": [],
-    "seconds": 48.9
+    "seconds": 51.4
   },
   "node/286879773": {
-    "checkedAt": "2026-11-05T21:18:50.781912+00:00",
+    "checkedAt": "2026-11-17T00:34:57.324474+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -12349,10 +12061,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 5.3
+    "seconds": 5.2
   },
   "node/7241894945": {
-    "checkedAt": "2026-11-05T21:28:11.644802+00:00",
+    "checkedAt": "2026-11-17T00:43:36.518439+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12448,11 +12160,7 @@
         "kind": "pdf"
       },
       {
-        "url": "https://www.williamsbutcherstable.ch/wp-content/uploads/2026/09/WBT_ZG_280828_Weinkarte.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.williamsbutcherstable.ch/wp-content/uploads/2026/08/WBT_ZG_260731_Weinkarte.pdf",
+        "url": "https://www.williamsbutcherstable.ch/wp-content/uploads/2026/11/WBT_ZG_1126_Weinkarte.pdf",
         "kind": "pdf"
       },
       {
@@ -12477,10 +12185,10 @@
       }
     ],
     "errors": [],
-    "seconds": 358.6
+    "seconds": 329.9
   },
   "node/8920573511": {
-    "checkedAt": "2026-11-05T21:13:23.416574+00:00",
+    "checkedAt": "2026-11-17T00:28:45.759963+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -12489,10 +12197,10 @@
       }
     ],
     "errors": [],
-    "seconds": 1.4
+    "seconds": 1.2
   },
   "node/14291014339": {
-    "checkedAt": "2026-11-05T21:13:07.429773+00:00",
+    "checkedAt": "2026-11-17T00:28:32.391043+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -12506,13 +12214,17 @@
       {
         "url": "https://bluesky-bern.ch/",
         "kind": "html"
+      },
+      {
+        "url": "https://bluesky-bern.ch/fruehstueck/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 1.8
+    "seconds": 2.8
   },
   "way/460523809": {
-    "checkedAt": "2026-11-05T21:13:30.123721+00:00",
+    "checkedAt": "2026-11-17T00:29:00.218859+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -12529,10 +12241,10 @@
       }
     ],
     "errors": [],
-    "seconds": 2.7
+    "seconds": 2.2
   },
   "node/9103327518": {
-    "checkedAt": "2026-11-05T21:16:33.972589+00:00",
+    "checkedAt": "2026-11-17T00:32:03.153568+00:00",
     "status": "prices_found",
     "documents": [
       {
@@ -12573,10 +12285,10 @@
       }
     ],
     "errors": [],
-    "seconds": 26.6
+    "seconds": 27.7
   },
   "node/6009351291": {
-    "checkedAt": "2026-11-05T21:18:56.853362+00:00",
+    "checkedAt": "2026-11-17T00:35:05.908526+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -12589,7 +12301,7 @@
     "seconds": 2.2
   },
   "node/10656175457": {
-    "checkedAt": "2026-11-05T21:18:56.055351+00:00",
+    "checkedAt": "2026-11-17T00:35:03.145680+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12598,26 +12310,26 @@
       }
     ],
     "errors": [],
-    "seconds": 5.4
+    "seconds": 3.3
   },
   "node/12811865800": {
-    "checkedAt": "2026-11-05T21:18:55.210556+00:00",
+    "checkedAt": "2026-11-17T00:28:22.005742+00:00",
     "status": "prices_found",
     "documents": [
       {
-        "url": "https://www.becanto.ch/standortwest",
-        "kind": "html"
-      },
-      {
         "url": "https://www.becanto.ch/_files/ugd/981e9d_ac2ae2b13e6c4fd0a541f4d056d7ed6a.pdf",
         "kind": "pdf"
+      },
+      {
+        "url": "https://www.becanto.ch/standortwest",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 7.8
+    "seconds": 2.5
   },
   "node/6142423519": {
-    "checkedAt": "2026-11-05T21:18:59.017967+00:00",
+    "checkedAt": "2026-11-17T00:35:06.420227+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12630,10 +12342,10 @@
       }
     ],
     "errors": [],
-    "seconds": 5.7
+    "seconds": 9.2
   },
   "node/9472582926": {
-    "checkedAt": "2026-11-05T21:19:01.346994+00:00",
+    "checkedAt": "2026-11-17T00:35:08.076561+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12646,10 +12358,10 @@
       }
     ],
     "errors": [],
-    "seconds": 4.8
+    "seconds": 6.1
   },
   "node/286879729": {
-    "checkedAt": "2026-11-05T21:19:02.996185+00:00",
+    "checkedAt": "2026-11-17T00:35:14.174123+00:00",
     "status": "no_prices",
     "documents": [
       {
@@ -12854,11 +12566,11 @@
       }
     ],
     "errors": [],
-    "seconds": 61.3
+    "seconds": 100.5
   },
   "node/282774243": {
-    "checkedAt": "2026-11-05T21:19:01.410509+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-11-17T00:35:12.364536+00:00",
+    "status": "partial",
     "documents": [
       {
         "url": "https://www.starbucks.ch/",
@@ -13005,10 +12717,6 @@
         "kind": "html"
       },
       {
-        "url": "https://www.starbucks.ch/en/menu/product/100099",
-        "kind": "html"
-      },
-      {
         "url": "https://www.starbucks.ch/en/menu/product/93903",
         "kind": "html"
       },
@@ -13061,13 +12769,31 @@
         "kind": "html"
       }
     ],
-    "errors": [],
-    "seconds": 62.9
+    "errors": [
+      {
+        "url": "https://www.starbucks.ch/en/menu/product/100099",
+        "reason": "ReadTimeout",
+        "phase": "fetch"
+      }
+    ],
+    "seconds": 102.3
   },
   "node/286879753": {
-    "checkedAt": "2026-11-05T21:18:52.255513+00:00",
+    "checkedAt": "2026-11-17T00:27:52.143113+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260414_ABC_Menubooklet.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260414_Menu_OFT_Sommer_Druck.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260928_Cafe_Esplanade_Menu_Inhalt.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://adrianos.ch/",
         "kind": "html"
@@ -13075,10 +12801,6 @@
       {
         "url": "https://adrianos.ch/pages/adrianos-bar-cafe-bern",
         "kind": "html"
-      },
-      {
-        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260414_ABC_Menubooklet.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://adrianos.ch/pages/adrianos-kaffeeladen-biel-bienne",
@@ -13135,10 +12857,6 @@
       {
         "url": "https://adrianos.ch/pages/adrianos-coffee-orell-fussli",
         "kind": "html"
-      },
-      {
-        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260414_Menu_OFT_Sommer_Druck.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://adrianos.ch/pages/adrianos-kaffeeladen-bern",
@@ -13225,10 +12943,6 @@
         "kind": "html"
       },
       {
-        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260928_Cafe_Esplanade_Menu_Inhalt.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://adrianos.ch/collections/kaffee-bohnen",
         "kind": "html"
       },
@@ -13270,12 +12984,24 @@
       }
     ],
     "errors": [],
-    "seconds": 74.5
+    "seconds": 104.0
   },
   "way/379582648": {
-    "checkedAt": "2026-11-05T21:18:54.258044+00:00",
+    "checkedAt": "2026-11-17T00:27:52.143521+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260414_ABC_Menubooklet.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260414_Menu_OFT_Sommer_Druck.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260928_Cafe_Esplanade_Menu_Inhalt.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://adrianos.ch/",
         "kind": "html"
@@ -13283,10 +13009,6 @@
       {
         "url": "https://adrianos.ch/pages/adrianos-bar-cafe-bern",
         "kind": "html"
-      },
-      {
-        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260414_ABC_Menubooklet.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://adrianos.ch/pages/adrianos-kaffeeladen-biel-bienne",
@@ -13343,10 +13065,6 @@
       {
         "url": "https://adrianos.ch/pages/adrianos-coffee-orell-fussli",
         "kind": "html"
-      },
-      {
-        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260414_Menu_OFT_Sommer_Druck.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://adrianos.ch/pages/adrianos-kaffeeladen-bern",
@@ -13433,10 +13151,6 @@
         "kind": "html"
       },
       {
-        "url": "https://cdn.shopify.com/s/files/1/0689/2565/3279/files/260928_Cafe_Esplanade_Menu_Inhalt.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://adrianos.ch/collections/kaffee-bohnen",
         "kind": "html"
       },
@@ -13478,22 +13192,50 @@
       }
     ],
     "errors": [],
-    "seconds": 72.5
+    "seconds": 104.5
   },
   "node/7221600055": {
-    "checkedAt": "2026-11-05T21:20:09.561450+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-11-17T00:36:06.350022+00:00",
+    "status": "prices_found",
     "documents": [
       {
         "url": "https://asinoilbar.be",
         "kind": "html"
+      },
+      {
+        "url": "https://asinoilbar.be/api/cms/site-image/asino",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://asinoilbar.be/karten",
+        "kind": "html"
+      },
+      {
+        "url": "https://asinoilbar.be/api/asino-menu/ristorante/de",
+        "kind": "html"
+      },
+      {
+        "url": "https://asinoilbar.be/api/cms/site-image/asino",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://asinoilbar.be/api/cms/site-image/asino",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://asinoilbar.be/api/cms/site-image/asino",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://asinoilbar.be/",
+        "kind": "html"
       }
     ],
     "errors": [],
-    "seconds": 0.0
+    "seconds": 3.1
   },
   "node/537955673": {
-    "checkedAt": "2026-11-05T21:20:10.108166+00:00",
+    "checkedAt": "2026-11-17T00:36:07.568885+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -13503,10 +13245,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 12.2
+    "seconds": 13.5
   },
   "node/540757176": {
-    "checkedAt": "2026-11-05T21:20:11.097396+00:00",
+    "checkedAt": "2026-11-17T00:36:09.494151+00:00",
     "status": "partial",
     "documents": [
       {
@@ -13526,22 +13268,46 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 14.4
+    "seconds": 55.1
   },
   "node/8312830899": {
-    "checkedAt": "2026-11-05T21:20:09.564756+00:00",
-    "status": "no_prices",
+    "checkedAt": "2026-11-17T00:36:07.207008+00:00",
+    "status": "prices_found",
     "documents": [
       {
         "url": "https://asinoilbar.be/",
         "kind": "html"
+      },
+      {
+        "url": "https://asinoilbar.be/api/cms/site-image/asino",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://asinoilbar.be/karten",
+        "kind": "html"
+      },
+      {
+        "url": "https://asinoilbar.be/api/asino-menu/ristorante/de",
+        "kind": "html"
+      },
+      {
+        "url": "https://asinoilbar.be/api/cms/site-image/asino",
+        "kind": "unsupported"
+      },
+      {
+        "url": "https://asinoilbar.be/api/cms/site-image/asino",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://asinoilbar.be/api/cms/site-image/asino",
+        "kind": "unsupported"
       }
     ],
     "errors": [],
-    "seconds": 25.9
+    "seconds": 3.1
   },
   "node/2946058056": {
-    "checkedAt": "2026-11-05T21:20:13.695887+00:00",
+    "checkedAt": "2026-11-17T00:36:10.312472+00:00",
     "status": "partial",
     "documents": [
       {
@@ -13561,10 +13327,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 23.0
+    "seconds": 63.7
   },
   "node/7746699781": {
-    "checkedAt": "2026-11-05T21:20:25.527949+00:00",
+    "checkedAt": "2026-11-17T00:36:49.352704+00:00",
     "status": "fetch_failed",
     "documents": [],
     "errors": [
@@ -13574,10 +13340,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 12.8
+    "seconds": 13.6
   },
   "node/6541950496": {
-    "checkedAt": "2026-11-05T21:20:14.703094+00:00",
+    "checkedAt": "2026-11-17T00:36:14.017854+00:00",
     "status": "partial",
     "documents": [
       {
@@ -13597,10 +13363,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 25.2
+    "seconds": 41.6
   },
   "node/7517206832": {
-    "checkedAt": "2026-11-05T21:20:22.263551+00:00",
+    "checkedAt": "2026-11-17T00:36:21.099191+00:00",
     "status": "partial",
     "documents": [
       {
@@ -13620,10 +13386,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 21.7
+    "seconds": 54.2
   },
   "node/761255429": {
-    "checkedAt": "2026-11-05T21:20:36.734335+00:00",
+    "checkedAt": "2026-11-17T00:36:55.612413+00:00",
     "status": "partial",
     "documents": [
       {
@@ -13711,10 +13477,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 109.0
+    "seconds": 94.4
   },
   "node/2343343289": {
-    "checkedAt": "2026-11-05T21:20:35.451376+00:00",
+    "checkedAt": "2026-11-17T00:36:54.652515+00:00",
     "status": "partial",
     "documents": [
       {
@@ -13802,10 +13568,10 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 110.3
+    "seconds": 95.4
   },
   "node/7671137613": {
-    "checkedAt": "2026-11-05T21:20:35.521453+00:00",
+    "checkedAt": "2026-11-17T00:36:54.672067+00:00",
     "status": "partial",
     "documents": [
       {
@@ -13893,12 +13659,24 @@
         "phase": "fetch"
       }
     ],
-    "seconds": 110.3
+    "seconds": 95.4
   },
   "node/6855277335": {
-    "checkedAt": "2026-11-05T21:20:39.900254+00:00",
+    "checkedAt": "2026-11-17T00:34:13.340693+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_AA.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.tibits.ch/de/restaurants/standorte",
         "kind": "html"
@@ -13908,24 +13686,12 @@
         "kind": "html"
       },
       {
-        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_AA.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_ZG.pdf",
         "kind": "pdf"
       },
       {
         "url": "https://www.tibits.ch/fr/manger/menu",
         "kind": "html"
-      },
-      {
-        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://www.tibits.ch/en/food/menu",
@@ -14101,12 +13867,24 @@
       }
     ],
     "errors": [],
-    "seconds": 119.3
+    "seconds": 94.6
   },
   "node/2687061491": {
-    "checkedAt": "2026-11-05T21:20:38.286164+00:00",
+    "checkedAt": "2026-11-17T00:33:45.401551+00:00",
     "status": "prices_found",
     "documents": [
+      {
+        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
+        "kind": "pdf"
+      },
+      {
+        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_AA.pdf",
+        "kind": "pdf"
+      },
       {
         "url": "https://www.tibits.ch/de/restaurants/standorte",
         "kind": "html"
@@ -14116,24 +13894,12 @@
         "kind": "html"
       },
       {
-        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_DE_105x210mm.pdf",
-        "kind": "pdf"
-      },
-      {
-        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_AA.pdf",
-        "kind": "pdf"
-      },
-      {
         "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_105x210mm_ZG.pdf",
         "kind": "pdf"
       },
       {
         "url": "https://www.tibits.ch/fr/manger/menu",
         "kind": "html"
-      },
-      {
-        "url": "https://www.tibits.ch/tl_files/content/file/Speisekarten/2026_Herbst/tibits_Getraenkekarte_HerbstWinter2026_FR_105x210mm.pdf",
-        "kind": "pdf"
       },
       {
         "url": "https://www.tibits.ch/en/food/menu",
@@ -14309,6 +14075,6 @@
       }
     ],
     "errors": [],
-    "seconds": 120.9
+    "seconds": 122.5
   }
 }
