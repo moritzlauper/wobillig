@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T21:25:21.430811+00:00",
+  "generatedAt": "2026-11-17T00:10:50.461205+00:00",
   "discoveredAt": "2026-11-16T21:14:36.286666+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "bars": [
@@ -102,7 +102,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:36.294217+00:00"
+      "checkedAt": "2026-11-16T21:14:36.294217+00:00",
+      "aiCheckedAt": "2026-11-16T23:04:24.282522+00:00"
     },
     {
       "id": "node/9748222017",
@@ -200,7 +201,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 13.5
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:15:47.431305+00:00"
     },
     {
       "id": "node/6556102796",
@@ -306,7 +308,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 65.5
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:04:46.586298+00:00"
     },
     {
       "id": "node/1028007577",
@@ -461,7 +464,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:36.294853+00:00"
+      "checkedAt": "2026-11-16T21:14:36.294853+00:00",
+      "aiCheckedAt": "2026-11-16T23:25:02.812716+00:00"
     },
     {
       "id": "node/12707627770",
@@ -622,7 +626,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 15.3
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:06:04.382800+00:00"
     },
     {
       "id": "node/2434405556",
@@ -653,9 +658,67 @@
       "cuisine": [],
       "openingHours": null,
       "outdoor": false,
-      "offers": [],
+      "offers": [
+        {
+          "name": "café crema",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bassoverse.space/restaurant",
+          "observedAt": "2026-11-16T23:17:53.188610+00:00",
+          "confidence": "ai",
+          "evidence": "café crema / americano With coffee from the Kaffeemacher:innen from Basel 4.8",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "805acd925b3e70f1ea120330d110ec4969ba09248a839ae4ccf5ff67ebb476ab"
+        },
+        {
+          "name": "americano",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bassoverse.space/restaurant",
+          "observedAt": "2026-11-16T23:17:53.188610+00:00",
+          "confidence": "ai",
+          "evidence": "café crema / americano With coffee from the Kaffeemacher:innen from Basel 4.8",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "americano",
+          "sourceSha256": "805acd925b3e70f1ea120330d110ec4969ba09248a839ae4ccf5ff67ebb476ab"
+        },
+        {
+          "name": "cappuccino",
+          "priceChf": 5.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bassoverse.space/restaurant",
+          "observedAt": "2026-11-16T23:17:53.188610+00:00",
+          "confidence": "ai",
+          "evidence": "cappuccino With coffee from the Kaffeemacher:innen from Basel 5.8",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "805acd925b3e70f1ea120330d110ec4969ba09248a839ae4ccf5ff67ebb476ab"
+        },
+        {
+          "name": "espresso",
+          "priceChf": 4,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bassoverse.space/restaurant",
+          "observedAt": "2026-11-16T23:17:53.188610+00:00",
+          "confidence": "ai",
+          "evidence": "espresso With coffee from the Kaffeemacher:innen from Basel 4",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "805acd925b3e70f1ea120330d110ec4969ba09248a839ae4ccf5ff67ebb476ab"
+        }
+      ],
       "scrapeStatus": "review_required",
-      "checkedAt": "2026-11-16T21:14:36.306760+00:00"
+      "checkedAt": "2026-11-16T21:14:36.306760+00:00",
+      "aiCheckedAt": "2026-11-16T23:19:46.639991+00:00"
     },
     {
       "id": "node/3888944674",
@@ -780,7 +843,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 24.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:17:52.862466+00:00"
     },
     {
       "id": "node/1170699798",
@@ -899,7 +963,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:36.328039+00:00"
+      "checkedAt": "2026-11-16T21:14:36.328039+00:00",
+      "aiCheckedAt": "2026-11-16T23:03:49.247696+00:00"
     },
     {
       "id": "node/4826835625",
@@ -1074,10 +1139,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 1: Matcha Latte Fr. 7.-",
           "alcoholFree": true
+        },
+        {
+          "name": "Kaffee",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.bistrojohannes.ch/_files/ugd/adb95f_627da5958e7140859adeca0c4552256a.pdf",
+          "observedAt": "2026-11-16T23:16:04.656368+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee Fr. 5.-",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "8918c57e0c7c3ec6a790771c37a246db461a9620482f85cedc536633715cd1c0"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:40.534567+00:00"
+      "checkedAt": "2026-11-16T21:14:40.534567+00:00",
+      "aiCheckedAt": "2026-11-16T23:18:20.662825+00:00"
     },
     {
       "id": "node/2369538706",
@@ -1284,7 +1364,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:40.783384+00:00"
+      "checkedAt": "2026-11-16T21:14:40.783384+00:00",
+      "aiCheckedAt": "2026-11-16T23:26:55.181609+00:00"
     },
     {
       "id": "node/1936100732",
@@ -1367,7 +1448,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:43.343950+00:00"
+      "checkedAt": "2026-11-16T21:14:43.343950+00:00",
+      "aiCheckedAt": "2026-11-16T23:23:26.425197+00:00"
     },
     {
       "id": "node/13606442693",
@@ -1377,7 +1459,6 @@
       "type": "cafe",
       "address": "Grenzacherstrasse 97",
       "postcode": "4058",
-      "addressSource": "https://www.openstreetmap.org/way/317498044",
       "website": "https://bruspecialtycoffee.com",
       "cuisine": [
         "coffee_shop",
@@ -1440,10 +1521,40 @@
           "confidence": "automatic",
           "evidence": "Flat White — CHF 5.90",
           "alcoholFree": true
+        },
+        {
+          "name": "Latte",
+          "priceChf": 5.9,
+          "volumeMl": null,
+          "sourceUrl": "https://bruspecialtycoffee.com/blogs/guides/summer-at-bru-new-drinks-brunch-specials-evening-menu",
+          "observedAt": "2026-11-16T22:45:25.771682+00:00",
+          "confidence": "ai",
+          "evidence": "Latte — CHF 5.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "2d3825a43d950960d2a6531dcb90b4ca77e8b1846c2397b8b3fc8afe8cc963e7"
+        },
+        {
+          "name": "Batch BRÜ",
+          "priceChf": 3.9,
+          "volumeMl": null,
+          "sourceUrl": "https://bruspecialtycoffee.com/blogs/guides/summer-at-bru-new-drinks-brunch-specials-evening-menu",
+          "observedAt": "2026-11-16T22:45:25.771682+00:00",
+          "confidence": "ai",
+          "evidence": "Batch BRÜ — CHF 3.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "2d3825a43d950960d2a6531dcb90b4ca77e8b1846c2397b8b3fc8afe8cc963e7"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:45.316963+00:00"
+      "checkedAt": "2026-11-16T21:14:45.316963+00:00",
+      "addressSource": "https://www.openstreetmap.org/way/317498044",
+      "aiCheckedAt": "2026-11-16T22:46:26.560198+00:00"
     },
     {
       "id": "node/13606447321",
@@ -1580,7 +1691,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:54.708097+00:00"
+      "checkedAt": "2026-11-16T21:14:54.708097+00:00",
+      "aiCheckedAt": "2026-11-16T23:16:39.541399+00:00"
     },
     {
       "id": "node/9871385224",
@@ -1670,7 +1782,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 27.5
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:24:02.108361+00:00"
     },
     {
       "id": "node/8016865752",
@@ -1792,7 +1905,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:57.243508+00:00"
+      "checkedAt": "2026-11-16T21:14:57.243508+00:00",
+      "aiCheckedAt": "2026-11-16T22:57:22.723789+00:00"
     },
     {
       "id": "node/279852803",
@@ -2003,7 +2117,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:14:59.187371+00:00"
+      "checkedAt": "2026-11-16T21:14:59.187371+00:00",
+      "aiCheckedAt": "2026-11-16T23:15:19.442118+00:00"
     },
     {
       "id": "node/11835158537",
@@ -2087,7 +2202,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:15:06.255134+00:00"
+      "checkedAt": "2026-11-16T21:15:06.255134+00:00",
+      "aiCheckedAt": "2026-11-16T23:22:45.877093+00:00"
     },
     {
       "id": "node/1794707585",
@@ -2511,7 +2627,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:15:13.404797+00:00"
+      "checkedAt": "2026-11-16T21:15:13.404797+00:00",
+      "aiCheckedAt": "2026-11-16T23:04:53.530453+00:00"
     },
     {
       "id": "node/7638773385",
@@ -2722,7 +2839,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:15:27.085469+00:00"
+      "checkedAt": "2026-11-16T21:15:27.085469+00:00",
+      "aiCheckedAt": "2026-11-16T23:21:46.479772+00:00"
     },
     {
       "id": "node/3890667961",
@@ -2852,6 +2970,76 @@
           "confidence": "automatic",
           "evidence": "Cappuccino CHF 5.20",
           "alcoholFree": true
+        },
+        {
+          "name": "Kaffee crème oder Haag",
+          "priceChf": 4.6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastubli.com/ch/menuler",
+          "observedAt": "2026-11-16T23:29:14.490880+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee crème oder Haag CHF 4.60",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "8d04e943881d9f7cd41c9ce15ac7bfb9159d9ad249102c9d152ddb300495c2d2"
+        },
+        {
+          "name": "Espresso oder Haag",
+          "priceChf": 4.7,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastubli.com/ch/menuler",
+          "observedAt": "2026-11-16T23:29:14.490880+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso oder Haag CHF 4.70",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "8d04e943881d9f7cd41c9ce15ac7bfb9159d9ad249102c9d152ddb300495c2d2"
+        },
+        {
+          "name": "Ristretto oder Haag",
+          "priceChf": 4.7,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastubli.com/ch/menuler",
+          "observedAt": "2026-11-16T23:29:14.490880+00:00",
+          "confidence": "ai",
+          "evidence": "Ristretto oder Haag CHF 4.70",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "8d04e943881d9f7cd41c9ce15ac7bfb9159d9ad249102c9d152ddb300495c2d2"
+        },
+        {
+          "name": "Doppelter Espresso oder Haag",
+          "priceChf": 6.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastubli.com/ch/menuler",
+          "observedAt": "2026-11-16T23:29:14.490880+00:00",
+          "confidence": "ai",
+          "evidence": "Doppelter Espresso oder Haag CHF 6.90",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "8d04e943881d9f7cd41c9ce15ac7bfb9159d9ad249102c9d152ddb300495c2d2"
+        },
+        {
+          "name": "Schale (Milchkaffee) oder Haag",
+          "priceChf": 4.7,
+          "volumeMl": null,
+          "sourceUrl": "https://www.clarastubli.com/ch/menuler",
+          "observedAt": "2026-11-16T23:29:14.490880+00:00",
+          "confidence": "ai",
+          "evidence": "Schale (Milchkaffee) oder Haag CHF 4.70",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "8d04e943881d9f7cd41c9ce15ac7bfb9159d9ad249102c9d152ddb300495c2d2"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -2859,7 +3047,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 18.2
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:32:05.765604+00:00"
     },
     {
       "id": "node/12230466535",
@@ -2907,7 +3096,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 15.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:14:55.967827+00:00"
     },
     {
       "id": "node/14248554055",
@@ -3027,7 +3217,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 27.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:56:52.576368+00:00"
     },
     {
       "id": "node/14174002895",
@@ -3148,7 +3339,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:15:47.827536+00:00"
+      "checkedAt": "2026-11-16T21:15:47.827536+00:00",
+      "aiCheckedAt": "2026-11-16T22:58:17.820023+00:00"
     },
     {
       "id": "node/9326577381",
@@ -3266,11 +3458,25 @@
           "confidence": "automatic",
           "evidence": "PDF S. 2: Matcha Latte 7",
           "alcoholFree": true
+        },
+        {
+          "name": "Coffee",
+          "priceChf": 5,
+          "volumeMl": null,
+          "sourceUrl": "https://cdn.shopify.com/s/files/1/0854/1965/5515/files/RZ_MENU_CREAM.pdf?v=1789158021",
+          "observedAt": "2026-11-16T23:26:55.231620+00:00",
+          "confidence": "ai",
+          "evidence": "Coffee 5",
+          "alcoholFree": true,
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "b786d91037b107abdd5efdb4dce6433c8729df508c066e526de71233cd565465"
         }
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-16T21:15:49.960580+00:00",
-      "aiCheckedAt": "2026-11-06T02:04:44.772170+00:00"
+      "aiCheckedAt": "2026-11-16T23:27:24.364369+00:00"
     },
     {
       "id": "node/5483369521",
@@ -3379,7 +3585,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:15:54.738662+00:00"
+      "checkedAt": "2026-11-16T21:15:54.738662+00:00",
+      "aiCheckedAt": "2026-11-16T22:48:06.995633+00:00"
     },
     {
       "id": "node/5364617921",
@@ -3464,7 +3671,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:15:55.393697+00:00"
+      "checkedAt": "2026-11-16T21:15:55.393697+00:00",
+      "aiCheckedAt": "2026-11-16T22:48:27.529376+00:00"
     },
     {
       "id": "node/5364628821",
@@ -3549,7 +3757,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:15:55.788613+00:00"
+      "checkedAt": "2026-11-16T21:15:55.788613+00:00",
+      "aiCheckedAt": "2026-11-16T22:48:08.089464+00:00"
     },
     {
       "id": "node/5364651421",
@@ -3634,7 +3843,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:15:56.315737+00:00"
+      "checkedAt": "2026-11-16T21:15:56.315737+00:00",
+      "aiCheckedAt": "2026-11-16T22:48:27.235833+00:00"
     },
     {
       "id": "node/8727999200",
@@ -3670,6 +3880,34 @@
           "confidence": "automatic",
           "evidence": "Doppio CHF 7",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso al volo",
+          "priceChf": 2.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.damatti.it/getraenke",
+          "observedAt": "2026-11-16T22:14:57.880650+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso al volo / an der Bar: CHF 2.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "536f78b0781ee1b9cee98b45de4f08ce7f282f4e242bb5defd5d115852cdcb03"
+        },
+        {
+          "name": "Latte Macchiato / Freddo",
+          "priceChf": 6,
+          "volumeMl": null,
+          "sourceUrl": "https://www.damatti.it/getraenke",
+          "observedAt": "2026-11-16T22:14:57.880650+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiato / Freddo CHF 6",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "536f78b0781ee1b9cee98b45de4f08ce7f282f4e242bb5defd5d115852cdcb03"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -3677,7 +3915,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 53.5
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:17:00.416300+00:00"
     },
     {
       "id": "node/11876754508",
@@ -3858,7 +4097,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 75.25
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:22:58.922663+00:00"
     },
     {
       "id": "node/7747207685",
@@ -3918,6 +4158,20 @@
           "confidence": "automatic",
           "evidence": "Latte Macchiato CHF 5.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Capuccino",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.restaurantdreirosen.ch/getraenke",
+          "observedAt": "2026-11-16T23:14:16.253293+00:00",
+          "confidence": "ai",
+          "evidence": "Capuccino CHF 4.80",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "c82263885ab738e201db581472c2700776a665503a44ae3d1c4e3e0a250ba91f"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -3925,7 +4179,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 22.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:15:35.326206+00:00"
     },
     {
       "id": "node/7871792488",
@@ -3997,7 +4252,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:06.220495+00:00"
+      "checkedAt": "2026-11-16T21:16:06.220495+00:00",
+      "aiCheckedAt": "2026-11-16T23:29:36.470429+00:00"
     },
     {
       "id": "node/3811616609",
@@ -4105,7 +4361,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:06.605415+00:00"
+      "checkedAt": "2026-11-16T21:16:06.605415+00:00",
+      "aiCheckedAt": "2026-11-16T23:36:02.748362+00:00"
     },
     {
       "id": "node/4346226796",
@@ -4189,7 +4446,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 62.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:07:27.040569+00:00"
     },
     {
       "id": "node/11268583746",
@@ -4396,7 +4654,72 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:10.200958+00:00"
+      "checkedAt": "2026-11-16T21:16:10.200958+00:00",
+      "aiCheckedAt": "2026-11-16T23:33:55.003182+00:00"
+    },
+    {
+      "id": "node/10884236353",
+      "name": "Fass Bar",
+      "lat": 47.5657565,
+      "lon": 7.5956208,
+      "type": "pub",
+      "address": "Hammerstrasse 108",
+      "postcode": "",
+      "website": "https://www.goldenes-fass.ch/fass-bar/",
+      "cuisine": [],
+      "openingHours": "Fr, Sa 17:30-03:00; Mo-We 17:30-01:00; Th 17:30-02:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Espresso / Kaffee",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.goldenes-fass.ch/wp-content/uploads/2026/09/Getraenke_12.09.26.pdf",
+          "observedAt": "2026-11-16T23:26:58.745106+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso / Kaffee 4.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "62e9ba7c5e5b05a72c6aa5350390d2ef52a5a9c7478efaa971cf89a5e6ed0df2"
+        },
+        {
+          "name": "Milchkaffee / Cappucino",
+          "priceChf": 5.5,
+          "volumeMl": null,
+          "sourceUrl": "https://www.goldenes-fass.ch/wp-content/uploads/2026/09/Getraenke_12.09.26.pdf",
+          "observedAt": "2026-11-16T23:26:58.745106+00:00",
+          "confidence": "ai",
+          "evidence": "Milchkaffee / Cappucino 5.50",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "62e9ba7c5e5b05a72c6aa5350390d2ef52a5a9c7478efaa971cf89a5e6ed0df2"
+        },
+        {
+          "name": "Doppelter Espresso",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.goldenes-fass.ch/wp-content/uploads/2026/09/Getraenke_12.09.26.pdf",
+          "observedAt": "2026-11-16T23:26:58.745106+00:00",
+          "confidence": "ai",
+          "evidence": "Doppelter Espresso 6.–",
+          "alcoholFree": true,
+          "sourcePage": 3,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "double",
+          "sourceSha256": "62e9ba7c5e5b05a72c6aa5350390d2ef52a5a9c7478efaa971cf89a5e6ed0df2"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-16T21:02:56.247797+00:00",
+      "outdoorPermit": {
+        "season": "unspecified",
+        "areaM2": 5.0
+      },
+      "aiCheckedAt": "2026-11-16T23:28:22.057909+00:00"
     },
     {
       "id": "node/13526230219",
@@ -4488,7 +4811,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:12.340625+00:00"
+      "checkedAt": "2026-11-16T21:16:12.340625+00:00",
+      "aiCheckedAt": "2026-11-16T23:38:32.868111+00:00"
     },
     {
       "id": "node/9677739617",
@@ -4524,6 +4848,20 @@
           "confidence": "automatic",
           "evidence": "Cappuccino 5.50",
           "alcoholFree": true
+        },
+        {
+          "name": "Latte",
+          "priceChf": 5.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.flanagans.ch/basel/drinks-menu",
+          "observedAt": "2026-11-16T23:32:10.403938+00:00",
+          "confidence": "ai",
+          "evidence": "Latte 5.80",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "824915bab903b5162836a81b05e6bf48857f1e244511fd71aa79559505acc730"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -4531,7 +4869,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 43.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:35:16.626055+00:00"
     },
     {
       "id": "node/14007225418",
@@ -4729,7 +5068,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:19.019253+00:00"
+      "checkedAt": "2026-11-16T21:16:19.019253+00:00",
+      "aiCheckedAt": "2026-11-16T23:33:11.491480+00:00"
     },
     {
       "id": "node/12014452761",
@@ -4884,7 +5224,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 44.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:47:27.255344+00:00"
     },
     {
       "id": "node/7598139857",
@@ -4934,7 +5275,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:22.607598+00:00"
+      "checkedAt": "2026-11-16T21:16:22.607598+00:00",
+      "aiCheckedAt": "2026-11-16T23:13:47.969385+00:00"
     },
     {
       "id": "node/12032495846",
@@ -5088,7 +5430,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:23.991279+00:00"
+      "checkedAt": "2026-11-16T21:16:23.991279+00:00",
+      "aiCheckedAt": "2026-11-16T23:33:23.641803+00:00"
     },
     {
       "id": "node/13156808301",
@@ -5321,7 +5664,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 4.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:49:01.446467+00:00"
     },
     {
       "id": "node/13791838181",
@@ -5350,7 +5694,6 @@
       "type": "cafe",
       "address": "St. Johanns-Park 1",
       "postcode": "4056",
-      "addressSource": "https://www.openstreetmap.org/node/5294088443",
       "website": "https://kleinerwassermann.cafe/",
       "cuisine": [],
       "openingHours": "We-Su 10:00-18:00; Th-Fr 10:00-23:45",
@@ -5443,12 +5786,14 @@
       ],
       "scrapeStatus": "prices_found",
       "checkedAt": "2026-11-16T21:16:27.428112+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/5294088443",
       "outdoorPermit": {
         "season": "seasonal",
         "from": "02-15",
         "until": "11-15",
         "areaM2": 60.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:08:08.294657+00:00"
     },
     {
       "id": "node/13484845049",
@@ -5584,7 +5929,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 39.85
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:37:03.694192+00:00"
     },
     {
       "id": "node/2215970143",
@@ -5656,7 +6002,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:35.754694+00:00"
+      "checkedAt": "2026-11-16T21:16:35.754694+00:00",
+      "aiCheckedAt": "2026-11-16T23:09:36.551344+00:00"
     },
     {
       "id": "node/14078084801",
@@ -5777,7 +6124,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 24.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:24:13.859218+00:00"
     },
     {
       "id": "node/10606177702",
@@ -5907,7 +6255,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:44.649158+00:00"
+      "checkedAt": "2026-11-16T21:16:44.649158+00:00",
+      "aiCheckedAt": "2026-11-16T23:11:03.483897+00:00"
     },
     {
       "id": "node/13061564803",
@@ -5979,7 +6328,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:48.973236+00:00"
+      "checkedAt": "2026-11-16T21:16:48.973236+00:00",
+      "aiCheckedAt": "2026-11-16T23:08:23.757390+00:00"
     },
     {
       "id": "node/3888881365",
@@ -6063,7 +6413,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:51.336022+00:00"
+      "checkedAt": "2026-11-16T21:16:51.336022+00:00",
+      "aiCheckedAt": "2026-11-16T23:36:37.322244+00:00"
     },
     {
       "id": "node/5691850621",
@@ -6152,7 +6503,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:16:59.606988+00:00"
+      "checkedAt": "2026-11-16T21:16:59.606988+00:00",
+      "aiCheckedAt": "2026-11-16T23:36:28.292962+00:00"
     },
     {
       "id": "node/4144545589",
@@ -6197,7 +6549,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 150.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:43:42.414050+00:00"
     },
     {
       "id": "node/4447974700",
@@ -6304,7 +6657,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 90.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:37:53.756412+00:00"
     },
     {
       "id": "node/9269725977",
@@ -6387,7 +6741,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:13.000309+00:00"
+      "checkedAt": "2026-11-16T21:17:13.000309+00:00",
+      "aiCheckedAt": "2026-11-16T23:41:29.785340+00:00"
     },
     {
       "id": "node/6239202286",
@@ -6475,7 +6830,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:14.261593+00:00"
+      "checkedAt": "2026-11-16T21:17:14.261593+00:00",
+      "aiCheckedAt": "2026-11-16T23:53:24.662611+00:00"
     },
     {
       "id": "node/5437910848",
@@ -6579,7 +6935,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:15.505126+00:00"
+      "checkedAt": "2026-11-16T21:17:15.505126+00:00",
+      "aiCheckedAt": "2026-11-16T23:48:54.799475+00:00"
     },
     {
       "id": "node/593639067",
@@ -6687,7 +7044,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 12.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:42:08.691261+00:00"
     },
     {
       "id": "node/9080191421",
@@ -6902,7 +7260,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 8.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:03:58.690507+00:00"
     },
     {
       "id": "node/7810200918",
@@ -6973,7 +7332,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 44.5
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:59:19.235098+00:00"
     },
     {
       "id": "node/8909393066",
@@ -7058,7 +7418,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:32.348131+00:00"
+      "checkedAt": "2026-11-16T21:17:32.348131+00:00",
+      "aiCheckedAt": "2026-11-16T23:43:33.775321+00:00"
     },
     {
       "id": "node/13130547170",
@@ -7138,7 +7499,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:33.563264+00:00"
+      "checkedAt": "2026-11-16T21:17:33.563264+00:00",
+      "aiCheckedAt": "2026-11-16T23:45:26.190068+00:00"
     },
     {
       "id": "node/2578294254",
@@ -7230,7 +7592,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 56.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:48:18.263684+00:00"
     },
     {
       "id": "node/4417769694",
@@ -7352,7 +7715,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 40.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:10:30.133246+00:00"
     },
     {
       "id": "node/3208777922",
@@ -7420,10 +7784,39 @@
           "confidence": "automatic",
           "evidence": "PDF S. 9: Doppelter Espresso 7.00",
           "alcoholFree": true
+        },
+        {
+          "name": "Ristretto",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://aeschenplatz.ch/wp-content/uploads/aeschenplatz_speisekarte_04.2025.pdf",
+          "observedAt": "2026-11-16T22:57:42.361796+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFE UND TEE Kaffe / Espresso / Ristretto 4.80",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "ristretto",
+          "sourceSha256": "5879f62682c84c3975c3ea36f30a6d5a4c6be37a1347a3f84f4b76c63d9bc45d"
+        },
+        {
+          "name": "Latte Machiato",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://aeschenplatz.ch/wp-content/uploads/aeschenplatz_speisekarte_04.2025.pdf",
+          "observedAt": "2026-11-16T22:57:42.361796+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFE UND TEE Latte Machiato / Capuccino 6.00",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "5879f62682c84c3975c3ea36f30a6d5a4c6be37a1347a3f84f4b76c63d9bc45d"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:37.873757+00:00"
+      "checkedAt": "2026-11-16T21:17:37.873757+00:00",
+      "aiCheckedAt": "2026-11-16T23:00:17.061844+00:00"
     },
     {
       "id": "node/6047355929",
@@ -7487,7 +7880,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:39.127664+00:00"
+      "checkedAt": "2026-11-16T21:17:39.127664+00:00",
+      "aiCheckedAt": "2026-11-16T23:57:35.593867+00:00"
     },
     {
       "id": "node/2624405472",
@@ -7546,7 +7940,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 6.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:51:34.935895+00:00"
     },
     {
       "id": "node/582950406",
@@ -7640,7 +8035,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:47.466955+00:00"
+      "checkedAt": "2026-11-16T21:17:47.466955+00:00",
+      "aiCheckedAt": "2026-11-16T23:55:38.175792+00:00"
     },
     {
       "id": "node/9832402717",
@@ -7782,7 +8178,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:48.989068+00:00"
+      "checkedAt": "2026-11-16T21:17:48.989068+00:00",
+      "aiCheckedAt": "2026-11-16T23:48:42.438187+00:00"
     },
     {
       "id": "node/273223709",
@@ -7873,7 +8270,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:50.339545+00:00"
+      "checkedAt": "2026-11-16T21:17:50.339545+00:00",
+      "aiCheckedAt": "2026-11-16T23:12:23.335873+00:00"
     },
     {
       "id": "node/11757900217",
@@ -7934,7 +8332,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:51.220158+00:00"
+      "checkedAt": "2026-11-16T21:17:51.220158+00:00",
+      "aiCheckedAt": "2026-11-16T23:07:54.977000+00:00"
     },
     {
       "id": "node/5016417015",
@@ -8034,7 +8433,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 15.75
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:59:45.160110+00:00"
     },
     {
       "id": "node/6647636870",
@@ -8164,7 +8564,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:17:52.890979+00:00"
+      "checkedAt": "2026-11-16T21:17:52.890979+00:00",
+      "aiCheckedAt": "2026-11-16T23:59:52.170282+00:00"
     },
     {
       "id": "node/585047863",
@@ -8247,7 +8648,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 10.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:12:39.285509+00:00"
     },
     {
       "id": "node/6644516746",
@@ -8301,6 +8703,34 @@
           "confidence": "automatic",
           "evidence": "Cappuccino 5,50",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://shiro-basel.ch/speisekarte/",
+          "observedAt": "2026-11-16T23:53:30.026379+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso | Doppelt 4,80 | 7,00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "cfed5fcffa22179c5e28ccb54e74eaa7206db53c5d13d284e6aad2807e4ffeb2"
+        },
+        {
+          "name": "Latte Macchiatio",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://shiro-basel.ch/speisekarte/",
+          "observedAt": "2026-11-16T23:53:30.026379+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Macchiatio 6,00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "cfed5fcffa22179c5e28ccb54e74eaa7206db53c5d13d284e6aad2807e4ffeb2"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -8308,7 +8738,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 9.8
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:56:47.796911+00:00"
     },
     {
       "id": "node/4278519394",
@@ -8463,7 +8894,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:00.611061+00:00"
+      "checkedAt": "2026-11-16T21:18:00.611061+00:00",
+      "aiCheckedAt": "2026-11-16T23:48:32.263616+00:00"
     },
     {
       "id": "node/14293160501",
@@ -8583,7 +9015,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 22.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:12:00.497608+00:00"
     },
     {
       "id": "node/4377355190",
@@ -8680,7 +9113,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:02.525408+00:00"
+      "checkedAt": "2026-11-16T21:18:02.525408+00:00",
+      "aiCheckedAt": "2026-11-16T23:14:13.686185+00:00"
     },
     {
       "id": "node/11997975469",
@@ -8763,7 +9197,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:05.288732+00:00"
+      "checkedAt": "2026-11-16T21:18:05.288732+00:00",
+      "aiCheckedAt": "2026-11-16T23:54:26.226372+00:00"
     },
     {
       "id": "node/6133118090",
@@ -8853,7 +9288,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 20.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:59:04.631209+00:00"
     },
     {
       "id": "node/2434407893",
@@ -9112,10 +9548,25 @@
           "extractionModel": "claude-haiku-5-5",
           "coffeeType": "latte",
           "sourceSha256": "229c42705afc91c785eea4925c436f15dca6671ba3fc2f36277f1156a2432f4c"
+        },
+        {
+          "name": "Kaffee",
+          "priceChf": 4.9,
+          "volumeMl": null,
+          "sourceUrl": "https://www.tavernejohann.ch/assets/tavernejohann/Files/Zum-Gniesse.pdf",
+          "observedAt": "2026-11-16T23:57:39.148083+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee 4.90",
+          "alcoholFree": true,
+          "sourcePage": 7,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "229c42705afc91c785eea4925c436f15dca6671ba3fc2f36277f1156a2432f4c"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:07.497244+00:00"
+      "checkedAt": "2026-11-16T21:18:07.497244+00:00",
+      "aiCheckedAt": "2026-11-16T23:59:23.562782+00:00"
     },
     {
       "id": "node/11016416537",
@@ -9224,7 +9675,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:11.680988+00:00"
+      "checkedAt": "2026-11-16T21:18:11.680988+00:00",
+      "aiCheckedAt": "2026-11-16T22:50:22.041760+00:00"
     },
     {
       "id": "node/7457896182",
@@ -9322,7 +9774,43 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:11.927596+00:00"
+      "checkedAt": "2026-11-16T21:18:11.927596+00:00",
+      "aiCheckedAt": "2026-11-17T00:02:30.436363+00:00"
+    },
+    {
+      "id": "node/14352555819",
+      "name": "The Siam Delicious",
+      "lat": 47.5663888,
+      "lon": 7.5923825,
+      "type": "restaurant",
+      "address": "Feldbergstrasse 70",
+      "postcode": "4057",
+      "website": "https://www.thesiamdelicious.com/",
+      "cuisine": [
+        "thai"
+      ],
+      "openingHours": "Mo,Tu,Th 11:30-14:00,17:00-22:00; Fr 11:30-14:00,17:00-23:00; Sa 11:30-23:00; Su 11:30-22:00; We off",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Cafe Cream",
+          "priceChf": 4.7,
+          "volumeMl": null,
+          "sourceUrl": "https://www.thesiamdelicious.com/menu",
+          "observedAt": "2026-11-16T22:02:45.524352+00:00",
+          "confidence": "ai",
+          "evidence": "HOT DRINK CAFE CREAM CHF 4.70",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "acc3cb73577e1916256939090890ca911414e9c5e589ce5ce03c6974715758b4"
+        }
+      ],
+      "scrapeStatus": "pending",
+      "checkedAt": null,
+      "aiCheckedAt": "2026-11-16T22:03:45.457834+00:00",
+      "addressSource": "https://www.openstreetmap.org/node/3208777811"
     },
     {
       "id": "node/10877220214",
@@ -9498,7 +9986,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:12.960867+00:00"
+      "checkedAt": "2026-11-16T21:18:12.960867+00:00",
+      "aiCheckedAt": "2026-11-16T22:55:55.322518+00:00"
     },
     {
       "id": "node/6877659262",
@@ -9632,7 +10121,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:16.267302+00:00"
+      "checkedAt": "2026-11-16T21:18:16.267302+00:00",
+      "aiCheckedAt": "2026-11-16T22:55:55.339152+00:00"
     },
     {
       "id": "node/6349326159",
@@ -9743,7 +10233,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 4.2
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:53:41.721913+00:00"
     },
     {
       "id": "node/5765337053",
@@ -9863,7 +10354,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:20.675933+00:00"
+      "checkedAt": "2026-11-16T21:18:20.675933+00:00",
+      "aiCheckedAt": "2026-11-16T23:59:48.100460+00:00"
     },
     {
       "id": "node/3811616615",
@@ -9891,6 +10383,20 @@
           "confidence": "automatic",
           "evidence": "Kaffee 4.5",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso einzeln",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://uniondiner.ch/drinks.html",
+          "observedAt": "2026-11-16T22:49:05.614495+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso einzeln / doppelt 4.5 | 5.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "f483db868db321774d9ff2d2e6fc6fb607e27b27e0b557900d6f2a33de92c065"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -9898,7 +10404,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 56.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:49:57.170418+00:00"
     },
     {
       "id": "node/8060373608",
@@ -9923,10 +10430,25 @@
           "confidence": "automatic",
           "evidence": "Kaffee 4.5",
           "alcoholFree": true
+        },
+        {
+          "name": "Espresso einzeln",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://uniondiner.ch/drinks.html",
+          "observedAt": "2026-11-16T22:55:55.389682+00:00",
+          "confidence": "ai",
+          "evidence": "Espresso einzeln / doppelt 4.5 | 5.5",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "f483db868db321774d9ff2d2e6fc6fb607e27b27e0b557900d6f2a33de92c065"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:24.868745+00:00"
+      "checkedAt": "2026-11-16T21:18:24.868745+00:00",
+      "aiCheckedAt": "2026-11-16T22:56:46.822519+00:00"
     },
     {
       "id": "node/2381403155",
@@ -9995,6 +10517,48 @@
           "confidence": "automatic",
           "evidence": "DOPPIO ESPRESSO 5 . 50",
           "alcoholFree": true
+        },
+        {
+          "name": "Macchiato+",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://www.mitte.ch/kaffeehaus/bio-brunch/?from=menu",
+          "observedAt": "2026-11-17T00:04:34.781505+00:00",
+          "confidence": "ai",
+          "evidence": "Macchiato+ 4.80",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "americano",
+          "sourceSha256": "e904c089749b678aae59fe894cdeccc6980d75c48471497fa267887aa460eb1a"
+        },
+        {
+          "name": "Café au lait+",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.mitte.ch/kaffeehaus/bio-brunch/?from=menu",
+          "observedAt": "2026-11-17T00:04:34.781505+00:00",
+          "confidence": "ai",
+          "evidence": "Schale+ Café au lait+ 6.—",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "e904c089749b678aae59fe894cdeccc6980d75c48471497fa267887aa460eb1a"
+        },
+        {
+          "name": "Macchiato",
+          "priceChf": 6.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.mitte.ch/kaffeehaus/bio-brunch/?from=menu",
+          "observedAt": "2026-11-17T00:04:34.781505+00:00",
+          "confidence": "ai",
+          "evidence": "Macchiato 2.0 6.—",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "e904c089749b678aae59fe894cdeccc6980d75c48471497fa267887aa460eb1a"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -10002,7 +10566,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 59.0
-      }
+      },
+      "aiCheckedAt": "2026-11-17T00:10:50.377802+00:00"
     },
     {
       "id": "node/5377769532",
@@ -10224,7 +10789,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:26.890444+00:00"
+      "checkedAt": "2026-11-16T21:18:26.890444+00:00",
+      "aiCheckedAt": "2026-11-17T00:02:45.641415+00:00"
     },
     {
       "id": "node/5341699522",
@@ -10315,7 +10881,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:26.969585+00:00"
+      "checkedAt": "2026-11-16T21:18:26.969585+00:00",
+      "aiCheckedAt": "2026-11-16T23:15:46.694339+00:00"
     },
     {
       "id": "node/3418151701",
@@ -10456,10 +11023,25 @@
           "confidence": "automatic",
           "evidence": "Doppio 5.40",
           "alcoholFree": true
+        },
+        {
+          "name": "Large Coffee",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.westhive.com/en/eat-drink/westhive-kitchen-basel-rosental/menu-westhive-kitchen-basel-rosental/",
+          "observedAt": "2026-11-16T23:59:57.066363+00:00",
+          "confidence": "ai",
+          "evidence": "Large Coffee 5.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "5f52dd86bdea1ecb666f5b86b5eaedd59c378c2740333fcdea98763811512cd0"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:27.077469+00:00"
+      "checkedAt": "2026-11-16T21:18:27.077469+00:00",
+      "aiCheckedAt": "2026-11-17T00:04:30.083587+00:00"
     },
     {
       "id": "node/7784095495",
@@ -10585,6 +11167,34 @@
           "confidence": "automatic",
           "evidence": "PDF S. 8: SCHALE 5",
           "alcoholFree": true
+        },
+        {
+          "name": "KAFFEE CRÈME, bio",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://zazaa.ch/zazaa_menu.pdf",
+          "observedAt": "2026-11-16T22:56:00.446533+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFEE CRÈME, bio 4.5",
+          "alcoholFree": true,
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "2e187ed7f3c212c8aaa7ffed0a702ad8f0ba85b8735e43a6558818cc4e1c6ec5"
+        },
+        {
+          "name": "ESPRESSO bio",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://zazaa.ch/zazaa_menu.pdf",
+          "observedAt": "2026-11-16T22:56:00.446533+00:00",
+          "confidence": "ai",
+          "evidence": "ESPRESSO bio / organic 4.5",
+          "alcoholFree": true,
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "2e187ed7f3c212c8aaa7ffed0a702ad8f0ba85b8735e43a6558818cc4e1c6ec5"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -10592,7 +11202,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 64.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:57:39.512077+00:00"
     },
     {
       "id": "node/9914824152",
@@ -10663,6 +11274,34 @@
           "confidence": "automatic",
           "evidence": "PDF S. 8: SCHALE 5",
           "alcoholFree": true
+        },
+        {
+          "name": "KAFFEE CRÈME, bio",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://zazaa.ch/zazaa_menu.pdf",
+          "observedAt": "2026-11-16T22:56:00.457656+00:00",
+          "confidence": "ai",
+          "evidence": "KAFFEE CRÈME, bio 4.5",
+          "alcoholFree": true,
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "2e187ed7f3c212c8aaa7ffed0a702ad8f0ba85b8735e43a6558818cc4e1c6ec5"
+        },
+        {
+          "name": "ESPRESSO bio",
+          "priceChf": 4.5,
+          "volumeMl": null,
+          "sourceUrl": "https://zazaa.ch/zazaa_menu.pdf",
+          "observedAt": "2026-11-16T22:56:00.457656+00:00",
+          "confidence": "ai",
+          "evidence": "ESPRESSO bio / organic 4.5",
+          "alcoholFree": true,
+          "sourcePage": 8,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "2e187ed7f3c212c8aaa7ffed0a702ad8f0ba85b8735e43a6558818cc4e1c6ec5"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -10670,7 +11309,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 1.25
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:57:30.223624+00:00"
     },
     {
       "id": "node/4601259258",
@@ -10746,6 +11386,48 @@
           "confidence": "automatic",
           "evidence": "PDF S. 9: Schale 5.30",
           "alcoholFree": true
+        },
+        {
+          "name": "Kaffe / Espresso",
+          "priceChf": 4.8,
+          "volumeMl": null,
+          "sourceUrl": "https://braunermutz.ch/wp-content/uploads/speisekarte6.pdf",
+          "observedAt": "2026-11-16T22:45:25.850169+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffe / Espresso 4.80",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "espresso",
+          "sourceSha256": "c601d571b2d72397c841b0e5c136d5bf46d3b639da5edce6a1cb5c016a2b8e39"
+        },
+        {
+          "name": "Latte Machiato",
+          "priceChf": 5.9,
+          "volumeMl": null,
+          "sourceUrl": "https://braunermutz.ch/wp-content/uploads/speisekarte6.pdf",
+          "observedAt": "2026-11-16T22:45:25.850169+00:00",
+          "confidence": "ai",
+          "evidence": "Latte Machiato 5.90",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "latte",
+          "sourceSha256": "c601d571b2d72397c841b0e5c136d5bf46d3b639da5edce6a1cb5c016a2b8e39"
+        },
+        {
+          "name": "Capuccino",
+          "priceChf": 5.9,
+          "volumeMl": null,
+          "sourceUrl": "https://braunermutz.ch/wp-content/uploads/speisekarte6.pdf",
+          "observedAt": "2026-11-16T22:45:25.850169+00:00",
+          "confidence": "ai",
+          "evidence": "Capuccino 5.90",
+          "alcoholFree": true,
+          "sourcePage": 9,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "cappuccino",
+          "sourceSha256": "c601d571b2d72397c841b0e5c136d5bf46d3b639da5edce6a1cb5c016a2b8e39"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -10753,7 +11435,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 40.5
-      }
+      },
+      "aiCheckedAt": "2026-11-16T22:47:32.558052+00:00"
     },
     {
       "id": "node/13543480945",
@@ -10837,7 +11520,8 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T21:18:37.295465+00:00"
+      "checkedAt": "2026-11-16T21:18:37.295465+00:00",
+      "aiCheckedAt": "2026-11-17T00:01:14.971500+00:00"
     },
     {
       "id": "node/1796023933",
@@ -10944,7 +11628,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 141.5
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:59:26.672449+00:00"
     },
     {
       "id": "node/4601267408",
@@ -11036,7 +11721,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 58.0
-      }
+      },
+      "aiCheckedAt": "2026-11-17T00:08:31.709424+00:00"
     },
     {
       "id": "node/698552423",
@@ -11091,7 +11777,8 @@
       "outdoorPermit": {
         "season": "unspecified",
         "areaM2": 12.0
-      }
+      },
+      "aiCheckedAt": "2026-11-17T00:00:45.197441+00:00"
     },
     {
       "id": "node/4110058268",
@@ -11167,6 +11854,48 @@
           "confidence": "automatic",
           "evidence": "Latte Macchiato 6.00",
           "alcoholFree": true
+        },
+        {
+          "name": "Kaffee normal",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.aengeloderaff.ch/karte",
+          "observedAt": "2026-11-16T22:57:41.204455+00:00",
+          "confidence": "ai",
+          "evidence": "Kaffee normal 5.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "creme",
+          "sourceSha256": "f02361b659a395701a30baedcdeaa31563826b3125b5b85041386c423edac3b3"
+        },
+        {
+          "name": "Milchkaffee klein",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.aengeloderaff.ch/karte",
+          "observedAt": "2026-11-16T22:57:41.204455+00:00",
+          "confidence": "ai",
+          "evidence": "Milchkaffee klein 5.00 gross 6.30",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "milk",
+          "sourceSha256": "f02361b659a395701a30baedcdeaa31563826b3125b5b85041386c423edac3b3"
+        },
+        {
+          "name": "Coffee regular",
+          "priceChf": 5.0,
+          "volumeMl": null,
+          "sourceUrl": "https://www.aengeloderaff.ch/en/menu",
+          "observedAt": "2026-11-16T23:00:20.961580+00:00",
+          "confidence": "ai",
+          "evidence": "Coffee regular 5.00",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5",
+          "coffeeType": "filter",
+          "sourceSha256": "3521b038983dbb8b3a67e45e6a8492f8b68f469baa6f77ad9d388c7238cb3e81"
         }
       ],
       "scrapeStatus": "prices_found",
@@ -11174,7 +11903,8 @@
       "outdoorPermit": {
         "season": "year",
         "areaM2": 32.0
-      }
+      },
+      "aiCheckedAt": "2026-11-16T23:03:04.772501+00:00"
     }
   ]
 }
