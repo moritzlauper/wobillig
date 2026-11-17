@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T00:02:11.002778+00:00",
+  "generatedAt": "2026-11-17T04:08:07.183524+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "discoveredAt": "2026-11-06T00:19:06.259583+00:00",
   "removed": [],
@@ -45,16 +45,16 @@
           "ramenType": "ramen",
           "priceChf": 21,
           "sourceUrl": "https://www.casinobern.ch/assets/lbwp-cdn/casinobern/files/1791889084/casino_bern_izakayabar_speisekarte_20261013.pdf",
-          "observedAt": "2026-11-05T23:34:25.641436+00:00",
+          "observedAt": "2026-11-17T03:20:10.206366+00:00",
           "confidence": "ai",
-          "evidence": "MISO SESAM RAMEN 21",
+          "evidence": "MISO SESAM RAMEN 21 knuspriger Tofu, japanisches Ei, Nudeln und Shiitake",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:34:25.641436+00:00"
+      "checkedAt": "2026-11-17T03:20:10.206366+00:00"
     },
     {
       "id": "node/12504239332",
@@ -95,7 +95,7 @@
           "ramenType": "ramen",
           "priceChf": 26.5,
           "sourceUrl": "https://www.huayuan.ch/_files/ugd/c1b1f5_dd9a438a0ea54624b5e43fea5e3e2930.pdf",
-          "observedAt": "2026-11-06T00:00:39.496711+00:00",
+          "observedAt": "2026-11-17T03:57:50.419311+00:00",
           "confidence": "ai",
           "evidence": "Niu Rou Mian - Ramen Nudelsuppe mit Rindfleisch 26.50",
           "alcoholFree": true,
@@ -108,20 +108,7 @@
           "ramenType": "ramen",
           "priceChf": 26.5,
           "sourceUrl": "https://www.huayuan.ch/food-drinks",
-          "observedAt": "2026-11-06T00:00:39.496711+00:00",
-          "confidence": "ai",
-          "evidence": "牛肉面 Niu Rou Mian - Ramennudel mit Rindfleisch & Gemüse CHF 26.50",
-          "alcoholFree": true,
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Niu Rou Mian",
-          "volumeMl": null,
-          "ramenType": "ramen",
-          "priceChf": 26.5,
-          "sourceUrl": "https://www.huayuan.ch/food-drinks",
-          "observedAt": "2026-11-06T00:00:39.496711+00:00",
+          "observedAt": "2026-11-17T03:57:50.419311+00:00",
           "confidence": "ai",
           "evidence": "Niu Rou Mian - Ramennudel mit Rindfleisch & Gemüse CHF 26.50",
           "alcoholFree": true,
@@ -130,7 +117,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:00:39.496711+00:00"
+      "checkedAt": "2026-11-17T03:57:50.419311+00:00"
     },
     {
       "id": "node/2988406100",
@@ -153,7 +140,7 @@
           "ramenType": "ramen",
           "priceChf": 25.0,
           "sourceUrl": "https://japigo.ch/_upl/files/メインメニュー 2026年9月WEB版.pdf",
-          "observedAt": "2026-11-05T23:38:37.623154+00:00",
+          "observedAt": "2026-11-17T03:23:37.817773+00:00",
           "confidence": "ai",
           "evidence": "SHOYU RAMEN CHF 25",
           "alcoholFree": true,
@@ -166,7 +153,7 @@
           "ramenType": "ramen",
           "priceChf": 26.0,
           "sourceUrl": "https://japigo.ch/_upl/files/メインメニュー 2026年9月WEB版.pdf",
-          "observedAt": "2026-11-05T23:38:37.623154+00:00",
+          "observedAt": "2026-11-17T03:23:37.817773+00:00",
           "confidence": "ai",
           "evidence": "MISO RAMEN CHF 26",
           "alcoholFree": true,
@@ -175,7 +162,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:38:37.623154+00:00"
+      "checkedAt": "2026-11-17T03:23:37.817773+00:00"
     },
     {
       "id": "node/2400958501",
@@ -211,47 +198,47 @@
       "outdoor": false,
       "offers": [
         {
-          "name": "Mondo Tantanmen (Mittagskarte)",
+          "name": "Mondo Tantanmen",
           "volumeMl": null,
           "ramenType": "ramen",
-          "priceChf": 26.5,
-          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_adb16abc2bd64d46ac75d8f99f4d3ef1.pdf",
-          "observedAt": "2026-11-05T23:16:31.028274+00:00",
+          "priceChf": 28,
+          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_eb2b43f64cb44d789824e38aeeb2427a.pdf",
+          "observedAt": "2026-11-17T02:42:26.972149+00:00",
           "confidence": "ai",
-          "evidence": "MONDO TANTANMEN 21.50 normaler Hunger 26.50",
+          "evidence": "MONDO TANTANMEN 28 Nudeln, japanischer Sesam, Chili-Crisp",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Miso Ramen (Mittagskarte)",
+          "name": "Miso Ramen",
           "volumeMl": null,
           "ramenType": "ramen",
-          "priceChf": 26.5,
-          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_adb16abc2bd64d46ac75d8f99f4d3ef1.pdf",
-          "observedAt": "2026-11-05T23:16:31.028274+00:00",
+          "priceChf": 28,
+          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_eb2b43f64cb44d789824e38aeeb2427a.pdf",
+          "observedAt": "2026-11-17T02:42:26.972149+00:00",
           "confidence": "ai",
-          "evidence": "MISO RAMEN 21.50 26.50",
+          "evidence": "MISO RAMEN 28 Nudeln, Miso, grillierter Mais",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Pumpkin Miso Ramen (Mittagskarte)",
+          "name": "Pumpkin Miso Ramen",
           "volumeMl": null,
           "ramenType": "ramen",
-          "priceChf": 26.5,
-          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_adb16abc2bd64d46ac75d8f99f4d3ef1.pdf",
-          "observedAt": "2026-11-05T23:16:31.028274+00:00",
+          "priceChf": 28,
+          "sourceUrl": "https://www.mondobern.com/_files/ugd/d69cbc_eb2b43f64cb44d789824e38aeeb2427a.pdf",
+          "observedAt": "2026-11-17T02:42:26.972149+00:00",
           "confidence": "ai",
-          "evidence": "PUMPKIN MISO RAMEN 21.50 26.50",
+          "evidence": "PUMPKIN MISO RAMEN 28 Nudeln, Kürbiskern-Miso, Hokkaido",
           "alcoholFree": true,
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:16:31.028274+00:00"
+      "checkedAt": "2026-11-17T02:42:26.972149+00:00"
     },
     {
       "id": "node/662759350",
