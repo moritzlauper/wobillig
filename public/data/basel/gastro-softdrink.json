@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T00:10:50.472454+00:00",
+  "generatedAt": "2026-11-17T15:08:05.626214+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "category": "softdrink",
   "removed": [],
@@ -13,8 +13,8 @@
       "address": "St. Johanns-Vorstadt 19/21",
       "postcode": "4056",
       "website": "https://www.ackermannshof.ch/",
-      "openingHours": "Tu-Sa 16:00+",
       "cuisine": [],
+      "openingHours": "Tu-Sa 16:00+",
       "outdoor": true,
       "offers": [
         {
@@ -66,8 +66,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:04:24.282205+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/585184294",
@@ -131,8 +131,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:15:47.430413+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/6556102796",
@@ -140,11 +140,11 @@
       "lat": 47.5552593,
       "lon": 7.5885365,
       "type": "restaurant",
-      "address": "Leonhardsberg 1",
-      "postcode": "4051",
+      "address": "",
+      "postcode": "",
       "website": "https://www.restaurant-anatolia.ch/",
-      "openingHours": "Mo-Su 11:00-24:00",
       "cuisine": [],
+      "openingHours": "Mo-Su 11:00-24:00",
       "outdoor": true,
       "offers": [
         {
@@ -160,8 +160,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:04:46.585447+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/13894492703",
@@ -172,8 +172,8 @@
       "address": "St. Alban-Anlage 26",
       "postcode": "4052",
       "website": "https://www.b1-rooftop.ch/",
-      "openingHours": "Tu-We 09:00-20:00; Th-Sa 09:00-23:00; Su-Mo off",
       "cuisine": [],
+      "openingHours": "Tu-We 09:00-20:00; Th-Sa 09:00-23:00; Su-Mo off",
       "outdoor": false,
       "offers": [
         {
@@ -225,8 +225,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:25:02.811308+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/2074770492",
@@ -333,96 +333,12 @@
       "outdoor": false,
       "offers": [
         {
-          "name": "Fanta Lemon",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
-          "confidence": "ai",
-          "evidence": "Fanta Lemon 0,5l 4,00 CHF",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Rivella Rot",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
-          "confidence": "ai",
-          "evidence": "Rivella Rot 0,5l 4,00 CHF",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Coca Cola",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
-          "confidence": "ai",
-          "evidence": "Coca Cola 0,5l 4,00 CHF",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Coca Cola Zero",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
-          "confidence": "ai",
-          "evidence": "Coca Cola Zero 0,5l 4,00 CHF",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Sprite",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
-          "confidence": "ai",
-          "evidence": "Sprite 0,5l 4,00 CHF",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Fanta Orange",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
-          "confidence": "ai",
-          "evidence": "Fanta Orange 0,5l 4,00 CHF",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Fanta Shokata",
-          "volumeMl": 500,
-          "gastroType": "softdrink",
-          "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
-          "confidence": "ai",
-          "evidence": "Fanta Shokata 0,5l 4,00 CHF",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
           "name": "Fanta Lemon 0,5l",
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Fanta Lemon 0,5l 4,00 CHF",
           "sourcePage": 1,
@@ -433,8 +349,8 @@
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Rivella Rot 0,5l 4,00 CHF",
           "sourcePage": 1,
@@ -445,8 +361,8 @@
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Coca Cola 0,5l 4,00 CHF",
           "sourcePage": 1,
@@ -457,8 +373,8 @@
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Coca Cola Zero 0,5l 4,00 CHF",
           "sourcePage": 1,
@@ -469,8 +385,8 @@
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Sprite 0,5l 4,00 CHF",
           "sourcePage": 1,
@@ -481,8 +397,8 @@
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 4.0,
-          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Fanta Orange 0,5l 4,00 CHF",
           "sourcePage": 1,
@@ -493,8 +409,92 @@
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 4.0,
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta Shokata 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta Lemon",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
           "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta Lemon 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rivella Rot",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Rivella Rot 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Zero",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola Zero 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sprite",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Sprite 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta Orange",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Fanta Orange 0,5l 4,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Fanta Shokata",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 4.0,
+          "sourceUrl": "https://www.baslerkebabhaus-basel.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Fanta Shokata 0,5l 4,00 CHF",
           "sourcePage": 1,
@@ -502,7 +502,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4150413389",
@@ -513,8 +513,8 @@
       "address": "Elsässerrheinweg 101",
       "postcode": "4056",
       "website": "https://www.bassoverse.space/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -530,8 +530,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:19:46.632816+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/11163250005",
@@ -585,8 +585,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:17:52.861686+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/2663868226",
@@ -760,8 +760,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:18:20.661259+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/7809972322",
@@ -772,10 +772,10 @@
       "address": "Klybeckstrasse 86",
       "postcode": "4057",
       "website": "https://www.boobasel.com/klybeck",
-      "openingHours": "Mo-Fr 11:30-14:00, 18:00-22:00; Sa-Su 18:00-22:30",
       "cuisine": [
         "thai"
       ],
+      "openingHours": "Mo-Fr 11:30-14:00, 18:00-22:00; Sa-Su 18:00-22:30",
       "outdoor": true,
       "offers": [
         {
@@ -911,8 +911,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:26:55.168968+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/1936100732",
@@ -1000,8 +1000,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:23:26.424495+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/385647957",
@@ -1031,8 +1031,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/7529438648",
@@ -1062,8 +1062,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9871385224",
@@ -1093,8 +1093,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:24:02.107416+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/8016865752",
@@ -1170,8 +1170,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:57:22.723617+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/7625132435",
@@ -1203,8 +1203,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:15:19.441839+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/11835158537",
@@ -1244,8 +1244,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:22:45.876175+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/10652308129",
@@ -1285,8 +1285,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/473398645",
@@ -1297,10 +1297,10 @@
       "address": "St. Alban-Tal 35",
       "postcode": "4052",
       "website": "https://www.papiermuehle.ch/",
-      "openingHours": "Tu-Sa 11:30-18:00; Su 10:00-18:00",
       "cuisine": [
         "coffee_shop"
       ],
+      "openingHours": "Tu-Sa 11:30-18:00; Su 10:00-18:00",
       "outdoor": true,
       "offers": [
         {
@@ -1364,8 +1364,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:04:53.529992+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/13200691848",
@@ -1505,8 +1505,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:21:46.474937+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9006499388",
@@ -1608,8 +1608,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:32:05.764582+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/14248554055",
@@ -1649,8 +1649,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4472355417",
@@ -1690,8 +1690,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4828208000",
@@ -1743,8 +1743,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:56:52.576118+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/2074770460",
@@ -1772,8 +1772,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:00:42.565368+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/14174002895",
@@ -1803,8 +1803,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:58:17.819893+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9326577381",
@@ -1937,8 +1937,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:48:06.995421+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/5364617921",
@@ -2040,8 +2040,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:48:27.529167+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/5364628821",
@@ -2143,8 +2143,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:48:08.089265+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/5364651421",
@@ -2246,8 +2246,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:48:27.235622+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/8727999200",
@@ -2258,8 +2258,8 @@
       "address": "Kirchgasse 1",
       "postcode": "4058",
       "website": "https://www.damatti.it/",
-      "openingHours": "Tu-Th 11:00-22:00; Fr 11:00-23:00; Sa 10:00-23:00",
       "cuisine": [],
+      "openingHours": "Tu-Th 11:00-22:00; Fr 11:00-23:00; Sa 10:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -2299,8 +2299,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:17:00.415958+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9006190118",
@@ -2311,10 +2311,10 @@
       "address": "Theaterstrasse 10",
       "postcode": "4051",
       "website": "https://www.diomio.ch",
-      "openingHours": "Mo-Th 11:30-14:00,17:30-23:00; Fr 11:30-14:00,17:30-24:00; Sa 12:00-24:00; Su 12:00-23:00",
       "cuisine": [
         "pizza"
       ],
+      "openingHours": "Mo-Th 11:30-14:00,17:30-23:00; Fr 11:30-14:00,17:30-24:00; Sa 12:00-24:00; Su 12:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -2342,8 +2342,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:22:58.921916+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/7747207685",
@@ -2354,10 +2354,10 @@
       "address": "Klybeckstrasse 174",
       "postcode": "4057",
       "website": "http://www.restaurantdreirosen.com/",
-      "openingHours": "Mo-Su 09:00-24:00",
       "cuisine": [
         "swiss"
       ],
+      "openingHours": "Mo-Su 09:00-24:00",
       "outdoor": false,
       "offers": [
         {
@@ -2409,8 +2409,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:15:35.325777+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/7871792488",
@@ -2594,8 +2594,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:29:36.467287+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3811616609",
@@ -2606,8 +2606,8 @@
       "address": "Im Schmiedenhof 10",
       "postcode": "4001",
       "website": "https://www.eatery77.ch/",
-      "openingHours": "Mo-We 10:00-20:00; Th-Sa 10:00-23:00; Su off",
       "cuisine": [],
+      "openingHours": "Mo-We 10:00-20:00; Th-Sa 10:00-23:00; Su off",
       "outdoor": true,
       "offers": [
         {
@@ -2671,8 +2671,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:36:02.745535+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/6372498649",
@@ -2798,8 +2798,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:07:27.039418+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/13902829473",
@@ -2875,8 +2875,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:33:55.002083+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/10884236353",
@@ -3005,8 +3005,8 @@
       "address": "Picassoplatz 8",
       "postcode": "4052",
       "website": "https://www.flanagans.ch/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": true,
       "offers": [
         {
@@ -3178,8 +3178,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:35:16.624299+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/11368724658",
@@ -3197,48 +3197,48 @@
       "outdoor": true,
       "offers": [
         {
-          "name": "Eistee 0,5l",
+          "name": "Eistee",
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 5.0,
           "sourceUrl": "https://www.gruenpfahlmeze.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Eistee 0,5l 5,00 CHF",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Coca-Cola 0,45l",
+          "name": "Coca-Cola",
           "volumeMl": 450,
           "gastroType": "softdrink",
           "priceChf": 5.0,
           "sourceUrl": "https://www.gruenpfahlmeze.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Coca-Cola 0,45l 5,00 CHF",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Fanta 0,45l",
+          "name": "Fanta",
           "volumeMl": 450,
           "gastroType": "softdrink",
           "priceChf": 5.0,
           "sourceUrl": "https://www.gruenpfahlmeze.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Fanta 0,45l 5,00 CHF",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Coca-Cola Zero 0,45l",
+          "name": "Coca-Cola Zero",
           "volumeMl": 450,
           "gastroType": "softdrink",
           "priceChf": 5.0,
           "sourceUrl": "https://www.gruenpfahlmeze.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Coca-Cola Zero 0,45l 5,00 CHF",
           "sourcePage": 1,
@@ -3246,7 +3246,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4840045318",
@@ -3257,10 +3257,10 @@
       "address": "Steinenvorstadt 1a",
       "postcode": "4051",
       "website": "https://hansimglueck-burgergrill.de/standort/basel-steinenvorstadt",
-      "openingHours": "Mo-Fr 11:00-00:00, Sa-Su 11:00-02:00",
       "cuisine": [
         "burger"
       ],
+      "openingHours": "Mo-Fr 11:00-00:00, Sa-Su 11:00-02:00",
       "outdoor": true,
       "offers": [
         {
@@ -3396,8 +3396,123 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
+    },
+    {
+      "id": "node/8059059296",
+      "name": "Holy Cow!",
+      "lat": 47.552886,
+      "lon": 7.5884706,
+      "type": "fast_food",
+      "address": "Steinenvorstadt 30",
+      "postcode": "4051",
+      "website": "https://holycow.ch/",
+      "cuisine": [
+        "burger"
+      ],
+      "openingHours": "Fr-Sa 11:00-00:00; Th 11:00-23:00; Su-We 11:00-22:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Apfelsaft | Schorle",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "APFELSAFT | SCHORLE 50CL 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Eistee",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "EISTEE 50CL 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Holy Cola",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_en.pdf",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "HOLY COLA 50CL 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Apple juice | Schorle",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_en.pdf",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "APPLE JUICE | SCHORLE 50CL 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_en.pdf",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "ICE TEA 50CL 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Ice Tea 50cl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_fr.pdf",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "ICE TEA 50CL Citron | Pêche | Herbes des Alpes 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Holy Cola 50cl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_fr.pdf",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "HOLY COLA 50CL Original | Sugar free 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Jus DE Pomme | Schorle 50cl",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 3.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_fr.pdf",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "JUS DE POMME | SCHORLE 50CL 3.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:47:27.253135+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/7598139857",
@@ -3473,8 +3588,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:13:47.966940+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/2987527171",
@@ -3526,8 +3641,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:33:23.638257+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/10608357008",
@@ -3653,8 +3768,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:49:01.444914+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "way/225127782",
@@ -3694,8 +3809,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T01:53:58.824827+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/2215970143",
@@ -3706,8 +3821,8 @@
       "address": "Steinenberg 7",
       "postcode": "4001",
       "website": "https://www.restaurant-kunsthalle.ch/",
-      "openingHours": "Mo-Sa 11:30-23:00",
       "cuisine": [],
+      "openingHours": "Mo-Sa 11:30-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -3759,8 +3874,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:09:36.550131+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/585133165",
@@ -3814,8 +3929,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:11:03.483651+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/13061564803",
@@ -3867,8 +3982,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:08:23.757032+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3888881365",
@@ -3920,8 +4035,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:36:37.321992+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/5691850621",
@@ -3973,8 +4088,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:36:28.292777+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4144545589",
@@ -4004,8 +4119,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:43:42.404001+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9800319929",
@@ -4060,8 +4175,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:37:53.755395+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9269725977",
@@ -4125,8 +4240,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:41:29.785082+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/7778233543",
@@ -4178,8 +4293,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:53:24.662189+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3207784678",
@@ -4200,7 +4315,7 @@
           "gastroType": "softdrink",
           "priceChf": 6.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Coca-Cola Zero 0,5l 6,00 CHF",
           "sourcePage": 1,
@@ -4212,31 +4327,31 @@
           "gastroType": "softdrink",
           "priceChf": 6.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Rivella 0,5l 6,00 CHF",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Ice Tea",
+          "name": "Ice Tea 0,5l",
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 6.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Ice Tea 0,5l 6,00 CHF",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Coca-Cola",
+          "name": "Coca-Cola 0,5l",
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 6.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Coca-Cola 0,5l 6,00 CHF",
           "sourcePage": 1,
@@ -4248,7 +4363,7 @@
           "gastroType": "softdrink",
           "priceChf": 6.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Fanta Orange 0,5l 6,00 CHF",
           "sourcePage": 1,
@@ -4260,7 +4375,7 @@
           "gastroType": "softdrink",
           "priceChf": 6.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Sprite 0,5l 6,00 CHF",
           "sourcePage": 1,
@@ -4272,7 +4387,7 @@
           "gastroType": "softdrink",
           "priceChf": 6.0,
           "sourceUrl": "https://www.musical-grill.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Fanta Shokata 0,5l 6,00 CHF",
           "sourcePage": 1,
@@ -4280,7 +4395,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/12718300663",
@@ -4291,10 +4406,10 @@
       "address": "Güterstrasse 170",
       "postcode": "4053",
       "website": "https://nambasel.ch",
-      "openingHours": "Mo-Fr 11:30-14:00,17:30-22:00; Sa 11:30-23:00; Su 17:00-22:00",
       "cuisine": [
         "asian"
       ],
+      "openingHours": "Mo-Fr 11:30-14:00,17:30-22:00; Sa 11:30-23:00; Su 17:00-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -4310,8 +4425,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:42:08.690227+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9080191421",
@@ -4365,8 +4480,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3890667653",
@@ -4420,8 +4535,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3237678599",
@@ -4463,8 +4578,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:03:58.689988+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/122337395",
@@ -4475,8 +4590,8 @@
       "address": "Klybeckstrasse 1b",
       "postcode": "4057",
       "website": "https://www.parterre-one.ch/de/gastronomie/one-essen-trinken",
-      "openingHours": "Tu-Th 18:00-23:00; Fr-Sa 18:00-24:00",
       "cuisine": [],
+      "openingHours": "Tu-Th 18:00-23:00; Fr-Sa 18:00-24:00",
       "outdoor": true,
       "offers": [
         {
@@ -4528,8 +4643,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:59:19.234718+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/8909393066",
@@ -4540,10 +4655,10 @@
       "address": "Klybeckstrasse 2",
       "postcode": "4057",
       "website": "https://pasiwo.ch/",
-      "openingHours": null,
       "cuisine": [
         "mediterranean"
       ],
+      "openingHours": null,
       "outdoor": true,
       "offers": [
         {
@@ -4751,8 +4866,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:43:33.770806+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9524853160",
@@ -4760,13 +4875,13 @@
       "lat": 47.5437378,
       "lon": 7.5930357,
       "type": "restaurant",
-      "address": "Zwingerstrasse 29",
-      "postcode": "4053",
+      "address": "",
+      "postcode": "",
       "website": "https://peng-dumplings.ch",
-      "openingHours": "Tu-Th 11:45-14:30,18:00-23:00; Fr 11:45-14:30,18:00-24:00; Sa 17:30-24:00",
       "cuisine": [
         "chinese"
       ],
+      "openingHours": "Tu-Th 11:45-14:30,18:00-23:00; Fr 11:45-14:30,18:00-24:00; Sa 17:30-24:00",
       "outdoor": true,
       "offers": [
         {
@@ -4890,8 +5005,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:45:26.185346+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/11920082769",
@@ -4914,7 +5029,7 @@
           "gastroType": "softdrink",
           "priceChf": 5.5,
           "sourceUrl": "https://piccolo-cibo-buvette.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Cola/Cola Zero 33 cl CHF 5.50",
           "sourcePage": 1,
@@ -4926,7 +5041,7 @@
           "gastroType": "softdrink",
           "priceChf": 5.5,
           "sourceUrl": "https://piccolo-cibo-buvette.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Rivella rot/blau 33 cl CHF 5.50",
           "sourcePage": 1,
@@ -4938,7 +5053,7 @@
           "gastroType": "softdrink",
           "priceChf": 5.5,
           "sourceUrl": "https://piccolo-cibo-buvette.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Fanta 33 cl CHF 5.50",
           "sourcePage": 1,
@@ -4946,7 +5061,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/2578294254",
@@ -4957,12 +5072,12 @@
       "address": "Streitgasse 20",
       "postcode": "4051",
       "website": "https://www.centroambarfi.ch/",
-      "openingHours": "Mo-Fr 11:30-14:30,18:00-24:00; Sa 00:00-01:00,11:30-14:30,18:00-24:00; Su 00:00-01:00,12:00-15:00,18:00-23:00",
       "cuisine": [
         "italian",
         "pizza",
         "pasta"
       ],
+      "openingHours": "Mo-Fr 11:30-14:30,18:00-24:00; Sa 00:00-01:00,11:30-14:30,18:00-24:00; Su 00:00-01:00,12:00-15:00,18:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -5086,8 +5201,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:48:18.263288+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4417769694",
@@ -5098,10 +5213,10 @@
       "address": "Blumenrain 20",
       "postcode": "4051",
       "website": "https://www.portofino-basel.ch",
-      "openingHours": "Tu-Fr 11:30-14:00, 18:00-23:00; Sa 18:00-23:00",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Tu-Fr 11:30-14:00, 18:00-23:00; Sa 18:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -5249,8 +5364,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:10:30.132820+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3888956159",
@@ -5424,8 +5539,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:00:17.060955+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/6047355929",
@@ -5489,8 +5604,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:57:35.588840+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/2624405472",
@@ -5700,8 +5815,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:51:34.932980+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/582950406",
@@ -5765,8 +5880,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:55:38.174783+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4601277651",
@@ -5842,8 +5957,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:48:42.436490+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/273223709",
@@ -5947,8 +6062,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:12:23.334951+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/11757900217",
@@ -5978,8 +6093,39 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
+    },
+    {
+      "id": "node/9381403405",
+      "name": "Rhyschänzli",
+      "lat": 47.5720882,
+      "lon": 7.5776656,
+      "type": "restaurant",
+      "address": "Lichtstrasse 9",
+      "postcode": "4056",
+      "website": "https://rhyschaenzli.ch/de",
+      "cuisine": [
+        "regional"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Sinalco, Coca Cola / Zero, Rivella Rot / Blau",
+          "volumeMl": 330,
+          "gastroType": "softdrink",
+          "priceChf": 5.5,
+          "sourceUrl": "https://rhyschaenzli.ch/getraenke.html",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Süssgetränke (3.3 dl) Sinalco, Coca Cola / Zero, Rivella Rot / Blau 5.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:07:54.976340+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/5016417015",
@@ -6069,8 +6215,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:59:45.159469+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/1610930944",
@@ -6110,8 +6256,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:54:00.824299+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/10116280190",
@@ -6187,8 +6333,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:59:52.169614+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9350766920",
@@ -6240,8 +6386,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:12:39.281926+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/292058711",
@@ -6305,8 +6451,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3758773688",
@@ -6317,10 +6463,10 @@
       "address": "Klybeckstrasse 122",
       "postcode": "4057",
       "website": "https://shiro-basel.ch/",
-      "openingHours": "Tu-Fr 11:45-14:00,18:00-22:00; Sa 18:00-22:00; Su off",
       "cuisine": [
         "ethiopian"
       ],
+      "openingHours": "Tu-Fr 11:45-14:00,18:00-22:00; Sa 18:00-22:00; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -6360,8 +6506,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:56:47.794146+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/14178506071",
@@ -6384,15 +6530,15 @@
           "gastroType": "softdrink",
           "priceChf": 5.5,
           "sourceUrl": "https://so.pizza/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
-          "evidence": "Coca Cola / Zero, Sprite, Schorle 5.50 · 30 cl",
+          "evidence": "Coca Cola / Zero, Sprite, Schorle 5.50 30 cl",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/12533458853",
@@ -6494,8 +6640,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:48:32.262957+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9350766921",
@@ -6561,8 +6707,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:12:00.496869+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4377355190",
@@ -6662,8 +6808,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:14:13.685656+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/11997975469",
@@ -6727,8 +6873,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:54:26.226056+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/6133118090",
@@ -6792,8 +6938,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:59:04.630819+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/8012279898",
@@ -6811,80 +6957,128 @@
       "outdoor": false,
       "offers": [
         {
-          "name": "Sprite",
+          "name": "Sprite 0,5l",
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 5.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
-          "evidence": "Sprite 0,5l / 5,00 CHF",
+          "evidence": "Sprite 0,5l 5,00 CHF inkl. Pfand (0,00 CHF), 10,00 CHF/l, 0,5l",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Eistee",
+          "name": "Eistee 0,5l",
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 5.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
-          "evidence": "Eistee 0,5l / 5,00 CHF",
+          "evidence": "Eistee 0,5l 5,00 CHF Enthält Koffein (25,0 mg/100 ml), inkl. Pfand (0,00 CHF), 10,00 CHF/l, 0,5l",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Coca Cola Zero",
-          "volumeMl": 500,
+          "name": "Eistee 1,5l",
+          "volumeMl": 100,
           "gastroType": "softdrink",
-          "priceChf": 5.0,
+          "priceChf": 7.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
-          "evidence": "Coca Cola Zero 0,5l / 5,00 CHF",
+          "evidence": "Eistee 1,5l 7,00 CHF Enthält Koffein (25,0 mg/100 ml), inkl. Pfand (0,00 CHF), 4,67 CHF/l, 1,5l",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Fanta",
+          "name": "Coca Cola Zero 0,5l",
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 5.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
-          "evidence": "Fanta 0,5l / 5,00 CHF",
+          "evidence": "Coca Cola Zero 0,5l 5,00 CHF Enthält Koffein (10,0 mg/100 ml), inkl. Pfand (0,00 CHF), 10,00 CHF/l, 0,5l",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Coca Cola",
-          "volumeMl": 500,
+          "name": "Coca Cola Zero 1,5l",
+          "volumeMl": 100,
           "gastroType": "softdrink",
-          "priceChf": 5.0,
+          "priceChf": 7.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
-          "evidence": "Coca Cola 0,5l / 5,00 CHF",
+          "evidence": "Coca Cola Zero 1,5l 7,00 CHF Enthält Koffein (10,0 mg/100 ml), inkl. Pfand (0,00 CHF), 4,67 CHF/l, 1,5l",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Coca Cola Light",
+          "name": "Fanta 0,5l",
           "volumeMl": 500,
           "gastroType": "softdrink",
           "priceChf": 5.0,
           "sourceUrl": "https://www.sultansaray.ch/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
-          "evidence": "Coca Cola Light 0,5l / 5,00 CHF",
+          "evidence": "Fanta 0,5l 5,00 CHF inkl. Pfand (0,00 CHF), 10,00 CHF/l, 0,5l",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola 0,5l",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.sultansaray.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 0,5l 5,00 CHF Enthält Koffein (10,0 mg/100 ml), inkl. Pfand (0,00 CHF), 10,00 CHF/l, 0,5l",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola 1,5l",
+          "volumeMl": 100,
+          "gastroType": "softdrink",
+          "priceChf": 7.0,
+          "sourceUrl": "https://www.sultansaray.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola 1,5l 7,00 CHF Enthält Koffein (10,0 mg/100 ml), inkl. Pfand (0,00 CHF), 4,67 CHF/l, 1,5l",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Light 0,5l",
+          "volumeMl": 500,
+          "gastroType": "softdrink",
+          "priceChf": 5.0,
+          "sourceUrl": "https://www.sultansaray.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola Light 0,5l 5,00 CHF Enthält Koffein (12,0 mg/100 ml), inkl. Pfand (0,00 CHF), 10,00 CHF/l, 0,5l",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Coca Cola Light 1,5l",
+          "volumeMl": 100,
+          "gastroType": "softdrink",
+          "priceChf": 7.0,
+          "sourceUrl": "https://www.sultansaray.ch/",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
+          "confidence": "ai",
+          "evidence": "Coca Cola Light 1,5l 7,00 CHF Enthält Koffein (12,0 mg/100 ml), inkl. Pfand (0,00 CHF), 4,67 CHF/l, 1,5l",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/6954999086",
@@ -6972,8 +7166,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:59:23.562418+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/2485517211",
@@ -6984,10 +7178,10 @@
       "address": "Hochbergerstrasse 70",
       "postcode": "4057",
       "website": "https://www.tenderandloins.ch/",
-      "openingHours": null,
       "cuisine": [
         "steak_house"
       ],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -7111,8 +7305,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T00:04:24.483394+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/1611634279",
@@ -7238,8 +7432,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:50:22.040001+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/7457896182",
@@ -7327,8 +7521,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T00:02:30.434658+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/14352555819",
@@ -7394,8 +7588,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:03:45.457233+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/593094712",
@@ -7759,8 +7953,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:55:55.319599+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/6877659262",
@@ -8124,8 +8318,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:55:55.336648+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/6349326159",
@@ -8167,8 +8361,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:53:41.721797+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/12299581241",
@@ -8189,7 +8383,7 @@
           "gastroType": "softdrink",
           "priceChf": 4.0,
           "sourceUrl": "https://trymythai.ch/bestellen/getraenke/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Coca Cola 0,45l CHF 4.00",
           "sourcePage": 1,
@@ -8201,7 +8395,7 @@
           "gastroType": "softdrink",
           "priceChf": 4.0,
           "sourceUrl": "https://trymythai.ch/bestellen/getraenke/",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "Coca Cola Zero 0,45l CHF 4.00",
           "sourcePage": 1,
@@ -8209,7 +8403,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/6318613814",
@@ -8261,8 +8455,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:59:48.098946+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3811616615",
@@ -8270,13 +8464,13 @@
       "lat": 47.5528079,
       "lon": 7.5890387,
       "type": "restaurant",
-      "address": "Stänzlergasse 3",
-      "postcode": "4051",
+      "address": "",
+      "postcode": "",
       "website": "https://uniondiner.ch/",
-      "openingHours": "Mo-Th 11:00-23:00; Fr 11:00-24:00; Sa 09:00-24:00; Su 09:00-23:00",
       "cuisine": [
         "burger"
       ],
+      "openingHours": "Mo-Th 11:00-23:00; Fr 11:00-24:00; Sa 09:00-24:00; Su 09:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -8316,8 +8510,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:49:57.168952+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/8060373608",
@@ -8328,8 +8522,8 @@
       "address": "Meret Oppenheim-Platz 1",
       "postcode": "4053",
       "website": "https://uniondiner.ch/",
-      "openingHours": "Su-Th 11:00-22:00; Fr,Sa 11:00-23:00",
       "cuisine": [],
+      "openingHours": "Su-Th 11:00-22:00; Fr,Sa 11:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -8369,8 +8563,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:56:46.820764+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3751874033",
@@ -8393,7 +8587,7 @@
           "gastroType": "softdrink",
           "priceChf": 4.9,
           "sourceUrl": "https://vegitat.ch",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "fritz-cola 4,90 CHF 0.33l",
           "sourcePage": 1,
@@ -8401,7 +8595,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4031085803",
@@ -8424,7 +8618,7 @@
           "gastroType": "softdrink",
           "priceChf": 4.9,
           "sourceUrl": "https://vegitat.ch",
-          "observedAt": "2026-11-05T23:45:44.472630+00:00",
+          "observedAt": "2026-11-17T15:08:05.626214+00:00",
           "confidence": "ai",
           "evidence": "fritz-cola 4,90 CHF 0.33l",
           "sourcePage": 1,
@@ -8432,7 +8626,7 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/593094711",
@@ -8443,8 +8637,8 @@
       "address": "Steinenvorstadt 32",
       "postcode": "4051",
       "website": "https://www.viprestaurantbar.ch/",
-      "openingHours": "Mo 10:00-24:00; Tu-Fr 00:00-01:00,10:00-24:00; Sa 00:00-03:00,10:00-24:00; Su 00:00-03:00,12:00-24:00",
       "cuisine": [],
+      "openingHours": "Mo 10:00-24:00; Tu-Fr 00:00-01:00,10:00-24:00; Sa 00:00-03:00,10:00-24:00; Su 00:00-03:00,12:00-24:00",
       "outdoor": true,
       "offers": [
         {
@@ -8556,8 +8750,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:16:03.268145+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4031088875",
@@ -8633,8 +8827,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T00:02:45.640639+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/5341699522",
@@ -8645,10 +8839,10 @@
       "address": "",
       "postcode": "",
       "website": "https://walliserkanne-basel.ch/",
-      "openingHours": "Mo-Sa 11:30-24:00",
       "cuisine": [
         "regional"
       ],
+      "openingHours": "Mo-Sa 11:30-24:00",
       "outdoor": true,
       "offers": [
         {
@@ -8760,8 +8954,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:15:46.693686+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/13637537873",
@@ -8897,8 +9091,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T00:04:30.081671+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/584725541",
@@ -9070,8 +9264,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T22:47:32.554165+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/13543480945",
@@ -9082,8 +9276,8 @@
       "address": "Rebgasse 16",
       "postcode": "4058",
       "website": "https://www.zumgoldigelamm.ch/",
-      "openingHours": "Mo-Fr,Su 08:00-18:30",
       "cuisine": [],
+      "openingHours": "Mo-Fr,Su 08:00-18:30",
       "outdoor": false,
       "offers": [
         {
@@ -9147,8 +9341,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T00:01:14.970791+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/1796023933",
@@ -9214,8 +9408,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4601267408",
@@ -9226,10 +9420,10 @@
       "address": "Rheingasse 10",
       "postcode": "4058",
       "website": "https://schmalewurf.ch/",
-      "openingHours": "Mo-Su 11:00-22:00",
       "cuisine": [
         "regional"
       ],
+      "openingHours": "Mo-Su 11:00-22:00",
       "outdoor": false,
       "offers": [
         {
@@ -9341,8 +9535,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T00:08:31.702271+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/698552423",
@@ -9382,8 +9576,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T00:00:45.197029+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/2579987341",
@@ -9394,8 +9588,8 @@
       "address": "Andreasplatz 15",
       "postcode": "4001",
       "website": "https://www.aengeloderaff.ch/",
-      "openingHours": "Mo 08:30-20:00, Tu-Th 08:30-22:00, Fr 08:30-23:00, Sa 09:00-23:00, Su 10:00-20:00",
       "cuisine": [],
+      "openingHours": "Mo 08:30-20:00, Tu-Th 08:30-22:00, Fr 08:30-23:00, Sa 09:00-23:00, Su 10:00-20:00",
       "outdoor": true,
       "offers": [
         {
@@ -9495,8 +9689,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:03:04.765669+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-17T00:10:50.487378+00:00",
-  "discoveredAt": "2026-11-05T23:45:44.472630+00:00",
+  "generatedAt": "2026-11-17T15:08:05.626214+00:00",
+  "discoveredAt": "2026-11-17T15:08:05.626214+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
   "removed": [],
   "bars": [
@@ -111,8 +111,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:18:20.661259+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/13997991120",
@@ -129,8 +129,8 @@
       "openingHours": "Mo-Fr 11:30-21:30; Sa,Su,PH 12:00-21:30",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/4144545589",
@@ -141,10 +141,10 @@
       "address": "Rebgasse 1",
       "postcode": "4058",
       "website": "https://lilys.ch/eatery/maxim",
-      "openingHours": "Mo-Su 11:00-21:00",
       "cuisine": [
         "asian"
       ],
+      "openingHours": "Mo-Su 11:00-21:00",
       "outdoor": true,
       "offers": [
         {
@@ -161,8 +161,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T23:43:42.404001+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/10581639707",
@@ -180,7 +180,7 @@
       "outdoor": true,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/9080191421",
@@ -302,8 +302,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/3890667653",
@@ -425,8 +425,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     },
     {
       "id": "node/1255857521",
@@ -443,8 +443,8 @@
       "openingHours": "Mo-Fr 11:30-14:00,16:30-20:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-11-05T23:45:44.472630+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:08:05.626214+00:00"
     }
   ]
 }
