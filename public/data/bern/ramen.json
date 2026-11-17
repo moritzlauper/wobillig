@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-17T04:08:07.183524+00:00",
+  "generatedAt": "2026-11-17T15:25:44.171406+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
-  "discoveredAt": "2026-11-06T00:19:06.259583+00:00",
+  "discoveredAt": "2026-11-17T15:25:44.171406+00:00",
   "removed": [],
   "bars": [
     {
@@ -19,8 +19,8 @@
       "openingHours": "Mo,We,Th,Fr 11:30-14:00,16:00-24:00; Sa 10:00-24:00; Su 12:00-22:00",
       "outdoor": true,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2572061811",
@@ -31,12 +31,12 @@
       "address": "Casinoplatz 1",
       "postcode": "3011",
       "website": "https://www.casinobern.ch/kulinarik",
-      "openingHours": "Mo-Su,PH 11:30-14:00,17:45-23:00 open \"Brasserie\", We-Su 11:45-13:30,17:45-21:30 open \"Izakaya\", Mo-Su,PH 09:00-23:00 open \"Salon d'Or\"",
       "cuisine": [
         "italian",
         "french",
         "japanese"
       ],
+      "openingHours": "Mo-Su,PH 11:30-14:00,17:45-23:00 open \"Brasserie\", We-Su 11:45-13:30,17:45-21:30 open \"Izakaya\", Mo-Su,PH 09:00-23:00 open \"Salon d'Or\"",
       "outdoor": true,
       "offers": [
         {
@@ -53,8 +53,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:20:10.206366+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/12504239332",
@@ -72,7 +72,7 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3271092775",
@@ -83,10 +83,10 @@
       "address": "Holligenstrasse 70",
       "postcode": "3008",
       "website": "https://www.fischermaetteli.ch",
-      "openingHours": "Tu-Fr 11:30-14:00,17:30-22:30; Sa,Su 17:30-22:30",
       "cuisine": [
         "chinese"
       ],
+      "openingHours": "Tu-Fr 11:30-14:00,17:30-22:30; Sa,Su 17:30-22:30",
       "outdoor": true,
       "offers": [
         {
@@ -116,8 +116,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:57:50.419311+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2988406100",
@@ -128,10 +128,10 @@
       "address": "Spitalgasse 33",
       "postcode": "3011",
       "website": "https://www.japigo.ch/",
-      "openingHours": "Tu-Sa 11:30-13:45, 17:30-20:30",
       "cuisine": [
         "japanese"
       ],
+      "openingHours": "Tu-Sa 11:30-13:45, 17:30-20:30",
       "outdoor": false,
       "offers": [
         {
@@ -161,8 +161,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:23:37.817773+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2400958501",
@@ -179,8 +179,8 @@
       "openingHours": "Mo-Sa 11:30-21:00",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "no_prices",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3272891441",
@@ -188,13 +188,13 @@
       "lat": 46.9542074,
       "lon": 7.431179,
       "type": "restaurant",
-      "address": "Länggassstrasse 44",
-      "postcode": "3012",
+      "address": "",
+      "postcode": "",
       "website": "https://www.mondobern.com/",
-      "openingHours": "Tu-Fr 11:45-14:00,18:00-22:30; Sa 18:00-22:30",
       "cuisine": [
         "ramen"
       ],
+      "openingHours": "Tu-Fr 11:45-14:00,18:00-22:30; Sa 18:00-22:30",
       "outdoor": false,
       "offers": [
         {
@@ -237,8 +237,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:42:26.972149+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/662759350",
@@ -256,7 +256,175 @@
       "outdoor": false,
       "offers": [],
       "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
+    },
+    {
+      "id": "node/14128693245",
+      "name": "tinyfish",
+      "lat": 46.9474853,
+      "lon": 7.438023,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.tinyfish.ch/",
+      "cuisine": [
+        "sushi"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Nudelsuppen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://www.tinyfish.ch/menu",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Nudelsuppen Tantanmen · Satay · Szechuan · Shoyu-Miso CHF 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu-Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/5f16dcd8c5ecc2bea7e28975/6a9622afb43ce4dd929c68a4_Menu%CC%88%20A4%20-%20Winter.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NUDELSUPPEN Shoyu-Miso je 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/5f16dcd8c5ecc2bea7e28975/6a9622afb43ce4dd929c68a4_Menu%CC%88%20A4%20-%20Winter.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NUDELSUPPEN Tantanmen je 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Satay",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/5f16dcd8c5ecc2bea7e28975/6a9622afb43ce4dd929c68a4_Menu%CC%88%20A4%20-%20Winter.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NUDELSUPPEN Satay je 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Szechuan",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/5f16dcd8c5ecc2bea7e28975/6a9622afb43ce4dd929c68a4_Menu%CC%88%20A4%20-%20Winter.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NUDELSUPPEN Szechuan je 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
+    },
+    {
+      "id": "node/6195724374",
+      "name": "TINYFISH",
+      "lat": 46.9478039,
+      "lon": 7.441809,
+      "type": "fast_food",
+      "address": "Spitalgasse 35",
+      "postcode": "3001",
+      "website": "https://www.tinyfish.ch/",
+      "cuisine": [
+        "sushi"
+      ],
+      "openingHours": "Mo-Sa 11:30-19:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Nudelsuppen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://www.tinyfish.ch/menu",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Nudelsuppen Tantanmen · Satay · Szechuan · Shoyu-Miso CHF 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Shoyu-Miso",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/5f16dcd8c5ecc2bea7e28975/6a9622afb43ce4dd929c68a4_Menu%CC%88%20A4%20-%20Winter.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NUDELSUPPEN Shoyu-Miso je 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Tantanmen",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/5f16dcd8c5ecc2bea7e28975/6a9622afb43ce4dd929c68a4_Menu%CC%88%20A4%20-%20Winter.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NUDELSUPPEN Tantanmen je 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Satay",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/5f16dcd8c5ecc2bea7e28975/6a9622afb43ce4dd929c68a4_Menu%CC%88%20A4%20-%20Winter.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NUDELSUPPEN Satay je 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Szechuan",
+          "volumeMl": null,
+          "ramenType": "ramen",
+          "priceChf": 15.5,
+          "sourceUrl": "https://cdn.prod.website-files.com/5f16dcd8c5ecc2bea7e28975/6a9622afb43ce4dd929c68a4_Menu%CC%88%20A4%20-%20Winter.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NUDELSUPPEN Szechuan je 15.50",
+          "alcoholFree": true,
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/11782849549",
@@ -273,8 +441,8 @@
       "openingHours": "Mo off; Tu-Su 11:00-15:00, 17:00-22:30",
       "outdoor": false,
       "offers": [],
-      "scrapeStatus": "fetch_failed",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     }
   ]
 }

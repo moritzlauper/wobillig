@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-17T04:08:07.182020+00:00",
+  "generatedAt": "2026-11-17T15:25:44.171406+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
-  "discoveredAt": "2026-11-06T00:19:06.259583+00:00",
+  "discoveredAt": "2026-11-17T15:25:44.171406+00:00",
   "removed": [],
   "bars": [
     {
@@ -90,8 +90,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/33063987",
@@ -102,10 +102,10 @@
       "address": "Erlachstrasse 3",
       "postcode": "3012",
       "website": "https://www.restaurantbeaulieu.ch/",
-      "openingHours": "Mo-Sa 10:00-23:00",
       "cuisine": [
         "regional"
       ],
+      "openingHours": "Mo-Sa 10:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -137,8 +137,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:14:08.095008+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/308074891",
@@ -149,8 +149,8 @@
       "address": "Murtenstrasse 265",
       "postcode": "3027",
       "website": "https://www.blumenfeld.ch/",
-      "openingHours": "Mo-Fr 06:00-23:00; Sa-Su off",
       "cuisine": [],
+      "openingHours": "Mo-Fr 06:00-23:00; Sa-Su off",
       "outdoor": false,
       "offers": [
         {
@@ -168,8 +168,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:58:50.073837+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6509340618",
@@ -194,7 +194,7 @@
           "glutenFree": false,
           "priceChf": 13.9,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Classic 13.90",
           "sourcePage": 2,
@@ -208,7 +208,7 @@
           "glutenFree": false,
           "priceChf": 16.9,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Smash 16.90",
           "sourcePage": 2,
@@ -222,7 +222,7 @@
           "glutenFree": false,
           "priceChf": 15.9,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Cheese 15.90",
           "sourcePage": 2,
@@ -236,7 +236,7 @@
           "glutenFree": false,
           "priceChf": 16.9,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Chili Cheese 16.90",
           "sourcePage": 2,
@@ -250,7 +250,7 @@
           "glutenFree": false,
           "priceChf": 17.5,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "BBQ 17.50",
           "sourcePage": 2,
@@ -264,7 +264,7 @@
           "glutenFree": false,
           "priceChf": 19.9,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Truffle 19.90",
           "sourcePage": 2,
@@ -278,7 +278,7 @@
           "glutenFree": false,
           "priceChf": 19.5,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Avocado 19.50",
           "sourcePage": 2,
@@ -292,7 +292,7 @@
           "glutenFree": false,
           "priceChf": 26.9,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "House Meister 26.90",
           "sourcePage": 2,
@@ -306,7 +306,7 @@
           "glutenFree": false,
           "priceChf": 19.5,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Chicken 19.50",
           "sourcePage": 2,
@@ -320,9 +320,9 @@
           "glutenFree": false,
           "priceChf": 17.5,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "Veggie Smash 17.50",
+          "evidence": "VEGGIE Veggie Smash 17.50",
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -330,19 +330,47 @@
           "name": "Crispy Plant",
           "volumeMl": null,
           "burgerType": "burger",
-          "burgerDiet": "standard",
+          "burgerDiet": "vegetarian",
           "glutenFree": false,
           "priceChf": 15.9,
           "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "Crispy Plant 15.90",
+          "evidence": "VEGGIE Crispy Plant 15.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "NY Style Pastrami Smash",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.9,
+          "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NY STYLE PASTRAMI SMASH 19.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "NY Style Veggie Pastrami Smash",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 19.9,
+          "sourceUrl": "https://burger-meister.ch/wp-content/uploads/ZEITG26_100077_BM_NY-Pastrami_Imbisskarte_Selfservice_350x240-ENG_p.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "NY STYLE VEGGIE PASTRAMI SMASH 19.90",
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3052432419",
@@ -353,8 +381,8 @@
       "address": "Matzenriedstrasse 35",
       "postcode": "3019",
       "website": "https://www.baeren-oberbottigen.ch/restaurant",
-      "openingHours": "Mo off; Tu-Sa 09:00-23:30; Su off",
       "cuisine": [],
+      "openingHours": "Mo off; Tu-Sa 09:00-23:30; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -386,8 +414,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:21:56.121401+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/1682881673",
@@ -398,8 +426,8 @@
       "address": "Zeughausgasse 41",
       "postcode": "3011",
       "website": "https://baerenhoefli.ch/",
-      "openingHours": "Mo-Sa 07:30-23:30; Su 09:30-18:30",
       "cuisine": [],
+      "openingHours": "Mo-Sa 07:30-23:30; Su 09:30-18:30",
       "outdoor": false,
       "offers": [
         {
@@ -431,8 +459,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:29:45.571195+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/559232004",
@@ -443,8 +471,8 @@
       "address": "Mingerstrasse 16",
       "postcode": "3014",
       "website": "https://www.caledonia-bern.ch",
-      "openingHours": "Mo-Fr 11:00-15:00",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:00-15:00",
       "outdoor": false,
       "offers": [
         {
@@ -476,8 +504,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:26:44.014671+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/12347717156",
@@ -488,13 +516,13 @@
       "address": "Rathausgasse 61",
       "postcode": "3011",
       "website": "https://capitolbern.ch/",
-      "openingHours": "Mo 16:00-23:30; Tu-We 11:30-23:30; Th-Fr 11:30-00:30; Sa 11:00-00:30",
       "cuisine": [
         "international",
         "burger",
         "local",
         "brunch"
       ],
+      "openingHours": "Mo 16:00-23:30; Tu-We 11:30-23:30; Th-Fr 11:30-00:30; Sa 11:00-00:30",
       "outdoor": true,
       "offers": [
         {
@@ -512,8 +540,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:32:38.722157+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2572061811",
@@ -524,12 +552,12 @@
       "address": "Casinoplatz 1",
       "postcode": "3011",
       "website": "https://www.casinobern.ch/kulinarik",
-      "openingHours": "Mo-Su,PH 11:30-14:00,17:45-23:00 open \"Brasserie\", We-Su 11:45-13:30,17:45-21:30 open \"Izakaya\", Mo-Su,PH 09:00-23:00 open \"Salon d'Or\"",
       "cuisine": [
         "italian",
         "french",
         "japanese"
       ],
+      "openingHours": "Mo-Su,PH 11:30-14:00,17:45-23:00 open \"Brasserie\", We-Su 11:45-13:30,17:45-21:30 open \"Izakaya\", Mo-Su,PH 09:00-23:00 open \"Salon d'Or\"",
       "outdoor": true,
       "offers": [
         {
@@ -575,8 +603,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:20:10.206366+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/824801772",
@@ -587,11 +615,11 @@
       "address": "Bubenbergplatz 8",
       "postcode": "",
       "website": "https://www.cavallostar.ch/",
-      "openingHours": "Mo-Sa 08:30-23:00; Su 10:00-22:00",
       "cuisine": [
         "italian",
         "pizza"
       ],
+      "openingHours": "Mo-Sa 08:30-23:00; Su 10:00-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -609,8 +637,167 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
+    },
+    {
+      "id": "node/608998367",
+      "name": "Dal Capo",
+      "lat": 46.9512257,
+      "lon": 7.4302367,
+      "type": "fast_food",
+      "address": "Bühlstrasse 35",
+      "postcode": "3012",
+      "website": "https://dal-capo.ch",
+      "cuisine": [
+        "pizza"
+      ],
+      "openingHours": "Mo-Th 11:00-14:00,17:00-23:00; Fr-Sa 11:00-14:00,17:00-23:30; Su 13:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Vegiburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://dal-capo.ch/burger/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "86 Vegiburger 19,50 Vegi Burger mit Vegi-Patty und Raclettekäse",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mexicanburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://dal-capo.ch/burger/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "87 Mexicanburger 19,50 Saftiger, hausgemachter Burger mit Spiegelei, Speck, Zwiebeln und Jalapeños",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Azteca Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://dal-capo.ch/wp-content/uploads/2026/04/flyergrill.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "17 AZTECA BURGER 19.50 24.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Swissburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://dal-capo.ch/burger/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "89 Swissburger 19,50 Saftiger, hausgemachter Burger mit Cheddar-Käse, Speck, Spiegelei, Röstizwiebeln",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Burger im Schlafmantel (hausgemacht)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.0,
+          "sourceUrl": "https://dal-capo.ch/burger/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "90 Burger im Schlafmantel (hausgemacht) 18,00 Burger im Schlafmantel bezeichnet einen CHEESEBURGER",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Swiss Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://dal-capo.ch/wp-content/uploads/2026/04/flyergrill.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "15 SWISS BURGER 19.50 24.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Swiss Farmer Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://dal-capo.ch/wp-content/uploads/2026/04/flyergrill.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "16 SWISS FARMER BURGER 19.50 24.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mexican Burger (scharf)",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://dal-capo.ch/wp-content/uploads/2026/04/flyergrill.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "18 MEXICAN BURGER (SCHARF) 18.50 24.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chili Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.5,
+          "sourceUrl": "https://dal-capo.ch/wp-content/uploads/2026/04/flyergrill.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "19 CHILI BURGER 19.50 24.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegi Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 17.5,
+          "sourceUrl": "https://dal-capo.ch/wp-content/uploads/2026/04/flyergrill.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "20 VEGI BURGER 17.50 21.50",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:10:51.628355+00:00"
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/259025144",
@@ -621,8 +808,8 @@
       "address": "Marzilistrasse 47",
       "postcode": "3005",
       "website": "https://www.restaurant-dampfzentrale.ch/",
-      "openingHours": "Apr-Sep: Mo-Fr 11:00-14:00,17:30-23:30, Sa 14:00-00:30, Su 10:00-23:00; Oct-Mar: Mo-Fr 11:00-14:00,17:30-23:30, Sa 16:00-00:30",
       "cuisine": [],
+      "openingHours": "Apr-Sep: Mo-Fr 11:00-14:00,17:30-23:30, Sa 14:00-00:30, Su 10:00-23:00; Oct-Mar: Mo-Fr 11:00-14:00,17:30-23:30, Sa 16:00-00:30",
       "outdoor": true,
       "offers": [
         {
@@ -640,8 +827,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:54:25.395855+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6552336713",
@@ -713,8 +900,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:16:47.699931+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/11367327293",
@@ -725,8 +912,8 @@
       "address": "",
       "postcode": "",
       "website": "https://www.faeuder.ch",
-      "openingHours": "Mo-Fr 09:00-22:00",
       "cuisine": [],
+      "openingHours": "Mo-Fr 09:00-22:00",
       "outdoor": false,
       "offers": [
         {
@@ -744,8 +931,363 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
+    },
+    {
+      "id": "node/761255430",
+      "name": "Holy Cow!",
+      "lat": 46.9497246,
+      "lon": 7.4426291,
+      "type": "fast_food",
+      "address": "Aarbergergasse 36",
+      "postcode": "3011",
+      "website": "https://holycow.ch/en/restaurantsen/holy-cow-bern/",
+      "cuisine": [
+        "burger"
+      ],
+      "openingHours": "Su-We 11:00-22:00; Th-Sa 11:00-23:00",
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Röstigraben",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "RÖSTIGRABEN BEST SELLER 19.40 24.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mexicana Beef",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "MEXICANA BEEF 18.40 23.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "YO Ginza Beef",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 17.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "YO GINZA BEEF 17.40 22.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Viva España",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 17.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "VIVA ESPAÑA 17.40 22.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Elvis Blue Cheese",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 17.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "ELVIS BLUE CHEESE CHEF'S CHOICE 17.40 22.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bacon Avocado Beef",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 16.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "BACON AVOCADO BEEF 16.40 21.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Smoky Big Cheese And Bacon",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 15.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "SMOKY BIG CHEESE AND BACON 15.40 20.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Big Cheese",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 13.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "BIG CHEESE 13.40 18.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Big Beef",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 12.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "BIG BEEF 12.40 17.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Smokin' Holy Cowboy",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 22.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "SMOKIN' HOLY COWBOY 22.40 27.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "King Kong Carnivore",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 22.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "KING KONG CARNIVORE 22.40 27.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mexicana Chicken",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "MEXICANA CHICKEN 19.40 24.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Camembert Cranberry",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "CAMEMBERT CRANBERRY 18.40 23.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bacon Avocado Chicken",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 17.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "BACON AVOCADO CHICKEN 17.40 22.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bbq Chick'n'cheese",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 16.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "BBQ CHICK'N'CHEESE BEST SELLER 16.40 21.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "The Chicken",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 15.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "THE CHICKEN 15.40 20.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Cajun Crunch",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 20.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "CAJUN CRUNCH NEW 20.40 25.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Crispy Chicken Club",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "CRISPY CHICKEN CLUB BEST SELLER 19.90 25.40",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Buffalo Crispy Chicken",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "BUFFALO CRISPY CHICKEN 19.40 24.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Katsu Curry Crunch",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.4,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "KATSU CURRY CRUNCH NEW 19.40 24.90",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Aztec Veggie",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 16.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "AZTEC VEGGIE 16.90 21.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Veggie Chèvre",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 16.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "VEGGIE CHÈVRE Veggie-patty, Ziegenkäse, Honig, Lime Basil Mayo 16.90 21.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Veggie Zest",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 14.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "VEGGIE ZEST Veggie-patty, Funky Salsa, Lime Basil Mayo 14.90 19.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "The Veggie",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 13.9,
+          "sourceUrl": "https://holycow.ch/wp-content/uploads/2026/10/Menu-HolyCow-20261012_de.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "THE VEGGIE Veggie-patty, Lime Basil Mayo, Apfelchutney 13.90 18.90",
+          "sourcePage": 2,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:30:42.630479+00:00"
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3210641928",
@@ -789,8 +1331,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:30:53.312447+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2583594616",
@@ -907,8 +1449,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/490033763",
@@ -933,9 +1475,9 @@
           "glutenFree": false,
           "priceChf": 15.0,
           "sourceUrl": "https://www.megapizza.ch/menue",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "Hamburger 15.00 15.00 CHF",
+          "evidence": "Hamburger 15.00 CHF",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -947,7 +1489,7 @@
           "glutenFree": false,
           "priceChf": 15.0,
           "sourceUrl": "https://www.megapizza.ch/menue",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Cheeseburger 15.00 CHF",
           "sourcePage": 1,
@@ -955,7 +1497,460 @@
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
+    },
+    {
+      "id": "node/8904887210",
+      "name": "Midtown",
+      "lat": 46.9462283,
+      "lon": 7.4187621,
+      "type": "fast_food",
+      "address": "",
+      "postcode": "",
+      "website": "https://www.midtown-burger.ch",
+      "cuisine": [
+        "burger"
+      ],
+      "openingHours": null,
+      "outdoor": false,
+      "offers": [
+        {
+          "name": "Midtown Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 20.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Midtown Burger 20,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bacon Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Bacon Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mexicano Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Mexicano Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Unser Highlight",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Unser Highlight 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hamburger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 16.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Hamburger 16,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Rucola Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 17.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Rucola Burger 17,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "California Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "California Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bbq Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "BBQ Burger 18,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Nyc Double Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 23.0,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Nyc Double Burger 23,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Yb Double Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 23.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Yb Double Burger 23,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Swiss Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Swiss Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hawaii Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Hawaii Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Crunchy Chicken Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Crunchy Chicken Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Kentucky Chicken",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Kentucky Chicken 18,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mega Chicken Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Mega Chicken Burger 18,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "The Italian Chicken",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.0,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "The Italian Chicken 18,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Chicken Grill Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Chicken Grill Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "The Italian Grill Chicken",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "The Italian Grill Chicken 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "American Crunch Chicken Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "American Crunch Chicken Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mexicano Crunchy Chicken Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 19.0,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Mexicano Crunchy Chicken Burger 19,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Hot Chicken",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Hot Chicken 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegan Mexicano",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegan",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Vegan Mexicano 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Vegan Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegan",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Vegan Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Veggie California Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Veggie California Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Veggie Mexicano",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Veggie Mexicano 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "The Italian Veggie",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "The Italian Veggie 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Veggie Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "vegetarian",
+          "glutenFree": false,
+          "priceChf": 18.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Veggie Burger 18,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "SC-Bern Steak Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 23.0,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "SC-Bern Steak Burger 23,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Mexicano Steak Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 22.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Mexicano Steak Burger 22,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Bbq Steak Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 21.5,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "BBQ Steak Burger 21,50 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Texas Steak Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 20.0,
+          "sourceUrl": "https://www.midtown-burger.ch/",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "Texas Steak Burger 20,00 CHF",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/11703444045",
@@ -966,10 +1961,10 @@
       "address": "Thunstrasse 108",
       "postcode": "3006",
       "website": "https://ristorante-muna.ch",
-      "openingHours": "Mo-Fr 10:00-22:00, Sa 17:00-23:00",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Fr 10:00-22:00, Sa 17:00-23:00",
       "outdoor": false,
       "offers": [
         {
@@ -1001,8 +1996,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:41:05.727833+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/13595458462",
@@ -1026,8 +2021,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 13.9,
-          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-7-scaled.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-8-scaled.jpg",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Oscar's Cheesy Classic CHF 13.90",
           "sourcePage": 1,
@@ -1040,8 +2035,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 14.9,
-          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-7-scaled.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-8-scaled.jpg",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Swiss Gourmet CHF 14.90",
           "sourcePage": 1,
@@ -1054,8 +2049,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 12.0,
-          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-7-scaled.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-8-scaled.jpg",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Original Smash CHF 12.00",
           "sourcePage": 1,
@@ -1068,8 +2063,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 12.9,
-          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-7-scaled.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-8-scaled.jpg",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Texas Smash CHF 12.90",
           "sourcePage": 1,
@@ -1082,8 +2077,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 13.5,
-          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-7-scaled.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-8-scaled.jpg",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
           "evidence": "Trüffel Smash CHF 13.50",
           "sourcePage": 1,
@@ -1096,10 +2091,10 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 15.0,
-          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-3-scaled.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-8-scaled.jpg",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "Triple Spicy Cheese CHF 15.00 Dreifaches saftiges Beef-Patty, 3x Cheddar, Zwiebeln, Gurken & Spicy-Mayonnaise",
+          "evidence": "Triple Spicy Cheese CHF 15.00 Dreifaches saftiges Beef-Patty, 3x Cheddar",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1110,16 +2105,16 @@
           "burgerDiet": "vegan",
           "glutenFree": false,
           "priceChf": 14.0,
-          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-7-scaled.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "sourceUrl": "https://oscars-group.ch/wp-content/uploads/2026/03/Oscars-Halle-16-12-scaled.jpg",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "Vegan Classic Plant-based Burger Patty, vegane Burgersauce CHF 14.00",
+          "evidence": "Vegan Classic CHF 14.00",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2603741618",
@@ -1137,50 +2132,64 @@
       "outdoor": false,
       "offers": [
         {
-          "name": "Green Grocer's Burger",
+          "name": "Cheese Bomb Burger",
           "volumeMl": null,
           "burgerType": "burger",
-          "burgerDiet": "vegetarian",
+          "burgerDiet": "standard",
           "glutenFree": false,
-          "priceChf": 24.5,
-          "sourceUrl": "https://www.papajoes.ch/wp-content/uploads/sites/3/2025/12/PJ_Standardkarte.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "priceChf": 31.9,
+          "sourceUrl": "https://www.papajoes.ch/wp-content/uploads/sites/3/2026/11/VAL_RZ_2_Papa_Joes_Standardkarte_Web.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "GREEN GROCER'S BURGER ........24.50 VEGI marker; Gemüse in Burgerform",
+          "evidence": "Cheese Bomb Burger . . . 31.90",
           "sourcePage": 4,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Patty Melt Burger",
+          "name": "Western Burger",
           "volumeMl": null,
           "burgerType": "burger",
           "burgerDiet": "standard",
           "glutenFree": false,
-          "priceChf": 27.5,
-          "sourceUrl": "https://www.papajoes.ch/wp-content/uploads/sites/3/2026/06/WEB_RZ_Inlay_EastCoast_200x355mm_2026.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "priceChf": 30.9,
+          "sourceUrl": "https://www.papajoes.ch/wp-content/uploads/sites/3/2026/11/VAL_RZ_2_Papa_Joes_Standardkarte_Web.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "Patty Melt Burger mit 180g Rindfleisch ... CHF 27.50",
-          "sourcePage": 1,
+          "evidence": "western burger . . . 30.90 / Schweizer Rindfleisch Burger mit BBQ Sauce",
+          "sourcePage": 4,
           "extractionModel": "claude-haiku-5-5"
         },
         {
-          "name": "Bbq Burger (Mittagskarte)",
+          "name": "Green Grocer's Burger",
           "volumeMl": null,
           "burgerType": "burger",
           "burgerDiet": "standard",
           "glutenFree": false,
-          "priceChf": 22.5,
-          "sourceUrl": "https://www.papajoes.ch/wp-content/uploads/sites/3/2026/10/WEB_PJ_Saison_Lunchkarte_2025_10_Oktober.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "priceChf": 25.9,
+          "sourceUrl": "https://www.papajoes.ch/wp-content/uploads/sites/3/2026/11/VAL_RZ_2_Papa_Joes_Standardkarte_Web.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "BBQ Burger 22.50",
+          "evidence": "green grocer's burger . . . 25.90 / Gemüse in Burgerform auf Weisskabissalat",
+          "sourcePage": 4,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Sizzle Cheese Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 29.5,
+          "sourceUrl": "https://www.papajoes.ch/wp-content/uploads/sites/3/2026/11/WEB_RZ_Inlay_PJs_CheeseClub_200x355mm_2026.pdf",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
+          "confidence": "ai",
+          "evidence": "SIZZLE CHEESE BURGER CHF 29.50 «Quarter Pounder» 125 g Beef Burger im Brioche Bun",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/598684260",
@@ -1325,8 +2334,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/813680128",
@@ -1352,9 +2361,9 @@
           "glutenFree": false,
           "priceChf": 13.0,
           "sourceUrl": "https://files.web.host.ch/7e/ab/7eabed07-eef0-498e-8b89-32aa8286cec1.jpeg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "60 HAMBURGER XL 13.00 Rindsburger mit Salat, Tomaten, Zwiebeln und Sauce",
+          "evidence": "HAMBURGER XL Rindsburger mit Salat, Tomaten, Zwiebeln und Sauce 13.00",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1366,15 +2375,15 @@
           "glutenFree": false,
           "priceChf": 15.0,
           "sourceUrl": "https://files.web.host.ch/7e/ab/7eabed07-eef0-498e-8b89-32aa8286cec1.jpeg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
+          "observedAt": "2026-11-17T15:25:44.171406+00:00",
           "confidence": "ai",
-          "evidence": "61 CHEESEBURGER XL 15.00 Rindsburger mit Käse, Salat, Tomaten, Zwiebeln und Sauce",
+          "evidence": "CHEESEBURGER XL 15.00 Rindsburger mit Käse, Salat, Tomaten, Zwiebeln und Sauce",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
       "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/4219531601",
@@ -1385,10 +2394,10 @@
       "address": "Muesmattstrasse 46",
       "postcode": "",
       "website": "https://provisorium46.ch",
-      "openingHours": "Tu-Fr 11:00-14:30,16:00-23:30; Sa 17:00-23:30; Nov-Jan Tu-Sa 17:00-23:30",
       "cuisine": [
         "regional"
       ],
+      "openingHours": "Tu-Fr 11:00-14:30,16:00-23:30; Sa 17:00-23:30; Nov-Jan Tu-Sa 17:00-23:30",
       "outdoor": true,
       "offers": [
         {
@@ -1448,8 +2457,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:36:02.923702+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/8199621997",
@@ -1481,8 +2490,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/5745409029",
@@ -1526,8 +2535,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879740",
@@ -1538,8 +2547,8 @@
       "address": "Kornhausplatz 19",
       "postcode": "3011",
       "website": "https://www.restaurant-ringgenberg.ch/",
-      "openingHours": "Mo-Fr 11:30-23:30; Sa 09:00-23:30; Su 10:00-23:30",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:30-23:30; Sa 09:00-23:30; Su 10:00-23:30",
       "outdoor": true,
       "offers": [
         {
@@ -1571,8 +2580,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:49:13.686439+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6352819896",
@@ -1583,8 +2592,8 @@
       "address": "Jubiläumsstrasse 103",
       "postcode": "",
       "website": "https://sportbarbern.ch/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -1644,8 +2653,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:42:57.568873+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/1066324532",
@@ -1656,8 +2665,8 @@
       "address": "Kramgasse 74",
       "postcode": "3011",
       "website": "https://www.beef-steakhouse.ch",
-      "openingHours": "Mo-Fr 11:30-23:00; Sa 09:00-23:00; Su 10:00-17:00",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:30-23:00; Sa 09:00-23:00; Su 10:00-17:00",
       "outdoor": false,
       "offers": [
         {
@@ -1717,8 +2726,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:44:18.862722+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2925703789",
@@ -1729,10 +2738,10 @@
       "address": "Gotenstrasse 6",
       "postcode": "3018",
       "website": "https://www.truckerbar.ch",
-      "openingHours": "Mo-Th 06:00-23:30; Fr-Sa 06:00-00:30; Su 09:00-20:00",
       "cuisine": [
         "american"
       ],
+      "openingHours": "Mo-Th 06:00-23:30; Fr-Sa 06:00-00:30; Su 09:00-20:00",
       "outdoor": false,
       "offers": [
         {
@@ -1750,8 +2759,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:04:19.595937+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/7893100199",
@@ -1781,8 +2790,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2574170317",
@@ -1793,8 +2802,8 @@
       "address": "Zeughausgasse 9",
       "postcode": "3011",
       "website": "https://www.volkshausbern.ch/",
-      "openingHours": "Mo-Sa 06:30-23:30; Su 09:00-22:30",
       "cuisine": [],
+      "openingHours": "Mo-Sa 06:30-23:30; Su 09:00-22:30",
       "outdoor": false,
       "offers": [
         {
@@ -1826,8 +2835,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:56:04.046013+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/550305631",
@@ -1838,10 +2847,10 @@
       "address": "Waldheimstrasse 40",
       "postcode": "3012",
       "website": "https://www.waldheim-bern.ch/",
-      "openingHours": "Tu-Fr 11:00-14:30,18:00-23:30; Sa 18:00-23:30",
       "cuisine": [
         "french"
       ],
+      "openingHours": "Tu-Fr 11:00-14:30,18:00-23:30; Sa 18:00-23:30",
       "outdoor": true,
       "offers": [
         {
@@ -1859,8 +2868,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:07:02.324791+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2407310350",
@@ -1871,8 +2880,8 @@
       "address": "Lorrainestrasse 15",
       "postcode": "3013",
       "website": "https://www.wartsaal-kaffee.ch/",
-      "openingHours": "Mo 17:00-22:00; Tu-Fr 09:00-23:30; Sa 10:00-23:30; Su 10:00-17:00",
       "cuisine": [],
+      "openingHours": "Mo 17:00-22:00; Tu-Fr 09:00-23:30; Sa 10:00-23:30; Su 10:00-17:00",
       "outdoor": true,
       "offers": [
         {
@@ -1918,8 +2927,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:56:06.551541+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/7241894945",
@@ -1930,8 +2939,8 @@
       "address": "Gurtengasse 4",
       "postcode": "3011",
       "website": "https://www.williamsbutcherstable.ch",
-      "openingHours": "Mo-Sa 11:30-24:00",
       "cuisine": [],
+      "openingHours": "Mo-Sa 11:30-24:00",
       "outdoor": true,
       "offers": [
         {
@@ -1963,8 +2972,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:11:09.464639+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/33064271",
@@ -1975,10 +2984,10 @@
       "address": "Schwalbenweg 2",
       "postcode": "3012",
       "website": "https://restaurantzebra.ch/",
-      "openingHours": "We-Sa 18:00-23:00; Su 09:30-14:00",
       "cuisine": [
         "regional"
       ],
+      "openingHours": "We-Sa 18:00-23:00; Su 09:30-14:00",
       "outdoor": true,
       "offers": [
         {
@@ -1996,8 +3005,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:50:42.447220+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     }
   ]
 }

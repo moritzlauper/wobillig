@@ -1,7 +1,10 @@
 {
-  "generatedAt": "2026-11-17T04:08:07.173871+00:00",
+  "generatedAt": "2026-11-17T15:25:44.171406+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
-  "removed": [],
+  "removed": [
+    "node/286879723",
+    "way/96211624"
+  ],
   "category": "wine",
   "bars": [
     {
@@ -32,8 +35,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879753",
@@ -44,10 +47,10 @@
       "address": "Theaterplatz 2",
       "postcode": "3011",
       "website": "https://www.adrianos.ch/",
-      "openingHours": "Mo-Sa 07:00-00:30; Su 10:00-23:30",
       "cuisine": [
         "sandwich"
       ],
+      "openingHours": "Mo-Sa 07:00-00:30; Su 10:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -135,8 +138,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:41:21.920437+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "way/379582648",
@@ -147,8 +150,8 @@
       "address": "Bahnhofplatz 10a",
       "postcode": "3011",
       "website": "https://adrianos.ch/",
-      "openingHours": "Mo-Fr 05:30-21:00; Sa 06:30-22:00; Su 06:30-21:00",
       "cuisine": [],
+      "openingHours": "Mo-Fr 05:30-21:00; Sa 06:30-22:00; Su 06:30-21:00",
       "outdoor": false,
       "offers": [
         {
@@ -250,8 +253,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:44:42.007898+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/253201072",
@@ -262,10 +265,10 @@
       "address": "Grosser Muristalden 6",
       "postcode": "3006",
       "website": "https://www.altestramdepot.ch",
-      "openingHours": "Mar-Oct Mo-Su 10:00-00:30; Nov-Feb Mo-Su 11:00-00:30",
       "cuisine": [
         "international"
       ],
+      "openingHours": "Mar-Oct Mo-Su 10:00-00:30; Nov-Feb Mo-Su 11:00-00:30",
       "outdoor": true,
       "offers": [
         {
@@ -423,8 +426,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:13:01.526133+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/101292381",
@@ -435,11 +438,11 @@
       "address": "Thunstrasse 2",
       "postcode": "3005",
       "website": "https://www.restaurantambassador.ch",
-      "openingHours": "Mo-Fr 09:00-14:00,18:00-23:30; Sa 18:00-23:30",
       "cuisine": [
         "greek",
         "local"
       ],
+      "openingHours": "Mo-Fr 09:00-14:00,18:00-23:30; Sa 18:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -457,8 +460,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:02:44.139273+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/4688138991",
@@ -491,8 +494,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:02:37.561193+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/8349766427",
@@ -503,10 +506,10 @@
       "address": "Monbijoustrasse 29",
       "postcode": "3011",
       "website": "https://asiahoeck.ch/",
-      "openingHours": "Mo-Fr 11:00-14:00,17:30-21:00; Sa-Su 17:30-21:30",
       "cuisine": [
         "asian"
       ],
+      "openingHours": "Mo-Fr 11:00-14:00,17:30-21:00; Sa-Su 17:30-21:30",
       "outdoor": true,
       "offers": [
         {
@@ -538,8 +541,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:59:26.527379+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/14091131003",
@@ -550,8 +553,8 @@
       "address": "Egelgasse 65",
       "postcode": "",
       "website": "https://www.asian-flavour.ch/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -569,8 +572,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:13:23.507514+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2705367348",
@@ -581,8 +584,8 @@
       "address": "Breitenrainplatz 40",
       "postcode": "3014",
       "website": "https://www.barbiere-bern.ch",
-      "openingHours": "Mo-Fr 07:00-00:30; Sa 09:00-00:30; Su off",
       "cuisine": [],
+      "openingHours": "Mo-Fr 07:00-00:30; Sa 09:00-00:30; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -600,8 +603,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:19:45.931742+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/5151793121",
@@ -612,8 +615,8 @@
       "address": "Bahnhofplatz 2",
       "postcode": "3011",
       "website": "https://www.begh.ch/cafebar",
-      "openingHours": "Mo-Sa 09:00-20:00",
       "cuisine": [],
+      "openingHours": "Mo-Sa 09:00-20:00",
       "outdoor": false,
       "offers": [
         {
@@ -631,8 +634,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:06:26.752252+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/745461263",
@@ -643,10 +646,10 @@
       "address": "Laupenstrasse 57",
       "postcode": "3008",
       "website": "https://www.bigoteverde.com",
-      "openingHours": "Mo-Fr 11:30-14:00, 17:30-22:00; Sa 14:00-23:00; Su off",
       "cuisine": [
         "mexican"
       ],
+      "openingHours": "Mo-Fr 11:30-14:00, 17:30-22:00; Sa 14:00-23:00; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -664,8 +667,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:36:30.651458+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/14291014339",
@@ -753,8 +756,8 @@
       "address": "Grosser Muristalden 1",
       "postcode": "3006",
       "website": "https://www.brasseriebaerengraben.ch/",
-      "openingHours": "Mo-Fr 07:00-23:30; Sa-Su 08:00-23:30",
       "cuisine": [],
+      "openingHours": "Mo-Fr 07:00-23:30; Sa-Su 08:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -1066,8 +1069,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:09:04.303831+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/8920573511",
@@ -1193,8 +1196,8 @@
       "address": "Elfenauweg 94",
       "postcode": "3006",
       "website": "https://orangerieelfenau.ch/",
-      "openingHours": "Apr-Oct Fr, Sa 09:00-22:00; Mo-Th, Su 09:00-19:00",
       "cuisine": [],
+      "openingHours": "Apr-Oct Fr, Sa 09:00-22:00; Mo-Th, Su 09:00-19:00",
       "outdoor": true,
       "offers": [
         {
@@ -1268,8 +1271,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:10:20.205596+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879743",
@@ -1280,8 +1283,8 @@
       "address": "Kornhausplatz 17",
       "postcode": "3011",
       "website": "http://www.pyri.ch",
-      "openingHours": "Mo-Sa 08:00-00:30; Su 12:00-23:00",
       "cuisine": [],
+      "openingHours": "Mo-Sa 08:00-00:30; Su 12:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -1341,8 +1344,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:12:20.243845+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/9272067500",
@@ -1353,8 +1356,8 @@
       "address": "Huberstrasse 13 A",
       "postcode": "3008",
       "website": "https://cafehueber.ch/",
-      "openingHours": "Tu-Fr 09:00-23:00; Sa 10:00-23:00; Su 10:00-18:00",
       "cuisine": [],
+      "openingHours": "Tu-Fr 09:00-23:00; Sa 10:00-23:00; Su 10:00-18:00",
       "outdoor": true,
       "offers": [
         {
@@ -1512,8 +1515,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:11:12.131850+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "way/460523809",
@@ -1524,7 +1527,6 @@
       "address": "Bümplizstrasse 97a",
       "postcode": "3018",
       "website": "https://www.pinprinza.ch/",
-      "openingHours": "Do-So 09:00-22:00",
       "cuisine": [
         "coffee_shop",
         "regional",
@@ -1535,6 +1537,7 @@
         "tea",
         "pastry"
       ],
+      "openingHours": "Do-So 09:00-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -1608,8 +1611,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:39:00.267908+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/514536836",
@@ -1620,10 +1623,10 @@
       "address": "Weingartstrasse 32",
       "postcode": "3014",
       "website": "https://www.calabrisella-bern.ch/",
-      "openingHours": "Tu-Su 09:00-23:30; Fr 09:00-00:30; Sa 10:00-00:30; Su 10:00-23:30",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Tu-Su 09:00-23:30; Fr 09:00-00:30; Sa 10:00-00:30; Su 10:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -1655,8 +1658,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:22:17.199876+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/559232004",
@@ -1686,8 +1689,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:26:44.014671+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/738207062",
@@ -1698,10 +1701,10 @@
       "address": "Murtenstrasse 41",
       "postcode": "3008",
       "website": "http://www.cangrillhaus.ch",
-      "openingHours": "We-Fr 11:00-14:00,16:30-22:30; Sa-Su 14:00-23:00",
       "cuisine": [
         "turkish"
       ],
+      "openingHours": "We-Fr 11:00-14:00,16:30-22:30; Sa-Su 14:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -1831,8 +1834,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:57:38.905675+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/12347717156",
@@ -1867,8 +1870,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:14:47.088596+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/438280382",
@@ -1879,10 +1882,10 @@
       "address": "Bühlstrasse 57",
       "postcode": "3012",
       "website": "https://www.casaitalia.ch",
-      "openingHours": "Mo-Th 08:30-23:30; Fr-Sa 08:30-00:30; Su 08:30-23:30",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Th 08:30-23:30; Fr-Sa 08:30-00:30; Su 08:30-23:30",
       "outdoor": true,
       "offers": [
         {
@@ -2012,8 +2015,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T23:00:11.574482+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2572061811",
@@ -2024,12 +2027,12 @@
       "address": "Casinoplatz 1",
       "postcode": "3011",
       "website": "https://www.casinobern.ch/kulinarik",
-      "openingHours": "Mo-Su,PH 11:30-14:00,17:45-23:00 open \"Brasserie\", We-Su 11:45-13:30,17:45-21:30 open \"Izakaya\", Mo-Su,PH 09:00-23:00 open \"Salon d'Or\"",
       "cuisine": [
         "italian",
         "french",
         "japanese"
       ],
+      "openingHours": "Mo-Su,PH 11:30-14:00,17:45-23:00 open \"Brasserie\", We-Su 11:45-13:30,17:45-21:30 open \"Izakaya\", Mo-Su,PH 09:00-23:00 open \"Salon d'Or\"",
       "outdoor": true,
       "offers": [
         {
@@ -2131,8 +2134,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:20:10.206366+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/824801772",
@@ -2143,11 +2146,11 @@
       "address": "Bubenbergplatz 8",
       "postcode": "",
       "website": "https://www.cavallostar.ch/",
-      "openingHours": "Mo-Sa 08:30-23:00; Su 10:00-22:00",
       "cuisine": [
         "italian",
         "pizza"
       ],
+      "openingHours": "Mo-Sa 08:30-23:00; Su 10:00-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -2165,8 +2168,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:10:51.628355+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/282774266",
@@ -2177,8 +2180,8 @@
       "address": "Wasserwerkgasse 7",
       "postcode": "3011",
       "website": "https://www.cinematte.ch/restaurant",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -2224,8 +2227,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:40:25.135511+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/1337634616",
@@ -2236,10 +2239,10 @@
       "address": "Gerechtigkeitsgasse 74",
       "postcode": "3011",
       "website": "https://www.restaurant-commerce.com/",
-      "openingHours": "Mo 17:00-23:30; Tu-Sa 11:00-14:30, 17:00-23:30; Su off",
       "cuisine": [
         "spanish"
       ],
+      "openingHours": "Mo 17:00-23:30; Tu-Sa 11:00-14:30, 17:00-23:30; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -2439,8 +2442,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:27:49.405083+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/13112421546",
@@ -2451,8 +2454,8 @@
       "address": "",
       "postcode": "",
       "website": "https://www.contra-corrente.ch/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -2652,8 +2655,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:27:52.519312+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/282774221",
@@ -2664,10 +2667,10 @@
       "address": "Effingerstrasse 14",
       "postcode": "3011",
       "website": "https://www.da-carlo.ch/",
-      "openingHours": "Mo-Sa 11:30-14:30, 17:30-23:30; Su off",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Sa 11:30-14:30, 17:30-23:30; Su off",
       "outdoor": true,
       "offers": [
         {
@@ -2783,8 +2786,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:21:27.625986+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/5137495924",
@@ -2795,11 +2798,11 @@
       "address": "Kochergasse 1",
       "postcode": "3011",
       "website": "https://www.dakeli.ch/",
-      "openingHours": "Mo-Th 07:00-23:00; Fr 07:00-00:30; Sa 09:00-00:30; Su off; PH off",
       "cuisine": [
         "italian",
         "pizza"
       ],
+      "openingHours": "Mo-Th 07:00-23:00; Fr 07:00-00:30; Sa 09:00-00:30; Su off; PH off",
       "outdoor": false,
       "offers": [
         {
@@ -3027,8 +3030,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:14:59.048743+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/7545709020",
@@ -3039,11 +3042,11 @@
       "address": "Eigerplatz 10",
       "postcode": "3007",
       "website": "https://www.darina.ch",
-      "openingHours": "Mo-Th 10:00-23:00; Fr,Sa 10:00-23:30; Su,PH off",
       "cuisine": [
         "italian",
         "pizza"
       ],
+      "openingHours": "Mo-Th 10:00-23:00; Fr,Sa 10:00-23:30; Su,PH off",
       "outdoor": true,
       "offers": [
         {
@@ -3061,8 +3064,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:14:27.962932+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879727",
@@ -3073,10 +3076,10 @@
       "address": "Spitalgasse 2",
       "postcode": "3011",
       "website": "https://www.ristorantedavinci.ch/",
-      "openingHours": "Mo-Sa 10:00-23:00; Su 11:00-22:00",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Sa 10:00-23:00; Su 11:00-22:00",
       "outdoor": false,
       "offers": [
         {
@@ -3444,8 +3447,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T04:08:06.973010+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/598242991",
@@ -3456,10 +3459,10 @@
       "address": "Moserstrasse 14b",
       "postcode": "3013",
       "website": "https://del-gusto.ch",
-      "openingHours": "Mo-Su 08:00-23:30",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Su 08:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -3617,8 +3620,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:59:35.451981+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2208907675",
@@ -3629,10 +3632,10 @@
       "address": "Schauplatzgasse 16",
       "postcode": "3011",
       "website": "https://www.della-casa.ch",
-      "openingHours": "Mo-Sa 10:30-23:30; Su off; PH off",
       "cuisine": [
         "regional"
       ],
+      "openingHours": "Mo-Sa 10:30-23:30; Su off; PH off",
       "outdoor": false,
       "offers": [
         {
@@ -3664,8 +3667,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:14:29.959019+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/1297306803",
@@ -3676,8 +3679,8 @@
       "address": "Amthausgasse 18",
       "postcode": "3011",
       "website": "https://www.cafe-diagonal.ch/",
-      "openingHours": "Tu,We 08:30-23:00; Th,Fr 08:30-24:00; Sa 08:30-22:00",
       "cuisine": [],
+      "openingHours": "Tu,We 08:30-23:00; Th,Fr 08:30-24:00; Sa 08:30-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -3821,8 +3824,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:15:06.602339+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/9547726418",
@@ -3833,8 +3836,8 @@
       "address": "Holligerhof 8",
       "postcode": "3008",
       "website": "https://www.dock8.ch/",
-      "openingHours": "Mo-Th 09:00-17:00; Fr 09:00-22:00",
       "cuisine": [],
+      "openingHours": "Mo-Th 09:00-17:00; Fr 09:00-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -3908,8 +3911,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:16:41.557298+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/540599716",
@@ -3920,10 +3923,10 @@
       "address": "Scheibenstrasse 25",
       "postcode": "3014",
       "website": "https://la-dolcevita.ch/",
-      "openingHours": "Mo-Th 08:00-23:30; Fr-Sa 08:00-00:30; Su 08:00-23:30",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Th 08:00-23:30; Fr-Sa 08:00-00:30; Su 08:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -3941,8 +3944,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:31:40.365329+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/444434142",
@@ -3953,10 +3956,10 @@
       "address": "Schwanengasse 3",
       "postcode": "3011",
       "website": "https://www.domino-bern.ch/",
-      "openingHours": "Mo-Sa 10:00-23:00; Su,PH off",
       "cuisine": [
         "lebanese"
       ],
+      "openingHours": "Mo-Sa 10:00-23:00; Su,PH off",
       "outdoor": true,
       "offers": [
         {
@@ -4086,8 +4089,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:57:07.255573+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/283213503",
@@ -4098,8 +4101,8 @@
       "address": "Weissensteinstrasse 61",
       "postcode": "3007",
       "website": "https://www.restaurant-sueder.ch/",
-      "openingHours": "Mo off; Tu-Fr 11:00-14:30, 18:00-23:30; Sa 18:00-23:30; Su off",
       "cuisine": [],
+      "openingHours": "Mo off; Tu-Fr 11:00-14:30, 18:00-23:30; Sa 18:00-23:30; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -4117,8 +4120,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:30:33.545956+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/278791780",
@@ -4129,8 +4132,8 @@
       "address": "Weltpoststrasse 16",
       "postcode": "3015",
       "website": "https://www.egghoelzli.ch/?id=6",
-      "openingHours": "Mo-Sa 08:00-23:30; Su 09:00-22:00",
       "cuisine": [],
+      "openingHours": "Mo-Sa 08:00-23:30; Su 09:00-22:00",
       "outdoor": false,
       "offers": [
         {
@@ -4246,8 +4249,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:16:42.618513+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2915897849",
@@ -4258,10 +4261,10 @@
       "address": "Spitalgasse 26",
       "postcode": "3011",
       "website": "https://bern.elmexicano.ch/",
-      "openingHours": "Mo-Sa 11:00-14:00,17:00-00:30; Su 17:00-00:30",
       "cuisine": [
         "mexican"
       ],
+      "openingHours": "Mo-Sa 11:00-14:00,17:00-00:30; Su 17:00-00:30",
       "outdoor": false,
       "offers": [
         {
@@ -4293,8 +4296,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:05:26.199479+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/614862146",
@@ -4305,8 +4308,8 @@
       "address": "Papiermühlestrasse 71",
       "postcode": "3014",
       "website": "https://restaurant-eleven.ch/",
-      "openingHours": "Mo-Fr 09:00-23:00; Sa 17:00-23:00; Su off",
       "cuisine": [],
+      "openingHours": "Mo-Fr 09:00-23:00; Sa 17:00-23:00; Su off",
       "outdoor": true,
       "offers": [
         {
@@ -4464,8 +4467,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:17:38.435066+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/277019735",
@@ -4476,8 +4479,8 @@
       "address": "Elfenauweg 50",
       "postcode": "3006",
       "website": "https://www.elfenaupark.ch/restaurant",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -4621,8 +4624,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:24:00.656940+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6552336713",
@@ -4722,8 +4725,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:16:47.699931+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/282774244",
@@ -4734,8 +4737,8 @@
       "address": "Münstergasse 64",
       "postcode": "3011",
       "website": "https://www.falken.restaurant/",
-      "openingHours": "Mo-Fr 09:00-23:30; Sa 08:00-23:30; Su off",
       "cuisine": [],
+      "openingHours": "Mo-Fr 09:00-23:30; Sa 08:00-23:30; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -4753,8 +4756,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:21:26.287493+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/5703484736",
@@ -4765,8 +4768,8 @@
       "address": "Stauffacherstrasse 82",
       "postcode": "3014",
       "website": "https://www.freibank.ch",
-      "openingHours": "Mo-Fr 11:00-21:00; Sa-Su off; PH off",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:00-21:00; Sa-Su off; PH off",
       "outdoor": false,
       "offers": [
         {
@@ -4868,8 +4871,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:22:23.320135+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/259025158",
@@ -4880,8 +4883,8 @@
       "address": "Parkterrasse 10",
       "postcode": "3012",
       "website": "https://www.grosseschanze.ch/",
-      "openingHours": "May-Sep Mo-We 07:00-20:00, Th-Fr 07:00-22:00, Sa-Su \"on reservation\"; Oct-Apr Mo-Fr 07:00-20:00, Sa-Su \"on reservation\"",
       "cuisine": [],
+      "openingHours": "May-Sep Mo-We 07:00-20:00, Th-Fr 07:00-22:00, Sa-Su \"on reservation\"; Oct-Apr Mo-Fr 07:00-20:00, Sa-Su \"on reservation\"",
       "outdoor": true,
       "offers": [
         {
@@ -4969,8 +4972,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:58:42.372037+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/265627185",
@@ -4981,11 +4984,11 @@
       "address": "Breitenrainplatz 26",
       "postcode": "3014",
       "website": "https://www.grotto-ticino.ch/",
-      "openingHours": "Tu-Sa 12:00-23:00",
       "cuisine": [
         "italian",
         "pizza"
       ],
+      "openingHours": "Tu-Sa 12:00-23:00",
       "outdoor": false,
       "offers": [
         {
@@ -5003,8 +5006,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:32:11.298128+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3082108093",
@@ -5015,8 +5018,8 @@
       "address": "Schlösslistrasse 5",
       "postcode": "3008",
       "website": "https://hausderuniversitaet.ch/restaurant/",
-      "openingHours": "Mo-Fr 07:30-18:00; Sa-Su off",
       "cuisine": [],
+      "openingHours": "Mo-Fr 07:30-18:00; Sa-Su off",
       "outdoor": false,
       "offers": [
         {
@@ -5048,8 +5051,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:21:03.712797+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/598684504",
@@ -5057,11 +5060,11 @@
       "lat": 46.9467151,
       "lon": 7.4387885,
       "type": "restaurant",
-      "address": "Schwanengasse 8",
-      "postcode": "3011",
+      "address": "",
+      "postcode": "",
       "website": "https://hellys.ch",
-      "openingHours": "Tu-Fr 16:00-18:30",
       "cuisine": [],
+      "openingHours": "Tu-Fr 16:00-18:30",
       "outdoor": false,
       "offers": [
         {
@@ -5135,8 +5138,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:22:09.621355+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3271092775",
@@ -5147,10 +5150,10 @@
       "address": "Holligenstrasse 70",
       "postcode": "3008",
       "website": "https://www.fischermaetteli.ch",
-      "openingHours": "Tu-Fr 11:30-14:00,17:30-22:30; Sa,Su 17:30-22:30",
       "cuisine": [
         "chinese"
       ],
+      "openingHours": "Tu-Fr 11:30-14:00,17:30-22:30; Sa,Su 17:30-22:30",
       "outdoor": true,
       "offers": [
         {
@@ -5168,8 +5171,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:57:50.419311+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/379712215",
@@ -5285,8 +5288,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:23:27.179116+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/7278483007",
@@ -5297,10 +5300,10 @@
       "address": "Gesellschaftsstrasse 38",
       "postcode": "3012",
       "website": "https://injera-restaurant.ch/",
-      "openingHours": "Mo-Fr 11:30-14:00, 18:00-23:00; Sa 17:00-23:30",
       "cuisine": [
         "ethiopian"
       ],
+      "openingHours": "Mo-Fr 11:30-14:00, 18:00-23:00; Sa 17:00-23:30",
       "outdoor": true,
       "offers": [
         {
@@ -5318,8 +5321,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:57:48.155873+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/13205261901",
@@ -5330,10 +5333,10 @@
       "address": "Rathausgasse 21",
       "postcode": "3011",
       "website": "https://www.jul.swiss/",
-      "openingHours": "Th 09:00-23:00; Fr-Sa 09:00-00:00; Su 10:00-18:00",
       "cuisine": [
         "international"
       ],
+      "openingHours": "Th 09:00-23:00; Fr-Sa 09:00-00:00; Su 10:00-18:00",
       "outdoor": false,
       "offers": [
         {
@@ -5407,8 +5410,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:42:32.665615+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/282774043",
@@ -5419,8 +5422,8 @@
       "address": "Murtenstrasse 221",
       "postcode": "3027",
       "website": "https://www.restaurant-jaeger.ch/",
-      "openingHours": "Tu-Th 08:30-23:00; Fr 08:30-23:30; Sa 10:00-23:30; Su 11:00-20:00",
       "cuisine": [],
+      "openingHours": "Tu-Th 08:30-23:00; Fr 08:30-23:30; Sa 10:00-23:30; Su 11:00-20:00",
       "outdoor": true,
       "offers": [
         {
@@ -5508,8 +5511,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:25:19.729640+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/7417396228",
@@ -5520,8 +5523,8 @@
       "address": "Stauffacherstrasse 11",
       "postcode": "3014",
       "website": "https://www.kafipfyfouter.ch/",
-      "openingHours": "Tu-Fr 08:00-18:00; Sa 08:00-15:00; Su 09:00-17:00",
       "cuisine": [],
+      "openingHours": "Tu-Fr 08:00-18:00; Sa 08:00-15:00; Su 09:00-17:00",
       "outdoor": false,
       "offers": [
         {
@@ -5567,8 +5570,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:22:53.772186+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3283703322",
@@ -5600,8 +5603,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:27:07.444516+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/101292376",
@@ -5633,8 +5636,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:27:30.445465+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/1831483517",
@@ -5645,8 +5648,8 @@
       "address": "Klösterlistutz 16",
       "postcode": "3013",
       "website": "https://kloesterlibern.ch/",
-      "openingHours": "Mo-Su 11:00-23:30",
       "cuisine": [],
+      "openingHours": "Mo-Su 11:00-23:30",
       "outdoor": true,
       "offers": [
         {
@@ -5804,8 +5807,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:33:32.330216+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3045013204",
@@ -5816,8 +5819,8 @@
       "address": "Gerechtigkeitsgasse 62",
       "postcode": "3011",
       "website": "https://www.kloetzlikeller.ch",
-      "openingHours": "Tu-Fr 11:30-14:30,18:00-23:30; Sa 18:00-23:30;Nov-Dec Mo-Fr 11:30-14:30,18:00-23:30",
       "cuisine": [],
+      "openingHours": "Tu-Fr 11:30-14:30,18:00-23:30; Sa 18:00-23:30;Nov-Dec Mo-Fr 11:30-14:30,18:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -5975,8 +5978,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:27:02.310286+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3210641928",
@@ -5987,8 +5990,8 @@
       "address": "Kramgasse 12",
       "postcode": "3011",
       "website": "https://www.kramer-bern.ch/",
-      "openingHours": "Mo-We 11:00-22:00; Th-Sa 11:00-23:30; Su off",
       "cuisine": [],
+      "openingHours": "Mo-We 11:00-22:00; Th-Sa 11:00-23:30; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -6188,8 +6191,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:30:53.312447+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879776",
@@ -6249,8 +6252,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:43:25.442050+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/13667025050",
@@ -6280,8 +6283,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:26:44.724282+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2910740696",
@@ -6292,8 +6295,8 @@
       "address": "Waisenhausplatz 30",
       "postcode": "3011",
       "website": "https://www.lehrerzimmer.be/",
-      "openingHours": "Mo 18:00-00:30; Tu-Fr 12:00-00:30; Sa 10:00-00:30; Su 10:00-21:00",
       "cuisine": [],
+      "openingHours": "Mo 18:00-00:30; Tu-Fr 12:00-00:30; Sa 10:00-00:30; Su 10:00-21:00",
       "outdoor": false,
       "offers": [
         {
@@ -6311,8 +6314,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:27:34.770107+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/1287682678",
@@ -6323,8 +6326,8 @@
       "address": "Kornhausplatz 10",
       "postcode": "3011",
       "website": "https://leichtsinn.ch/",
-      "openingHours": "Mo 16:00-22:00; Tu,We 10:00-23:00; Th-Sa 10:00-00:30",
       "cuisine": [],
+      "openingHours": "Mo 16:00-22:00; Tu,We 10:00-23:00; Th-Sa 10:00-00:30",
       "outdoor": false,
       "offers": [
         {
@@ -6426,8 +6429,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:37:25.998681+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/583398360",
@@ -6438,8 +6441,8 @@
       "address": "Uferweg 4",
       "postcode": "",
       "website": "https://www.lido-altenberg.ch",
-      "openingHours": "Mo-Su 11:00-22:00",
       "cuisine": [],
+      "openingHours": "Mo-Su 11:00-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -6541,8 +6544,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:28:42.360636+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/8819936791",
@@ -6553,8 +6556,8 @@
       "address": "Gerechtigkeitsgasse 13",
       "postcode": "3011",
       "website": "https://lieblings.be/",
-      "openingHours": "We-Fr 17:00-23:00; Sa 10:00-24:00",
       "cuisine": [],
+      "openingHours": "We-Fr 17:00-23:00; Sa 10:00-24:00",
       "outdoor": true,
       "offers": [
         {
@@ -6600,8 +6603,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:28:25.552140+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/540729997",
@@ -6612,8 +6615,8 @@
       "address": "Militärstrasse 42",
       "postcode": "3014",
       "website": "https://www.lokal-bern.ch/",
-      "openingHours": "Mo-Tu 9:30-23:30; Fr 9:30-00:00; Sa 15:00-00:00; Su off; PH off",
       "cuisine": [],
+      "openingHours": "Mo-Tu 9:30-23:30; Fr 9:30-00:00; Sa 15:00-00:00; Su off; PH off",
       "outdoor": false,
       "offers": [
         {
@@ -6687,8 +6690,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T01:41:48.215615+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/445018177",
@@ -6699,10 +6702,10 @@
       "address": "Flurstrasse 24",
       "postcode": "3014",
       "website": "https://www.restaurant-ludmilla.ch",
-      "openingHours": "Mo-Fr 11:30-23:00; Sa 18:00-23:00",
       "cuisine": [
         "regional"
       ],
+      "openingHours": "Mo-Fr 11:30-23:00; Sa 18:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -6734,8 +6737,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:28:52.476731+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/4083144290",
@@ -6835,8 +6838,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:28:44.690134+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/4540081519",
@@ -6847,8 +6850,8 @@
       "address": "Viktoriastrasse 70",
       "postcode": "3013",
       "website": "https://loescher.be/",
-      "openingHours": "Tu-Sa 09:00-24:00",
       "cuisine": [],
+      "openingHours": "Tu-Sa 09:00-24:00",
       "outdoor": false,
       "offers": [
         {
@@ -6950,8 +6953,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:32:48.573173+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/313051043",
@@ -6959,13 +6962,13 @@
       "lat": 46.9491041,
       "lon": 7.4454423,
       "type": "restaurant",
-      "address": "Zeughausgasse 16",
-      "postcode": "3011",
+      "address": "",
+      "postcode": "",
       "website": "https://loetschbergbern.ch/",
-      "openingHours": "Mo-Fr 10:00-24:00; Sa 09:00-24:00; Su 11:00-23:00",
       "cuisine": [
         "suisse"
       ],
+      "openingHours": "Mo-Fr 10:00-24:00; Sa 09:00-24:00; Su 11:00-23:00",
       "outdoor": false,
       "offers": [
         {
@@ -6997,8 +7000,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:43:57.440716+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2838925989",
@@ -7009,8 +7012,8 @@
       "address": "Kramgasse 8",
       "postcode": "",
       "website": "https://www.cafemarta.ch/",
-      "openingHours": "Mo off; Tu-We 17:00-23:30; Th 17:00-00:30; Fr 16:00-00:30; Sa 10:00-00:30; Su 13:00-22:30",
       "cuisine": [],
+      "openingHours": "Mo off; Tu-We 17:00-23:30; Th 17:00-00:30; Fr 16:00-00:30; Sa 10:00-00:30; Su 13:00-22:30",
       "outdoor": false,
       "offers": [
         {
@@ -7028,8 +7031,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:29:42.635427+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2336992357",
@@ -7040,13 +7043,13 @@
       "address": "Gasstrasse 8",
       "postcode": "",
       "website": "https://www.restaurant-marzilibruecke.ch/",
-      "openingHours": "Mo-Fr 11:30-23:30; Sa 12:00-23:30; Su 10:00-22:30",
       "cuisine": [
         "regional",
         "french",
         "pizza",
         "fondue"
       ],
+      "openingHours": "Mo-Fr 11:30-23:30; Sa 12:00-23:30; Su 10:00-22:30",
       "outdoor": true,
       "offers": [
         {
@@ -7134,8 +7137,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:32:37.952830+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2583594616",
@@ -7146,11 +7149,11 @@
       "address": "Aarbergergasse 20",
       "postcode": "3011",
       "website": "https://mccarthysirishpub.ch/bern/",
-      "openingHours": "Mo 16:00-23:30; Tu-Th 16:00-00:00; Fr 11:30-00:00; Sa 12:00-00:00; Su 12:00-23:30",
       "cuisine": [
         "english",
         "american"
       ],
+      "openingHours": "Mo 16:00-23:30; Tu-Th 16:00-00:00; Fr 11:30-00:00; Sa 12:00-00:00; Su 12:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -7182,8 +7185,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T01:47:58.712671+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6425484034",
@@ -7194,8 +7197,8 @@
       "address": "Hirschengraben 10",
       "postcode": "",
       "website": "https://www.migus-bar.ch/",
-      "openingHours": "Mo-We 07:00-22:00; Th-Fr 07:00-00:30; Sa 10:00-00:30",
       "cuisine": [],
+      "openingHours": "Mo-We 07:00-22:00; Th-Fr 07:00-00:30; Sa 10:00-00:30",
       "outdoor": false,
       "offers": [
         {
@@ -7297,8 +7300,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T01:50:02.023486+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2968521296",
@@ -7309,8 +7312,8 @@
       "address": "Schweizerhof-Passage, Spitalgasse 38",
       "postcode": "3011",
       "website": "https://www.millesens.ch/",
-      "openingHours": "Mo-Fr 11:00-14:00, 17:00-23:00; Sa 17:00-23:00",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:00-14:00, 17:00-23:00; Sa 17:00-23:00",
       "outdoor": false,
       "offers": [
         {
@@ -7440,8 +7443,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:37:31.217133+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/13595458460",
@@ -7473,8 +7476,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2577907280",
@@ -7485,10 +7488,10 @@
       "address": "Moserstrasse 27",
       "postcode": "3014",
       "website": "https://www.montliban-bern.ch/",
-      "openingHours": "Mo-Fr 11:00-23:00; Sa 18:00-23:30; Su off",
       "cuisine": [
         "lebanese"
       ],
+      "openingHours": "Mo-Fr 11:00-23:00; Sa 18:00-23:30; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -7506,8 +7509,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:32:04.715028+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/11703444045",
@@ -7518,10 +7521,10 @@
       "address": "Thunstrasse 108",
       "postcode": "3006",
       "website": "https://ristorante-muna.ch",
-      "openingHours": "Mo-Fr 10:00-22:00, Sa 17:00-23:00",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Fr 10:00-22:00, Sa 17:00-23:00",
       "outdoor": false,
       "offers": [
         {
@@ -7623,8 +7626,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:41:05.727833+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/812915211",
@@ -7635,8 +7638,8 @@
       "address": "Mühlemattstrasse 48",
       "postcode": "3007",
       "website": "http://www.musigbistrot.ch",
-      "openingHours": "Mo-Fr 10:00-23:30; Sa 18:00-00:30",
       "cuisine": [],
+      "openingHours": "Mo-Fr 10:00-23:30; Sa 18:00-00:30",
       "outdoor": true,
       "offers": [
         {
@@ -7752,8 +7755,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:32:29.615414+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/14133063701",
@@ -7764,10 +7767,10 @@
       "address": "Spitalgasse 47–51",
       "postcode": "3001",
       "website": "https://nido-ristorante.ch/",
-      "openingHours": "Mo-Th 09:00-23:00; Fr-Su 09:00-24:00",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Th 09:00-23:00; Fr-Su 09:00-24:00",
       "outdoor": false,
       "offers": [
         {
@@ -8051,8 +8054,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:36:09.955099+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3283725291",
@@ -8063,12 +8066,12 @@
       "address": "Murtenstrasse 143a",
       "postcode": "3008",
       "website": "https://www.noa-restaurant.ch/",
-      "openingHours": "Mo-Fr 08:00-23:30; Sa-Su closed",
       "cuisine": [
         "grill",
         "steak_house",
         "burger"
       ],
+      "openingHours": "Mo-Fr 08:00-23:30; Sa-Su closed",
       "outdoor": true,
       "offers": [
         {
@@ -8114,8 +8117,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:57:26.163639+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/280528108",
@@ -8147,8 +8150,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:43:30.680686+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879733",
@@ -8159,8 +8162,8 @@
       "address": "",
       "postcode": "",
       "website": "https://www.dallmaier.ch/oliv-bern",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -8416,8 +8419,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T01:51:08.480280+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/11417054366",
@@ -8428,8 +8431,8 @@
       "address": "Militärstrasse 64",
       "postcode": "3014",
       "website": "https://www.olympiabern.ch",
-      "openingHours": "Mo-Do  07:30-22:30  Fr  07:30-23:30  Sa  08:30-23:30  So  09:30-17:00",
       "cuisine": [],
+      "openingHours": "Mo-Do  07:30-22:30  Fr  07:30-23:30  Sa  08:30-23:30  So  09:30-17:00",
       "outdoor": false,
       "offers": [
         {
@@ -8447,8 +8450,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:49:33.807992+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/9103327518",
@@ -8518,11 +8521,11 @@
       "address": "Falkenplatz 1",
       "postcode": "3012",
       "website": "https://pittaria.ch/",
-      "openingHours": "Mo-Fr 11:00-15:00,17:00-22:30; Sa 11:30-22:30; Su off; Aug 01 off",
       "cuisine": [
         "oriental",
         "palestinian"
       ],
+      "openingHours": "Mo-Fr 11:00-15:00,17:00-22:30; Sa 11:30-22:30; Su off; Aug 01 off",
       "outdoor": true,
       "offers": [
         {
@@ -8554,8 +8557,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:35:21.691741+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879738",
@@ -8566,10 +8569,10 @@
       "address": "Kornhausplatz 18",
       "postcode": "3011",
       "website": "https://www.piu-ristorante.ch/piu-kornhaus",
-      "openingHours": "Tu,We,Fr 10:00-19:00; Th 10:00-21:30; Sa 10:00-17:00; Su off",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Tu,We,Fr 10:00-19:00; Th 10:00-21:30; Sa 10:00-17:00; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -8601,8 +8604,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:36:35.509934+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/474362126",
@@ -8613,10 +8616,10 @@
       "address": "Thunstrasse 93",
       "postcode": "3006",
       "website": "https://www.pokharakitchen.ch/",
-      "openingHours": "Tu-Fr 11:30-14:00,18:00-22:00; Sa 18:00-22:00",
       "cuisine": [
         "nepali"
       ],
+      "openingHours": "Tu-Fr 11:30-14:00,18:00-22:00; Sa 18:00-22:00",
       "outdoor": false,
       "offers": [
         {
@@ -8718,8 +8721,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:34:09.463768+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/4219531601",
@@ -8849,8 +8852,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:36:02.923702+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/8199621997",
@@ -8861,10 +8864,10 @@
       "address": "Speichergasse 29",
       "postcode": "3011",
       "website": "https://www.qin-restaurant.ch",
-      "openingHours": "Mo-We 11:30-13:30, 18:00-20:30; Th-Fr 11:30-14:00, 18:00-22:00; Sa 17:00-22:00; Su off",
       "cuisine": [
         "chinese"
       ],
+      "openingHours": "Mo-We 11:30-13:30, 18:00-20:30; Th-Fr 11:30-14:00, 18:00-22:00; Sa 17:00-22:00; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -8910,8 +8913,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:56:15.418883+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/559232107",
@@ -8922,8 +8925,8 @@
       "address": "Mingerstrasse 6",
       "postcode": "3014",
       "website": "https://www.restaurantallmendbern.ch/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -9179,8 +9182,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:50:49.837328+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2892516176",
@@ -9191,10 +9194,10 @@
       "address": "Bubenbergplatz 5A",
       "postcode": "3011",
       "website": "https://myle-bern.com",
-      "openingHours": "We-Sa 16:00-24:00; Th-Fr 12:00-14:00, 16:00-24:00",
       "cuisine": [
         "fine_dining"
       ],
+      "openingHours": "We-Sa 16:00-24:00; Th-Fr 12:00-14:00, 16:00-24:00",
       "outdoor": false,
       "offers": [
         {
@@ -9282,8 +9285,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:55:55.068762+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/410086516",
@@ -9294,8 +9297,8 @@
       "address": "Alter Aargauerstalden 31b",
       "postcode": "3006",
       "website": "https://www.rosengarten.be",
-      "openingHours": "Mo-Su 09:00-23:30",
       "cuisine": [],
+      "openingHours": "Mo-Su 09:00-23:30",
       "outdoor": true,
       "offers": [
         {
@@ -9313,8 +9316,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:37:51.814631+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879740",
@@ -9325,8 +9328,8 @@
       "address": "Kornhausplatz 19",
       "postcode": "3011",
       "website": "https://www.restaurant-ringgenberg.ch/",
-      "openingHours": "Mo-Fr 11:30-23:30; Sa 09:00-23:30; Su 10:00-23:30",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:30-23:30; Sa 09:00-23:30; Su 10:00-23:30",
       "outdoor": true,
       "offers": [
         {
@@ -9470,39 +9473,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:49:13.686439+00:00"
-    },
-    {
-      "id": "node/286879723",
-      "name": "Röschtigrabe",
-      "lat": 46.947796,
-      "lon": 7.4440127,
-      "type": "restaurant",
-      "address": "Bärenplatz 11",
-      "postcode": "3011",
-      "website": "https://www.roeschtigrabe.ch",
-      "openingHours": "Mo-Fr 07:00-23:30; Sa 08:00-23:30; Su 09:00-23:30",
-      "cuisine": [],
-      "outdoor": false,
-      "offers": [
-        {
-          "name": "Château Suduiraut, 1er Cru Classé Sauternes",
-          "volumeMl": 50,
-          "gastroType": "wine",
-          "priceChf": 8.0,
-          "wineType": "white",
-          "natural": false,
-          "sourceUrl": "https://www.roeschtigrabe.ch/fileadmin/files/allgemein/Dessert/desserteinlageblatt/Desserteinlageblatt_ROE.pdf",
-          "observedAt": "2026-11-05T22:35:16.111853+00:00",
-          "confidence": "ai",
-          "evidence": "Château Suduiraut, 1er Cru Classé Sauternes | 5 cl | 8.–",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-05T22:35:16.111853+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879737",
@@ -9510,11 +9482,11 @@
       "lat": 46.9486658,
       "lon": 7.4467097,
       "type": "restaurant",
-      "address": "Schmiedenplatz 5",
-      "postcode": "3011",
+      "address": "",
+      "postcode": "",
       "website": "https://schmied-bern.ch/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -9574,8 +9546,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:38:10.841100+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/447293342",
@@ -9586,10 +9558,10 @@
       "address": "Zähringerstrasse 44",
       "postcode": "3012",
       "website": "https://www.seidenhof-bern.ch/",
-      "openingHours": "Mo-Fr 08:00-23:00; Sa 16:00-23:00",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Fr 08:00-23:00; Sa 16:00-23:00",
       "outdoor": false,
       "offers": [
         {
@@ -9803,8 +9775,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:56:26.378842+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "way/379588170",
@@ -9815,8 +9787,8 @@
       "address": "Bahnhofplatz 10a",
       "postcode": "3011",
       "website": "https://www.simmentalerbrewhouse.ch/",
-      "openingHours": "Mo-We 06:30-22:30; Th 06:30-00:30; Fr 06:30-00:30; Sa 08:00-00:30; Su 09:00-21:00",
       "cuisine": [],
+      "openingHours": "Mo-We 06:30-22:30; Th 06:30-00:30; Fr 06:30-00:30; Sa 08:00-00:30; Su 09:00-21:00",
       "outdoor": true,
       "offers": [
         {
@@ -9876,8 +9848,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:37:59.464850+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "way/1313090962",
@@ -9888,8 +9860,8 @@
       "address": "Neuengass-Unterführung 4",
       "postcode": "",
       "website": "https://www.lesoussol.ch/",
-      "openingHours": "Mo-Fr 06:30-20:30; Sa,Su,PH 07:30-20:30",
       "cuisine": [],
+      "openingHours": "Mo-Fr 06:30-20:30; Sa,Su,PH 07:30-20:30",
       "outdoor": false,
       "offers": [
         {
@@ -9935,8 +9907,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:53:37.754619+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6448420112",
@@ -10094,8 +10066,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:41:52.247960+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6352819896",
@@ -10106,8 +10078,8 @@
       "address": "Jubiläumsstrasse 103",
       "postcode": "",
       "website": "https://sportbarbern.ch/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -10125,8 +10097,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:42:57.568873+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/9482332061",
@@ -10137,8 +10109,8 @@
       "address": "Gilberte-de-Courgenay-Platz 4",
       "postcode": "3027",
       "website": "https://www.starsandstripes.ch/de/p/standorte/bern-1109.html",
-      "openingHours": "Mo-Th 17:00-22:00; Fr 17:00-23:30; Sa 15:00-23:30; Su 15:00-22:00",
       "cuisine": [],
+      "openingHours": "Mo-Th 17:00-22:00; Fr 17:00-23:30; Sa 15:00-23:30; Su 15:00-22:00",
       "outdoor": false,
       "offers": [
         {
@@ -10156,8 +10128,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:00:13.455876+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2950532982",
@@ -10168,8 +10140,8 @@
       "address": "Bümplizstrasse 121",
       "postcode": "3018",
       "website": "https://www.sternen-buempliz.ch/",
-      "openingHours": "Mo-Fr 08:00-23:30; Sa 09:00-23:30; Su off",
       "cuisine": [],
+      "openingHours": "Mo-Fr 08:00-23:30; Sa 09:00-23:30; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -10355,8 +10327,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:42:27.419318+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/537955663",
@@ -10364,13 +10336,13 @@
       "lat": 46.9452602,
       "lon": 7.4728748,
       "type": "restaurant",
-      "address": "Giacomettistrasse 15",
-      "postcode": "3006",
+      "address": "",
+      "postcode": "",
       "website": "https://www.strada-bern.ch",
-      "openingHours": "Mo-Sa 08:00-23:00; Su,PH off",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Sa 08:00-23:00; Su,PH off",
       "outdoor": false,
       "offers": [
         {
@@ -10388,8 +10360,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T01:59:53.528413+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/9464255217",
@@ -10400,10 +10372,10 @@
       "address": "Münstergasse 55",
       "postcode": "3011",
       "website": "https://www.surang.ch/",
-      "openingHours": "Mo-Sa 11:30-22:00",
       "cuisine": [
         "thai"
       ],
+      "openingHours": "Mo-Sa 11:30-22:00",
       "outdoor": false,
       "offers": [
         {
@@ -10435,8 +10407,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:01:24.643304+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3480736878",
@@ -10447,8 +10419,8 @@
       "address": "Gerberngasse 34",
       "postcode": "3011",
       "website": "https://www.suresh.ch/",
-      "openingHours": "Mo-Fr 11:30-23:30; Sa-Su 18:00-23:30",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:30-23:30; Sa-Su 18:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -10466,8 +10438,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T01:57:41.495509+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/3103757460",
@@ -10478,8 +10450,8 @@
       "address": "Kramgasse 75",
       "postcode": "3011",
       "website": "https://www.sushibar-yamasaki.ch/",
-      "openingHours": "Mo-Fr 11:30-14:30, 18:00-22:00; Sa-Su off",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:30-14:30, 18:00-22:00; Sa-Su off",
       "outdoor": false,
       "offers": [
         {
@@ -10525,8 +10497,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:55:28.762609+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6448420114",
@@ -10537,10 +10509,10 @@
       "address": "",
       "postcode": "",
       "website": "https://bern-westside.tararestaurant.ch",
-      "openingHours": "Mo-Th,Su 11:00-22:00; Fr-Sa 11:00-23:00",
       "cuisine": [
         "indian"
       ],
+      "openingHours": "Mo-Th,Su 11:00-22:00; Fr-Sa 11:00-23:00",
       "outdoor": false,
       "offers": [
         {
@@ -10572,8 +10544,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:58:33.052406+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/1066324532",
@@ -10584,8 +10556,8 @@
       "address": "Kramgasse 74",
       "postcode": "3011",
       "website": "https://www.beef-steakhouse.ch",
-      "openingHours": "Mo-Fr 11:30-23:00; Sa 09:00-23:00; Su 10:00-17:00",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:30-23:00; Sa 09:00-23:00; Su 10:00-17:00",
       "outdoor": false,
       "offers": [
         {
@@ -10603,8 +10575,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:44:18.862722+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6142423528",
@@ -10615,8 +10587,8 @@
       "address": "Schanzenstrasse 5",
       "postcode": "3008",
       "website": "https://www.theflow-restaurant.ch",
-      "openingHours": "Mo-Fr 10:00-18:00; Mo-Sa 18:00-23:30; Su off",
       "cuisine": [],
+      "openingHours": "Mo-Fr 10:00-18:00; Mo-Sa 18:00-23:30; Su off",
       "outdoor": false,
       "offers": [
         {
@@ -10788,8 +10760,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:45:29.736690+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2687061491",
@@ -10800,8 +10772,8 @@
       "address": "Gurtengasse 3",
       "postcode": "3011",
       "website": "https://www.tibits.ch/de/restaurants/standorte#tibits-bern",
-      "openingHours": "Mo-Sa 07:00-22:00; Su 08:00-22:00",
       "cuisine": [],
+      "openingHours": "Mo-Sa 07:00-22:00; Su 08:00-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -11239,8 +11211,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:48:13.489287+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/6855277335",
@@ -11251,10 +11223,10 @@
       "address": "Bahnhofplatz 10",
       "postcode": "3011",
       "website": "https://www.tibits.ch/de/restaurants#tibits-bern",
-      "openingHours": "Mo-Fr 06:30-22:30; Sa-Su,PH 07:30-22:30",
       "cuisine": [
         "international"
       ],
+      "openingHours": "Mo-Fr 06:30-22:30; Sa-Su,PH 07:30-22:30",
       "outdoor": true,
       "offers": [
         {
@@ -11342,8 +11314,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:54:43.547183+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/283213579",
@@ -11354,10 +11326,10 @@
       "address": "Seftigenstrasse 27",
       "postcode": "3007",
       "website": "https://www.toscana-bern.ch/",
-      "openingHours": "Mo-Fr 09:00-14:00, 17:00-23:30; Sa-Su 17:00-23:30",
       "cuisine": [
         "italian"
       ],
+      "openingHours": "Mo-Fr 09:00-14:00, 17:00-23:30; Sa-Su 17:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -11529,8 +11501,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:58:37.271496+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/9482332062",
@@ -11541,10 +11513,10 @@
       "address": "",
       "postcode": "",
       "website": "https://www.tresamigos.ch/de/p/standorte/bern-1106.html",
-      "openingHours": "Su-Th 10:00-22:00; Fr-Sa 10:00-23:30",
       "cuisine": [
         "mexican"
       ],
+      "openingHours": "Su-Th 10:00-22:00; Fr-Sa 10:00-23:30",
       "outdoor": false,
       "offers": [
         {
@@ -11604,8 +11576,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:37:54.860780+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/10035927167",
@@ -11616,8 +11588,8 @@
       "address": "",
       "postcode": "",
       "website": "https://www.trybhouz.ch/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": false,
       "offers": [
         {
@@ -11635,249 +11607,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:04:23.990643+00:00"
-    },
-    {
-      "id": "way/96211624",
-      "name": "Tscharnergut",
-      "lat": 46.9481223,
-      "lon": 7.3894549,
-      "type": "restaurant",
-      "address": "Waldmannstrasse 21",
-      "postcode": "",
-      "website": "https://www.restauranttscharnergut.ch/",
-      "cuisine": [],
-      "openingHours": "Mo off; Tu-Fr 09:00-23:00; Sa 08:30-23:00; Su off",
-      "outdoor": false,
-      "offers": [
-        {
-          "name": "Shiraz/Cabernet",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 4.5,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Shiraz/Cabernet 2022 1dl CHF 4.50",
-          "sourcePage": 9,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "The Creek",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 5.0,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "The Creek 2021 1dl CHF 5.00",
-          "sourcePage": 9,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Three Gardens",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 6.0,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Three Gardens 2021 1dl CHF 6.00",
-          "sourcePage": 9,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Black Beauty",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 6.0,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Black Beauty 2021 1dl CHF 6.00",
-          "sourcePage": 9,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Coin Selection",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 6.0,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Coin Selection 2021 1dl CHF 6.00",
-          "sourcePage": 10,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Inigo",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 7.0,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdfs/weinkarte.pdf",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Inigo 2019 1dl CHF 7.00",
-          "sourcePage": 10,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Oeil de Perdix Chateau d'Auvernier",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 6.0,
-          "wineType": "rose",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-05.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Oeil de Perdix Chateau d'Auvernier 1dl CHF 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "BL Rosé Baron Ladron",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 5.5,
-          "wineType": "rose",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-05.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "BL Rosé Baron Ladron 1dl CHF 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "A&b Rosé Angas & Bremer",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 5.5,
-          "wineType": "rose",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-05.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "A&B Rosé Angas & Bremer 1dl CHF 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Spring Hill Rosé Irvine",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 6.5,
-          "wineType": "rose",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-05.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Spring Hill Rosé Irvine 1dl CHF 6.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Roble (Lopez Cristobal)",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 6.0,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-06.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Roble Lopez Cristobal 1dl CHF 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "La Colorada (Lopez Cristobal)",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 7.5,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-06.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "La Colorada Lopez Cristobal 1dl CHF 7.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "De Guevara Crianza (Baron Ladron)",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 5.5,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-06.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "De Guevara Crianza Baron Ladron 1dl CHF 5.50",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "De Guevara Autor Cosecha (Baron Ladron)",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 6.0,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-06.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "De Guevara Autor Cosecha Baron Ladron 1dl CHF 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Coin Selection Lost Penny Shiraz",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 6.0,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-10.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Coin Selection Lost Penny Shiraz 1dl CHF 6.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Inigo Sevenhill Barbera",
-          "volumeMl": 100,
-          "gastroType": "wine",
-          "priceChf": 7.0,
-          "wineType": "red",
-          "natural": false,
-          "sourceUrl": "https://restauranttscharnergut.ch/restaurant-tscharnergut/pdf-pages/wein-10.jpg",
-          "observedAt": "2026-11-06T00:19:06.259583+00:00",
-          "confidence": "ai",
-          "evidence": "Inigo Sevenhill Barbera 1dl CHF 7.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/550199534",
@@ -11888,10 +11619,10 @@
       "address": "Freiestrasse 65",
       "postcode": "3012",
       "website": "https://www.tulsi-bern.ch/",
-      "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00,17:30-23:30; Sa 17:30-23:30",
       "cuisine": [
         "indian"
       ],
+      "openingHours": "Mo 11:30-14:00; Tu-Fr 11:30-14:00,17:30-23:30; Sa 17:30-23:30",
       "outdoor": true,
       "offers": [
         {
@@ -11923,8 +11654,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:50:58.289088+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/9792700894",
@@ -11935,8 +11666,8 @@
       "address": "Viktoriaplatz 3",
       "postcode": "3013",
       "website": "https://www.allcatsarebeautiful.ch/",
-      "openingHours": "Mo-We 08:00-22:00; Th-Sa 08:00-24:00; Su 09:00-16:00",
       "cuisine": [],
+      "openingHours": "Mo-We 08:00-22:00; Th-Sa 08:00-24:00; Su 09:00-16:00",
       "outdoor": true,
       "offers": [
         {
@@ -11954,8 +11685,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:50:44.432915+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/598242974",
@@ -11966,8 +11697,8 @@
       "address": "Moserstrasse 6",
       "postcode": "3014",
       "website": "https://www.visavisbern.ch/",
-      "openingHours": "Mo-We 14:00-23:00; Th-Sa 14:00-00:30",
       "cuisine": [],
+      "openingHours": "Mo-We 14:00-23:00; Th-Sa 14:00-00:30",
       "outdoor": true,
       "offers": [
         {
@@ -12069,8 +11800,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:52:25.162053+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2574170317",
@@ -12081,8 +11812,8 @@
       "address": "Zeughausgasse 9",
       "postcode": "3011",
       "website": "https://www.volkshausbern.ch/",
-      "openingHours": "Mo-Sa 06:30-23:30; Su 09:00-22:30",
       "cuisine": [],
+      "openingHours": "Mo-Sa 06:30-23:30; Su 09:00-22:30",
       "outdoor": false,
       "offers": [
         {
@@ -12212,8 +11943,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:56:04.046013+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/2407310350",
@@ -12224,8 +11955,8 @@
       "address": "Lorrainestrasse 15",
       "postcode": "3013",
       "website": "https://www.wartsaal-kaffee.ch/",
-      "openingHours": "Mo 17:00-22:00; Tu-Fr 09:00-23:30; Sa 10:00-23:30; Su 10:00-17:00",
       "cuisine": [],
+      "openingHours": "Mo 17:00-22:00; Tu-Fr 09:00-23:30; Sa 10:00-23:30; Su 10:00-17:00",
       "outdoor": true,
       "offers": [
         {
@@ -12243,8 +11974,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:50:40.551341+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/33064271",
@@ -12318,8 +12049,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-06T00:19:06.259583+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/286879773",
@@ -12330,10 +12061,10 @@
       "address": "Gerechtigkeitsgasse 68",
       "postcode": "3011",
       "website": "http://www.restwebern.ch",
-      "openingHours": "Mo 09:00-24:00; Tu-Sa 00:00-00:30,09:00-24:00; Su 00:00-00:30",
       "cuisine": [
         "regional"
       ],
+      "openingHours": "Mo 09:00-24:00; Tu-Sa 00:00-00:30,09:00-24:00; Su 00:00-00:30",
       "outdoor": false,
       "offers": [
         {
@@ -12519,8 +12250,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T03:55:33.478293+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     },
     {
       "id": "node/308973695",
@@ -12550,8 +12281,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-17T02:12:42.932288+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T15:25:44.171406+00:00"
     }
   ]
 }
