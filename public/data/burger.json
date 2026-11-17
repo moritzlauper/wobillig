@@ -1,8 +1,10 @@
 {
-  "generatedAt": "2026-11-16T21:00:43.162008+00:00",
-  "discoveredAt": "2026-11-06T11:21:16.075972+00:00",
+  "generatedAt": "2026-11-17T16:41:20.136870+00:00",
+  "discoveredAt": "2026-11-17T16:41:20.136870+00:00",
   "attribution": "© OpenStreetMap contributors, ODbL 1.0",
-  "removed": [],
+  "removed": [
+    "node/2069791719"
+  ],
   "bars": [
     {
       "id": "node/370835059",
@@ -24,8 +26,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 28.5,
-          "sourceUrl": "https://akt-niederdorf.ch/uploads/images/Menukarten/speisekarte-akt-niederdorf-10-2026.jpg",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "sourceUrl": "https://akt-niederdorf.ch/wp-content/uploads/2026/11/speisekarte-akt-niederdorf-10-2026.pdf",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Cyclops Burger 28.50",
           "sourcePage": 1,
@@ -38,8 +40,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 27.5,
-          "sourceUrl": "https://akt-niederdorf.ch/uploads/images/Menukarten/speisekarte-akt-niederdorf-10-2026.jpg",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "sourceUrl": "https://akt-niederdorf.ch/wp-content/uploads/2026/11/speisekarte-akt-niederdorf-10-2026.pdf",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Texas Burger 27.50",
           "sourcePage": 1,
@@ -52,8 +54,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 29.5,
-          "sourceUrl": "https://akt-niederdorf.ch/uploads/images/Menukarten/speisekarte-akt-niederdorf-10-2026.jpg",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "sourceUrl": "https://akt-niederdorf.ch/wp-content/uploads/2026/11/speisekarte-akt-niederdorf-10-2026.pdf",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Royal Burger 29.50",
           "sourcePage": 1,
@@ -66,8 +68,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 24.5,
-          "sourceUrl": "https://akt-niederdorf.ch/uploads/images/Menukarten/speisekarte-akt-niederdorf-10-2026.jpg",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "sourceUrl": "https://akt-niederdorf.ch/wp-content/uploads/2026/11/speisekarte-akt-niederdorf-10-2026.pdf",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Beef Burger 24.50",
           "sourcePage": 1,
@@ -80,8 +82,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 26.5,
-          "sourceUrl": "https://akt-niederdorf.ch/uploads/images/Menukarten/speisekarte-akt-niederdorf-10-2026.jpg",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "sourceUrl": "https://akt-niederdorf.ch/wp-content/uploads/2026/11/speisekarte-akt-niederdorf-10-2026.pdf",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Cheese Burger 26.50",
           "sourcePage": 1,
@@ -94,8 +96,8 @@
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 27.5,
-          "sourceUrl": "https://akt-niederdorf.ch/uploads/images/Menukarten/speisekarte-akt-niederdorf-10-2026.jpg",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "sourceUrl": "https://akt-niederdorf.ch/wp-content/uploads/2026/11/speisekarte-akt-niederdorf-10-2026.pdf",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Chicken Burger 27.50",
           "sourcePage": 1,
@@ -108,16 +110,30 @@
           "burgerDiet": "vegetarian",
           "glutenFree": false,
           "priceChf": 24.5,
-          "sourceUrl": "https://akt-niederdorf.ch/uploads/images/Menukarten/speisekarte-akt-niederdorf-10-2026.jpg",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "sourceUrl": "https://akt-niederdorf.ch/wp-content/uploads/2026/11/speisekarte-akt-niederdorf-10-2026.pdf",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Vegi Burger 24.50 (vegetarian icon)",
+          "evidence": "Vegi Burger 3 24.50",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        },
+        {
+          "name": "Burger of the week",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 26.5,
+          "sourceUrl": "https://akt-niederdorf.ch/wp-content/uploads/2026/11/speisekarte-akt-niederdorf-10-2026.pdf",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
+          "confidence": "ai",
+          "evidence": "Burger of the week 26.50",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/13665204352",
@@ -140,7 +156,7 @@
           "glutenFree": false,
           "priceChf": 18.0,
           "sourceUrl": "https://www.arnold-kiosk.ch/_files/ugd/8be3e6_c7a87dd8d8924650bb7fb972596d7ff5.pdf",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Beef Burger 18.00",
           "sourcePage": 2,
@@ -154,118 +170,15 @@
           "glutenFree": false,
           "priceChf": 14.0,
           "sourceUrl": "https://www.arnold-kiosk.ch/_files/ugd/8be3e6_c7a87dd8d8924650bb7fb972596d7ff5.pdf",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Vegi Burger 14.00",
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
-    },
-    {
-      "id": "node/2069791719",
-      "name": "Aubrey",
-      "lat": 47.3891509,
-      "lon": 8.5177829,
-      "type": "restaurant",
-      "address": "Schiffbaustrasse 10",
-      "postcode": "8005",
-      "website": "https://www.aubrey.ch/",
-      "cuisine": [
-        "steak_house"
-      ],
-      "openingHours": "Tu-Fr 16:00-23:30; Sa 18:00-03:00; Su,Mo,PH off",
-      "outdoor": true,
-      "offers": [
-        {
-          "name": "Aubrey Black Angus Beef Burger",
-          "volumeMl": null,
-          "burgerType": "burger",
-          "burgerDiet": "standard",
-          "glutenFree": false,
-          "priceChf": 29.5,
-          "sourceUrl": "https://www.aubrey.ch/PDF/aubrey_dine.pdf",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
-          "confidence": "ai",
-          "evidence": "Aubrey Black Angus Beef Burger 29.50",
-          "sourcePage": 4,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Blue Cheese Burger",
-          "volumeMl": null,
-          "burgerType": "burger",
-          "burgerDiet": "standard",
-          "glutenFree": false,
-          "priceChf": 30.5,
-          "sourceUrl": "https://www.aubrey.ch/PDF/aubrey_dine.pdf",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
-          "confidence": "ai",
-          "evidence": "Blue Cheese Burger 30.50",
-          "sourcePage": 4,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Chorizo & Beef Burger",
-          "volumeMl": null,
-          "burgerType": "burger",
-          "burgerDiet": "standard",
-          "glutenFree": false,
-          "priceChf": 30.5,
-          "sourceUrl": "https://www.aubrey.ch/PDF/aubrey_dine.pdf",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
-          "confidence": "ai",
-          "evidence": "Chorizo & Beef Burger 30.50",
-          "sourcePage": 4,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Steak Burger",
-          "volumeMl": null,
-          "burgerType": "burger",
-          "burgerDiet": "standard",
-          "glutenFree": false,
-          "priceChf": 38.5,
-          "sourceUrl": "https://www.aubrey.ch/PDF/aubrey_dine.pdf",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
-          "confidence": "ai",
-          "evidence": "Steak Burger 38.50",
-          "sourcePage": 4,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Smoked Chicken Burger",
-          "volumeMl": null,
-          "burgerType": "burger",
-          "burgerDiet": "standard",
-          "glutenFree": false,
-          "priceChf": 28.5,
-          "sourceUrl": "https://www.aubrey.ch/PDF/aubrey_dine.pdf",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
-          "confidence": "ai",
-          "evidence": "Smoked Chicken Burger 28.50",
-          "sourcePage": 4,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Veggie Burger",
-          "volumeMl": null,
-          "burgerType": "burger",
-          "burgerDiet": "vegetarian",
-          "glutenFree": false,
-          "priceChf": 25.5,
-          "sourceUrl": "https://www.aubrey.ch/PDF/aubrey_dine.pdf",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
-          "confidence": "ai",
-          "evidence": "Veggie Burger 25.50",
-          "sourcePage": 4,
-          "extractionModel": "claude-haiku-5-5"
-        }
-      ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4414546006",
@@ -273,13 +186,13 @@
       "lat": 47.4143024,
       "lon": 8.5593968,
       "type": "cafe",
-      "address": "Dialogweg 11",
-      "postcode": "8050",
+      "address": "",
+      "postcode": "",
       "website": "https://www.bagelboys.ch/",
-      "openingHours": "Mo-Fr 07:00-18:00; Sa-Su 08:00-14:00",
       "cuisine": [
         "bagel"
       ],
+      "openingHours": "Mo-Fr 07:00-18:00; Sa-Su 08:00-14:00",
       "outdoor": true,
       "offers": [
         {
@@ -297,8 +210,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:45:14.228740+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/11901870909",
@@ -329,7 +242,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/694152201",
@@ -427,10 +340,10 @@
       "address": "Hofwiesenstrasse 188",
       "postcode": "",
       "website": "https://barcelonarestaurant.ch/",
-      "openingHours": "Mo off; Tu-Fr 10:00-14:00, 18:00-00:00; Sa 10:00-14:30, 18:00-00:00; Su 10:00-14:30, 18:00-23:00",
       "cuisine": [
         "spanish"
       ],
+      "openingHours": "Mo off; Tu-Fr 10:00-14:00, 18:00-00:00; Sa 10:00-14:30, 18:00-00:00; Su 10:00-14:30, 18:00-23:00",
       "outdoor": true,
       "offers": [
         {
@@ -448,8 +361,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:47:32.060446+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "way/38098975",
@@ -475,9 +388,9 @@
           "glutenFree": false,
           "priceChf": 28,
           "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/08/Bauschaenzli_Speisekarte_Biergarten_DE_0826_web.pdf",
-          "observedAt": "2026-10-28T10:22:47.513494+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "GARDENBURGER 28 Vegetarisches Patty im Maisbun, BBQ Sauce, Tomaten",
+          "evidence": "GARDENBURGER 28 Vegetarisches Patty im Maisbun, BBQ Sauce, Tomaten, Salat, Röstzwiebeln und Pommes frites",
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -489,15 +402,15 @@
           "glutenFree": false,
           "priceChf": 34,
           "sourceUrl": "https://bauschaenzli.com/wp-content/uploads/2026/08/Bauschaenzli_Speisekarte_Biergarten_DE_0826_web.pdf",
-          "observedAt": "2026-10-28T10:22:47.513494+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "CHEESEBURGER 34 Schweizer Rindfleisch im Briochebun, Zürcher Raclettekäse",
+          "evidence": "CHEESEBURGER 34 Schweizer Rindfleisch im Briochebun, Zürcher Raclettekäse, BBQ Sauce, Tomaten, Salat, Röstzwiebeln und Pommes frites",
           "sourcePage": 2,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/270938093",
@@ -522,7 +435,7 @@
           "glutenFree": false,
           "priceChf": 33,
           "sourceUrl": "https://www.beimoudi.ch/menu-mittag",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Mezze Cheese Burger | 33",
           "sourcePage": 1,
@@ -536,7 +449,7 @@
           "glutenFree": false,
           "priceChf": 30,
           "sourceUrl": "https://www.beimoudi.ch/menu-mittag",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Falafel Burger | 30",
           "sourcePage": 1,
@@ -550,15 +463,15 @@
           "glutenFree": false,
           "priceChf": 31,
           "sourceUrl": "https://www.beimoudi.ch/menu-mittag",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "Halloumi Burger | 31",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/267345323",
@@ -630,8 +543,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/10704773552",
@@ -817,8 +730,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:39:48.261427+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/267345815",
@@ -829,8 +742,8 @@
       "address": "Heinrichstrasse 245",
       "postcode": "",
       "website": "https://www.billiardino-zuerich.ch/",
-      "openingHours": "Mo-Th 14:00-00:00; Fr 14:00-03:00; Sa 11:00-03:00; Su 11:00-24:00; May-Sep Fr 14:00-02:00; May-Sep Sa 13:00-02:00; May-Sep Su 13:00-24:00",
       "cuisine": [],
+      "openingHours": "Mo-Th 14:00-00:00; Fr 14:00-03:00; Sa 11:00-03:00; Su 11:00-24:00; May-Sep Fr 14:00-02:00; May-Sep Sa 13:00-02:00; May-Sep Su 13:00-24:00",
       "outdoor": false,
       "offers": [
         {
@@ -876,8 +789,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:33:54.977822+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4839549446",
@@ -902,23 +815,9 @@
           "glutenFree": false,
           "priceChf": 18,
           "sourceUrl": "https://d394f47f-9f84-4950-9329-bd5002d1adbf.filesusr.com/ugd/d90776_f77f9717d4054b7682c4c52f3e5e579d.pdf?index=true",
-          "observedAt": "2026-10-28T10:22:47.513494+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "RINDSBURGER HAUSGEMACHT 100% RINDFLEISCH 140 GR, RELISHSAUCE 18",
-          "sourcePage": 5,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
-          "name": "Cheeseburger Hausgemacht",
-          "volumeMl": null,
-          "burgerType": "burger",
-          "burgerDiet": "standard",
-          "glutenFree": false,
-          "priceChf": 19.5,
-          "sourceUrl": "https://d394f47f-9f84-4950-9329-bd5002d1adbf.filesusr.com/ugd/d90776_f77f9717d4054b7682c4c52f3e5e579d.pdf?index=true",
-          "observedAt": "2026-10-28T10:22:47.513494+00:00",
-          "confidence": "ai",
-          "evidence": "CHEESEBURGER HAUSGEMACHT 100% RINDFLEISCH 140 GR, RELISHSAUCE , CHEDDAR 19.5",
+          "evidence": "RINDSBURGER HAUSGEMACHT 18",
           "sourcePage": 5,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -930,15 +829,46 @@
           "glutenFree": false,
           "priceChf": 17.5,
           "sourceUrl": "https://d394f47f-9f84-4950-9329-bd5002d1adbf.filesusr.com/ugd/d90776_f77f9717d4054b7682c4c52f3e5e579d.pdf?index=true",
-          "observedAt": "2026-10-28T10:22:47.513494+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "FALAFEL BURGER MIT AVOCADOCRÈME, TOMATEN UND RUCOLA 17.5",
           "sourcePage": 5,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
+    },
+    {
+      "id": "node/4956927758",
+      "name": "Bistro Albisrieden",
+      "lat": 47.3755611,
+      "lon": 8.4855612,
+      "type": "cafe",
+      "address": "",
+      "postcode": "",
+      "website": "https://bistroalbisrieden.ch/getraenke",
+      "cuisine": [],
+      "openingHours": "Mo-Fr 08:00-18:00; Sa 08:00-17:00",
+      "outdoor": true,
+      "offers": [
+        {
+          "name": "Sina's Burger",
+          "volumeMl": null,
+          "burgerType": "burger",
+          "burgerDiet": "standard",
+          "glutenFree": false,
+          "priceChf": 25.0,
+          "sourceUrl": "https://bistroalbisrieden.ch/assets/tagesmenue-aktuell.pdf",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
+          "confidence": "ai",
+          "evidence": "Sina's Burger CHF 25.00",
+          "sourcePage": 1,
+          "extractionModel": "claude-haiku-5-5"
+        }
+      ],
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4424600898",
@@ -969,7 +899,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1937429078",
@@ -995,7 +925,7 @@
           "glutenFree": false,
           "priceChf": 29.5,
           "sourceUrl": "https://www.brisket.ch/",
-          "observedAt": "2026-10-28T10:22:47.513494+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
           "evidence": "BRISKET BURGER 29.5 CHF",
           "sourcePage": 1,
@@ -1007,11 +937,11 @@
           "burgerType": "burger",
           "burgerDiet": "standard",
           "glutenFree": false,
-          "priceChf": 27,
+          "priceChf": 28,
           "sourceUrl": "https://www.brisket.ch/",
-          "observedAt": "2026-10-28T10:22:47.513494+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "PULLED PORK BURGER 27 CHF",
+          "evidence": "PULLED PORK BURGER 28 CHF",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1021,11 +951,11 @@
           "burgerType": "burger",
           "burgerDiet": "standard",
           "glutenFree": false,
-          "priceChf": 27,
+          "priceChf": 28,
           "sourceUrl": "https://www.brisket.ch/",
-          "observedAt": "2026-10-28T10:22:47.513494+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "SHREDDED CHICKEN BURGER 27 CHF",
+          "evidence": "SHREDDED CHICKEN BURGER 28 CHF",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1035,17 +965,17 @@
           "burgerType": "burger",
           "burgerDiet": "vegetarian",
           "glutenFree": false,
-          "priceChf": 25,
+          "priceChf": 26,
           "sourceUrl": "https://www.brisket.ch/",
-          "observedAt": "2026-10-28T10:22:47.513494+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "VEGETARISCHER BURGER Geräucherter Portobello-Pilz, Cheddar-Käse und Honig-Senf-Sauce 25 CHF",
+          "evidence": "VEGETARISCHER BURGER (veg) 26 CHF",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3685014138",
@@ -1245,8 +1175,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:34:04.900752+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/315861905",
@@ -1257,10 +1187,10 @@
       "address": "Sihlfeldstrasse 89",
       "postcode": "8004",
       "website": "https://bunzai.ch",
-      "openingHours": "Tu-Fr 11:30-14:00, 17:30-22:00; Sa 11:30-22:00; Su 11:30-21:00",
       "cuisine": [
         "burger"
       ],
+      "openingHours": "Tu-Fr 11:30-14:00, 17:30-22:00; Sa 11:30-22:00; Su 11:30-21:00",
       "outdoor": false,
       "offers": [
         {
@@ -1334,8 +1264,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:58:48.998028+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/11778835755",
@@ -1360,9 +1290,9 @@
           "glutenFree": false,
           "priceChf": 15,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Einfache CHF 15.- Saftiges Rindfleisch",
+          "evidence": "Der Einfache CHF 15.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1374,9 +1304,9 @@
           "glutenFree": false,
           "priceChf": 17,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Speckige CHF 17.- Saftiges Rindfleisch, rauchiger Kalbsspeck",
+          "evidence": "Der Speckige CHF 17.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1388,9 +1318,9 @@
           "glutenFree": false,
           "priceChf": 16,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Käsige CHF 16.- Saftiges Rindfleisch und schmelzender Cheddarkäse",
+          "evidence": "Der Käsige CHF 16.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1402,9 +1332,9 @@
           "glutenFree": false,
           "priceChf": 19,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Schweizer CHF 19.- Saftiges Rindfleisch und schmelzender Raclettekäse",
+          "evidence": "Der Schweizer CHF 19.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1416,9 +1346,9 @@
           "glutenFree": false,
           "priceChf": 18,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Zwiebeltraum CHF 18.- Saftiges Rindfleisch, Röstzwiebeln",
+          "evidence": "Der Zwiebeltraum CHF 18.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1430,9 +1360,9 @@
           "glutenFree": false,
           "priceChf": 18,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Sonnenaufgang CHF 18.- Saftiges Rindfleisch, verfeinert mit Cheddarkäse",
+          "evidence": "Der Sonnenaufgang CHF 18.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1444,9 +1374,9 @@
           "glutenFree": false,
           "priceChf": 22,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Illegale CHF 22.- Doppeltes Rindfleisch, belegt mit Extra-Käse",
+          "evidence": "Der Illegale CHF 22.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1458,9 +1388,9 @@
           "glutenFree": false,
           "priceChf": 24,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Alte CHF 24.- Dry Age Premium Rindfleisch mit Cheddarkäse",
+          "evidence": "Der Alte CHF 24.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1472,9 +1402,9 @@
           "glutenFree": false,
           "priceChf": 22,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Verschlagene CHF 22.- 2 knusprige dünne Rindfleisch Patties mit Cheddarkäse",
+          "evidence": "Der Verschlagene CHF 22.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1486,9 +1416,9 @@
           "glutenFree": false,
           "priceChf": 19,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Knusprige CHF 19.- Knusprig frittierte Pouletbrust",
+          "evidence": "Der Knusprige CHF 19.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1496,13 +1426,13 @@
           "name": "Der Vegi Traum",
           "volumeMl": null,
           "burgerType": "burger",
-          "burgerDiet": "vegetarian",
+          "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 19,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Vegi Traum CHF 19.- Grillierter Halloumikäse, hausgemachte Guacamole",
+          "evidence": "Der Vegi Traum CHF 19.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         },
@@ -1510,19 +1440,19 @@
           "name": "Der Falafelburger",
           "volumeMl": null,
           "burgerType": "burger",
-          "burgerDiet": "vegan",
+          "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 17,
           "sourceUrl": "https://burgerboutique.ch/menue/burgermenue/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "Der Falafelburger CHF 17.- Veganes Burgerbrot mit knusprigem Falafel Patty",
+          "evidence": "Der Falafelburger CHF 17.-",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1052078790",
@@ -1694,8 +1624,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:59:07.171546+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3751319529",
@@ -1867,8 +1797,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:59:06.686728+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3926088056",
@@ -2068,8 +1998,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:59:06.736219+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/6284033411",
@@ -2269,8 +2199,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:59:01.628843+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/6569935426",
@@ -2442,8 +2372,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:59:06.682216+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/848938980",
@@ -2615,8 +2545,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:01:01.442444+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/92612575",
@@ -2789,7 +2719,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/270796495",
@@ -2863,8 +2793,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T16:41:01.297623+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3168482026",
@@ -2894,8 +2824,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:00:18.278818+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/268468109",
@@ -2911,36 +2841,22 @@
       "outdoor": true,
       "offers": [
         {
-          "name": "Odeon Beef Burger – das Original nach Hausrezept",
-          "volumeMl": null,
-          "burgerType": "burger",
-          "burgerDiet": "standard",
-          "glutenFree": false,
-          "priceChf": 39.0,
-          "sourceUrl": "https://odeon.ch/de/karten/a-la-carte-speisekarte/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
-          "confidence": "ai",
-          "evidence": "ODEON Beef Burger – das Original nach Hausrezept Chef Sauce, Gurke, Salat, Tomate, dazu ODEON Fries und Coleslaw CHF 39.00",
-          "sourcePage": 1,
-          "extractionModel": "claude-haiku-5-5"
-        },
-        {
           "name": "Odeon Beef Burger",
           "volumeMl": null,
           "burgerType": "burger",
           "burgerDiet": "standard",
           "glutenFree": false,
           "priceChf": 39.0,
-          "sourceUrl": "https://odeon.ch/en/menu/a-la-carte-menu/",
-          "observedAt": "2026-11-05T16:06:04.710395+00:00",
+          "sourceUrl": "https://odeon.ch/de/karten/a-la-carte-speisekarte/",
+          "observedAt": "2026-11-17T16:41:20.136870+00:00",
           "confidence": "ai",
-          "evidence": "ODEON Beef Burger – the original house recipe; Chef sauce, cucumber, lettuce, tomato, with ODEON fries and coleslaw; CHF 39.00",
+          "evidence": "ODEON Beef Burger – das Original nach Hausrezept / CHF 39.00",
           "sourcePage": 1,
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "prices_found",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/12612390224",
@@ -2982,11 +2898,11 @@
       "address": "Bahnhofstrasse 41",
       "postcode": "8001",
       "website": "https://www.carlton.ch/",
-      "openingHours": "Mo-Th 11:00-24:00, Fr 11:00-01:00, Sa 11:00-02:00",
       "cuisine": [
         "international",
         "steak_house"
       ],
+      "openingHours": "Mo-Th 11:00-24:00, Fr 11:00-01:00, Sa 11:00-02:00",
       "outdoor": true,
       "offers": [
         {
@@ -3004,8 +2920,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:42:40.493884+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4869996367",
@@ -3065,8 +2981,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/648918654",
@@ -3098,8 +3014,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:08:09.806485+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4845976784",
@@ -3129,8 +3045,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/299610695",
@@ -3177,7 +3093,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/279180951",
@@ -3209,8 +3125,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/7700425496",
@@ -3271,8 +3187,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:14:35.733527+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3725780320",
@@ -3283,8 +3199,8 @@
       "address": "Seestrasse 557",
       "postcode": "8038",
       "website": "https://www.fischers-fritz.ch/",
-      "openingHours": "Mo-Su 11:30-14:00, 18:00-22:00",
       "cuisine": [],
+      "openingHours": "Mo-Su 11:30-14:00, 18:00-22:00",
       "outdoor": true,
       "offers": [
         {
@@ -3316,8 +3232,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:18:46.121802+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3904527066",
@@ -3350,8 +3266,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:15:46.290304+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1819652476",
@@ -3397,8 +3313,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:50:38.866258+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/13846474215",
@@ -3503,8 +3419,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:58:39.171779+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4968280517",
@@ -3535,7 +3451,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3393448593",
@@ -3567,8 +3483,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3799099678",
@@ -3629,8 +3545,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1115819506",
@@ -3674,8 +3590,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3866955757",
@@ -3719,8 +3635,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/2609631499",
@@ -3753,7 +3669,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/317768690",
@@ -3867,8 +3783,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/119247298",
@@ -3912,8 +3828,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:11:17.978133+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/370530329",
@@ -3924,8 +3840,8 @@
       "address": "Limmatquai 42",
       "postcode": "8001",
       "website": "https://www.haus-zum-rueden.ch/",
-      "openingHours": "Tu-Fr 11:30-14:00,18:00-23:00; Sa 18:00-23:00; Su,Mo closed",
       "cuisine": [],
+      "openingHours": "Tu-Fr 11:30-14:00,18:00-23:00; Sa 18:00-23:00; Su,Mo closed",
       "outdoor": false,
       "offers": [
         {
@@ -3943,8 +3859,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:26:52.964118+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4941865455",
@@ -3988,8 +3904,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:08:59.990421+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/13878894291",
@@ -4034,7 +3950,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4941865456",
@@ -4078,8 +3994,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:08:44.761455+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4034163671",
@@ -4125,8 +4041,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:10:33.463474+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4785609122",
@@ -4481,8 +4397,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/656327806",
@@ -4837,8 +4753,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/633584181",
@@ -4870,8 +4786,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/12652457762",
@@ -4904,8 +4820,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/286038266",
@@ -4979,8 +4895,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1521606720",
@@ -5010,8 +4926,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/343364120",
@@ -5043,8 +4959,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1760802115",
@@ -5228,8 +5144,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/5344545424",
@@ -5259,8 +5175,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/594103804",
@@ -5308,7 +5224,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/5280373588",
@@ -5340,8 +5256,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/895750299",
@@ -5373,8 +5289,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1491966834",
@@ -5434,8 +5350,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/2330325921",
@@ -5481,8 +5397,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:46:38.141638+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/920613220",
@@ -5496,7 +5412,7 @@
       "cuisine": [
         "american"
       ],
-      "openingHours": "Mo-Tu 17:30-23:00; We-Sa 17:30-24:00, Sa 10:00-14:00; Su 10:00-17:00",
+      "openingHours": "Mo-Th 17:30-23:00; Fr,Sa 10:00-00:00; Su 10:00-17:00",
       "outdoor": false,
       "offers": [
         {
@@ -5570,8 +5486,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:45:53.279823+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/13041959578",
@@ -5601,8 +5517,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:58:22.409078+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3646100093",
@@ -5632,8 +5548,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/9343491802",
@@ -5663,8 +5579,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/914812540",
@@ -5710,8 +5626,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T18:59:41.079091+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/270938706",
@@ -5722,8 +5638,8 @@
       "address": "Kappelergasse 16",
       "postcode": "8001",
       "website": "https://www.milchbar.ch/",
-      "openingHours": null,
       "cuisine": [],
+      "openingHours": null,
       "outdoor": true,
       "offers": [
         {
@@ -5741,8 +5657,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:00:52.775518+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/725765073",
@@ -5830,8 +5746,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4949132238",
@@ -5979,7 +5895,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1986773362",
@@ -6023,8 +5939,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/270797381",
@@ -6068,8 +5984,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:05:22.470084+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3926121798",
@@ -6127,8 +6043,8 @@
       "address": "Binzmühlestrasse 170",
       "postcode": "8050",
       "website": "https://www.noerdkantine.ch/",
-      "openingHours": "Mo-Fr 11:30-13:00",
       "cuisine": [],
+      "openingHours": "Mo-Fr 11:30-13:00",
       "outdoor": false,
       "offers": [
         {
@@ -6146,8 +6062,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:08:02.630721+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/270938826",
@@ -6177,8 +6093,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/6652974153",
@@ -6209,7 +6125,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/345591601",
@@ -6393,8 +6309,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/270800743",
@@ -6468,8 +6384,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/358146590",
@@ -6530,8 +6446,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:16:25.571818+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/266630290",
@@ -6603,8 +6519,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/5174239661",
@@ -6692,8 +6608,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/632553574",
@@ -6725,8 +6641,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4427050456",
@@ -6784,8 +6700,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:37:18.218590+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1363069723",
@@ -6831,8 +6747,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4429458290",
@@ -6880,8 +6796,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "way/38091305",
@@ -6925,8 +6841,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:42:43.326748+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/3645923201",
@@ -6958,8 +6874,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:49:12.880077+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/267345309",
@@ -6992,8 +6908,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/5269563133",
@@ -7004,12 +6920,12 @@
       "address": "Hofwiesenstrasse 369",
       "postcode": "8050",
       "website": "https://www.starsandstripes.ch/de/p/standorte/oerlikon-1115.html",
-      "openingHours": "Mo-Sa 09:00-21:30+; Su 09:30-21:30+",
       "cuisine": [
         "american",
         "burger",
         "steak_house"
       ],
+      "openingHours": "Mo-Sa 09:00-21:30+; Su 09:30-21:30+",
       "outdoor": true,
       "offers": [
         {
@@ -7237,8 +7153,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T19:55:17.141993+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4408792429",
@@ -7284,8 +7200,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4860115709",
@@ -7318,8 +7234,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1743220322",
@@ -7352,8 +7268,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/656699893",
@@ -7411,8 +7327,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/6807984321",
@@ -7556,8 +7472,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:05:58.515333+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "way/42157273",
@@ -7603,8 +7519,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:12:34.029490+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/633584200",
@@ -7720,8 +7636,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:12:56.125472+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/480274132",
@@ -7754,7 +7670,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/656508776",
@@ -7968,8 +7884,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4031779422",
@@ -8015,8 +7931,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:13:26.243512+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/4833061572",
@@ -8078,7 +7994,7 @@
         "pizza"
       ],
       "openingHours": "Mo-Fr 11:00-23:00; Sa 12:00-23:00; Su off",
-      "outdoor": false,
+      "outdoor": true,
       "offers": [
         {
           "name": "Hamburger",
@@ -8109,8 +8025,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/104276014",
@@ -8213,8 +8129,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:50:13.990967+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/2274216672",
@@ -8272,8 +8188,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:17:35.998137+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/7932162722",
@@ -8305,8 +8221,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/256437327",
@@ -8394,8 +8310,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:41:05.009138+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/7273885585",
@@ -8472,8 +8388,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:02:22.663906+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1536879747",
@@ -8505,8 +8421,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:02:34.180706+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/10050498068",
@@ -8567,7 +8483,7 @@
         }
       ],
       "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/266312456",
@@ -8578,8 +8494,8 @@
       "address": "Hüttenkopfstrasse 70",
       "postcode": "8050",
       "website": "https://wirtschaft-ziegelhuette.ch/",
-      "openingHours": "Tu-Th 09:30-23:00; Fr-Sa 09:30-23:30; Su 11:30-22:30",
       "cuisine": [],
+      "openingHours": "Tu-Th 09:30-23:00; Fr-Sa 09:30-23:30; Su 11:30-22:30",
       "outdoor": false,
       "offers": [
         {
@@ -8597,8 +8513,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:34:31.738559+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/11416682178",
@@ -8757,8 +8673,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/2298795774",
@@ -8916,8 +8832,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/313212546",
@@ -8964,8 +8880,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/6864953385",
@@ -9009,8 +8925,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T20:45:47.764624+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/1625432206",
@@ -9068,8 +8984,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "skipped",
-      "checkedAt": "2026-11-06T11:21:16.075972+00:00"
+      "scrapeStatus": "fetch_failed",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     },
     {
       "id": "node/5894361739",
@@ -9099,8 +9015,8 @@
           "extractionModel": "claude-haiku-5-5"
         }
       ],
-      "scrapeStatus": "prices_found",
-      "checkedAt": "2026-11-16T17:35:56.267846+00:00"
+      "scrapeStatus": "skipped",
+      "checkedAt": "2026-11-17T16:41:20.136870+00:00"
     }
   ]
 }
