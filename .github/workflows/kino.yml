@@ -38,7 +38,8 @@ jobs:
 
           anchor = date(2026, 10, 19)
           today = datetime.now(timezone.utc).date()
-          due = today >= anchor and (today - anchor).days % 28 == 0
+          # Counted in weeks, so a scheduled run that GitHub starts hours or days late still belongs to its four-week cycle.
+          due = today >= anchor and (today - anchor).days // 7 % 4 == 0
           refresh = os.environ['GITHUB_EVENT_NAME'] == 'workflow_dispatch' or due
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write(f'refresh={str(refresh).lower()}\n')
