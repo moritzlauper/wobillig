@@ -29,6 +29,8 @@ on:
 
 permissions:
   contents: write
+  # Saved Claude answers of earlier runs (.github/actions/claude-cache).
+  actions: read
 
 concurrency:
   # Shared queue for all category scans: runs wait for each other. The city jobs of one run publish
@@ -92,6 +94,14 @@ jobs:
         if: steps.cadence.outputs.refresh == 'true'
         run: python -m playwright install chromium || google-chrome --version || echo 'No browser; JavaScript menus are read as plain HTML'
 
+      - name: Restore earlier Claude answers
+        id: claude-cache
+        if: steps.cadence.outputs.refresh == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: restore
+          name: claude-cache-gastro-${{ matrix.city }}
+          path: scraper/cache/ai-gastro
       - name: Crawl restaurant and bar websites and confirm prices with Claude
         if: steps.cadence.outputs.refresh == 'true'
         env:
@@ -118,6 +128,13 @@ jobs:
             python -m scraper.gastro --category "$c" --budget-usd "$BUDGET" --minutes "$MINUTES" $FLAG
           done
 
+      - name: Keep Claude answers for the next run
+        if: always() && steps.claude-cache.outputs.ok == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: save
+          name: claude-cache-gastro-${{ matrix.city }}
+          path: scraper/cache/ai-gastro
       - name: Snapshot gastro datasets
         id: snapshot
         if: steps.cadence.outputs.refresh == 'true'

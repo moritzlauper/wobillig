@@ -16,6 +16,8 @@ on:
         default: false
 permissions:
   contents: write
+  # Saved Claude answers of earlier runs (.github/actions/claude-cache).
+  actions: read
 concurrency:
   # Shared queue for all category scans: they run one after another and never publish at the same time.
   # Each scan has its own queue; scraper.publish merges concurrent results per file on top of the newest branch tip.
@@ -63,6 +65,14 @@ jobs:
         continue-on-error: true
         if: steps.cadence.outputs.refresh == 'true'
         run: python -m playwright install chromium || google-chrome --version || echo 'No browser; JavaScript menus are read as plain HTML'
+      - name: Restore earlier Claude answers
+        id: claude-cache
+        if: steps.cadence.outputs.refresh == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: restore
+          name: claude-cache-glace
+          path: scraper/cache/ai-glace
       - name: Crawl ice cream shops and confirm prices per scoop with Claude
         if: steps.cadence.outputs.refresh == 'true'
         env:
@@ -72,6 +82,13 @@ jobs:
         run: |
           if [ "$TIEF" = "true" ]; then DEPTH="--max-pages 150 --max-documents 200"; else DEPTH=""; fi
           python -m scraper.glace --budget-usd "$BUDGET" $DEPTH
+      - name: Keep Claude answers for the next run
+        if: always() && steps.claude-cache.outputs.ok == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: save
+          name: claude-cache-glace
+          path: scraper/cache/ai-glace
       - name: Snapshot ice cream comparison
         id: snapshot
         if: steps.cadence.outputs.refresh == 'true'

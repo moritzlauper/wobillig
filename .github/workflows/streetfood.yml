@@ -17,6 +17,8 @@ on:
 
 permissions:
   contents: write
+  # Saved Claude answers of earlier runs (.github/actions/claude-cache).
+  actions: read
 
 concurrency:
   # Shared queue for all category scans: they run one after another and never publish at the same time.
@@ -72,6 +74,14 @@ jobs:
         if: steps.cadence.outputs.refresh == 'true'
         run: python -m playwright install chromium || google-chrome --version || echo 'No browser; JavaScript menus are read as plain HTML'
 
+      - name: Restore earlier Claude answers
+        id: claude-cache
+        if: steps.cadence.outputs.refresh == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: restore
+          name: claude-cache-streetfood
+          path: scraper/cache/zurich/ai-streetfood
       - name: Crawl menus in Zürich and confirm döner and falafel prices with Claude
         if: steps.cadence.outputs.refresh == 'true'
         env:
@@ -82,6 +92,13 @@ jobs:
           if [ "$TIEF" = "true" ]; then DEPTH="--max-pages 150 --max-documents 200"; else DEPTH=""; fi
           python -m scraper.streetfood_ai --budget-usd "$BUDGET" $DEPTH
 
+      - name: Keep Claude answers for the next run
+        if: always() && steps.claude-cache.outputs.ok == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: save
+          name: claude-cache-streetfood
+          path: scraper/cache/zurich/ai-streetfood
       - name: Snapshot street-food datasets
         id: snapshot
         if: steps.cadence.outputs.refresh == 'true'

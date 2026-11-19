@@ -239,7 +239,7 @@ def main():
     found = json.loads(args.venues_file.read_text()) if args.venues_file else discover({}, query=venue_query('restaurant|fast_food|cafe|bar|pub'))
     groups = candidates(found['bars'])
     deadline = time.monotonic() + args.minutes * 60
-    client = Claude(budget=min(args.budget_usd, MAX_BUDGET_USD), cache=ROOT / f'scraper/cache/ai-gastro-{args.category}', deadline=deadline)
+    client = Claude(budget=min(args.budget_usd, MAX_BUDGET_USD), cache=ROOT / 'scraper/cache/ai-gastro' / args.category, deadline=deadline)
     fetcher = AuditFetcher()
     print(f'{len(found["bars"])} OSM venues; {len(groups)} single-venue websites to read for {args.category}', flush=True)
     with ThreadPoolExecutor(args.workers) as pool:

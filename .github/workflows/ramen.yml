@@ -14,6 +14,8 @@ on:
         default: 1
 permissions:
   contents: write
+  # Saved Claude answers of earlier runs (.github/actions/claude-cache).
+  actions: read
 concurrency:
   # Shared queue for all category scans: they run one after another and never publish at the same time.
   # Each scan has its own queue; scraper.publish merges concurrent results per file on top of the newest branch tip.
@@ -68,12 +70,27 @@ jobs:
         continue-on-error: true
         if: steps.cadence.outputs.refresh == 'true'
         run: python -m playwright install chromium || google-chrome --version || echo 'No browser; JavaScript menus are read as plain HTML'
+      - name: Restore earlier Claude answers
+        id: claude-cache
+        if: steps.cadence.outputs.refresh == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: restore
+          name: claude-cache-ramen-${{ matrix.city }}
+          path: scraper/cache/${{ matrix.city }}/ai-ramen
       - name: Crawl ramen menus and confirm prices with Claude
         if: steps.cadence.outputs.refresh == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BUDGET: ${{ inputs.ai_budget_usd || 1 }}
         run: python -m scraper.ramen --budget-usd "$BUDGET"
+      - name: Keep Claude answers for the next run
+        if: always() && steps.claude-cache.outputs.ok == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: save
+          name: claude-cache-ramen-${{ matrix.city }}
+          path: scraper/cache/${{ matrix.city }}/ai-ramen
       - name: Snapshot ramen dataset
         id: snapshot
         if: steps.cadence.outputs.refresh == 'true'

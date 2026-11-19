@@ -1,0 +1,62 @@
+name: Claude answers between runs
+description: >
+  Keeps the Claude answers of a scan (scraper/cache/ai*, one JSON file per
+  request) as an artifact for 90 days and restores the newest one before the
+  next run. The Actions cache is deleted after 7 days without access, while
+  most scans run every one to four weeks: every run then paid for every menu
+  again (16.11.2026, Zürich: 4821 requests, 62 cache hits).
+  mode=restore sets the output ok=true when the folder is complete (restored,
+  or nothing saved yet). Save only then: a run whose restore failed would
+  otherwise replace the full set with its few new answers.
+inputs:
+  mode:
+    description: restore or save
+    required: true
+  name:
+    description: Artifact name, unique per scan and city (claude-cache-menus-zurich)
+    required: true
+  path:
+    description: The folder the Claude client caches in
+    required: true
+outputs:
+  ok:
+    description: true when restore left a complete folder that may be saved again
+    value: ${{ steps.restore.outputs.ok }}
+runs:
+  using: composite
+  steps:
+    - id: restore
+      if: ${{ inputs.mode == 'restore' }}
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+        NAME: ${{ inputs.name }}
+        DIR: ${{ inputs.path }}
+      run: |
+        mkdir -p "$DIR"
+        if ! list=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=$NAME&per_page=100"); then
+          echo "::warning::Saved Claude answers for $NAME could not be listed; this run will not save its answers."
+          exit 0
+        fi
+        id=$(jq -r '[.artifacts[] | select(.expired | not)] | sort_by(.created_at) | last | .id // empty' <<<"$list")
+        if [ -z "$id" ]; then
+          echo "No saved Claude answers for $NAME yet."
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        zip="$RUNNER_TEMP/$NAME.zip"
+        if gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$id/zip" > "$zip" && unzip -oq "$zip" -d "$DIR"; then
+          echo "Restored $(find "$DIR" -name '*.json' | wc -l) Claude answers for $NAME (artifact $id)."
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "::warning::Saved Claude answers for $NAME could not be restored; this run will not save its answers."
+        fi
+        rm -f "$zip"
+    - if: ${{ inputs.mode == 'save' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.path }}
+        retention-days: 90
+        overwrite: true
+        if-no-files-found: ignore

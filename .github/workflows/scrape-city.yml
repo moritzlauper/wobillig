@@ -25,6 +25,8 @@ on:
         required: false
 permissions:
   contents: write
+  # Saved Claude answers of earlier runs (.github/actions/claude-cache).
+  actions: read
 jobs:
   drinks:
     name: Beer and coffee

@@ -31,6 +31,8 @@ on:
         default: true
 permissions:
   contents: write
+  # Saved Claude answers of earlier runs (.github/actions/claude-cache).
+  actions: read
 concurrency:
   group: drink-data-refresh
   # Keep separately requested city runs in FIFO order instead of replacing pending runs.

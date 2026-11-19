@@ -28,6 +28,8 @@ on:
         required: false
 permissions:
   contents: write
+  # Saved Claude answers of earlier runs (.github/actions/claude-cache).
+  actions: read
 jobs:
   scan:
     name: ${{ inputs.city }} / ${{ inputs.stage }}
@@ -66,12 +68,14 @@ jobs:
       - name: Record coverage before scanning
         id: baseline
         run: python -m scraper.scan_report --baseline "$RUNNER_TEMP/scan-before.json"
-      - uses: actions/cache/restore@v4
+      - name: Restore earlier Claude answers
+        id: claude-cache
         if: ${{ inputs.stage == 'ai' }}
+        uses: ./.github/actions/claude-cache
         with:
+          mode: restore
+          name: claude-cache-city-${{ inputs.city }}
           path: scraper/cache/ai
-          key: claude-menus-v1-${{ inputs.city }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: claude-menus-v1-${{ inputs.city }}-
       - name: Refresh known beer venues and discover bars
         if: ${{ inputs.stage == 'drinks' }}
         run: python -m scraper.scrape --discover --max-pages "$BEER_PAGES"
@@ -90,12 +94,27 @@ jobs:
       - name: Deep search for missing bottle beer prices
         if: ${{ inputs.stage == 'drinks' }}
         run: python -m scraper.scrape --missing-bottles --max-pages "$DEEP_PAGES"
+      - name: Restore earlier Claude answers
+        id: claude-cache-pizza
+        if: ${{ inputs.stage == 'pizza' && inputs.scan_mode == 'pizza_only' }}
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: restore
+          name: claude-cache-pizza-${{ inputs.city }}
+          path: scraper/cache/${{ inputs.city }}/pizza-ai
       - name: Discover pizza venues and prices
         if: ${{ inputs.stage == 'pizza' }}
         env:
           ANTHROPIC_API_KEY: ${{ inputs.scan_mode == 'pizza_only' && secrets.ANTHROPIC_API_KEY || '' }}
           PIZZA_AI_BUDGET: ${{ inputs.scan_mode == 'pizza_only' && inputs.ai_budget_usd || 0 }}
         run: python -m scraper.scrape_pizza --discover --limit 0 --workers 8 --max-pages "$PIZZA_PAGES" --ai-budget-usd "$PIZZA_AI_BUDGET" --ai-max-documents "$AI_PAGES" --ai-minutes "$AI_MINUTES"
+      - name: Keep Claude answers for the next run
+        if: ${{ always() && steps.claude-cache-pizza.outputs.ok == 'true' }}
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: save
+          name: claude-cache-pizza-${{ inputs.city }}
+          path: scraper/cache/${{ inputs.city }}/pizza-ai
       - name: Save pizza AI cost report
         if: ${{ always() && inputs.stage == 'pizza' && inputs.scan_mode == 'pizza_only' }}
         uses: actions/upload-artifact@v4
@@ -139,11 +158,13 @@ jobs:
           name: scan-coverage-${{ inputs.city }}-${{ inputs.stage }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/scan-report.json
           if-no-files-found: warn
-      - uses: actions/cache/save@v4
-        if: ${{ always() && inputs.stage == 'ai' }}
+      - name: Keep Claude answers for the next run
+        if: ${{ always() && inputs.stage == 'ai' && steps.claude-cache.outputs.ok == 'true' }}
+        uses: ./.github/actions/claude-cache
         with:
+          mode: save
+          name: claude-cache-city-${{ inputs.city }}
           path: scraper/cache/ai
-          key: claude-menus-v1-${{ inputs.city }}-${{ github.run_id }}-${{ github.run_attempt }}
       - uses: actions/upload-artifact@v4
         if: ${{ always() && inputs.stage == 'ai' }}
         with:

@@ -34,6 +34,8 @@ on:
 
 permissions:
   contents: write
+  # Saved Claude answers of earlier runs (.github/actions/claude-cache).
+  actions: read
 
 concurrency:
   # One queue per city: cities write separate files, and scraper.publish merges concurrent results per file on top of the newest branch tip.
@@ -97,6 +99,14 @@ jobs:
         if: steps.cadence.outputs.refresh == 'true'
         run: python -m playwright install chromium || google-chrome --version || echo 'No browser; JavaScript menus are read as plain HTML'
 
+      - name: Restore earlier Claude answers
+        id: claude-cache
+        if: steps.cadence.outputs.refresh == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: restore
+          name: claude-cache-menus-${{ matrix.city }}
+          path: scraper/cache/${{ matrix.city }}/ai-menus
       - name: Read restaurant and bar menus once and confirm prices with Claude
         if: steps.cadence.outputs.refresh == 'true'
         env:
@@ -112,6 +122,13 @@ jobs:
           if [ -z "$BUDGET" ]; then BUDGET=$([ "$WOBILLIG_CITY" = "zurich" ] && echo 3 || echo 1.5); fi
           python -m scraper.menu_scan --budget-usd "$BUDGET" $FLAG --only "$NUR"
 
+      - name: Keep Claude answers for the next run
+        if: always() && steps.claude-cache.outputs.ok == 'true'
+        uses: ./.github/actions/claude-cache
+        with:
+          mode: save
+          name: claude-cache-menus-${{ matrix.city }}
+          path: scraper/cache/${{ matrix.city }}/ai-menus
       - name: Snapshot menu datasets
         id: snapshot
         if: steps.cadence.outputs.refresh == 'true'
