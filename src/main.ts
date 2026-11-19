@@ -291,7 +291,10 @@ function scheduleBarReveal(zoom?: number) {
   });
 }
 const mapLayoutObserver = new ResizeObserver(() => {
-  map.invalidateSize({ pan: false });
+  // Keep the map's centre when its box changes (layout settling at load, a tab laid out in the background);
+  // without panning, Leaflet keeps the top left corner and the city centre drifts out of view.
+  // With a venue open, the reveal below centres that venue instead.
+  map.invalidateSize({ pan: !selected });
   scheduleBarReveal();
 });
 mapLayoutObserver.observe($('map'));
