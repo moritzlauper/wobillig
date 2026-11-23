@@ -3,11 +3,13 @@
 // - mqttTransport: no server at all (any static host). The game state is a retained message on a
 //   public MQTT broker; the player making a move checks it with the shared engine and publishes it.
 import { LANGS, SIZE, MAX_PLAYERS, emptyBoard } from './rules.js';
-import { fail, actions, viewFor, newRoom, newCode, newPlayer, pickSeat, cleanName } from './engine.js';
+import { fail, actions, viewFor, newRoom, newCode, newPlayer, pickSeat, cleanName, TIME_OPTIONS } from './engine.js';
 import { Mqtt } from './mqtt.js';
 
 export const BROKER = 'wss://broker.hivemq.com:8884/mqtt';
 const ROOT = 'plaettli/v1/';
+const LOBBY = 'plaettli/v1-lobby/'; // one retained entry per public game that still takes players
+const FRESH_MS = 150e3;             // lobby entries are refreshed every 45 s; older ones are hidden
 
 export async function pickTransport() {
   // ?broker=ws://localhost:1234 forces the serverless mode against a local broker (for testing)
@@ -82,6 +84,15 @@ export function serverTransport() {
     act: (action, body = {}) => post(action, { ...session, ...body }),
     resume() { if (session && es?.readyState === EventSource.CLOSED) recheck(); },
     close() { es?.close(); es = null; session = null; },
+    watchLobby(cb) {
+      let stop = false;
+      const poll = async () => {
+        try { const r = await fetch('api/lobby', { cache: 'no-store' }); if (r.ok) cb((await r.json()).games || []); } catch { /* try again */ }
+        if (!stop) timer = setTimeout(poll, 4000);
+      };
+      let timer = setTimeout(poll, 0);
+      return () => { stop = true; clearTimeout(timer); };
+    },
   };
 }
 
@@ -103,7 +114,18 @@ const tile = (t) => (t && tileId(t.id) ? { id: t.id, l: letter(t.l), v: int(t.v,
 const list = (a, max, fn) => (Array.isArray(a) ? a.slice(-max).map(fn).filter(Boolean) : []);
 const word = (w) => (typeof w === 'string' && /^[A-ZÄÖÜ?]{2,15}$/.test(w) ? w : null);
 const cell = (rc) => (Array.isArray(rc) ? [int(rc[0], 0, SIZE - 1), int(rc[1], 0, SIZE - 1)] : null);
-const LOG_TYPES = ['start', 'play', 'swap', 'pass', 'undo', 'skip', 'end'];
+const LOG_TYPES = ['start', 'play', 'swap', 'pass', 'undo', 'skip', 'timeout', 'end'];
+const time = (x) => (TIME_OPTIONS.includes(Number(x)) ? Number(x) : 120);
+
+export function cleanLobbyEntry(e, code) {
+  if (!e || typeof e !== 'object' || !/^[A-Z]{4}$/.test(code)) return null;
+  const players = list(e.players, 4, (n) => cleanName(n) || null);
+  if (!players.length) return null;
+  return { code, lang: LANGS.includes(e.lang) ? e.lang : 'de', check: e.check !== false, time: time(e.time), players, t: int(e.t, 0, 1e13) };
+}
+const cleanSettings = (d) => (d && typeof d === 'object'
+  ? { lang: LANGS.includes(d.lang) ? d.lang : 'de', check: d.check !== false, time: time(d.time), public: d.public !== false, t: int(d.t, 0, 1e13) }
+  : null);
 
 export function cleanGame(g, code) {
   if (!g || typeof g !== 'object') return null;
@@ -131,8 +153,9 @@ export function cleanGame(g, code) {
     t: e.t, pid: pid(e.pid), target: pid(e.target), words: list(e.words, 10, word), score: int(e.score, 0, 9999), n: int(e.n, 0, 7), bingo: e.bingo === true,
   });
   return {
-    code, lang: LANGS.includes(g.lang) ? g.lang : 'de', check: g.check !== false,
+    code, lang: LANGS.includes(g.lang) ? g.lang : 'de', check: g.check !== false, time: time(g.time), public: g.public !== false,
     status: g.status === 'ended' ? 'ended' : 'playing',
+    turnEnds: g.turnEnds ? int(g.turnEnds, 0, 1e13) : null,
     players, board, bag: list(g.bag, 100, tile),
     turn: int(g.turn, 0, players.length - 1), scoreless: int(g.scoreless, 0, 99), last, undoable, log,
     v: int(g.v, 0, 1e9), w: typeof g.w === 'string' ? g.w.slice(0, 16) : '',
@@ -149,7 +172,7 @@ function roomState(code) {
     let data = null;
     if (text && key !== 'o' && !key.startsWith('o/')) { try { data = JSON.parse(text); } catch { return false; } }
     if (key === 's') {
-      st.settings = data && typeof data === 'object' ? { lang: LANGS.includes(data.lang) ? data.lang : 'de', check: data.check !== false, t: int(data.t, 0, 1e13) } : null;
+      st.settings = cleanSettings(data);
     } else if (key === 'g') {
       const g = cleanGame(data, code);
       if (!g || (st.game && g.v < st.game.v)) return false; // older than what we have
@@ -163,12 +186,15 @@ function roomState(code) {
     return true;
   };
   st.memberList = () => [...st.members.entries()].sort((a, b) => a[1].t - b[1].t).map(([id, m]) => newPlayer(id, m.name));
-  st.lobby = () => ({ ...newRoom(code, st.settings?.lang), check: st.settings?.check ?? true, players: st.memberList() });
+  st.lobby = () => ({
+    ...newRoom(code, st.settings?.lang), check: st.settings?.check ?? true, time: st.settings?.time ?? 120,
+    public: st.settings?.public ?? true, players: st.memberList(),
+  });
   st.room = () => {
     if (!st.game) return st.lobby();
     const room = structuredClone(st.game);
     if (room.status === 'ended') { // settings for the next game, and people who joined since
-      if (st.settings) { room.lang = st.settings.lang; room.check = st.settings.check; }
+      if (st.settings) Object.assign(room, { lang: st.settings.lang, check: st.settings.check, time: st.settings.time, public: st.settings.public });
       for (const m of st.memberList()) if (!room.players.some((p) => p.id === m.id)) room.players.push(m);
     }
     return room;
@@ -179,7 +205,8 @@ function roomState(code) {
 export function mqttTransport(url) {
   const topic = (code, key) => `${ROOT}${code}/${key}`;
   let cli = null, st = null, code = null, me = null, h = null, synced = false, pending = null;
-  const ctx = { randInt, dict: (l) => dicts[l] || null, online: (id) => st?.online.has(id) };
+  let clockTimer = null, beat = null, lobbyKey = null, clockRaw = null, clockLocal = null;
+  const ctx = { randInt, dict: (l) => dicts[l] || null, online: (id) => st?.online.has(id), now: Date.now };
 
   // Reads a room's retained messages once (to create or join it).
   async function probe(c) {
@@ -196,7 +223,50 @@ export function mqttTransport(url) {
   function saveCopy() {
     store.set(copyKey(), JSON.stringify({ settings: st.settings, members: [...st.members], game: st.game }));
   }
-  const emit = () => h?.onState(viewFor(st.room(), me, (id) => st.online.has(id)));
+  const emit = () => {
+    h?.onState(viewFor(st.room(), me, (id) => st.online.has(id)));
+    armClock();
+    syncLobby(false);
+  };
+
+  // Phones' clocks can be off. When a move starts a new turn, count its time from the moment the
+  // message arrives here instead of trusting the deadline the other phone wrote.
+  function localizeClock(g, live) {
+    if (!g?.turnEnds) return;
+    const raw = g.turnEnds;
+    const full = Date.now() + g.time * 1000;
+    let local;
+    if (raw === clockRaw) local = clockLocal;
+    else if (live && g.log.at(-1)?.t !== 'undo') local = Math.abs(raw - full) > 3000 ? full : raw;
+    else local = Math.min(raw, full);
+    clockRaw = raw; clockLocal = local; g.turnEnds = local;
+  }
+
+  // Turn clock without a referee: the player whose time is up passes; if their phone is gone,
+  // the others do it a few seconds later. Simultaneous timeouts produce the same state.
+  function armClock() {
+    clearTimeout(clockTimer);
+    const g = st?.game;
+    if (!g || g.status !== 'playing' || !g.turnEnds) return;
+    const current = g.players[g.turn]?.id;
+    const v = g.v;
+    clockTimer = setTimeout(() => {
+      if (st?.game?.v === v) act('timeout', { pid: current }).catch(() => {});
+    }, Math.max(0, g.turnEnds - Date.now() + (current === me ? 300 : 4000)));
+  }
+
+  // Keep this game's entry in the open lobby up to date (every member does it; same content).
+  function syncLobby(force) {
+    if (!cli || !synced) return;
+    const room = st.room();
+    const listed = room.public && room.status !== 'playing' && room.players.length < MAX_PLAYERS;
+    const entry = listed ? { code, lang: room.lang, check: room.check, time: room.time, players: room.players.map((p) => p.name) } : null;
+    const key = JSON.stringify(entry);
+    if (!force && key === lobbyKey) return;
+    if (!entry && lobbyKey === null && !force) return;
+    lobbyKey = key;
+    cli.publish(LOBBY + code, entry ? JSON.stringify({ ...entry, t: Date.now() }) : '', { retain: true }).catch(() => {});
+  }
   const send = (key, value) => cli.publish(topic(code, key), value === '' ? '' : JSON.stringify(value), { retain: true, qos: 1 }).catch(() => {});
 
   // After (re)connecting: if the broker lost the room, or missed our last move, put back our copy.
@@ -220,8 +290,18 @@ export function mqttTransport(url) {
     emit();
   }
 
-  return {
+  const transport = {
     kind: 'mqtt',
+    preload(lang) { loadDict(lang).catch(() => {}); },
+    resume() { if (cli && !cli.online) cli.connect().catch(() => {}); },
+    close() {
+      if (!cli) return;
+      clearTimeout(clockTimer);
+      clearInterval(beat);
+      cli.publish(topic(code, `o/${me}`), '', { retain: true }).catch(() => {}); // sent at once while connected
+      cli.close();
+      cli = null; h = null; synced = false; lobbyKey = null;
+    },
     link: (c) => `${location.origin}${location.pathname}${location.search}#${c}`,
 
     async create(name, lang) {
@@ -233,7 +313,7 @@ export function mqttTransport(url) {
         if (s.settings) { m.close(); continue; } // code taken
         const t = Date.now();
         try {
-          await m.publish(topic(c, 's'), JSON.stringify({ lang: LANGS.includes(lang) ? lang : 'de', check: true, t }), { retain: true, qos: 1 });
+          await m.publish(topic(c, 's'), JSON.stringify({ ...cleanSettings({ lang }), t }), { retain: true, qos: 1 });
           await m.publish(topic(c, `p/${id}`), JSON.stringify({ name, t }), { retain: true, qos: 1 });
         } catch { fail('network'); } finally { m.close(); }
         return { code: c, me: id };
@@ -259,8 +339,13 @@ export function mqttTransport(url) {
       cli = new Mqtt(url, {
         will: { topic: topic(c, `o/${id}`), payload: '', retain: true },
         onMessage: (t, text) => {
+          const before = st.game;
           if (!st.apply(t, text)) return;
-          if (t.endsWith('/g')) { if (st.game.w === pending) pending = null; saveCopy(); }
+          if (t.endsWith('/g')) {
+            if (st.game !== before) localizeClock(st.game, synced);
+            if (st.game.w === pending) pending = null;
+            saveCopy();
+          }
           if (synced) emit();
         },
         onStatus: (up) => {
@@ -272,53 +357,70 @@ export function mqttTransport(url) {
       });
       cli.subs.push(topic(c, '#'));
       cli.connect().catch(() => {});
+      clearInterval(beat);
+      beat = setInterval(() => { if (lobbyKey && lobbyKey !== 'null') syncLobby(true); }, 45e3);
     },
 
-    async act(name, body = {}) {
-      if (!synced) fail('network');
-      if (name === 'hello') return {};
-      if (name === 'leave' || name === 'settings') {
-        if (st.game?.status === 'playing') fail('started');
-        if (name === 'leave') { await cli.publish(topic(code, `p/${me}`), '', { retain: true, qos: 1 }).catch(() => fail('network')); return {}; }
-        const s = { ...(st.settings || { lang: 'de', check: true }), t: Date.now() };
-        if (LANGS.includes(body.lang)) s.lang = body.lang;
-        if (typeof body.check === 'boolean') s.check = body.check;
-        st.settings = s;
-        emit();
-        send('s', s);
-        return {};
-      }
-      let room;
-      if (name === 'start') {
-        if (st.game?.status === 'playing') fail('started');
-        room = st.lobby();
-      } else {
-        if (!st.game || !Object.hasOwn(actions, name)) fail('notPlaying');
-        room = structuredClone(st.game);
-      }
-      const player = room.players.find((p) => p.id === me) || fail('noPlayer');
-      if (name === 'play' && room.check && !dicts[room.lang]) {
-        try { await loadDict(room.lang); } catch { fail('dictLoading'); }
-      }
-      const res = actions[name](room, player, body, ctx);
-      room.log = room.log.slice(-30);
-      room.v = (st.game?.v || 0) + 1;
-      room.w = rid();
-      pending = room.w;
-      st.game = room;
-      saveCopy();
-      emit();
-      send('g', room); // retried after a reconnect if it doesn't come back
-      return res || {};
-    },
+    act,
 
-    preload(lang) { loadDict(lang).catch(() => {}); },
-    resume() { if (cli && !cli.online) cli.connect().catch(() => {}); },
-    close() {
-      if (!cli) return;
-      cli.publish(topic(code, `o/${me}`), '', { retain: true }).catch(() => {}); // sent at once while connected
-      cli.close();
-      cli = null; h = null;
+    watchLobby(cb) {
+      const games = new Map();
+      const m = new Mqtt(url, {
+        onMessage: (t, text) => {
+          const c = t.slice(LOBBY.length);
+          let e = null;
+          if (text) { try { e = cleanLobbyEntry(JSON.parse(text), c); } catch { /* ignore */ } }
+          if (e && e.t < Date.now() - 864e5) { m.publish(t, '', { retain: true }).catch(() => {}); e = null; } // tidy up day-old entries
+          if (e) games.set(c, e); else games.delete(c);
+          show();
+        },
+      });
+      const show = () => cb([...games.values()].filter((g) => g.t > Date.now() - FRESH_MS).sort((a, b) => b.t - a.t));
+      m.subscribe([`${LOBBY}+`]).catch(() => {});
+      const tick = setInterval(show, 15e3);
+      return () => { clearInterval(tick); m.close(); };
     },
   };
+
+  async function act(name, body = {}) {
+    if (!synced) fail('network');
+    if (name === 'hello') return {};
+    if (name === 'leave' || name === 'settings') {
+      if (st.game?.status === 'playing') fail('started');
+      if (name === 'leave') { await cli.publish(topic(code, `p/${me}`), '', { retain: true, qos: 1 }).catch(() => fail('network')); return {}; }
+      const s = { ...(st.settings || cleanSettings({})), t: Date.now() };
+      if (LANGS.includes(body.lang)) s.lang = body.lang;
+      if (typeof body.check === 'boolean') s.check = body.check;
+      if (TIME_OPTIONS.includes(body.time)) s.time = body.time;
+      if (typeof body.public === 'boolean') s.public = body.public;
+      st.settings = s;
+      emit();
+      send('s', s);
+      return {};
+    }
+    let room;
+    if (name === 'start') {
+      if (st.game?.status === 'playing') fail('started');
+      room = st.lobby();
+    } else {
+      if (!st.game || !Object.hasOwn(actions, name)) fail('notPlaying');
+      room = structuredClone(st.game);
+    }
+    const player = room.players.find((p) => p.id === me) || fail('noPlayer');
+    if (name === 'play' && room.check && !dicts[room.lang]) {
+      try { await loadDict(room.lang); } catch { fail('dictLoading'); }
+    }
+    const res = actions[name](room, player, body, ctx);
+    room.log = room.log.slice(-30);
+    room.v = (st.game?.v || 0) + 1;
+    room.w = rid();
+    clockRaw = clockLocal = room.turnEnds; // our own clock: our echo needs no correction
+    pending = room.w;
+    st.game = room;
+    saveCopy();
+    emit();
+    send('g', room); // retried after a reconnect if it doesn't come back
+    return res || {};
+  }
+  return transport;
 }

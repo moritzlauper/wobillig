@@ -1,5 +1,6 @@
 import { SIZE, CENTER, MAX_PLAYERS, BINGO, alphabet, premiumAt, analyzeMove } from './rules.js';
 import { pickTransport } from './net.js';
+import { TIME_OPTIONS } from './engine.js';
 
 // ---------- texts ----------
 const TEXT = {
@@ -15,7 +16,16 @@ const TEXT = {
       `Alle 7 Plättli in einem Zug: +${BINGO} Punkte. Die leeren Plättli sind Joker (0 Punkte).`,
       'Das Spiel endet, wenn der Beutel leer ist und jemand alle Plättli gelegt hat. Restpunkte werden abgezogen.',
       'Antippen und dann aufs Feld tippen, oder einfach ziehen.',
+      'Mit Zeitlimit: Läuft die Zeit ab, ist die nächste Person dran (zählt als Passen).',
     ],
+    openLobby: 'Offene Lobby', lobbyLoading: 'Suche offene Spiele …',
+    lobbyEmpty: 'Gerade wartet niemand. Erstelle ein Spiel, dann sehen es andere hier und können direkt beitreten.',
+    quickPlay: 'Schnell spielen', orCreate: 'oder selbst eröffnen', seats: '{n}/4',
+    timeLimit: 'Zeit pro Zug', timeNone: 'Ohne', min: '{n} Min', publicGame: 'In der offenen Lobby zeigen',
+    publicOn: 'Alle sehen das Spiel auf der Startseite und können direkt beitreten.',
+    publicOff: 'Nur wer den Link oder Code hat, kann beitreten.',
+    timeUp: 'Deine Zeit ist abgelaufen.', log_timeout: '{name}: Zeit abgelaufen',
+    err_notYet: 'Die Zeit läuft noch.', err_stale: 'Der Zug ist schon vorbei.',
     code: 'Spielcode', copyLink: 'Link kopieren', share: 'Teilen', copied: 'Link kopiert',
     shareHint: 'Schick den Link deinen Freunden. Bis zu 4 Personen.', shareText: 'Spiel mit mir Plättli!',
     players: 'Mitspielende', you: '(du)', language: 'Sprache', checkWords: 'Wörter prüfen',
@@ -57,7 +67,16 @@ const TEXT = {
       `All 7 tiles in one move: +${BINGO} points. The empty tiles are jokers (0 points).`,
       'The game ends when the bag is empty and someone has used all tiles. Leftover points are subtracted.',
       'Tap a tile, then tap a square, or just drag it.',
+      'With a time limit: when the time is up, the next player is up (counts as a pass).',
     ],
+    openLobby: 'Open lobby', lobbyLoading: 'Looking for open games …',
+    lobbyEmpty: 'Nobody is waiting right now. Create a game and others will see it here and can join right away.',
+    quickPlay: 'Quick play', orCreate: 'or start your own', seats: '{n}/4',
+    timeLimit: 'Time per turn', timeNone: 'None', min: '{n} min', publicGame: 'Show in the open lobby',
+    publicOn: 'Everyone sees the game on the start page and can join right away.',
+    publicOff: 'Only people with the link or code can join.',
+    timeUp: 'Your time is up.', log_timeout: '{name} ran out of time',
+    err_notYet: 'There is still time left.', err_stale: 'That turn is already over.',
     code: 'Game code', copyLink: 'Copy link', share: 'Share', copied: 'Link copied',
     shareHint: 'Send the link to your friends. Up to 4 players.', shareText: 'Play Plättli with me!',
     players: 'Players', you: '(you)', language: 'Language', checkWords: 'Check words',
@@ -118,6 +137,9 @@ let zoom = false;          // board zoomed in (phones)
 const ZOOM = 1.9;
 let lastBoardTap = null;   // for double-tap zoom
 let prevTurn;
+let clockOffset = 0;       // server time minus this device's time (server mode)
+let openGames = null;      // public games from the open lobby
+let stopLobby = null;
 
 // ---------- connection (server or serverless, see net.js) ----------
 const T = await pickTransport();
@@ -135,11 +157,12 @@ const homeUrl = () => (T.kind === 'server' ? '/' : location.pathname + location.
 const gameUrl = (code) => (T.kind === 'server' ? `/${code}` : `${location.pathname}${location.search}#${code}`);
 
 function enter(code, me) {
+  stopLobby?.(); stopLobby = null;
   session = { code, me };
   store.set(`plaettli:${code}`, me);
   if (location.pathname + location.hash !== gameUrl(code)) history.replaceState(null, '', gameUrl(code));
   T.open(code, me, {
-    onState: (view) => { S = view; onState(); },
+    onState: (view) => { S = view; clockOffset = Number(view.now) ? view.now - Date.now() : 0; onState(); },
     onConn: setConnected,
     onGone: (e) => { toast(errText(e)); goHome(); },
   });
@@ -177,6 +200,8 @@ function onState() {
   const mine = S.status === 'playing' && S.turn === S.you;
   document.title = mine ? `● ${t('yourTurn')} · Plättli` : 'Plättli';
   if (mine && prevTurn !== undefined && prevTurn !== S.you && document.visibilityState === 'visible') navigator.vibrate?.(120);
+  const last = S.log[S.log.length - 1];
+  if (prevTurn === S.you && S.turn !== S.you && last?.t === 'timeout' && last.pid === S.you) toast(t('timeUp'));
   prevTurn = S.turn;
   if (S.status === 'playing' && S.check) T.preload?.(S.lang);
   if (drag) return; // re-rendered when the drag ends
@@ -219,10 +244,42 @@ function header(extra = '', right = '') {
 function langSeg(current, act) {
   return `<div class="seg">${['de', 'en'].map((l) => `<button data-act="${act}" data-v="${l}" class="${current === l ? 'on' : ''}">${l === 'de' ? 'Deutsch' : 'English'}</button>`).join('')}</div>`;
 }
+const timeLabel = (secs) => (secs ? t('min', { n: secs / 60 }) : t('timeNone'));
 function settingsBlock() {
   return `<div class="setting"><span>${t('language')}</span>${langSeg(S.lang, 'lang')}</div>
+    <div class="setting"><span>${t('timeLimit')}</span><div class="seg">${TIME_OPTIONS.map((secs) => `<button data-act="time" data-v="${secs}" class="${S.time === secs ? 'on' : ''}">${timeLabel(secs)}</button>`).join('')}</div></div>
     <label class="setting"><span>${t('checkWords')}</span><input type="checkbox" class="switch" data-act="check" ${S.check ? 'checked' : ''}></label>
-    <p class="muted small" style="margin:-6px 0 0">${S.check ? t('checkOn') : t('checkOff')}</p>`;
+    <p class="muted small" style="margin:-6px 0 0">${S.check ? t('checkOn') : t('checkOff')}</p>
+    <label class="setting"><span>${t('publicGame')}</span><input type="checkbox" class="switch" data-act="public" ${S.public ? 'checked' : ''}></label>
+    <p class="muted small" style="margin:-6px 0 0">${S.public ? t('publicOn') : t('publicOff')}</p>`;
+}
+
+// ---------- turn clock ----------
+function fmtClock(ms) {
+  const secs = Math.max(0, Math.ceil(ms / 1000));
+  return `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`;
+}
+const now = () => Date.now() + clockOffset;
+const clock = () => (S?.turnEnds ? `<span class="clock" data-ends="${Number(S.turnEnds)}">${fmtClock(S.turnEnds - now())}</span>` : '');
+setInterval(() => {
+  for (const el of document.querySelectorAll('.clock')) {
+    const ms = Number(el.dataset.ends) - now();
+    el.textContent = fmtClock(ms);
+    el.classList.toggle('low', ms < 10500);
+  }
+}, 500);
+
+// ---------- open lobby on the start page ----------
+function renderOpenGames() {
+  const ul = document.querySelector('.open-games');
+  if (!ul) return;
+  if (!openGames) { ul.innerHTML = `<li class="og-empty">${t('lobbyLoading')}</li>`; return; }
+  if (!openGames.length) { ul.innerHTML = `<li class="og-empty">${t('lobbyEmpty')}</li>`; return; }
+  ul.innerHTML = openGames.map((g) => `<li>
+      <div class="og-main"><b>${esc(g.players.join(', '))}</b>
+        <span>${g.lang === 'de' ? 'Deutsch' : 'English'} · ${esc(timeLabel(g.time))} · ${t('seats', { n: g.players.length })}</span></div>
+      <button data-act="joinOpen" data-code="${esc(g.code)}">${t('join')}</button>
+    </li>`).join('');
 }
 
 // ---------- screens ----------
@@ -247,8 +304,12 @@ function renderHome(code = homeCode) {
       <button class="primary big" data-act="join" data-code="${code}">${t('joinGame', { code })}</button>
       <button class="link" data-act="forget">${t('orNew')}</button>
     ` : `
+      <div class="lobby-head"><h3>${t('openLobby')}</h3><span class="live">live</span></div>
+      <ul class="open-games"></ul>
+      <button class="primary big" data-act="quick">${t('quickPlay')}</button>
+      <div class="or">${t('orCreate')}</div>
       ${langSeg(gameLang, 'newlang')}
-      <button class="primary big" data-act="create">${t('create')}</button>
+      <button class="big" data-act="create">${t('create')}</button>
       <div class="or">${t('or')}</div>
       <div class="row">
         <input type="text" id="code" class="code-input" maxlength="4" placeholder="${t('codePh')}" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="go">
@@ -257,8 +318,12 @@ function renderHome(code = homeCode) {
     `}
   </section>
   <details class="help"><summary>${t('howTo')}</summary><ul>${TEXT[ui].rules.map((r) => `<li>${r}</li>`).join('')}</ul></details>`;
-  const input = document.getElementById(!name || code ? 'name' : 'code');
-  if (input && !matchMedia('(pointer: coarse)').matches) input.focus();
+  if (!code) {
+    renderOpenGames();
+    stopLobby ||= T.watchLobby((games) => { openGames = games; renderOpenGames(); });
+  }
+  const input = document.getElementById('name');
+  if (input && !name && !matchMedia('(pointer: coarse)').matches) input.focus();
 }
 
 function renderLobby() {
@@ -321,10 +386,10 @@ function renderGame() {
   if (S.status === 'ended') {
     status += `<div class="line"><span class="turn">${t('gameOver')}</span><button data-act="results">${t('results')}</button></div>`;
   } else if (isMyTurn()) {
-    status += `<div class="turn mine">${t('yourTurn')}</div>`;
+    status += `<div class="line"><span class="turn mine">${t('yourTurn')}</span>${clock()}</div>`;
   } else {
     const cur = S.players.find((p) => p.id === S.turn);
-    status += `<div class="line"><span class="turn">${t('waiting', { name: esc(cur?.name ?? '') })}</span>${cur && !cur.online ? `<span class="muted">(${t('offline')})</span><button data-act="skip">${t('skip')}</button>` : ''}</div>`;
+    status += `<div class="line"><span class="turn">${t('waiting', { name: esc(cur?.name ?? '') })}</span>${clock()}${cur && !cur.online ? `<span class="muted">(${t('offline')})</span><button data-act="skip">${t('skip')}</button>` : ''}</div>`;
   }
   if (S.last) {
     status += `<div class="line muted"><span><b>${esc(playerName(S.last.pid))}</b>: ${esc(S.last.words.join(', '))} +${S.last.score}</span>${S.canUndo ? `<button data-act="undo">${t('reject')}</button>` : ''}</div>`;
@@ -503,6 +568,19 @@ app.addEventListener('click', async (e) => {
       navigator.share({ title: 'Plättli', text: t('shareText'), url: shareUrl() }).catch(() => {});
       break;
     case 'lang': run('settings', { lang: v }); break;
+    case 'time': run('settings', { time: Number(v) }); break;
+    case 'joinOpen':
+    case 'quick': {
+      const name = nameVal();
+      if (!name) { toast(t('err_name')); document.getElementById('name')?.focus(); return; }
+      store.set('plaettli:name', name);
+      const lang = store.get('plaettli:lang') || ui;
+      const games = openGames || [];
+      const pick = act === 'joinOpen' ? { code: el.dataset.code } : games.find((g) => g.lang === lang) || games[0];
+      const res = await guard(() => (pick ? T.join(pick.code, name) : T.create(name, lang)));
+      if (res) enter(res.code, res.me);
+      break;
+    }
     case 'leave': if (await run('leave')) goHome(); break;
     case 'start': showResults = true; run('start'); break;
     case 'results': showResults = true; render(); break;
@@ -541,6 +619,7 @@ app.addEventListener('click', async (e) => {
 });
 app.addEventListener('change', (e) => {
   if (e.target.dataset.act === 'check') run('settings', { check: e.target.checked });
+  if (e.target.dataset.act === 'public') run('settings', { public: e.target.checked });
 });
 app.addEventListener('keydown', (e) => {
   if (e.key !== 'Enter') return;

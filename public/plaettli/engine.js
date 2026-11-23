@@ -9,7 +9,10 @@ export class GameError extends Error {
 }
 export const fail = (code, extra) => { throw new GameError(code, extra); };
 
-// ctx = { randInt(n), dict(lang) -> Set | null, online(playerId) -> boolean }
+/** Seconds per turn a game can have; 0 = no limit. */
+export const TIME_OPTIONS = [0, 60, 120, 300];
+
+// ctx = { randInt(n), dict(lang) -> Set | null, online(playerId) -> boolean, now() -> ms }
 export function shuffle(a, randInt) {
   for (let i = a.length - 1; i > 0; i--) { const j = randInt(i + 1); [a[i], a[j]] = [a[j], a[i]]; }
   return a;
@@ -26,8 +29,8 @@ export const cleanName = (s) => String(s ?? '').replace(/[\u0000-\u001f<>]/g, ''
 
 export function newRoom(code, lang) {
   return {
-    code, lang: LANGS.includes(lang) ? lang : 'de', check: true, status: 'lobby',
-    players: [], board: emptyBoard(), bag: [], turn: 0, scoreless: 0, last: null, undoable: null, log: [],
+    code, lang: LANGS.includes(lang) ? lang : 'de', check: true, time: 120, public: true, status: 'lobby',
+    players: [], board: emptyBoard(), bag: [], turn: 0, turnEnds: null, scoreless: 0, last: null, undoable: null, log: [],
   };
 }
 
@@ -58,10 +61,16 @@ function draw(room, p) {
   while (p.rack.length < RACK_SIZE && room.bag.length) { const t = room.bag.pop(); p.rack.push(t); drawn.push(t); }
   return drawn;
 }
-function nextTurn(room) { room.turn = (room.turn + 1) % room.players.length; }
-function scorelessTurn(room) {
+function startClock(room, ctx) {
+  room.turnEnds = room.status === 'playing' && room.time ? ctx.now() + room.time * 1000 : null;
+}
+function nextTurn(room, ctx) {
+  room.turn = (room.turn + 1) % room.players.length;
+  startClock(room, ctx);
+}
+function scorelessTurn(room, ctx) {
   room.scoreless++;
-  nextTurn(room);
+  nextTurn(room, ctx);
   if (room.scoreless >= room.players.length * 2) endGame(room, null);
 }
 function endGame(room, outPlayer) {
@@ -74,6 +83,7 @@ function endGame(room, outPlayer) {
   if (outPlayer) outPlayer.score += bonus;
   room.status = 'ended';
   room.undoable = null;
+  room.turnEnds = null;
   room.log.push({ t: 'end', pid: outPlayer?.id });
 }
 function requireTurn(room, player) {
@@ -87,6 +97,8 @@ export const actions = {
     if (room.status === 'playing') fail('started');
     if (LANGS.includes(body.lang)) room.lang = body.lang;
     if (typeof body.check === 'boolean') room.check = body.check;
+    if (TIME_OPTIONS.includes(body.time)) room.time = body.time;
+    if (typeof body.public === 'boolean') room.public = body.public;
   },
 
   start(room, player, body, ctx) {
@@ -100,6 +112,7 @@ export const actions = {
     room.log = [{ t: 'start' }];
     shuffle(room.players, ctx.randInt);
     for (const p of room.players) { p.score = 0; p.rack = []; draw(room, p); }
+    startClock(room, ctx);
   },
 
   play(room, player, body, ctx) {
@@ -135,7 +148,7 @@ export const actions = {
     room.last = { pid: player.id, cells: placed.map((p) => [p.r, p.c]), words: result.words.map((w) => w.word), score: result.score };
     room.log.push({ t: 'play', pid: player.id, words: room.last.words, score: result.score, bingo: result.bingo });
     if (!player.rack.length && !room.bag.length) endGame(room, player);
-    else nextTurn(room);
+    else nextTurn(room, ctx);
     return { score: result.score };
   },
 
@@ -152,14 +165,14 @@ export const actions = {
     shuffle(room.bag, ctx.randInt);
     room.undoable = null;
     room.log.push({ t: 'swap', pid: player.id, n: out.length });
-    scorelessTurn(room);
+    scorelessTurn(room, ctx);
   },
 
-  pass(room, player) {
+  pass(room, player, body, ctx) {
     requireTurn(room, player);
     room.undoable = null;
     room.log.push({ t: 'pass', pid: player.id });
-    scorelessTurn(room);
+    scorelessTurn(room, ctx);
   },
 
   // Without the dictionary check, other players can reject the last word: tiles go back, the turn is lost.
@@ -187,7 +200,18 @@ export const actions = {
     if (ctx.online(current.id)) fail('isOnline');
     room.undoable = null;
     room.log.push({ t: 'skip', pid: current.id });
-    scorelessTurn(room);
+    scorelessTurn(room, ctx);
+  },
+
+  // The player's time is up: counts as a pass. Anyone may trigger it once the clock has run out.
+  timeout(room, player, body, ctx) {
+    if (room.status !== 'playing') fail('notPlaying');
+    const current = room.players[room.turn];
+    if (body.pid && body.pid !== current.id) fail('stale');
+    if (!room.turnEnds || ctx.now() < room.turnEnds - 3000) fail('notYet');
+    room.undoable = null;
+    room.log.push({ t: 'timeout', pid: current.id });
+    scorelessTurn(room, ctx);
   },
 };
 
@@ -196,11 +220,12 @@ export function viewFor(room, pid, isOnline) {
   const me = room.players.find((p) => p.id === pid);
   const current = room.players[room.turn];
   return {
-    code: room.code, lang: room.lang, check: room.check, status: room.status, you: pid,
+    code: room.code, lang: room.lang, check: room.check, time: room.time, public: room.public, status: room.status, you: pid,
     players: room.players.map((p) => ({ id: p.id, name: p.name, score: p.score, tiles: p.rack.length, online: isOnline(p.id) })),
     rack: me ? me.rack : [],
     board: room.board, bag: room.bag.length,
     turn: room.status === 'playing' ? current?.id : null,
+    turnEnds: room.status === 'playing' ? room.turnEnds : null,
     last: room.last,
     canUndo: Boolean(room.undoable && !room.check && room.undoable.pid !== pid),
     log: room.log.slice(-30),
