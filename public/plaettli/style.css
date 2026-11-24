@@ -123,6 +123,15 @@ body.dict-docked .game .log { margin-top: var(--dict-space, 0px); }
 .word-chip.good { color: var(--ok); }
 .word-chip.bad { color: var(--accent); }
 .dict-info { margin: 0; }
+.dict-near { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.dict-near:empty, .dict-meaning:empty, .dict-last:empty { display: none; }
+button.word-chip { cursor: pointer; min-height: 32px; }
+.dict-meaning { display: grid; gap: 6px; padding: 10px 12px; border-radius: 12px; background: var(--bg); font-size: .92rem; }
+.dict-meaning p { margin: 0; }
+.meaning-note { font-weight: 600; }
+.meaning-part .pos { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.meaning-part ol { margin: 2px 0 0; padding-left: 20px; display: grid; gap: 2px; }
+.dict-meaning a { color: var(--accent); justify-self: start; }
 
 /* turn clock */
 .clock { font-variant-numeric: tabular-nums; font-weight: 700; font-size: .85rem; padding: 2px 9px; border-radius: 99px; background: var(--card); border: 1px solid var(--line); }

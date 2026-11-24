@@ -69,10 +69,13 @@ function nextTurn(room, ctx) {
   room.turn = (room.turn + 1) % room.players.length;
   startClock(room, ctx);
 }
+/** Turns in a row without points that end the game: two rounds, or one once the bag is empty
+ *  (then nobody can swap, so another round would change nothing). */
+export const scorelessLimit = (room) => room.players.length * (room.bag.length ? 2 : 1);
 function scorelessTurn(room, ctx) {
   room.scoreless++;
   nextTurn(room, ctx);
-  if (room.scoreless >= room.players.length * 2) endGame(room, null);
+  if (room.scoreless >= scorelessLimit(room)) endGame(room, null);
 }
 function endGame(room, outPlayer) {
   let bonus = 0;
@@ -192,7 +195,7 @@ export const actions = {
     room.scoreless = u.scoreless + 1;
     room.undoable = room.last = null;
     room.log.push({ t: 'undo', pid: player.id, target: target.id });
-    if (room.scoreless >= room.players.length * 2) endGame(room, null);
+    if (room.scoreless >= scorelessLimit(room)) endGame(room, null);
   },
 
   // Skip a player who went offline, so the game doesn't get stuck.
@@ -228,6 +231,7 @@ export function viewFor(room, pid, isOnline) {
     board: room.board, bag: room.bag.length,
     turn: room.status === 'playing' ? current?.id : null,
     turnEnds: room.status === 'playing' ? room.turnEnds : null,
+    endIn: room.status === 'playing' ? Math.max(1, scorelessLimit(room) - room.scoreless) : null,
     last: room.last,
     canUndo: Boolean(room.undoable && !room.check && room.undoable.pid !== pid),
     log: room.log.slice(-30),
