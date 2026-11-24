@@ -11,6 +11,8 @@ export const fail = (code, extra) => { throw new GameError(code, extra); };
 
 /** Seconds per turn a game can have; 0 = no limit. */
 export const TIME_OPTIONS = [0, 60, 120, 300];
+/** Chess clock: each player's time for the whole game in seconds, used up only on their own turns; 0 = no limit. */
+export const GAME_TIME_OPTIONS = [0, 300, 600, 900, 1800];
 
 // ctx = { randInt(n), dict(lang) -> Set | null, online(playerId) -> boolean, now() -> ms }
 export function shuffle(a, randInt) {
@@ -29,8 +31,8 @@ export const cleanName = (s) => String(s ?? '').replace(/[\u0000-\u001f<>]/g, ''
 
 export function newRoom(code, lang) {
   return {
-    code, lang: LANGS.includes(lang) ? lang : 'de', check: true, time: 120, bagSize: 100, public: true, status: 'lobby',
-    players: [], board: emptyBoard(), bag: [], turn: 0, turnEnds: null, scoreless: 0, last: null, undoable: null, log: [],
+    code, lang: LANGS.includes(lang) ? lang : 'de', check: true, time: 120, gameTime: 0, bagSize: 100, public: true, status: 'lobby',
+    players: [], board: emptyBoard(), bag: [], turn: 0, turnStarted: null, turnEnds: null, scoreless: 0, last: null, undoable: null, log: [],
   };
 }
 
@@ -62,20 +64,42 @@ function draw(room, p) {
   while (p.rack.length < RACK_SIZE && room.bag.length) { const t = room.bag.pop(); p.rack.push(t); drawn.push(t); }
   return drawn;
 }
+// Clocks: `time` limits one turn; a player's `bank` (ms, null = no limit) is their time for the whole
+// game and only runs on their own turns. The turn ends at whichever runs out first.
+export const hasTime = (p) => p.bank == null || p.bank > 0;
 function startClock(room, ctx) {
-  room.turnEnds = room.status === 'playing' && room.time ? ctx.now() + room.time * 1000 : null;
+  room.turnStarted = room.status === 'playing' ? ctx.now() : null;
+  const p = room.players[room.turn];
+  const limits = [];
+  if (room.time) limits.push(room.time * 1000);
+  if (p?.bank != null) limits.push(p.bank);
+  room.turnEnds = room.turnStarted && limits.length ? room.turnStarted + Math.min(...limits) : null;
 }
+function chargeClock(room, ctx) {
+  const p = room.players[room.turn];
+  if (p?.bank != null && room.turnStarted) {
+    p.bank = Math.max(0, p.bank - (ctx.now() - room.turnStarted));
+    if (p.bank < 3000) p.bank = 0; // a few seconds left can't be played anyway
+  }
+  room.turnStarted = ctx.now();
+}
+/** Next player who still has time; when nobody has any left, the game is over. */
 function nextTurn(room, ctx) {
-  room.turn = (room.turn + 1) % room.players.length;
-  startClock(room, ctx);
+  chargeClock(room, ctx);
+  for (let i = 1; i <= room.players.length; i++) {
+    const j = (room.turn + i) % room.players.length;
+    if (hasTime(room.players[j])) { room.turn = j; startClock(room, ctx); return; }
+  }
+  room.log.push({ t: 'timeover' });
+  endGame(room, null);
 }
 /** Turns in a row without points that end the game: two rounds, or one once the bag is empty
  *  (then nobody can swap, so another round would change nothing). */
-export const scorelessLimit = (room) => room.players.length * (room.bag.length ? 2 : 1);
+export const scorelessLimit = (room) => Math.max(1, room.players.filter(hasTime).length) * (room.bag.length ? 2 : 1);
 function scorelessTurn(room, ctx) {
   room.scoreless++;
   nextTurn(room, ctx);
-  if (room.scoreless >= scorelessLimit(room)) endGame(room, null);
+  if (room.status === 'playing' && room.scoreless >= scorelessLimit(room)) endGame(room, null);
 }
 function endGame(room, outPlayer) {
   let bonus = 0;
@@ -88,6 +112,7 @@ function endGame(room, outPlayer) {
   room.status = 'ended';
   room.undoable = null;
   room.turnEnds = null;
+  room.turnStarted = null;
   room.log.push({ t: 'end', pid: outPlayer?.id });
 }
 function requireTurn(room, player) {
@@ -102,6 +127,7 @@ export const actions = {
     if (LANGS.includes(body.lang)) room.lang = body.lang;
     if (typeof body.check === 'boolean') room.check = body.check;
     if (TIME_OPTIONS.includes(body.time)) room.time = body.time;
+    if (GAME_TIME_OPTIONS.includes(body.gameTime)) room.gameTime = body.gameTime;
     if (BAG_OPTIONS.includes(body.bagSize)) room.bagSize = body.bagSize;
     if (typeof body.public === 'boolean') room.public = body.public;
   },
@@ -116,7 +142,7 @@ export const actions = {
     room.last = room.undoable = null;
     room.log = [{ t: 'start' }];
     shuffle(room.players, ctx.randInt);
-    for (const p of room.players) { p.score = 0; p.rack = []; draw(room, p); }
+    for (const p of room.players) { p.score = 0; p.rack = []; p.bank = room.gameTime ? room.gameTime * 1000 : null; draw(room, p); }
     startClock(room, ctx);
   },
 
@@ -214,9 +240,16 @@ export const actions = {
     const current = room.players[room.turn];
     if (body.pid && body.pid !== current.id) fail('stale');
     if (!room.turnEnds || ctx.now() < room.turnEnds - 3000) fail('notYet');
+    chargeClock(room, ctx);
     room.undoable = null;
-    room.log.push({ t: 'timeout', pid: current.id });
-    scorelessTurn(room, ctx);
+    if (current.bank === 0) { // out of time: sits out from now on; that alone doesn't bring the end closer
+      room.log.push({ t: 'outoftime', pid: current.id });
+      nextTurn(room, ctx);
+      if (room.status === 'playing' && room.scoreless >= scorelessLimit(room)) endGame(room, null);
+    } else {
+      room.log.push({ t: 'timeout', pid: current.id });
+      scorelessTurn(room, ctx);
+    }
   },
 };
 
@@ -225,12 +258,13 @@ export function viewFor(room, pid, isOnline) {
   const me = room.players.find((p) => p.id === pid);
   const current = room.players[room.turn];
   return {
-    code: room.code, lang: room.lang, check: room.check, time: room.time, bagSize: room.bagSize ?? 100, public: room.public, status: room.status, you: pid,
-    players: room.players.map((p) => ({ id: p.id, name: p.name, score: p.score, tiles: p.rack.length, online: isOnline(p.id) })),
+    code: room.code, lang: room.lang, check: room.check, time: room.time, gameTime: room.gameTime ?? 0, bagSize: room.bagSize ?? 100, public: room.public, status: room.status, you: pid,
+    players: room.players.map((p) => ({ id: p.id, name: p.name, score: p.score, tiles: p.rack.length, online: isOnline(p.id), bank: p.bank ?? null })),
     rack: me ? me.rack : [],
     board: room.board, bag: room.bag.length,
     turn: room.status === 'playing' ? current?.id : null,
     turnEnds: room.status === 'playing' ? room.turnEnds : null,
+    turnStarted: room.status === 'playing' ? room.turnStarted ?? null : null,
     endIn: room.status === 'playing' ? Math.max(1, scorelessLimit(room) - room.scoreless) : null,
     last: room.last,
     canUndo: Boolean(room.undoable && !room.check && room.undoable.pid !== pid),

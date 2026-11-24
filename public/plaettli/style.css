@@ -133,6 +133,11 @@ button.word-chip { cursor: pointer; min-height: 32px; }
 .meaning-part ol { margin: 2px 0 0; padding-left: 20px; display: grid; gap: 2px; }
 .dict-meaning a { color: var(--accent); justify-self: start; }
 
+/* chess clock next to each name */
+.bank { font-variant-numeric: tabular-nums; font-size: .78rem; font-weight: 650; color: var(--muted); }
+.bank.low { color: var(--accent); }
+.bank.out { text-decoration: line-through; }
+
 /* turn clock */
 .clock { font-variant-numeric: tabular-nums; font-weight: 700; font-size: .85rem; padding: 2px 9px; border-radius: 99px; background: var(--card); border: 1px solid var(--line); }
 .clock.low { color: #fff; background: var(--accent); border-color: var(--accent); }

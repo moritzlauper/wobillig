@@ -1,6 +1,6 @@
 import { SIZE, CENTER, MAX_PLAYERS, BINGO, BAG_OPTIONS, TILESETS, alphabet, premiumAt, analyzeMove } from './rules.js';
 import { pickTransport } from './net.js';
-import { TIME_OPTIONS } from './engine.js';
+import { TIME_OPTIONS, GAME_TIME_OPTIONS } from './engine.js';
 import { meaning } from './meaning.js';
 
 // ---------- texts ----------
@@ -18,12 +18,17 @@ const TEXT = {
       'Das Spiel endet, wenn der Beutel leer ist und jemand alle Plättli gelegt hat, oder wenn niemand mehr punktet: nach zwei Runden ohne Punkte, bei leerem Beutel nach einer. Restpunkte werden abgezogen.',
       'Antippen und dann aufs Feld tippen, oder einfach ziehen.',
       'Mit Zeitlimit: Läuft die Zeit ab, ist die nächste Person dran (zählt als Passen).',
+      'Mit Zeit pro Person (Schachuhr): Deine Zeit läuft nur, wenn du dran bist. Ist sie aufgebraucht, setzt du für den Rest des Spiels aus.',
     ],
     openLobby: 'Offene Lobby', lobbyLoading: 'Suche offene Spiele …',
     lobbyEmpty: 'Gerade wartet niemand. Erstelle ein Spiel, dann sehen es andere hier und können direkt beitreten.',
     quickPlay: 'Schnell spielen', orCreate: 'oder selbst eröffnen', seats: '{n}/4',
     timeLimit: 'Zeit pro Zug', timeNone: 'Ohne', min: '{n} Min', publicGame: 'In der offenen Lobby zeigen',
     bagSize: 'Plättli im Beutel', bagHint: 'Weniger Plättli, kürzeres Spiel. Standard: 100.', tilesN: '{n} Plättli',
+    gameTime: 'Zeit pro Person', gameTimeHint: 'Wie eine Schachuhr: läuft nur, wenn du dran bist. Aufgebraucht = du setzt aus.',
+    perTurn: '{t}/Zug', perPlayer: '{t}/Person', outOfTime: 'Deine Zeit ist aufgebraucht. Du setzt für den Rest des Spiels aus.',
+    sitOut: 'Du setzt aus, deine Zeit ist aufgebraucht.',
+    log_outoftime: '{name}: Zeit aufgebraucht, setzt aus', log_timeover: 'Die Zeit aller ist aufgebraucht',
     publicOn: 'Alle sehen das Spiel auf der Startseite und können direkt beitreten.',
     publicOff: 'Nur wer den Link oder Code hat, kann beitreten.',
     timeUp: 'Deine Zeit ist abgelaufen.', log_timeout: '{name}: Zeit abgelaufen',
@@ -35,6 +40,8 @@ const TEXT = {
     meaningFail: 'Die Erklärung ist gerade nicht abrufbar.', meaningMore: 'Mehr auf Wiktionary',
     endBag: 'Beutel leer: Das Spiel endet, wenn jemand alle Plättli gelegt hat oder nach {n} Zügen ohne Punkte in Folge.',
     endSoon: 'Noch {n} Züge ohne Punkte, dann ist das Spiel vorbei.',
+    endSoon1: 'Noch ein Zug ohne Punkte, dann ist das Spiel vorbei.',
+    endBag1: 'Beutel leer: Das Spiel endet, wenn jemand alle Plättli gelegt hat oder nach dem nächsten Zug ohne Punkte.',
     err_notYet: 'Die Zeit läuft noch.', err_stale: 'Der Zug ist schon vorbei.',
     code: 'Spielcode', copyLink: 'Link kopieren', share: 'Teilen', copied: 'Link kopiert',
     shareHint: 'Schick den Link deinen Freunden. Bis zu 4 Personen.', shareText: 'Spiel mit mir Plättli!',
@@ -78,12 +85,17 @@ const TEXT = {
       'The game ends when the bag is empty and someone has used all tiles, or when nobody scores any more: after two rounds without points, one once the bag is empty. Leftover points are subtracted.',
       'Tap a tile, then tap a square, or just drag it.',
       'With a time limit: when the time is up, the next player is up (counts as a pass).',
+      'With time per player (chess clock): your time only runs on your turn. When it is used up, you sit out the rest of the game.',
     ],
     openLobby: 'Open lobby', lobbyLoading: 'Looking for open games …',
     lobbyEmpty: 'Nobody is waiting right now. Create a game and others will see it here and can join right away.',
     quickPlay: 'Quick play', orCreate: 'or start your own', seats: '{n}/4',
     timeLimit: 'Time per turn', timeNone: 'None', min: '{n} min', publicGame: 'Show in the open lobby',
     bagSize: 'Tiles in the bag', bagHint: 'Fewer tiles, shorter game. Standard: 100.', tilesN: '{n} tiles',
+    gameTime: 'Time per player', gameTimeHint: 'Like a chess clock: only runs on your turn. Used up = you sit out.',
+    perTurn: '{t}/turn', perPlayer: '{t}/player', outOfTime: 'Your time is used up. You sit out the rest of the game.',
+    sitOut: 'You sit out, your time is used up.',
+    log_outoftime: '{name} is out of time and sits out', log_timeover: "Everyone's time is up",
     publicOn: 'Everyone sees the game on the start page and can join right away.',
     publicOff: 'Only people with the link or code can join.',
     timeUp: 'Your time is up.', log_timeout: '{name} ran out of time',
@@ -95,6 +107,8 @@ const TEXT = {
     meaningFail: "The explanation can't be loaded right now.", meaningMore: 'More on Wiktionary',
     endBag: 'Bag empty: the game ends when someone has used all tiles, or after {n} turns in a row without points.',
     endSoon: '{n} more turns without points and the game is over.',
+    endSoon1: 'One more turn without points and the game is over.',
+    endBag1: 'Bag empty: the game ends when someone has used all tiles, or after the next turn without points.',
     err_notYet: 'There is still time left.', err_stale: 'That turn is already over.',
     code: 'Game code', copyLink: 'Copy link', share: 'Share', copied: 'Link copied',
     shareHint: 'Send the link to your friends. Up to 4 players.', shareText: 'Play Plättli with me!',
@@ -222,6 +236,7 @@ function onState() {
   if (mine && prevTurn !== undefined && prevTurn !== S.you && document.visibilityState === 'visible') navigator.vibrate?.(120);
   const last = S.log[S.log.length - 1];
   if (prevTurn === S.you && S.turn !== S.you && last?.t === 'timeout' && last.pid === S.you) toast(t('timeUp'));
+  if (prevTurn === S.you && S.turn !== S.you && last?.t === 'outoftime' && last.pid === S.you) toast(t('outOfTime'));
   prevTurn = S.turn;
   if (S.status === 'playing' && S.check) T.preload?.(S.lang);
   if (dictOpen) renderDict();
@@ -270,6 +285,8 @@ const timeLabel = (secs) => (secs ? t('min', { n: secs / 60 }) : t('timeNone'));
 function settingsBlock() {
   return `<div class="setting"><span>${t('language')}</span>${langSeg(S.lang, 'lang')}</div>
     <div class="setting"><span>${t('timeLimit')}</span><div class="seg">${TIME_OPTIONS.map((secs) => `<button data-act="time" data-v="${secs}" class="${S.time === secs ? 'on' : ''}">${timeLabel(secs)}</button>`).join('')}</div></div>
+    <div class="setting"><span>${t('gameTime')}</span><div class="seg">${GAME_TIME_OPTIONS.map((secs) => `<button data-act="gameTime" data-v="${secs}" class="${(S.gameTime ?? 0) === secs ? 'on' : ''}">${timeLabel(secs)}</button>`).join('')}</div></div>
+    <p class="muted small" style="margin:-6px 0 0">${t('gameTimeHint')}</p>
     <div class="setting"><span>${t('bagSize')}</span><div class="seg">${BAG_OPTIONS.map((n) => `<button data-act="bag" data-v="${n}" class="${(S.bagSize ?? 100) === n ? 'on' : ''}">${n}</button>`).join('')}</div></div>
     <p class="muted small" style="margin:-6px 0 0">${t('bagHint')}</p>
     <label class="setting"><span>${t('checkWords')}</span><input type="checkbox" class="switch" data-act="check" ${S.check ? 'checked' : ''}></label>
@@ -284,12 +301,21 @@ function fmtClock(ms) {
   return `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`;
 }
 const now = () => Date.now() + clockOffset;
+const bankLeft = (el) => Number(el.dataset.bank) - (el.dataset.since ? now() - Number(el.dataset.since) : 0);
+const bankTag = (p) => (S.gameTime && p.bank !== null && p.bank !== undefined
+  ? `<span class="bank ${p.bank === 0 ? 'out' : ''}" data-bank="${Number(p.bank)}" data-since="${p.id === S.turn && S.turnStarted ? Number(S.turnStarted) : ''}">${fmtClock(Number(p.bank) - (p.id === S.turn && S.turnStarted ? now() - S.turnStarted : 0))}</span>`
+  : '');
 const clock = () => (S?.turnEnds ? `<span class="clock" data-ends="${Number(S.turnEnds)}">${fmtClock(S.turnEnds - now())}</span>` : '');
 setInterval(() => {
   for (const el of document.querySelectorAll('.clock')) {
     const ms = Number(el.dataset.ends) - now();
     el.textContent = fmtClock(ms);
     el.classList.toggle('low', ms < 10500);
+  }
+  for (const el of document.querySelectorAll('.bank[data-since]:not([data-since=""])')) {
+    const ms = bankLeft(el);
+    el.textContent = fmtClock(ms);
+    el.classList.toggle('low', ms < 30500);
   }
 }, 500);
 
@@ -301,7 +327,7 @@ function renderOpenGames() {
   if (!openGames.length) { ul.innerHTML = `<li class="og-empty">${t('lobbyEmpty')}</li>`; return; }
   ul.innerHTML = openGames.map((g) => `<li>
       <div class="og-main"><b>${esc(g.players.join(', '))}</b>
-        <span>${g.lang === 'de' ? 'Deutsch' : 'English'} · ${esc(timeLabel(g.time))} · ${t('tilesN', { n: Number(g.bagSize) || 100 })} · ${t('seats', { n: g.players.length })}</span></div>
+        <span>${g.lang === 'de' ? 'Deutsch' : 'English'}${g.time ? ` · ${esc(t('perTurn', { t: timeLabel(g.time) }))}` : ''}${g.gameTime ? ` · ${esc(t('perPlayer', { t: timeLabel(g.gameTime) }))}` : ''} · ${t('tilesN', { n: Number(g.bagSize) || 100 })} · ${t('seats', { n: g.players.length })}</span></div>
       <button data-act="joinOpen" data-code="${esc(g.code)}">${t('join')}</button>
     </li>`).join('');
 }
@@ -394,7 +420,7 @@ function renderGame() {
   }
 
   const players = S.players.map((p) => `<div class="pchip ${p.id === S.turn ? 'active' : ''} ${p.online ? '' : 'off'}" title="${esc(p.name)}">
-      <span class="dot"></span><b>${esc(p.name)}</b><span class="sc">${p.score}</span></div>`).join('')
+      <span class="dot"></span><b>${esc(p.name)}</b><span class="sc">${p.score}</span>${bankTag(p)}</div>`).join('')
 ;
 
   const rackIds = order.filter((id) => !pending.some((p) => p.id === id));
@@ -419,9 +445,11 @@ function renderGame() {
   if (S.last) {
     status += `<div class="line muted"><span><b>${esc(playerName(S.last.pid))}</b>: ${esc(S.last.words.join(', '))} +${S.last.score}</span>${S.canUndo ? `<button data-act="undo">${t('reject')}</button>` : ''}</div>`;
   }
+  if (S.status === 'playing' && S.players.find((p) => p.id === S.you)?.bank === 0) status += `<div class="muted small">${t('sitOut')}</div>`;
   if (S.status === 'playing' && S.endIn) {
-    if (S.bag === 0) status += `<div class="muted small">${t('endBag', { n: S.endIn })}</div>`;
-    else if (S.endIn <= S.players.length) status += `<div class="muted small">${t('endSoon', { n: S.endIn })}</div>`;
+    const one = S.endIn === 1 ? '1' : '';
+    if (S.bag === 0) status += `<div class="muted small">${t(`endBag${one}`, { n: S.endIn })}</div>`;
+    else if (S.endIn <= S.players.length) status += `<div class="muted small">${t(`endSoon${one}`, { n: S.endIn })}</div>`;
   }
   if (swapMode) status += `<div class="preview">${t('swapHint')}</div>`;
   else if (prev) {
@@ -603,6 +631,7 @@ app.addEventListener('click', async (e) => {
     case 'lang': run('settings', { lang: v }); break;
     case 'time': run('settings', { time: Number(v) }); break;
     case 'bag': run('settings', { bagSize: Number(v) }); break;
+    case 'gameTime': run('settings', { gameTime: Number(v) }); break;
     case 'joinOpen':
     case 'quick': {
       const name = nameVal();

@@ -3,7 +3,7 @@
 // - mqttTransport: no server at all (any static host). The game state is a retained message on a
 //   public MQTT broker; the player making a move checks it with the shared engine and publishes it.
 import { LANGS, SIZE, MAX_PLAYERS, BAG_OPTIONS, emptyBoard, alphabet, nearWords } from './rules.js';
-import { fail, actions, viewFor, newRoom, newCode, newPlayer, pickSeat, cleanName, TIME_OPTIONS } from './engine.js';
+import { fail, actions, viewFor, newRoom, newCode, newPlayer, pickSeat, cleanName, TIME_OPTIONS, GAME_TIME_OPTIONS } from './engine.js';
 import { Mqtt } from './mqtt.js';
 
 export const BROKER = 'wss://broker.hivemq.com:8884/mqtt';
@@ -119,24 +119,26 @@ const tile = (t) => (t && tileId(t.id) ? { id: t.id, l: letter(t.l), v: int(t.v,
 const list = (a, max, fn) => (Array.isArray(a) ? a.slice(-max).map(fn).filter(Boolean) : []);
 const word = (w) => (typeof w === 'string' && /^[A-ZÄÖÜ?]{2,15}$/.test(w) ? w : null);
 const cell = (rc) => (Array.isArray(rc) ? [int(rc[0], 0, SIZE - 1), int(rc[1], 0, SIZE - 1)] : null);
-const LOG_TYPES = ['start', 'play', 'swap', 'pass', 'undo', 'skip', 'timeout', 'end'];
+const LOG_TYPES = ['start', 'play', 'swap', 'pass', 'undo', 'skip', 'timeout', 'outoftime', 'timeover', 'end'];
 const time = (x) => (TIME_OPTIONS.includes(Number(x)) ? Number(x) : 120);
 const bagSize = (x) => (BAG_OPTIONS.includes(Number(x)) ? Number(x) : 100);
+const gameTime = (x) => (GAME_TIME_OPTIONS.includes(Number(x)) ? Number(x) : 0);
+const maybe = (x, lo, hi) => (x === null || x === undefined || !Number.isFinite(Number(x)) ? null : int(x, lo, hi));
 
 export function cleanLobbyEntry(e, code) {
   if (!e || typeof e !== 'object' || !/^[A-Z]{4}$/.test(code)) return null;
   const players = list(e.players, 4, (n) => cleanName(n) || null);
   if (!players.length) return null;
-  return { code, lang: LANGS.includes(e.lang) ? e.lang : 'de', check: e.check !== false, time: time(e.time), bagSize: bagSize(e.bagSize), players, t: int(e.t, 0, 1e13) };
+  return { code, lang: LANGS.includes(e.lang) ? e.lang : 'de', check: e.check !== false, time: time(e.time), gameTime: gameTime(e.gameTime), bagSize: bagSize(e.bagSize), players, t: int(e.t, 0, 1e13) };
 }
 const cleanSettings = (d) => (d && typeof d === 'object'
-  ? { lang: LANGS.includes(d.lang) ? d.lang : 'de', check: d.check !== false, time: time(d.time), bagSize: bagSize(d.bagSize), public: d.public !== false, t: int(d.t, 0, 1e13) }
+  ? { lang: LANGS.includes(d.lang) ? d.lang : 'de', check: d.check !== false, time: time(d.time), gameTime: gameTime(d.gameTime), bagSize: bagSize(d.bagSize), public: d.public !== false, t: int(d.t, 0, 1e13) }
   : null);
 
 export function cleanGame(g, code) {
   if (!g || typeof g !== 'object') return null;
   const players = list(g.players, MAX_PLAYERS, (p) => p && pid(p.id) && {
-    id: p.id, name: cleanName(p.name) || '?', score: int(p.score, -9999, 9999), rack: list(p.rack, 7, tile),
+    id: p.id, name: cleanName(p.name) || '?', score: int(p.score, -9999, 9999), rack: list(p.rack, 7, tile), bank: maybe(p.bank, 0, 36e5),
   });
   if (!players.length) return null;
   const board = emptyBoard();
@@ -159,9 +161,11 @@ export function cleanGame(g, code) {
     t: e.t, pid: pid(e.pid), target: pid(e.target), words: list(e.words, 10, word), score: int(e.score, 0, 9999), n: int(e.n, 0, 7), bingo: e.bingo === true,
   });
   return {
-    code, lang: LANGS.includes(g.lang) ? g.lang : 'de', check: g.check !== false, time: time(g.time), bagSize: bagSize(g.bagSize), public: g.public !== false,
+    code, lang: LANGS.includes(g.lang) ? g.lang : 'de', check: g.check !== false, time: time(g.time), gameTime: gameTime(g.gameTime), bagSize: bagSize(g.bagSize), public: g.public !== false,
     status: g.status === 'ended' ? 'ended' : 'playing',
     turnEnds: g.turnEnds ? int(g.turnEnds, 0, 1e13) : null,
+    turnStarted: g.turnStarted ? int(g.turnStarted, 0, 1e13) : null,
+    left: g.left && typeof g.left === 'object' ? { turn: maybe(g.left.turn, -864e5, 864e5), used: maybe(g.left.used, 0, 864e5) } : null,
     players, board, bag: list(g.bag, 200, tile),
     turn: int(g.turn, 0, players.length - 1), scoreless: int(g.scoreless, 0, 99), last, undoable, log,
     v: int(g.v, 0, 1e9), w: typeof g.w === 'string' ? g.w.slice(0, 16) : '',
@@ -193,14 +197,14 @@ function roomState(code) {
   };
   st.memberList = () => [...st.members.entries()].sort((a, b) => a[1].t - b[1].t).map(([id, m]) => newPlayer(id, m.name));
   st.lobby = () => ({
-    ...newRoom(code, st.settings?.lang), check: st.settings?.check ?? true, time: st.settings?.time ?? 120, bagSize: st.settings?.bagSize ?? 100,
+    ...newRoom(code, st.settings?.lang), check: st.settings?.check ?? true, time: st.settings?.time ?? 120, gameTime: st.settings?.gameTime ?? 0, bagSize: st.settings?.bagSize ?? 100,
     public: st.settings?.public ?? true, players: st.memberList(),
   });
   st.room = () => {
     if (!st.game) return st.lobby();
     const room = structuredClone(st.game);
     if (room.status === 'ended') { // settings for the next game, and people who joined since
-      if (st.settings) Object.assign(room, { lang: st.settings.lang, check: st.settings.check, time: st.settings.time, bagSize: st.settings.bagSize, public: st.settings.public });
+      if (st.settings) Object.assign(room, { lang: st.settings.lang, check: st.settings.check, time: st.settings.time, gameTime: st.settings.gameTime, bagSize: st.settings.bagSize, public: st.settings.public });
       for (const m of st.memberList()) if (!room.players.some((p) => p.id === m.id)) room.players.push(m);
     }
     return room;
@@ -211,7 +215,7 @@ function roomState(code) {
 export function mqttTransport(url) {
   const topic = (code, key) => `${ROOT}${code}/${key}`;
   let cli = null, st = null, code = null, me = null, h = null, synced = false, pending = null;
-  let clockTimer = null, beat = null, lobbyKey = null, clockRaw = null, clockLocal = null;
+  let clockTimer = null, beat = null, lobbyKey = null;
   const ctx = { randInt, dict: (l) => dicts[l] || null, online: (id) => st?.online.has(id), now: Date.now };
 
   // Reads a room's retained messages once (to create or join it).
@@ -235,17 +239,21 @@ export function mqttTransport(url) {
     syncLobby(false);
   };
 
-  // Phones' clocks can be off. When a move starts a new turn, count its time from the moment the
-  // message arrives here instead of trusting the deadline the other phone wrote.
-  function localizeClock(g, live) {
-    if (!g?.turnEnds) return;
-    const raw = g.turnEnds;
-    const full = Date.now() + g.time * 1000;
-    let local;
-    if (raw === clockRaw) local = clockLocal;
-    else if (live && g.log.at(-1)?.t !== 'undo') local = Math.abs(raw - full) > 3000 ? full : raw;
-    else local = Math.min(raw, full);
-    clockRaw = raw; clockLocal = local; g.turnEnds = local;
+  // Phones' clocks can be off, so moves carry how much time is left (not when it runs out),
+  // and each phone counts from the moment the move arrives.
+  const wire = (g) => ({ ...g, left: { turn: g.turnEnds ? g.turnEnds - Date.now() : null, used: g.turnStarted ? Date.now() - g.turnStarted : null } });
+  function fixClock(g, live) {
+    if (g.status !== 'playing') return;
+    const now = Date.now();
+    if (live && g.left) {
+      if (g.left.turn !== null && g.turnEnds) g.turnEnds = now + g.left.turn;
+      if (g.left.used !== null && g.turnStarted) g.turnStarted = now - g.left.used;
+    } else { // an older retained state: keep its times, but never more than the rules allow
+      const bank = g.players[g.turn]?.bank;
+      const max = Math.min(g.time ? g.time * 1000 : Infinity, bank ?? Infinity);
+      if (g.turnEnds && max !== Infinity) g.turnEnds = Math.min(g.turnEnds, now + max);
+      if (g.turnStarted) g.turnStarted = Math.min(g.turnStarted, now);
+    }
   }
 
   // Turn clock without a referee: the player whose time is up passes; if their phone is gone,
@@ -266,7 +274,7 @@ export function mqttTransport(url) {
     if (!cli || !synced) return;
     const room = st.room();
     const listed = room.public && room.status !== 'playing' && room.players.length < MAX_PLAYERS;
-    const entry = listed ? { code, lang: room.lang, check: room.check, time: room.time, bagSize: room.bagSize, players: room.players.map((p) => p.name) } : null;
+    const entry = listed ? { code, lang: room.lang, check: room.check, time: room.time, gameTime: room.gameTime, bagSize: room.bagSize, players: room.players.map((p) => p.name) } : null;
     const key = JSON.stringify(entry);
     if (!force && key === lobbyKey) return;
     if (!entry && lobbyKey === null && !force) return;
@@ -287,9 +295,9 @@ export function mqttTransport(url) {
         }
       }
       const g = cleanGame(copy.game, code);
-      if (g && (!st.game || g.v > st.game.v)) { st.game = g; send('g', g); }
+      if (g && (!st.game || g.v > st.game.v)) { st.game = g; send('g', wire(g)); }
     }
-    if (pending && st.game?.w === pending) send('g', st.game);
+    if (pending && st.game?.w === pending) send('g', wire(st.game));
     if (!st.settings) return h.onGone({ code: 'noRoom' });
     if (!st.room().players.some((p) => p.id === me)) return h.onGone({ code: 'noPlayer' });
     saveCopy();
@@ -354,7 +362,7 @@ export function mqttTransport(url) {
           const before = st.game;
           if (!st.apply(t, text)) return;
           if (t.endsWith('/g')) {
-            if (st.game !== before) localizeClock(st.game, synced);
+            if (st.game !== before) fixClock(st.game, synced);
             if (st.game.w === pending) pending = null;
             saveCopy();
           }
@@ -405,6 +413,7 @@ export function mqttTransport(url) {
       if (typeof body.check === 'boolean') s.check = body.check;
       if (TIME_OPTIONS.includes(body.time)) s.time = body.time;
       if (BAG_OPTIONS.includes(body.bagSize)) s.bagSize = body.bagSize;
+      if (GAME_TIME_OPTIONS.includes(body.gameTime)) s.gameTime = body.gameTime;
       if (typeof body.public === 'boolean') s.public = body.public;
       st.settings = s;
       emit();
@@ -427,12 +436,11 @@ export function mqttTransport(url) {
     room.log = room.log.slice(-30);
     room.v = (st.game?.v || 0) + 1;
     room.w = rid();
-    clockRaw = clockLocal = room.turnEnds; // our own clock: our echo needs no correction
     pending = room.w;
     st.game = room;
     saveCopy();
     emit();
-    send('g', room); // retried after a reconnect if it doesn't come back
+    send('g', wire(room)); // retried after a reconnect if it doesn't come back
     return res || {};
   }
   return transport;
