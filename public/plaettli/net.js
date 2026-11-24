@@ -84,6 +84,11 @@ export function serverTransport() {
     act: (action, body = {}) => post(action, { ...session, ...body }),
     resume() { if (session && es?.readyState === EventSource.CLOSED) recheck(); },
     close() { es?.close(); es = null; session = null; },
+    async lookup(lang, words) {
+      const r = await fetch(`api/words?lang=${encodeURIComponent(lang)}&w=${encodeURIComponent(words.join(','))}`);
+      if (!r.ok) fail('dictLoading');
+      return r.json();
+    },
     watchLobby(cb) {
       let stop = false;
       const poll = async () => {
@@ -292,6 +297,11 @@ export function mqttTransport(url) {
 
   const transport = {
     kind: 'mqtt',
+    async lookup(lang, words) {
+      let d;
+      try { d = await loadDict(lang); } catch { fail('dictLoading'); }
+      return { words: Object.fromEntries(words.map((w) => [w, d.has(w)])), size: d.size };
+    },
     preload(lang) { loadDict(lang).catch(() => {}); },
     resume() { if (cli && !cli.online) cli.connect().catch(() => {}); },
     close() {

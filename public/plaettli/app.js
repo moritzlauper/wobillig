@@ -1,4 +1,4 @@
-import { SIZE, CENTER, MAX_PLAYERS, BINGO, alphabet, premiumAt, analyzeMove } from './rules.js';
+import { SIZE, CENTER, MAX_PLAYERS, BINGO, TILESETS, alphabet, premiumAt, analyzeMove } from './rules.js';
 import { pickTransport } from './net.js';
 import { TIME_OPTIONS } from './engine.js';
 
@@ -25,6 +25,10 @@ const TEXT = {
     publicOn: 'Alle sehen das Spiel auf der Startseite und können direkt beitreten.',
     publicOff: 'Nur wer den Link oder Code hat, kann beitreten.',
     timeUp: 'Deine Zeit ist abgelaufen.', log_timeout: '{name}: Zeit abgelaufen',
+    dict: 'Wörterbuch', dictPh: 'Wort eingeben', dictLoading: 'Wörterbuch lädt …',
+    dictOk: '{w} ist erlaubt', dictNo: '{w} steht nicht im Wörterbuch', dictShort: 'Mindestens 2 Buchstaben.',
+    dictBad: 'Nur Buchstaben aus dem Spiel ({letters}).', dictPoints: '{n} Punkte ohne Bonusfelder',
+    dictLast: 'Letzter Zug von {name}', dictSize: '{n} Wörter. Gleiche Liste wie bei «Wörter prüfen».', close: 'Schliessen',
     err_notYet: 'Die Zeit läuft noch.', err_stale: 'Der Zug ist schon vorbei.',
     code: 'Spielcode', copyLink: 'Link kopieren', share: 'Teilen', copied: 'Link kopiert',
     shareHint: 'Schick den Link deinen Freunden. Bis zu 4 Personen.', shareText: 'Spiel mit mir Plättli!',
@@ -76,6 +80,10 @@ const TEXT = {
     publicOn: 'Everyone sees the game on the start page and can join right away.',
     publicOff: 'Only people with the link or code can join.',
     timeUp: 'Your time is up.', log_timeout: '{name} ran out of time',
+    dict: 'Dictionary', dictPh: 'Type a word', dictLoading: 'Loading dictionary …',
+    dictOk: '{w} is allowed', dictNo: '{w} is not in the dictionary', dictShort: 'At least 2 letters.',
+    dictBad: 'Only letters from the game ({letters}).', dictPoints: '{n} points without bonus squares',
+    dictLast: 'Last move by {name}', dictSize: '{n} words. Same list as “Check words”.', close: 'Close',
     err_notYet: 'There is still time left.', err_stale: 'That turn is already over.',
     code: 'Game code', copyLink: 'Copy link', share: 'Share', copied: 'Link copied',
     shareHint: 'Send the link to your friends. Up to 4 players.', shareText: 'Play Plättli with me!',
@@ -178,6 +186,7 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('pagehide', () => { if (session) T.close(); });
 window.addEventListener('pageshow', (e) => { if (e.persisted) location.reload(); });
 function leaveGame() {
+  closeDict();
   T.close();
   session = null; S = null; pending = []; order = [];
   document.title = 'Plättli';
@@ -204,6 +213,7 @@ function onState() {
   if (prevTurn === S.you && S.turn !== S.you && last?.t === 'timeout' && last.pid === S.you) toast(t('timeUp'));
   prevTurn = S.turn;
   if (S.status === 'playing' && S.check) T.preload?.(S.lang);
+  if (dictOpen) renderDict();
   if (drag) return; // re-rendered when the drag ends
   render();
 }
@@ -238,6 +248,7 @@ function header(extra = '', right = '') {
     ${extra}
     <span class="spacer"></span>
     ${right}
+    ${S ? `<button class="chip icon" data-act="dict" aria-label="${t('dict')}" title="${t('dict')}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg></button>` : ''}
     <button class="chip" data-act="ui">${ui === 'de' ? 'EN' : 'DE'}</button>
   </header>`;
 }
@@ -427,7 +438,7 @@ function renderGame() {
   const scroll = oldWrap ? [oldWrap.scrollLeft, oldWrap.scrollTop] : [0, 0];
   const zoomIcon = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M7.5 10.5h6${zoom ? '' : 'M10.5 7.5v6'}"/></svg>`;
   app.innerHTML = `${header(`<button class="chip" data-act="invite">${esc(S.code)}</button>`,
-    `<span class="chip">${t('bag')} ${S.bag}</span><button class="chip zoom-btn" data-act="zoom" aria-label="Zoom">${zoomIcon}</button>`)}
+    `<span class="chip" title="${t('bag')}"><span class="bag-word">${t('bag')}&nbsp;</span>${S.bag}</span><button class="chip zoom-btn" data-act="zoom" aria-label="Zoom">${zoomIcon}</button>`)}
   <div class="game">
     <div class="players">${players}</div>
     <div class="board-wrap ${zoom ? 'zoomed' : ''}"><div class="board">${cells}</div></div>
@@ -522,6 +533,7 @@ app.addEventListener('click', async (e) => {
       ui = ui === 'de' ? 'en' : 'de';
       store.set('plaettli:ui', ui);
       document.documentElement.lang = ui;
+      dictLang = null;
       if (S) onState(); else renderHome();
       break;
     case 'home': // keeps your seat: opening the game link again brings you back
@@ -560,6 +572,7 @@ app.addEventListener('click', async (e) => {
       try { await navigator.clipboard.writeText(shareUrl()); toast(t('copied')); } catch { prompt(t('copyLink'), shareUrl()); }
       break;
     case 'zoom': toggleZoom(); break;
+    case 'dict': if (dictOpen) closeDict(); else openDict(); break;
     case 'invite':
       if (navigator.share) navigator.share({ title: 'Plättli', text: t('shareText'), url: shareUrl() }).catch(() => {});
       else { try { await navigator.clipboard.writeText(shareUrl()); toast(t('copied')); } catch { prompt(t('copyLink'), shareUrl()); } }
@@ -626,6 +639,77 @@ app.addEventListener('keydown', (e) => {
   if (e.target.id === 'code') app.querySelector('[data-act=join]')?.click();
   if (e.target.id === 'name') app.querySelector('[data-act=join],[data-act=create]')?.click();
 });
+
+// ---------- dictionary (a sheet over the game, outside #app so moves don't reset what you type) ----------
+const dictEl = document.createElement('div');
+dictEl.id = 'dict';
+dictEl.className = 'sheet';
+dictEl.hidden = true;
+document.body.appendChild(dictEl);
+let dictOpen = false, dictLang = null, dictLastKey = null, dictSeq = 0, dictTimer = null;
+
+function openDict() {
+  dictOpen = true;
+  renderDict();
+  dictEl.hidden = false;
+  dictEl.querySelector('#dictq').focus();
+}
+function closeDict() { dictOpen = false; dictEl.hidden = true; }
+function renderDict() {
+  if (!S) return;
+  if (dictLang !== S.lang || !dictEl.firstChild) {
+    dictLang = S.lang;
+    dictLastKey = null;
+    dictEl.innerHTML = `<section class="sheet-card" role="dialog" aria-labelledby="dict-title">
+      <div class="card-head"><h3 id="dict-title">${t('dict')} · ${S.lang === 'de' ? 'Deutsch' : 'English'}</h3>
+        <button class="x" data-dict="close" aria-label="${t('close')}">×</button></div>
+      <input type="text" id="dictq" placeholder="${t('dictPh')}" maxlength="15" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="search">
+      <div class="dict-result" aria-live="polite"></div>
+      <div class="dict-last"></div>
+      <p class="muted small dict-info"></p>
+    </section>`;
+    checkWord();
+  }
+  checkLastMove();
+}
+const wordPoints = (w) => [...w].reduce((n, ch) => n + (TILESETS[S.lang][ch]?.[1] || 0), 0);
+async function checkWord() {
+  const out = dictEl.querySelector('.dict-result');
+  const word = dictEl.querySelector('#dictq').value.trim().toUpperCase(); // ß becomes SS
+  const seq = ++dictSeq;
+  out.className = 'dict-result';
+  if (!word) { out.textContent = ''; return; }
+  const letters = alphabet(S.lang);
+  if (![...word].every((ch) => letters.includes(ch))) { out.classList.add('bad'); out.textContent = t('dictBad', { letters: letters.join('') }); return; }
+  if (word.length < 2) { out.textContent = t('dictShort'); return; }
+  out.textContent = t('dictLoading');
+  try {
+    const res = await T.lookup(S.lang, [word]);
+    if (seq !== dictSeq) return; // a newer word was typed meanwhile
+    const ok = res.words[word];
+    out.classList.add(ok ? 'good' : 'bad');
+    out.innerHTML = `<span>${ok ? '✓' : '✗'} ${esc(t(ok ? 'dictOk' : 'dictNo', { w: word }))}</span>`
+      + (ok ? `<span class="muted small">${t('dictPoints', { n: wordPoints(word) })}</span>` : '');
+    dictEl.querySelector('.dict-info').textContent = t('dictSize', { n: Number(res.size).toLocaleString(ui === 'de' ? 'de-CH' : 'en') });
+  } catch (e) { if (seq === dictSeq) out.textContent = errText(e); }
+}
+async function checkLastMove() {
+  const box = dictEl.querySelector('.dict-last');
+  const words = S.last?.words || [];
+  const key = JSON.stringify([S.lang, S.last]);
+  if (key === dictLastKey) return;
+  dictLastKey = key;
+  if (!words.length) { box.innerHTML = ''; return; }
+  try {
+    const res = await T.lookup(S.lang, words);
+    if (key !== dictLastKey) return;
+    box.innerHTML = `<div class="muted small">${esc(t('dictLast', { name: playerName(S.last.pid) }))}</div>
+      <div class="word-chips">${words.map((w) => `<span class="word-chip ${res.words[w] ? 'good' : 'bad'}">${res.words[w] ? '✓' : '✗'} ${esc(w)}</span>`).join('')}</div>`;
+  } catch { box.innerHTML = ''; }
+}
+dictEl.addEventListener('input', () => { clearTimeout(dictTimer); dictTimer = setTimeout(checkWord, 120); });
+dictEl.addEventListener('click', (e) => { if (e.target.closest('[data-dict=close]')) closeDict(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && dictOpen) closeDict(); });
 
 // ---------- drag & drop (mouse and touch) ----------
 // On touch screens the tile floats above the finger, and the drop spot is under the floating tile.
