@@ -1,7 +1,7 @@
 // Game state and moves. Runs on the Node server and, without a server, in the browser.
 // A room is plain JSON, so it can be sent over the network as it is.
 import {
-  RACK_SIZE, MAX_PLAYERS, TILESETS, BLANKS, LANGS, alphabet, analyzeMove, emptyBoard, tilePoints,
+  RACK_SIZE, MAX_PLAYERS, LANGS, BAG_OPTIONS, bagCounts, alphabet, analyzeMove, emptyBoard, tilePoints,
 } from './rules.js';
 
 export class GameError extends Error {
@@ -29,7 +29,7 @@ export const cleanName = (s) => String(s ?? '').replace(/[\u0000-\u001f<>]/g, ''
 
 export function newRoom(code, lang) {
   return {
-    code, lang: LANGS.includes(lang) ? lang : 'de', check: true, time: 120, public: true, status: 'lobby',
+    code, lang: LANGS.includes(lang) ? lang : 'de', check: true, time: 120, bagSize: 100, public: true, status: 'lobby',
     players: [], board: emptyBoard(), bag: [], turn: 0, turnEnds: null, scoreless: 0, last: null, undoable: null, log: [],
   };
 }
@@ -47,13 +47,14 @@ export function pickSeat(room, name, isOnline) {
 }
 export const newPlayer = (id, name) => ({ id, name, rack: [], score: 0 });
 
-function newBag(lang, randInt) {
+function newBag(lang, randInt, size) {
+  const { letters, blanks } = bagCounts(lang, size);
   const bag = [];
   let n = 0;
-  for (const [l, [count, v]] of Object.entries(TILESETS[lang])) {
+  for (const [l, [count, v]] of Object.entries(letters)) {
     for (let i = 0; i < count; i++) bag.push({ id: `t${n++}`, l, v, b: false });
   }
-  for (let i = 0; i < BLANKS; i++) bag.push({ id: `t${n++}`, l: '', v: 0, b: true });
+  for (let i = 0; i < blanks; i++) bag.push({ id: `t${n++}`, l: '', v: 0, b: true });
   return shuffle(bag, randInt);
 }
 function draw(room, p) {
@@ -98,6 +99,7 @@ export const actions = {
     if (LANGS.includes(body.lang)) room.lang = body.lang;
     if (typeof body.check === 'boolean') room.check = body.check;
     if (TIME_OPTIONS.includes(body.time)) room.time = body.time;
+    if (BAG_OPTIONS.includes(body.bagSize)) room.bagSize = body.bagSize;
     if (typeof body.public === 'boolean') room.public = body.public;
   },
 
@@ -105,7 +107,7 @@ export const actions = {
     if (room.status === 'playing') fail('started');
     room.status = 'playing';
     room.board = emptyBoard();
-    room.bag = newBag(room.lang, ctx.randInt);
+    room.bag = newBag(room.lang, ctx.randInt, BAG_OPTIONS.includes(room.bagSize) ? room.bagSize : 100);
     room.turn = 0;
     room.scoreless = 0;
     room.last = room.undoable = null;
@@ -220,7 +222,7 @@ export function viewFor(room, pid, isOnline) {
   const me = room.players.find((p) => p.id === pid);
   const current = room.players[room.turn];
   return {
-    code: room.code, lang: room.lang, check: room.check, time: room.time, public: room.public, status: room.status, you: pid,
+    code: room.code, lang: room.lang, check: room.check, time: room.time, bagSize: room.bagSize ?? 100, public: room.public, status: room.status, you: pid,
     players: room.players.map((p) => ({ id: p.id, name: p.name, score: p.score, tiles: p.rack.length, online: isOnline(p.id) })),
     rack: me ? me.rack : [],
     board: room.board, bag: room.bag.length,

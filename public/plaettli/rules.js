@@ -22,6 +22,25 @@ export const TILESETS = {
   },
 };
 export const BLANKS = 2;
+
+/** Bag sizes a game can have (tiles in total, jokers included). 100 is the standard set above. */
+export const BAG_OPTIONS = [50, 75, 100, 150, 200];
+
+/** The tile set scaled to another bag size: same proportions, every letter at least once. */
+export function bagCounts(lang, size = 100) {
+  const set = TILESETS[lang];
+  const blanks = Math.max(1, Math.round((BLANKS * size) / 100));
+  const letters = size - blanks;
+  const base = Object.values(set).reduce((sum, [n]) => sum + n, 0);
+  const rows = Object.entries(set).map(([l, [n, v]]) => ({ l, v, x: (n * letters) / base }));
+  for (const r of rows) r.n = Math.max(1, Math.floor(r.x));
+  let total = rows.reduce((sum, r) => sum + r.n, 0);
+  const byFraction = [...rows].sort((a, b) => (b.x % 1) - (a.x % 1));
+  for (let i = 0; total < letters; i = (i + 1) % rows.length) { byFraction[i].n++; total++; }
+  const byCount = [...rows].sort((a, b) => b.n - a.n);
+  for (let i = 0; total > letters; i = (i + 1) % rows.length) if (byCount[i].n > 1) { byCount[i].n--; total--; }
+  return { letters: Object.fromEntries(rows.map((r) => [r.l, [r.n, r.v]])), blanks };
+}
 export const LANGS = Object.keys(TILESETS);
 export const alphabet = (lang) => Object.keys(TILESETS[lang]).sort((a, b) => a.localeCompare(b, lang));
 

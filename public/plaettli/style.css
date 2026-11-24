@@ -70,6 +70,7 @@ h2, h3 { margin: 0; }
 .seg button.on { background: var(--text); color: var(--bg); font-weight: 650; }
 .setting { display: flex !important; align-items: center; justify-content: space-between; gap: 12px; color: var(--text) !important; font-size: 1rem !important; }
 .setting { flex-wrap: wrap; }
+label.setting { flex-wrap: nowrap; } /* a switch stays next to its label */
 .setting .seg { flex: 0 1 240px; }
 .setting .seg button { padding: 9px 6px; }
 .switch { appearance: none; width: 50px; height: 30px; border-radius: 99px; background: var(--line); position: relative; cursor: pointer; flex: none; margin: 0; transition: background .15s; }

@@ -1,4 +1,4 @@
-import { SIZE, CENTER, MAX_PLAYERS, BINGO, TILESETS, alphabet, premiumAt, analyzeMove } from './rules.js';
+import { SIZE, CENTER, MAX_PLAYERS, BINGO, BAG_OPTIONS, TILESETS, alphabet, premiumAt, analyzeMove } from './rules.js';
 import { pickTransport } from './net.js';
 import { TIME_OPTIONS } from './engine.js';
 
@@ -22,6 +22,7 @@ const TEXT = {
     lobbyEmpty: 'Gerade wartet niemand. Erstelle ein Spiel, dann sehen es andere hier und können direkt beitreten.',
     quickPlay: 'Schnell spielen', orCreate: 'oder selbst eröffnen', seats: '{n}/4',
     timeLimit: 'Zeit pro Zug', timeNone: 'Ohne', min: '{n} Min', publicGame: 'In der offenen Lobby zeigen',
+    bagSize: 'Plättli im Beutel', bagHint: 'Weniger Plättli, kürzeres Spiel. Standard: 100.', tilesN: '{n} Plättli',
     publicOn: 'Alle sehen das Spiel auf der Startseite und können direkt beitreten.',
     publicOff: 'Nur wer den Link oder Code hat, kann beitreten.',
     timeUp: 'Deine Zeit ist abgelaufen.', log_timeout: '{name}: Zeit abgelaufen',
@@ -77,6 +78,7 @@ const TEXT = {
     lobbyEmpty: 'Nobody is waiting right now. Create a game and others will see it here and can join right away.',
     quickPlay: 'Quick play', orCreate: 'or start your own', seats: '{n}/4',
     timeLimit: 'Time per turn', timeNone: 'None', min: '{n} min', publicGame: 'Show in the open lobby',
+    bagSize: 'Tiles in the bag', bagHint: 'Fewer tiles, shorter game. Standard: 100.', tilesN: '{n} tiles',
     publicOn: 'Everyone sees the game on the start page and can join right away.',
     publicOff: 'Only people with the link or code can join.',
     timeUp: 'Your time is up.', log_timeout: '{name} ran out of time',
@@ -259,6 +261,8 @@ const timeLabel = (secs) => (secs ? t('min', { n: secs / 60 }) : t('timeNone'));
 function settingsBlock() {
   return `<div class="setting"><span>${t('language')}</span>${langSeg(S.lang, 'lang')}</div>
     <div class="setting"><span>${t('timeLimit')}</span><div class="seg">${TIME_OPTIONS.map((secs) => `<button data-act="time" data-v="${secs}" class="${S.time === secs ? 'on' : ''}">${timeLabel(secs)}</button>`).join('')}</div></div>
+    <div class="setting"><span>${t('bagSize')}</span><div class="seg">${BAG_OPTIONS.map((n) => `<button data-act="bag" data-v="${n}" class="${(S.bagSize ?? 100) === n ? 'on' : ''}">${n}</button>`).join('')}</div></div>
+    <p class="muted small" style="margin:-6px 0 0">${t('bagHint')}</p>
     <label class="setting"><span>${t('checkWords')}</span><input type="checkbox" class="switch" data-act="check" ${S.check ? 'checked' : ''}></label>
     <p class="muted small" style="margin:-6px 0 0">${S.check ? t('checkOn') : t('checkOff')}</p>
     <label class="setting"><span>${t('publicGame')}</span><input type="checkbox" class="switch" data-act="public" ${S.public ? 'checked' : ''}></label>
@@ -288,7 +292,7 @@ function renderOpenGames() {
   if (!openGames.length) { ul.innerHTML = `<li class="og-empty">${t('lobbyEmpty')}</li>`; return; }
   ul.innerHTML = openGames.map((g) => `<li>
       <div class="og-main"><b>${esc(g.players.join(', '))}</b>
-        <span>${g.lang === 'de' ? 'Deutsch' : 'English'} · ${esc(timeLabel(g.time))} · ${t('seats', { n: g.players.length })}</span></div>
+        <span>${g.lang === 'de' ? 'Deutsch' : 'English'} · ${esc(timeLabel(g.time))} · ${t('tilesN', { n: Number(g.bagSize) || 100 })} · ${t('seats', { n: g.players.length })}</span></div>
       <button data-act="joinOpen" data-code="${esc(g.code)}">${t('join')}</button>
     </li>`).join('');
 }
@@ -583,6 +587,7 @@ app.addEventListener('click', async (e) => {
       break;
     case 'lang': run('settings', { lang: v }); break;
     case 'time': run('settings', { time: Number(v) }); break;
+    case 'bag': run('settings', { bagSize: Number(v) }); break;
     case 'joinOpen':
     case 'quick': {
       const name = nameVal();

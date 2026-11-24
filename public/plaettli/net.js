@@ -2,7 +2,7 @@
 // - serverTransport: the Node server (server.js) is the referee; live updates over Server-Sent Events.
 // - mqttTransport: no server at all (any static host). The game state is a retained message on a
 //   public MQTT broker; the player making a move checks it with the shared engine and publishes it.
-import { LANGS, SIZE, MAX_PLAYERS, emptyBoard } from './rules.js';
+import { LANGS, SIZE, MAX_PLAYERS, BAG_OPTIONS, emptyBoard } from './rules.js';
 import { fail, actions, viewFor, newRoom, newCode, newPlayer, pickSeat, cleanName, TIME_OPTIONS } from './engine.js';
 import { Mqtt } from './mqtt.js';
 
@@ -121,15 +121,16 @@ const word = (w) => (typeof w === 'string' && /^[A-ZÄÖÜ?]{2,15}$/.test(w) ? w
 const cell = (rc) => (Array.isArray(rc) ? [int(rc[0], 0, SIZE - 1), int(rc[1], 0, SIZE - 1)] : null);
 const LOG_TYPES = ['start', 'play', 'swap', 'pass', 'undo', 'skip', 'timeout', 'end'];
 const time = (x) => (TIME_OPTIONS.includes(Number(x)) ? Number(x) : 120);
+const bagSize = (x) => (BAG_OPTIONS.includes(Number(x)) ? Number(x) : 100);
 
 export function cleanLobbyEntry(e, code) {
   if (!e || typeof e !== 'object' || !/^[A-Z]{4}$/.test(code)) return null;
   const players = list(e.players, 4, (n) => cleanName(n) || null);
   if (!players.length) return null;
-  return { code, lang: LANGS.includes(e.lang) ? e.lang : 'de', check: e.check !== false, time: time(e.time), players, t: int(e.t, 0, 1e13) };
+  return { code, lang: LANGS.includes(e.lang) ? e.lang : 'de', check: e.check !== false, time: time(e.time), bagSize: bagSize(e.bagSize), players, t: int(e.t, 0, 1e13) };
 }
 const cleanSettings = (d) => (d && typeof d === 'object'
-  ? { lang: LANGS.includes(d.lang) ? d.lang : 'de', check: d.check !== false, time: time(d.time), public: d.public !== false, t: int(d.t, 0, 1e13) }
+  ? { lang: LANGS.includes(d.lang) ? d.lang : 'de', check: d.check !== false, time: time(d.time), bagSize: bagSize(d.bagSize), public: d.public !== false, t: int(d.t, 0, 1e13) }
   : null);
 
 export function cleanGame(g, code) {
@@ -158,10 +159,10 @@ export function cleanGame(g, code) {
     t: e.t, pid: pid(e.pid), target: pid(e.target), words: list(e.words, 10, word), score: int(e.score, 0, 9999), n: int(e.n, 0, 7), bingo: e.bingo === true,
   });
   return {
-    code, lang: LANGS.includes(g.lang) ? g.lang : 'de', check: g.check !== false, time: time(g.time), public: g.public !== false,
+    code, lang: LANGS.includes(g.lang) ? g.lang : 'de', check: g.check !== false, time: time(g.time), bagSize: bagSize(g.bagSize), public: g.public !== false,
     status: g.status === 'ended' ? 'ended' : 'playing',
     turnEnds: g.turnEnds ? int(g.turnEnds, 0, 1e13) : null,
-    players, board, bag: list(g.bag, 100, tile),
+    players, board, bag: list(g.bag, 200, tile),
     turn: int(g.turn, 0, players.length - 1), scoreless: int(g.scoreless, 0, 99), last, undoable, log,
     v: int(g.v, 0, 1e9), w: typeof g.w === 'string' ? g.w.slice(0, 16) : '',
   };
@@ -192,14 +193,14 @@ function roomState(code) {
   };
   st.memberList = () => [...st.members.entries()].sort((a, b) => a[1].t - b[1].t).map(([id, m]) => newPlayer(id, m.name));
   st.lobby = () => ({
-    ...newRoom(code, st.settings?.lang), check: st.settings?.check ?? true, time: st.settings?.time ?? 120,
+    ...newRoom(code, st.settings?.lang), check: st.settings?.check ?? true, time: st.settings?.time ?? 120, bagSize: st.settings?.bagSize ?? 100,
     public: st.settings?.public ?? true, players: st.memberList(),
   });
   st.room = () => {
     if (!st.game) return st.lobby();
     const room = structuredClone(st.game);
     if (room.status === 'ended') { // settings for the next game, and people who joined since
-      if (st.settings) Object.assign(room, { lang: st.settings.lang, check: st.settings.check, time: st.settings.time, public: st.settings.public });
+      if (st.settings) Object.assign(room, { lang: st.settings.lang, check: st.settings.check, time: st.settings.time, bagSize: st.settings.bagSize, public: st.settings.public });
       for (const m of st.memberList()) if (!room.players.some((p) => p.id === m.id)) room.players.push(m);
     }
     return room;
@@ -265,7 +266,7 @@ export function mqttTransport(url) {
     if (!cli || !synced) return;
     const room = st.room();
     const listed = room.public && room.status !== 'playing' && room.players.length < MAX_PLAYERS;
-    const entry = listed ? { code, lang: room.lang, check: room.check, time: room.time, players: room.players.map((p) => p.name) } : null;
+    const entry = listed ? { code, lang: room.lang, check: room.check, time: room.time, bagSize: room.bagSize, players: room.players.map((p) => p.name) } : null;
     const key = JSON.stringify(entry);
     if (!force && key === lobbyKey) return;
     if (!entry && lobbyKey === null && !force) return;
@@ -402,6 +403,7 @@ export function mqttTransport(url) {
       if (LANGS.includes(body.lang)) s.lang = body.lang;
       if (typeof body.check === 'boolean') s.check = body.check;
       if (TIME_OPTIONS.includes(body.time)) s.time = body.time;
+      if (BAG_OPTIONS.includes(body.bagSize)) s.bagSize = body.bagSize;
       if (typeof body.public === 'boolean') s.public = body.public;
       st.settings = s;
       emit();
