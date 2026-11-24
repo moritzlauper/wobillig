@@ -109,7 +109,9 @@ details.help ul { padding-left: 20px; margin: 4px 0; }
 .sheet-card .card-head { margin: -4px -6px -4px 0; }
 .sheet input[type=text] { font-weight: 650; letter-spacing: .02em; }
 .sheet input[type=text]::placeholder { font-weight: 400; letter-spacing: 0; }
-@media (min-width: 900px) { .sheet { left: auto; width: 400px; top: 56px; } }
+.sheet.docked { position: absolute; right: auto; padding: 0; z-index: 5; }
+.sheet.docked .sheet-card { max-width: none; max-height: none; box-shadow: none; }
+body.dict-docked .game .log { margin-top: var(--dict-space, 0px); }
 .dict-result { display: grid; gap: 2px; min-height: 1.4em; font-weight: 650; font-size: 1.05rem; }
 .dict-result.good { color: var(--ok); }
 .dict-result.bad { color: var(--accent); }

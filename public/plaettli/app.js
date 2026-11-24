@@ -300,6 +300,7 @@ function render() {
   if (S.status === 'lobby') renderLobby();
   else renderGame();
   setConnected(connected);
+  placeDict();
 }
 
 function renderHome(code = homeCode) {
@@ -652,9 +653,39 @@ function openDict() {
   dictOpen = true;
   renderDict();
   dictEl.hidden = false;
+  placeDict();
   dictEl.querySelector('#dictq').focus();
 }
-function closeDict() { dictOpen = false; dictEl.hidden = true; }
+function closeDict() {
+  dictOpen = false;
+  dictEl.hidden = true;
+  document.body.classList.remove('dict-docked');
+}
+// With the side column (desktop, phone in landscape) the dictionary sits right under the buttons,
+// and the move log moves down to make room, so it never covers the rack. Otherwise it opens at the top.
+const sideLayout = matchMedia('(min-width: 900px), (orientation: landscape) and (max-height: 540px)');
+function placeDict() {
+  if (!dictOpen) return;
+  const anchor = sideLayout.matches && (app.querySelector('.dock .controls') || app.querySelector('.dock .rack'));
+  const card = dictEl.querySelector('.sheet-card');
+  if (!anchor || !card) {
+    dictEl.classList.remove('docked');
+    dictEl.removeAttribute('style');
+    document.body.classList.remove('dict-docked');
+    return;
+  }
+  const a = anchor.getBoundingClientRect();
+  const col = app.querySelector('.dock').getBoundingClientRect();
+  dictEl.classList.add('docked');
+  dictEl.style.top = `${Math.round(a.bottom + scrollY + 10)}px`;
+  dictEl.style.left = `${Math.round(col.left + scrollX)}px`;
+  dictEl.style.width = `${Math.round(col.width)}px`;
+  document.body.classList.add('dict-docked');
+  document.body.style.setProperty('--dict-space', `${Math.ceil(card.getBoundingClientRect().height) + 10}px`);
+}
+addEventListener('resize', placeDict);
+sideLayout.addEventListener?.('change', placeDict);
+new ResizeObserver(placeDict).observe(dictEl);
 function renderDict() {
   if (!S) return;
   if (dictLang !== S.lang || !dictEl.firstChild) {
