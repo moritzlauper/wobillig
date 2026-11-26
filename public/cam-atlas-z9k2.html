@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Zürich Cam Atlas</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root{
+    --bg:#060a10; --panel:#0b131d; --panel2:#0e1826; --line:#1b2a3c;
+    --fg:#e7eef7; --muted:#8aa0b8; --dim:#5f768f;
+    --accent:#19d3e6; --live:#ff3b5c; --good:#2ec27e; --warn:#f5b44a;
+    --mono:'DejaVu Sans Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);overflow:hidden}
+  #map{position:absolute;inset:0;background:#05080c}
+  .leaflet-container{background:#05080c;font-family:var(--sans)}
+
+  /* header */
+  #top{position:absolute;z-index:600;top:0;left:0;right:0;display:flex;align-items:center;gap:12px;
+    padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 12px;pointer-events:none;
+    background:linear-gradient(#060a10e0,#060a1000)}
+  #brand{display:flex;align-items:center;gap:10px;pointer-events:auto}
+  #brand .mark{width:26px;height:26px;color:var(--accent);filter:drop-shadow(0 0 10px #19d3e680)}
+  #brand h1{margin:0;font-size:15px;letter-spacing:.32em;font-weight:600;text-transform:uppercase}
+  #brand small{display:block;font-size:9.5px;letter-spacing:.22em;color:var(--dim);margin-top:2px}
+  #count{margin-left:auto;pointer-events:auto;font-family:var(--mono);font-size:11px;color:var(--muted);
+    border:1px solid var(--line);background:#0b131dcc;border-radius:999px;padding:6px 12px;white-space:nowrap}
+  #count b{color:var(--live)}
+
+  /* marker */
+  .cam{position:relative}
+  .cam .ring{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;
+    border:1.5px solid var(--live);opacity:.0;animation:pulse 2.6s ease-out infinite}
+  .cam .ring:nth-child(2){animation-delay:1.3s}
+  @keyframes pulse{0%{transform:scale(.4);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+  .cam .dot{position:relative;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+    background:radial-gradient(circle at 35% 30%,#ff6a84,#d61d3e);box-shadow:0 0 0 3px #ff3b5c22,0 3px 10px #000a;cursor:pointer}
+  .cam .dot svg{width:15px;height:15px;color:#fff}
+  .cam.t-air .dot{background:radial-gradient(circle at 35% 30%,#54e0f2,#0f94a6)}
+  .cam.t-air .ring{border-color:var(--accent)}
+  .cam.t-sum .dot{background:radial-gradient(circle at 35% 30%,#8ad66b,#2f9b3c)}
+  .cam.t-sum .ring{border-color:var(--good)}
+  @media(prefers-reduced-motion:reduce){.cam .ring{display:none}}
+
+  /* panel */
+  #panel{position:absolute;z-index:650;right:0;top:0;height:100%;width:400px;max-width:92vw;
+    background:linear-gradient(180deg,var(--panel),#070d14);border-left:1px solid var(--line);
+    transform:translateX(102%);transition:transform .32s cubic-bezier(.22,.8,.3,1);
+    display:flex;flex-direction:column;box-shadow:-18px 0 50px #000a}
+  #panel.open{transform:none}
+  #phead{position:relative;flex:0 0 auto}
+  #pmedia{position:relative;aspect-ratio:16/10;background:#05080c center/cover no-repeat;overflow:hidden;border-bottom:1px solid var(--line)}
+  #pmedia img{width:100%;height:100%;object-fit:cover;display:block}
+  #pmedia .noimg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--dim);text-align:center;padding:20px}
+  #pmedia .noimg svg{width:30px;height:30px;opacity:.5}
+  #livebadge{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#fff;
+    background:#d61d3ecc;padding:4px 9px;border-radius:999px;backdrop-filter:blur(4px)}
+  #livebadge i{width:7px;height:7px;border-radius:50%;background:#fff;animation:blink 1.4s infinite}
+  @keyframes blink{50%{opacity:.25}}
+  #pclose{position:absolute;top:10px;right:10px;z-index:2;width:30px;height:30px;border-radius:50%;
+    border:1px solid #ffffff2a;background:#060a10aa;color:#fff;cursor:pointer;font-size:16px;line-height:1;backdrop-filter:blur(4px)}
+  #pclose:hover{background:#d61d3e}
+  #ptitle{padding:14px 18px 8px}
+  #ptitle h2{margin:0;font-size:18px;font-weight:600;letter-spacing:.01em}
+  #ptitle .sub{color:var(--muted);font-size:12px;margin-top:3px}
+  #pbody{overflow-y:auto;padding:4px 18px 18px;scrollbar-width:thin}
+  .row{display:flex;gap:14px;padding:11px 0;border-top:1px solid var(--line);font-size:13px}
+  .row .k{flex:0 0 96px;color:var(--dim);text-transform:uppercase;letter-spacing:.12em;font-size:10px;padding-top:2px}
+  .row .v{flex:1;min-width:0}
+  .row .v b{font-weight:600}
+  .wline{display:flex;align-items:center;gap:9px;font-size:14px}
+  .wline .ic{font-size:19px;line-height:1}
+  .wsub{color:var(--muted);font-size:11.5px;margin-top:5px;line-height:1.5}
+  .aqi{display:inline-flex;align-items:center;gap:7px;font-weight:600}
+  .aqi .pill{width:9px;height:9px;border-radius:50%}
+  .gas{color:var(--muted);font-size:11.5px;margin-top:5px;font-family:var(--mono)}
+  .mono{font-family:var(--mono)}
+  .acc{color:var(--accent)}
+  .loading{color:var(--dim);font-size:12px;font-style:italic}
+  #pacts{flex:0 0 auto;display:flex;gap:9px;padding:12px 18px calc(env(safe-area-inset-bottom,0px) + 14px);border-top:1px solid var(--line);background:#070d14}
+  .btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;
+    font-size:12.5px;font-weight:600;padding:11px;border-radius:10px;border:1px solid var(--line);
+    color:var(--fg);background:#101d2b;cursor:pointer;transition:.15s}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.pri{background:var(--accent);color:#04161a;border-color:var(--accent)}
+  .btn.pri:hover{filter:brightness(1.1);color:#04161a}
+  .btn svg{width:15px;height:15px}
+
+  /* list toggle (mobile) */
+  #legend{position:absolute;z-index:600;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);
+    background:#0b131dd8;border:1px solid var(--line);border-radius:12px;padding:10px 13px;backdrop-filter:blur(8px);
+    font-size:11px;color:var(--muted);max-width:min(300px,70vw)}
+  #legend .lh{display:flex;align-items:center;gap:7px;color:var(--fg);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+  #legend ul{margin:0;padding:0;list-style:none;display:grid;gap:5px}
+  #legend li{display:flex;align-items:center;gap:8px;cursor:pointer}
+  #legend li:hover{color:var(--fg)}
+  #legend .sw{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  #attr{position:absolute;z-index:500;right:8px;bottom:4px;font-size:9px;color:#43566b;font-family:var(--mono)}
+  @media(max-width:560px){
+    #brand h1{font-size:12px;letter-spacing:.22em}
+    #panel{width:100%;max-width:100%}
+    #legend{display:none}
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div id="top">
+  <div id="brand">
+    <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8.5 5v10L12 22 3.5 17V7z"/><circle cx="12" cy="12" r="3.2"/></svg>
+    <div><h1>Zürich Cam Atlas</h1><small>Live-Kameras · Wetter · Luft</small></div>
+  </div>
+  <div id="count"><b id="cn">0</b> live cams</div>
+</div>
+
+<div id="legend">
+  <div class="lh">Kameras</div>
+  <ul id="legendlist"></ul>
+</div>
+<div id="attr">Luftbild © swisstopo · Wetter open-meteo.com</div>
+
+<div id="panel">
+  <div id="phead">
+    <button id="pclose" aria-label="Schliessen">×</button>
+    <div id="pmedia"></div>
+    <div id="ptitle"><h2 id="pt"></h2><div class="sub" id="ps"></div></div>
+  </div>
+  <div id="pbody"></div>
+  <div id="pacts">
+    <a class="btn pri" id="pfeed" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.5-2.5v9L15 14M4 6h9a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z"/></svg>
+      Live öffnen</a>
+    <a class="btn" id="pmap" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Karte</a>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+/* ---- Kameras in und um Zürich. type: urban|air(port)|sum(mit).
+   still = direkt verlinkbares Live-Standbild (aktualisiert sich), sonst null -> nur Link.
+   Koordinaten sind teils gerundet. ------------------------------------------- */
+const CAMS = [
+  {name:"Zürich-West", loc:"Escher-Wyss / Hardbrücke", type:"urban", cat:"Urban",
+   lat:47.3890, lon:8.5180, op:"Zürich Tourismus · Roundshot",
+   still:"https://backend.roundshot.com/cams/85/medium",
+   link:"https://zuerichtourismus.roundshot.com/zuerichwest",
+   note:"360°-Panorama. Sehr wahrscheinlich die Kamera, die Argos Atlas an der Hardbrücke zeigt."},
+  {name:"Altstadt", loc:"Stadthaus / Limmat", type:"urban", cat:"Urban",
+   lat:47.3700, lon:8.5408, op:"Zürich Tourismus · Roundshot",
+   still:"https://backend.roundshot.com/cams/86/medium",
+   link:"https://zuerichtourismus.roundshot.com/stadthaus",
+   note:"Blick über die Altstadt mit Grossmünster und Limmat."},
+  {name:"Sechseläutenplatz", loc:"Bellevue / Opernhaus", type:"urban", cat:"Urban",
+   lat:47.3664, lon:8.5455, op:"Zürich Tourismus · Roundshot",
+   still:"https://backend.roundshot.com/cams/66/medium",
+   link:"https://backend.roundshot.com/cams/66/medium", note:""},
+  {name:"Hauptbahnhof", loc:"Zürich HB", type:"urban", cat:"Verkehr",
+   lat:47.3779, lon:8.5403, op:"SkylineWebcams",
+   still:"https://cdn.skylinewebcams.com/3227.jpg",
+   link:"https://www.skylinewebcams.com/webcam/schweiz/canton-zurigo/zurich/train-station.html", note:""},
+  {name:"Uetliberg", loc:"Uto Kulm · Top of Zürich", type:"sum", cat:"Aussicht",
+   lat:47.3497, lon:8.4912, op:"Zürich Tourismus · Roundshot",
+   still:"https://backend.roundshot.com/cams/78/medium",
+   link:"https://uetliberg.roundshot.com/",
+   note:"Bei klarer Sicht über den Zürichsee bis zu den Alpen."},
+  {name:"SRF Leutschenbach", loc:"Zürich Nord", type:"urban", cat:"Urban",
+   lat:47.4138, lon:8.5555, op:"feratel",
+   still:null,
+   link:"https://webtvfc.feratel.com/webtv/?design=v5&pg=DA7D2F22-8600-464D-9D4F-CDB04014A6C5&cam=4080&lg=de&sound=muted", note:""},
+  {name:"Flughafen · Dock E Midfield 1", loc:"Zürich Airport", type:"air", cat:"Flughafen",
+   lat:47.4530, lon:8.5585, op:"Flughafen Zürich", still:null,
+   link:"https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/dock-e-midfield-cam-1",
+   note:"Standplatz E62, Taxi Bravo, RWY 10/28, Tower, Rega."},
+  {name:"Flughafen · Dock E Midfield 2", loc:"Zürich Airport", type:"air", cat:"Flughafen",
+   lat:47.4524, lon:8.5604, op:"Flughafen Zürich", still:null,
+   link:"https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/dock-e-midfield-cam-2", note:""},
+  {name:"Flughafen · Dock B", loc:"Zürich Airport", type:"air", cat:"Flughafen",
+   lat:47.4505, lon:8.5596, op:"Flughafen Zürich", still:null,
+   link:"https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/dock-b",
+   note:"Abfertigung Dock B, Werkhof, Tower, Feuerwehr."},
+  {name:"Flughafen · Werft", loc:"Zürich Airport", type:"air", cat:"Flughafen",
+   lat:47.4581, lon:8.5520, op:"Flughafen Zürich", still:null,
+   link:"https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/werft",
+   note:"Hangar, Schallschutzhalle, Starts Piste 16."},
+  {name:"Flughafen · Operation Center", loc:"Zürich Airport", type:"air", cat:"Flughafen",
+   lat:47.4560, lon:8.5616, op:"Flughafen Zürich", still:null,
+   link:"https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/operation-center",
+   note:"Anflüge auf Runway 28, Blick aufs Midfield."},
+  {name:"Flughafen · Piste 16", loc:"Zürich Airport", type:"air", cat:"Flughafen",
+   lat:47.4540, lon:8.5662, op:"Flughafen Zürich", still:null,
+   link:"https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/dock-e-snapshot-piste-16", note:""}
+];
+
+/* ---------- Map ---------- */
+const map = L.map('map',{zoomControl:false,attributionControl:false,minZoom:11,maxZoom:18})
+  .setView([47.388,8.53],13);
+L.control.zoom({position:'bottomright'}).addTo(map);
+L.tileLayer('https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857/{z}/{x}/{y}.jpeg',
+  {maxZoom:18}).addTo(map);
+// subtiles labels on top, semi-transparent dark overlay for contrast
+L.tileLayer('https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swisstlm3d-karte-grau/default/current/3857/{z}/{x}/{y}.png',
+  {maxZoom:18,opacity:0.18}).addTo(map);
+
+const CICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.5-2.5v9L15 14M4 6h9a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z"/></svg>';
+function mk(type){
+  const cls = type==='air'?'t-air':type==='sum'?'t-sum':'t-urban';
+  return L.divIcon({className:'',iconSize:[30,30],iconAnchor:[15,15],
+    html:`<div class="cam ${cls}"><div class="ring"></div><div class="ring"></div><div class="dot">${CICON}</div></div>`});
+}
+const markers = CAMS.map(c=>{
+  const m = L.marker([c.lat,c.lon],{icon:mk(c.type)}).addTo(map);
+  m.on('click',()=>openCam(c));
+  c._m=m; return m;
+});
+document.getElementById('cn').textContent = CAMS.length;
+
+/* legend */
+const ll = document.getElementById('legendlist');
+CAMS.forEach(c=>{
+  const col = c.type==='air'?'#19d3e6':c.type==='sum'?'#2ec27e':'#ff3b5c';
+  const li=document.createElement('li');
+  li.innerHTML=`<span class="sw" style="background:${col}"></span>${c.name}`;
+  li.onclick=()=>{map.setView([c.lat,c.lon],15,{animate:true});openCam(c);};
+  ll.appendChild(li);
+});
+
+/* ---------- Panel ---------- */
+const panel=document.getElementById('panel'), pbody=document.getElementById('pbody'),
+      pmedia=document.getElementById('pmedia'), pt=document.getElementById('pt'),
+      ps=document.getElementById('ps'), pfeed=document.getElementById('pfeed'),
+      pmap=document.getElementById('pmap');
+let refreshTimer=null, current=null;
+
+document.getElementById('pclose').onclick=closePanel;
+function closePanel(){panel.classList.remove('open');clearInterval(refreshTimer);refreshTimer=null;current=null;}
+
+function openCam(c){
+  current=c;
+  pt.textContent=c.name;
+  ps.textContent=`${c.loc} · ${c.op}`;
+  pfeed.href=c.link;
+  pmap.href=`https://www.google.com/maps/@${c.lat},${c.lon},16z`;
+
+  // media
+  clearInterval(refreshTimer);refreshTimer=null;
+  pmedia.innerHTML='';
+  if(c.still){
+    const img=document.createElement('img');
+    const load=()=>{img.src=c.still+(c.still.includes('?')?'&':'?')+'_t='+Date.now();};
+    img.onerror=()=>{pmedia.innerHTML=noImg('Standbild nicht erreichbar');};
+    pmedia.innerHTML='<div id="livebadge"><i></i>Live</div>';
+    pmedia.appendChild(img);
+    load(); refreshTimer=setInterval(load,10000);
+  }else{
+    pmedia.innerHTML=noImg('Live-Feed auf der Betreiberseite');
+  }
+
+  // body (details + weather placeholders)
+  pbody.innerHTML = `
+    <div class="row"><div class="k">Typ</div><div class="v"><b class="acc">live cam</b> · ${c.cat}</div></div>
+    <div class="row"><div class="k">Standort</div><div class="v mono">${c.lat.toFixed(4)}, ${c.lon.toFixed(4)}</div></div>
+    ${c.note?`<div class="row"><div class="k">Notiz</div><div class="v" style="color:var(--muted)">${c.note}</div></div>`:''}
+    <div class="row"><div class="k">Wetter</div><div class="v" id="wx"><span class="loading">lädt …</span></div></div>
+    <div class="row"><div class="k">Luft</div><div class="v" id="aq"><span class="loading">lädt …</span></div></div>
+    <div class="row"><div class="k">Betreiber</div><div class="v">${c.op}</div></div>`;
+  panel.classList.add('open');
+  loadWeather(c);
+}
+function noImg(t){return `<div class="noimg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 10l4.5-2.5v9L15 14M4 6h9a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z"/></svg><span>${t}</span></div>`;}
+
+/* ---------- Wetter & Luft (open-meteo, live im Browser) ---------- */
+const WMO={0:['Klar','☀️'],1:['Überwiegend klar','🌤️'],2:['Teils bewölkt','⛅'],3:['Bedeckt','☁️'],
+  45:['Nebel','🌫️'],48:['Reifnebel','🌫️'],51:['Leichter Niesel','🌦️'],53:['Niesel','🌦️'],55:['Starker Niesel','🌦️'],
+  56:['Gefr. Niesel','🌧️'],57:['Gefr. Niesel','🌧️'],61:['Leichter Regen','🌧️'],63:['Regen','🌧️'],65:['Starker Regen','🌧️'],
+  66:['Gefr. Regen','🌧️'],67:['Gefr. Regen','🌧️'],71:['Leichter Schnee','🌨️'],73:['Schnee','🌨️'],75:['Starker Schnee','❄️'],
+  77:['Schneegriesel','🌨️'],80:['Regenschauer','🌦️'],81:['Regenschauer','🌧️'],82:['Starke Schauer','⛈️'],
+  85:['Schneeschauer','🌨️'],86:['Schneeschauer','🌨️'],95:['Gewitter','⛈️'],96:['Gewitter + Hagel','⛈️'],99:['Gewitter + Hagel','⛈️']};
+const DIRS=['N','NNO','NO','ONO','O','OSO','SO','SSO','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+function dir(d){return DIRS[Math.round(d/22.5)%16];}
+function aqiBand(v){
+  if(v<=20)return['Sehr gut','#2ec27e'];if(v<=40)return['Gut','#8ad66b'];
+  if(v<=60)return['Mässig','#f5b44a'];if(v<=80)return['Schlecht','#f2763a'];
+  if(v<=100)return['Sehr schlecht','#e0455f'];return['Extrem schlecht','#9b3b8f'];}
+
+async function loadWeather(c){
+  const wx=document.getElementById('wx'), aq=document.getElementById('aq');
+  const token=c;
+  try{
+    const w=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}&current=temperature_2m,apparent_temperature,is_day,precipitation,weather_code,cloud_cover,wind_speed_10m,wind_direction_10m,wind_gusts_10m,visibility&timezone=Europe%2FZurich`).then(r=>r.json());
+    if(current!==token)return;
+    const d=w.current, wc=WMO[d.weather_code]||['—','·'];
+    wx.innerHTML=`<div class="wline"><span class="ic">${wc[1]}</span><span><b>${wc[0]}</b> · ${Math.round(d.temperature_2m)}°C</span></div>
+      <div class="wsub">gefühlt ${Math.round(d.apparent_temperature)}° · Wind ${Math.round(d.wind_speed_10m)} km/h aus ${dir(d.wind_direction_10m)} · Böen ${Math.round(d.wind_gusts_10m)} km/h<br>
+      Wolken ${d.cloud_cover}% · Sicht ${(d.visibility/1000).toFixed(1)} km · ${d.is_day?'Tag':'Nacht'}</div>`;
+  }catch(e){ if(current===token) wx.innerHTML='<span class="loading">nicht verfügbar</span>'; }
+  try{
+    const a=await fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${c.lat}&longitude=${c.lon}&current=european_aqi,pm2_5,pm10,nitrogen_dioxide,ozone,dust`).then(r=>r.json());
+    if(current!==token)return;
+    const d=a.current, b=aqiBand(d.european_aqi);
+    aq.innerHTML=`<div class="aqi"><span class="pill" style="background:${b[1]}"></span><span>${b[0]} · ${Math.round(d.european_aqi)} EAQI</span></div>
+      <div class="gas">PM2.5 ${Math.round(d.pm2_5)} · PM10 ${Math.round(d.pm10)} · NO₂ ${Math.round(d.nitrogen_dioxide)} · O₃ ${Math.round(d.ozone)} µg/m³</div>`;
+  }catch(e){ if(current===token) aq.innerHTML='<span class="loading">nicht verfügbar</span>'; }
+}
+
+/* open first cam for a non-empty first frame */
+setTimeout(()=>openCam(CAMS[0]),300);
+</script>
+</body>
+</html>
