@@ -2,7 +2,7 @@
 // - serverTransport: the Node server (server.js) is the referee; live updates over Server-Sent Events.
 // - mqttTransport: no server at all (any static host). The game state is a retained message on a
 //   public MQTT broker; the player making a move checks it with the shared engine and publishes it.
-import { LANGS, SIZE, MAX_PLAYERS, BAG_OPTIONS, emptyBoard, alphabet, nearWords } from './rules.js';
+import { LANGS, SIZE, MAX_PLAYERS, BAG_OPTIONS, emptyBoard } from './rules.js';
 import { fail, actions, viewFor, newRoom, newCode, newPlayer, pickSeat, cleanName, TIME_OPTIONS, GAME_TIME_OPTIONS } from './engine.js';
 import { Mqtt } from './mqtt.js';
 
@@ -309,8 +309,7 @@ export function mqttTransport(url) {
     async lookup(lang, words) {
       let d;
       try { d = await loadDict(lang); } catch { fail('dictLoading'); }
-      const near = words.length === 1 && !d.has(words[0]) ? nearWords((w) => d.has(w), words[0], alphabet(lang)) : [];
-      return { words: Object.fromEntries(words.map((w) => [w, d.has(w)])), near, size: d.size };
+      return { words: Object.fromEntries(words.map((w) => [w, d.has(w)])), size: d.size };
     },
     preload(lang) { loadDict(lang).catch(() => {}); },
     resume() { if (cli && !cli.online) cli.connect().catch(() => {}); },

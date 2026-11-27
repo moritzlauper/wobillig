@@ -145,22 +145,3 @@ export function analyzeMove(board, placed) {
   if (bingo) score += BINGO;
   return { words, score, bingo };
 }
-
-/** Allowed words one letter away (changed, added, removed or two swapped), e.g. MÖVE -> MÖWE.
- *  Likely typos come first: swapped letters, a missing letter, similar-sounding letters. */
-const SIMILAR = ['VWF', 'SZ', 'CKQ', 'IYJ', 'AÄE', 'OÖ', 'UÜ', 'DT', 'BP', 'GK', 'MN'];
-const similar = (a, b) => SIMILAR.some((g) => g.includes(a) && g.includes(b));
-export function nearWords(has, word, letters, max = 5) {
-  const found = new Map();
-  const add = (w, rank) => { if (w !== word && w.length >= 2 && has(w) && !(found.get(w) <= rank)) found.set(w, rank); };
-  for (let i = 0; i <= word.length; i++) {
-    const a = word.slice(0, i), b = word.slice(i);
-    if (b.length > 1) add(a + b[1] + b[0] + b.slice(2), 0);           // swapped
-    for (const l of letters) {
-      add(a + l + b, 1);                                               // missing letter
-      if (b) add(a + l + b.slice(1), similar(l, b[0]) ? 1 : 2);        // changed letter
-    }
-    if (b) add(a + b.slice(1), 3);                                     // extra letter
-  }
-  return [...found].sort((x, y) => x[1] - y[1]).slice(0, max).map(([w]) => w);
-}

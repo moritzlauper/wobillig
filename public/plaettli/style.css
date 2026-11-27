@@ -123,8 +123,7 @@ body.dict-docked .game .log { margin-top: var(--dict-space, 0px); }
 .word-chip.good { color: var(--ok); }
 .word-chip.bad { color: var(--accent); }
 .dict-info { margin: 0; }
-.dict-near { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-.dict-near:empty, .dict-meaning:empty, .dict-last:empty { display: none; }
+.dict-meaning:empty, .dict-last:empty { display: none; }
 button.word-chip { cursor: pointer; min-height: 32px; }
 .dict-meaning { display: grid; gap: 6px; padding: 10px 12px; border-radius: 12px; background: var(--bg); font-size: .92rem; }
 .dict-meaning p { margin: 0; }

@@ -36,7 +36,7 @@ const TEXT = {
     dictOk: '{w} ist erlaubt', dictNo: '{w} steht nicht im Wörterbuch', dictShort: 'Mindestens 2 Buchstaben.',
     dictBad: 'Nur Buchstaben aus dem Spiel ({letters}).', dictPoints: '{n} Punkte ohne Bonusfelder',
     dictLast: 'Letzter Zug von {name}', dictSize: '{n} Wörter. Gleiche Liste wie bei «Wörter prüfen».', close: 'Schliessen',
-    dictNear: 'Meintest du:', meaningLoading: 'Erklärung wird gesucht …', meaningNone: 'Keine Erklärung auf Wiktionary gefunden.',
+    meaningLoading: 'Erklärung wird gesucht …', meaningNone: 'Keine Erklärung auf Wiktionary gefunden.',
     meaningFail: 'Die Erklärung ist gerade nicht abrufbar.', meaningMore: 'Mehr auf Wiktionary',
     endBag: 'Beutel leer: Das Spiel endet, wenn jemand alle Plättli gelegt hat oder nach {n} Zügen ohne Punkte in Folge.',
     endSoon: 'Noch {n} Züge ohne Punkte, dann ist das Spiel vorbei.',
@@ -103,7 +103,7 @@ const TEXT = {
     dictOk: '{w} is allowed', dictNo: '{w} is not in the dictionary', dictShort: 'At least 2 letters.',
     dictBad: 'Only letters from the game ({letters}).', dictPoints: '{n} points without bonus squares',
     dictLast: 'Last move by {name}', dictSize: '{n} words. Same list as “Check words”.', close: 'Close',
-    dictNear: 'Did you mean:', meaningLoading: 'Looking up the meaning …', meaningNone: 'No explanation found on Wiktionary.',
+    meaningLoading: 'Looking up the meaning …', meaningNone: 'No explanation found on Wiktionary.',
     meaningFail: "The explanation can't be loaded right now.", meaningMore: 'More on Wiktionary',
     endBag: 'Bag empty: the game ends when someone has used all tiles, or after {n} turns in a row without points.',
     endSoon: '{n} more turns without points and the game is over.',
@@ -745,7 +745,6 @@ function renderDict() {
         <button class="x" data-dict="close" aria-label="${t('close')}">×</button></div>
       <input type="text" id="dictq" placeholder="${t('dictPh')}" maxlength="15" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="search">
       <div class="dict-result" aria-live="polite"></div>
-      <div class="dict-near"></div>
       <div class="dict-meaning"></div>
       <div class="dict-last"></div>
       <p class="muted small dict-info"></p>
@@ -773,7 +772,6 @@ async function checkWord() {
   const word = dictEl.querySelector('#dictq').value.trim().toUpperCase(); // ß becomes SS
   const seq = ++dictSeq;
   out.className = 'dict-result';
-  dictEl.querySelector('.dict-near').innerHTML = '';
   dictEl.querySelector('.dict-meaning').innerHTML = '';
   if (!word) { out.textContent = ''; return; }
   const letters = alphabet(S.lang);
@@ -787,8 +785,6 @@ async function checkWord() {
     out.classList.add(ok ? 'good' : 'bad');
     out.innerHTML = `<span>${ok ? '✓' : '✗'} ${esc(t(ok ? 'dictOk' : 'dictNo', { w: word }))}</span>`
       + (ok ? `<span class="muted small">${t('dictPoints', { n: wordPoints(word) })}</span>` : '');
-    const near = Array.isArray(res.near) ? res.near.filter((w) => typeof w === 'string') : [];
-    if (!ok && near.length) dictEl.querySelector('.dict-near').innerHTML = `<span class="muted small">${t('dictNear')}</span> ${near.map((w) => chip(w)).join('')}`;
     if (ok) setTimeout(() => { if (seq === dictSeq) showMeaning(word, seq); }, 350); // ask Wiktionary once typing has paused
     dictEl.querySelector('.dict-info').textContent = t('dictSize', { n: Number(res.size).toLocaleString(ui === 'de' ? 'de-CH' : 'en') });
   } catch (e) { if (seq === dictSeq) out.textContent = errText(e); }
